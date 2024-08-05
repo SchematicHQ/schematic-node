@@ -7,57 +7,57 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const CreateWebhookRequestBodyRequestTypesItem: core.serialization.Schema<
-    serializers.CreateWebhookRequestBodyRequestTypesItem.Raw,
-    Schematic.CreateWebhookRequestBodyRequestTypesItem
+  serializers.CreateWebhookRequestBodyRequestTypesItem.Raw,
+  Schematic.CreateWebhookRequestBodyRequestTypesItem
 > = core.serialization.enum_([
-    "company.updated",
-    "user.updated",
-    "plan.updated",
-    "plan.entitlement.updated",
-    "company.override.updated",
-    "feature.updated",
-    "flag.updated",
-    "flag_rules.updated",
-    "company.created",
-    "user.created",
-    "plan.created",
-    "plan.entitlement.created",
-    "company.override.created",
-    "feature.created",
-    "flag.created",
-    "company.deleted",
-    "user.deleted",
-    "plan.deleted",
-    "plan.entitlement.deleted",
-    "company.override.deleted",
-    "feature.deleted",
-    "flag.deleted",
-    "test.send",
+  "company.updated",
+  "user.updated",
+  "plan.updated",
+  "plan.entitlement.updated",
+  "company.override.updated",
+  "feature.updated",
+  "flag.updated",
+  "flag_rules.updated",
+  "company.created",
+  "user.created",
+  "plan.created",
+  "plan.entitlement.created",
+  "company.override.created",
+  "feature.created",
+  "flag.created",
+  "company.deleted",
+  "user.deleted",
+  "plan.deleted",
+  "plan.entitlement.deleted",
+  "company.override.deleted",
+  "feature.deleted",
+  "flag.deleted",
+  "test.send",
 ]);
 
 export declare namespace CreateWebhookRequestBodyRequestTypesItem {
-    type Raw =
-        | "company.updated"
-        | "user.updated"
-        | "plan.updated"
-        | "plan.entitlement.updated"
-        | "company.override.updated"
-        | "feature.updated"
-        | "flag.updated"
-        | "flag_rules.updated"
-        | "company.created"
-        | "user.created"
-        | "plan.created"
-        | "plan.entitlement.created"
-        | "company.override.created"
-        | "feature.created"
-        | "flag.created"
-        | "company.deleted"
-        | "user.deleted"
-        | "plan.deleted"
-        | "plan.entitlement.deleted"
-        | "company.override.deleted"
-        | "feature.deleted"
-        | "flag.deleted"
-        | "test.send";
+  type Raw =
+    | "company.updated"
+    | "user.updated"
+    | "plan.updated"
+    | "plan.entitlement.updated"
+    | "company.override.updated"
+    | "feature.updated"
+    | "flag.updated"
+    | "flag_rules.updated"
+    | "company.created"
+    | "user.created"
+    | "plan.created"
+    | "plan.entitlement.created"
+    | "company.override.created"
+    | "feature.created"
+    | "flag.created"
+    | "company.deleted"
+    | "user.deleted"
+    | "plan.deleted"
+    | "plan.entitlement.deleted"
+    | "company.override.deleted"
+    | "feature.deleted"
+    | "flag.deleted"
+    | "test.send";
 }

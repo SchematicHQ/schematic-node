@@ -7,10 +7,10 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const CreateOrUpdateConditionRequestBodyOperator: core.serialization.Schema<
-    serializers.CreateOrUpdateConditionRequestBodyOperator.Raw,
-    Schematic.CreateOrUpdateConditionRequestBodyOperator
+  serializers.CreateOrUpdateConditionRequestBodyOperator.Raw,
+  Schematic.CreateOrUpdateConditionRequestBodyOperator
 > = core.serialization.enum_(["eq", "ne", "gt", "gte", "lt", "lte"]);
 
 export declare namespace CreateOrUpdateConditionRequestBodyOperator {
-    type Raw = "eq" | "ne" | "gt" | "gte" | "lt" | "lte";
+  type Raw = "eq" | "ne" | "gt" | "gte" | "lt" | "lte";
 }

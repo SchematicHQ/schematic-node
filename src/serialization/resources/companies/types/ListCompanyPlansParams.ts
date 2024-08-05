@@ -7,20 +7,20 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const ListCompanyPlansParams: core.serialization.ObjectSchema<
-    serializers.ListCompanyPlansParams.Raw,
-    Schematic.ListCompanyPlansParams
+  serializers.ListCompanyPlansParams.Raw,
+  Schematic.ListCompanyPlansParams
 > = core.serialization.object({
-    companyId: core.serialization.property("company_id", core.serialization.string().optional()),
-    limit: core.serialization.number().optional(),
-    offset: core.serialization.number().optional(),
-    planId: core.serialization.property("plan_id", core.serialization.string().optional()),
+  companyId: core.serialization.property("company_id", core.serialization.string().optional()),
+  limit: core.serialization.number().optional(),
+  offset: core.serialization.number().optional(),
+  planId: core.serialization.property("plan_id", core.serialization.string().optional()),
 });
 
 export declare namespace ListCompanyPlansParams {
-    interface Raw {
-        company_id?: string | null;
-        limit?: number | null;
-        offset?: number | null;
-        plan_id?: string | null;
-    }
+  interface Raw {
+    company_id?: string | null;
+    limit?: number | null;
+    offset?: number | null;
+    plan_id?: string | null;
+  }
 }

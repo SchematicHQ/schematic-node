@@ -7,10 +7,10 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const CreateReqCommonMetricPeriod: core.serialization.Schema<
-    serializers.CreateReqCommonMetricPeriod.Raw,
-    Schematic.CreateReqCommonMetricPeriod
+  serializers.CreateReqCommonMetricPeriod.Raw,
+  Schematic.CreateReqCommonMetricPeriod
 > = core.serialization.enum_(["current_month", "current_week", "current_day"]);
 
 export declare namespace CreateReqCommonMetricPeriod {
-    type Raw = "current_month" | "current_week" | "current_day";
+  type Raw = "current_month" | "current_week" | "current_day";
 }

@@ -6,8 +6,8 @@
  * The created resource
  */
 export interface BillingSubscriptionResponseData {
-    expiredAt?: Date;
-    externalId: string;
-    id: number;
-    updatedAt: Date;
+  expiredAt?: Date;
+  externalId: string;
+  id: number;
+  updatedAt: Date;
 }

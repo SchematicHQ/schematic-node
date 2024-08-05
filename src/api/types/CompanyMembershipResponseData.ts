@@ -3,9 +3,9 @@
  */
 
 export interface CompanyMembershipResponseData {
-    companyId: string;
-    createdAt: Date;
-    id: string;
-    updatedAt: Date;
-    userId: string;
+  companyId: string;
+  createdAt: Date;
+  id: string;
+  updatedAt: Date;
+  userId: string;
 }

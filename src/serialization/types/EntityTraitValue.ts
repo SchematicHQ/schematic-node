@@ -7,16 +7,16 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const EntityTraitValue: core.serialization.ObjectSchema<
-    serializers.EntityTraitValue.Raw,
-    Schematic.EntityTraitValue
+  serializers.EntityTraitValue.Raw,
+  Schematic.EntityTraitValue
 > = core.serialization.object({
-    definitionId: core.serialization.property("definition_id", core.serialization.string()),
-    value: core.serialization.string(),
+  definitionId: core.serialization.property("definition_id", core.serialization.string()),
+  value: core.serialization.string(),
 });
 
 export declare namespace EntityTraitValue {
-    interface Raw {
-        definition_id: string;
-        value: string;
-    }
+  interface Raw {
+    definition_id: string;
+    value: string;
+  }
 }

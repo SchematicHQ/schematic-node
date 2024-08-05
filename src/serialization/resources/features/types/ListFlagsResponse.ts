@@ -9,16 +9,16 @@ import { FlagDetailResponseData } from "../../../types/FlagDetailResponseData";
 import { ListFlagsParams } from "./ListFlagsParams";
 
 export const ListFlagsResponse: core.serialization.ObjectSchema<
-    serializers.ListFlagsResponse.Raw,
-    Schematic.ListFlagsResponse
+  serializers.ListFlagsResponse.Raw,
+  Schematic.ListFlagsResponse
 > = core.serialization.object({
-    data: core.serialization.list(FlagDetailResponseData),
-    params: ListFlagsParams,
+  data: core.serialization.list(FlagDetailResponseData),
+  params: ListFlagsParams,
 });
 
 export declare namespace ListFlagsResponse {
-    interface Raw {
-        data: FlagDetailResponseData.Raw[];
-        params: ListFlagsParams.Raw;
-    }
+  interface Raw {
+    data: FlagDetailResponseData.Raw[];
+    params: ListFlagsParams.Raw;
+  }
 }

@@ -6,14 +6,14 @@
  * Input parameters
  */
 export interface CountFeaturesParams {
-    ids?: string[];
-    /** Page limit (default 100) */
-    limit?: number;
-    /** Page offset (default 0) */
-    offset?: number;
-    q?: string;
-    /** Filter out features that already have a company override for the specified company ID */
-    withoutCompanyOverrideFor?: string;
-    /** Filter out features that already have a plan entitlement for the specified plan ID */
-    withoutPlanEntitlementFor?: string;
+  ids?: string[];
+  /** Page limit (default 100) */
+  limit?: number;
+  /** Page offset (default 0) */
+  offset?: number;
+  q?: string;
+  /** Filter out features that already have a company override for the specified company ID */
+  withoutCompanyOverrideFor?: string;
+  /** Filter out features that already have a plan entitlement for the specified plan ID */
+  withoutPlanEntitlementFor?: string;
 }

@@ -1,1 +1,16 @@
 # Specify files that shouldn't be modified by Fern
+
+.prettierrc
+.husky/pre-commit
+README.md
+generate-version.js
+package.json
+src/cache.test.ts
+src/cache.ts
+src/core/fetcher/custom.ts
+src/events.test.ts
+src/events.ts
+src/index.ts
+src/logger.ts
+src/version.ts
+src/wrapper.ts

@@ -3,22 +3,22 @@
  */
 
 export interface RuleConditionResponseData {
-    comparisonTraitId?: string;
-    conditionGroupId?: string;
-    conditionType: string;
-    createdAt: Date;
-    environmentId: string;
-    eventSubtype?: string;
-    flagId?: string;
-    id: string;
-    metricPeriod?: string;
-    metricValue?: number;
-    operator: string;
-    planId?: string;
-    resourceIds: string[];
-    ruleId: string;
-    traitEntityType?: string;
-    traitId?: string;
-    traitValue: string;
-    updatedAt: Date;
+  comparisonTraitId?: string;
+  conditionGroupId?: string;
+  conditionType: string;
+  createdAt: Date;
+  environmentId: string;
+  eventSubtype?: string;
+  flagId?: string;
+  id: string;
+  metricPeriod?: string;
+  metricValue?: number;
+  operator: string;
+  planId?: string;
+  resourceIds: string[];
+  ruleId: string;
+  traitEntityType?: string;
+  traitId?: string;
+  traitValue: string;
+  updatedAt: Date;
 }

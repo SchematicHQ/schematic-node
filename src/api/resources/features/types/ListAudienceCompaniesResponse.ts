@@ -5,8 +5,8 @@
 import * as Schematic from "../../../index";
 
 export interface ListAudienceCompaniesResponse {
-    /** The returned resources */
-    data: Schematic.CompanyDetailResponseData[];
-    /** Input parameters */
-    params: Record<string, unknown>;
+  /** The returned resources */
+  data: Schematic.CompanyDetailResponseData[];
+  /** Input parameters */
+  params: Record<string, unknown>;
 }

@@ -9,8 +9,8 @@ import * as Schematic from "../../../../index";
  *     {}
  */
 export interface UpdateComponentRequestBody {
-    ast?: number[];
-    entityType?: Schematic.UpdateComponentRequestBodyEntityType;
-    name?: string;
-    state?: Schematic.UpdateComponentRequestBodyState;
+  ast?: number[];
+  entityType?: Schematic.UpdateComponentRequestBodyEntityType;
+  name?: string;
+  state?: Schematic.UpdateComponentRequestBodyState;
 }

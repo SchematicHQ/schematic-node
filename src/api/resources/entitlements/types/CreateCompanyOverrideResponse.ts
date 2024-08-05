@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface CreateCompanyOverrideResponse {
-    data: Schematic.CompanyOverrideResponseData;
-    /** Input parameters */
-    params: Record<string, unknown>;
+  data: Schematic.CompanyOverrideResponseData;
+  /** Input parameters */
+  params: Record<string, unknown>;
 }

@@ -5,8 +5,8 @@
 import * as Schematic from "../../../index";
 
 export interface ListMetricCountsResponse {
-    /** The returned resources */
-    data: Schematic.MetricCountsHourlyResponseData[];
-    /** Input parameters */
-    params: Schematic.ListMetricCountsParams;
+  /** The returned resources */
+  data: Schematic.MetricCountsHourlyResponseData[];
+  /** Input parameters */
+  params: Schematic.ListMetricCountsParams;
 }

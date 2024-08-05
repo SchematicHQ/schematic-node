@@ -8,16 +8,16 @@ import * as core from "../../../../core";
 import { DeleteResponse } from "../../../types/DeleteResponse";
 
 export const DeleteAudienceResponse: core.serialization.ObjectSchema<
-    serializers.DeleteAudienceResponse.Raw,
-    Schematic.DeleteAudienceResponse
+  serializers.DeleteAudienceResponse.Raw,
+  Schematic.DeleteAudienceResponse
 > = core.serialization.object({
-    data: DeleteResponse,
-    params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+  data: DeleteResponse,
+  params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
 export declare namespace DeleteAudienceResponse {
-    interface Raw {
-        data: DeleteResponse.Raw;
-        params: Record<string, unknown>;
-    }
+  interface Raw {
+    data: DeleteResponse.Raw;
+    params: Record<string, unknown>;
+  }
 }

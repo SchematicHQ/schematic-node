@@ -9,19 +9,19 @@ import { CreateOrUpdateConditionGroupRequestBody } from "../../../../types/Creat
 import { CreateOrUpdateConditionRequestBody } from "../../../../types/CreateOrUpdateConditionRequestBody";
 
 export const UpdateAudienceRequestBody: core.serialization.Schema<
-    serializers.UpdateAudienceRequestBody.Raw,
-    Schematic.UpdateAudienceRequestBody
+  serializers.UpdateAudienceRequestBody.Raw,
+  Schematic.UpdateAudienceRequestBody
 > = core.serialization.object({
-    conditionGroups: core.serialization.property(
-        "condition_groups",
-        core.serialization.list(CreateOrUpdateConditionGroupRequestBody)
-    ),
-    conditions: core.serialization.list(CreateOrUpdateConditionRequestBody),
+  conditionGroups: core.serialization.property(
+    "condition_groups",
+    core.serialization.list(CreateOrUpdateConditionGroupRequestBody),
+  ),
+  conditions: core.serialization.list(CreateOrUpdateConditionRequestBody),
 });
 
 export declare namespace UpdateAudienceRequestBody {
-    interface Raw {
-        condition_groups: CreateOrUpdateConditionGroupRequestBody.Raw[];
-        conditions: CreateOrUpdateConditionRequestBody.Raw[];
-    }
+  interface Raw {
+    condition_groups: CreateOrUpdateConditionGroupRequestBody.Raw[];
+    conditions: CreateOrUpdateConditionRequestBody.Raw[];
+  }
 }

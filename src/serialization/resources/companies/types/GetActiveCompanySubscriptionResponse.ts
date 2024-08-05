@@ -9,16 +9,16 @@ import { CompanySubscriptionResponseData } from "../../../types/CompanySubscript
 import { GetActiveCompanySubscriptionParams } from "./GetActiveCompanySubscriptionParams";
 
 export const GetActiveCompanySubscriptionResponse: core.serialization.ObjectSchema<
-    serializers.GetActiveCompanySubscriptionResponse.Raw,
-    Schematic.GetActiveCompanySubscriptionResponse
+  serializers.GetActiveCompanySubscriptionResponse.Raw,
+  Schematic.GetActiveCompanySubscriptionResponse
 > = core.serialization.object({
-    data: core.serialization.list(CompanySubscriptionResponseData),
-    params: GetActiveCompanySubscriptionParams,
+  data: core.serialization.list(CompanySubscriptionResponseData),
+  params: GetActiveCompanySubscriptionParams,
 });
 
 export declare namespace GetActiveCompanySubscriptionResponse {
-    interface Raw {
-        data: CompanySubscriptionResponseData.Raw[];
-        params: GetActiveCompanySubscriptionParams.Raw;
-    }
+  interface Raw {
+    data: CompanySubscriptionResponseData.Raw[];
+    params: GetActiveCompanySubscriptionParams.Raw;
+  }
 }

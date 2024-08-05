@@ -9,16 +9,16 @@ import { MetricCountsHourlyResponseData } from "../../../types/MetricCountsHourl
 import { ListMetricCountsParams } from "./ListMetricCountsParams";
 
 export const ListMetricCountsResponse: core.serialization.ObjectSchema<
-    serializers.ListMetricCountsResponse.Raw,
-    Schematic.ListMetricCountsResponse
+  serializers.ListMetricCountsResponse.Raw,
+  Schematic.ListMetricCountsResponse
 > = core.serialization.object({
-    data: core.serialization.list(MetricCountsHourlyResponseData),
-    params: ListMetricCountsParams,
+  data: core.serialization.list(MetricCountsHourlyResponseData),
+  params: ListMetricCountsParams,
 });
 
 export declare namespace ListMetricCountsResponse {
-    interface Raw {
-        data: MetricCountsHourlyResponseData.Raw[];
-        params: ListMetricCountsParams.Raw;
-    }
+  interface Raw {
+    data: MetricCountsHourlyResponseData.Raw[];
+    params: ListMetricCountsParams.Raw;
+  }
 }

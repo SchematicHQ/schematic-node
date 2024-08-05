@@ -10,42 +10,42 @@ import { FeatureResponseData } from "./FeatureResponseData";
 import { EntityTraitDefinitionResponseData } from "./EntityTraitDefinitionResponseData";
 
 export const CompanyOverrideResponseData: core.serialization.ObjectSchema<
-    serializers.CompanyOverrideResponseData.Raw,
-    Schematic.CompanyOverrideResponseData
+  serializers.CompanyOverrideResponseData.Raw,
+  Schematic.CompanyOverrideResponseData
 > = core.serialization.object({
-    company: CompanyDetailResponseData.optional(),
-    companyId: core.serialization.property("company_id", core.serialization.string()),
-    createdAt: core.serialization.property("created_at", core.serialization.date()),
-    environmentId: core.serialization.property("environment_id", core.serialization.string()),
-    feature: FeatureResponseData.optional(),
-    featureId: core.serialization.property("feature_id", core.serialization.string()),
-    id: core.serialization.string(),
-    metricPeriod: core.serialization.property("metric_period", core.serialization.string().optional()),
-    ruleId: core.serialization.property("rule_id", core.serialization.string()),
-    updatedAt: core.serialization.property("updated_at", core.serialization.date()),
-    valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
-    valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
-    valueTrait: core.serialization.property("value_trait", EntityTraitDefinitionResponseData.optional()),
-    valueTraitId: core.serialization.property("value_trait_id", core.serialization.string().optional()),
-    valueType: core.serialization.property("value_type", core.serialization.string()),
+  company: CompanyDetailResponseData.optional(),
+  companyId: core.serialization.property("company_id", core.serialization.string()),
+  createdAt: core.serialization.property("created_at", core.serialization.date()),
+  environmentId: core.serialization.property("environment_id", core.serialization.string()),
+  feature: FeatureResponseData.optional(),
+  featureId: core.serialization.property("feature_id", core.serialization.string()),
+  id: core.serialization.string(),
+  metricPeriod: core.serialization.property("metric_period", core.serialization.string().optional()),
+  ruleId: core.serialization.property("rule_id", core.serialization.string()),
+  updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+  valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
+  valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
+  valueTrait: core.serialization.property("value_trait", EntityTraitDefinitionResponseData.optional()),
+  valueTraitId: core.serialization.property("value_trait_id", core.serialization.string().optional()),
+  valueType: core.serialization.property("value_type", core.serialization.string()),
 });
 
 export declare namespace CompanyOverrideResponseData {
-    interface Raw {
-        company?: CompanyDetailResponseData.Raw | null;
-        company_id: string;
-        created_at: string;
-        environment_id: string;
-        feature?: FeatureResponseData.Raw | null;
-        feature_id: string;
-        id: string;
-        metric_period?: string | null;
-        rule_id: string;
-        updated_at: string;
-        value_bool?: boolean | null;
-        value_numeric?: number | null;
-        value_trait?: EntityTraitDefinitionResponseData.Raw | null;
-        value_trait_id?: string | null;
-        value_type: string;
-    }
+  interface Raw {
+    company?: CompanyDetailResponseData.Raw | null;
+    company_id: string;
+    created_at: string;
+    environment_id: string;
+    feature?: FeatureResponseData.Raw | null;
+    feature_id: string;
+    id: string;
+    metric_period?: string | null;
+    rule_id: string;
+    updated_at: string;
+    value_bool?: boolean | null;
+    value_numeric?: number | null;
+    value_trait?: EntityTraitDefinitionResponseData.Raw | null;
+    value_trait_id?: string | null;
+    value_type: string;
+  }
 }

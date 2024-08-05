@@ -7,30 +7,30 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const ApiKeyCreateResponseData: core.serialization.ObjectSchema<
-    serializers.ApiKeyCreateResponseData.Raw,
-    Schematic.ApiKeyCreateResponseData
+  serializers.ApiKeyCreateResponseData.Raw,
+  Schematic.ApiKeyCreateResponseData
 > = core.serialization.object({
-    createdAt: core.serialization.property("created_at", core.serialization.date()),
-    description: core.serialization.string().optional(),
-    environmentId: core.serialization.property("environment_id", core.serialization.string().optional()),
-    id: core.serialization.string(),
-    lastUsedAt: core.serialization.property("last_used_at", core.serialization.date().optional()),
-    name: core.serialization.string(),
-    scopes: core.serialization.list(core.serialization.string()),
-    secret: core.serialization.string(),
-    updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+  createdAt: core.serialization.property("created_at", core.serialization.date()),
+  description: core.serialization.string().optional(),
+  environmentId: core.serialization.property("environment_id", core.serialization.string().optional()),
+  id: core.serialization.string(),
+  lastUsedAt: core.serialization.property("last_used_at", core.serialization.date().optional()),
+  name: core.serialization.string(),
+  scopes: core.serialization.list(core.serialization.string()),
+  secret: core.serialization.string(),
+  updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
 export declare namespace ApiKeyCreateResponseData {
-    interface Raw {
-        created_at: string;
-        description?: string | null;
-        environment_id?: string | null;
-        id: string;
-        last_used_at?: string | null;
-        name: string;
-        scopes: string[];
-        secret: string;
-        updated_at: string;
-    }
+  interface Raw {
+    created_at: string;
+    description?: string | null;
+    environment_id?: string | null;
+    id: string;
+    last_used_at?: string | null;
+    name: string;
+    scopes: string[];
+    secret: string;
+    updated_at: string;
+  }
 }

@@ -6,14 +6,14 @@
  * The created resource
  */
 export interface CrmProductResponseData {
-    accountId: string;
-    createdAt: Date;
-    currency: string;
-    environmentId: string;
-    externalId: string;
-    name: string;
-    price: string;
-    productId: string;
-    quantity: number;
-    updatedAt: Date;
+  accountId: string;
+  createdAt: Date;
+  currency: string;
+  environmentId: string;
+  externalId: string;
+  name: string;
+  price: string;
+  productId: string;
+  quantity: number;
+  updatedAt: Date;
 }

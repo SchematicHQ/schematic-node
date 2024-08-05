@@ -7,18 +7,18 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const PreviewObject: core.serialization.ObjectSchema<serializers.PreviewObject.Raw, Schematic.PreviewObject> =
-    core.serialization.object({
-        description: core.serialization.string().optional(),
-        id: core.serialization.string(),
-        imageUrl: core.serialization.property("image_url", core.serialization.string().optional()),
-        name: core.serialization.string(),
-    });
+  core.serialization.object({
+    description: core.serialization.string().optional(),
+    id: core.serialization.string(),
+    imageUrl: core.serialization.property("image_url", core.serialization.string().optional()),
+    name: core.serialization.string(),
+  });
 
 export declare namespace PreviewObject {
-    interface Raw {
-        description?: string | null;
-        id: string;
-        image_url?: string | null;
-        name: string;
-    }
+  interface Raw {
+    description?: string | null;
+    id: string;
+    image_url?: string | null;
+    name: string;
+  }
 }

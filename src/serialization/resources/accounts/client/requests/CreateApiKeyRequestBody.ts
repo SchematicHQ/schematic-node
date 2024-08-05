@@ -7,18 +7,18 @@ import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 
 export const CreateApiKeyRequestBody: core.serialization.Schema<
-    serializers.CreateApiKeyRequestBody.Raw,
-    Schematic.CreateApiKeyRequestBody
+  serializers.CreateApiKeyRequestBody.Raw,
+  Schematic.CreateApiKeyRequestBody
 > = core.serialization.object({
-    description: core.serialization.string().optional(),
-    environmentId: core.serialization.property("environment_id", core.serialization.string().optional()),
-    name: core.serialization.string(),
+  description: core.serialization.string().optional(),
+  environmentId: core.serialization.property("environment_id", core.serialization.string().optional()),
+  name: core.serialization.string(),
 });
 
 export declare namespace CreateApiKeyRequestBody {
-    interface Raw {
-        description?: string | null;
-        environment_id?: string | null;
-        name: string;
-    }
+  interface Raw {
+    description?: string | null;
+    environment_id?: string | null;
+    name: string;
+  }
 }

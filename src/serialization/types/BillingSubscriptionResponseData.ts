@@ -7,20 +7,20 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const BillingSubscriptionResponseData: core.serialization.ObjectSchema<
-    serializers.BillingSubscriptionResponseData.Raw,
-    Schematic.BillingSubscriptionResponseData
+  serializers.BillingSubscriptionResponseData.Raw,
+  Schematic.BillingSubscriptionResponseData
 > = core.serialization.object({
-    expiredAt: core.serialization.property("expired_at", core.serialization.date().optional()),
-    externalId: core.serialization.property("external_id", core.serialization.string()),
-    id: core.serialization.number(),
-    updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+  expiredAt: core.serialization.property("expired_at", core.serialization.date().optional()),
+  externalId: core.serialization.property("external_id", core.serialization.string()),
+  id: core.serialization.number(),
+  updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
 export declare namespace BillingSubscriptionResponseData {
-    interface Raw {
-        expired_at?: string | null;
-        external_id: string;
-        id: number;
-        updated_at: string;
-    }
+  interface Raw {
+    expired_at?: string | null;
+    external_id: string;
+    id: number;
+    updated_at: string;
+  }
 }

@@ -9,30 +9,30 @@ import { CreateFeatureRequestBodyFeatureType } from "../../types/CreateFeatureRe
 import { CreateOrUpdateFlagRequestBody } from "../../../../types/CreateOrUpdateFlagRequestBody";
 
 export const CreateFeatureRequestBody: core.serialization.Schema<
-    serializers.CreateFeatureRequestBody.Raw,
-    Schematic.CreateFeatureRequestBody
+  serializers.CreateFeatureRequestBody.Raw,
+  Schematic.CreateFeatureRequestBody
 > = core.serialization.object({
-    description: core.serialization.string(),
-    eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
-    featureType: core.serialization.property("feature_type", CreateFeatureRequestBodyFeatureType),
-    flag: CreateOrUpdateFlagRequestBody.optional(),
-    icon: core.serialization.string().optional(),
-    lifecyclePhase: core.serialization.property("lifecycle_phase", core.serialization.string().optional()),
-    maintainerId: core.serialization.property("maintainer_id", core.serialization.string().optional()),
-    name: core.serialization.string(),
-    traitId: core.serialization.property("trait_id", core.serialization.string().optional()),
+  description: core.serialization.string(),
+  eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
+  featureType: core.serialization.property("feature_type", CreateFeatureRequestBodyFeatureType),
+  flag: CreateOrUpdateFlagRequestBody.optional(),
+  icon: core.serialization.string().optional(),
+  lifecyclePhase: core.serialization.property("lifecycle_phase", core.serialization.string().optional()),
+  maintainerId: core.serialization.property("maintainer_id", core.serialization.string().optional()),
+  name: core.serialization.string(),
+  traitId: core.serialization.property("trait_id", core.serialization.string().optional()),
 });
 
 export declare namespace CreateFeatureRequestBody {
-    interface Raw {
-        description: string;
-        event_subtype?: string | null;
-        feature_type: CreateFeatureRequestBodyFeatureType.Raw;
-        flag?: CreateOrUpdateFlagRequestBody.Raw | null;
-        icon?: string | null;
-        lifecycle_phase?: string | null;
-        maintainer_id?: string | null;
-        name: string;
-        trait_id?: string | null;
-    }
+  interface Raw {
+    description: string;
+    event_subtype?: string | null;
+    feature_type: CreateFeatureRequestBodyFeatureType.Raw;
+    flag?: CreateOrUpdateFlagRequestBody.Raw | null;
+    icon?: string | null;
+    lifecycle_phase?: string | null;
+    maintainer_id?: string | null;
+    name: string;
+    trait_id?: string | null;
+  }
 }

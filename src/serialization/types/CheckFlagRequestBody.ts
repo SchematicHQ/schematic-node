@@ -7,16 +7,16 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const CheckFlagRequestBody: core.serialization.ObjectSchema<
-    serializers.CheckFlagRequestBody.Raw,
-    Schematic.CheckFlagRequestBody
+  serializers.CheckFlagRequestBody.Raw,
+  Schematic.CheckFlagRequestBody
 > = core.serialization.object({
-    company: core.serialization.record(core.serialization.string(), core.serialization.string().optional()).optional(),
-    user: core.serialization.record(core.serialization.string(), core.serialization.string().optional()).optional(),
+  company: core.serialization.record(core.serialization.string(), core.serialization.string().optional()).optional(),
+  user: core.serialization.record(core.serialization.string(), core.serialization.string().optional()).optional(),
 });
 
 export declare namespace CheckFlagRequestBody {
-    interface Raw {
-        company?: Record<string, string | null | undefined> | null;
-        user?: Record<string, string | null | undefined> | null;
-    }
+  interface Raw {
+    company?: Record<string, string | null | undefined> | null;
+    user?: Record<string, string | null | undefined> | null;
+  }
 }

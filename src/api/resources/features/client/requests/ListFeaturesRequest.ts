@@ -7,22 +7,22 @@
  *     {}
  */
 export interface ListFeaturesRequest {
-    ids?: string | string[];
-    q?: string;
-    /**
-     * Filter out features that already have a company override for the specified company ID
-     */
-    withoutCompanyOverrideFor?: string;
-    /**
-     * Filter out features that already have a plan entitlement for the specified plan ID
-     */
-    withoutPlanEntitlementFor?: string;
-    /**
-     * Page limit (default 100)
-     */
-    limit?: number;
-    /**
-     * Page offset (default 0)
-     */
-    offset?: number;
+  ids?: string | string[];
+  q?: string;
+  /**
+   * Filter out features that already have a company override for the specified company ID
+   */
+  withoutCompanyOverrideFor?: string;
+  /**
+   * Filter out features that already have a plan entitlement for the specified plan ID
+   */
+  withoutPlanEntitlementFor?: string;
+  /**
+   * Page limit (default 100)
+   */
+  limit?: number;
+  /**
+   * Page offset (default 0)
+   */
+  offset?: number;
 }

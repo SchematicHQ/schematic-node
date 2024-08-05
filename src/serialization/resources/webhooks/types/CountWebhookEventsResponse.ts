@@ -9,16 +9,16 @@ import { CountResponse } from "../../../types/CountResponse";
 import { CountWebhookEventsParams } from "./CountWebhookEventsParams";
 
 export const CountWebhookEventsResponse: core.serialization.ObjectSchema<
-    serializers.CountWebhookEventsResponse.Raw,
-    Schematic.CountWebhookEventsResponse
+  serializers.CountWebhookEventsResponse.Raw,
+  Schematic.CountWebhookEventsResponse
 > = core.serialization.object({
-    data: CountResponse,
-    params: CountWebhookEventsParams,
+  data: CountResponse,
+  params: CountWebhookEventsParams,
 });
 
 export declare namespace CountWebhookEventsResponse {
-    interface Raw {
-        data: CountResponse.Raw;
-        params: CountWebhookEventsParams.Raw;
-    }
+  interface Raw {
+    data: CountResponse.Raw;
+    params: CountWebhookEventsParams.Raw;
+  }
 }

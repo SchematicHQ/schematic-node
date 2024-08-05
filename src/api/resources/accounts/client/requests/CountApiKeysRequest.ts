@@ -9,14 +9,14 @@
  *     }
  */
 export interface CountApiKeysRequest {
-    environmentId?: string;
-    requireEnvironment: boolean;
-    /**
-     * Page limit (default 100)
-     */
-    limit?: number;
-    /**
-     * Page offset (default 0)
-     */
-    offset?: number;
+  environmentId?: string;
+  requireEnvironment: boolean;
+  /**
+   * Page limit (default 100)
+   */
+  limit?: number;
+  /**
+   * Page offset (default 0)
+   */
+  offset?: number;
 }

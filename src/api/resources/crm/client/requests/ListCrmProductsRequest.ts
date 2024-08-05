@@ -7,14 +7,14 @@
  *     {}
  */
 export interface ListCrmProductsRequest {
-    ids?: string | string[];
-    name?: string;
-    /**
-     * Page limit (default 100)
-     */
-    limit?: number;
-    /**
-     * Page offset (default 0)
-     */
-    offset?: number;
+  ids?: string | string[];
+  name?: string;
+  /**
+   * Page limit (default 100)
+   */
+  limit?: number;
+  /**
+   * Page offset (default 0)
+   */
+  offset?: number;
 }

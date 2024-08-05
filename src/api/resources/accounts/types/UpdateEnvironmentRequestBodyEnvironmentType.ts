@@ -5,7 +5,7 @@
 export type UpdateEnvironmentRequestBodyEnvironmentType = "development" | "staging" | "production";
 
 export const UpdateEnvironmentRequestBodyEnvironmentType = {
-    Development: "development",
-    Staging: "staging",
-    Production: "production",
+  Development: "development",
+  Staging: "staging",
+  Production: "production",
 } as const;

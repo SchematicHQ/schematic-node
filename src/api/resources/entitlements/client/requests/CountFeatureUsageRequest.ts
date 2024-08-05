@@ -7,16 +7,16 @@
  *     {}
  */
 export interface CountFeatureUsageRequest {
-    companyId?: string;
-    companyKeys?: Record<string, string | undefined>;
-    featureIds?: string | string[];
-    q?: string;
-    /**
-     * Page limit (default 100)
-     */
-    limit?: number;
-    /**
-     * Page offset (default 0)
-     */
-    offset?: number;
+  companyId?: string;
+  companyKeys?: Record<string, string | undefined>;
+  featureIds?: string | string[];
+  q?: string;
+  /**
+   * Page limit (default 100)
+   */
+  limit?: number;
+  /**
+   * Page offset (default 0)
+   */
+  offset?: number;
 }

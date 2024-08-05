@@ -8,18 +8,18 @@ import * as core from "../../../../../core";
 import { CreateComponentRequestBodyEntityType } from "../../types/CreateComponentRequestBodyEntityType";
 
 export const CreateComponentRequestBody: core.serialization.Schema<
-    serializers.CreateComponentRequestBody.Raw,
-    Schematic.CreateComponentRequestBody
+  serializers.CreateComponentRequestBody.Raw,
+  Schematic.CreateComponentRequestBody
 > = core.serialization.object({
-    ast: core.serialization.list(core.serialization.number()),
-    entityType: core.serialization.property("entity_type", CreateComponentRequestBodyEntityType),
-    name: core.serialization.string(),
+  ast: core.serialization.list(core.serialization.number()),
+  entityType: core.serialization.property("entity_type", CreateComponentRequestBodyEntityType),
+  name: core.serialization.string(),
 });
 
 export declare namespace CreateComponentRequestBody {
-    interface Raw {
-        ast: number[];
-        entity_type: CreateComponentRequestBodyEntityType.Raw;
-        name: string;
-    }
+  interface Raw {
+    ast: number[];
+    entity_type: CreateComponentRequestBodyEntityType.Raw;
+    name: string;
+  }
 }

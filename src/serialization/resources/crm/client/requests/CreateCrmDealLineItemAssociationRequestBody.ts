@@ -7,16 +7,16 @@ import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 
 export const CreateCrmDealLineItemAssociationRequestBody: core.serialization.Schema<
-    serializers.CreateCrmDealLineItemAssociationRequestBody.Raw,
-    Schematic.CreateCrmDealLineItemAssociationRequestBody
+  serializers.CreateCrmDealLineItemAssociationRequestBody.Raw,
+  Schematic.CreateCrmDealLineItemAssociationRequestBody
 > = core.serialization.object({
-    dealExternalId: core.serialization.property("deal_external_id", core.serialization.string()),
-    lineItemExternalId: core.serialization.property("line_item_external_id", core.serialization.string()),
+  dealExternalId: core.serialization.property("deal_external_id", core.serialization.string()),
+  lineItemExternalId: core.serialization.property("line_item_external_id", core.serialization.string()),
 });
 
 export declare namespace CreateCrmDealLineItemAssociationRequestBody {
-    interface Raw {
-        deal_external_id: string;
-        line_item_external_id: string;
-    }
+  interface Raw {
+    deal_external_id: string;
+    line_item_external_id: string;
+  }
 }

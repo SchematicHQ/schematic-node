@@ -5,14 +5,14 @@
 import * as Schematic from "../index";
 
 export interface WebhookEventDetailResponseData {
-    createdAt: Date;
-    id: string;
-    payload?: string;
-    requestType: string;
-    responseCode?: number;
-    sentAt?: Date;
-    status: string;
-    updatedAt: Date;
-    webhook?: Schematic.WebhookResponseData;
-    webhookId: string;
+  createdAt: Date;
+  id: string;
+  payload?: string;
+  requestType: string;
+  responseCode?: number;
+  sentAt?: Date;
+  status: string;
+  updatedAt: Date;
+  webhook?: Schematic.WebhookResponseData;
+  webhookId: string;
 }

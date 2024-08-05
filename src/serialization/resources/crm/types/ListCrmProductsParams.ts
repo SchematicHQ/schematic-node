@@ -7,20 +7,20 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const ListCrmProductsParams: core.serialization.ObjectSchema<
-    serializers.ListCrmProductsParams.Raw,
-    Schematic.ListCrmProductsParams
+  serializers.ListCrmProductsParams.Raw,
+  Schematic.ListCrmProductsParams
 > = core.serialization.object({
-    ids: core.serialization.list(core.serialization.string()).optional(),
-    limit: core.serialization.number().optional(),
-    name: core.serialization.string().optional(),
-    offset: core.serialization.number().optional(),
+  ids: core.serialization.list(core.serialization.string()).optional(),
+  limit: core.serialization.number().optional(),
+  name: core.serialization.string().optional(),
+  offset: core.serialization.number().optional(),
 });
 
 export declare namespace ListCrmProductsParams {
-    interface Raw {
-        ids?: string[] | null;
-        limit?: number | null;
-        name?: string | null;
-        offset?: number | null;
-    }
+  interface Raw {
+    ids?: string[] | null;
+    limit?: number | null;
+    name?: string | null;
+    offset?: number | null;
+  }
 }

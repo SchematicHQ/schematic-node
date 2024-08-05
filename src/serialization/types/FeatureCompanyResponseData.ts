@@ -11,32 +11,32 @@ import { FeatureDetailResponseData } from "./FeatureDetailResponseData";
 import { PlanResponseData } from "./PlanResponseData";
 
 export const FeatureCompanyResponseData: core.serialization.ObjectSchema<
-    serializers.FeatureCompanyResponseData.Raw,
-    Schematic.FeatureCompanyResponseData
+  serializers.FeatureCompanyResponseData.Raw,
+  Schematic.FeatureCompanyResponseData
 > = core.serialization.object({
-    access: core.serialization.boolean(),
-    allocation: core.serialization.number().optional(),
-    allocationType: core.serialization.property("allocation_type", FeatureCompanyResponseDataAllocationType),
-    company: CompanyDetailResponseData.optional(),
-    entitlementId: core.serialization.property("entitlement_id", core.serialization.string()),
-    entitlementType: core.serialization.property("entitlement_type", core.serialization.string()),
-    feature: FeatureDetailResponseData.optional(),
-    period: core.serialization.string().optional(),
-    plan: PlanResponseData.optional(),
-    usage: core.serialization.number().optional(),
+  access: core.serialization.boolean(),
+  allocation: core.serialization.number().optional(),
+  allocationType: core.serialization.property("allocation_type", FeatureCompanyResponseDataAllocationType),
+  company: CompanyDetailResponseData.optional(),
+  entitlementId: core.serialization.property("entitlement_id", core.serialization.string()),
+  entitlementType: core.serialization.property("entitlement_type", core.serialization.string()),
+  feature: FeatureDetailResponseData.optional(),
+  period: core.serialization.string().optional(),
+  plan: PlanResponseData.optional(),
+  usage: core.serialization.number().optional(),
 });
 
 export declare namespace FeatureCompanyResponseData {
-    interface Raw {
-        access: boolean;
-        allocation?: number | null;
-        allocation_type: FeatureCompanyResponseDataAllocationType.Raw;
-        company?: CompanyDetailResponseData.Raw | null;
-        entitlement_id: string;
-        entitlement_type: string;
-        feature?: FeatureDetailResponseData.Raw | null;
-        period?: string | null;
-        plan?: PlanResponseData.Raw | null;
-        usage?: number | null;
-    }
+  interface Raw {
+    access: boolean;
+    allocation?: number | null;
+    allocation_type: FeatureCompanyResponseDataAllocationType.Raw;
+    company?: CompanyDetailResponseData.Raw | null;
+    entitlement_id: string;
+    entitlement_type: string;
+    feature?: FeatureDetailResponseData.Raw | null;
+    period?: string | null;
+    plan?: PlanResponseData.Raw | null;
+    usage?: number | null;
+  }
 }

@@ -8,34 +8,34 @@ import * as core from "../../core";
 import { BillingPriceResponseData } from "./BillingPriceResponseData";
 
 export const BillingProductDetailResponseData: core.serialization.ObjectSchema<
-    serializers.BillingProductDetailResponseData.Raw,
-    Schematic.BillingProductDetailResponseData
+  serializers.BillingProductDetailResponseData.Raw,
+  Schematic.BillingProductDetailResponseData
 > = core.serialization.object({
-    prices: core.serialization.property("Prices", core.serialization.list(BillingPriceResponseData)),
-    accountId: core.serialization.property("account_id", core.serialization.string()),
-    createdAt: core.serialization.property("created_at", core.serialization.date()),
-    currency: core.serialization.string(),
-    environmentId: core.serialization.property("environment_id", core.serialization.string()),
-    externalId: core.serialization.property("external_id", core.serialization.string()),
-    name: core.serialization.string(),
-    price: core.serialization.number(),
-    productId: core.serialization.property("product_id", core.serialization.string()),
-    quantity: core.serialization.number(),
-    updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+  prices: core.serialization.property("Prices", core.serialization.list(BillingPriceResponseData)),
+  accountId: core.serialization.property("account_id", core.serialization.string()),
+  createdAt: core.serialization.property("created_at", core.serialization.date()),
+  currency: core.serialization.string(),
+  environmentId: core.serialization.property("environment_id", core.serialization.string()),
+  externalId: core.serialization.property("external_id", core.serialization.string()),
+  name: core.serialization.string(),
+  price: core.serialization.number(),
+  productId: core.serialization.property("product_id", core.serialization.string()),
+  quantity: core.serialization.number(),
+  updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
 export declare namespace BillingProductDetailResponseData {
-    interface Raw {
-        Prices: BillingPriceResponseData.Raw[];
-        account_id: string;
-        created_at: string;
-        currency: string;
-        environment_id: string;
-        external_id: string;
-        name: string;
-        price: number;
-        product_id: string;
-        quantity: number;
-        updated_at: string;
-    }
+  interface Raw {
+    Prices: BillingPriceResponseData.Raw[];
+    account_id: string;
+    created_at: string;
+    currency: string;
+    environment_id: string;
+    external_id: string;
+    name: string;
+    price: number;
+    product_id: string;
+    quantity: number;
+    updated_at: string;
+  }
 }

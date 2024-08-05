@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface CountCompanyOverridesResponse {
-    data: Schematic.CountResponse;
-    /** Input parameters */
-    params: Schematic.CountCompanyOverridesParams;
+  data: Schematic.CountResponse;
+  /** Input parameters */
+  params: Schematic.CountCompanyOverridesParams;
 }

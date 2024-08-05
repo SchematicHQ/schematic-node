@@ -7,22 +7,22 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const CountCustomersParams: core.serialization.ObjectSchema<
-    serializers.CountCustomersParams.Raw,
-    Schematic.CountCustomersParams
+  serializers.CountCustomersParams.Raw,
+  Schematic.CountCustomersParams
 > = core.serialization.object({
-    failedToImport: core.serialization.property("failed_to_import", core.serialization.boolean().optional()),
-    limit: core.serialization.number().optional(),
-    name: core.serialization.string().optional(),
-    offset: core.serialization.number().optional(),
-    q: core.serialization.string().optional(),
+  failedToImport: core.serialization.property("failed_to_import", core.serialization.boolean().optional()),
+  limit: core.serialization.number().optional(),
+  name: core.serialization.string().optional(),
+  offset: core.serialization.number().optional(),
+  q: core.serialization.string().optional(),
 });
 
 export declare namespace CountCustomersParams {
-    interface Raw {
-        failed_to_import?: boolean | null;
-        limit?: number | null;
-        name?: string | null;
-        offset?: number | null;
-        q?: string | null;
-    }
+  interface Raw {
+    failed_to_import?: boolean | null;
+    limit?: number | null;
+    name?: string | null;
+    offset?: number | null;
+    q?: string | null;
+  }
 }

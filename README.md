@@ -1,137 +1,274 @@
-# Schematic TypeScript Library
+# schematic-typescript-node
 
-[![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-SDK%20generated%20by%20Fern-brightgreen)](https://github.com/fern-api/fern)
-[![npm shield](https://img.shields.io/npm/v/@schematichq/schematic-typescript-node)](https://www.npmjs.com/package/@schematichq/schematic-typescript-node)
+## Installation and Setup
 
-The Schematic TypeScript library provides convenient access to the Schematic API from TypeScript.
+1. Install the TypeScript library using your package manager of choice:
 
-## Installation
-
-```sh
-npm i -s @schematichq/schematic-typescript-node
+```bash
+npm install @schematichq/schematic-typescript-node
+# or
+yarn add @schematichq/schematic-typescript-node
+# or
+pnpm add @schematichq/schematic-typescript-node
 ```
 
-## Usage
+2. [Issue an API key](https://docs.schematichq.com/quickstart#create-an-api-key) for the appropriate environment using the [Schematic app](https://app.schematichq.com/settings/api-keys). Be sure to capture the secret key when you issue the API key; you'll only see this key once, and this is what you'll use with schematic-typescript-node.
 
-Instantiate and use the client with the following:
+3. Using this secret key, initialize a client in your application:
 
-```typescript
+```ts
 import { SchematicClient } from "@schematichq/schematic-typescript-node";
 
-const client = new SchematicClient({ apiKey: "YOUR_API_KEY" });
-await client.accounts.createApiKey({
-    name: "name",
-});
+const apiKey = process.env.SCHEMATIC_API_KEY;
+const client = new SchematicClient(apiKey);
+
+// interactions with the client
+
+client.close();
 ```
 
-## Request And Response Types
+By default, the client will do some local caching for flag checks. If you would like to change this behavior, you can do so using an initialization option to specify the max size of the cache (in terms of number of records) and the max age of the cache (in milliseconds):
 
-The SDK exports all request and response types as TypeScript interfaces. Simply import them with the
-following namespace:
+```ts
+import { LocalCache, SchematicClient } from "@schematichq/schematic-typescript-node";
 
-```typescript
-import { Schematic } from "@schematichq/schematic-typescript-node";
+const apiKey = process.env.SCHEMATIC_API_KEY;
+const cacheSize = 100;
+const cacheTTL = 1000; // in milliseconds
+const client = new SchematicClient(apiKey, {
+    cacheProviders: {
+        flagChecks: [new LocalCache<boolean>({ size: cacheSize, ttl: cacheTTL })],
+    },
+});
 
-const request: Schematic.ListApiKeysRequest = {
-    ...
+// interactions with the client
+
+client.close();
+```
+
+You can also disable local caching entirely with an initialization option; bear in mind that, in this case, every flag check will result in a network request:
+
+```ts
+import { SchematicClient } from "@schematichq/schematic-typescript-node";
+
+const apiKey = process.env.SCHEMATIC_API_KEY;
+const client = new SchematicClient(apiKey, {
+    cacheProviders: {
+        flagChecks: [],
+    },
+});
+
+// interactions with the client
+
+client.close();
+```
+
+You may want to specify default flag values for your application, which will be used if there is a service interruption or if the client is running in offline mode (see below). You can do this using an initialization option:
+
+```ts
+import { SchematicClient } from "@schematichq/schematic-typescript-node";
+
+const apiKey = process.env.SCHEMATIC_API_KEY;
+const client = new SchematicClient(apiKey, {
+    flagDefaults: {
+        "some-flag-key": true,
+    },
+});
+
+// interactions with the client
+
+client.close();
+```
+
+## Usage examples
+
+### Sending identify events
+
+Create or update users and companies using identify events.
+
+```ts
+import { SchematicClient } from "@schematichq/schematic-typescript-node";
+
+const client = new SchematicClient(process.env.SCHEMATIC_API_KEY);
+
+client.identify({
+    company: {
+        id: "your-company-id",
+    },
+    keys: {
+        email: "wcoyote@acme.net",
+        userId: "your-user-id",
+    },
+    name: "Wile E. Coyote",
+    traits: {
+        city: "Atlanta",
+        loginCount: 24,
+        isStaff: false,
+    },
+});
+
+client.close();
+```
+
+This call is non-blocking and there is no response to check.
+
+### Sending track events
+
+Track activity in your application using track events; these events can later be used to produce metrics for targeting.
+
+```ts
+import { SchematicClient } from "@schematichq/schematic-typescript-node";
+
+const client = new SchematicClient(process.env.SCHEMATIC_API_KEY);
+
+client.track({
+    event: "some-action",
+    company: {
+        id: "your-company-id",
+    },
+    user: {
+        email: "wcoyote@acme.net",
+        userId: "your-user-id",
+    },
+});
+
+client.close();
+```
+
+This call is non-blocking and there is no response to check.
+
+### Creating and updating companies
+
+Although it is faster to create companies and users via identify events, if you need to handle a response, you can use the companies API to upsert companies. Because you use your own identifiers to identify companies, rather than a Schematic company ID, creating and updating companies are both done via the same upsert operation:
+
+```ts
+import { SchematicClient } from "@schematichq/schematic-typescript-node";
+
+const client = new SchematicClient(process.env.SCHEMATIC_API_KEY);
+
+const body = {
+    keys: {
+        id: "your-company-id",
+    },
+    name: "Acme Widgets, Inc.",
+    traits: {
+        city: "Atlanta",
+        highScore: 25,
+        isActive: true,
+    },
 };
+
+client.companies
+    .upsertCompany(body)
+    .then((response) => {
+        console.log(response.data);
+    })
+    .catch(console.error);
+
+client.close();
 ```
 
-## Exception Handling
+You can define any number of company keys; these are used to address the company in the future, for example by updating the company's traits or checking a flag for the company.
 
-When the API returns a non-success status code (4xx or 5xx response), a subclass of the following error
-will be thrown.
+You can also define any number of company traits; these can then be used as targeting parameters.
 
-```typescript
-import { SchematicError } from "@schematichq/schematic-typescript-node";
+### Creating and updating users
 
-try {
-    await client.accounts.createApiKey(...);
-} catch (err) {
-    if (err instanceof SchematicError) {
-        console.log(err.statusCode);
-        console.log(err.message);
-        console.log(err.body);
-    }
-}
-```
+Similarly, you can upsert users using the Schematic API, as an alternative to using identify events. Because you use your own identifiers to identify users, rather than a Schematic user ID, creating and updating users are both done via the same upsert operation:
 
-## Advanced
-
-### Retries
-
-The SDK is instrumented with automatic retries with exponential backoff. A request will be retried as long
-as the request is deemed retriable and the number of retry attempts has not grown larger than the configured
-retry limit (default: 2).
-
-A request is deemed retriable when any of the following HTTP status codes is returned:
-
--   [408](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/408) (Timeout)
--   [429](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) (Too Many Requests)
--   [5XX](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500) (Internal Server Errors)
-
-Use the `maxRetries` request option to configure this behavior.
-
-```typescript
-const response = await client.accounts.createApiKey(..., {
-    maxRetries: 0 // override maxRetries at the request level
-});
-```
-
-### Timeouts
-
-The SDK defaults to a 60 second timeout. Use the `timeoutInSeconds` option to configure this behavior.
-
-```typescript
-const response = await client.accounts.createApiKey(..., {
-    timeoutInSeconds: 30 // override timeout to 30s
-});
-```
-
-### Aborting Requests
-
-The SDK allows users to abort requests at any point by passing in an abort signal.
-
-```typescript
-const controller = new AbortController();
-const response = await client.accounts.createApiKey(..., {
-    abortSignal: controller.signal
-});
-controller.abort(); // aborts the request
-```
-
-### Runtime Compatibility
-
-The SDK defaults to `node-fetch` but will use the global fetch client if present. The SDK works in the following
-runtimes:
-
--   Node.js 18+
--   Vercel
--   Cloudflare Workers
--   Deno v1.25+
--   Bun 1.0+
--   React Native
-
-### Customizing Fetch Client
-
-The SDK provides a way for your to customize the underlying HTTP client / Fetch function. If you're running in an
-unsupported environment, this provides a way for you to break glass and ensure the SDK works.
-
-```typescript
+```ts
 import { SchematicClient } from "@schematichq/schematic-typescript-node";
 
-const client = new SchematicClient({
-    ...
-    fetcher: // provide your implementation here
-});
+const client = new SchematicClient(process.env.SCHEMATIC_API_KEY);
+
+const body = {
+    keys: {
+        email: "wcoyote@acme.net",
+        userId: "your-user-id",
+    },
+    company: { id: "your-company-id" },
+    name: "Wile E. Coyote",
+    traits: {
+        city: "Atlanta",
+        loginCount: 24,
+        isStaff: false,
+    },
+};
+
+client.companies
+    .upsertUser(body)
+    .then((response) => {
+        console.log(response.data);
+    })
+    .catch(console.error);
+
+client.close();
 ```
 
-## Contributing
+You can define any number of user keys; these are used to address the user in the future, for example by updating the user's traits or checking a flag for the user.
 
-While we value open-source contributions to this SDK, this library is generated programmatically.
-Additions made directly to this library would have to be moved over to our generation code,
-otherwise they would be overwritten upon the next generated release. Feel free to open a PR as
-a proof of concept, but know that we will not be able to merge it as-is. We suggest opening
-an issue first to discuss with us!
+You can also define any number of user traits; these can then be used as targeting parameters.
 
-On the other hand, contributions to the README are always very welcome!
+### Checking flags
+
+When checking a flag, you'll provide keys for a company and/or keys for a user. You can also provide no keys at all, in which case you'll get the default value for the flag.
+
+```ts
+import { SchematicClient } from "@schematichq/schematic-typescript-node";
+
+const client = new SchematicClient(process.env.SCHEMATIC_API_KEY);
+
+const evaluationCtx = {
+    company: { id: "your-company-id" },
+    user: {
+        email: "wcoyote@acme.net",
+        userId: "your-user-id",
+    },
+};
+
+client
+    .checkFlag(evaluationCtx, "some-flag-key")
+    .then((isFlagOn) => {
+        if (isFlagOn) {
+            // Flag is on
+        } else {
+            // Flag is off
+        }
+    })
+    .catch(console.error);
+
+client.close();
+```
+
+### Other API operations
+
+The Schematic API supports many operations beyond these, accessible via the API modules on the client, `Accounts`, `Billing`, `Companies`, `Entitlements`, `Events`, `Features`, and `Plans`.
+
+## Testing
+
+### Offline mode
+
+In development or testing environments, you may want to avoid making network requests to the Schematic API. You can run Schematic in offline mode by specifying the `offline` option; in this case, it does not matter what API key you specify:
+
+```ts
+import { SchematicClient } from "@schematichq/schematic-typescript-node";
+
+const client = new SchematicClient("", { offline: true });
+
+client.close();
+```
+
+Offline mode works well with flag defaults:
+
+```ts
+import { SchematicClient } from "@schematichq/schematic-typescript-node";
+
+const client = new SchematicClient("", {
+    flagDefaults: { "some-flag-key": true },
+    offline: true,
+});
+
+// interactions with the client
+
+client.close();
+```

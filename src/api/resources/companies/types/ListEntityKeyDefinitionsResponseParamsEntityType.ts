@@ -5,6 +5,6 @@
 export type ListEntityKeyDefinitionsResponseParamsEntityType = "company" | "user";
 
 export const ListEntityKeyDefinitionsResponseParamsEntityType = {
-    Company: "company",
-    User: "user",
+  Company: "company",
+  User: "user",
 } as const;

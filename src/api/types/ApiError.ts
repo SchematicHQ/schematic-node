@@ -3,6 +3,6 @@
  */
 
 export interface ApiError {
-    /** Error message */
-    error: string;
+  /** Error message */
+  error: string;
 }

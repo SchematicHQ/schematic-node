@@ -7,10 +7,10 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const ListEntityTraitDefinitionsRequestTraitType: core.serialization.Schema<
-    serializers.ListEntityTraitDefinitionsRequestTraitType.Raw,
-    Schematic.ListEntityTraitDefinitionsRequestTraitType
+  serializers.ListEntityTraitDefinitionsRequestTraitType.Raw,
+  Schematic.ListEntityTraitDefinitionsRequestTraitType
 > = core.serialization.enum_(["boolean", "currency", "date", "number", "string", "url"]);
 
 export declare namespace ListEntityTraitDefinitionsRequestTraitType {
-    type Raw = "boolean" | "currency" | "date" | "number" | "string" | "url";
+  type Raw = "boolean" | "currency" | "date" | "number" | "string" | "url";
 }

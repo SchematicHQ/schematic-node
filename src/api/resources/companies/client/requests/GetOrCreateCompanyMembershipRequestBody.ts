@@ -10,6 +10,6 @@
  *     }
  */
 export interface GetOrCreateCompanyMembershipRequestBody {
-    companyId: string;
-    userId: string;
+  companyId: string;
+  userId: string;
 }

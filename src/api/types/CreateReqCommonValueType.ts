@@ -5,8 +5,8 @@
 export type CreateReqCommonValueType = "boolean" | "numeric" | "trait" | "unlimited";
 
 export const CreateReqCommonValueType = {
-    Boolean: "boolean",
-    Numeric: "numeric",
-    Trait: "trait",
-    Unlimited: "unlimited",
+  Boolean: "boolean",
+  Numeric: "numeric",
+  Trait: "trait",
+  Unlimited: "unlimited",
 } as const;

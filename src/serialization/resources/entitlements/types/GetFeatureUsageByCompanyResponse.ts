@@ -9,16 +9,16 @@ import { FeatureUsageDetailResponseData } from "../../../types/FeatureUsageDetai
 import { GetFeatureUsageByCompanyParams } from "./GetFeatureUsageByCompanyParams";
 
 export const GetFeatureUsageByCompanyResponse: core.serialization.ObjectSchema<
-    serializers.GetFeatureUsageByCompanyResponse.Raw,
-    Schematic.GetFeatureUsageByCompanyResponse
+  serializers.GetFeatureUsageByCompanyResponse.Raw,
+  Schematic.GetFeatureUsageByCompanyResponse
 > = core.serialization.object({
-    data: FeatureUsageDetailResponseData,
-    params: GetFeatureUsageByCompanyParams,
+  data: FeatureUsageDetailResponseData,
+  params: GetFeatureUsageByCompanyParams,
 });
 
 export declare namespace GetFeatureUsageByCompanyResponse {
-    interface Raw {
-        data: FeatureUsageDetailResponseData.Raw;
-        params: GetFeatureUsageByCompanyParams.Raw;
-    }
+  interface Raw {
+    data: FeatureUsageDetailResponseData.Raw;
+    params: GetFeatureUsageByCompanyParams.Raw;
+  }
 }

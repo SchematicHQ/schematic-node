@@ -9,26 +9,26 @@ import { CreatePlanEntitlementRequestBodyMetricPeriod } from "../../types/Create
 import { CreatePlanEntitlementRequestBodyValueType } from "../../types/CreatePlanEntitlementRequestBodyValueType";
 
 export const CreatePlanEntitlementRequestBody: core.serialization.Schema<
-    serializers.CreatePlanEntitlementRequestBody.Raw,
-    Schematic.CreatePlanEntitlementRequestBody
+  serializers.CreatePlanEntitlementRequestBody.Raw,
+  Schematic.CreatePlanEntitlementRequestBody
 > = core.serialization.object({
-    featureId: core.serialization.property("feature_id", core.serialization.string()),
-    metricPeriod: core.serialization.property("metric_period", CreatePlanEntitlementRequestBodyMetricPeriod.optional()),
-    planId: core.serialization.property("plan_id", core.serialization.string()),
-    valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
-    valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
-    valueTraitId: core.serialization.property("value_trait_id", core.serialization.string().optional()),
-    valueType: core.serialization.property("value_type", CreatePlanEntitlementRequestBodyValueType),
+  featureId: core.serialization.property("feature_id", core.serialization.string()),
+  metricPeriod: core.serialization.property("metric_period", CreatePlanEntitlementRequestBodyMetricPeriod.optional()),
+  planId: core.serialization.property("plan_id", core.serialization.string()),
+  valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
+  valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
+  valueTraitId: core.serialization.property("value_trait_id", core.serialization.string().optional()),
+  valueType: core.serialization.property("value_type", CreatePlanEntitlementRequestBodyValueType),
 });
 
 export declare namespace CreatePlanEntitlementRequestBody {
-    interface Raw {
-        feature_id: string;
-        metric_period?: CreatePlanEntitlementRequestBodyMetricPeriod.Raw | null;
-        plan_id: string;
-        value_bool?: boolean | null;
-        value_numeric?: number | null;
-        value_trait_id?: string | null;
-        value_type: CreatePlanEntitlementRequestBodyValueType.Raw;
-    }
+  interface Raw {
+    feature_id: string;
+    metric_period?: CreatePlanEntitlementRequestBodyMetricPeriod.Raw | null;
+    plan_id: string;
+    value_bool?: boolean | null;
+    value_numeric?: number | null;
+    value_trait_id?: string | null;
+    value_type: CreatePlanEntitlementRequestBodyValueType.Raw;
+  }
 }

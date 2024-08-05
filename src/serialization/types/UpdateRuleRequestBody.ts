@@ -9,25 +9,25 @@ import { CreateOrUpdateConditionGroupRequestBody } from "./CreateOrUpdateConditi
 import { CreateOrUpdateConditionRequestBody } from "./CreateOrUpdateConditionRequestBody";
 
 export const UpdateRuleRequestBody: core.serialization.ObjectSchema<
-    serializers.UpdateRuleRequestBody.Raw,
-    Schematic.UpdateRuleRequestBody
+  serializers.UpdateRuleRequestBody.Raw,
+  Schematic.UpdateRuleRequestBody
 > = core.serialization.object({
-    conditionGroups: core.serialization.property(
-        "condition_groups",
-        core.serialization.list(CreateOrUpdateConditionGroupRequestBody)
-    ),
-    conditions: core.serialization.list(CreateOrUpdateConditionRequestBody),
-    name: core.serialization.string(),
-    priority: core.serialization.number(),
-    value: core.serialization.boolean(),
+  conditionGroups: core.serialization.property(
+    "condition_groups",
+    core.serialization.list(CreateOrUpdateConditionGroupRequestBody),
+  ),
+  conditions: core.serialization.list(CreateOrUpdateConditionRequestBody),
+  name: core.serialization.string(),
+  priority: core.serialization.number(),
+  value: core.serialization.boolean(),
 });
 
 export declare namespace UpdateRuleRequestBody {
-    interface Raw {
-        condition_groups: CreateOrUpdateConditionGroupRequestBody.Raw[];
-        conditions: CreateOrUpdateConditionRequestBody.Raw[];
-        name: string;
-        priority: number;
-        value: boolean;
-    }
+  interface Raw {
+    condition_groups: CreateOrUpdateConditionGroupRequestBody.Raw[];
+    conditions: CreateOrUpdateConditionRequestBody.Raw[];
+    name: string;
+    priority: number;
+    value: boolean;
+  }
 }

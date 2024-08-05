@@ -5,6 +5,6 @@
 export type UpdateComponentRequestBodyState = "draft" | "live";
 
 export const UpdateComponentRequestBodyState = {
-    Draft: "draft",
-    Live: "live",
+  Draft: "draft",
+  Live: "live",
 } as const;

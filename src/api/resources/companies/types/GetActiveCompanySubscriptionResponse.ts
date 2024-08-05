@@ -5,8 +5,8 @@
 import * as Schematic from "../../../index";
 
 export interface GetActiveCompanySubscriptionResponse {
-    /** The returned resources */
-    data: Schematic.CompanySubscriptionResponseData[];
-    /** Input parameters */
-    params: Schematic.GetActiveCompanySubscriptionParams;
+  /** The returned resources */
+  data: Schematic.CompanySubscriptionResponseData[];
+  /** Input parameters */
+  params: Schematic.GetActiveCompanySubscriptionParams;
 }

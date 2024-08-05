@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface LookupUserResponse {
-    data: Schematic.UserDetailResponseData;
-    /** Input parameters */
-    params: Schematic.LookupUserParams;
+  data: Schematic.UserDetailResponseData;
+  /** Input parameters */
+  params: Schematic.LookupUserParams;
 }

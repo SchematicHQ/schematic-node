@@ -13,11 +13,11 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface CreatePlanEntitlementRequestBody {
-    featureId: string;
-    metricPeriod?: Schematic.CreatePlanEntitlementRequestBodyMetricPeriod;
-    planId: string;
-    valueBool?: boolean;
-    valueNumeric?: number;
-    valueTraitId?: string;
-    valueType: Schematic.CreatePlanEntitlementRequestBodyValueType;
+  featureId: string;
+  metricPeriod?: Schematic.CreatePlanEntitlementRequestBodyMetricPeriod;
+  planId: string;
+  valueBool?: boolean;
+  valueNumeric?: number;
+  valueTraitId?: string;
+  valueType: Schematic.CreatePlanEntitlementRequestBodyValueType;
 }

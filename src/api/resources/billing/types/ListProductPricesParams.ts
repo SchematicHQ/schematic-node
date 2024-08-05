@@ -6,11 +6,11 @@
  * Input parameters
  */
 export interface ListProductPricesParams {
-    ids?: string[];
-    /** Page limit (default 100) */
-    limit?: number;
-    name?: string;
-    /** Page offset (default 0) */
-    offset?: number;
-    q?: string;
+  ids?: string[];
+  /** Page limit (default 100) */
+  limit?: number;
+  name?: string;
+  /** Page offset (default 0) */
+  offset?: number;
+  q?: string;
 }
