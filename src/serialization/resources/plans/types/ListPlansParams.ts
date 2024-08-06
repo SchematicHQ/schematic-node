@@ -5,6 +5,7 @@
 import * as serializers from "../../../index";
 import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
+import { ListPlansResponseParamsPlanType } from "./ListPlansResponseParamsPlanType";
 
 export const ListPlansParams: core.serialization.ObjectSchema<
     serializers.ListPlansParams.Raw,
@@ -14,6 +15,7 @@ export const ListPlansParams: core.serialization.ObjectSchema<
     ids: core.serialization.list(core.serialization.string()).optional(),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
+    planType: core.serialization.property("plan_type", ListPlansResponseParamsPlanType.optional()),
     q: core.serialization.string().optional(),
     withoutEntitlementFor: core.serialization.property(
         "without_entitlement_for",
@@ -27,6 +29,7 @@ export declare namespace ListPlansParams {
         ids?: string[] | null;
         limit?: number | null;
         offset?: number | null;
+        plan_type?: ListPlansResponseParamsPlanType.Raw | null;
         q?: string | null;
         without_entitlement_for?: string | null;
     }

@@ -1,6 +1,8 @@
 export * from "./GetAudienceResponse";
 export * from "./UpdateAudienceResponse";
 export * from "./DeleteAudienceResponse";
+export * from "./ListPlansRequestPlanType";
+export * from "./ListPlansResponseParamsPlanType";
 export * from "./ListPlansParams";
 export * from "./ListPlansResponse";
 export * from "./CreatePlanRequestBodyPlanType";
@@ -9,5 +11,7 @@ export * from "./GetPlanResponse";
 export * from "./UpdatePlanResponse";
 export * from "./DeletePlanResponse";
 export * from "./UpsertBillingProductPlanResponse";
+export * from "./CountPlansRequestPlanType";
+export * from "./CountPlansResponseParamsPlanType";
 export * from "./CountPlansParams";
 export * from "./CountPlansResponse";

@@ -54,7 +54,7 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.1",
+                "X-Fern-SDK-Version": "1.0.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -181,7 +181,7 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.1",
+                "X-Fern-SDK-Version": "1.0.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -303,7 +303,7 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.1",
+                "X-Fern-SDK-Version": "1.0.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -405,7 +405,7 @@ export class Plans {
         request: Schematic.ListPlansRequest = {},
         requestOptions?: Plans.RequestOptions
     ): Promise<Schematic.ListPlansResponse> {
-        const { companyId, ids, q, withoutEntitlementFor, limit, offset } = request;
+        const { companyId, ids, q, planType, withoutEntitlementFor, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (companyId != null) {
             _queryParams["company_id"] = companyId;
@@ -421,6 +421,10 @@ export class Plans {
 
         if (q != null) {
             _queryParams["q"] = q;
+        }
+
+        if (planType != null) {
+            _queryParams["plan_type"] = planType;
         }
 
         if (withoutEntitlementFor != null) {
@@ -444,7 +448,7 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.1",
+                "X-Fern-SDK-Version": "1.0.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -560,7 +564,7 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.1",
+                "X-Fern-SDK-Version": "1.0.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -669,7 +673,7 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.1",
+                "X-Fern-SDK-Version": "1.0.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -786,7 +790,7 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.1",
+                "X-Fern-SDK-Version": "1.0.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -908,7 +912,7 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.1",
+                "X-Fern-SDK-Version": "1.0.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1024,7 +1028,7 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.1",
+                "X-Fern-SDK-Version": "1.0.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1137,7 +1141,7 @@ export class Plans {
         request: Schematic.CountPlansRequest = {},
         requestOptions?: Plans.RequestOptions
     ): Promise<Schematic.CountPlansResponse> {
-        const { companyId, ids, q, withoutEntitlementFor, limit, offset } = request;
+        const { companyId, ids, q, planType, withoutEntitlementFor, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (companyId != null) {
             _queryParams["company_id"] = companyId;
@@ -1153,6 +1157,10 @@ export class Plans {
 
         if (q != null) {
             _queryParams["q"] = q;
+        }
+
+        if (planType != null) {
+            _queryParams["plan_type"] = planType;
         }
 
         if (withoutEntitlementFor != null) {
@@ -1176,7 +1184,7 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.1",
+                "X-Fern-SDK-Version": "1.0.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
