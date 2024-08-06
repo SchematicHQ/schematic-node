@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface DeletePlanEntitlementResponse {
-  data: Schematic.DeleteResponse;
-  /** Input parameters */
-  params: Record<string, unknown>;
+    data: Schematic.DeleteResponse;
+    /** Input parameters */
+    params: Record<string, unknown>;
 }

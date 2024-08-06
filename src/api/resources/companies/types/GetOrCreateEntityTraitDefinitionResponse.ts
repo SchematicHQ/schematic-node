@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface GetOrCreateEntityTraitDefinitionResponse {
-  data: Schematic.EntityTraitDefinitionResponseData;
-  /** Input parameters */
-  params: Record<string, unknown>;
+    data: Schematic.EntityTraitDefinitionResponseData;
+    /** Input parameters */
+    params: Record<string, unknown>;
 }

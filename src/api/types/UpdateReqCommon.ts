@@ -5,9 +5,9 @@
 import * as Schematic from "../index";
 
 export interface UpdateReqCommon {
-  metricPeriod?: Schematic.UpdateReqCommonMetricPeriod;
-  valueBool?: boolean;
-  valueNumeric?: number;
-  valueTraitId?: string;
-  valueType: Schematic.UpdateReqCommonValueType;
+    metricPeriod?: Schematic.UpdateReqCommonMetricPeriod;
+    valueBool?: boolean;
+    valueNumeric?: number;
+    valueTraitId?: string;
+    valueType: Schematic.UpdateReqCommonValueType;
 }

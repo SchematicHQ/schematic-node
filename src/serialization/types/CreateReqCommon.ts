@@ -9,24 +9,24 @@ import { CreateReqCommonMetricPeriod } from "./CreateReqCommonMetricPeriod";
 import { CreateReqCommonValueType } from "./CreateReqCommonValueType";
 
 export const CreateReqCommon: core.serialization.ObjectSchema<
-  serializers.CreateReqCommon.Raw,
-  Schematic.CreateReqCommon
+    serializers.CreateReqCommon.Raw,
+    Schematic.CreateReqCommon
 > = core.serialization.object({
-  featureId: core.serialization.property("feature_id", core.serialization.string()),
-  metricPeriod: core.serialization.property("metric_period", CreateReqCommonMetricPeriod.optional()),
-  valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
-  valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
-  valueTraitId: core.serialization.property("value_trait_id", core.serialization.string().optional()),
-  valueType: core.serialization.property("value_type", CreateReqCommonValueType),
+    featureId: core.serialization.property("feature_id", core.serialization.string()),
+    metricPeriod: core.serialization.property("metric_period", CreateReqCommonMetricPeriod.optional()),
+    valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
+    valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
+    valueTraitId: core.serialization.property("value_trait_id", core.serialization.string().optional()),
+    valueType: core.serialization.property("value_type", CreateReqCommonValueType),
 });
 
 export declare namespace CreateReqCommon {
-  interface Raw {
-    feature_id: string;
-    metric_period?: CreateReqCommonMetricPeriod.Raw | null;
-    value_bool?: boolean | null;
-    value_numeric?: number | null;
-    value_trait_id?: string | null;
-    value_type: CreateReqCommonValueType.Raw;
-  }
+    interface Raw {
+        feature_id: string;
+        metric_period?: CreateReqCommonMetricPeriod.Raw | null;
+        value_bool?: boolean | null;
+        value_numeric?: number | null;
+        value_trait_id?: string | null;
+        value_type: CreateReqCommonValueType.Raw;
+    }
 }

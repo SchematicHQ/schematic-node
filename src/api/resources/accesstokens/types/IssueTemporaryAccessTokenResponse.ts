@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface IssueTemporaryAccessTokenResponse {
-  data: Schematic.IssueTemporaryAccessTokenResponseData;
-  /** Input parameters */
-  params: Record<string, unknown>;
+    data: Schematic.IssueTemporaryAccessTokenResponseData;
+    /** Input parameters */
+    params: Record<string, unknown>;
 }

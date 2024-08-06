@@ -8,16 +8,16 @@ import * as core from "../../../../core";
 import { ApiKeyRequestResponseData } from "../../../types/ApiKeyRequestResponseData";
 
 export const GetApiRequestResponse: core.serialization.ObjectSchema<
-  serializers.GetApiRequestResponse.Raw,
-  Schematic.GetApiRequestResponse
+    serializers.GetApiRequestResponse.Raw,
+    Schematic.GetApiRequestResponse
 > = core.serialization.object({
-  data: ApiKeyRequestResponseData,
-  params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+    data: ApiKeyRequestResponseData,
+    params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
 export declare namespace GetApiRequestResponse {
-  interface Raw {
-    data: ApiKeyRequestResponseData.Raw;
-    params: Record<string, unknown>;
-  }
+    interface Raw {
+        data: ApiKeyRequestResponseData.Raw;
+        params: Record<string, unknown>;
+    }
 }

@@ -27,10 +27,10 @@ jobs:
         uses: actions/setup-node@v3
 
       - name: Compile
-        run: yarn && yarn test
+        run: yarn && yarn test    
 
   publish:
-    needs: [compile, test]
+    needs: [ compile, test ]
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     steps:

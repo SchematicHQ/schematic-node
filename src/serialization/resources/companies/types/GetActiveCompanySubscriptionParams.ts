@@ -7,18 +7,18 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const GetActiveCompanySubscriptionParams: core.serialization.ObjectSchema<
-  serializers.GetActiveCompanySubscriptionParams.Raw,
-  Schematic.GetActiveCompanySubscriptionParams
+    serializers.GetActiveCompanySubscriptionParams.Raw,
+    Schematic.GetActiveCompanySubscriptionParams
 > = core.serialization.object({
-  companyId: core.serialization.property("company_id", core.serialization.string().optional()),
-  limit: core.serialization.number().optional(),
-  offset: core.serialization.number().optional(),
+    companyId: core.serialization.property("company_id", core.serialization.string().optional()),
+    limit: core.serialization.number().optional(),
+    offset: core.serialization.number().optional(),
 });
 
 export declare namespace GetActiveCompanySubscriptionParams {
-  interface Raw {
-    company_id?: string | null;
-    limit?: number | null;
-    offset?: number | null;
-  }
+    interface Raw {
+        company_id?: string | null;
+        limit?: number | null;
+        offset?: number | null;
+    }
 }

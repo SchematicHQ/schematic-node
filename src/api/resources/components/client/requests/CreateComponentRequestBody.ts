@@ -13,7 +13,7 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface CreateComponentRequestBody {
-  ast: number[];
-  entityType: Schematic.CreateComponentRequestBodyEntityType;
-  name: string;
+    ast: number[];
+    entityType: Schematic.CreateComponentRequestBodyEntityType;
+    name: string;
 }

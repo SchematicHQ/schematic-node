@@ -6,10 +6,10 @@
  * The returned resource
  */
 export interface CheckFlagResponseData {
-  companyId?: string;
-  error?: string;
-  reason: string;
-  ruleId?: string;
-  userId?: string;
-  value: boolean;
+    companyId?: string;
+    error?: string;
+    reason: string;
+    ruleId?: string;
+    userId?: string;
+    value: boolean;
 }

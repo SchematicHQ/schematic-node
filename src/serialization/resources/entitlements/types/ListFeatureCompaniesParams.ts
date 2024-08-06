@@ -7,20 +7,20 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const ListFeatureCompaniesParams: core.serialization.ObjectSchema<
-  serializers.ListFeatureCompaniesParams.Raw,
-  Schematic.ListFeatureCompaniesParams
+    serializers.ListFeatureCompaniesParams.Raw,
+    Schematic.ListFeatureCompaniesParams
 > = core.serialization.object({
-  featureId: core.serialization.property("feature_id", core.serialization.string().optional()),
-  limit: core.serialization.number().optional(),
-  offset: core.serialization.number().optional(),
-  q: core.serialization.string().optional(),
+    featureId: core.serialization.property("feature_id", core.serialization.string().optional()),
+    limit: core.serialization.number().optional(),
+    offset: core.serialization.number().optional(),
+    q: core.serialization.string().optional(),
 });
 
 export declare namespace ListFeatureCompaniesParams {
-  interface Raw {
-    feature_id?: string | null;
-    limit?: number | null;
-    offset?: number | null;
-    q?: string | null;
-  }
+    interface Raw {
+        feature_id?: string | null;
+        limit?: number | null;
+        offset?: number | null;
+        q?: string | null;
+    }
 }

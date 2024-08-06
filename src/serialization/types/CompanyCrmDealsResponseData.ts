@@ -8,22 +8,22 @@ import * as core from "../../core";
 import { CrmDealLineItem } from "./CrmDealLineItem";
 
 export const CompanyCrmDealsResponseData: core.serialization.ObjectSchema<
-  serializers.CompanyCrmDealsResponseData.Raw,
-  Schematic.CompanyCrmDealsResponseData
+    serializers.CompanyCrmDealsResponseData.Raw,
+    Schematic.CompanyCrmDealsResponseData
 > = core.serialization.object({
-  dealArr: core.serialization.property("deal_arr", core.serialization.string()),
-  dealExternalId: core.serialization.property("deal_external_id", core.serialization.string()),
-  dealMrr: core.serialization.property("deal_mrr", core.serialization.string()),
-  dealName: core.serialization.property("deal_name", core.serialization.string().optional()),
-  lineItems: core.serialization.property("line_items", core.serialization.list(CrmDealLineItem)),
+    dealArr: core.serialization.property("deal_arr", core.serialization.string()),
+    dealExternalId: core.serialization.property("deal_external_id", core.serialization.string()),
+    dealMrr: core.serialization.property("deal_mrr", core.serialization.string()),
+    dealName: core.serialization.property("deal_name", core.serialization.string().optional()),
+    lineItems: core.serialization.property("line_items", core.serialization.list(CrmDealLineItem)),
 });
 
 export declare namespace CompanyCrmDealsResponseData {
-  interface Raw {
-    deal_arr: string;
-    deal_external_id: string;
-    deal_mrr: string;
-    deal_name?: string | null;
-    line_items: CrmDealLineItem.Raw[];
-  }
+    interface Raw {
+        deal_arr: string;
+        deal_external_id: string;
+        deal_mrr: string;
+        deal_name?: string | null;
+        line_items: CrmDealLineItem.Raw[];
+    }
 }

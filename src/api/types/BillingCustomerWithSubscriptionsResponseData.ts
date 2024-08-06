@@ -5,13 +5,13 @@
 import * as Schematic from "../index";
 
 export interface BillingCustomerWithSubscriptionsResponseData {
-  companyId?: string;
-  deletedAt?: Date;
-  email: string;
-  externalId: string;
-  failedToImport: boolean;
-  id: string;
-  name: string;
-  subscriptions: Schematic.BillingCustomerSubscription[];
-  updatedAt: Date;
+    companyId?: string;
+    deletedAt?: Date;
+    email: string;
+    externalId: string;
+    failedToImport: boolean;
+    id: string;
+    name: string;
+    subscriptions: Schematic.BillingCustomerSubscription[];
+    updatedAt: Date;
 }

@@ -9,16 +9,16 @@ import * as Schematic from "../../../../index";
  *     {}
  */
 export interface ListEntityTraitDefinitionsRequest {
-  entityType?: Schematic.ListEntityTraitDefinitionsRequestEntityType;
-  ids?: string | string[];
-  traitType?: Schematic.ListEntityTraitDefinitionsRequestTraitType;
-  q?: string;
-  /**
-   * Page limit (default 100)
-   */
-  limit?: number;
-  /**
-   * Page offset (default 0)
-   */
-  offset?: number;
+    entityType?: Schematic.ListEntityTraitDefinitionsRequestEntityType;
+    ids?: string | string[];
+    traitType?: Schematic.ListEntityTraitDefinitionsRequestTraitType;
+    q?: string;
+    /**
+     * Page limit (default 100)
+     */
+    limit?: number;
+    /**
+     * Page offset (default 0)
+     */
+    offset?: number;
 }

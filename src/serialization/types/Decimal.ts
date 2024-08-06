@@ -7,10 +7,10 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const Decimal: core.serialization.Schema<serializers.Decimal.Raw, Schematic.Decimal> = core.serialization.record(
-  core.serialization.string(),
-  core.serialization.unknown(),
+    core.serialization.string(),
+    core.serialization.unknown()
 );
 
 export declare namespace Decimal {
-  type Raw = Record<string, unknown>;
+    type Raw = Record<string, unknown>;
 }

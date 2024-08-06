@@ -8,16 +8,16 @@ import * as core from "../../../../core";
 import { CrmDealResponseData } from "../../../types/CrmDealResponseData";
 
 export const UpsertCrmDealResponse: core.serialization.ObjectSchema<
-  serializers.UpsertCrmDealResponse.Raw,
-  Schematic.UpsertCrmDealResponse
+    serializers.UpsertCrmDealResponse.Raw,
+    Schematic.UpsertCrmDealResponse
 > = core.serialization.object({
-  data: CrmDealResponseData,
-  params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+    data: CrmDealResponseData,
+    params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
 export declare namespace UpsertCrmDealResponse {
-  interface Raw {
-    data: CrmDealResponseData.Raw;
-    params: Record<string, unknown>;
-  }
+    interface Raw {
+        data: CrmDealResponseData.Raw;
+        params: Record<string, unknown>;
+    }
 }

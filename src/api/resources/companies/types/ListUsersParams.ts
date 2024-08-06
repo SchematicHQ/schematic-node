@@ -6,13 +6,13 @@
  * Input parameters
  */
 export interface ListUsersParams {
-  companyId?: string;
-  ids?: string[];
-  /** Page limit (default 100) */
-  limit?: number;
-  /** Page offset (default 0) */
-  offset?: number;
-  planId?: string;
-  /** Search filter */
-  q?: string;
+    companyId?: string;
+    ids?: string[];
+    /** Page limit (default 100) */
+    limit?: number;
+    /** Page offset (default 0) */
+    offset?: number;
+    planId?: string;
+    /** Search filter */
+    q?: string;
 }

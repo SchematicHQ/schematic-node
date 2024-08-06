@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface CheckFlagResponse {
-  data: Schematic.CheckFlagResponseData;
-  /** Input parameters */
-  params: Record<string, unknown>;
+    data: Schematic.CheckFlagResponseData;
+    /** Input parameters */
+    params: Record<string, unknown>;
 }

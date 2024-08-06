@@ -5,6 +5,6 @@
 export type ListEntityTraitDefinitionsRequestEntityType = "company" | "user";
 
 export const ListEntityTraitDefinitionsRequestEntityType = {
-  Company: "company",
-  User: "user",
+    Company: "company",
+    User: "user",
 } as const;

@@ -9,16 +9,16 @@ import { CompanyOverrideResponseData } from "../../../types/CompanyOverrideRespo
 import { ListCompanyOverridesParams } from "./ListCompanyOverridesParams";
 
 export const ListCompanyOverridesResponse: core.serialization.ObjectSchema<
-  serializers.ListCompanyOverridesResponse.Raw,
-  Schematic.ListCompanyOverridesResponse
+    serializers.ListCompanyOverridesResponse.Raw,
+    Schematic.ListCompanyOverridesResponse
 > = core.serialization.object({
-  data: core.serialization.list(CompanyOverrideResponseData),
-  params: ListCompanyOverridesParams,
+    data: core.serialization.list(CompanyOverrideResponseData),
+    params: ListCompanyOverridesParams,
 });
 
 export declare namespace ListCompanyOverridesResponse {
-  interface Raw {
-    data: CompanyOverrideResponseData.Raw[];
-    params: ListCompanyOverridesParams.Raw;
-  }
+    interface Raw {
+        data: CompanyOverrideResponseData.Raw[];
+        params: ListCompanyOverridesParams.Raw;
+    }
 }

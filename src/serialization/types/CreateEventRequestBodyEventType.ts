@@ -7,10 +7,10 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const CreateEventRequestBodyEventType: core.serialization.Schema<
-  serializers.CreateEventRequestBodyEventType.Raw,
-  Schematic.CreateEventRequestBodyEventType
+    serializers.CreateEventRequestBodyEventType.Raw,
+    Schematic.CreateEventRequestBodyEventType
 > = core.serialization.enum_(["identify", "track", "flag_check"]);
 
 export declare namespace CreateEventRequestBodyEventType {
-  type Raw = "identify" | "track" | "flag_check";
+    type Raw = "identify" | "track" | "flag_check";
 }

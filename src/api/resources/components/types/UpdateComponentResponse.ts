@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface UpdateComponentResponse {
-  data: Schematic.ComponentResponseData;
-  /** Input parameters */
-  params: Record<string, unknown>;
+    data: Schematic.ComponentResponseData;
+    /** Input parameters */
+    params: Record<string, unknown>;
 }

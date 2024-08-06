@@ -8,32 +8,32 @@ import * as core from "../../core";
 import { EntityKeyDefinitionResponseData } from "./EntityKeyDefinitionResponseData";
 
 export const EntityKeyDetailResponseData: core.serialization.ObjectSchema<
-  serializers.EntityKeyDetailResponseData.Raw,
-  Schematic.EntityKeyDetailResponseData
+    serializers.EntityKeyDetailResponseData.Raw,
+    Schematic.EntityKeyDetailResponseData
 > = core.serialization.object({
-  createdAt: core.serialization.property("created_at", core.serialization.date()),
-  definition: EntityKeyDefinitionResponseData.optional(),
-  definitionId: core.serialization.property("definition_id", core.serialization.string()),
-  entityId: core.serialization.property("entity_id", core.serialization.string()),
-  entityType: core.serialization.property("entity_type", core.serialization.string()),
-  environmentId: core.serialization.property("environment_id", core.serialization.string()),
-  id: core.serialization.string(),
-  key: core.serialization.string(),
-  updatedAt: core.serialization.property("updated_at", core.serialization.date()),
-  value: core.serialization.string(),
+    createdAt: core.serialization.property("created_at", core.serialization.date()),
+    definition: EntityKeyDefinitionResponseData.optional(),
+    definitionId: core.serialization.property("definition_id", core.serialization.string()),
+    entityId: core.serialization.property("entity_id", core.serialization.string()),
+    entityType: core.serialization.property("entity_type", core.serialization.string()),
+    environmentId: core.serialization.property("environment_id", core.serialization.string()),
+    id: core.serialization.string(),
+    key: core.serialization.string(),
+    updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+    value: core.serialization.string(),
 });
 
 export declare namespace EntityKeyDetailResponseData {
-  interface Raw {
-    created_at: string;
-    definition?: EntityKeyDefinitionResponseData.Raw | null;
-    definition_id: string;
-    entity_id: string;
-    entity_type: string;
-    environment_id: string;
-    id: string;
-    key: string;
-    updated_at: string;
-    value: string;
-  }
+    interface Raw {
+        created_at: string;
+        definition?: EntityKeyDefinitionResponseData.Raw | null;
+        definition_id: string;
+        entity_id: string;
+        entity_type: string;
+        environment_id: string;
+        id: string;
+        key: string;
+        updated_at: string;
+        value: string;
+    }
 }

@@ -3,15 +3,15 @@
  */
 
 export interface FeatureResponseData {
-  createdAt: Date;
-  description: string;
-  eventSubtype?: string;
-  featureType: string;
-  icon: string;
-  id: string;
-  lifecyclePhase?: string;
-  maintainerId?: string;
-  name: string;
-  traitId?: string;
-  updatedAt: Date;
+    createdAt: Date;
+    description: string;
+    eventSubtype?: string;
+    featureType: string;
+    icon: string;
+    id: string;
+    lifecyclePhase?: string;
+    maintainerId?: string;
+    name: string;
+    traitId?: string;
+    updatedAt: Date;
 }

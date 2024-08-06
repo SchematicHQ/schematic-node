@@ -9,6 +9,6 @@ import * as Schematic from "../../../../index";
  *     {}
  */
 export interface UpdateEnvironmentRequestBody {
-  environmentType?: Schematic.UpdateEnvironmentRequestBodyEnvironmentType;
-  name?: string;
+    environmentType?: Schematic.UpdateEnvironmentRequestBodyEnvironmentType;
+    name?: string;
 }

@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface CreateEventResponse {
-  data: Schematic.RawEventResponseData;
-  /** Input parameters */
-  params: Record<string, unknown>;
+    data: Schematic.RawEventResponseData;
+    /** Input parameters */
+    params: Record<string, unknown>;
 }

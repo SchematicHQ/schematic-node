@@ -9,7 +9,7 @@
  *     }
  */
 export interface CreateApiKeyRequestBody {
-  description?: string;
-  environmentId?: string;
-  name: string;
+    description?: string;
+    environmentId?: string;
+    name: string;
 }

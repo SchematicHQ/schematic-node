@@ -5,15 +5,15 @@
 import * as Schematic from "../index";
 
 export interface UserDetailResponseData {
-  companyMemberships: Schematic.CompanyMembershipDetailResponseData[];
-  createdAt: Date;
-  entityTraits: Schematic.EntityTraitDetailResponseData[];
-  environmentId: string;
-  id: string;
-  keys: Schematic.EntityKeyDetailResponseData[];
-  lastSeenAt?: Date;
-  name: string;
-  /** A map of trait names to trait values */
-  traits?: Record<string, unknown>;
-  updatedAt: Date;
+    companyMemberships: Schematic.CompanyMembershipDetailResponseData[];
+    createdAt: Date;
+    entityTraits: Schematic.EntityTraitDetailResponseData[];
+    environmentId: string;
+    id: string;
+    keys: Schematic.EntityKeyDetailResponseData[];
+    lastSeenAt?: Date;
+    name: string;
+    /** A map of trait names to trait values */
+    traits?: Record<string, unknown>;
+    updatedAt: Date;
 }

@@ -5,11 +5,11 @@
 import * as Schematic from "../index";
 
 export interface EntityTraitDetailResponseData {
-  createdAt: Date;
-  definition?: Schematic.EntityTraitDefinitionResponseData;
-  definitionId: string;
-  environmentId: string;
-  id: string;
-  updatedAt: Date;
-  value: string;
+    createdAt: Date;
+    definition?: Schematic.EntityTraitDefinitionResponseData;
+    definitionId: string;
+    environmentId: string;
+    id: string;
+    updatedAt: Date;
+    value: string;
 }

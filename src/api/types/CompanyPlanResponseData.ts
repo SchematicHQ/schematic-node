@@ -3,10 +3,10 @@
  */
 
 export interface CompanyPlanResponseData {
-  companyId: string;
-  createdAt: Date;
-  environmentId: string;
-  id: string;
-  planId: string;
-  updatedAt: Date;
+    companyId: string;
+    createdAt: Date;
+    environmentId: string;
+    id: string;
+    planId: string;
+    updatedAt: Date;
 }

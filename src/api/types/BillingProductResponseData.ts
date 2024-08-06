@@ -3,14 +3,14 @@
  */
 
 export interface BillingProductResponseData {
-  accountId: string;
-  createdAt: Date;
-  currency: string;
-  environmentId: string;
-  externalId: string;
-  name: string;
-  price: number;
-  productId: string;
-  quantity: number;
-  updatedAt: Date;
+    accountId: string;
+    createdAt: Date;
+    currency: string;
+    environmentId: string;
+    externalId: string;
+    name: string;
+    price: number;
+    productId: string;
+    quantity: number;
+    updatedAt: Date;
 }

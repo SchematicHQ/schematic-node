@@ -13,8 +13,8 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface CreateEntityTraitDefinitionRequestBody {
-  displayName?: string;
-  entityType: Schematic.CreateEntityTraitDefinitionRequestBodyEntityType;
-  hierarchy: string[];
-  traitType: Schematic.CreateEntityTraitDefinitionRequestBodyTraitType;
+    displayName?: string;
+    entityType: Schematic.CreateEntityTraitDefinitionRequestBodyEntityType;
+    hierarchy: string[];
+    traitType: Schematic.CreateEntityTraitDefinitionRequestBodyTraitType;
 }

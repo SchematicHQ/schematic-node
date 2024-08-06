@@ -8,16 +8,16 @@ import * as core from "../../../../core";
 import { EnvironmentResponseData } from "../../../types/EnvironmentResponseData";
 
 export const UpdateEnvironmentResponse: core.serialization.ObjectSchema<
-  serializers.UpdateEnvironmentResponse.Raw,
-  Schematic.UpdateEnvironmentResponse
+    serializers.UpdateEnvironmentResponse.Raw,
+    Schematic.UpdateEnvironmentResponse
 > = core.serialization.object({
-  data: EnvironmentResponseData,
-  params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+    data: EnvironmentResponseData,
+    params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
 export declare namespace UpdateEnvironmentResponse {
-  interface Raw {
-    data: EnvironmentResponseData.Raw;
-    params: Record<string, unknown>;
-  }
+    interface Raw {
+        data: EnvironmentResponseData.Raw;
+        params: Record<string, unknown>;
+    }
 }

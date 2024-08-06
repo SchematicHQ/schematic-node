@@ -7,26 +7,26 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const TemporaryAccessTokenResponseData: core.serialization.ObjectSchema<
-  serializers.TemporaryAccessTokenResponseData.Raw,
-  Schematic.TemporaryAccessTokenResponseData
+    serializers.TemporaryAccessTokenResponseData.Raw,
+    Schematic.TemporaryAccessTokenResponseData
 > = core.serialization.object({
-  apiKeyId: core.serialization.property("api_key_id", core.serialization.string()),
-  createdAt: core.serialization.property("created_at", core.serialization.date()),
-  environmentId: core.serialization.property("environment_id", core.serialization.string()),
-  expiredAt: core.serialization.property("expired_at", core.serialization.date()),
-  id: core.serialization.string(),
-  resourceType: core.serialization.property("resource_type", core.serialization.string()),
-  updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+    apiKeyId: core.serialization.property("api_key_id", core.serialization.string()),
+    createdAt: core.serialization.property("created_at", core.serialization.date()),
+    environmentId: core.serialization.property("environment_id", core.serialization.string()),
+    expiredAt: core.serialization.property("expired_at", core.serialization.date()),
+    id: core.serialization.string(),
+    resourceType: core.serialization.property("resource_type", core.serialization.string()),
+    updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
 export declare namespace TemporaryAccessTokenResponseData {
-  interface Raw {
-    api_key_id: string;
-    created_at: string;
-    environment_id: string;
-    expired_at: string;
-    id: string;
-    resource_type: string;
-    updated_at: string;
-  }
+    interface Raw {
+        api_key_id: string;
+        created_at: string;
+        environment_id: string;
+        expired_at: string;
+        id: string;
+        resource_type: string;
+        updated_at: string;
+    }
 }

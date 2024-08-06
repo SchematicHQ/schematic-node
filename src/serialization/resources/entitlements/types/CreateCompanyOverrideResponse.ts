@@ -8,16 +8,16 @@ import * as core from "../../../../core";
 import { CompanyOverrideResponseData } from "../../../types/CompanyOverrideResponseData";
 
 export const CreateCompanyOverrideResponse: core.serialization.ObjectSchema<
-  serializers.CreateCompanyOverrideResponse.Raw,
-  Schematic.CreateCompanyOverrideResponse
+    serializers.CreateCompanyOverrideResponse.Raw,
+    Schematic.CreateCompanyOverrideResponse
 > = core.serialization.object({
-  data: CompanyOverrideResponseData,
-  params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+    data: CompanyOverrideResponseData,
+    params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
 export declare namespace CreateCompanyOverrideResponse {
-  interface Raw {
-    data: CompanyOverrideResponseData.Raw;
-    params: Record<string, unknown>;
-  }
+    interface Raw {
+        data: CompanyOverrideResponseData.Raw;
+        params: Record<string, unknown>;
+    }
 }

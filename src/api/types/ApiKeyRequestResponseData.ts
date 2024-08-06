@@ -6,23 +6,23 @@
  * The returned resource
  */
 export interface ApiKeyRequestResponseData {
-  apiKeyId: string;
-  endedAt?: Date;
-  environmentId?: string;
-  id: string;
-  method: string;
-  reqBody?: string;
-  requestType?: string;
-  resourceId?: number;
-  resourceIdString?: string;
-  resourceName?: string;
-  resourceType?: string;
-  respBody?: string;
-  respCode?: number;
-  secondaryResource?: string;
-  startedAt: Date;
-  url: string;
-  userAgent?: string;
-  userId?: string;
-  userName?: string;
+    apiKeyId: string;
+    endedAt?: Date;
+    environmentId?: string;
+    id: string;
+    method: string;
+    reqBody?: string;
+    requestType?: string;
+    resourceId?: number;
+    resourceIdString?: string;
+    resourceName?: string;
+    resourceType?: string;
+    respBody?: string;
+    respCode?: number;
+    secondaryResource?: string;
+    startedAt: Date;
+    url: string;
+    userAgent?: string;
+    userId?: string;
+    userName?: string;
 }

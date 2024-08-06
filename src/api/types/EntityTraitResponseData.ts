@@ -3,10 +3,10 @@
  */
 
 export interface EntityTraitResponseData {
-  createdAt: Date;
-  definitionId: string;
-  environmentId: string;
-  id: string;
-  updatedAt: Date;
-  value: string;
+    createdAt: Date;
+    definitionId: string;
+    environmentId: string;
+    id: string;
+    updatedAt: Date;
+    value: string;
 }

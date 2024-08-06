@@ -9,16 +9,16 @@ import { EventSummaryResponseData } from "../../../types/EventSummaryResponseDat
 import { GetEventSummariesParams } from "./GetEventSummariesParams";
 
 export const GetEventSummariesResponse: core.serialization.ObjectSchema<
-  serializers.GetEventSummariesResponse.Raw,
-  Schematic.GetEventSummariesResponse
+    serializers.GetEventSummariesResponse.Raw,
+    Schematic.GetEventSummariesResponse
 > = core.serialization.object({
-  data: core.serialization.list(EventSummaryResponseData),
-  params: GetEventSummariesParams,
+    data: core.serialization.list(EventSummaryResponseData),
+    params: GetEventSummariesParams,
 });
 
 export declare namespace GetEventSummariesResponse {
-  interface Raw {
-    data: EventSummaryResponseData.Raw[];
-    params: GetEventSummariesParams.Raw;
-  }
+    interface Raw {
+        data: EventSummaryResponseData.Raw[];
+        params: GetEventSummariesParams.Raw;
+    }
 }

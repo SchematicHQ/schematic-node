@@ -3,20 +3,20 @@
  */
 
 export interface ApiKeyRequestListResponseData {
-  apiKeyId: string;
-  endedAt?: Date;
-  environmentId?: string;
-  id: string;
-  method: string;
-  reqBody?: string;
-  requestType?: string;
-  resourceId?: number;
-  resourceIdString?: string;
-  resourceName?: string;
-  resourceType?: string;
-  respCode?: number;
-  secondaryResource?: string;
-  startedAt: Date;
-  url: string;
-  userName?: string;
+    apiKeyId: string;
+    endedAt?: Date;
+    environmentId?: string;
+    id: string;
+    method: string;
+    reqBody?: string;
+    requestType?: string;
+    resourceId?: number;
+    resourceIdString?: string;
+    resourceName?: string;
+    resourceType?: string;
+    respCode?: number;
+    secondaryResource?: string;
+    startedAt: Date;
+    url: string;
+    userName?: string;
 }

@@ -7,24 +7,24 @@ import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 
 export const CreateBillingCustomerRequestBody: core.serialization.Schema<
-  serializers.CreateBillingCustomerRequestBody.Raw,
-  Schematic.CreateBillingCustomerRequestBody
+    serializers.CreateBillingCustomerRequestBody.Raw,
+    Schematic.CreateBillingCustomerRequestBody
 > = core.serialization.object({
-  companyId: core.serialization.property("company_id", core.serialization.string().optional()),
-  email: core.serialization.string(),
-  externalId: core.serialization.property("external_id", core.serialization.string()),
-  failedToImport: core.serialization.property("failed_to_import", core.serialization.boolean()),
-  meta: core.serialization.record(core.serialization.string(), core.serialization.string()),
-  name: core.serialization.string(),
+    companyId: core.serialization.property("company_id", core.serialization.string().optional()),
+    email: core.serialization.string(),
+    externalId: core.serialization.property("external_id", core.serialization.string()),
+    failedToImport: core.serialization.property("failed_to_import", core.serialization.boolean()),
+    meta: core.serialization.record(core.serialization.string(), core.serialization.string()),
+    name: core.serialization.string(),
 });
 
 export declare namespace CreateBillingCustomerRequestBody {
-  interface Raw {
-    company_id?: string | null;
-    email: string;
-    external_id: string;
-    failed_to_import: boolean;
-    meta: Record<string, string>;
-    name: string;
-  }
+    interface Raw {
+        company_id?: string | null;
+        email: string;
+        external_id: string;
+        failed_to_import: boolean;
+        meta: Record<string, string>;
+        name: string;
+    }
 }

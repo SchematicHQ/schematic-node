@@ -8,14 +8,14 @@ import * as core from "../../core";
 import { CheckFlagOutputWithFlagKey } from "./CheckFlagOutputWithFlagKey";
 
 export const CheckFlagsResponseData: core.serialization.ObjectSchema<
-  serializers.CheckFlagsResponseData.Raw,
-  Schematic.CheckFlagsResponseData
+    serializers.CheckFlagsResponseData.Raw,
+    Schematic.CheckFlagsResponseData
 > = core.serialization.object({
-  flags: core.serialization.list(CheckFlagOutputWithFlagKey),
+    flags: core.serialization.list(CheckFlagOutputWithFlagKey),
 });
 
 export declare namespace CheckFlagsResponseData {
-  interface Raw {
-    flags: CheckFlagOutputWithFlagKey.Raw[];
-  }
+    interface Raw {
+        flags: CheckFlagOutputWithFlagKey.Raw[];
+    }
 }

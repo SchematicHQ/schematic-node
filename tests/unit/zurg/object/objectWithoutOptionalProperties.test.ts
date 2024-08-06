@@ -2,20 +2,20 @@ import { objectWithoutOptionalProperties, string, stringLiteral } from "../../..
 import { itSchema } from "../utils/itSchema";
 
 describe("objectWithoutOptionalProperties", () => {
-  itSchema(
-    "all properties are required",
-    objectWithoutOptionalProperties({
-      foo: string(),
-      bar: stringLiteral("bar").optional(),
-    }),
-    {
-      raw: {
-        foo: "hello",
-      },
-      // @ts-expect-error
-      parsed: {
-        foo: "hello",
-      },
-    },
-  );
+    itSchema(
+        "all properties are required",
+        objectWithoutOptionalProperties({
+            foo: string(),
+            bar: stringLiteral("bar").optional(),
+        }),
+        {
+            raw: {
+                foo: "hello",
+            },
+            // @ts-expect-error
+            parsed: {
+                foo: "hello",
+            },
+        }
+    );
 });

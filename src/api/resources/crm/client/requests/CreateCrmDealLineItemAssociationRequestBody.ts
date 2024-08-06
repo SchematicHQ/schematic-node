@@ -10,6 +10,6 @@
  *     }
  */
 export interface CreateCrmDealLineItemAssociationRequestBody {
-  dealExternalId: string;
-  lineItemExternalId: string;
+    dealExternalId: string;
+    lineItemExternalId: string;
 }

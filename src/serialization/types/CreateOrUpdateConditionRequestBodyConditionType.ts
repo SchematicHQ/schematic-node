@@ -7,10 +7,10 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const CreateOrUpdateConditionRequestBodyConditionType: core.serialization.Schema<
-  serializers.CreateOrUpdateConditionRequestBodyConditionType.Raw,
-  Schematic.CreateOrUpdateConditionRequestBodyConditionType
+    serializers.CreateOrUpdateConditionRequestBodyConditionType.Raw,
+    Schematic.CreateOrUpdateConditionRequestBodyConditionType
 > = core.serialization.enum_(["company", "metric", "trait", "user", "plan", "billing_product", "crm_product"]);
 
 export declare namespace CreateOrUpdateConditionRequestBodyConditionType {
-  type Raw = "company" | "metric" | "trait" | "user" | "plan" | "billing_product" | "crm_product";
+    type Raw = "company" | "metric" | "trait" | "user" | "plan" | "billing_product" | "crm_product";
 }

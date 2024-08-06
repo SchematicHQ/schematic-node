@@ -7,50 +7,50 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const ApiKeyRequestResponseData: core.serialization.ObjectSchema<
-  serializers.ApiKeyRequestResponseData.Raw,
-  Schematic.ApiKeyRequestResponseData
+    serializers.ApiKeyRequestResponseData.Raw,
+    Schematic.ApiKeyRequestResponseData
 > = core.serialization.object({
-  apiKeyId: core.serialization.property("api_key_id", core.serialization.string()),
-  endedAt: core.serialization.property("ended_at", core.serialization.date().optional()),
-  environmentId: core.serialization.property("environment_id", core.serialization.string().optional()),
-  id: core.serialization.string(),
-  method: core.serialization.string(),
-  reqBody: core.serialization.property("req_body", core.serialization.string().optional()),
-  requestType: core.serialization.property("request_type", core.serialization.string().optional()),
-  resourceId: core.serialization.property("resource_id", core.serialization.number().optional()),
-  resourceIdString: core.serialization.property("resource_id_string", core.serialization.string().optional()),
-  resourceName: core.serialization.property("resource_name", core.serialization.string().optional()),
-  resourceType: core.serialization.property("resource_type", core.serialization.string().optional()),
-  respBody: core.serialization.property("resp_body", core.serialization.string().optional()),
-  respCode: core.serialization.property("resp_code", core.serialization.number().optional()),
-  secondaryResource: core.serialization.property("secondary_resource", core.serialization.string().optional()),
-  startedAt: core.serialization.property("started_at", core.serialization.date()),
-  url: core.serialization.string(),
-  userAgent: core.serialization.property("user_agent", core.serialization.string().optional()),
-  userId: core.serialization.property("user_id", core.serialization.string().optional()),
-  userName: core.serialization.property("user_name", core.serialization.string().optional()),
+    apiKeyId: core.serialization.property("api_key_id", core.serialization.string()),
+    endedAt: core.serialization.property("ended_at", core.serialization.date().optional()),
+    environmentId: core.serialization.property("environment_id", core.serialization.string().optional()),
+    id: core.serialization.string(),
+    method: core.serialization.string(),
+    reqBody: core.serialization.property("req_body", core.serialization.string().optional()),
+    requestType: core.serialization.property("request_type", core.serialization.string().optional()),
+    resourceId: core.serialization.property("resource_id", core.serialization.number().optional()),
+    resourceIdString: core.serialization.property("resource_id_string", core.serialization.string().optional()),
+    resourceName: core.serialization.property("resource_name", core.serialization.string().optional()),
+    resourceType: core.serialization.property("resource_type", core.serialization.string().optional()),
+    respBody: core.serialization.property("resp_body", core.serialization.string().optional()),
+    respCode: core.serialization.property("resp_code", core.serialization.number().optional()),
+    secondaryResource: core.serialization.property("secondary_resource", core.serialization.string().optional()),
+    startedAt: core.serialization.property("started_at", core.serialization.date()),
+    url: core.serialization.string(),
+    userAgent: core.serialization.property("user_agent", core.serialization.string().optional()),
+    userId: core.serialization.property("user_id", core.serialization.string().optional()),
+    userName: core.serialization.property("user_name", core.serialization.string().optional()),
 });
 
 export declare namespace ApiKeyRequestResponseData {
-  interface Raw {
-    api_key_id: string;
-    ended_at?: string | null;
-    environment_id?: string | null;
-    id: string;
-    method: string;
-    req_body?: string | null;
-    request_type?: string | null;
-    resource_id?: number | null;
-    resource_id_string?: string | null;
-    resource_name?: string | null;
-    resource_type?: string | null;
-    resp_body?: string | null;
-    resp_code?: number | null;
-    secondary_resource?: string | null;
-    started_at: string;
-    url: string;
-    user_agent?: string | null;
-    user_id?: string | null;
-    user_name?: string | null;
-  }
+    interface Raw {
+        api_key_id: string;
+        ended_at?: string | null;
+        environment_id?: string | null;
+        id: string;
+        method: string;
+        req_body?: string | null;
+        request_type?: string | null;
+        resource_id?: number | null;
+        resource_id_string?: string | null;
+        resource_name?: string | null;
+        resource_type?: string | null;
+        resp_body?: string | null;
+        resp_code?: number | null;
+        secondary_resource?: string | null;
+        started_at: string;
+        url: string;
+        user_agent?: string | null;
+        user_id?: string | null;
+        user_name?: string | null;
+    }
 }

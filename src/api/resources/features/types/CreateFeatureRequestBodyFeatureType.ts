@@ -5,7 +5,7 @@
 export type CreateFeatureRequestBodyFeatureType = "boolean" | "event" | "trait";
 
 export const CreateFeatureRequestBodyFeatureType = {
-  Boolean: "boolean",
-  Event: "event",
-  Trait: "trait",
+    Boolean: "boolean",
+    Event: "event",
+    Trait: "trait",
 } as const;

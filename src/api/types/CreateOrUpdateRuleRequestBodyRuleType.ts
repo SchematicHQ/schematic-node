@@ -3,18 +3,18 @@
  */
 
 export type CreateOrUpdateRuleRequestBodyRuleType =
-  | "global_override"
-  | "company_override"
-  | "plan_entitlement"
-  | "standard"
-  | "default"
-  | "plan_audience";
+    | "global_override"
+    | "company_override"
+    | "plan_entitlement"
+    | "standard"
+    | "default"
+    | "plan_audience";
 
 export const CreateOrUpdateRuleRequestBodyRuleType = {
-  GlobalOverride: "global_override",
-  CompanyOverride: "company_override",
-  PlanEntitlement: "plan_entitlement",
-  Standard: "standard",
-  Default: "default",
-  PlanAudience: "plan_audience",
+    GlobalOverride: "global_override",
+    CompanyOverride: "company_override",
+    PlanEntitlement: "plan_entitlement",
+    Standard: "standard",
+    Default: "default",
+    PlanAudience: "plan_audience",
 } as const;

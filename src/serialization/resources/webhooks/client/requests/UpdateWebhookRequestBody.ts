@@ -9,23 +9,23 @@ import { UpdateWebhookRequestBodyRequestTypesItem } from "../../types/UpdateWebh
 import { UpdateWebhookRequestBodyStatus } from "../../types/UpdateWebhookRequestBodyStatus";
 
 export const UpdateWebhookRequestBody: core.serialization.Schema<
-  serializers.UpdateWebhookRequestBody.Raw,
-  Schematic.UpdateWebhookRequestBody
+    serializers.UpdateWebhookRequestBody.Raw,
+    Schematic.UpdateWebhookRequestBody
 > = core.serialization.object({
-  name: core.serialization.string().optional(),
-  requestTypes: core.serialization.property(
-    "request_types",
-    core.serialization.list(UpdateWebhookRequestBodyRequestTypesItem).optional(),
-  ),
-  status: UpdateWebhookRequestBodyStatus.optional(),
-  url: core.serialization.string().optional(),
+    name: core.serialization.string().optional(),
+    requestTypes: core.serialization.property(
+        "request_types",
+        core.serialization.list(UpdateWebhookRequestBodyRequestTypesItem).optional()
+    ),
+    status: UpdateWebhookRequestBodyStatus.optional(),
+    url: core.serialization.string().optional(),
 });
 
 export declare namespace UpdateWebhookRequestBody {
-  interface Raw {
-    name?: string | null;
-    request_types?: UpdateWebhookRequestBodyRequestTypesItem.Raw[] | null;
-    status?: UpdateWebhookRequestBodyStatus.Raw | null;
-    url?: string | null;
-  }
+    interface Raw {
+        name?: string | null;
+        request_types?: UpdateWebhookRequestBodyRequestTypesItem.Raw[] | null;
+        status?: UpdateWebhookRequestBodyStatus.Raw | null;
+        url?: string | null;
+    }
 }

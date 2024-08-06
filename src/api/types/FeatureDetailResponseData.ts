@@ -5,19 +5,19 @@
 import * as Schematic from "../index";
 
 export interface FeatureDetailResponseData {
-  createdAt: Date;
-  description: string;
-  eventSubtype?: string;
-  eventSummary?: Schematic.EventSummaryResponseData;
-  featureType: string;
-  flags: Schematic.FlagDetailResponseData[];
-  icon: string;
-  id: string;
-  lifecyclePhase?: string;
-  maintainerId?: string;
-  name: string;
-  plans: Schematic.PreviewObject[];
-  trait?: Schematic.EntityTraitDefinitionResponseData;
-  traitId?: string;
-  updatedAt: Date;
+    createdAt: Date;
+    description: string;
+    eventSubtype?: string;
+    eventSummary?: Schematic.EventSummaryResponseData;
+    featureType: string;
+    flags: Schematic.FlagDetailResponseData[];
+    icon: string;
+    id: string;
+    lifecyclePhase?: string;
+    maintainerId?: string;
+    name: string;
+    plans: Schematic.PreviewObject[];
+    trait?: Schematic.EntityTraitDefinitionResponseData;
+    traitId?: string;
+    updatedAt: Date;
 }

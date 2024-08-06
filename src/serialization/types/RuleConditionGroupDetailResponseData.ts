@@ -8,28 +8,28 @@ import * as core from "../../core";
 import { RuleConditionDetailResponseData } from "./RuleConditionDetailResponseData";
 
 export const RuleConditionGroupDetailResponseData: core.serialization.ObjectSchema<
-  serializers.RuleConditionGroupDetailResponseData.Raw,
-  Schematic.RuleConditionGroupDetailResponseData
+    serializers.RuleConditionGroupDetailResponseData.Raw,
+    Schematic.RuleConditionGroupDetailResponseData
 > = core.serialization.object({
-  conditions: core.serialization.list(RuleConditionDetailResponseData),
-  createdAt: core.serialization.property("created_at", core.serialization.date()),
-  environmentId: core.serialization.property("environment_id", core.serialization.string()),
-  flagId: core.serialization.property("flag_id", core.serialization.string().optional()),
-  id: core.serialization.string(),
-  planId: core.serialization.property("plan_id", core.serialization.string().optional()),
-  ruleId: core.serialization.property("rule_id", core.serialization.string()),
-  updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+    conditions: core.serialization.list(RuleConditionDetailResponseData),
+    createdAt: core.serialization.property("created_at", core.serialization.date()),
+    environmentId: core.serialization.property("environment_id", core.serialization.string()),
+    flagId: core.serialization.property("flag_id", core.serialization.string().optional()),
+    id: core.serialization.string(),
+    planId: core.serialization.property("plan_id", core.serialization.string().optional()),
+    ruleId: core.serialization.property("rule_id", core.serialization.string()),
+    updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
 export declare namespace RuleConditionGroupDetailResponseData {
-  interface Raw {
-    conditions: RuleConditionDetailResponseData.Raw[];
-    created_at: string;
-    environment_id: string;
-    flag_id?: string | null;
-    id: string;
-    plan_id?: string | null;
-    rule_id: string;
-    updated_at: string;
-  }
+    interface Raw {
+        conditions: RuleConditionDetailResponseData.Raw[];
+        created_at: string;
+        environment_id: string;
+        flag_id?: string | null;
+        id: string;
+        plan_id?: string | null;
+        rule_id: string;
+        updated_at: string;
+    }
 }

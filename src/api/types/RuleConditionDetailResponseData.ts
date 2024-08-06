@@ -5,25 +5,25 @@
 import * as Schematic from "../index";
 
 export interface RuleConditionDetailResponseData {
-  comparisonTrait?: Schematic.EntityTraitDefinitionResponseData;
-  comparisonTraitId?: string;
-  conditionGroupId?: string;
-  conditionType: string;
-  createdAt: Date;
-  environmentId: string;
-  eventSubtype?: string;
-  flagId?: string;
-  id: string;
-  metricPeriod?: string;
-  metricValue?: number;
-  operator: string;
-  planId?: string;
-  resourceIds: string[];
-  resources: Schematic.RuleConditionResourceResponseData[];
-  ruleId: string;
-  trait?: Schematic.EntityTraitDefinitionResponseData;
-  traitEntityType?: string;
-  traitId?: string;
-  traitValue: string;
-  updatedAt: Date;
+    comparisonTrait?: Schematic.EntityTraitDefinitionResponseData;
+    comparisonTraitId?: string;
+    conditionGroupId?: string;
+    conditionType: string;
+    createdAt: Date;
+    environmentId: string;
+    eventSubtype?: string;
+    flagId?: string;
+    id: string;
+    metricPeriod?: string;
+    metricValue?: number;
+    operator: string;
+    planId?: string;
+    resourceIds: string[];
+    resources: Schematic.RuleConditionResourceResponseData[];
+    ruleId: string;
+    trait?: Schematic.EntityTraitDefinitionResponseData;
+    traitEntityType?: string;
+    traitId?: string;
+    traitValue: string;
+    updatedAt: Date;
 }

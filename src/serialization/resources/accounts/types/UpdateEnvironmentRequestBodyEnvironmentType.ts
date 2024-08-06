@@ -7,10 +7,10 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const UpdateEnvironmentRequestBodyEnvironmentType: core.serialization.Schema<
-  serializers.UpdateEnvironmentRequestBodyEnvironmentType.Raw,
-  Schematic.UpdateEnvironmentRequestBodyEnvironmentType
+    serializers.UpdateEnvironmentRequestBodyEnvironmentType.Raw,
+    Schematic.UpdateEnvironmentRequestBodyEnvironmentType
 > = core.serialization.enum_(["development", "staging", "production"]);
 
 export declare namespace UpdateEnvironmentRequestBodyEnvironmentType {
-  type Raw = "development" | "staging" | "production";
+    type Raw = "development" | "staging" | "production";
 }

@@ -22,6 +22,6 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface UpdateAudienceRequestBody {
-  conditionGroups: Schematic.CreateOrUpdateConditionGroupRequestBody[];
-  conditions: Schematic.CreateOrUpdateConditionRequestBody[];
+    conditionGroups: Schematic.CreateOrUpdateConditionGroupRequestBody[];
+    conditions: Schematic.CreateOrUpdateConditionRequestBody[];
 }

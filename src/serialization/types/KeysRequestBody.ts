@@ -7,14 +7,14 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const KeysRequestBody: core.serialization.ObjectSchema<
-  serializers.KeysRequestBody.Raw,
-  Schematic.KeysRequestBody
+    serializers.KeysRequestBody.Raw,
+    Schematic.KeysRequestBody
 > = core.serialization.object({
-  keys: core.serialization.record(core.serialization.string(), core.serialization.string()),
+    keys: core.serialization.record(core.serialization.string(), core.serialization.string()),
 });
 
 export declare namespace KeysRequestBody {
-  interface Raw {
-    keys: Record<string, string>;
-  }
+    interface Raw {
+        keys: Record<string, string>;
+    }
 }

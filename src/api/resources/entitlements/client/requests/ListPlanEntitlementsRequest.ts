@@ -7,18 +7,18 @@
  *     {}
  */
 export interface ListPlanEntitlementsRequest {
-  featureId?: string;
-  featureIds?: string | string[];
-  ids?: string | string[];
-  planId?: string;
-  planIds?: string | string[];
-  q?: string;
-  /**
-   * Page limit (default 100)
-   */
-  limit?: number;
-  /**
-   * Page offset (default 0)
-   */
-  offset?: number;
+    featureId?: string;
+    featureIds?: string | string[];
+    ids?: string | string[];
+    planId?: string;
+    planIds?: string | string[];
+    q?: string;
+    /**
+     * Page limit (default 100)
+     */
+    limit?: number;
+    /**
+     * Page offset (default 0)
+     */
+    offset?: number;
 }

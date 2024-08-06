@@ -8,7 +8,7 @@
 export type CreateEventRequestBodyEventType = "identify" | "track" | "flag_check";
 
 export const CreateEventRequestBodyEventType = {
-  Identify: "identify",
-  Track: "track",
-  FlagCheck: "flag_check",
+    Identify: "identify",
+    Track: "track",
+    FlagCheck: "flag_check",
 } as const;

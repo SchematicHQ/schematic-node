@@ -6,5 +6,5 @@
  * Input parameters
  */
 export interface GetFeatureUsageByCompanyParams {
-  keys?: Record<string, unknown>;
+    keys?: Record<string, unknown>;
 }

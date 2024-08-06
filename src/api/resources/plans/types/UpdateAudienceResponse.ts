@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface UpdateAudienceResponse {
-  data: Schematic.PlanAudienceDetailResponseData;
-  /** Input parameters */
-  params: Record<string, unknown>;
+    data: Schematic.PlanAudienceDetailResponseData;
+    /** Input parameters */
+    params: Record<string, unknown>;
 }

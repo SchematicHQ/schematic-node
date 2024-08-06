@@ -3,11 +3,11 @@
  */
 
 export interface TemporaryAccessTokenResponseData {
-  apiKeyId: string;
-  createdAt: Date;
-  environmentId: string;
-  expiredAt: Date;
-  id: string;
-  resourceType: string;
-  updatedAt: Date;
+    apiKeyId: string;
+    createdAt: Date;
+    environmentId: string;
+    expiredAt: Date;
+    id: string;
+    resourceType: string;
+    updatedAt: Date;
 }

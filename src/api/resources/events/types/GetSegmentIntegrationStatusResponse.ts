@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface GetSegmentIntegrationStatusResponse {
-  data: Schematic.SegmentStatusResp;
-  /** Input parameters */
-  params: Record<string, unknown>;
+    data: Schematic.SegmentStatusResp;
+    /** Input parameters */
+    params: Record<string, unknown>;
 }

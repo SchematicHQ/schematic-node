@@ -8,24 +8,24 @@ import * as core from "../../core";
 import { CompanyResponseData } from "./CompanyResponseData";
 
 export const CompanyMembershipDetailResponseData: core.serialization.ObjectSchema<
-  serializers.CompanyMembershipDetailResponseData.Raw,
-  Schematic.CompanyMembershipDetailResponseData
+    serializers.CompanyMembershipDetailResponseData.Raw,
+    Schematic.CompanyMembershipDetailResponseData
 > = core.serialization.object({
-  company: CompanyResponseData.optional(),
-  companyId: core.serialization.property("company_id", core.serialization.string()),
-  createdAt: core.serialization.property("created_at", core.serialization.date()),
-  id: core.serialization.string(),
-  updatedAt: core.serialization.property("updated_at", core.serialization.date()),
-  userId: core.serialization.property("user_id", core.serialization.string()),
+    company: CompanyResponseData.optional(),
+    companyId: core.serialization.property("company_id", core.serialization.string()),
+    createdAt: core.serialization.property("created_at", core.serialization.date()),
+    id: core.serialization.string(),
+    updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+    userId: core.serialization.property("user_id", core.serialization.string()),
 });
 
 export declare namespace CompanyMembershipDetailResponseData {
-  interface Raw {
-    company?: CompanyResponseData.Raw | null;
-    company_id: string;
-    created_at: string;
-    id: string;
-    updated_at: string;
-    user_id: string;
-  }
+    interface Raw {
+        company?: CompanyResponseData.Raw | null;
+        company_id: string;
+        created_at: string;
+        id: string;
+        updated_at: string;
+        user_id: string;
+    }
 }

@@ -13,9 +13,9 @@
  *     }
  */
 export interface CreateBillingProductRequestBody {
-  currency: string;
-  externalId: string;
-  name: string;
-  price: number;
-  quantity: number;
+    currency: string;
+    externalId: string;
+    name: string;
+    price: number;
+    quantity: number;
 }
