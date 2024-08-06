@@ -20,7 +20,7 @@ pnpm add @schematichq/schematic-typescript-node
 import { SchematicClient } from "@schematichq/schematic-typescript-node";
 
 const apiKey = process.env.SCHEMATIC_API_KEY;
-const client = new SchematicClient(apiKey);
+const client = new SchematicClient({ apiKey });
 
 // interactions with the client
 
@@ -35,7 +35,8 @@ import { LocalCache, SchematicClient } from "@schematichq/schematic-typescript-n
 const apiKey = process.env.SCHEMATIC_API_KEY;
 const cacheSize = 100;
 const cacheTTL = 1000; // in milliseconds
-const client = new SchematicClient(apiKey, {
+const client = new SchematicClient({
+    apiKey,
     cacheProviders: {
         flagChecks: [new LocalCache<boolean>({ size: cacheSize, ttl: cacheTTL })],
     },
@@ -52,7 +53,8 @@ You can also disable local caching entirely with an initialization option; bear 
 import { SchematicClient } from "@schematichq/schematic-typescript-node";
 
 const apiKey = process.env.SCHEMATIC_API_KEY;
-const client = new SchematicClient(apiKey, {
+const client = new SchematicClient({
+    apiKey,
     cacheProviders: {
         flagChecks: [],
     },
@@ -69,7 +71,8 @@ You may want to specify default flag values for your application, which will be 
 import { SchematicClient } from "@schematichq/schematic-typescript-node";
 
 const apiKey = process.env.SCHEMATIC_API_KEY;
-const client = new SchematicClient(apiKey, {
+const client = new SchematicClient({
+    apiKey,
     flagDefaults: {
         "some-flag-key": true,
     },
@@ -89,7 +92,8 @@ Create or update users and companies using identify events.
 ```ts
 import { SchematicClient } from "@schematichq/schematic-typescript-node";
 
-const client = new SchematicClient(process.env.SCHEMATIC_API_KEY);
+const apiKey = process.env.SCHEMATIC_API_KEY;
+const client = new SchematicClient({ apiKey });
 
 client.identify({
     company: {
@@ -119,7 +123,8 @@ Track activity in your application using track events; these events can later be
 ```ts
 import { SchematicClient } from "@schematichq/schematic-typescript-node";
 
-const client = new SchematicClient(process.env.SCHEMATIC_API_KEY);
+const apiKey = process.env.SCHEMATIC_API_KEY;
+const client = new SchematicClient({ apiKey });
 
 client.track({
     event: "some-action",
@@ -144,7 +149,8 @@ Although it is faster to create companies and users via identify events, if you 
 ```ts
 import { SchematicClient } from "@schematichq/schematic-typescript-node";
 
-const client = new SchematicClient(process.env.SCHEMATIC_API_KEY);
+const apiKey = process.env.SCHEMATIC_API_KEY;
+const client = new SchematicClient({ apiKey });
 
 const body = {
     keys: {
@@ -179,7 +185,8 @@ Similarly, you can upsert users using the Schematic API, as an alternative to us
 ```ts
 import { SchematicClient } from "@schematichq/schematic-typescript-node";
 
-const client = new SchematicClient(process.env.SCHEMATIC_API_KEY);
+const apiKey = process.env.SCHEMATIC_API_KEY;
+const client = new SchematicClient({ apiKey });
 
 const body = {
     keys: {
@@ -216,7 +223,8 @@ When checking a flag, you'll provide keys for a company and/or keys for a user. 
 ```ts
 import { SchematicClient } from "@schematichq/schematic-typescript-node";
 
-const client = new SchematicClient(process.env.SCHEMATIC_API_KEY);
+const apiKey = process.env.SCHEMATIC_API_KEY;
+const client = new SchematicClient({ apiKey });
 
 const evaluationCtx = {
     company: { id: "your-company-id" },
@@ -253,7 +261,7 @@ In development or testing environments, you may want to avoid making network req
 ```ts
 import { SchematicClient } from "@schematichq/schematic-typescript-node";
 
-const client = new SchematicClient("", { offline: true });
+const client = new SchematicClient({ offline: true });
 
 client.close();
 ```
@@ -263,7 +271,7 @@ Offline mode works well with flag defaults:
 ```ts
 import { SchematicClient } from "@schematichq/schematic-typescript-node";
 
-const client = new SchematicClient("", {
+const client = new SchematicClient({
     flagDefaults: { "some-flag-key": true },
     offline: true,
 });

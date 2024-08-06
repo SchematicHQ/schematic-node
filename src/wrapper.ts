@@ -8,6 +8,7 @@ import { offlineFetcher, provideFetcher } from "./core/fetcher/custom";
 import { version } from "./version";
 
 export interface SchematicOptions {
+    apiKey?: string;
     basePath?: string;
     cacheProviders?: {
         flagChecks?: CacheProvider<boolean>[];
@@ -27,8 +28,8 @@ export class SchematicClient extends BaseClient {
     private logger: Logger;
     private offline: boolean;
 
-    constructor(apiKey: string, opts?: SchematicOptions) {
-        const { offline = false } = opts ?? {};
+    constructor(opts?: SchematicOptions) {
+        const { apiKey = "", offline = false } = opts ?? {};
         const headers: Record<string, string> = {
             "User-Agent": `schematic-typescript-node@${version}`,
         };
