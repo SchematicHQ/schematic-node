@@ -1,9 +1,6 @@
 # Specify files that shouldn't be modified by Fern
 
-.husky/pre-commit
 README.md
-generate-version.js
-package.json
 src/cache.test.ts
 src/cache.ts
 src/core/fetcher/custom.ts

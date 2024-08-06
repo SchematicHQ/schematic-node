@@ -5,7 +5,6 @@ import { CacheProvider, LocalCache } from "./cache";
 import { ConsoleLogger, Logger } from "./logger";
 import { EventBuffer } from "./events";
 import { offlineFetcher, provideFetcher } from "./core/fetcher/custom";
-import { version } from "./version";
 
 export interface SchematicOptions {
     apiKey?: string;
@@ -30,9 +29,7 @@ export class SchematicClient extends BaseClient {
 
     constructor(opts?: SchematicOptions) {
         const { apiKey = "", offline = false } = opts ?? {};
-        const headers: Record<string, string> = {
-            "User-Agent": `schematic-typescript-node@${version}`,
-        };
+        const headers: Record<string, string> = {};
         if (opts?.environmentId) {
             headers["X-Schematic-Environment-Id"] = opts.environmentId;
         }
