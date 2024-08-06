@@ -3,7 +3,7 @@
  */
 
 export interface ComponentResponseData {
-    ast: number[];
+    ast?: Record<string, number>;
     createdAt: Date;
     id: string;
     name: string;

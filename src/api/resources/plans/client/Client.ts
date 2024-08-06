@@ -405,7 +405,7 @@ export class Plans {
         request: Schematic.ListPlansRequest = {},
         requestOptions?: Plans.RequestOptions
     ): Promise<Schematic.ListPlansResponse> {
-        const { companyId, ids, q, withoutEntitlementFor, limit, offset } = request;
+        const { companyId, ids, q, planType, withoutEntitlementFor, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (companyId != null) {
             _queryParams["company_id"] = companyId;
@@ -421,6 +421,10 @@ export class Plans {
 
         if (q != null) {
             _queryParams["q"] = q;
+        }
+
+        if (planType != null) {
+            _queryParams["plan_type"] = planType;
         }
 
         if (withoutEntitlementFor != null) {
@@ -1137,7 +1141,7 @@ export class Plans {
         request: Schematic.CountPlansRequest = {},
         requestOptions?: Plans.RequestOptions
     ): Promise<Schematic.CountPlansResponse> {
-        const { companyId, ids, q, withoutEntitlementFor, limit, offset } = request;
+        const { companyId, ids, q, planType, withoutEntitlementFor, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (companyId != null) {
             _queryParams["company_id"] = companyId;
@@ -1153,6 +1157,10 @@ export class Plans {
 
         if (q != null) {
             _queryParams["q"] = q;
+        }
+
+        if (planType != null) {
+            _queryParams["plan_type"] = planType;
         }
 
         if (withoutEntitlementFor != null) {
