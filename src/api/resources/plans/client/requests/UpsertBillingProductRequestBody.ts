@@ -5,9 +5,11 @@
 /**
  * @example
  *     {
- *         billingProductId: "BillingProductID"
+ *         billingProductId: "billing_product_id"
  *     }
  */
 export interface UpsertBillingProductRequestBody {
     billingProductId: string;
+    monthlyPriceId?: string;
+    yearlyPriceId?: string;
 }

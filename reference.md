@@ -6191,7 +6191,7 @@ await client.plans.deletePlan("plan_id");
 
 ```typescript
 await client.plans.upsertBillingProductPlan("plan_id", {
-    billingProductId: "BillingProductID",
+    billingProductId: "billing_product_id",
 });
 ```
 

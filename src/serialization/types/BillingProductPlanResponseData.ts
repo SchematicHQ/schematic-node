@@ -13,7 +13,9 @@ export const BillingProductPlanResponseData: core.serialization.ObjectSchema<
     accountId: core.serialization.property("account_id", core.serialization.string()),
     billingProductId: core.serialization.property("billing_product_id", core.serialization.string()),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
+    monthlyPriceId: core.serialization.property("monthly_price_id", core.serialization.string().optional()),
     planId: core.serialization.property("plan_id", core.serialization.string()),
+    yearlyPriceId: core.serialization.property("yearly_price_id", core.serialization.string().optional()),
 });
 
 export declare namespace BillingProductPlanResponseData {
@@ -21,6 +23,8 @@ export declare namespace BillingProductPlanResponseData {
         account_id: string;
         billing_product_id: string;
         environment_id: string;
+        monthly_price_id?: string | null;
         plan_id: string;
+        yearly_price_id?: string | null;
     }
 }
