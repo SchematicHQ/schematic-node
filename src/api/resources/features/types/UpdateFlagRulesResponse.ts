@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface UpdateFlagRulesResponse {
-  data: Schematic.RulesDetailResponseData;
-  /** Input parameters */
-  params: Record<string, unknown>;
+    data: Schematic.RulesDetailResponseData;
+    /** Input parameters */
+    params: Record<string, unknown>;
 }

@@ -3,6 +3,6 @@
  */
 
 export interface BillingProductPricing {
-  price: number;
-  productExternalId: string;
+    price: number;
+    productExternalId: string;
 }

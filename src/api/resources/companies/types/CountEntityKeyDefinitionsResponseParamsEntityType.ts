@@ -5,6 +5,6 @@
 export type CountEntityKeyDefinitionsResponseParamsEntityType = "company" | "user";
 
 export const CountEntityKeyDefinitionsResponseParamsEntityType = {
-  Company: "company",
-  User: "user",
+    Company: "company",
+    User: "user",
 } as const;

@@ -7,12 +7,12 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const ApiError: core.serialization.ObjectSchema<serializers.ApiError.Raw, Schematic.ApiError> =
-  core.serialization.object({
-    error: core.serialization.string(),
-  });
+    core.serialization.object({
+        error: core.serialization.string(),
+    });
 
 export declare namespace ApiError {
-  interface Raw {
-    error: string;
-  }
+    interface Raw {
+        error: string;
+    }
 }

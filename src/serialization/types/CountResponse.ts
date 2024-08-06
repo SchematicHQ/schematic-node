@@ -7,12 +7,12 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const CountResponse: core.serialization.ObjectSchema<serializers.CountResponse.Raw, Schematic.CountResponse> =
-  core.serialization.object({
-    count: core.serialization.number(),
-  });
+    core.serialization.object({
+        count: core.serialization.number(),
+    });
 
 export declare namespace CountResponse {
-  interface Raw {
-    count: number;
-  }
+    interface Raw {
+        count: number;
+    }
 }

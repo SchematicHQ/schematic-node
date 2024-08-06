@@ -7,18 +7,18 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const CountWebhooksParams: core.serialization.ObjectSchema<
-  serializers.CountWebhooksParams.Raw,
-  Schematic.CountWebhooksParams
+    serializers.CountWebhooksParams.Raw,
+    Schematic.CountWebhooksParams
 > = core.serialization.object({
-  limit: core.serialization.number().optional(),
-  offset: core.serialization.number().optional(),
-  q: core.serialization.string().optional(),
+    limit: core.serialization.number().optional(),
+    offset: core.serialization.number().optional(),
+    q: core.serialization.string().optional(),
 });
 
 export declare namespace CountWebhooksParams {
-  interface Raw {
-    limit?: number | null;
-    offset?: number | null;
-    q?: string | null;
-  }
+    interface Raw {
+        limit?: number | null;
+        offset?: number | null;
+        q?: string | null;
+    }
 }

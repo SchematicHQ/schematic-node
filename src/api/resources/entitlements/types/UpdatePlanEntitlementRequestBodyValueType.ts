@@ -5,8 +5,8 @@
 export type UpdatePlanEntitlementRequestBodyValueType = "boolean" | "numeric" | "trait" | "unlimited";
 
 export const UpdatePlanEntitlementRequestBodyValueType = {
-  Boolean: "boolean",
-  Numeric: "numeric",
-  Trait: "trait",
-  Unlimited: "unlimited",
+    Boolean: "boolean",
+    Numeric: "numeric",
+    Trait: "trait",
+    Unlimited: "unlimited",
 } as const;

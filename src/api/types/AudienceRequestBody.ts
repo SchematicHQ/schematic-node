@@ -5,11 +5,11 @@
 import * as Schematic from "../index";
 
 export interface AudienceRequestBody {
-  conditionGroups: Schematic.CreateOrUpdateConditionGroupRequestBody[];
-  conditions: Schematic.CreateOrUpdateConditionRequestBody[];
-  /** Page limit (default 100) */
-  limit?: number;
-  /** Page offset (default 0) */
-  offset?: number;
-  q?: string;
+    conditionGroups: Schematic.CreateOrUpdateConditionGroupRequestBody[];
+    conditions: Schematic.CreateOrUpdateConditionRequestBody[];
+    /** Page limit (default 100) */
+    limit?: number;
+    /** Page offset (default 0) */
+    offset?: number;
+    q?: string;
 }

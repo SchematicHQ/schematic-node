@@ -7,20 +7,20 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const BillingProductPlanResponseData: core.serialization.ObjectSchema<
-  serializers.BillingProductPlanResponseData.Raw,
-  Schematic.BillingProductPlanResponseData
+    serializers.BillingProductPlanResponseData.Raw,
+    Schematic.BillingProductPlanResponseData
 > = core.serialization.object({
-  accountId: core.serialization.property("account_id", core.serialization.string()),
-  billingProductId: core.serialization.property("billing_product_id", core.serialization.string()),
-  environmentId: core.serialization.property("environment_id", core.serialization.string()),
-  planId: core.serialization.property("plan_id", core.serialization.string()),
+    accountId: core.serialization.property("account_id", core.serialization.string()),
+    billingProductId: core.serialization.property("billing_product_id", core.serialization.string()),
+    environmentId: core.serialization.property("environment_id", core.serialization.string()),
+    planId: core.serialization.property("plan_id", core.serialization.string()),
 });
 
 export declare namespace BillingProductPlanResponseData {
-  interface Raw {
-    account_id: string;
-    billing_product_id: string;
-    environment_id: string;
-    plan_id: string;
-  }
+    interface Raw {
+        account_id: string;
+        billing_product_id: string;
+        environment_id: string;
+        plan_id: string;
+    }
 }

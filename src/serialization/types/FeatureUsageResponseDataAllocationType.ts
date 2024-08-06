@@ -7,10 +7,10 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const FeatureUsageResponseDataAllocationType: core.serialization.Schema<
-  serializers.FeatureUsageResponseDataAllocationType.Raw,
-  Schematic.FeatureUsageResponseDataAllocationType
+    serializers.FeatureUsageResponseDataAllocationType.Raw,
+    Schematic.FeatureUsageResponseDataAllocationType
 > = core.serialization.enum_(["boolean", "numeric", "trait", "unlimited"]);
 
 export declare namespace FeatureUsageResponseDataAllocationType {
-  type Raw = "boolean" | "numeric" | "trait" | "unlimited";
+    type Raw = "boolean" | "numeric" | "trait" | "unlimited";
 }

@@ -8,7 +8,7 @@ import * as Schematic from "../index";
  * The returned resource
  */
 export interface ComponentHydrateResponseData {
-  company?: Schematic.CompanyDetailResponseData;
-  component?: Schematic.ComponentResponseData;
-  featureUsage?: Schematic.FeatureUsageDetailResponseData;
+    company?: Schematic.CompanyDetailResponseData;
+    component?: Schematic.ComponentResponseData;
+    featureUsage?: Schematic.FeatureUsageDetailResponseData;
 }

@@ -6,13 +6,13 @@
  * Input parameters
  */
 export interface CountPlansParams {
-  companyId?: string;
-  ids?: string[];
-  /** Page limit (default 100) */
-  limit?: number;
-  /** Page offset (default 0) */
-  offset?: number;
-  q?: string;
-  /** Filter out plans that already have a plan entitlement for the specified feature ID */
-  withoutEntitlementFor?: string;
+    companyId?: string;
+    ids?: string[];
+    /** Page limit (default 100) */
+    limit?: number;
+    /** Page offset (default 0) */
+    offset?: number;
+    q?: string;
+    /** Filter out plans that already have a plan entitlement for the specified feature ID */
+    withoutEntitlementFor?: string;
 }

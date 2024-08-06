@@ -3,11 +3,11 @@
  */
 
 export interface CheckFlagOutputWithFlagKey {
-  companyId?: string;
-  error?: string;
-  flag: string;
-  reason: string;
-  ruleId?: string;
-  userId?: string;
-  value: boolean;
+    companyId?: string;
+    error?: string;
+    flag: string;
+    reason: string;
+    ruleId?: string;
+    userId?: string;
+    value: boolean;
 }

@@ -7,16 +7,16 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const BillingProductPricing: core.serialization.ObjectSchema<
-  serializers.BillingProductPricing.Raw,
-  Schematic.BillingProductPricing
+    serializers.BillingProductPricing.Raw,
+    Schematic.BillingProductPricing
 > = core.serialization.object({
-  price: core.serialization.number(),
-  productExternalId: core.serialization.property("product_external_id", core.serialization.string()),
+    price: core.serialization.number(),
+    productExternalId: core.serialization.property("product_external_id", core.serialization.string()),
 });
 
 export declare namespace BillingProductPricing {
-  interface Raw {
-    price: number;
-    product_external_id: string;
-  }
+    interface Raw {
+        price: number;
+        product_external_id: string;
+    }
 }

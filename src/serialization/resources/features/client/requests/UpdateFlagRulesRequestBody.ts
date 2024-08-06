@@ -8,14 +8,14 @@ import * as core from "../../../../../core";
 import { CreateOrUpdateRuleRequestBody } from "../../../../types/CreateOrUpdateRuleRequestBody";
 
 export const UpdateFlagRulesRequestBody: core.serialization.Schema<
-  serializers.UpdateFlagRulesRequestBody.Raw,
-  Schematic.UpdateFlagRulesRequestBody
+    serializers.UpdateFlagRulesRequestBody.Raw,
+    Schematic.UpdateFlagRulesRequestBody
 > = core.serialization.object({
-  rules: core.serialization.list(CreateOrUpdateRuleRequestBody),
+    rules: core.serialization.list(CreateOrUpdateRuleRequestBody),
 });
 
 export declare namespace UpdateFlagRulesRequestBody {
-  interface Raw {
-    rules: CreateOrUpdateRuleRequestBody.Raw[];
-  }
+    interface Raw {
+        rules: CreateOrUpdateRuleRequestBody.Raw[];
+    }
 }

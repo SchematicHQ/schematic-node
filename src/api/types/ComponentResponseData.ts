@@ -3,11 +3,11 @@
  */
 
 export interface ComponentResponseData {
-  ast: number[];
-  createdAt: Date;
-  id: string;
-  name: string;
-  state: string;
-  type: string;
-  updatedAt: Date;
+    ast: number[];
+    createdAt: Date;
+    id: string;
+    name: string;
+    state: string;
+    type: string;
+    updatedAt: Date;
 }

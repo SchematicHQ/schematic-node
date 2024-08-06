@@ -17,88 +17,88 @@ import { Accesstokens } from "./api/resources/accesstokens/client/Client";
 import { Webhooks } from "./api/resources/webhooks/client/Client";
 
 export declare namespace SchematicClient {
-  interface Options {
-    environment?: core.Supplier<environments.SchematicEnvironment | string>;
-    apiKey: core.Supplier<string>;
-    fetcher?: core.FetchFunction;
-  }
+    interface Options {
+        environment?: core.Supplier<environments.SchematicEnvironment | string>;
+        apiKey: core.Supplier<string>;
+        fetcher?: core.FetchFunction;
+    }
 
-  interface RequestOptions {
-    /** The maximum time to wait for a response in seconds. */
-    timeoutInSeconds?: number;
-    /** The number of times to retry the request. Defaults to 2. */
-    maxRetries?: number;
-    /** A hook to abort the request. */
-    abortSignal?: AbortSignal;
-  }
+    interface RequestOptions {
+        /** The maximum time to wait for a response in seconds. */
+        timeoutInSeconds?: number;
+        /** The number of times to retry the request. Defaults to 2. */
+        maxRetries?: number;
+        /** A hook to abort the request. */
+        abortSignal?: AbortSignal;
+    }
 }
 
 export class SchematicClient {
-  constructor(protected readonly _options: SchematicClient.Options) {}
+    constructor(protected readonly _options: SchematicClient.Options) {}
 
-  protected _accounts: Accounts | undefined;
+    protected _accounts: Accounts | undefined;
 
-  public get accounts(): Accounts {
-    return (this._accounts ??= new Accounts(this._options));
-  }
+    public get accounts(): Accounts {
+        return (this._accounts ??= new Accounts(this._options));
+    }
 
-  protected _features: Features | undefined;
+    protected _features: Features | undefined;
 
-  public get features(): Features {
-    return (this._features ??= new Features(this._options));
-  }
+    public get features(): Features {
+        return (this._features ??= new Features(this._options));
+    }
 
-  protected _billing: Billing | undefined;
+    protected _billing: Billing | undefined;
 
-  public get billing(): Billing {
-    return (this._billing ??= new Billing(this._options));
-  }
+    public get billing(): Billing {
+        return (this._billing ??= new Billing(this._options));
+    }
 
-  protected _companies: Companies | undefined;
+    protected _companies: Companies | undefined;
 
-  public get companies(): Companies {
-    return (this._companies ??= new Companies(this._options));
-  }
+    public get companies(): Companies {
+        return (this._companies ??= new Companies(this._options));
+    }
 
-  protected _entitlements: Entitlements | undefined;
+    protected _entitlements: Entitlements | undefined;
 
-  public get entitlements(): Entitlements {
-    return (this._entitlements ??= new Entitlements(this._options));
-  }
+    public get entitlements(): Entitlements {
+        return (this._entitlements ??= new Entitlements(this._options));
+    }
 
-  protected _components: Components | undefined;
+    protected _components: Components | undefined;
 
-  public get components(): Components {
-    return (this._components ??= new Components(this._options));
-  }
+    public get components(): Components {
+        return (this._components ??= new Components(this._options));
+    }
 
-  protected _crm: Crm | undefined;
+    protected _crm: Crm | undefined;
 
-  public get crm(): Crm {
-    return (this._crm ??= new Crm(this._options));
-  }
+    public get crm(): Crm {
+        return (this._crm ??= new Crm(this._options));
+    }
 
-  protected _events: Events | undefined;
+    protected _events: Events | undefined;
 
-  public get events(): Events {
-    return (this._events ??= new Events(this._options));
-  }
+    public get events(): Events {
+        return (this._events ??= new Events(this._options));
+    }
 
-  protected _plans: Plans | undefined;
+    protected _plans: Plans | undefined;
 
-  public get plans(): Plans {
-    return (this._plans ??= new Plans(this._options));
-  }
+    public get plans(): Plans {
+        return (this._plans ??= new Plans(this._options));
+    }
 
-  protected _accesstokens: Accesstokens | undefined;
+    protected _accesstokens: Accesstokens | undefined;
 
-  public get accesstokens(): Accesstokens {
-    return (this._accesstokens ??= new Accesstokens(this._options));
-  }
+    public get accesstokens(): Accesstokens {
+        return (this._accesstokens ??= new Accesstokens(this._options));
+    }
 
-  protected _webhooks: Webhooks | undefined;
+    protected _webhooks: Webhooks | undefined;
 
-  public get webhooks(): Webhooks {
-    return (this._webhooks ??= new Webhooks(this._options));
-  }
+    public get webhooks(): Webhooks {
+        return (this._webhooks ??= new Webhooks(this._options));
+    }
 }

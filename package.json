@@ -1,41 +1,41 @@
 {
-  "name": "@schematichq/schematic-typescript-node",
-  "version": "1.1.0",
-  "private": false,
-  "repository": "https://github.com/schematichq/schematic-node",
-  "main": "./index.js",
-  "types": "./index.d.ts",
-  "scripts": {
-    "build": "tsc",
-    "format": "prettier . --write --ignore-unknown",
-    "prepack": "cp -rv dist/. .",
-    "prepare": "husky",
-    "test": "jest",
-    "ts-version": "node generate-version.js && git add src/version.ts"
-  },
-  "dependencies": {
-    "form-data": "^4.0.0",
-    "formdata-node": "^6.0.3",
-    "node-fetch": "2.7.0",
-    "qs": "6.11.2",
-    "url-join": "4.0.1"
-  },
-  "devDependencies": {
-    "@types/jest": "29.5.5",
-    "@types/node": "17.0.33",
-    "@types/node-fetch": "2.6.9",
-    "@types/qs": "6.9.8",
-    "@types/url-join": "4.0.1",
-    "husky": "^9.1.4",
-    "jest": "29.7.0",
-    "jest-environment-jsdom": "29.7.0",
-    "prettier": "2.7.1",
-    "ts-jest": "29.1.1",
-    "typescript": "4.6.4"
-  },
-  "browser": {
-    "fs": false,
-    "os": false,
-    "path": false
-  }
+    "name": "@schematichq/schematic-typescript-node",
+    "version": "1.1.0",
+    "private": false,
+    "repository": "https://github.com/schematichq/schematic-node",
+    "main": "./index.js",
+    "types": "./index.d.ts",
+    "scripts": {
+        "build": "tsc",
+        "format": "prettier . --write --ignore-unknown",
+        "prepack": "cp -rv dist/. .",
+        "prepare": "husky",
+        "test": "jest",
+        "ts-version": "node generate-version.js && git add src/version.ts"
+    },
+    "dependencies": {
+        "form-data": "^4.0.0",
+        "formdata-node": "^6.0.3",
+        "node-fetch": "2.7.0",
+        "qs": "6.11.2",
+        "url-join": "4.0.1"
+    },
+    "devDependencies": {
+        "@types/jest": "29.5.5",
+        "@types/node": "17.0.33",
+        "@types/node-fetch": "2.6.9",
+        "@types/qs": "6.9.8",
+        "@types/url-join": "4.0.1",
+        "husky": "^9.1.4",
+        "jest": "29.7.0",
+        "jest-environment-jsdom": "29.7.0",
+        "prettier": "2.7.1",
+        "ts-jest": "29.1.1",
+        "typescript": "4.6.4"
+    },
+    "browser": {
+        "fs": false,
+        "os": false,
+        "path": false
+    }
 }

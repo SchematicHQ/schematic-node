@@ -7,30 +7,30 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const WebhookEventResponseData: core.serialization.ObjectSchema<
-  serializers.WebhookEventResponseData.Raw,
-  Schematic.WebhookEventResponseData
+    serializers.WebhookEventResponseData.Raw,
+    Schematic.WebhookEventResponseData
 > = core.serialization.object({
-  createdAt: core.serialization.property("created_at", core.serialization.date()),
-  id: core.serialization.string(),
-  payload: core.serialization.string().optional(),
-  requestType: core.serialization.property("request_type", core.serialization.string()),
-  responseCode: core.serialization.property("response_code", core.serialization.number().optional()),
-  sentAt: core.serialization.property("sent_at", core.serialization.date().optional()),
-  status: core.serialization.string(),
-  updatedAt: core.serialization.property("updated_at", core.serialization.date()),
-  webhookId: core.serialization.property("webhook_id", core.serialization.string()),
+    createdAt: core.serialization.property("created_at", core.serialization.date()),
+    id: core.serialization.string(),
+    payload: core.serialization.string().optional(),
+    requestType: core.serialization.property("request_type", core.serialization.string()),
+    responseCode: core.serialization.property("response_code", core.serialization.number().optional()),
+    sentAt: core.serialization.property("sent_at", core.serialization.date().optional()),
+    status: core.serialization.string(),
+    updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+    webhookId: core.serialization.property("webhook_id", core.serialization.string()),
 });
 
 export declare namespace WebhookEventResponseData {
-  interface Raw {
-    created_at: string;
-    id: string;
-    payload?: string | null;
-    request_type: string;
-    response_code?: number | null;
-    sent_at?: string | null;
-    status: string;
-    updated_at: string;
-    webhook_id: string;
-  }
+    interface Raw {
+        created_at: string;
+        id: string;
+        payload?: string | null;
+        request_type: string;
+        response_code?: number | null;
+        sent_at?: string | null;
+        status: string;
+        updated_at: string;
+        webhook_id: string;
+    }
 }

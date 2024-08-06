@@ -7,18 +7,18 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const EventBodyIdentifyCompany: core.serialization.ObjectSchema<
-  serializers.EventBodyIdentifyCompany.Raw,
-  Schematic.EventBodyIdentifyCompany
+    serializers.EventBodyIdentifyCompany.Raw,
+    Schematic.EventBodyIdentifyCompany
 > = core.serialization.object({
-  keys: core.serialization.record(core.serialization.string(), core.serialization.string()),
-  name: core.serialization.string().optional(),
-  traits: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
+    keys: core.serialization.record(core.serialization.string(), core.serialization.string()),
+    name: core.serialization.string().optional(),
+    traits: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
 });
 
 export declare namespace EventBodyIdentifyCompany {
-  interface Raw {
-    keys: Record<string, string>;
-    name?: string | null;
-    traits?: Record<string, unknown> | null;
-  }
+    interface Raw {
+        keys: Record<string, string>;
+        name?: string | null;
+        traits?: Record<string, unknown> | null;
+    }
 }

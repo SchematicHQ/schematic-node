@@ -7,30 +7,30 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const ListFeatureUsageParams: core.serialization.ObjectSchema<
-  serializers.ListFeatureUsageParams.Raw,
-  Schematic.ListFeatureUsageParams
+    serializers.ListFeatureUsageParams.Raw,
+    Schematic.ListFeatureUsageParams
 > = core.serialization.object({
-  companyId: core.serialization.property("company_id", core.serialization.string().optional()),
-  companyKeys: core.serialization.property(
-    "company_keys",
-    core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
-  ),
-  featureIds: core.serialization.property(
-    "feature_ids",
-    core.serialization.list(core.serialization.string()).optional(),
-  ),
-  limit: core.serialization.number().optional(),
-  offset: core.serialization.number().optional(),
-  q: core.serialization.string().optional(),
+    companyId: core.serialization.property("company_id", core.serialization.string().optional()),
+    companyKeys: core.serialization.property(
+        "company_keys",
+        core.serialization.record(core.serialization.string(), core.serialization.string()).optional()
+    ),
+    featureIds: core.serialization.property(
+        "feature_ids",
+        core.serialization.list(core.serialization.string()).optional()
+    ),
+    limit: core.serialization.number().optional(),
+    offset: core.serialization.number().optional(),
+    q: core.serialization.string().optional(),
 });
 
 export declare namespace ListFeatureUsageParams {
-  interface Raw {
-    company_id?: string | null;
-    company_keys?: Record<string, string> | null;
-    feature_ids?: string[] | null;
-    limit?: number | null;
-    offset?: number | null;
-    q?: string | null;
-  }
+    interface Raw {
+        company_id?: string | null;
+        company_keys?: Record<string, string> | null;
+        feature_ids?: string[] | null;
+        limit?: number | null;
+        offset?: number | null;
+        q?: string | null;
+    }
 }

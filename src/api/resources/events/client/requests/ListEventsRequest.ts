@@ -7,17 +7,17 @@
  *     {}
  */
 export interface ListEventsRequest {
-  companyId?: string;
-  eventSubtype?: string;
-  eventTypes?: string | string[];
-  flagId?: string;
-  userId?: string;
-  /**
-   * Page limit (default 100)
-   */
-  limit?: number;
-  /**
-   * Page offset (default 0)
-   */
-  offset?: number;
+    companyId?: string;
+    eventSubtype?: string;
+    eventTypes?: string | string[];
+    flagId?: string;
+    userId?: string;
+    /**
+     * Page limit (default 100)
+     */
+    limit?: number;
+    /**
+     * Page offset (default 0)
+     */
+    offset?: number;
 }

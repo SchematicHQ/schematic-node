@@ -9,16 +9,16 @@ import { EntityKeyDefinitionResponseData } from "../../../types/EntityKeyDefinit
 import { ListEntityKeyDefinitionsParams } from "./ListEntityKeyDefinitionsParams";
 
 export const ListEntityKeyDefinitionsResponse: core.serialization.ObjectSchema<
-  serializers.ListEntityKeyDefinitionsResponse.Raw,
-  Schematic.ListEntityKeyDefinitionsResponse
+    serializers.ListEntityKeyDefinitionsResponse.Raw,
+    Schematic.ListEntityKeyDefinitionsResponse
 > = core.serialization.object({
-  data: core.serialization.list(EntityKeyDefinitionResponseData),
-  params: ListEntityKeyDefinitionsParams,
+    data: core.serialization.list(EntityKeyDefinitionResponseData),
+    params: ListEntityKeyDefinitionsParams,
 });
 
 export declare namespace ListEntityKeyDefinitionsResponse {
-  interface Raw {
-    data: EntityKeyDefinitionResponseData.Raw[];
-    params: ListEntityKeyDefinitionsParams.Raw;
-  }
+    interface Raw {
+        data: EntityKeyDefinitionResponseData.Raw[];
+        params: ListEntityKeyDefinitionsParams.Raw;
+    }
 }

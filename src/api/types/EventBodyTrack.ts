@@ -3,12 +3,12 @@
  */
 
 export interface EventBodyTrack {
-  /** Key-value pairs to identify company associated with track event */
-  company?: Record<string, string>;
-  /** The name of the type of track event */
-  event: string;
-  /** A map of trait names to trait values */
-  traits?: Record<string, unknown>;
-  /** Key-value pairs to identify user associated with track event */
-  user?: Record<string, string>;
+    /** Key-value pairs to identify company associated with track event */
+    company?: Record<string, string>;
+    /** The name of the type of track event */
+    event: string;
+    /** A map of trait names to trait values */
+    traits?: Record<string, unknown>;
+    /** Key-value pairs to identify user associated with track event */
+    user?: Record<string, string>;
 }

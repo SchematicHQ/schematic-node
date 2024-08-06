@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface DeleteWebhookResponse {
-  data: Schematic.DeleteResponse;
-  /** Input parameters */
-  params: Record<string, unknown>;
+    data: Schematic.DeleteResponse;
+    /** Input parameters */
+    params: Record<string, unknown>;
 }

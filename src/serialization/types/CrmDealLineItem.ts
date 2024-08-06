@@ -8,36 +8,36 @@ import * as core from "../../core";
 import { Decimal } from "./Decimal";
 
 export const CrmDealLineItem: core.serialization.ObjectSchema<
-  serializers.CrmDealLineItem.Raw,
-  Schematic.CrmDealLineItem
+    serializers.CrmDealLineItem.Raw,
+    Schematic.CrmDealLineItem
 > = core.serialization.object({
-  billingFrequency: core.serialization.property("billing_frequency", core.serialization.string()),
-  createdAt: core.serialization.property("created_at", core.serialization.date()),
-  currency: core.serialization.string(),
-  description: core.serialization.string(),
-  discountPercentage: core.serialization.property("discount_percentage", Decimal.optional()),
-  id: core.serialization.string(),
-  name: core.serialization.string(),
-  price: core.serialization.number(),
-  quantity: core.serialization.number(),
-  termMonth: core.serialization.property("term_month", core.serialization.number().optional()),
-  totalDiscount: core.serialization.property("total_discount", Decimal.optional()),
-  updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+    billingFrequency: core.serialization.property("billing_frequency", core.serialization.string()),
+    createdAt: core.serialization.property("created_at", core.serialization.date()),
+    currency: core.serialization.string(),
+    description: core.serialization.string(),
+    discountPercentage: core.serialization.property("discount_percentage", Decimal.optional()),
+    id: core.serialization.string(),
+    name: core.serialization.string(),
+    price: core.serialization.number(),
+    quantity: core.serialization.number(),
+    termMonth: core.serialization.property("term_month", core.serialization.number().optional()),
+    totalDiscount: core.serialization.property("total_discount", Decimal.optional()),
+    updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
 export declare namespace CrmDealLineItem {
-  interface Raw {
-    billing_frequency: string;
-    created_at: string;
-    currency: string;
-    description: string;
-    discount_percentage?: Decimal.Raw | null;
-    id: string;
-    name: string;
-    price: number;
-    quantity: number;
-    term_month?: number | null;
-    total_discount?: Decimal.Raw | null;
-    updated_at: string;
-  }
+    interface Raw {
+        billing_frequency: string;
+        created_at: string;
+        currency: string;
+        description: string;
+        discount_percentage?: Decimal.Raw | null;
+        id: string;
+        name: string;
+        price: number;
+        quantity: number;
+        term_month?: number | null;
+        total_discount?: Decimal.Raw | null;
+        updated_at: string;
+    }
 }

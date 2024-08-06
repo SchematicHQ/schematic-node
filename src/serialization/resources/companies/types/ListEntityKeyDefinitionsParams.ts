@@ -8,22 +8,22 @@ import * as core from "../../../../core";
 import { ListEntityKeyDefinitionsResponseParamsEntityType } from "./ListEntityKeyDefinitionsResponseParamsEntityType";
 
 export const ListEntityKeyDefinitionsParams: core.serialization.ObjectSchema<
-  serializers.ListEntityKeyDefinitionsParams.Raw,
-  Schematic.ListEntityKeyDefinitionsParams
+    serializers.ListEntityKeyDefinitionsParams.Raw,
+    Schematic.ListEntityKeyDefinitionsParams
 > = core.serialization.object({
-  entityType: core.serialization.property("entity_type", ListEntityKeyDefinitionsResponseParamsEntityType.optional()),
-  ids: core.serialization.list(core.serialization.string()).optional(),
-  limit: core.serialization.number().optional(),
-  offset: core.serialization.number().optional(),
-  q: core.serialization.string().optional(),
+    entityType: core.serialization.property("entity_type", ListEntityKeyDefinitionsResponseParamsEntityType.optional()),
+    ids: core.serialization.list(core.serialization.string()).optional(),
+    limit: core.serialization.number().optional(),
+    offset: core.serialization.number().optional(),
+    q: core.serialization.string().optional(),
 });
 
 export declare namespace ListEntityKeyDefinitionsParams {
-  interface Raw {
-    entity_type?: ListEntityKeyDefinitionsResponseParamsEntityType.Raw | null;
-    ids?: string[] | null;
-    limit?: number | null;
-    offset?: number | null;
-    q?: string | null;
-  }
+    interface Raw {
+        entity_type?: ListEntityKeyDefinitionsResponseParamsEntityType.Raw | null;
+        ids?: string[] | null;
+        limit?: number | null;
+        offset?: number | null;
+        q?: string | null;
+    }
 }

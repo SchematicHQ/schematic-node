@@ -6,14 +6,14 @@
  * Input parameters
  */
 export interface CountPlanEntitlementsParams {
-  featureId?: string;
-  featureIds?: string[];
-  ids?: string[];
-  /** Page limit (default 100) */
-  limit?: number;
-  /** Page offset (default 0) */
-  offset?: number;
-  planId?: string;
-  planIds?: string[];
-  q?: string;
+    featureId?: string;
+    featureIds?: string[];
+    ids?: string[];
+    /** Page limit (default 100) */
+    limit?: number;
+    /** Page offset (default 0) */
+    offset?: number;
+    planId?: string;
+    planIds?: string[];
+    q?: string;
 }

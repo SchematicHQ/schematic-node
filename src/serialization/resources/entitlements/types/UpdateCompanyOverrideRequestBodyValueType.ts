@@ -7,10 +7,10 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const UpdateCompanyOverrideRequestBodyValueType: core.serialization.Schema<
-  serializers.UpdateCompanyOverrideRequestBodyValueType.Raw,
-  Schematic.UpdateCompanyOverrideRequestBodyValueType
+    serializers.UpdateCompanyOverrideRequestBodyValueType.Raw,
+    Schematic.UpdateCompanyOverrideRequestBodyValueType
 > = core.serialization.enum_(["boolean", "numeric", "trait", "unlimited"]);
 
 export declare namespace UpdateCompanyOverrideRequestBodyValueType {
-  type Raw = "boolean" | "numeric" | "trait" | "unlimited";
+    type Raw = "boolean" | "numeric" | "trait" | "unlimited";
 }

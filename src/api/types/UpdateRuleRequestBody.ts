@@ -5,9 +5,9 @@
 import * as Schematic from "../index";
 
 export interface UpdateRuleRequestBody {
-  conditionGroups: Schematic.CreateOrUpdateConditionGroupRequestBody[];
-  conditions: Schematic.CreateOrUpdateConditionRequestBody[];
-  name: string;
-  priority: number;
-  value: boolean;
+    conditionGroups: Schematic.CreateOrUpdateConditionGroupRequestBody[];
+    conditions: Schematic.CreateOrUpdateConditionRequestBody[];
+    name: string;
+    priority: number;
+    value: boolean;
 }

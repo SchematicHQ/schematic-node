@@ -7,10 +7,10 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const ListEntityTraitDefinitionsResponseParamsEntityType: core.serialization.Schema<
-  serializers.ListEntityTraitDefinitionsResponseParamsEntityType.Raw,
-  Schematic.ListEntityTraitDefinitionsResponseParamsEntityType
+    serializers.ListEntityTraitDefinitionsResponseParamsEntityType.Raw,
+    Schematic.ListEntityTraitDefinitionsResponseParamsEntityType
 > = core.serialization.enum_(["company", "user"]);
 
 export declare namespace ListEntityTraitDefinitionsResponseParamsEntityType {
-  type Raw = "company" | "user";
+    type Raw = "company" | "user";
 }

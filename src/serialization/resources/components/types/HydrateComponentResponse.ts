@@ -8,16 +8,16 @@ import * as core from "../../../../core";
 import { ComponentHydrateResponseData } from "../../../types/ComponentHydrateResponseData";
 
 export const HydrateComponentResponse: core.serialization.ObjectSchema<
-  serializers.HydrateComponentResponse.Raw,
-  Schematic.HydrateComponentResponse
+    serializers.HydrateComponentResponse.Raw,
+    Schematic.HydrateComponentResponse
 > = core.serialization.object({
-  data: ComponentHydrateResponseData,
-  params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+    data: ComponentHydrateResponseData,
+    params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
 export declare namespace HydrateComponentResponse {
-  interface Raw {
-    data: ComponentHydrateResponseData.Raw;
-    params: Record<string, unknown>;
-  }
+    interface Raw {
+        data: ComponentHydrateResponseData.Raw;
+        params: Record<string, unknown>;
+    }
 }

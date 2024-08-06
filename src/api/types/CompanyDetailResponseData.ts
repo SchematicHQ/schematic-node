@@ -5,19 +5,19 @@
 import * as Schematic from "../index";
 
 export interface CompanyDetailResponseData {
-  addOns: Schematic.PreviewObject[];
-  createdAt: Date;
-  entityTraits: Schematic.EntityTraitDetailResponseData[];
-  environmentId: string;
-  id: string;
-  keys: Schematic.EntityKeyDetailResponseData[];
-  lastSeenAt?: Date;
-  logoUrl?: string;
-  name: string;
-  plan?: Schematic.PreviewObject;
-  plans: Schematic.PreviewObject[];
-  /** A map of trait names to trait values */
-  traits?: Record<string, unknown>;
-  updatedAt: Date;
-  userCount: number;
+    addOns: Schematic.PreviewObject[];
+    createdAt: Date;
+    entityTraits: Schematic.EntityTraitDetailResponseData[];
+    environmentId: string;
+    id: string;
+    keys: Schematic.EntityKeyDetailResponseData[];
+    lastSeenAt?: Date;
+    logoUrl?: string;
+    name: string;
+    plan?: Schematic.PreviewObject;
+    plans: Schematic.PreviewObject[];
+    /** A map of trait names to trait values */
+    traits?: Record<string, unknown>;
+    updatedAt: Date;
+    userCount: number;
 }

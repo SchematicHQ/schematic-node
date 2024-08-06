@@ -11,6 +11,6 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface UpdateEntityTraitDefinitionRequestBody {
-  displayName?: string;
-  traitType: Schematic.UpdateEntityTraitDefinitionRequestBodyTraitType;
+    displayName?: string;
+    traitType: Schematic.UpdateEntityTraitDefinitionRequestBodyTraitType;
 }

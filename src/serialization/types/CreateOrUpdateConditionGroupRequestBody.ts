@@ -8,20 +8,20 @@ import * as core from "../../core";
 import { CreateOrUpdateConditionRequestBody } from "./CreateOrUpdateConditionRequestBody";
 
 export const CreateOrUpdateConditionGroupRequestBody: core.serialization.ObjectSchema<
-  serializers.CreateOrUpdateConditionGroupRequestBody.Raw,
-  Schematic.CreateOrUpdateConditionGroupRequestBody
+    serializers.CreateOrUpdateConditionGroupRequestBody.Raw,
+    Schematic.CreateOrUpdateConditionGroupRequestBody
 > = core.serialization.object({
-  conditions: core.serialization.list(CreateOrUpdateConditionRequestBody),
-  flagId: core.serialization.property("flag_id", core.serialization.string().optional()),
-  id: core.serialization.string().optional(),
-  planId: core.serialization.property("plan_id", core.serialization.string().optional()),
+    conditions: core.serialization.list(CreateOrUpdateConditionRequestBody),
+    flagId: core.serialization.property("flag_id", core.serialization.string().optional()),
+    id: core.serialization.string().optional(),
+    planId: core.serialization.property("plan_id", core.serialization.string().optional()),
 });
 
 export declare namespace CreateOrUpdateConditionGroupRequestBody {
-  interface Raw {
-    conditions: CreateOrUpdateConditionRequestBody.Raw[];
-    flag_id?: string | null;
-    id?: string | null;
-    plan_id?: string | null;
-  }
+    interface Raw {
+        conditions: CreateOrUpdateConditionRequestBody.Raw[];
+        flag_id?: string | null;
+        id?: string | null;
+        plan_id?: string | null;
+    }
 }

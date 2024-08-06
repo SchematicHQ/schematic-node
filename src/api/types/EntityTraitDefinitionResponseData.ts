@@ -3,11 +3,11 @@
  */
 
 export interface EntityTraitDefinitionResponseData {
-  createdAt: Date;
-  displayName: string;
-  entityType: string;
-  hierarchy: string[];
-  id: string;
-  traitType: string;
-  updatedAt: Date;
+    createdAt: Date;
+    displayName: string;
+    entityType: string;
+    hierarchy: string[];
+    id: string;
+    traitType: string;
+    updatedAt: Date;
 }

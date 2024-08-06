@@ -7,14 +7,14 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const LookupCompanyParams: core.serialization.ObjectSchema<
-  serializers.LookupCompanyParams.Raw,
-  Schematic.LookupCompanyParams
+    serializers.LookupCompanyParams.Raw,
+    Schematic.LookupCompanyParams
 > = core.serialization.object({
-  keys: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
+    keys: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
 });
 
 export declare namespace LookupCompanyParams {
-  interface Raw {
-    keys?: Record<string, unknown> | null;
-  }
+    interface Raw {
+        keys?: Record<string, unknown> | null;
+    }
 }

@@ -10,1129 +10,1129 @@ import * as serializers from "../../../../serialization/index";
 import * as errors from "../../../../errors/index";
 
 export declare namespace Webhooks {
-  interface Options {
-    environment?: core.Supplier<environments.SchematicEnvironment | string>;
-    apiKey: core.Supplier<string>;
-    fetcher?: core.FetchFunction;
-  }
+    interface Options {
+        environment?: core.Supplier<environments.SchematicEnvironment | string>;
+        apiKey: core.Supplier<string>;
+        fetcher?: core.FetchFunction;
+    }
 
-  interface RequestOptions {
-    /** The maximum time to wait for a response in seconds. */
-    timeoutInSeconds?: number;
-    /** The number of times to retry the request. Defaults to 2. */
-    maxRetries?: number;
-    /** A hook to abort the request. */
-    abortSignal?: AbortSignal;
-  }
+    interface RequestOptions {
+        /** The maximum time to wait for a response in seconds. */
+        timeoutInSeconds?: number;
+        /** The number of times to retry the request. Defaults to 2. */
+        maxRetries?: number;
+        /** A hook to abort the request. */
+        abortSignal?: AbortSignal;
+    }
 }
 
 export class Webhooks {
-  constructor(protected readonly _options: Webhooks.Options) {}
+    constructor(protected readonly _options: Webhooks.Options) {}
 
-  /**
-   * @param {Schematic.ListWebhookEventsRequest} request
-   * @param {Webhooks.RequestOptions} requestOptions - Request-specific configuration.
-   *
-   * @throws {@link Schematic.BadRequestError}
-   * @throws {@link Schematic.UnauthorizedError}
-   * @throws {@link Schematic.ForbiddenError}
-   * @throws {@link Schematic.InternalServerError}
-   *
-   * @example
-   *     await client.webhooks.listWebhookEvents()
-   */
-  public async listWebhookEvents(
-    request: Schematic.ListWebhookEventsRequest = {},
-    requestOptions?: Webhooks.RequestOptions,
-  ): Promise<Schematic.ListWebhookEventsResponse> {
-    const { webhookId, ids, q, limit, offset } = request;
-    const _queryParams: Record<string, string | string[] | object | object[]> = {};
-    if (webhookId != null) {
-      _queryParams["webhook_id"] = webhookId;
-    }
+    /**
+     * @param {Schematic.ListWebhookEventsRequest} request
+     * @param {Webhooks.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.BadRequestError}
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.InternalServerError}
+     *
+     * @example
+     *     await client.webhooks.listWebhookEvents()
+     */
+    public async listWebhookEvents(
+        request: Schematic.ListWebhookEventsRequest = {},
+        requestOptions?: Webhooks.RequestOptions
+    ): Promise<Schematic.ListWebhookEventsResponse> {
+        const { webhookId, ids, q, limit, offset } = request;
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        if (webhookId != null) {
+            _queryParams["webhook_id"] = webhookId;
+        }
 
-    if (ids != null) {
-      if (Array.isArray(ids)) {
-        _queryParams["ids"] = ids.map((item) => item);
-      } else {
-        _queryParams["ids"] = ids;
-      }
-    }
+        if (ids != null) {
+            if (Array.isArray(ids)) {
+                _queryParams["ids"] = ids.map((item) => item);
+            } else {
+                _queryParams["ids"] = ids;
+            }
+        }
 
-    if (q != null) {
-      _queryParams["q"] = q;
-    }
+        if (q != null) {
+            _queryParams["q"] = q;
+        }
 
-    if (limit != null) {
-      _queryParams["limit"] = limit.toString();
-    }
+        if (limit != null) {
+            _queryParams["limit"] = limit.toString();
+        }
 
-    if (offset != null) {
-      _queryParams["offset"] = offset.toString();
-    }
+        if (offset != null) {
+            _queryParams["offset"] = offset.toString();
+        }
 
-    const _response = await (this._options.fetcher ?? core.fetcher)({
-      url: urlJoin(
-        (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-        "webhook-events",
-      ),
-      method: "GET",
-      headers: {
-        "X-Fern-Language": "JavaScript",
-        "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-        "X-Fern-SDK-Version": "1.0.24",
-        "X-Fern-Runtime": core.RUNTIME.type,
-        "X-Fern-Runtime-Version": core.RUNTIME.version,
-        ...(await this._getCustomAuthorizationHeaders()),
-      },
-      contentType: "application/json",
-      queryParameters: _queryParams,
-      requestType: "json",
-      timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-      maxRetries: requestOptions?.maxRetries,
-      abortSignal: requestOptions?.abortSignal,
-    });
-    if (_response.ok) {
-      return serializers.ListWebhookEventsResponse.parseOrThrow(_response.body, {
-        unrecognizedObjectKeys: "passthrough",
-        allowUnrecognizedUnionMembers: true,
-        allowUnrecognizedEnumValues: true,
-        skipValidation: true,
-        breadcrumbsPrefix: ["response"],
-      });
-    }
-
-    if (_response.error.reason === "status-code") {
-      switch (_response.error.statusCode) {
-        case 400:
-          throw new Schematic.BadRequestError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 401:
-          throw new Schematic.UnauthorizedError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 403:
-          throw new Schematic.ForbiddenError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 500:
-          throw new Schematic.InternalServerError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        default:
-          throw new errors.SchematicError({
-            statusCode: _response.error.statusCode,
-            body: _response.error.body,
-          });
-      }
-    }
-
-    switch (_response.error.reason) {
-      case "non-json":
-        throw new errors.SchematicError({
-          statusCode: _response.error.statusCode,
-          body: _response.error.rawBody,
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
+                "webhook-events"
+            ),
+            method: "GET",
+            headers: {
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
+                "X-Fern-SDK-Version": "1.0.24",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+            },
+            contentType: "application/json",
+            queryParameters: _queryParams,
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
-      case "timeout":
-        throw new errors.SchematicTimeoutError();
-      case "unknown":
-        throw new errors.SchematicError({
-          message: _response.error.errorMessage,
+        if (_response.ok) {
+            return serializers.ListWebhookEventsResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                skipValidation: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Schematic.BadRequestError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.SchematicError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.SchematicTimeoutError();
+            case "unknown":
+                throw new errors.SchematicError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * @param {string} webhookEventId - webhook_event_id
+     * @param {Webhooks.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
+     * @throws {@link Schematic.InternalServerError}
+     *
+     * @example
+     *     await client.webhooks.getWebhookEvent("webhook_event_id")
+     */
+    public async getWebhookEvent(
+        webhookEventId: string,
+        requestOptions?: Webhooks.RequestOptions
+    ): Promise<Schematic.GetWebhookEventResponse> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
+                `webhook-events/${encodeURIComponent(webhookEventId)}`
+            ),
+            method: "GET",
+            headers: {
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
+                "X-Fern-SDK-Version": "1.0.24",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+            },
+            contentType: "application/json",
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
-    }
-  }
+        if (_response.ok) {
+            return serializers.GetWebhookEventResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                skipValidation: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
 
-  /**
-   * @param {string} webhookEventId - webhook_event_id
-   * @param {Webhooks.RequestOptions} requestOptions - Request-specific configuration.
-   *
-   * @throws {@link Schematic.UnauthorizedError}
-   * @throws {@link Schematic.ForbiddenError}
-   * @throws {@link Schematic.NotFoundError}
-   * @throws {@link Schematic.InternalServerError}
-   *
-   * @example
-   *     await client.webhooks.getWebhookEvent("webhook_event_id")
-   */
-  public async getWebhookEvent(
-    webhookEventId: string,
-    requestOptions?: Webhooks.RequestOptions,
-  ): Promise<Schematic.GetWebhookEventResponse> {
-    const _response = await (this._options.fetcher ?? core.fetcher)({
-      url: urlJoin(
-        (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-        `webhook-events/${encodeURIComponent(webhookEventId)}`,
-      ),
-      method: "GET",
-      headers: {
-        "X-Fern-Language": "JavaScript",
-        "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-        "X-Fern-SDK-Version": "1.0.24",
-        "X-Fern-Runtime": core.RUNTIME.type,
-        "X-Fern-Runtime-Version": core.RUNTIME.version,
-        ...(await this._getCustomAuthorizationHeaders()),
-      },
-      contentType: "application/json",
-      requestType: "json",
-      timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-      maxRetries: requestOptions?.maxRetries,
-      abortSignal: requestOptions?.abortSignal,
-    });
-    if (_response.ok) {
-      return serializers.GetWebhookEventResponse.parseOrThrow(_response.body, {
-        unrecognizedObjectKeys: "passthrough",
-        allowUnrecognizedUnionMembers: true,
-        allowUnrecognizedEnumValues: true,
-        skipValidation: true,
-        breadcrumbsPrefix: ["response"],
-      });
-    }
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
 
-    if (_response.error.reason === "status-code") {
-      switch (_response.error.statusCode) {
-        case 401:
-          throw new Schematic.UnauthorizedError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 403:
-          throw new Schematic.ForbiddenError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 404:
-          throw new Schematic.NotFoundError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 500:
-          throw new Schematic.InternalServerError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        default:
-          throw new errors.SchematicError({
-            statusCode: _response.error.statusCode,
-            body: _response.error.body,
-          });
-      }
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.SchematicError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.SchematicTimeoutError();
+            case "unknown":
+                throw new errors.SchematicError({
+                    message: _response.error.errorMessage,
+                });
+        }
     }
 
-    switch (_response.error.reason) {
-      case "non-json":
-        throw new errors.SchematicError({
-          statusCode: _response.error.statusCode,
-          body: _response.error.rawBody,
+    /**
+     * @param {Schematic.CountWebhookEventsRequest} request
+     * @param {Webhooks.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.BadRequestError}
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.InternalServerError}
+     *
+     * @example
+     *     await client.webhooks.countWebhookEvents()
+     */
+    public async countWebhookEvents(
+        request: Schematic.CountWebhookEventsRequest = {},
+        requestOptions?: Webhooks.RequestOptions
+    ): Promise<Schematic.CountWebhookEventsResponse> {
+        const { webhookId, ids, q, limit, offset } = request;
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        if (webhookId != null) {
+            _queryParams["webhook_id"] = webhookId;
+        }
+
+        if (ids != null) {
+            if (Array.isArray(ids)) {
+                _queryParams["ids"] = ids.map((item) => item);
+            } else {
+                _queryParams["ids"] = ids;
+            }
+        }
+
+        if (q != null) {
+            _queryParams["q"] = q;
+        }
+
+        if (limit != null) {
+            _queryParams["limit"] = limit.toString();
+        }
+
+        if (offset != null) {
+            _queryParams["offset"] = offset.toString();
+        }
+
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
+                "webhook-events/count"
+            ),
+            method: "GET",
+            headers: {
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
+                "X-Fern-SDK-Version": "1.0.24",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+            },
+            contentType: "application/json",
+            queryParameters: _queryParams,
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
-      case "timeout":
-        throw new errors.SchematicTimeoutError();
-      case "unknown":
-        throw new errors.SchematicError({
-          message: _response.error.errorMessage,
+        if (_response.ok) {
+            return serializers.CountWebhookEventsResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                skipValidation: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Schematic.BadRequestError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.SchematicError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.SchematicTimeoutError();
+            case "unknown":
+                throw new errors.SchematicError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * @param {Schematic.ListWebhooksRequest} request
+     * @param {Webhooks.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.BadRequestError}
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.InternalServerError}
+     *
+     * @example
+     *     await client.webhooks.listWebhooks()
+     */
+    public async listWebhooks(
+        request: Schematic.ListWebhooksRequest = {},
+        requestOptions?: Webhooks.RequestOptions
+    ): Promise<Schematic.ListWebhooksResponse> {
+        const { q, limit, offset } = request;
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        if (q != null) {
+            _queryParams["q"] = q;
+        }
+
+        if (limit != null) {
+            _queryParams["limit"] = limit.toString();
+        }
+
+        if (offset != null) {
+            _queryParams["offset"] = offset.toString();
+        }
+
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
+                "webhooks"
+            ),
+            method: "GET",
+            headers: {
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
+                "X-Fern-SDK-Version": "1.0.24",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+            },
+            contentType: "application/json",
+            queryParameters: _queryParams,
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
-    }
-  }
+        if (_response.ok) {
+            return serializers.ListWebhooksResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                skipValidation: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
 
-  /**
-   * @param {Schematic.CountWebhookEventsRequest} request
-   * @param {Webhooks.RequestOptions} requestOptions - Request-specific configuration.
-   *
-   * @throws {@link Schematic.BadRequestError}
-   * @throws {@link Schematic.UnauthorizedError}
-   * @throws {@link Schematic.ForbiddenError}
-   * @throws {@link Schematic.InternalServerError}
-   *
-   * @example
-   *     await client.webhooks.countWebhookEvents()
-   */
-  public async countWebhookEvents(
-    request: Schematic.CountWebhookEventsRequest = {},
-    requestOptions?: Webhooks.RequestOptions,
-  ): Promise<Schematic.CountWebhookEventsResponse> {
-    const { webhookId, ids, q, limit, offset } = request;
-    const _queryParams: Record<string, string | string[] | object | object[]> = {};
-    if (webhookId != null) {
-      _queryParams["webhook_id"] = webhookId;
-    }
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Schematic.BadRequestError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
 
-    if (ids != null) {
-      if (Array.isArray(ids)) {
-        _queryParams["ids"] = ids.map((item) => item);
-      } else {
-        _queryParams["ids"] = ids;
-      }
-    }
-
-    if (q != null) {
-      _queryParams["q"] = q;
-    }
-
-    if (limit != null) {
-      _queryParams["limit"] = limit.toString();
-    }
-
-    if (offset != null) {
-      _queryParams["offset"] = offset.toString();
-    }
-
-    const _response = await (this._options.fetcher ?? core.fetcher)({
-      url: urlJoin(
-        (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-        "webhook-events/count",
-      ),
-      method: "GET",
-      headers: {
-        "X-Fern-Language": "JavaScript",
-        "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-        "X-Fern-SDK-Version": "1.0.24",
-        "X-Fern-Runtime": core.RUNTIME.type,
-        "X-Fern-Runtime-Version": core.RUNTIME.version,
-        ...(await this._getCustomAuthorizationHeaders()),
-      },
-      contentType: "application/json",
-      queryParameters: _queryParams,
-      requestType: "json",
-      timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-      maxRetries: requestOptions?.maxRetries,
-      abortSignal: requestOptions?.abortSignal,
-    });
-    if (_response.ok) {
-      return serializers.CountWebhookEventsResponse.parseOrThrow(_response.body, {
-        unrecognizedObjectKeys: "passthrough",
-        allowUnrecognizedUnionMembers: true,
-        allowUnrecognizedEnumValues: true,
-        skipValidation: true,
-        breadcrumbsPrefix: ["response"],
-      });
-    }
-
-    if (_response.error.reason === "status-code") {
-      switch (_response.error.statusCode) {
-        case 400:
-          throw new Schematic.BadRequestError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 401:
-          throw new Schematic.UnauthorizedError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 403:
-          throw new Schematic.ForbiddenError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 500:
-          throw new Schematic.InternalServerError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        default:
-          throw new errors.SchematicError({
-            statusCode: _response.error.statusCode,
-            body: _response.error.body,
-          });
-      }
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.SchematicError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.SchematicTimeoutError();
+            case "unknown":
+                throw new errors.SchematicError({
+                    message: _response.error.errorMessage,
+                });
+        }
     }
 
-    switch (_response.error.reason) {
-      case "non-json":
-        throw new errors.SchematicError({
-          statusCode: _response.error.statusCode,
-          body: _response.error.rawBody,
+    /**
+     * @param {Schematic.CreateWebhookRequestBody} request
+     * @param {Webhooks.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.BadRequestError}
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.InternalServerError}
+     *
+     * @example
+     *     await client.webhooks.createWebhook({
+     *         name: "name",
+     *         requestTypes: [Schematic.CreateWebhookRequestBodyRequestTypesItem.CompanyUpdated],
+     *         url: "url"
+     *     })
+     */
+    public async createWebhook(
+        request: Schematic.CreateWebhookRequestBody,
+        requestOptions?: Webhooks.RequestOptions
+    ): Promise<Schematic.CreateWebhookResponse> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
+                "webhooks"
+            ),
+            method: "POST",
+            headers: {
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
+                "X-Fern-SDK-Version": "1.0.24",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: serializers.CreateWebhookRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
-      case "timeout":
-        throw new errors.SchematicTimeoutError();
-      case "unknown":
-        throw new errors.SchematicError({
-          message: _response.error.errorMessage,
+        if (_response.ok) {
+            return serializers.CreateWebhookResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                skipValidation: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Schematic.BadRequestError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.SchematicError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.SchematicTimeoutError();
+            case "unknown":
+                throw new errors.SchematicError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * @param {string} webhookId - webhook_id
+     * @param {Webhooks.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
+     * @throws {@link Schematic.InternalServerError}
+     *
+     * @example
+     *     await client.webhooks.getWebhook("webhook_id")
+     */
+    public async getWebhook(
+        webhookId: string,
+        requestOptions?: Webhooks.RequestOptions
+    ): Promise<Schematic.GetWebhookResponse> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
+                `webhooks/${encodeURIComponent(webhookId)}`
+            ),
+            method: "GET",
+            headers: {
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
+                "X-Fern-SDK-Version": "1.0.24",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+            },
+            contentType: "application/json",
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
-    }
-  }
+        if (_response.ok) {
+            return serializers.GetWebhookResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                skipValidation: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
 
-  /**
-   * @param {Schematic.ListWebhooksRequest} request
-   * @param {Webhooks.RequestOptions} requestOptions - Request-specific configuration.
-   *
-   * @throws {@link Schematic.BadRequestError}
-   * @throws {@link Schematic.UnauthorizedError}
-   * @throws {@link Schematic.ForbiddenError}
-   * @throws {@link Schematic.InternalServerError}
-   *
-   * @example
-   *     await client.webhooks.listWebhooks()
-   */
-  public async listWebhooks(
-    request: Schematic.ListWebhooksRequest = {},
-    requestOptions?: Webhooks.RequestOptions,
-  ): Promise<Schematic.ListWebhooksResponse> {
-    const { q, limit, offset } = request;
-    const _queryParams: Record<string, string | string[] | object | object[]> = {};
-    if (q != null) {
-      _queryParams["q"] = q;
-    }
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
 
-    if (limit != null) {
-      _queryParams["limit"] = limit.toString();
-    }
-
-    if (offset != null) {
-      _queryParams["offset"] = offset.toString();
-    }
-
-    const _response = await (this._options.fetcher ?? core.fetcher)({
-      url: urlJoin(
-        (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-        "webhooks",
-      ),
-      method: "GET",
-      headers: {
-        "X-Fern-Language": "JavaScript",
-        "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-        "X-Fern-SDK-Version": "1.0.24",
-        "X-Fern-Runtime": core.RUNTIME.type,
-        "X-Fern-Runtime-Version": core.RUNTIME.version,
-        ...(await this._getCustomAuthorizationHeaders()),
-      },
-      contentType: "application/json",
-      queryParameters: _queryParams,
-      requestType: "json",
-      timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-      maxRetries: requestOptions?.maxRetries,
-      abortSignal: requestOptions?.abortSignal,
-    });
-    if (_response.ok) {
-      return serializers.ListWebhooksResponse.parseOrThrow(_response.body, {
-        unrecognizedObjectKeys: "passthrough",
-        allowUnrecognizedUnionMembers: true,
-        allowUnrecognizedEnumValues: true,
-        skipValidation: true,
-        breadcrumbsPrefix: ["response"],
-      });
-    }
-
-    if (_response.error.reason === "status-code") {
-      switch (_response.error.statusCode) {
-        case 400:
-          throw new Schematic.BadRequestError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 401:
-          throw new Schematic.UnauthorizedError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 403:
-          throw new Schematic.ForbiddenError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 500:
-          throw new Schematic.InternalServerError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        default:
-          throw new errors.SchematicError({
-            statusCode: _response.error.statusCode,
-            body: _response.error.body,
-          });
-      }
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.SchematicError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.SchematicTimeoutError();
+            case "unknown":
+                throw new errors.SchematicError({
+                    message: _response.error.errorMessage,
+                });
+        }
     }
 
-    switch (_response.error.reason) {
-      case "non-json":
-        throw new errors.SchematicError({
-          statusCode: _response.error.statusCode,
-          body: _response.error.rawBody,
+    /**
+     * @param {string} webhookId - webhook_id
+     * @param {Schematic.UpdateWebhookRequestBody} request
+     * @param {Webhooks.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.BadRequestError}
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
+     * @throws {@link Schematic.InternalServerError}
+     *
+     * @example
+     *     await client.webhooks.updateWebhook("webhook_id")
+     */
+    public async updateWebhook(
+        webhookId: string,
+        request: Schematic.UpdateWebhookRequestBody = {},
+        requestOptions?: Webhooks.RequestOptions
+    ): Promise<Schematic.UpdateWebhookResponse> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
+                `webhooks/${encodeURIComponent(webhookId)}`
+            ),
+            method: "PUT",
+            headers: {
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
+                "X-Fern-SDK-Version": "1.0.24",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: serializers.UpdateWebhookRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
-      case "timeout":
-        throw new errors.SchematicTimeoutError();
-      case "unknown":
-        throw new errors.SchematicError({
-          message: _response.error.errorMessage,
+        if (_response.ok) {
+            return serializers.UpdateWebhookResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                skipValidation: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Schematic.BadRequestError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.SchematicError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.SchematicTimeoutError();
+            case "unknown":
+                throw new errors.SchematicError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * @param {string} webhookId - webhook_id
+     * @param {Webhooks.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.BadRequestError}
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.InternalServerError}
+     *
+     * @example
+     *     await client.webhooks.deleteWebhook("webhook_id")
+     */
+    public async deleteWebhook(
+        webhookId: string,
+        requestOptions?: Webhooks.RequestOptions
+    ): Promise<Schematic.DeleteWebhookResponse> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
+                `webhooks/${encodeURIComponent(webhookId)}`
+            ),
+            method: "DELETE",
+            headers: {
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
+                "X-Fern-SDK-Version": "1.0.24",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+            },
+            contentType: "application/json",
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
-    }
-  }
+        if (_response.ok) {
+            return serializers.DeleteWebhookResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                skipValidation: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
 
-  /**
-   * @param {Schematic.CreateWebhookRequestBody} request
-   * @param {Webhooks.RequestOptions} requestOptions - Request-specific configuration.
-   *
-   * @throws {@link Schematic.BadRequestError}
-   * @throws {@link Schematic.UnauthorizedError}
-   * @throws {@link Schematic.ForbiddenError}
-   * @throws {@link Schematic.InternalServerError}
-   *
-   * @example
-   *     await client.webhooks.createWebhook({
-   *         name: "name",
-   *         requestTypes: [Schematic.CreateWebhookRequestBodyRequestTypesItem.CompanyUpdated],
-   *         url: "url"
-   *     })
-   */
-  public async createWebhook(
-    request: Schematic.CreateWebhookRequestBody,
-    requestOptions?: Webhooks.RequestOptions,
-  ): Promise<Schematic.CreateWebhookResponse> {
-    const _response = await (this._options.fetcher ?? core.fetcher)({
-      url: urlJoin(
-        (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-        "webhooks",
-      ),
-      method: "POST",
-      headers: {
-        "X-Fern-Language": "JavaScript",
-        "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-        "X-Fern-SDK-Version": "1.0.24",
-        "X-Fern-Runtime": core.RUNTIME.type,
-        "X-Fern-Runtime-Version": core.RUNTIME.version,
-        ...(await this._getCustomAuthorizationHeaders()),
-      },
-      contentType: "application/json",
-      requestType: "json",
-      body: serializers.CreateWebhookRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
-      timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-      maxRetries: requestOptions?.maxRetries,
-      abortSignal: requestOptions?.abortSignal,
-    });
-    if (_response.ok) {
-      return serializers.CreateWebhookResponse.parseOrThrow(_response.body, {
-        unrecognizedObjectKeys: "passthrough",
-        allowUnrecognizedUnionMembers: true,
-        allowUnrecognizedEnumValues: true,
-        skipValidation: true,
-        breadcrumbsPrefix: ["response"],
-      });
-    }
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Schematic.BadRequestError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
 
-    if (_response.error.reason === "status-code") {
-      switch (_response.error.statusCode) {
-        case 400:
-          throw new Schematic.BadRequestError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 401:
-          throw new Schematic.UnauthorizedError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 403:
-          throw new Schematic.ForbiddenError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 500:
-          throw new Schematic.InternalServerError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        default:
-          throw new errors.SchematicError({
-            statusCode: _response.error.statusCode,
-            body: _response.error.body,
-          });
-      }
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.SchematicError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.SchematicTimeoutError();
+            case "unknown":
+                throw new errors.SchematicError({
+                    message: _response.error.errorMessage,
+                });
+        }
     }
 
-    switch (_response.error.reason) {
-      case "non-json":
-        throw new errors.SchematicError({
-          statusCode: _response.error.statusCode,
-          body: _response.error.rawBody,
+    /**
+     * @param {Schematic.CountWebhooksRequest} request
+     * @param {Webhooks.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.BadRequestError}
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.InternalServerError}
+     *
+     * @example
+     *     await client.webhooks.countWebhooks()
+     */
+    public async countWebhooks(
+        request: Schematic.CountWebhooksRequest = {},
+        requestOptions?: Webhooks.RequestOptions
+    ): Promise<Schematic.CountWebhooksResponse> {
+        const { q, limit, offset } = request;
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        if (q != null) {
+            _queryParams["q"] = q;
+        }
+
+        if (limit != null) {
+            _queryParams["limit"] = limit.toString();
+        }
+
+        if (offset != null) {
+            _queryParams["offset"] = offset.toString();
+        }
+
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
+                "webhooks/count"
+            ),
+            method: "GET",
+            headers: {
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
+                "X-Fern-SDK-Version": "1.0.24",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+            },
+            contentType: "application/json",
+            queryParameters: _queryParams,
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
-      case "timeout":
-        throw new errors.SchematicTimeoutError();
-      case "unknown":
-        throw new errors.SchematicError({
-          message: _response.error.errorMessage,
-        });
-    }
-  }
+        if (_response.ok) {
+            return serializers.CountWebhooksResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                skipValidation: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
 
-  /**
-   * @param {string} webhookId - webhook_id
-   * @param {Webhooks.RequestOptions} requestOptions - Request-specific configuration.
-   *
-   * @throws {@link Schematic.UnauthorizedError}
-   * @throws {@link Schematic.ForbiddenError}
-   * @throws {@link Schematic.NotFoundError}
-   * @throws {@link Schematic.InternalServerError}
-   *
-   * @example
-   *     await client.webhooks.getWebhook("webhook_id")
-   */
-  public async getWebhook(
-    webhookId: string,
-    requestOptions?: Webhooks.RequestOptions,
-  ): Promise<Schematic.GetWebhookResponse> {
-    const _response = await (this._options.fetcher ?? core.fetcher)({
-      url: urlJoin(
-        (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-        `webhooks/${encodeURIComponent(webhookId)}`,
-      ),
-      method: "GET",
-      headers: {
-        "X-Fern-Language": "JavaScript",
-        "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-        "X-Fern-SDK-Version": "1.0.24",
-        "X-Fern-Runtime": core.RUNTIME.type,
-        "X-Fern-Runtime-Version": core.RUNTIME.version,
-        ...(await this._getCustomAuthorizationHeaders()),
-      },
-      contentType: "application/json",
-      requestType: "json",
-      timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-      maxRetries: requestOptions?.maxRetries,
-      abortSignal: requestOptions?.abortSignal,
-    });
-    if (_response.ok) {
-      return serializers.GetWebhookResponse.parseOrThrow(_response.body, {
-        unrecognizedObjectKeys: "passthrough",
-        allowUnrecognizedUnionMembers: true,
-        allowUnrecognizedEnumValues: true,
-        skipValidation: true,
-        breadcrumbsPrefix: ["response"],
-      });
-    }
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Schematic.BadRequestError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
 
-    if (_response.error.reason === "status-code") {
-      switch (_response.error.statusCode) {
-        case 401:
-          throw new Schematic.UnauthorizedError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 403:
-          throw new Schematic.ForbiddenError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 404:
-          throw new Schematic.NotFoundError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 500:
-          throw new Schematic.InternalServerError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        default:
-          throw new errors.SchematicError({
-            statusCode: _response.error.statusCode,
-            body: _response.error.body,
-          });
-      }
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.SchematicError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.SchematicTimeoutError();
+            case "unknown":
+                throw new errors.SchematicError({
+                    message: _response.error.errorMessage,
+                });
+        }
     }
 
-    switch (_response.error.reason) {
-      case "non-json":
-        throw new errors.SchematicError({
-          statusCode: _response.error.statusCode,
-          body: _response.error.rawBody,
-        });
-      case "timeout":
-        throw new errors.SchematicTimeoutError();
-      case "unknown":
-        throw new errors.SchematicError({
-          message: _response.error.errorMessage,
-        });
+    protected async _getCustomAuthorizationHeaders() {
+        const apiKeyValue = await core.Supplier.get(this._options.apiKey);
+        return { "X-Schematic-Api-Key": apiKeyValue };
     }
-  }
-
-  /**
-   * @param {string} webhookId - webhook_id
-   * @param {Schematic.UpdateWebhookRequestBody} request
-   * @param {Webhooks.RequestOptions} requestOptions - Request-specific configuration.
-   *
-   * @throws {@link Schematic.BadRequestError}
-   * @throws {@link Schematic.UnauthorizedError}
-   * @throws {@link Schematic.ForbiddenError}
-   * @throws {@link Schematic.NotFoundError}
-   * @throws {@link Schematic.InternalServerError}
-   *
-   * @example
-   *     await client.webhooks.updateWebhook("webhook_id")
-   */
-  public async updateWebhook(
-    webhookId: string,
-    request: Schematic.UpdateWebhookRequestBody = {},
-    requestOptions?: Webhooks.RequestOptions,
-  ): Promise<Schematic.UpdateWebhookResponse> {
-    const _response = await (this._options.fetcher ?? core.fetcher)({
-      url: urlJoin(
-        (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-        `webhooks/${encodeURIComponent(webhookId)}`,
-      ),
-      method: "PUT",
-      headers: {
-        "X-Fern-Language": "JavaScript",
-        "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-        "X-Fern-SDK-Version": "1.0.24",
-        "X-Fern-Runtime": core.RUNTIME.type,
-        "X-Fern-Runtime-Version": core.RUNTIME.version,
-        ...(await this._getCustomAuthorizationHeaders()),
-      },
-      contentType: "application/json",
-      requestType: "json",
-      body: serializers.UpdateWebhookRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
-      timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-      maxRetries: requestOptions?.maxRetries,
-      abortSignal: requestOptions?.abortSignal,
-    });
-    if (_response.ok) {
-      return serializers.UpdateWebhookResponse.parseOrThrow(_response.body, {
-        unrecognizedObjectKeys: "passthrough",
-        allowUnrecognizedUnionMembers: true,
-        allowUnrecognizedEnumValues: true,
-        skipValidation: true,
-        breadcrumbsPrefix: ["response"],
-      });
-    }
-
-    if (_response.error.reason === "status-code") {
-      switch (_response.error.statusCode) {
-        case 400:
-          throw new Schematic.BadRequestError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 401:
-          throw new Schematic.UnauthorizedError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 403:
-          throw new Schematic.ForbiddenError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 404:
-          throw new Schematic.NotFoundError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 500:
-          throw new Schematic.InternalServerError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        default:
-          throw new errors.SchematicError({
-            statusCode: _response.error.statusCode,
-            body: _response.error.body,
-          });
-      }
-    }
-
-    switch (_response.error.reason) {
-      case "non-json":
-        throw new errors.SchematicError({
-          statusCode: _response.error.statusCode,
-          body: _response.error.rawBody,
-        });
-      case "timeout":
-        throw new errors.SchematicTimeoutError();
-      case "unknown":
-        throw new errors.SchematicError({
-          message: _response.error.errorMessage,
-        });
-    }
-  }
-
-  /**
-   * @param {string} webhookId - webhook_id
-   * @param {Webhooks.RequestOptions} requestOptions - Request-specific configuration.
-   *
-   * @throws {@link Schematic.BadRequestError}
-   * @throws {@link Schematic.UnauthorizedError}
-   * @throws {@link Schematic.ForbiddenError}
-   * @throws {@link Schematic.InternalServerError}
-   *
-   * @example
-   *     await client.webhooks.deleteWebhook("webhook_id")
-   */
-  public async deleteWebhook(
-    webhookId: string,
-    requestOptions?: Webhooks.RequestOptions,
-  ): Promise<Schematic.DeleteWebhookResponse> {
-    const _response = await (this._options.fetcher ?? core.fetcher)({
-      url: urlJoin(
-        (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-        `webhooks/${encodeURIComponent(webhookId)}`,
-      ),
-      method: "DELETE",
-      headers: {
-        "X-Fern-Language": "JavaScript",
-        "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-        "X-Fern-SDK-Version": "1.0.24",
-        "X-Fern-Runtime": core.RUNTIME.type,
-        "X-Fern-Runtime-Version": core.RUNTIME.version,
-        ...(await this._getCustomAuthorizationHeaders()),
-      },
-      contentType: "application/json",
-      requestType: "json",
-      timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-      maxRetries: requestOptions?.maxRetries,
-      abortSignal: requestOptions?.abortSignal,
-    });
-    if (_response.ok) {
-      return serializers.DeleteWebhookResponse.parseOrThrow(_response.body, {
-        unrecognizedObjectKeys: "passthrough",
-        allowUnrecognizedUnionMembers: true,
-        allowUnrecognizedEnumValues: true,
-        skipValidation: true,
-        breadcrumbsPrefix: ["response"],
-      });
-    }
-
-    if (_response.error.reason === "status-code") {
-      switch (_response.error.statusCode) {
-        case 400:
-          throw new Schematic.BadRequestError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 401:
-          throw new Schematic.UnauthorizedError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 403:
-          throw new Schematic.ForbiddenError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 500:
-          throw new Schematic.InternalServerError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        default:
-          throw new errors.SchematicError({
-            statusCode: _response.error.statusCode,
-            body: _response.error.body,
-          });
-      }
-    }
-
-    switch (_response.error.reason) {
-      case "non-json":
-        throw new errors.SchematicError({
-          statusCode: _response.error.statusCode,
-          body: _response.error.rawBody,
-        });
-      case "timeout":
-        throw new errors.SchematicTimeoutError();
-      case "unknown":
-        throw new errors.SchematicError({
-          message: _response.error.errorMessage,
-        });
-    }
-  }
-
-  /**
-   * @param {Schematic.CountWebhooksRequest} request
-   * @param {Webhooks.RequestOptions} requestOptions - Request-specific configuration.
-   *
-   * @throws {@link Schematic.BadRequestError}
-   * @throws {@link Schematic.UnauthorizedError}
-   * @throws {@link Schematic.ForbiddenError}
-   * @throws {@link Schematic.InternalServerError}
-   *
-   * @example
-   *     await client.webhooks.countWebhooks()
-   */
-  public async countWebhooks(
-    request: Schematic.CountWebhooksRequest = {},
-    requestOptions?: Webhooks.RequestOptions,
-  ): Promise<Schematic.CountWebhooksResponse> {
-    const { q, limit, offset } = request;
-    const _queryParams: Record<string, string | string[] | object | object[]> = {};
-    if (q != null) {
-      _queryParams["q"] = q;
-    }
-
-    if (limit != null) {
-      _queryParams["limit"] = limit.toString();
-    }
-
-    if (offset != null) {
-      _queryParams["offset"] = offset.toString();
-    }
-
-    const _response = await (this._options.fetcher ?? core.fetcher)({
-      url: urlJoin(
-        (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-        "webhooks/count",
-      ),
-      method: "GET",
-      headers: {
-        "X-Fern-Language": "JavaScript",
-        "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-        "X-Fern-SDK-Version": "1.0.24",
-        "X-Fern-Runtime": core.RUNTIME.type,
-        "X-Fern-Runtime-Version": core.RUNTIME.version,
-        ...(await this._getCustomAuthorizationHeaders()),
-      },
-      contentType: "application/json",
-      queryParameters: _queryParams,
-      requestType: "json",
-      timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-      maxRetries: requestOptions?.maxRetries,
-      abortSignal: requestOptions?.abortSignal,
-    });
-    if (_response.ok) {
-      return serializers.CountWebhooksResponse.parseOrThrow(_response.body, {
-        unrecognizedObjectKeys: "passthrough",
-        allowUnrecognizedUnionMembers: true,
-        allowUnrecognizedEnumValues: true,
-        skipValidation: true,
-        breadcrumbsPrefix: ["response"],
-      });
-    }
-
-    if (_response.error.reason === "status-code") {
-      switch (_response.error.statusCode) {
-        case 400:
-          throw new Schematic.BadRequestError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 401:
-          throw new Schematic.UnauthorizedError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 403:
-          throw new Schematic.ForbiddenError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        case 500:
-          throw new Schematic.InternalServerError(
-            serializers.ApiError.parseOrThrow(_response.error.body, {
-              unrecognizedObjectKeys: "passthrough",
-              allowUnrecognizedUnionMembers: true,
-              allowUnrecognizedEnumValues: true,
-              skipValidation: true,
-              breadcrumbsPrefix: ["response"],
-            }),
-          );
-        default:
-          throw new errors.SchematicError({
-            statusCode: _response.error.statusCode,
-            body: _response.error.body,
-          });
-      }
-    }
-
-    switch (_response.error.reason) {
-      case "non-json":
-        throw new errors.SchematicError({
-          statusCode: _response.error.statusCode,
-          body: _response.error.rawBody,
-        });
-      case "timeout":
-        throw new errors.SchematicTimeoutError();
-      case "unknown":
-        throw new errors.SchematicError({
-          message: _response.error.errorMessage,
-        });
-    }
-  }
-
-  protected async _getCustomAuthorizationHeaders() {
-    const apiKeyValue = await core.Supplier.get(this._options.apiKey);
-    return { "X-Schematic-Api-Key": apiKeyValue };
-  }
 }

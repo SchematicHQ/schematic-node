@@ -8,16 +8,16 @@ import * as core from "../../../../core";
 import { FeatureDetailResponseData } from "../../../types/FeatureDetailResponseData";
 
 export const GetFeatureResponse: core.serialization.ObjectSchema<
-  serializers.GetFeatureResponse.Raw,
-  Schematic.GetFeatureResponse
+    serializers.GetFeatureResponse.Raw,
+    Schematic.GetFeatureResponse
 > = core.serialization.object({
-  data: FeatureDetailResponseData,
-  params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+    data: FeatureDetailResponseData,
+    params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
 export declare namespace GetFeatureResponse {
-  interface Raw {
-    data: FeatureDetailResponseData.Raw;
-    params: Record<string, unknown>;
-  }
+    interface Raw {
+        data: FeatureDetailResponseData.Raw;
+        params: Record<string, unknown>;
+    }
 }

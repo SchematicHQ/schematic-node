@@ -7,22 +7,22 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const RawEventResponseData: core.serialization.ObjectSchema<
-  serializers.RawEventResponseData.Raw,
-  Schematic.RawEventResponseData
+    serializers.RawEventResponseData.Raw,
+    Schematic.RawEventResponseData
 > = core.serialization.object({
-  capturedAt: core.serialization.property("captured_at", core.serialization.date()),
-  eventId: core.serialization.property("event_id", core.serialization.string().optional()),
-  remoteAddr: core.serialization.property("remote_addr", core.serialization.string()),
-  remoteIp: core.serialization.property("remote_ip", core.serialization.string()),
-  userAgent: core.serialization.property("user_agent", core.serialization.string()),
+    capturedAt: core.serialization.property("captured_at", core.serialization.date()),
+    eventId: core.serialization.property("event_id", core.serialization.string().optional()),
+    remoteAddr: core.serialization.property("remote_addr", core.serialization.string()),
+    remoteIp: core.serialization.property("remote_ip", core.serialization.string()),
+    userAgent: core.serialization.property("user_agent", core.serialization.string()),
 });
 
 export declare namespace RawEventResponseData {
-  interface Raw {
-    captured_at: string;
-    event_id?: string | null;
-    remote_addr: string;
-    remote_ip: string;
-    user_agent: string;
-  }
+    interface Raw {
+        captured_at: string;
+        event_id?: string | null;
+        remote_addr: string;
+        remote_ip: string;
+        user_agent: string;
+    }
 }

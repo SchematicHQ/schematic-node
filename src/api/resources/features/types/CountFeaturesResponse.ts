@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface CountFeaturesResponse {
-  data: Schematic.CountResponse;
-  /** Input parameters */
-  params: Schematic.CountFeaturesParams;
+    data: Schematic.CountResponse;
+    /** Input parameters */
+    params: Schematic.CountFeaturesParams;
 }

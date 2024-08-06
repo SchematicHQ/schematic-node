@@ -7,18 +7,18 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const SegmentStatusResp: core.serialization.ObjectSchema<
-  serializers.SegmentStatusResp.Raw,
-  Schematic.SegmentStatusResp
+    serializers.SegmentStatusResp.Raw,
+    Schematic.SegmentStatusResp
 > = core.serialization.object({
-  connected: core.serialization.boolean(),
-  environmentId: core.serialization.property("environment_id", core.serialization.string()),
-  lastEventAt: core.serialization.property("last_event_at", core.serialization.date().optional()),
+    connected: core.serialization.boolean(),
+    environmentId: core.serialization.property("environment_id", core.serialization.string()),
+    lastEventAt: core.serialization.property("last_event_at", core.serialization.date().optional()),
 });
 
 export declare namespace SegmentStatusResp {
-  interface Raw {
-    connected: boolean;
-    environment_id: string;
-    last_event_at?: string | null;
-  }
+    interface Raw {
+        connected: boolean;
+        environment_id: string;
+        last_event_at?: string | null;
+    }
 }

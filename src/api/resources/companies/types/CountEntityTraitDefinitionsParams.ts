@@ -8,12 +8,12 @@ import * as Schematic from "../../../index";
  * Input parameters
  */
 export interface CountEntityTraitDefinitionsParams {
-  entityType?: Schematic.CountEntityTraitDefinitionsResponseParamsEntityType;
-  ids?: string[];
-  /** Page limit (default 100) */
-  limit?: number;
-  /** Page offset (default 0) */
-  offset?: number;
-  q?: string;
-  traitType?: Schematic.CountEntityTraitDefinitionsResponseParamsTraitType;
+    entityType?: Schematic.CountEntityTraitDefinitionsResponseParamsEntityType;
+    ids?: string[];
+    /** Page limit (default 100) */
+    limit?: number;
+    /** Page offset (default 0) */
+    offset?: number;
+    q?: string;
+    traitType?: Schematic.CountEntityTraitDefinitionsResponseParamsTraitType;
 }

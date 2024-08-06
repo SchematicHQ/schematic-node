@@ -3,6 +3,6 @@
  */
 
 export interface DeleteResponse {
-  /** Whether the delete was successful */
-  deleted?: boolean;
+    /** Whether the delete was successful */
+    deleted?: boolean;
 }

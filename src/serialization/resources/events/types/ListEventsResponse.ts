@@ -9,16 +9,16 @@ import { EventDetailResponseData } from "../../../types/EventDetailResponseData"
 import { ListEventsParams } from "./ListEventsParams";
 
 export const ListEventsResponse: core.serialization.ObjectSchema<
-  serializers.ListEventsResponse.Raw,
-  Schematic.ListEventsResponse
+    serializers.ListEventsResponse.Raw,
+    Schematic.ListEventsResponse
 > = core.serialization.object({
-  data: core.serialization.list(EventDetailResponseData),
-  params: ListEventsParams,
+    data: core.serialization.list(EventDetailResponseData),
+    params: ListEventsParams,
 });
 
 export declare namespace ListEventsResponse {
-  interface Raw {
-    data: EventDetailResponseData.Raw[];
-    params: ListEventsParams.Raw;
-  }
+    interface Raw {
+        data: EventDetailResponseData.Raw[];
+        params: ListEventsParams.Raw;
+    }
 }

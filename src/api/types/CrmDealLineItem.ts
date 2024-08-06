@@ -5,16 +5,16 @@
 import * as Schematic from "../index";
 
 export interface CrmDealLineItem {
-  billingFrequency: string;
-  createdAt: Date;
-  currency: string;
-  description: string;
-  discountPercentage?: Schematic.Decimal;
-  id: string;
-  name: string;
-  price: number;
-  quantity: number;
-  termMonth?: number;
-  totalDiscount?: Schematic.Decimal;
-  updatedAt: Date;
+    billingFrequency: string;
+    createdAt: Date;
+    currency: string;
+    description: string;
+    discountPercentage?: Schematic.Decimal;
+    id: string;
+    name: string;
+    price: number;
+    quantity: number;
+    termMonth?: number;
+    totalDiscount?: Schematic.Decimal;
+    updatedAt: Date;
 }

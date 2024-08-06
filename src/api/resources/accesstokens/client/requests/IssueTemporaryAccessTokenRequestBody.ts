@@ -12,6 +12,6 @@
  *     }
  */
 export interface IssueTemporaryAccessTokenRequestBody {
-  lookup: Record<string, string>;
-  resourceType: string;
+    lookup: Record<string, string>;
+    resourceType: string;
 }

@@ -7,10 +7,10 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const UpdateComponentRequestBodyState: core.serialization.Schema<
-  serializers.UpdateComponentRequestBodyState.Raw,
-  Schematic.UpdateComponentRequestBodyState
+    serializers.UpdateComponentRequestBodyState.Raw,
+    Schematic.UpdateComponentRequestBodyState
 > = core.serialization.enum_(["draft", "live"]);
 
 export declare namespace UpdateComponentRequestBodyState {
-  type Raw = "draft" | "live";
+    type Raw = "draft" | "live";
 }

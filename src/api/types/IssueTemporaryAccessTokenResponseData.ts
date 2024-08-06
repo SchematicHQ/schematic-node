@@ -6,12 +6,12 @@
  * The created resource
  */
 export interface IssueTemporaryAccessTokenResponseData {
-  apiKeyId: string;
-  createdAt: Date;
-  environmentId: string;
-  expiredAt: Date;
-  id: string;
-  resourceType: string;
-  token: string;
-  updatedAt: Date;
+    apiKeyId: string;
+    createdAt: Date;
+    environmentId: string;
+    expiredAt: Date;
+    id: string;
+    resourceType: string;
+    token: string;
+    updatedAt: Date;
 }

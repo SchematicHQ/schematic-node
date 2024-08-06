@@ -3,6 +3,6 @@
  */
 
 export interface BillingCustomerSubscription {
-  expiredAt?: Date;
-  totalPrice: number;
+    expiredAt?: Date;
+    totalPrice: number;
 }

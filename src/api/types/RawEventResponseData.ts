@@ -3,9 +3,9 @@
  */
 
 export interface RawEventResponseData {
-  capturedAt: Date;
-  eventId?: string;
-  remoteAddr: string;
-  remoteIp: string;
-  userAgent: string;
+    capturedAt: Date;
+    eventId?: string;
+    remoteAddr: string;
+    remoteIp: string;
+    userAgent: string;
 }

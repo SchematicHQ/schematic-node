@@ -5,8 +5,8 @@
 import * as Schematic from "../../../index";
 
 export interface ListEntityKeyDefinitionsResponse {
-  /** The returned resources */
-  data: Schematic.EntityKeyDefinitionResponseData[];
-  /** Input parameters */
-  params: Schematic.ListEntityKeyDefinitionsParams;
+    /** The returned resources */
+    data: Schematic.EntityKeyDefinitionResponseData[];
+    /** Input parameters */
+    params: Schematic.ListEntityKeyDefinitionsParams;
 }

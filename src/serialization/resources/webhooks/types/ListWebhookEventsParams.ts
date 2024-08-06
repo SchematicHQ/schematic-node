@@ -7,22 +7,22 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const ListWebhookEventsParams: core.serialization.ObjectSchema<
-  serializers.ListWebhookEventsParams.Raw,
-  Schematic.ListWebhookEventsParams
+    serializers.ListWebhookEventsParams.Raw,
+    Schematic.ListWebhookEventsParams
 > = core.serialization.object({
-  ids: core.serialization.list(core.serialization.string()).optional(),
-  limit: core.serialization.number().optional(),
-  offset: core.serialization.number().optional(),
-  q: core.serialization.string().optional(),
-  webhookId: core.serialization.property("webhook_id", core.serialization.string().optional()),
+    ids: core.serialization.list(core.serialization.string()).optional(),
+    limit: core.serialization.number().optional(),
+    offset: core.serialization.number().optional(),
+    q: core.serialization.string().optional(),
+    webhookId: core.serialization.property("webhook_id", core.serialization.string().optional()),
 });
 
 export declare namespace ListWebhookEventsParams {
-  interface Raw {
-    ids?: string[] | null;
-    limit?: number | null;
-    offset?: number | null;
-    q?: string | null;
-    webhook_id?: string | null;
-  }
+    interface Raw {
+        ids?: string[] | null;
+        limit?: number | null;
+        offset?: number | null;
+        q?: string | null;
+        webhook_id?: string | null;
+    }
 }

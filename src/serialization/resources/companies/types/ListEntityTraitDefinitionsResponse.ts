@@ -9,16 +9,16 @@ import { EntityTraitDefinitionResponseData } from "../../../types/EntityTraitDef
 import { ListEntityTraitDefinitionsParams } from "./ListEntityTraitDefinitionsParams";
 
 export const ListEntityTraitDefinitionsResponse: core.serialization.ObjectSchema<
-  serializers.ListEntityTraitDefinitionsResponse.Raw,
-  Schematic.ListEntityTraitDefinitionsResponse
+    serializers.ListEntityTraitDefinitionsResponse.Raw,
+    Schematic.ListEntityTraitDefinitionsResponse
 > = core.serialization.object({
-  data: core.serialization.list(EntityTraitDefinitionResponseData),
-  params: ListEntityTraitDefinitionsParams,
+    data: core.serialization.list(EntityTraitDefinitionResponseData),
+    params: ListEntityTraitDefinitionsParams,
 });
 
 export declare namespace ListEntityTraitDefinitionsResponse {
-  interface Raw {
-    data: EntityTraitDefinitionResponseData.Raw[];
-    params: ListEntityTraitDefinitionsParams.Raw;
-  }
+    interface Raw {
+        data: EntityTraitDefinitionResponseData.Raw[];
+        params: ListEntityTraitDefinitionsParams.Raw;
+    }
 }

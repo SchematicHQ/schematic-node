@@ -8,143 +8,143 @@ import { offlineFetcher, provideFetcher } from "./core/fetcher/custom";
 import { version } from "./version";
 
 export interface SchematicOptions {
-  basePath?: string;
-  cacheProviders?: {
-    flagChecks?: CacheProvider<boolean>[];
-  };
-  environmentId?: string;
-  eventBufferInterval?: number;
-  flagDefaults?: { [key: string]: boolean };
-  headers?: Record<string, string>;
-  logger?: Logger;
-  offline?: boolean;
+    basePath?: string;
+    cacheProviders?: {
+        flagChecks?: CacheProvider<boolean>[];
+    };
+    environmentId?: string;
+    eventBufferInterval?: number;
+    flagDefaults?: { [key: string]: boolean };
+    headers?: Record<string, string>;
+    logger?: Logger;
+    offline?: boolean;
 }
 
 export class SchematicClient extends BaseClient {
-  private eventBuffer: EventBuffer;
-  private flagCheckCacheProviders: CacheProvider<boolean>[];
-  private flagDefaults: { [key: string]: boolean };
-  private logger: Logger;
-  private offline: boolean;
+    private eventBuffer: EventBuffer;
+    private flagCheckCacheProviders: CacheProvider<boolean>[];
+    private flagDefaults: { [key: string]: boolean };
+    private logger: Logger;
+    private offline: boolean;
 
-  constructor(apiKey: string, opts?: SchematicOptions) {
-    const { offline = false } = opts ?? {};
-    const headers: Record<string, string> = {
-      "User-Agent": `schematic-typescript-node@${version}`,
-    };
-    if (opts?.environmentId) {
-      headers["X-Schematic-Environment-Id"] = opts.environmentId;
-    }
-    if (opts?.headers) {
-      Object.assign(headers, opts.headers);
-    }
-    super({
-      apiKey,
-      environment: opts?.basePath ? opts.basePath : undefined,
-      fetcher: offline ? offlineFetcher : provideFetcher(headers),
-    });
-    const { flagDefaults = {} } = opts ?? {};
-
-    this.eventBuffer = new EventBuffer(this.events, {
-      interval: opts?.eventBufferInterval,
-    });
-
-    this.flagCheckCacheProviders = opts?.cacheProviders?.flagChecks ?? [new LocalCache<boolean>()];
-    this.logger = opts?.logger || new ConsoleLogger();
-
-    if (offline) {
-      if (apiKey !== "") {
-        this.logger.debug("Offline mode enabled, ignoring API key");
-      }
-    } else if (apiKey === "") {
-      this.logger.warn("No API key was provided, running in offline mode");
-      this.offline = true;
-    }
-
-    this.offline = offline;
-    this.flagDefaults = flagDefaults;
-  }
-
-  async checkFlag(evalCtx: api.CheckFlagRequestBody, key: string): Promise<boolean> {
-    if (this.offline) {
-      return this.getFlagDefault(key);
-    }
-
-    try {
-      const cacheKey = JSON.stringify({ evalCtx, key });
-      for (const provider of this.flagCheckCacheProviders) {
-        const cachedValue = await provider.get(cacheKey);
-        if (cachedValue !== undefined) {
-          return cachedValue;
+    constructor(apiKey: string, opts?: SchematicOptions) {
+        const { offline = false } = opts ?? {};
+        const headers: Record<string, string> = {
+            "User-Agent": `schematic-typescript-node@${version}`,
+        };
+        if (opts?.environmentId) {
+            headers["X-Schematic-Environment-Id"] = opts.environmentId;
         }
-      }
+        if (opts?.headers) {
+            Object.assign(headers, opts.headers);
+        }
+        super({
+            apiKey,
+            environment: opts?.basePath ? opts.basePath : undefined,
+            fetcher: offline ? offlineFetcher : provideFetcher(headers),
+        });
+        const { flagDefaults = {} } = opts ?? {};
 
-      const response = await this.features.checkFlag(key, evalCtx);
-      if (!response.data.value) {
-        return this.getFlagDefault(key);
-      }
+        this.eventBuffer = new EventBuffer(this.events, {
+            interval: opts?.eventBufferInterval,
+        });
 
-      for (const provider of this.flagCheckCacheProviders) {
-        await provider.set(cacheKey, response.data.value);
-      }
+        this.flagCheckCacheProviders = opts?.cacheProviders?.flagChecks ?? [new LocalCache<boolean>()];
+        this.logger = opts?.logger || new ConsoleLogger();
 
-      return response.data.value;
-    } catch (err) {
-      this.logger.error(`Error checking flag ${key}: ${err}`);
-      return this.getFlagDefault(key);
+        if (offline) {
+            if (apiKey !== "") {
+                this.logger.debug("Offline mode enabled, ignoring API key");
+            }
+        } else if (apiKey === "") {
+            this.logger.warn("No API key was provided, running in offline mode");
+            this.offline = true;
+        }
+
+        this.offline = offline;
+        this.flagDefaults = flagDefaults;
     }
-  }
 
-  async close(): Promise<void> {
-    return this.eventBuffer.stop();
-  }
+    async checkFlag(evalCtx: api.CheckFlagRequestBody, key: string): Promise<boolean> {
+        if (this.offline) {
+            return this.getFlagDefault(key);
+        }
 
-  async identify(body: api.EventBodyIdentify): Promise<void> {
-    if (this.offline) return;
+        try {
+            const cacheKey = JSON.stringify({ evalCtx, key });
+            for (const provider of this.flagCheckCacheProviders) {
+                const cachedValue = await provider.get(cacheKey);
+                if (cachedValue !== undefined) {
+                    return cachedValue;
+                }
+            }
 
-    try {
-      await this.enqueueEvent("identify", body);
-    } catch (err) {
-      this.logger.error(`Error sending identify event: ${err}`);
+            const response = await this.features.checkFlag(key, evalCtx);
+            if (!response.data.value) {
+                return this.getFlagDefault(key);
+            }
+
+            for (const provider of this.flagCheckCacheProviders) {
+                await provider.set(cacheKey, response.data.value);
+            }
+
+            return response.data.value;
+        } catch (err) {
+            this.logger.error(`Error checking flag ${key}: ${err}`);
+            return this.getFlagDefault(key);
+        }
     }
-  }
 
-  async track(body: api.EventBodyTrack): Promise<void> {
-    if (this.offline) return;
-
-    try {
-      await this.enqueueEvent("track", body);
-    } catch (err) {
-      this.logger.error(`Error sending track event: ${err}`);
+    async close(): Promise<void> {
+        return this.eventBuffer.stop();
     }
-  }
 
-  setFlagDefault(flag: string, value: boolean): void {
-    this.flagDefaults[flag] = value;
-  }
+    async identify(body: api.EventBodyIdentify): Promise<void> {
+        if (this.offline) return;
 
-  setFlagDefaults(values: { [key: string]: boolean }): void {
-    Object.assign(this.flagDefaults, values);
-  }
-
-  private getFlagDefault(flag: string): boolean {
-    return this.flagDefaults[flag] ?? false;
-  }
-
-  private async enqueueEvent(
-    eventType: "identify" | "track",
-    body: api.EventBodyIdentify | api.EventBodyTrack,
-  ): Promise<void> {
-    try {
-      this.eventBuffer.push({
-        eventType,
-        body,
-        sentAt: new Date(),
-      });
-    } catch (err) {
-      this.logger.error(`Error enqueueing ${eventType} event: ${err}`);
+        try {
+            await this.enqueueEvent("identify", body);
+        } catch (err) {
+            this.logger.error(`Error sending identify event: ${err}`);
+        }
     }
-  }
+
+    async track(body: api.EventBodyTrack): Promise<void> {
+        if (this.offline) return;
+
+        try {
+            await this.enqueueEvent("track", body);
+        } catch (err) {
+            this.logger.error(`Error sending track event: ${err}`);
+        }
+    }
+
+    setFlagDefault(flag: string, value: boolean): void {
+        this.flagDefaults[flag] = value;
+    }
+
+    setFlagDefaults(values: { [key: string]: boolean }): void {
+        Object.assign(this.flagDefaults, values);
+    }
+
+    private getFlagDefault(flag: string): boolean {
+        return this.flagDefaults[flag] ?? false;
+    }
+
+    private async enqueueEvent(
+        eventType: "identify" | "track",
+        body: api.EventBodyIdentify | api.EventBodyTrack
+    ): Promise<void> {
+        try {
+            this.eventBuffer.push({
+                eventType,
+                body,
+                sentAt: new Date(),
+            });
+        } catch (err) {
+            this.logger.error(`Error enqueueing ${eventType} event: ${err}`);
+        }
+    }
 }
 
 export class Schematic extends SchematicClient {}

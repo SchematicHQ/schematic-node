@@ -9,16 +9,16 @@ import { CompanyCrmDealsResponseData } from "../../../types/CompanyCrmDealsRespo
 import { GetActiveDealsParams } from "./GetActiveDealsParams";
 
 export const GetActiveDealsResponse: core.serialization.ObjectSchema<
-  serializers.GetActiveDealsResponse.Raw,
-  Schematic.GetActiveDealsResponse
+    serializers.GetActiveDealsResponse.Raw,
+    Schematic.GetActiveDealsResponse
 > = core.serialization.object({
-  data: core.serialization.list(CompanyCrmDealsResponseData),
-  params: GetActiveDealsParams,
+    data: core.serialization.list(CompanyCrmDealsResponseData),
+    params: GetActiveDealsParams,
 });
 
 export declare namespace GetActiveDealsResponse {
-  interface Raw {
-    data: CompanyCrmDealsResponseData.Raw[];
-    params: GetActiveDealsParams.Raw;
-  }
+    interface Raw {
+        data: CompanyCrmDealsResponseData.Raw[];
+        params: GetActiveDealsParams.Raw;
+    }
 }

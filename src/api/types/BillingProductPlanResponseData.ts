@@ -6,8 +6,8 @@
  * The updated resource
  */
 export interface BillingProductPlanResponseData {
-  accountId: string;
-  billingProductId: string;
-  environmentId: string;
-  planId: string;
+    accountId: string;
+    billingProductId: string;
+    environmentId: string;
+    planId: string;
 }

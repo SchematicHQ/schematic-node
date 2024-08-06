@@ -12,8 +12,8 @@
  *     }
  */
 export interface CreateBillingPriceRequestBody {
-  interval: string;
-  price: number;
-  priceExternalId: string;
-  productExternalId: string;
+    interval: string;
+    price: number;
+    priceExternalId: string;
+    productExternalId: string;
 }

@@ -10,29 +10,29 @@ import { CreateOrUpdateConditionRequestBody } from "./CreateOrUpdateConditionReq
 import { CreateOrUpdateRuleRequestBodyRuleType } from "./CreateOrUpdateRuleRequestBodyRuleType";
 
 export const CreateOrUpdateRuleRequestBody: core.serialization.ObjectSchema<
-  serializers.CreateOrUpdateRuleRequestBody.Raw,
-  Schematic.CreateOrUpdateRuleRequestBody
+    serializers.CreateOrUpdateRuleRequestBody.Raw,
+    Schematic.CreateOrUpdateRuleRequestBody
 > = core.serialization.object({
-  conditionGroups: core.serialization.property(
-    "condition_groups",
-    core.serialization.list(CreateOrUpdateConditionGroupRequestBody),
-  ),
-  conditions: core.serialization.list(CreateOrUpdateConditionRequestBody),
-  id: core.serialization.string().optional(),
-  name: core.serialization.string(),
-  priority: core.serialization.number(),
-  ruleType: core.serialization.property("rule_type", CreateOrUpdateRuleRequestBodyRuleType.optional()),
-  value: core.serialization.boolean(),
+    conditionGroups: core.serialization.property(
+        "condition_groups",
+        core.serialization.list(CreateOrUpdateConditionGroupRequestBody)
+    ),
+    conditions: core.serialization.list(CreateOrUpdateConditionRequestBody),
+    id: core.serialization.string().optional(),
+    name: core.serialization.string(),
+    priority: core.serialization.number(),
+    ruleType: core.serialization.property("rule_type", CreateOrUpdateRuleRequestBodyRuleType.optional()),
+    value: core.serialization.boolean(),
 });
 
 export declare namespace CreateOrUpdateRuleRequestBody {
-  interface Raw {
-    condition_groups: CreateOrUpdateConditionGroupRequestBody.Raw[];
-    conditions: CreateOrUpdateConditionRequestBody.Raw[];
-    id?: string | null;
-    name: string;
-    priority: number;
-    rule_type?: CreateOrUpdateRuleRequestBodyRuleType.Raw | null;
-    value: boolean;
-  }
+    interface Raw {
+        condition_groups: CreateOrUpdateConditionGroupRequestBody.Raw[];
+        conditions: CreateOrUpdateConditionRequestBody.Raw[];
+        id?: string | null;
+        name: string;
+        priority: number;
+        rule_type?: CreateOrUpdateRuleRequestBodyRuleType.Raw | null;
+        value: boolean;
+    }
 }

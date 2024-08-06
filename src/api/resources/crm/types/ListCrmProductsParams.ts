@@ -6,10 +6,10 @@
  * Input parameters
  */
 export interface ListCrmProductsParams {
-  ids?: string[];
-  /** Page limit (default 100) */
-  limit?: number;
-  name?: string;
-  /** Page offset (default 0) */
-  offset?: number;
+    ids?: string[];
+    /** Page limit (default 100) */
+    limit?: number;
+    name?: string;
+    /** Page offset (default 0) */
+    offset?: number;
 }

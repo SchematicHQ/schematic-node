@@ -10,35 +10,35 @@ import { EntityTraitDetailResponseData } from "./EntityTraitDetailResponseData";
 import { EntityKeyDetailResponseData } from "./EntityKeyDetailResponseData";
 
 export const UserDetailResponseData: core.serialization.ObjectSchema<
-  serializers.UserDetailResponseData.Raw,
-  Schematic.UserDetailResponseData
+    serializers.UserDetailResponseData.Raw,
+    Schematic.UserDetailResponseData
 > = core.serialization.object({
-  companyMemberships: core.serialization.property(
-    "company_memberships",
-    core.serialization.list(CompanyMembershipDetailResponseData),
-  ),
-  createdAt: core.serialization.property("created_at", core.serialization.date()),
-  entityTraits: core.serialization.property("entity_traits", core.serialization.list(EntityTraitDetailResponseData)),
-  environmentId: core.serialization.property("environment_id", core.serialization.string()),
-  id: core.serialization.string(),
-  keys: core.serialization.list(EntityKeyDetailResponseData),
-  lastSeenAt: core.serialization.property("last_seen_at", core.serialization.date().optional()),
-  name: core.serialization.string(),
-  traits: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-  updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+    companyMemberships: core.serialization.property(
+        "company_memberships",
+        core.serialization.list(CompanyMembershipDetailResponseData)
+    ),
+    createdAt: core.serialization.property("created_at", core.serialization.date()),
+    entityTraits: core.serialization.property("entity_traits", core.serialization.list(EntityTraitDetailResponseData)),
+    environmentId: core.serialization.property("environment_id", core.serialization.string()),
+    id: core.serialization.string(),
+    keys: core.serialization.list(EntityKeyDetailResponseData),
+    lastSeenAt: core.serialization.property("last_seen_at", core.serialization.date().optional()),
+    name: core.serialization.string(),
+    traits: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
+    updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
 export declare namespace UserDetailResponseData {
-  interface Raw {
-    company_memberships: CompanyMembershipDetailResponseData.Raw[];
-    created_at: string;
-    entity_traits: EntityTraitDetailResponseData.Raw[];
-    environment_id: string;
-    id: string;
-    keys: EntityKeyDetailResponseData.Raw[];
-    last_seen_at?: string | null;
-    name: string;
-    traits?: Record<string, unknown> | null;
-    updated_at: string;
-  }
+    interface Raw {
+        company_memberships: CompanyMembershipDetailResponseData.Raw[];
+        created_at: string;
+        entity_traits: EntityTraitDetailResponseData.Raw[];
+        environment_id: string;
+        id: string;
+        keys: EntityKeyDetailResponseData.Raw[];
+        last_seen_at?: string | null;
+        name: string;
+        traits?: Record<string, unknown> | null;
+        updated_at: string;
+    }
 }

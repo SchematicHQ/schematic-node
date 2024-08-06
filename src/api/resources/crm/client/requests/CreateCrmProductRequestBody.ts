@@ -16,12 +16,12 @@
  *     }
  */
 export interface CreateCrmProductRequestBody {
-  currency: string;
-  description: string;
-  externalId: string;
-  interval: string;
-  name: string;
-  price: string;
-  quantity: number;
-  sku: string;
+    currency: string;
+    description: string;
+    externalId: string;
+    interval: string;
+    name: string;
+    price: string;
+    quantity: number;
+    sku: string;
 }

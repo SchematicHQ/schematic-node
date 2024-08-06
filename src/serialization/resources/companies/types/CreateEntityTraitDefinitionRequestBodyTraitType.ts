@@ -7,10 +7,10 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const CreateEntityTraitDefinitionRequestBodyTraitType: core.serialization.Schema<
-  serializers.CreateEntityTraitDefinitionRequestBodyTraitType.Raw,
-  Schematic.CreateEntityTraitDefinitionRequestBodyTraitType
+    serializers.CreateEntityTraitDefinitionRequestBodyTraitType.Raw,
+    Schematic.CreateEntityTraitDefinitionRequestBodyTraitType
 > = core.serialization.enum_(["boolean", "currency", "date", "number", "string", "url"]);
 
 export declare namespace CreateEntityTraitDefinitionRequestBodyTraitType {
-  type Raw = "boolean" | "currency" | "date" | "number" | "string" | "url";
+    type Raw = "boolean" | "currency" | "date" | "number" | "string" | "url";
 }

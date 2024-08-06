@@ -5,8 +5,8 @@
 import * as Schematic from "../../../index";
 
 export interface GetActiveDealsResponse {
-  /** The returned resources */
-  data: Schematic.CompanyCrmDealsResponseData[];
-  /** Input parameters */
-  params: Schematic.GetActiveDealsParams;
+    /** The returned resources */
+    data: Schematic.CompanyCrmDealsResponseData[];
+    /** Input parameters */
+    params: Schematic.GetActiveDealsParams;
 }

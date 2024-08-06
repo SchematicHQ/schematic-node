@@ -6,12 +6,12 @@
  * The created resource
  */
 export interface BillingCustomerResponseData {
-  companyId?: string;
-  deletedAt?: Date;
-  email: string;
-  externalId: string;
-  failedToImport: boolean;
-  id: string;
-  name: string;
-  updatedAt: Date;
+    companyId?: string;
+    deletedAt?: Date;
+    email: string;
+    externalId: string;
+    failedToImport: boolean;
+    id: string;
+    name: string;
+    updatedAt: Date;
 }

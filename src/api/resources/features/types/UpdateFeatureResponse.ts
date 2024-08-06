@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface UpdateFeatureResponse {
-  data: Schematic.FeatureDetailResponseData;
-  /** Input parameters */
-  params: Record<string, unknown>;
+    data: Schematic.FeatureDetailResponseData;
+    /** Input parameters */
+    params: Record<string, unknown>;
 }

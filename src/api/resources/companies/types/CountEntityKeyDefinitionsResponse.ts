@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface CountEntityKeyDefinitionsResponse {
-  data: Schematic.CountResponse;
-  /** Input parameters */
-  params: Schematic.CountEntityKeyDefinitionsParams;
+    data: Schematic.CountResponse;
+    /** Input parameters */
+    params: Schematic.CountEntityKeyDefinitionsParams;
 }

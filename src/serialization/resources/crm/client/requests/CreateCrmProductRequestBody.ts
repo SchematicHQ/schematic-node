@@ -7,28 +7,28 @@ import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 
 export const CreateCrmProductRequestBody: core.serialization.Schema<
-  serializers.CreateCrmProductRequestBody.Raw,
-  Schematic.CreateCrmProductRequestBody
+    serializers.CreateCrmProductRequestBody.Raw,
+    Schematic.CreateCrmProductRequestBody
 > = core.serialization.object({
-  currency: core.serialization.string(),
-  description: core.serialization.string(),
-  externalId: core.serialization.property("external_id", core.serialization.string()),
-  interval: core.serialization.string(),
-  name: core.serialization.string(),
-  price: core.serialization.string(),
-  quantity: core.serialization.number(),
-  sku: core.serialization.string(),
+    currency: core.serialization.string(),
+    description: core.serialization.string(),
+    externalId: core.serialization.property("external_id", core.serialization.string()),
+    interval: core.serialization.string(),
+    name: core.serialization.string(),
+    price: core.serialization.string(),
+    quantity: core.serialization.number(),
+    sku: core.serialization.string(),
 });
 
 export declare namespace CreateCrmProductRequestBody {
-  interface Raw {
-    currency: string;
-    description: string;
-    external_id: string;
-    interval: string;
-    name: string;
-    price: string;
-    quantity: number;
-    sku: string;
-  }
+    interface Raw {
+        currency: string;
+        description: string;
+        external_id: string;
+        interval: string;
+        name: string;
+        price: string;
+        quantity: number;
+        sku: string;
+    }
 }

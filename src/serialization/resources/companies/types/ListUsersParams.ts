@@ -7,24 +7,24 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const ListUsersParams: core.serialization.ObjectSchema<
-  serializers.ListUsersParams.Raw,
-  Schematic.ListUsersParams
+    serializers.ListUsersParams.Raw,
+    Schematic.ListUsersParams
 > = core.serialization.object({
-  companyId: core.serialization.property("company_id", core.serialization.string().optional()),
-  ids: core.serialization.list(core.serialization.string()).optional(),
-  limit: core.serialization.number().optional(),
-  offset: core.serialization.number().optional(),
-  planId: core.serialization.property("plan_id", core.serialization.string().optional()),
-  q: core.serialization.string().optional(),
+    companyId: core.serialization.property("company_id", core.serialization.string().optional()),
+    ids: core.serialization.list(core.serialization.string()).optional(),
+    limit: core.serialization.number().optional(),
+    offset: core.serialization.number().optional(),
+    planId: core.serialization.property("plan_id", core.serialization.string().optional()),
+    q: core.serialization.string().optional(),
 });
 
 export declare namespace ListUsersParams {
-  interface Raw {
-    company_id?: string | null;
-    ids?: string[] | null;
-    limit?: number | null;
-    offset?: number | null;
-    plan_id?: string | null;
-    q?: string | null;
-  }
+    interface Raw {
+        company_id?: string | null;
+        ids?: string[] | null;
+        limit?: number | null;
+        offset?: number | null;
+        plan_id?: string | null;
+        q?: string | null;
+    }
 }

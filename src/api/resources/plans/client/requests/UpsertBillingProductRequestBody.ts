@@ -9,5 +9,5 @@
  *     }
  */
 export interface UpsertBillingProductRequestBody {
-  billingProductId: string;
+    billingProductId: string;
 }
