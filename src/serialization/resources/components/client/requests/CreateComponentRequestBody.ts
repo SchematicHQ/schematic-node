@@ -11,14 +11,14 @@ export const CreateComponentRequestBody: core.serialization.Schema<
     serializers.CreateComponentRequestBody.Raw,
     Schematic.CreateComponentRequestBody
 > = core.serialization.object({
-    ast: core.serialization.list(core.serialization.number()),
+    ast: core.serialization.record(core.serialization.string(), core.serialization.number()).optional(),
     entityType: core.serialization.property("entity_type", CreateComponentRequestBodyEntityType),
     name: core.serialization.string(),
 });
 
 export declare namespace CreateComponentRequestBody {
     interface Raw {
-        ast: number[];
+        ast?: Record<string, number> | null;
         entity_type: CreateComponentRequestBodyEntityType.Raw;
         name: string;
     }

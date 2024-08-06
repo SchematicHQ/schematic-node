@@ -4813,7 +4813,6 @@ await client.components.listComponents();
 
 ```typescript
 await client.components.createComponent({
-    ast: [1],
     entityType: Schematic.CreateComponentRequestBodyEntityType.Entitlement,
     name: "name",
 });
