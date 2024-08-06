@@ -15,10 +15,10 @@
  *     }
  */
 export interface CreateBillingCustomerRequestBody {
-  companyId?: string;
-  email: string;
-  externalId: string;
-  failedToImport: boolean;
-  meta: Record<string, string>;
-  name: string;
+    companyId?: string;
+    email: string;
+    externalId: string;
+    failedToImport: boolean;
+    meta: Record<string, string>;
+    name: string;
 }

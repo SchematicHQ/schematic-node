@@ -3,6 +3,6 @@
  */
 
 export interface RuleConditionResourceResponseData {
-  id: string;
-  name: string;
+    id: string;
+    name: string;
 }

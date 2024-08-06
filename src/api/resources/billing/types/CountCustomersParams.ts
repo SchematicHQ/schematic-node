@@ -6,11 +6,11 @@
  * Input parameters
  */
 export interface CountCustomersParams {
-  failedToImport?: boolean;
-  /** Page limit (default 100) */
-  limit?: number;
-  name?: string;
-  /** Page offset (default 0) */
-  offset?: number;
-  q?: string;
+    failedToImport?: boolean;
+    /** Page limit (default 100) */
+    limit?: number;
+    name?: string;
+    /** Page offset (default 0) */
+    offset?: number;
+    q?: string;
 }

@@ -7,27 +7,27 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const ListCompaniesParams: core.serialization.ObjectSchema<
-  serializers.ListCompaniesParams.Raw,
-  Schematic.ListCompaniesParams
+    serializers.ListCompaniesParams.Raw,
+    Schematic.ListCompaniesParams
 > = core.serialization.object({
-  ids: core.serialization.list(core.serialization.string()).optional(),
-  limit: core.serialization.number().optional(),
-  offset: core.serialization.number().optional(),
-  planId: core.serialization.property("plan_id", core.serialization.string().optional()),
-  q: core.serialization.string().optional(),
-  withoutFeatureOverrideFor: core.serialization.property(
-    "without_feature_override_for",
-    core.serialization.string().optional(),
-  ),
+    ids: core.serialization.list(core.serialization.string()).optional(),
+    limit: core.serialization.number().optional(),
+    offset: core.serialization.number().optional(),
+    planId: core.serialization.property("plan_id", core.serialization.string().optional()),
+    q: core.serialization.string().optional(),
+    withoutFeatureOverrideFor: core.serialization.property(
+        "without_feature_override_for",
+        core.serialization.string().optional()
+    ),
 });
 
 export declare namespace ListCompaniesParams {
-  interface Raw {
-    ids?: string[] | null;
-    limit?: number | null;
-    offset?: number | null;
-    plan_id?: string | null;
-    q?: string | null;
-    without_feature_override_for?: string | null;
-  }
+    interface Raw {
+        ids?: string[] | null;
+        limit?: number | null;
+        offset?: number | null;
+        plan_id?: string | null;
+        q?: string | null;
+        without_feature_override_for?: string | null;
+    }
 }

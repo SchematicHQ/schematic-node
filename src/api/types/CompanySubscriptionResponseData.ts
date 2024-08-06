@@ -5,9 +5,9 @@
 import * as Schematic from "../index";
 
 export interface CompanySubscriptionResponseData {
-  customerExternalId: string;
-  expiredAt?: Date;
-  interval: string;
-  products: Schematic.BillingProductResponseData[];
-  subscriptionExternalId: string;
+    customerExternalId: string;
+    expiredAt?: Date;
+    interval: string;
+    products: Schematic.BillingProductResponseData[];
+    subscriptionExternalId: string;
 }

@@ -6,12 +6,12 @@ import * as errors from "../../errors/index";
 import * as Schematic from "../index";
 
 export class ForbiddenError extends errors.SchematicError {
-  constructor(body: Schematic.ApiError) {
-    super({
-      message: "ForbiddenError",
-      statusCode: 403,
-      body: body,
-    });
-    Object.setPrototypeOf(this, ForbiddenError.prototype);
-  }
+    constructor(body: Schematic.ApiError) {
+        super({
+            message: "ForbiddenError",
+            statusCode: 403,
+            body: body,
+        });
+        Object.setPrototypeOf(this, ForbiddenError.prototype);
+    }
 }

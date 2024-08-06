@@ -6,7 +6,7 @@
  * The returned resource
  */
 export interface SegmentStatusResp {
-  connected: boolean;
-  environmentId: string;
-  lastEventAt?: Date;
+    connected: boolean;
+    environmentId: string;
+    lastEventAt?: Date;
 }

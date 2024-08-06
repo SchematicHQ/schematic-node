@@ -8,16 +8,16 @@ import * as core from "../../../../core";
 import { WebhookResponseData } from "../../../types/WebhookResponseData";
 
 export const GetWebhookResponse: core.serialization.ObjectSchema<
-  serializers.GetWebhookResponse.Raw,
-  Schematic.GetWebhookResponse
+    serializers.GetWebhookResponse.Raw,
+    Schematic.GetWebhookResponse
 > = core.serialization.object({
-  data: WebhookResponseData,
-  params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+    data: WebhookResponseData,
+    params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
 export declare namespace GetWebhookResponse {
-  interface Raw {
-    data: WebhookResponseData.Raw;
-    params: Record<string, unknown>;
-  }
+    interface Raw {
+        data: WebhookResponseData.Raw;
+        params: Record<string, unknown>;
+    }
 }

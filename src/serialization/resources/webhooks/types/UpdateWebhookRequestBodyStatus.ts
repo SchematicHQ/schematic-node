@@ -7,10 +7,10 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const UpdateWebhookRequestBodyStatus: core.serialization.Schema<
-  serializers.UpdateWebhookRequestBodyStatus.Raw,
-  Schematic.UpdateWebhookRequestBodyStatus
+    serializers.UpdateWebhookRequestBodyStatus.Raw,
+    Schematic.UpdateWebhookRequestBodyStatus
 > = core.serialization.enum_(["active", "inactive"]);
 
 export declare namespace UpdateWebhookRequestBodyStatus {
-  type Raw = "active" | "inactive";
+    type Raw = "active" | "inactive";
 }

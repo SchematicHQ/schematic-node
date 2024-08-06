@@ -3,5 +3,5 @@
  */
 
 export interface KeysRequestBody {
-  keys: Record<string, string>;
+    keys: Record<string, string>;
 }

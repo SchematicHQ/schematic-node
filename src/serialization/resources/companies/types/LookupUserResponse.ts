@@ -9,16 +9,16 @@ import { UserDetailResponseData } from "../../../types/UserDetailResponseData";
 import { LookupUserParams } from "./LookupUserParams";
 
 export const LookupUserResponse: core.serialization.ObjectSchema<
-  serializers.LookupUserResponse.Raw,
-  Schematic.LookupUserResponse
+    serializers.LookupUserResponse.Raw,
+    Schematic.LookupUserResponse
 > = core.serialization.object({
-  data: UserDetailResponseData,
-  params: LookupUserParams,
+    data: UserDetailResponseData,
+    params: LookupUserParams,
 });
 
 export declare namespace LookupUserResponse {
-  interface Raw {
-    data: UserDetailResponseData.Raw;
-    params: LookupUserParams.Raw;
-  }
+    interface Raw {
+        data: UserDetailResponseData.Raw;
+        params: LookupUserParams.Raw;
+    }
 }

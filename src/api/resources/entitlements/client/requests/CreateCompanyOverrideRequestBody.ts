@@ -13,11 +13,11 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface CreateCompanyOverrideRequestBody {
-  companyId: string;
-  featureId: string;
-  metricPeriod?: Schematic.CreateCompanyOverrideRequestBodyMetricPeriod;
-  valueBool?: boolean;
-  valueNumeric?: number;
-  valueTraitId?: string;
-  valueType: Schematic.CreateCompanyOverrideRequestBodyValueType;
+    companyId: string;
+    featureId: string;
+    metricPeriod?: Schematic.CreateCompanyOverrideRequestBodyMetricPeriod;
+    valueBool?: boolean;
+    valueNumeric?: number;
+    valueTraitId?: string;
+    valueType: Schematic.CreateCompanyOverrideRequestBodyValueType;
 }

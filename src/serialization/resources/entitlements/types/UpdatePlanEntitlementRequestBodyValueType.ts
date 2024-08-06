@@ -7,10 +7,10 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const UpdatePlanEntitlementRequestBodyValueType: core.serialization.Schema<
-  serializers.UpdatePlanEntitlementRequestBodyValueType.Raw,
-  Schematic.UpdatePlanEntitlementRequestBodyValueType
+    serializers.UpdatePlanEntitlementRequestBodyValueType.Raw,
+    Schematic.UpdatePlanEntitlementRequestBodyValueType
 > = core.serialization.enum_(["boolean", "numeric", "trait", "unlimited"]);
 
 export declare namespace UpdatePlanEntitlementRequestBodyValueType {
-  type Raw = "boolean" | "numeric" | "trait" | "unlimited";
+    type Raw = "boolean" | "numeric" | "trait" | "unlimited";
 }

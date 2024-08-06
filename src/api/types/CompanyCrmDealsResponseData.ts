@@ -5,9 +5,9 @@
 import * as Schematic from "../index";
 
 export interface CompanyCrmDealsResponseData {
-  dealArr: string;
-  dealExternalId: string;
-  dealMrr: string;
-  dealName?: string;
-  lineItems: Schematic.CrmDealLineItem[];
+    dealArr: string;
+    dealExternalId: string;
+    dealMrr: string;
+    dealName?: string;
+    lineItems: Schematic.CrmDealLineItem[];
 }

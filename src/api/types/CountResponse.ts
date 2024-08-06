@@ -6,5 +6,5 @@
  * The created resource
  */
 export interface CountResponse {
-  count: number;
+    count: number;
 }

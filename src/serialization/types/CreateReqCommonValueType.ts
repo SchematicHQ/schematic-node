@@ -7,10 +7,10 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const CreateReqCommonValueType: core.serialization.Schema<
-  serializers.CreateReqCommonValueType.Raw,
-  Schematic.CreateReqCommonValueType
+    serializers.CreateReqCommonValueType.Raw,
+    Schematic.CreateReqCommonValueType
 > = core.serialization.enum_(["boolean", "numeric", "trait", "unlimited"]);
 
 export declare namespace CreateReqCommonValueType {
-  type Raw = "boolean" | "numeric" | "trait" | "unlimited";
+    type Raw = "boolean" | "numeric" | "trait" | "unlimited";
 }

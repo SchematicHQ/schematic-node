@@ -7,24 +7,24 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const EntityTraitResponseData: core.serialization.ObjectSchema<
-  serializers.EntityTraitResponseData.Raw,
-  Schematic.EntityTraitResponseData
+    serializers.EntityTraitResponseData.Raw,
+    Schematic.EntityTraitResponseData
 > = core.serialization.object({
-  createdAt: core.serialization.property("created_at", core.serialization.date()),
-  definitionId: core.serialization.property("definition_id", core.serialization.string()),
-  environmentId: core.serialization.property("environment_id", core.serialization.string()),
-  id: core.serialization.string(),
-  updatedAt: core.serialization.property("updated_at", core.serialization.date()),
-  value: core.serialization.string(),
+    createdAt: core.serialization.property("created_at", core.serialization.date()),
+    definitionId: core.serialization.property("definition_id", core.serialization.string()),
+    environmentId: core.serialization.property("environment_id", core.serialization.string()),
+    id: core.serialization.string(),
+    updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+    value: core.serialization.string(),
 });
 
 export declare namespace EntityTraitResponseData {
-  interface Raw {
-    created_at: string;
-    definition_id: string;
-    environment_id: string;
-    id: string;
-    updated_at: string;
-    value: string;
-  }
+    interface Raw {
+        created_at: string;
+        definition_id: string;
+        environment_id: string;
+        id: string;
+        updated_at: string;
+        value: string;
+    }
 }

@@ -5,10 +5,10 @@
 import * as Schematic from "../index";
 
 export interface CreateReqCommon {
-  featureId: string;
-  metricPeriod?: Schematic.CreateReqCommonMetricPeriod;
-  valueBool?: boolean;
-  valueNumeric?: number;
-  valueTraitId?: string;
-  valueType: Schematic.CreateReqCommonValueType;
+    featureId: string;
+    metricPeriod?: Schematic.CreateReqCommonMetricPeriod;
+    valueBool?: boolean;
+    valueNumeric?: number;
+    valueTraitId?: string;
+    valueType: Schematic.CreateReqCommonValueType;
 }

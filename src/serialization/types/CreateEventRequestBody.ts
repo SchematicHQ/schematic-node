@@ -9,18 +9,18 @@ import { EventBody } from "./EventBody";
 import { CreateEventRequestBodyEventType } from "./CreateEventRequestBodyEventType";
 
 export const CreateEventRequestBody: core.serialization.ObjectSchema<
-  serializers.CreateEventRequestBody.Raw,
-  Schematic.CreateEventRequestBody
+    serializers.CreateEventRequestBody.Raw,
+    Schematic.CreateEventRequestBody
 > = core.serialization.object({
-  body: EventBody.optional(),
-  eventType: core.serialization.property("event_type", CreateEventRequestBodyEventType),
-  sentAt: core.serialization.property("sent_at", core.serialization.date().optional()),
+    body: EventBody.optional(),
+    eventType: core.serialization.property("event_type", CreateEventRequestBodyEventType),
+    sentAt: core.serialization.property("sent_at", core.serialization.date().optional()),
 });
 
 export declare namespace CreateEventRequestBody {
-  interface Raw {
-    body?: EventBody.Raw | null;
-    event_type: CreateEventRequestBodyEventType.Raw;
-    sent_at?: string | null;
-  }
+    interface Raw {
+        body?: EventBody.Raw | null;
+        event_type: CreateEventRequestBodyEventType.Raw;
+        sent_at?: string | null;
+    }
 }

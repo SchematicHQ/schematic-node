@@ -9,16 +9,16 @@ import { BillingProductDetailResponseData } from "../../../types/BillingProductD
 import { ListBillingProductsParams } from "./ListBillingProductsParams";
 
 export const ListBillingProductsResponse: core.serialization.ObjectSchema<
-  serializers.ListBillingProductsResponse.Raw,
-  Schematic.ListBillingProductsResponse
+    serializers.ListBillingProductsResponse.Raw,
+    Schematic.ListBillingProductsResponse
 > = core.serialization.object({
-  data: core.serialization.list(BillingProductDetailResponseData),
-  params: ListBillingProductsParams,
+    data: core.serialization.list(BillingProductDetailResponseData),
+    params: ListBillingProductsParams,
 });
 
 export declare namespace ListBillingProductsResponse {
-  interface Raw {
-    data: BillingProductDetailResponseData.Raw[];
-    params: ListBillingProductsParams.Raw;
-  }
+    interface Raw {
+        data: BillingProductDetailResponseData.Raw[];
+        params: ListBillingProductsParams.Raw;
+    }
 }

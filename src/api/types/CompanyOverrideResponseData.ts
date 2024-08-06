@@ -8,19 +8,19 @@ import * as Schematic from "../index";
  * The updated resource
  */
 export interface CompanyOverrideResponseData {
-  company?: Schematic.CompanyDetailResponseData;
-  companyId: string;
-  createdAt: Date;
-  environmentId: string;
-  feature?: Schematic.FeatureResponseData;
-  featureId: string;
-  id: string;
-  metricPeriod?: string;
-  ruleId: string;
-  updatedAt: Date;
-  valueBool?: boolean;
-  valueNumeric?: number;
-  valueTrait?: Schematic.EntityTraitDefinitionResponseData;
-  valueTraitId?: string;
-  valueType: string;
+    company?: Schematic.CompanyDetailResponseData;
+    companyId: string;
+    createdAt: Date;
+    environmentId: string;
+    feature?: Schematic.FeatureResponseData;
+    featureId: string;
+    id: string;
+    metricPeriod?: string;
+    ruleId: string;
+    updatedAt: Date;
+    valueBool?: boolean;
+    valueNumeric?: number;
+    valueTrait?: Schematic.EntityTraitDefinitionResponseData;
+    valueTraitId?: string;
+    valueType: string;
 }

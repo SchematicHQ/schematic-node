@@ -8,16 +8,16 @@ import * as core from "../../../../core";
 import { EventDetailResponseData } from "../../../types/EventDetailResponseData";
 
 export const GetEventResponse: core.serialization.ObjectSchema<
-  serializers.GetEventResponse.Raw,
-  Schematic.GetEventResponse
+    serializers.GetEventResponse.Raw,
+    Schematic.GetEventResponse
 > = core.serialization.object({
-  data: EventDetailResponseData,
-  params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+    data: EventDetailResponseData,
+    params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
 export declare namespace GetEventResponse {
-  interface Raw {
-    data: EventDetailResponseData.Raw;
-    params: Record<string, unknown>;
-  }
+    interface Raw {
+        data: EventDetailResponseData.Raw;
+        params: Record<string, unknown>;
+    }
 }

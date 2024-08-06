@@ -7,22 +7,22 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const CountFlagsParams: core.serialization.ObjectSchema<
-  serializers.CountFlagsParams.Raw,
-  Schematic.CountFlagsParams
+    serializers.CountFlagsParams.Raw,
+    Schematic.CountFlagsParams
 > = core.serialization.object({
-  featureId: core.serialization.property("feature_id", core.serialization.string().optional()),
-  ids: core.serialization.list(core.serialization.string()).optional(),
-  limit: core.serialization.number().optional(),
-  offset: core.serialization.number().optional(),
-  q: core.serialization.string().optional(),
+    featureId: core.serialization.property("feature_id", core.serialization.string().optional()),
+    ids: core.serialization.list(core.serialization.string()).optional(),
+    limit: core.serialization.number().optional(),
+    offset: core.serialization.number().optional(),
+    q: core.serialization.string().optional(),
 });
 
 export declare namespace CountFlagsParams {
-  interface Raw {
-    feature_id?: string | null;
-    ids?: string[] | null;
-    limit?: number | null;
-    offset?: number | null;
-    q?: string | null;
-  }
+    interface Raw {
+        feature_id?: string | null;
+        ids?: string[] | null;
+        limit?: number | null;
+        offset?: number | null;
+        q?: string | null;
+    }
 }

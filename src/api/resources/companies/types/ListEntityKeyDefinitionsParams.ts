@@ -8,11 +8,11 @@ import * as Schematic from "../../../index";
  * Input parameters
  */
 export interface ListEntityKeyDefinitionsParams {
-  entityType?: Schematic.ListEntityKeyDefinitionsResponseParamsEntityType;
-  ids?: string[];
-  /** Page limit (default 100) */
-  limit?: number;
-  /** Page offset (default 0) */
-  offset?: number;
-  q?: string;
+    entityType?: Schematic.ListEntityKeyDefinitionsResponseParamsEntityType;
+    ids?: string[];
+    /** Page limit (default 100) */
+    limit?: number;
+    /** Page offset (default 0) */
+    offset?: number;
+    q?: string;
 }

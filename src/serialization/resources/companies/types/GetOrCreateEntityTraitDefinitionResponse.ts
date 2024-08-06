@@ -8,16 +8,16 @@ import * as core from "../../../../core";
 import { EntityTraitDefinitionResponseData } from "../../../types/EntityTraitDefinitionResponseData";
 
 export const GetOrCreateEntityTraitDefinitionResponse: core.serialization.ObjectSchema<
-  serializers.GetOrCreateEntityTraitDefinitionResponse.Raw,
-  Schematic.GetOrCreateEntityTraitDefinitionResponse
+    serializers.GetOrCreateEntityTraitDefinitionResponse.Raw,
+    Schematic.GetOrCreateEntityTraitDefinitionResponse
 > = core.serialization.object({
-  data: EntityTraitDefinitionResponseData,
-  params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+    data: EntityTraitDefinitionResponseData,
+    params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
 export declare namespace GetOrCreateEntityTraitDefinitionResponse {
-  interface Raw {
-    data: EntityTraitDefinitionResponseData.Raw;
-    params: Record<string, unknown>;
-  }
+    interface Raw {
+        data: EntityTraitDefinitionResponseData.Raw;
+        params: Record<string, unknown>;
+    }
 }

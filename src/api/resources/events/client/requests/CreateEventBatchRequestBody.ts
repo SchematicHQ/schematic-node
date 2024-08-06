@@ -13,5 +13,5 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface CreateEventBatchRequestBody {
-  events: Schematic.CreateEventRequestBody[];
+    events: Schematic.CreateEventRequestBody[];
 }

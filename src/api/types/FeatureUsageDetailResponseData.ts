@@ -5,5 +5,5 @@
 import * as Schematic from "../index";
 
 export interface FeatureUsageDetailResponseData {
-  features: Schematic.FeatureUsageResponseData[];
+    features: Schematic.FeatureUsageResponseData[];
 }

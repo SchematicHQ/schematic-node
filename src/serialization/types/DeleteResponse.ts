@@ -7,12 +7,12 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const DeleteResponse: core.serialization.ObjectSchema<serializers.DeleteResponse.Raw, Schematic.DeleteResponse> =
-  core.serialization.object({
-    deleted: core.serialization.boolean().optional(),
-  });
+    core.serialization.object({
+        deleted: core.serialization.boolean().optional(),
+    });
 
 export declare namespace DeleteResponse {
-  interface Raw {
-    deleted?: boolean | null;
-  }
+    interface Raw {
+        deleted?: boolean | null;
+    }
 }

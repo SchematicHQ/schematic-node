@@ -7,26 +7,26 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const ComponentResponseData: core.serialization.ObjectSchema<
-  serializers.ComponentResponseData.Raw,
-  Schematic.ComponentResponseData
+    serializers.ComponentResponseData.Raw,
+    Schematic.ComponentResponseData
 > = core.serialization.object({
-  ast: core.serialization.list(core.serialization.number()),
-  createdAt: core.serialization.property("created_at", core.serialization.date()),
-  id: core.serialization.string(),
-  name: core.serialization.string(),
-  state: core.serialization.string(),
-  type: core.serialization.string(),
-  updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+    ast: core.serialization.list(core.serialization.number()),
+    createdAt: core.serialization.property("created_at", core.serialization.date()),
+    id: core.serialization.string(),
+    name: core.serialization.string(),
+    state: core.serialization.string(),
+    type: core.serialization.string(),
+    updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
 export declare namespace ComponentResponseData {
-  interface Raw {
-    ast: number[];
-    created_at: string;
-    id: string;
-    name: string;
-    state: string;
-    type: string;
-    updated_at: string;
-  }
+    interface Raw {
+        ast: number[];
+        created_at: string;
+        id: string;
+        name: string;
+        state: string;
+        type: string;
+        updated_at: string;
+    }
 }

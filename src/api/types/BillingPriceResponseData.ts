@@ -3,8 +3,8 @@
  */
 
 export interface BillingPriceResponseData {
-  externalPriceId: string;
-  id: string;
-  interval: string;
-  price: number;
+    externalPriceId: string;
+    id: string;
+    interval: string;
+    price: number;
 }

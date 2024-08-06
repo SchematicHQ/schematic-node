@@ -6,9 +6,9 @@
  * The updated resource
  */
 export interface EnvironmentResponseData {
-  createdAt: Date;
-  environmentType: string;
-  id: string;
-  name: string;
-  updatedAt: Date;
+    createdAt: Date;
+    environmentType: string;
+    id: string;
+    name: string;
+    updatedAt: Date;
 }

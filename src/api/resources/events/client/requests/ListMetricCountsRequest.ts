@@ -7,20 +7,20 @@
  *     {}
  */
 export interface ListMetricCountsRequest {
-  startTime?: Date;
-  endTime?: Date;
-  eventSubtype?: string;
-  eventSubtypes?: string | string[];
-  companyId?: string;
-  companyIds?: string | string[];
-  userId?: string;
-  /**
-   * Page limit (default 100)
-   */
-  limit?: number;
-  /**
-   * Page offset (default 0)
-   */
-  offset?: number;
-  grouping?: string;
+    startTime?: Date;
+    endTime?: Date;
+    eventSubtype?: string;
+    eventSubtypes?: string | string[];
+    companyId?: string;
+    companyIds?: string | string[];
+    userId?: string;
+    /**
+     * Page limit (default 100)
+     */
+    limit?: number;
+    /**
+     * Page offset (default 0)
+     */
+    offset?: number;
+    grouping?: string;
 }

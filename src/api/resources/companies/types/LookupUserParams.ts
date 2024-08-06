@@ -6,5 +6,5 @@
  * Input parameters
  */
 export interface LookupUserParams {
-  keys?: Record<string, unknown>;
+    keys?: Record<string, unknown>;
 }

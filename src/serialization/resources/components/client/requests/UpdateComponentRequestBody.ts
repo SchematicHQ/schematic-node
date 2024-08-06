@@ -9,20 +9,20 @@ import { UpdateComponentRequestBodyEntityType } from "../../types/UpdateComponen
 import { UpdateComponentRequestBodyState } from "../../types/UpdateComponentRequestBodyState";
 
 export const UpdateComponentRequestBody: core.serialization.Schema<
-  serializers.UpdateComponentRequestBody.Raw,
-  Schematic.UpdateComponentRequestBody
+    serializers.UpdateComponentRequestBody.Raw,
+    Schematic.UpdateComponentRequestBody
 > = core.serialization.object({
-  ast: core.serialization.list(core.serialization.number()).optional(),
-  entityType: core.serialization.property("entity_type", UpdateComponentRequestBodyEntityType.optional()),
-  name: core.serialization.string().optional(),
-  state: UpdateComponentRequestBodyState.optional(),
+    ast: core.serialization.list(core.serialization.number()).optional(),
+    entityType: core.serialization.property("entity_type", UpdateComponentRequestBodyEntityType.optional()),
+    name: core.serialization.string().optional(),
+    state: UpdateComponentRequestBodyState.optional(),
 });
 
 export declare namespace UpdateComponentRequestBody {
-  interface Raw {
-    ast?: number[] | null;
-    entity_type?: UpdateComponentRequestBodyEntityType.Raw | null;
-    name?: string | null;
-    state?: UpdateComponentRequestBodyState.Raw | null;
-  }
+    interface Raw {
+        ast?: number[] | null;
+        entity_type?: UpdateComponentRequestBodyEntityType.Raw | null;
+        name?: string | null;
+        state?: UpdateComponentRequestBodyState.Raw | null;
+    }
 }

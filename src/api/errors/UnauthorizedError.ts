@@ -6,12 +6,12 @@ import * as errors from "../../errors/index";
 import * as Schematic from "../index";
 
 export class UnauthorizedError extends errors.SchematicError {
-  constructor(body: Schematic.ApiError) {
-    super({
-      message: "UnauthorizedError",
-      statusCode: 401,
-      body: body,
-    });
-    Object.setPrototypeOf(this, UnauthorizedError.prototype);
-  }
+    constructor(body: Schematic.ApiError) {
+        super({
+            message: "UnauthorizedError",
+            statusCode: 401,
+            body: body,
+        });
+        Object.setPrototypeOf(this, UnauthorizedError.prototype);
+    }
 }

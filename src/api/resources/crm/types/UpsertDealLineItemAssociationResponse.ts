@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface UpsertDealLineItemAssociationResponse {
-  data: Schematic.CrmLineItemResponseData;
-  /** Input parameters */
-  params: Record<string, unknown>;
+    data: Schematic.CrmLineItemResponseData;
+    /** Input parameters */
+    params: Record<string, unknown>;
 }

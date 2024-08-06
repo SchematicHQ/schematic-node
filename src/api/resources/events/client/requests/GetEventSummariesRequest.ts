@@ -7,14 +7,14 @@
  *     {}
  */
 export interface GetEventSummariesRequest {
-  q?: string;
-  eventSubtypes?: string | string[];
-  /**
-   * Page limit (default 100)
-   */
-  limit?: number;
-  /**
-   * Page offset (default 0)
-   */
-  offset?: number;
+    q?: string;
+    eventSubtypes?: string | string[];
+    /**
+     * Page limit (default 100)
+     */
+    limit?: number;
+    /**
+     * Page offset (default 0)
+     */
+    offset?: number;
 }

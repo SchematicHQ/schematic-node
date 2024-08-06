@@ -9,34 +9,34 @@ import { BillingProductDetailResponseData } from "./BillingProductDetailResponse
 import { FeatureDetailResponseData } from "./FeatureDetailResponseData";
 
 export const PlanDetailResponseData: core.serialization.ObjectSchema<
-  serializers.PlanDetailResponseData.Raw,
-  Schematic.PlanDetailResponseData
+    serializers.PlanDetailResponseData.Raw,
+    Schematic.PlanDetailResponseData
 > = core.serialization.object({
-  audienceType: core.serialization.property("audience_type", core.serialization.string()),
-  billingProduct: core.serialization.property("billing_product", BillingProductDetailResponseData.optional()),
-  companyCount: core.serialization.property("company_count", core.serialization.number()),
-  createdAt: core.serialization.property("created_at", core.serialization.date()),
-  description: core.serialization.string(),
-  features: core.serialization.list(FeatureDetailResponseData),
-  icon: core.serialization.string(),
-  id: core.serialization.string(),
-  name: core.serialization.string(),
-  planType: core.serialization.property("plan_type", core.serialization.string()),
-  updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+    audienceType: core.serialization.property("audience_type", core.serialization.string()),
+    billingProduct: core.serialization.property("billing_product", BillingProductDetailResponseData.optional()),
+    companyCount: core.serialization.property("company_count", core.serialization.number()),
+    createdAt: core.serialization.property("created_at", core.serialization.date()),
+    description: core.serialization.string(),
+    features: core.serialization.list(FeatureDetailResponseData),
+    icon: core.serialization.string(),
+    id: core.serialization.string(),
+    name: core.serialization.string(),
+    planType: core.serialization.property("plan_type", core.serialization.string()),
+    updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
 export declare namespace PlanDetailResponseData {
-  interface Raw {
-    audience_type: string;
-    billing_product?: BillingProductDetailResponseData.Raw | null;
-    company_count: number;
-    created_at: string;
-    description: string;
-    features: FeatureDetailResponseData.Raw[];
-    icon: string;
-    id: string;
-    name: string;
-    plan_type: string;
-    updated_at: string;
-  }
+    interface Raw {
+        audience_type: string;
+        billing_product?: BillingProductDetailResponseData.Raw | null;
+        company_count: number;
+        created_at: string;
+        description: string;
+        features: FeatureDetailResponseData.Raw[];
+        icon: string;
+        id: string;
+        name: string;
+        plan_type: string;
+        updated_at: string;
+    }
 }

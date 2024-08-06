@@ -5,8 +5,8 @@
 export type UpdateReqCommonValueType = "boolean" | "numeric" | "trait" | "unlimited";
 
 export const UpdateReqCommonValueType = {
-  Boolean: "boolean",
-  Numeric: "numeric",
-  Trait: "trait",
-  Unlimited: "unlimited",
+    Boolean: "boolean",
+    Numeric: "numeric",
+    Trait: "trait",
+    Unlimited: "unlimited",
 } as const;

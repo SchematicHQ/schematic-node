@@ -13,9 +13,9 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface CreatePlanRequestBody {
-  audienceType?: string;
-  description: string;
-  icon?: string;
-  name: string;
-  planType: Schematic.CreatePlanRequestBodyPlanType;
+    audienceType?: string;
+    description: string;
+    icon?: string;
+    name: string;
+    planType: Schematic.CreatePlanRequestBodyPlanType;
 }

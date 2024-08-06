@@ -5,15 +5,15 @@
 import * as Schematic from "../index";
 
 export interface BillingProductDetailResponseData {
-  prices: Schematic.BillingPriceResponseData[];
-  accountId: string;
-  createdAt: Date;
-  currency: string;
-  environmentId: string;
-  externalId: string;
-  name: string;
-  price: number;
-  productId: string;
-  quantity: number;
-  updatedAt: Date;
+    prices: Schematic.BillingPriceResponseData[];
+    accountId: string;
+    createdAt: Date;
+    currency: string;
+    environmentId: string;
+    externalId: string;
+    name: string;
+    price: number;
+    productId: string;
+    quantity: number;
+    updatedAt: Date;
 }

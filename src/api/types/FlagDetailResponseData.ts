@@ -5,17 +5,17 @@
 import * as Schematic from "../index";
 
 export interface FlagDetailResponseData {
-  createdAt: Date;
-  defaultValue: boolean;
-  description: string;
-  feature?: Schematic.FeatureResponseData;
-  featureId?: string;
-  flagType: string;
-  id: string;
-  key: string;
-  lastCheckedAt?: Date;
-  maintainerId?: string;
-  name: string;
-  rules: Schematic.RuleDetailResponseData[];
-  updatedAt: Date;
+    createdAt: Date;
+    defaultValue: boolean;
+    description: string;
+    feature?: Schematic.FeatureResponseData;
+    featureId?: string;
+    flagType: string;
+    id: string;
+    key: string;
+    lastCheckedAt?: Date;
+    maintainerId?: string;
+    name: string;
+    rules: Schematic.RuleDetailResponseData[];
+    updatedAt: Date;
 }

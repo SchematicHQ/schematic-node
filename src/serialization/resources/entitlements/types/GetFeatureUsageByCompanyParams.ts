@@ -7,14 +7,14 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const GetFeatureUsageByCompanyParams: core.serialization.ObjectSchema<
-  serializers.GetFeatureUsageByCompanyParams.Raw,
-  Schematic.GetFeatureUsageByCompanyParams
+    serializers.GetFeatureUsageByCompanyParams.Raw,
+    Schematic.GetFeatureUsageByCompanyParams
 > = core.serialization.object({
-  keys: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
+    keys: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
 });
 
 export declare namespace GetFeatureUsageByCompanyParams {
-  interface Raw {
-    keys?: Record<string, unknown> | null;
-  }
+    interface Raw {
+        keys?: Record<string, unknown> | null;
+    }
 }

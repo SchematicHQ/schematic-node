@@ -7,16 +7,16 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const BillingCustomerSubscription: core.serialization.ObjectSchema<
-  serializers.BillingCustomerSubscription.Raw,
-  Schematic.BillingCustomerSubscription
+    serializers.BillingCustomerSubscription.Raw,
+    Schematic.BillingCustomerSubscription
 > = core.serialization.object({
-  expiredAt: core.serialization.property("expired_at", core.serialization.date().optional()),
-  totalPrice: core.serialization.property("total_price", core.serialization.number()),
+    expiredAt: core.serialization.property("expired_at", core.serialization.date().optional()),
+    totalPrice: core.serialization.property("total_price", core.serialization.number()),
 });
 
 export declare namespace BillingCustomerSubscription {
-  interface Raw {
-    expired_at?: string | null;
-    total_price: number;
-  }
+    interface Raw {
+        expired_at?: string | null;
+        total_price: number;
+    }
 }

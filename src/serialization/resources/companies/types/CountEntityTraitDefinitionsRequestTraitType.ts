@@ -7,10 +7,10 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const CountEntityTraitDefinitionsRequestTraitType: core.serialization.Schema<
-  serializers.CountEntityTraitDefinitionsRequestTraitType.Raw,
-  Schematic.CountEntityTraitDefinitionsRequestTraitType
+    serializers.CountEntityTraitDefinitionsRequestTraitType.Raw,
+    Schematic.CountEntityTraitDefinitionsRequestTraitType
 > = core.serialization.enum_(["boolean", "currency", "date", "number", "string", "url"]);
 
 export declare namespace CountEntityTraitDefinitionsRequestTraitType {
-  type Raw = "boolean" | "currency" | "date" | "number" | "string" | "url";
+    type Raw = "boolean" | "currency" | "date" | "number" | "string" | "url";
 }

@@ -3,20 +3,20 @@
  */
 
 export type CreateOrUpdateConditionRequestBodyConditionType =
-  | "company"
-  | "metric"
-  | "trait"
-  | "user"
-  | "plan"
-  | "billing_product"
-  | "crm_product";
+    | "company"
+    | "metric"
+    | "trait"
+    | "user"
+    | "plan"
+    | "billing_product"
+    | "crm_product";
 
 export const CreateOrUpdateConditionRequestBodyConditionType = {
-  Company: "company",
-  Metric: "metric",
-  Trait: "trait",
-  User: "user",
-  Plan: "plan",
-  BillingProduct: "billing_product",
-  CrmProduct: "crm_product",
+    Company: "company",
+    Metric: "metric",
+    Trait: "trait",
+    User: "user",
+    Plan: "plan",
+    BillingProduct: "billing_product",
+    CrmProduct: "crm_product",
 } as const;

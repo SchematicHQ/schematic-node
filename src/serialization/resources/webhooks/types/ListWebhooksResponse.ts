@@ -9,16 +9,16 @@ import { WebhookResponseData } from "../../../types/WebhookResponseData";
 import { ListWebhooksParams } from "./ListWebhooksParams";
 
 export const ListWebhooksResponse: core.serialization.ObjectSchema<
-  serializers.ListWebhooksResponse.Raw,
-  Schematic.ListWebhooksResponse
+    serializers.ListWebhooksResponse.Raw,
+    Schematic.ListWebhooksResponse
 > = core.serialization.object({
-  data: core.serialization.list(WebhookResponseData),
-  params: ListWebhooksParams,
+    data: core.serialization.list(WebhookResponseData),
+    params: ListWebhooksParams,
 });
 
 export declare namespace ListWebhooksResponse {
-  interface Raw {
-    data: WebhookResponseData.Raw[];
-    params: ListWebhooksParams.Raw;
-  }
+    interface Raw {
+        data: WebhookResponseData.Raw[];
+        params: ListWebhooksParams.Raw;
+    }
 }

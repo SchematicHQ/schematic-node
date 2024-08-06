@@ -13,8 +13,8 @@
  *     }
  */
 export interface LookupUserRequest {
-  /**
-   * Key/value pairs
-   */
-  keys: Record<string, unknown>;
+    /**
+     * Key/value pairs
+     */
+    keys: Record<string, unknown>;
 }

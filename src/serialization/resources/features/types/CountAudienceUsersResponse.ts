@@ -8,16 +8,16 @@ import * as core from "../../../../core";
 import { CountResponse } from "../../../types/CountResponse";
 
 export const CountAudienceUsersResponse: core.serialization.ObjectSchema<
-  serializers.CountAudienceUsersResponse.Raw,
-  Schematic.CountAudienceUsersResponse
+    serializers.CountAudienceUsersResponse.Raw,
+    Schematic.CountAudienceUsersResponse
 > = core.serialization.object({
-  data: CountResponse,
-  params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+    data: CountResponse,
+    params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
 export declare namespace CountAudienceUsersResponse {
-  interface Raw {
-    data: CountResponse.Raw;
-    params: Record<string, unknown>;
-  }
+    interface Raw {
+        data: CountResponse.Raw;
+        params: Record<string, unknown>;
+    }
 }

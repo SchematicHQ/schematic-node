@@ -9,26 +9,26 @@ import { CreateCompanyOverrideRequestBodyMetricPeriod } from "../../types/Create
 import { CreateCompanyOverrideRequestBodyValueType } from "../../types/CreateCompanyOverrideRequestBodyValueType";
 
 export const CreateCompanyOverrideRequestBody: core.serialization.Schema<
-  serializers.CreateCompanyOverrideRequestBody.Raw,
-  Schematic.CreateCompanyOverrideRequestBody
+    serializers.CreateCompanyOverrideRequestBody.Raw,
+    Schematic.CreateCompanyOverrideRequestBody
 > = core.serialization.object({
-  companyId: core.serialization.property("company_id", core.serialization.string()),
-  featureId: core.serialization.property("feature_id", core.serialization.string()),
-  metricPeriod: core.serialization.property("metric_period", CreateCompanyOverrideRequestBodyMetricPeriod.optional()),
-  valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
-  valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
-  valueTraitId: core.serialization.property("value_trait_id", core.serialization.string().optional()),
-  valueType: core.serialization.property("value_type", CreateCompanyOverrideRequestBodyValueType),
+    companyId: core.serialization.property("company_id", core.serialization.string()),
+    featureId: core.serialization.property("feature_id", core.serialization.string()),
+    metricPeriod: core.serialization.property("metric_period", CreateCompanyOverrideRequestBodyMetricPeriod.optional()),
+    valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
+    valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
+    valueTraitId: core.serialization.property("value_trait_id", core.serialization.string().optional()),
+    valueType: core.serialization.property("value_type", CreateCompanyOverrideRequestBodyValueType),
 });
 
 export declare namespace CreateCompanyOverrideRequestBody {
-  interface Raw {
-    company_id: string;
-    feature_id: string;
-    metric_period?: CreateCompanyOverrideRequestBodyMetricPeriod.Raw | null;
-    value_bool?: boolean | null;
-    value_numeric?: number | null;
-    value_trait_id?: string | null;
-    value_type: CreateCompanyOverrideRequestBodyValueType.Raw;
-  }
+    interface Raw {
+        company_id: string;
+        feature_id: string;
+        metric_period?: CreateCompanyOverrideRequestBodyMetricPeriod.Raw | null;
+        value_bool?: boolean | null;
+        value_numeric?: number | null;
+        value_trait_id?: string | null;
+        value_type: CreateCompanyOverrideRequestBodyValueType.Raw;
+    }
 }

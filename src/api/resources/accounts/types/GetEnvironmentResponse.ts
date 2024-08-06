@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface GetEnvironmentResponse {
-  data: Schematic.EnvironmentResponseData;
-  /** Input parameters */
-  params: Record<string, unknown>;
+    data: Schematic.EnvironmentResponseData;
+    /** Input parameters */
+    params: Record<string, unknown>;
 }
