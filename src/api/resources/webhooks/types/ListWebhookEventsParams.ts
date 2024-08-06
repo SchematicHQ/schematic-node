@@ -6,11 +6,11 @@
  * Input parameters
  */
 export interface ListWebhookEventsParams {
-    ids?: string[];
-    /** Page limit (default 100) */
-    limit?: number;
-    /** Page offset (default 0) */
-    offset?: number;
-    q?: string;
-    webhookId?: string;
+  ids?: string[];
+  /** Page limit (default 100) */
+  limit?: number;
+  /** Page offset (default 0) */
+  offset?: number;
+  q?: string;
+  webhookId?: string;
 }

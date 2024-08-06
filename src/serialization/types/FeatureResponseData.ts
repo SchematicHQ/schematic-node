@@ -7,34 +7,34 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const FeatureResponseData: core.serialization.ObjectSchema<
-    serializers.FeatureResponseData.Raw,
-    Schematic.FeatureResponseData
+  serializers.FeatureResponseData.Raw,
+  Schematic.FeatureResponseData
 > = core.serialization.object({
-    createdAt: core.serialization.property("created_at", core.serialization.date()),
-    description: core.serialization.string(),
-    eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
-    featureType: core.serialization.property("feature_type", core.serialization.string()),
-    icon: core.serialization.string(),
-    id: core.serialization.string(),
-    lifecyclePhase: core.serialization.property("lifecycle_phase", core.serialization.string().optional()),
-    maintainerId: core.serialization.property("maintainer_id", core.serialization.string().optional()),
-    name: core.serialization.string(),
-    traitId: core.serialization.property("trait_id", core.serialization.string().optional()),
-    updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+  createdAt: core.serialization.property("created_at", core.serialization.date()),
+  description: core.serialization.string(),
+  eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
+  featureType: core.serialization.property("feature_type", core.serialization.string()),
+  icon: core.serialization.string(),
+  id: core.serialization.string(),
+  lifecyclePhase: core.serialization.property("lifecycle_phase", core.serialization.string().optional()),
+  maintainerId: core.serialization.property("maintainer_id", core.serialization.string().optional()),
+  name: core.serialization.string(),
+  traitId: core.serialization.property("trait_id", core.serialization.string().optional()),
+  updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
 export declare namespace FeatureResponseData {
-    interface Raw {
-        created_at: string;
-        description: string;
-        event_subtype?: string | null;
-        feature_type: string;
-        icon: string;
-        id: string;
-        lifecycle_phase?: string | null;
-        maintainer_id?: string | null;
-        name: string;
-        trait_id?: string | null;
-        updated_at: string;
-    }
+  interface Raw {
+    created_at: string;
+    description: string;
+    event_subtype?: string | null;
+    feature_type: string;
+    icon: string;
+    id: string;
+    lifecycle_phase?: string | null;
+    maintainer_id?: string | null;
+    name: string;
+    trait_id?: string | null;
+    updated_at: string;
+  }
 }

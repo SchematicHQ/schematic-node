@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface GetFeatureUsageByCompanyResponse {
-    data: Schematic.FeatureUsageDetailResponseData;
-    /** Input parameters */
-    params: Schematic.GetFeatureUsageByCompanyParams;
+  data: Schematic.FeatureUsageDetailResponseData;
+  /** Input parameters */
+  params: Schematic.GetFeatureUsageByCompanyParams;
 }

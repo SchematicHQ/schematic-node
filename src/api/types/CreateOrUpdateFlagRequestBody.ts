@@ -3,12 +3,12 @@
  */
 
 export interface CreateOrUpdateFlagRequestBody {
-    defaultValue: boolean;
-    description: string;
-    featureId?: string;
-    flagType: string;
-    id?: string;
-    key: string;
-    maintainerId?: string;
-    name: string;
+  defaultValue: boolean;
+  description: string;
+  featureId?: string;
+  flagType: string;
+  id?: string;
+  key: string;
+  maintainerId?: string;
+  name: string;
 }

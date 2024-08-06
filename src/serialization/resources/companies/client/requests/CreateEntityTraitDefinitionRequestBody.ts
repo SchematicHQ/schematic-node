@@ -9,20 +9,20 @@ import { CreateEntityTraitDefinitionRequestBodyEntityType } from "../../types/Cr
 import { CreateEntityTraitDefinitionRequestBodyTraitType } from "../../types/CreateEntityTraitDefinitionRequestBodyTraitType";
 
 export const CreateEntityTraitDefinitionRequestBody: core.serialization.Schema<
-    serializers.CreateEntityTraitDefinitionRequestBody.Raw,
-    Schematic.CreateEntityTraitDefinitionRequestBody
+  serializers.CreateEntityTraitDefinitionRequestBody.Raw,
+  Schematic.CreateEntityTraitDefinitionRequestBody
 > = core.serialization.object({
-    displayName: core.serialization.property("display_name", core.serialization.string().optional()),
-    entityType: core.serialization.property("entity_type", CreateEntityTraitDefinitionRequestBodyEntityType),
-    hierarchy: core.serialization.list(core.serialization.string()),
-    traitType: core.serialization.property("trait_type", CreateEntityTraitDefinitionRequestBodyTraitType),
+  displayName: core.serialization.property("display_name", core.serialization.string().optional()),
+  entityType: core.serialization.property("entity_type", CreateEntityTraitDefinitionRequestBodyEntityType),
+  hierarchy: core.serialization.list(core.serialization.string()),
+  traitType: core.serialization.property("trait_type", CreateEntityTraitDefinitionRequestBodyTraitType),
 });
 
 export declare namespace CreateEntityTraitDefinitionRequestBody {
-    interface Raw {
-        display_name?: string | null;
-        entity_type: CreateEntityTraitDefinitionRequestBodyEntityType.Raw;
-        hierarchy: string[];
-        trait_type: CreateEntityTraitDefinitionRequestBodyTraitType.Raw;
-    }
+  interface Raw {
+    display_name?: string | null;
+    entity_type: CreateEntityTraitDefinitionRequestBodyEntityType.Raw;
+    hierarchy: string[];
+    trait_type: CreateEntityTraitDefinitionRequestBodyTraitType.Raw;
+  }
 }

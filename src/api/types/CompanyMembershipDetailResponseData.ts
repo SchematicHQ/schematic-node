@@ -5,10 +5,10 @@
 import * as Schematic from "../index";
 
 export interface CompanyMembershipDetailResponseData {
-    company?: Schematic.CompanyResponseData;
-    companyId: string;
-    createdAt: Date;
-    id: string;
-    updatedAt: Date;
-    userId: string;
+  company?: Schematic.CompanyResponseData;
+  companyId: string;
+  createdAt: Date;
+  id: string;
+  updatedAt: Date;
+  userId: string;
 }

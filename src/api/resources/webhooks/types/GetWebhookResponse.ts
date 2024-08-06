@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface GetWebhookResponse {
-    data: Schematic.WebhookResponseData;
-    /** Input parameters */
-    params: Record<string, unknown>;
+  data: Schematic.WebhookResponseData;
+  /** Input parameters */
+  params: Record<string, unknown>;
 }

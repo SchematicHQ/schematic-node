@@ -13,13 +13,13 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface CreateFeatureRequestBody {
-    description: string;
-    eventSubtype?: string;
-    featureType: Schematic.CreateFeatureRequestBodyFeatureType;
-    flag?: Schematic.CreateOrUpdateFlagRequestBody;
-    icon?: string;
-    lifecyclePhase?: string;
-    maintainerId?: string;
-    name: string;
-    traitId?: string;
+  description: string;
+  eventSubtype?: string;
+  featureType: Schematic.CreateFeatureRequestBodyFeatureType;
+  flag?: Schematic.CreateOrUpdateFlagRequestBody;
+  icon?: string;
+  lifecyclePhase?: string;
+  maintainerId?: string;
+  name: string;
+  traitId?: string;
 }

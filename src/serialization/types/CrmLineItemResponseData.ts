@@ -7,24 +7,24 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const CrmLineItemResponseData: core.serialization.ObjectSchema<
-    serializers.CrmLineItemResponseData.Raw,
-    Schematic.CrmLineItemResponseData
+  serializers.CrmLineItemResponseData.Raw,
+  Schematic.CrmLineItemResponseData
 > = core.serialization.object({
-    accountId: core.serialization.property("account_id", core.serialization.string()),
-    createdAt: core.serialization.property("created_at", core.serialization.date()),
-    dealId: core.serialization.property("deal_id", core.serialization.string().optional()),
-    environmentId: core.serialization.property("environment_id", core.serialization.string()),
-    productExternalId: core.serialization.property("product_external_id", core.serialization.string().optional()),
-    updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+  accountId: core.serialization.property("account_id", core.serialization.string()),
+  createdAt: core.serialization.property("created_at", core.serialization.date()),
+  dealId: core.serialization.property("deal_id", core.serialization.string().optional()),
+  environmentId: core.serialization.property("environment_id", core.serialization.string()),
+  productExternalId: core.serialization.property("product_external_id", core.serialization.string().optional()),
+  updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
 export declare namespace CrmLineItemResponseData {
-    interface Raw {
-        account_id: string;
-        created_at: string;
-        deal_id?: string | null;
-        environment_id: string;
-        product_external_id?: string | null;
-        updated_at: string;
-    }
+  interface Raw {
+    account_id: string;
+    created_at: string;
+    deal_id?: string | null;
+    environment_id: string;
+    product_external_id?: string | null;
+    updated_at: string;
+  }
 }

@@ -9,16 +9,16 @@ import { ComponentResponseData } from "../../../types/ComponentResponseData";
 import { ListComponentsParams } from "./ListComponentsParams";
 
 export const ListComponentsResponse: core.serialization.ObjectSchema<
-    serializers.ListComponentsResponse.Raw,
-    Schematic.ListComponentsResponse
+  serializers.ListComponentsResponse.Raw,
+  Schematic.ListComponentsResponse
 > = core.serialization.object({
-    data: core.serialization.list(ComponentResponseData),
-    params: ListComponentsParams,
+  data: core.serialization.list(ComponentResponseData),
+  params: ListComponentsParams,
 });
 
 export declare namespace ListComponentsResponse {
-    interface Raw {
-        data: ComponentResponseData.Raw[];
-        params: ListComponentsParams.Raw;
-    }
+  interface Raw {
+    data: ComponentResponseData.Raw[];
+    params: ListComponentsParams.Raw;
+  }
 }

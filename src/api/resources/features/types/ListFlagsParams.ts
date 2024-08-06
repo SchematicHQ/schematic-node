@@ -6,11 +6,11 @@
  * Input parameters
  */
 export interface ListFlagsParams {
-    featureId?: string;
-    ids?: string[];
-    /** Page limit (default 100) */
-    limit?: number;
-    /** Page offset (default 0) */
-    offset?: number;
-    q?: string;
+  featureId?: string;
+  ids?: string[];
+  /** Page limit (default 100) */
+  limit?: number;
+  /** Page offset (default 0) */
+  offset?: number;
+  q?: string;
 }

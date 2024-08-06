@@ -8,16 +8,16 @@ import * as core from "../../../../core";
 import { EventSummaryResponseData } from "../../../types/EventSummaryResponseData";
 
 export const GetEventSummaryBySubtypeResponse: core.serialization.ObjectSchema<
-    serializers.GetEventSummaryBySubtypeResponse.Raw,
-    Schematic.GetEventSummaryBySubtypeResponse
+  serializers.GetEventSummaryBySubtypeResponse.Raw,
+  Schematic.GetEventSummaryBySubtypeResponse
 > = core.serialization.object({
-    data: EventSummaryResponseData,
-    params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+  data: EventSummaryResponseData,
+  params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
 export declare namespace GetEventSummaryBySubtypeResponse {
-    interface Raw {
-        data: EventSummaryResponseData.Raw;
-        params: Record<string, unknown>;
-    }
+  interface Raw {
+    data: EventSummaryResponseData.Raw;
+    params: Record<string, unknown>;
+  }
 }

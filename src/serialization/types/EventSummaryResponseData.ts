@@ -7,24 +7,24 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const EventSummaryResponseData: core.serialization.ObjectSchema<
-    serializers.EventSummaryResponseData.Raw,
-    Schematic.EventSummaryResponseData
+  serializers.EventSummaryResponseData.Raw,
+  Schematic.EventSummaryResponseData
 > = core.serialization.object({
-    companyCount: core.serialization.property("company_count", core.serialization.number()),
-    environmentId: core.serialization.property("environment_id", core.serialization.string()),
-    eventCount: core.serialization.property("event_count", core.serialization.number()),
-    eventSubtype: core.serialization.property("event_subtype", core.serialization.string()),
-    lastSeenAt: core.serialization.property("last_seen_at", core.serialization.date().optional()),
-    userCount: core.serialization.property("user_count", core.serialization.number()),
+  companyCount: core.serialization.property("company_count", core.serialization.number()),
+  environmentId: core.serialization.property("environment_id", core.serialization.string()),
+  eventCount: core.serialization.property("event_count", core.serialization.number()),
+  eventSubtype: core.serialization.property("event_subtype", core.serialization.string()),
+  lastSeenAt: core.serialization.property("last_seen_at", core.serialization.date().optional()),
+  userCount: core.serialization.property("user_count", core.serialization.number()),
 });
 
 export declare namespace EventSummaryResponseData {
-    interface Raw {
-        company_count: number;
-        environment_id: string;
-        event_count: number;
-        event_subtype: string;
-        last_seen_at?: string | null;
-        user_count: number;
-    }
+  interface Raw {
+    company_count: number;
+    environment_id: string;
+    event_count: number;
+    event_subtype: string;
+    last_seen_at?: string | null;
+    user_count: number;
+  }
 }

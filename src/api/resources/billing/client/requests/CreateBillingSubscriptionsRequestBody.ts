@@ -18,12 +18,12 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface CreateBillingSubscriptionsRequestBody {
-    customerExternalId: string;
-    expiredAt: Date;
-    interval?: string;
-    metadata?: Record<string, unknown>;
-    productExternalIds: Schematic.BillingProductPricing[];
-    status?: string;
-    subscriptionExternalId: string;
-    totalPrice: number;
+  customerExternalId: string;
+  expiredAt: Date;
+  interval?: string;
+  metadata?: Record<string, unknown>;
+  productExternalIds: Schematic.BillingProductPricing[];
+  status?: string;
+  subscriptionExternalId: string;
+  totalPrice: number;
 }

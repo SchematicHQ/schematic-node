@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface GetEventSummaryBySubtypeResponse {
-    data: Schematic.EventSummaryResponseData;
-    /** Input parameters */
-    params: Record<string, unknown>;
+  data: Schematic.EventSummaryResponseData;
+  /** Input parameters */
+  params: Record<string, unknown>;
 }

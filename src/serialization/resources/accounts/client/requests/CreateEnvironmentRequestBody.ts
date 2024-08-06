@@ -8,16 +8,16 @@ import * as core from "../../../../../core";
 import { CreateEnvironmentRequestBodyEnvironmentType } from "../../types/CreateEnvironmentRequestBodyEnvironmentType";
 
 export const CreateEnvironmentRequestBody: core.serialization.Schema<
-    serializers.CreateEnvironmentRequestBody.Raw,
-    Schematic.CreateEnvironmentRequestBody
+  serializers.CreateEnvironmentRequestBody.Raw,
+  Schematic.CreateEnvironmentRequestBody
 > = core.serialization.object({
-    environmentType: core.serialization.property("environment_type", CreateEnvironmentRequestBodyEnvironmentType),
-    name: core.serialization.string(),
+  environmentType: core.serialization.property("environment_type", CreateEnvironmentRequestBodyEnvironmentType),
+  name: core.serialization.string(),
 });
 
 export declare namespace CreateEnvironmentRequestBody {
-    interface Raw {
-        environment_type: CreateEnvironmentRequestBodyEnvironmentType.Raw;
-        name: string;
-    }
+  interface Raw {
+    environment_type: CreateEnvironmentRequestBodyEnvironmentType.Raw;
+    name: string;
+  }
 }

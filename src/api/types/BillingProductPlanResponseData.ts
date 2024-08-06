@@ -6,10 +6,10 @@
  * The updated resource
  */
 export interface BillingProductPlanResponseData {
-    accountId: string;
-    billingProductId: string;
-    environmentId: string;
-    monthlyPriceId?: string;
-    planId: string;
-    yearlyPriceId?: string;
+  accountId: string;
+  billingProductId: string;
+  environmentId: string;
+  monthlyPriceId?: string;
+  planId: string;
+  yearlyPriceId?: string;
 }

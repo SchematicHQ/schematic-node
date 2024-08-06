@@ -6,10 +6,10 @@
  * Input parameters
  */
 export interface ListCompanyPlansParams {
-    companyId?: string;
-    /** Page limit (default 100) */
-    limit?: number;
-    /** Page offset (default 0) */
-    offset?: number;
-    planId?: string;
+  companyId?: string;
+  /** Page limit (default 100) */
+  limit?: number;
+  /** Page offset (default 0) */
+  offset?: number;
+  planId?: string;
 }

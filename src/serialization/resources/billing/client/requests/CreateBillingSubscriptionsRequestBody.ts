@@ -8,31 +8,31 @@ import * as core from "../../../../../core";
 import { BillingProductPricing } from "../../../../types/BillingProductPricing";
 
 export const CreateBillingSubscriptionsRequestBody: core.serialization.Schema<
-    serializers.CreateBillingSubscriptionsRequestBody.Raw,
-    Schematic.CreateBillingSubscriptionsRequestBody
+  serializers.CreateBillingSubscriptionsRequestBody.Raw,
+  Schematic.CreateBillingSubscriptionsRequestBody
 > = core.serialization.object({
-    customerExternalId: core.serialization.property("customer_external_id", core.serialization.string()),
-    expiredAt: core.serialization.property("expired_at", core.serialization.date()),
-    interval: core.serialization.string().optional(),
-    metadata: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-    productExternalIds: core.serialization.property(
-        "product_external_ids",
-        core.serialization.list(BillingProductPricing)
-    ),
-    status: core.serialization.string().optional(),
-    subscriptionExternalId: core.serialization.property("subscription_external_id", core.serialization.string()),
-    totalPrice: core.serialization.property("total_price", core.serialization.number()),
+  customerExternalId: core.serialization.property("customer_external_id", core.serialization.string()),
+  expiredAt: core.serialization.property("expired_at", core.serialization.date()),
+  interval: core.serialization.string().optional(),
+  metadata: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
+  productExternalIds: core.serialization.property(
+    "product_external_ids",
+    core.serialization.list(BillingProductPricing),
+  ),
+  status: core.serialization.string().optional(),
+  subscriptionExternalId: core.serialization.property("subscription_external_id", core.serialization.string()),
+  totalPrice: core.serialization.property("total_price", core.serialization.number()),
 });
 
 export declare namespace CreateBillingSubscriptionsRequestBody {
-    interface Raw {
-        customer_external_id: string;
-        expired_at: string;
-        interval?: string | null;
-        metadata?: Record<string, unknown> | null;
-        product_external_ids: BillingProductPricing.Raw[];
-        status?: string | null;
-        subscription_external_id: string;
-        total_price: number;
-    }
+  interface Raw {
+    customer_external_id: string;
+    expired_at: string;
+    interval?: string | null;
+    metadata?: Record<string, unknown> | null;
+    product_external_ids: BillingProductPricing.Raw[];
+    status?: string | null;
+    subscription_external_id: string;
+    total_price: number;
+  }
 }

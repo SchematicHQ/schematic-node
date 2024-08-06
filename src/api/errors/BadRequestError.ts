@@ -6,12 +6,12 @@ import * as errors from "../../errors/index";
 import * as Schematic from "../index";
 
 export class BadRequestError extends errors.SchematicError {
-    constructor(body: Schematic.ApiError) {
-        super({
-            message: "BadRequestError",
-            statusCode: 400,
-            body: body,
-        });
-        Object.setPrototypeOf(this, BadRequestError.prototype);
-    }
+  constructor(body: Schematic.ApiError) {
+    super({
+      message: "BadRequestError",
+      statusCode: 400,
+      body: body,
+    });
+    Object.setPrototypeOf(this, BadRequestError.prototype);
+  }
 }

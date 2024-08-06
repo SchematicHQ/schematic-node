@@ -7,22 +7,22 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const ListBillingProductsParams: core.serialization.ObjectSchema<
-    serializers.ListBillingProductsParams.Raw,
-    Schematic.ListBillingProductsParams
+  serializers.ListBillingProductsParams.Raw,
+  Schematic.ListBillingProductsParams
 > = core.serialization.object({
-    ids: core.serialization.list(core.serialization.string()).optional(),
-    limit: core.serialization.number().optional(),
-    name: core.serialization.string().optional(),
-    offset: core.serialization.number().optional(),
-    q: core.serialization.string().optional(),
+  ids: core.serialization.list(core.serialization.string()).optional(),
+  limit: core.serialization.number().optional(),
+  name: core.serialization.string().optional(),
+  offset: core.serialization.number().optional(),
+  q: core.serialization.string().optional(),
 });
 
 export declare namespace ListBillingProductsParams {
-    interface Raw {
-        ids?: string[] | null;
-        limit?: number | null;
-        name?: string | null;
-        offset?: number | null;
-        q?: string | null;
-    }
+  interface Raw {
+    ids?: string[] | null;
+    limit?: number | null;
+    name?: string | null;
+    offset?: number | null;
+    q?: string | null;
+  }
 }

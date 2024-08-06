@@ -3,11 +3,11 @@
  */
 
 export interface WebhookResponseData {
-    createdAt: Date;
-    id: string;
-    name: string;
-    requestTypes: string[];
-    status: string;
-    updatedAt: Date;
-    url: string;
+  createdAt: Date;
+  id: string;
+  name: string;
+  requestTypes: string[];
+  status: string;
+  updatedAt: Date;
+  url: string;
 }

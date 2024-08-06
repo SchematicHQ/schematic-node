@@ -7,17 +7,17 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const CreateOrUpdateRuleRequestBodyRuleType: core.serialization.Schema<
-    serializers.CreateOrUpdateRuleRequestBodyRuleType.Raw,
-    Schematic.CreateOrUpdateRuleRequestBodyRuleType
+  serializers.CreateOrUpdateRuleRequestBodyRuleType.Raw,
+  Schematic.CreateOrUpdateRuleRequestBodyRuleType
 > = core.serialization.enum_([
-    "global_override",
-    "company_override",
-    "plan_entitlement",
-    "standard",
-    "default",
-    "plan_audience",
+  "global_override",
+  "company_override",
+  "plan_entitlement",
+  "standard",
+  "default",
+  "plan_audience",
 ]);
 
 export declare namespace CreateOrUpdateRuleRequestBodyRuleType {
-    type Raw = "global_override" | "company_override" | "plan_entitlement" | "standard" | "default" | "plan_audience";
+  type Raw = "global_override" | "company_override" | "plan_entitlement" | "standard" | "default" | "plan_audience";
 }

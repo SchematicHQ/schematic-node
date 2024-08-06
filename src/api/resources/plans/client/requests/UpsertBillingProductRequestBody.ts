@@ -9,7 +9,7 @@
  *     }
  */
 export interface UpsertBillingProductRequestBody {
-    billingProductId: string;
-    monthlyPriceId?: string;
-    yearlyPriceId?: string;
+  billingProductId: string;
+  monthlyPriceId?: string;
+  yearlyPriceId?: string;
 }

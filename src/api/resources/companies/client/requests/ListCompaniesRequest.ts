@@ -7,22 +7,22 @@
  *     {}
  */
 export interface ListCompaniesRequest {
-    ids?: string | string[];
-    planId?: string;
-    /**
-     * Search filter
-     */
-    q?: string;
-    /**
-     * Filter out companies that already have a company override for the specified feature ID
-     */
-    withoutFeatureOverrideFor?: string;
-    /**
-     * Page limit (default 100)
-     */
-    limit?: number;
-    /**
-     * Page offset (default 0)
-     */
-    offset?: number;
+  ids?: string | string[];
+  planId?: string;
+  /**
+   * Search filter
+   */
+  q?: string;
+  /**
+   * Filter out companies that already have a company override for the specified feature ID
+   */
+  withoutFeatureOverrideFor?: string;
+  /**
+   * Page limit (default 100)
+   */
+  limit?: number;
+  /**
+   * Page offset (default 0)
+   */
+  offset?: number;
 }

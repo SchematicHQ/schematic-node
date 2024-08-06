@@ -7,15 +7,15 @@
  *     {}
  */
 export interface ListProductPricesRequest {
-    ids?: string | string[];
-    name?: string;
-    q?: string;
-    /**
-     * Page limit (default 100)
-     */
-    limit?: number;
-    /**
-     * Page offset (default 0)
-     */
-    offset?: number;
+  ids?: string | string[];
+  name?: string;
+  q?: string;
+  /**
+   * Page limit (default 100)
+   */
+  limit?: number;
+  /**
+   * Page offset (default 0)
+   */
+  offset?: number;
 }

@@ -5,8 +5,8 @@
 import * as Schematic from "../index";
 
 export interface CreateOrUpdateConditionGroupRequestBody {
-    conditions: Schematic.CreateOrUpdateConditionRequestBody[];
-    flagId?: string;
-    id?: string;
-    planId?: string;
+  conditions: Schematic.CreateOrUpdateConditionRequestBody[];
+  flagId?: string;
+  id?: string;
+  planId?: string;
 }

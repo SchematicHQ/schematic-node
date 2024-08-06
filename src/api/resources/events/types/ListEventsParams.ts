@@ -6,13 +6,13 @@
  * Input parameters
  */
 export interface ListEventsParams {
-    companyId?: string;
-    eventSubtype?: string;
-    eventTypes?: string[];
-    flagId?: string;
-    /** Page limit (default 100) */
-    limit?: number;
-    /** Page offset (default 0) */
-    offset?: number;
-    userId?: string;
+  companyId?: string;
+  eventSubtype?: string;
+  eventTypes?: string[];
+  flagId?: string;
+  /** Page limit (default 100) */
+  limit?: number;
+  /** Page offset (default 0) */
+  offset?: number;
+  userId?: string;
 }

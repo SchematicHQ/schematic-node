@@ -7,18 +7,18 @@ import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 
 export const UpsertBillingProductRequestBody: core.serialization.Schema<
-    serializers.UpsertBillingProductRequestBody.Raw,
-    Schematic.UpsertBillingProductRequestBody
+  serializers.UpsertBillingProductRequestBody.Raw,
+  Schematic.UpsertBillingProductRequestBody
 > = core.serialization.object({
-    billingProductId: core.serialization.property("billing_product_id", core.serialization.string()),
-    monthlyPriceId: core.serialization.property("monthly_price_id", core.serialization.string().optional()),
-    yearlyPriceId: core.serialization.property("yearly_price_id", core.serialization.string().optional()),
+  billingProductId: core.serialization.property("billing_product_id", core.serialization.string()),
+  monthlyPriceId: core.serialization.property("monthly_price_id", core.serialization.string().optional()),
+  yearlyPriceId: core.serialization.property("yearly_price_id", core.serialization.string().optional()),
 });
 
 export declare namespace UpsertBillingProductRequestBody {
-    interface Raw {
-        billing_product_id: string;
-        monthly_price_id?: string | null;
-        yearly_price_id?: string | null;
-    }
+  interface Raw {
+    billing_product_id: string;
+    monthly_price_id?: string | null;
+    yearly_price_id?: string | null;
+  }
 }

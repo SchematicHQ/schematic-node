@@ -5,8 +5,8 @@
 import * as Schematic from "../../../index";
 
 export interface ListEntityTraitDefinitionsResponse {
-    /** The returned resources */
-    data: Schematic.EntityTraitDefinitionResponseData[];
-    /** Input parameters */
-    params: Schematic.ListEntityTraitDefinitionsParams;
+  /** The returned resources */
+  data: Schematic.EntityTraitDefinitionResponseData[];
+  /** Input parameters */
+  params: Schematic.ListEntityTraitDefinitionsParams;
 }

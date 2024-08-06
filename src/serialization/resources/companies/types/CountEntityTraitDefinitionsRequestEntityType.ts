@@ -7,10 +7,10 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const CountEntityTraitDefinitionsRequestEntityType: core.serialization.Schema<
-    serializers.CountEntityTraitDefinitionsRequestEntityType.Raw,
-    Schematic.CountEntityTraitDefinitionsRequestEntityType
+  serializers.CountEntityTraitDefinitionsRequestEntityType.Raw,
+  Schematic.CountEntityTraitDefinitionsRequestEntityType
 > = core.serialization.enum_(["company", "user"]);
 
 export declare namespace CountEntityTraitDefinitionsRequestEntityType {
-    type Raw = "company" | "user";
+  type Raw = "company" | "user";
 }

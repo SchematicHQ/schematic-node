@@ -5,8 +5,8 @@
 import * as Schematic from "../../../index";
 
 export interface ListApiRequestsResponse {
-    /** The returned resources */
-    data: Schematic.ApiKeyRequestListResponseData[];
-    /** Input parameters */
-    params: Schematic.ListApiRequestsParams;
+  /** The returned resources */
+  data: Schematic.ApiKeyRequestListResponseData[];
+  /** Input parameters */
+  params: Schematic.ListApiRequestsParams;
 }

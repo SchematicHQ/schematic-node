@@ -7,10 +7,10 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const UpdateCompanyOverrideRequestBodyMetricPeriod: core.serialization.Schema<
-    serializers.UpdateCompanyOverrideRequestBodyMetricPeriod.Raw,
-    Schematic.UpdateCompanyOverrideRequestBodyMetricPeriod
+  serializers.UpdateCompanyOverrideRequestBodyMetricPeriod.Raw,
+  Schematic.UpdateCompanyOverrideRequestBodyMetricPeriod
 > = core.serialization.enum_(["current_month", "current_week", "current_day"]);
 
 export declare namespace UpdateCompanyOverrideRequestBodyMetricPeriod {
-    type Raw = "current_month" | "current_week" | "current_day";
+  type Raw = "current_month" | "current_week" | "current_day";
 }

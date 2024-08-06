@@ -8,8 +8,8 @@
 export type FeatureUsageResponseDataAllocationType = "boolean" | "numeric" | "trait" | "unlimited";
 
 export const FeatureUsageResponseDataAllocationType = {
-    Boolean: "boolean",
-    Numeric: "numeric",
-    Trait: "trait",
-    Unlimited: "unlimited",
+  Boolean: "boolean",
+  Numeric: "numeric",
+  Trait: "trait",
+  Unlimited: "unlimited",
 } as const;

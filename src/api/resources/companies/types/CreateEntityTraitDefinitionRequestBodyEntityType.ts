@@ -5,6 +5,6 @@
 export type CreateEntityTraitDefinitionRequestBodyEntityType = "company" | "user";
 
 export const CreateEntityTraitDefinitionRequestBodyEntityType = {
-    Company: "company",
-    User: "user",
+  Company: "company",
+  User: "user",
 } as const;

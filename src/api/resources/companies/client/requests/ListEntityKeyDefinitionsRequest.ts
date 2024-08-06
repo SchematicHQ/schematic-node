@@ -9,15 +9,15 @@ import * as Schematic from "../../../../index";
  *     {}
  */
 export interface ListEntityKeyDefinitionsRequest {
-    entityType?: Schematic.ListEntityKeyDefinitionsRequestEntityType;
-    ids?: string | string[];
-    q?: string;
-    /**
-     * Page limit (default 100)
-     */
-    limit?: number;
-    /**
-     * Page offset (default 0)
-     */
-    offset?: number;
+  entityType?: Schematic.ListEntityKeyDefinitionsRequestEntityType;
+  ids?: string | string[];
+  q?: string;
+  /**
+   * Page limit (default 100)
+   */
+  limit?: number;
+  /**
+   * Page offset (default 0)
+   */
+  offset?: number;
 }

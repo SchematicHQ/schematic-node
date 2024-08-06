@@ -5,12 +5,12 @@
 import * as Schematic from "../index";
 
 export interface EventBodyIdentify {
-    /** Information about the company associated with the user; required only if it is a new user */
-    company?: Schematic.EventBodyIdentifyCompany;
-    /** Key-value pairs to identify the user */
-    keys: Record<string, string>;
-    /** The display name of the user being identified; required only if it is a new user */
-    name?: string;
-    /** A map of trait names to trait values */
-    traits?: Record<string, unknown>;
+  /** Information about the company associated with the user; required only if it is a new user */
+  company?: Schematic.EventBodyIdentifyCompany;
+  /** Key-value pairs to identify the user */
+  keys: Record<string, string>;
+  /** The display name of the user being identified; required only if it is a new user */
+  name?: string;
+  /** A map of trait names to trait values */
+  traits?: Record<string, unknown>;
 }

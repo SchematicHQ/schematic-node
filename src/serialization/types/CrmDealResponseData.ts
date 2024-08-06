@@ -7,34 +7,34 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const CrmDealResponseData: core.serialization.ObjectSchema<
-    serializers.CrmDealResponseData.Raw,
-    Schematic.CrmDealResponseData
+  serializers.CrmDealResponseData.Raw,
+  Schematic.CrmDealResponseData
 > = core.serialization.object({
-    accountId: core.serialization.property("account_id", core.serialization.string()),
-    arr: core.serialization.string(),
-    companyExternalId: core.serialization.property("company_external_id", core.serialization.string().optional()),
-    createdAt: core.serialization.property("created_at", core.serialization.date()),
-    dealExternalId: core.serialization.property("deal_external_id", core.serialization.string()),
-    dealId: core.serialization.property("deal_id", core.serialization.string()),
-    environmentId: core.serialization.property("environment_id", core.serialization.string()),
-    mrr: core.serialization.string(),
-    name: core.serialization.string().optional(),
-    productExternalId: core.serialization.property("product_external_id", core.serialization.string().optional()),
-    updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+  accountId: core.serialization.property("account_id", core.serialization.string()),
+  arr: core.serialization.string(),
+  companyExternalId: core.serialization.property("company_external_id", core.serialization.string().optional()),
+  createdAt: core.serialization.property("created_at", core.serialization.date()),
+  dealExternalId: core.serialization.property("deal_external_id", core.serialization.string()),
+  dealId: core.serialization.property("deal_id", core.serialization.string()),
+  environmentId: core.serialization.property("environment_id", core.serialization.string()),
+  mrr: core.serialization.string(),
+  name: core.serialization.string().optional(),
+  productExternalId: core.serialization.property("product_external_id", core.serialization.string().optional()),
+  updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
 export declare namespace CrmDealResponseData {
-    interface Raw {
-        account_id: string;
-        arr: string;
-        company_external_id?: string | null;
-        created_at: string;
-        deal_external_id: string;
-        deal_id: string;
-        environment_id: string;
-        mrr: string;
-        name?: string | null;
-        product_external_id?: string | null;
-        updated_at: string;
-    }
+  interface Raw {
+    account_id: string;
+    arr: string;
+    company_external_id?: string | null;
+    created_at: string;
+    deal_external_id: string;
+    deal_id: string;
+    environment_id: string;
+    mrr: string;
+    name?: string | null;
+    product_external_id?: string | null;
+    updated_at: string;
+  }
 }

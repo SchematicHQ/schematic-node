@@ -27,5 +27,5 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface UpdateFlagRulesRequestBody {
-    rules: Schematic.CreateOrUpdateRuleRequestBody[];
+  rules: Schematic.CreateOrUpdateRuleRequestBody[];
 }

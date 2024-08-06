@@ -9,39 +9,39 @@ import { RuleConditionGroupDetailResponseData } from "./RuleConditionGroupDetail
 import { RuleConditionDetailResponseData } from "./RuleConditionDetailResponseData";
 
 export const PlanAudienceDetailResponseData: core.serialization.ObjectSchema<
-    serializers.PlanAudienceDetailResponseData.Raw,
-    Schematic.PlanAudienceDetailResponseData
+  serializers.PlanAudienceDetailResponseData.Raw,
+  Schematic.PlanAudienceDetailResponseData
 > = core.serialization.object({
-    conditionGroups: core.serialization.property(
-        "condition_groups",
-        core.serialization.list(RuleConditionGroupDetailResponseData)
-    ),
-    conditions: core.serialization.list(RuleConditionDetailResponseData),
-    createdAt: core.serialization.property("created_at", core.serialization.date()),
-    environmentId: core.serialization.property("environment_id", core.serialization.string()),
-    flagId: core.serialization.property("flag_id", core.serialization.string().optional()),
-    id: core.serialization.string(),
-    name: core.serialization.string(),
-    planId: core.serialization.property("plan_id", core.serialization.string().optional()),
-    priority: core.serialization.number(),
-    ruleType: core.serialization.property("rule_type", core.serialization.string()),
-    updatedAt: core.serialization.property("updated_at", core.serialization.date()),
-    value: core.serialization.boolean(),
+  conditionGroups: core.serialization.property(
+    "condition_groups",
+    core.serialization.list(RuleConditionGroupDetailResponseData),
+  ),
+  conditions: core.serialization.list(RuleConditionDetailResponseData),
+  createdAt: core.serialization.property("created_at", core.serialization.date()),
+  environmentId: core.serialization.property("environment_id", core.serialization.string()),
+  flagId: core.serialization.property("flag_id", core.serialization.string().optional()),
+  id: core.serialization.string(),
+  name: core.serialization.string(),
+  planId: core.serialization.property("plan_id", core.serialization.string().optional()),
+  priority: core.serialization.number(),
+  ruleType: core.serialization.property("rule_type", core.serialization.string()),
+  updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+  value: core.serialization.boolean(),
 });
 
 export declare namespace PlanAudienceDetailResponseData {
-    interface Raw {
-        condition_groups: RuleConditionGroupDetailResponseData.Raw[];
-        conditions: RuleConditionDetailResponseData.Raw[];
-        created_at: string;
-        environment_id: string;
-        flag_id?: string | null;
-        id: string;
-        name: string;
-        plan_id?: string | null;
-        priority: number;
-        rule_type: string;
-        updated_at: string;
-        value: boolean;
-    }
+  interface Raw {
+    condition_groups: RuleConditionGroupDetailResponseData.Raw[];
+    conditions: RuleConditionDetailResponseData.Raw[];
+    created_at: string;
+    environment_id: string;
+    flag_id?: string | null;
+    id: string;
+    name: string;
+    plan_id?: string | null;
+    priority: number;
+    rule_type: string;
+    updated_at: string;
+    value: boolean;
+  }
 }

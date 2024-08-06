@@ -8,14 +8,14 @@ import * as core from "../../core";
 import { FeatureUsageResponseData } from "./FeatureUsageResponseData";
 
 export const FeatureUsageDetailResponseData: core.serialization.ObjectSchema<
-    serializers.FeatureUsageDetailResponseData.Raw,
-    Schematic.FeatureUsageDetailResponseData
+  serializers.FeatureUsageDetailResponseData.Raw,
+  Schematic.FeatureUsageDetailResponseData
 > = core.serialization.object({
-    features: core.serialization.list(FeatureUsageResponseData),
+  features: core.serialization.list(FeatureUsageResponseData),
 });
 
 export declare namespace FeatureUsageDetailResponseData {
-    interface Raw {
-        features: FeatureUsageResponseData.Raw[];
-    }
+  interface Raw {
+    features: FeatureUsageResponseData.Raw[];
+  }
 }

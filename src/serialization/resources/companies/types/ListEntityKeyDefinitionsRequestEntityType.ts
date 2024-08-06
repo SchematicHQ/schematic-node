@@ -7,10 +7,10 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const ListEntityKeyDefinitionsRequestEntityType: core.serialization.Schema<
-    serializers.ListEntityKeyDefinitionsRequestEntityType.Raw,
-    Schematic.ListEntityKeyDefinitionsRequestEntityType
+  serializers.ListEntityKeyDefinitionsRequestEntityType.Raw,
+  Schematic.ListEntityKeyDefinitionsRequestEntityType
 > = core.serialization.enum_(["company", "user"]);
 
 export declare namespace ListEntityKeyDefinitionsRequestEntityType {
-    type Raw = "company" | "user";
+  type Raw = "company" | "user";
 }

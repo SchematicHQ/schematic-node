@@ -6,9 +6,9 @@
  * Input parameters
  */
 export interface ListEnvironmentsParams {
-    ids?: string[];
-    /** Page limit (default 100) */
-    limit?: number;
-    /** Page offset (default 0) */
-    offset?: number;
+  ids?: string[];
+  /** Page limit (default 100) */
+  limit?: number;
+  /** Page offset (default 0) */
+  offset?: number;
 }

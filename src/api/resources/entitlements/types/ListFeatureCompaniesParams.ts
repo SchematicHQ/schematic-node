@@ -6,10 +6,10 @@
  * Input parameters
  */
 export interface ListFeatureCompaniesParams {
-    featureId?: string;
-    /** Page limit (default 100) */
-    limit?: number;
-    /** Page offset (default 0) */
-    offset?: number;
-    q?: string;
+  featureId?: string;
+  /** Page limit (default 100) */
+  limit?: number;
+  /** Page offset (default 0) */
+  offset?: number;
+  q?: string;
 }

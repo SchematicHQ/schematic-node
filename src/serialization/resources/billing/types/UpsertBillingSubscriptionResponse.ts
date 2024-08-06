@@ -8,16 +8,16 @@ import * as core from "../../../../core";
 import { BillingSubscriptionResponseData } from "../../../types/BillingSubscriptionResponseData";
 
 export const UpsertBillingSubscriptionResponse: core.serialization.ObjectSchema<
-    serializers.UpsertBillingSubscriptionResponse.Raw,
-    Schematic.UpsertBillingSubscriptionResponse
+  serializers.UpsertBillingSubscriptionResponse.Raw,
+  Schematic.UpsertBillingSubscriptionResponse
 > = core.serialization.object({
-    data: BillingSubscriptionResponseData,
-    params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+  data: BillingSubscriptionResponseData,
+  params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
 export declare namespace UpsertBillingSubscriptionResponse {
-    interface Raw {
-        data: BillingSubscriptionResponseData.Raw;
-        params: Record<string, unknown>;
-    }
+  interface Raw {
+    data: BillingSubscriptionResponseData.Raw;
+    params: Record<string, unknown>;
+  }
 }

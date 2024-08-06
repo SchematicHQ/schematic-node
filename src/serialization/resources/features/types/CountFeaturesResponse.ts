@@ -9,16 +9,16 @@ import { CountResponse } from "../../../types/CountResponse";
 import { CountFeaturesParams } from "./CountFeaturesParams";
 
 export const CountFeaturesResponse: core.serialization.ObjectSchema<
-    serializers.CountFeaturesResponse.Raw,
-    Schematic.CountFeaturesResponse
+  serializers.CountFeaturesResponse.Raw,
+  Schematic.CountFeaturesResponse
 > = core.serialization.object({
-    data: CountResponse,
-    params: CountFeaturesParams,
+  data: CountResponse,
+  params: CountFeaturesParams,
 });
 
 export declare namespace CountFeaturesResponse {
-    interface Raw {
-        data: CountResponse.Raw;
-        params: CountFeaturesParams.Raw;
-    }
+  interface Raw {
+    data: CountResponse.Raw;
+    params: CountFeaturesParams.Raw;
+  }
 }

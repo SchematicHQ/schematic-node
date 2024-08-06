@@ -5,14 +5,14 @@
 import * as Schematic from "../index";
 
 export interface EntityKeyDetailResponseData {
-    createdAt: Date;
-    definition?: Schematic.EntityKeyDefinitionResponseData;
-    definitionId: string;
-    entityId: string;
-    entityType: string;
-    environmentId: string;
-    id: string;
-    key: string;
-    updatedAt: Date;
-    value: string;
+  createdAt: Date;
+  definition?: Schematic.EntityKeyDefinitionResponseData;
+  definitionId: string;
+  entityId: string;
+  entityType: string;
+  environmentId: string;
+  id: string;
+  key: string;
+  updatedAt: Date;
+  value: string;
 }

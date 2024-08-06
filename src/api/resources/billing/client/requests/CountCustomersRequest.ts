@@ -7,15 +7,15 @@
  *     {}
  */
 export interface CountCustomersRequest {
-    name?: string;
-    failedToImport?: boolean;
-    q?: string;
-    /**
-     * Page limit (default 100)
-     */
-    limit?: number;
-    /**
-     * Page offset (default 0)
-     */
-    offset?: number;
+  name?: string;
+  failedToImport?: boolean;
+  q?: string;
+  /**
+   * Page limit (default 100)
+   */
+  limit?: number;
+  /**
+   * Page offset (default 0)
+   */
+  offset?: number;
 }

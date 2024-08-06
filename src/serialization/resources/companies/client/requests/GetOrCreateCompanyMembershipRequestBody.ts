@@ -7,16 +7,16 @@ import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 
 export const GetOrCreateCompanyMembershipRequestBody: core.serialization.Schema<
-    serializers.GetOrCreateCompanyMembershipRequestBody.Raw,
-    Schematic.GetOrCreateCompanyMembershipRequestBody
+  serializers.GetOrCreateCompanyMembershipRequestBody.Raw,
+  Schematic.GetOrCreateCompanyMembershipRequestBody
 > = core.serialization.object({
-    companyId: core.serialization.property("company_id", core.serialization.string()),
-    userId: core.serialization.property("user_id", core.serialization.string()),
+  companyId: core.serialization.property("company_id", core.serialization.string()),
+  userId: core.serialization.property("user_id", core.serialization.string()),
 });
 
 export declare namespace GetOrCreateCompanyMembershipRequestBody {
-    interface Raw {
-        company_id: string;
-        user_id: string;
-    }
+  interface Raw {
+    company_id: string;
+    user_id: string;
+  }
 }

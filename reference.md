@@ -16,7 +16,7 @@
 
 ```typescript
 await client.accounts.listApiKeys({
-    requireEnvironment: true,
+  requireEnvironment: true,
 });
 ```
 
@@ -66,7 +66,7 @@ await client.accounts.listApiKeys({
 
 ```typescript
 await client.accounts.createApiKey({
-    name: "name",
+  name: "name",
 });
 ```
 
@@ -268,7 +268,7 @@ await client.accounts.deleteApiKey("api_key_id");
 
 ```typescript
 await client.accounts.countApiKeys({
-    requireEnvironment: true,
+  requireEnvironment: true,
 });
 ```
 
@@ -510,8 +510,8 @@ await client.accounts.listEnvironments();
 
 ```typescript
 await client.accounts.createEnvironment({
-    environmentType: Schematic.CreateEnvironmentRequestBodyEnvironmentType.Development,
-    name: "name",
+  environmentType: Schematic.CreateEnvironmentRequestBodyEnvironmentType.Development,
+  name: "name",
 });
 ```
 
@@ -715,24 +715,24 @@ await client.accounts.deleteEnvironment("environment_id");
 
 ```typescript
 await client.features.countAudienceCompanies({
-    conditionGroups: [
+  conditionGroups: [
+    {
+      conditions: [
         {
-            conditions: [
-                {
-                    conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
-                    operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
-                    resourceIds: ["resource_ids"],
-                },
-            ],
+          conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
+          operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+          resourceIds: ["resource_ids"],
         },
-    ],
-    conditions: [
-        {
-            conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
-            operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
-            resourceIds: ["resource_ids"],
-        },
-    ],
+      ],
+    },
+  ],
+  conditions: [
+    {
+      conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
+      operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+      resourceIds: ["resource_ids"],
+    },
+  ],
 });
 ```
 
@@ -782,24 +782,24 @@ await client.features.countAudienceCompanies({
 
 ```typescript
 await client.features.countAudienceUsers({
-    conditionGroups: [
+  conditionGroups: [
+    {
+      conditions: [
         {
-            conditions: [
-                {
-                    conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
-                    operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
-                    resourceIds: ["resource_ids"],
-                },
-            ],
+          conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
+          operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+          resourceIds: ["resource_ids"],
         },
-    ],
-    conditions: [
-        {
-            conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
-            operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
-            resourceIds: ["resource_ids"],
-        },
-    ],
+      ],
+    },
+  ],
+  conditions: [
+    {
+      conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
+      operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+      resourceIds: ["resource_ids"],
+    },
+  ],
 });
 ```
 
@@ -849,24 +849,24 @@ await client.features.countAudienceUsers({
 
 ```typescript
 await client.features.listAudienceCompanies({
-    conditionGroups: [
+  conditionGroups: [
+    {
+      conditions: [
         {
-            conditions: [
-                {
-                    conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
-                    operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
-                    resourceIds: ["resource_ids"],
-                },
-            ],
+          conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
+          operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+          resourceIds: ["resource_ids"],
         },
-    ],
-    conditions: [
-        {
-            conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
-            operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
-            resourceIds: ["resource_ids"],
-        },
-    ],
+      ],
+    },
+  ],
+  conditions: [
+    {
+      conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
+      operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+      resourceIds: ["resource_ids"],
+    },
+  ],
 });
 ```
 
@@ -916,24 +916,24 @@ await client.features.listAudienceCompanies({
 
 ```typescript
 await client.features.listAudienceUsers({
-    conditionGroups: [
+  conditionGroups: [
+    {
+      conditions: [
         {
-            conditions: [
-                {
-                    conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
-                    operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
-                    resourceIds: ["resource_ids"],
-                },
-            ],
+          conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
+          operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+          resourceIds: ["resource_ids"],
         },
-    ],
-    conditions: [
-        {
-            conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
-            operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
-            resourceIds: ["resource_ids"],
-        },
-    ],
+      ],
+    },
+  ],
+  conditions: [
+    {
+      conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
+      operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+      resourceIds: ["resource_ids"],
+    },
+  ],
 });
 ```
 
@@ -1031,9 +1031,9 @@ await client.features.listFeatures();
 
 ```typescript
 await client.features.createFeature({
-    description: "description",
-    featureType: Schematic.CreateFeatureRequestBodyFeatureType.Boolean,
-    name: "name",
+  description: "description",
+  featureType: Schematic.CreateFeatureRequestBodyFeatureType.Boolean,
+  name: "name",
 });
 ```
 
@@ -1331,11 +1331,11 @@ await client.features.listFlags();
 
 ```typescript
 await client.features.createFlag({
-    defaultValue: true,
-    description: "description",
-    flagType: "flag_type",
-    key: "key",
-    name: "name",
+  defaultValue: true,
+  description: "description",
+  flagType: "flag_type",
+  key: "key",
+  name: "name",
 });
 ```
 
@@ -1433,11 +1433,11 @@ await client.features.getFlag("flag_id");
 
 ```typescript
 await client.features.updateFlag("flag_id", {
-    defaultValue: true,
-    description: "description",
-    flagType: "flag_type",
-    key: "key",
-    name: "name",
+  defaultValue: true,
+  description: "description",
+  flagType: "flag_type",
+  key: "key",
+  name: "name",
 });
 ```
 
@@ -1543,31 +1543,31 @@ await client.features.deleteFlag("flag_id");
 
 ```typescript
 await client.features.updateFlagRules("flag_id", {
-    rules: [
+  rules: [
+    {
+      conditionGroups: [
         {
-            conditionGroups: [
-                {
-                    conditions: [
-                        {
-                            conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
-                            operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
-                            resourceIds: ["resource_ids"],
-                        },
-                    ],
-                },
-            ],
-            conditions: [
-                {
-                    conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
-                    operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
-                    resourceIds: ["resource_ids"],
-                },
-            ],
-            name: "name",
-            priority: 1,
-            value: true,
+          conditions: [
+            {
+              conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
+              operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+              resourceIds: ["resource_ids"],
+            },
+          ],
         },
-    ],
+      ],
+      conditions: [
+        {
+          conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
+          operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+          resourceIds: ["resource_ids"],
+        },
+      ],
+      name: "name",
+      priority: 1,
+      value: true,
+    },
+  ],
 });
 ```
 
@@ -1779,13 +1779,13 @@ await client.features.countFlags();
 
 ```typescript
 await client.billing.upsertBillingCustomer({
-    email: "email",
-    externalId: "external_id",
-    failedToImport: true,
-    meta: {
-        key: "value",
-    },
-    name: "name",
+  email: "email",
+  externalId: "external_id",
+  failedToImport: true,
+  meta: {
+    key: "value",
+  },
+  name: "name",
 });
 ```
 
@@ -1931,10 +1931,10 @@ await client.billing.countCustomers();
 
 ```typescript
 await client.billing.upsertBillingPrice({
-    interval: "interval",
-    price: 1,
-    priceExternalId: "price_external_id",
-    productExternalId: "product_external_id",
+  interval: "interval",
+  price: 1,
+  priceExternalId: "price_external_id",
+  productExternalId: "product_external_id",
 });
 ```
 
@@ -2032,11 +2032,11 @@ await client.billing.listProductPrices();
 
 ```typescript
 await client.billing.upsertBillingProduct({
-    currency: "currency",
-    externalId: "external_id",
-    name: "name",
-    price: 1.1,
-    quantity: 1,
+  currency: "currency",
+  externalId: "external_id",
+  name: "name",
+  price: 1.1,
+  quantity: 1,
 });
 ```
 
@@ -2134,16 +2134,16 @@ await client.billing.listBillingProducts();
 
 ```typescript
 await client.billing.upsertBillingSubscription({
-    customerExternalId: "customer_external_id",
-    expiredAt: new Date("2024-01-15T09:30:00.000Z"),
-    productExternalIds: [
-        {
-            price: 1,
-            productExternalId: "product_external_id",
-        },
-    ],
-    subscriptionExternalId: "subscription_external_id",
-    totalPrice: 1,
+  customerExternalId: "customer_external_id",
+  expiredAt: new Date("2024-01-15T09:30:00.000Z"),
+  productExternalIds: [
+    {
+      price: 1,
+      productExternalId: "product_external_id",
+    },
+  ],
+  subscriptionExternalId: "subscription_external_id",
+  totalPrice: 1,
 });
 ```
 
@@ -2243,9 +2243,9 @@ await client.companies.listCompanies();
 
 ```typescript
 await client.companies.upsertCompany({
-    keys: {
-        key: "value",
-    },
+  keys: {
+    key: "value",
+  },
 });
 ```
 
@@ -2439,9 +2439,9 @@ await client.companies.countCompanies();
 
 ```typescript
 await client.companies.createCompany({
-    keys: {
-        key: "value",
-    },
+  keys: {
+    key: "value",
+  },
 });
 ```
 
@@ -2491,9 +2491,9 @@ await client.companies.createCompany({
 
 ```typescript
 await client.companies.deleteCompanyByKeys({
-    keys: {
-        key: "value",
-    },
+  keys: {
+    key: "value",
+  },
 });
 ```
 
@@ -2543,11 +2543,11 @@ await client.companies.deleteCompanyByKeys({
 
 ```typescript
 await client.companies.lookupCompany({
-    keys: {
-        string: {
-            key: "value",
-        },
+  keys: {
+    string: {
+      key: "value",
     },
+  },
 });
 ```
 
@@ -2597,8 +2597,8 @@ await client.companies.lookupCompany({
 
 ```typescript
 await client.companies.getActiveDeals({
-    companyId: "company_id",
-    dealStage: "deal_stage",
+  companyId: "company_id",
+  dealStage: "deal_stage",
 });
 ```
 
@@ -2696,8 +2696,8 @@ await client.companies.listCompanyMemberships();
 
 ```typescript
 await client.companies.getOrCreateCompanyMembership({
-    companyId: "company_id",
-    userId: "user_id",
+  companyId: "company_id",
+  userId: "user_id",
 });
 ```
 
@@ -2843,7 +2843,7 @@ await client.companies.listCompanyPlans();
 
 ```typescript
 await client.companies.getActiveCompanySubscription({
-    companyId: "company_id",
+  companyId: "company_id",
 });
 ```
 
@@ -2893,10 +2893,10 @@ await client.companies.getActiveCompanySubscription({
 
 ```typescript
 await client.companies.upsertCompanyTrait({
-    keys: {
-        key: "value",
-    },
-    trait: "trait",
+  keys: {
+    key: "value",
+  },
+  trait: "trait",
 });
 ```
 
@@ -3090,9 +3090,9 @@ await client.companies.listEntityTraitDefinitions();
 
 ```typescript
 await client.companies.getOrCreateEntityTraitDefinition({
-    entityType: Schematic.CreateEntityTraitDefinitionRequestBodyEntityType.Company,
-    hierarchy: ["hierarchy"],
-    traitType: Schematic.CreateEntityTraitDefinitionRequestBodyTraitType.Boolean,
+  entityType: Schematic.CreateEntityTraitDefinitionRequestBodyEntityType.Company,
+  hierarchy: ["hierarchy"],
+  traitType: Schematic.CreateEntityTraitDefinitionRequestBodyTraitType.Boolean,
 });
 ```
 
@@ -3190,7 +3190,7 @@ await client.companies.getEntityTraitDefinition("entity_trait_definition_id");
 
 ```typescript
 await client.companies.updateEntityTraitDefinition("entity_trait_definition_id", {
-    traitType: Schematic.UpdateEntityTraitDefinitionRequestBodyTraitType.Boolean,
+  traitType: Schematic.UpdateEntityTraitDefinitionRequestBodyTraitType.Boolean,
 });
 ```
 
@@ -3296,7 +3296,7 @@ await client.companies.countEntityTraitDefinitions();
 
 ```typescript
 await client.companies.getEntityTraitValues({
-    definitionId: "definition_id",
+  definitionId: "definition_id",
 });
 ```
 
@@ -3346,10 +3346,10 @@ await client.companies.getEntityTraitValues({
 
 ```typescript
 await client.companies.upsertUserTrait({
-    keys: {
-        key: "value",
-    },
-    trait: "trait",
+  keys: {
+    key: "value",
+  },
+  trait: "trait",
 });
 ```
 
@@ -3447,12 +3447,12 @@ await client.companies.listUsers();
 
 ```typescript
 await client.companies.upsertUser({
-    company: {
-        key: "value",
-    },
-    keys: {
-        key: "value",
-    },
+  company: {
+    key: "value",
+  },
+  keys: {
+    key: "value",
+  },
 });
 ```
 
@@ -3646,12 +3646,12 @@ await client.companies.countUsers();
 
 ```typescript
 await client.companies.createUser({
-    company: {
-        key: "value",
-    },
-    keys: {
-        key: "value",
-    },
+  company: {
+    key: "value",
+  },
+  keys: {
+    key: "value",
+  },
 });
 ```
 
@@ -3701,9 +3701,9 @@ await client.companies.createUser({
 
 ```typescript
 await client.companies.deleteUserByKeys({
-    keys: {
-        key: "value",
-    },
+  keys: {
+    key: "value",
+  },
 });
 ```
 
@@ -3753,11 +3753,11 @@ await client.companies.deleteUserByKeys({
 
 ```typescript
 await client.companies.lookupUser({
-    keys: {
-        string: {
-            key: "value",
-        },
+  keys: {
+    string: {
+      key: "value",
     },
+  },
 });
 ```
 
@@ -3857,9 +3857,9 @@ await client.entitlements.listCompanyOverrides();
 
 ```typescript
 await client.entitlements.createCompanyOverride({
-    companyId: "company_id",
-    featureId: "feature_id",
-    valueType: Schematic.CreateCompanyOverrideRequestBodyValueType.Boolean,
+  companyId: "company_id",
+  featureId: "feature_id",
+  valueType: Schematic.CreateCompanyOverrideRequestBodyValueType.Boolean,
 });
 ```
 
@@ -3957,7 +3957,7 @@ await client.entitlements.getCompanyOverride("company_override_id");
 
 ```typescript
 await client.entitlements.updateCompanyOverride("company_override_id", {
-    valueType: Schematic.UpdateCompanyOverrideRequestBodyValueType.Boolean,
+  valueType: Schematic.UpdateCompanyOverrideRequestBodyValueType.Boolean,
 });
 ```
 
@@ -4111,7 +4111,7 @@ await client.entitlements.countCompanyOverrides();
 
 ```typescript
 await client.entitlements.listFeatureCompanies({
-    featureId: "feature_id",
+  featureId: "feature_id",
 });
 ```
 
@@ -4161,7 +4161,7 @@ await client.entitlements.listFeatureCompanies({
 
 ```typescript
 await client.entitlements.countFeatureCompanies({
-    featureId: "feature_id",
+  featureId: "feature_id",
 });
 ```
 
@@ -4307,7 +4307,7 @@ await client.entitlements.countFeatureUsage();
 
 ```typescript
 await client.entitlements.listFeatureUsers({
-    featureId: "feature_id",
+  featureId: "feature_id",
 });
 ```
 
@@ -4357,7 +4357,7 @@ await client.entitlements.listFeatureUsers({
 
 ```typescript
 await client.entitlements.countFeatureUsers({
-    featureId: "feature_id",
+  featureId: "feature_id",
 });
 ```
 
@@ -4455,9 +4455,9 @@ await client.entitlements.listPlanEntitlements();
 
 ```typescript
 await client.entitlements.createPlanEntitlement({
-    featureId: "feature_id",
-    planId: "plan_id",
-    valueType: Schematic.CreatePlanEntitlementRequestBodyValueType.Boolean,
+  featureId: "feature_id",
+  planId: "plan_id",
+  valueType: Schematic.CreatePlanEntitlementRequestBodyValueType.Boolean,
 });
 ```
 
@@ -4555,7 +4555,7 @@ await client.entitlements.getPlanEntitlement("plan_entitlement_id");
 
 ```typescript
 await client.entitlements.updatePlanEntitlement("plan_entitlement_id", {
-    valueType: Schematic.UpdatePlanEntitlementRequestBodyValueType.Boolean,
+  valueType: Schematic.UpdatePlanEntitlementRequestBodyValueType.Boolean,
 });
 ```
 
@@ -4709,11 +4709,11 @@ await client.entitlements.countPlanEntitlements();
 
 ```typescript
 await client.entitlements.getFeatureUsageByCompany({
-    keys: {
-        string: {
-            key: "value",
-        },
+  keys: {
+    string: {
+      key: "value",
     },
+  },
 });
 ```
 
@@ -4813,9 +4813,9 @@ await client.components.listComponents();
 
 ```typescript
 await client.components.createComponent({
-    ast: [1],
-    entityType: Schematic.CreateComponentRequestBodyEntityType.Entitlement,
-    name: "name",
+  ast: [1],
+  entityType: Schematic.CreateComponentRequestBodyEntityType.Entitlement,
+  name: "name",
 });
 ```
 
@@ -5115,8 +5115,8 @@ await client.components.countComponents();
 
 ```typescript
 await client.crm.upsertDealLineItemAssociation({
-    dealExternalId: "deal_external_id",
-    lineItemExternalId: "line_item_external_id",
+  dealExternalId: "deal_external_id",
+  lineItemExternalId: "line_item_external_id",
 });
 ```
 
@@ -5166,11 +5166,11 @@ await client.crm.upsertDealLineItemAssociation({
 
 ```typescript
 await client.crm.upsertLineItem({
-    amount: "amount",
-    interval: "interval",
-    lineItemExternalId: "line_item_external_id",
-    productExternalId: "product_external_id",
-    quantity: 1,
+  amount: "amount",
+  interval: "interval",
+  lineItemExternalId: "line_item_external_id",
+  productExternalId: "product_external_id",
+  quantity: 1,
 });
 ```
 
@@ -5220,9 +5220,9 @@ await client.crm.upsertLineItem({
 
 ```typescript
 await client.crm.upsertCrmDeal({
-    crmCompanyKey: "crm_company_key",
-    crmType: "crm_type",
-    dealExternalId: "deal_external_id",
+  crmCompanyKey: "crm_company_key",
+  crmType: "crm_type",
+  dealExternalId: "deal_external_id",
 });
 ```
 
@@ -5320,14 +5320,14 @@ await client.crm.listCrmProducts();
 
 ```typescript
 await client.crm.upsertCrmProduct({
-    currency: "currency",
-    description: "description",
-    externalId: "external_id",
-    interval: "interval",
-    name: "name",
-    price: "price",
-    quantity: 1,
-    sku: "sku",
+  currency: "currency",
+  description: "description",
+  externalId: "external_id",
+  interval: "interval",
+  name: "name",
+  price: "price",
+  quantity: 1,
+  sku: "sku",
 });
 ```
 
@@ -5379,11 +5379,11 @@ await client.crm.upsertCrmProduct({
 
 ```typescript
 await client.events.createEventBatch({
-    events: [
-        {
-            eventType: Schematic.CreateEventRequestBodyEventType.Identify,
-        },
-    ],
+  events: [
+    {
+      eventType: Schematic.CreateEventRequestBodyEventType.Identify,
+    },
+  ],
 });
 ```
 
@@ -5577,7 +5577,7 @@ await client.events.listEvents();
 
 ```typescript
 await client.events.createEvent({
-    eventType: Schematic.CreateEventRequestBodyEventType.Identify,
+  eventType: Schematic.CreateEventRequestBodyEventType.Identify,
 });
 ```
 
@@ -5813,24 +5813,24 @@ await client.plans.getAudience("plan_audience_id");
 
 ```typescript
 await client.plans.updateAudience("plan_audience_id", {
-    conditionGroups: [
+  conditionGroups: [
+    {
+      conditions: [
         {
-            conditions: [
-                {
-                    conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
-                    operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
-                    resourceIds: ["resource_ids"],
-                },
-            ],
+          conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
+          operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+          resourceIds: ["resource_ids"],
         },
-    ],
-    conditions: [
-        {
-            conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
-            operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
-            resourceIds: ["resource_ids"],
-        },
-    ],
+      ],
+    },
+  ],
+  conditions: [
+    {
+      conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
+      operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+      resourceIds: ["resource_ids"],
+    },
+  ],
 });
 ```
 
@@ -5984,9 +5984,9 @@ await client.plans.listPlans();
 
 ```typescript
 await client.plans.createPlan({
-    description: "description",
-    name: "name",
-    planType: Schematic.CreatePlanRequestBodyPlanType.Plan,
+  description: "description",
+  name: "name",
+  planType: Schematic.CreatePlanRequestBodyPlanType.Plan,
 });
 ```
 
@@ -6084,8 +6084,8 @@ await client.plans.getPlan("plan_id");
 
 ```typescript
 await client.plans.updatePlan("plan_id", {
-    audienceType: "audience_type",
-    name: "name",
+  audienceType: "audience_type",
+  name: "name",
 });
 ```
 
@@ -6191,7 +6191,7 @@ await client.plans.deletePlan("plan_id");
 
 ```typescript
 await client.plans.upsertBillingProductPlan("plan_id", {
-    billingProductId: "billing_product_id",
+  billingProductId: "billing_product_id",
 });
 ```
 
@@ -6299,10 +6299,10 @@ await client.plans.countPlans();
 
 ```typescript
 await client.accesstokens.issueTemporaryAccessToken({
-    lookup: {
-        key: "value",
-    },
-    resourceType: "resource_type",
+  lookup: {
+    key: "value",
+  },
+  resourceType: "resource_type",
 });
 ```
 
@@ -6546,9 +6546,9 @@ await client.webhooks.listWebhooks();
 
 ```typescript
 await client.webhooks.createWebhook({
-    name: "name",
-    requestTypes: [Schematic.CreateWebhookRequestBodyRequestTypesItem.CompanyUpdated],
-    url: "url",
+  name: "name",
+  requestTypes: [Schematic.CreateWebhookRequestBodyRequestTypesItem.CompanyUpdated],
+  url: "url",
 });
 ```
 

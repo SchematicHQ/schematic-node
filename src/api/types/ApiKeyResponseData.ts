@@ -6,12 +6,12 @@
  * The updated resource
  */
 export interface ApiKeyResponseData {
-    createdAt: Date;
-    description?: string;
-    environmentId?: string;
-    id: string;
-    lastUsedAt?: Date;
-    name: string;
-    scopes: string[];
-    updatedAt: Date;
+  createdAt: Date;
+  description?: string;
+  environmentId?: string;
+  id: string;
+  lastUsedAt?: Date;
+  name: string;
+  scopes: string[];
+  updatedAt: Date;
 }

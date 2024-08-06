@@ -5,8 +5,8 @@
 import * as Schematic from "../../../index";
 
 export interface ListEventsResponse {
-    /** The returned resources */
-    data: Schematic.EventDetailResponseData[];
-    /** Input parameters */
-    params: Schematic.ListEventsParams;
+  /** The returned resources */
+  data: Schematic.EventDetailResponseData[];
+  /** Input parameters */
+  params: Schematic.ListEventsParams;
 }

@@ -9,16 +9,16 @@ import { FlagResponseData } from "./FlagResponseData";
 import { RuleDetailResponseData } from "./RuleDetailResponseData";
 
 export const RulesDetailResponseData: core.serialization.ObjectSchema<
-    serializers.RulesDetailResponseData.Raw,
-    Schematic.RulesDetailResponseData
+  serializers.RulesDetailResponseData.Raw,
+  Schematic.RulesDetailResponseData
 > = core.serialization.object({
-    flag: core.serialization.property("Flag", FlagResponseData.optional()),
-    rules: core.serialization.list(RuleDetailResponseData),
+  flag: core.serialization.property("Flag", FlagResponseData.optional()),
+  rules: core.serialization.list(RuleDetailResponseData),
 });
 
 export declare namespace RulesDetailResponseData {
-    interface Raw {
-        Flag?: FlagResponseData.Raw | null;
-        rules: RuleDetailResponseData.Raw[];
-    }
+  interface Raw {
+    Flag?: FlagResponseData.Raw | null;
+    rules: RuleDetailResponseData.Raw[];
+  }
 }

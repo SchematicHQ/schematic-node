@@ -3,6 +3,6 @@
  */
 
 export interface EntityTraitValue {
-    definitionId: string;
-    value: string;
+  definitionId: string;
+  value: string;
 }

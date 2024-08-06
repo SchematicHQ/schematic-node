@@ -9,16 +9,16 @@ import { CompanyMembershipDetailResponseData } from "../../../types/CompanyMembe
 import { ListCompanyMembershipsParams } from "./ListCompanyMembershipsParams";
 
 export const ListCompanyMembershipsResponse: core.serialization.ObjectSchema<
-    serializers.ListCompanyMembershipsResponse.Raw,
-    Schematic.ListCompanyMembershipsResponse
+  serializers.ListCompanyMembershipsResponse.Raw,
+  Schematic.ListCompanyMembershipsResponse
 > = core.serialization.object({
-    data: core.serialization.list(CompanyMembershipDetailResponseData),
-    params: ListCompanyMembershipsParams,
+  data: core.serialization.list(CompanyMembershipDetailResponseData),
+  params: ListCompanyMembershipsParams,
 });
 
 export declare namespace ListCompanyMembershipsResponse {
-    interface Raw {
-        data: CompanyMembershipDetailResponseData.Raw[];
-        params: ListCompanyMembershipsParams.Raw;
-    }
+  interface Raw {
+    data: CompanyMembershipDetailResponseData.Raw[];
+    params: ListCompanyMembershipsParams.Raw;
+  }
 }

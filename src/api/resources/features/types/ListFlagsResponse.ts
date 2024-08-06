@@ -5,8 +5,8 @@
 import * as Schematic from "../../../index";
 
 export interface ListFlagsResponse {
-    /** The returned resources */
-    data: Schematic.FlagDetailResponseData[];
-    /** Input parameters */
-    params: Schematic.ListFlagsParams;
+  /** The returned resources */
+  data: Schematic.FlagDetailResponseData[];
+  /** Input parameters */
+  params: Schematic.ListFlagsParams;
 }

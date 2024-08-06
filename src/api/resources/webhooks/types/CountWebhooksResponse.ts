@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface CountWebhooksResponse {
-    data: Schematic.CountResponse;
-    /** Input parameters */
-    params: Schematic.CountWebhooksParams;
+  data: Schematic.CountResponse;
+  /** Input parameters */
+  params: Schematic.CountWebhooksParams;
 }

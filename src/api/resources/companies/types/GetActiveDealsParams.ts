@@ -6,10 +6,10 @@
  * Input parameters
  */
 export interface GetActiveDealsParams {
-    companyId?: string;
-    dealStage?: string;
-    /** Page limit (default 100) */
-    limit?: number;
-    /** Page offset (default 0) */
-    offset?: number;
+  companyId?: string;
+  dealStage?: string;
+  /** Page limit (default 100) */
+  limit?: number;
+  /** Page offset (default 0) */
+  offset?: number;
 }

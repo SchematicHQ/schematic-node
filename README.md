@@ -36,9 +36,9 @@ const apiKey = process.env.SCHEMATIC_API_KEY;
 const cacheSize = 100;
 const cacheTTL = 1000; // in milliseconds
 const client = new SchematicClient(apiKey, {
-    cacheProviders: {
-        flagChecks: [new LocalCache<boolean>({ size: cacheSize, ttl: cacheTTL })],
-    },
+  cacheProviders: {
+    flagChecks: [new LocalCache<boolean>({ size: cacheSize, ttl: cacheTTL })],
+  },
 });
 
 // interactions with the client
@@ -53,9 +53,9 @@ import { SchematicClient } from "@schematichq/schematic-typescript-node";
 
 const apiKey = process.env.SCHEMATIC_API_KEY;
 const client = new SchematicClient(apiKey, {
-    cacheProviders: {
-        flagChecks: [],
-    },
+  cacheProviders: {
+    flagChecks: [],
+  },
 });
 
 // interactions with the client
@@ -70,9 +70,9 @@ import { SchematicClient } from "@schematichq/schematic-typescript-node";
 
 const apiKey = process.env.SCHEMATIC_API_KEY;
 const client = new SchematicClient(apiKey, {
-    flagDefaults: {
-        "some-flag-key": true,
-    },
+  flagDefaults: {
+    "some-flag-key": true,
+  },
 });
 
 // interactions with the client
@@ -92,19 +92,19 @@ import { SchematicClient } from "@schematichq/schematic-typescript-node";
 const client = new SchematicClient(process.env.SCHEMATIC_API_KEY);
 
 client.identify({
-    company: {
-        id: "your-company-id",
-    },
-    keys: {
-        email: "wcoyote@acme.net",
-        userId: "your-user-id",
-    },
-    name: "Wile E. Coyote",
-    traits: {
-        city: "Atlanta",
-        loginCount: 24,
-        isStaff: false,
-    },
+  company: {
+    id: "your-company-id",
+  },
+  keys: {
+    email: "wcoyote@acme.net",
+    userId: "your-user-id",
+  },
+  name: "Wile E. Coyote",
+  traits: {
+    city: "Atlanta",
+    loginCount: 24,
+    isStaff: false,
+  },
 });
 
 client.close();
@@ -122,14 +122,14 @@ import { SchematicClient } from "@schematichq/schematic-typescript-node";
 const client = new SchematicClient(process.env.SCHEMATIC_API_KEY);
 
 client.track({
-    event: "some-action",
-    company: {
-        id: "your-company-id",
-    },
-    user: {
-        email: "wcoyote@acme.net",
-        userId: "your-user-id",
-    },
+  event: "some-action",
+  company: {
+    id: "your-company-id",
+  },
+  user: {
+    email: "wcoyote@acme.net",
+    userId: "your-user-id",
+  },
 });
 
 client.close();
@@ -147,23 +147,23 @@ import { SchematicClient } from "@schematichq/schematic-typescript-node";
 const client = new SchematicClient(process.env.SCHEMATIC_API_KEY);
 
 const body = {
-    keys: {
-        id: "your-company-id",
-    },
-    name: "Acme Widgets, Inc.",
-    traits: {
-        city: "Atlanta",
-        highScore: 25,
-        isActive: true,
-    },
+  keys: {
+    id: "your-company-id",
+  },
+  name: "Acme Widgets, Inc.",
+  traits: {
+    city: "Atlanta",
+    highScore: 25,
+    isActive: true,
+  },
 };
 
 client.companies
-    .upsertCompany(body)
-    .then((response) => {
-        console.log(response.data);
-    })
-    .catch(console.error);
+  .upsertCompany(body)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch(console.error);
 
 client.close();
 ```
@@ -182,25 +182,25 @@ import { SchematicClient } from "@schematichq/schematic-typescript-node";
 const client = new SchematicClient(process.env.SCHEMATIC_API_KEY);
 
 const body = {
-    keys: {
-        email: "wcoyote@acme.net",
-        userId: "your-user-id",
-    },
-    company: { id: "your-company-id" },
-    name: "Wile E. Coyote",
-    traits: {
-        city: "Atlanta",
-        loginCount: 24,
-        isStaff: false,
-    },
+  keys: {
+    email: "wcoyote@acme.net",
+    userId: "your-user-id",
+  },
+  company: { id: "your-company-id" },
+  name: "Wile E. Coyote",
+  traits: {
+    city: "Atlanta",
+    loginCount: 24,
+    isStaff: false,
+  },
 };
 
 client.companies
-    .upsertUser(body)
-    .then((response) => {
-        console.log(response.data);
-    })
-    .catch(console.error);
+  .upsertUser(body)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch(console.error);
 
 client.close();
 ```
@@ -219,23 +219,23 @@ import { SchematicClient } from "@schematichq/schematic-typescript-node";
 const client = new SchematicClient(process.env.SCHEMATIC_API_KEY);
 
 const evaluationCtx = {
-    company: { id: "your-company-id" },
-    user: {
-        email: "wcoyote@acme.net",
-        userId: "your-user-id",
-    },
+  company: { id: "your-company-id" },
+  user: {
+    email: "wcoyote@acme.net",
+    userId: "your-user-id",
+  },
 };
 
 client
-    .checkFlag(evaluationCtx, "some-flag-key")
-    .then((isFlagOn) => {
-        if (isFlagOn) {
-            // Flag is on
-        } else {
-            // Flag is off
-        }
-    })
-    .catch(console.error);
+  .checkFlag(evaluationCtx, "some-flag-key")
+  .then((isFlagOn) => {
+    if (isFlagOn) {
+      // Flag is on
+    } else {
+      // Flag is off
+    }
+  })
+  .catch(console.error);
 
 client.close();
 ```
@@ -264,8 +264,8 @@ Offline mode works well with flag defaults:
 import { SchematicClient } from "@schematichq/schematic-typescript-node";
 
 const client = new SchematicClient("", {
-    flagDefaults: { "some-flag-key": true },
-    offline: true,
+  flagDefaults: { "some-flag-key": true },
+  offline: true,
 });
 
 // interactions with the client

@@ -8,15 +8,15 @@ import * as Schematic from "../index";
  * The updated resource
  */
 export interface PlanDetailResponseData {
-    audienceType: string;
-    billingProduct?: Schematic.BillingProductDetailResponseData;
-    companyCount: number;
-    createdAt: Date;
-    description: string;
-    features: Schematic.FeatureDetailResponseData[];
-    icon: string;
-    id: string;
-    name: string;
-    planType: string;
-    updatedAt: Date;
+  audienceType: string;
+  billingProduct?: Schematic.BillingProductDetailResponseData;
+  companyCount: number;
+  createdAt: Date;
+  description: string;
+  features: Schematic.FeatureDetailResponseData[];
+  icon: string;
+  id: string;
+  name: string;
+  planType: string;
+  updatedAt: Date;
 }

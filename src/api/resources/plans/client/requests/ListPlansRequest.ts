@@ -7,19 +7,19 @@
  *     {}
  */
 export interface ListPlansRequest {
-    companyId?: string;
-    ids?: string | string[];
-    q?: string;
-    /**
-     * Filter out plans that already have a plan entitlement for the specified feature ID
-     */
-    withoutEntitlementFor?: string;
-    /**
-     * Page limit (default 100)
-     */
-    limit?: number;
-    /**
-     * Page offset (default 0)
-     */
-    offset?: number;
+  companyId?: string;
+  ids?: string | string[];
+  q?: string;
+  /**
+   * Filter out plans that already have a plan entitlement for the specified feature ID
+   */
+  withoutEntitlementFor?: string;
+  /**
+   * Page limit (default 100)
+   */
+  limit?: number;
+  /**
+   * Page offset (default 0)
+   */
+  offset?: number;
 }

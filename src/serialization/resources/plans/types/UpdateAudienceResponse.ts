@@ -8,16 +8,16 @@ import * as core from "../../../../core";
 import { PlanAudienceDetailResponseData } from "../../../types/PlanAudienceDetailResponseData";
 
 export const UpdateAudienceResponse: core.serialization.ObjectSchema<
-    serializers.UpdateAudienceResponse.Raw,
-    Schematic.UpdateAudienceResponse
+  serializers.UpdateAudienceResponse.Raw,
+  Schematic.UpdateAudienceResponse
 > = core.serialization.object({
-    data: PlanAudienceDetailResponseData,
-    params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+  data: PlanAudienceDetailResponseData,
+  params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
 export declare namespace UpdateAudienceResponse {
-    interface Raw {
-        data: PlanAudienceDetailResponseData.Raw;
-        params: Record<string, unknown>;
-    }
+  interface Raw {
+    data: PlanAudienceDetailResponseData.Raw;
+    params: Record<string, unknown>;
+  }
 }

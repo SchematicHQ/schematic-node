@@ -9,8 +9,8 @@ import * as Schematic from "../../../../index";
  *     {}
  */
 export interface UpdateWebhookRequestBody {
-    name?: string;
-    requestTypes?: Schematic.UpdateWebhookRequestBodyRequestTypesItem[];
-    status?: Schematic.UpdateWebhookRequestBodyStatus;
-    url?: string;
+  name?: string;
+  requestTypes?: Schematic.UpdateWebhookRequestBodyRequestTypesItem[];
+  status?: Schematic.UpdateWebhookRequestBodyStatus;
+  url?: string;
 }

@@ -8,14 +8,14 @@ import * as core from "../../core";
 import { RawEventResponseData } from "./RawEventResponseData";
 
 export const RawEventBatchResponseData: core.serialization.ObjectSchema<
-    serializers.RawEventBatchResponseData.Raw,
-    Schematic.RawEventBatchResponseData
+  serializers.RawEventBatchResponseData.Raw,
+  Schematic.RawEventBatchResponseData
 > = core.serialization.object({
-    events: core.serialization.list(RawEventResponseData),
+  events: core.serialization.list(RawEventResponseData),
 });
 
 export declare namespace RawEventBatchResponseData {
-    interface Raw {
-        events: RawEventResponseData.Raw[];
-    }
+  interface Raw {
+    events: RawEventResponseData.Raw[];
+  }
 }

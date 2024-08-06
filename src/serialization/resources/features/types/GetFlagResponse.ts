@@ -8,16 +8,16 @@ import * as core from "../../../../core";
 import { FlagDetailResponseData } from "../../../types/FlagDetailResponseData";
 
 export const GetFlagResponse: core.serialization.ObjectSchema<
-    serializers.GetFlagResponse.Raw,
-    Schematic.GetFlagResponse
+  serializers.GetFlagResponse.Raw,
+  Schematic.GetFlagResponse
 > = core.serialization.object({
-    data: FlagDetailResponseData,
-    params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+  data: FlagDetailResponseData,
+  params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
 export declare namespace GetFlagResponse {
-    interface Raw {
-        data: FlagDetailResponseData.Raw;
-        params: Record<string, unknown>;
-    }
+  interface Raw {
+    data: FlagDetailResponseData.Raw;
+    params: Record<string, unknown>;
+  }
 }
