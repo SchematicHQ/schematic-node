@@ -1,6 +1,6 @@
 # Specify files that shouldn't be modified by Fern
 
-.prettierrc
+.prettierrc.yml
 .husky/pre-commit
 README.md
 generate-version.js
