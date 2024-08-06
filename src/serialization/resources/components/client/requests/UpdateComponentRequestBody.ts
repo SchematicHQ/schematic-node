@@ -12,7 +12,7 @@ export const UpdateComponentRequestBody: core.serialization.Schema<
     serializers.UpdateComponentRequestBody.Raw,
     Schematic.UpdateComponentRequestBody
 > = core.serialization.object({
-    ast: core.serialization.list(core.serialization.number()).optional(),
+    ast: core.serialization.record(core.serialization.string(), core.serialization.number()).optional(),
     entityType: core.serialization.property("entity_type", UpdateComponentRequestBodyEntityType.optional()),
     name: core.serialization.string().optional(),
     state: UpdateComponentRequestBodyState.optional(),
@@ -20,7 +20,7 @@ export const UpdateComponentRequestBody: core.serialization.Schema<
 
 export declare namespace UpdateComponentRequestBody {
     interface Raw {
-        ast?: number[] | null;
+        ast?: Record<string, number> | null;
         entity_type?: UpdateComponentRequestBodyEntityType.Raw | null;
         name?: string | null;
         state?: UpdateComponentRequestBodyState.Raw | null;
