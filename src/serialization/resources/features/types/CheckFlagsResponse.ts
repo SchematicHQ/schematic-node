@@ -8,16 +8,16 @@ import * as core from "../../../../core";
 import { CheckFlagsResponseData } from "../../../types/CheckFlagsResponseData";
 
 export const CheckFlagsResponse: core.serialization.ObjectSchema<
-    serializers.CheckFlagsResponse.Raw,
-    Schematic.CheckFlagsResponse
+  serializers.CheckFlagsResponse.Raw,
+  Schematic.CheckFlagsResponse
 > = core.serialization.object({
-    data: CheckFlagsResponseData,
-    params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+  data: CheckFlagsResponseData,
+  params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
 export declare namespace CheckFlagsResponse {
-    interface Raw {
-        data: CheckFlagsResponseData.Raw;
-        params: Record<string, unknown>;
-    }
+  interface Raw {
+    data: CheckFlagsResponseData.Raw;
+    params: Record<string, unknown>;
+  }
 }

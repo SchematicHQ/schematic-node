@@ -9,16 +9,16 @@ import { ApiKeyRequestListResponseData } from "../../../types/ApiKeyRequestListR
 import { ListApiRequestsParams } from "./ListApiRequestsParams";
 
 export const ListApiRequestsResponse: core.serialization.ObjectSchema<
-    serializers.ListApiRequestsResponse.Raw,
-    Schematic.ListApiRequestsResponse
+  serializers.ListApiRequestsResponse.Raw,
+  Schematic.ListApiRequestsResponse
 > = core.serialization.object({
-    data: core.serialization.list(ApiKeyRequestListResponseData),
-    params: ListApiRequestsParams,
+  data: core.serialization.list(ApiKeyRequestListResponseData),
+  params: ListApiRequestsParams,
 });
 
 export declare namespace ListApiRequestsResponse {
-    interface Raw {
-        data: ApiKeyRequestListResponseData.Raw[];
-        params: ListApiRequestsParams.Raw;
-    }
+  interface Raw {
+    data: ApiKeyRequestListResponseData.Raw[];
+    params: ListApiRequestsParams.Raw;
+  }
 }

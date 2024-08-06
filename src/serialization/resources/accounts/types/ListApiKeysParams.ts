@@ -7,20 +7,20 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const ListApiKeysParams: core.serialization.ObjectSchema<
-    serializers.ListApiKeysParams.Raw,
-    Schematic.ListApiKeysParams
+  serializers.ListApiKeysParams.Raw,
+  Schematic.ListApiKeysParams
 > = core.serialization.object({
-    environmentId: core.serialization.property("environment_id", core.serialization.string().optional()),
-    limit: core.serialization.number().optional(),
-    offset: core.serialization.number().optional(),
-    requireEnvironment: core.serialization.property("require_environment", core.serialization.boolean().optional()),
+  environmentId: core.serialization.property("environment_id", core.serialization.string().optional()),
+  limit: core.serialization.number().optional(),
+  offset: core.serialization.number().optional(),
+  requireEnvironment: core.serialization.property("require_environment", core.serialization.boolean().optional()),
 });
 
 export declare namespace ListApiKeysParams {
-    interface Raw {
-        environment_id?: string | null;
-        limit?: number | null;
-        offset?: number | null;
-        require_environment?: boolean | null;
-    }
+  interface Raw {
+    environment_id?: string | null;
+    limit?: number | null;
+    offset?: number | null;
+    require_environment?: boolean | null;
+  }
 }

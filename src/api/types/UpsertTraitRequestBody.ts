@@ -3,14 +3,14 @@
  */
 
 export interface UpsertTraitRequestBody {
-    /** Amount to increment the trait by (positive or negative) */
-    incr?: number;
-    /** Key/value pairs too identify a company or user */
-    keys: Record<string, string>;
-    /** Value to set the trait to */
-    set?: string;
-    /** Name of the trait to update */
-    trait: string;
-    /** Unless this is set, the company or user will be created if it does not already exist */
-    updateOnly?: boolean;
+  /** Amount to increment the trait by (positive or negative) */
+  incr?: number;
+  /** Key/value pairs too identify a company or user */
+  keys: Record<string, string>;
+  /** Value to set the trait to */
+  set?: string;
+  /** Name of the trait to update */
+  trait: string;
+  /** Unless this is set, the company or user will be created if it does not already exist */
+  updateOnly?: boolean;
 }

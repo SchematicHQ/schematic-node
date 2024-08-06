@@ -9,16 +9,16 @@ import { CountResponse } from "../../../types/CountResponse";
 import { CountCompaniesParams } from "./CountCompaniesParams";
 
 export const CountCompaniesResponse: core.serialization.ObjectSchema<
-    serializers.CountCompaniesResponse.Raw,
-    Schematic.CountCompaniesResponse
+  serializers.CountCompaniesResponse.Raw,
+  Schematic.CountCompaniesResponse
 > = core.serialization.object({
-    data: CountResponse,
-    params: CountCompaniesParams,
+  data: CountResponse,
+  params: CountCompaniesParams,
 });
 
 export declare namespace CountCompaniesResponse {
-    interface Raw {
-        data: CountResponse.Raw;
-        params: CountCompaniesParams.Raw;
-    }
+  interface Raw {
+    data: CountResponse.Raw;
+    params: CountCompaniesParams.Raw;
+  }
 }

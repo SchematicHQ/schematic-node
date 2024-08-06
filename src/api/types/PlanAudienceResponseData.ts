@@ -3,14 +3,14 @@
  */
 
 export interface PlanAudienceResponseData {
-    createdAt: Date;
-    environmentId: string;
-    flagId?: string;
-    id: string;
-    name: string;
-    planId?: string;
-    priority: number;
-    ruleType: string;
-    updatedAt: Date;
-    value: boolean;
+  createdAt: Date;
+  environmentId: string;
+  flagId?: string;
+  id: string;
+  name: string;
+  planId?: string;
+  priority: number;
+  ruleType: string;
+  updatedAt: Date;
+  value: boolean;
 }

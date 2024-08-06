@@ -5,10 +5,10 @@
 export type CountEntityTraitDefinitionsRequestTraitType = "boolean" | "currency" | "date" | "number" | "string" | "url";
 
 export const CountEntityTraitDefinitionsRequestTraitType = {
-    Boolean: "boolean",
-    Currency: "currency",
-    Date: "date",
-    Number: "number",
-    String: "string",
-    Url: "url",
+  Boolean: "boolean",
+  Currency: "currency",
+  Date: "date",
+  Number: "number",
+  String: "string",
+  Url: "url",
 } as const;

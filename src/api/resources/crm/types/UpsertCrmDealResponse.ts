@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface UpsertCrmDealResponse {
-    data: Schematic.CrmDealResponseData;
-    /** Input parameters */
-    params: Record<string, unknown>;
+  data: Schematic.CrmDealResponseData;
+  /** Input parameters */
+  params: Record<string, unknown>;
 }

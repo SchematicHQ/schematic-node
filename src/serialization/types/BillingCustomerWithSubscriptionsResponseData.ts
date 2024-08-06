@@ -8,30 +8,30 @@ import * as core from "../../core";
 import { BillingCustomerSubscription } from "./BillingCustomerSubscription";
 
 export const BillingCustomerWithSubscriptionsResponseData: core.serialization.ObjectSchema<
-    serializers.BillingCustomerWithSubscriptionsResponseData.Raw,
-    Schematic.BillingCustomerWithSubscriptionsResponseData
+  serializers.BillingCustomerWithSubscriptionsResponseData.Raw,
+  Schematic.BillingCustomerWithSubscriptionsResponseData
 > = core.serialization.object({
-    companyId: core.serialization.property("company_id", core.serialization.string().optional()),
-    deletedAt: core.serialization.property("deleted_at", core.serialization.date().optional()),
-    email: core.serialization.string(),
-    externalId: core.serialization.property("external_id", core.serialization.string()),
-    failedToImport: core.serialization.property("failed_to_import", core.serialization.boolean()),
-    id: core.serialization.string(),
-    name: core.serialization.string(),
-    subscriptions: core.serialization.list(BillingCustomerSubscription),
-    updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+  companyId: core.serialization.property("company_id", core.serialization.string().optional()),
+  deletedAt: core.serialization.property("deleted_at", core.serialization.date().optional()),
+  email: core.serialization.string(),
+  externalId: core.serialization.property("external_id", core.serialization.string()),
+  failedToImport: core.serialization.property("failed_to_import", core.serialization.boolean()),
+  id: core.serialization.string(),
+  name: core.serialization.string(),
+  subscriptions: core.serialization.list(BillingCustomerSubscription),
+  updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
 export declare namespace BillingCustomerWithSubscriptionsResponseData {
-    interface Raw {
-        company_id?: string | null;
-        deleted_at?: string | null;
-        email: string;
-        external_id: string;
-        failed_to_import: boolean;
-        id: string;
-        name: string;
-        subscriptions: BillingCustomerSubscription.Raw[];
-        updated_at: string;
-    }
+  interface Raw {
+    company_id?: string | null;
+    deleted_at?: string | null;
+    email: string;
+    external_id: string;
+    failed_to_import: boolean;
+    id: string;
+    name: string;
+    subscriptions: BillingCustomerSubscription.Raw[];
+    updated_at: string;
+  }
 }

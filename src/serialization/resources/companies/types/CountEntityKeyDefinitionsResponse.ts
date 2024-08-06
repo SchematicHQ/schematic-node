@@ -9,16 +9,16 @@ import { CountResponse } from "../../../types/CountResponse";
 import { CountEntityKeyDefinitionsParams } from "./CountEntityKeyDefinitionsParams";
 
 export const CountEntityKeyDefinitionsResponse: core.serialization.ObjectSchema<
-    serializers.CountEntityKeyDefinitionsResponse.Raw,
-    Schematic.CountEntityKeyDefinitionsResponse
+  serializers.CountEntityKeyDefinitionsResponse.Raw,
+  Schematic.CountEntityKeyDefinitionsResponse
 > = core.serialization.object({
-    data: CountResponse,
-    params: CountEntityKeyDefinitionsParams,
+  data: CountResponse,
+  params: CountEntityKeyDefinitionsParams,
 });
 
 export declare namespace CountEntityKeyDefinitionsResponse {
-    interface Raw {
-        data: CountResponse.Raw;
-        params: CountEntityKeyDefinitionsParams.Raw;
-    }
+  interface Raw {
+    data: CountResponse.Raw;
+    params: CountEntityKeyDefinitionsParams.Raw;
+  }
 }

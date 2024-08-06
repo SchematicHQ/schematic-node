@@ -3,11 +3,11 @@
  */
 
 export interface MetricCountsHourlyResponseData {
-    companyId?: string;
-    createdAt: Date;
-    environmentId: string;
-    eventSubtype: string;
-    startTime: Date;
-    userId?: string;
-    value: number;
+  companyId?: string;
+  createdAt: Date;
+  environmentId: string;
+  eventSubtype: string;
+  startTime: Date;
+  userId?: string;
+  value: number;
 }

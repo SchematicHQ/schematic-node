@@ -9,16 +9,16 @@ import * as Schematic from "../../../../index";
  *     {}
  */
 export interface CountEntityTraitDefinitionsRequest {
-    entityType?: Schematic.CountEntityTraitDefinitionsRequestEntityType;
-    ids?: string | string[];
-    traitType?: Schematic.CountEntityTraitDefinitionsRequestTraitType;
-    q?: string;
-    /**
-     * Page limit (default 100)
-     */
-    limit?: number;
-    /**
-     * Page offset (default 0)
-     */
-    offset?: number;
+  entityType?: Schematic.CountEntityTraitDefinitionsRequestEntityType;
+  ids?: string | string[];
+  traitType?: Schematic.CountEntityTraitDefinitionsRequestTraitType;
+  q?: string;
+  /**
+   * Page limit (default 100)
+   */
+  limit?: number;
+  /**
+   * Page offset (default 0)
+   */
+  offset?: number;
 }

@@ -8,16 +8,16 @@ import * as core from "../../../../core";
 import { SegmentStatusResp } from "../../../types/SegmentStatusResp";
 
 export const GetSegmentIntegrationStatusResponse: core.serialization.ObjectSchema<
-    serializers.GetSegmentIntegrationStatusResponse.Raw,
-    Schematic.GetSegmentIntegrationStatusResponse
+  serializers.GetSegmentIntegrationStatusResponse.Raw,
+  Schematic.GetSegmentIntegrationStatusResponse
 > = core.serialization.object({
-    data: SegmentStatusResp,
-    params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+  data: SegmentStatusResp,
+  params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
 export declare namespace GetSegmentIntegrationStatusResponse {
-    interface Raw {
-        data: SegmentStatusResp.Raw;
-        params: Record<string, unknown>;
-    }
+  interface Raw {
+    data: SegmentStatusResp.Raw;
+    params: Record<string, unknown>;
+  }
 }

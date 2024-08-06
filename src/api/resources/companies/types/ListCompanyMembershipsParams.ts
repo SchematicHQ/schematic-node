@@ -6,10 +6,10 @@
  * Input parameters
  */
 export interface ListCompanyMembershipsParams {
-    companyId?: string;
-    /** Page limit (default 100) */
-    limit?: number;
-    /** Page offset (default 0) */
-    offset?: number;
-    userId?: string;
+  companyId?: string;
+  /** Page limit (default 100) */
+  limit?: number;
+  /** Page offset (default 0) */
+  offset?: number;
+  userId?: string;
 }

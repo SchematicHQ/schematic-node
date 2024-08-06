@@ -12,6 +12,6 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface CreateEnvironmentRequestBody {
-    environmentType: Schematic.CreateEnvironmentRequestBodyEnvironmentType;
-    name: string;
+  environmentType: Schematic.CreateEnvironmentRequestBodyEnvironmentType;
+  name: string;
 }

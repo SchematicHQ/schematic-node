@@ -13,12 +13,12 @@
  *     }
  */
 export interface CreateCrmLineItemRequestBody {
-    termMonth?: number;
-    amount: string;
-    discountPercentage?: string;
-    interval: string;
-    lineItemExternalId: string;
-    productExternalId: string;
-    quantity: number;
-    totalDiscount?: string;
+  termMonth?: number;
+  amount: string;
+  discountPercentage?: string;
+  interval: string;
+  lineItemExternalId: string;
+  productExternalId: string;
+  quantity: number;
+  totalDiscount?: string;
 }

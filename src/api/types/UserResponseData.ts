@@ -3,10 +3,10 @@
  */
 
 export interface UserResponseData {
-    createdAt: Date;
-    environmentId: string;
-    id: string;
-    lastSeenAt?: Date;
-    name: string;
-    updatedAt: Date;
+  createdAt: Date;
+  environmentId: string;
+  id: string;
+  lastSeenAt?: Date;
+  name: string;
+  updatedAt: Date;
 }

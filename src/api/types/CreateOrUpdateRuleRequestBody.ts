@@ -5,11 +5,11 @@
 import * as Schematic from "../index";
 
 export interface CreateOrUpdateRuleRequestBody {
-    conditionGroups: Schematic.CreateOrUpdateConditionGroupRequestBody[];
-    conditions: Schematic.CreateOrUpdateConditionRequestBody[];
-    id?: string;
-    name: string;
-    priority: number;
-    ruleType?: Schematic.CreateOrUpdateRuleRequestBodyRuleType;
-    value: boolean;
+  conditionGroups: Schematic.CreateOrUpdateConditionGroupRequestBody[];
+  conditions: Schematic.CreateOrUpdateConditionRequestBody[];
+  id?: string;
+  name: string;
+  priority: number;
+  ruleType?: Schematic.CreateOrUpdateRuleRequestBodyRuleType;
+  value: boolean;
 }

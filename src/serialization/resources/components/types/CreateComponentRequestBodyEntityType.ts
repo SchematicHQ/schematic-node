@@ -7,10 +7,10 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const CreateComponentRequestBodyEntityType: core.serialization.Schema<
-    serializers.CreateComponentRequestBodyEntityType.Raw,
-    Schematic.CreateComponentRequestBodyEntityType
+  serializers.CreateComponentRequestBodyEntityType.Raw,
+  Schematic.CreateComponentRequestBodyEntityType
 > = core.serialization.enum_(["entitlement", "billing"]);
 
 export declare namespace CreateComponentRequestBodyEntityType {
-    type Raw = "entitlement" | "billing";
+  type Raw = "entitlement" | "billing";
 }

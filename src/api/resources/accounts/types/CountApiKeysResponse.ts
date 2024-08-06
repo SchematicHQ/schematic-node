@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface CountApiKeysResponse {
-    data: Schematic.CountResponse;
-    /** Input parameters */
-    params: Schematic.CountApiKeysParams;
+  data: Schematic.CountResponse;
+  /** Input parameters */
+  params: Schematic.CountApiKeysParams;
 }

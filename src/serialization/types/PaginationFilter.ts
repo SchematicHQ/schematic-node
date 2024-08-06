@@ -7,16 +7,16 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const PaginationFilter: core.serialization.ObjectSchema<
-    serializers.PaginationFilter.Raw,
-    Schematic.PaginationFilter
+  serializers.PaginationFilter.Raw,
+  Schematic.PaginationFilter
 > = core.serialization.object({
-    limit: core.serialization.number().optional(),
-    offset: core.serialization.number().optional(),
+  limit: core.serialization.number().optional(),
+  offset: core.serialization.number().optional(),
 });
 
 export declare namespace PaginationFilter {
-    interface Raw {
-        limit?: number | null;
-        offset?: number | null;
-    }
+  interface Raw {
+    limit?: number | null;
+    offset?: number | null;
+  }
 }

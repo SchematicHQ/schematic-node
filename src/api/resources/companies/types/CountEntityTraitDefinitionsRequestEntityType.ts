@@ -5,6 +5,6 @@
 export type CountEntityTraitDefinitionsRequestEntityType = "company" | "user";
 
 export const CountEntityTraitDefinitionsRequestEntityType = {
-    Company: "company",
-    User: "user",
+  Company: "company",
+  User: "user",
 } as const;

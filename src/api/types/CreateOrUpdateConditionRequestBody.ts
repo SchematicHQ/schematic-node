@@ -5,21 +5,21 @@
 import * as Schematic from "../index";
 
 export interface CreateOrUpdateConditionRequestBody {
-    /** Optionally provide a trait ID to compare a metric or trait value against instead of a value */
-    comparisonTraitId?: string;
-    conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType;
-    /** Name of track event type used to measure this condition */
-    eventSubtype?: string;
-    id?: string;
-    /** Period of time over which to measure the track event metric */
-    metricPeriod?: Schematic.CreateOrUpdateConditionRequestBodyMetricPeriod;
-    /** Value to compare the track event metric against */
-    metricValue?: number;
-    operator: Schematic.CreateOrUpdateConditionRequestBodyOperator;
-    /** List of resource IDs (companies, users, or plans) targeted by this condition */
-    resourceIds: string[];
-    /** ID of trait to use to measure this condition */
-    traitId?: string;
-    /** Value to compare the trait value against */
-    traitValue?: string;
+  /** Optionally provide a trait ID to compare a metric or trait value against instead of a value */
+  comparisonTraitId?: string;
+  conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType;
+  /** Name of track event type used to measure this condition */
+  eventSubtype?: string;
+  id?: string;
+  /** Period of time over which to measure the track event metric */
+  metricPeriod?: Schematic.CreateOrUpdateConditionRequestBodyMetricPeriod;
+  /** Value to compare the track event metric against */
+  metricValue?: number;
+  operator: Schematic.CreateOrUpdateConditionRequestBodyOperator;
+  /** List of resource IDs (companies, users, or plans) targeted by this condition */
+  resourceIds: string[];
+  /** ID of trait to use to measure this condition */
+  traitId?: string;
+  /** Value to compare the trait value against */
+  traitValue?: string;
 }

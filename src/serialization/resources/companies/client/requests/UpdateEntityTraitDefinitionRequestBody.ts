@@ -8,16 +8,16 @@ import * as core from "../../../../../core";
 import { UpdateEntityTraitDefinitionRequestBodyTraitType } from "../../types/UpdateEntityTraitDefinitionRequestBodyTraitType";
 
 export const UpdateEntityTraitDefinitionRequestBody: core.serialization.Schema<
-    serializers.UpdateEntityTraitDefinitionRequestBody.Raw,
-    Schematic.UpdateEntityTraitDefinitionRequestBody
+  serializers.UpdateEntityTraitDefinitionRequestBody.Raw,
+  Schematic.UpdateEntityTraitDefinitionRequestBody
 > = core.serialization.object({
-    displayName: core.serialization.property("display_name", core.serialization.string().optional()),
-    traitType: core.serialization.property("trait_type", UpdateEntityTraitDefinitionRequestBodyTraitType),
+  displayName: core.serialization.property("display_name", core.serialization.string().optional()),
+  traitType: core.serialization.property("trait_type", UpdateEntityTraitDefinitionRequestBodyTraitType),
 });
 
 export declare namespace UpdateEntityTraitDefinitionRequestBody {
-    interface Raw {
-        display_name?: string | null;
-        trait_type: UpdateEntityTraitDefinitionRequestBodyTraitType.Raw;
-    }
+  interface Raw {
+    display_name?: string | null;
+    trait_type: UpdateEntityTraitDefinitionRequestBodyTraitType.Raw;
+  }
 }

@@ -3,8 +3,8 @@
  */
 
 export class SchematicTimeoutError extends Error {
-    constructor() {
-        super("Timeout");
-        Object.setPrototypeOf(this, SchematicTimeoutError.prototype);
-    }
+  constructor() {
+    super("Timeout");
+    Object.setPrototypeOf(this, SchematicTimeoutError.prototype);
+  }
 }

@@ -13,7 +13,7 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface CreateWebhookRequestBody {
-    name: string;
-    requestTypes: Schematic.CreateWebhookRequestBodyRequestTypesItem[];
-    url: string;
+  name: string;
+  requestTypes: Schematic.CreateWebhookRequestBodyRequestTypesItem[];
+  url: string;
 }

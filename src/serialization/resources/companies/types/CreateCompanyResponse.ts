@@ -8,16 +8,16 @@ import * as core from "../../../../core";
 import { CompanyDetailResponseData } from "../../../types/CompanyDetailResponseData";
 
 export const CreateCompanyResponse: core.serialization.ObjectSchema<
-    serializers.CreateCompanyResponse.Raw,
-    Schematic.CreateCompanyResponse
+  serializers.CreateCompanyResponse.Raw,
+  Schematic.CreateCompanyResponse
 > = core.serialization.object({
-    data: CompanyDetailResponseData,
-    params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+  data: CompanyDetailResponseData,
+  params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
 export declare namespace CreateCompanyResponse {
-    interface Raw {
-        data: CompanyDetailResponseData.Raw;
-        params: Record<string, unknown>;
-    }
+  interface Raw {
+    data: CompanyDetailResponseData.Raw;
+    params: Record<string, unknown>;
+  }
 }

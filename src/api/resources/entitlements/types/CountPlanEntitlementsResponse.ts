@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface CountPlanEntitlementsResponse {
-    data: Schematic.CountResponse;
-    /** Input parameters */
-    params: Schematic.CountPlanEntitlementsParams;
+  data: Schematic.CountResponse;
+  /** Input parameters */
+  params: Schematic.CountPlanEntitlementsParams;
 }

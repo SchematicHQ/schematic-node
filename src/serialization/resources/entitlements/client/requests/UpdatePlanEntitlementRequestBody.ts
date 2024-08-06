@@ -9,22 +9,22 @@ import { UpdatePlanEntitlementRequestBodyMetricPeriod } from "../../types/Update
 import { UpdatePlanEntitlementRequestBodyValueType } from "../../types/UpdatePlanEntitlementRequestBodyValueType";
 
 export const UpdatePlanEntitlementRequestBody: core.serialization.Schema<
-    serializers.UpdatePlanEntitlementRequestBody.Raw,
-    Schematic.UpdatePlanEntitlementRequestBody
+  serializers.UpdatePlanEntitlementRequestBody.Raw,
+  Schematic.UpdatePlanEntitlementRequestBody
 > = core.serialization.object({
-    metricPeriod: core.serialization.property("metric_period", UpdatePlanEntitlementRequestBodyMetricPeriod.optional()),
-    valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
-    valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
-    valueTraitId: core.serialization.property("value_trait_id", core.serialization.string().optional()),
-    valueType: core.serialization.property("value_type", UpdatePlanEntitlementRequestBodyValueType),
+  metricPeriod: core.serialization.property("metric_period", UpdatePlanEntitlementRequestBodyMetricPeriod.optional()),
+  valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
+  valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
+  valueTraitId: core.serialization.property("value_trait_id", core.serialization.string().optional()),
+  valueType: core.serialization.property("value_type", UpdatePlanEntitlementRequestBodyValueType),
 });
 
 export declare namespace UpdatePlanEntitlementRequestBody {
-    interface Raw {
-        metric_period?: UpdatePlanEntitlementRequestBodyMetricPeriod.Raw | null;
-        value_bool?: boolean | null;
-        value_numeric?: number | null;
-        value_trait_id?: string | null;
-        value_type: UpdatePlanEntitlementRequestBodyValueType.Raw;
-    }
+  interface Raw {
+    metric_period?: UpdatePlanEntitlementRequestBodyMetricPeriod.Raw | null;
+    value_bool?: boolean | null;
+    value_numeric?: number | null;
+    value_trait_id?: string | null;
+    value_type: UpdatePlanEntitlementRequestBodyValueType.Raw;
+  }
 }

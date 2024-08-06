@@ -11,42 +11,42 @@ import { PreviewObject } from "./PreviewObject";
 import { EntityTraitDefinitionResponseData } from "./EntityTraitDefinitionResponseData";
 
 export const FeatureDetailResponseData: core.serialization.ObjectSchema<
-    serializers.FeatureDetailResponseData.Raw,
-    Schematic.FeatureDetailResponseData
+  serializers.FeatureDetailResponseData.Raw,
+  Schematic.FeatureDetailResponseData
 > = core.serialization.object({
-    createdAt: core.serialization.property("created_at", core.serialization.date()),
-    description: core.serialization.string(),
-    eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
-    eventSummary: core.serialization.property("event_summary", EventSummaryResponseData.optional()),
-    featureType: core.serialization.property("feature_type", core.serialization.string()),
-    flags: core.serialization.list(FlagDetailResponseData),
-    icon: core.serialization.string(),
-    id: core.serialization.string(),
-    lifecyclePhase: core.serialization.property("lifecycle_phase", core.serialization.string().optional()),
-    maintainerId: core.serialization.property("maintainer_id", core.serialization.string().optional()),
-    name: core.serialization.string(),
-    plans: core.serialization.list(PreviewObject),
-    trait: EntityTraitDefinitionResponseData.optional(),
-    traitId: core.serialization.property("trait_id", core.serialization.string().optional()),
-    updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+  createdAt: core.serialization.property("created_at", core.serialization.date()),
+  description: core.serialization.string(),
+  eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
+  eventSummary: core.serialization.property("event_summary", EventSummaryResponseData.optional()),
+  featureType: core.serialization.property("feature_type", core.serialization.string()),
+  flags: core.serialization.list(FlagDetailResponseData),
+  icon: core.serialization.string(),
+  id: core.serialization.string(),
+  lifecyclePhase: core.serialization.property("lifecycle_phase", core.serialization.string().optional()),
+  maintainerId: core.serialization.property("maintainer_id", core.serialization.string().optional()),
+  name: core.serialization.string(),
+  plans: core.serialization.list(PreviewObject),
+  trait: EntityTraitDefinitionResponseData.optional(),
+  traitId: core.serialization.property("trait_id", core.serialization.string().optional()),
+  updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
 export declare namespace FeatureDetailResponseData {
-    interface Raw {
-        created_at: string;
-        description: string;
-        event_subtype?: string | null;
-        event_summary?: EventSummaryResponseData.Raw | null;
-        feature_type: string;
-        flags: FlagDetailResponseData.Raw[];
-        icon: string;
-        id: string;
-        lifecycle_phase?: string | null;
-        maintainer_id?: string | null;
-        name: string;
-        plans: PreviewObject.Raw[];
-        trait?: EntityTraitDefinitionResponseData.Raw | null;
-        trait_id?: string | null;
-        updated_at: string;
-    }
+  interface Raw {
+    created_at: string;
+    description: string;
+    event_subtype?: string | null;
+    event_summary?: EventSummaryResponseData.Raw | null;
+    feature_type: string;
+    flags: FlagDetailResponseData.Raw[];
+    icon: string;
+    id: string;
+    lifecycle_phase?: string | null;
+    maintainer_id?: string | null;
+    name: string;
+    plans: PreviewObject.Raw[];
+    trait?: EntityTraitDefinitionResponseData.Raw | null;
+    trait_id?: string | null;
+    updated_at: string;
+  }
 }

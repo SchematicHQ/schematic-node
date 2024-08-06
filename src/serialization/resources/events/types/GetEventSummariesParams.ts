@@ -7,23 +7,23 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const GetEventSummariesParams: core.serialization.ObjectSchema<
-    serializers.GetEventSummariesParams.Raw,
-    Schematic.GetEventSummariesParams
+  serializers.GetEventSummariesParams.Raw,
+  Schematic.GetEventSummariesParams
 > = core.serialization.object({
-    eventSubtypes: core.serialization.property(
-        "event_subtypes",
-        core.serialization.list(core.serialization.string()).optional()
-    ),
-    limit: core.serialization.number().optional(),
-    offset: core.serialization.number().optional(),
-    q: core.serialization.string().optional(),
+  eventSubtypes: core.serialization.property(
+    "event_subtypes",
+    core.serialization.list(core.serialization.string()).optional(),
+  ),
+  limit: core.serialization.number().optional(),
+  offset: core.serialization.number().optional(),
+  q: core.serialization.string().optional(),
 });
 
 export declare namespace GetEventSummariesParams {
-    interface Raw {
-        event_subtypes?: string[] | null;
-        limit?: number | null;
-        offset?: number | null;
-        q?: string | null;
-    }
+  interface Raw {
+    event_subtypes?: string[] | null;
+    limit?: number | null;
+    offset?: number | null;
+    q?: string | null;
+  }
 }

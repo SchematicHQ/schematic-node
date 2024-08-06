@@ -8,20 +8,20 @@ import * as core from "../../core";
 import { EventBodyIdentifyCompany } from "./EventBodyIdentifyCompany";
 
 export const EventBodyIdentify: core.serialization.ObjectSchema<
-    serializers.EventBodyIdentify.Raw,
-    Schematic.EventBodyIdentify
+  serializers.EventBodyIdentify.Raw,
+  Schematic.EventBodyIdentify
 > = core.serialization.object({
-    company: EventBodyIdentifyCompany.optional(),
-    keys: core.serialization.record(core.serialization.string(), core.serialization.string()),
-    name: core.serialization.string().optional(),
-    traits: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
+  company: EventBodyIdentifyCompany.optional(),
+  keys: core.serialization.record(core.serialization.string(), core.serialization.string()),
+  name: core.serialization.string().optional(),
+  traits: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
 });
 
 export declare namespace EventBodyIdentify {
-    interface Raw {
-        company?: EventBodyIdentifyCompany.Raw | null;
-        keys: Record<string, string>;
-        name?: string | null;
-        traits?: Record<string, unknown> | null;
-    }
+  interface Raw {
+    company?: EventBodyIdentifyCompany.Raw | null;
+    keys: Record<string, string>;
+    name?: string | null;
+    traits?: Record<string, unknown> | null;
+  }
 }

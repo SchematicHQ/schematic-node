@@ -6,16 +6,16 @@
  * Input parameters
  */
 export interface ListMetricCountsParams {
-    companyId?: string;
-    companyIds?: string[];
-    endTime?: Date;
-    eventSubtype?: string;
-    eventSubtypes?: string[];
-    grouping?: string;
-    /** Page limit (default 100) */
-    limit?: number;
-    /** Page offset (default 0) */
-    offset?: number;
-    startTime?: Date;
-    userId?: string;
+  companyId?: string;
+  companyIds?: string[];
+  endTime?: Date;
+  eventSubtype?: string;
+  eventSubtypes?: string[];
+  grouping?: string;
+  /** Page limit (default 100) */
+  limit?: number;
+  /** Page offset (default 0) */
+  offset?: number;
+  startTime?: Date;
+  userId?: string;
 }

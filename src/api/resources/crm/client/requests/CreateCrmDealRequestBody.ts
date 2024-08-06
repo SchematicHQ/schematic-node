@@ -11,13 +11,13 @@
  *     }
  */
 export interface CreateCrmDealRequestBody {
-    arr?: string;
-    crmCompanyId?: string;
-    crmCompanyKey: string;
-    crmProductId?: string;
-    crmType: string;
-    dealExternalId: string;
-    dealName?: string;
-    dealStage?: string;
-    mrr?: string;
+  arr?: string;
+  crmCompanyId?: string;
+  crmCompanyKey: string;
+  crmProductId?: string;
+  crmType: string;
+  dealExternalId: string;
+  dealName?: string;
+  dealStage?: string;
+  mrr?: string;
 }

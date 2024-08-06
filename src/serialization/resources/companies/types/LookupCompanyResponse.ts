@@ -9,16 +9,16 @@ import { CompanyDetailResponseData } from "../../../types/CompanyDetailResponseD
 import { LookupCompanyParams } from "./LookupCompanyParams";
 
 export const LookupCompanyResponse: core.serialization.ObjectSchema<
-    serializers.LookupCompanyResponse.Raw,
-    Schematic.LookupCompanyResponse
+  serializers.LookupCompanyResponse.Raw,
+  Schematic.LookupCompanyResponse
 > = core.serialization.object({
-    data: CompanyDetailResponseData,
-    params: LookupCompanyParams,
+  data: CompanyDetailResponseData,
+  params: LookupCompanyParams,
 });
 
 export declare namespace LookupCompanyResponse {
-    interface Raw {
-        data: CompanyDetailResponseData.Raw;
-        params: LookupCompanyParams.Raw;
-    }
+  interface Raw {
+    data: CompanyDetailResponseData.Raw;
+    params: LookupCompanyParams.Raw;
+  }
 }

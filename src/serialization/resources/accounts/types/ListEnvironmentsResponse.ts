@@ -9,16 +9,16 @@ import { EnvironmentResponseData } from "../../../types/EnvironmentResponseData"
 import { ListEnvironmentsParams } from "./ListEnvironmentsParams";
 
 export const ListEnvironmentsResponse: core.serialization.ObjectSchema<
-    serializers.ListEnvironmentsResponse.Raw,
-    Schematic.ListEnvironmentsResponse
+  serializers.ListEnvironmentsResponse.Raw,
+  Schematic.ListEnvironmentsResponse
 > = core.serialization.object({
-    data: core.serialization.list(EnvironmentResponseData),
-    params: ListEnvironmentsParams,
+  data: core.serialization.list(EnvironmentResponseData),
+  params: ListEnvironmentsParams,
 });
 
 export declare namespace ListEnvironmentsResponse {
-    interface Raw {
-        data: EnvironmentResponseData.Raw[];
-        params: ListEnvironmentsParams.Raw;
-    }
+  interface Raw {
+    data: EnvironmentResponseData.Raw[];
+    params: ListEnvironmentsParams.Raw;
+  }
 }

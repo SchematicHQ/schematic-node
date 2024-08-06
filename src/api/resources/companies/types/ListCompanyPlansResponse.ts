@@ -5,8 +5,8 @@
 import * as Schematic from "../../../index";
 
 export interface ListCompanyPlansResponse {
-    /** The returned resources */
-    data: Schematic.CompanyPlanResponseData[];
-    /** Input parameters */
-    params: Schematic.ListCompanyPlansParams;
+  /** The returned resources */
+  data: Schematic.CompanyPlanResponseData[];
+  /** Input parameters */
+  params: Schematic.ListCompanyPlansParams;
 }

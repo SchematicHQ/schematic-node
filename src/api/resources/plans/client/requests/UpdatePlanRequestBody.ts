@@ -10,8 +10,8 @@
  *     }
  */
 export interface UpdatePlanRequestBody {
-    audienceType: string;
-    description?: string;
-    icon?: string;
-    name: string;
+  audienceType: string;
+  description?: string;
+  icon?: string;
+  name: string;
 }

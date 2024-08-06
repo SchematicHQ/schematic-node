@@ -8,16 +8,16 @@ import * as core from "../../../../core";
 import { IssueTemporaryAccessTokenResponseData } from "../../../types/IssueTemporaryAccessTokenResponseData";
 
 export const IssueTemporaryAccessTokenResponse: core.serialization.ObjectSchema<
-    serializers.IssueTemporaryAccessTokenResponse.Raw,
-    Schematic.IssueTemporaryAccessTokenResponse
+  serializers.IssueTemporaryAccessTokenResponse.Raw,
+  Schematic.IssueTemporaryAccessTokenResponse
 > = core.serialization.object({
-    data: IssueTemporaryAccessTokenResponseData,
-    params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+  data: IssueTemporaryAccessTokenResponseData,
+  params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
 export declare namespace IssueTemporaryAccessTokenResponse {
-    interface Raw {
-        data: IssueTemporaryAccessTokenResponseData.Raw;
-        params: Record<string, unknown>;
-    }
+  interface Raw {
+    data: IssueTemporaryAccessTokenResponseData.Raw;
+    params: Record<string, unknown>;
+  }
 }

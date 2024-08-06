@@ -7,15 +7,15 @@
  *     {}
  */
 export interface ListApiRequestsRequest {
-    q?: string;
-    requestType?: string;
-    environmentId?: string;
-    /**
-     * Page limit (default 100)
-     */
-    limit?: number;
-    /**
-     * Page offset (default 0)
-     */
-    offset?: number;
+  q?: string;
+  requestType?: string;
+  environmentId?: string;
+  /**
+   * Page limit (default 100)
+   */
+  limit?: number;
+  /**
+   * Page offset (default 0)
+   */
+  offset?: number;
 }

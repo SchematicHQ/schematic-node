@@ -7,20 +7,20 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const GetEntityTraitValuesParams: core.serialization.ObjectSchema<
-    serializers.GetEntityTraitValuesParams.Raw,
-    Schematic.GetEntityTraitValuesParams
+  serializers.GetEntityTraitValuesParams.Raw,
+  Schematic.GetEntityTraitValuesParams
 > = core.serialization.object({
-    definitionId: core.serialization.property("definition_id", core.serialization.string().optional()),
-    limit: core.serialization.number().optional(),
-    offset: core.serialization.number().optional(),
-    q: core.serialization.string().optional(),
+  definitionId: core.serialization.property("definition_id", core.serialization.string().optional()),
+  limit: core.serialization.number().optional(),
+  offset: core.serialization.number().optional(),
+  q: core.serialization.string().optional(),
 });
 
 export declare namespace GetEntityTraitValuesParams {
-    interface Raw {
-        definition_id?: string | null;
-        limit?: number | null;
-        offset?: number | null;
-        q?: string | null;
-    }
+  interface Raw {
+    definition_id?: string | null;
+    limit?: number | null;
+    offset?: number | null;
+    q?: string | null;
+  }
 }

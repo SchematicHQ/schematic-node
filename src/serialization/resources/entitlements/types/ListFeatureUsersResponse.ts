@@ -9,16 +9,16 @@ import { FeatureCompanyUserResponseData } from "../../../types/FeatureCompanyUse
 import { ListFeatureUsersParams } from "./ListFeatureUsersParams";
 
 export const ListFeatureUsersResponse: core.serialization.ObjectSchema<
-    serializers.ListFeatureUsersResponse.Raw,
-    Schematic.ListFeatureUsersResponse
+  serializers.ListFeatureUsersResponse.Raw,
+  Schematic.ListFeatureUsersResponse
 > = core.serialization.object({
-    data: core.serialization.list(FeatureCompanyUserResponseData),
-    params: ListFeatureUsersParams,
+  data: core.serialization.list(FeatureCompanyUserResponseData),
+  params: ListFeatureUsersParams,
 });
 
 export declare namespace ListFeatureUsersResponse {
-    interface Raw {
-        data: FeatureCompanyUserResponseData.Raw[];
-        params: ListFeatureUsersParams.Raw;
-    }
+  interface Raw {
+    data: FeatureCompanyUserResponseData.Raw[];
+    params: ListFeatureUsersParams.Raw;
+  }
 }

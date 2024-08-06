@@ -7,18 +7,18 @@
  *     {}
  */
 export interface CountCompanyOverridesRequest {
-    companyId?: string;
-    companyIds?: string | string[];
-    featureId?: string;
-    featureIds?: string | string[];
-    ids?: string | string[];
-    q?: string;
-    /**
-     * Page limit (default 100)
-     */
-    limit?: number;
-    /**
-     * Page offset (default 0)
-     */
-    offset?: number;
+  companyId?: string;
+  companyIds?: string | string[];
+  featureId?: string;
+  featureIds?: string | string[];
+  ids?: string | string[];
+  q?: string;
+  /**
+   * Page limit (default 100)
+   */
+  limit?: number;
+  /**
+   * Page offset (default 0)
+   */
+  offset?: number;
 }

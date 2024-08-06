@@ -10,18 +10,18 @@ import { ComponentResponseData } from "./ComponentResponseData";
 import { FeatureUsageDetailResponseData } from "./FeatureUsageDetailResponseData";
 
 export const ComponentHydrateResponseData: core.serialization.ObjectSchema<
-    serializers.ComponentHydrateResponseData.Raw,
-    Schematic.ComponentHydrateResponseData
+  serializers.ComponentHydrateResponseData.Raw,
+  Schematic.ComponentHydrateResponseData
 > = core.serialization.object({
-    company: CompanyDetailResponseData.optional(),
-    component: ComponentResponseData.optional(),
-    featureUsage: core.serialization.property("feature_usage", FeatureUsageDetailResponseData.optional()),
+  company: CompanyDetailResponseData.optional(),
+  component: ComponentResponseData.optional(),
+  featureUsage: core.serialization.property("feature_usage", FeatureUsageDetailResponseData.optional()),
 });
 
 export declare namespace ComponentHydrateResponseData {
-    interface Raw {
-        company?: CompanyDetailResponseData.Raw | null;
-        component?: ComponentResponseData.Raw | null;
-        feature_usage?: FeatureUsageDetailResponseData.Raw | null;
-    }
+  interface Raw {
+    company?: CompanyDetailResponseData.Raw | null;
+    component?: ComponentResponseData.Raw | null;
+    feature_usage?: FeatureUsageDetailResponseData.Raw | null;
+  }
 }

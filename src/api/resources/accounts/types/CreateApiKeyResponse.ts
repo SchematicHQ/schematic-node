@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface CreateApiKeyResponse {
-    data: Schematic.ApiKeyCreateResponseData;
-    /** Input parameters */
-    params: Record<string, unknown>;
+  data: Schematic.ApiKeyCreateResponseData;
+  /** Input parameters */
+  params: Record<string, unknown>;
 }

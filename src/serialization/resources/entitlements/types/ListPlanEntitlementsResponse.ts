@@ -9,16 +9,16 @@ import { PlanEntitlementResponseData } from "../../../types/PlanEntitlementRespo
 import { ListPlanEntitlementsParams } from "./ListPlanEntitlementsParams";
 
 export const ListPlanEntitlementsResponse: core.serialization.ObjectSchema<
-    serializers.ListPlanEntitlementsResponse.Raw,
-    Schematic.ListPlanEntitlementsResponse
+  serializers.ListPlanEntitlementsResponse.Raw,
+  Schematic.ListPlanEntitlementsResponse
 > = core.serialization.object({
-    data: core.serialization.list(PlanEntitlementResponseData),
-    params: ListPlanEntitlementsParams,
+  data: core.serialization.list(PlanEntitlementResponseData),
+  params: ListPlanEntitlementsParams,
 });
 
 export declare namespace ListPlanEntitlementsResponse {
-    interface Raw {
-        data: PlanEntitlementResponseData.Raw[];
-        params: ListPlanEntitlementsParams.Raw;
-    }
+  interface Raw {
+    data: PlanEntitlementResponseData.Raw[];
+    params: ListPlanEntitlementsParams.Raw;
+  }
 }

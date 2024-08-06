@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface GetUserResponse {
-    data: Schematic.UserDetailResponseData;
-    /** Input parameters */
-    params: Record<string, unknown>;
+  data: Schematic.UserDetailResponseData;
+  /** Input parameters */
+  params: Record<string, unknown>;
 }

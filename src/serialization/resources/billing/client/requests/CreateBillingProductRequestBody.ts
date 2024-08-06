@@ -7,22 +7,22 @@ import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 
 export const CreateBillingProductRequestBody: core.serialization.Schema<
-    serializers.CreateBillingProductRequestBody.Raw,
-    Schematic.CreateBillingProductRequestBody
+  serializers.CreateBillingProductRequestBody.Raw,
+  Schematic.CreateBillingProductRequestBody
 > = core.serialization.object({
-    currency: core.serialization.string(),
-    externalId: core.serialization.property("external_id", core.serialization.string()),
-    name: core.serialization.string(),
-    price: core.serialization.number(),
-    quantity: core.serialization.number(),
+  currency: core.serialization.string(),
+  externalId: core.serialization.property("external_id", core.serialization.string()),
+  name: core.serialization.string(),
+  price: core.serialization.number(),
+  quantity: core.serialization.number(),
 });
 
 export declare namespace CreateBillingProductRequestBody {
-    interface Raw {
-        currency: string;
-        external_id: string;
-        name: string;
-        price: number;
-        quantity: number;
-    }
+  interface Raw {
+    currency: string;
+    external_id: string;
+    name: string;
+    price: number;
+    quantity: number;
+  }
 }

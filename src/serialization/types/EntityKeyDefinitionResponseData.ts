@@ -7,22 +7,22 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
 export const EntityKeyDefinitionResponseData: core.serialization.ObjectSchema<
-    serializers.EntityKeyDefinitionResponseData.Raw,
-    Schematic.EntityKeyDefinitionResponseData
+  serializers.EntityKeyDefinitionResponseData.Raw,
+  Schematic.EntityKeyDefinitionResponseData
 > = core.serialization.object({
-    createdAt: core.serialization.property("created_at", core.serialization.date()),
-    entityType: core.serialization.property("entity_type", core.serialization.string()),
-    id: core.serialization.string(),
-    key: core.serialization.string(),
-    updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+  createdAt: core.serialization.property("created_at", core.serialization.date()),
+  entityType: core.serialization.property("entity_type", core.serialization.string()),
+  id: core.serialization.string(),
+  key: core.serialization.string(),
+  updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
 export declare namespace EntityKeyDefinitionResponseData {
-    interface Raw {
-        created_at: string;
-        entity_type: string;
-        id: string;
-        key: string;
-        updated_at: string;
-    }
+  interface Raw {
+    created_at: string;
+    entity_type: string;
+    id: string;
+    key: string;
+    updated_at: string;
+  }
 }

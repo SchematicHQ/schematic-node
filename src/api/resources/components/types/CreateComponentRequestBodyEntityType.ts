@@ -5,6 +5,6 @@
 export type CreateComponentRequestBodyEntityType = "entitlement" | "billing";
 
 export const CreateComponentRequestBodyEntityType = {
-    Entitlement: "entitlement",
-    Billing: "billing",
+  Entitlement: "entitlement",
+  Billing: "billing",
 } as const;

@@ -7,10 +7,10 @@ import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
 export const UpdateFeatureRequestBodyFeatureType: core.serialization.Schema<
-    serializers.UpdateFeatureRequestBodyFeatureType.Raw,
-    Schematic.UpdateFeatureRequestBodyFeatureType
+  serializers.UpdateFeatureRequestBodyFeatureType.Raw,
+  Schematic.UpdateFeatureRequestBodyFeatureType
 > = core.serialization.enum_(["boolean", "event", "trait"]);
 
 export declare namespace UpdateFeatureRequestBodyFeatureType {
-    type Raw = "boolean" | "event" | "trait";
+  type Raw = "boolean" | "event" | "trait";
 }

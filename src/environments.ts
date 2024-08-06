@@ -3,7 +3,7 @@
  */
 
 export const SchematicEnvironment = {
-    Default: "https://api.schematichq.com",
+  Default: "https://api.schematichq.com",
 } as const;
 
 export type SchematicEnvironment = typeof SchematicEnvironment.Default;

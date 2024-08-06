@@ -9,16 +9,16 @@ import { CountResponse } from "../../../types/CountResponse";
 import { CountCompanyOverridesParams } from "./CountCompanyOverridesParams";
 
 export const CountCompanyOverridesResponse: core.serialization.ObjectSchema<
-    serializers.CountCompanyOverridesResponse.Raw,
-    Schematic.CountCompanyOverridesResponse
+  serializers.CountCompanyOverridesResponse.Raw,
+  Schematic.CountCompanyOverridesResponse
 > = core.serialization.object({
-    data: CountResponse,
-    params: CountCompanyOverridesParams,
+  data: CountResponse,
+  params: CountCompanyOverridesParams,
 });
 
 export declare namespace CountCompanyOverridesResponse {
-    interface Raw {
-        data: CountResponse.Raw;
-        params: CountCompanyOverridesParams.Raw;
-    }
+  interface Raw {
+    data: CountResponse.Raw;
+    params: CountCompanyOverridesParams.Raw;
+  }
 }

@@ -5,10 +5,10 @@
 export type ListEntityTraitDefinitionsRequestTraitType = "boolean" | "currency" | "date" | "number" | "string" | "url";
 
 export const ListEntityTraitDefinitionsRequestTraitType = {
-    Boolean: "boolean",
-    Currency: "currency",
-    Date: "date",
-    Number: "number",
-    String: "string",
-    Url: "url",
+  Boolean: "boolean",
+  Currency: "currency",
+  Date: "date",
+  Number: "number",
+  String: "string",
+  Url: "url",
 } as const;

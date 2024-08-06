@@ -11,9 +11,9 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface UpdatePlanEntitlementRequestBody {
-    metricPeriod?: Schematic.UpdatePlanEntitlementRequestBodyMetricPeriod;
-    valueBool?: boolean;
-    valueNumeric?: number;
-    valueTraitId?: string;
-    valueType: Schematic.UpdatePlanEntitlementRequestBodyValueType;
+  metricPeriod?: Schematic.UpdatePlanEntitlementRequestBodyMetricPeriod;
+  valueBool?: boolean;
+  valueNumeric?: number;
+  valueTraitId?: string;
+  valueType: Schematic.UpdatePlanEntitlementRequestBodyValueType;
 }

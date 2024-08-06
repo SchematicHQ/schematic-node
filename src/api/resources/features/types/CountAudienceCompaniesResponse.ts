@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface CountAudienceCompaniesResponse {
-    data: Schematic.CountResponse;
-    /** Input parameters */
-    params: Record<string, unknown>;
+  data: Schematic.CountResponse;
+  /** Input parameters */
+  params: Record<string, unknown>;
 }

@@ -5,8 +5,8 @@
 import * as Schematic from "../../../index";
 
 export interface ListProductPricesResponse {
-    /** The returned resources */
-    data: Schematic.BillingPriceResponseData[];
-    /** Input parameters */
-    params: Schematic.ListProductPricesParams;
+  /** The returned resources */
+  data: Schematic.BillingPriceResponseData[];
+  /** Input parameters */
+  params: Schematic.ListProductPricesParams;
 }
