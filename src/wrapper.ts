@@ -28,7 +28,16 @@ export class SchematicClient extends BaseClient {
     private offline: boolean;
 
     constructor(opts?: SchematicOptions) {
-        const { apiKey = "", offline = false } = opts ?? {};
+        const {
+            apiKey = "",
+            basePath,
+            eventBufferInterval,
+            flagDefaults = {},
+            logger = new ConsoleLogger(),
+        } = opts ?? {};
+        let { offline = false } = opts ?? {};
+
+        // Set headers
         const headers: Record<string, string> = {};
         if (opts?.environmentId) {
             headers["X-Schematic-Environment-Id"] = opts.environmentId;
@@ -36,32 +45,33 @@ export class SchematicClient extends BaseClient {
         if (opts?.headers) {
             Object.assign(headers, opts.headers);
         }
-        super({
-            apiKey,
-            environment: opts?.basePath ? opts.basePath : undefined,
-            fetcher: offline ? offlineFetcher : provideFetcher(headers),
-        });
-        const { flagDefaults = {} } = opts ?? {};
 
-        this.eventBuffer = new EventBuffer(this.events, {
-            interval: opts?.eventBufferInterval,
-            offline,
-        });
-
-        this.flagCheckCacheProviders = opts?.cacheProviders?.flagChecks ?? [new LocalCache<boolean>()];
-        this.logger = opts?.logger || new ConsoleLogger();
-
+        // Handle implied offline mode
         if (offline) {
             if (apiKey !== "") {
-                this.logger.debug("Offline mode enabled, ignoring API key");
+                logger.debug("Offline mode enabled, ignoring API key");
             }
-        } else if (apiKey === "") {
-            this.logger.warn("No API key was provided, running in offline mode");
-            this.offline = true;
+        } else if (apiKey === "" && !offline) {
+            logger.warn("No API key was provided, running in offline mode");
+            offline = true;
         }
 
-        this.offline = offline;
+        // Initialize wrapped client
+        super({
+            apiKey,
+            environment: basePath,
+            fetcher: offline ? offlineFetcher : provideFetcher(headers),
+        });
+
+        this.logger = logger;
+        this.eventBuffer = new EventBuffer(this.events, {
+            interval: eventBufferInterval,
+            logger,
+            offline,
+        });
+        this.flagCheckCacheProviders = opts?.cacheProviders?.flagChecks ?? [new LocalCache<boolean>()];
         this.flagDefaults = flagDefaults;
+        this.offline = offline;
     }
 
     async checkFlag(evalCtx: api.CheckFlagRequestBody, key: string): Promise<boolean> {
