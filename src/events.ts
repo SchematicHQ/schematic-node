@@ -19,6 +19,7 @@ class EventBuffer {
     private maxSize: number;
     private shutdown: boolean = false;
     private stopped: boolean = false;
+    private intervalId: NodeJS.Timeout | null = null;
 
     constructor(eventsApi: Events, opts?: EventBufferOptions) {
         const { logger, maxSize, interval } = opts || {};
@@ -61,11 +62,15 @@ class EventBuffer {
     public async stop(): Promise<void> {
         this.shutdown = true;
         this.stopped = true;
+        if (this.intervalId) {
+            clearInterval(this.intervalId);
+            this.intervalId = null;
+        }
         await this.flush();
     }
 
     private startPeriodicFlush(): void {
-        setInterval(async () => {
+        this.intervalId = setInterval(async () => {
             if (this.shutdown) return;
             await this.flush();
         }, this.interval);
