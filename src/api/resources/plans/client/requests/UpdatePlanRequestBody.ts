@@ -5,12 +5,10 @@
 /**
  * @example
  *     {
- *         audienceType: "audience_type",
  *         name: "name"
  *     }
  */
 export interface UpdatePlanRequestBody {
-    audienceType: string;
     description?: string;
     icon?: string;
     name: string;

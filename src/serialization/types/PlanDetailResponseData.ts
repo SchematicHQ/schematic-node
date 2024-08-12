@@ -12,7 +12,6 @@ export const PlanDetailResponseData: core.serialization.ObjectSchema<
     serializers.PlanDetailResponseData.Raw,
     Schematic.PlanDetailResponseData
 > = core.serialization.object({
-    audienceType: core.serialization.property("audience_type", core.serialization.string()),
     billingProduct: core.serialization.property("billing_product", BillingProductDetailResponseData.optional()),
     companyCount: core.serialization.property("company_count", core.serialization.number()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
@@ -27,7 +26,6 @@ export const PlanDetailResponseData: core.serialization.ObjectSchema<
 
 export declare namespace PlanDetailResponseData {
     interface Raw {
-        audience_type: string;
         billing_product?: BillingProductDetailResponseData.Raw | null;
         company_count: number;
         created_at: string;

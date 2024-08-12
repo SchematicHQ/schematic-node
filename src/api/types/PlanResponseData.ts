@@ -3,7 +3,6 @@
  */
 
 export interface PlanResponseData {
-    audienceType: string;
     createdAt: Date;
     description: string;
     icon: string;

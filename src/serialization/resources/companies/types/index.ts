@@ -15,8 +15,6 @@ export * from "./ListCompanyMembershipsParams";
 export * from "./ListCompanyMembershipsResponse";
 export * from "./GetOrCreateCompanyMembershipResponse";
 export * from "./DeleteCompanyMembershipResponse";
-export * from "./ListCompanyPlansParams";
-export * from "./ListCompanyPlansResponse";
 export * from "./GetActiveCompanySubscriptionParams";
 export * from "./GetActiveCompanySubscriptionResponse";
 export * from "./UpsertCompanyTraitResponse";

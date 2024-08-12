@@ -10,7 +10,6 @@ export const UpdatePlanRequestBody: core.serialization.Schema<
     serializers.UpdatePlanRequestBody.Raw,
     Schematic.UpdatePlanRequestBody
 > = core.serialization.object({
-    audienceType: core.serialization.property("audience_type", core.serialization.string()),
     description: core.serialization.string().optional(),
     icon: core.serialization.string().optional(),
     name: core.serialization.string(),
@@ -18,7 +17,6 @@ export const UpdatePlanRequestBody: core.serialization.Schema<
 
 export declare namespace UpdatePlanRequestBody {
     interface Raw {
-        audience_type: string;
         description?: string | null;
         icon?: string | null;
         name: string;

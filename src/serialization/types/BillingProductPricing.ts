@@ -10,13 +10,17 @@ export const BillingProductPricing: core.serialization.ObjectSchema<
     serializers.BillingProductPricing.Raw,
     Schematic.BillingProductPricing
 > = core.serialization.object({
+    interval: core.serialization.string().optional(),
     price: core.serialization.number(),
+    priceExternalId: core.serialization.property("price_external_id", core.serialization.string().optional()),
     productExternalId: core.serialization.property("product_external_id", core.serialization.string()),
 });
 
 export declare namespace BillingProductPricing {
     interface Raw {
+        interval?: string | null;
         price: number;
+        price_external_id?: string | null;
         product_external_id: string;
     }
 }

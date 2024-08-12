@@ -4,9 +4,9 @@
 
 import * as Schematic from "../../../index";
 
-export interface ListCompanyPlansResponse {
+export interface ListActivePlansResponse {
     /** The returned resources */
-    data: Schematic.CompanyPlanResponseData[];
+    data: Schematic.PlanDetailResponseData[];
     /** Input parameters */
-    params: Schematic.ListCompanyPlansParams;
+    params: Record<string, unknown>;
 }

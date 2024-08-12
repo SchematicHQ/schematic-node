@@ -5,7 +5,7 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
-import { BillingProductResponseData } from "./BillingProductResponseData";
+import { BillingProductForSubscriptionResponseData } from "./BillingProductForSubscriptionResponseData";
 
 export const CompanySubscriptionResponseData: core.serialization.ObjectSchema<
     serializers.CompanySubscriptionResponseData.Raw,
@@ -14,7 +14,7 @@ export const CompanySubscriptionResponseData: core.serialization.ObjectSchema<
     customerExternalId: core.serialization.property("customer_external_id", core.serialization.string()),
     expiredAt: core.serialization.property("expired_at", core.serialization.date().optional()),
     interval: core.serialization.string(),
-    products: core.serialization.list(BillingProductResponseData),
+    products: core.serialization.list(BillingProductForSubscriptionResponseData),
     subscriptionExternalId: core.serialization.property("subscription_external_id", core.serialization.string()),
 });
 
@@ -23,7 +23,7 @@ export declare namespace CompanySubscriptionResponseData {
         customer_external_id: string;
         expired_at?: string | null;
         interval: string;
-        products: BillingProductResponseData.Raw[];
+        products: BillingProductForSubscriptionResponseData.Raw[];
         subscription_external_id: string;
     }
 }
