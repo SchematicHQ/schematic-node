@@ -9,23 +9,32 @@ interface EventBufferOptions {
     interval?: number;
     logger?: Logger;
     maxSize?: number;
+    offline?: boolean;
 }
 
 class EventBuffer {
     private events: CreateEventRequestBody[] = [];
     private eventsApi: Events;
     private interval: number;
+    private intervalId: NodeJS.Timeout | null = null;
     private logger: Logger;
     private maxSize: number;
+    private offline: boolean;
     private shutdown: boolean = false;
     private stopped: boolean = false;
 
     constructor(eventsApi: Events, opts?: EventBufferOptions) {
-        const { logger, maxSize, interval } = opts || {};
+        const {
+            logger = new ConsoleLogger(),
+            maxSize = DEFAULT_MAX_SIZE,
+            interval = DEFAULT_FLUSH_INTERVAL,
+            offline = false,
+        } = opts || {};
         this.eventsApi = eventsApi;
-        this.interval = interval || DEFAULT_FLUSH_INTERVAL;
-        this.logger = logger || new ConsoleLogger();
-        this.maxSize = maxSize || DEFAULT_MAX_SIZE;
+        this.interval = interval;
+        this.logger = logger;
+        this.maxSize = maxSize;
+        this.offline = offline;
 
         this.startPeriodicFlush();
     }
@@ -46,6 +55,10 @@ class EventBuffer {
     }
 
     public async push(event: CreateEventRequestBody): Promise<void> {
+        if (this.offline) {
+            return;
+        }
+
         if (this.stopped) {
             this.logger.error("Event buffer is stopped, not accepting new events");
             return;
@@ -61,11 +74,19 @@ class EventBuffer {
     public async stop(): Promise<void> {
         this.shutdown = true;
         this.stopped = true;
+        if (this.intervalId) {
+            clearInterval(this.intervalId);
+            this.intervalId = null;
+        }
         await this.flush();
     }
 
     private startPeriodicFlush(): void {
-        setInterval(async () => {
+        if (this.offline || this.intervalId) {
+            return;
+        }
+
+        this.intervalId = setInterval(async () => {
             if (this.shutdown) return;
             await this.flush();
         }, this.interval);
