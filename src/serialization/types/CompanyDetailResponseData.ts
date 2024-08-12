@@ -8,6 +8,7 @@ import * as core from "../../core";
 import { PreviewObject } from "./PreviewObject";
 import { EntityTraitDetailResponseData } from "./EntityTraitDetailResponseData";
 import { EntityKeyDetailResponseData } from "./EntityKeyDetailResponseData";
+import { BillingPlan } from "./BillingPlan";
 
 export const CompanyDetailResponseData: core.serialization.ObjectSchema<
     serializers.CompanyDetailResponseData.Raw,
@@ -22,7 +23,7 @@ export const CompanyDetailResponseData: core.serialization.ObjectSchema<
     lastSeenAt: core.serialization.property("last_seen_at", core.serialization.date().optional()),
     logoUrl: core.serialization.property("logo_url", core.serialization.string().optional()),
     name: core.serialization.string(),
-    plan: PreviewObject.optional(),
+    plan: BillingPlan.optional(),
     plans: core.serialization.list(PreviewObject),
     traits: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -40,7 +41,7 @@ export declare namespace CompanyDetailResponseData {
         last_seen_at?: string | null;
         logo_url?: string | null;
         name: string;
-        plan?: PreviewObject.Raw | null;
+        plan?: BillingPlan.Raw | null;
         plans: PreviewObject.Raw[];
         traits?: Record<string, unknown> | null;
         updated_at: string;

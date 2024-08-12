@@ -14,7 +14,7 @@ export interface CompanyDetailResponseData {
     lastSeenAt?: Date;
     logoUrl?: string;
     name: string;
-    plan?: Schematic.PreviewObject;
+    plan?: Schematic.BillingPlan;
     plans: Schematic.PreviewObject[];
     /** A map of trait names to trait values */
     traits?: Record<string, unknown>;

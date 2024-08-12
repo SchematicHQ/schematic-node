@@ -8,6 +8,6 @@ export interface CompanySubscriptionResponseData {
     customerExternalId: string;
     expiredAt?: Date;
     interval: string;
-    products: Schematic.BillingProductResponseData[];
+    products: Schematic.BillingProductForSubscriptionResponseData[];
     subscriptionExternalId: string;
 }

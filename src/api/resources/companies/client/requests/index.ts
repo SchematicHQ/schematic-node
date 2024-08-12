@@ -4,7 +4,6 @@ export { type LookupCompanyRequest } from "./LookupCompanyRequest";
 export { type GetActiveDealsRequest } from "./GetActiveDealsRequest";
 export { type ListCompanyMembershipsRequest } from "./ListCompanyMembershipsRequest";
 export { type GetOrCreateCompanyMembershipRequestBody } from "./GetOrCreateCompanyMembershipRequestBody";
-export { type ListCompanyPlansRequest } from "./ListCompanyPlansRequest";
 export { type GetActiveCompanySubscriptionRequest } from "./GetActiveCompanySubscriptionRequest";
 export { type ListEntityKeyDefinitionsRequest } from "./ListEntityKeyDefinitionsRequest";
 export { type CountEntityKeyDefinitionsRequest } from "./CountEntityKeyDefinitionsRequest";
