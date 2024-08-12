@@ -68,7 +68,7 @@ export class Components {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.2",
+                "X-Fern-SDK-Version": "1.1.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -183,7 +183,7 @@ export class Components {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.2",
+                "X-Fern-SDK-Version": "1.1.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -295,7 +295,7 @@ export class Components {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.2",
+                "X-Fern-SDK-Version": "1.1.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -409,7 +409,7 @@ export class Components {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.2",
+                "X-Fern-SDK-Version": "1.1.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -531,7 +531,7 @@ export class Components {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.2",
+                "X-Fern-SDK-Version": "1.1.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -642,7 +642,7 @@ export class Components {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.2",
+                "X-Fern-SDK-Version": "1.1.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -767,7 +767,7 @@ export class Components {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.2",
+                "X-Fern-SDK-Version": "1.1.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
