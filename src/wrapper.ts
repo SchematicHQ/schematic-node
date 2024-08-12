@@ -45,6 +45,7 @@ export class SchematicClient extends BaseClient {
 
         this.eventBuffer = new EventBuffer(this.events, {
             interval: opts?.eventBufferInterval,
+            offline,
         });
 
         this.flagCheckCacheProviders = opts?.cacheProviders?.flagChecks ?? [new LocalCache<boolean>()];
