@@ -10,13 +10,13 @@ export const CheckFlagRequestBody: core.serialization.ObjectSchema<
     serializers.CheckFlagRequestBody.Raw,
     Schematic.CheckFlagRequestBody
 > = core.serialization.object({
-    company: core.serialization.record(core.serialization.string(), core.serialization.string().optional()).optional(),
-    user: core.serialization.record(core.serialization.string(), core.serialization.string().optional()).optional(),
+    company: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
+    user: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
 });
 
 export declare namespace CheckFlagRequestBody {
     interface Raw {
-        company?: Record<string, string | null | undefined> | null;
-        user?: Record<string, string | null | undefined> | null;
+        company?: Record<string, string> | null;
+        user?: Record<string, string> | null;
     }
 }

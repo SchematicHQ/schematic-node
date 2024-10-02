@@ -4,9 +4,6 @@
 
 import * as Schematic from "../index";
 
-/**
- * The updated resource
- */
 export interface PlanEntitlementResponseData {
     createdAt: Date;
     environmentId: string;

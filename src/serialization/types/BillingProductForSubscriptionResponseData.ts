@@ -20,6 +20,7 @@ export const BillingProductForSubscriptionResponseData: core.serialization.Objec
     name: core.serialization.string(),
     price: core.serialization.number(),
     quantity: core.serialization.number(),
+    subscriptionId: core.serialization.property("subscription_id", core.serialization.string()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
@@ -35,6 +36,7 @@ export declare namespace BillingProductForSubscriptionResponseData {
         name: string;
         price: number;
         quantity: number;
+        subscription_id: string;
         updated_at: string;
     }
 }

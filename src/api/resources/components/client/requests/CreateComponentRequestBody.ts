@@ -7,7 +7,7 @@ import * as Schematic from "../../../../index";
 /**
  * @example
  *     {
- *         entityType: Schematic.CreateComponentRequestBodyEntityType.Entitlement,
+ *         entityType: "entitlement",
  *         name: "name"
  *     }
  */

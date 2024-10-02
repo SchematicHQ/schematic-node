@@ -10,14 +10,14 @@ import * as Schematic from "../../../../index";
  *         rules: [{
  *                 conditionGroups: [{
  *                         conditions: [{
- *                                 conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
- *                                 operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+ *                                 conditionType: "company",
+ *                                 operator: "eq",
  *                                 resourceIds: ["resource_ids"]
  *                             }]
  *                     }],
  *                 conditions: [{
- *                         conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
- *                         operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+ *                         conditionType: "company",
+ *                         operator: "eq",
  *                         resourceIds: ["resource_ids"]
  *                     }],
  *                 name: "name",

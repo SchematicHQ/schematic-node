@@ -5,23 +5,35 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { CompanyPlanDetailResponseData } from "./CompanyPlanDetailResponseData";
 import { CompanyDetailResponseData } from "./CompanyDetailResponseData";
 import { ComponentResponseData } from "./ComponentResponseData";
 import { FeatureUsageDetailResponseData } from "./FeatureUsageDetailResponseData";
+import { StripeEmbedInfo } from "./StripeEmbedInfo";
+import { CompanySubscriptionResponseData } from "./CompanySubscriptionResponseData";
+import { InvoiceResponseData } from "./InvoiceResponseData";
 
 export const ComponentHydrateResponseData: core.serialization.ObjectSchema<
     serializers.ComponentHydrateResponseData.Raw,
     Schematic.ComponentHydrateResponseData
 > = core.serialization.object({
+    activePlans: core.serialization.property("active_plans", core.serialization.list(CompanyPlanDetailResponseData)),
     company: CompanyDetailResponseData.optional(),
     component: ComponentResponseData.optional(),
     featureUsage: core.serialization.property("feature_usage", FeatureUsageDetailResponseData.optional()),
+    stripeEmbed: core.serialization.property("stripe_embed", StripeEmbedInfo.optional()),
+    subscription: CompanySubscriptionResponseData.optional(),
+    upcomingInvoice: core.serialization.property("upcoming_invoice", InvoiceResponseData.optional()),
 });
 
 export declare namespace ComponentHydrateResponseData {
     interface Raw {
+        active_plans: CompanyPlanDetailResponseData.Raw[];
         company?: CompanyDetailResponseData.Raw | null;
         component?: ComponentResponseData.Raw | null;
         feature_usage?: FeatureUsageDetailResponseData.Raw | null;
+        stripe_embed?: StripeEmbedInfo.Raw | null;
+        subscription?: CompanySubscriptionResponseData.Raw | null;
+        upcoming_invoice?: InvoiceResponseData.Raw | null;
     }
 }

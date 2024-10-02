@@ -9,6 +9,8 @@ import * as Schematic from "../../../index";
  */
 export interface CountPlansParams {
     companyId?: string;
+    /** Filter out plans that do not have a billing product ID */
+    hasProductId?: boolean;
     ids?: string[];
     /** Page limit (default 100) */
     limit?: number;

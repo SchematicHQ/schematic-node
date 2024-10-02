@@ -8,7 +8,7 @@ import * as Schematic from "../../../../index";
  * @example
  *     {
  *         name: "name",
- *         requestTypes: [Schematic.CreateWebhookRequestBodyRequestTypesItem.CompanyUpdated],
+ *         requestTypes: ["company.updated"],
  *         url: "url"
  *     }
  */

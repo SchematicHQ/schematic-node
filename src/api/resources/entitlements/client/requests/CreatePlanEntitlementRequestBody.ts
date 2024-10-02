@@ -9,7 +9,7 @@ import * as Schematic from "../../../../index";
  *     {
  *         featureId: "feature_id",
  *         planId: "plan_id",
- *         valueType: Schematic.CreatePlanEntitlementRequestBodyValueType.Boolean
+ *         valueType: "boolean"
  *     }
  */
 export interface CreatePlanEntitlementRequestBody {

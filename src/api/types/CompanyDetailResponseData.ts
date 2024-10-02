@@ -5,7 +5,7 @@
 import * as Schematic from "../index";
 
 export interface CompanyDetailResponseData {
-    addOns: Schematic.PreviewObject[];
+    addOns: Schematic.BillingPlan[];
     createdAt: Date;
     entityTraits: Schematic.EntityTraitDetailResponseData[];
     environmentId: string;

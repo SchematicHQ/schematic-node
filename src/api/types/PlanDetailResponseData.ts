@@ -4,10 +4,8 @@
 
 import * as Schematic from "../index";
 
-/**
- * The updated resource
- */
 export interface PlanDetailResponseData {
+    audienceType?: string;
     billingProduct?: Schematic.BillingProductDetailResponseData;
     companyCount: number;
     createdAt: Date;
@@ -15,7 +13,9 @@ export interface PlanDetailResponseData {
     features: Schematic.FeatureDetailResponseData[];
     icon: string;
     id: string;
+    monthlyPrice?: Schematic.BillingPriceResponseData;
     name: string;
     planType: string;
     updatedAt: Date;
+    yearlyPrice?: Schematic.BillingPriceResponseData;
 }

@@ -5,16 +5,16 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
-import { PreviewObject } from "./PreviewObject";
+import { BillingPlan } from "./BillingPlan";
 import { EntityTraitDetailResponseData } from "./EntityTraitDetailResponseData";
 import { EntityKeyDetailResponseData } from "./EntityKeyDetailResponseData";
-import { BillingPlan } from "./BillingPlan";
+import { PreviewObject } from "./PreviewObject";
 
 export const CompanyDetailResponseData: core.serialization.ObjectSchema<
     serializers.CompanyDetailResponseData.Raw,
     Schematic.CompanyDetailResponseData
 > = core.serialization.object({
-    addOns: core.serialization.property("add_ons", core.serialization.list(PreviewObject)),
+    addOns: core.serialization.property("add_ons", core.serialization.list(BillingPlan)),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     entityTraits: core.serialization.property("entity_traits", core.serialization.list(EntityTraitDetailResponseData)),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
@@ -32,7 +32,7 @@ export const CompanyDetailResponseData: core.serialization.ObjectSchema<
 
 export declare namespace CompanyDetailResponseData {
     interface Raw {
-        add_ons: PreviewObject.Raw[];
+        add_ons: BillingPlan.Raw[];
         created_at: string;
         entity_traits: EntityTraitDetailResponseData.Raw[];
         environment_id: string;

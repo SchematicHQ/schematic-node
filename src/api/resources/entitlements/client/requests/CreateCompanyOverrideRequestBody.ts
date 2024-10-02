@@ -9,7 +9,7 @@ import * as Schematic from "../../../../index";
  *     {
  *         companyId: "company_id",
  *         featureId: "feature_id",
- *         valueType: Schematic.CreateCompanyOverrideRequestBodyValueType.Boolean
+ *         valueType: "boolean"
  *     }
  */
 export interface CreateCompanyOverrideRequestBody {

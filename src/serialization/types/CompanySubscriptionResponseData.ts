@@ -5,6 +5,8 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { InvoiceResponseData } from "./InvoiceResponseData";
+import { PaymentMethodResponseData } from "./PaymentMethodResponseData";
 import { BillingProductForSubscriptionResponseData } from "./BillingProductForSubscriptionResponseData";
 
 export const CompanySubscriptionResponseData: core.serialization.ObjectSchema<
@@ -14,8 +16,11 @@ export const CompanySubscriptionResponseData: core.serialization.ObjectSchema<
     customerExternalId: core.serialization.property("customer_external_id", core.serialization.string()),
     expiredAt: core.serialization.property("expired_at", core.serialization.date().optional()),
     interval: core.serialization.string(),
+    latestInvoice: core.serialization.property("latest_invoice", InvoiceResponseData.optional()),
+    paymentMethod: core.serialization.property("payment_method", PaymentMethodResponseData.optional()),
     products: core.serialization.list(BillingProductForSubscriptionResponseData),
     subscriptionExternalId: core.serialization.property("subscription_external_id", core.serialization.string()),
+    totalPrice: core.serialization.property("total_price", core.serialization.number()),
 });
 
 export declare namespace CompanySubscriptionResponseData {
@@ -23,7 +28,10 @@ export declare namespace CompanySubscriptionResponseData {
         customer_external_id: string;
         expired_at?: string | null;
         interval: string;
+        latest_invoice?: InvoiceResponseData.Raw | null;
+        payment_method?: PaymentMethodResponseData.Raw | null;
         products: BillingProductForSubscriptionResponseData.Raw[];
         subscription_external_id: string;
+        total_price: number;
     }
 }

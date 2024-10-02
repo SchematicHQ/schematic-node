@@ -17,6 +17,10 @@ export interface ListPlansRequest {
      */
     planType?: Schematic.ListPlansRequestPlanType;
     /**
+     * Filter out plans that do not have a billing product ID
+     */
+    hasProductId?: boolean;
+    /**
      * Filter out plans that already have a plan entitlement for the specified feature ID
      */
     withoutEntitlementFor?: string;

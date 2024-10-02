@@ -14,9 +14,9 @@ export interface EventBodyFlagCheck {
     /** The reason why the value was returned */
     reason: string;
     /** Key-value pairs used to to identify company for which the flag was checked */
-    reqCompany?: Record<string, string | undefined>;
+    reqCompany?: Record<string, string>;
     /** Key-value pairs used to to identify user for which the flag was checked */
-    reqUser?: Record<string, string | undefined>;
+    reqUser?: Record<string, string>;
     /** Schematic rule ID (starting with 'rule\_') of the rule that matched for the flag, if any */
     ruleId?: string;
     /** Schematic user ID (starting with 'user\_') of the user evaluated, if any */

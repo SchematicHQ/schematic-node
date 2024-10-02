@@ -16,4 +16,6 @@ export interface CountCompaniesParams {
     q?: string;
     /** Filter out companies that already have a company override for the specified feature ID */
     withoutFeatureOverrideFor?: string;
+    /** Filter out companies that have a plan */
+    withoutPlan?: boolean;
 }

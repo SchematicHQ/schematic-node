@@ -8,7 +8,7 @@ import * as Schematic from "../../../../index";
  * @example
  *     {
  *         events: [{
- *                 eventType: Schematic.CreateEventRequestBodyEventType.Identify
+ *                 eventType: "identify"
  *             }]
  *     }
  */

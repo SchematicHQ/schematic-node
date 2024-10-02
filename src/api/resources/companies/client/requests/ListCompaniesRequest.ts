@@ -18,6 +18,10 @@ export interface ListCompaniesRequest {
      */
     withoutFeatureOverrideFor?: string;
     /**
+     * Filter out companies that have a plan
+     */
+    withoutPlan?: boolean;
+    /**
      * Page limit (default 100)
      */
     limit?: number;

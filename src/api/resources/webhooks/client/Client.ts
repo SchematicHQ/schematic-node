@@ -80,7 +80,8 @@ export class Webhooks {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.4",
+                "X-Fern-SDK-Version": "1.1.5",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -192,7 +193,8 @@ export class Webhooks {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.4",
+                "X-Fern-SDK-Version": "1.1.5",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -329,7 +331,8 @@ export class Webhooks {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.4",
+                "X-Fern-SDK-Version": "1.1.5",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -455,7 +458,8 @@ export class Webhooks {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.4",
+                "X-Fern-SDK-Version": "1.1.5",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -554,7 +558,7 @@ export class Webhooks {
      * @example
      *     await client.webhooks.createWebhook({
      *         name: "name",
-     *         requestTypes: [Schematic.CreateWebhookRequestBodyRequestTypesItem.CompanyUpdated],
+     *         requestTypes: ["company.updated"],
      *         url: "url"
      *     })
      */
@@ -571,7 +575,8 @@ export class Webhooks {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.4",
+                "X-Fern-SDK-Version": "1.1.5",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -683,7 +688,8 @@ export class Webhooks {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.4",
+                "X-Fern-SDK-Version": "1.1.5",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -797,7 +803,8 @@ export class Webhooks {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.4",
+                "X-Fern-SDK-Version": "1.1.5",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -919,7 +926,8 @@ export class Webhooks {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.4",
+                "X-Fern-SDK-Version": "1.1.5",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1044,7 +1052,8 @@ export class Webhooks {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.4",
+                "X-Fern-SDK-Version": "1.1.5",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

@@ -7,7 +7,7 @@ import * as Schematic from "../../../../index";
 /**
  * @example
  *     {
- *         valueType: Schematic.UpdateCompanyOverrideRequestBodyValueType.Boolean
+ *         valueType: "boolean"
  *     }
  */
 export interface UpdateCompanyOverrideRequestBody {
