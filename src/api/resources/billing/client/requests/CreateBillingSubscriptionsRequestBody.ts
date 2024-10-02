@@ -8,7 +8,7 @@ import * as Schematic from "../../../../index";
  * @example
  *     {
  *         customerExternalId: "customer_external_id",
- *         expiredAt: new Date("2024-01-15T09:30:00.000Z"),
+ *         expiredAt: "2024-01-15T09:30:00Z",
  *         productExternalIds: [{
  *                 price: 1,
  *                 productExternalId: "product_external_id"

@@ -12,6 +12,7 @@ export const ListPlansParams: core.serialization.ObjectSchema<
     Schematic.ListPlansParams
 > = core.serialization.object({
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
+    hasProductId: core.serialization.property("has_product_id", core.serialization.boolean().optional()),
     ids: core.serialization.list(core.serialization.string()).optional(),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
@@ -26,6 +27,7 @@ export const ListPlansParams: core.serialization.ObjectSchema<
 export declare namespace ListPlansParams {
     interface Raw {
         company_id?: string | null;
+        has_product_id?: boolean | null;
         ids?: string[] | null;
         limit?: number | null;
         offset?: number | null;

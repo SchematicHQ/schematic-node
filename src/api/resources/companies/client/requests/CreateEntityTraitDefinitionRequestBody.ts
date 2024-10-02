@@ -7,9 +7,9 @@ import * as Schematic from "../../../../index";
 /**
  * @example
  *     {
- *         entityType: Schematic.CreateEntityTraitDefinitionRequestBodyEntityType.Company,
+ *         entityType: "company",
  *         hierarchy: ["hierarchy"],
- *         traitType: Schematic.CreateEntityTraitDefinitionRequestBodyTraitType.Boolean
+ *         traitType: "boolean"
  *     }
  */
 export interface CreateEntityTraitDefinitionRequestBody {

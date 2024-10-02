@@ -7,7 +7,7 @@ import * as Schematic from "../../../../index";
 /**
  * @example
  *     {
- *         environmentType: Schematic.CreateEnvironmentRequestBodyEnvironmentType.Development,
+ *         environmentType: "development",
  *         name: "name"
  *     }
  */

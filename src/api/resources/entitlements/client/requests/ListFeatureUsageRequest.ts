@@ -8,7 +8,7 @@
  */
 export interface ListFeatureUsageRequest {
     companyId?: string;
-    companyKeys?: Record<string, string | undefined>;
+    companyKeys?: Record<string, string>;
     featureIds?: string | string[];
     q?: string;
     /**

@@ -1,11 +1,13 @@
 export { type CreateBillingCustomerRequestBody } from "./CreateBillingCustomerRequestBody";
 export { type ListCustomersRequest } from "./ListCustomersRequest";
 export { type CountCustomersRequest } from "./CountCustomersRequest";
-export { type CreateBillingPlanGroupRequestBody } from "./CreateBillingPlanGroupRequestBody";
-export { type UpdateBillingPlanGroupRequestBody } from "./UpdateBillingPlanGroupRequestBody";
+export { type ListInvoicesRequest } from "./ListInvoicesRequest";
+export { type CreateInvoiceRequestBody } from "./CreateInvoiceRequestBody";
+export { type ListPaymentMethodsRequest } from "./ListPaymentMethodsRequest";
+export { type CreatePaymentMethodRequestBody } from "./CreatePaymentMethodRequestBody";
 export { type CreateBillingPriceRequestBody } from "./CreateBillingPriceRequestBody";
 export { type ListProductPricesRequest } from "./ListProductPricesRequest";
 export { type CreateBillingProductRequestBody } from "./CreateBillingProductRequestBody";
 export { type ListBillingProductsRequest } from "./ListBillingProductsRequest";
+export { type CountBillingProductsRequest } from "./CountBillingProductsRequest";
 export { type CreateBillingSubscriptionsRequestBody } from "./CreateBillingSubscriptionsRequestBody";
-export { type ChangeSubscriptionRequestBody } from "./ChangeSubscriptionRequestBody";

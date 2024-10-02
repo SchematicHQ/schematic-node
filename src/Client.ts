@@ -15,6 +15,7 @@ import { Components } from "./api/resources/components/client/Client";
 import { Crm } from "./api/resources/crm/client/Client";
 import { Events } from "./api/resources/events/client/Client";
 import { Plans } from "./api/resources/plans/client/Client";
+import { Plangroups } from "./api/resources/plangroups/client/Client";
 import { Accesstokens } from "./api/resources/accesstokens/client/Client";
 import { Webhooks } from "./api/resources/webhooks/client/Client";
 
@@ -54,7 +55,8 @@ export class SchematicClient {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.4",
+                "X-Fern-SDK-Version": "1.1.5",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -143,6 +145,12 @@ export class SchematicClient {
 
     public get plans(): Plans {
         return (this._plans ??= new Plans(this._options));
+    }
+
+    protected _plangroups: Plangroups | undefined;
+
+    public get plangroups(): Plangroups {
+        return (this._plangroups ??= new Plangroups(this._options));
     }
 
     protected _accesstokens: Accesstokens | undefined;
