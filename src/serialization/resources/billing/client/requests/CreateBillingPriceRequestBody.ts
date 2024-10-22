@@ -10,6 +10,7 @@ export const CreateBillingPriceRequestBody: core.serialization.Schema<
     serializers.CreateBillingPriceRequestBody.Raw,
     Schematic.CreateBillingPriceRequestBody
 > = core.serialization.object({
+    currency: core.serialization.string(),
     interval: core.serialization.string(),
     price: core.serialization.number(),
     priceExternalId: core.serialization.property("price_external_id", core.serialization.string()),
@@ -18,6 +19,7 @@ export const CreateBillingPriceRequestBody: core.serialization.Schema<
 
 export declare namespace CreateBillingPriceRequestBody {
     interface Raw {
+        currency: string;
         interval: string;
         price: number;
         price_external_id: string;

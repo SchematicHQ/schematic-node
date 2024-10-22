@@ -10,16 +10,24 @@ import * as Schematic from "../../../../index";
  */
 export interface CountPlansRequest {
     companyId?: string;
+    /**
+     * Filter out plans that do not have a billing product ID
+     */
+    hasProductId?: boolean;
     ids?: string | string[];
-    q?: string;
     /**
      * Filter by plan type
      */
     planType?: Schematic.CountPlansRequestPlanType;
+    q?: string;
     /**
      * Filter out plans that already have a plan entitlement for the specified feature ID
      */
     withoutEntitlementFor?: string;
+    /**
+     * Filter out plans that have a billing product ID
+     */
+    withoutProductId?: boolean;
     /**
      * Page limit (default 100)
      */

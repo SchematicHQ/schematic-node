@@ -7,7 +7,7 @@ import * as Schematic from "../../../../index";
 /**
  * @example
  *     {
- *         valueType: Schematic.UpdatePlanEntitlementRequestBodyValueType.Boolean
+ *         valueType: "boolean"
  *     }
  */
 export interface UpdatePlanEntitlementRequestBody {

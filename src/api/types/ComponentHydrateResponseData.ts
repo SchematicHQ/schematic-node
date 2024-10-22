@@ -4,11 +4,13 @@
 
 import * as Schematic from "../index";
 
-/**
- * The returned resource
- */
 export interface ComponentHydrateResponseData {
+    activeAddOns: Schematic.CompanyPlanDetailResponseData[];
+    activePlans: Schematic.CompanyPlanDetailResponseData[];
     company?: Schematic.CompanyDetailResponseData;
     component?: Schematic.ComponentResponseData;
     featureUsage?: Schematic.FeatureUsageDetailResponseData;
+    stripeEmbed?: Schematic.StripeEmbedInfo;
+    subscription?: Schematic.CompanySubscriptionResponseData;
+    upcomingInvoice?: Schematic.InvoiceResponseData;
 }

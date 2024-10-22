@@ -7,7 +7,7 @@ import * as Schematic from "../../../../index";
 /**
  * @example
  *     {
- *         traitType: Schematic.UpdateEntityTraitDefinitionRequestBodyTraitType.Boolean
+ *         traitType: "boolean"
  *     }
  */
 export interface UpdateEntityTraitDefinitionRequestBody {

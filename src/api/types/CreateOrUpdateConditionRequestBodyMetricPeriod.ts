@@ -5,9 +5,14 @@
 /**
  * Period of time over which to measure the track event metric
  */
-export type CreateOrUpdateConditionRequestBodyMetricPeriod = "current_month" | "current_week" | "current_day";
+export type CreateOrUpdateConditionRequestBodyMetricPeriod =
+    | "billing"
+    | "current_month"
+    | "current_week"
+    | "current_day";
 
 export const CreateOrUpdateConditionRequestBodyMetricPeriod = {
+    Billing: "billing",
     CurrentMonth: "current_month",
     CurrentWeek: "current_week",
     CurrentDay: "current_day",

@@ -1,7 +1,7 @@
 export { CreateBillingCustomerRequestBody } from "./CreateBillingCustomerRequestBody";
-export { CreateBillingPlanGroupRequestBody } from "./CreateBillingPlanGroupRequestBody";
-export { UpdateBillingPlanGroupRequestBody } from "./UpdateBillingPlanGroupRequestBody";
+export { CreateInvoiceRequestBody } from "./CreateInvoiceRequestBody";
+export { CreateMeterRequestBody } from "./CreateMeterRequestBody";
+export { CreatePaymentMethodRequestBody } from "./CreatePaymentMethodRequestBody";
 export { CreateBillingPriceRequestBody } from "./CreateBillingPriceRequestBody";
 export { CreateBillingProductRequestBody } from "./CreateBillingProductRequestBody";
 export { CreateBillingSubscriptionsRequestBody } from "./CreateBillingSubscriptionsRequestBody";
-export { ChangeSubscriptionRequestBody } from "./ChangeSubscriptionRequestBody";

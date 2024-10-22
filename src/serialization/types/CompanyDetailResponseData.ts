@@ -5,16 +5,21 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
-import { PreviewObject } from "./PreviewObject";
+import { CompanyPlanWithBillingSubView } from "./CompanyPlanWithBillingSubView";
+import { BillingSubscriptionResponseData } from "./BillingSubscriptionResponseData";
 import { EntityTraitDetailResponseData } from "./EntityTraitDetailResponseData";
 import { EntityKeyDetailResponseData } from "./EntityKeyDetailResponseData";
-import { BillingPlan } from "./BillingPlan";
+import { GenericPreviewObject } from "./GenericPreviewObject";
 
 export const CompanyDetailResponseData: core.serialization.ObjectSchema<
     serializers.CompanyDetailResponseData.Raw,
     Schematic.CompanyDetailResponseData
 > = core.serialization.object({
-    addOns: core.serialization.property("add_ons", core.serialization.list(PreviewObject)),
+    addOns: core.serialization.property("add_ons", core.serialization.list(CompanyPlanWithBillingSubView)),
+    billingSubscriptions: core.serialization.property(
+        "billing_subscriptions",
+        core.serialization.list(BillingSubscriptionResponseData)
+    ),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     entityTraits: core.serialization.property("entity_traits", core.serialization.list(EntityTraitDetailResponseData)),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
@@ -23,8 +28,8 @@ export const CompanyDetailResponseData: core.serialization.ObjectSchema<
     lastSeenAt: core.serialization.property("last_seen_at", core.serialization.date().optional()),
     logoUrl: core.serialization.property("logo_url", core.serialization.string().optional()),
     name: core.serialization.string(),
-    plan: BillingPlan.optional(),
-    plans: core.serialization.list(PreviewObject),
+    plan: CompanyPlanWithBillingSubView.optional(),
+    plans: core.serialization.list(GenericPreviewObject),
     traits: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     userCount: core.serialization.property("user_count", core.serialization.number()),
@@ -32,7 +37,8 @@ export const CompanyDetailResponseData: core.serialization.ObjectSchema<
 
 export declare namespace CompanyDetailResponseData {
     interface Raw {
-        add_ons: PreviewObject.Raw[];
+        add_ons: CompanyPlanWithBillingSubView.Raw[];
+        billing_subscriptions: BillingSubscriptionResponseData.Raw[];
         created_at: string;
         entity_traits: EntityTraitDetailResponseData.Raw[];
         environment_id: string;
@@ -41,8 +47,8 @@ export declare namespace CompanyDetailResponseData {
         last_seen_at?: string | null;
         logo_url?: string | null;
         name: string;
-        plan?: BillingPlan.Raw | null;
-        plans: PreviewObject.Raw[];
+        plan?: CompanyPlanWithBillingSubView.Raw | null;
+        plans: GenericPreviewObject.Raw[];
         traits?: Record<string, unknown> | null;
         updated_at: string;
         user_count: number;

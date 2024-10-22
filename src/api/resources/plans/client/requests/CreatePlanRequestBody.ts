@@ -9,7 +9,7 @@ import * as Schematic from "../../../../index";
  *     {
  *         description: "description",
  *         name: "name",
- *         planType: Schematic.CreatePlanRequestBodyPlanType.Plan
+ *         planType: "plan"
  *     }
  */
 export interface CreatePlanRequestBody {

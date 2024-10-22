@@ -15,6 +15,7 @@ export const ListProductPricesParams: core.serialization.ObjectSchema<
     name: core.serialization.string().optional(),
     offset: core.serialization.number().optional(),
     q: core.serialization.string().optional(),
+    withoutLinkedToPlan: core.serialization.property("without_linked_to_plan", core.serialization.boolean().optional()),
 });
 
 export declare namespace ListProductPricesParams {
@@ -24,5 +25,6 @@ export declare namespace ListProductPricesParams {
         name?: string | null;
         offset?: number | null;
         q?: string | null;
+        without_linked_to_plan?: boolean | null;
     }
 }

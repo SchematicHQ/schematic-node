@@ -10,12 +10,14 @@ export const BillingCustomerSubscription: core.serialization.ObjectSchema<
     serializers.BillingCustomerSubscription.Raw,
     Schematic.BillingCustomerSubscription
 > = core.serialization.object({
+    currency: core.serialization.string(),
     expiredAt: core.serialization.property("expired_at", core.serialization.date().optional()),
     totalPrice: core.serialization.property("total_price", core.serialization.number()),
 });
 
 export declare namespace BillingCustomerSubscription {
     interface Raw {
+        currency: string;
         expired_at?: string | null;
         total_price: number;
     }
