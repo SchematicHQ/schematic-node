@@ -5,6 +5,7 @@
 /**
  * @example
  *     {
+ *         currency: "currency",
  *         interval: "interval",
  *         price: 1,
  *         priceExternalId: "price_external_id",
@@ -12,6 +13,7 @@
  *     }
  */
 export interface CreateBillingPriceRequestBody {
+    currency: string;
     interval: string;
     price: number;
     priceExternalId: string;

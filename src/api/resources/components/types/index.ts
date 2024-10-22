@@ -7,6 +7,7 @@ export * from "./UpdateComponentRequestBodyEntityType";
 export * from "./UpdateComponentRequestBodyState";
 export * from "./UpdateComponentResponse";
 export * from "./DeleteComponentResponse";
-export * from "./HydrateComponentResponse";
 export * from "./CountComponentsParams";
 export * from "./CountComponentsResponse";
+export * from "./PreviewComponentDataParams";
+export * from "./PreviewComponentDataResponse";

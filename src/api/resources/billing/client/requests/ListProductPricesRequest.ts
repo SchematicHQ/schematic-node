@@ -11,6 +11,10 @@ export interface ListProductPricesRequest {
     name?: string;
     q?: string;
     /**
+     * Filter products that are not linked to any plan
+     */
+    withoutLinkedToPlan?: boolean;
+    /**
      * Page limit (default 100)
      */
     limit?: number;

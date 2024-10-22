@@ -7,9 +7,9 @@
  *     {}
  */
 export interface CountWebhookEventsRequest {
-    webhookId?: string;
     ids?: string | string[];
     q?: string;
+    webhookId?: string;
     /**
      * Page limit (default 100)
      */

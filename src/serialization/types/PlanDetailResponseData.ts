@@ -7,11 +7,13 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { BillingProductDetailResponseData } from "./BillingProductDetailResponseData";
 import { FeatureDetailResponseData } from "./FeatureDetailResponseData";
+import { BillingPriceResponseData } from "./BillingPriceResponseData";
 
 export const PlanDetailResponseData: core.serialization.ObjectSchema<
     serializers.PlanDetailResponseData.Raw,
     Schematic.PlanDetailResponseData
 > = core.serialization.object({
+    audienceType: core.serialization.property("audience_type", core.serialization.string().optional()),
     billingProduct: core.serialization.property("billing_product", BillingProductDetailResponseData.optional()),
     companyCount: core.serialization.property("company_count", core.serialization.number()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
@@ -19,13 +21,17 @@ export const PlanDetailResponseData: core.serialization.ObjectSchema<
     features: core.serialization.list(FeatureDetailResponseData),
     icon: core.serialization.string(),
     id: core.serialization.string(),
+    isDefault: core.serialization.property("is_default", core.serialization.boolean()),
+    monthlyPrice: core.serialization.property("monthly_price", BillingPriceResponseData.optional()),
     name: core.serialization.string(),
     planType: core.serialization.property("plan_type", core.serialization.string()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+    yearlyPrice: core.serialization.property("yearly_price", BillingPriceResponseData.optional()),
 });
 
 export declare namespace PlanDetailResponseData {
     interface Raw {
+        audience_type?: string | null;
         billing_product?: BillingProductDetailResponseData.Raw | null;
         company_count: number;
         created_at: string;
@@ -33,8 +39,11 @@ export declare namespace PlanDetailResponseData {
         features: FeatureDetailResponseData.Raw[];
         icon: string;
         id: string;
+        is_default: boolean;
+        monthly_price?: BillingPriceResponseData.Raw | null;
         name: string;
         plan_type: string;
         updated_at: string;
+        yearly_price?: BillingPriceResponseData.Raw | null;
     }
 }

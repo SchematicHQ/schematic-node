@@ -3,6 +3,7 @@
  */
 
 export interface BillingCustomerSubscription {
+    currency: string;
     expiredAt?: Date;
     totalPrice: number;
 }

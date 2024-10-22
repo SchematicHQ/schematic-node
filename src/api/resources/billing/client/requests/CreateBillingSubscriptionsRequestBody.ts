@@ -7,10 +7,14 @@ import * as Schematic from "../../../../index";
 /**
  * @example
  *     {
+ *         currency: "currency",
  *         customerExternalId: "customer_external_id",
- *         expiredAt: new Date("2024-01-15T09:30:00.000Z"),
+ *         expiredAt: "2024-01-15T09:30:00Z",
  *         productExternalIds: [{
+ *                 currency: "currency",
+ *                 interval: "interval",
  *                 price: 1,
+ *                 priceExternalId: "price_external_id",
  *                 productExternalId: "product_external_id"
  *             }],
  *         subscriptionExternalId: "subscription_external_id",
@@ -18,10 +22,13 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface CreateBillingSubscriptionsRequestBody {
+    currency: string;
     customerExternalId: string;
     expiredAt: Date;
     interval?: string;
     metadata?: Record<string, unknown>;
+    periodEnd?: number;
+    periodStart?: number;
     productExternalIds: Schematic.BillingProductPricing[];
     status?: string;
     subscriptionExternalId: string;

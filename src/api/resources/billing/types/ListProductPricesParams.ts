@@ -13,4 +13,6 @@ export interface ListProductPricesParams {
     /** Page offset (default 0) */
     offset?: number;
     q?: string;
+    /** Filter products that are not linked to any plan */
+    withoutLinkedToPlan?: boolean;
 }

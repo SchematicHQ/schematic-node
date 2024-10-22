@@ -14,4 +14,5 @@ export interface ListFeatureUsageParams {
     /** Page offset (default 0) */
     offset?: number;
     q?: string;
+    withoutNegativeEntitlements?: boolean;
 }

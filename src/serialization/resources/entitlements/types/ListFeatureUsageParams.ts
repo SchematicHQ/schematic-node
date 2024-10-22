@@ -22,6 +22,10 @@ export const ListFeatureUsageParams: core.serialization.ObjectSchema<
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
     q: core.serialization.string().optional(),
+    withoutNegativeEntitlements: core.serialization.property(
+        "without_negative_entitlements",
+        core.serialization.boolean().optional()
+    ),
 });
 
 export declare namespace ListFeatureUsageParams {
@@ -32,5 +36,6 @@ export declare namespace ListFeatureUsageParams {
         limit?: number | null;
         offset?: number | null;
         q?: string | null;
+        without_negative_entitlements?: boolean | null;
     }
 }

@@ -9,9 +9,11 @@ export interface BillingProductForSubscriptionResponseData {
     environmentId: string;
     externalId: string;
     id: string;
-    interval?: string;
+    interval: string;
     name: string;
     price: number;
+    priceExternalId: string;
     quantity: number;
+    subscriptionId: string;
     updatedAt: Date;
 }

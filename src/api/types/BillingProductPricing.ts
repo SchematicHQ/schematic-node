@@ -3,8 +3,9 @@
  */
 
 export interface BillingProductPricing {
-    interval?: string;
+    currency: string;
+    interval: string;
     price: number;
-    priceExternalId?: string;
+    priceExternalId: string;
     productExternalId: string;
 }

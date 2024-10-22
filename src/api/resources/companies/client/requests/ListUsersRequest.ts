@@ -7,11 +7,20 @@
  *     {}
  */
 export interface ListUsersRequest {
+    /**
+     * Filter users by company ID (starts with comp\_)
+     */
     companyId?: string;
+    /**
+     * Filter users by multiple user IDs (starts with user\_)
+     */
     ids?: string | string[];
+    /**
+     * Filter users by plan ID (starts with plan\_)
+     */
     planId?: string;
     /**
-     * Search filter
+     * Search for users by name, keys or string traits
      */
     q?: string;
     /**
