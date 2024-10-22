@@ -16,10 +16,12 @@ export const BillingProductForSubscriptionResponseData: core.serialization.Objec
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     externalId: core.serialization.property("external_id", core.serialization.string()),
     id: core.serialization.string(),
-    interval: core.serialization.string().optional(),
+    interval: core.serialization.string(),
     name: core.serialization.string(),
     price: core.serialization.number(),
+    priceExternalId: core.serialization.property("price_external_id", core.serialization.string()),
     quantity: core.serialization.number(),
+    subscriptionId: core.serialization.property("subscription_id", core.serialization.string()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
@@ -31,10 +33,12 @@ export declare namespace BillingProductForSubscriptionResponseData {
         environment_id: string;
         external_id: string;
         id: string;
-        interval?: string | null;
+        interval: string;
         name: string;
         price: number;
+        price_external_id: string;
         quantity: number;
+        subscription_id: string;
         updated_at: string;
     }
 }

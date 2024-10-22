@@ -8,7 +8,7 @@ import * as Schematic from "../../../../index";
  * @example
  *     {
  *         description: "description",
- *         featureType: Schematic.CreateFeatureRequestBodyFeatureType.Boolean,
+ *         featureType: "boolean",
  *         name: "name"
  *     }
  */

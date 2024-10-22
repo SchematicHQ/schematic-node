@@ -5,7 +5,8 @@
 import * as Schematic from "../index";
 
 export interface CompanyDetailResponseData {
-    addOns: Schematic.PreviewObject[];
+    addOns: Schematic.CompanyPlanWithBillingSubView[];
+    billingSubscriptions: Schematic.BillingSubscriptionResponseData[];
     createdAt: Date;
     entityTraits: Schematic.EntityTraitDetailResponseData[];
     environmentId: string;
@@ -14,8 +15,8 @@ export interface CompanyDetailResponseData {
     lastSeenAt?: Date;
     logoUrl?: string;
     name: string;
-    plan?: Schematic.BillingPlan;
-    plans: Schematic.PreviewObject[];
+    plan?: Schematic.CompanyPlanWithBillingSubView;
+    plans: Schematic.GenericPreviewObject[];
     /** A map of trait names to trait values */
     traits?: Record<string, unknown>;
     updatedAt: Date;

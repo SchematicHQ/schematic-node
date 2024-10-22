@@ -5,9 +5,14 @@
 import * as Schematic from "../index";
 
 export interface CompanySubscriptionResponseData {
+    currency: string;
     customerExternalId: string;
     expiredAt?: Date;
     interval: string;
+    latestInvoice?: Schematic.InvoiceResponseData;
+    paymentMethod?: Schematic.PaymentMethodResponseData;
     products: Schematic.BillingProductForSubscriptionResponseData[];
+    status: string;
     subscriptionExternalId: string;
+    totalPrice: number;
 }

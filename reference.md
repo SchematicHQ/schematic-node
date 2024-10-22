@@ -552,7 +552,7 @@ await client.accounts.listEnvironments();
 
 ```typescript
 await client.accounts.createEnvironment({
-    environmentType: Schematic.CreateEnvironmentRequestBodyEnvironmentType.Development,
+    environmentType: "development",
     name: "name",
 });
 ```
@@ -761,8 +761,8 @@ await client.features.countAudienceCompanies({
         {
             conditions: [
                 {
-                    conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
-                    operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+                    conditionType: "company",
+                    operator: "eq",
                     resourceIds: ["resource_ids"],
                 },
             ],
@@ -770,8 +770,8 @@ await client.features.countAudienceCompanies({
     ],
     conditions: [
         {
-            conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
-            operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+            conditionType: "company",
+            operator: "eq",
             resourceIds: ["resource_ids"],
         },
     ],
@@ -828,8 +828,8 @@ await client.features.countAudienceUsers({
         {
             conditions: [
                 {
-                    conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
-                    operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+                    conditionType: "company",
+                    operator: "eq",
                     resourceIds: ["resource_ids"],
                 },
             ],
@@ -837,8 +837,8 @@ await client.features.countAudienceUsers({
     ],
     conditions: [
         {
-            conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
-            operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+            conditionType: "company",
+            operator: "eq",
             resourceIds: ["resource_ids"],
         },
     ],
@@ -895,8 +895,8 @@ await client.features.listAudienceCompanies({
         {
             conditions: [
                 {
-                    conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
-                    operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+                    conditionType: "company",
+                    operator: "eq",
                     resourceIds: ["resource_ids"],
                 },
             ],
@@ -904,8 +904,8 @@ await client.features.listAudienceCompanies({
     ],
     conditions: [
         {
-            conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
-            operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+            conditionType: "company",
+            operator: "eq",
             resourceIds: ["resource_ids"],
         },
     ],
@@ -962,8 +962,8 @@ await client.features.listAudienceUsers({
         {
             conditions: [
                 {
-                    conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
-                    operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+                    conditionType: "company",
+                    operator: "eq",
                     resourceIds: ["resource_ids"],
                 },
             ],
@@ -971,8 +971,8 @@ await client.features.listAudienceUsers({
     ],
     conditions: [
         {
-            conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
-            operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+            conditionType: "company",
+            operator: "eq",
             resourceIds: ["resource_ids"],
         },
     ],
@@ -1074,7 +1074,7 @@ await client.features.listFeatures();
 ```typescript
 await client.features.createFeature({
     description: "description",
-    featureType: Schematic.CreateFeatureRequestBodyFeatureType.Boolean,
+    featureType: "boolean",
     name: "name",
 });
 ```
@@ -1591,8 +1591,8 @@ await client.features.updateFlagRules("flag_id", {
                 {
                     conditions: [
                         {
-                            conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
-                            operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+                            conditionType: "company",
+                            operator: "eq",
                             resourceIds: ["resource_ids"],
                         },
                     ],
@@ -1600,8 +1600,8 @@ await client.features.updateFlagRules("flag_id", {
             ],
             conditions: [
                 {
-                    conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
-                    operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+                    conditionType: "company",
+                    operator: "eq",
                     resourceIds: ["resource_ids"],
                 },
             ],
@@ -1959,7 +1959,7 @@ await client.billing.countCustomers();
 </dl>
 </details>
 
-<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">getBillingPlanGroupByAccountId</a>() -> Schematic.GetBillingPlanGroupByAccountIdResponse</code></summary>
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">listInvoices</a>({ ...params }) -> Schematic.ListInvoicesResponse</code></summary>
 <dl>
 <dd>
 
@@ -1972,48 +1972,8 @@ await client.billing.countCustomers();
 <dd>
 
 ```typescript
-await client.billing.getBillingPlanGroupByAccountId();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `Billing.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">createBillingPlanGroup</a>({ ...params }) -> Schematic.CreateBillingPlanGroupResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.billing.createBillingPlanGroup({
-    planIds: ["plan_ids"],
+await client.billing.listInvoices({
+    customerExternalId: "customer_external_id",
 });
 ```
 
@@ -2030,7 +1990,7 @@ await client.billing.createBillingPlanGroup({
 <dl>
 <dd>
 
-**request:** `Schematic.CreateBillingPlanGroupRequestBody`
+**request:** `Schematic.ListInvoicesRequest`
 
 </dd>
 </dl>
@@ -2049,7 +2009,7 @@ await client.billing.createBillingPlanGroup({
 </dl>
 </details>
 
-<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">updateBillingPlanGroup</a>(billingId, { ...params }) -> Schematic.UpdateBillingPlanGroupResponse</code></summary>
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">upsertInvoice</a>({ ...params }) -> Schematic.UpsertInvoiceResponse</code></summary>
 <dl>
 <dd>
 
@@ -2062,8 +2022,14 @@ await client.billing.createBillingPlanGroup({
 <dd>
 
 ```typescript
-await client.billing.updateBillingPlanGroup("billing_id", {
-    planIds: ["plan_ids"],
+await client.billing.upsertInvoice({
+    amountDue: 1,
+    amountPaid: 1,
+    amountRemaining: 1,
+    collectionMethod: "collection_method",
+    currency: "currency",
+    customerExternalId: "customer_external_id",
+    subtotal: 1,
 });
 ```
 
@@ -2080,7 +2046,7 @@ await client.billing.updateBillingPlanGroup("billing_id", {
 <dl>
 <dd>
 
-**billingId:** `string` — billing_id
+**request:** `Schematic.CreateInvoiceRequestBody`
 
 </dd>
 </dl>
@@ -2088,7 +2054,202 @@ await client.billing.updateBillingPlanGroup("billing_id", {
 <dl>
 <dd>
 
-**request:** `Schematic.UpdateBillingPlanGroupRequestBody`
+**requestOptions:** `Billing.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">listMeters</a>({ ...params }) -> Schematic.ListMetersResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.billing.listMeters();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListMetersRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Billing.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">upsertBillingMeter</a>({ ...params }) -> Schematic.UpsertBillingMeterResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.billing.upsertBillingMeter({
+    displayName: "DisplayName",
+    eventName: "EventName",
+    eventPayloadKey: "EventPayloadKey",
+    externalId: "external_id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CreateMeterRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Billing.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">listPaymentMethods</a>({ ...params }) -> Schematic.ListPaymentMethodsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.billing.listPaymentMethods({
+    customerExternalId: "customer_external_id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListPaymentMethodsRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Billing.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">upsertPaymentMethod</a>({ ...params }) -> Schematic.UpsertPaymentMethodResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.billing.upsertPaymentMethod({
+    customerExternalId: "customer_external_id",
+    externalId: "external_id",
+    paymentMethodType: "payment_method_type",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CreatePaymentMethodRequestBody`
 
 </dd>
 </dl>
@@ -2121,6 +2282,7 @@ await client.billing.updateBillingPlanGroup("billing_id", {
 
 ```typescript
 await client.billing.upsertBillingPrice({
+    currency: "currency",
     interval: "interval",
     price: 1,
     priceExternalId: "price_external_id",
@@ -2190,6 +2352,54 @@ await client.billing.listProductPrices();
 <dd>
 
 **request:** `Schematic.ListProductPricesRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Billing.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">deleteProductPrice</a>(billingId) -> Schematic.DeleteProductPriceResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.billing.deleteProductPrice("billing_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**billingId:** `string` — billing_id
 
 </dd>
 </dl>
@@ -2310,6 +2520,54 @@ await client.billing.listBillingProducts();
 </dl>
 </details>
 
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">countBillingProducts</a>({ ...params }) -> Schematic.CountBillingProductsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.billing.countBillingProducts();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CountBillingProductsRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Billing.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">upsertBillingSubscription</a>({ ...params }) -> Schematic.UpsertBillingSubscriptionResponse</code></summary>
 <dl>
 <dd>
@@ -2324,11 +2582,15 @@ await client.billing.listBillingProducts();
 
 ```typescript
 await client.billing.upsertBillingSubscription({
+    currency: "currency",
     customerExternalId: "customer_external_id",
-    expiredAt: new Date("2024-01-15T09:30:00.000Z"),
+    expiredAt: "2024-01-15T09:30:00Z",
     productExternalIds: [
         {
+            currency: "currency",
+            interval: "interval",
             price: 1,
+            priceExternalId: "price_external_id",
             productExternalId: "product_external_id",
         },
     ],
@@ -2351,58 +2613,6 @@ await client.billing.upsertBillingSubscription({
 <dd>
 
 **request:** `Schematic.CreateBillingSubscriptionsRequestBody`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Billing.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">changeSubscriptionWeb</a>({ ...params }) -> Schematic.ChangeSubscriptionWebResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.billing.changeSubscriptionWeb({
-    action: "action",
-    newPlanId: "new_plan_id",
-    newPriceId: "new_price_id",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.ChangeSubscriptionRequestBody`
 
 </dd>
 </dl>
@@ -3284,9 +3494,9 @@ await client.companies.listEntityTraitDefinitions();
 
 ```typescript
 await client.companies.getOrCreateEntityTraitDefinition({
-    entityType: Schematic.CreateEntityTraitDefinitionRequestBodyEntityType.Company,
+    entityType: "company",
     hierarchy: ["hierarchy"],
-    traitType: Schematic.CreateEntityTraitDefinitionRequestBodyTraitType.Boolean,
+    traitType: "boolean",
 });
 ```
 
@@ -3384,7 +3594,7 @@ await client.companies.getEntityTraitDefinition("entity_trait_definition_id");
 
 ```typescript
 await client.companies.updateEntityTraitDefinition("entity_trait_definition_id", {
-    traitType: Schematic.UpdateEntityTraitDefinitionRequestBodyTraitType.Boolean,
+    traitType: "boolean",
 });
 ```
 
@@ -4053,7 +4263,7 @@ await client.entitlements.listCompanyOverrides();
 await client.entitlements.createCompanyOverride({
     companyId: "company_id",
     featureId: "feature_id",
-    valueType: Schematic.CreateCompanyOverrideRequestBodyValueType.Boolean,
+    valueType: "boolean",
 });
 ```
 
@@ -4151,7 +4361,7 @@ await client.entitlements.getCompanyOverride("company_override_id");
 
 ```typescript
 await client.entitlements.updateCompanyOverride("company_override_id", {
-    valueType: Schematic.UpdateCompanyOverrideRequestBodyValueType.Boolean,
+    valueType: "boolean",
 });
 ```
 
@@ -4651,7 +4861,7 @@ await client.entitlements.listPlanEntitlements();
 await client.entitlements.createPlanEntitlement({
     featureId: "feature_id",
     planId: "plan_id",
-    valueType: Schematic.CreatePlanEntitlementRequestBodyValueType.Boolean,
+    valueType: "boolean",
 });
 ```
 
@@ -4749,7 +4959,7 @@ await client.entitlements.getPlanEntitlement("plan_entitlement_id");
 
 ```typescript
 await client.entitlements.updatePlanEntitlement("plan_entitlement_id", {
-    valueType: Schematic.UpdatePlanEntitlementRequestBodyValueType.Boolean,
+    valueType: "boolean",
 });
 ```
 
@@ -5007,7 +5217,7 @@ await client.components.listComponents();
 
 ```typescript
 await client.components.createComponent({
-    entityType: Schematic.CreateComponentRequestBodyEntityType.Entitlement,
+    entityType: "entitlement",
     name: "name",
 });
 ```
@@ -5196,54 +5406,6 @@ await client.components.deleteComponent("component_id");
 </dl>
 </details>
 
-<details><summary><code>client.components.<a href="/src/api/resources/components/client/Client.ts">hydrateComponent</a>(componentId) -> Schematic.HydrateComponentResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.components.hydrateComponent("component_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**componentId:** `string` — component_id
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Components.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.components.<a href="/src/api/resources/components/client/Client.ts">countComponents</a>({ ...params }) -> Schematic.CountComponentsResponse</code></summary>
 <dl>
 <dd>
@@ -5274,6 +5436,54 @@ await client.components.countComponents();
 <dd>
 
 **request:** `Schematic.CountComponentsRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Components.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.components.<a href="/src/api/resources/components/client/Client.ts">previewComponentData</a>({ ...params }) -> Schematic.PreviewComponentDataResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.components.previewComponentData();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.PreviewComponentDataRequest`
 
 </dd>
 </dl>
@@ -5574,7 +5784,7 @@ await client.crm.upsertCrmProduct({
 await client.events.createEventBatch({
     events: [
         {
-            eventType: Schematic.CreateEventRequestBodyEventType.Identify,
+            eventType: "identify",
         },
     ],
 });
@@ -5770,7 +5980,7 @@ await client.events.listEvents();
 
 ```typescript
 await client.events.createEvent({
-    eventType: Schematic.CreateEventRequestBodyEventType.Identify,
+    eventType: "identify",
 });
 ```
 
@@ -6010,8 +6220,8 @@ await client.plans.updateAudience("plan_audience_id", {
         {
             conditions: [
                 {
-                    conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
-                    operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+                    conditionType: "company",
+                    operator: "eq",
                     resourceIds: ["resource_ids"],
                 },
             ],
@@ -6019,8 +6229,8 @@ await client.plans.updateAudience("plan_audience_id", {
     ],
     conditions: [
         {
-            conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType.Company,
-            operator: Schematic.CreateOrUpdateConditionRequestBodyOperator.Eq,
+            conditionType: "company",
+            operator: "eq",
             resourceIds: ["resource_ids"],
         },
     ],
@@ -6179,7 +6389,7 @@ await client.plans.listPlans();
 await client.plans.createPlan({
     description: "description",
     name: "name",
-    planType: Schematic.CreatePlanRequestBodyPlanType.Plan,
+    planType: "plan",
 });
 ```
 
@@ -6427,46 +6637,6 @@ await client.plans.upsertBillingProductPlan("plan_id", {
 </dl>
 </details>
 
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">listActivePlans</a>() -> Schematic.ListActivePlansResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.listActivePlans();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">countPlans</a>({ ...params }) -> Schematic.CountPlansResponse</code></summary>
 <dl>
 <dd>
@@ -6505,6 +6675,158 @@ await client.plans.countPlans();
 <dd>
 
 **requestOptions:** `Plans.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## plangroups
+
+<details><summary><code>client.plangroups.<a href="/src/api/resources/plangroups/client/Client.ts">getPlanGroup</a>() -> Schematic.GetPlanGroupResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plangroups.getPlanGroup();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Plangroups.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.plangroups.<a href="/src/api/resources/plangroups/client/Client.ts">createPlanGroup</a>({ ...params }) -> Schematic.CreatePlanGroupResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plangroups.createPlanGroup({
+    addOnIds: ["add_on_ids"],
+    planIds: ["plan_ids"],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CreatePlanGroupRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Plangroups.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.plangroups.<a href="/src/api/resources/plangroups/client/Client.ts">updatePlanGroup</a>(planGroupId, { ...params }) -> Schematic.UpdatePlanGroupResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plangroups.updatePlanGroup("plan_group_id", {
+    addOnIds: ["add_on_ids"],
+    planIds: ["plan_ids"],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**planGroupId:** `string` — plan_group_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.UpdatePlanGroupRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Plangroups.RequestOptions`
 
 </dd>
 </dl>
@@ -6779,7 +7101,7 @@ await client.webhooks.listWebhooks();
 ```typescript
 await client.webhooks.createWebhook({
     name: "name",
-    requestTypes: [Schematic.CreateWebhookRequestBodyRequestTypesItem.CompanyUpdated],
+    requestTypes: ["company.updated"],
     url: "url",
 });
 ```

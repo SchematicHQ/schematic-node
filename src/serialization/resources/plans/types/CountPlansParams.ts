@@ -12,6 +12,7 @@ export const CountPlansParams: core.serialization.ObjectSchema<
     Schematic.CountPlansParams
 > = core.serialization.object({
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
+    hasProductId: core.serialization.property("has_product_id", core.serialization.boolean().optional()),
     ids: core.serialization.list(core.serialization.string()).optional(),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
@@ -21,16 +22,19 @@ export const CountPlansParams: core.serialization.ObjectSchema<
         "without_entitlement_for",
         core.serialization.string().optional()
     ),
+    withoutProductId: core.serialization.property("without_product_id", core.serialization.boolean().optional()),
 });
 
 export declare namespace CountPlansParams {
     interface Raw {
         company_id?: string | null;
+        has_product_id?: boolean | null;
         ids?: string[] | null;
         limit?: number | null;
         offset?: number | null;
         plan_type?: CountPlansResponseParamsPlanType.Raw | null;
         q?: string | null;
         without_entitlement_for?: string | null;
+        without_product_id?: boolean | null;
     }
 }

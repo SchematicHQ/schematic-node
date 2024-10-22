@@ -11,8 +11,8 @@ import * as Schematic from "../../../../index";
 export interface CountEntityTraitDefinitionsRequest {
     entityType?: Schematic.CountEntityTraitDefinitionsRequestEntityType;
     ids?: string | string[];
-    traitType?: Schematic.CountEntityTraitDefinitionsRequestTraitType;
     q?: string;
+    traitType?: Schematic.CountEntityTraitDefinitionsRequestTraitType;
     /**
      * Page limit (default 100)
      */

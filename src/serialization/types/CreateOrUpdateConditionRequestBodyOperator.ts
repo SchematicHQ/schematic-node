@@ -9,8 +9,8 @@ import * as core from "../../core";
 export const CreateOrUpdateConditionRequestBodyOperator: core.serialization.Schema<
     serializers.CreateOrUpdateConditionRequestBodyOperator.Raw,
     Schematic.CreateOrUpdateConditionRequestBodyOperator
-> = core.serialization.enum_(["eq", "ne", "gt", "gte", "lt", "lte"]);
+> = core.serialization.enum_(["eq", "ne", "gt", "gte", "lt", "lte", "is_empty", "not_empty"]);
 
 export declare namespace CreateOrUpdateConditionRequestBodyOperator {
-    type Raw = "eq" | "ne" | "gt" | "gte" | "lt" | "lte";
+    type Raw = "eq" | "ne" | "gt" | "gte" | "lt" | "lte" | "is_empty" | "not_empty";
 }

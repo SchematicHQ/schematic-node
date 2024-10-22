@@ -7,16 +7,26 @@
  *     {}
  */
 export interface ListCompaniesRequest {
+    /**
+     * Filter companies by multiple company IDs (starts with comp\_)
+     */
     ids?: string | string[];
+    /**
+     * Filter companies by plan ID (starts with plan\_)
+     */
     planId?: string;
     /**
-     * Search filter
+     * Search for companies by name, keys or string traits
      */
     q?: string;
     /**
      * Filter out companies that already have a company override for the specified feature ID
      */
     withoutFeatureOverrideFor?: string;
+    /**
+     * Filter out companies that have a plan
+     */
+    withoutPlan?: boolean;
     /**
      * Page limit (default 100)
      */

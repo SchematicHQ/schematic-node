@@ -3,6 +3,6 @@
  */
 
 export interface CheckFlagRequestBody {
-    company?: Record<string, string | undefined>;
-    user?: Record<string, string | undefined>;
+    company?: Record<string, string>;
+    user?: Record<string, string>;
 }

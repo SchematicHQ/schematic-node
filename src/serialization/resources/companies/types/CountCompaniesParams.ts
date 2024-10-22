@@ -19,6 +19,7 @@ export const CountCompaniesParams: core.serialization.ObjectSchema<
         "without_feature_override_for",
         core.serialization.string().optional()
     ),
+    withoutPlan: core.serialization.property("without_plan", core.serialization.boolean().optional()),
 });
 
 export declare namespace CountCompaniesParams {
@@ -29,5 +30,6 @@ export declare namespace CountCompaniesParams {
         plan_id?: string | null;
         q?: string | null;
         without_feature_override_for?: string | null;
+        without_plan?: boolean | null;
     }
 }

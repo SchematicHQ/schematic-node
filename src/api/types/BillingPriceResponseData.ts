@@ -3,6 +3,7 @@
  */
 
 export interface BillingPriceResponseData {
+    currency: string;
     externalPriceId: string;
     id: string;
     interval: string;
