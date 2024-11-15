@@ -7,6 +7,7 @@ import * as Schematic from "../index";
 export interface ComponentHydrateResponseData {
     activeAddOns: Schematic.CompanyPlanDetailResponseData[];
     activePlans: Schematic.CompanyPlanDetailResponseData[];
+    capabilities?: Schematic.ComponentCapabilities;
     company?: Schematic.CompanyDetailResponseData;
     component?: Schematic.ComponentResponseData;
     featureUsage?: Schematic.FeatureUsageDetailResponseData;

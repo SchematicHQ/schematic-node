@@ -9,13 +9,16 @@
  *         interval: "interval",
  *         price: 1,
  *         priceExternalId: "price_external_id",
- *         productExternalId: "product_external_id"
+ *         productExternalId: "product_external_id",
+ *         usageType: "usage_type"
  *     }
  */
 export interface CreateBillingPriceRequestBody {
     currency: string;
     interval: string;
+    meterId?: string;
     price: number;
     priceExternalId: string;
     productExternalId: string;
+    usageType: string;
 }

@@ -12,6 +12,7 @@ export interface RuleConditionResponseData {
     flagId?: string;
     id: string;
     metricPeriod?: string;
+    metricPeriodMonthReset?: string;
     metricValue?: number;
     operator: string;
     planId?: string;

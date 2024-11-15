@@ -5,5 +5,8 @@
 export interface BillingCustomerSubscription {
     currency: string;
     expiredAt?: Date;
+    interval: string;
+    meteredUsage: boolean;
+    perUnitPrice: number;
     totalPrice: number;
 }

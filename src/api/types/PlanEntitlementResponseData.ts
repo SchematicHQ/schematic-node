@@ -11,6 +11,7 @@ export interface PlanEntitlementResponseData {
     featureId: string;
     id: string;
     metricPeriod?: string;
+    metricPeriodMonthReset?: string;
     plan?: Schematic.PlanResponseData;
     planId: string;
     ruleId: string;

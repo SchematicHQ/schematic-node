@@ -6,11 +6,11 @@ import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
 
-export const UpdateReqCommonValueType: core.serialization.Schema<
-    serializers.UpdateReqCommonValueType.Raw,
-    Schematic.UpdateReqCommonValueType
+export const UpdateEntitlementReqCommonValueType: core.serialization.Schema<
+    serializers.UpdateEntitlementReqCommonValueType.Raw,
+    Schematic.UpdateEntitlementReqCommonValueType
 > = core.serialization.enum_(["boolean", "numeric", "trait", "unlimited"]);
 
-export declare namespace UpdateReqCommonValueType {
+export declare namespace UpdateEntitlementReqCommonValueType {
     type Raw = "boolean" | "numeric" | "trait" | "unlimited";
 }

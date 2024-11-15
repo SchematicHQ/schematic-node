@@ -6,7 +6,7 @@ import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { CompanyPlanWithBillingSubView } from "./CompanyPlanWithBillingSubView";
-import { BillingSubscriptionResponseData } from "./BillingSubscriptionResponseData";
+import { BillingSubscriptionView } from "./BillingSubscriptionView";
 import { EntityTraitDetailResponseData } from "./EntityTraitDetailResponseData";
 import { EntityKeyDetailResponseData } from "./EntityKeyDetailResponseData";
 import { GenericPreviewObject } from "./GenericPreviewObject";
@@ -18,7 +18,7 @@ export const CompanyDetailResponseData: core.serialization.ObjectSchema<
     addOns: core.serialization.property("add_ons", core.serialization.list(CompanyPlanWithBillingSubView)),
     billingSubscriptions: core.serialization.property(
         "billing_subscriptions",
-        core.serialization.list(BillingSubscriptionResponseData)
+        core.serialization.list(BillingSubscriptionView)
     ),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     entityTraits: core.serialization.property("entity_traits", core.serialization.list(EntityTraitDetailResponseData)),
@@ -38,7 +38,7 @@ export const CompanyDetailResponseData: core.serialization.ObjectSchema<
 export declare namespace CompanyDetailResponseData {
     interface Raw {
         add_ons: CompanyPlanWithBillingSubView.Raw[];
-        billing_subscriptions: BillingSubscriptionResponseData.Raw[];
+        billing_subscriptions: BillingSubscriptionView.Raw[];
         created_at: string;
         entity_traits: EntityTraitDetailResponseData.Raw[];
         environment_id: string;

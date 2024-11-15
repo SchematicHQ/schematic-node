@@ -5,7 +5,6 @@
 import * as Schematic from "../index";
 
 export interface BillingProductDetailResponseData {
-    prices: Schematic.BillingPriceResponseData[];
     accountId: string;
     createdAt: Date;
     currency: string;
@@ -13,6 +12,7 @@ export interface BillingProductDetailResponseData {
     externalId: string;
     name: string;
     price: number;
+    prices: Schematic.BillingPriceResponseData[];
     productId: string;
     quantity: number;
     updatedAt: Date;

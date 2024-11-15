@@ -11,7 +11,9 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface UpdateCompanyOverrideRequestBody {
+    expirationDate?: Date;
     metricPeriod?: Schematic.UpdateCompanyOverrideRequestBodyMetricPeriod;
+    metricPeriodMonthReset?: Schematic.UpdateCompanyOverrideRequestBodyMetricPeriodMonthReset;
     valueBool?: boolean;
     valueNumeric?: number;
     valueTraitId?: string;

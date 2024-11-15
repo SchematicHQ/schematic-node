@@ -10,4 +10,6 @@ export interface PlanGroupResponseData {
     defaultPlanId?: string;
     id: string;
     planIds: string[];
+    trialDays?: number;
+    trialPaymentMethodRequired?: boolean;
 }

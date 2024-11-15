@@ -15,7 +15,9 @@ import * as Schematic from "../../../../index";
  *                 interval: "interval",
  *                 price: 1,
  *                 priceExternalId: "price_external_id",
- *                 productExternalId: "product_external_id"
+ *                 productExternalId: "product_external_id",
+ *                 quantity: 1,
+ *                 usageType: "usage_type"
  *             }],
  *         subscriptionExternalId: "subscription_external_id",
  *         totalPrice: 1

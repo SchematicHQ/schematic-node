@@ -12,6 +12,9 @@ export const BillingCustomerSubscription: core.serialization.ObjectSchema<
 > = core.serialization.object({
     currency: core.serialization.string(),
     expiredAt: core.serialization.property("expired_at", core.serialization.date().optional()),
+    interval: core.serialization.string(),
+    meteredUsage: core.serialization.property("metered_usage", core.serialization.boolean()),
+    perUnitPrice: core.serialization.property("per_unit_price", core.serialization.number()),
     totalPrice: core.serialization.property("total_price", core.serialization.number()),
 });
 
@@ -19,6 +22,9 @@ export declare namespace BillingCustomerSubscription {
     interface Raw {
         currency: string;
         expired_at?: string | null;
+        interval: string;
+        metered_usage: boolean;
+        per_unit_price: number;
         total_price: number;
     }
 }

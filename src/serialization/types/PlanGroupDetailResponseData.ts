@@ -11,17 +11,26 @@ export const PlanGroupDetailResponseData: core.serialization.ObjectSchema<
     serializers.PlanGroupDetailResponseData.Raw,
     Schematic.PlanGroupDetailResponseData
 > = core.serialization.object({
+    addOns: core.serialization.property("add_ons", core.serialization.list(PlanGroupPlanDetailResponseData)),
     defaultPlan: core.serialization.property("default_plan", PlanGroupPlanDetailResponseData.optional()),
     defaultPlanId: core.serialization.property("default_plan_id", core.serialization.string().optional()),
     id: core.serialization.string(),
     plans: core.serialization.list(PlanGroupPlanDetailResponseData),
+    trialDays: core.serialization.property("trial_days", core.serialization.number().optional()),
+    trialPaymentMethodRequired: core.serialization.property(
+        "trial_payment_method_required",
+        core.serialization.boolean().optional()
+    ),
 });
 
 export declare namespace PlanGroupDetailResponseData {
     interface Raw {
+        add_ons: PlanGroupPlanDetailResponseData.Raw[];
         default_plan?: PlanGroupPlanDetailResponseData.Raw | null;
         default_plan_id?: string | null;
         id: string;
         plans: PlanGroupPlanDetailResponseData.Raw[];
+        trial_days?: number | null;
+        trial_payment_method_required?: boolean | null;
     }
 }

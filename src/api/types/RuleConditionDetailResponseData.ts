@@ -15,11 +15,12 @@ export interface RuleConditionDetailResponseData {
     flagId?: string;
     id: string;
     metricPeriod?: string;
+    metricPeriodMonthReset?: string;
     metricValue?: number;
     operator: string;
     planId?: string;
     resourceIds: string[];
-    resources: Schematic.RuleConditionResourceResponseData[];
+    resources: Schematic.PreviewObjectResponseData[];
     ruleId: string;
     trait?: Schematic.EntityTraitDefinitionResponseData;
     traitEntityType?: string;

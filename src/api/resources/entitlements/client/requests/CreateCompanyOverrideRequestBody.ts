@@ -14,8 +14,10 @@ import * as Schematic from "../../../../index";
  */
 export interface CreateCompanyOverrideRequestBody {
     companyId: string;
+    expirationDate?: Date;
     featureId: string;
     metricPeriod?: Schematic.CreateCompanyOverrideRequestBodyMetricPeriod;
+    metricPeriodMonthReset?: Schematic.CreateCompanyOverrideRequestBodyMetricPeriodMonthReset;
     valueBool?: boolean;
     valueNumeric?: number;
     valueTraitId?: string;

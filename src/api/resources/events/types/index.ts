@@ -6,6 +6,4 @@ export * from "./ListEventsParams";
 export * from "./ListEventsResponse";
 export * from "./CreateEventResponse";
 export * from "./GetEventResponse";
-export * from "./ListMetricCountsParams";
-export * from "./ListMetricCountsResponse";
 export * from "./GetSegmentIntegrationStatusResponse";

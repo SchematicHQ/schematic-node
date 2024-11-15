@@ -6,6 +6,7 @@ import * as serializers from "../../../../index";
 import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import { UpdatePlanEntitlementRequestBodyMetricPeriod } from "../../types/UpdatePlanEntitlementRequestBodyMetricPeriod";
+import { UpdatePlanEntitlementRequestBodyMetricPeriodMonthReset } from "../../types/UpdatePlanEntitlementRequestBodyMetricPeriodMonthReset";
 import { UpdatePlanEntitlementRequestBodyValueType } from "../../types/UpdatePlanEntitlementRequestBodyValueType";
 
 export const UpdatePlanEntitlementRequestBody: core.serialization.Schema<
@@ -13,6 +14,10 @@ export const UpdatePlanEntitlementRequestBody: core.serialization.Schema<
     Schematic.UpdatePlanEntitlementRequestBody
 > = core.serialization.object({
     metricPeriod: core.serialization.property("metric_period", UpdatePlanEntitlementRequestBodyMetricPeriod.optional()),
+    metricPeriodMonthReset: core.serialization.property(
+        "metric_period_month_reset",
+        UpdatePlanEntitlementRequestBodyMetricPeriodMonthReset.optional()
+    ),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
     valueTraitId: core.serialization.property("value_trait_id", core.serialization.string().optional()),
@@ -22,6 +27,7 @@ export const UpdatePlanEntitlementRequestBody: core.serialization.Schema<
 export declare namespace UpdatePlanEntitlementRequestBody {
     interface Raw {
         metric_period?: UpdatePlanEntitlementRequestBodyMetricPeriod.Raw | null;
+        metric_period_month_reset?: UpdatePlanEntitlementRequestBodyMetricPeriodMonthReset.Raw | null;
         value_bool?: boolean | null;
         value_numeric?: number | null;
         value_trait_id?: string | null;

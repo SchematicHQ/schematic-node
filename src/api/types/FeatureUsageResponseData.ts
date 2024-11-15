@@ -14,6 +14,8 @@ export interface FeatureUsageResponseData {
     entitlementId: string;
     entitlementType: string;
     feature?: Schematic.FeatureDetailResponseData;
+    /** If the period is current_month, when the month resets. */
+    monthReset?: string;
     /** The period over which usage is measured. */
     period?: string;
     plan?: Schematic.PlanResponseData;

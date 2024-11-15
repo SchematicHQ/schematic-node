@@ -6,6 +6,7 @@ import * as serializers from "../../../../index";
 import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import { CreatePlanEntitlementRequestBodyMetricPeriod } from "../../types/CreatePlanEntitlementRequestBodyMetricPeriod";
+import { CreatePlanEntitlementRequestBodyMetricPeriodMonthReset } from "../../types/CreatePlanEntitlementRequestBodyMetricPeriodMonthReset";
 import { CreatePlanEntitlementRequestBodyValueType } from "../../types/CreatePlanEntitlementRequestBodyValueType";
 
 export const CreatePlanEntitlementRequestBody: core.serialization.Schema<
@@ -14,6 +15,10 @@ export const CreatePlanEntitlementRequestBody: core.serialization.Schema<
 > = core.serialization.object({
     featureId: core.serialization.property("feature_id", core.serialization.string()),
     metricPeriod: core.serialization.property("metric_period", CreatePlanEntitlementRequestBodyMetricPeriod.optional()),
+    metricPeriodMonthReset: core.serialization.property(
+        "metric_period_month_reset",
+        CreatePlanEntitlementRequestBodyMetricPeriodMonthReset.optional()
+    ),
     planId: core.serialization.property("plan_id", core.serialization.string()),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
@@ -25,6 +30,7 @@ export declare namespace CreatePlanEntitlementRequestBody {
     interface Raw {
         feature_id: string;
         metric_period?: CreatePlanEntitlementRequestBodyMetricPeriod.Raw | null;
+        metric_period_month_reset?: CreatePlanEntitlementRequestBodyMetricPeriodMonthReset.Raw | null;
         plan_id: string;
         value_bool?: boolean | null;
         value_numeric?: number | null;

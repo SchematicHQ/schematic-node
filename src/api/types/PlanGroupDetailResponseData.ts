@@ -8,8 +8,11 @@ import * as Schematic from "../index";
  * The returned resource
  */
 export interface PlanGroupDetailResponseData {
+    addOns: Schematic.PlanGroupPlanDetailResponseData[];
     defaultPlan?: Schematic.PlanGroupPlanDetailResponseData;
     defaultPlanId?: string;
     id: string;
     plans: Schematic.PlanGroupPlanDetailResponseData[];
+    trialDays?: number;
+    trialPaymentMethodRequired?: boolean;
 }

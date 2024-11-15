@@ -13,6 +13,8 @@ export interface CreateOrUpdateConditionRequestBody {
     id?: string;
     /** Period of time over which to measure the track event metric */
     metricPeriod?: Schematic.CreateOrUpdateConditionRequestBodyMetricPeriod;
+    /** When metric_period=current_month, specify whether the month restarts based on the calendar month or the billing period */
+    metricPeriodMonthReset?: Schematic.CreateOrUpdateConditionRequestBodyMetricPeriodMonthReset;
     /** Value to compare the track event metric against */
     metricValue?: number;
     operator: Schematic.CreateOrUpdateConditionRequestBodyOperator;

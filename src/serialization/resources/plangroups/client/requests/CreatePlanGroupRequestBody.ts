@@ -13,6 +13,11 @@ export const CreatePlanGroupRequestBody: core.serialization.Schema<
     addOnIds: core.serialization.property("add_on_ids", core.serialization.list(core.serialization.string())),
     defaultPlanId: core.serialization.property("default_plan_id", core.serialization.string().optional()),
     planIds: core.serialization.property("plan_ids", core.serialization.list(core.serialization.string())),
+    trialDays: core.serialization.property("trial_days", core.serialization.number().optional()),
+    trialPaymentMethodRequired: core.serialization.property(
+        "trial_payment_method_required",
+        core.serialization.boolean().optional()
+    ),
 });
 
 export declare namespace CreatePlanGroupRequestBody {
@@ -20,5 +25,7 @@ export declare namespace CreatePlanGroupRequestBody {
         add_on_ids: string[];
         default_plan_id?: string | null;
         plan_ids: string[];
+        trial_days?: number | null;
+        trial_payment_method_required?: boolean | null;
     }
 }

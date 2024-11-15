@@ -12,11 +12,13 @@ export interface CompanyOverrideResponseData {
     companyId: string;
     createdAt: Date;
     environmentId: string;
+    expirationDate?: Date;
     feature?: Schematic.FeatureResponseData;
     featureId: string;
     id: string;
     metricPeriod?: string;
-    ruleId: string;
+    metricPeriodMonthReset?: string;
+    ruleId?: string;
     updatedAt: Date;
     valueBool?: boolean;
     valueNumeric?: number;

@@ -10,17 +10,17 @@ export const CreateMeterRequestBody: core.serialization.Schema<
     serializers.CreateMeterRequestBody.Raw,
     Schematic.CreateMeterRequestBody
 > = core.serialization.object({
-    displayName: core.serialization.property("DisplayName", core.serialization.string()),
-    eventName: core.serialization.property("EventName", core.serialization.string()),
-    eventPayloadKey: core.serialization.property("EventPayloadKey", core.serialization.string()),
+    displayName: core.serialization.property("display_name", core.serialization.string()),
+    eventName: core.serialization.property("event_name", core.serialization.string()),
+    eventPayloadKey: core.serialization.property("event_payload_key", core.serialization.string()),
     externalId: core.serialization.property("external_id", core.serialization.string()),
 });
 
 export declare namespace CreateMeterRequestBody {
     interface Raw {
-        DisplayName: string;
-        EventName: string;
-        EventPayloadKey: string;
+        display_name: string;
+        event_name: string;
+        event_payload_key: string;
         external_id: string;
     }
 }
