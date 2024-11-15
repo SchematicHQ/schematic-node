@@ -3,17 +3,18 @@
  */
 
 export interface BillingProductForSubscriptionResponseData {
-    accountId: string;
     createdAt: Date;
     currency: string;
     environmentId: string;
     externalId: string;
     id: string;
     interval: string;
+    meterId?: string;
     name: string;
     price: number;
     priceExternalId: string;
     quantity: number;
     subscriptionId: string;
     updatedAt: Date;
+    usageType: string;
 }

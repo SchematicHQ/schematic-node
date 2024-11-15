@@ -58,8 +58,8 @@ export class Events {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -193,8 +193,8 @@ export class Events {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -306,8 +306,8 @@ export class Events {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -452,8 +452,8 @@ export class Events {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -567,8 +567,8 @@ export class Events {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -680,8 +680,8 @@ export class Events {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -768,180 +768,6 @@ export class Events {
     }
 
     /**
-     * @param {Schematic.ListMetricCountsRequest} request
-     * @param {Events.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Schematic.BadRequestError}
-     * @throws {@link Schematic.UnauthorizedError}
-     * @throws {@link Schematic.ForbiddenError}
-     * @throws {@link Schematic.InternalServerError}
-     *
-     * @example
-     *     await client.events.listMetricCounts()
-     */
-    public async listMetricCounts(
-        request: Schematic.ListMetricCountsRequest = {},
-        requestOptions?: Events.RequestOptions
-    ): Promise<Schematic.ListMetricCountsResponse> {
-        const {
-            startTime,
-            endTime,
-            eventSubtype,
-            eventSubtypes,
-            companyId,
-            companyIds,
-            userId,
-            limit,
-            offset,
-            grouping,
-        } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
-        if (startTime != null) {
-            _queryParams["start_time"] = startTime.toISOString();
-        }
-
-        if (endTime != null) {
-            _queryParams["end_time"] = endTime.toISOString();
-        }
-
-        if (eventSubtype != null) {
-            _queryParams["event_subtype"] = eventSubtype;
-        }
-
-        if (eventSubtypes != null) {
-            if (Array.isArray(eventSubtypes)) {
-                _queryParams["event_subtypes"] = eventSubtypes.map((item) => item);
-            } else {
-                _queryParams["event_subtypes"] = eventSubtypes;
-            }
-        }
-
-        if (companyId != null) {
-            _queryParams["company_id"] = companyId;
-        }
-
-        if (companyIds != null) {
-            if (Array.isArray(companyIds)) {
-                _queryParams["company_ids"] = companyIds.map((item) => item);
-            } else {
-                _queryParams["company_ids"] = companyIds;
-            }
-        }
-
-        if (userId != null) {
-            _queryParams["user_id"] = userId;
-        }
-
-        if (limit != null) {
-            _queryParams["limit"] = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams["offset"] = offset.toString();
-        }
-
-        if (grouping != null) {
-            _queryParams["grouping"] = grouping;
-        }
-
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                "metric-counts"
-            ),
-            method: "GET",
-            headers: {
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.5",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...(await this._getCustomAuthorizationHeaders()),
-            },
-            contentType: "application/json",
-            queryParameters: _queryParams,
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return serializers.ListMetricCountsResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Schematic.BadRequestError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 401:
-                    throw new Schematic.UnauthorizedError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 403:
-                    throw new Schematic.ForbiddenError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 500:
-                    throw new Schematic.InternalServerError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                default:
-                    throw new errors.SchematicError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.SchematicError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.SchematicTimeoutError();
-            case "unknown":
-                throw new errors.SchematicError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
      * @param {Events.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Schematic.UnauthorizedError}
@@ -964,8 +790,8 @@ export class Events {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.5",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

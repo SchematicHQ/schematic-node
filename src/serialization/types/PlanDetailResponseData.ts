@@ -22,9 +22,11 @@ export const PlanDetailResponseData: core.serialization.ObjectSchema<
     icon: core.serialization.string(),
     id: core.serialization.string(),
     isDefault: core.serialization.property("is_default", core.serialization.boolean()),
+    isTrialable: core.serialization.property("is_trialable", core.serialization.boolean()),
     monthlyPrice: core.serialization.property("monthly_price", BillingPriceResponseData.optional()),
     name: core.serialization.string(),
     planType: core.serialization.property("plan_type", core.serialization.string()),
+    trialDays: core.serialization.property("trial_days", core.serialization.number().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     yearlyPrice: core.serialization.property("yearly_price", BillingPriceResponseData.optional()),
 });
@@ -40,9 +42,11 @@ export declare namespace PlanDetailResponseData {
         icon: string;
         id: string;
         is_default: boolean;
+        is_trialable: boolean;
         monthly_price?: BillingPriceResponseData.Raw | null;
         name: string;
         plan_type: string;
+        trial_days?: number | null;
         updated_at: string;
         yearly_price?: BillingPriceResponseData.Raw | null;
     }

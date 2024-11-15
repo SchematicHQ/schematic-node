@@ -11,6 +11,10 @@ export const GetActiveCompanySubscriptionParams: core.serialization.ObjectSchema
     Schematic.GetActiveCompanySubscriptionParams
 > = core.serialization.object({
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
+    companyIds: core.serialization.property(
+        "company_ids",
+        core.serialization.list(core.serialization.string()).optional()
+    ),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
 });
@@ -18,6 +22,7 @@ export const GetActiveCompanySubscriptionParams: core.serialization.ObjectSchema
 export declare namespace GetActiveCompanySubscriptionParams {
     interface Raw {
         company_id?: string | null;
+        company_ids?: string[] | null;
         limit?: number | null;
         offset?: number | null;
     }

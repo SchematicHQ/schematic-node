@@ -5,11 +5,13 @@
 /**
  * @example
  *     {
- *         billingProductId: "billing_product_id"
+ *         isTrialable: true
  *     }
  */
 export interface UpsertBillingProductRequestBody {
-    billingProductId: string;
+    billingProductId?: string;
+    isTrialable: boolean;
     monthlyPriceId?: string;
+    trialDays?: number;
     yearlyPriceId?: string;
 }

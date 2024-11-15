@@ -6,6 +6,7 @@ import * as serializers from "../../../../index";
 import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import { CreateCompanyOverrideRequestBodyMetricPeriod } from "../../types/CreateCompanyOverrideRequestBodyMetricPeriod";
+import { CreateCompanyOverrideRequestBodyMetricPeriodMonthReset } from "../../types/CreateCompanyOverrideRequestBodyMetricPeriodMonthReset";
 import { CreateCompanyOverrideRequestBodyValueType } from "../../types/CreateCompanyOverrideRequestBodyValueType";
 
 export const CreateCompanyOverrideRequestBody: core.serialization.Schema<
@@ -13,8 +14,13 @@ export const CreateCompanyOverrideRequestBody: core.serialization.Schema<
     Schematic.CreateCompanyOverrideRequestBody
 > = core.serialization.object({
     companyId: core.serialization.property("company_id", core.serialization.string()),
+    expirationDate: core.serialization.property("expiration_date", core.serialization.date().optional()),
     featureId: core.serialization.property("feature_id", core.serialization.string()),
     metricPeriod: core.serialization.property("metric_period", CreateCompanyOverrideRequestBodyMetricPeriod.optional()),
+    metricPeriodMonthReset: core.serialization.property(
+        "metric_period_month_reset",
+        CreateCompanyOverrideRequestBodyMetricPeriodMonthReset.optional()
+    ),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
     valueTraitId: core.serialization.property("value_trait_id", core.serialization.string().optional()),
@@ -24,8 +30,10 @@ export const CreateCompanyOverrideRequestBody: core.serialization.Schema<
 export declare namespace CreateCompanyOverrideRequestBody {
     interface Raw {
         company_id: string;
+        expiration_date?: string | null;
         feature_id: string;
         metric_period?: CreateCompanyOverrideRequestBodyMetricPeriod.Raw | null;
+        metric_period_month_reset?: CreateCompanyOverrideRequestBodyMetricPeriodMonthReset.Raw | null;
         value_bool?: boolean | null;
         value_numeric?: number | null;
         value_trait_id?: string | null;

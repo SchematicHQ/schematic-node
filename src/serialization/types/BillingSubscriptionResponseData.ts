@@ -10,23 +10,35 @@ export const BillingSubscriptionResponseData: core.serialization.ObjectSchema<
     serializers.BillingSubscriptionResponseData.Raw,
     Schematic.BillingSubscriptionResponseData
 > = core.serialization.object({
+    companyId: core.serialization.property("company_id", core.serialization.string().optional()),
+    createdAt: core.serialization.property("created_at", core.serialization.date()),
     currency: core.serialization.string(),
+    customerExternalId: core.serialization.property("customer_external_id", core.serialization.string()),
     expiredAt: core.serialization.property("expired_at", core.serialization.date().optional()),
-    externalId: core.serialization.property("external_id", core.serialization.string()),
     id: core.serialization.string(),
     interval: core.serialization.string(),
+    metadata: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
+    periodEnd: core.serialization.property("period_end", core.serialization.number()),
+    periodStart: core.serialization.property("period_start", core.serialization.number()),
+    status: core.serialization.string(),
+    subscriptionExternalId: core.serialization.property("subscription_external_id", core.serialization.string()),
     totalPrice: core.serialization.property("total_price", core.serialization.number()),
-    updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
 export declare namespace BillingSubscriptionResponseData {
     interface Raw {
+        company_id?: string | null;
+        created_at: string;
         currency: string;
+        customer_external_id: string;
         expired_at?: string | null;
-        external_id: string;
         id: string;
         interval: string;
+        metadata?: Record<string, unknown> | null;
+        period_end: number;
+        period_start: number;
+        status: string;
+        subscription_external_id: string;
         total_price: number;
-        updated_at: string;
     }
 }

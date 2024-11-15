@@ -2127,9 +2127,9 @@ await client.billing.listMeters();
 
 ```typescript
 await client.billing.upsertBillingMeter({
-    displayName: "DisplayName",
-    eventName: "EventName",
-    eventPayloadKey: "EventPayloadKey",
+    displayName: "display_name",
+    eventName: "event_name",
+    eventPayloadKey: "event_payload_key",
     externalId: "external_id",
 });
 ```
@@ -2287,6 +2287,7 @@ await client.billing.upsertBillingPrice({
     price: 1,
     priceExternalId: "price_external_id",
     productExternalId: "product_external_id",
+    usageType: "usage_type",
 });
 ```
 
@@ -2592,6 +2593,8 @@ await client.billing.upsertBillingSubscription({
             price: 1,
             priceExternalId: "price_external_id",
             productExternalId: "product_external_id",
+            quantity: 1,
+            usageType: "usage_type",
         },
     ],
     subscriptionExternalId: "subscription_external_id",
@@ -3246,9 +3249,7 @@ await client.companies.deleteCompanyMembership("company_membership_id");
 <dd>
 
 ```typescript
-await client.companies.getActiveCompanySubscription({
-    companyId: "company_id",
-});
+await client.companies.getActiveCompanySubscription();
 ```
 
 </dd>
@@ -6064,54 +6065,6 @@ await client.events.getEvent("event_id");
 </dl>
 </details>
 
-<details><summary><code>client.events.<a href="/src/api/resources/events/client/Client.ts">listMetricCounts</a>({ ...params }) -> Schematic.ListMetricCountsResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.events.listMetricCounts();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.ListMetricCountsRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Events.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.events.<a href="/src/api/resources/events/client/Client.ts">getSegmentIntegrationStatus</a>() -> Schematic.GetSegmentIntegrationStatusResponse</code></summary>
 <dl>
 <dd>
@@ -6593,7 +6546,7 @@ await client.plans.deletePlan("plan_id");
 
 ```typescript
 await client.plans.upsertBillingProductPlan("plan_id", {
-    billingProductId: "billing_product_id",
+    isTrialable: true,
 });
 ```
 

@@ -17,11 +17,16 @@ export const CompanyOverrideResponseData: core.serialization.ObjectSchema<
     companyId: core.serialization.property("company_id", core.serialization.string()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
+    expirationDate: core.serialization.property("expiration_date", core.serialization.date().optional()),
     feature: FeatureResponseData.optional(),
     featureId: core.serialization.property("feature_id", core.serialization.string()),
     id: core.serialization.string(),
     metricPeriod: core.serialization.property("metric_period", core.serialization.string().optional()),
-    ruleId: core.serialization.property("rule_id", core.serialization.string()),
+    metricPeriodMonthReset: core.serialization.property(
+        "metric_period_month_reset",
+        core.serialization.string().optional()
+    ),
+    ruleId: core.serialization.property("rule_id", core.serialization.string().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
@@ -36,11 +41,13 @@ export declare namespace CompanyOverrideResponseData {
         company_id: string;
         created_at: string;
         environment_id: string;
+        expiration_date?: string | null;
         feature?: FeatureResponseData.Raw | null;
         feature_id: string;
         id: string;
         metric_period?: string | null;
-        rule_id: string;
+        metric_period_month_reset?: string | null;
+        rule_id?: string | null;
         updated_at: string;
         value_bool?: boolean | null;
         value_numeric?: number | null;

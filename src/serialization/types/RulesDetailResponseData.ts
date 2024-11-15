@@ -12,13 +12,13 @@ export const RulesDetailResponseData: core.serialization.ObjectSchema<
     serializers.RulesDetailResponseData.Raw,
     Schematic.RulesDetailResponseData
 > = core.serialization.object({
-    flag: core.serialization.property("Flag", FlagResponseData.optional()),
+    flag: FlagResponseData.optional(),
     rules: core.serialization.list(RuleDetailResponseData),
 });
 
 export declare namespace RulesDetailResponseData {
     interface Raw {
-        Flag?: FlagResponseData.Raw | null;
+        flag?: FlagResponseData.Raw | null;
         rules: RuleDetailResponseData.Raw[];
     }
 }

@@ -4,12 +4,11 @@
 
 /**
  * @example
- *     {
- *         companyId: "company_id"
- *     }
+ *     {}
  */
 export interface GetActiveCompanySubscriptionRequest {
-    companyId: string;
+    companyId?: string;
+    companyIds?: string | string[];
     /**
      * Page limit (default 100)
      */

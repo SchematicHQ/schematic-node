@@ -5,9 +5,9 @@
 /**
  * @example
  *     {
- *         displayName: "DisplayName",
- *         eventName: "EventName",
- *         eventPayloadKey: "EventPayloadKey",
+ *         displayName: "display_name",
+ *         eventName: "event_name",
+ *         eventPayloadKey: "event_payload_key",
  *         externalId: "external_id"
  *     }
  */

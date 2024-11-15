@@ -19,6 +19,10 @@ export const PlanEntitlementResponseData: core.serialization.ObjectSchema<
     featureId: core.serialization.property("feature_id", core.serialization.string()),
     id: core.serialization.string(),
     metricPeriod: core.serialization.property("metric_period", core.serialization.string().optional()),
+    metricPeriodMonthReset: core.serialization.property(
+        "metric_period_month_reset",
+        core.serialization.string().optional()
+    ),
     plan: PlanResponseData.optional(),
     planId: core.serialization.property("plan_id", core.serialization.string()),
     ruleId: core.serialization.property("rule_id", core.serialization.string()),
@@ -38,6 +42,7 @@ export declare namespace PlanEntitlementResponseData {
         feature_id: string;
         id: string;
         metric_period?: string | null;
+        metric_period_month_reset?: string | null;
         plan?: PlanResponseData.Raw | null;
         plan_id: string;
         rule_id: string;

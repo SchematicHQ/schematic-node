@@ -9,7 +9,9 @@ export interface BillingProductPlanResponseData {
     accountId: string;
     billingProductId: string;
     environmentId: string;
+    isTrialable: boolean;
     monthlyPriceId?: string;
     planId: string;
+    trialDays?: number;
     yearlyPriceId?: string;
 }

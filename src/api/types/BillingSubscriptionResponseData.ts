@@ -3,11 +3,17 @@
  */
 
 export interface BillingSubscriptionResponseData {
+    companyId?: string;
+    createdAt: Date;
     currency: string;
+    customerExternalId: string;
     expiredAt?: Date;
-    externalId: string;
     id: string;
     interval: string;
+    metadata?: Record<string, unknown>;
+    periodEnd: number;
+    periodStart: number;
+    status: string;
+    subscriptionExternalId: string;
     totalPrice: number;
-    updatedAt: Date;
 }

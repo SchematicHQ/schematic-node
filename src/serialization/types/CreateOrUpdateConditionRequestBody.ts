@@ -7,6 +7,7 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { CreateOrUpdateConditionRequestBodyConditionType } from "./CreateOrUpdateConditionRequestBodyConditionType";
 import { CreateOrUpdateConditionRequestBodyMetricPeriod } from "./CreateOrUpdateConditionRequestBodyMetricPeriod";
+import { CreateOrUpdateConditionRequestBodyMetricPeriodMonthReset } from "./CreateOrUpdateConditionRequestBodyMetricPeriodMonthReset";
 import { CreateOrUpdateConditionRequestBodyOperator } from "./CreateOrUpdateConditionRequestBodyOperator";
 
 export const CreateOrUpdateConditionRequestBody: core.serialization.ObjectSchema<
@@ -20,6 +21,10 @@ export const CreateOrUpdateConditionRequestBody: core.serialization.ObjectSchema
     metricPeriod: core.serialization.property(
         "metric_period",
         CreateOrUpdateConditionRequestBodyMetricPeriod.optional()
+    ),
+    metricPeriodMonthReset: core.serialization.property(
+        "metric_period_month_reset",
+        CreateOrUpdateConditionRequestBodyMetricPeriodMonthReset.optional()
     ),
     metricValue: core.serialization.property("metric_value", core.serialization.number().optional()),
     operator: CreateOrUpdateConditionRequestBodyOperator,
@@ -35,6 +40,7 @@ export declare namespace CreateOrUpdateConditionRequestBody {
         event_subtype?: string | null;
         id?: string | null;
         metric_period?: CreateOrUpdateConditionRequestBodyMetricPeriod.Raw | null;
+        metric_period_month_reset?: CreateOrUpdateConditionRequestBodyMetricPeriodMonthReset.Raw | null;
         metric_value?: number | null;
         operator: CreateOrUpdateConditionRequestBodyOperator.Raw;
         resource_ids: string[];

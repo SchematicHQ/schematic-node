@@ -10,25 +10,25 @@ export const CreateCrmLineItemRequestBody: core.serialization.Schema<
     serializers.CreateCrmLineItemRequestBody.Raw,
     Schematic.CreateCrmLineItemRequestBody
 > = core.serialization.object({
-    termMonth: core.serialization.property("TermMonth", core.serialization.number().optional()),
     amount: core.serialization.string(),
     discountPercentage: core.serialization.property("discount_percentage", core.serialization.string().optional()),
     interval: core.serialization.string(),
     lineItemExternalId: core.serialization.property("line_item_external_id", core.serialization.string()),
     productExternalId: core.serialization.property("product_external_id", core.serialization.string()),
     quantity: core.serialization.number(),
+    termMonth: core.serialization.property("term_month", core.serialization.number().optional()),
     totalDiscount: core.serialization.property("total_discount", core.serialization.string().optional()),
 });
 
 export declare namespace CreateCrmLineItemRequestBody {
     interface Raw {
-        TermMonth?: number | null;
         amount: string;
         discount_percentage?: string | null;
         interval: string;
         line_item_external_id: string;
         product_external_id: string;
         quantity: number;
+        term_month?: number | null;
         total_discount?: string | null;
     }
 }

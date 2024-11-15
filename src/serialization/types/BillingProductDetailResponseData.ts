@@ -11,7 +11,6 @@ export const BillingProductDetailResponseData: core.serialization.ObjectSchema<
     serializers.BillingProductDetailResponseData.Raw,
     Schematic.BillingProductDetailResponseData
 > = core.serialization.object({
-    prices: core.serialization.property("Prices", core.serialization.list(BillingPriceResponseData)),
     accountId: core.serialization.property("account_id", core.serialization.string()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     currency: core.serialization.string(),
@@ -19,6 +18,7 @@ export const BillingProductDetailResponseData: core.serialization.ObjectSchema<
     externalId: core.serialization.property("external_id", core.serialization.string()),
     name: core.serialization.string(),
     price: core.serialization.number(),
+    prices: core.serialization.list(BillingPriceResponseData),
     productId: core.serialization.property("product_id", core.serialization.string()),
     quantity: core.serialization.number(),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -26,7 +26,6 @@ export const BillingProductDetailResponseData: core.serialization.ObjectSchema<
 
 export declare namespace BillingProductDetailResponseData {
     interface Raw {
-        Prices: BillingPriceResponseData.Raw[];
         account_id: string;
         created_at: string;
         currency: string;
@@ -34,6 +33,7 @@ export declare namespace BillingProductDetailResponseData {
         external_id: string;
         name: string;
         price: number;
+        prices: BillingPriceResponseData.Raw[];
         product_id: string;
         quantity: number;
         updated_at: string;

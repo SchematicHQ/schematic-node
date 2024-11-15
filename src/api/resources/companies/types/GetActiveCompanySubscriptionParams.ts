@@ -7,6 +7,7 @@
  */
 export interface GetActiveCompanySubscriptionParams {
     companyId?: string;
+    companyIds?: string[];
     /** Page limit (default 100) */
     limit?: number;
     /** Page offset (default 0) */

@@ -6,7 +6,7 @@ import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { EntityTraitDefinitionResponseData } from "./EntityTraitDefinitionResponseData";
-import { RuleConditionResourceResponseData } from "./RuleConditionResourceResponseData";
+import { PreviewObjectResponseData } from "./PreviewObjectResponseData";
 
 export const RuleConditionDetailResponseData: core.serialization.ObjectSchema<
     serializers.RuleConditionDetailResponseData.Raw,
@@ -22,11 +22,15 @@ export const RuleConditionDetailResponseData: core.serialization.ObjectSchema<
     flagId: core.serialization.property("flag_id", core.serialization.string().optional()),
     id: core.serialization.string(),
     metricPeriod: core.serialization.property("metric_period", core.serialization.string().optional()),
+    metricPeriodMonthReset: core.serialization.property(
+        "metric_period_month_reset",
+        core.serialization.string().optional()
+    ),
     metricValue: core.serialization.property("metric_value", core.serialization.number().optional()),
     operator: core.serialization.string(),
     planId: core.serialization.property("plan_id", core.serialization.string().optional()),
     resourceIds: core.serialization.property("resource_ids", core.serialization.list(core.serialization.string())),
-    resources: core.serialization.list(RuleConditionResourceResponseData),
+    resources: core.serialization.list(PreviewObjectResponseData),
     ruleId: core.serialization.property("rule_id", core.serialization.string()),
     trait: EntityTraitDefinitionResponseData.optional(),
     traitEntityType: core.serialization.property("trait_entity_type", core.serialization.string().optional()),
@@ -47,11 +51,12 @@ export declare namespace RuleConditionDetailResponseData {
         flag_id?: string | null;
         id: string;
         metric_period?: string | null;
+        metric_period_month_reset?: string | null;
         metric_value?: number | null;
         operator: string;
         plan_id?: string | null;
         resource_ids: string[];
-        resources: RuleConditionResourceResponseData.Raw[];
+        resources: PreviewObjectResponseData.Raw[];
         rule_id: string;
         trait?: EntityTraitDefinitionResponseData.Raw | null;
         trait_entity_type?: string | null;

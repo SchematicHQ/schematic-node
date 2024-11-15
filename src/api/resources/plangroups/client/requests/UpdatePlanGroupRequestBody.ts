@@ -13,4 +13,6 @@ export interface UpdatePlanGroupRequestBody {
     addOnIds: string[];
     defaultPlanId?: string;
     planIds: string[];
+    trialDays?: number;
+    trialPaymentMethodRequired?: boolean;
 }

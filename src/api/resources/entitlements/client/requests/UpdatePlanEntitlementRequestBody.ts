@@ -12,6 +12,7 @@ import * as Schematic from "../../../../index";
  */
 export interface UpdatePlanEntitlementRequestBody {
     metricPeriod?: Schematic.UpdatePlanEntitlementRequestBodyMetricPeriod;
+    metricPeriodMonthReset?: Schematic.UpdatePlanEntitlementRequestBodyMetricPeriodMonthReset;
     valueBool?: boolean;
     valueNumeric?: number;
     valueTraitId?: string;

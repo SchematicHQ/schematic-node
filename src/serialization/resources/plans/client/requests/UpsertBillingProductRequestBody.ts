@@ -10,15 +10,19 @@ export const UpsertBillingProductRequestBody: core.serialization.Schema<
     serializers.UpsertBillingProductRequestBody.Raw,
     Schematic.UpsertBillingProductRequestBody
 > = core.serialization.object({
-    billingProductId: core.serialization.property("billing_product_id", core.serialization.string()),
+    billingProductId: core.serialization.property("billing_product_id", core.serialization.string().optional()),
+    isTrialable: core.serialization.property("is_trialable", core.serialization.boolean()),
     monthlyPriceId: core.serialization.property("monthly_price_id", core.serialization.string().optional()),
+    trialDays: core.serialization.property("trial_days", core.serialization.number().optional()),
     yearlyPriceId: core.serialization.property("yearly_price_id", core.serialization.string().optional()),
 });
 
 export declare namespace UpsertBillingProductRequestBody {
     interface Raw {
-        billing_product_id: string;
+        billing_product_id?: string | null;
+        is_trialable: boolean;
         monthly_price_id?: string | null;
+        trial_days?: number | null;
         yearly_price_id?: string | null;
     }
 }
