@@ -16,6 +16,7 @@ export const CompanyDetailResponseData: core.serialization.ObjectSchema<
     Schematic.CompanyDetailResponseData
 > = core.serialization.object({
     addOns: core.serialization.property("add_ons", core.serialization.list(CompanyPlanWithBillingSubView)),
+    billingSubscription: core.serialization.property("billing_subscription", BillingSubscriptionView.optional()),
     billingSubscriptions: core.serialization.property(
         "billing_subscriptions",
         core.serialization.list(BillingSubscriptionView)
@@ -38,6 +39,7 @@ export const CompanyDetailResponseData: core.serialization.ObjectSchema<
 export declare namespace CompanyDetailResponseData {
     interface Raw {
         add_ons: CompanyPlanWithBillingSubView.Raw[];
+        billing_subscription?: BillingSubscriptionView.Raw | null;
         billing_subscriptions: BillingSubscriptionView.Raw[];
         created_at: string;
         entity_traits: EntityTraitDetailResponseData.Raw[];
