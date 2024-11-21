@@ -14,9 +14,12 @@ import * as Schematic from "../../../../index";
  */
 export interface CreatePlanEntitlementRequestBody {
     featureId: string;
+    meteredPriceId?: string;
+    meteredProductPriceId?: string;
     metricPeriod?: Schematic.CreatePlanEntitlementRequestBodyMetricPeriod;
     metricPeriodMonthReset?: Schematic.CreatePlanEntitlementRequestBodyMetricPeriodMonthReset;
     planId: string;
+    priceBehavior?: string;
     valueBool?: boolean;
     valueNumeric?: number;
     valueTraitId?: string;

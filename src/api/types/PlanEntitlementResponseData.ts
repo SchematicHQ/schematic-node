@@ -10,10 +10,12 @@ export interface PlanEntitlementResponseData {
     feature?: Schematic.FeatureResponseData;
     featureId: string;
     id: string;
+    meteredPrice?: Schematic.BillingPriceView;
     metricPeriod?: string;
     metricPeriodMonthReset?: string;
     plan?: Schematic.PlanResponseData;
     planId: string;
+    priceBehavior?: string;
     ruleId: string;
     updatedAt: Date;
     valueBool?: boolean;

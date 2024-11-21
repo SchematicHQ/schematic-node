@@ -12,7 +12,12 @@ export interface CountBillingProductsParams {
     name?: string;
     /** Page offset (default 0) */
     offset?: number;
+    priceUsageType?: string;
     q?: string;
+    /** Filter products that have prices */
+    withPricesOnly?: boolean;
+    /** Filter products that have zero price for free subscription type */
+    withZeroPrice?: boolean;
     /** Filter products that are not linked to any plan */
     withoutLinkedToPlan?: boolean;
 }

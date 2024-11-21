@@ -22,6 +22,7 @@ export const PlanDetailResponseData: core.serialization.ObjectSchema<
     icon: core.serialization.string(),
     id: core.serialization.string(),
     isDefault: core.serialization.property("is_default", core.serialization.boolean()),
+    isFree: core.serialization.property("is_free", core.serialization.boolean()),
     isTrialable: core.serialization.property("is_trialable", core.serialization.boolean()),
     monthlyPrice: core.serialization.property("monthly_price", BillingPriceResponseData.optional()),
     name: core.serialization.string(),
@@ -42,6 +43,7 @@ export declare namespace PlanDetailResponseData {
         icon: string;
         id: string;
         is_default: boolean;
+        is_free: boolean;
         is_trialable: boolean;
         monthly_price?: BillingPriceResponseData.Raw | null;
         name: string;

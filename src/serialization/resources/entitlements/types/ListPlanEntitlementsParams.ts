@@ -21,6 +21,7 @@ export const ListPlanEntitlementsParams: core.serialization.ObjectSchema<
     planId: core.serialization.property("plan_id", core.serialization.string().optional()),
     planIds: core.serialization.property("plan_ids", core.serialization.list(core.serialization.string()).optional()),
     q: core.serialization.string().optional(),
+    withMeteredProducts: core.serialization.property("with_metered_products", core.serialization.boolean().optional()),
 });
 
 export declare namespace ListPlanEntitlementsParams {
@@ -33,5 +34,6 @@ export declare namespace ListPlanEntitlementsParams {
         plan_id?: string | null;
         plan_ids?: string[] | null;
         q?: string | null;
+        with_metered_products?: boolean | null;
     }
 }

@@ -10,10 +10,19 @@ export interface ListBillingProductsRequest {
     ids?: string | string[];
     name?: string;
     q?: string;
+    priceUsageType?: string;
     /**
      * Filter products that are not linked to any plan
      */
     withoutLinkedToPlan?: boolean;
+    /**
+     * Filter products that have zero price for free subscription type
+     */
+    withZeroPrice?: boolean;
+    /**
+     * Filter products that have prices
+     */
+    withPricesOnly?: boolean;
     /**
      * Page limit (default 100)
      */

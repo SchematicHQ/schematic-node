@@ -1650,7 +1650,7 @@ export class Entitlements {
         request: Schematic.ListPlanEntitlementsRequest = {},
         requestOptions?: Entitlements.RequestOptions
     ): Promise<Schematic.ListPlanEntitlementsResponse> {
-        const { featureId, featureIds, ids, planId, planIds, q, limit, offset } = request;
+        const { featureId, featureIds, ids, planId, planIds, q, withMeteredProducts, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (featureId != null) {
             _queryParams["feature_id"] = featureId;
@@ -1686,6 +1686,10 @@ export class Entitlements {
 
         if (q != null) {
             _queryParams["q"] = q;
+        }
+
+        if (withMeteredProducts != null) {
+            _queryParams["with_metered_products"] = withMeteredProducts.toString();
         }
 
         if (limit != null) {
@@ -2282,7 +2286,7 @@ export class Entitlements {
         request: Schematic.CountPlanEntitlementsRequest = {},
         requestOptions?: Entitlements.RequestOptions
     ): Promise<Schematic.CountPlanEntitlementsResponse> {
-        const { featureId, featureIds, ids, planId, planIds, q, limit, offset } = request;
+        const { featureId, featureIds, ids, planId, planIds, q, withMeteredProducts, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (featureId != null) {
             _queryParams["feature_id"] = featureId;
@@ -2318,6 +2322,10 @@ export class Entitlements {
 
         if (q != null) {
             _queryParams["q"] = q;
+        }
+
+        if (withMeteredProducts != null) {
+            _queryParams["with_metered_products"] = withMeteredProducts.toString();
         }
 
         if (limit != null) {

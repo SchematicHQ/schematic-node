@@ -5,11 +5,13 @@
 /**
  * @example
  *     {
+ *         isFreePlan: true,
  *         isTrialable: true
  *     }
  */
 export interface UpsertBillingProductRequestBody {
     billingProductId?: string;
+    isFreePlan: boolean;
     isTrialable: boolean;
     monthlyPriceId?: string;
     trialDays?: number;

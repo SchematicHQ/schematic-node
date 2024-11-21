@@ -14,6 +14,7 @@ export const CreateEntitlementReqCommon: core.serialization.ObjectSchema<
     Schematic.CreateEntitlementReqCommon
 > = core.serialization.object({
     featureId: core.serialization.property("feature_id", core.serialization.string()),
+    meteredPriceId: core.serialization.property("metered_price_id", core.serialization.string().optional()),
     metricPeriod: core.serialization.property("metric_period", CreateEntitlementReqCommonMetricPeriod.optional()),
     metricPeriodMonthReset: core.serialization.property(
         "metric_period_month_reset",
@@ -28,6 +29,7 @@ export const CreateEntitlementReqCommon: core.serialization.ObjectSchema<
 export declare namespace CreateEntitlementReqCommon {
     interface Raw {
         feature_id: string;
+        metered_price_id?: string | null;
         metric_period?: CreateEntitlementReqCommonMetricPeriod.Raw | null;
         metric_period_month_reset?: CreateEntitlementReqCommonMetricPeriodMonthReset.Raw | null;
         value_bool?: boolean | null;

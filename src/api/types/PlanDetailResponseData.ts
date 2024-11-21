@@ -14,6 +14,7 @@ export interface PlanDetailResponseData {
     icon: string;
     id: string;
     isDefault: boolean;
+    isFree: boolean;
     isTrialable: boolean;
     monthlyPrice?: Schematic.BillingPriceResponseData;
     name: string;

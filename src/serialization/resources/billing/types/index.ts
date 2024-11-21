@@ -12,6 +12,8 @@ export * from "./UpsertBillingMeterResponse";
 export * from "./ListPaymentMethodsParams";
 export * from "./ListPaymentMethodsResponse";
 export * from "./UpsertPaymentMethodResponse";
+export * from "./SearchBillingPricesParams";
+export * from "./SearchBillingPricesResponse";
 export * from "./UpsertBillingPriceResponse";
 export * from "./ListProductPricesParams";
 export * from "./ListProductPricesResponse";
