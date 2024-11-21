@@ -21,4 +21,5 @@ export interface BillingSubscriptionView {
     status: string;
     subscriptionExternalId: string;
     totalPrice: number;
+    trialEnd?: number;
 }

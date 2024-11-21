@@ -1174,6 +1174,145 @@ export class Billing {
     }
 
     /**
+     * @param {Schematic.SearchBillingPricesRequest} request
+     * @param {Billing.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.BadRequestError}
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.InternalServerError}
+     *
+     * @example
+     *     await client.billing.searchBillingPrices()
+     */
+    public async searchBillingPrices(
+        request: Schematic.SearchBillingPricesRequest = {},
+        requestOptions?: Billing.RequestOptions
+    ): Promise<Schematic.SearchBillingPricesResponse> {
+        const { ids, usageType, price, limit, offset } = request;
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        if (ids != null) {
+            if (Array.isArray(ids)) {
+                _queryParams["ids"] = ids.map((item) => item);
+            } else {
+                _queryParams["ids"] = ids;
+            }
+        }
+
+        if (usageType != null) {
+            _queryParams["usage_type"] = usageType;
+        }
+
+        if (price != null) {
+            _queryParams["price"] = price.toString();
+        }
+
+        if (limit != null) {
+            _queryParams["limit"] = limit.toString();
+        }
+
+        if (offset != null) {
+            _queryParams["offset"] = offset.toString();
+        }
+
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
+                "billing/price"
+            ),
+            method: "GET",
+            headers: {
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
+                "X-Fern-SDK-Version": "1.1.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.6",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+            },
+            contentType: "application/json",
+            queryParameters: _queryParams,
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return serializers.SearchBillingPricesResponse.parseOrThrow(_response.body, {
+                unrecognizedObjectKeys: "passthrough",
+                allowUnrecognizedUnionMembers: true,
+                allowUnrecognizedEnumValues: true,
+                skipValidation: true,
+                breadcrumbsPrefix: ["response"],
+            });
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Schematic.BadRequestError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.SchematicError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.SchematicTimeoutError();
+            case "unknown":
+                throw new errors.SchematicError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
      * @param {Schematic.CreateBillingPriceRequestBody} request
      * @param {Billing.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -1309,7 +1448,8 @@ export class Billing {
         request: Schematic.ListProductPricesRequest = {},
         requestOptions?: Billing.RequestOptions
     ): Promise<Schematic.ListProductPricesResponse> {
-        const { ids, name, q, withoutLinkedToPlan, limit, offset } = request;
+        const { ids, name, q, priceUsageType, withoutLinkedToPlan, withZeroPrice, withPricesOnly, limit, offset } =
+            request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (ids != null) {
             if (Array.isArray(ids)) {
@@ -1327,8 +1467,20 @@ export class Billing {
             _queryParams["q"] = q;
         }
 
+        if (priceUsageType != null) {
+            _queryParams["price_usage_type"] = priceUsageType;
+        }
+
         if (withoutLinkedToPlan != null) {
             _queryParams["without_linked_to_plan"] = withoutLinkedToPlan.toString();
+        }
+
+        if (withZeroPrice != null) {
+            _queryParams["with_zero_price"] = withZeroPrice.toString();
+        }
+
+        if (withPricesOnly != null) {
+            _queryParams["with_prices_only"] = withPricesOnly.toString();
         }
 
         if (limit != null) {
@@ -1683,7 +1835,8 @@ export class Billing {
         request: Schematic.ListBillingProductsRequest = {},
         requestOptions?: Billing.RequestOptions
     ): Promise<Schematic.ListBillingProductsResponse> {
-        const { ids, name, q, withoutLinkedToPlan, limit, offset } = request;
+        const { ids, name, q, priceUsageType, withoutLinkedToPlan, withZeroPrice, withPricesOnly, limit, offset } =
+            request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (ids != null) {
             if (Array.isArray(ids)) {
@@ -1701,8 +1854,20 @@ export class Billing {
             _queryParams["q"] = q;
         }
 
+        if (priceUsageType != null) {
+            _queryParams["price_usage_type"] = priceUsageType;
+        }
+
         if (withoutLinkedToPlan != null) {
             _queryParams["without_linked_to_plan"] = withoutLinkedToPlan.toString();
+        }
+
+        if (withZeroPrice != null) {
+            _queryParams["with_zero_price"] = withZeroPrice.toString();
+        }
+
+        if (withPricesOnly != null) {
+            _queryParams["with_prices_only"] = withPricesOnly.toString();
         }
 
         if (limit != null) {
@@ -1826,7 +1991,8 @@ export class Billing {
         request: Schematic.CountBillingProductsRequest = {},
         requestOptions?: Billing.RequestOptions
     ): Promise<Schematic.CountBillingProductsResponse> {
-        const { ids, name, q, withoutLinkedToPlan, limit, offset } = request;
+        const { ids, name, q, priceUsageType, withoutLinkedToPlan, withZeroPrice, withPricesOnly, limit, offset } =
+            request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (ids != null) {
             if (Array.isArray(ids)) {
@@ -1844,8 +2010,20 @@ export class Billing {
             _queryParams["q"] = q;
         }
 
+        if (priceUsageType != null) {
+            _queryParams["price_usage_type"] = priceUsageType;
+        }
+
         if (withoutLinkedToPlan != null) {
             _queryParams["without_linked_to_plan"] = withoutLinkedToPlan.toString();
+        }
+
+        if (withZeroPrice != null) {
+            _queryParams["with_zero_price"] = withZeroPrice.toString();
+        }
+
+        if (withPricesOnly != null) {
+            _queryParams["with_prices_only"] = withPricesOnly.toString();
         }
 
         if (limit != null) {

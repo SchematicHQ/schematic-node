@@ -6,6 +6,7 @@ import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { FeatureResponseData } from "./FeatureResponseData";
+import { BillingPriceView } from "./BillingPriceView";
 import { PlanResponseData } from "./PlanResponseData";
 import { EntityTraitDefinitionResponseData } from "./EntityTraitDefinitionResponseData";
 
@@ -18,6 +19,7 @@ export const PlanEntitlementResponseData: core.serialization.ObjectSchema<
     feature: FeatureResponseData.optional(),
     featureId: core.serialization.property("feature_id", core.serialization.string()),
     id: core.serialization.string(),
+    meteredPrice: core.serialization.property("metered_price", BillingPriceView.optional()),
     metricPeriod: core.serialization.property("metric_period", core.serialization.string().optional()),
     metricPeriodMonthReset: core.serialization.property(
         "metric_period_month_reset",
@@ -25,6 +27,7 @@ export const PlanEntitlementResponseData: core.serialization.ObjectSchema<
     ),
     plan: PlanResponseData.optional(),
     planId: core.serialization.property("plan_id", core.serialization.string()),
+    priceBehavior: core.serialization.property("price_behavior", core.serialization.string().optional()),
     ruleId: core.serialization.property("rule_id", core.serialization.string()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
@@ -41,10 +44,12 @@ export declare namespace PlanEntitlementResponseData {
         feature?: FeatureResponseData.Raw | null;
         feature_id: string;
         id: string;
+        metered_price?: BillingPriceView.Raw | null;
         metric_period?: string | null;
         metric_period_month_reset?: string | null;
         plan?: PlanResponseData.Raw | null;
         plan_id: string;
+        price_behavior?: string | null;
         rule_id: string;
         updated_at: string;
         value_bool?: boolean | null;

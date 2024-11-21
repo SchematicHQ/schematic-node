@@ -1027,6 +1027,7 @@ export class Plans {
      *
      * @example
      *     await client.plans.upsertBillingProductPlan("plan_id", {
+     *         isFreePlan: true,
      *         isTrialable: true
      *     })
      */

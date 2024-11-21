@@ -32,6 +32,10 @@ export interface ListPlanEntitlementsRequest {
      */
     q?: string;
     /**
+     * Filter plan entitlements only with metered products
+     */
+    withMeteredProducts?: boolean;
+    /**
      * Page limit (default 100)
      */
     limit?: number;

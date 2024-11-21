@@ -7,6 +7,7 @@ export { type ListMetersRequest } from "./ListMetersRequest";
 export { type CreateMeterRequestBody } from "./CreateMeterRequestBody";
 export { type ListPaymentMethodsRequest } from "./ListPaymentMethodsRequest";
 export { type CreatePaymentMethodRequestBody } from "./CreatePaymentMethodRequestBody";
+export { type SearchBillingPricesRequest } from "./SearchBillingPricesRequest";
 export { type CreateBillingPriceRequestBody } from "./CreateBillingPriceRequestBody";
 export { type ListProductPricesRequest } from "./ListProductPricesRequest";
 export { type CreateBillingProductRequestBody } from "./CreateBillingProductRequestBody";

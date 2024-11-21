@@ -22,4 +22,6 @@ export interface CountPlanEntitlementsParams {
     planIds?: string[];
     /** Search for plan entitlements by feature or company name */
     q?: string;
+    /** Filter plan entitlements only with metered products */
+    withMeteredProducts?: boolean;
 }

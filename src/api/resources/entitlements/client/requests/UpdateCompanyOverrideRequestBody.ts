@@ -12,6 +12,7 @@ import * as Schematic from "../../../../index";
  */
 export interface UpdateCompanyOverrideRequestBody {
     expirationDate?: Date;
+    meteredPriceId?: string;
     metricPeriod?: Schematic.UpdateCompanyOverrideRequestBodyMetricPeriod;
     metricPeriodMonthReset?: Schematic.UpdateCompanyOverrideRequestBodyMetricPeriodMonthReset;
     valueBool?: boolean;

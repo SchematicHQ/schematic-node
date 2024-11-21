@@ -23,6 +23,7 @@ export const BillingSubscriptionResponseData: core.serialization.ObjectSchema<
     status: core.serialization.string(),
     subscriptionExternalId: core.serialization.property("subscription_external_id", core.serialization.string()),
     totalPrice: core.serialization.property("total_price", core.serialization.number()),
+    trialEnd: core.serialization.property("trial_end", core.serialization.number().optional()),
 });
 
 export declare namespace BillingSubscriptionResponseData {
@@ -40,5 +41,6 @@ export declare namespace BillingSubscriptionResponseData {
         status: string;
         subscription_external_id: string;
         total_price: number;
+        trial_end?: number | null;
     }
 }
