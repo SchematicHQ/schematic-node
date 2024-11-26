@@ -13,6 +13,7 @@ export const CheckFlagOutputWithFlagKey: core.serialization.ObjectSchema<
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
     error: core.serialization.string().optional(),
     flag: core.serialization.string(),
+    flagId: core.serialization.property("flag_id", core.serialization.string().optional()),
     reason: core.serialization.string(),
     ruleId: core.serialization.property("rule_id", core.serialization.string().optional()),
     userId: core.serialization.property("user_id", core.serialization.string().optional()),
@@ -24,6 +25,7 @@ export declare namespace CheckFlagOutputWithFlagKey {
         company_id?: string | null;
         error?: string | null;
         flag: string;
+        flag_id?: string | null;
         reason: string;
         rule_id?: string | null;
         user_id?: string | null;

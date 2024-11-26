@@ -16,6 +16,7 @@ export const CompanyPlanDetailResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     audienceType: core.serialization.property("audience_type", core.serialization.string().optional()),
     billingProduct: core.serialization.property("billing_product", BillingProductDetailResponseData.optional()),
+    companyCanTrial: core.serialization.property("company_can_trial", core.serialization.boolean()),
     companyCount: core.serialization.property("company_count", core.serialization.number()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     current: core.serialization.boolean(),
@@ -40,6 +41,7 @@ export declare namespace CompanyPlanDetailResponseData {
     interface Raw {
         audience_type?: string | null;
         billing_product?: BillingProductDetailResponseData.Raw | null;
+        company_can_trial: boolean;
         company_count: number;
         created_at: string;
         current: boolean;

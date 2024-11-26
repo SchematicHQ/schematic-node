@@ -21,6 +21,7 @@ export const FeatureCompanyResponseData: core.serialization.ObjectSchema<
     entitlementId: core.serialization.property("entitlement_id", core.serialization.string()),
     entitlementType: core.serialization.property("entitlement_type", core.serialization.string()),
     feature: FeatureDetailResponseData.optional(),
+    metricResetAt: core.serialization.property("metric_reset_at", core.serialization.date().optional()),
     monthReset: core.serialization.property("month_reset", core.serialization.string().optional()),
     period: core.serialization.string().optional(),
     plan: PlanResponseData.optional(),
@@ -36,6 +37,7 @@ export declare namespace FeatureCompanyResponseData {
         entitlement_id: string;
         entitlement_type: string;
         feature?: FeatureDetailResponseData.Raw | null;
+        metric_reset_at?: string | null;
         month_reset?: string | null;
         period?: string | null;
         plan?: PlanResponseData.Raw | null;

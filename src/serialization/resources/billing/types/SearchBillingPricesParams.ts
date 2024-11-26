@@ -11,6 +11,7 @@ export const SearchBillingPricesParams: core.serialization.ObjectSchema<
     Schematic.SearchBillingPricesParams
 > = core.serialization.object({
     ids: core.serialization.list(core.serialization.string()).optional(),
+    interval: core.serialization.string().optional(),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
     price: core.serialization.number().optional(),
@@ -20,6 +21,7 @@ export const SearchBillingPricesParams: core.serialization.ObjectSchema<
 export declare namespace SearchBillingPricesParams {
     interface Raw {
         ids?: string[] | null;
+        interval?: string | null;
         limit?: number | null;
         offset?: number | null;
         price?: number | null;

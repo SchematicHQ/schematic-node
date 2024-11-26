@@ -6,6 +6,7 @@ import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { CompanyPlanDetailResponseData } from "./CompanyPlanDetailResponseData";
+import { UsageBasedEntitlementResponseData } from "./UsageBasedEntitlementResponseData";
 import { ComponentCapabilities } from "./ComponentCapabilities";
 import { CompanyDetailResponseData } from "./CompanyDetailResponseData";
 import { ComponentResponseData } from "./ComponentResponseData";
@@ -20,6 +21,10 @@ export const ComponentHydrateResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     activeAddOns: core.serialization.property("active_add_ons", core.serialization.list(CompanyPlanDetailResponseData)),
     activePlans: core.serialization.property("active_plans", core.serialization.list(CompanyPlanDetailResponseData)),
+    activeUsageBasedEntitlements: core.serialization.property(
+        "active_usage_based_entitlements",
+        core.serialization.list(UsageBasedEntitlementResponseData)
+    ),
     capabilities: ComponentCapabilities.optional(),
     company: CompanyDetailResponseData.optional(),
     component: ComponentResponseData.optional(),
@@ -33,6 +38,7 @@ export declare namespace ComponentHydrateResponseData {
     interface Raw {
         active_add_ons: CompanyPlanDetailResponseData.Raw[];
         active_plans: CompanyPlanDetailResponseData.Raw[];
+        active_usage_based_entitlements: UsageBasedEntitlementResponseData.Raw[];
         capabilities?: ComponentCapabilities.Raw | null;
         company?: CompanyDetailResponseData.Raw | null;
         component?: ComponentResponseData.Raw | null;

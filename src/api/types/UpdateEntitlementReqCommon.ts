@@ -5,7 +5,8 @@
 import * as Schematic from "../index";
 
 export interface UpdateEntitlementReqCommon {
-    meteredPriceId?: string;
+    meteredMonthlyPriceId?: string;
+    meteredYearlyPriceId?: string;
     metricPeriod?: Schematic.UpdateEntitlementReqCommonMetricPeriod;
     metricPeriodMonthReset?: Schematic.UpdateEntitlementReqCommonMetricPeriodMonthReset;
     valueBool?: boolean;

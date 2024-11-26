@@ -55,8 +55,8 @@ export class SchematicClient {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.6",
+                "X-Fern-SDK-Version": "1.1.7",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

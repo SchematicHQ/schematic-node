@@ -8,6 +8,7 @@
  */
 export interface SearchBillingPricesRequest {
     ids?: string | string[];
+    interval?: string;
     usageType?: string;
     price?: number;
     /**

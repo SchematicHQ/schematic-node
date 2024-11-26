@@ -8,6 +8,7 @@
 export interface CheckFlagResponseData {
     companyId?: string;
     error?: string;
+    flagId?: string;
     reason: string;
     ruleId?: string;
     userId?: string;

@@ -7,6 +7,7 @@ import * as Schematic from "../index";
 export interface CompanyPlanDetailResponseData {
     audienceType?: string;
     billingProduct?: Schematic.BillingProductDetailResponseData;
+    companyCanTrial: boolean;
     companyCount: number;
     createdAt: Date;
     current: boolean;

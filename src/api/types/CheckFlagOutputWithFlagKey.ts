@@ -6,6 +6,7 @@ export interface CheckFlagOutputWithFlagKey {
     companyId?: string;
     error?: string;
     flag: string;
+    flagId?: string;
     reason: string;
     ruleId?: string;
     userId?: string;
