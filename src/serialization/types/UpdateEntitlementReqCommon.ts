@@ -13,7 +13,14 @@ export const UpdateEntitlementReqCommon: core.serialization.ObjectSchema<
     serializers.UpdateEntitlementReqCommon.Raw,
     Schematic.UpdateEntitlementReqCommon
 > = core.serialization.object({
-    meteredPriceId: core.serialization.property("metered_price_id", core.serialization.string().optional()),
+    meteredMonthlyPriceId: core.serialization.property(
+        "metered_monthly_price_id",
+        core.serialization.string().optional()
+    ),
+    meteredYearlyPriceId: core.serialization.property(
+        "metered_yearly_price_id",
+        core.serialization.string().optional()
+    ),
     metricPeriod: core.serialization.property("metric_period", UpdateEntitlementReqCommonMetricPeriod.optional()),
     metricPeriodMonthReset: core.serialization.property(
         "metric_period_month_reset",
@@ -27,7 +34,8 @@ export const UpdateEntitlementReqCommon: core.serialization.ObjectSchema<
 
 export declare namespace UpdateEntitlementReqCommon {
     interface Raw {
-        metered_price_id?: string | null;
+        metered_monthly_price_id?: string | null;
+        metered_yearly_price_id?: string | null;
         metric_period?: UpdateEntitlementReqCommonMetricPeriod.Raw | null;
         metric_period_month_reset?: UpdateEntitlementReqCommonMetricPeriodMonthReset.Raw | null;
         value_bool?: boolean | null;

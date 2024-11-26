@@ -6,7 +6,7 @@
  * @example
  *     {
  *         keys: {
- *             "string": {
+ *             "keys": {
  *                 "key": "value"
  *             }
  *         }

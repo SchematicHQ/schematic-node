@@ -3047,7 +3047,7 @@ await client.companies.deleteCompanyByKeys({
 ```typescript
 await client.companies.lookupCompany({
     keys: {
-        string: {
+        keys: {
             key: "value",
         },
     },
@@ -4207,7 +4207,7 @@ await client.companies.deleteUserByKeys({
 ```typescript
 await client.companies.lookupUser({
     keys: {
-        string: {
+        keys: {
             key: "value",
         },
     },
@@ -5163,7 +5163,7 @@ await client.entitlements.countPlanEntitlements();
 ```typescript
 await client.entitlements.getFeatureUsageByCompany({
     keys: {
-        string: {
+        keys: {
             key: "value",
         },
     },

@@ -11,7 +11,8 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface UpdatePlanEntitlementRequestBody {
-    meteredPriceId?: string;
+    meteredMonthlyPriceId?: string;
+    meteredYearlyPriceId?: string;
     metricPeriod?: Schematic.UpdatePlanEntitlementRequestBodyMetricPeriod;
     metricPeriodMonthReset?: Schematic.UpdatePlanEntitlementRequestBodyMetricPeriodMonthReset;
     valueBool?: boolean;

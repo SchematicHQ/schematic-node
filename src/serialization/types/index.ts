@@ -126,6 +126,7 @@ export * from "./UpsertCompanyRequestBody";
 export * from "./UpsertTraitRequestBody";
 export * from "./UpsertUserRequestBody";
 export * from "./UpsertUserSubRequestBody";
+export * from "./UsageBasedEntitlementResponseData";
 export * from "./UserDetailResponseData";
 export * from "./UserResponseData";
 export * from "./WebhookEventDetailResponseData";

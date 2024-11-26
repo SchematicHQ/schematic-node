@@ -7,6 +7,7 @@
  */
 export interface SearchBillingPricesParams {
     ids?: string[];
+    interval?: string;
     /** Page limit (default 100) */
     limit?: number;
     /** Page offset (default 0) */

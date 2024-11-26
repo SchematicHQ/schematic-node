@@ -13,7 +13,14 @@ export const UpdatePlanEntitlementRequestBody: core.serialization.Schema<
     serializers.UpdatePlanEntitlementRequestBody.Raw,
     Schematic.UpdatePlanEntitlementRequestBody
 > = core.serialization.object({
-    meteredPriceId: core.serialization.property("metered_price_id", core.serialization.string().optional()),
+    meteredMonthlyPriceId: core.serialization.property(
+        "metered_monthly_price_id",
+        core.serialization.string().optional()
+    ),
+    meteredYearlyPriceId: core.serialization.property(
+        "metered_yearly_price_id",
+        core.serialization.string().optional()
+    ),
     metricPeriod: core.serialization.property("metric_period", UpdatePlanEntitlementRequestBodyMetricPeriod.optional()),
     metricPeriodMonthReset: core.serialization.property(
         "metric_period_month_reset",
@@ -27,7 +34,8 @@ export const UpdatePlanEntitlementRequestBody: core.serialization.Schema<
 
 export declare namespace UpdatePlanEntitlementRequestBody {
     interface Raw {
-        metered_price_id?: string | null;
+        metered_monthly_price_id?: string | null;
+        metered_yearly_price_id?: string | null;
         metric_period?: UpdatePlanEntitlementRequestBodyMetricPeriod.Raw | null;
         metric_period_month_reset?: UpdatePlanEntitlementRequestBodyMetricPeriodMonthReset.Raw | null;
         value_bool?: boolean | null;

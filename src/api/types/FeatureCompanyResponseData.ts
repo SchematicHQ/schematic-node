@@ -15,6 +15,8 @@ export interface FeatureCompanyResponseData {
     entitlementId: string;
     entitlementType: string;
     feature?: Schematic.FeatureDetailResponseData;
+    /** The time at which the metric will resets. */
+    metricResetAt?: Date;
     /** If the period is current_month, when the month resets. */
     monthReset?: string;
     /** The period over which usage is measured. */
