@@ -38,7 +38,7 @@ const cacheTTL = 1000; // in milliseconds
 const client = new SchematicClient({
     apiKey,
     cacheProviders: {
-        flagChecks: [new LocalCache<boolean>({ size: cacheSize, ttl: cacheTTL })],
+        flagChecks: [new LocalCache<boolean>({ maxItems: cacheSize, ttl: cacheTTL })],
     },
 });
 
@@ -97,7 +97,9 @@ const client = new SchematicClient({ apiKey });
 
 client.identify({
     company: {
-        id: "your-company-id",
+        keys: { id: "your-company-id" },
+        name: "Acme, Inc.",
+        traits: { city: "Atlanta" },
     },
     keys: {
         email: "wcoyote@acme.net",
@@ -105,7 +107,7 @@ client.identify({
     },
     name: "Wile E. Coyote",
     traits: {
-        city: "Atlanta",
+        enemy: "Bugs Bunny",
         loginCount: 24,
         isStaff: false,
     },
