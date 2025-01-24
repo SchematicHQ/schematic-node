@@ -5,19 +5,19 @@
 import * as serializers from "../../../index";
 import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
-import { EventSummaryResponseData } from "../../../types/EventSummaryResponseData";
+import { BillingSubscriptionResponseData } from "../../../types/BillingSubscriptionResponseData";
 
-export const GetEventSummaryBySubtypeResponse: core.serialization.ObjectSchema<
-    serializers.GetEventSummaryBySubtypeResponse.Raw,
-    Schematic.GetEventSummaryBySubtypeResponse
+export const CheckoutInternalResponse: core.serialization.ObjectSchema<
+    serializers.CheckoutInternalResponse.Raw,
+    Schematic.CheckoutInternalResponse
 > = core.serialization.object({
-    data: EventSummaryResponseData,
+    data: BillingSubscriptionResponseData,
     params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
-export declare namespace GetEventSummaryBySubtypeResponse {
+export declare namespace CheckoutInternalResponse {
     interface Raw {
-        data: EventSummaryResponseData.Raw;
+        data: BillingSubscriptionResponseData.Raw;
         params: Record<string, unknown>;
     }
 }

@@ -4,8 +4,8 @@
 
 import * as Schematic from "../../../index";
 
-export interface GetEventSummaryBySubtypeResponse {
-    data: Schematic.EventSummaryResponseData;
+export interface UpsertBillingCouponResponse {
+    data: Schematic.BillingCouponResponseData;
     /** Input parameters */
     params: Record<string, unknown>;
 }

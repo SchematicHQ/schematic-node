@@ -7,6 +7,7 @@
  *     {
  *         currency: "currency",
  *         interval: "interval",
+ *         isActive: true,
  *         price: 1,
  *         priceExternalId: "price_external_id",
  *         productExternalId: "product_external_id",
@@ -16,6 +17,7 @@
 export interface CreateBillingPriceRequestBody {
     currency: string;
     interval: string;
+    isActive: boolean;
     meterId?: string;
     price: number;
     priceExternalId: string;

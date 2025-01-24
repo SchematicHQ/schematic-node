@@ -12,9 +12,15 @@ export const CheckFlagResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
     error: core.serialization.string().optional(),
+    featureAllocation: core.serialization.property("feature_allocation", core.serialization.number().optional()),
+    featureUsage: core.serialization.property("feature_usage", core.serialization.number().optional()),
+    featureUsagePeriod: core.serialization.property("feature_usage_period", core.serialization.string().optional()),
+    featureUsageResetAt: core.serialization.property("feature_usage_reset_at", core.serialization.date().optional()),
+    flag: core.serialization.string(),
     flagId: core.serialization.property("flag_id", core.serialization.string().optional()),
     reason: core.serialization.string(),
     ruleId: core.serialization.property("rule_id", core.serialization.string().optional()),
+    ruleType: core.serialization.property("rule_type", core.serialization.string().optional()),
     userId: core.serialization.property("user_id", core.serialization.string().optional()),
     value: core.serialization.boolean(),
 });
@@ -23,9 +29,15 @@ export declare namespace CheckFlagResponseData {
     interface Raw {
         company_id?: string | null;
         error?: string | null;
+        feature_allocation?: number | null;
+        feature_usage?: number | null;
+        feature_usage_period?: string | null;
+        feature_usage_reset_at?: string | null;
+        flag: string;
         flag_id?: string | null;
         reason: string;
         rule_id?: string | null;
+        rule_type?: string | null;
         user_id?: string | null;
         value: boolean;
     }

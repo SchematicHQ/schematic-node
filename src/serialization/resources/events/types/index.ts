@@ -1,7 +1,6 @@
 export * from "./CreateEventBatchResponse";
 export * from "./GetEventSummariesParams";
 export * from "./GetEventSummariesResponse";
-export * from "./GetEventSummaryBySubtypeResponse";
 export * from "./ListEventsParams";
 export * from "./ListEventsResponse";
 export * from "./CreateEventResponse";

@@ -9,8 +9,8 @@ import * as core from "../../../../core";
 export const UpdatePlanEntitlementRequestBodyMetricPeriod: core.serialization.Schema<
     serializers.UpdatePlanEntitlementRequestBodyMetricPeriod.Raw,
     Schematic.UpdatePlanEntitlementRequestBodyMetricPeriod
-> = core.serialization.enum_(["all_time", "billing", "current_month", "current_week", "current_day"]);
+> = core.serialization.enum_(["all_time", "current_month", "current_week", "current_day"]);
 
 export declare namespace UpdatePlanEntitlementRequestBodyMetricPeriod {
-    type Raw = "all_time" | "billing" | "current_month" | "current_week" | "current_day";
+    type Raw = "all_time" | "current_month" | "current_week" | "current_day";
 }

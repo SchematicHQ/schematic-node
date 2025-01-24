@@ -5,6 +5,7 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { BillingSubscriptionDiscountView } from "./BillingSubscriptionDiscountView";
 import { InvoiceResponseData } from "./InvoiceResponseData";
 import { PaymentMethodResponseData } from "./PaymentMethodResponseData";
 import { BillingProductForSubscriptionResponseData } from "./BillingProductForSubscriptionResponseData";
@@ -17,6 +18,7 @@ export const BillingSubscriptionView: core.serialization.ObjectSchema<
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     currency: core.serialization.string(),
     customerExternalId: core.serialization.property("customer_external_id", core.serialization.string()),
+    discounts: core.serialization.list(BillingSubscriptionDiscountView),
     expiredAt: core.serialization.property("expired_at", core.serialization.date().optional()),
     id: core.serialization.string(),
     interval: core.serialization.string(),
@@ -30,6 +32,7 @@ export const BillingSubscriptionView: core.serialization.ObjectSchema<
     subscriptionExternalId: core.serialization.property("subscription_external_id", core.serialization.string()),
     totalPrice: core.serialization.property("total_price", core.serialization.number()),
     trialEnd: core.serialization.property("trial_end", core.serialization.number().optional()),
+    trialEndSetting: core.serialization.property("trial_end_setting", core.serialization.string().optional()),
 });
 
 export declare namespace BillingSubscriptionView {
@@ -38,6 +41,7 @@ export declare namespace BillingSubscriptionView {
         created_at: string;
         currency: string;
         customer_external_id: string;
+        discounts: BillingSubscriptionDiscountView.Raw[];
         expired_at?: string | null;
         id: string;
         interval: string;
@@ -51,5 +55,6 @@ export declare namespace BillingSubscriptionView {
         subscription_external_id: string;
         total_price: number;
         trial_end?: number | null;
+        trial_end_setting?: string | null;
     }
 }

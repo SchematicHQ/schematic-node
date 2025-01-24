@@ -12,6 +12,7 @@ export interface FeatureCompanyResponseData {
     /** The type of allocation that is being used. */
     allocationType: Schematic.FeatureCompanyResponseDataAllocationType;
     company?: Schematic.CompanyDetailResponseData;
+    entitlementExpirationDate?: Date;
     entitlementId: string;
     entitlementType: string;
     feature?: Schematic.FeatureDetailResponseData;

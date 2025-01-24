@@ -8,15 +8,15 @@
  */
 export interface CountUsersRequest {
     /**
-     * Filter users by company ID (starts with comp\_)
+     * Filter users by company ID (starts with comp_)
      */
     companyId?: string;
     /**
-     * Filter users by multiple user IDs (starts with user\_)
+     * Filter users by multiple user IDs (starts with user_)
      */
     ids?: string | string[];
     /**
-     * Filter users by plan ID (starts with plan\_)
+     * Filter users by plan ID (starts with plan_)
      */
     planId?: string;
     /**

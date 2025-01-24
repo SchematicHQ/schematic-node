@@ -9,6 +9,12 @@ import * as Schematic from "../../../../index";
  *     {
  *         currency: "currency",
  *         customerExternalId: "customer_external_id",
+ *         discounts: [{
+ *                 couponExternalId: "coupon_external_id",
+ *                 externalId: "external_id",
+ *                 isActive: true,
+ *                 startedAt: "2024-01-15T09:30:00Z"
+ *             }],
  *         expiredAt: "2024-01-15T09:30:00Z",
  *         productExternalIds: [{
  *                 currency: "currency",
@@ -26,6 +32,7 @@ import * as Schematic from "../../../../index";
 export interface CreateBillingSubscriptionsRequestBody {
     currency: string;
     customerExternalId: string;
+    discounts: Schematic.BillingSubscriptionDiscount[];
     expiredAt: Date;
     interval?: string;
     metadata?: Record<string, unknown>;
@@ -36,4 +43,5 @@ export interface CreateBillingSubscriptionsRequestBody {
     subscriptionExternalId: string;
     totalPrice: number;
     trialEnd?: number;
+    trialEndSetting?: string;
 }

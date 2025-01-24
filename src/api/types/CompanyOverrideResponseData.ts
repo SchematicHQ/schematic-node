@@ -19,6 +19,7 @@ export interface CompanyOverrideResponseData {
     metricPeriod?: string;
     metricPeriodMonthReset?: string;
     ruleId?: string;
+    ruleIdUsageExceeded?: string;
     updatedAt: Date;
     valueBool?: boolean;
     valueNumeric?: number;

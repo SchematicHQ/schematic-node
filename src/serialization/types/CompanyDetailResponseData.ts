@@ -9,6 +9,7 @@ import { CompanyPlanWithBillingSubView } from "./CompanyPlanWithBillingSubView";
 import { BillingSubscriptionView } from "./BillingSubscriptionView";
 import { EntityTraitDetailResponseData } from "./EntityTraitDetailResponseData";
 import { EntityKeyDetailResponseData } from "./EntityKeyDetailResponseData";
+import { CompanyEventPeriodMetricsResponseData } from "./CompanyEventPeriodMetricsResponseData";
 import { GenericPreviewObject } from "./GenericPreviewObject";
 
 export const CompanyDetailResponseData: core.serialization.ObjectSchema<
@@ -28,6 +29,7 @@ export const CompanyDetailResponseData: core.serialization.ObjectSchema<
     keys: core.serialization.list(EntityKeyDetailResponseData),
     lastSeenAt: core.serialization.property("last_seen_at", core.serialization.date().optional()),
     logoUrl: core.serialization.property("logo_url", core.serialization.string().optional()),
+    metrics: core.serialization.list(CompanyEventPeriodMetricsResponseData),
     name: core.serialization.string(),
     plan: CompanyPlanWithBillingSubView.optional(),
     plans: core.serialization.list(GenericPreviewObject),
@@ -48,6 +50,7 @@ export declare namespace CompanyDetailResponseData {
         keys: EntityKeyDetailResponseData.Raw[];
         last_seen_at?: string | null;
         logo_url?: string | null;
+        metrics: CompanyEventPeriodMetricsResponseData.Raw[];
         name: string;
         plan?: CompanyPlanWithBillingSubView.Raw | null;
         plans: GenericPreviewObject.Raw[];

@@ -16,8 +16,6 @@ export interface CreateCompanyOverrideRequestBody {
     companyId: string;
     expirationDate?: Date;
     featureId: string;
-    meteredMonthlyPriceId?: string;
-    meteredYearlyPriceId?: string;
     metricPeriod?: Schematic.CreateCompanyOverrideRequestBodyMetricPeriod;
     metricPeriodMonthReset?: Schematic.CreateCompanyOverrideRequestBodyMetricPeriodMonthReset;
     valueBool?: boolean;

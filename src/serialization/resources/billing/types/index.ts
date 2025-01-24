@@ -1,3 +1,4 @@
+export * from "./UpsertBillingCouponResponse";
 export * from "./UpsertBillingCustomerResponse";
 export * from "./ListCustomersParams";
 export * from "./ListCustomersResponse";

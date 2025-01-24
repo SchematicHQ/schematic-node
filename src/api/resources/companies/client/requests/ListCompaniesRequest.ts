@@ -8,11 +8,11 @@
  */
 export interface ListCompaniesRequest {
     /**
-     * Filter companies by multiple company IDs (starts with comp\_)
+     * Filter companies by multiple company IDs (starts with comp_)
      */
     ids?: string | string[];
     /**
-     * Filter companies by plan ID (starts with plan\_)
+     * Filter companies by plan ID (starts with plan_)
      */
     planId?: string;
     /**

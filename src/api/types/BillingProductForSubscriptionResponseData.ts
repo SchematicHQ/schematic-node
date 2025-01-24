@@ -13,6 +13,7 @@ export interface BillingProductForSubscriptionResponseData {
     name: string;
     price: number;
     priceExternalId: string;
+    priceId: string;
     quantity: number;
     subscriptionId: string;
     updatedAt: Date;

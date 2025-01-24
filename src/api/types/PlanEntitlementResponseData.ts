@@ -18,6 +18,7 @@ export interface PlanEntitlementResponseData {
     planId: string;
     priceBehavior?: string;
     ruleId: string;
+    ruleIdUsageExceeded?: string;
     updatedAt: Date;
     valueBool?: boolean;
     valueNumeric?: number;

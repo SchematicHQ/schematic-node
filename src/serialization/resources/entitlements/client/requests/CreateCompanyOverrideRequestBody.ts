@@ -16,14 +16,6 @@ export const CreateCompanyOverrideRequestBody: core.serialization.Schema<
     companyId: core.serialization.property("company_id", core.serialization.string()),
     expirationDate: core.serialization.property("expiration_date", core.serialization.date().optional()),
     featureId: core.serialization.property("feature_id", core.serialization.string()),
-    meteredMonthlyPriceId: core.serialization.property(
-        "metered_monthly_price_id",
-        core.serialization.string().optional()
-    ),
-    meteredYearlyPriceId: core.serialization.property(
-        "metered_yearly_price_id",
-        core.serialization.string().optional()
-    ),
     metricPeriod: core.serialization.property("metric_period", CreateCompanyOverrideRequestBodyMetricPeriod.optional()),
     metricPeriodMonthReset: core.serialization.property(
         "metric_period_month_reset",
@@ -40,8 +32,6 @@ export declare namespace CreateCompanyOverrideRequestBody {
         company_id: string;
         expiration_date?: string | null;
         feature_id: string;
-        metered_monthly_price_id?: string | null;
-        metered_yearly_price_id?: string | null;
         metric_period?: CreateCompanyOverrideRequestBodyMetricPeriod.Raw | null;
         metric_period_month_reset?: CreateCompanyOverrideRequestBodyMetricPeriodMonthReset.Raw | null;
         value_bool?: boolean | null;

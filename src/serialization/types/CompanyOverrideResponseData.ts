@@ -27,6 +27,7 @@ export const CompanyOverrideResponseData: core.serialization.ObjectSchema<
         core.serialization.string().optional()
     ),
     ruleId: core.serialization.property("rule_id", core.serialization.string().optional()),
+    ruleIdUsageExceeded: core.serialization.property("rule_id_usage_exceeded", core.serialization.string().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
@@ -48,6 +49,7 @@ export declare namespace CompanyOverrideResponseData {
         metric_period?: string | null;
         metric_period_month_reset?: string | null;
         rule_id?: string | null;
+        rule_id_usage_exceeded?: string | null;
         updated_at: string;
         value_bool?: boolean | null;
         value_numeric?: number | null;

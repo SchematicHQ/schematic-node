@@ -24,6 +24,7 @@ export const ListCompanyOverridesParams: core.serialization.ObjectSchema<
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
     q: core.serialization.string().optional(),
+    withoutExpired: core.serialization.property("without_expired", core.serialization.boolean().optional()),
 });
 
 export declare namespace ListCompanyOverridesParams {
@@ -36,5 +37,6 @@ export declare namespace ListCompanyOverridesParams {
         limit?: number | null;
         offset?: number | null;
         q?: string | null;
+        without_expired?: boolean | null;
     }
 }

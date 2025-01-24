@@ -4,14 +4,12 @@
 
 export type UpdateCompanyOverrideRequestBodyMetricPeriod =
     | "all_time"
-    | "billing"
     | "current_month"
     | "current_week"
     | "current_day";
 
 export const UpdateCompanyOverrideRequestBodyMetricPeriod = {
     AllTime: "all_time",
-    Billing: "billing",
     CurrentMonth: "current_month",
     CurrentWeek: "current_week",
     CurrentDay: "current_day",

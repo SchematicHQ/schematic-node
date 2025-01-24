@@ -25,7 +25,8 @@ export type UpdateWebhookRequestBodyRequestTypesItem =
     | "company.override.deleted"
     | "feature.deleted"
     | "flag.deleted"
-    | "test.send";
+    | "test.send"
+    | "subscription.trial.ended";
 
 export const UpdateWebhookRequestBodyRequestTypesItem = {
     CompanyUpdated: "company.updated",
@@ -51,4 +52,5 @@ export const UpdateWebhookRequestBodyRequestTypesItem = {
     FeatureDeleted: "feature.deleted",
     FlagDeleted: "flag.deleted",
     TestSend: "test.send",
+    SubscriptionTrialEnded: "subscription.trial.ended",
 } as const;
