@@ -33,6 +33,7 @@ export const CreateWebhookRequestBodyRequestTypesItem: core.serialization.Schema
     "feature.deleted",
     "flag.deleted",
     "test.send",
+    "subscription.trial.ended",
 ]);
 
 export declare namespace CreateWebhookRequestBodyRequestTypesItem {
@@ -59,5 +60,6 @@ export declare namespace CreateWebhookRequestBodyRequestTypesItem {
         | "company.override.deleted"
         | "feature.deleted"
         | "flag.deleted"
-        | "test.send";
+        | "test.send"
+        | "subscription.trial.ended";
 }

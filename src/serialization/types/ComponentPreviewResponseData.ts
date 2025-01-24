@@ -10,6 +10,7 @@ import { UsageBasedEntitlementResponseData } from "./UsageBasedEntitlementRespon
 import { ComponentCapabilities } from "./ComponentCapabilities";
 import { CompanyDetailResponseData } from "./CompanyDetailResponseData";
 import { ComponentResponseData } from "./ComponentResponseData";
+import { PlanDetailResponseData } from "./PlanDetailResponseData";
 import { FeatureUsageDetailResponseData } from "./FeatureUsageDetailResponseData";
 import { InvoiceResponseData } from "./InvoiceResponseData";
 import { StripeEmbedInfo } from "./StripeEmbedInfo";
@@ -28,10 +29,15 @@ export const ComponentPreviewResponseData: core.serialization.ObjectSchema<
     capabilities: ComponentCapabilities.optional(),
     company: CompanyDetailResponseData.optional(),
     component: ComponentResponseData.optional(),
+    defaultPlan: core.serialization.property("default_plan", PlanDetailResponseData.optional()),
     featureUsage: core.serialization.property("feature_usage", FeatureUsageDetailResponseData.optional()),
     invoices: core.serialization.list(InvoiceResponseData),
     stripeEmbed: core.serialization.property("stripe_embed", StripeEmbedInfo.optional()),
     subscription: CompanySubscriptionResponseData.optional(),
+    trialPaymentMethodRequired: core.serialization.property(
+        "trial_payment_method_required",
+        core.serialization.boolean().optional()
+    ),
     upcomingInvoice: core.serialization.property("upcoming_invoice", InvoiceResponseData.optional()),
 });
 
@@ -43,10 +49,12 @@ export declare namespace ComponentPreviewResponseData {
         capabilities?: ComponentCapabilities.Raw | null;
         company?: CompanyDetailResponseData.Raw | null;
         component?: ComponentResponseData.Raw | null;
+        default_plan?: PlanDetailResponseData.Raw | null;
         feature_usage?: FeatureUsageDetailResponseData.Raw | null;
         invoices: InvoiceResponseData.Raw[];
         stripe_embed?: StripeEmbedInfo.Raw | null;
         subscription?: CompanySubscriptionResponseData.Raw | null;
+        trial_payment_method_required?: boolean | null;
         upcoming_invoice?: InvoiceResponseData.Raw | null;
     }
 }

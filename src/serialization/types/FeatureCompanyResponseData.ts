@@ -18,6 +18,10 @@ export const FeatureCompanyResponseData: core.serialization.ObjectSchema<
     allocation: core.serialization.number().optional(),
     allocationType: core.serialization.property("allocation_type", FeatureCompanyResponseDataAllocationType),
     company: CompanyDetailResponseData.optional(),
+    entitlementExpirationDate: core.serialization.property(
+        "entitlement_expiration_date",
+        core.serialization.date().optional()
+    ),
     entitlementId: core.serialization.property("entitlement_id", core.serialization.string()),
     entitlementType: core.serialization.property("entitlement_type", core.serialization.string()),
     feature: FeatureDetailResponseData.optional(),
@@ -34,6 +38,7 @@ export declare namespace FeatureCompanyResponseData {
         allocation?: number | null;
         allocation_type: FeatureCompanyResponseDataAllocationType.Raw;
         company?: CompanyDetailResponseData.Raw | null;
+        entitlement_expiration_date?: string | null;
         entitlement_id: string;
         entitlement_type: string;
         feature?: FeatureDetailResponseData.Raw | null;

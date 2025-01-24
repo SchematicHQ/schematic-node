@@ -11,16 +11,20 @@ export interface FeatureUsageResponseData {
     allocation?: number;
     /** The type of allocation that is being used. */
     allocationType: Schematic.FeatureUsageResponseDataAllocationType;
+    entitlementExpirationDate?: Date;
     entitlementId: string;
     entitlementType: string;
     feature?: Schematic.FeatureDetailResponseData;
-    /** The time at which the metric will resets. */
+    /** The time at which the metric will reset. */
     metricResetAt?: Date;
     /** If the period is current_month, when the month resets. */
     monthReset?: string;
+    monthlyUsageBasedPrice?: Schematic.BillingPriceView;
     /** The period over which usage is measured. */
     period?: string;
     plan?: Schematic.PlanResponseData;
+    priceBehavior?: string;
     /** The amount of usage that has been consumed; a null value indicates that usage is not being measured. */
     usage?: number;
+    yearlyUsageBasedPrice?: Schematic.BillingPriceView;
 }

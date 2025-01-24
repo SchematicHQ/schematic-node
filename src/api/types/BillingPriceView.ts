@@ -7,6 +7,7 @@ export interface BillingPriceView {
     currency: string;
     id: string;
     interval: string;
+    isActive: boolean;
     meterId?: string;
     price: number;
     priceExternalId: string;

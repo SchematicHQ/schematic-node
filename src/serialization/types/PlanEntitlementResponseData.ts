@@ -30,6 +30,7 @@ export const PlanEntitlementResponseData: core.serialization.ObjectSchema<
     planId: core.serialization.property("plan_id", core.serialization.string()),
     priceBehavior: core.serialization.property("price_behavior", core.serialization.string().optional()),
     ruleId: core.serialization.property("rule_id", core.serialization.string()),
+    ruleIdUsageExceeded: core.serialization.property("rule_id_usage_exceeded", core.serialization.string().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
@@ -53,6 +54,7 @@ export declare namespace PlanEntitlementResponseData {
         plan_id: string;
         price_behavior?: string | null;
         rule_id: string;
+        rule_id_usage_exceeded?: string | null;
         updated_at: string;
         value_bool?: boolean | null;
         value_numeric?: number | null;

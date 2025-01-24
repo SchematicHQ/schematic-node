@@ -17,4 +17,5 @@ export interface BillingSubscriptionResponseData {
     subscriptionExternalId: string;
     totalPrice: number;
     trialEnd?: number;
+    trialEndSetting?: string;
 }

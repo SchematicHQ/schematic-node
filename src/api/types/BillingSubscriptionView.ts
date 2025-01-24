@@ -4,11 +4,15 @@
 
 import * as Schematic from "../index";
 
+/**
+ * The updated resource
+ */
 export interface BillingSubscriptionView {
     companyId?: string;
     createdAt: Date;
     currency: string;
     customerExternalId: string;
+    discounts: Schematic.BillingSubscriptionDiscountView[];
     expiredAt?: Date;
     id: string;
     interval: string;
@@ -22,4 +26,5 @@ export interface BillingSubscriptionView {
     subscriptionExternalId: string;
     totalPrice: number;
     trialEnd?: number;
+    trialEndSetting?: string;
 }

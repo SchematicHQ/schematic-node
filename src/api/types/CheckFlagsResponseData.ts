@@ -8,5 +8,5 @@ import * as Schematic from "../index";
  * The created resource
  */
 export interface CheckFlagsResponseData {
-    flags: Schematic.CheckFlagOutputWithFlagKey[];
+    flags: Schematic.CheckFlagResponseData[];
 }

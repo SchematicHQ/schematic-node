@@ -13,34 +13,36 @@ export const UpdatePlanEntitlementRequestBody: core.serialization.Schema<
     serializers.UpdatePlanEntitlementRequestBody.Raw,
     Schematic.UpdatePlanEntitlementRequestBody
 > = core.serialization.object({
-    meteredMonthlyPriceId: core.serialization.property(
-        "metered_monthly_price_id",
-        core.serialization.string().optional()
-    ),
-    meteredYearlyPriceId: core.serialization.property(
-        "metered_yearly_price_id",
-        core.serialization.string().optional()
-    ),
     metricPeriod: core.serialization.property("metric_period", UpdatePlanEntitlementRequestBodyMetricPeriod.optional()),
     metricPeriodMonthReset: core.serialization.property(
         "metric_period_month_reset",
         UpdatePlanEntitlementRequestBodyMetricPeriodMonthReset.optional()
     ),
+    monthlyMeteredPriceId: core.serialization.property(
+        "monthly_metered_price_id",
+        core.serialization.string().optional()
+    ),
+    priceBehavior: core.serialization.property("price_behavior", core.serialization.string().optional()),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
     valueTraitId: core.serialization.property("value_trait_id", core.serialization.string().optional()),
     valueType: core.serialization.property("value_type", UpdatePlanEntitlementRequestBodyValueType),
+    yearlyMeteredPriceId: core.serialization.property(
+        "yearly_metered_price_id",
+        core.serialization.string().optional()
+    ),
 });
 
 export declare namespace UpdatePlanEntitlementRequestBody {
     interface Raw {
-        metered_monthly_price_id?: string | null;
-        metered_yearly_price_id?: string | null;
         metric_period?: UpdatePlanEntitlementRequestBodyMetricPeriod.Raw | null;
         metric_period_month_reset?: UpdatePlanEntitlementRequestBodyMetricPeriodMonthReset.Raw | null;
+        monthly_metered_price_id?: string | null;
+        price_behavior?: string | null;
         value_bool?: boolean | null;
         value_numeric?: number | null;
         value_trait_id?: string | null;
         value_type: UpdatePlanEntitlementRequestBodyValueType.Raw;
+        yearly_metered_price_id?: string | null;
     }
 }

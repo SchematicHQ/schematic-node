@@ -5,6 +5,7 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { BillingSubscriptionDiscountView } from "./BillingSubscriptionDiscountView";
 import { InvoiceResponseData } from "./InvoiceResponseData";
 import { PaymentMethodResponseData } from "./PaymentMethodResponseData";
 import { BillingProductForSubscriptionResponseData } from "./BillingProductForSubscriptionResponseData";
@@ -15,6 +16,7 @@ export const CompanySubscriptionResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     currency: core.serialization.string(),
     customerExternalId: core.serialization.property("customer_external_id", core.serialization.string()),
+    discounts: core.serialization.list(BillingSubscriptionDiscountView),
     expiredAt: core.serialization.property("expired_at", core.serialization.date().optional()),
     interval: core.serialization.string(),
     latestInvoice: core.serialization.property("latest_invoice", InvoiceResponseData.optional()),
@@ -23,12 +25,14 @@ export const CompanySubscriptionResponseData: core.serialization.ObjectSchema<
     status: core.serialization.string(),
     subscriptionExternalId: core.serialization.property("subscription_external_id", core.serialization.string()),
     totalPrice: core.serialization.property("total_price", core.serialization.number()),
+    trialEnd: core.serialization.property("trial_end", core.serialization.date().optional()),
 });
 
 export declare namespace CompanySubscriptionResponseData {
     interface Raw {
         currency: string;
         customer_external_id: string;
+        discounts: BillingSubscriptionDiscountView.Raw[];
         expired_at?: string | null;
         interval: string;
         latest_invoice?: InvoiceResponseData.Raw | null;
@@ -37,5 +41,6 @@ export declare namespace CompanySubscriptionResponseData {
         status: string;
         subscription_external_id: string;
         total_price: number;
+        trial_end?: string | null;
     }
 }

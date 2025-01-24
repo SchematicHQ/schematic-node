@@ -1,3 +1,4 @@
+export { CreateCouponRequestBody } from "./CreateCouponRequestBody";
 export { CreateBillingCustomerRequestBody } from "./CreateBillingCustomerRequestBody";
 export { CreateInvoiceRequestBody } from "./CreateInvoiceRequestBody";
 export { CreateMeterRequestBody } from "./CreateMeterRequestBody";

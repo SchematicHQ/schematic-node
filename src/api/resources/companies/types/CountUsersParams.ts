@@ -6,15 +6,15 @@
  * Input parameters
  */
 export interface CountUsersParams {
-    /** Filter users by company ID (starts with comp\_) */
+    /** Filter users by company ID (starts with comp_) */
     companyId?: string;
-    /** Filter users by multiple user IDs (starts with user\_) */
+    /** Filter users by multiple user IDs (starts with user_) */
     ids?: string[];
     /** Page limit (default 100) */
     limit?: number;
     /** Page offset (default 0) */
     offset?: number;
-    /** Filter users by plan ID (starts with plan\_) */
+    /** Filter users by plan ID (starts with plan_) */
     planId?: string;
     /** Search for users by name, keys or string traits */
     q?: string;

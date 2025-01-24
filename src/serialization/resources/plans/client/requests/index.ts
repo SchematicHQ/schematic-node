@@ -1,3 +1,4 @@
+export { UpdateCompanyPlansRequestBody } from "./UpdateCompanyPlansRequestBody";
 export { UpdateAudienceRequestBody } from "./UpdateAudienceRequestBody";
 export { CreatePlanRequestBody } from "./CreatePlanRequestBody";
 export { UpdatePlanRequestBody } from "./UpdatePlanRequestBody";

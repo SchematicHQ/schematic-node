@@ -5,17 +5,17 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
-import { CheckFlagOutputWithFlagKey } from "./CheckFlagOutputWithFlagKey";
+import { CheckFlagResponseData } from "./CheckFlagResponseData";
 
 export const CheckFlagsResponseData: core.serialization.ObjectSchema<
     serializers.CheckFlagsResponseData.Raw,
     Schematic.CheckFlagsResponseData
 > = core.serialization.object({
-    flags: core.serialization.list(CheckFlagOutputWithFlagKey),
+    flags: core.serialization.list(CheckFlagResponseData),
 });
 
 export declare namespace CheckFlagsResponseData {
     interface Raw {
-        flags: CheckFlagOutputWithFlagKey.Raw[];
+        flags: CheckFlagResponseData.Raw[];
     }
 }

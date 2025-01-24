@@ -14,6 +14,7 @@ export const BillingPriceView: core.serialization.ObjectSchema<
     currency: core.serialization.string(),
     id: core.serialization.string(),
     interval: core.serialization.string(),
+    isActive: core.serialization.property("is_active", core.serialization.boolean()),
     meterId: core.serialization.property("meter_id", core.serialization.string().optional()),
     price: core.serialization.number(),
     priceExternalId: core.serialization.property("price_external_id", core.serialization.string()),
@@ -31,6 +32,7 @@ export declare namespace BillingPriceView {
         currency: string;
         id: string;
         interval: string;
+        is_active: boolean;
         meter_id?: string | null;
         price: number;
         price_external_id: string;

@@ -15,6 +15,7 @@ export interface CompanyDetailResponseData {
     keys: Schematic.EntityKeyDetailResponseData[];
     lastSeenAt?: Date;
     logoUrl?: string;
+    metrics: Schematic.CompanyEventPeriodMetricsResponseData[];
     name: string;
     plan?: Schematic.CompanyPlanWithBillingSubView;
     plans: Schematic.GenericPreviewObject[];

@@ -5,6 +5,7 @@
 import * as serializers from "../../../../index";
 import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
+import { BillingSubscriptionDiscount } from "../../../../types/BillingSubscriptionDiscount";
 import { BillingProductPricing } from "../../../../types/BillingProductPricing";
 
 export const CreateBillingSubscriptionsRequestBody: core.serialization.Schema<
@@ -13,6 +14,7 @@ export const CreateBillingSubscriptionsRequestBody: core.serialization.Schema<
 > = core.serialization.object({
     currency: core.serialization.string(),
     customerExternalId: core.serialization.property("customer_external_id", core.serialization.string()),
+    discounts: core.serialization.list(BillingSubscriptionDiscount),
     expiredAt: core.serialization.property("expired_at", core.serialization.date()),
     interval: core.serialization.string().optional(),
     metadata: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
@@ -26,12 +28,14 @@ export const CreateBillingSubscriptionsRequestBody: core.serialization.Schema<
     subscriptionExternalId: core.serialization.property("subscription_external_id", core.serialization.string()),
     totalPrice: core.serialization.property("total_price", core.serialization.number()),
     trialEnd: core.serialization.property("trial_end", core.serialization.number().optional()),
+    trialEndSetting: core.serialization.property("trial_end_setting", core.serialization.string().optional()),
 });
 
 export declare namespace CreateBillingSubscriptionsRequestBody {
     interface Raw {
         currency: string;
         customer_external_id: string;
+        discounts: BillingSubscriptionDiscount.Raw[];
         expired_at: string;
         interval?: string | null;
         metadata?: Record<string, unknown> | null;
@@ -42,5 +46,6 @@ export declare namespace CreateBillingSubscriptionsRequestBody {
         subscription_external_id: string;
         total_price: number;
         trial_end?: number | null;
+        trial_end_setting?: string | null;
     }
 }

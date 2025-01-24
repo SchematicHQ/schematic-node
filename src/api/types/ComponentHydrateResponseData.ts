@@ -11,8 +11,10 @@ export interface ComponentHydrateResponseData {
     capabilities?: Schematic.ComponentCapabilities;
     company?: Schematic.CompanyDetailResponseData;
     component?: Schematic.ComponentResponseData;
+    defaultPlan?: Schematic.PlanDetailResponseData;
     featureUsage?: Schematic.FeatureUsageDetailResponseData;
     stripeEmbed?: Schematic.StripeEmbedInfo;
     subscription?: Schematic.CompanySubscriptionResponseData;
+    trialPaymentMethodRequired?: boolean;
     upcomingInvoice?: Schematic.InvoiceResponseData;
 }

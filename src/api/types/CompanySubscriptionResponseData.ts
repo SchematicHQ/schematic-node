@@ -7,6 +7,7 @@ import * as Schematic from "../index";
 export interface CompanySubscriptionResponseData {
     currency: string;
     customerExternalId: string;
+    discounts: Schematic.BillingSubscriptionDiscountView[];
     expiredAt?: Date;
     interval: string;
     latestInvoice?: Schematic.InvoiceResponseData;
@@ -15,4 +16,5 @@ export interface CompanySubscriptionResponseData {
     status: string;
     subscriptionExternalId: string;
     totalPrice: number;
+    trialEnd?: Date;
 }

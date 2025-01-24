@@ -14,14 +14,6 @@ export const UpdateCompanyOverrideRequestBody: core.serialization.Schema<
     Schematic.UpdateCompanyOverrideRequestBody
 > = core.serialization.object({
     expirationDate: core.serialization.property("expiration_date", core.serialization.date().optional()),
-    meteredMonthlyPriceId: core.serialization.property(
-        "metered_monthly_price_id",
-        core.serialization.string().optional()
-    ),
-    meteredYearlyPriceId: core.serialization.property(
-        "metered_yearly_price_id",
-        core.serialization.string().optional()
-    ),
     metricPeriod: core.serialization.property("metric_period", UpdateCompanyOverrideRequestBodyMetricPeriod.optional()),
     metricPeriodMonthReset: core.serialization.property(
         "metric_period_month_reset",
@@ -36,8 +28,6 @@ export const UpdateCompanyOverrideRequestBody: core.serialization.Schema<
 export declare namespace UpdateCompanyOverrideRequestBody {
     interface Raw {
         expiration_date?: string | null;
-        metered_monthly_price_id?: string | null;
-        metered_yearly_price_id?: string | null;
         metric_period?: UpdateCompanyOverrideRequestBodyMetricPeriod.Raw | null;
         metric_period_month_reset?: UpdateCompanyOverrideRequestBodyMetricPeriodMonthReset.Raw | null;
         value_bool?: boolean | null;

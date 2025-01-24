@@ -14,9 +14,11 @@ export interface ComponentPreviewResponseData {
     capabilities?: Schematic.ComponentCapabilities;
     company?: Schematic.CompanyDetailResponseData;
     component?: Schematic.ComponentResponseData;
+    defaultPlan?: Schematic.PlanDetailResponseData;
     featureUsage?: Schematic.FeatureUsageDetailResponseData;
     invoices: Schematic.InvoiceResponseData[];
     stripeEmbed?: Schematic.StripeEmbedInfo;
     subscription?: Schematic.CompanySubscriptionResponseData;
+    trialPaymentMethodRequired?: boolean;
     upcomingInvoice?: Schematic.InvoiceResponseData;
 }

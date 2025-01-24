@@ -1,47 +1,5 @@
 # Reference
 
-<details><summary><code>client.<a href="/src/Client.ts">getCompanyPlans</a>() -> void</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.getCompanyPlans();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `SchematicClient.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-##
-
 ## accounts
 
 <details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">listApiKeys</a>({ ...params }) -> Schematic.ListApiKeysResponse</code></summary>
@@ -1807,6 +1765,63 @@ await client.features.countFlags();
 
 ## billing
 
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">upsertBillingCoupon</a>({ ...params }) -> Schematic.UpsertBillingCouponResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.billing.upsertBillingCoupon({
+    amountOff: 1,
+    duration: "duration",
+    durationInMonths: 1,
+    externalId: "external_id",
+    maxRedemptions: 1,
+    name: "name",
+    percentOff: 1.1,
+    timesRedeemed: 1,
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CreateCouponRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Billing.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">upsertBillingCustomer</a>({ ...params }) -> Schematic.UpsertBillingCustomerResponse</code></summary>
 <dl>
 <dd>
@@ -2332,6 +2347,7 @@ await client.billing.searchBillingPrices();
 await client.billing.upsertBillingPrice({
     currency: "currency",
     interval: "interval",
+    isActive: true,
     price: 1,
     priceExternalId: "price_external_id",
     productExternalId: "product_external_id",
@@ -2633,6 +2649,14 @@ await client.billing.countBillingProducts();
 await client.billing.upsertBillingSubscription({
     currency: "currency",
     customerExternalId: "customer_external_id",
+    discounts: [
+        {
+            couponExternalId: "coupon_external_id",
+            externalId: "external_id",
+            isActive: true,
+            startedAt: "2024-01-15T09:30:00Z",
+        },
+    ],
     expiredAt: "2024-01-15T09:30:00Z",
     productExternalIds: [
         {
@@ -2672,6 +2696,240 @@ await client.billing.upsertBillingSubscription({
 <dd>
 
 **requestOptions:** `Billing.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## checkout
+
+<details><summary><code>client.checkout.<a href="/src/api/resources/checkout/client/Client.ts">internal</a>({ ...params }) -> Schematic.CheckoutInternalResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.checkout.internal({
+    addOnIds: [
+        {
+            addOnId: "add_on_id",
+            priceId: "price_id",
+        },
+    ],
+    companyId: "company_id",
+    newPlanId: "new_plan_id",
+    newPriceId: "new_price_id",
+    payInAdvance: [
+        {
+            priceId: "price_id",
+            quantity: 1,
+        },
+    ],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ChangeSubscriptionInternalRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Checkout.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.checkout.<a href="/src/api/resources/checkout/client/Client.ts">getCheckoutData</a>(checkoutInternalId) -> Schematic.GetCheckoutDataResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.checkout.getCheckoutData("checkout_internal_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**checkoutInternalId:** `string` — checkout_internal_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Checkout.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.checkout.<a href="/src/api/resources/checkout/client/Client.ts">previewCheckoutInternal</a>({ ...params }) -> Schematic.PreviewCheckoutInternalResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.checkout.previewCheckoutInternal({
+    addOnIds: [
+        {
+            addOnId: "add_on_id",
+            priceId: "price_id",
+        },
+    ],
+    companyId: "company_id",
+    newPlanId: "new_plan_id",
+    newPriceId: "new_price_id",
+    payInAdvance: [
+        {
+            priceId: "price_id",
+            quantity: 1,
+        },
+    ],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ChangeSubscriptionInternalRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Checkout.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.checkout.<a href="/src/api/resources/checkout/client/Client.ts">updateCustomerSubscriptionTrialEnd</a>(subscriptionId, { ...params }) -> Schematic.UpdateCustomerSubscriptionTrialEndResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.checkout.updateCustomerSubscriptionTrialEnd("subscription_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**subscriptionId:** `string` — subscription_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.UpdateTrialEndRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Checkout.RequestOptions`
 
 </dd>
 </dl>
@@ -5202,6 +5460,598 @@ await client.entitlements.getFeatureUsageByCompany({
 </dl>
 </details>
 
+## plans
+
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">updateCompanyPlans</a>(companyPlanId, { ...params }) -> Schematic.UpdateCompanyPlansResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.updateCompanyPlans("company_plan_id", {
+    addOnIds: ["add_on_ids"],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**companyPlanId:** `string` — company_plan_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.UpdateCompanyPlansRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Plans.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">getAudience</a>(planAudienceId) -> Schematic.GetAudienceResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.getAudience("plan_audience_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**planAudienceId:** `string` — plan_audience_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Plans.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">updateAudience</a>(planAudienceId, { ...params }) -> Schematic.UpdateAudienceResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.updateAudience("plan_audience_id", {
+    conditionGroups: [
+        {
+            conditions: [
+                {
+                    conditionType: "company",
+                    operator: "eq",
+                    resourceIds: ["resource_ids"],
+                },
+            ],
+        },
+    ],
+    conditions: [
+        {
+            conditionType: "company",
+            operator: "eq",
+            resourceIds: ["resource_ids"],
+        },
+    ],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**planAudienceId:** `string` — plan_audience_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.UpdateAudienceRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Plans.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">deleteAudience</a>(planAudienceId) -> Schematic.DeleteAudienceResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.deleteAudience("plan_audience_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**planAudienceId:** `string` — plan_audience_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Plans.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">listPlans</a>({ ...params }) -> Schematic.ListPlansResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.listPlans();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListPlansRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Plans.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">createPlan</a>({ ...params }) -> Schematic.CreatePlanResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.createPlan({
+    description: "description",
+    name: "name",
+    planType: "plan",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CreatePlanRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Plans.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">getPlan</a>(planId) -> Schematic.GetPlanResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.getPlan("plan_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**planId:** `string` — plan_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Plans.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">updatePlan</a>(planId, { ...params }) -> Schematic.UpdatePlanResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.updatePlan("plan_id", {
+    name: "name",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**planId:** `string` — plan_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.UpdatePlanRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Plans.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">deletePlan</a>(planId) -> Schematic.DeletePlanResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.deletePlan("plan_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**planId:** `string` — plan_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Plans.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">upsertBillingProductPlan</a>(planId, { ...params }) -> Schematic.UpsertBillingProductPlanResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.upsertBillingProductPlan("plan_id", {
+    isFreePlan: true,
+    isTrialable: true,
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**planId:** `string` — plan_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.UpsertBillingProductRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Plans.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">countPlans</a>({ ...params }) -> Schematic.CountPlansResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.countPlans();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CountPlansRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Plans.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## components
 
 <details><summary><code>client.components.<a href="/src/api/resources/components/client/Client.ts">listComponents</a>({ ...params }) -> Schematic.ListComponentsResponse</code></summary>
@@ -5919,54 +6769,6 @@ await client.events.getEventSummaries();
 </dl>
 </details>
 
-<details><summary><code>client.events.<a href="/src/api/resources/events/client/Client.ts">getEventSummaryBySubtype</a>(key) -> Schematic.GetEventSummaryBySubtypeResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.events.getEventSummaryBySubtype("key");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**key:** `string` — key
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Events.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.events.<a href="/src/api/resources/events/client/Client.ts">listEvents</a>({ ...params }) -> Schematic.ListEventsResponse</code></summary>
 <dl>
 <dd>
@@ -6143,540 +6945,6 @@ await client.events.getSegmentIntegrationStatus();
 <dd>
 
 **requestOptions:** `Events.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## plans
-
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">getAudience</a>(planAudienceId) -> Schematic.GetAudienceResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.getAudience("plan_audience_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**planAudienceId:** `string` — plan_audience_id
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">updateAudience</a>(planAudienceId, { ...params }) -> Schematic.UpdateAudienceResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.updateAudience("plan_audience_id", {
-    conditionGroups: [
-        {
-            conditions: [
-                {
-                    conditionType: "company",
-                    operator: "eq",
-                    resourceIds: ["resource_ids"],
-                },
-            ],
-        },
-    ],
-    conditions: [
-        {
-            conditionType: "company",
-            operator: "eq",
-            resourceIds: ["resource_ids"],
-        },
-    ],
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**planAudienceId:** `string` — plan_audience_id
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Schematic.UpdateAudienceRequestBody`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">deleteAudience</a>(planAudienceId) -> Schematic.DeleteAudienceResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.deleteAudience("plan_audience_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**planAudienceId:** `string` — plan_audience_id
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">listPlans</a>({ ...params }) -> Schematic.ListPlansResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.listPlans();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.ListPlansRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">createPlan</a>({ ...params }) -> Schematic.CreatePlanResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.createPlan({
-    description: "description",
-    name: "name",
-    planType: "plan",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.CreatePlanRequestBody`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">getPlan</a>(planId) -> Schematic.GetPlanResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.getPlan("plan_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**planId:** `string` — plan_id
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">updatePlan</a>(planId, { ...params }) -> Schematic.UpdatePlanResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.updatePlan("plan_id", {
-    name: "name",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**planId:** `string` — plan_id
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Schematic.UpdatePlanRequestBody`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">deletePlan</a>(planId) -> Schematic.DeletePlanResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.deletePlan("plan_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**planId:** `string` — plan_id
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">upsertBillingProductPlan</a>(planId, { ...params }) -> Schematic.UpsertBillingProductPlanResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.upsertBillingProductPlan("plan_id", {
-    isFreePlan: true,
-    isTrialable: true,
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**planId:** `string` — plan_id
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Schematic.UpsertBillingProductRequestBody`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">countPlans</a>({ ...params }) -> Schematic.CountPlansResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.countPlans();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.CountPlansRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
 
 </dd>
 </dl>

@@ -11,12 +11,13 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface UpdatePlanEntitlementRequestBody {
-    meteredMonthlyPriceId?: string;
-    meteredYearlyPriceId?: string;
     metricPeriod?: Schematic.UpdatePlanEntitlementRequestBodyMetricPeriod;
     metricPeriodMonthReset?: Schematic.UpdatePlanEntitlementRequestBodyMetricPeriodMonthReset;
+    monthlyMeteredPriceId?: string;
+    priceBehavior?: string;
     valueBool?: boolean;
     valueNumeric?: number;
     valueTraitId?: string;
     valueType: Schematic.UpdatePlanEntitlementRequestBodyValueType;
+    yearlyMeteredPriceId?: string;
 }

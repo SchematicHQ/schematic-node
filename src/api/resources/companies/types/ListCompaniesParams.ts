@@ -6,13 +6,13 @@
  * Input parameters
  */
 export interface ListCompaniesParams {
-    /** Filter companies by multiple company IDs (starts with comp\_) */
+    /** Filter companies by multiple company IDs (starts with comp_) */
     ids?: string[];
     /** Page limit (default 100) */
     limit?: number;
     /** Page offset (default 0) */
     offset?: number;
-    /** Filter companies by plan ID (starts with plan\_) */
+    /** Filter companies by plan ID (starts with plan_) */
     planId?: string;
     /** Search for companies by name, keys or string traits */
     q?: string;

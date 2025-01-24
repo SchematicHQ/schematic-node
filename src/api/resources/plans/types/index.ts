@@ -1,3 +1,4 @@
+export * from "./UpdateCompanyPlansResponse";
 export * from "./GetAudienceResponse";
 export * from "./UpdateAudienceResponse";
 export * from "./DeleteAudienceResponse";

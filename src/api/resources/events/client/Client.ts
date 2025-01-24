@@ -58,8 +58,8 @@ export class Events {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.7",
+                "X-Fern-SDK-Version": "1.1.8",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -193,8 +193,8 @@ export class Events {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.7",
+                "X-Fern-SDK-Version": "1.1.8",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -240,118 +240,6 @@ export class Events {
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 500:
-                    throw new Schematic.InternalServerError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                default:
-                    throw new errors.SchematicError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.SchematicError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.SchematicTimeoutError();
-            case "unknown":
-                throw new errors.SchematicError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * @param {string} key - key
-     * @param {Events.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Schematic.UnauthorizedError}
-     * @throws {@link Schematic.ForbiddenError}
-     * @throws {@link Schematic.NotFoundError}
-     * @throws {@link Schematic.InternalServerError}
-     *
-     * @example
-     *     await client.events.getEventSummaryBySubtype("key")
-     */
-    public async getEventSummaryBySubtype(
-        key: string,
-        requestOptions?: Events.RequestOptions
-    ): Promise<Schematic.GetEventSummaryBySubtypeResponse> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                `event-types/${encodeURIComponent(key)}`
-            ),
-            method: "GET",
-            headers: {
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.7",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...(await this._getCustomAuthorizationHeaders()),
-            },
-            contentType: "application/json",
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return serializers.GetEventSummaryBySubtypeResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 401:
-                    throw new Schematic.UnauthorizedError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 403:
-                    throw new Schematic.ForbiddenError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 404:
-                    throw new Schematic.NotFoundError(
                         serializers.ApiError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
@@ -452,8 +340,8 @@ export class Events {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.7",
+                "X-Fern-SDK-Version": "1.1.8",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -567,8 +455,8 @@ export class Events {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.7",
+                "X-Fern-SDK-Version": "1.1.8",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -680,8 +568,8 @@ export class Events {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.7",
+                "X-Fern-SDK-Version": "1.1.8",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -790,8 +678,8 @@ export class Events {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.7",
+                "X-Fern-SDK-Version": "1.1.8",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.8",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
