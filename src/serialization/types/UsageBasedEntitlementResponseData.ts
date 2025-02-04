@@ -18,10 +18,12 @@ export const UsageBasedEntitlementResponseData: core.serialization.ObjectSchema<
         "metric_period_month_reset",
         core.serialization.string().optional()
     ),
+    monthlyUsageBasedPrice: core.serialization.property("monthly_usage_based_price", BillingPriceView.optional()),
     priceBehavior: core.serialization.property("price_behavior", core.serialization.string().optional()),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
     valueType: core.serialization.property("value_type", core.serialization.string()),
+    yearlyUsageBasedPrice: core.serialization.property("yearly_usage_based_price", BillingPriceView.optional()),
 });
 
 export declare namespace UsageBasedEntitlementResponseData {
@@ -30,9 +32,11 @@ export declare namespace UsageBasedEntitlementResponseData {
         metered_price?: BillingPriceView.Raw | null;
         metric_period?: string | null;
         metric_period_month_reset?: string | null;
+        monthly_usage_based_price?: BillingPriceView.Raw | null;
         price_behavior?: string | null;
         value_bool?: boolean | null;
         value_numeric?: number | null;
         value_type: string;
+        yearly_usage_based_price?: BillingPriceView.Raw | null;
     }
 }

@@ -9,8 +9,10 @@ export interface UsageBasedEntitlementResponseData {
     meteredPrice?: Schematic.BillingPriceView;
     metricPeriod?: string;
     metricPeriodMonthReset?: string;
+    monthlyUsageBasedPrice?: Schematic.BillingPriceView;
     priceBehavior?: string;
     valueBool?: boolean;
     valueNumeric?: number;
     valueType: string;
+    yearlyUsageBasedPrice?: Schematic.BillingPriceView;
 }

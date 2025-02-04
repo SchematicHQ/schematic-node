@@ -29,6 +29,10 @@ export interface ListPlansRequest {
      */
     withoutProductId?: boolean;
     /**
+     * Filter out plans that have a paid billing product ID
+     */
+    withoutPaidProductId?: boolean;
+    /**
      * Page limit (default 100)
      */
     limit?: number;

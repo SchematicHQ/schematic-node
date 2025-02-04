@@ -15,6 +15,7 @@ export interface EventResponseData {
     id: string;
     loadedAt?: Date;
     processedAt?: Date;
+    quantity: number;
     sentAt?: Date;
     status: string;
     subtype?: string;
