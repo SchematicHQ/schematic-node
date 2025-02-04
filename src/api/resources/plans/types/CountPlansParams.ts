@@ -21,6 +21,8 @@ export interface CountPlansParams {
     q?: string;
     /** Filter out plans that already have a plan entitlement for the specified feature ID */
     withoutEntitlementFor?: string;
+    /** Filter out plans that have a paid billing product ID */
+    withoutPaidProductId?: boolean;
     /** Filter out plans that have a billing product ID */
     withoutProductId?: boolean;
 }

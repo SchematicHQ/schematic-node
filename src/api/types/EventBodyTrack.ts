@@ -7,6 +7,8 @@ export interface EventBodyTrack {
     company?: Record<string, string>;
     /** The name of the type of track event */
     event: string;
+    /** Optionally specify the quantity of the event */
+    quantity?: number;
     /** A map of trait names to trait values */
     traits?: Record<string, unknown>;
     /** Key-value pairs to identify user associated with track event */

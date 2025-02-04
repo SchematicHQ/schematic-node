@@ -10,6 +10,7 @@ export const EventBodyTrack: core.serialization.ObjectSchema<serializers.EventBo
     core.serialization.object({
         company: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
         event: core.serialization.string(),
+        quantity: core.serialization.number().optional(),
         traits: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
         user: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
     });
@@ -18,6 +19,7 @@ export declare namespace EventBodyTrack {
     interface Raw {
         company?: Record<string, string> | null;
         event: string;
+        quantity?: number | null;
         traits?: Record<string, unknown> | null;
         user?: Record<string, string> | null;
     }

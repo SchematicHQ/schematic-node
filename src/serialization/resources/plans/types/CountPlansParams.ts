@@ -22,6 +22,10 @@ export const CountPlansParams: core.serialization.ObjectSchema<
         "without_entitlement_for",
         core.serialization.string().optional()
     ),
+    withoutPaidProductId: core.serialization.property(
+        "without_paid_product_id",
+        core.serialization.boolean().optional()
+    ),
     withoutProductId: core.serialization.property("without_product_id", core.serialization.boolean().optional()),
 });
 
@@ -35,6 +39,7 @@ export declare namespace CountPlansParams {
         plan_type?: CountPlansResponseParamsPlanType.Raw | null;
         q?: string | null;
         without_entitlement_for?: string | null;
+        without_paid_product_id?: boolean | null;
         without_product_id?: boolean | null;
     }
 }

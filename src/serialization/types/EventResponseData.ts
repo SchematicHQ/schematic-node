@@ -22,6 +22,7 @@ export const EventResponseData: core.serialization.ObjectSchema<
     id: core.serialization.string(),
     loadedAt: core.serialization.property("loaded_at", core.serialization.date().optional()),
     processedAt: core.serialization.property("processed_at", core.serialization.date().optional()),
+    quantity: core.serialization.number(),
     sentAt: core.serialization.property("sent_at", core.serialization.date().optional()),
     status: core.serialization.string(),
     subtype: core.serialization.string().optional(),
@@ -44,6 +45,7 @@ export declare namespace EventResponseData {
         id: string;
         loaded_at?: string | null;
         processed_at?: string | null;
+        quantity: number;
         sent_at?: string | null;
         status: string;
         subtype?: string | null;
