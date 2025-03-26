@@ -144,6 +144,22 @@ client.close();
 
 This call is non-blocking and there is no response to check.
 
+If you want to record large numbers of the same event at once, or perhaps measure usage in terms of a unit like tokens or memory, you can optionally specify a quantity for your event:
+
+```ts
+client.track({
+    event: "some-action",
+    company: {
+        id: "your-company-id",
+    },
+    user: {
+        email: "wcoyote@acme.net",
+        userId: "your-user-id",
+    },
+    quantity: 10,
+});
+```
+
 ### Creating and updating companies
 
 Although it is faster to create companies and users via identify events, if you need to handle a response, you can use the companies API to upsert companies. Because you use your own identifiers to identify companies, rather than a Schematic company ID, creating and updating companies are both done via the same upsert operation:
