@@ -270,6 +270,187 @@ client.close();
 
 The Schematic API supports many operations beyond these, accessible via the API modules on the client, `Accounts`, `Billing`, `Companies`, `Entitlements`, `Events`, `Features`, and `Plans`.
 
+## Webhook Verification
+
+Schematic can send webhooks to notify your application of events. To ensure the security of these webhooks, Schematic signs each request using HMAC-SHA256. The SDK provides utility functions to verify these signatures.
+
+### Verifying Webhook Signatures
+
+When your application receives a webhook request from Schematic, you should verify its signature to ensure it's authentic. The SDK provides simple functions to verify webhook signatures. Here's how to use them in different frameworks:
+
+#### Express
+
+```ts
+import express from "express";
+import {
+    verifyWebhookSignature,
+    WebhookSignatureError,
+    WEBHOOK_SIGNATURE_HEADER,
+    WEBHOOK_TIMESTAMP_HEADER,
+} from "@schematichq/schematic-typescript-node";
+
+// Note: Schematic webhooks use these headers:
+// - X-Schematic-Webhook-Signature: Contains the HMAC-SHA256 signature
+// - X-Schematic-Webhook-Timestamp: Contains the timestamp when the webhook was sent
+
+const app = express();
+
+// Use a middleware that captures raw body for signature verification
+app.use(
+    "/webhooks/schematic",
+    express.json({
+        verify: (req, res, buf) => {
+            if (buf && buf.length) {
+                (req as any).rawBody = buf;
+            }
+        },
+    })
+);
+
+app.post("/webhooks/schematic", (req, res) => {
+    try {
+        const webhookSecret = "your-webhook-secret"; // Get this from the Schematic app
+
+        // Verify the webhook signature using the captured raw body
+        verifyWebhookSignature(req, webhookSecret);
+
+        // Process the webhook payload
+        const data = req.body;
+        console.log("Webhook verified:", data);
+
+        res.status(200).end();
+    } catch (error) {
+        if (error instanceof WebhookSignatureError) {
+            console.error("Webhook verification failed:", error.message);
+            return res.status(400).json({ error: error.message });
+        }
+
+        console.error("Error processing webhook:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+```
+
+#### Node HTTP Server
+
+```ts
+import http from "http";
+import {
+    verifySignature,
+    WebhookSignatureError,
+    WEBHOOK_SIGNATURE_HEADER,
+    WEBHOOK_TIMESTAMP_HEADER,
+} from "@schematichq/schematic-typescript-node";
+
+const webhookSecret = "your-webhook-secret"; // Get this from the Schematic app
+
+const server = http.createServer(async (req, res) => {
+    if (req.url === "/webhooks/schematic" && req.method === "POST") {
+        // Collect the request body
+        let body = "";
+        for await (const chunk of req) {
+            body += chunk.toString();
+        }
+
+        try {
+            // Get the headers
+            const signature = req.headers[WEBHOOK_SIGNATURE_HEADER.toLowerCase()] as string;
+            const timestamp = req.headers[WEBHOOK_TIMESTAMP_HEADER.toLowerCase()] as string;
+
+            // Verify the signature
+            verifySignature(body, signature, timestamp, webhookSecret);
+
+            // Process the webhook payload
+            const data = JSON.parse(body);
+            console.log("Webhook verified:", data);
+
+            res.statusCode = 200;
+            res.end();
+        } catch (error) {
+            if (error instanceof WebhookSignatureError) {
+                console.error("Webhook verification failed:", error.message);
+                res.statusCode = 400;
+                res.end(JSON.stringify({ error: error.message }));
+                return;
+            }
+
+            console.error("Error processing webhook:", error);
+            res.statusCode = 500;
+            res.end(JSON.stringify({ error: "Internal server error" }));
+        }
+    } else {
+        res.statusCode = 404;
+        res.end();
+    }
+});
+
+const PORT = 3000;
+server.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+```
+
+#### Next.js API Routes
+
+```ts
+// pages/api/webhooks/schematic.ts
+import type { NextApiRequest, NextApiResponse } from "next";
+import {
+    verifyWebhookSignature,
+    WebhookSignatureError,
+    WEBHOOK_SIGNATURE_HEADER,
+    WEBHOOK_TIMESTAMP_HEADER,
+} from "@schematichq/schematic-typescript-node";
+import { buffer } from "micro";
+
+// Schematic webhooks use these headers:
+// - X-Schematic-Webhook-Signature: Contains the HMAC-SHA256 signature
+// - X-Schematic-Webhook-Timestamp: Contains the timestamp when the webhook was sent
+
+// Disable body parsing to get the raw body
+export const config = {
+    api: {
+        bodyParser: false,
+    },
+};
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    if (req.method !== "POST") {
+        return res.status(405).end("Method not allowed");
+    }
+
+    try {
+        const webhookSecret = process.env.SCHEMATIC_WEBHOOK_SECRET!;
+        const rawBody = await buffer(req);
+
+        // Verify the webhook signature
+        verifyWebhookSignature(req, webhookSecret, rawBody);
+
+        // Parse the webhook payload
+        const payload = JSON.parse(rawBody.toString());
+        console.log("Webhook verified:", payload);
+
+        // Process the webhook event
+        // ...
+
+        res.status(200).end();
+    } catch (error) {
+        if (error instanceof WebhookSignatureError) {
+            console.error("Webhook verification failed:", error.message);
+            return res.status(400).json({ error: error.message });
+        }
+
+        console.error("Error processing webhook:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+}
+```
+
 ## Testing
 
 ### Offline mode
