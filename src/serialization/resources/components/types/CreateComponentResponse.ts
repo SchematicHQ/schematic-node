@@ -16,7 +16,7 @@ export const CreateComponentResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace CreateComponentResponse {
-    interface Raw {
+    export interface Raw {
         data: ComponentResponseData.Raw;
         params: Record<string, unknown>;
     }

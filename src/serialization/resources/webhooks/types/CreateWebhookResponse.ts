@@ -16,7 +16,7 @@ export const CreateWebhookResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace CreateWebhookResponse {
-    interface Raw {
+    export interface Raw {
         data: WebhookResponseData.Raw;
         params: Record<string, unknown>;
     }

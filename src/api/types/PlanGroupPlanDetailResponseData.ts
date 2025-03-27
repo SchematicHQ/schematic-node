@@ -9,11 +9,13 @@ export interface PlanGroupPlanDetailResponseData {
     billingProduct?: Schematic.BillingProductDetailResponseData;
     companyCount: number;
     createdAt: Date;
+    customPlanConfig?: Schematic.CustomPlanViewConfigResponseData;
     description: string;
     entitlements: Schematic.PlanEntitlementResponseData[];
     features: Schematic.FeatureDetailResponseData[];
     icon: string;
     id: string;
+    isCustom: boolean;
     isDefault: boolean;
     isFree: boolean;
     isTrialable: boolean;

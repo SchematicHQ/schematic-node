@@ -20,7 +20,7 @@ export const RuleConditionGroupResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace RuleConditionGroupResponseData {
-    interface Raw {
+    export interface Raw {
         created_at: string;
         environment_id: string;
         flag_id?: string | null;

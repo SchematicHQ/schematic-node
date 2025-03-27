@@ -12,5 +12,5 @@ export const CountEntityTraitDefinitionsResponseParamsTraitType: core.serializat
 > = core.serialization.enum_(["boolean", "currency", "date", "number", "string", "url"]);
 
 export declare namespace CountEntityTraitDefinitionsResponseParamsTraitType {
-    type Raw = "boolean" | "currency" | "date" | "number" | "string" | "url";
+    export type Raw = "boolean" | "currency" | "date" | "number" | "string" | "url";
 }

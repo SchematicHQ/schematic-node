@@ -3,7 +3,6 @@
  */
 
 export type UpdateComponentRequestBodyState = "draft" | "live";
-
 export const UpdateComponentRequestBodyState = {
     Draft: "draft",
     Live: "live",

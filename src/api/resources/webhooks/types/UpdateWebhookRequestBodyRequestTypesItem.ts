@@ -27,7 +27,6 @@ export type UpdateWebhookRequestBodyRequestTypesItem =
     | "flag.deleted"
     | "test.send"
     | "subscription.trial.ended";
-
 export const UpdateWebhookRequestBodyRequestTypesItem = {
     CompanyUpdated: "company.updated",
     UserUpdated: "user.updated",

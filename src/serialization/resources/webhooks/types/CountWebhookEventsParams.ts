@@ -18,7 +18,7 @@ export const CountWebhookEventsParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace CountWebhookEventsParams {
-    interface Raw {
+    export interface Raw {
         ids?: string[] | null;
         limit?: number | null;
         offset?: number | null;

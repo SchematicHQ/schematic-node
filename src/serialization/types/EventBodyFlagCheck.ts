@@ -17,11 +17,11 @@ export const EventBodyFlagCheck: core.serialization.ObjectSchema<
     reason: core.serialization.string(),
     reqCompany: core.serialization.property(
         "req_company",
-        core.serialization.record(core.serialization.string(), core.serialization.string()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
     ),
     reqUser: core.serialization.property(
         "req_user",
-        core.serialization.record(core.serialization.string(), core.serialization.string()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
     ),
     ruleId: core.serialization.property("rule_id", core.serialization.string().optional()),
     userId: core.serialization.property("user_id", core.serialization.string().optional()),
@@ -29,7 +29,7 @@ export const EventBodyFlagCheck: core.serialization.ObjectSchema<
 });
 
 export declare namespace EventBodyFlagCheck {
-    interface Raw {
+    export interface Raw {
         company_id?: string | null;
         error?: string | null;
         flag_id?: string | null;

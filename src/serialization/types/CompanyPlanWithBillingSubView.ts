@@ -20,7 +20,7 @@ export const CompanyPlanWithBillingSubView: core.serialization.ObjectSchema<
 });
 
 export declare namespace CompanyPlanWithBillingSubView {
-    interface Raw {
+    export interface Raw {
         billing_product_id?: string | null;
         description?: string | null;
         id: string;

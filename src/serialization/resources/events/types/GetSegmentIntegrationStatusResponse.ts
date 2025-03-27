@@ -16,7 +16,7 @@ export const GetSegmentIntegrationStatusResponse: core.serialization.ObjectSchem
 });
 
 export declare namespace GetSegmentIntegrationStatusResponse {
-    interface Raw {
+    export interface Raw {
         data: SegmentStatusResp.Raw;
         params: Record<string, unknown>;
     }

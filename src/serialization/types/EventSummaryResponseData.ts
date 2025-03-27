@@ -19,7 +19,7 @@ export const EventSummaryResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace EventSummaryResponseData {
-    interface Raw {
+    export interface Raw {
         company_count: number;
         environment_id: string;
         event_count: number;

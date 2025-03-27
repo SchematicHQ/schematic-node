@@ -9,7 +9,6 @@ export type CreateOrUpdateRuleRequestBodyRuleType =
     | "standard"
     | "default"
     | "plan_audience";
-
 export const CreateOrUpdateRuleRequestBodyRuleType = {
     GlobalOverride: "global_override",
     CompanyOverride: "company_override",

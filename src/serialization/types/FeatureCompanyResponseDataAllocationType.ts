@@ -12,5 +12,5 @@ export const FeatureCompanyResponseDataAllocationType: core.serialization.Schema
 > = core.serialization.enum_(["boolean", "numeric", "trait", "unlimited"]);
 
 export declare namespace FeatureCompanyResponseDataAllocationType {
-    type Raw = "boolean" | "numeric" | "trait" | "unlimited";
+    export type Raw = "boolean" | "numeric" | "trait" | "unlimited";
 }

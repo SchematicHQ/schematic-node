@@ -12,6 +12,8 @@ export interface FeatureResponseData {
     lifecyclePhase?: string;
     maintainerId?: string;
     name: string;
+    pluralName?: string;
+    singularName?: string;
     traitId?: string;
     updatedAt: Date;
 }

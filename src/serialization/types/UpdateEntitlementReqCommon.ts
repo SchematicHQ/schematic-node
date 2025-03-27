@@ -16,7 +16,7 @@ export const UpdateEntitlementReqCommon: core.serialization.ObjectSchema<
     metricPeriod: core.serialization.property("metric_period", UpdateEntitlementReqCommonMetricPeriod.optional()),
     metricPeriodMonthReset: core.serialization.property(
         "metric_period_month_reset",
-        UpdateEntitlementReqCommonMetricPeriodMonthReset.optional()
+        UpdateEntitlementReqCommonMetricPeriodMonthReset.optional(),
     ),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
@@ -25,7 +25,7 @@ export const UpdateEntitlementReqCommon: core.serialization.ObjectSchema<
 });
 
 export declare namespace UpdateEntitlementReqCommon {
-    interface Raw {
+    export interface Raw {
         metric_period?: UpdateEntitlementReqCommonMetricPeriod.Raw | null;
         metric_period_month_reset?: UpdateEntitlementReqCommonMetricPeriodMonthReset.Raw | null;
         value_bool?: boolean | null;

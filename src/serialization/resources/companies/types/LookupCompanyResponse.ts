@@ -17,7 +17,7 @@ export const LookupCompanyResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace LookupCompanyResponse {
-    interface Raw {
+    export interface Raw {
         data: CompanyDetailResponseData.Raw;
         params: LookupCompanyParams.Raw;
     }

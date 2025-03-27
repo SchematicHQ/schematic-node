@@ -20,7 +20,7 @@ export const BillingSubscriptionDiscount: core.serialization.ObjectSchema<
 });
 
 export declare namespace BillingSubscriptionDiscount {
-    interface Raw {
+    export interface Raw {
         coupon_external_id: string;
         customer_facing_code?: string | null;
         ended_at?: string | null;

@@ -12,5 +12,5 @@ export const CreateEventRequestBodyEventType: core.serialization.Schema<
 > = core.serialization.enum_(["identify", "track", "flag_check"]);
 
 export declare namespace CreateEventRequestBodyEventType {
-    type Raw = "identify" | "track" | "flag_check";
+    export type Raw = "identify" | "track" | "flag_check";
 }

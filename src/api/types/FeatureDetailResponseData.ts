@@ -17,6 +17,8 @@ export interface FeatureDetailResponseData {
     maintainerId?: string;
     name: string;
     plans: Schematic.PreviewObject[];
+    pluralName?: string;
+    singularName?: string;
     trait?: Schematic.EntityTraitDefinitionResponseData;
     traitId?: string;
     updatedAt: Date;

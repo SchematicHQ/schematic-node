@@ -15,7 +15,7 @@ export const UpdateApiKeyRequestBody: core.serialization.Schema<
 });
 
 export declare namespace UpdateApiKeyRequestBody {
-    interface Raw {
+    export interface Raw {
         description?: string | null;
         name?: string | null;
     }

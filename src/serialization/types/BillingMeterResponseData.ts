@@ -18,7 +18,7 @@ export const BillingMeterResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace BillingMeterResponseData {
-    interface Raw {
+    export interface Raw {
         dispaly_name: string;
         event_name: string;
         event_payload_key: string;

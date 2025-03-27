@@ -14,7 +14,7 @@ export const UpdateTrialEndRequestBody: core.serialization.Schema<
 });
 
 export declare namespace UpdateTrialEndRequestBody {
-    interface Raw {
+    export interface Raw {
         trial_end?: string | null;
     }
 }

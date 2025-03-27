@@ -18,7 +18,7 @@ export const UpsertTraitRequestBody: core.serialization.ObjectSchema<
 });
 
 export declare namespace UpsertTraitRequestBody {
-    interface Raw {
+    export interface Raw {
         incr?: number | null;
         keys: Record<string, string>;
         set?: string | null;

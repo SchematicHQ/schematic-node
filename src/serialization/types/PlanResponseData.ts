@@ -21,7 +21,7 @@ export const PlanResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace PlanResponseData {
-    interface Raw {
+    export interface Raw {
         audience_type?: string | null;
         created_at: string;
         description: string;

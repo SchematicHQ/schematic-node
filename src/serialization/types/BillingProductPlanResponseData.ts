@@ -21,7 +21,7 @@ export const BillingProductPlanResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace BillingProductPlanResponseData {
-    interface Raw {
+    export interface Raw {
         account_id: string;
         billing_product_id: string;
         environment_id: string;

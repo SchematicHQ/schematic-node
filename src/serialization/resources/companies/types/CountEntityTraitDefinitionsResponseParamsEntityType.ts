@@ -12,5 +12,5 @@ export const CountEntityTraitDefinitionsResponseParamsEntityType: core.serializa
 > = core.serialization.enum_(["company", "user"]);
 
 export declare namespace CountEntityTraitDefinitionsResponseParamsEntityType {
-    type Raw = "company" | "user";
+    export type Raw = "company" | "user";
 }

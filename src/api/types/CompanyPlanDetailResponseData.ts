@@ -11,11 +11,14 @@ export interface CompanyPlanDetailResponseData {
     companyCount: number;
     createdAt: Date;
     current: boolean;
+    custom: boolean;
+    customPlanConfig?: Schematic.CustomPlanConfig;
     description: string;
     entitlements: Schematic.PlanEntitlementResponseData[];
     features: Schematic.FeatureDetailResponseData[];
     icon: string;
     id: string;
+    isCustom: boolean;
     isDefault: boolean;
     isFree: boolean;
     isTrialable: boolean;

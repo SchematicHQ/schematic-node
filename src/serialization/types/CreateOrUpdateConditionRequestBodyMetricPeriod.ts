@@ -12,5 +12,5 @@ export const CreateOrUpdateConditionRequestBodyMetricPeriod: core.serialization.
 > = core.serialization.enum_(["all_time", "current_month", "current_week", "current_day"]);
 
 export declare namespace CreateOrUpdateConditionRequestBodyMetricPeriod {
-    type Raw = "all_time" | "current_month" | "current_week" | "current_day";
+    export type Raw = "all_time" | "current_month" | "current_week" | "current_day";
 }

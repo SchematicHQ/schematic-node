@@ -17,7 +17,7 @@ export const ListCompanyMembershipsParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListCompanyMembershipsParams {
-    interface Raw {
+    export interface Raw {
         company_id?: string | null;
         limit?: number | null;
         offset?: number | null;

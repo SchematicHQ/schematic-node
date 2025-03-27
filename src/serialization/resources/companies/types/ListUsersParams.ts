@@ -19,7 +19,7 @@ export const ListUsersParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListUsersParams {
-    interface Raw {
+    export interface Raw {
         company_id?: string | null;
         ids?: string[] | null;
         limit?: number | null;

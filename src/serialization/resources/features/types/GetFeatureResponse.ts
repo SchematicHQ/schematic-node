@@ -16,7 +16,7 @@ export const GetFeatureResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace GetFeatureResponse {
-    interface Raw {
+    export interface Raw {
         data: FeatureDetailResponseData.Raw;
         params: Record<string, unknown>;
     }

@@ -15,7 +15,7 @@ export const PreviewObject: core.serialization.ObjectSchema<serializers.PreviewO
     });
 
 export declare namespace PreviewObject {
-    interface Raw {
+    export interface Raw {
         description?: string | null;
         id: string;
         image_url?: string | null;

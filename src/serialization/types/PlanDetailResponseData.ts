@@ -33,7 +33,7 @@ export const PlanDetailResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace PlanDetailResponseData {
-    interface Raw {
+    export interface Raw {
         audience_type?: string | null;
         billing_product?: BillingProductDetailResponseData.Raw | null;
         company_count: number;

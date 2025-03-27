@@ -15,7 +15,7 @@ export const UpdateFlagRulesRequestBody: core.serialization.Schema<
 });
 
 export declare namespace UpdateFlagRulesRequestBody {
-    interface Raw {
+    export interface Raw {
         rules: CreateOrUpdateRuleRequestBody.Raw[];
     }
 }

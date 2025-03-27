@@ -21,7 +21,7 @@ export const PreviewSubscriptionChangeResponseData: core.serialization.ObjectSch
 });
 
 export declare namespace PreviewSubscriptionChangeResponseData {
-    interface Raw {
+    export interface Raw {
         amount_off: number;
         due_now: number;
         new_charges: number;

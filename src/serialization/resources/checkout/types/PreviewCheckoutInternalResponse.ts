@@ -16,7 +16,7 @@ export const PreviewCheckoutInternalResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace PreviewCheckoutInternalResponse {
-    interface Raw {
+    export interface Raw {
         data: PreviewSubscriptionChangeResponseData.Raw;
         params: Record<string, unknown>;
     }

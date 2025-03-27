@@ -12,5 +12,5 @@ export const CountEntityTraitDefinitionsRequestEntityType: core.serialization.Sc
 > = core.serialization.enum_(["company", "user"]);
 
 export declare namespace CountEntityTraitDefinitionsRequestEntityType {
-    type Raw = "company" | "user";
+    export type Raw = "company" | "user";
 }

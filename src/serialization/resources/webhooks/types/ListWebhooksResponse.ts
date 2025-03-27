@@ -17,7 +17,7 @@ export const ListWebhooksResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListWebhooksResponse {
-    interface Raw {
+    export interface Raw {
         data: WebhookResponseData.Raw[];
         params: ListWebhooksParams.Raw;
     }

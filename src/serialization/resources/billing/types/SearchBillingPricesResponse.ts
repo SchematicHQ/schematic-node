@@ -17,7 +17,7 @@ export const SearchBillingPricesResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace SearchBillingPricesResponse {
-    interface Raw {
+    export interface Raw {
         data: BillingPriceView.Raw[];
         params: SearchBillingPricesParams.Raw;
     }

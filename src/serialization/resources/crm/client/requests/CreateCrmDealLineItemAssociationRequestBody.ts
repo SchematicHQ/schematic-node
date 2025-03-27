@@ -15,7 +15,7 @@ export const CreateCrmDealLineItemAssociationRequestBody: core.serialization.Sch
 });
 
 export declare namespace CreateCrmDealLineItemAssociationRequestBody {
-    interface Raw {
+    export interface Raw {
         deal_external_id: string;
         line_item_external_id: string;
     }

@@ -14,5 +14,4 @@ export interface PaymentMethodRequestBody {
     cardLast4?: string;
     customerExternalId: string;
     paymentMethodType: string;
-    subscriptionExternalId?: string;
 }

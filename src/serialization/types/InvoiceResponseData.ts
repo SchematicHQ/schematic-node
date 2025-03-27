@@ -24,11 +24,11 @@ export const InvoiceResponseData: core.serialization.ObjectSchema<
     id: core.serialization.string(),
     paymentMethodExternalId: core.serialization.property(
         "payment_method_external_id",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     subscriptionExternalId: core.serialization.property(
         "subscription_external_id",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     subtotal: core.serialization.number(),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -36,7 +36,7 @@ export const InvoiceResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace InvoiceResponseData {
-    interface Raw {
+    export interface Raw {
         amount_due: number;
         amount_paid: number;
         amount_remaining: number;

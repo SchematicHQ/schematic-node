@@ -6,7 +6,6 @@
  * The type of allocation that is being used.
  */
 export type FeatureCompanyUserResponseDataAllocationType = "boolean" | "numeric" | "trait" | "unlimited";
-
 export const FeatureCompanyUserResponseDataAllocationType = {
     Boolean: "boolean",
     Numeric: "numeric",

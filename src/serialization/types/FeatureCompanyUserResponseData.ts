@@ -31,7 +31,7 @@ export const FeatureCompanyUserResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace FeatureCompanyUserResponseData {
-    interface Raw {
+    export interface Raw {
         access: boolean;
         allocation?: number | null;
         allocation_type: FeatureCompanyUserResponseDataAllocationType.Raw;

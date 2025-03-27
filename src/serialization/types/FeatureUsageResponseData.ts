@@ -19,7 +19,7 @@ export const FeatureUsageResponseData: core.serialization.ObjectSchema<
     allocationType: core.serialization.property("allocation_type", FeatureUsageResponseDataAllocationType),
     entitlementExpirationDate: core.serialization.property(
         "entitlement_expiration_date",
-        core.serialization.date().optional()
+        core.serialization.date().optional(),
     ),
     entitlementId: core.serialization.property("entitlement_id", core.serialization.string()),
     entitlementType: core.serialization.property("entitlement_type", core.serialization.string()),
@@ -30,12 +30,13 @@ export const FeatureUsageResponseData: core.serialization.ObjectSchema<
     period: core.serialization.string().optional(),
     plan: PlanResponseData.optional(),
     priceBehavior: core.serialization.property("price_behavior", core.serialization.string().optional()),
+    softLimit: core.serialization.property("soft_limit", core.serialization.number().optional()),
     usage: core.serialization.number().optional(),
     yearlyUsageBasedPrice: core.serialization.property("yearly_usage_based_price", BillingPriceView.optional()),
 });
 
 export declare namespace FeatureUsageResponseData {
-    interface Raw {
+    export interface Raw {
         access: boolean;
         allocation?: number | null;
         allocation_type: FeatureUsageResponseDataAllocationType.Raw;
@@ -49,6 +50,7 @@ export declare namespace FeatureUsageResponseData {
         period?: string | null;
         plan?: PlanResponseData.Raw | null;
         price_behavior?: string | null;
+        soft_limit?: number | null;
         usage?: number | null;
         yearly_usage_based_price?: BillingPriceView.Raw | null;
     }

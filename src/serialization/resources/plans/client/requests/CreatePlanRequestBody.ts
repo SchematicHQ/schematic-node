@@ -18,7 +18,7 @@ export const CreatePlanRequestBody: core.serialization.Schema<
 });
 
 export declare namespace CreatePlanRequestBody {
-    interface Raw {
+    export interface Raw {
         description: string;
         icon?: string | null;
         name: string;

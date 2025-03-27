@@ -21,7 +21,7 @@ export const CouponRequestBody: core.serialization.ObjectSchema<
 });
 
 export declare namespace CouponRequestBody {
-    interface Raw {
+    export interface Raw {
         amount_off: number;
         currency?: string | null;
         duration: string;

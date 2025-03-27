@@ -18,7 +18,7 @@ export const ListWebhookEventsParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListWebhookEventsParams {
-    interface Raw {
+    export interface Raw {
         ids?: string[] | null;
         limit?: number | null;
         offset?: number | null;

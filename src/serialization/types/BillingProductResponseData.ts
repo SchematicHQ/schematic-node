@@ -23,7 +23,7 @@ export const BillingProductResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace BillingProductResponseData {
-    interface Raw {
+    export interface Raw {
         account_id: string;
         created_at: string;
         currency: string;

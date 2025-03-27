@@ -16,7 +16,7 @@ export const GetFlagResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace GetFlagResponse {
-    interface Raw {
+    export interface Raw {
         data: FlagDetailResponseData.Raw;
         params: Record<string, unknown>;
     }

@@ -24,7 +24,7 @@ export const EntityKeyDetailResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace EntityKeyDetailResponseData {
-    interface Raw {
+    export interface Raw {
         created_at: string;
         definition?: EntityKeyDefinitionResponseData.Raw | null;
         definition_id: string;

@@ -19,7 +19,7 @@ export const UpsertCompanyRequestBody: core.serialization.ObjectSchema<
 });
 
 export declare namespace UpsertCompanyRequestBody {
-    interface Raw {
+    export interface Raw {
         id?: string | null;
         keys: Record<string, string>;
         last_seen_at?: string | null;

@@ -3,7 +3,6 @@
  */
 
 export type CountEntityTraitDefinitionsResponseParamsEntityType = "company" | "user";
-
 export const CountEntityTraitDefinitionsResponseParamsEntityType = {
     Company: "company",
     User: "user",

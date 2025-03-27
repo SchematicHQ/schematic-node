@@ -16,7 +16,7 @@ export const UpdateAudienceResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace UpdateAudienceResponse {
-    interface Raw {
+    export interface Raw {
         data: PlanAudienceDetailResponseData.Raw;
         params: Record<string, unknown>;
     }

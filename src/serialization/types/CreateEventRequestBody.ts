@@ -18,7 +18,7 @@ export const CreateEventRequestBody: core.serialization.ObjectSchema<
 });
 
 export declare namespace CreateEventRequestBody {
-    interface Raw {
+    export interface Raw {
         body?: EventBody.Raw | null;
         event_type: CreateEventRequestBodyEventType.Raw;
         sent_at?: string | null;

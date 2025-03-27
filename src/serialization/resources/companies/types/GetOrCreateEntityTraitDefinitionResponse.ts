@@ -16,7 +16,7 @@ export const GetOrCreateEntityTraitDefinitionResponse: core.serialization.Object
 });
 
 export declare namespace GetOrCreateEntityTraitDefinitionResponse {
-    interface Raw {
+    export interface Raw {
         data: EntityTraitDefinitionResponseData.Raw;
         params: Record<string, unknown>;
     }

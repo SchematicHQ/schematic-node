@@ -17,7 +17,7 @@ export const CountFlagsResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace CountFlagsResponse {
-    interface Raw {
+    export interface Raw {
         data: CountResponse.Raw;
         params: CountFlagsParams.Raw;
     }

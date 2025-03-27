@@ -17,7 +17,7 @@ export const GetEntityTraitValuesResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace GetEntityTraitValuesResponse {
-    interface Raw {
+    export interface Raw {
         data: EntityTraitValue.Raw[];
         params: GetEntityTraitValuesParams.Raw;
     }

@@ -16,7 +16,7 @@ export const DeleteUserByKeysResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace DeleteUserByKeysResponse {
-    interface Raw {
+    export interface Raw {
         data: UserResponseData.Raw;
         params: Record<string, unknown>;
     }

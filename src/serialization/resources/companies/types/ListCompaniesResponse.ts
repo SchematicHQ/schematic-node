@@ -17,7 +17,7 @@ export const ListCompaniesResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListCompaniesResponse {
-    interface Raw {
+    export interface Raw {
         data: CompanyDetailResponseData.Raw[];
         params: ListCompaniesParams.Raw;
     }

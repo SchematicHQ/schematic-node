@@ -9,7 +9,6 @@ export type ListEntityTraitDefinitionsResponseParamsTraitType =
     | "number"
     | "string"
     | "url";
-
 export const ListEntityTraitDefinitionsResponseParamsTraitType = {
     Boolean: "boolean",
     Currency: "currency",

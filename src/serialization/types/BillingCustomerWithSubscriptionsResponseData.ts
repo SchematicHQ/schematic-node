@@ -23,7 +23,7 @@ export const BillingCustomerWithSubscriptionsResponseData: core.serialization.Ob
 });
 
 export declare namespace BillingCustomerWithSubscriptionsResponseData {
-    interface Raw {
+    export interface Raw {
         company_id?: string | null;
         deleted_at?: string | null;
         email: string;

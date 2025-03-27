@@ -13,12 +13,12 @@ export const StripeEmbedInfo: core.serialization.ObjectSchema<
     publishableKey: core.serialization.property("publishable_key", core.serialization.string()),
     setupIntentClientSecret: core.serialization.property(
         "setup_intent_client_secret",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
 });
 
 export declare namespace StripeEmbedInfo {
-    interface Raw {
+    export interface Raw {
         publishable_key: string;
         setup_intent_client_secret?: string | null;
     }

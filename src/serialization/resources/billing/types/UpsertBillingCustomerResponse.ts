@@ -16,7 +16,7 @@ export const UpsertBillingCustomerResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace UpsertBillingCustomerResponse {
-    interface Raw {
+    export interface Raw {
         data: BillingCustomerResponseData.Raw;
         params: Record<string, unknown>;
     }

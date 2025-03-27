@@ -12,5 +12,5 @@ export const UpdateComponentRequestBodyState: core.serialization.Schema<
 > = core.serialization.enum_(["draft", "live"]);
 
 export declare namespace UpdateComponentRequestBodyState {
-    type Raw = "draft" | "live";
+    export type Raw = "draft" | "live";
 }

@@ -17,7 +17,7 @@ export const CreateMeterRequestBody: core.serialization.Schema<
 });
 
 export declare namespace CreateMeterRequestBody {
-    interface Raw {
+    export interface Raw {
         display_name: string;
         event_name: string;
         event_payload_key: string;

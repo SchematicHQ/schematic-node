@@ -21,7 +21,7 @@ export const CreateCrmProductRequestBody: core.serialization.Schema<
 });
 
 export declare namespace CreateCrmProductRequestBody {
-    interface Raw {
+    export interface Raw {
         currency: string;
         description: string;
         external_id: string;

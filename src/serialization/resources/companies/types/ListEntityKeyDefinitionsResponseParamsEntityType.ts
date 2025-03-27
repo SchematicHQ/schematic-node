@@ -12,5 +12,5 @@ export const ListEntityKeyDefinitionsResponseParamsEntityType: core.serializatio
 > = core.serialization.enum_(["company", "user"]);
 
 export declare namespace ListEntityKeyDefinitionsResponseParamsEntityType {
-    type Raw = "company" | "user";
+    export type Raw = "company" | "user";
 }

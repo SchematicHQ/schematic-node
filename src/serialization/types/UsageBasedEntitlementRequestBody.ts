@@ -12,19 +12,21 @@ export const UsageBasedEntitlementRequestBody: core.serialization.ObjectSchema<
 > = core.serialization.object({
     monthlyMeteredPriceId: core.serialization.property(
         "monthly_metered_price_id",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     priceBehavior: core.serialization.property("price_behavior", core.serialization.string().optional()),
+    softLimit: core.serialization.property("soft_limit", core.serialization.number().optional()),
     yearlyMeteredPriceId: core.serialization.property(
         "yearly_metered_price_id",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
 });
 
 export declare namespace UsageBasedEntitlementRequestBody {
-    interface Raw {
+    export interface Raw {
         monthly_metered_price_id?: string | null;
         price_behavior?: string | null;
+        soft_limit?: number | null;
         yearly_metered_price_id?: string | null;
     }
 }

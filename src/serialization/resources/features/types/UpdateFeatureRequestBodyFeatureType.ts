@@ -12,5 +12,5 @@ export const UpdateFeatureRequestBodyFeatureType: core.serialization.Schema<
 > = core.serialization.enum_(["boolean", "event", "trait"]);
 
 export declare namespace UpdateFeatureRequestBodyFeatureType {
-    type Raw = "boolean" | "event" | "trait";
+    export type Raw = "boolean" | "event" | "trait";
 }

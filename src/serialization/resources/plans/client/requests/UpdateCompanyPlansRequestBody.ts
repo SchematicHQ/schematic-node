@@ -15,7 +15,7 @@ export const UpdateCompanyPlansRequestBody: core.serialization.Schema<
 });
 
 export declare namespace UpdateCompanyPlansRequestBody {
-    interface Raw {
+    export interface Raw {
         add_on_ids: string[];
         base_plan_id?: string | null;
     }

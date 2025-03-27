@@ -17,7 +17,7 @@ export const LookupUserResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace LookupUserResponse {
-    interface Raw {
+    export interface Raw {
         data: UserDetailResponseData.Raw;
         params: LookupUserParams.Raw;
     }

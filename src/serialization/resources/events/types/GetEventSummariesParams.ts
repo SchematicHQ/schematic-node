@@ -12,7 +12,7 @@ export const GetEventSummariesParams: core.serialization.ObjectSchema<
 > = core.serialization.object({
     eventSubtypes: core.serialization.property(
         "event_subtypes",
-        core.serialization.list(core.serialization.string()).optional()
+        core.serialization.list(core.serialization.string()).optional(),
     ),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
@@ -20,7 +20,7 @@ export const GetEventSummariesParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace GetEventSummariesParams {
-    interface Raw {
+    export interface Raw {
         event_subtypes?: string[] | null;
         limit?: number | null;
         offset?: number | null;

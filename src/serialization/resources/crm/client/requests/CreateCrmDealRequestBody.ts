@@ -22,7 +22,7 @@ export const CreateCrmDealRequestBody: core.serialization.Schema<
 });
 
 export declare namespace CreateCrmDealRequestBody {
-    interface Raw {
+    export interface Raw {
         arr?: string | null;
         crm_company_id?: string | null;
         crm_company_key: string;

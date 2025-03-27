@@ -9,7 +9,6 @@ export type CreateEntityTraitDefinitionRequestBodyTraitType =
     | "number"
     | "string"
     | "url";
-
 export const CreateEntityTraitDefinitionRequestBodyTraitType = {
     Boolean: "boolean",
     Currency: "currency",

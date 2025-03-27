@@ -18,7 +18,7 @@ export const CreateOrUpdateConditionGroupRequestBody: core.serialization.ObjectS
 });
 
 export declare namespace CreateOrUpdateConditionGroupRequestBody {
-    interface Raw {
+    export interface Raw {
         conditions: CreateOrUpdateConditionRequestBody.Raw[];
         flag_id?: string | null;
         id?: string | null;

@@ -3,7 +3,6 @@
  */
 
 export type ListEntityTraitDefinitionsRequestEntityType = "company" | "user";
-
 export const ListEntityTraitDefinitionsRequestEntityType = {
     Company: "company",
     User: "user",

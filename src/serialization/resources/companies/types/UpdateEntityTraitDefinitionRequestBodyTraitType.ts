@@ -12,5 +12,5 @@ export const UpdateEntityTraitDefinitionRequestBodyTraitType: core.serialization
 > = core.serialization.enum_(["boolean", "currency", "date", "number", "string", "url"]);
 
 export declare namespace UpdateEntityTraitDefinitionRequestBodyTraitType {
-    type Raw = "boolean" | "currency" | "date" | "number" | "string" | "url";
+    export type Raw = "boolean" | "currency" | "date" | "number" | "string" | "url";
 }

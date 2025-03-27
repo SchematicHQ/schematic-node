@@ -15,7 +15,7 @@ export const GetOrCreateCompanyMembershipRequestBody: core.serialization.Schema<
 });
 
 export declare namespace GetOrCreateCompanyMembershipRequestBody {
-    interface Raw {
+    export interface Raw {
         company_id: string;
         user_id: string;
     }

@@ -16,12 +16,12 @@ export const ListInvoicesParams: core.serialization.ObjectSchema<
     offset: core.serialization.number().optional(),
     subscriptionExternalId: core.serialization.property(
         "subscription_external_id",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
 });
 
 export declare namespace ListInvoicesParams {
-    interface Raw {
+    export interface Raw {
         company_id?: string | null;
         customer_external_id?: string | null;
         limit?: number | null;

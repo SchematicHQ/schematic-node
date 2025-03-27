@@ -17,7 +17,7 @@ export const UpdateCompanyOverrideRequestBody: core.serialization.Schema<
     metricPeriod: core.serialization.property("metric_period", UpdateCompanyOverrideRequestBodyMetricPeriod.optional()),
     metricPeriodMonthReset: core.serialization.property(
         "metric_period_month_reset",
-        UpdateCompanyOverrideRequestBodyMetricPeriodMonthReset.optional()
+        UpdateCompanyOverrideRequestBodyMetricPeriodMonthReset.optional(),
     ),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
@@ -26,7 +26,7 @@ export const UpdateCompanyOverrideRequestBody: core.serialization.Schema<
 });
 
 export declare namespace UpdateCompanyOverrideRequestBody {
-    interface Raw {
+    export interface Raw {
         expiration_date?: string | null;
         metric_period?: UpdateCompanyOverrideRequestBodyMetricPeriod.Raw | null;
         metric_period_month_reset?: UpdateCompanyOverrideRequestBodyMetricPeriodMonthReset.Raw | null;

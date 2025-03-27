@@ -16,7 +16,7 @@ export const CheckFlagsResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace CheckFlagsResponse {
-    interface Raw {
+    export interface Raw {
         data: CheckFlagsResponseData.Raw;
         params: Record<string, unknown>;
     }

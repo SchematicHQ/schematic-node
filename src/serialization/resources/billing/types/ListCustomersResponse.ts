@@ -17,7 +17,7 @@ export const ListCustomersResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListCustomersResponse {
-    interface Raw {
+    export interface Raw {
         data: BillingCustomerWithSubscriptionsResponseData.Raw[];
         params: ListCustomersParams.Raw;
     }

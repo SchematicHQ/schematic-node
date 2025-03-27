@@ -16,7 +16,7 @@ export const UpdateEntityTraitDefinitionRequestBody: core.serialization.Schema<
 });
 
 export declare namespace UpdateEntityTraitDefinitionRequestBody {
-    interface Raw {
+    export interface Raw {
         display_name?: string | null;
         trait_type: UpdateEntityTraitDefinitionRequestBodyTraitType.Raw;
     }

@@ -17,7 +17,7 @@ export const CountApiKeysParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace CountApiKeysParams {
-    interface Raw {
+    export interface Raw {
         environment_id?: string | null;
         limit?: number | null;
         offset?: number | null;

@@ -18,7 +18,7 @@ export const RawEventResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace RawEventResponseData {
-    interface Raw {
+    export interface Raw {
         captured_at: string;
         event_id?: string | null;
         remote_addr: string;

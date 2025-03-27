@@ -12,5 +12,5 @@ export const ListEntityTraitDefinitionsResponseParamsEntityType: core.serializat
 > = core.serialization.enum_(["company", "user"]);
 
 export declare namespace ListEntityTraitDefinitionsResponseParamsEntityType {
-    type Raw = "company" | "user";
+    export type Raw = "company" | "user";
 }

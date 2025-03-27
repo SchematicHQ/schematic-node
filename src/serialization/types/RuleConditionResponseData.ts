@@ -21,7 +21,7 @@ export const RuleConditionResponseData: core.serialization.ObjectSchema<
     metricPeriod: core.serialization.property("metric_period", core.serialization.string().optional()),
     metricPeriodMonthReset: core.serialization.property(
         "metric_period_month_reset",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     metricValue: core.serialization.property("metric_value", core.serialization.number().optional()),
     operator: core.serialization.string(),
@@ -35,7 +35,7 @@ export const RuleConditionResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace RuleConditionResponseData {
-    interface Raw {
+    export interface Raw {
         comparison_trait_id?: string | null;
         condition_group_id?: string | null;
         condition_type: string;

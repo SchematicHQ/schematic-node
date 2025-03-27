@@ -37,7 +37,7 @@ export const UpdateWebhookRequestBodyRequestTypesItem: core.serialization.Schema
 ]);
 
 export declare namespace UpdateWebhookRequestBodyRequestTypesItem {
-    type Raw =
+    export type Raw =
         | "company.updated"
         | "user.updated"
         | "plan.updated"

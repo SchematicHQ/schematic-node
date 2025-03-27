@@ -3,7 +3,6 @@
  */
 
 export type UpdatePlanEntitlementRequestBodyMetricPeriodMonthReset = "first_of_month" | "billing_cycle";
-
 export const UpdatePlanEntitlementRequestBodyMetricPeriodMonthReset = {
     FirstOfMonth: "first_of_month",
     BillingCycle: "billing_cycle",

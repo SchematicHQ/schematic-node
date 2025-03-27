@@ -19,7 +19,7 @@ export const CountUsersParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace CountUsersParams {
-    interface Raw {
+    export interface Raw {
         company_id?: string | null;
         ids?: string[] | null;
         limit?: number | null;

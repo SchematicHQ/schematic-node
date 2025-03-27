@@ -7,7 +7,6 @@ export type CreatePlanEntitlementRequestBodyMetricPeriod =
     | "current_month"
     | "current_week"
     | "current_day";
-
 export const CreatePlanEntitlementRequestBodyMetricPeriod = {
     AllTime: "all_time",
     CurrentMonth: "current_month",

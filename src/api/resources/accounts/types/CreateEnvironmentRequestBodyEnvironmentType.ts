@@ -3,7 +3,6 @@
  */
 
 export type CreateEnvironmentRequestBodyEnvironmentType = "development" | "staging" | "production";
-
 export const CreateEnvironmentRequestBodyEnvironmentType = {
     Development: "development",
     Staging: "staging",

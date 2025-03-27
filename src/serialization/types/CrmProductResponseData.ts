@@ -23,7 +23,7 @@ export const CrmProductResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace CrmProductResponseData {
-    interface Raw {
+    export interface Raw {
         account_id: string;
         created_at: string;
         currency: string;

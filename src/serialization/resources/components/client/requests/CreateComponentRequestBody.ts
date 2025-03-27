@@ -17,7 +17,7 @@ export const CreateComponentRequestBody: core.serialization.Schema<
 });
 
 export declare namespace CreateComponentRequestBody {
-    interface Raw {
+    export interface Raw {
         ast?: Record<string, number> | null;
         entity_type: CreateComponentRequestBodyEntityType.Raw;
         name: string;

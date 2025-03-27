@@ -17,7 +17,7 @@ export const ListCompanyOverridesResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListCompanyOverridesResponse {
-    interface Raw {
+    export interface Raw {
         data: CompanyOverrideResponseData.Raw[];
         params: ListCompanyOverridesParams.Raw;
     }

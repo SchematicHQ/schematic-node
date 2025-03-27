@@ -24,7 +24,7 @@ export const CompanyOverrideResponseData: core.serialization.ObjectSchema<
     metricPeriod: core.serialization.property("metric_period", core.serialization.string().optional()),
     metricPeriodMonthReset: core.serialization.property(
         "metric_period_month_reset",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     ruleId: core.serialization.property("rule_id", core.serialization.string().optional()),
     ruleIdUsageExceeded: core.serialization.property("rule_id_usage_exceeded", core.serialization.string().optional()),
@@ -37,7 +37,7 @@ export const CompanyOverrideResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace CompanyOverrideResponseData {
-    interface Raw {
+    export interface Raw {
         company?: CompanyDetailResponseData.Raw | null;
         company_id: string;
         created_at: string;

@@ -22,7 +22,7 @@ export const ApiKeyCreateResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace ApiKeyCreateResponseData {
-    interface Raw {
+    export interface Raw {
         created_at: string;
         description?: string | null;
         environment_id?: string | null;

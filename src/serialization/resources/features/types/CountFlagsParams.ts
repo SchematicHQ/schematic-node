@@ -18,7 +18,7 @@ export const CountFlagsParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace CountFlagsParams {
-    interface Raw {
+    export interface Raw {
         feature_id?: string | null;
         ids?: string[] | null;
         limit?: number | null;

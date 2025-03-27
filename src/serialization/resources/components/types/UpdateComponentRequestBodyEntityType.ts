@@ -12,5 +12,5 @@ export const UpdateComponentRequestBodyEntityType: core.serialization.Schema<
 > = core.serialization.enum_(["entitlement", "billing"]);
 
 export declare namespace UpdateComponentRequestBodyEntityType {
-    type Raw = "entitlement" | "billing";
+    export type Raw = "entitlement" | "billing";
 }

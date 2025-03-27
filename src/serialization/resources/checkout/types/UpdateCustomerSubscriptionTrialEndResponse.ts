@@ -16,7 +16,7 @@ export const UpdateCustomerSubscriptionTrialEndResponse: core.serialization.Obje
 });
 
 export declare namespace UpdateCustomerSubscriptionTrialEndResponse {
-    interface Raw {
+    export interface Raw {
         data: BillingSubscriptionView.Raw;
         params: Record<string, unknown>;
     }

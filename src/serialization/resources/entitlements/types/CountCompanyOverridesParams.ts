@@ -13,12 +13,12 @@ export const CountCompanyOverridesParams: core.serialization.ObjectSchema<
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
     companyIds: core.serialization.property(
         "company_ids",
-        core.serialization.list(core.serialization.string()).optional()
+        core.serialization.list(core.serialization.string()).optional(),
     ),
     featureId: core.serialization.property("feature_id", core.serialization.string().optional()),
     featureIds: core.serialization.property(
         "feature_ids",
-        core.serialization.list(core.serialization.string()).optional()
+        core.serialization.list(core.serialization.string()).optional(),
     ),
     ids: core.serialization.list(core.serialization.string()).optional(),
     limit: core.serialization.number().optional(),
@@ -28,7 +28,7 @@ export const CountCompanyOverridesParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace CountCompanyOverridesParams {
-    interface Raw {
+    export interface Raw {
         company_id?: string | null;
         company_ids?: string[] | null;
         feature_id?: string | null;

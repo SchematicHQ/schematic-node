@@ -16,7 +16,7 @@ export const UpsertDealLineItemAssociationResponse: core.serialization.ObjectSch
 });
 
 export declare namespace UpsertDealLineItemAssociationResponse {
-    interface Raw {
+    export interface Raw {
         data: CrmLineItemResponseData.Raw;
         params: Record<string, unknown>;
     }

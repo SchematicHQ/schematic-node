@@ -17,7 +17,7 @@ export const ListFeatureUsersParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListFeatureUsersParams {
-    interface Raw {
+    export interface Raw {
         feature_id?: string | null;
         limit?: number | null;
         offset?: number | null;

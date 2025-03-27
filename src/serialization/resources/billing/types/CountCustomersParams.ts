@@ -18,7 +18,7 @@ export const CountCustomersParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace CountCustomersParams {
-    interface Raw {
+    export interface Raw {
         failed_to_import?: boolean | null;
         limit?: number | null;
         name?: string | null;

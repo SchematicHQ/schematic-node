@@ -16,7 +16,7 @@ export const IssueTemporaryAccessTokenResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace IssueTemporaryAccessTokenResponse {
-    interface Raw {
+    export interface Raw {
         data: IssueTemporaryAccessTokenResponseData.Raw;
         params: Record<string, unknown>;
     }

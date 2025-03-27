@@ -12,7 +12,7 @@ export const CountResponse: core.serialization.ObjectSchema<serializers.CountRes
     });
 
 export declare namespace CountResponse {
-    interface Raw {
+    export interface Raw {
         count: number;
     }
 }

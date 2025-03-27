@@ -17,7 +17,7 @@ export const CountBillingProductsResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace CountBillingProductsResponse {
-    interface Raw {
+    export interface Raw {
         data: CountResponse.Raw;
         params: CountBillingProductsParams.Raw;
     }

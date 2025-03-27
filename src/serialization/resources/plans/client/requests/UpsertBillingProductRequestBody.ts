@@ -19,7 +19,7 @@ export const UpsertBillingProductRequestBody: core.serialization.Schema<
 });
 
 export declare namespace UpsertBillingProductRequestBody {
-    interface Raw {
+    export interface Raw {
         billing_product_id?: string | null;
         is_free_plan: boolean;
         is_trialable: boolean;

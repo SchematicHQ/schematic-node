@@ -16,7 +16,7 @@ export const ListEnvironmentsParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListEnvironmentsParams {
-    interface Raw {
+    export interface Raw {
         ids?: string[] | null;
         limit?: number | null;
         offset?: number | null;

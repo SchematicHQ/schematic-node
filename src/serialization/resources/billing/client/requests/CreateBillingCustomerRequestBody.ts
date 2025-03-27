@@ -11,6 +11,10 @@ export const CreateBillingCustomerRequestBody: core.serialization.Schema<
     Schematic.CreateBillingCustomerRequestBody
 > = core.serialization.object({
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
+    defaultPaymentMethodId: core.serialization.property(
+        "default_payment_method_id",
+        core.serialization.string().optional(),
+    ),
     email: core.serialization.string(),
     externalId: core.serialization.property("external_id", core.serialization.string()),
     failedToImport: core.serialization.property("failed_to_import", core.serialization.boolean()),
@@ -19,8 +23,9 @@ export const CreateBillingCustomerRequestBody: core.serialization.Schema<
 });
 
 export declare namespace CreateBillingCustomerRequestBody {
-    interface Raw {
+    export interface Raw {
         company_id?: string | null;
+        default_payment_method_id?: string | null;
         email: string;
         external_id: string;
         failed_to_import: boolean;

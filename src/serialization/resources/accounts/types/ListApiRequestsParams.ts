@@ -18,7 +18,7 @@ export const ListApiRequestsParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListApiRequestsParams {
-    interface Raw {
+    export interface Raw {
         environment_id?: string | null;
         limit?: number | null;
         offset?: number | null;

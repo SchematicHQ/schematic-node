@@ -32,7 +32,7 @@ export const EventResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace EventResponseData {
-    interface Raw {
+    export interface Raw {
         api_key?: string | null;
         body: Record<string, unknown>;
         body_preview: string;

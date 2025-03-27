@@ -17,7 +17,7 @@ export const PreviewComponentDataResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace PreviewComponentDataResponse {
-    interface Raw {
+    export interface Raw {
         data: ComponentPreviewResponseData.Raw;
         params: PreviewComponentDataParams.Raw;
     }

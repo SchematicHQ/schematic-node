@@ -19,7 +19,7 @@ export const CreateCompanyOverrideRequestBody: core.serialization.Schema<
     metricPeriod: core.serialization.property("metric_period", CreateCompanyOverrideRequestBodyMetricPeriod.optional()),
     metricPeriodMonthReset: core.serialization.property(
         "metric_period_month_reset",
-        CreateCompanyOverrideRequestBodyMetricPeriodMonthReset.optional()
+        CreateCompanyOverrideRequestBodyMetricPeriodMonthReset.optional(),
     ),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
@@ -28,7 +28,7 @@ export const CreateCompanyOverrideRequestBody: core.serialization.Schema<
 });
 
 export declare namespace CreateCompanyOverrideRequestBody {
-    interface Raw {
+    export interface Raw {
         company_id: string;
         expiration_date?: string | null;
         feature_id: string;

@@ -15,7 +15,7 @@ export const EntityTraitValue: core.serialization.ObjectSchema<
 });
 
 export declare namespace EntityTraitValue {
-    interface Raw {
+    export interface Raw {
         definition_id: string;
         value: string;
     }

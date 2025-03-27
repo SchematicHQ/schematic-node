@@ -19,7 +19,7 @@ export const BillingCustomerSubscription: core.serialization.ObjectSchema<
 });
 
 export declare namespace BillingCustomerSubscription {
-    interface Raw {
+    export interface Raw {
         currency: string;
         expired_at?: string | null;
         interval: string;

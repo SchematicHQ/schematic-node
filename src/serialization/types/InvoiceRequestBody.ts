@@ -19,18 +19,18 @@ export const InvoiceRequestBody: core.serialization.ObjectSchema<
     dueDate: core.serialization.property("due_date", core.serialization.date().optional()),
     paymentMethodExternalId: core.serialization.property(
         "payment_method_external_id",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     subscriptionExternalId: core.serialization.property(
         "subscription_external_id",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     subtotal: core.serialization.number(),
     url: core.serialization.string().optional(),
 });
 
 export declare namespace InvoiceRequestBody {
-    interface Raw {
+    export interface Raw {
         amount_due: number;
         amount_paid: number;
         amount_remaining: number;

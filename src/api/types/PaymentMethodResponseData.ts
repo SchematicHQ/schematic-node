@@ -19,6 +19,5 @@ export interface PaymentMethodResponseData {
     externalId: string;
     id: string;
     paymentMethodType: string;
-    subscriptionExternalId?: string;
     updatedAt: Date;
 }

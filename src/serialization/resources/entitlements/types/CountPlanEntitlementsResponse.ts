@@ -17,7 +17,7 @@ export const CountPlanEntitlementsResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace CountPlanEntitlementsResponse {
-    interface Raw {
+    export interface Raw {
         data: CountResponse.Raw;
         params: CountPlanEntitlementsParams.Raw;
     }

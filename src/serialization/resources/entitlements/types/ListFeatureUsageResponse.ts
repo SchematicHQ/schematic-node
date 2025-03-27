@@ -17,7 +17,7 @@ export const ListFeatureUsageResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListFeatureUsageResponse {
-    interface Raw {
+    export interface Raw {
         data: FeatureUsageResponseData.Raw[];
         params: ListFeatureUsageParams.Raw;
     }

@@ -24,6 +24,8 @@ export interface FeatureUsageResponseData {
     period?: string;
     plan?: Schematic.PlanResponseData;
     priceBehavior?: string;
+    /** The soft limit for the feature usage. Available only for overage price behavior */
+    softLimit?: number;
     /** The amount of usage that has been consumed; a null value indicates that usage is not being measured. */
     usage?: number;
     yearlyUsageBasedPrice?: Schematic.BillingPriceView;

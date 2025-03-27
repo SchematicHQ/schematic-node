@@ -3,7 +3,6 @@
  */
 
 export type CountEntityTraitDefinitionsRequestEntityType = "company" | "user";
-
 export const CountEntityTraitDefinitionsRequestEntityType = {
     Company: "company",
     User: "user",

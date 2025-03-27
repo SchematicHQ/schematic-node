@@ -16,7 +16,7 @@ export const UpsertCrmProductResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace UpsertCrmProductResponse {
-    interface Raw {
+    export interface Raw {
         data: CrmProductResponseData.Raw;
         params: Record<string, unknown>;
     }

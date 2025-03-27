@@ -17,13 +17,13 @@ export const CountCompaniesParams: core.serialization.ObjectSchema<
     q: core.serialization.string().optional(),
     withoutFeatureOverrideFor: core.serialization.property(
         "without_feature_override_for",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     withoutPlan: core.serialization.property("without_plan", core.serialization.boolean().optional()),
 });
 
 export declare namespace CountCompaniesParams {
-    interface Raw {
+    export interface Raw {
         ids?: string[] | null;
         limit?: number | null;
         offset?: number | null;

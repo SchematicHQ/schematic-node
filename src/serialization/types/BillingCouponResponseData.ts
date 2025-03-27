@@ -29,7 +29,7 @@ export const BillingCouponResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace BillingCouponResponseData {
-    interface Raw {
+    export interface Raw {
         account_id: string;
         amount_off?: number | null;
         currency?: string | null;

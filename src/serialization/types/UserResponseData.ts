@@ -19,7 +19,7 @@ export const UserResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace UserResponseData {
-    interface Raw {
+    export interface Raw {
         created_at: string;
         environment_id: string;
         id: string;

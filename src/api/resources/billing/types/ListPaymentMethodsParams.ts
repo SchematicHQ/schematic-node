@@ -12,5 +12,4 @@ export interface ListPaymentMethodsParams {
     limit?: number;
     /** Page offset (default 0) */
     offset?: number;
-    subscriptionExternalId?: string;
 }

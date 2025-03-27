@@ -15,7 +15,7 @@ export const PreviewComponentDataParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace PreviewComponentDataParams {
-    interface Raw {
+    export interface Raw {
         company_id?: string | null;
         component_id?: string | null;
     }

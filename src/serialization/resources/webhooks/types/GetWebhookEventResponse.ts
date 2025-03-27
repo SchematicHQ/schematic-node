@@ -16,7 +16,7 @@ export const GetWebhookEventResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace GetWebhookEventResponse {
-    interface Raw {
+    export interface Raw {
         data: WebhookEventDetailResponseData.Raw;
         params: Record<string, unknown>;
     }

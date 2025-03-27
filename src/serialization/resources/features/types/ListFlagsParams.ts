@@ -18,7 +18,7 @@ export const ListFlagsParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListFlagsParams {
-    interface Raw {
+    export interface Raw {
         feature_id?: string | null;
         ids?: string[] | null;
         limit?: number | null;

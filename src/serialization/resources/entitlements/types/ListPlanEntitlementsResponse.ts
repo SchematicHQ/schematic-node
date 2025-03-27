@@ -17,7 +17,7 @@ export const ListPlanEntitlementsResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListPlanEntitlementsResponse {
-    interface Raw {
+    export interface Raw {
         data: PlanEntitlementResponseData.Raw[];
         params: ListPlanEntitlementsParams.Raw;
     }

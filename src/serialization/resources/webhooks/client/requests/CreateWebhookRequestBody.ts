@@ -14,13 +14,13 @@ export const CreateWebhookRequestBody: core.serialization.Schema<
     name: core.serialization.string(),
     requestTypes: core.serialization.property(
         "request_types",
-        core.serialization.list(CreateWebhookRequestBodyRequestTypesItem)
+        core.serialization.list(CreateWebhookRequestBodyRequestTypesItem),
     ),
     url: core.serialization.string(),
 });
 
 export declare namespace CreateWebhookRequestBody {
-    interface Raw {
+    export interface Raw {
         name: string;
         request_types: CreateWebhookRequestBodyRequestTypesItem.Raw[];
         url: string;

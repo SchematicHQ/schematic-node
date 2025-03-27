@@ -17,7 +17,7 @@ export const ListComponentsResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListComponentsResponse {
-    interface Raw {
+    export interface Raw {
         data: ComponentResponseData.Raw[];
         params: ListComponentsParams.Raw;
     }

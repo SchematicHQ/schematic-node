@@ -19,7 +19,7 @@ export const CrmLineItemResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace CrmLineItemResponseData {
-    interface Raw {
+    export interface Raw {
         account_id: string;
         created_at: string;
         deal_id?: string | null;

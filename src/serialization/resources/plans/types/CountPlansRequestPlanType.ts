@@ -12,5 +12,5 @@ export const CountPlansRequestPlanType: core.serialization.Schema<
 > = core.serialization.enum_(["plan", "add_on"]);
 
 export declare namespace CountPlansRequestPlanType {
-    type Raw = "plan" | "add_on";
+    export type Raw = "plan" | "add_on";
 }

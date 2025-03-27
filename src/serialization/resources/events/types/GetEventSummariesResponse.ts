@@ -17,7 +17,7 @@ export const GetEventSummariesResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace GetEventSummariesResponse {
-    interface Raw {
+    export interface Raw {
         data: EventSummaryResponseData.Raw[];
         params: GetEventSummariesParams.Raw;
     }

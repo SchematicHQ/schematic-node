@@ -17,7 +17,7 @@ export const RulesDetailResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace RulesDetailResponseData {
-    interface Raw {
+    export interface Raw {
         flag?: FlagResponseData.Raw | null;
         rules: RuleDetailResponseData.Raw[];
     }

@@ -19,7 +19,7 @@ export const CreateEntityTraitDefinitionRequestBody: core.serialization.Schema<
 });
 
 export declare namespace CreateEntityTraitDefinitionRequestBody {
-    interface Raw {
+    export interface Raw {
         display_name?: string | null;
         entity_type: CreateEntityTraitDefinitionRequestBodyEntityType.Raw;
         hierarchy: string[];

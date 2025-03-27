@@ -16,7 +16,7 @@ export const UpdatePlanRequestBody: core.serialization.Schema<
 });
 
 export declare namespace UpdatePlanRequestBody {
-    interface Raw {
+    export interface Raw {
         description?: string | null;
         icon?: string | null;
         name: string;

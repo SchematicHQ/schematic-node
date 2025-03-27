@@ -12,5 +12,5 @@ export const UpdateEntitlementReqCommonValueType: core.serialization.Schema<
 > = core.serialization.enum_(["boolean", "numeric", "trait", "unlimited"]);
 
 export declare namespace UpdateEntitlementReqCommonValueType {
-    type Raw = "boolean" | "numeric" | "trait" | "unlimited";
+    export type Raw = "boolean" | "numeric" | "trait" | "unlimited";
 }

@@ -14,7 +14,7 @@ export const ListEntityTraitDefinitionsParams: core.serialization.ObjectSchema<
 > = core.serialization.object({
     entityType: core.serialization.property(
         "entity_type",
-        ListEntityTraitDefinitionsResponseParamsEntityType.optional()
+        ListEntityTraitDefinitionsResponseParamsEntityType.optional(),
     ),
     ids: core.serialization.list(core.serialization.string()).optional(),
     limit: core.serialization.number().optional(),
@@ -24,7 +24,7 @@ export const ListEntityTraitDefinitionsParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListEntityTraitDefinitionsParams {
-    interface Raw {
+    export interface Raw {
         entity_type?: ListEntityTraitDefinitionsResponseParamsEntityType.Raw | null;
         ids?: string[] | null;
         limit?: number | null;

@@ -8,10 +8,13 @@ import * as Schematic from "../index";
  * The updated resource
  */
 export interface BillingSubscriptionView {
+    cancelAt?: number;
+    cancelAtPeriodEnd: boolean;
     companyId?: string;
     createdAt: Date;
     currency: string;
     customerExternalId: string;
+    defaultPaymentMethodId?: string;
     discounts: Schematic.BillingSubscriptionDiscountView[];
     expiredAt?: Date;
     id: string;

@@ -16,7 +16,7 @@ export const CreateEventBatchResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace CreateEventBatchResponse {
-    interface Raw {
+    export interface Raw {
         data: RawEventBatchResponseData.Raw;
         params: Record<string, unknown>;
     }

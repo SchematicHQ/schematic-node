@@ -17,7 +17,7 @@ export const GetActiveCompanySubscriptionResponse: core.serialization.ObjectSche
 });
 
 export declare namespace GetActiveCompanySubscriptionResponse {
-    interface Raw {
+    export interface Raw {
         data: CompanySubscriptionResponseData.Raw[];
         params: GetActiveCompanySubscriptionParams.Raw;
     }

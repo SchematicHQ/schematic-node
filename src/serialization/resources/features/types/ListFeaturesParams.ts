@@ -16,16 +16,16 @@ export const ListFeaturesParams: core.serialization.ObjectSchema<
     q: core.serialization.string().optional(),
     withoutCompanyOverrideFor: core.serialization.property(
         "without_company_override_for",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     withoutPlanEntitlementFor: core.serialization.property(
         "without_plan_entitlement_for",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
 });
 
 export declare namespace ListFeaturesParams {
-    interface Raw {
+    export interface Raw {
         ids?: string[] | null;
         limit?: number | null;
         offset?: number | null;
