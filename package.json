@@ -38,6 +38,7 @@
         "fs": false,
         "os": false,
         "path": false,
+        "crypto": false,
         "timers": false
     }
 }
