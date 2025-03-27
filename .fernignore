@@ -1,6 +1,7 @@
 # Specify files that shouldn't be modified by Fern
 
 README.md
+scripts/
 src/cache.test.ts
 src/cache.ts
 src/core/fetcher/custom.ts
@@ -9,4 +10,6 @@ src/events.ts
 src/index.ts
 src/logger.ts
 src/version.ts
+src/webhooks.ts
 src/wrapper.ts
+tests/unit/webhooks.test.ts
