@@ -23,7 +23,7 @@ export const RuleResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace RuleResponseData {
-    interface Raw {
+    export interface Raw {
         created_at: string;
         environment_id: string;
         flag_id?: string | null;

@@ -17,7 +17,7 @@ export const GetActiveDealsParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace GetActiveDealsParams {
-    interface Raw {
+    export interface Raw {
         company_id?: string | null;
         deal_stage?: string | null;
         limit?: number | null;

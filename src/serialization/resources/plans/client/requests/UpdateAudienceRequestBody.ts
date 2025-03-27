@@ -14,13 +14,13 @@ export const UpdateAudienceRequestBody: core.serialization.Schema<
 > = core.serialization.object({
     conditionGroups: core.serialization.property(
         "condition_groups",
-        core.serialization.list(CreateOrUpdateConditionGroupRequestBody)
+        core.serialization.list(CreateOrUpdateConditionGroupRequestBody),
     ),
     conditions: core.serialization.list(CreateOrUpdateConditionRequestBody),
 });
 
 export declare namespace UpdateAudienceRequestBody {
-    interface Raw {
+    export interface Raw {
         condition_groups: CreateOrUpdateConditionGroupRequestBody.Raw[];
         conditions: CreateOrUpdateConditionRequestBody.Raw[];
     }

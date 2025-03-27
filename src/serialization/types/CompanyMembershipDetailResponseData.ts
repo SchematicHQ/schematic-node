@@ -20,7 +20,7 @@ export const CompanyMembershipDetailResponseData: core.serialization.ObjectSchem
 });
 
 export declare namespace CompanyMembershipDetailResponseData {
-    interface Raw {
+    export interface Raw {
         company?: CompanyResponseData.Raw | null;
         company_id: string;
         created_at: string;

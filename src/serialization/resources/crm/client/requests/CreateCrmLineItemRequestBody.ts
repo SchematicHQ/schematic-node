@@ -21,7 +21,7 @@ export const CreateCrmLineItemRequestBody: core.serialization.Schema<
 });
 
 export declare namespace CreateCrmLineItemRequestBody {
-    interface Raw {
+    export interface Raw {
         amount: string;
         discount_percentage?: string | null;
         interval: string;

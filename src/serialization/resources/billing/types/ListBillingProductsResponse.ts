@@ -17,7 +17,7 @@ export const ListBillingProductsResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListBillingProductsResponse {
-    interface Raw {
+    export interface Raw {
         data: BillingProductDetailResponseData.Raw[];
         params: ListBillingProductsParams.Raw;
     }

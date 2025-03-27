@@ -1765,6 +1765,54 @@ await client.features.countFlags();
 
 ## billing
 
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">listCoupons</a>({ ...params }) -> Schematic.ListCouponsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.billing.listCoupons();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListCouponsRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Billing.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">upsertBillingCoupon</a>({ ...params }) -> Schematic.UpsertBillingCouponResponse</code></summary>
 <dl>
 <dd>
@@ -2346,12 +2394,18 @@ await client.billing.searchBillingPrices();
 ```typescript
 await client.billing.upsertBillingPrice({
     currency: "currency",
+    externalAccountId: "external_account_id",
     interval: "interval",
     isActive: true,
     price: 1,
     priceExternalId: "price_external_id",
+    priceTiers: [
+        {
+            priceExternalId: "price_external_id",
+        },
+    ],
     productExternalId: "product_external_id",
-    usageType: "usage_type",
+    usageType: "licensed",
 });
 ```
 
@@ -2369,6 +2423,54 @@ await client.billing.upsertBillingPrice({
 <dd>
 
 **request:** `Schematic.CreateBillingPriceRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Billing.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">deleteBillingProduct</a>(billingId) -> Schematic.DeleteBillingProductResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.billing.deleteBillingProduct("billing_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**billingId:** `string` — billing_id
 
 </dd>
 </dl>
@@ -2497,6 +2599,7 @@ await client.billing.deleteProductPrice("billing_id");
 
 ```typescript
 await client.billing.upsertBillingProduct({
+    active: true,
     currency: "currency",
     externalId: "external_id",
     name: "name",
@@ -2647,6 +2750,7 @@ await client.billing.countBillingProducts();
 
 ```typescript
 await client.billing.upsertBillingSubscription({
+    cancelAtPeriodEnd: true,
     currency: "currency",
     customerExternalId: "customer_external_id",
     discounts: [
@@ -2666,7 +2770,7 @@ await client.billing.upsertBillingSubscription({
             priceExternalId: "price_external_id",
             productExternalId: "product_external_id",
             quantity: 1,
-            usageType: "usage_type",
+            usageType: "licensed",
         },
     ],
     subscriptionExternalId: "subscription_external_id",
@@ -2772,7 +2876,7 @@ await client.checkout.internal({
 </dl>
 </details>
 
-<details><summary><code>client.checkout.<a href="/src/api/resources/checkout/client/Client.ts">getCheckoutData</a>(checkoutInternalId) -> Schematic.GetCheckoutDataResponse</code></summary>
+<details><summary><code>client.checkout.<a href="/src/api/resources/checkout/client/Client.ts">getCheckoutData</a>({ ...params }) -> Schematic.GetCheckoutDataResponse</code></summary>
 <dl>
 <dd>
 
@@ -2785,7 +2889,9 @@ await client.checkout.internal({
 <dd>
 
 ```typescript
-await client.checkout.getCheckoutData("checkout_internal_id");
+await client.checkout.getCheckoutData({
+    companyId: "company_id",
+});
 ```
 
 </dd>
@@ -2801,7 +2907,7 @@ await client.checkout.getCheckoutData("checkout_internal_id");
 <dl>
 <dd>
 
-**checkoutInternalId:** `string` — checkout_internal_id
+**request:** `Schematic.CheckoutDataRequestBody`
 
 </dd>
 </dl>
@@ -7012,7 +7118,11 @@ await client.plangroups.getPlanGroup();
 ```typescript
 await client.plangroups.createPlanGroup({
     addOnIds: ["add_on_ids"],
-    planIds: ["plan_ids"],
+    orderedPlans: [
+        {
+            planId: "plan_id",
+        },
+    ],
 });
 ```
 
@@ -7063,7 +7173,11 @@ await client.plangroups.createPlanGroup({
 ```typescript
 await client.plangroups.updatePlanGroup("plan_group_id", {
     addOnIds: ["add_on_ids"],
-    planIds: ["plan_ids"],
+    orderedPlans: [
+        {
+            planId: "plan_id",
+        },
+    ],
 });
 ```
 

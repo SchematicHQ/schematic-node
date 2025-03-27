@@ -5,6 +5,7 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { OrderedPlansInGroup } from "./OrderedPlansInGroup";
 
 export const PlanGroupResponseData: core.serialization.ObjectSchema<
     serializers.PlanGroupResponseData.Raw,
@@ -13,20 +14,20 @@ export const PlanGroupResponseData: core.serialization.ObjectSchema<
     addOnIds: core.serialization.property("add_on_ids", core.serialization.list(core.serialization.string())),
     defaultPlanId: core.serialization.property("default_plan_id", core.serialization.string().optional()),
     id: core.serialization.string(),
-    planIds: core.serialization.property("plan_ids", core.serialization.list(core.serialization.string())),
+    planIds: core.serialization.property("plan_ids", core.serialization.list(OrderedPlansInGroup)),
     trialDays: core.serialization.property("trial_days", core.serialization.number().optional()),
     trialPaymentMethodRequired: core.serialization.property(
         "trial_payment_method_required",
-        core.serialization.boolean().optional()
+        core.serialization.boolean().optional(),
     ),
 });
 
 export declare namespace PlanGroupResponseData {
-    interface Raw {
+    export interface Raw {
         add_on_ids: string[];
         default_plan_id?: string | null;
         id: string;
-        plan_ids: string[];
+        plan_ids: OrderedPlansInGroup.Raw[];
         trial_days?: number | null;
         trial_payment_method_required?: boolean | null;
     }

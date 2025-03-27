@@ -10,19 +10,23 @@ import urlJoin from "url-join";
 import * as errors from "../../../../errors/index";
 
 export declare namespace Crm {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.SchematicEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<string>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
         maxRetries?: number;
         /** A hook to abort the request. */
         abortSignal?: AbortSignal;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -46,22 +50,25 @@ export class Crm {
      */
     public async upsertDealLineItemAssociation(
         request: Schematic.CreateCrmDealLineItemAssociationRequestBody,
-        requestOptions?: Crm.RequestOptions
+        requestOptions?: Crm.RequestOptions,
     ): Promise<Schematic.UpsertDealLineItemAssociationResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                "crm/associations/deal-line-item"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "crm/associations/deal-line-item",
             ),
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -92,7 +99,7 @@ export class Crm {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -102,7 +109,7 @@ export class Crm {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -112,7 +119,7 @@ export class Crm {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -122,7 +129,7 @@ export class Crm {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.SchematicError({
@@ -139,7 +146,9 @@ export class Crm {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.SchematicTimeoutError();
+                throw new errors.SchematicTimeoutError(
+                    "Timeout exceeded when calling POST /crm/associations/deal-line-item.",
+                );
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
@@ -167,22 +176,25 @@ export class Crm {
      */
     public async upsertLineItem(
         request: Schematic.CreateCrmLineItemRequestBody,
-        requestOptions?: Crm.RequestOptions
+        requestOptions?: Crm.RequestOptions,
     ): Promise<Schematic.UpsertLineItemResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                "crm/deal-line-item/upsert"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "crm/deal-line-item/upsert",
             ),
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -211,7 +223,7 @@ export class Crm {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -221,7 +233,7 @@ export class Crm {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -231,7 +243,7 @@ export class Crm {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -241,7 +253,7 @@ export class Crm {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.SchematicError({
@@ -258,7 +270,9 @@ export class Crm {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.SchematicTimeoutError();
+                throw new errors.SchematicTimeoutError(
+                    "Timeout exceeded when calling POST /crm/deal-line-item/upsert.",
+                );
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
@@ -284,22 +298,25 @@ export class Crm {
      */
     public async upsertCrmDeal(
         request: Schematic.CreateCrmDealRequestBody,
-        requestOptions?: Crm.RequestOptions
+        requestOptions?: Crm.RequestOptions,
     ): Promise<Schematic.UpsertCrmDealResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                "crm/deals/upsert"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "crm/deals/upsert",
             ),
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -328,7 +345,7 @@ export class Crm {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -338,7 +355,7 @@ export class Crm {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -348,7 +365,7 @@ export class Crm {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -358,7 +375,7 @@ export class Crm {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.SchematicError({
@@ -375,7 +392,7 @@ export class Crm {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.SchematicTimeoutError();
+                throw new errors.SchematicTimeoutError("Timeout exceeded when calling POST /crm/deals/upsert.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
@@ -397,10 +414,10 @@ export class Crm {
      */
     public async listCrmProducts(
         request: Schematic.ListCrmProductsRequest = {},
-        requestOptions?: Crm.RequestOptions
+        requestOptions?: Crm.RequestOptions,
     ): Promise<Schematic.ListCrmProductsResponse> {
         const { ids, name, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (ids != null) {
             if (Array.isArray(ids)) {
                 _queryParams["ids"] = ids.map((item) => item);
@@ -423,18 +440,21 @@ export class Crm {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                "crm/products"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "crm/products",
             ),
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -463,7 +483,7 @@ export class Crm {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -473,7 +493,7 @@ export class Crm {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -483,7 +503,7 @@ export class Crm {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -493,7 +513,7 @@ export class Crm {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.SchematicError({
@@ -510,7 +530,7 @@ export class Crm {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.SchematicTimeoutError();
+                throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /crm/products.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
@@ -541,22 +561,25 @@ export class Crm {
      */
     public async upsertCrmProduct(
         request: Schematic.CreateCrmProductRequestBody,
-        requestOptions?: Crm.RequestOptions
+        requestOptions?: Crm.RequestOptions,
     ): Promise<Schematic.UpsertCrmProductResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                "crm/products/upsert"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "crm/products/upsert",
             ),
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -585,7 +608,7 @@ export class Crm {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -595,7 +618,7 @@ export class Crm {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -605,7 +628,7 @@ export class Crm {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -615,7 +638,7 @@ export class Crm {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.SchematicError({
@@ -632,7 +655,7 @@ export class Crm {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.SchematicTimeoutError();
+                throw new errors.SchematicTimeoutError("Timeout exceeded when calling POST /crm/products/upsert.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,

@@ -12,5 +12,5 @@ export const CreateOrUpdateConditionRequestBodyMetricPeriodMonthReset: core.seri
 > = core.serialization.enum_(["first_of_month", "billing_cycle"]);
 
 export declare namespace CreateOrUpdateConditionRequestBodyMetricPeriodMonthReset {
-    type Raw = "first_of_month" | "billing_cycle";
+    export type Raw = "first_of_month" | "billing_cycle";
 }

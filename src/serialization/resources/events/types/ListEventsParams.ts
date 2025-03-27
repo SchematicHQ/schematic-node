@@ -14,7 +14,7 @@ export const ListEventsParams: core.serialization.ObjectSchema<
     eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
     eventTypes: core.serialization.property(
         "event_types",
-        core.serialization.list(core.serialization.string()).optional()
+        core.serialization.list(core.serialization.string()).optional(),
     ),
     flagId: core.serialization.property("flag_id", core.serialization.string().optional()),
     limit: core.serialization.number().optional(),
@@ -23,7 +23,7 @@ export const ListEventsParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListEventsParams {
-    interface Raw {
+    export interface Raw {
         company_id?: string | null;
         event_subtype?: string | null;
         event_types?: string[] | null;

@@ -27,7 +27,7 @@ export const BillingSubscriptionDiscountView: core.serialization.ObjectSchema<
 });
 
 export declare namespace BillingSubscriptionDiscountView {
-    interface Raw {
+    export interface Raw {
         amount_off?: number | null;
         coupon_id: string;
         coupon_name: string;

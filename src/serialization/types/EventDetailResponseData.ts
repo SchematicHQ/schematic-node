@@ -36,7 +36,7 @@ export const EventDetailResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace EventDetailResponseData {
-    interface Raw {
+    export interface Raw {
         api_key?: string | null;
         body: Record<string, unknown>;
         body_preview: string;

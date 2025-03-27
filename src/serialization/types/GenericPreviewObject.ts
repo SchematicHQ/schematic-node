@@ -17,7 +17,7 @@ export const GenericPreviewObject: core.serialization.ObjectSchema<
 });
 
 export declare namespace GenericPreviewObject {
-    interface Raw {
+    export interface Raw {
         description?: string | null;
         id: string;
         image_url?: string | null;

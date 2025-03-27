@@ -15,7 +15,7 @@ export const UserDetailResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     companyMemberships: core.serialization.property(
         "company_memberships",
-        core.serialization.list(CompanyMembershipDetailResponseData)
+        core.serialization.list(CompanyMembershipDetailResponseData),
     ),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     entityTraits: core.serialization.property("entity_traits", core.serialization.list(EntityTraitDetailResponseData)),
@@ -29,7 +29,7 @@ export const UserDetailResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace UserDetailResponseData {
-    interface Raw {
+    export interface Raw {
         company_memberships: CompanyMembershipDetailResponseData.Raw[];
         created_at: string;
         entity_traits: EntityTraitDetailResponseData.Raw[];

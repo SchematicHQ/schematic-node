@@ -12,5 +12,5 @@ export const UpdateWebhookRequestBodyStatus: core.serialization.Schema<
 > = core.serialization.enum_(["active", "inactive"]);
 
 export declare namespace UpdateWebhookRequestBodyStatus {
-    type Raw = "active" | "inactive";
+    export type Raw = "active" | "inactive";
 }

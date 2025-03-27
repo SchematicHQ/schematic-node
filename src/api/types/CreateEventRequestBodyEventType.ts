@@ -6,7 +6,6 @@
  * Either 'identify' or 'track'
  */
 export type CreateEventRequestBodyEventType = "identify" | "track" | "flag_check";
-
 export const CreateEventRequestBodyEventType = {
     Identify: "identify",
     Track: "track",

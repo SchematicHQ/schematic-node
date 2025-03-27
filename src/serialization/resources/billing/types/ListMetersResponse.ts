@@ -17,7 +17,7 @@ export const ListMetersResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListMetersResponse {
-    interface Raw {
+    export interface Raw {
         data: BillingMeterResponseData.Raw[];
         params: ListMetersParams.Raw;
     }

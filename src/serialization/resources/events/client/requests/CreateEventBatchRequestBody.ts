@@ -15,7 +15,7 @@ export const CreateEventBatchRequestBody: core.serialization.Schema<
 });
 
 export declare namespace CreateEventBatchRequestBody {
-    interface Raw {
+    export interface Raw {
         events: CreateEventRequestBody.Raw[];
     }
 }

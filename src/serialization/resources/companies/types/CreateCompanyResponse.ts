@@ -16,7 +16,7 @@ export const CreateCompanyResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace CreateCompanyResponse {
-    interface Raw {
+    export interface Raw {
         data: CompanyDetailResponseData.Raw;
         params: Record<string, unknown>;
     }

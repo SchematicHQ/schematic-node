@@ -20,7 +20,7 @@ export const ComponentResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace ComponentResponseData {
-    interface Raw {
+    export interface Raw {
         ast?: Record<string, number> | null;
         created_at: string;
         id: string;

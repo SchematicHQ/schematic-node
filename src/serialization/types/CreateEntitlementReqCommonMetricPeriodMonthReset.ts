@@ -12,5 +12,5 @@ export const CreateEntitlementReqCommonMetricPeriodMonthReset: core.serializatio
 > = core.serialization.enum_(["first_of_month", "billing_cycle"]);
 
 export declare namespace CreateEntitlementReqCommonMetricPeriodMonthReset {
-    type Raw = "first_of_month" | "billing_cycle";
+    export type Raw = "first_of_month" | "billing_cycle";
 }

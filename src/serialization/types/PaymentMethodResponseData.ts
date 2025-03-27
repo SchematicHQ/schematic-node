@@ -26,15 +26,11 @@ export const PaymentMethodResponseData: core.serialization.ObjectSchema<
     externalId: core.serialization.property("external_id", core.serialization.string()),
     id: core.serialization.string(),
     paymentMethodType: core.serialization.property("payment_method_type", core.serialization.string()),
-    subscriptionExternalId: core.serialization.property(
-        "subscription_external_id",
-        core.serialization.string().optional()
-    ),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
 export declare namespace PaymentMethodResponseData {
-    interface Raw {
+    export interface Raw {
         account_last4?: string | null;
         account_name?: string | null;
         bank_name?: string | null;
@@ -51,7 +47,6 @@ export declare namespace PaymentMethodResponseData {
         external_id: string;
         id: string;
         payment_method_type: string;
-        subscription_external_id?: string | null;
         updated_at: string;
     }
 }

@@ -12,5 +12,5 @@ export const CreateCompanyOverrideRequestBodyValueType: core.serialization.Schem
 > = core.serialization.enum_(["boolean", "numeric", "trait", "unlimited"]);
 
 export declare namespace CreateCompanyOverrideRequestBodyValueType {
-    type Raw = "boolean" | "numeric" | "trait" | "unlimited";
+    export type Raw = "boolean" | "numeric" | "trait" | "unlimited";
 }

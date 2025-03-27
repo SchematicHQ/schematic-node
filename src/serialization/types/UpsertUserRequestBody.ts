@@ -21,7 +21,7 @@ export const UpsertUserRequestBody: core.serialization.ObjectSchema<
 });
 
 export declare namespace UpsertUserRequestBody {
-    interface Raw {
+    export interface Raw {
         company: Record<string, string>;
         company_id?: string | null;
         id?: string | null;

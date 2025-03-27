@@ -3,7 +3,6 @@
  */
 
 export type CreatePlanRequestBodyPlanType = "plan" | "add_on";
-
 export const CreatePlanRequestBodyPlanType = {
     Plan: "plan",
     AddOn: "add_on",

@@ -18,7 +18,7 @@ export const ListCustomersParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListCustomersParams {
-    interface Raw {
+    export interface Raw {
         failed_to_import?: boolean | null;
         limit?: number | null;
         name?: string | null;

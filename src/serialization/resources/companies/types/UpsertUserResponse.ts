@@ -16,7 +16,7 @@ export const UpsertUserResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace UpsertUserResponse {
-    interface Raw {
+    export interface Raw {
         data: UserDetailResponseData.Raw;
         params: Record<string, unknown>;
     }

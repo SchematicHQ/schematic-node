@@ -17,7 +17,7 @@ export const CountApiRequestsResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace CountApiRequestsResponse {
-    interface Raw {
+    export interface Raw {
         data: CountResponse.Raw;
         params: CountApiRequestsParams.Raw;
     }

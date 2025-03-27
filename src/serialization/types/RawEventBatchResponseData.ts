@@ -15,7 +15,7 @@ export const RawEventBatchResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace RawEventBatchResponseData {
-    interface Raw {
+    export interface Raw {
         events: RawEventResponseData.Raw[];
     }
 }

@@ -14,17 +14,19 @@ export const WebhookResponseData: core.serialization.ObjectSchema<
     id: core.serialization.string(),
     name: core.serialization.string(),
     requestTypes: core.serialization.property("request_types", core.serialization.list(core.serialization.string())),
+    secret: core.serialization.string(),
     status: core.serialization.string(),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     url: core.serialization.string(),
 });
 
 export declare namespace WebhookResponseData {
-    interface Raw {
+    export interface Raw {
         created_at: string;
         id: string;
         name: string;
         request_types: string[];
+        secret: string;
         status: string;
         updated_at: string;
         url: string;

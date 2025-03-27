@@ -15,6 +15,7 @@ export interface UpdatePlanEntitlementRequestBody {
     metricPeriodMonthReset?: Schematic.UpdatePlanEntitlementRequestBodyMetricPeriodMonthReset;
     monthlyMeteredPriceId?: string;
     priceBehavior?: string;
+    softLimit?: number;
     valueBool?: boolean;
     valueNumeric?: number;
     valueTraitId?: string;

@@ -7,7 +7,6 @@ export type CreateCompanyOverrideRequestBodyMetricPeriod =
     | "current_month"
     | "current_week"
     | "current_day";
-
 export const CreateCompanyOverrideRequestBodyMetricPeriod = {
     AllTime: "all_time",
     CurrentMonth: "current_month",

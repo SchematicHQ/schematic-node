@@ -16,7 +16,7 @@ export const CreateApiKeyRequestBody: core.serialization.Schema<
 });
 
 export declare namespace CreateApiKeyRequestBody {
-    interface Raw {
+    export interface Raw {
         description?: string | null;
         environment_id?: string | null;
         name: string;

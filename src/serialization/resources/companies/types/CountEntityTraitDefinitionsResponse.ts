@@ -17,7 +17,7 @@ export const CountEntityTraitDefinitionsResponse: core.serialization.ObjectSchem
 });
 
 export declare namespace CountEntityTraitDefinitionsResponse {
-    interface Raw {
+    export interface Raw {
         data: CountResponse.Raw;
         params: CountEntityTraitDefinitionsParams.Raw;
     }

@@ -15,7 +15,7 @@ export const PaginationFilter: core.serialization.ObjectSchema<
 });
 
 export declare namespace PaginationFilter {
-    interface Raw {
+    export interface Raw {
         limit?: number | null;
         offset?: number | null;
     }

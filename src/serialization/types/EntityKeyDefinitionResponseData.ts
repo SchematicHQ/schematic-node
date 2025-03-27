@@ -18,7 +18,7 @@ export const EntityKeyDefinitionResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace EntityKeyDefinitionResponseData {
-    interface Raw {
+    export interface Raw {
         created_at: string;
         entity_type: string;
         id: string;

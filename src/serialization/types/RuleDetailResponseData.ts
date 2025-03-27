@@ -14,7 +14,7 @@ export const RuleDetailResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     conditionGroups: core.serialization.property(
         "condition_groups",
-        core.serialization.list(RuleConditionGroupDetailResponseData)
+        core.serialization.list(RuleConditionGroupDetailResponseData),
     ),
     conditions: core.serialization.list(RuleConditionDetailResponseData),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
@@ -30,7 +30,7 @@ export const RuleDetailResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace RuleDetailResponseData {
-    interface Raw {
+    export interface Raw {
         condition_groups: RuleConditionGroupDetailResponseData.Raw[];
         conditions: RuleConditionDetailResponseData.Raw[];
         created_at: string;

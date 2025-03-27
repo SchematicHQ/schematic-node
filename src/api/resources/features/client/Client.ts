@@ -10,19 +10,23 @@ import urlJoin from "url-join";
 import * as errors from "../../../../errors/index";
 
 export declare namespace Features {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.SchematicEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<string>;
         fetcher?: core.FetchFunction;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
         maxRetries?: number;
         /** A hook to abort the request. */
         abortSignal?: AbortSignal;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -56,22 +60,25 @@ export class Features {
      */
     public async countAudienceCompanies(
         request: Schematic.AudienceRequestBody,
-        requestOptions?: Features.RequestOptions
+        requestOptions?: Features.RequestOptions,
     ): Promise<Schematic.CountAudienceCompaniesResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                "audience/count-companies"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "audience/count-companies",
             ),
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -100,7 +107,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -110,7 +117,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -120,7 +127,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -130,7 +137,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.SchematicError({
@@ -147,7 +154,7 @@ export class Features {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.SchematicTimeoutError();
+                throw new errors.SchematicTimeoutError("Timeout exceeded when calling POST /audience/count-companies.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
@@ -182,22 +189,25 @@ export class Features {
      */
     public async countAudienceUsers(
         request: Schematic.AudienceRequestBody,
-        requestOptions?: Features.RequestOptions
+        requestOptions?: Features.RequestOptions,
     ): Promise<Schematic.CountAudienceUsersResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                "audience/count-users"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "audience/count-users",
             ),
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -226,7 +236,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -236,7 +246,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -246,7 +256,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -256,7 +266,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.SchematicError({
@@ -273,7 +283,7 @@ export class Features {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.SchematicTimeoutError();
+                throw new errors.SchematicTimeoutError("Timeout exceeded when calling POST /audience/count-users.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
@@ -308,22 +318,25 @@ export class Features {
      */
     public async listAudienceCompanies(
         request: Schematic.AudienceRequestBody,
-        requestOptions?: Features.RequestOptions
+        requestOptions?: Features.RequestOptions,
     ): Promise<Schematic.ListAudienceCompaniesResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                "audience/get-companies"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "audience/get-companies",
             ),
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -352,7 +365,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -362,7 +375,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -372,7 +385,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -382,7 +395,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.SchematicError({
@@ -399,7 +412,7 @@ export class Features {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.SchematicTimeoutError();
+                throw new errors.SchematicTimeoutError("Timeout exceeded when calling POST /audience/get-companies.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
@@ -434,22 +447,25 @@ export class Features {
      */
     public async listAudienceUsers(
         request: Schematic.AudienceRequestBody,
-        requestOptions?: Features.RequestOptions
+        requestOptions?: Features.RequestOptions,
     ): Promise<Schematic.ListAudienceUsersResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                "audience/get-users"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "audience/get-users",
             ),
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -478,7 +494,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -488,7 +504,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -498,7 +514,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -508,7 +524,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.SchematicError({
@@ -525,7 +541,7 @@ export class Features {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.SchematicTimeoutError();
+                throw new errors.SchematicTimeoutError("Timeout exceeded when calling POST /audience/get-users.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
@@ -547,10 +563,10 @@ export class Features {
      */
     public async listFeatures(
         request: Schematic.ListFeaturesRequest = {},
-        requestOptions?: Features.RequestOptions
+        requestOptions?: Features.RequestOptions,
     ): Promise<Schematic.ListFeaturesResponse> {
         const { ids, q, withoutCompanyOverrideFor, withoutPlanEntitlementFor, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (ids != null) {
             if (Array.isArray(ids)) {
                 _queryParams["ids"] = ids.map((item) => item);
@@ -581,18 +597,21 @@ export class Features {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                "features"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "features",
             ),
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -621,7 +640,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -631,7 +650,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -641,7 +660,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -651,7 +670,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.SchematicError({
@@ -668,7 +687,7 @@ export class Features {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.SchematicTimeoutError();
+                throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /features.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
@@ -694,22 +713,25 @@ export class Features {
      */
     public async createFeature(
         request: Schematic.CreateFeatureRequestBody,
-        requestOptions?: Features.RequestOptions
+        requestOptions?: Features.RequestOptions,
     ): Promise<Schematic.CreateFeatureResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                "features"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "features",
             ),
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -738,7 +760,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -748,7 +770,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -758,7 +780,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -768,7 +790,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.SchematicError({
@@ -785,7 +807,7 @@ export class Features {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.SchematicTimeoutError();
+                throw new errors.SchematicTimeoutError("Timeout exceeded when calling POST /features.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
@@ -807,22 +829,25 @@ export class Features {
      */
     public async getFeature(
         featureId: string,
-        requestOptions?: Features.RequestOptions
+        requestOptions?: Features.RequestOptions,
     ): Promise<Schematic.GetFeatureResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                `features/${encodeURIComponent(featureId)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                `features/${encodeURIComponent(featureId)}`,
             ),
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -850,7 +875,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -860,7 +885,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new Schematic.NotFoundError(
@@ -870,7 +895,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -880,7 +905,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.SchematicError({
@@ -897,7 +922,7 @@ export class Features {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.SchematicTimeoutError();
+                throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /features/{feature_id}.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
@@ -922,22 +947,25 @@ export class Features {
     public async updateFeature(
         featureId: string,
         request: Schematic.UpdateFeatureRequestBody = {},
-        requestOptions?: Features.RequestOptions
+        requestOptions?: Features.RequestOptions,
     ): Promise<Schematic.UpdateFeatureResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                `features/${encodeURIComponent(featureId)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                `features/${encodeURIComponent(featureId)}`,
             ),
             method: "PUT",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -966,7 +994,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -976,7 +1004,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -986,7 +1014,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new Schematic.NotFoundError(
@@ -996,7 +1024,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -1006,7 +1034,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.SchematicError({
@@ -1023,7 +1051,7 @@ export class Features {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.SchematicTimeoutError();
+                throw new errors.SchematicTimeoutError("Timeout exceeded when calling PUT /features/{feature_id}.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
@@ -1045,22 +1073,25 @@ export class Features {
      */
     public async deleteFeature(
         featureId: string,
-        requestOptions?: Features.RequestOptions
+        requestOptions?: Features.RequestOptions,
     ): Promise<Schematic.DeleteFeatureResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                `features/${encodeURIComponent(featureId)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                `features/${encodeURIComponent(featureId)}`,
             ),
             method: "DELETE",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -1088,7 +1119,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -1098,7 +1129,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -1108,7 +1139,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -1118,7 +1149,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.SchematicError({
@@ -1135,7 +1166,7 @@ export class Features {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.SchematicTimeoutError();
+                throw new errors.SchematicTimeoutError("Timeout exceeded when calling DELETE /features/{feature_id}.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
@@ -1157,10 +1188,10 @@ export class Features {
      */
     public async countFeatures(
         request: Schematic.CountFeaturesRequest = {},
-        requestOptions?: Features.RequestOptions
+        requestOptions?: Features.RequestOptions,
     ): Promise<Schematic.CountFeaturesResponse> {
         const { ids, q, withoutCompanyOverrideFor, withoutPlanEntitlementFor, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (ids != null) {
             if (Array.isArray(ids)) {
                 _queryParams["ids"] = ids.map((item) => item);
@@ -1191,18 +1222,21 @@ export class Features {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                "features/count"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "features/count",
             ),
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -1231,7 +1265,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -1241,7 +1275,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -1251,7 +1285,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -1261,7 +1295,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.SchematicError({
@@ -1278,7 +1312,7 @@ export class Features {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.SchematicTimeoutError();
+                throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /features/count.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
@@ -1300,10 +1334,10 @@ export class Features {
      */
     public async listFlags(
         request: Schematic.ListFlagsRequest = {},
-        requestOptions?: Features.RequestOptions
+        requestOptions?: Features.RequestOptions,
     ): Promise<Schematic.ListFlagsResponse> {
         const { featureId, ids, q, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (featureId != null) {
             _queryParams["feature_id"] = featureId;
         }
@@ -1330,18 +1364,21 @@ export class Features {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                "flags"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "flags",
             ),
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -1370,7 +1407,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -1380,7 +1417,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -1390,7 +1427,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -1400,7 +1437,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.SchematicError({
@@ -1417,7 +1454,7 @@ export class Features {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.SchematicTimeoutError();
+                throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /flags.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
@@ -1445,22 +1482,25 @@ export class Features {
      */
     public async createFlag(
         request: Schematic.CreateFlagRequestBody,
-        requestOptions?: Features.RequestOptions
+        requestOptions?: Features.RequestOptions,
     ): Promise<Schematic.CreateFlagResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                "flags"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "flags",
             ),
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -1489,7 +1529,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -1499,7 +1539,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -1509,7 +1549,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -1519,7 +1559,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.SchematicError({
@@ -1536,7 +1576,7 @@ export class Features {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.SchematicTimeoutError();
+                throw new errors.SchematicTimeoutError("Timeout exceeded when calling POST /flags.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
@@ -1559,18 +1599,21 @@ export class Features {
     public async getFlag(flagId: string, requestOptions?: Features.RequestOptions): Promise<Schematic.GetFlagResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                `flags/${encodeURIComponent(flagId)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                `flags/${encodeURIComponent(flagId)}`,
             ),
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -1598,7 +1641,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -1608,7 +1651,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new Schematic.NotFoundError(
@@ -1618,7 +1661,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -1628,7 +1671,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.SchematicError({
@@ -1645,7 +1688,7 @@ export class Features {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.SchematicTimeoutError();
+                throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /flags/{flag_id}.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
@@ -1676,22 +1719,25 @@ export class Features {
     public async updateFlag(
         flagId: string,
         request: Schematic.CreateFlagRequestBody,
-        requestOptions?: Features.RequestOptions
+        requestOptions?: Features.RequestOptions,
     ): Promise<Schematic.UpdateFlagResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                `flags/${encodeURIComponent(flagId)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                `flags/${encodeURIComponent(flagId)}`,
             ),
             method: "PUT",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -1720,7 +1766,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -1730,7 +1776,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -1740,7 +1786,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new Schematic.NotFoundError(
@@ -1750,7 +1796,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -1760,7 +1806,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.SchematicError({
@@ -1777,7 +1823,7 @@ export class Features {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.SchematicTimeoutError();
+                throw new errors.SchematicTimeoutError("Timeout exceeded when calling PUT /flags/{flag_id}.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
@@ -1799,22 +1845,25 @@ export class Features {
      */
     public async deleteFlag(
         flagId: string,
-        requestOptions?: Features.RequestOptions
+        requestOptions?: Features.RequestOptions,
     ): Promise<Schematic.DeleteFlagResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                `flags/${encodeURIComponent(flagId)}`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                `flags/${encodeURIComponent(flagId)}`,
             ),
             method: "DELETE",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -1842,7 +1891,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -1852,7 +1901,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -1862,7 +1911,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -1872,7 +1921,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.SchematicError({
@@ -1889,7 +1938,7 @@ export class Features {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.SchematicTimeoutError();
+                throw new errors.SchematicTimeoutError("Timeout exceeded when calling DELETE /flags/{flag_id}.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
@@ -1932,22 +1981,25 @@ export class Features {
     public async updateFlagRules(
         flagId: string,
         request: Schematic.UpdateFlagRulesRequestBody,
-        requestOptions?: Features.RequestOptions
+        requestOptions?: Features.RequestOptions,
     ): Promise<Schematic.UpdateFlagRulesResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                `flags/${encodeURIComponent(flagId)}/rules`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                `flags/${encodeURIComponent(flagId)}/rules`,
             ),
             method: "PUT",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -1976,7 +2028,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -1986,7 +2038,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -1996,7 +2048,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 404:
                     throw new Schematic.NotFoundError(
@@ -2006,7 +2058,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -2016,7 +2068,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.SchematicError({
@@ -2033,7 +2085,7 @@ export class Features {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.SchematicTimeoutError();
+                throw new errors.SchematicTimeoutError("Timeout exceeded when calling PUT /flags/{flag_id}/rules.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
@@ -2057,22 +2109,25 @@ export class Features {
     public async checkFlag(
         key: string,
         request: Schematic.CheckFlagRequestBody,
-        requestOptions?: Features.RequestOptions
+        requestOptions?: Features.RequestOptions,
     ): Promise<Schematic.CheckFlagResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                `flags/${encodeURIComponent(key)}/check`
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                `flags/${encodeURIComponent(key)}/check`,
             ),
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -2101,7 +2156,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -2111,7 +2166,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -2121,7 +2176,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -2131,7 +2186,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.SchematicError({
@@ -2148,7 +2203,7 @@ export class Features {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.SchematicTimeoutError();
+                throw new errors.SchematicTimeoutError("Timeout exceeded when calling POST /flags/{key}/check.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
@@ -2170,22 +2225,25 @@ export class Features {
      */
     public async checkFlags(
         request: Schematic.CheckFlagRequestBody,
-        requestOptions?: Features.RequestOptions
+        requestOptions?: Features.RequestOptions,
     ): Promise<Schematic.CheckFlagsResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                "flags/check"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "flags/check",
             ),
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -2214,7 +2272,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -2224,7 +2282,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -2234,7 +2292,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -2244,7 +2302,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.SchematicError({
@@ -2261,7 +2319,7 @@ export class Features {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.SchematicTimeoutError();
+                throw new errors.SchematicTimeoutError("Timeout exceeded when calling POST /flags/check.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
@@ -2283,10 +2341,10 @@ export class Features {
      */
     public async countFlags(
         request: Schematic.CountFlagsRequest = {},
-        requestOptions?: Features.RequestOptions
+        requestOptions?: Features.RequestOptions,
     ): Promise<Schematic.CountFlagsResponse> {
         const { featureId, ids, q, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (featureId != null) {
             _queryParams["feature_id"] = featureId;
         }
@@ -2313,18 +2371,21 @@ export class Features {
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.SchematicEnvironment.Default,
-                "flags/count"
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "flags/count",
             ),
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -2353,7 +2414,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -2363,7 +2424,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -2373,7 +2434,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -2383,7 +2444,7 @@ export class Features {
                             allowUnrecognizedEnumValues: true,
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
-                        })
+                        }),
                     );
                 default:
                     throw new errors.SchematicError({
@@ -2400,7 +2461,7 @@ export class Features {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.SchematicTimeoutError();
+                throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /flags/count.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,

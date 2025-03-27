@@ -20,18 +20,18 @@ export const CreateInvoiceRequestBody: core.serialization.Schema<
     externalId: core.serialization.property("external_id", core.serialization.string().optional()),
     paymentMethodExternalId: core.serialization.property(
         "payment_method_external_id",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     subscriptionExternalId: core.serialization.property(
         "subscription_external_id",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     subtotal: core.serialization.number(),
     url: core.serialization.string().optional(),
 });
 
 export declare namespace CreateInvoiceRequestBody {
-    interface Raw {
+    export interface Raw {
         amount_due: number;
         amount_paid: number;
         amount_remaining: number;

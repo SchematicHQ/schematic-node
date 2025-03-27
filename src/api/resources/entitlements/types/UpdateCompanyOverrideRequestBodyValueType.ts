@@ -3,7 +3,6 @@
  */
 
 export type UpdateCompanyOverrideRequestBodyValueType = "boolean" | "numeric" | "trait" | "unlimited";
-
 export const UpdateCompanyOverrideRequestBodyValueType = {
     Boolean: "boolean",
     Numeric: "numeric",

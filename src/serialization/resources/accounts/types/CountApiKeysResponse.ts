@@ -17,7 +17,7 @@ export const CountApiKeysResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace CountApiKeysResponse {
-    interface Raw {
+    export interface Raw {
         data: CountResponse.Raw;
         params: CountApiKeysParams.Raw;
     }

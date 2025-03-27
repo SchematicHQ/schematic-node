@@ -16,7 +16,7 @@ export const CreateEnvironmentRequestBody: core.serialization.Schema<
 });
 
 export declare namespace CreateEnvironmentRequestBody {
-    interface Raw {
+    export interface Raw {
         environment_type: CreateEnvironmentRequestBodyEnvironmentType.Raw;
         name: string;
     }

@@ -13,5 +13,5 @@ export const EventBody: core.serialization.Schema<serializers.EventBody.Raw, Sch
     core.serialization.undiscriminatedUnion([EventBodyTrack, EventBodyFlagCheck, EventBodyIdentify]);
 
 export declare namespace EventBody {
-    type Raw = EventBodyTrack.Raw | EventBodyFlagCheck.Raw | EventBodyIdentify.Raw;
+    export type Raw = EventBodyTrack.Raw | EventBodyFlagCheck.Raw | EventBodyIdentify.Raw;
 }

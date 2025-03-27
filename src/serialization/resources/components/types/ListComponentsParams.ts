@@ -16,7 +16,7 @@ export const ListComponentsParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListComponentsParams {
-    interface Raw {
+    export interface Raw {
         limit?: number | null;
         offset?: number | null;
         q?: string | null;

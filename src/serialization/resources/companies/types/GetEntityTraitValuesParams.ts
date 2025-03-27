@@ -17,7 +17,7 @@ export const GetEntityTraitValuesParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace GetEntityTraitValuesParams {
-    interface Raw {
+    export interface Raw {
         definition_id?: string | null;
         limit?: number | null;
         offset?: number | null;

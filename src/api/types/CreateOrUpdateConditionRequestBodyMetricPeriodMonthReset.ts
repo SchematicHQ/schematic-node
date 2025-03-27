@@ -6,7 +6,6 @@
  * When metric_period=current_month, specify whether the month restarts based on the calendar month or the billing period
  */
 export type CreateOrUpdateConditionRequestBodyMetricPeriodMonthReset = "first_of_month" | "billing_cycle";
-
 export const CreateOrUpdateConditionRequestBodyMetricPeriodMonthReset = {
     FirstOfMonth: "first_of_month",
     BillingCycle: "billing_cycle",

@@ -24,7 +24,7 @@ export const CrmDealResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace CrmDealResponseData {
-    interface Raw {
+    export interface Raw {
         account_id: string;
         arr: string;
         company_external_id?: string | null;

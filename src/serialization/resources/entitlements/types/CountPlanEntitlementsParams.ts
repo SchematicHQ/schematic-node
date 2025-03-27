@@ -13,7 +13,7 @@ export const CountPlanEntitlementsParams: core.serialization.ObjectSchema<
     featureId: core.serialization.property("feature_id", core.serialization.string().optional()),
     featureIds: core.serialization.property(
         "feature_ids",
-        core.serialization.list(core.serialization.string()).optional()
+        core.serialization.list(core.serialization.string()).optional(),
     ),
     ids: core.serialization.list(core.serialization.string()).optional(),
     limit: core.serialization.number().optional(),
@@ -25,7 +25,7 @@ export const CountPlanEntitlementsParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace CountPlanEntitlementsParams {
-    interface Raw {
+    export interface Raw {
         feature_id?: string | null;
         feature_ids?: string[] | null;
         ids?: string[] | null;

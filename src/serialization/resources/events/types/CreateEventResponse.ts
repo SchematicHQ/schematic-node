@@ -16,7 +16,7 @@ export const CreateEventResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace CreateEventResponse {
-    interface Raw {
+    export interface Raw {
         data: RawEventResponseData.Raw;
         params: Record<string, unknown>;
     }

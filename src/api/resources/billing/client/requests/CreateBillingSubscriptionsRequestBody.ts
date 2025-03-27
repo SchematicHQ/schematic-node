@@ -7,6 +7,7 @@ import * as Schematic from "../../../../index";
 /**
  * @example
  *     {
+ *         cancelAtPeriodEnd: true,
  *         currency: "currency",
  *         customerExternalId: "customer_external_id",
  *         discounts: [{
@@ -23,15 +24,18 @@ import * as Schematic from "../../../../index";
  *                 priceExternalId: "price_external_id",
  *                 productExternalId: "product_external_id",
  *                 quantity: 1,
- *                 usageType: "usage_type"
+ *                 usageType: "licensed"
  *             }],
  *         subscriptionExternalId: "subscription_external_id",
  *         totalPrice: 1
  *     }
  */
 export interface CreateBillingSubscriptionsRequestBody {
+    cancelAt?: number;
+    cancelAtPeriodEnd: boolean;
     currency: string;
     customerExternalId: string;
+    defaultPaymentMethodId?: string;
     discounts: Schematic.BillingSubscriptionDiscount[];
     expiredAt: Date;
     interval?: string;
@@ -43,5 +47,5 @@ export interface CreateBillingSubscriptionsRequestBody {
     subscriptionExternalId: string;
     totalPrice: number;
     trialEnd?: number;
-    trialEndSetting?: string;
+    trialEndSetting?: Schematic.CreateBillingSubscriptionsRequestBodyTrialEndSetting;
 }

@@ -17,7 +17,7 @@ export const ListEventsResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListEventsResponse {
-    interface Raw {
+    export interface Raw {
         data: EventDetailResponseData.Raw[];
         params: ListEventsParams.Raw;
     }

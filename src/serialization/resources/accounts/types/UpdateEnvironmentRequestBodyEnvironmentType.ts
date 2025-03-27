@@ -12,5 +12,5 @@ export const UpdateEnvironmentRequestBodyEnvironmentType: core.serialization.Sch
 > = core.serialization.enum_(["development", "staging", "production"]);
 
 export declare namespace UpdateEnvironmentRequestBodyEnvironmentType {
-    type Raw = "development" | "staging" | "production";
+    export type Raw = "development" | "staging" | "production";
 }

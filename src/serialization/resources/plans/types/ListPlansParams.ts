@@ -20,17 +20,17 @@ export const ListPlansParams: core.serialization.ObjectSchema<
     q: core.serialization.string().optional(),
     withoutEntitlementFor: core.serialization.property(
         "without_entitlement_for",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     withoutPaidProductId: core.serialization.property(
         "without_paid_product_id",
-        core.serialization.boolean().optional()
+        core.serialization.boolean().optional(),
     ),
     withoutProductId: core.serialization.property("without_product_id", core.serialization.boolean().optional()),
 });
 
 export declare namespace ListPlansParams {
-    interface Raw {
+    export interface Raw {
         company_id?: string | null;
         has_product_id?: boolean | null;
         ids?: string[] | null;

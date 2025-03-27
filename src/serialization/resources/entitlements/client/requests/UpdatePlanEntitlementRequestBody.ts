@@ -16,29 +16,31 @@ export const UpdatePlanEntitlementRequestBody: core.serialization.Schema<
     metricPeriod: core.serialization.property("metric_period", UpdatePlanEntitlementRequestBodyMetricPeriod.optional()),
     metricPeriodMonthReset: core.serialization.property(
         "metric_period_month_reset",
-        UpdatePlanEntitlementRequestBodyMetricPeriodMonthReset.optional()
+        UpdatePlanEntitlementRequestBodyMetricPeriodMonthReset.optional(),
     ),
     monthlyMeteredPriceId: core.serialization.property(
         "monthly_metered_price_id",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
     priceBehavior: core.serialization.property("price_behavior", core.serialization.string().optional()),
+    softLimit: core.serialization.property("soft_limit", core.serialization.number().optional()),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
     valueTraitId: core.serialization.property("value_trait_id", core.serialization.string().optional()),
     valueType: core.serialization.property("value_type", UpdatePlanEntitlementRequestBodyValueType),
     yearlyMeteredPriceId: core.serialization.property(
         "yearly_metered_price_id",
-        core.serialization.string().optional()
+        core.serialization.string().optional(),
     ),
 });
 
 export declare namespace UpdatePlanEntitlementRequestBody {
-    interface Raw {
+    export interface Raw {
         metric_period?: UpdatePlanEntitlementRequestBodyMetricPeriod.Raw | null;
         metric_period_month_reset?: UpdatePlanEntitlementRequestBodyMetricPeriodMonthReset.Raw | null;
         monthly_metered_price_id?: string | null;
         price_behavior?: string | null;
+        soft_limit?: number | null;
         value_bool?: boolean | null;
         value_numeric?: number | null;
         value_trait_id?: string | null;

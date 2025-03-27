@@ -3,7 +3,6 @@
  */
 
 export type UpdateEntitlementReqCommonMetricPeriod = "all_time" | "current_month" | "current_week" | "current_day";
-
 export const UpdateEntitlementReqCommonMetricPeriod = {
     AllTime: "all_time",
     CurrentMonth: "current_month",

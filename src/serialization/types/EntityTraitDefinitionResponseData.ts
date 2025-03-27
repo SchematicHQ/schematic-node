@@ -20,7 +20,7 @@ export const EntityTraitDefinitionResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace EntityTraitDefinitionResponseData {
-    interface Raw {
+    export interface Raw {
         created_at: string;
         display_name: string;
         entity_type: string;

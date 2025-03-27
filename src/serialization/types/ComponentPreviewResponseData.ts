@@ -24,7 +24,7 @@ export const ComponentPreviewResponseData: core.serialization.ObjectSchema<
     activePlans: core.serialization.property("active_plans", core.serialization.list(CompanyPlanDetailResponseData)),
     activeUsageBasedEntitlements: core.serialization.property(
         "active_usage_based_entitlements",
-        core.serialization.list(UsageBasedEntitlementResponseData)
+        core.serialization.list(UsageBasedEntitlementResponseData),
     ),
     capabilities: ComponentCapabilities.optional(),
     company: CompanyDetailResponseData.optional(),
@@ -36,13 +36,13 @@ export const ComponentPreviewResponseData: core.serialization.ObjectSchema<
     subscription: CompanySubscriptionResponseData.optional(),
     trialPaymentMethodRequired: core.serialization.property(
         "trial_payment_method_required",
-        core.serialization.boolean().optional()
+        core.serialization.boolean().optional(),
     ),
     upcomingInvoice: core.serialization.property("upcoming_invoice", InvoiceResponseData.optional()),
 });
 
 export declare namespace ComponentPreviewResponseData {
-    interface Raw {
+    export interface Raw {
         active_add_ons: CompanyPlanDetailResponseData.Raw[];
         active_plans: CompanyPlanDetailResponseData.Raw[];
         active_usage_based_entitlements: UsageBasedEntitlementResponseData.Raw[];

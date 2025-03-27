@@ -18,7 +18,7 @@ export const EventBodyIdentify: core.serialization.ObjectSchema<
 });
 
 export declare namespace EventBodyIdentify {
-    interface Raw {
+    export interface Raw {
         company?: EventBodyIdentifyCompany.Raw | null;
         keys: Record<string, string>;
         name?: string | null;

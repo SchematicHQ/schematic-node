@@ -15,7 +15,7 @@ export const UpdatePayInAdvanceRequestBody: core.serialization.ObjectSchema<
 });
 
 export declare namespace UpdatePayInAdvanceRequestBody {
-    interface Raw {
+    export interface Raw {
         price_id: string;
         quantity: number;
     }

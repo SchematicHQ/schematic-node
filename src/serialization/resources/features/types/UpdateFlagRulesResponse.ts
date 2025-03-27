@@ -16,7 +16,7 @@ export const UpdateFlagRulesResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace UpdateFlagRulesResponse {
-    interface Raw {
+    export interface Raw {
         data: RulesDetailResponseData.Raw;
         params: Record<string, unknown>;
     }

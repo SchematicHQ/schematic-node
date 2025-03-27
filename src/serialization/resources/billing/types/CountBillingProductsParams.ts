@@ -5,6 +5,7 @@
 import * as serializers from "../../../index";
 import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
+import { CountBillingProductsResponseParamsPriceUsageType } from "./CountBillingProductsResponseParamsPriceUsageType";
 
 export const CountBillingProductsParams: core.serialization.ObjectSchema<
     serializers.CountBillingProductsParams.Raw,
@@ -14,7 +15,10 @@ export const CountBillingProductsParams: core.serialization.ObjectSchema<
     limit: core.serialization.number().optional(),
     name: core.serialization.string().optional(),
     offset: core.serialization.number().optional(),
-    priceUsageType: core.serialization.property("price_usage_type", core.serialization.string().optional()),
+    priceUsageType: core.serialization.property(
+        "price_usage_type",
+        CountBillingProductsResponseParamsPriceUsageType.optional(),
+    ),
     q: core.serialization.string().optional(),
     withPricesOnly: core.serialization.property("with_prices_only", core.serialization.boolean().optional()),
     withZeroPrice: core.serialization.property("with_zero_price", core.serialization.boolean().optional()),
@@ -22,12 +26,12 @@ export const CountBillingProductsParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace CountBillingProductsParams {
-    interface Raw {
+    export interface Raw {
         ids?: string[] | null;
         limit?: number | null;
         name?: string | null;
         offset?: number | null;
-        price_usage_type?: string | null;
+        price_usage_type?: CountBillingProductsResponseParamsPriceUsageType.Raw | null;
         q?: string | null;
         with_prices_only?: boolean | null;
         with_zero_price?: boolean | null;

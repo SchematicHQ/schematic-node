@@ -3,7 +3,6 @@
  */
 
 export type UpdateComponentRequestBodyEntityType = "entitlement" | "billing";
-
 export const UpdateComponentRequestBodyEntityType = {
     Entitlement: "entitlement",
     Billing: "billing",

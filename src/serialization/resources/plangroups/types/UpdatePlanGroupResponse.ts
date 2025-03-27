@@ -16,7 +16,7 @@ export const UpdatePlanGroupResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace UpdatePlanGroupResponse {
-    interface Raw {
+    export interface Raw {
         data: PlanGroupResponseData.Raw;
         params: Record<string, unknown>;
     }

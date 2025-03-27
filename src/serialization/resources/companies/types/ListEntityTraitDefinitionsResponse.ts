@@ -17,7 +17,7 @@ export const ListEntityTraitDefinitionsResponse: core.serialization.ObjectSchema
 });
 
 export declare namespace ListEntityTraitDefinitionsResponse {
-    interface Raw {
+    export interface Raw {
         data: EntityTraitDefinitionResponseData.Raw[];
         params: ListEntityTraitDefinitionsParams.Raw;
     }

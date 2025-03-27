@@ -16,7 +16,7 @@ export const UpdateEnvironmentResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace UpdateEnvironmentResponse {
-    interface Raw {
+    export interface Raw {
         data: EnvironmentResponseData.Raw;
         params: Record<string, unknown>;
     }

@@ -16,7 +16,7 @@ export const ListMetersParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListMetersParams {
-    interface Raw {
+    export interface Raw {
         display_name?: string | null;
         limit?: number | null;
         offset?: number | null;

@@ -16,7 +16,7 @@ export const ListAudienceUsersResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListAudienceUsersResponse {
-    interface Raw {
+    export interface Raw {
         data: UserDetailResponseData.Raw[];
         params: Record<string, unknown>;
     }

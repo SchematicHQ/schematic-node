@@ -17,7 +17,7 @@ export const CountWebhooksResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace CountWebhooksResponse {
-    interface Raw {
+    export interface Raw {
         data: CountResponse.Raw;
         params: CountWebhooksParams.Raw;
     }

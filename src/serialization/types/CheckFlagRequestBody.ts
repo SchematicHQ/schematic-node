@@ -15,7 +15,7 @@ export const CheckFlagRequestBody: core.serialization.ObjectSchema<
 });
 
 export declare namespace CheckFlagRequestBody {
-    interface Raw {
+    export interface Raw {
         company?: Record<string, string> | null;
         user?: Record<string, string> | null;
     }

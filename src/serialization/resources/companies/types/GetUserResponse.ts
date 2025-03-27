@@ -16,7 +16,7 @@ export const GetUserResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace GetUserResponse {
-    interface Raw {
+    export interface Raw {
         data: UserDetailResponseData.Raw;
         params: Record<string, unknown>;
     }

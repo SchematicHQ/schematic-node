@@ -19,7 +19,7 @@ export const ListEntityKeyDefinitionsParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListEntityKeyDefinitionsParams {
-    interface Raw {
+    export interface Raw {
         entity_type?: ListEntityKeyDefinitionsResponseParamsEntityType.Raw | null;
         ids?: string[] | null;
         limit?: number | null;

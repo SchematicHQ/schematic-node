@@ -29,7 +29,7 @@ export const ApiKeyRequestListResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace ApiKeyRequestListResponseData {
-    interface Raw {
+    export interface Raw {
         api_key_id: string;
         ended_at?: string | null;
         environment_id?: string | null;

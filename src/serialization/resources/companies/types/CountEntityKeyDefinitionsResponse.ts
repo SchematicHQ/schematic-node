@@ -17,7 +17,7 @@ export const CountEntityKeyDefinitionsResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace CountEntityKeyDefinitionsResponse {
-    interface Raw {
+    export interface Raw {
         data: CountResponse.Raw;
         params: CountEntityKeyDefinitionsParams.Raw;
     }

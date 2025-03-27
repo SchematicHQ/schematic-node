@@ -12,5 +12,5 @@ export const CountEntityTraitDefinitionsRequestTraitType: core.serialization.Sch
 > = core.serialization.enum_(["boolean", "currency", "date", "number", "string", "url"]);
 
 export declare namespace CountEntityTraitDefinitionsRequestTraitType {
-    type Raw = "boolean" | "currency" | "date" | "number" | "string" | "url";
+    export type Raw = "boolean" | "currency" | "date" | "number" | "string" | "url";
 }

@@ -10,6 +10,7 @@ import { BillingSubscriptionView } from "./BillingSubscriptionView";
 import { EntityTraitDetailResponseData } from "./EntityTraitDetailResponseData";
 import { EntityKeyDetailResponseData } from "./EntityKeyDetailResponseData";
 import { CompanyEventPeriodMetricsResponseData } from "./CompanyEventPeriodMetricsResponseData";
+import { PaymentMethodResponseData } from "./PaymentMethodResponseData";
 import { GenericPreviewObject } from "./GenericPreviewObject";
 
 export const CompanyDetailResponseData: core.serialization.ObjectSchema<
@@ -20,7 +21,7 @@ export const CompanyDetailResponseData: core.serialization.ObjectSchema<
     billingSubscription: core.serialization.property("billing_subscription", BillingSubscriptionView.optional()),
     billingSubscriptions: core.serialization.property(
         "billing_subscriptions",
-        core.serialization.list(BillingSubscriptionView)
+        core.serialization.list(BillingSubscriptionView),
     ),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     entityTraits: core.serialization.property("entity_traits", core.serialization.list(EntityTraitDetailResponseData)),
@@ -31,6 +32,7 @@ export const CompanyDetailResponseData: core.serialization.ObjectSchema<
     logoUrl: core.serialization.property("logo_url", core.serialization.string().optional()),
     metrics: core.serialization.list(CompanyEventPeriodMetricsResponseData),
     name: core.serialization.string(),
+    paymentMethods: core.serialization.property("payment_methods", core.serialization.list(PaymentMethodResponseData)),
     plan: CompanyPlanWithBillingSubView.optional(),
     plans: core.serialization.list(GenericPreviewObject),
     traits: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
@@ -39,7 +41,7 @@ export const CompanyDetailResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace CompanyDetailResponseData {
-    interface Raw {
+    export interface Raw {
         add_ons: CompanyPlanWithBillingSubView.Raw[];
         billing_subscription?: BillingSubscriptionView.Raw | null;
         billing_subscriptions: BillingSubscriptionView.Raw[];
@@ -52,6 +54,7 @@ export declare namespace CompanyDetailResponseData {
         logo_url?: string | null;
         metrics: CompanyEventPeriodMetricsResponseData.Raw[];
         name: string;
+        payment_methods: PaymentMethodResponseData.Raw[];
         plan?: CompanyPlanWithBillingSubView.Raw | null;
         plans: GenericPreviewObject.Raw[];
         traits?: Record<string, unknown> | null;

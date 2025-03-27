@@ -14,6 +14,8 @@ export const CompanySubscriptionResponseData: core.serialization.ObjectSchema<
     serializers.CompanySubscriptionResponseData.Raw,
     Schematic.CompanySubscriptionResponseData
 > = core.serialization.object({
+    cancelAt: core.serialization.property("cancel_at", core.serialization.date().optional()),
+    cancelAtPeriodEnd: core.serialization.property("cancel_at_period_end", core.serialization.boolean()),
     currency: core.serialization.string(),
     customerExternalId: core.serialization.property("customer_external_id", core.serialization.string()),
     discounts: core.serialization.list(BillingSubscriptionDiscountView),
@@ -29,7 +31,9 @@ export const CompanySubscriptionResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace CompanySubscriptionResponseData {
-    interface Raw {
+    export interface Raw {
+        cancel_at?: string | null;
+        cancel_at_period_end: boolean;
         currency: string;
         customer_external_id: string;
         discounts: BillingSubscriptionDiscountView.Raw[];

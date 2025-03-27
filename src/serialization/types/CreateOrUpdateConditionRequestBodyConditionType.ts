@@ -21,5 +21,13 @@ export const CreateOrUpdateConditionRequestBodyConditionType: core.serialization
 ]);
 
 export declare namespace CreateOrUpdateConditionRequestBodyConditionType {
-    type Raw = "company" | "metric" | "trait" | "user" | "plan" | "billing_product" | "crm_product" | "base_plan";
+    export type Raw =
+        | "company"
+        | "metric"
+        | "trait"
+        | "user"
+        | "plan"
+        | "billing_product"
+        | "crm_product"
+        | "base_plan";
 }

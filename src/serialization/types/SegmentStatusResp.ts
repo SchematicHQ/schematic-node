@@ -16,7 +16,7 @@ export const SegmentStatusResp: core.serialization.ObjectSchema<
 });
 
 export declare namespace SegmentStatusResp {
-    interface Raw {
+    export interface Raw {
         connected: boolean;
         environment_id: string;
         last_event_at?: string | null;

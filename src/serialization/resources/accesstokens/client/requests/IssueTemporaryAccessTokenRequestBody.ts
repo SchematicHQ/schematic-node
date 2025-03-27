@@ -15,7 +15,7 @@ export const IssueTemporaryAccessTokenRequestBody: core.serialization.Schema<
 });
 
 export declare namespace IssueTemporaryAccessTokenRequestBody {
-    interface Raw {
+    export interface Raw {
         lookup: Record<string, string>;
         resource_type: string;
     }

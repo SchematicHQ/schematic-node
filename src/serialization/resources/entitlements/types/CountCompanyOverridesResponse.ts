@@ -17,7 +17,7 @@ export const CountCompanyOverridesResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace CountCompanyOverridesResponse {
-    interface Raw {
+    export interface Raw {
         data: CountResponse.Raw;
         params: CountCompanyOverridesParams.Raw;
     }

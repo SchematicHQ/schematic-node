@@ -14,7 +14,7 @@ export const LookupUserParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace LookupUserParams {
-    interface Raw {
+    export interface Raw {
         keys?: Record<string, unknown> | null;
     }
 }

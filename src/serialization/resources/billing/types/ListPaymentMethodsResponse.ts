@@ -17,7 +17,7 @@ export const ListPaymentMethodsResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListPaymentMethodsResponse {
-    interface Raw {
+    export interface Raw {
         data: PaymentMethodResponseData.Raw[];
         params: ListPaymentMethodsParams.Raw;
     }

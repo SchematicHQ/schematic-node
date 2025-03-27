@@ -16,7 +16,7 @@ export const UpdateFeatureResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace UpdateFeatureResponse {
-    interface Raw {
+    export interface Raw {
         data: FeatureDetailResponseData.Raw;
         params: Record<string, unknown>;
     }

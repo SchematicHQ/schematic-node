@@ -24,7 +24,7 @@ export const CompanyEventPeriodMetricsResponseData: core.serialization.ObjectSch
 });
 
 export declare namespace CompanyEventPeriodMetricsResponseData {
-    interface Raw {
+    export interface Raw {
         account_id: string;
         captured_at_max: string;
         captured_at_min: string;

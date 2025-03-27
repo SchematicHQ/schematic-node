@@ -16,7 +16,7 @@ export const CountAudienceUsersResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace CountAudienceUsersResponse {
-    interface Raw {
+    export interface Raw {
         data: CountResponse.Raw;
         params: Record<string, unknown>;
     }

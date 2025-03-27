@@ -12,5 +12,5 @@ export const ListEntityKeyDefinitionsRequestEntityType: core.serialization.Schem
 > = core.serialization.enum_(["company", "user"]);
 
 export declare namespace ListEntityKeyDefinitionsRequestEntityType {
-    type Raw = "company" | "user";
+    export type Raw = "company" | "user";
 }

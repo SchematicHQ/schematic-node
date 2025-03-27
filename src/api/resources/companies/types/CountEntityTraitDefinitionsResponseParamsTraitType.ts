@@ -9,7 +9,6 @@ export type CountEntityTraitDefinitionsResponseParamsTraitType =
     | "number"
     | "string"
     | "url";
-
 export const CountEntityTraitDefinitionsResponseParamsTraitType = {
     Boolean: "boolean",
     Currency: "currency",

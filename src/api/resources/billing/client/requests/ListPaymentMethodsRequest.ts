@@ -11,7 +11,6 @@
 export interface ListPaymentMethodsRequest {
     companyId?: string;
     customerExternalId: string;
-    subscriptionExternalId?: string;
     /**
      * Page limit (default 100)
      */

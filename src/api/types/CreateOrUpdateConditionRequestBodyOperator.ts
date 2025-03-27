@@ -11,7 +11,6 @@ export type CreateOrUpdateConditionRequestBodyOperator =
     | "lte"
     | "is_empty"
     | "not_empty";
-
 export const CreateOrUpdateConditionRequestBodyOperator = {
     Eq: "eq",
     Ne: "ne",

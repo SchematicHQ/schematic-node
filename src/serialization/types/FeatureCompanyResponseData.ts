@@ -20,7 +20,7 @@ export const FeatureCompanyResponseData: core.serialization.ObjectSchema<
     company: CompanyDetailResponseData.optional(),
     entitlementExpirationDate: core.serialization.property(
         "entitlement_expiration_date",
-        core.serialization.date().optional()
+        core.serialization.date().optional(),
     ),
     entitlementId: core.serialization.property("entitlement_id", core.serialization.string()),
     entitlementType: core.serialization.property("entitlement_type", core.serialization.string()),
@@ -33,7 +33,7 @@ export const FeatureCompanyResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace FeatureCompanyResponseData {
-    interface Raw {
+    export interface Raw {
         access: boolean;
         allocation?: number | null;
         allocation_type: FeatureCompanyResponseDataAllocationType.Raw;

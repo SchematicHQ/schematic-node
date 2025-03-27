@@ -17,7 +17,7 @@ export const ListCrmProductsParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListCrmProductsParams {
-    interface Raw {
+    export interface Raw {
         ids?: string[] | null;
         limit?: number | null;
         name?: string | null;

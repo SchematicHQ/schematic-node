@@ -21,7 +21,7 @@ export const BillingCustomerResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace BillingCustomerResponseData {
-    interface Raw {
+    export interface Raw {
         company_id?: string | null;
         deleted_at?: string | null;
         email: string;

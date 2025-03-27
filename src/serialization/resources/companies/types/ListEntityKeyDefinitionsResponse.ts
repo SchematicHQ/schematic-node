@@ -17,7 +17,7 @@ export const ListEntityKeyDefinitionsResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListEntityKeyDefinitionsResponse {
-    interface Raw {
+    export interface Raw {
         data: EntityKeyDefinitionResponseData.Raw[];
         params: ListEntityKeyDefinitionsParams.Raw;
     }

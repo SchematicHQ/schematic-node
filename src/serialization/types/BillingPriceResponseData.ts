@@ -18,7 +18,7 @@ export const BillingPriceResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace BillingPriceResponseData {
-    interface Raw {
+    export interface Raw {
         currency: string;
         external_price_id: string;
         id: string;

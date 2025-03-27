@@ -3,7 +3,6 @@
  */
 
 export type CreateCompanyOverrideRequestBodyMetricPeriodMonthReset = "first_of_month" | "billing_cycle";
-
 export const CreateCompanyOverrideRequestBodyMetricPeriodMonthReset = {
     FirstOfMonth: "first_of_month",
     BillingCycle: "billing_cycle",

@@ -15,7 +15,7 @@ export const UpdateAddOnRequestBody: core.serialization.ObjectSchema<
 });
 
 export declare namespace UpdateAddOnRequestBody {
-    interface Raw {
+    export interface Raw {
         add_on_id: string;
         price_id: string;
     }

@@ -16,7 +16,7 @@ export const GetOrCreateCompanyMembershipResponse: core.serialization.ObjectSche
 });
 
 export declare namespace GetOrCreateCompanyMembershipResponse {
-    interface Raw {
+    export interface Raw {
         data: CompanyMembershipDetailResponseData.Raw;
         params: Record<string, unknown>;
     }

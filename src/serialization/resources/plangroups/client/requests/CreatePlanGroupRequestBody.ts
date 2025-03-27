@@ -5,26 +5,32 @@
 import * as serializers from "../../../../index";
 import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
+import { CustomPlanConfig } from "../../../../types/CustomPlanConfig";
+import { OrderedPlansInGroup } from "../../../../types/OrderedPlansInGroup";
 
 export const CreatePlanGroupRequestBody: core.serialization.Schema<
     serializers.CreatePlanGroupRequestBody.Raw,
     Schematic.CreatePlanGroupRequestBody
 > = core.serialization.object({
     addOnIds: core.serialization.property("add_on_ids", core.serialization.list(core.serialization.string())),
+    customPlanConfig: core.serialization.property("custom_plan_config", CustomPlanConfig.optional()),
+    customPlanId: core.serialization.property("custom_plan_id", core.serialization.string().optional()),
     defaultPlanId: core.serialization.property("default_plan_id", core.serialization.string().optional()),
-    planIds: core.serialization.property("plan_ids", core.serialization.list(core.serialization.string())),
+    orderedPlans: core.serialization.property("ordered_plans", core.serialization.list(OrderedPlansInGroup)),
     trialDays: core.serialization.property("trial_days", core.serialization.number().optional()),
     trialPaymentMethodRequired: core.serialization.property(
         "trial_payment_method_required",
-        core.serialization.boolean().optional()
+        core.serialization.boolean().optional(),
     ),
 });
 
 export declare namespace CreatePlanGroupRequestBody {
-    interface Raw {
+    export interface Raw {
         add_on_ids: string[];
+        custom_plan_config?: CustomPlanConfig.Raw | null;
+        custom_plan_id?: string | null;
         default_plan_id?: string | null;
-        plan_ids: string[];
+        ordered_plans: OrderedPlansInGroup.Raw[];
         trial_days?: number | null;
         trial_payment_method_required?: boolean | null;
     }

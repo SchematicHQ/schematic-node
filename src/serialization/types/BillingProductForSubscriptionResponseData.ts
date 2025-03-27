@@ -28,7 +28,7 @@ export const BillingProductForSubscriptionResponseData: core.serialization.Objec
 });
 
 export declare namespace BillingProductForSubscriptionResponseData {
-    interface Raw {
+    export interface Raw {
         created_at: string;
         currency: string;
         environment_id: string;

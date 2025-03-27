@@ -12,5 +12,5 @@ export const CreatePlanEntitlementRequestBodyMetricPeriod: core.serialization.Sc
 > = core.serialization.enum_(["all_time", "current_month", "current_week", "current_day"]);
 
 export declare namespace CreatePlanEntitlementRequestBodyMetricPeriod {
-    type Raw = "all_time" | "current_month" | "current_week" | "current_day";
+    export type Raw = "all_time" | "current_month" | "current_week" | "current_day";
 }

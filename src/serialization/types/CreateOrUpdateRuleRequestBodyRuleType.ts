@@ -19,5 +19,11 @@ export const CreateOrUpdateRuleRequestBodyRuleType: core.serialization.Schema<
 ]);
 
 export declare namespace CreateOrUpdateRuleRequestBodyRuleType {
-    type Raw = "global_override" | "company_override" | "plan_entitlement" | "standard" | "default" | "plan_audience";
+    export type Raw =
+        | "global_override"
+        | "company_override"
+        | "plan_entitlement"
+        | "standard"
+        | "default"
+        | "plan_audience";
 }

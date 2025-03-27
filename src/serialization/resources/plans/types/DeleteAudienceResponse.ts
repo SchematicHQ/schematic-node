@@ -16,7 +16,7 @@ export const DeleteAudienceResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace DeleteAudienceResponse {
-    interface Raw {
+    export interface Raw {
         data: DeleteResponse.Raw;
         params: Record<string, unknown>;
     }

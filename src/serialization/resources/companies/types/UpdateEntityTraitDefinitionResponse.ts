@@ -16,7 +16,7 @@ export const UpdateEntityTraitDefinitionResponse: core.serialization.ObjectSchem
 });
 
 export declare namespace UpdateEntityTraitDefinitionResponse {
-    interface Raw {
+    export interface Raw {
         data: EntityTraitDefinitionResponseData.Raw;
         params: Record<string, unknown>;
     }

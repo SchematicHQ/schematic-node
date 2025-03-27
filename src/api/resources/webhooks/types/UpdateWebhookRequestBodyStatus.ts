@@ -3,7 +3,6 @@
  */
 
 export type UpdateWebhookRequestBodyStatus = "active" | "inactive";
-
 export const UpdateWebhookRequestBodyStatus = {
     Active: "active",
     Inactive: "inactive",

@@ -26,7 +26,7 @@ export const CheckFlagResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace CheckFlagResponseData {
-    interface Raw {
+    export interface Raw {
         company_id?: string | null;
         error?: string | null;
         feature_allocation?: number | null;

@@ -3,7 +3,6 @@
  */
 
 export type CreateEntitlementReqCommonValueType = "boolean" | "numeric" | "trait" | "unlimited";
-
 export const CreateEntitlementReqCommonValueType = {
     Boolean: "boolean",
     Numeric: "numeric",

@@ -3,7 +3,6 @@
  */
 
 export type ListEntityKeyDefinitionsRequestEntityType = "company" | "user";
-
 export const ListEntityKeyDefinitionsRequestEntityType = {
     Company: "company",
     User: "user",

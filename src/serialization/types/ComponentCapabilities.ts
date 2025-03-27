@@ -10,11 +10,13 @@ export const ComponentCapabilities: core.serialization.ObjectSchema<
     serializers.ComponentCapabilities.Raw,
     Schematic.ComponentCapabilities
 > = core.serialization.object({
+    badgeVisibility: core.serialization.property("badge_visibility", core.serialization.boolean()),
     checkout: core.serialization.boolean(),
 });
 
 export declare namespace ComponentCapabilities {
-    interface Raw {
+    export interface Raw {
+        badge_visibility: boolean;
         checkout: boolean;
     }
 }

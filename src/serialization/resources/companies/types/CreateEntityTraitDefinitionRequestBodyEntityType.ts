@@ -12,5 +12,5 @@ export const CreateEntityTraitDefinitionRequestBodyEntityType: core.serializatio
 > = core.serialization.enum_(["company", "user"]);
 
 export declare namespace CreateEntityTraitDefinitionRequestBodyEntityType {
-    type Raw = "company" | "user";
+    export type Raw = "company" | "user";
 }

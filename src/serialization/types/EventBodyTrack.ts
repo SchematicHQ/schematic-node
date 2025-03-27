@@ -16,7 +16,7 @@ export const EventBodyTrack: core.serialization.ObjectSchema<serializers.EventBo
     });
 
 export declare namespace EventBodyTrack {
-    interface Raw {
+    export interface Raw {
         company?: Record<string, string> | null;
         event: string;
         quantity?: number | null;

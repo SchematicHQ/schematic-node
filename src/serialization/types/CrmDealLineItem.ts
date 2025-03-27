@@ -26,7 +26,7 @@ export const CrmDealLineItem: core.serialization.ObjectSchema<
 });
 
 export declare namespace CrmDealLineItem {
-    interface Raw {
+    export interface Raw {
         billing_frequency: string;
         created_at: string;
         currency: string;

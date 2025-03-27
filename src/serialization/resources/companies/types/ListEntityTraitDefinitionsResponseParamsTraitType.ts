@@ -12,5 +12,5 @@ export const ListEntityTraitDefinitionsResponseParamsTraitType: core.serializati
 > = core.serialization.enum_(["boolean", "currency", "date", "number", "string", "url"]);
 
 export declare namespace ListEntityTraitDefinitionsResponseParamsTraitType {
-    type Raw = "boolean" | "currency" | "date" | "number" | "string" | "url";
+    export type Raw = "boolean" | "currency" | "date" | "number" | "string" | "url";
 }

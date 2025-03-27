@@ -3,7 +3,6 @@
  */
 
 export type UpdateEntitlementReqCommonMetricPeriodMonthReset = "first_of_month" | "billing_cycle";
-
 export const UpdateEntitlementReqCommonMetricPeriodMonthReset = {
     FirstOfMonth: "first_of_month",
     BillingCycle: "billing_cycle",

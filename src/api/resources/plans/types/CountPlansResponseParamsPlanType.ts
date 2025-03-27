@@ -6,7 +6,6 @@
  * Filter by plan type
  */
 export type CountPlansResponseParamsPlanType = "plan" | "add_on";
-
 export const CountPlansResponseParamsPlanType = {
     Plan: "plan",
     AddOn: "add_on",

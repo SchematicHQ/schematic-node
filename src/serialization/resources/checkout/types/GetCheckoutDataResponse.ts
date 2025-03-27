@@ -16,7 +16,7 @@ export const GetCheckoutDataResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace GetCheckoutDataResponse {
-    interface Raw {
+    export interface Raw {
         data: CheckoutDataResponseData.Raw;
         params: Record<string, unknown>;
     }

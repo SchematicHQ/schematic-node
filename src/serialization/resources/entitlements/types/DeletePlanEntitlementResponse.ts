@@ -16,7 +16,7 @@ export const DeletePlanEntitlementResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace DeletePlanEntitlementResponse {
-    interface Raw {
+    export interface Raw {
         data: DeleteResponse.Raw;
         params: Record<string, unknown>;
     }

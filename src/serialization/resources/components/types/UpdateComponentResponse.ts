@@ -16,7 +16,7 @@ export const UpdateComponentResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace UpdateComponentResponse {
-    interface Raw {
+    export interface Raw {
         data: ComponentResponseData.Raw;
         params: Record<string, unknown>;
     }

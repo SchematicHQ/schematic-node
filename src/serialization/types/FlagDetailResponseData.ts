@@ -28,7 +28,7 @@ export const FlagDetailResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace FlagDetailResponseData {
-    interface Raw {
+    export interface Raw {
         created_at: string;
         default_value: boolean;
         description: string;

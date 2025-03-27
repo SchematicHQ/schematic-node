@@ -20,7 +20,7 @@ export const EnvironmentDetailResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace EnvironmentDetailResponseData {
-    interface Raw {
+    export interface Raw {
         api_keys: ApiKeyResponseData.Raw[];
         created_at: string;
         environment_type: string;

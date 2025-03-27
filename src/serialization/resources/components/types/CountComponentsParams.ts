@@ -16,7 +16,7 @@ export const CountComponentsParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace CountComponentsParams {
-    interface Raw {
+    export interface Raw {
         limit?: number | null;
         offset?: number | null;
         q?: string | null;

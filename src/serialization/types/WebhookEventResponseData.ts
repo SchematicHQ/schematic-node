@@ -22,7 +22,7 @@ export const WebhookEventResponseData: core.serialization.ObjectSchema<
 });
 
 export declare namespace WebhookEventResponseData {
-    interface Raw {
+    export interface Raw {
         created_at: string;
         id: string;
         payload?: string | null;

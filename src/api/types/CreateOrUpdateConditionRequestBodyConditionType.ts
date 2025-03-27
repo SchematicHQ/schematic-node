@@ -11,7 +11,6 @@ export type CreateOrUpdateConditionRequestBodyConditionType =
     | "billing_product"
     | "crm_product"
     | "base_plan";
-
 export const CreateOrUpdateConditionRequestBodyConditionType = {
     Company: "company",
     Metric: "metric",

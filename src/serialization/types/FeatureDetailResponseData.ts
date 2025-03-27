@@ -26,13 +26,15 @@ export const FeatureDetailResponseData: core.serialization.ObjectSchema<
     maintainerId: core.serialization.property("maintainer_id", core.serialization.string().optional()),
     name: core.serialization.string(),
     plans: core.serialization.list(PreviewObject),
+    pluralName: core.serialization.property("plural_name", core.serialization.string().optional()),
+    singularName: core.serialization.property("singular_name", core.serialization.string().optional()),
     trait: EntityTraitDefinitionResponseData.optional(),
     traitId: core.serialization.property("trait_id", core.serialization.string().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
 export declare namespace FeatureDetailResponseData {
-    interface Raw {
+    export interface Raw {
         created_at: string;
         description: string;
         event_subtype?: string | null;
@@ -45,6 +47,8 @@ export declare namespace FeatureDetailResponseData {
         maintainer_id?: string | null;
         name: string;
         plans: PreviewObject.Raw[];
+        plural_name?: string | null;
+        singular_name?: string | null;
         trait?: EntityTraitDefinitionResponseData.Raw | null;
         trait_id?: string | null;
         updated_at: string;

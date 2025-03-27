@@ -14,7 +14,7 @@ export const GetFeatureUsageByCompanyParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace GetFeatureUsageByCompanyParams {
-    interface Raw {
+    export interface Raw {
         keys?: Record<string, unknown> | null;
     }
 }

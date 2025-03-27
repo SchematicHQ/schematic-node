@@ -14,7 +14,7 @@ export const CountEntityTraitDefinitionsParams: core.serialization.ObjectSchema<
 > = core.serialization.object({
     entityType: core.serialization.property(
         "entity_type",
-        CountEntityTraitDefinitionsResponseParamsEntityType.optional()
+        CountEntityTraitDefinitionsResponseParamsEntityType.optional(),
     ),
     ids: core.serialization.list(core.serialization.string()).optional(),
     limit: core.serialization.number().optional(),
@@ -24,7 +24,7 @@ export const CountEntityTraitDefinitionsParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace CountEntityTraitDefinitionsParams {
-    interface Raw {
+    export interface Raw {
         entity_type?: CountEntityTraitDefinitionsResponseParamsEntityType.Raw | null;
         ids?: string[] | null;
         limit?: number | null;

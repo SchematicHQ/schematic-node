@@ -7,6 +7,7 @@ import * as Schematic from "../index";
 export interface ChangeSubscriptionInternalRequestBody {
     addOnIds: Schematic.UpdateAddOnRequestBody[];
     companyId: string;
+    couponExternalId?: string;
     newPlanId: string;
     newPriceId: string;
     payInAdvance: Schematic.UpdatePayInAdvanceRequestBody[];

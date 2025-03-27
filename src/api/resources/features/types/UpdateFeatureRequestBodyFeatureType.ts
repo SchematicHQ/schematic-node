@@ -3,7 +3,6 @@
  */
 
 export type UpdateFeatureRequestBodyFeatureType = "boolean" | "event" | "trait";
-
 export const UpdateFeatureRequestBodyFeatureType = {
     Boolean: "boolean",
     Event: "event",

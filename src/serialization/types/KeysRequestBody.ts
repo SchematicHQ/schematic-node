@@ -14,7 +14,7 @@ export const KeysRequestBody: core.serialization.ObjectSchema<
 });
 
 export declare namespace KeysRequestBody {
-    interface Raw {
+    export interface Raw {
         keys: Record<string, string>;
     }
 }

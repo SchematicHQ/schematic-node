@@ -16,7 +16,7 @@ export const UpsertLineItemResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace UpsertLineItemResponse {
-    interface Raw {
+    export interface Raw {
         data: CrmLineItemResponseData.Raw;
         params: Record<string, unknown>;
     }

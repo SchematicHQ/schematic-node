@@ -17,7 +17,7 @@ export const ListWebhookEventsResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListWebhookEventsResponse {
-    interface Raw {
+    export interface Raw {
         data: WebhookEventDetailResponseData.Raw[];
         params: ListWebhookEventsParams.Raw;
     }

@@ -3,7 +3,6 @@
  */
 
 export type CreatePlanEntitlementRequestBodyValueType = "boolean" | "numeric" | "trait" | "unlimited";
-
 export const CreatePlanEntitlementRequestBodyValueType = {
     Boolean: "boolean",
     Numeric: "numeric",

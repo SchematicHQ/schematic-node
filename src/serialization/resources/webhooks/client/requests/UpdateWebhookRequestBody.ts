@@ -15,14 +15,14 @@ export const UpdateWebhookRequestBody: core.serialization.Schema<
     name: core.serialization.string().optional(),
     requestTypes: core.serialization.property(
         "request_types",
-        core.serialization.list(UpdateWebhookRequestBodyRequestTypesItem).optional()
+        core.serialization.list(UpdateWebhookRequestBodyRequestTypesItem).optional(),
     ),
     status: UpdateWebhookRequestBodyStatus.optional(),
     url: core.serialization.string().optional(),
 });
 
 export declare namespace UpdateWebhookRequestBody {
-    interface Raw {
+    export interface Raw {
         name?: string | null;
         request_types?: UpdateWebhookRequestBodyRequestTypesItem.Raw[] | null;
         status?: UpdateWebhookRequestBodyStatus.Raw | null;

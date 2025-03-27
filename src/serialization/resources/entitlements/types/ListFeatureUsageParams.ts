@@ -13,23 +13,23 @@ export const ListFeatureUsageParams: core.serialization.ObjectSchema<
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
     companyKeys: core.serialization.property(
         "company_keys",
-        core.serialization.record(core.serialization.string(), core.serialization.string()).optional()
+        core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
     ),
     featureIds: core.serialization.property(
         "feature_ids",
-        core.serialization.list(core.serialization.string()).optional()
+        core.serialization.list(core.serialization.string()).optional(),
     ),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
     q: core.serialization.string().optional(),
     withoutNegativeEntitlements: core.serialization.property(
         "without_negative_entitlements",
-        core.serialization.boolean().optional()
+        core.serialization.boolean().optional(),
     ),
 });
 
 export declare namespace ListFeatureUsageParams {
-    interface Raw {
+    export interface Raw {
         company_id?: string | null;
         company_keys?: Record<string, string> | null;
         feature_ids?: string[] | null;

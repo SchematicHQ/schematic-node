@@ -12,5 +12,5 @@ export const ListEntityTraitDefinitionsRequestEntityType: core.serialization.Sch
 > = core.serialization.enum_(["company", "user"]);
 
 export declare namespace ListEntityTraitDefinitionsRequestEntityType {
-    type Raw = "company" | "user";
+    export type Raw = "company" | "user";
 }

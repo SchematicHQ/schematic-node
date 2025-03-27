@@ -12,5 +12,5 @@ export const CreateOrUpdateConditionRequestBodyOperator: core.serialization.Sche
 > = core.serialization.enum_(["eq", "ne", "gt", "gte", "lt", "lte", "is_empty", "not_empty"]);
 
 export declare namespace CreateOrUpdateConditionRequestBodyOperator {
-    type Raw = "eq" | "ne" | "gt" | "gte" | "lt" | "lte" | "is_empty" | "not_empty";
+    export type Raw = "eq" | "ne" | "gt" | "gte" | "lt" | "lte" | "is_empty" | "not_empty";
 }

@@ -13,13 +13,13 @@ export const UpdateEnvironmentRequestBody: core.serialization.Schema<
 > = core.serialization.object({
     environmentType: core.serialization.property(
         "environment_type",
-        UpdateEnvironmentRequestBodyEnvironmentType.optional()
+        UpdateEnvironmentRequestBodyEnvironmentType.optional(),
     ),
     name: core.serialization.string().optional(),
 });
 
 export declare namespace UpdateEnvironmentRequestBody {
-    interface Raw {
+    export interface Raw {
         environment_type?: UpdateEnvironmentRequestBodyEnvironmentType.Raw | null;
         name?: string | null;
     }

@@ -20,7 +20,7 @@ export const CreateFlagRequestBody: core.serialization.ObjectSchema<
 });
 
 export declare namespace CreateFlagRequestBody {
-    interface Raw {
+    export interface Raw {
         default_value: boolean;
         description: string;
         feature_id?: string | null;

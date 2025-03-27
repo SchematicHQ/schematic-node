@@ -21,7 +21,7 @@ export const IssueTemporaryAccessTokenResponseData: core.serialization.ObjectSch
 });
 
 export declare namespace IssueTemporaryAccessTokenResponseData {
-    interface Raw {
+    export interface Raw {
         api_key_id: string;
         created_at: string;
         environment_id: string;

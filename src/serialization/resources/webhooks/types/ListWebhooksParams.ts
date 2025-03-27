@@ -16,7 +16,7 @@ export const ListWebhooksParams: core.serialization.ObjectSchema<
 });
 
 export declare namespace ListWebhooksParams {
-    interface Raw {
+    export interface Raw {
         limit?: number | null;
         offset?: number | null;
         q?: string | null;

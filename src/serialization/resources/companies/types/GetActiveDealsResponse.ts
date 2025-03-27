@@ -17,7 +17,7 @@ export const GetActiveDealsResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace GetActiveDealsResponse {
-    interface Raw {
+    export interface Raw {
         data: CompanyCrmDealsResponseData.Raw[];
         params: GetActiveDealsParams.Raw;
     }

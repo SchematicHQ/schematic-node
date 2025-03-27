@@ -15,7 +15,7 @@ export const CreateOrUpdateRuleRequestBody: core.serialization.ObjectSchema<
 > = core.serialization.object({
     conditionGroups: core.serialization.property(
         "condition_groups",
-        core.serialization.list(CreateOrUpdateConditionGroupRequestBody)
+        core.serialization.list(CreateOrUpdateConditionGroupRequestBody),
     ),
     conditions: core.serialization.list(CreateOrUpdateConditionRequestBody),
     id: core.serialization.string().optional(),
@@ -26,7 +26,7 @@ export const CreateOrUpdateRuleRequestBody: core.serialization.ObjectSchema<
 });
 
 export declare namespace CreateOrUpdateRuleRequestBody {
-    interface Raw {
+    export interface Raw {
         condition_groups: CreateOrUpdateConditionGroupRequestBody.Raw[];
         conditions: CreateOrUpdateConditionRequestBody.Raw[];
         id?: string | null;

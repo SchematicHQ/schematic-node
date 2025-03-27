@@ -6,7 +6,6 @@
  * Filter by plan type
  */
 export type ListPlansRequestPlanType = "plan" | "add_on";
-
 export const ListPlansRequestPlanType = {
     Plan: "plan",
     AddOn: "add_on",

@@ -16,7 +16,7 @@ export const CreateApiKeyResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace CreateApiKeyResponse {
-    interface Raw {
+    export interface Raw {
         data: ApiKeyCreateResponseData.Raw;
         params: Record<string, unknown>;
     }

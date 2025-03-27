@@ -12,5 +12,5 @@ export const UpdateCompanyOverrideRequestBodyMetricPeriodMonthReset: core.serial
 > = core.serialization.enum_(["first_of_month", "billing_cycle"]);
 
 export declare namespace UpdateCompanyOverrideRequestBodyMetricPeriodMonthReset {
-    type Raw = "first_of_month" | "billing_cycle";
+    export type Raw = "first_of_month" | "billing_cycle";
 }

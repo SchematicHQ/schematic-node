@@ -17,7 +17,7 @@ export const GetFeatureUsageByCompanyResponse: core.serialization.ObjectSchema<
 });
 
 export declare namespace GetFeatureUsageByCompanyResponse {
-    interface Raw {
+    export interface Raw {
         data: FeatureUsageDetailResponseData.Raw;
         params: GetFeatureUsageByCompanyParams.Raw;
     }

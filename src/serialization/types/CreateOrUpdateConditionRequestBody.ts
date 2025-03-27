@@ -20,11 +20,11 @@ export const CreateOrUpdateConditionRequestBody: core.serialization.ObjectSchema
     id: core.serialization.string().optional(),
     metricPeriod: core.serialization.property(
         "metric_period",
-        CreateOrUpdateConditionRequestBodyMetricPeriod.optional()
+        CreateOrUpdateConditionRequestBodyMetricPeriod.optional(),
     ),
     metricPeriodMonthReset: core.serialization.property(
         "metric_period_month_reset",
-        CreateOrUpdateConditionRequestBodyMetricPeriodMonthReset.optional()
+        CreateOrUpdateConditionRequestBodyMetricPeriodMonthReset.optional(),
     ),
     metricValue: core.serialization.property("metric_value", core.serialization.number().optional()),
     operator: CreateOrUpdateConditionRequestBodyOperator,
@@ -34,7 +34,7 @@ export const CreateOrUpdateConditionRequestBody: core.serialization.ObjectSchema
 });
 
 export declare namespace CreateOrUpdateConditionRequestBody {
-    interface Raw {
+    export interface Raw {
         comparison_trait_id?: string | null;
         condition_type: CreateOrUpdateConditionRequestBodyConditionType.Raw;
         event_subtype?: string | null;
