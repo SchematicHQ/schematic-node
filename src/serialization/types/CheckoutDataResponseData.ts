@@ -23,6 +23,11 @@ export const CheckoutDataResponseData: core.serialization.ObjectSchema<
     ),
     company: CompanyDetailResponseData.optional(),
     featureUsage: core.serialization.property("feature_usage", FeatureUsageDetailResponseData.optional()),
+    selectedPlan: core.serialization.property("selected_plan", PlanDetailResponseData.optional()),
+    selectedUsageBasedEntitlements: core.serialization.property(
+        "selected_usage_based_entitlements",
+        core.serialization.list(UsageBasedEntitlementResponseData)
+    ),
     subscription: CompanySubscriptionResponseData.optional(),
 });
 
@@ -33,6 +38,8 @@ export declare namespace CheckoutDataResponseData {
         active_usage_based_entitlements: UsageBasedEntitlementResponseData.Raw[];
         company?: CompanyDetailResponseData.Raw | null;
         feature_usage?: FeatureUsageDetailResponseData.Raw | null;
+        selected_plan?: PlanDetailResponseData.Raw | null;
+        selected_usage_based_entitlements: UsageBasedEntitlementResponseData.Raw[];
         subscription?: CompanySubscriptionResponseData.Raw | null;
     }
 }

@@ -5,6 +5,8 @@
 import * as Schematic from "../index";
 
 export interface CompanySubscriptionResponseData {
+    cancelAt?: Date;
+    cancelAtPeriodEnd: boolean;
     currency: string;
     customerExternalId: string;
     discounts: Schematic.BillingSubscriptionDiscountView[];

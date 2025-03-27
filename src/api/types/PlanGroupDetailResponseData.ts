@@ -9,9 +9,12 @@ import * as Schematic from "../index";
  */
 export interface PlanGroupDetailResponseData {
     addOns: Schematic.PlanGroupPlanDetailResponseData[];
+    customPlanConfig?: Schematic.CustomPlanViewConfigResponseData;
+    customPlanId?: string;
     defaultPlan?: Schematic.PlanGroupPlanDetailResponseData;
     defaultPlanId?: string;
     id: string;
+    orderedPlanList: Schematic.PlanGroupPlanEntitlementsOrder[];
     plans: Schematic.PlanGroupPlanDetailResponseData[];
     trialDays?: number;
     trialPaymentMethodRequired?: boolean;

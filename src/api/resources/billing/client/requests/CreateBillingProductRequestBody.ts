@@ -5,6 +5,7 @@
 /**
  * @example
  *     {
+ *         active: true,
  *         currency: "currency",
  *         externalId: "external_id",
  *         name: "name",
@@ -13,6 +14,7 @@
  *     }
  */
 export interface CreateBillingProductRequestBody {
+    active: boolean;
     currency: string;
     externalId: string;
     name: string;

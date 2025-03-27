@@ -21,6 +21,7 @@ export const BillingProductDetailResponseData: core.serialization.ObjectSchema<
     prices: core.serialization.list(BillingPriceResponseData),
     productId: core.serialization.property("product_id", core.serialization.string()),
     quantity: core.serialization.number(),
+    subscriptionCount: core.serialization.property("subscription_count", core.serialization.number()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
@@ -36,6 +37,7 @@ export declare namespace BillingProductDetailResponseData {
         prices: BillingPriceResponseData.Raw[];
         product_id: string;
         quantity: number;
+        subscription_count: number;
         updated_at: string;
     }
 }

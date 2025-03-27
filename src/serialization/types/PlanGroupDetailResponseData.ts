@@ -6,15 +6,23 @@ import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { PlanGroupPlanDetailResponseData } from "./PlanGroupPlanDetailResponseData";
+import { CustomPlanViewConfigResponseData } from "./CustomPlanViewConfigResponseData";
+import { PlanGroupPlanEntitlementsOrder } from "./PlanGroupPlanEntitlementsOrder";
 
 export const PlanGroupDetailResponseData: core.serialization.ObjectSchema<
     serializers.PlanGroupDetailResponseData.Raw,
     Schematic.PlanGroupDetailResponseData
 > = core.serialization.object({
     addOns: core.serialization.property("add_ons", core.serialization.list(PlanGroupPlanDetailResponseData)),
+    customPlanConfig: core.serialization.property("custom_plan_config", CustomPlanViewConfigResponseData.optional()),
+    customPlanId: core.serialization.property("custom_plan_id", core.serialization.string().optional()),
     defaultPlan: core.serialization.property("default_plan", PlanGroupPlanDetailResponseData.optional()),
     defaultPlanId: core.serialization.property("default_plan_id", core.serialization.string().optional()),
     id: core.serialization.string(),
+    orderedPlanList: core.serialization.property(
+        "ordered_plan_list",
+        core.serialization.list(PlanGroupPlanEntitlementsOrder)
+    ),
     plans: core.serialization.list(PlanGroupPlanDetailResponseData),
     trialDays: core.serialization.property("trial_days", core.serialization.number().optional()),
     trialPaymentMethodRequired: core.serialization.property(
@@ -26,9 +34,12 @@ export const PlanGroupDetailResponseData: core.serialization.ObjectSchema<
 export declare namespace PlanGroupDetailResponseData {
     interface Raw {
         add_ons: PlanGroupPlanDetailResponseData.Raw[];
+        custom_plan_config?: CustomPlanViewConfigResponseData.Raw | null;
+        custom_plan_id?: string | null;
         default_plan?: PlanGroupPlanDetailResponseData.Raw | null;
         default_plan_id?: string | null;
         id: string;
+        ordered_plan_list: PlanGroupPlanEntitlementsOrder.Raw[];
         plans: PlanGroupPlanDetailResponseData.Raw[];
         trial_days?: number | null;
         trial_payment_method_required?: boolean | null;

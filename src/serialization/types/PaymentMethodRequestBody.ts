@@ -21,10 +21,6 @@ export const PaymentMethodRequestBody: core.serialization.ObjectSchema<
     cardLast4: core.serialization.property("card_last4", core.serialization.string().optional()),
     customerExternalId: core.serialization.property("customer_external_id", core.serialization.string()),
     paymentMethodType: core.serialization.property("payment_method_type", core.serialization.string()),
-    subscriptionExternalId: core.serialization.property(
-        "subscription_external_id",
-        core.serialization.string().optional()
-    ),
 });
 
 export declare namespace PaymentMethodRequestBody {
@@ -40,6 +36,5 @@ export declare namespace PaymentMethodRequestBody {
         card_last4?: string | null;
         customer_external_id: string;
         payment_method_type: string;
-        subscription_external_id?: string | null;
     }
 }

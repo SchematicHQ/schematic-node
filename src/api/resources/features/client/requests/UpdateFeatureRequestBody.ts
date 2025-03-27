@@ -17,5 +17,7 @@ export interface UpdateFeatureRequestBody {
     lifecyclePhase?: string;
     maintainerId?: string;
     name?: string;
+    pluralName?: string;
+    singularName?: string;
     traitId?: string;
 }

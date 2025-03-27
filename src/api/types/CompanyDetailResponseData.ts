@@ -17,6 +17,7 @@ export interface CompanyDetailResponseData {
     logoUrl?: string;
     metrics: Schematic.CompanyEventPeriodMetricsResponseData[];
     name: string;
+    paymentMethods: Schematic.PaymentMethodResponseData[];
     plan?: Schematic.CompanyPlanWithBillingSubView;
     plans: Schematic.GenericPreviewObject[];
     /** A map of trait names to trait values */

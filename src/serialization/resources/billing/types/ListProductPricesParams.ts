@@ -5,6 +5,7 @@
 import * as serializers from "../../../index";
 import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
+import { ListProductPricesResponseParamsPriceUsageType } from "./ListProductPricesResponseParamsPriceUsageType";
 
 export const ListProductPricesParams: core.serialization.ObjectSchema<
     serializers.ListProductPricesParams.Raw,
@@ -14,7 +15,10 @@ export const ListProductPricesParams: core.serialization.ObjectSchema<
     limit: core.serialization.number().optional(),
     name: core.serialization.string().optional(),
     offset: core.serialization.number().optional(),
-    priceUsageType: core.serialization.property("price_usage_type", core.serialization.string().optional()),
+    priceUsageType: core.serialization.property(
+        "price_usage_type",
+        ListProductPricesResponseParamsPriceUsageType.optional()
+    ),
     q: core.serialization.string().optional(),
     withPricesOnly: core.serialization.property("with_prices_only", core.serialization.boolean().optional()),
     withZeroPrice: core.serialization.property("with_zero_price", core.serialization.boolean().optional()),
@@ -27,7 +31,7 @@ export declare namespace ListProductPricesParams {
         limit?: number | null;
         name?: string | null;
         offset?: number | null;
-        price_usage_type?: string | null;
+        price_usage_type?: ListProductPricesResponseParamsPriceUsageType.Raw | null;
         q?: string | null;
         with_prices_only?: boolean | null;
         with_zero_price?: boolean | null;

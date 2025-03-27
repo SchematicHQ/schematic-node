@@ -1,3 +1,4 @@
+export { type ListCouponsRequest } from "./ListCouponsRequest";
 export { type CreateCouponRequestBody } from "./CreateCouponRequestBody";
 export { type CreateBillingCustomerRequestBody } from "./CreateBillingCustomerRequestBody";
 export { type ListCustomersRequest } from "./ListCustomersRequest";

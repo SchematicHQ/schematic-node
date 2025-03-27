@@ -10,10 +10,16 @@ export const BillingSubscriptionResponseData: core.serialization.ObjectSchema<
     serializers.BillingSubscriptionResponseData.Raw,
     Schematic.BillingSubscriptionResponseData
 > = core.serialization.object({
+    cancelAt: core.serialization.property("cancel_at", core.serialization.number().optional()),
+    cancelAtPeriodEnd: core.serialization.property("cancel_at_period_end", core.serialization.boolean()),
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     currency: core.serialization.string(),
     customerExternalId: core.serialization.property("customer_external_id", core.serialization.string()),
+    defaultPaymentMethodId: core.serialization.property(
+        "default_payment_method_id",
+        core.serialization.string().optional()
+    ),
     expiredAt: core.serialization.property("expired_at", core.serialization.date().optional()),
     id: core.serialization.string(),
     interval: core.serialization.string(),
@@ -29,10 +35,13 @@ export const BillingSubscriptionResponseData: core.serialization.ObjectSchema<
 
 export declare namespace BillingSubscriptionResponseData {
     interface Raw {
+        cancel_at?: number | null;
+        cancel_at_period_end: boolean;
         company_id?: string | null;
         created_at: string;
         currency: string;
         customer_external_id: string;
+        default_payment_method_id?: string | null;
         expired_at?: string | null;
         id: string;
         interval: string;

@@ -15,5 +15,6 @@ export interface BillingProductDetailResponseData {
     prices: Schematic.BillingPriceResponseData[];
     productId: string;
     quantity: number;
+    subscriptionCount: number;
     updatedAt: Date;
 }

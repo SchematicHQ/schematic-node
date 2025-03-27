@@ -3,10 +3,13 @@
  */
 
 export interface BillingSubscriptionResponseData {
+    cancelAt?: number;
+    cancelAtPeriodEnd: boolean;
     companyId?: string;
     createdAt: Date;
     currency: string;
     customerExternalId: string;
+    defaultPaymentMethodId?: string;
     expiredAt?: Date;
     id: string;
     interval: string;

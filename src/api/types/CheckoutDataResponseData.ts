@@ -5,7 +5,7 @@
 import * as Schematic from "../index";
 
 /**
- * The returned resource
+ * The requested resource
  */
 export interface CheckoutDataResponseData {
     activeAddOns: Schematic.PlanDetailResponseData[];
@@ -13,5 +13,7 @@ export interface CheckoutDataResponseData {
     activeUsageBasedEntitlements: Schematic.UsageBasedEntitlementResponseData[];
     company?: Schematic.CompanyDetailResponseData;
     featureUsage?: Schematic.FeatureUsageDetailResponseData;
+    selectedPlan?: Schematic.PlanDetailResponseData;
+    selectedUsageBasedEntitlements: Schematic.UsageBasedEntitlementResponseData[];
     subscription?: Schematic.CompanySubscriptionResponseData;
 }

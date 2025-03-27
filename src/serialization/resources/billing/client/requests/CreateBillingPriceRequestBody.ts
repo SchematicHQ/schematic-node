@@ -5,30 +5,39 @@
 import * as serializers from "../../../../index";
 import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
+import { CreateBillingPriceTierRequestBody } from "../../../../types/CreateBillingPriceTierRequestBody";
+import { CreateBillingPriceRequestBodyTierMode } from "../../types/CreateBillingPriceRequestBodyTierMode";
+import { CreateBillingPriceRequestBodyUsageType } from "../../types/CreateBillingPriceRequestBodyUsageType";
 
 export const CreateBillingPriceRequestBody: core.serialization.Schema<
     serializers.CreateBillingPriceRequestBody.Raw,
     Schematic.CreateBillingPriceRequestBody
 > = core.serialization.object({
     currency: core.serialization.string(),
+    externalAccountId: core.serialization.property("external_account_id", core.serialization.string()),
     interval: core.serialization.string(),
     isActive: core.serialization.property("is_active", core.serialization.boolean()),
     meterId: core.serialization.property("meter_id", core.serialization.string().optional()),
     price: core.serialization.number(),
     priceExternalId: core.serialization.property("price_external_id", core.serialization.string()),
+    priceTiers: core.serialization.property("price_tiers", core.serialization.list(CreateBillingPriceTierRequestBody)),
     productExternalId: core.serialization.property("product_external_id", core.serialization.string()),
-    usageType: core.serialization.property("usage_type", core.serialization.string()),
+    tierMode: core.serialization.property("tier_mode", CreateBillingPriceRequestBodyTierMode.optional()),
+    usageType: core.serialization.property("usage_type", CreateBillingPriceRequestBodyUsageType),
 });
 
 export declare namespace CreateBillingPriceRequestBody {
     interface Raw {
         currency: string;
+        external_account_id: string;
         interval: string;
         is_active: boolean;
         meter_id?: string | null;
         price: number;
         price_external_id: string;
+        price_tiers: CreateBillingPriceTierRequestBody.Raw[];
         product_external_id: string;
-        usage_type: string;
+        tier_mode?: CreateBillingPriceRequestBodyTierMode.Raw | null;
+        usage_type: CreateBillingPriceRequestBodyUsageType.Raw;
     }
 }

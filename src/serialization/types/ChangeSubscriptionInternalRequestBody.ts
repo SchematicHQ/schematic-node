@@ -14,6 +14,7 @@ export const ChangeSubscriptionInternalRequestBody: core.serialization.ObjectSch
 > = core.serialization.object({
     addOnIds: core.serialization.property("add_on_ids", core.serialization.list(UpdateAddOnRequestBody)),
     companyId: core.serialization.property("company_id", core.serialization.string()),
+    couponExternalId: core.serialization.property("coupon_external_id", core.serialization.string().optional()),
     newPlanId: core.serialization.property("new_plan_id", core.serialization.string()),
     newPriceId: core.serialization.property("new_price_id", core.serialization.string()),
     payInAdvance: core.serialization.property("pay_in_advance", core.serialization.list(UpdatePayInAdvanceRequestBody)),
@@ -25,6 +26,7 @@ export declare namespace ChangeSubscriptionInternalRequestBody {
     interface Raw {
         add_on_ids: UpdateAddOnRequestBody.Raw[];
         company_id: string;
+        coupon_external_id?: string | null;
         new_plan_id: string;
         new_price_id: string;
         pay_in_advance: UpdatePayInAdvanceRequestBody.Raw[];

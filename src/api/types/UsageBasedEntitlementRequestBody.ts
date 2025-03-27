@@ -5,5 +5,6 @@
 export interface UsageBasedEntitlementRequestBody {
     monthlyMeteredPriceId?: string;
     priceBehavior?: string;
+    softLimit?: number;
     yearlyMeteredPriceId?: string;
 }

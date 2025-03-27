@@ -13,6 +13,7 @@ export const ChangeSubscriptionRequestBody: core.serialization.ObjectSchema<
     Schematic.ChangeSubscriptionRequestBody
 > = core.serialization.object({
     addOnIds: core.serialization.property("add_on_ids", core.serialization.list(UpdateAddOnRequestBody)),
+    couponExternalId: core.serialization.property("coupon_external_id", core.serialization.string().optional()),
     newPlanId: core.serialization.property("new_plan_id", core.serialization.string()),
     newPriceId: core.serialization.property("new_price_id", core.serialization.string()),
     payInAdvance: core.serialization.property("pay_in_advance", core.serialization.list(UpdatePayInAdvanceRequestBody)),
@@ -23,6 +24,7 @@ export const ChangeSubscriptionRequestBody: core.serialization.ObjectSchema<
 export declare namespace ChangeSubscriptionRequestBody {
     interface Raw {
         add_on_ids: UpdateAddOnRequestBody.Raw[];
+        coupon_external_id?: string | null;
         new_plan_id: string;
         new_price_id: string;
         pay_in_advance: UpdatePayInAdvanceRequestBody.Raw[];

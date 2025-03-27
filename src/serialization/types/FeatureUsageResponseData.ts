@@ -30,6 +30,7 @@ export const FeatureUsageResponseData: core.serialization.ObjectSchema<
     period: core.serialization.string().optional(),
     plan: PlanResponseData.optional(),
     priceBehavior: core.serialization.property("price_behavior", core.serialization.string().optional()),
+    softLimit: core.serialization.property("soft_limit", core.serialization.number().optional()),
     usage: core.serialization.number().optional(),
     yearlyUsageBasedPrice: core.serialization.property("yearly_usage_based_price", BillingPriceView.optional()),
 });
@@ -49,6 +50,7 @@ export declare namespace FeatureUsageResponseData {
         period?: string | null;
         plan?: PlanResponseData.Raw | null;
         price_behavior?: string | null;
+        soft_limit?: number | null;
         usage?: number | null;
         yearly_usage_based_price?: BillingPriceView.Raw | null;
     }

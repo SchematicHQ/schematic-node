@@ -19,6 +19,7 @@ export interface CreatePlanEntitlementRequestBody {
     monthlyMeteredPriceId?: string;
     planId: string;
     priceBehavior?: string;
+    softLimit?: number;
     valueBool?: boolean;
     valueNumeric?: number;
     valueTraitId?: string;

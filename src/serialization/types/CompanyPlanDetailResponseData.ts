@@ -6,6 +6,7 @@ import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { BillingProductDetailResponseData } from "./BillingProductDetailResponseData";
+import { CustomPlanConfig } from "./CustomPlanConfig";
 import { PlanEntitlementResponseData } from "./PlanEntitlementResponseData";
 import { FeatureDetailResponseData } from "./FeatureDetailResponseData";
 import { BillingPriceResponseData } from "./BillingPriceResponseData";
@@ -20,11 +21,14 @@ export const CompanyPlanDetailResponseData: core.serialization.ObjectSchema<
     companyCount: core.serialization.property("company_count", core.serialization.number()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     current: core.serialization.boolean(),
+    custom: core.serialization.boolean(),
+    customPlanConfig: core.serialization.property("custom_plan_config", CustomPlanConfig.optional()),
     description: core.serialization.string(),
     entitlements: core.serialization.list(PlanEntitlementResponseData),
     features: core.serialization.list(FeatureDetailResponseData),
     icon: core.serialization.string(),
     id: core.serialization.string(),
+    isCustom: core.serialization.property("is_custom", core.serialization.boolean()),
     isDefault: core.serialization.property("is_default", core.serialization.boolean()),
     isFree: core.serialization.property("is_free", core.serialization.boolean()),
     isTrialable: core.serialization.property("is_trialable", core.serialization.boolean()),
@@ -45,11 +49,14 @@ export declare namespace CompanyPlanDetailResponseData {
         company_count: number;
         created_at: string;
         current: boolean;
+        custom: boolean;
+        custom_plan_config?: CustomPlanConfig.Raw | null;
         description: string;
         entitlements: PlanEntitlementResponseData.Raw[];
         features: FeatureDetailResponseData.Raw[];
         icon: string;
         id: string;
+        is_custom: boolean;
         is_default: boolean;
         is_free: boolean;
         is_trialable: boolean;

@@ -10,6 +10,7 @@ import { BillingSubscriptionView } from "./BillingSubscriptionView";
 import { EntityTraitDetailResponseData } from "./EntityTraitDetailResponseData";
 import { EntityKeyDetailResponseData } from "./EntityKeyDetailResponseData";
 import { CompanyEventPeriodMetricsResponseData } from "./CompanyEventPeriodMetricsResponseData";
+import { PaymentMethodResponseData } from "./PaymentMethodResponseData";
 import { GenericPreviewObject } from "./GenericPreviewObject";
 
 export const CompanyDetailResponseData: core.serialization.ObjectSchema<
@@ -31,6 +32,7 @@ export const CompanyDetailResponseData: core.serialization.ObjectSchema<
     logoUrl: core.serialization.property("logo_url", core.serialization.string().optional()),
     metrics: core.serialization.list(CompanyEventPeriodMetricsResponseData),
     name: core.serialization.string(),
+    paymentMethods: core.serialization.property("payment_methods", core.serialization.list(PaymentMethodResponseData)),
     plan: CompanyPlanWithBillingSubView.optional(),
     plans: core.serialization.list(GenericPreviewObject),
     traits: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
@@ -52,6 +54,7 @@ export declare namespace CompanyDetailResponseData {
         logo_url?: string | null;
         metrics: CompanyEventPeriodMetricsResponseData.Raw[];
         name: string;
+        payment_methods: PaymentMethodResponseData.Raw[];
         plan?: CompanyPlanWithBillingSubView.Raw | null;
         plans: GenericPreviewObject.Raw[];
         traits?: Record<string, unknown> | null;

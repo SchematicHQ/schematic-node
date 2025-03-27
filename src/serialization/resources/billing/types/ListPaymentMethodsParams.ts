@@ -14,10 +14,6 @@ export const ListPaymentMethodsParams: core.serialization.ObjectSchema<
     customerExternalId: core.serialization.property("customer_external_id", core.serialization.string().optional()),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
-    subscriptionExternalId: core.serialization.property(
-        "subscription_external_id",
-        core.serialization.string().optional()
-    ),
 });
 
 export declare namespace ListPaymentMethodsParams {
@@ -26,6 +22,5 @@ export declare namespace ListPaymentMethodsParams {
         customer_external_id?: string | null;
         limit?: number | null;
         offset?: number | null;
-        subscription_external_id?: string | null;
     }
 }

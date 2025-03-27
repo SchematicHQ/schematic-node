@@ -23,5 +23,4 @@ export interface CreatePaymentMethodRequestBody {
     customerExternalId: string;
     externalId: string;
     paymentMethodType: string;
-    subscriptionExternalId?: string;
 }

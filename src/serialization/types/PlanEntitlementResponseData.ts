@@ -31,6 +31,7 @@ export const PlanEntitlementResponseData: core.serialization.ObjectSchema<
     priceBehavior: core.serialization.property("price_behavior", core.serialization.string().optional()),
     ruleId: core.serialization.property("rule_id", core.serialization.string()),
     ruleIdUsageExceeded: core.serialization.property("rule_id_usage_exceeded", core.serialization.string().optional()),
+    softLimit: core.serialization.property("soft_limit", core.serialization.number().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
@@ -55,6 +56,7 @@ export declare namespace PlanEntitlementResponseData {
         price_behavior?: string | null;
         rule_id: string;
         rule_id_usage_exceeded?: string | null;
+        soft_limit?: number | null;
         updated_at: string;
         value_bool?: boolean | null;
         value_numeric?: number | null;

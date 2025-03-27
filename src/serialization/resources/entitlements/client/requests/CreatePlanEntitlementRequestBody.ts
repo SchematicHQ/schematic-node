@@ -25,6 +25,7 @@ export const CreatePlanEntitlementRequestBody: core.serialization.Schema<
     ),
     planId: core.serialization.property("plan_id", core.serialization.string()),
     priceBehavior: core.serialization.property("price_behavior", core.serialization.string().optional()),
+    softLimit: core.serialization.property("soft_limit", core.serialization.number().optional()),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
     valueTraitId: core.serialization.property("value_trait_id", core.serialization.string().optional()),
@@ -43,6 +44,7 @@ export declare namespace CreatePlanEntitlementRequestBody {
         monthly_metered_price_id?: string | null;
         plan_id: string;
         price_behavior?: string | null;
+        soft_limit?: number | null;
         value_bool?: boolean | null;
         value_numeric?: number | null;
         value_trait_id?: string | null;

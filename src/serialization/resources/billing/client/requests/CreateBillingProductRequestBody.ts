@@ -10,6 +10,7 @@ export const CreateBillingProductRequestBody: core.serialization.Schema<
     serializers.CreateBillingProductRequestBody.Raw,
     Schematic.CreateBillingProductRequestBody
 > = core.serialization.object({
+    active: core.serialization.boolean(),
     currency: core.serialization.string(),
     externalId: core.serialization.property("external_id", core.serialization.string()),
     name: core.serialization.string(),
@@ -19,6 +20,7 @@ export const CreateBillingProductRequestBody: core.serialization.Schema<
 
 export declare namespace CreateBillingProductRequestBody {
     interface Raw {
+        active: boolean;
         currency: string;
         external_id: string;
         name: string;

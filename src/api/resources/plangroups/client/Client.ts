@@ -50,8 +50,8 @@ export class Plangroups {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -149,7 +149,9 @@ export class Plangroups {
      * @example
      *     await client.plangroups.createPlanGroup({
      *         addOnIds: ["add_on_ids"],
-     *         planIds: ["plan_ids"]
+     *         orderedPlans: [{
+     *                 planId: "plan_id"
+     *             }]
      *     })
      */
     public async createPlanGroup(
@@ -165,8 +167,8 @@ export class Plangroups {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -267,7 +269,9 @@ export class Plangroups {
      * @example
      *     await client.plangroups.updatePlanGroup("plan_group_id", {
      *         addOnIds: ["add_on_ids"],
-     *         planIds: ["plan_ids"]
+     *         orderedPlans: [{
+     *                 planId: "plan_id"
+     *             }]
      *     })
      */
     public async updatePlanGroup(
@@ -284,8 +288,8 @@ export class Plangroups {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.9",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.9",
+                "X-Fern-SDK-Version": "1.1.10",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

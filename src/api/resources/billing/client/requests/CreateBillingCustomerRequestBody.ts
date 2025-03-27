@@ -16,6 +16,7 @@
  */
 export interface CreateBillingCustomerRequestBody {
     companyId?: string;
+    defaultPaymentMethodId?: string;
     email: string;
     externalId: string;
     failedToImport: boolean;

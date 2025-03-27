@@ -19,6 +19,7 @@ export interface PlanEntitlementResponseData {
     priceBehavior?: string;
     ruleId: string;
     ruleIdUsageExceeded?: string;
+    softLimit?: number;
     updatedAt: Date;
     valueBool?: boolean;
     valueNumeric?: number;

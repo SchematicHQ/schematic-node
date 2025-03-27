@@ -7,6 +7,7 @@ export interface WebhookResponseData {
     id: string;
     name: string;
     requestTypes: string[];
+    secret: string;
     status: string;
     updatedAt: Date;
     url: string;

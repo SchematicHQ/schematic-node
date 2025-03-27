@@ -19,6 +19,8 @@ export const FeatureResponseData: core.serialization.ObjectSchema<
     lifecyclePhase: core.serialization.property("lifecycle_phase", core.serialization.string().optional()),
     maintainerId: core.serialization.property("maintainer_id", core.serialization.string().optional()),
     name: core.serialization.string(),
+    pluralName: core.serialization.property("plural_name", core.serialization.string().optional()),
+    singularName: core.serialization.property("singular_name", core.serialization.string().optional()),
     traitId: core.serialization.property("trait_id", core.serialization.string().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
@@ -34,6 +36,8 @@ export declare namespace FeatureResponseData {
         lifecycle_phase?: string | null;
         maintainer_id?: string | null;
         name: string;
+        plural_name?: string | null;
+        singular_name?: string | null;
         trait_id?: string | null;
         updated_at: string;
     }
