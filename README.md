@@ -85,6 +85,8 @@ client.close();
 
 ## Usage examples
 
+A number of these examples use `keys` to identify companies and users. Learn more about keys [here](https://docs.schematichq.com/developer_resources/key_management).
+
 ### Sending identify events
 
 Create or update users and companies using identify events.
