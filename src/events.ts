@@ -4,12 +4,16 @@ import { ConsoleLogger, Logger } from "./logger";
 
 const DEFAULT_FLUSH_INTERVAL = 1000; // 1 second
 const DEFAULT_MAX_SIZE = 1000; // 1000 items
+const DEFAULT_MAX_RETRIES = 3;
+const DEFAULT_INITIAL_RETRY_DELAY = 1000; // 1 second in milliseconds
 
 interface EventBufferOptions {
     interval?: number;
     logger?: Logger;
     maxSize?: number;
     offline?: boolean;
+    maxRetries?: number;
+    initialRetryDelay?: number;
 }
 
 class EventBuffer {
@@ -20,6 +24,8 @@ class EventBuffer {
     private logger: Logger;
     private maxSize: number;
     private offline: boolean;
+    private maxRetries: number;
+    private initialRetryDelay: number;
     private shutdown: boolean = false;
     private stopped: boolean = false;
 
@@ -29,12 +35,16 @@ class EventBuffer {
             maxSize = DEFAULT_MAX_SIZE,
             interval = DEFAULT_FLUSH_INTERVAL,
             offline = false,
+            maxRetries = DEFAULT_MAX_RETRIES,
+            initialRetryDelay = DEFAULT_INITIAL_RETRY_DELAY,
         } = opts || {};
         this.eventsApi = eventsApi;
         this.interval = interval;
         this.logger = logger;
         this.maxSize = maxSize;
         this.offline = offline;
+        this.maxRetries = maxRetries;
+        this.initialRetryDelay = initialRetryDelay;
 
         this.startPeriodicFlush();
     }
@@ -47,10 +57,50 @@ class EventBuffer {
         const events = [...this.events];
         this.events = [];
 
-        try {
-            await this.eventsApi.createEventBatch({ events });
-        } catch (err) {
-            this.logger.error("Failed to flush events", err);
+        // Initialize retry counter and success flag
+        let retryCount = 0;
+        let success = false;
+        let lastError: any = null;
+
+        // Try with retries and exponential backoff
+        while (retryCount <= this.maxRetries && !success) {
+            try {
+                if (retryCount > 0) {
+                    // Log retry attempt
+                    this.logger.info(`Retrying event batch submission (attempt ${retryCount} of ${this.maxRetries})`);
+                }
+
+                // Attempt to send events
+                await this.eventsApi.createEventBatch({ events });
+                success = true;
+            } catch (err) {
+                lastError = err;
+                retryCount++;
+
+                if (retryCount <= this.maxRetries) {
+                    // Calculate backoff with jitter
+                    const delay = this.initialRetryDelay * Math.pow(2, retryCount - 1);
+                    const jitter = Math.random() * 0.1 * delay; // 10% jitter
+                    const waitTime = delay + jitter;
+
+                    this.logger.warn(
+                        `Event batch submission failed: ${err}. Retrying in ${(waitTime / 1000).toFixed(2)} seconds...`
+                    );
+
+                    // Wait before retry
+                    await new Promise((resolve) => setTimeout(resolve, waitTime));
+                }
+            }
+        }
+
+        // After all retries, if still not successful, log the error
+        if (!success) {
+            this.logger.error(
+                `Event batch submission failed after ${this.maxRetries} retries:`,
+                lastError
+            );
+        } else if (retryCount > 0) {
+            this.logger.info(`Event batch submission succeeded after ${retryCount} retries`);
         }
     }
 
