@@ -1,11 +1,13 @@
 import { APIResponse } from "./APIResponse";
 import { Fetcher, FetchFunction } from "./Fetcher";
+import { RawResponse, toRawResponse, unknownRawResponse, abortRawResponse } from "./RawResponse";
 import { createRequestUrl } from "./createRequestUrl";
 import { getFetchFn } from "./getFetchFn";
 import { getRequestBody } from "./getRequestBody";
 import { getResponseBody } from "./getResponseBody";
 import { makeRequest } from "./makeRequest";
 import { requestWithRetries } from "./requestWithRetries";
+import { Headers } from "./Headers";
 
 export function provideFetcher(defaultHeaders?: Record<string, string>): FetchFunction {
     return async function fetcherImpl<R = unknown>(args: Fetcher.Args): Promise<APIResponse<R, Fetcher.Error>> {
@@ -50,12 +52,14 @@ export function provideFetcher(defaultHeaders?: Record<string, string>): FetchFu
                 args.maxRetries
             );
             let responseBody = await getResponseBody(response, args.responseType);
+            const rawResponse = toRawResponse(response);
 
             if (response.status >= 200 && response.status < 400) {
                 return {
                     ok: true,
                     body: responseBody as R,
                     headers: response.headers,
+                    rawResponse,
                 };
             } else {
                 return {
@@ -65,6 +69,7 @@ export function provideFetcher(defaultHeaders?: Record<string, string>): FetchFu
                         statusCode: response.status,
                         body: responseBody,
                     },
+                    rawResponse,
                 };
             }
         } catch (error) {
@@ -75,6 +80,7 @@ export function provideFetcher(defaultHeaders?: Record<string, string>): FetchFu
                         reason: "unknown",
                         errorMessage: "The user aborted a request",
                     },
+                    rawResponse: abortRawResponse,
                 };
             } else if (error instanceof Error && error.name === "AbortError") {
                 return {
@@ -82,6 +88,7 @@ export function provideFetcher(defaultHeaders?: Record<string, string>): FetchFu
                     error: {
                         reason: "timeout",
                     },
+                    rawResponse: abortRawResponse,
                 };
             } else if (error instanceof Error) {
                 return {
@@ -90,6 +97,7 @@ export function provideFetcher(defaultHeaders?: Record<string, string>): FetchFu
                         reason: "unknown",
                         errorMessage: error.message,
                     },
+                    rawResponse: unknownRawResponse,
                 };
             }
 
@@ -99,6 +107,7 @@ export function provideFetcher(defaultHeaders?: Record<string, string>): FetchFu
                     reason: "unknown",
                     errorMessage: JSON.stringify(error),
                 },
+                rawResponse: unknownRawResponse,
             };
         }
     };
@@ -110,6 +119,14 @@ async function offlineFetcherImpl<R = unknown>(_args: Fetcher.Args): Promise<API
         body: {} as R,
         headers: {
             "Content-Type": "application/json",
+        },
+        rawResponse: {
+            headers: new Headers(),
+            redirected: false,
+            status: 200,
+            statusText: "OK",
+            type: "basic",
+            url: "",
         },
     };
 }

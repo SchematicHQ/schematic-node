@@ -1,3 +1,6 @@
+// Define HeadersIterator type
+type HeadersIterator<T> = IterableIterator<T>;
+
 let Headers: typeof globalThis.Headers;
 
 if (typeof globalThis.Headers !== "undefined") {
