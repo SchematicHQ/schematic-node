@@ -10,8 +10,15 @@ export const UpsertUserRequestBody: core.serialization.ObjectSchema<
     serializers.UpsertUserRequestBody.Raw,
     Schematic.UpsertUserRequestBody
 > = core.serialization.object({
+    companies: core.serialization.list(
+        core.serialization.record(core.serialization.string(), core.serialization.string()),
+    ),
     company: core.serialization.record(core.serialization.string(), core.serialization.string()),
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
+    companyIds: core.serialization.property(
+        "company_ids",
+        core.serialization.list(core.serialization.string()).optional(),
+    ),
     id: core.serialization.string().optional(),
     keys: core.serialization.record(core.serialization.string(), core.serialization.string()),
     lastSeenAt: core.serialization.property("last_seen_at", core.serialization.date().optional()),
@@ -22,8 +29,10 @@ export const UpsertUserRequestBody: core.serialization.ObjectSchema<
 
 export declare namespace UpsertUserRequestBody {
     export interface Raw {
+        companies: Record<string, string>[];
         company: Record<string, string>;
         company_id?: string | null;
+        company_ids?: string[] | null;
         id?: string | null;
         keys: Record<string, string>;
         last_seen_at?: string | null;

@@ -7,6 +7,7 @@ import * as Schematic from "../../../../index";
 /**
  * @example
  *     {
+ *         billingScheme: "per_unit",
  *         currency: "currency",
  *         externalAccountId: "external_account_id",
  *         interval: "interval",
@@ -21,12 +22,15 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface CreateBillingPriceRequestBody {
+    billingScheme: Schematic.CreateBillingPriceRequestBodyBillingScheme;
     currency: string;
     externalAccountId: string;
     interval: string;
     isActive: boolean;
     meterId?: string;
+    packageSize?: number;
     price: number;
+    priceDecimal?: string;
     priceExternalId: string;
     priceTiers: Schematic.CreateBillingPriceTierRequestBody[];
     productExternalId: string;

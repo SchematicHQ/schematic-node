@@ -26,7 +26,11 @@ export type UpdateWebhookRequestBodyRequestTypesItem =
     | "feature.deleted"
     | "flag.deleted"
     | "test.send"
-    | "subscription.trial.ended";
+    | "subscription.trial.ended"
+    | "entitlement.limit.warning"
+    | "entitlement.limit.reached"
+    | "entitlement.soft_limit.warning"
+    | "entitlement.soft_limit.reached";
 export const UpdateWebhookRequestBodyRequestTypesItem = {
     CompanyUpdated: "company.updated",
     UserUpdated: "user.updated",
@@ -52,4 +56,8 @@ export const UpdateWebhookRequestBodyRequestTypesItem = {
     FlagDeleted: "flag.deleted",
     TestSend: "test.send",
     SubscriptionTrialEnded: "subscription.trial.ended",
+    EntitlementLimitWarning: "entitlement.limit.warning",
+    EntitlementLimitReached: "entitlement.limit.reached",
+    EntitlementSoftLimitWarning: "entitlement.soft_limit.warning",
+    EntitlementSoftLimitReached: "entitlement.soft_limit.reached",
 } as const;

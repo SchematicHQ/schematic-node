@@ -12,6 +12,7 @@ export const ListBillingProductsParams: core.serialization.ObjectSchema<
     Schematic.ListBillingProductsParams
 > = core.serialization.object({
     ids: core.serialization.list(core.serialization.string()).optional(),
+    isActive: core.serialization.property("is_active", core.serialization.boolean().optional()),
     limit: core.serialization.number().optional(),
     name: core.serialization.string().optional(),
     offset: core.serialization.number().optional(),
@@ -20,6 +21,7 @@ export const ListBillingProductsParams: core.serialization.ObjectSchema<
         ListBillingProductsResponseParamsPriceUsageType.optional(),
     ),
     q: core.serialization.string().optional(),
+    withOneTimeCharges: core.serialization.property("with_one_time_charges", core.serialization.boolean().optional()),
     withPricesOnly: core.serialization.property("with_prices_only", core.serialization.boolean().optional()),
     withZeroPrice: core.serialization.property("with_zero_price", core.serialization.boolean().optional()),
     withoutLinkedToPlan: core.serialization.property("without_linked_to_plan", core.serialization.boolean().optional()),
@@ -28,11 +30,13 @@ export const ListBillingProductsParams: core.serialization.ObjectSchema<
 export declare namespace ListBillingProductsParams {
     export interface Raw {
         ids?: string[] | null;
+        is_active?: boolean | null;
         limit?: number | null;
         name?: string | null;
         offset?: number | null;
         price_usage_type?: ListBillingProductsResponseParamsPriceUsageType.Raw | null;
         q?: string | null;
+        with_one_time_charges?: boolean | null;
         with_prices_only?: boolean | null;
         with_zero_price?: boolean | null;
         without_linked_to_plan?: boolean | null;

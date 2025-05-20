@@ -8,6 +8,7 @@ import * as core from "../../core";
 import { FeatureResponseData } from "./FeatureResponseData";
 import { BillingPriceView } from "./BillingPriceView";
 import { PlanResponseData } from "./PlanResponseData";
+import { BillingProductResponseData } from "./BillingProductResponseData";
 import { EntityTraitDefinitionResponseData } from "./EntityTraitDefinitionResponseData";
 
 export const PlanEntitlementResponseData: core.serialization.ObjectSchema<
@@ -33,6 +34,7 @@ export const PlanEntitlementResponseData: core.serialization.ObjectSchema<
     ruleIdUsageExceeded: core.serialization.property("rule_id_usage_exceeded", core.serialization.string().optional()),
     softLimit: core.serialization.property("soft_limit", core.serialization.number().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+    usageBasedProduct: core.serialization.property("usage_based_product", BillingProductResponseData.optional()),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
     valueTrait: core.serialization.property("value_trait", EntityTraitDefinitionResponseData.optional()),
@@ -58,6 +60,7 @@ export declare namespace PlanEntitlementResponseData {
         rule_id_usage_exceeded?: string | null;
         soft_limit?: number | null;
         updated_at: string;
+        usage_based_product?: BillingProductResponseData.Raw | null;
         value_bool?: boolean | null;
         value_numeric?: number | null;
         value_trait?: EntityTraitDefinitionResponseData.Raw | null;

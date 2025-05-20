@@ -3,8 +3,14 @@
  */
 
 export interface UsageBasedEntitlementRequestBody {
+    currency?: string;
     monthlyMeteredPriceId?: string;
+    monthlyUnitPrice?: number;
+    monthlyUnitPriceDecimal?: string;
+    overageBillingProductId?: string;
     priceBehavior?: string;
     softLimit?: number;
     yearlyMeteredPriceId?: string;
+    yearlyUnitPrice?: number;
+    yearlyUnitPriceDecimal?: string;
 }

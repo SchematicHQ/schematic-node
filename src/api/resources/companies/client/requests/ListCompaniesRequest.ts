@@ -28,6 +28,10 @@ export interface ListCompaniesRequest {
      */
     withoutPlan?: boolean;
     /**
+     * Filter companies that have a subscription
+     */
+    withSubscription?: boolean;
+    /**
      * Page limit (default 100)
      */
     limit?: number;

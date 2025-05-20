@@ -5,6 +5,7 @@
 import * as serializers from "../../../../index";
 import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
+import { CreateBillingPriceRequestBodyBillingScheme } from "../../types/CreateBillingPriceRequestBodyBillingScheme";
 import { CreateBillingPriceTierRequestBody } from "../../../../types/CreateBillingPriceTierRequestBody";
 import { CreateBillingPriceRequestBodyTierMode } from "../../types/CreateBillingPriceRequestBodyTierMode";
 import { CreateBillingPriceRequestBodyUsageType } from "../../types/CreateBillingPriceRequestBodyUsageType";
@@ -13,12 +14,15 @@ export const CreateBillingPriceRequestBody: core.serialization.Schema<
     serializers.CreateBillingPriceRequestBody.Raw,
     Schematic.CreateBillingPriceRequestBody
 > = core.serialization.object({
+    billingScheme: core.serialization.property("billing_scheme", CreateBillingPriceRequestBodyBillingScheme),
     currency: core.serialization.string(),
     externalAccountId: core.serialization.property("external_account_id", core.serialization.string()),
     interval: core.serialization.string(),
     isActive: core.serialization.property("is_active", core.serialization.boolean()),
     meterId: core.serialization.property("meter_id", core.serialization.string().optional()),
+    packageSize: core.serialization.property("package_size", core.serialization.number().optional()),
     price: core.serialization.number(),
+    priceDecimal: core.serialization.property("price_decimal", core.serialization.string().optional()),
     priceExternalId: core.serialization.property("price_external_id", core.serialization.string()),
     priceTiers: core.serialization.property("price_tiers", core.serialization.list(CreateBillingPriceTierRequestBody)),
     productExternalId: core.serialization.property("product_external_id", core.serialization.string()),
@@ -28,12 +32,15 @@ export const CreateBillingPriceRequestBody: core.serialization.Schema<
 
 export declare namespace CreateBillingPriceRequestBody {
     export interface Raw {
+        billing_scheme: CreateBillingPriceRequestBodyBillingScheme.Raw;
         currency: string;
         external_account_id: string;
         interval: string;
         is_active: boolean;
         meter_id?: string | null;
+        package_size?: number | null;
         price: number;
+        price_decimal?: string | null;
         price_external_id: string;
         price_tiers: CreateBillingPriceTierRequestBody.Raw[];
         product_external_id: string;

@@ -41,16 +41,24 @@ export class Companies {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
      *     await client.companies.listCompanies()
      */
-    public async listCompanies(
+    public listCompanies(
         request: Schematic.ListCompaniesRequest = {},
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.ListCompaniesResponse> {
-        const { ids, planId, q, withoutFeatureOverrideFor, withoutPlan, limit, offset } = request;
+    ): core.HttpResponsePromise<Schematic.ListCompaniesResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__listCompanies(request, requestOptions));
+    }
+
+    private async __listCompanies(
+        request: Schematic.ListCompaniesRequest = {},
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.ListCompaniesResponse>> {
+        const { ids, planId, q, withoutFeatureOverrideFor, withoutPlan, withSubscription, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (ids != null) {
             if (Array.isArray(ids)) {
@@ -74,6 +82,10 @@ export class Companies {
 
         if (withoutPlan != null) {
             _queryParams["without_plan"] = withoutPlan.toString();
+        }
+
+        if (withSubscription != null) {
+            _queryParams["with_subscription"] = withSubscription.toString();
         }
 
         if (limit != null) {
@@ -95,8 +107,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -110,13 +122,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ListCompaniesResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ListCompaniesResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -130,6 +145,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -140,6 +156,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -150,6 +167,18 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -160,11 +189,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -174,12 +205,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /companies.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -191,6 +224,7 @@ export class Companies {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
@@ -200,10 +234,17 @@ export class Companies {
      *         }
      *     })
      */
-    public async upsertCompany(
+    public upsertCompany(
         request: Schematic.UpsertCompanyRequestBody,
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.UpsertCompanyResponse> {
+    ): core.HttpResponsePromise<Schematic.UpsertCompanyResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__upsertCompany(request, requestOptions));
+    }
+
+    private async __upsertCompany(
+        request: Schematic.UpsertCompanyRequestBody,
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.UpsertCompanyResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -215,8 +256,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -230,13 +271,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.UpsertCompanyResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.UpsertCompanyResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -250,6 +294,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -260,6 +305,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -270,6 +316,18 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -280,11 +338,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -294,12 +354,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling POST /companies.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -316,10 +378,17 @@ export class Companies {
      * @example
      *     await client.companies.getCompany("company_id")
      */
-    public async getCompany(
+    public getCompany(
         companyId: string,
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.GetCompanyResponse> {
+    ): core.HttpResponsePromise<Schematic.GetCompanyResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getCompany(companyId, requestOptions));
+    }
+
+    private async __getCompany(
+        companyId: string,
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.GetCompanyResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -331,8 +400,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -345,13 +414,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.GetCompanyResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.GetCompanyResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -365,6 +437,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -375,6 +448,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 404:
                     throw new Schematic.NotFoundError(
@@ -385,6 +459,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -395,11 +470,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -409,12 +486,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /companies/{company_id}.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -426,15 +505,23 @@ export class Companies {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
      *     await client.companies.deleteCompany("company_id")
      */
-    public async deleteCompany(
+    public deleteCompany(
         companyId: string,
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.DeleteCompanyResponse> {
+    ): core.HttpResponsePromise<Schematic.DeleteCompanyResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__deleteCompany(companyId, requestOptions));
+    }
+
+    private async __deleteCompany(
+        companyId: string,
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.DeleteCompanyResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -446,8 +533,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -460,13 +547,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.DeleteCompanyResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.DeleteCompanyResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -480,6 +570,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -490,6 +581,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -500,6 +592,18 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -510,11 +614,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -524,12 +630,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling DELETE /companies/{company_id}.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -541,16 +649,24 @@ export class Companies {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
      *     await client.companies.countCompanies()
      */
-    public async countCompanies(
+    public countCompanies(
         request: Schematic.CountCompaniesRequest = {},
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.CountCompaniesResponse> {
-        const { ids, planId, q, withoutFeatureOverrideFor, withoutPlan, limit, offset } = request;
+    ): core.HttpResponsePromise<Schematic.CountCompaniesResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__countCompanies(request, requestOptions));
+    }
+
+    private async __countCompanies(
+        request: Schematic.CountCompaniesRequest = {},
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.CountCompaniesResponse>> {
+        const { ids, planId, q, withoutFeatureOverrideFor, withoutPlan, withSubscription, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (ids != null) {
             if (Array.isArray(ids)) {
@@ -574,6 +690,10 @@ export class Companies {
 
         if (withoutPlan != null) {
             _queryParams["without_plan"] = withoutPlan.toString();
+        }
+
+        if (withSubscription != null) {
+            _queryParams["with_subscription"] = withSubscription.toString();
         }
 
         if (limit != null) {
@@ -595,8 +715,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -610,13 +730,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.CountCompaniesResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.CountCompaniesResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -630,6 +753,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -640,6 +764,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -650,6 +775,18 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -660,11 +797,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -674,12 +813,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /companies/count.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -691,6 +832,7 @@ export class Companies {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
@@ -700,10 +842,17 @@ export class Companies {
      *         }
      *     })
      */
-    public async createCompany(
+    public createCompany(
         request: Schematic.UpsertCompanyRequestBody,
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.CreateCompanyResponse> {
+    ): core.HttpResponsePromise<Schematic.CreateCompanyResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__createCompany(request, requestOptions));
+    }
+
+    private async __createCompany(
+        request: Schematic.UpsertCompanyRequestBody,
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.CreateCompanyResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -715,8 +864,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -730,13 +879,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.CreateCompanyResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.CreateCompanyResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -750,6 +902,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -760,6 +913,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -770,6 +924,18 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -780,11 +946,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -794,12 +962,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling POST /companies/create.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -811,6 +981,7 @@ export class Companies {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
@@ -820,10 +991,17 @@ export class Companies {
      *         }
      *     })
      */
-    public async deleteCompanyByKeys(
+    public deleteCompanyByKeys(
         request: Schematic.KeysRequestBody,
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.DeleteCompanyByKeysResponse> {
+    ): core.HttpResponsePromise<Schematic.DeleteCompanyByKeysResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__deleteCompanyByKeys(request, requestOptions));
+    }
+
+    private async __deleteCompanyByKeys(
+        request: Schematic.KeysRequestBody,
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.DeleteCompanyByKeysResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -835,8 +1013,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -850,13 +1028,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.DeleteCompanyByKeysResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.DeleteCompanyByKeysResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -870,6 +1051,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -880,6 +1062,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -890,6 +1073,18 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -900,11 +1095,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -914,12 +1111,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling POST /companies/delete.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -936,16 +1135,21 @@ export class Companies {
      * @example
      *     await client.companies.lookupCompany({
      *         keys: {
-     *             "keys": {
-     *                 "key": "value"
-     *             }
+     *             "keys": "keys"
      *         }
      *     })
      */
-    public async lookupCompany(
+    public lookupCompany(
         request: Schematic.LookupCompanyRequest,
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.LookupCompanyResponse> {
+    ): core.HttpResponsePromise<Schematic.LookupCompanyResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__lookupCompany(request, requestOptions));
+    }
+
+    private async __lookupCompany(
+        request: Schematic.LookupCompanyRequest,
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.LookupCompanyResponse>> {
         const { keys } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         _queryParams["keys"] = toJson(keys);
@@ -960,8 +1164,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -975,13 +1179,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.LookupCompanyResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.LookupCompanyResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -995,6 +1202,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -1005,6 +1213,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 404:
                     throw new Schematic.NotFoundError(
@@ -1015,6 +1224,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -1025,11 +1235,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -1039,12 +1251,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /companies/lookup.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -1056,6 +1270,7 @@ export class Companies {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
@@ -1064,10 +1279,17 @@ export class Companies {
      *         dealStage: "deal_stage"
      *     })
      */
-    public async getActiveDeals(
+    public getActiveDeals(
         request: Schematic.GetActiveDealsRequest,
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.GetActiveDealsResponse> {
+    ): core.HttpResponsePromise<Schematic.GetActiveDealsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getActiveDeals(request, requestOptions));
+    }
+
+    private async __getActiveDeals(
+        request: Schematic.GetActiveDealsRequest,
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.GetActiveDealsResponse>> {
         const { companyId, dealStage, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         _queryParams["company_id"] = companyId;
@@ -1091,8 +1313,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1106,13 +1328,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.GetActiveDealsResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.GetActiveDealsResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -1126,6 +1351,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -1136,6 +1362,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -1146,6 +1373,18 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -1156,11 +1395,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -1170,12 +1411,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /company-crm-deals.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -1187,15 +1430,23 @@ export class Companies {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
      *     await client.companies.listCompanyMemberships()
      */
-    public async listCompanyMemberships(
+    public listCompanyMemberships(
         request: Schematic.ListCompanyMembershipsRequest = {},
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.ListCompanyMembershipsResponse> {
+    ): core.HttpResponsePromise<Schematic.ListCompanyMembershipsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__listCompanyMemberships(request, requestOptions));
+    }
+
+    private async __listCompanyMemberships(
+        request: Schematic.ListCompanyMembershipsRequest = {},
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.ListCompanyMembershipsResponse>> {
         const { companyId, userId, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (companyId != null) {
@@ -1225,8 +1476,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1240,13 +1491,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ListCompanyMembershipsResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ListCompanyMembershipsResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -1260,6 +1514,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -1270,6 +1525,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -1280,6 +1536,18 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -1290,11 +1558,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -1304,12 +1574,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /company-memberships.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -1321,6 +1593,7 @@ export class Companies {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
@@ -1329,10 +1602,17 @@ export class Companies {
      *         userId: "user_id"
      *     })
      */
-    public async getOrCreateCompanyMembership(
+    public getOrCreateCompanyMembership(
         request: Schematic.GetOrCreateCompanyMembershipRequestBody,
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.GetOrCreateCompanyMembershipResponse> {
+    ): core.HttpResponsePromise<Schematic.GetOrCreateCompanyMembershipResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getOrCreateCompanyMembership(request, requestOptions));
+    }
+
+    private async __getOrCreateCompanyMembership(
+        request: Schematic.GetOrCreateCompanyMembershipRequestBody,
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.GetOrCreateCompanyMembershipResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -1344,8 +1624,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1361,13 +1641,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.GetOrCreateCompanyMembershipResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.GetOrCreateCompanyMembershipResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -1381,6 +1664,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -1391,6 +1675,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -1401,6 +1686,18 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -1411,11 +1708,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -1425,12 +1724,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling POST /company-memberships.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -1442,15 +1743,25 @@ export class Companies {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
      *     await client.companies.deleteCompanyMembership("company_membership_id")
      */
-    public async deleteCompanyMembership(
+    public deleteCompanyMembership(
         companyMembershipId: string,
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.DeleteCompanyMembershipResponse> {
+    ): core.HttpResponsePromise<Schematic.DeleteCompanyMembershipResponse> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__deleteCompanyMembership(companyMembershipId, requestOptions),
+        );
+    }
+
+    private async __deleteCompanyMembership(
+        companyMembershipId: string,
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.DeleteCompanyMembershipResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -1462,8 +1773,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1476,13 +1787,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.DeleteCompanyMembershipResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.DeleteCompanyMembershipResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -1496,6 +1810,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -1506,6 +1821,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -1516,6 +1832,18 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -1526,11 +1854,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -1540,6 +1870,7 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError(
@@ -1548,6 +1879,7 @@ export class Companies {
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -1559,15 +1891,23 @@ export class Companies {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
      *     await client.companies.getActiveCompanySubscription()
      */
-    public async getActiveCompanySubscription(
+    public getActiveCompanySubscription(
         request: Schematic.GetActiveCompanySubscriptionRequest = {},
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.GetActiveCompanySubscriptionResponse> {
+    ): core.HttpResponsePromise<Schematic.GetActiveCompanySubscriptionResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getActiveCompanySubscription(request, requestOptions));
+    }
+
+    private async __getActiveCompanySubscription(
+        request: Schematic.GetActiveCompanySubscriptionRequest = {},
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.GetActiveCompanySubscriptionResponse>> {
         const { companyId, companyIds, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (companyId != null) {
@@ -1601,8 +1941,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1616,13 +1956,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.GetActiveCompanySubscriptionResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.GetActiveCompanySubscriptionResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -1636,6 +1979,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -1646,6 +1990,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -1656,6 +2001,18 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -1666,11 +2023,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -1680,12 +2039,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /company-subscriptions.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -1697,6 +2058,7 @@ export class Companies {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
@@ -1707,10 +2069,17 @@ export class Companies {
      *         trait: "trait"
      *     })
      */
-    public async upsertCompanyTrait(
+    public upsertCompanyTrait(
         request: Schematic.UpsertTraitRequestBody,
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.UpsertCompanyTraitResponse> {
+    ): core.HttpResponsePromise<Schematic.UpsertCompanyTraitResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__upsertCompanyTrait(request, requestOptions));
+    }
+
+    private async __upsertCompanyTrait(
+        request: Schematic.UpsertTraitRequestBody,
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.UpsertCompanyTraitResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -1722,8 +2091,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1737,13 +2106,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.UpsertCompanyTraitResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.UpsertCompanyTraitResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -1757,6 +2129,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -1767,6 +2140,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -1777,6 +2151,18 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -1787,11 +2173,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -1801,12 +2189,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling POST /company-traits.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -1818,15 +2208,23 @@ export class Companies {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
      *     await client.companies.listEntityKeyDefinitions()
      */
-    public async listEntityKeyDefinitions(
+    public listEntityKeyDefinitions(
         request: Schematic.ListEntityKeyDefinitionsRequest = {},
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.ListEntityKeyDefinitionsResponse> {
+    ): core.HttpResponsePromise<Schematic.ListEntityKeyDefinitionsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__listEntityKeyDefinitions(request, requestOptions));
+    }
+
+    private async __listEntityKeyDefinitions(
+        request: Schematic.ListEntityKeyDefinitionsRequest = {},
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.ListEntityKeyDefinitionsResponse>> {
         const { entityType, ids, q, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (entityType != null) {
@@ -1867,8 +2265,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1882,13 +2280,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ListEntityKeyDefinitionsResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ListEntityKeyDefinitionsResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -1902,6 +2303,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -1912,6 +2314,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -1922,6 +2325,18 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -1932,11 +2347,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -1946,12 +2363,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /entity-key-definitions.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -1963,15 +2382,23 @@ export class Companies {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
      *     await client.companies.countEntityKeyDefinitions()
      */
-    public async countEntityKeyDefinitions(
+    public countEntityKeyDefinitions(
         request: Schematic.CountEntityKeyDefinitionsRequest = {},
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.CountEntityKeyDefinitionsResponse> {
+    ): core.HttpResponsePromise<Schematic.CountEntityKeyDefinitionsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__countEntityKeyDefinitions(request, requestOptions));
+    }
+
+    private async __countEntityKeyDefinitions(
+        request: Schematic.CountEntityKeyDefinitionsRequest = {},
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.CountEntityKeyDefinitionsResponse>> {
         const { entityType, ids, q, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (entityType != null) {
@@ -2012,8 +2439,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2027,13 +2454,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.CountEntityKeyDefinitionsResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.CountEntityKeyDefinitionsResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -2047,6 +2477,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -2057,6 +2488,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -2067,6 +2499,18 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -2077,11 +2521,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -2091,6 +2537,7 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError(
@@ -2099,6 +2546,7 @@ export class Companies {
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -2110,15 +2558,23 @@ export class Companies {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
      *     await client.companies.listEntityTraitDefinitions()
      */
-    public async listEntityTraitDefinitions(
+    public listEntityTraitDefinitions(
         request: Schematic.ListEntityTraitDefinitionsRequest = {},
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.ListEntityTraitDefinitionsResponse> {
+    ): core.HttpResponsePromise<Schematic.ListEntityTraitDefinitionsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__listEntityTraitDefinitions(request, requestOptions));
+    }
+
+    private async __listEntityTraitDefinitions(
+        request: Schematic.ListEntityTraitDefinitionsRequest = {},
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.ListEntityTraitDefinitionsResponse>> {
         const { entityType, ids, q, traitType, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (entityType != null) {
@@ -2165,8 +2621,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2180,13 +2636,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ListEntityTraitDefinitionsResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ListEntityTraitDefinitionsResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -2200,6 +2659,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -2210,6 +2670,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -2220,6 +2681,18 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -2230,11 +2703,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -2244,12 +2719,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /entity-trait-definitions.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -2261,6 +2738,7 @@ export class Companies {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
@@ -2270,10 +2748,17 @@ export class Companies {
      *         traitType: "boolean"
      *     })
      */
-    public async getOrCreateEntityTraitDefinition(
+    public getOrCreateEntityTraitDefinition(
         request: Schematic.CreateEntityTraitDefinitionRequestBody,
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.GetOrCreateEntityTraitDefinitionResponse> {
+    ): core.HttpResponsePromise<Schematic.GetOrCreateEntityTraitDefinitionResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getOrCreateEntityTraitDefinition(request, requestOptions));
+    }
+
+    private async __getOrCreateEntityTraitDefinition(
+        request: Schematic.CreateEntityTraitDefinitionRequestBody,
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.GetOrCreateEntityTraitDefinitionResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -2285,8 +2770,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2302,13 +2787,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.GetOrCreateEntityTraitDefinitionResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.GetOrCreateEntityTraitDefinitionResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -2322,6 +2810,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -2332,6 +2821,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -2342,6 +2832,18 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -2352,11 +2854,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -2366,12 +2870,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling POST /entity-trait-definitions.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -2388,10 +2894,19 @@ export class Companies {
      * @example
      *     await client.companies.getEntityTraitDefinition("entity_trait_definition_id")
      */
-    public async getEntityTraitDefinition(
+    public getEntityTraitDefinition(
         entityTraitDefinitionId: string,
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.GetEntityTraitDefinitionResponse> {
+    ): core.HttpResponsePromise<Schematic.GetEntityTraitDefinitionResponse> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__getEntityTraitDefinition(entityTraitDefinitionId, requestOptions),
+        );
+    }
+
+    private async __getEntityTraitDefinition(
+        entityTraitDefinitionId: string,
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.GetEntityTraitDefinitionResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -2403,8 +2918,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2417,13 +2932,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.GetEntityTraitDefinitionResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.GetEntityTraitDefinitionResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -2437,6 +2955,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -2447,6 +2966,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 404:
                     throw new Schematic.NotFoundError(
@@ -2457,6 +2977,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -2467,11 +2988,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -2481,6 +3004,7 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError(
@@ -2489,6 +3013,7 @@ export class Companies {
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -2509,11 +3034,21 @@ export class Companies {
      *         traitType: "boolean"
      *     })
      */
-    public async updateEntityTraitDefinition(
+    public updateEntityTraitDefinition(
         entityTraitDefinitionId: string,
         request: Schematic.UpdateEntityTraitDefinitionRequestBody,
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.UpdateEntityTraitDefinitionResponse> {
+    ): core.HttpResponsePromise<Schematic.UpdateEntityTraitDefinitionResponse> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__updateEntityTraitDefinition(entityTraitDefinitionId, request, requestOptions),
+        );
+    }
+
+    private async __updateEntityTraitDefinition(
+        entityTraitDefinitionId: string,
+        request: Schematic.UpdateEntityTraitDefinitionRequestBody,
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.UpdateEntityTraitDefinitionResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -2525,8 +3060,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2542,13 +3077,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.UpdateEntityTraitDefinitionResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.UpdateEntityTraitDefinitionResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -2562,6 +3100,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -2572,6 +3111,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -2582,6 +3122,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 404:
                     throw new Schematic.NotFoundError(
@@ -2592,6 +3133,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -2602,11 +3144,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -2616,6 +3160,7 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError(
@@ -2624,6 +3169,7 @@ export class Companies {
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -2635,15 +3181,23 @@ export class Companies {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
      *     await client.companies.countEntityTraitDefinitions()
      */
-    public async countEntityTraitDefinitions(
+    public countEntityTraitDefinitions(
         request: Schematic.CountEntityTraitDefinitionsRequest = {},
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.CountEntityTraitDefinitionsResponse> {
+    ): core.HttpResponsePromise<Schematic.CountEntityTraitDefinitionsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__countEntityTraitDefinitions(request, requestOptions));
+    }
+
+    private async __countEntityTraitDefinitions(
+        request: Schematic.CountEntityTraitDefinitionsRequest = {},
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.CountEntityTraitDefinitionsResponse>> {
         const { entityType, ids, q, traitType, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (entityType != null) {
@@ -2691,8 +3245,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2706,13 +3260,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.CountEntityTraitDefinitionsResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.CountEntityTraitDefinitionsResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -2726,6 +3283,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -2736,6 +3294,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -2746,6 +3305,18 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -2756,11 +3327,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -2770,6 +3343,7 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError(
@@ -2778,6 +3352,7 @@ export class Companies {
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -2789,6 +3364,7 @@ export class Companies {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
@@ -2796,10 +3372,17 @@ export class Companies {
      *         definitionId: "definition_id"
      *     })
      */
-    public async getEntityTraitValues(
+    public getEntityTraitValues(
         request: Schematic.GetEntityTraitValuesRequest,
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.GetEntityTraitValuesResponse> {
+    ): core.HttpResponsePromise<Schematic.GetEntityTraitValuesResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getEntityTraitValues(request, requestOptions));
+    }
+
+    private async __getEntityTraitValues(
+        request: Schematic.GetEntityTraitValuesRequest,
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.GetEntityTraitValuesResponse>> {
         const { definitionId, q, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         _queryParams["definition_id"] = definitionId;
@@ -2826,8 +3409,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2841,13 +3424,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.GetEntityTraitValuesResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.GetEntityTraitValuesResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -2861,6 +3447,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -2871,6 +3458,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -2881,6 +3469,18 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -2891,11 +3491,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -2905,12 +3507,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /entity-trait-values.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -2922,6 +3526,7 @@ export class Companies {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
@@ -2932,10 +3537,17 @@ export class Companies {
      *         trait: "trait"
      *     })
      */
-    public async upsertUserTrait(
+    public upsertUserTrait(
         request: Schematic.UpsertTraitRequestBody,
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.UpsertUserTraitResponse> {
+    ): core.HttpResponsePromise<Schematic.UpsertUserTraitResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__upsertUserTrait(request, requestOptions));
+    }
+
+    private async __upsertUserTrait(
+        request: Schematic.UpsertTraitRequestBody,
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.UpsertUserTraitResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -2947,8 +3559,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2962,13 +3574,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.UpsertUserTraitResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.UpsertUserTraitResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -2982,6 +3597,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -2992,6 +3608,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -3002,6 +3619,18 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -3012,11 +3641,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -3026,12 +3657,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling POST /user-traits.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -3043,15 +3676,23 @@ export class Companies {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
      *     await client.companies.listUsers()
      */
-    public async listUsers(
+    public listUsers(
         request: Schematic.ListUsersRequest = {},
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.ListUsersResponse> {
+    ): core.HttpResponsePromise<Schematic.ListUsersResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__listUsers(request, requestOptions));
+    }
+
+    private async __listUsers(
+        request: Schematic.ListUsersRequest = {},
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.ListUsersResponse>> {
         const { companyId, ids, planId, q, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (companyId != null) {
@@ -3093,8 +3734,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -3108,13 +3749,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ListUsersResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ListUsersResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -3128,6 +3772,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -3138,6 +3783,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -3148,6 +3794,18 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -3158,11 +3816,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -3172,12 +3832,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /users.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -3189,10 +3851,14 @@ export class Companies {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
      *     await client.companies.upsertUser({
+     *         companies: [{
+     *                 "key": "value"
+     *             }],
      *         company: {
      *             "key": "value"
      *         },
@@ -3201,10 +3867,17 @@ export class Companies {
      *         }
      *     })
      */
-    public async upsertUser(
+    public upsertUser(
         request: Schematic.UpsertUserRequestBody,
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.UpsertUserResponse> {
+    ): core.HttpResponsePromise<Schematic.UpsertUserResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__upsertUser(request, requestOptions));
+    }
+
+    private async __upsertUser(
+        request: Schematic.UpsertUserRequestBody,
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.UpsertUserResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -3216,8 +3889,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -3231,13 +3904,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.UpsertUserResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.UpsertUserResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -3251,6 +3927,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -3261,6 +3938,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -3271,6 +3949,18 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -3281,11 +3971,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -3295,12 +3987,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling POST /users.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -3317,10 +4011,17 @@ export class Companies {
      * @example
      *     await client.companies.getUser("user_id")
      */
-    public async getUser(
+    public getUser(
         userId: string,
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.GetUserResponse> {
+    ): core.HttpResponsePromise<Schematic.GetUserResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getUser(userId, requestOptions));
+    }
+
+    private async __getUser(
+        userId: string,
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.GetUserResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -3332,8 +4033,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -3346,13 +4047,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.GetUserResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.GetUserResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -3366,6 +4070,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -3376,6 +4081,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 404:
                     throw new Schematic.NotFoundError(
@@ -3386,6 +4092,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -3396,11 +4103,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -3410,12 +4119,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /users/{user_id}.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -3427,15 +4138,23 @@ export class Companies {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
      *     await client.companies.deleteUser("user_id")
      */
-    public async deleteUser(
+    public deleteUser(
         userId: string,
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.DeleteUserResponse> {
+    ): core.HttpResponsePromise<Schematic.DeleteUserResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__deleteUser(userId, requestOptions));
+    }
+
+    private async __deleteUser(
+        userId: string,
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.DeleteUserResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -3447,8 +4166,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -3461,13 +4180,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.DeleteUserResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.DeleteUserResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -3481,6 +4203,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -3491,6 +4214,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -3501,6 +4225,18 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -3511,11 +4247,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -3525,12 +4263,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling DELETE /users/{user_id}.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -3542,15 +4282,23 @@ export class Companies {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
      *     await client.companies.countUsers()
      */
-    public async countUsers(
+    public countUsers(
         request: Schematic.CountUsersRequest = {},
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.CountUsersResponse> {
+    ): core.HttpResponsePromise<Schematic.CountUsersResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__countUsers(request, requestOptions));
+    }
+
+    private async __countUsers(
+        request: Schematic.CountUsersRequest = {},
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.CountUsersResponse>> {
         const { companyId, ids, planId, q, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (companyId != null) {
@@ -3592,8 +4340,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -3607,13 +4355,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.CountUsersResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.CountUsersResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -3627,6 +4378,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -3637,6 +4389,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -3647,6 +4400,18 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -3657,11 +4422,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -3671,12 +4438,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /users/count.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -3688,10 +4457,14 @@ export class Companies {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
      *     await client.companies.createUser({
+     *         companies: [{
+     *                 "key": "value"
+     *             }],
      *         company: {
      *             "key": "value"
      *         },
@@ -3700,10 +4473,17 @@ export class Companies {
      *         }
      *     })
      */
-    public async createUser(
+    public createUser(
         request: Schematic.UpsertUserRequestBody,
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.CreateUserResponse> {
+    ): core.HttpResponsePromise<Schematic.CreateUserResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__createUser(request, requestOptions));
+    }
+
+    private async __createUser(
+        request: Schematic.UpsertUserRequestBody,
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.CreateUserResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -3715,8 +4495,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -3730,13 +4510,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.CreateUserResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.CreateUserResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -3750,6 +4533,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -3760,6 +4544,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -3770,6 +4555,18 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -3780,11 +4577,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -3794,12 +4593,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling POST /users/create.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -3811,6 +4612,7 @@ export class Companies {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
@@ -3820,10 +4622,17 @@ export class Companies {
      *         }
      *     })
      */
-    public async deleteUserByKeys(
+    public deleteUserByKeys(
         request: Schematic.KeysRequestBody,
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.DeleteUserByKeysResponse> {
+    ): core.HttpResponsePromise<Schematic.DeleteUserByKeysResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__deleteUserByKeys(request, requestOptions));
+    }
+
+    private async __deleteUserByKeys(
+        request: Schematic.KeysRequestBody,
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.DeleteUserByKeysResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -3835,8 +4644,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -3850,13 +4659,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.DeleteUserByKeysResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.DeleteUserByKeysResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -3870,6 +4682,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -3880,6 +4693,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -3890,6 +4704,18 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -3900,11 +4726,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -3914,12 +4742,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling POST /users/delete.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -3936,16 +4766,21 @@ export class Companies {
      * @example
      *     await client.companies.lookupUser({
      *         keys: {
-     *             "keys": {
-     *                 "key": "value"
-     *             }
+     *             "keys": "keys"
      *         }
      *     })
      */
-    public async lookupUser(
+    public lookupUser(
         request: Schematic.LookupUserRequest,
         requestOptions?: Companies.RequestOptions,
-    ): Promise<Schematic.LookupUserResponse> {
+    ): core.HttpResponsePromise<Schematic.LookupUserResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__lookupUser(request, requestOptions));
+    }
+
+    private async __lookupUser(
+        request: Schematic.LookupUserRequest,
+        requestOptions?: Companies.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.LookupUserResponse>> {
         const { keys } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         _queryParams["keys"] = toJson(keys);
@@ -3960,8 +4795,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -3975,13 +4810,16 @@ export class Companies {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.LookupUserResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.LookupUserResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -3995,6 +4833,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -4005,6 +4844,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 404:
                     throw new Schematic.NotFoundError(
@@ -4015,6 +4855,7 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -4025,11 +4866,13 @@ export class Companies {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -4039,12 +4882,14 @@ export class Companies {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /users/lookup.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

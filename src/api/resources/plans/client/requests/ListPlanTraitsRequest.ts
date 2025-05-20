@@ -6,10 +6,10 @@
  * @example
  *     {}
  */
-export interface ListCustomersRequest {
-    name?: string;
-    failedToImport?: boolean;
-    q?: string;
+export interface ListPlanTraitsRequest {
+    ids?: string | string[];
+    planId?: string;
+    traitId?: string;
     /**
      * Page limit (default 100)
      */

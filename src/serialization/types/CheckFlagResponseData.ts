@@ -14,6 +14,7 @@ export const CheckFlagResponseData: core.serialization.ObjectSchema<
     error: core.serialization.string().optional(),
     featureAllocation: core.serialization.property("feature_allocation", core.serialization.number().optional()),
     featureUsage: core.serialization.property("feature_usage", core.serialization.number().optional()),
+    featureUsageEvent: core.serialization.property("feature_usage_event", core.serialization.string().optional()),
     featureUsagePeriod: core.serialization.property("feature_usage_period", core.serialization.string().optional()),
     featureUsageResetAt: core.serialization.property("feature_usage_reset_at", core.serialization.date().optional()),
     flag: core.serialization.string(),
@@ -31,6 +32,7 @@ export declare namespace CheckFlagResponseData {
         error?: string | null;
         feature_allocation?: number | null;
         feature_usage?: number | null;
+        feature_usage_event?: string | null;
         feature_usage_period?: string | null;
         feature_usage_reset_at?: string | null;
         flag: string;

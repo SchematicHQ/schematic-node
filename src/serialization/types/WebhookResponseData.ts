@@ -5,12 +5,17 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { EntitlementTriggerConfig } from "./EntitlementTriggerConfig";
 
 export const WebhookResponseData: core.serialization.ObjectSchema<
     serializers.WebhookResponseData.Raw,
     Schematic.WebhookResponseData
 > = core.serialization.object({
     createdAt: core.serialization.property("created_at", core.serialization.date()),
+    entitlementTriggerConfigs: core.serialization.property(
+        "entitlement_trigger_configs",
+        core.serialization.list(EntitlementTriggerConfig).optional(),
+    ),
     id: core.serialization.string(),
     name: core.serialization.string(),
     requestTypes: core.serialization.property("request_types", core.serialization.list(core.serialization.string())),
@@ -23,6 +28,7 @@ export const WebhookResponseData: core.serialization.ObjectSchema<
 export declare namespace WebhookResponseData {
     export interface Raw {
         created_at: string;
+        entitlement_trigger_configs?: EntitlementTriggerConfig.Raw[] | null;
         id: string;
         name: string;
         request_types: string[];

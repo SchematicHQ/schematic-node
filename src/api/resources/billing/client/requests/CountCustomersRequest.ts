@@ -7,6 +7,7 @@
  *     {}
  */
 export interface CountCustomersRequest {
+    companyIds?: string | string[];
     name?: string;
     failedToImport?: boolean;
     q?: string;

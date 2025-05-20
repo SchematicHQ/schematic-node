@@ -14,6 +14,8 @@ export interface CheckFlagResponseData {
     featureAllocation?: number;
     /** If a numeric feature entitlement rule was matched, the company's usage */
     featureUsage?: number;
+    /** If an event-based numeric feature entitlement rule was matched, the event used to track its usage */
+    featureUsageEvent?: string;
     /** For event-based feature entitlement rules, the period over which usage is tracked (current_month, current_day, current_week, all_time) */
     featureUsagePeriod?: string;
     /** For event-based feature entitlement rules, when the usage period will reset */

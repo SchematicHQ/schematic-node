@@ -15,6 +15,8 @@ export const BillingPriceResponseData: core.serialization.ObjectSchema<
     id: core.serialization.string(),
     interval: core.serialization.string(),
     price: core.serialization.number(),
+    priceDecimal: core.serialization.property("price_decimal", core.serialization.string().optional()),
+    scheme: core.serialization.string(),
 });
 
 export declare namespace BillingPriceResponseData {
@@ -24,5 +26,7 @@ export declare namespace BillingPriceResponseData {
         id: string;
         interval: string;
         price: number;
+        price_decimal?: string | null;
+        scheme: string;
     }
 }

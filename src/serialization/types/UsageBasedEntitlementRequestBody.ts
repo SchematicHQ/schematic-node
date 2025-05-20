@@ -10,8 +10,18 @@ export const UsageBasedEntitlementRequestBody: core.serialization.ObjectSchema<
     serializers.UsageBasedEntitlementRequestBody.Raw,
     Schematic.UsageBasedEntitlementRequestBody
 > = core.serialization.object({
+    currency: core.serialization.string().optional(),
     monthlyMeteredPriceId: core.serialization.property(
         "monthly_metered_price_id",
+        core.serialization.string().optional(),
+    ),
+    monthlyUnitPrice: core.serialization.property("monthly_unit_price", core.serialization.number().optional()),
+    monthlyUnitPriceDecimal: core.serialization.property(
+        "monthly_unit_price_decimal",
+        core.serialization.string().optional(),
+    ),
+    overageBillingProductId: core.serialization.property(
+        "overage_billing_product_id",
         core.serialization.string().optional(),
     ),
     priceBehavior: core.serialization.property("price_behavior", core.serialization.string().optional()),
@@ -20,13 +30,24 @@ export const UsageBasedEntitlementRequestBody: core.serialization.ObjectSchema<
         "yearly_metered_price_id",
         core.serialization.string().optional(),
     ),
+    yearlyUnitPrice: core.serialization.property("yearly_unit_price", core.serialization.number().optional()),
+    yearlyUnitPriceDecimal: core.serialization.property(
+        "yearly_unit_price_decimal",
+        core.serialization.string().optional(),
+    ),
 });
 
 export declare namespace UsageBasedEntitlementRequestBody {
     export interface Raw {
+        currency?: string | null;
         monthly_metered_price_id?: string | null;
+        monthly_unit_price?: number | null;
+        monthly_unit_price_decimal?: string | null;
+        overage_billing_product_id?: string | null;
         price_behavior?: string | null;
         soft_limit?: number | null;
         yearly_metered_price_id?: string | null;
+        yearly_unit_price?: number | null;
+        yearly_unit_price_decimal?: string | null;
     }
 }

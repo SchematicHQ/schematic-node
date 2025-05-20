@@ -40,15 +40,23 @@ export class Webhooks {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
      *     await client.webhooks.listWebhookEvents()
      */
-    public async listWebhookEvents(
+    public listWebhookEvents(
         request: Schematic.ListWebhookEventsRequest = {},
         requestOptions?: Webhooks.RequestOptions,
-    ): Promise<Schematic.ListWebhookEventsResponse> {
+    ): core.HttpResponsePromise<Schematic.ListWebhookEventsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__listWebhookEvents(request, requestOptions));
+    }
+
+    private async __listWebhookEvents(
+        request: Schematic.ListWebhookEventsRequest = {},
+        requestOptions?: Webhooks.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.ListWebhookEventsResponse>> {
         const { ids, q, webhookId, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (ids != null) {
@@ -86,8 +94,8 @@ export class Webhooks {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -101,13 +109,16 @@ export class Webhooks {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ListWebhookEventsResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ListWebhookEventsResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -121,6 +132,7 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -131,6 +143,7 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -141,6 +154,18 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -151,11 +176,13 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -165,12 +192,14 @@ export class Webhooks {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /webhook-events.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -187,10 +216,17 @@ export class Webhooks {
      * @example
      *     await client.webhooks.getWebhookEvent("webhook_event_id")
      */
-    public async getWebhookEvent(
+    public getWebhookEvent(
         webhookEventId: string,
         requestOptions?: Webhooks.RequestOptions,
-    ): Promise<Schematic.GetWebhookEventResponse> {
+    ): core.HttpResponsePromise<Schematic.GetWebhookEventResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getWebhookEvent(webhookEventId, requestOptions));
+    }
+
+    private async __getWebhookEvent(
+        webhookEventId: string,
+        requestOptions?: Webhooks.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.GetWebhookEventResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -202,8 +238,8 @@ export class Webhooks {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -216,13 +252,16 @@ export class Webhooks {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.GetWebhookEventResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.GetWebhookEventResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -236,6 +275,7 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -246,6 +286,7 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 404:
                     throw new Schematic.NotFoundError(
@@ -256,6 +297,7 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -266,11 +308,13 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -280,6 +324,7 @@ export class Webhooks {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError(
@@ -288,6 +333,7 @@ export class Webhooks {
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -299,15 +345,23 @@ export class Webhooks {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
      *     await client.webhooks.countWebhookEvents()
      */
-    public async countWebhookEvents(
+    public countWebhookEvents(
         request: Schematic.CountWebhookEventsRequest = {},
         requestOptions?: Webhooks.RequestOptions,
-    ): Promise<Schematic.CountWebhookEventsResponse> {
+    ): core.HttpResponsePromise<Schematic.CountWebhookEventsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__countWebhookEvents(request, requestOptions));
+    }
+
+    private async __countWebhookEvents(
+        request: Schematic.CountWebhookEventsRequest = {},
+        requestOptions?: Webhooks.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.CountWebhookEventsResponse>> {
         const { ids, q, webhookId, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (ids != null) {
@@ -345,8 +399,8 @@ export class Webhooks {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -360,13 +414,16 @@ export class Webhooks {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.CountWebhookEventsResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.CountWebhookEventsResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -380,6 +437,7 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -390,6 +448,7 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -400,6 +459,18 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -410,11 +481,13 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -424,12 +497,14 @@ export class Webhooks {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /webhook-events/count.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -441,15 +516,23 @@ export class Webhooks {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
      *     await client.webhooks.listWebhooks()
      */
-    public async listWebhooks(
+    public listWebhooks(
         request: Schematic.ListWebhooksRequest = {},
         requestOptions?: Webhooks.RequestOptions,
-    ): Promise<Schematic.ListWebhooksResponse> {
+    ): core.HttpResponsePromise<Schematic.ListWebhooksResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__listWebhooks(request, requestOptions));
+    }
+
+    private async __listWebhooks(
+        request: Schematic.ListWebhooksRequest = {},
+        requestOptions?: Webhooks.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.ListWebhooksResponse>> {
         const { q, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (q != null) {
@@ -475,8 +558,8 @@ export class Webhooks {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -490,13 +573,16 @@ export class Webhooks {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ListWebhooksResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.ListWebhooksResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -510,6 +596,7 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -520,6 +607,7 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -530,6 +618,18 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -540,11 +640,13 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -554,12 +656,14 @@ export class Webhooks {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /webhooks.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -571,6 +675,7 @@ export class Webhooks {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
@@ -580,10 +685,17 @@ export class Webhooks {
      *         url: "url"
      *     })
      */
-    public async createWebhook(
+    public createWebhook(
         request: Schematic.CreateWebhookRequestBody,
         requestOptions?: Webhooks.RequestOptions,
-    ): Promise<Schematic.CreateWebhookResponse> {
+    ): core.HttpResponsePromise<Schematic.CreateWebhookResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__createWebhook(request, requestOptions));
+    }
+
+    private async __createWebhook(
+        request: Schematic.CreateWebhookRequestBody,
+        requestOptions?: Webhooks.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.CreateWebhookResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -595,8 +707,8 @@ export class Webhooks {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -610,13 +722,16 @@ export class Webhooks {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.CreateWebhookResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.CreateWebhookResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -630,6 +745,7 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -640,6 +756,7 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -650,6 +767,18 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -660,11 +789,13 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -674,12 +805,14 @@ export class Webhooks {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling POST /webhooks.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -696,10 +829,17 @@ export class Webhooks {
      * @example
      *     await client.webhooks.getWebhook("webhook_id")
      */
-    public async getWebhook(
+    public getWebhook(
         webhookId: string,
         requestOptions?: Webhooks.RequestOptions,
-    ): Promise<Schematic.GetWebhookResponse> {
+    ): core.HttpResponsePromise<Schematic.GetWebhookResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getWebhook(webhookId, requestOptions));
+    }
+
+    private async __getWebhook(
+        webhookId: string,
+        requestOptions?: Webhooks.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.GetWebhookResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -711,8 +851,8 @@ export class Webhooks {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -725,13 +865,16 @@ export class Webhooks {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.GetWebhookResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.GetWebhookResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -745,6 +888,7 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -755,6 +899,7 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 404:
                     throw new Schematic.NotFoundError(
@@ -765,6 +910,7 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -775,11 +921,13 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -789,12 +937,14 @@ export class Webhooks {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /webhooks/{webhook_id}.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -813,11 +963,19 @@ export class Webhooks {
      * @example
      *     await client.webhooks.updateWebhook("webhook_id")
      */
-    public async updateWebhook(
+    public updateWebhook(
         webhookId: string,
         request: Schematic.UpdateWebhookRequestBody = {},
         requestOptions?: Webhooks.RequestOptions,
-    ): Promise<Schematic.UpdateWebhookResponse> {
+    ): core.HttpResponsePromise<Schematic.UpdateWebhookResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__updateWebhook(webhookId, request, requestOptions));
+    }
+
+    private async __updateWebhook(
+        webhookId: string,
+        request: Schematic.UpdateWebhookRequestBody = {},
+        requestOptions?: Webhooks.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.UpdateWebhookResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -829,8 +987,8 @@ export class Webhooks {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -844,13 +1002,16 @@ export class Webhooks {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.UpdateWebhookResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.UpdateWebhookResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -864,6 +1025,7 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -874,6 +1036,7 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -884,6 +1047,7 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 404:
                     throw new Schematic.NotFoundError(
@@ -894,6 +1058,7 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -904,11 +1069,13 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -918,12 +1085,14 @@ export class Webhooks {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling PUT /webhooks/{webhook_id}.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -935,15 +1104,23 @@ export class Webhooks {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
      *     await client.webhooks.deleteWebhook("webhook_id")
      */
-    public async deleteWebhook(
+    public deleteWebhook(
         webhookId: string,
         requestOptions?: Webhooks.RequestOptions,
-    ): Promise<Schematic.DeleteWebhookResponse> {
+    ): core.HttpResponsePromise<Schematic.DeleteWebhookResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__deleteWebhook(webhookId, requestOptions));
+    }
+
+    private async __deleteWebhook(
+        webhookId: string,
+        requestOptions?: Webhooks.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.DeleteWebhookResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -955,8 +1132,8 @@ export class Webhooks {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -969,13 +1146,16 @@ export class Webhooks {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.DeleteWebhookResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.DeleteWebhookResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -989,6 +1169,7 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -999,6 +1180,7 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -1009,6 +1191,18 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -1019,11 +1213,13 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -1033,12 +1229,14 @@ export class Webhooks {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling DELETE /webhooks/{webhook_id}.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -1050,15 +1248,23 @@ export class Webhooks {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
      *     await client.webhooks.countWebhooks()
      */
-    public async countWebhooks(
+    public countWebhooks(
         request: Schematic.CountWebhooksRequest = {},
         requestOptions?: Webhooks.RequestOptions,
-    ): Promise<Schematic.CountWebhooksResponse> {
+    ): core.HttpResponsePromise<Schematic.CountWebhooksResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__countWebhooks(request, requestOptions));
+    }
+
+    private async __countWebhooks(
+        request: Schematic.CountWebhooksRequest = {},
+        requestOptions?: Webhooks.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.CountWebhooksResponse>> {
         const { q, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (q != null) {
@@ -1084,8 +1290,8 @@ export class Webhooks {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1099,13 +1305,16 @@ export class Webhooks {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.CountWebhooksResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.CountWebhooksResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -1119,6 +1328,7 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -1129,6 +1339,7 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -1139,6 +1350,18 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -1149,11 +1372,13 @@ export class Webhooks {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -1163,12 +1388,14 @@ export class Webhooks {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /webhooks/count.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

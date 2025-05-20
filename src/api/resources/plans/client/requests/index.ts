@@ -1,5 +1,9 @@
 export { type UpdateCompanyPlansRequestBody } from "./UpdateCompanyPlansRequestBody";
 export { type UpdateAudienceRequestBody } from "./UpdateAudienceRequestBody";
+export { type ListPlanTraitsRequest } from "./ListPlanTraitsRequest";
+export { type CreatePlanTraitRequestBody } from "./CreatePlanTraitRequestBody";
+export { type UpdatePlanTraitRequestBody } from "./UpdatePlanTraitRequestBody";
+export { type CountPlanTraitsRequest } from "./CountPlanTraitsRequest";
 export { type ListPlansRequest } from "./ListPlansRequest";
 export { type CreatePlanRequestBody } from "./CreatePlanRequestBody";
 export { type UpdatePlanRequestBody } from "./UpdatePlanRequestBody";

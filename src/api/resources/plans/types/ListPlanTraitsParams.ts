@@ -5,12 +5,12 @@
 /**
  * Input parameters
  */
-export interface ListCustomersParams {
-    failedToImport?: boolean;
+export interface ListPlanTraitsParams {
+    ids?: string[];
     /** Page limit (default 100) */
     limit?: number;
-    name?: string;
     /** Page offset (default 0) */
     offset?: number;
-    q?: string;
+    planId?: string;
+    traitId?: string;
 }

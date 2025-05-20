@@ -8,8 +8,10 @@ export interface BillingProductResponseData {
     currency: string;
     environmentId: string;
     externalId: string;
+    isActive: boolean;
     name: string;
     price: number;
+    priceDecimal?: string;
     productId: string;
     quantity: number;
     updatedAt: Date;

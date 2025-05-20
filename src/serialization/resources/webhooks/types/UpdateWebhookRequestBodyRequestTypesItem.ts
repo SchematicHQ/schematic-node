@@ -34,6 +34,10 @@ export const UpdateWebhookRequestBodyRequestTypesItem: core.serialization.Schema
     "flag.deleted",
     "test.send",
     "subscription.trial.ended",
+    "entitlement.limit.warning",
+    "entitlement.limit.reached",
+    "entitlement.soft_limit.warning",
+    "entitlement.soft_limit.reached",
 ]);
 
 export declare namespace UpdateWebhookRequestBodyRequestTypesItem {
@@ -61,5 +65,9 @@ export declare namespace UpdateWebhookRequestBodyRequestTypesItem {
         | "feature.deleted"
         | "flag.deleted"
         | "test.send"
-        | "subscription.trial.ended";
+        | "subscription.trial.ended"
+        | "entitlement.limit.warning"
+        | "entitlement.limit.reached"
+        | "entitlement.soft_limit.warning"
+        | "entitlement.soft_limit.reached";
 }

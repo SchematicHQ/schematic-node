@@ -10,21 +10,21 @@ export const EventSummaryResponseData: core.serialization.ObjectSchema<
     serializers.EventSummaryResponseData.Raw,
     Schematic.EventSummaryResponseData
 > = core.serialization.object({
-    companyCount: core.serialization.property("company_count", core.serialization.number()),
+    companyCount: core.serialization.property("company_count", core.serialization.number().optional()),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     eventCount: core.serialization.property("event_count", core.serialization.number()),
     eventSubtype: core.serialization.property("event_subtype", core.serialization.string()),
     lastSeenAt: core.serialization.property("last_seen_at", core.serialization.date().optional()),
-    userCount: core.serialization.property("user_count", core.serialization.number()),
+    userCount: core.serialization.property("user_count", core.serialization.number().optional()),
 });
 
 export declare namespace EventSummaryResponseData {
     export interface Raw {
-        company_count: number;
+        company_count?: number | null;
         environment_id: string;
         event_count: number;
         event_subtype: string;
         last_seen_at?: string | null;
-        user_count: number;
+        user_count?: number | null;
     }
 }

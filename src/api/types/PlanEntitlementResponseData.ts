@@ -21,6 +21,7 @@ export interface PlanEntitlementResponseData {
     ruleIdUsageExceeded?: string;
     softLimit?: number;
     updatedAt: Date;
+    usageBasedProduct?: Schematic.BillingProductResponseData;
     valueBool?: boolean;
     valueNumeric?: number;
     valueTrait?: Schematic.EntityTraitDefinitionResponseData;

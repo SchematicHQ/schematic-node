@@ -18,6 +18,10 @@ export interface ListProductPricesRequest {
      */
     withoutLinkedToPlan?: boolean;
     /**
+     * Filter products that are one time charges
+     */
+    withOneTimeCharges?: boolean;
+    /**
      * Filter products that have zero price for free subscription type
      */
     withZeroPrice?: boolean;
@@ -25,6 +29,10 @@ export interface ListProductPricesRequest {
      * Filter products that have prices
      */
     withPricesOnly?: boolean;
+    /**
+     * Filter products that are active
+     */
+    isActive?: boolean;
     /**
      * Page limit (default 100)
      */

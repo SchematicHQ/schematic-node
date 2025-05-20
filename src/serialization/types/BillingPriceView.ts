@@ -5,20 +5,30 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { BillingProductPriceTierResponseData } from "./BillingProductPriceTierResponseData";
 
 export const BillingPriceView: core.serialization.ObjectSchema<
     serializers.BillingPriceView.Raw,
     Schematic.BillingPriceView
 > = core.serialization.object({
+    billingScheme: core.serialization.property("billing_scheme", core.serialization.string()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     currency: core.serialization.string(),
     id: core.serialization.string(),
     interval: core.serialization.string(),
     isActive: core.serialization.property("is_active", core.serialization.boolean()),
+    meterEventName: core.serialization.property("meter_event_name", core.serialization.string().optional()),
+    meterEventPayloadKey: core.serialization.property(
+        "meter_event_payload_key",
+        core.serialization.string().optional(),
+    ),
     meterId: core.serialization.property("meter_id", core.serialization.string().optional()),
+    packageSize: core.serialization.property("package_size", core.serialization.number()),
     price: core.serialization.number(),
+    priceDecimal: core.serialization.property("price_decimal", core.serialization.string().optional()),
     priceExternalId: core.serialization.property("price_external_id", core.serialization.string()),
     priceId: core.serialization.property("price_id", core.serialization.string()),
+    priceTier: core.serialization.property("price_tier", core.serialization.list(BillingProductPriceTierResponseData)),
     productExternalId: core.serialization.property("product_external_id", core.serialization.string()),
     productId: core.serialization.property("product_id", core.serialization.string()),
     productName: core.serialization.property("product_name", core.serialization.string()),
@@ -28,15 +38,21 @@ export const BillingPriceView: core.serialization.ObjectSchema<
 
 export declare namespace BillingPriceView {
     export interface Raw {
+        billing_scheme: string;
         created_at: string;
         currency: string;
         id: string;
         interval: string;
         is_active: boolean;
+        meter_event_name?: string | null;
+        meter_event_payload_key?: string | null;
         meter_id?: string | null;
+        package_size: number;
         price: number;
+        price_decimal?: string | null;
         price_external_id: string;
         price_id: string;
+        price_tier: BillingProductPriceTierResponseData.Raw[];
         product_external_id: string;
         product_id: string;
         product_name: string;

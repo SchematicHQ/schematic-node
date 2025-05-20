@@ -40,6 +40,7 @@ export class Checkout {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
@@ -57,10 +58,17 @@ export class Checkout {
      *             }]
      *     })
      */
-    public async internal(
+    public internal(
         request: Schematic.ChangeSubscriptionInternalRequestBody,
         requestOptions?: Checkout.RequestOptions,
-    ): Promise<Schematic.CheckoutInternalResponse> {
+    ): core.HttpResponsePromise<Schematic.CheckoutInternalResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__internal(request, requestOptions));
+    }
+
+    private async __internal(
+        request: Schematic.ChangeSubscriptionInternalRequestBody,
+        requestOptions?: Checkout.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.CheckoutInternalResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -72,8 +80,8 @@ export class Checkout {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -89,13 +97,16 @@ export class Checkout {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.CheckoutInternalResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.CheckoutInternalResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -109,6 +120,7 @@ export class Checkout {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -119,6 +131,7 @@ export class Checkout {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -129,6 +142,18 @@ export class Checkout {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -139,11 +164,13 @@ export class Checkout {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -153,12 +180,14 @@ export class Checkout {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling POST /checkout-internal.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -170,6 +199,7 @@ export class Checkout {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
@@ -177,10 +207,17 @@ export class Checkout {
      *         companyId: "company_id"
      *     })
      */
-    public async getCheckoutData(
+    public getCheckoutData(
         request: Schematic.CheckoutDataRequestBody,
         requestOptions?: Checkout.RequestOptions,
-    ): Promise<Schematic.GetCheckoutDataResponse> {
+    ): core.HttpResponsePromise<Schematic.GetCheckoutDataResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getCheckoutData(request, requestOptions));
+    }
+
+    private async __getCheckoutData(
+        request: Schematic.CheckoutDataRequestBody,
+        requestOptions?: Checkout.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.GetCheckoutDataResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -192,8 +229,8 @@ export class Checkout {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -207,13 +244,16 @@ export class Checkout {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.GetCheckoutDataResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.GetCheckoutDataResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -227,6 +267,7 @@ export class Checkout {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -237,6 +278,7 @@ export class Checkout {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -247,6 +289,18 @@ export class Checkout {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -257,11 +311,13 @@ export class Checkout {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -271,12 +327,14 @@ export class Checkout {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling POST /checkout-internal/data.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -288,6 +346,7 @@ export class Checkout {
      * @throws {@link Schematic.BadRequestError}
      * @throws {@link Schematic.UnauthorizedError}
      * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
@@ -305,10 +364,17 @@ export class Checkout {
      *             }]
      *     })
      */
-    public async previewCheckoutInternal(
+    public previewCheckoutInternal(
         request: Schematic.ChangeSubscriptionInternalRequestBody,
         requestOptions?: Checkout.RequestOptions,
-    ): Promise<Schematic.PreviewCheckoutInternalResponse> {
+    ): core.HttpResponsePromise<Schematic.PreviewCheckoutInternalResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__previewCheckoutInternal(request, requestOptions));
+    }
+
+    private async __previewCheckoutInternal(
+        request: Schematic.ChangeSubscriptionInternalRequestBody,
+        requestOptions?: Checkout.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.PreviewCheckoutInternalResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -320,8 +386,8 @@ export class Checkout {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -337,13 +403,16 @@ export class Checkout {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.PreviewCheckoutInternalResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.PreviewCheckoutInternalResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -357,6 +426,7 @@ export class Checkout {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -367,6 +437,7 @@ export class Checkout {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -377,6 +448,18 @@ export class Checkout {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -387,11 +470,13 @@ export class Checkout {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -401,6 +486,7 @@ export class Checkout {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError(
@@ -409,6 +495,7 @@ export class Checkout {
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -427,11 +514,21 @@ export class Checkout {
      * @example
      *     await client.checkout.updateCustomerSubscriptionTrialEnd("subscription_id")
      */
-    public async updateCustomerSubscriptionTrialEnd(
+    public updateCustomerSubscriptionTrialEnd(
         subscriptionId: string,
         request: Schematic.UpdateTrialEndRequestBody = {},
         requestOptions?: Checkout.RequestOptions,
-    ): Promise<Schematic.UpdateCustomerSubscriptionTrialEndResponse> {
+    ): core.HttpResponsePromise<Schematic.UpdateCustomerSubscriptionTrialEndResponse> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__updateCustomerSubscriptionTrialEnd(subscriptionId, request, requestOptions),
+        );
+    }
+
+    private async __updateCustomerSubscriptionTrialEnd(
+        subscriptionId: string,
+        request: Schematic.UpdateTrialEndRequestBody = {},
+        requestOptions?: Checkout.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.UpdateCustomerSubscriptionTrialEndResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -443,8 +540,8 @@ export class Checkout {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.10",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.10",
+                "X-Fern-SDK-Version": "1.1.11",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -458,13 +555,16 @@ export class Checkout {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.UpdateCustomerSubscriptionTrialEndResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return {
+                data: serializers.UpdateCustomerSubscriptionTrialEndResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -478,6 +578,7 @@ export class Checkout {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 401:
                     throw new Schematic.UnauthorizedError(
@@ -488,6 +589,7 @@ export class Checkout {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 403:
                     throw new Schematic.ForbiddenError(
@@ -498,6 +600,7 @@ export class Checkout {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 404:
                     throw new Schematic.NotFoundError(
@@ -508,6 +611,7 @@ export class Checkout {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 case 500:
                     throw new Schematic.InternalServerError(
@@ -518,11 +622,13 @@ export class Checkout {
                             skipValidation: true,
                             breadcrumbsPrefix: ["response"],
                         }),
+                        _response.rawResponse,
                     );
                 default:
                     throw new errors.SchematicError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -532,6 +638,7 @@ export class Checkout {
                 throw new errors.SchematicError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError(
@@ -540,6 +647,7 @@ export class Checkout {
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

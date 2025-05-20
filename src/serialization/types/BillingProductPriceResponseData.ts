@@ -10,13 +10,16 @@ export const BillingProductPriceResponseData: core.serialization.ObjectSchema<
     serializers.BillingProductPriceResponseData.Raw,
     Schematic.BillingProductPriceResponseData
 > = core.serialization.object({
+    billingScheme: core.serialization.property("billing_scheme", core.serialization.string()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     currency: core.serialization.string(),
     id: core.serialization.string(),
     interval: core.serialization.string(),
     isActive: core.serialization.property("is_active", core.serialization.boolean()),
     meterId: core.serialization.property("meter_id", core.serialization.string().optional()),
+    packageSize: core.serialization.property("package_size", core.serialization.number()),
     price: core.serialization.number(),
+    priceDecimal: core.serialization.property("price_decimal", core.serialization.string().optional()),
     priceExternalId: core.serialization.property("price_external_id", core.serialization.string()),
     productExternalId: core.serialization.property("product_external_id", core.serialization.string()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -25,13 +28,16 @@ export const BillingProductPriceResponseData: core.serialization.ObjectSchema<
 
 export declare namespace BillingProductPriceResponseData {
     export interface Raw {
+        billing_scheme: string;
         created_at: string;
         currency: string;
         id: string;
         interval: string;
         is_active: boolean;
         meter_id?: string | null;
+        package_size: number;
         price: number;
+        price_decimal?: string | null;
         price_external_id: string;
         product_external_id: string;
         updated_at: string;

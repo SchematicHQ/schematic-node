@@ -19,3 +19,4 @@ export * from "./GetEnvironmentResponse";
 export * from "./UpdateEnvironmentRequestBodyEnvironmentType";
 export * from "./UpdateEnvironmentResponse";
 export * from "./DeleteEnvironmentResponse";
+export * from "./QuickstartResponse";

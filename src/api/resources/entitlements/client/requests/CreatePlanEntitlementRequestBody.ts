@@ -13,10 +13,14 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface CreatePlanEntitlementRequestBody {
+    currency?: string;
     featureId: string;
     metricPeriod?: Schematic.CreatePlanEntitlementRequestBodyMetricPeriod;
     metricPeriodMonthReset?: Schematic.CreatePlanEntitlementRequestBodyMetricPeriodMonthReset;
     monthlyMeteredPriceId?: string;
+    monthlyUnitPrice?: number;
+    monthlyUnitPriceDecimal?: string;
+    overageBillingProductId?: string;
     planId: string;
     priceBehavior?: string;
     softLimit?: number;
@@ -25,4 +29,6 @@ export interface CreatePlanEntitlementRequestBody {
     valueTraitId?: string;
     valueType: Schematic.CreatePlanEntitlementRequestBodyValueType;
     yearlyMeteredPriceId?: string;
+    yearlyUnitPrice?: number;
+    yearlyUnitPriceDecimal?: string;
 }

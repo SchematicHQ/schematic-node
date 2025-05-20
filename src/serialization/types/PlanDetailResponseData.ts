@@ -15,6 +15,7 @@ export const PlanDetailResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     audienceType: core.serialization.property("audience_type", core.serialization.string().optional()),
     billingProduct: core.serialization.property("billing_product", BillingProductDetailResponseData.optional()),
+    chargeType: core.serialization.property("charge_type", core.serialization.string()),
     companyCount: core.serialization.property("company_count", core.serialization.number()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     description: core.serialization.string(),
@@ -26,6 +27,7 @@ export const PlanDetailResponseData: core.serialization.ObjectSchema<
     isTrialable: core.serialization.property("is_trialable", core.serialization.boolean()),
     monthlyPrice: core.serialization.property("monthly_price", BillingPriceResponseData.optional()),
     name: core.serialization.string(),
+    oneTimePrice: core.serialization.property("one_time_price", BillingPriceResponseData.optional()),
     planType: core.serialization.property("plan_type", core.serialization.string()),
     trialDays: core.serialization.property("trial_days", core.serialization.number().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -36,6 +38,7 @@ export declare namespace PlanDetailResponseData {
     export interface Raw {
         audience_type?: string | null;
         billing_product?: BillingProductDetailResponseData.Raw | null;
+        charge_type: string;
         company_count: number;
         created_at: string;
         description: string;
@@ -47,6 +50,7 @@ export declare namespace PlanDetailResponseData {
         is_trialable: boolean;
         monthly_price?: BillingPriceResponseData.Raw | null;
         name: string;
+        one_time_price?: BillingPriceResponseData.Raw | null;
         plan_type: string;
         trial_days?: number | null;
         updated_at: string;

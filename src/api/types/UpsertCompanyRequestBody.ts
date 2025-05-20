@@ -5,6 +5,7 @@
 export interface UpsertCompanyRequestBody {
     /** If you know the Schematic ID, you can use that here instead of keys */
     id?: string;
+    /** See [Key Management](https://docs.schematichq.com/developer_resources/key_management) for more information */
     keys: Record<string, string>;
     lastSeenAt?: Date;
     name?: string;

@@ -7,6 +7,7 @@ import * as Schematic from "../index";
 export interface PlanGroupPlanDetailResponseData {
     audienceType?: string;
     billingProduct?: Schematic.BillingProductDetailResponseData;
+    chargeType: string;
     companyCount: number;
     createdAt: Date;
     customPlanConfig?: Schematic.CustomPlanViewConfigResponseData;
@@ -21,6 +22,7 @@ export interface PlanGroupPlanDetailResponseData {
     isTrialable: boolean;
     monthlyPrice?: Schematic.BillingPriceResponseData;
     name: string;
+    oneTimePrice?: Schematic.BillingPriceResponseData;
     planType: string;
     trialDays?: number;
     updatedAt: Date;

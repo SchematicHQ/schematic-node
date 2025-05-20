@@ -13,6 +13,7 @@ export const CreatePlanEntitlementRequestBody: core.serialization.Schema<
     serializers.CreatePlanEntitlementRequestBody.Raw,
     Schematic.CreatePlanEntitlementRequestBody
 > = core.serialization.object({
+    currency: core.serialization.string().optional(),
     featureId: core.serialization.property("feature_id", core.serialization.string()),
     metricPeriod: core.serialization.property("metric_period", CreatePlanEntitlementRequestBodyMetricPeriod.optional()),
     metricPeriodMonthReset: core.serialization.property(
@@ -21,6 +22,15 @@ export const CreatePlanEntitlementRequestBody: core.serialization.Schema<
     ),
     monthlyMeteredPriceId: core.serialization.property(
         "monthly_metered_price_id",
+        core.serialization.string().optional(),
+    ),
+    monthlyUnitPrice: core.serialization.property("monthly_unit_price", core.serialization.number().optional()),
+    monthlyUnitPriceDecimal: core.serialization.property(
+        "monthly_unit_price_decimal",
+        core.serialization.string().optional(),
+    ),
+    overageBillingProductId: core.serialization.property(
+        "overage_billing_product_id",
         core.serialization.string().optional(),
     ),
     planId: core.serialization.property("plan_id", core.serialization.string()),
@@ -34,14 +44,23 @@ export const CreatePlanEntitlementRequestBody: core.serialization.Schema<
         "yearly_metered_price_id",
         core.serialization.string().optional(),
     ),
+    yearlyUnitPrice: core.serialization.property("yearly_unit_price", core.serialization.number().optional()),
+    yearlyUnitPriceDecimal: core.serialization.property(
+        "yearly_unit_price_decimal",
+        core.serialization.string().optional(),
+    ),
 });
 
 export declare namespace CreatePlanEntitlementRequestBody {
     export interface Raw {
+        currency?: string | null;
         feature_id: string;
         metric_period?: CreatePlanEntitlementRequestBodyMetricPeriod.Raw | null;
         metric_period_month_reset?: CreatePlanEntitlementRequestBodyMetricPeriodMonthReset.Raw | null;
         monthly_metered_price_id?: string | null;
+        monthly_unit_price?: number | null;
+        monthly_unit_price_decimal?: string | null;
+        overage_billing_product_id?: string | null;
         plan_id: string;
         price_behavior?: string | null;
         soft_limit?: number | null;
@@ -50,5 +69,7 @@ export declare namespace CreatePlanEntitlementRequestBody {
         value_trait_id?: string | null;
         value_type: CreatePlanEntitlementRequestBodyValueType.Raw;
         yearly_metered_price_id?: string | null;
+        yearly_unit_price?: number | null;
+        yearly_unit_price_decimal?: string | null;
     }
 }

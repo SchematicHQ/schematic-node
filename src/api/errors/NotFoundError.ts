@@ -4,13 +4,15 @@
 
 import * as errors from "../../errors/index";
 import * as Schematic from "../index";
+import * as core from "../../core";
 
 export class NotFoundError extends errors.SchematicError {
-    constructor(body: Schematic.ApiError) {
+    constructor(body: Schematic.ApiError, rawResponse?: core.RawResponse) {
         super({
             message: "NotFoundError",
             statusCode: 404,
             body: body,
+            rawResponse: rawResponse,
         });
         Object.setPrototypeOf(this, NotFoundError.prototype);
     }

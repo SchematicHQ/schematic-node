@@ -10,8 +10,10 @@ export interface BillingProductDetailResponseData {
     currency: string;
     environmentId: string;
     externalId: string;
+    isActive: boolean;
     name: string;
     price: number;
+    priceDecimal?: string;
     prices: Schematic.BillingPriceResponseData[];
     productId: string;
     quantity: number;
