@@ -5,6 +5,8 @@ import { Events } from "./api/resources/events/client/Client";
 import { CreateEventRequestBody } from "./api";
 import { Logger } from "./logger";
 
+process.env.NODE_ENV = "test";
+
 jest.useFakeTimers();
 
 describe("EventBuffer", () => {
@@ -12,13 +14,23 @@ describe("EventBuffer", () => {
     let mockLogger: jest.Mocked<Logger>;
 
     beforeEach(() => {
+        const mockResponse = {
+            data: {
+                events: [],
+            },
+            params: {},
+        };
+
         mockEventsApi = {
-            createEventBatch: jest.fn().mockResolvedValue(undefined),
+            createEventBatch: jest.fn().mockResolvedValue(mockResponse),
         } as any;
 
         mockLogger = {
             error: jest.fn(),
             log: jest.fn(),
+            warn: jest.fn(),
+            info: jest.fn(),
+            debug: jest.fn(),
         } as any;
     });
 
@@ -70,9 +82,12 @@ describe("EventBuffer", () => {
     // The rest of the tests remain unchanged as they don't directly test the maxSize behavior
     it("should log error if flushing fails", async () => {
         mockEventsApi.createEventBatch.mockRejectedValue(new Error("Flush error"));
+
         const buffer = new EventBuffer(mockEventsApi, {
             logger: mockLogger,
             interval: 1000,
+            maxRetries: 1,
+            initialRetryDelay: 1,
         });
 
         const event: CreateEventRequestBody = {
@@ -87,10 +102,14 @@ describe("EventBuffer", () => {
         await buffer.push(event);
         await buffer.push(event);
 
-        // Manually trigger flush
+        // Since we're skipping delays in test environment,
+        // we can just call flush directly
         await buffer.flush();
 
-        expect(mockLogger.error).toHaveBeenCalledWith("Failed to flush events", expect.any(Error));
+        expect(mockLogger.error).toHaveBeenCalledWith(
+            "Event batch submission failed after 1 retries:",
+            expect.any(Error)
+        );
     });
 
     it("should stop accepting events after stop is called", async () => {
@@ -165,5 +184,46 @@ describe("EventBuffer", () => {
         jest.advanceTimersByTime(1000);
 
         expect(mockEventsApi.createEventBatch).not.toHaveBeenCalled();
+    });
+
+    it("should retry and succeed after a failure", async () => {
+        const mockResponse = {
+            data: {
+                events: [],
+            },
+            params: {},
+        };
+
+        // First call fails, second succeeds
+        mockEventsApi.createEventBatch
+            .mockRejectedValueOnce(new Error("Temporary failure"))
+            .mockResolvedValueOnce(mockResponse);
+
+        const buffer = new EventBuffer(mockEventsApi, {
+            logger: mockLogger,
+            interval: 1000,
+            maxRetries: 3,
+            initialRetryDelay: 1,
+        });
+
+        const event: CreateEventRequestBody = {
+            body: {
+                company: { id: "test-company" },
+                event: "test-event",
+                user: { id: "test-user" },
+            },
+            eventType: "track",
+            sentAt: new Date(),
+        };
+        await buffer.push(event);
+
+        // Since we're skipping delays in test environment,
+        // we can just call flush directly
+        await buffer.flush();
+
+        // Verify that the createEventBatch was called twice (once failed, once succeeded)
+        expect(mockEventsApi.createEventBatch).toHaveBeenCalledTimes(2);
+
+        expect(mockLogger.info).toHaveBeenCalledWith("Event batch submission succeeded after 1 retries");
     });
 });
