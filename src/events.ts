@@ -88,17 +88,16 @@ class EventBuffer {
                     );
 
                     // Wait before retry
-                    await new Promise((resolve) => setTimeout(resolve, waitTime));
+                    if (process.env.NODE_ENV !== "test") {
+                        await new Promise((resolve) => setTimeout(resolve, waitTime));
+                    }
                 }
             }
         }
 
         // After all retries, if still not successful, log the error
         if (!success) {
-            this.logger.error(
-                `Event batch submission failed after ${this.maxRetries} retries:`,
-                lastError
-            );
+            this.logger.error(`Event batch submission failed after ${this.maxRetries} retries:`, lastError);
         } else if (retryCount > 0) {
             this.logger.info(`Event batch submission succeeded after ${retryCount} retries`);
         }
