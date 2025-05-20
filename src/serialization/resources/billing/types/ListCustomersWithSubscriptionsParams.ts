@@ -6,10 +6,14 @@ import * as serializers from "../../../index";
 import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
-export const ListCustomersParams: core.serialization.ObjectSchema<
-    serializers.ListCustomersParams.Raw,
-    Schematic.ListCustomersParams
+export const ListCustomersWithSubscriptionsParams: core.serialization.ObjectSchema<
+    serializers.ListCustomersWithSubscriptionsParams.Raw,
+    Schematic.ListCustomersWithSubscriptionsParams
 > = core.serialization.object({
+    companyIds: core.serialization.property(
+        "company_ids",
+        core.serialization.list(core.serialization.string()).optional(),
+    ),
     failedToImport: core.serialization.property("failed_to_import", core.serialization.boolean().optional()),
     limit: core.serialization.number().optional(),
     name: core.serialization.string().optional(),
@@ -17,8 +21,9 @@ export const ListCustomersParams: core.serialization.ObjectSchema<
     q: core.serialization.string().optional(),
 });
 
-export declare namespace ListCustomersParams {
+export declare namespace ListCustomersWithSubscriptionsParams {
     export interface Raw {
+        company_ids?: string[] | null;
         failed_to_import?: boolean | null;
         limit?: number | null;
         name?: string | null;

@@ -15,6 +15,7 @@ export const CountCompaniesParams: core.serialization.ObjectSchema<
     offset: core.serialization.number().optional(),
     planId: core.serialization.property("plan_id", core.serialization.string().optional()),
     q: core.serialization.string().optional(),
+    withSubscription: core.serialization.property("with_subscription", core.serialization.boolean().optional()),
     withoutFeatureOverrideFor: core.serialization.property(
         "without_feature_override_for",
         core.serialization.string().optional(),
@@ -29,6 +30,7 @@ export declare namespace CountCompaniesParams {
         offset?: number | null;
         plan_id?: string | null;
         q?: string | null;
+        with_subscription?: boolean | null;
         without_feature_override_for?: string | null;
         without_plan?: boolean | null;
     }

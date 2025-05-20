@@ -8,9 +8,11 @@
 export interface BillingProductPlanResponseData {
     accountId: string;
     billingProductId: string;
+    chargeType: string;
     environmentId: string;
     isTrialable: boolean;
     monthlyPriceId?: string;
+    oneTimePriceId?: string;
     planId: string;
     trialDays?: number;
     yearlyPriceId?: string;

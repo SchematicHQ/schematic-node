@@ -11,6 +11,7 @@ export const CreateBillingPriceTierRequestBody: core.serialization.ObjectSchema<
     Schematic.CreateBillingPriceTierRequestBody
 > = core.serialization.object({
     flatAmount: core.serialization.property("flat_amount", core.serialization.number().optional()),
+    perUnitDecimal: core.serialization.property("per_unit_decimal", core.serialization.string().optional()),
     perUnitPrice: core.serialization.property("per_unit_price", core.serialization.number().optional()),
     priceExternalId: core.serialization.property("price_external_id", core.serialization.string()),
     upTo: core.serialization.property("up_to", core.serialization.number().optional()),
@@ -19,6 +20,7 @@ export const CreateBillingPriceTierRequestBody: core.serialization.ObjectSchema<
 export declare namespace CreateBillingPriceTierRequestBody {
     export interface Raw {
         flat_amount?: number | null;
+        per_unit_decimal?: string | null;
         per_unit_price?: number | null;
         price_external_id: string;
         up_to?: number | null;

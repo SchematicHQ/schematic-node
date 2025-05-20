@@ -5,7 +5,7 @@
 export interface UpsertTraitRequestBody {
     /** Amount to increment the trait by (positive or negative) */
     incr?: number;
-    /** Key/value pairs too identify a company or user */
+    /** Key/value pairs to identify a company or user */
     keys: Record<string, string>;
     /** Value to set the trait to */
     set?: string;

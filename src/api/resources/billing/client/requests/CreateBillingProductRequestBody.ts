@@ -5,19 +5,14 @@
 /**
  * @example
  *     {
- *         active: true,
- *         currency: "currency",
  *         externalId: "external_id",
  *         name: "name",
- *         price: 1.1,
- *         quantity: 1
+ *         price: 1.1
  *     }
  */
 export interface CreateBillingProductRequestBody {
-    active: boolean;
-    currency: string;
     externalId: string;
+    isActive?: boolean;
     name: string;
     price: number;
-    quantity: number;
 }

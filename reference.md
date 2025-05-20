@@ -699,6 +699,46 @@ await client.accounts.deleteEnvironment("environment_id");
 </dl>
 </details>
 
+<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">quickstart</a>() -> Schematic.QuickstartResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounts.quickstart();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Accounts.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## features
 
 <details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">countAudienceCompanies</a>({ ...params }) -> Schematic.CountAudienceCompaniesResponse</code></summary>
@@ -1926,7 +1966,7 @@ await client.billing.upsertBillingCustomer({
 </dl>
 </details>
 
-<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">listCustomers</a>({ ...params }) -> Schematic.ListCustomersResponse</code></summary>
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">listCustomersWithSubscriptions</a>({ ...params }) -> Schematic.ListCustomersWithSubscriptionsResponse</code></summary>
 <dl>
 <dd>
 
@@ -1939,7 +1979,7 @@ await client.billing.upsertBillingCustomer({
 <dd>
 
 ```typescript
-await client.billing.listCustomers();
+await client.billing.listCustomersWithSubscriptions();
 ```
 
 </dd>
@@ -1955,7 +1995,7 @@ await client.billing.listCustomers();
 <dl>
 <dd>
 
-**request:** `Schematic.ListCustomersRequest`
+**request:** `Schematic.ListCustomersWithSubscriptionsRequest`
 
 </dd>
 </dl>
@@ -2393,6 +2433,7 @@ await client.billing.searchBillingPrices();
 
 ```typescript
 await client.billing.upsertBillingPrice({
+    billingScheme: "per_unit",
     currency: "currency",
     externalAccountId: "external_account_id",
     interval: "interval",
@@ -2599,12 +2640,9 @@ await client.billing.deleteProductPrice("billing_id");
 
 ```typescript
 await client.billing.upsertBillingProduct({
-    active: true,
-    currency: "currency",
     externalId: "external_id",
     name: "name",
     price: 1.1,
-    quantity: 1,
 });
 ```
 
@@ -3411,9 +3449,7 @@ await client.companies.deleteCompanyByKeys({
 ```typescript
 await client.companies.lookupCompany({
     keys: {
-        keys: {
-            key: "value",
-        },
+        keys: "keys",
     },
 });
 ```
@@ -4264,6 +4300,11 @@ await client.companies.listUsers();
 
 ```typescript
 await client.companies.upsertUser({
+    companies: [
+        {
+            key: "value",
+        },
+    ],
     company: {
         key: "value",
     },
@@ -4463,6 +4504,11 @@ await client.companies.countUsers();
 
 ```typescript
 await client.companies.createUser({
+    companies: [
+        {
+            key: "value",
+        },
+    ],
     company: {
         key: "value",
     },
@@ -4571,9 +4617,7 @@ await client.companies.deleteUserByKeys({
 ```typescript
 await client.companies.lookupUser({
     keys: {
-        keys: {
-            key: "value",
-        },
+        keys: "keys",
     },
 });
 ```
@@ -5527,9 +5571,7 @@ await client.entitlements.countPlanEntitlements();
 ```typescript
 await client.entitlements.getFeatureUsageByCompany({
     keys: {
-        keys: {
-            key: "value",
-        },
+        keys: "keys",
     },
 });
 ```
@@ -5779,6 +5821,309 @@ await client.plans.deleteAudience("plan_audience_id");
 <dd>
 
 **planAudienceId:** `string` — plan_audience_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Plans.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">listPlanTraits</a>({ ...params }) -> Schematic.ListPlanTraitsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.listPlanTraits();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListPlanTraitsRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Plans.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">createPlanTrait</a>({ ...params }) -> Schematic.CreatePlanTraitResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.createPlanTrait({
+    planId: "plan_id",
+    traitId: "trait_id",
+    traitValue: "trait_value",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CreatePlanTraitRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Plans.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">getPlanTrait</a>(planTraitId) -> Schematic.GetPlanTraitResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.getPlanTrait("plan_trait_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**planTraitId:** `string` — plan_trait_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Plans.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">updatePlanTrait</a>(planTraitId, { ...params }) -> Schematic.UpdatePlanTraitResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.updatePlanTrait("plan_trait_id", {
+    planId: "plan_id",
+    traitValue: "trait_value",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**planTraitId:** `string` — plan_trait_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.UpdatePlanTraitRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Plans.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">deletePlanTrait</a>(planTraitId) -> Schematic.DeletePlanTraitResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.deletePlanTrait("plan_trait_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**planTraitId:** `string` — plan_trait_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Plans.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">countPlanTraits</a>({ ...params }) -> Schematic.CountPlanTraitsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.countPlanTraits();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CountPlanTraitsRequest`
 
 </dd>
 </dl>
@@ -6761,6 +7106,58 @@ await client.crm.upsertCrmProduct({
 <dd>
 
 **requestOptions:** `Crm.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## dataexports
+
+<details><summary><code>client.dataexports.<a href="/src/api/resources/dataexports/client/Client.ts">createDataExport</a>({ ...params }) -> Schematic.CreateDataExportResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.dataexports.createDataExport({
+    metadata: "metadata",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CreateDataExportRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Dataexports.RequestOptions`
 
 </dd>
 </dl>

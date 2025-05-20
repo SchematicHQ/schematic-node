@@ -11,9 +11,11 @@
  */
 export interface UpsertBillingProductRequestBody {
     billingProductId?: string;
+    chargeType?: string;
     isFreePlan: boolean;
     isTrialable: boolean;
     monthlyPriceId?: string;
+    oneTimePriceId?: string;
     trialDays?: number;
     yearlyPriceId?: string;
 }

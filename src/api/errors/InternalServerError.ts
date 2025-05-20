@@ -4,13 +4,15 @@
 
 import * as errors from "../../errors/index";
 import * as Schematic from "../index";
+import * as core from "../../core";
 
 export class InternalServerError extends errors.SchematicError {
-    constructor(body: Schematic.ApiError) {
+    constructor(body: Schematic.ApiError, rawResponse?: core.RawResponse) {
         super({
             message: "InternalServerError",
             statusCode: 500,
             body: body,
+            rawResponse: rawResponse,
         });
         Object.setPrototypeOf(this, InternalServerError.prototype);
     }

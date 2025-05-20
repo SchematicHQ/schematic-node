@@ -14,7 +14,9 @@ export const BillingProductPricing: core.serialization.ObjectSchema<
     currency: core.serialization.string(),
     interval: core.serialization.string(),
     meterId: core.serialization.property("meter_id", core.serialization.string().optional()),
+    packageSize: core.serialization.property("package_size", core.serialization.number().optional()),
     price: core.serialization.number(),
+    priceDecimal: core.serialization.property("price_decimal", core.serialization.string().optional()),
     priceExternalId: core.serialization.property("price_external_id", core.serialization.string()),
     productExternalId: core.serialization.property("product_external_id", core.serialization.string()),
     quantity: core.serialization.number(),
@@ -26,7 +28,9 @@ export declare namespace BillingProductPricing {
         currency: string;
         interval: string;
         meter_id?: string | null;
+        package_size?: number | null;
         price: number;
+        price_decimal?: string | null;
         price_external_id: string;
         product_external_id: string;
         quantity: number;

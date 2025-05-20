@@ -13,6 +13,7 @@ import { Entitlements } from "./api/resources/entitlements/client/Client";
 import { Plans } from "./api/resources/plans/client/Client";
 import { Components } from "./api/resources/components/client/Client";
 import { Crm } from "./api/resources/crm/client/Client";
+import { Dataexports } from "./api/resources/dataexports/client/Client";
 import { Events } from "./api/resources/events/client/Client";
 import { Plangroups } from "./api/resources/plangroups/client/Client";
 import { Accesstokens } from "./api/resources/accesstokens/client/Client";
@@ -49,6 +50,7 @@ export class SchematicClient {
     protected _plans: Plans | undefined;
     protected _components: Components | undefined;
     protected _crm: Crm | undefined;
+    protected _dataexports: Dataexports | undefined;
     protected _events: Events | undefined;
     protected _plangroups: Plangroups | undefined;
     protected _accesstokens: Accesstokens | undefined;
@@ -90,6 +92,10 @@ export class SchematicClient {
 
     public get crm(): Crm {
         return (this._crm ??= new Crm(this._options));
+    }
+
+    public get dataexports(): Dataexports {
+        return (this._dataexports ??= new Dataexports(this._options));
     }
 
     public get events(): Events {

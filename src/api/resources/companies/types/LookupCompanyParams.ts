@@ -6,5 +6,5 @@
  * Input parameters
  */
 export interface LookupCompanyParams {
-    keys?: Record<string, unknown>;
+    keys?: Record<string, string>;
 }

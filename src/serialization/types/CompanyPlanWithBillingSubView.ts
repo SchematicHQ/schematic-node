@@ -10,6 +10,11 @@ export const CompanyPlanWithBillingSubView: core.serialization.ObjectSchema<
     serializers.CompanyPlanWithBillingSubView.Raw,
     Schematic.CompanyPlanWithBillingSubView
 > = core.serialization.object({
+    addedOn: core.serialization.property("added_on", core.serialization.date().optional()),
+    billingProductExternalId: core.serialization.property(
+        "billing_product_external_id",
+        core.serialization.string().optional(),
+    ),
     billingProductId: core.serialization.property("billing_product_id", core.serialization.string().optional()),
     description: core.serialization.string().optional(),
     id: core.serialization.string(),
@@ -21,6 +26,8 @@ export const CompanyPlanWithBillingSubView: core.serialization.ObjectSchema<
 
 export declare namespace CompanyPlanWithBillingSubView {
     export interface Raw {
+        added_on?: string | null;
+        billing_product_external_id?: string | null;
         billing_product_id?: string | null;
         description?: string | null;
         id: string;

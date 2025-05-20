@@ -10,11 +10,11 @@ export const LookupUserParams: core.serialization.ObjectSchema<
     serializers.LookupUserParams.Raw,
     Schematic.LookupUserParams
 > = core.serialization.object({
-    keys: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
+    keys: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
 });
 
 export declare namespace LookupUserParams {
     export interface Raw {
-        keys?: Record<string, unknown> | null;
+        keys?: Record<string, string> | null;
     }
 }

@@ -3,12 +3,17 @@
  */
 
 export interface UpsertUserRequestBody {
-    /** Optionally specify company using key/value pairs */
+    /** Optionally specify companies using array of key/value pairs */
+    companies: Record<string, string>[];
+    /** Add user to this company. Takes priority over companies. For exhaustive list of companies, use companies */
     company: Record<string, string>;
-    /** Optionally specify company using Schematic company ID */
+    /** Add user to this company. Takes priority over company_ids. For exhaustive list of companies, use company_ids */
     companyId?: string;
+    /** Optionally specify companies using Schematic company ID */
+    companyIds?: string[];
     /** If you know the Schematic ID, you can use that here instead of keys */
     id?: string;
+    /** See [Key Management](https://docs.schematichq.com/developer_resources/key_management) for more information */
     keys: Record<string, string>;
     lastSeenAt?: Date;
     name?: string;

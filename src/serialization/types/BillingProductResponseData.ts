@@ -15,8 +15,10 @@ export const BillingProductResponseData: core.serialization.ObjectSchema<
     currency: core.serialization.string(),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     externalId: core.serialization.property("external_id", core.serialization.string()),
+    isActive: core.serialization.property("is_active", core.serialization.boolean()),
     name: core.serialization.string(),
     price: core.serialization.number(),
+    priceDecimal: core.serialization.property("price_decimal", core.serialization.string().optional()),
     productId: core.serialization.property("product_id", core.serialization.string()),
     quantity: core.serialization.number(),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -29,8 +31,10 @@ export declare namespace BillingProductResponseData {
         currency: string;
         environment_id: string;
         external_id: string;
+        is_active: boolean;
         name: string;
         price: number;
+        price_decimal?: string | null;
         product_id: string;
         quantity: number;
         updated_at: string;

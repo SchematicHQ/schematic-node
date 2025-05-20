@@ -10,11 +10,11 @@ export const LookupCompanyParams: core.serialization.ObjectSchema<
     serializers.LookupCompanyParams.Raw,
     Schematic.LookupCompanyParams
 > = core.serialization.object({
-    keys: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
+    keys: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
 });
 
 export declare namespace LookupCompanyParams {
     export interface Raw {
-        keys?: Record<string, unknown> | null;
+        keys?: Record<string, string> | null;
     }
 }

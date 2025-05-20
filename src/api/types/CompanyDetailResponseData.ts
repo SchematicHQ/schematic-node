@@ -9,6 +9,7 @@ export interface CompanyDetailResponseData {
     billingSubscription?: Schematic.BillingSubscriptionView;
     billingSubscriptions: Schematic.BillingSubscriptionView[];
     createdAt: Date;
+    defaultPaymentMethod?: Schematic.PaymentMethodResponseData;
     entityTraits: Schematic.EntityTraitDetailResponseData[];
     environmentId: string;
     id: string;

@@ -6,9 +6,7 @@
  * @example
  *     {
  *         keys: {
- *             "keys": {
- *                 "key": "value"
- *             }
+ *             "keys": "keys"
  *         }
  *     }
  */
@@ -16,5 +14,5 @@ export interface LookupUserRequest {
     /**
      * Key/value pairs
      */
-    keys: Record<string, unknown>;
+    keys: Record<string, string>;
 }

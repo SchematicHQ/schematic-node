@@ -12,9 +12,11 @@ export const BillingProductPlanResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     accountId: core.serialization.property("account_id", core.serialization.string()),
     billingProductId: core.serialization.property("billing_product_id", core.serialization.string()),
+    chargeType: core.serialization.property("charge_type", core.serialization.string()),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     isTrialable: core.serialization.property("is_trialable", core.serialization.boolean()),
     monthlyPriceId: core.serialization.property("monthly_price_id", core.serialization.string().optional()),
+    oneTimePriceId: core.serialization.property("one_time_price_id", core.serialization.string().optional()),
     planId: core.serialization.property("plan_id", core.serialization.string()),
     trialDays: core.serialization.property("trial_days", core.serialization.number().optional()),
     yearlyPriceId: core.serialization.property("yearly_price_id", core.serialization.string().optional()),
@@ -24,9 +26,11 @@ export declare namespace BillingProductPlanResponseData {
     export interface Raw {
         account_id: string;
         billing_product_id: string;
+        charge_type: string;
         environment_id: string;
         is_trialable: boolean;
         monthly_price_id?: string | null;
+        one_time_price_id?: string | null;
         plan_id: string;
         trial_days?: number | null;
         yearly_price_id?: string | null;

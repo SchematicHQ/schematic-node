@@ -7,10 +7,10 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { CompanyPlanWithBillingSubView } from "./CompanyPlanWithBillingSubView";
 import { BillingSubscriptionView } from "./BillingSubscriptionView";
+import { PaymentMethodResponseData } from "./PaymentMethodResponseData";
 import { EntityTraitDetailResponseData } from "./EntityTraitDetailResponseData";
 import { EntityKeyDetailResponseData } from "./EntityKeyDetailResponseData";
 import { CompanyEventPeriodMetricsResponseData } from "./CompanyEventPeriodMetricsResponseData";
-import { PaymentMethodResponseData } from "./PaymentMethodResponseData";
 import { GenericPreviewObject } from "./GenericPreviewObject";
 
 export const CompanyDetailResponseData: core.serialization.ObjectSchema<
@@ -24,6 +24,7 @@ export const CompanyDetailResponseData: core.serialization.ObjectSchema<
         core.serialization.list(BillingSubscriptionView),
     ),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
+    defaultPaymentMethod: core.serialization.property("default_payment_method", PaymentMethodResponseData.optional()),
     entityTraits: core.serialization.property("entity_traits", core.serialization.list(EntityTraitDetailResponseData)),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     id: core.serialization.string(),
@@ -46,6 +47,7 @@ export declare namespace CompanyDetailResponseData {
         billing_subscription?: BillingSubscriptionView.Raw | null;
         billing_subscriptions: BillingSubscriptionView.Raw[];
         created_at: string;
+        default_payment_method?: PaymentMethodResponseData.Raw | null;
         entity_traits: EntityTraitDetailResponseData.Raw[];
         environment_id: string;
         id: string;

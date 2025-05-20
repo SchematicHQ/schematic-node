@@ -10,6 +10,10 @@ export const CountCustomersParams: core.serialization.ObjectSchema<
     serializers.CountCustomersParams.Raw,
     Schematic.CountCustomersParams
 > = core.serialization.object({
+    companyIds: core.serialization.property(
+        "company_ids",
+        core.serialization.list(core.serialization.string()).optional(),
+    ),
     failedToImport: core.serialization.property("failed_to_import", core.serialization.boolean().optional()),
     limit: core.serialization.number().optional(),
     name: core.serialization.string().optional(),
@@ -19,6 +23,7 @@ export const CountCustomersParams: core.serialization.ObjectSchema<
 
 export declare namespace CountCustomersParams {
     export interface Raw {
+        company_ids?: string[] | null;
         failed_to_import?: boolean | null;
         limit?: number | null;
         name?: string | null;

@@ -3,6 +3,8 @@
  */
 
 export interface CompanyPlanWithBillingSubView {
+    addedOn?: Date;
+    billingProductExternalId?: string;
     billingProductId?: string;
     description?: string;
     id: string;

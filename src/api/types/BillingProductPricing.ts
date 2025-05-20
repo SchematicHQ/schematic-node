@@ -8,7 +8,9 @@ export interface BillingProductPricing {
     currency: string;
     interval: string;
     meterId?: string;
+    packageSize?: number;
     price: number;
+    priceDecimal?: string;
     priceExternalId: string;
     productExternalId: string;
     quantity: number;

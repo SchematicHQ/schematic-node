@@ -16,6 +16,8 @@ export interface CountCompaniesParams {
     planId?: string;
     /** Search for companies by name, keys or string traits */
     q?: string;
+    /** Filter companies that have a subscription */
+    withSubscription?: boolean;
     /** Filter out companies that already have a company override for the specified feature ID */
     withoutFeatureOverrideFor?: string;
     /** Filter out companies that have a plan */

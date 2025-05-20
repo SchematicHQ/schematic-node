@@ -8,4 +8,6 @@ export interface BillingPriceResponseData {
     id: string;
     interval: string;
     price: number;
+    priceDecimal?: string;
+    scheme: string;
 }

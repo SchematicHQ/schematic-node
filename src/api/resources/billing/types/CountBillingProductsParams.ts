@@ -9,6 +9,8 @@ import * as Schematic from "../../../index";
  */
 export interface CountBillingProductsParams {
     ids?: string[];
+    /** Filter products that are active */
+    isActive?: boolean;
     /** Page limit (default 100) */
     limit?: number;
     name?: string;
@@ -16,6 +18,8 @@ export interface CountBillingProductsParams {
     offset?: number;
     priceUsageType?: Schematic.CountBillingProductsResponseParamsPriceUsageType;
     q?: string;
+    /** Filter products that are one time charges */
+    withOneTimeCharges?: boolean;
     /** Filter products that have prices */
     withPricesOnly?: boolean;
     /** Filter products that have zero price for free subscription type */

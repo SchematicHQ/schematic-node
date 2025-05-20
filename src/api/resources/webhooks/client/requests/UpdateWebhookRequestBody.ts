@@ -9,6 +9,7 @@ import * as Schematic from "../../../../index";
  *     {}
  */
 export interface UpdateWebhookRequestBody {
+    entitlementTriggerConfigs?: Schematic.EntitlementTriggerConfig[];
     name?: string;
     requestTypes?: Schematic.UpdateWebhookRequestBodyRequestTypesItem[];
     status?: Schematic.UpdateWebhookRequestBodyStatus;

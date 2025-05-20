@@ -11,9 +11,13 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface UpdatePlanEntitlementRequestBody {
+    currency?: string;
     metricPeriod?: Schematic.UpdatePlanEntitlementRequestBodyMetricPeriod;
     metricPeriodMonthReset?: Schematic.UpdatePlanEntitlementRequestBodyMetricPeriodMonthReset;
     monthlyMeteredPriceId?: string;
+    monthlyUnitPrice?: number;
+    monthlyUnitPriceDecimal?: string;
+    overageBillingProductId?: string;
     priceBehavior?: string;
     softLimit?: number;
     valueBool?: boolean;
@@ -21,4 +25,6 @@ export interface UpdatePlanEntitlementRequestBody {
     valueTraitId?: string;
     valueType: Schematic.UpdatePlanEntitlementRequestBodyValueType;
     yearlyMeteredPriceId?: string;
+    yearlyUnitPrice?: number;
+    yearlyUnitPriceDecimal?: string;
 }

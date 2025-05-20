@@ -3,13 +3,16 @@
  */
 
 export interface BillingProductPriceResponseData {
+    billingScheme: string;
     createdAt: Date;
     currency: string;
     id: string;
     interval: string;
     isActive: boolean;
     meterId?: string;
+    packageSize: number;
     price: number;
+    priceDecimal?: string;
     priceExternalId: string;
     productExternalId: string;
     updatedAt: Date;
