@@ -1,21 +1,4 @@
-import { setTimeout, clearTimeout } from "timers";
-
-interface CacheProvider<T> {
-    get(key: string): Promise<T | undefined>;
-    set(key: string, value: T, ttlOverride?: number): Promise<void>;
-}
-
-type CacheItem<T> = {
-    value: T;
-    accessCounter: number;
-    expiration: number;
-    timeoutId?: ReturnType<typeof setTimeout>;
-};
-
-export interface CacheOptions {
-    maxItems?: number;
-    ttl?: number;
-}
+import { CacheProvider, CacheItem, CacheOptions } from './cache';
 
 class LocalCache<T> implements CacheProvider<T> {
     private cache: Map<string, CacheItem<T>>;
@@ -120,4 +103,4 @@ class LocalCache<T> implements CacheProvider<T> {
     }
 }
 
-export { CacheProvider, LocalCache };
+export { LocalCache };

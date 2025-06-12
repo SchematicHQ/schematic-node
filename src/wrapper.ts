@@ -1,6 +1,5 @@
 import * as api from "./api";
 import { SchematicClient as BaseClient } from "./Client";
-
 import { CacheProvider, LocalCache } from "./cache";
 import { ConsoleLogger, Logger } from "./logger";
 import { EventBuffer } from "./events";
@@ -53,7 +52,6 @@ export class SchematicClient extends BaseClient {
             logger = new ConsoleLogger(),
         } = opts ?? {};
         let { offline = false } = opts ?? {};
-
         // Set headers
         const headers: Record<string, string> = {};
         if (opts?.environmentId) {

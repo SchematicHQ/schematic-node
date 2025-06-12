@@ -2,8 +2,7 @@
 
 README.md
 scripts/
-src/cache.test.ts
-src/cache.ts
+src/cache/
 src/core/fetcher/custom.ts
 src/events.test.ts
 src/events.ts

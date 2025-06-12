@@ -1,5 +1,5 @@
 export * as Schematic from "./api";
-export { LocalCache } from "./cache";
+export { LocalCache, CloudflareKVCache } from "./cache";
 export { SchematicClient } from "./wrapper";
 export { SchematicEnvironment } from "./environments";
 export { SchematicError, SchematicTimeoutError } from "./errors";
