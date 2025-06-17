@@ -10,9 +10,6 @@ export interface CloudflareKVCacheOptions {
   keyPrefix?: string;
   /** Default TTL in milliseconds */
   ttl?: number;
-
-
-
 }
 
 /**
