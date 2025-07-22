@@ -5,6 +5,7 @@
 import * as serializers from "../../../index";
 import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
+import { SearchBillingPricesResponseParamsTiersMode } from "./SearchBillingPricesResponseParamsTiersMode";
 import { SearchBillingPricesResponseParamsUsageType } from "./SearchBillingPricesResponseParamsUsageType";
 
 export const SearchBillingPricesParams: core.serialization.ObjectSchema<
@@ -17,6 +18,7 @@ export const SearchBillingPricesParams: core.serialization.ObjectSchema<
     offset: core.serialization.number().optional(),
     price: core.serialization.number().optional(),
     q: core.serialization.string().optional(),
+    tiersMode: core.serialization.property("tiers_mode", SearchBillingPricesResponseParamsTiersMode.optional()),
     usageType: core.serialization.property("usage_type", SearchBillingPricesResponseParamsUsageType.optional()),
 });
 
@@ -28,6 +30,7 @@ export declare namespace SearchBillingPricesParams {
         offset?: number | null;
         price?: number | null;
         q?: string | null;
+        tiers_mode?: SearchBillingPricesResponseParamsTiersMode.Raw | null;
         usage_type?: SearchBillingPricesResponseParamsUsageType.Raw | null;
     }
 }

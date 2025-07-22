@@ -5,6 +5,7 @@
 import * as Schematic from "../index";
 
 export interface PlanEntitlementResponseData {
+    consumptionRate?: number;
     createdAt: Date;
     environmentId: string;
     feature?: Schematic.FeatureResponseData;
@@ -23,6 +24,7 @@ export interface PlanEntitlementResponseData {
     updatedAt: Date;
     usageBasedProduct?: Schematic.BillingProductResponseData;
     valueBool?: boolean;
+    valueCredit?: Schematic.BillingCreditResponseData;
     valueNumeric?: number;
     valueTrait?: Schematic.EntityTraitDefinitionResponseData;
     valueTraitId?: string;

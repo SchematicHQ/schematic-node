@@ -7,7 +7,7 @@ import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import { CreateBillingPriceRequestBodyBillingScheme } from "../../types/CreateBillingPriceRequestBodyBillingScheme";
 import { CreateBillingPriceTierRequestBody } from "../../../../types/CreateBillingPriceTierRequestBody";
-import { CreateBillingPriceRequestBodyTierMode } from "../../types/CreateBillingPriceRequestBodyTierMode";
+import { CreateBillingPriceRequestBodyTiersMode } from "../../types/CreateBillingPriceRequestBodyTiersMode";
 import { CreateBillingPriceRequestBodyUsageType } from "../../types/CreateBillingPriceRequestBodyUsageType";
 
 export const CreateBillingPriceRequestBody: core.serialization.Schema<
@@ -26,7 +26,7 @@ export const CreateBillingPriceRequestBody: core.serialization.Schema<
     priceExternalId: core.serialization.property("price_external_id", core.serialization.string()),
     priceTiers: core.serialization.property("price_tiers", core.serialization.list(CreateBillingPriceTierRequestBody)),
     productExternalId: core.serialization.property("product_external_id", core.serialization.string()),
-    tierMode: core.serialization.property("tier_mode", CreateBillingPriceRequestBodyTierMode.optional()),
+    tiersMode: core.serialization.property("tiers_mode", CreateBillingPriceRequestBodyTiersMode.optional()),
     usageType: core.serialization.property("usage_type", CreateBillingPriceRequestBodyUsageType),
 });
 
@@ -44,7 +44,7 @@ export declare namespace CreateBillingPriceRequestBody {
         price_external_id: string;
         price_tiers: CreateBillingPriceTierRequestBody.Raw[];
         product_external_id: string;
-        tier_mode?: CreateBillingPriceRequestBodyTierMode.Raw | null;
+        tiers_mode?: CreateBillingPriceRequestBodyTiersMode.Raw | null;
         usage_type: CreateBillingPriceRequestBodyUsageType.Raw;
     }
 }

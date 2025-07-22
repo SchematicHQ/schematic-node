@@ -19,6 +19,7 @@ export * from "./CreatePlanResponse";
 export * from "./GetPlanResponse";
 export * from "./UpdatePlanResponse";
 export * from "./DeletePlanResponse";
+export * from "./UpsertBillingProductRequestBodyChargeType";
 export * from "./UpsertBillingProductPlanResponse";
 export * from "./CountPlansRequestPlanType";
 export * from "./CountPlansResponseParamsPlanType";

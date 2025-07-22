@@ -50,12 +50,17 @@ export class Checkout {
      *                 priceId: "price_id"
      *             }],
      *         companyId: "company_id",
+     *         creditBundles: [{
+     *                 bundleId: "bundle_id",
+     *                 quantity: 1
+     *             }],
      *         newPlanId: "new_plan_id",
      *         newPriceId: "new_price_id",
      *         payInAdvance: [{
      *                 priceId: "price_id",
      *                 quantity: 1
-     *             }]
+     *             }],
+     *         skipTrial: true
      *     })
      */
     public internal(
@@ -80,8 +85,8 @@ export class Checkout {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.11",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
+                "X-Fern-SDK-Version": "1.1.12",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.12",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -229,8 +234,8 @@ export class Checkout {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.11",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
+                "X-Fern-SDK-Version": "1.1.12",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.12",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -356,12 +361,17 @@ export class Checkout {
      *                 priceId: "price_id"
      *             }],
      *         companyId: "company_id",
+     *         creditBundles: [{
+     *                 bundleId: "bundle_id",
+     *                 quantity: 1
+     *             }],
      *         newPlanId: "new_plan_id",
      *         newPriceId: "new_price_id",
      *         payInAdvance: [{
      *                 priceId: "price_id",
      *                 quantity: 1
-     *             }]
+     *             }],
+     *         skipTrial: true
      *     })
      */
     public previewCheckoutInternal(
@@ -386,8 +396,8 @@ export class Checkout {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.11",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
+                "X-Fern-SDK-Version": "1.1.12",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.12",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -540,8 +550,8 @@ export class Checkout {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.11",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
+                "X-Fern-SDK-Version": "1.1.12",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.12",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

@@ -9,10 +9,13 @@ import * as Schematic from "../../../../index";
  *     {
  *         featureId: "feature_id",
  *         planId: "plan_id",
+ *         priceTiers: [{}],
+ *         tierMode: "tier_mode",
  *         valueType: "boolean"
  *     }
  */
 export interface CreatePlanEntitlementRequestBody {
+    creditConsumptionRate?: number;
     currency?: string;
     featureId: string;
     metricPeriod?: Schematic.CreatePlanEntitlementRequestBodyMetricPeriod;
@@ -22,9 +25,12 @@ export interface CreatePlanEntitlementRequestBody {
     monthlyUnitPriceDecimal?: string;
     overageBillingProductId?: string;
     planId: string;
-    priceBehavior?: string;
+    priceBehavior?: Schematic.CreatePlanEntitlementRequestBodyPriceBehavior;
+    priceTiers: Schematic.CreatePriceTierRequestBody[];
     softLimit?: number;
+    tierMode: string;
     valueBool?: boolean;
+    valueCreditId?: string;
     valueNumeric?: number;
     valueTraitId?: string;
     valueType: Schematic.CreatePlanEntitlementRequestBodyValueType;

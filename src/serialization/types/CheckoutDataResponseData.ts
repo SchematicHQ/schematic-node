@@ -7,8 +7,10 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { PlanDetailResponseData } from "./PlanDetailResponseData";
 import { UsageBasedEntitlementResponseData } from "./UsageBasedEntitlementResponseData";
+import { BillingCreditBundleResponseData } from "./BillingCreditBundleResponseData";
 import { CompanyDetailResponseData } from "./CompanyDetailResponseData";
 import { FeatureUsageDetailResponseData } from "./FeatureUsageDetailResponseData";
+import { CreditBundlePurchaseResponseData } from "./CreditBundlePurchaseResponseData";
 import { CompanySubscriptionResponseData } from "./CompanySubscriptionResponseData";
 
 export const CheckoutDataResponseData: core.serialization.ObjectSchema<
@@ -21,8 +23,16 @@ export const CheckoutDataResponseData: core.serialization.ObjectSchema<
         "active_usage_based_entitlements",
         core.serialization.list(UsageBasedEntitlementResponseData),
     ),
+    availableCreditBundles: core.serialization.property(
+        "available_credit_bundles",
+        core.serialization.list(BillingCreditBundleResponseData),
+    ),
     company: CompanyDetailResponseData.optional(),
     featureUsage: core.serialization.property("feature_usage", FeatureUsageDetailResponseData.optional()),
+    selectedCreditBundles: core.serialization.property(
+        "selected_credit_bundles",
+        core.serialization.list(CreditBundlePurchaseResponseData),
+    ),
     selectedPlan: core.serialization.property("selected_plan", PlanDetailResponseData.optional()),
     selectedUsageBasedEntitlements: core.serialization.property(
         "selected_usage_based_entitlements",
@@ -36,8 +46,10 @@ export declare namespace CheckoutDataResponseData {
         active_add_ons: PlanDetailResponseData.Raw[];
         active_plan?: PlanDetailResponseData.Raw | null;
         active_usage_based_entitlements: UsageBasedEntitlementResponseData.Raw[];
+        available_credit_bundles: BillingCreditBundleResponseData.Raw[];
         company?: CompanyDetailResponseData.Raw | null;
         feature_usage?: FeatureUsageDetailResponseData.Raw | null;
+        selected_credit_bundles: CreditBundlePurchaseResponseData.Raw[];
         selected_plan?: PlanDetailResponseData.Raw | null;
         selected_usage_based_entitlements: UsageBasedEntitlementResponseData.Raw[];
         subscription?: CompanySubscriptionResponseData.Raw | null;

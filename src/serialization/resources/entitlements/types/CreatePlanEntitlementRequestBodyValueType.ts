@@ -9,8 +9,8 @@ import * as core from "../../../../core";
 export const CreatePlanEntitlementRequestBodyValueType: core.serialization.Schema<
     serializers.CreatePlanEntitlementRequestBodyValueType.Raw,
     Schematic.CreatePlanEntitlementRequestBodyValueType
-> = core.serialization.enum_(["boolean", "numeric", "trait", "unlimited"]);
+> = core.serialization.enum_(["boolean", "credit", "numeric", "trait", "unlimited"]);
 
 export declare namespace CreatePlanEntitlementRequestBodyValueType {
-    export type Raw = "boolean" | "numeric" | "trait" | "unlimited";
+    export type Raw = "boolean" | "credit" | "numeric" | "trait" | "unlimited";
 }

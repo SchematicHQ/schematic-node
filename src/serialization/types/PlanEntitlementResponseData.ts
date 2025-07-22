@@ -9,12 +9,14 @@ import { FeatureResponseData } from "./FeatureResponseData";
 import { BillingPriceView } from "./BillingPriceView";
 import { PlanResponseData } from "./PlanResponseData";
 import { BillingProductResponseData } from "./BillingProductResponseData";
+import { BillingCreditResponseData } from "./BillingCreditResponseData";
 import { EntityTraitDefinitionResponseData } from "./EntityTraitDefinitionResponseData";
 
 export const PlanEntitlementResponseData: core.serialization.ObjectSchema<
     serializers.PlanEntitlementResponseData.Raw,
     Schematic.PlanEntitlementResponseData
 > = core.serialization.object({
+    consumptionRate: core.serialization.property("consumption_rate", core.serialization.number().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     feature: FeatureResponseData.optional(),
@@ -36,6 +38,7 @@ export const PlanEntitlementResponseData: core.serialization.ObjectSchema<
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     usageBasedProduct: core.serialization.property("usage_based_product", BillingProductResponseData.optional()),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
+    valueCredit: core.serialization.property("value_credit", BillingCreditResponseData.optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
     valueTrait: core.serialization.property("value_trait", EntityTraitDefinitionResponseData.optional()),
     valueTraitId: core.serialization.property("value_trait_id", core.serialization.string().optional()),
@@ -44,6 +47,7 @@ export const PlanEntitlementResponseData: core.serialization.ObjectSchema<
 
 export declare namespace PlanEntitlementResponseData {
     export interface Raw {
+        consumption_rate?: number | null;
         created_at: string;
         environment_id: string;
         feature?: FeatureResponseData.Raw | null;
@@ -62,6 +66,7 @@ export declare namespace PlanEntitlementResponseData {
         updated_at: string;
         usage_based_product?: BillingProductResponseData.Raw | null;
         value_bool?: boolean | null;
+        value_credit?: BillingCreditResponseData.Raw | null;
         value_numeric?: number | null;
         value_trait?: EntityTraitDefinitionResponseData.Raw | null;
         value_trait_id?: string | null;

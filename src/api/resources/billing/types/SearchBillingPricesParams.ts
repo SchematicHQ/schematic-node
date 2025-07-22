@@ -16,5 +16,6 @@ export interface SearchBillingPricesParams {
     offset?: number;
     price?: number;
     q?: string;
+    tiersMode?: Schematic.SearchBillingPricesResponseParamsTiersMode;
     usageType?: Schematic.SearchBillingPricesResponseParamsUsageType;
 }

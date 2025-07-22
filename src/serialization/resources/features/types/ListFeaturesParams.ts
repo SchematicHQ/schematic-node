@@ -10,6 +10,11 @@ export const ListFeaturesParams: core.serialization.ObjectSchema<
     serializers.ListFeaturesParams.Raw,
     Schematic.ListFeaturesParams
 > = core.serialization.object({
+    booleanRequireEvent: core.serialization.property("boolean_require_event", core.serialization.boolean().optional()),
+    featureType: core.serialization.property(
+        "feature_type",
+        core.serialization.list(core.serialization.string()).optional(),
+    ),
     ids: core.serialization.list(core.serialization.string()).optional(),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
@@ -26,6 +31,8 @@ export const ListFeaturesParams: core.serialization.ObjectSchema<
 
 export declare namespace ListFeaturesParams {
     export interface Raw {
+        boolean_require_event?: boolean | null;
+        feature_type?: string[] | null;
         ids?: string[] | null;
         limit?: number | null;
         offset?: number | null;

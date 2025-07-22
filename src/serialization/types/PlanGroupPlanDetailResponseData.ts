@@ -19,6 +19,11 @@ export const PlanGroupPlanDetailResponseData: core.serialization.ObjectSchema<
     billingProduct: core.serialization.property("billing_product", BillingProductDetailResponseData.optional()),
     chargeType: core.serialization.property("charge_type", core.serialization.string()),
     companyCount: core.serialization.property("company_count", core.serialization.number()),
+    compatiblePlanIds: core.serialization.property(
+        "compatible_plan_ids",
+        core.serialization.list(core.serialization.string()),
+    ),
+    controlledBy: core.serialization.property("controlled_by", core.serialization.string()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     customPlanConfig: core.serialization.property("custom_plan_config", CustomPlanViewConfigResponseData.optional()),
     description: core.serialization.string(),
@@ -45,6 +50,8 @@ export declare namespace PlanGroupPlanDetailResponseData {
         billing_product?: BillingProductDetailResponseData.Raw | null;
         charge_type: string;
         company_count: number;
+        compatible_plan_ids: string[];
+        controlled_by: string;
         created_at: string;
         custom_plan_config?: CustomPlanViewConfigResponseData.Raw | null;
         description: string;

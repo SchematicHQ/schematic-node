@@ -7,9 +7,11 @@ import * as Schematic from "../index";
 export interface ChangeSubscriptionRequestBody {
     addOnIds: Schematic.UpdateAddOnRequestBody[];
     couponExternalId?: string;
+    creditBundles: Schematic.UpdateCreditBundleRequestBody[];
     newPlanId: string;
     newPriceId: string;
     payInAdvance: Schematic.UpdatePayInAdvanceRequestBody[];
     paymentMethodId?: string;
     promoCode?: string;
+    skipTrial: boolean;
 }

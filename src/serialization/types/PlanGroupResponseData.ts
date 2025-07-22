@@ -5,12 +5,17 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { CompatiblePlansResponseData } from "./CompatiblePlansResponseData";
 import { OrderedPlansInGroup } from "./OrderedPlansInGroup";
 
 export const PlanGroupResponseData: core.serialization.ObjectSchema<
     serializers.PlanGroupResponseData.Raw,
     Schematic.PlanGroupResponseData
 > = core.serialization.object({
+    addOnCompatibilities: core.serialization.property(
+        "add_on_compatibilities",
+        core.serialization.list(CompatiblePlansResponseData),
+    ),
     addOnIds: core.serialization.property("add_on_ids", core.serialization.list(core.serialization.string())),
     defaultPlanId: core.serialization.property("default_plan_id", core.serialization.string().optional()),
     id: core.serialization.string(),
@@ -24,6 +29,7 @@ export const PlanGroupResponseData: core.serialization.ObjectSchema<
 
 export declare namespace PlanGroupResponseData {
     export interface Raw {
+        add_on_compatibilities: CompatiblePlansResponseData.Raw[];
         add_on_ids: string[];
         default_plan_id?: string | null;
         id: string;

@@ -6,6 +6,10 @@
  * Input parameters
  */
 export interface ListFeaturesParams {
+    /** Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. */
+    booleanRequireEvent?: boolean;
+    /** Filter by one or more feature types (boolean, event, trait) */
+    featureType?: string[];
     ids?: string[];
     /** Page limit (default 100) */
     limit?: number;

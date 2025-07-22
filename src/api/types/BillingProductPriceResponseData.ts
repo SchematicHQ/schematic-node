@@ -15,6 +15,7 @@ export interface BillingProductPriceResponseData {
     priceDecimal?: string;
     priceExternalId: string;
     productExternalId: string;
+    tiersMode?: string;
     updatedAt: Date;
     usageType: string;
 }

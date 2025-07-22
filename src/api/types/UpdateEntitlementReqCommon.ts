@@ -8,6 +8,7 @@ export interface UpdateEntitlementReqCommon {
     metricPeriod?: Schematic.UpdateEntitlementReqCommonMetricPeriod;
     metricPeriodMonthReset?: Schematic.UpdateEntitlementReqCommonMetricPeriodMonthReset;
     valueBool?: boolean;
+    valueCreditId?: string;
     valueNumeric?: number;
     valueTraitId?: string;
     valueType: Schematic.UpdateEntitlementReqCommonValueType;

@@ -5,6 +5,7 @@
 import * as serializers from "../../../index";
 import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
+import { ListEventsResponseParamsEventTypesItem } from "./ListEventsResponseParamsEventTypesItem";
 
 export const ListEventsParams: core.serialization.ObjectSchema<
     serializers.ListEventsParams.Raw,
@@ -14,7 +15,7 @@ export const ListEventsParams: core.serialization.ObjectSchema<
     eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
     eventTypes: core.serialization.property(
         "event_types",
-        core.serialization.list(core.serialization.string()).optional(),
+        core.serialization.list(ListEventsResponseParamsEventTypesItem).optional(),
     ),
     flagId: core.serialization.property("flag_id", core.serialization.string().optional()),
     limit: core.serialization.number().optional(),
@@ -26,7 +27,7 @@ export declare namespace ListEventsParams {
     export interface Raw {
         company_id?: string | null;
         event_subtype?: string | null;
-        event_types?: string[] | null;
+        event_types?: ListEventsResponseParamsEventTypesItem.Raw[] | null;
         flag_id?: string | null;
         limit?: number | null;
         offset?: number | null;

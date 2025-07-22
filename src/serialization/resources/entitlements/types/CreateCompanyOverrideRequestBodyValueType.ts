@@ -9,8 +9,8 @@ import * as core from "../../../../core";
 export const CreateCompanyOverrideRequestBodyValueType: core.serialization.Schema<
     serializers.CreateCompanyOverrideRequestBodyValueType.Raw,
     Schematic.CreateCompanyOverrideRequestBodyValueType
-> = core.serialization.enum_(["boolean", "numeric", "trait", "unlimited"]);
+> = core.serialization.enum_(["boolean", "credit", "numeric", "trait", "unlimited"]);
 
 export declare namespace CreateCompanyOverrideRequestBodyValueType {
-    export type Raw = "boolean" | "numeric" | "trait" | "unlimited";
+    export type Raw = "boolean" | "credit" | "numeric" | "trait" | "unlimited";
 }

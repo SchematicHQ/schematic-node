@@ -47,8 +47,7 @@ export class Accesstokens {
      *     await client.accesstokens.issueTemporaryAccessToken({
      *         lookup: {
      *             "key": "value"
-     *         },
-     *         resourceType: "resource_type"
+     *         }
      *     })
      */
     public issueTemporaryAccessToken(
@@ -73,8 +72,8 @@ export class Accesstokens {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.11",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.11",
+                "X-Fern-SDK-Version": "1.1.12",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.1.12",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -82,9 +81,12 @@ export class Accesstokens {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.IssueTemporaryAccessTokenRequestBody.jsonOrThrow(request, {
-                unrecognizedObjectKeys: "strip",
-            }),
+            body: {
+                ...serializers.IssueTemporaryAccessTokenRequestBody.jsonOrThrow(request, {
+                    unrecognizedObjectKeys: "strip",
+                }),
+                resource_type: "company",
+            },
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
