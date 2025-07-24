@@ -19,6 +19,7 @@ export const UpdateEntitlementReqCommon: core.serialization.ObjectSchema<
         UpdateEntitlementReqCommonMetricPeriodMonthReset.optional(),
     ),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
+    valueCreditId: core.serialization.property("value_credit_id", core.serialization.string().optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
     valueTraitId: core.serialization.property("value_trait_id", core.serialization.string().optional()),
     valueType: core.serialization.property("value_type", UpdateEntitlementReqCommonValueType),
@@ -29,6 +30,7 @@ export declare namespace UpdateEntitlementReqCommon {
         metric_period?: UpdateEntitlementReqCommonMetricPeriod.Raw | null;
         metric_period_month_reset?: UpdateEntitlementReqCommonMetricPeriodMonthReset.Raw | null;
         value_bool?: boolean | null;
+        value_credit_id?: string | null;
         value_numeric?: number | null;
         value_trait_id?: string | null;
         value_type: UpdateEntitlementReqCommonValueType.Raw;

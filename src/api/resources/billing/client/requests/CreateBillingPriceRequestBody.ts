@@ -34,6 +34,6 @@ export interface CreateBillingPriceRequestBody {
     priceExternalId: string;
     priceTiers: Schematic.CreateBillingPriceTierRequestBody[];
     productExternalId: string;
-    tierMode?: Schematic.CreateBillingPriceRequestBodyTierMode;
+    tiersMode?: Schematic.CreateBillingPriceRequestBodyTiersMode;
     usageType: Schematic.CreateBillingPriceRequestBodyUsageType;
 }

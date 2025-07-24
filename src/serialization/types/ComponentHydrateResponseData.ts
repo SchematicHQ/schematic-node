@@ -7,6 +7,7 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { CompanyPlanDetailResponseData } from "./CompanyPlanDetailResponseData";
 import { UsageBasedEntitlementResponseData } from "./UsageBasedEntitlementResponseData";
+import { CompatiblePlans } from "./CompatiblePlans";
 import { ComponentCapabilities } from "./ComponentCapabilities";
 import { CompanyDetailResponseData } from "./CompanyDetailResponseData";
 import { ComponentResponseData } from "./ComponentResponseData";
@@ -25,6 +26,10 @@ export const ComponentHydrateResponseData: core.serialization.ObjectSchema<
     activeUsageBasedEntitlements: core.serialization.property(
         "active_usage_based_entitlements",
         core.serialization.list(UsageBasedEntitlementResponseData),
+    ),
+    addOnCompatibilities: core.serialization.property(
+        "add_on_compatibilities",
+        core.serialization.list(CompatiblePlans),
     ),
     capabilities: ComponentCapabilities.optional(),
     company: CompanyDetailResponseData.optional(),
@@ -45,6 +50,7 @@ export declare namespace ComponentHydrateResponseData {
         active_add_ons: CompanyPlanDetailResponseData.Raw[];
         active_plans: CompanyPlanDetailResponseData.Raw[];
         active_usage_based_entitlements: UsageBasedEntitlementResponseData.Raw[];
+        add_on_compatibilities: CompatiblePlans.Raw[];
         capabilities?: ComponentCapabilities.Raw | null;
         company?: CompanyDetailResponseData.Raw | null;
         component?: ComponentResponseData.Raw | null;

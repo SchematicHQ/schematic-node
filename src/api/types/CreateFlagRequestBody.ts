@@ -6,7 +6,7 @@ export interface CreateFlagRequestBody {
     defaultValue: boolean;
     description: string;
     featureId?: string;
-    flagType: string;
+    flagType: "boolean";
     key: string;
     maintainerId?: string;
     name: string;

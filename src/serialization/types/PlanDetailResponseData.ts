@@ -17,6 +17,7 @@ export const PlanDetailResponseData: core.serialization.ObjectSchema<
     billingProduct: core.serialization.property("billing_product", BillingProductDetailResponseData.optional()),
     chargeType: core.serialization.property("charge_type", core.serialization.string()),
     companyCount: core.serialization.property("company_count", core.serialization.number()),
+    controlledBy: core.serialization.property("controlled_by", core.serialization.string()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     description: core.serialization.string(),
     features: core.serialization.list(FeatureDetailResponseData),
@@ -40,6 +41,7 @@ export declare namespace PlanDetailResponseData {
         billing_product?: BillingProductDetailResponseData.Raw | null;
         charge_type: string;
         company_count: number;
+        controlled_by: string;
         created_at: string;
         description: string;
         features: FeatureDetailResponseData.Raw[];

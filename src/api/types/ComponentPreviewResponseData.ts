@@ -11,6 +11,7 @@ export interface ComponentPreviewResponseData {
     activeAddOns: Schematic.CompanyPlanDetailResponseData[];
     activePlans: Schematic.CompanyPlanDetailResponseData[];
     activeUsageBasedEntitlements: Schematic.UsageBasedEntitlementResponseData[];
+    addOnCompatibilities: Schematic.CompatiblePlans[];
     capabilities?: Schematic.ComponentCapabilities;
     company?: Schematic.CompanyDetailResponseData;
     component?: Schematic.ComponentResponseData;

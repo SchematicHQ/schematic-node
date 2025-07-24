@@ -16,6 +16,7 @@ export const PreviewSubscriptionChangeResponseData: core.serialization.ObjectSch
     dueNow: core.serialization.property("due_now", core.serialization.number()),
     finance: PreviewSubscriptionFinanceResponseData.optional(),
     newCharges: core.serialization.property("new_charges", core.serialization.number()),
+    paymentMethodRequired: core.serialization.property("payment_method_required", core.serialization.boolean()),
     percentOff: core.serialization.property("percent_off", core.serialization.number()),
     periodStart: core.serialization.property("period_start", core.serialization.date()),
     promoCodeApplied: core.serialization.property("promo_code_applied", core.serialization.boolean()),
@@ -30,6 +31,7 @@ export declare namespace PreviewSubscriptionChangeResponseData {
         due_now: number;
         finance?: PreviewSubscriptionFinanceResponseData.Raw | null;
         new_charges: number;
+        payment_method_required: boolean;
         percent_off: number;
         period_start: string;
         promo_code_applied: boolean;

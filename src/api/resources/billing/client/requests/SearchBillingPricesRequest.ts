@@ -14,6 +14,7 @@ export interface SearchBillingPricesRequest {
     interval?: string;
     usageType?: Schematic.SearchBillingPricesRequestUsageType;
     price?: number;
+    tiersMode?: Schematic.SearchBillingPricesRequestTiersMode;
     /**
      * Page limit (default 100)
      */

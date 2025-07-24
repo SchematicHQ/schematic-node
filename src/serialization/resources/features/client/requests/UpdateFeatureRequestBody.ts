@@ -7,6 +7,7 @@ import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import { UpdateFeatureRequestBodyFeatureType } from "../../types/UpdateFeatureRequestBodyFeatureType";
 import { CreateOrUpdateFlagRequestBody } from "../../../../types/CreateOrUpdateFlagRequestBody";
+import { UpdateFeatureRequestBodyLifecyclePhase } from "../../types/UpdateFeatureRequestBodyLifecyclePhase";
 
 export const UpdateFeatureRequestBody: core.serialization.Schema<
     serializers.UpdateFeatureRequestBody.Raw,
@@ -17,7 +18,7 @@ export const UpdateFeatureRequestBody: core.serialization.Schema<
     featureType: core.serialization.property("feature_type", UpdateFeatureRequestBodyFeatureType.optional()),
     flag: CreateOrUpdateFlagRequestBody.optional(),
     icon: core.serialization.string().optional(),
-    lifecyclePhase: core.serialization.property("lifecycle_phase", core.serialization.string().optional()),
+    lifecyclePhase: core.serialization.property("lifecycle_phase", UpdateFeatureRequestBodyLifecyclePhase.optional()),
     maintainerId: core.serialization.property("maintainer_id", core.serialization.string().optional()),
     name: core.serialization.string().optional(),
     pluralName: core.serialization.property("plural_name", core.serialization.string().optional()),
@@ -32,7 +33,7 @@ export declare namespace UpdateFeatureRequestBody {
         feature_type?: UpdateFeatureRequestBodyFeatureType.Raw | null;
         flag?: CreateOrUpdateFlagRequestBody.Raw | null;
         icon?: string | null;
-        lifecycle_phase?: string | null;
+        lifecycle_phase?: UpdateFeatureRequestBodyLifecyclePhase.Raw | null;
         maintainer_id?: string | null;
         name?: string | null;
         plural_name?: string | null;

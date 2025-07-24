@@ -13,7 +13,7 @@ export const CreateOrUpdateFlagRequestBody: core.serialization.ObjectSchema<
     defaultValue: core.serialization.property("default_value", core.serialization.boolean()),
     description: core.serialization.string(),
     featureId: core.serialization.property("feature_id", core.serialization.string().optional()),
-    flagType: core.serialization.property("flag_type", core.serialization.string()),
+    flagType: core.serialization.property("flag_type", core.serialization.stringLiteral("boolean")),
     id: core.serialization.string().optional(),
     key: core.serialization.string(),
     maintainerId: core.serialization.property("maintainer_id", core.serialization.string().optional()),
@@ -25,7 +25,7 @@ export declare namespace CreateOrUpdateFlagRequestBody {
         default_value: boolean;
         description: string;
         feature_id?: string | null;
-        flag_type: string;
+        flag_type: "boolean";
         id?: string | null;
         key: string;
         maintainer_id?: string | null;

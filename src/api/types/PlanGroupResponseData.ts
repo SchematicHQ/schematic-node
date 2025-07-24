@@ -8,6 +8,7 @@ import * as Schematic from "../index";
  * The updated resource
  */
 export interface PlanGroupResponseData {
+    addOnCompatibilities: Schematic.CompatiblePlansResponseData[];
     addOnIds: string[];
     defaultPlanId?: string;
     id: string;

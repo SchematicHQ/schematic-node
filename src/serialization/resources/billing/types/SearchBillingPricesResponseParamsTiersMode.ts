@@ -6,11 +6,11 @@ import * as serializers from "../../../index";
 import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
-export const CreateBillingPriceRequestBodyTierMode: core.serialization.Schema<
-    serializers.CreateBillingPriceRequestBodyTierMode.Raw,
-    Schematic.CreateBillingPriceRequestBodyTierMode
+export const SearchBillingPricesResponseParamsTiersMode: core.serialization.Schema<
+    serializers.SearchBillingPricesResponseParamsTiersMode.Raw,
+    Schematic.SearchBillingPricesResponseParamsTiersMode
 > = core.serialization.enum_(["volume", "graduated"]);
 
-export declare namespace CreateBillingPriceRequestBodyTierMode {
+export declare namespace SearchBillingPricesResponseParamsTiersMode {
     export type Raw = "volume" | "graduated";
 }

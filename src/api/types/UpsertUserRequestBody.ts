@@ -4,9 +4,9 @@
 
 export interface UpsertUserRequestBody {
     /** Optionally specify companies using array of key/value pairs */
-    companies: Record<string, string>[];
+    companies?: Record<string, string>[];
     /** Add user to this company. Takes priority over companies. For exhaustive list of companies, use companies */
-    company: Record<string, string>;
+    company?: Record<string, string>;
     /** Add user to this company. Takes priority over company_ids. For exhaustive list of companies, use company_ids */
     companyId?: string;
     /** Optionally specify companies using Schematic company ID */

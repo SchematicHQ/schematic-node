@@ -15,6 +15,7 @@ export const CompanyOverrideResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     company: CompanyDetailResponseData.optional(),
     companyId: core.serialization.property("company_id", core.serialization.string()),
+    consumptionRate: core.serialization.property("consumption_rate", core.serialization.number().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     expirationDate: core.serialization.property("expiration_date", core.serialization.date().optional()),
@@ -40,6 +41,7 @@ export declare namespace CompanyOverrideResponseData {
     export interface Raw {
         company?: CompanyDetailResponseData.Raw | null;
         company_id: string;
+        consumption_rate?: number | null;
         created_at: string;
         environment_id: string;
         expiration_date?: string | null;

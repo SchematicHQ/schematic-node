@@ -32,6 +32,7 @@ export const BillingPriceView: core.serialization.ObjectSchema<
     productExternalId: core.serialization.property("product_external_id", core.serialization.string()),
     productId: core.serialization.property("product_id", core.serialization.string()),
     productName: core.serialization.property("product_name", core.serialization.string()),
+    tiersMode: core.serialization.property("tiers_mode", core.serialization.string().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     usageType: core.serialization.property("usage_type", core.serialization.string()),
 });
@@ -56,6 +57,7 @@ export declare namespace BillingPriceView {
         product_external_id: string;
         product_id: string;
         product_name: string;
+        tiers_mode?: string | null;
         updated_at: string;
         usage_type: string;
     }

@@ -6,6 +6,7 @@ import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { UpdateAddOnRequestBody } from "./UpdateAddOnRequestBody";
+import { UpdateCreditBundleRequestBody } from "./UpdateCreditBundleRequestBody";
 import { UpdatePayInAdvanceRequestBody } from "./UpdatePayInAdvanceRequestBody";
 
 export const ChangeSubscriptionRequestBody: core.serialization.ObjectSchema<
@@ -14,21 +15,28 @@ export const ChangeSubscriptionRequestBody: core.serialization.ObjectSchema<
 > = core.serialization.object({
     addOnIds: core.serialization.property("add_on_ids", core.serialization.list(UpdateAddOnRequestBody)),
     couponExternalId: core.serialization.property("coupon_external_id", core.serialization.string().optional()),
+    creditBundles: core.serialization.property(
+        "credit_bundles",
+        core.serialization.list(UpdateCreditBundleRequestBody),
+    ),
     newPlanId: core.serialization.property("new_plan_id", core.serialization.string()),
     newPriceId: core.serialization.property("new_price_id", core.serialization.string()),
     payInAdvance: core.serialization.property("pay_in_advance", core.serialization.list(UpdatePayInAdvanceRequestBody)),
     paymentMethodId: core.serialization.property("payment_method_id", core.serialization.string().optional()),
     promoCode: core.serialization.property("promo_code", core.serialization.string().optional()),
+    skipTrial: core.serialization.property("skip_trial", core.serialization.boolean()),
 });
 
 export declare namespace ChangeSubscriptionRequestBody {
     export interface Raw {
         add_on_ids: UpdateAddOnRequestBody.Raw[];
         coupon_external_id?: string | null;
+        credit_bundles: UpdateCreditBundleRequestBody.Raw[];
         new_plan_id: string;
         new_price_id: string;
         pay_in_advance: UpdatePayInAdvanceRequestBody.Raw[];
         payment_method_id?: string | null;
         promo_code?: string | null;
+        skip_trial: boolean;
     }
 }

@@ -12,6 +12,7 @@ export interface PreviewSubscriptionChangeResponseData {
     dueNow: number;
     finance?: Schematic.PreviewSubscriptionFinanceResponseData;
     newCharges: number;
+    paymentMethodRequired: boolean;
     percentOff: number;
     periodStart: Date;
     promoCodeApplied: boolean;

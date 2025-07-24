@@ -10,6 +10,8 @@ export interface CompanyPlanDetailResponseData {
     chargeType: string;
     companyCanTrial: boolean;
     companyCount: number;
+    compatiblePlanIds: string[];
+    controlledBy: string;
     createdAt: Date;
     current: boolean;
     custom: boolean;
