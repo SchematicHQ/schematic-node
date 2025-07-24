@@ -14,6 +14,7 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface UpdatePlanGroupRequestBody {
+    addOnCompatibilities?: Schematic.CompatiblePlans[];
     addOnIds: string[];
     customPlanConfig?: Schematic.CustomPlanConfig;
     customPlanId?: string;

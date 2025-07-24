@@ -10,6 +10,7 @@ import * as Schematic from "../index";
 export interface CompanyOverrideResponseData {
     company?: Schematic.CompanyDetailResponseData;
     companyId: string;
+    consumptionRate?: number;
     createdAt: Date;
     environmentId: string;
     expirationDate?: Date;

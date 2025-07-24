@@ -8,9 +8,11 @@ export interface ChangeSubscriptionInternalRequestBody {
     addOnIds: Schematic.UpdateAddOnRequestBody[];
     companyId: string;
     couponExternalId?: string;
+    creditBundles: Schematic.UpdateCreditBundleRequestBody[];
     newPlanId: string;
     newPriceId: string;
     payInAdvance: Schematic.UpdatePayInAdvanceRequestBody[];
     paymentMethodId?: string;
     promoCode?: string;
+    skipTrial: boolean;
 }

@@ -9,8 +9,8 @@ import * as core from "../../core";
 export const UpdateEntitlementReqCommonValueType: core.serialization.Schema<
     serializers.UpdateEntitlementReqCommonValueType.Raw,
     Schematic.UpdateEntitlementReqCommonValueType
-> = core.serialization.enum_(["boolean", "numeric", "trait", "unlimited"]);
+> = core.serialization.enum_(["boolean", "credit", "numeric", "trait", "unlimited"]);
 
 export declare namespace UpdateEntitlementReqCommonValueType {
-    export type Raw = "boolean" | "numeric" | "trait" | "unlimited";
+    export type Raw = "boolean" | "credit" | "numeric" | "trait" | "unlimited";
 }

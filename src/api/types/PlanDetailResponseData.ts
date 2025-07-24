@@ -9,6 +9,7 @@ export interface PlanDetailResponseData {
     billingProduct?: Schematic.BillingProductDetailResponseData;
     chargeType: string;
     companyCount: number;
+    controlledBy: string;
     createdAt: Date;
     description: string;
     features: Schematic.FeatureDetailResponseData[];

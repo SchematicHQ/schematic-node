@@ -14,7 +14,7 @@ export interface UpdateFeatureRequestBody {
     featureType?: Schematic.UpdateFeatureRequestBodyFeatureType;
     flag?: Schematic.CreateOrUpdateFlagRequestBody;
     icon?: string;
-    lifecyclePhase?: string;
+    lifecyclePhase?: Schematic.UpdateFeatureRequestBodyLifecyclePhase;
     maintainerId?: string;
     name?: string;
     pluralName?: string;

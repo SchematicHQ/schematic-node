@@ -9,6 +9,8 @@ export interface PlanGroupPlanDetailResponseData {
     billingProduct?: Schematic.BillingProductDetailResponseData;
     chargeType: string;
     companyCount: number;
+    compatiblePlanIds: string[];
+    controlledBy: string;
     createdAt: Date;
     customPlanConfig?: Schematic.CustomPlanViewConfigResponseData;
     description: string;

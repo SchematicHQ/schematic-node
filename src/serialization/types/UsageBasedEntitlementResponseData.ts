@@ -11,6 +11,7 @@ export const UsageBasedEntitlementResponseData: core.serialization.ObjectSchema<
     serializers.UsageBasedEntitlementResponseData.Raw,
     Schematic.UsageBasedEntitlementResponseData
 > = core.serialization.object({
+    consumptionRate: core.serialization.property("consumption_rate", core.serialization.number().optional()),
     featureId: core.serialization.property("feature_id", core.serialization.string()),
     meteredPrice: core.serialization.property("metered_price", BillingPriceView.optional()),
     metricPeriod: core.serialization.property("metric_period", core.serialization.string().optional()),
@@ -28,6 +29,7 @@ export const UsageBasedEntitlementResponseData: core.serialization.ObjectSchema<
 
 export declare namespace UsageBasedEntitlementResponseData {
     export interface Raw {
+        consumption_rate?: number | null;
         feature_id: string;
         metered_price?: BillingPriceView.Raw | null;
         metric_period?: string | null;

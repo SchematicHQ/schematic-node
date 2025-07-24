@@ -5,11 +5,17 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { UsageBasedEntitlementRequestBodyPriceBehavior } from "./UsageBasedEntitlementRequestBodyPriceBehavior";
+import { CreatePriceTierRequestBody } from "./CreatePriceTierRequestBody";
 
 export const UsageBasedEntitlementRequestBody: core.serialization.ObjectSchema<
     serializers.UsageBasedEntitlementRequestBody.Raw,
     Schematic.UsageBasedEntitlementRequestBody
 > = core.serialization.object({
+    creditConsumptionRate: core.serialization.property(
+        "credit_consumption_rate",
+        core.serialization.number().optional(),
+    ),
     currency: core.serialization.string().optional(),
     monthlyMeteredPriceId: core.serialization.property(
         "monthly_metered_price_id",
@@ -24,8 +30,13 @@ export const UsageBasedEntitlementRequestBody: core.serialization.ObjectSchema<
         "overage_billing_product_id",
         core.serialization.string().optional(),
     ),
-    priceBehavior: core.serialization.property("price_behavior", core.serialization.string().optional()),
+    priceBehavior: core.serialization.property(
+        "price_behavior",
+        UsageBasedEntitlementRequestBodyPriceBehavior.optional(),
+    ),
+    priceTiers: core.serialization.property("price_tiers", core.serialization.list(CreatePriceTierRequestBody)),
     softLimit: core.serialization.property("soft_limit", core.serialization.number().optional()),
+    tierMode: core.serialization.property("tier_mode", core.serialization.string()),
     yearlyMeteredPriceId: core.serialization.property(
         "yearly_metered_price_id",
         core.serialization.string().optional(),
@@ -39,13 +50,16 @@ export const UsageBasedEntitlementRequestBody: core.serialization.ObjectSchema<
 
 export declare namespace UsageBasedEntitlementRequestBody {
     export interface Raw {
+        credit_consumption_rate?: number | null;
         currency?: string | null;
         monthly_metered_price_id?: string | null;
         monthly_unit_price?: number | null;
         monthly_unit_price_decimal?: string | null;
         overage_billing_product_id?: string | null;
-        price_behavior?: string | null;
+        price_behavior?: UsageBasedEntitlementRequestBodyPriceBehavior.Raw | null;
+        price_tiers: CreatePriceTierRequestBody.Raw[];
         soft_limit?: number | null;
+        tier_mode: string;
         yearly_metered_price_id?: string | null;
         yearly_unit_price?: number | null;
         yearly_unit_price_decimal?: string | null;

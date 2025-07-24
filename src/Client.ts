@@ -7,6 +7,7 @@ import * as core from "./core";
 import { Accounts } from "./api/resources/accounts/client/Client";
 import { Features } from "./api/resources/features/client/Client";
 import { Billing } from "./api/resources/billing/client/Client";
+import { Credits } from "./api/resources/credits/client/Client";
 import { Checkout } from "./api/resources/checkout/client/Client";
 import { Companies } from "./api/resources/companies/client/Client";
 import { Entitlements } from "./api/resources/entitlements/client/Client";
@@ -44,6 +45,7 @@ export class SchematicClient {
     protected _accounts: Accounts | undefined;
     protected _features: Features | undefined;
     protected _billing: Billing | undefined;
+    protected _credits: Credits | undefined;
     protected _checkout: Checkout | undefined;
     protected _companies: Companies | undefined;
     protected _entitlements: Entitlements | undefined;
@@ -68,6 +70,10 @@ export class SchematicClient {
 
     public get billing(): Billing {
         return (this._billing ??= new Billing(this._options));
+    }
+
+    public get credits(): Credits {
+        return (this._credits ??= new Credits(this._options));
     }
 
     public get checkout(): Checkout {

@@ -20,6 +20,11 @@ export const CompanyPlanDetailResponseData: core.serialization.ObjectSchema<
     chargeType: core.serialization.property("charge_type", core.serialization.string()),
     companyCanTrial: core.serialization.property("company_can_trial", core.serialization.boolean()),
     companyCount: core.serialization.property("company_count", core.serialization.number()),
+    compatiblePlanIds: core.serialization.property(
+        "compatible_plan_ids",
+        core.serialization.list(core.serialization.string()),
+    ),
+    controlledBy: core.serialization.property("controlled_by", core.serialization.string()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     current: core.serialization.boolean(),
     custom: core.serialization.boolean(),
@@ -50,6 +55,8 @@ export declare namespace CompanyPlanDetailResponseData {
         charge_type: string;
         company_can_trial: boolean;
         company_count: number;
+        compatible_plan_ids: string[];
+        controlled_by: string;
         created_at: string;
         current: boolean;
         custom: boolean;

@@ -22,6 +22,7 @@ export const CreateCompanyOverrideRequestBody: core.serialization.Schema<
         CreateCompanyOverrideRequestBodyMetricPeriodMonthReset.optional(),
     ),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
+    valueCreditId: core.serialization.property("value_credit_id", core.serialization.string().optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
     valueTraitId: core.serialization.property("value_trait_id", core.serialization.string().optional()),
     valueType: core.serialization.property("value_type", CreateCompanyOverrideRequestBodyValueType),
@@ -35,6 +36,7 @@ export declare namespace CreateCompanyOverrideRequestBody {
         metric_period?: CreateCompanyOverrideRequestBodyMetricPeriod.Raw | null;
         metric_period_month_reset?: CreateCompanyOverrideRequestBodyMetricPeriodMonthReset.Raw | null;
         value_bool?: boolean | null;
+        value_credit_id?: string | null;
         value_numeric?: number | null;
         value_trait_id?: string | null;
         value_type: CreateCompanyOverrideRequestBodyValueType.Raw;

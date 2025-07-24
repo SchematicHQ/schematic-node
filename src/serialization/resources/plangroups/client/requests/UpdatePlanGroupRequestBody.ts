@@ -5,6 +5,7 @@
 import * as serializers from "../../../../index";
 import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
+import { CompatiblePlans } from "../../../../types/CompatiblePlans";
 import { CustomPlanConfig } from "../../../../types/CustomPlanConfig";
 import { OrderedPlansInGroup } from "../../../../types/OrderedPlansInGroup";
 
@@ -12,6 +13,10 @@ export const UpdatePlanGroupRequestBody: core.serialization.Schema<
     serializers.UpdatePlanGroupRequestBody.Raw,
     Schematic.UpdatePlanGroupRequestBody
 > = core.serialization.object({
+    addOnCompatibilities: core.serialization.property(
+        "add_on_compatibilities",
+        core.serialization.list(CompatiblePlans).optional(),
+    ),
     addOnIds: core.serialization.property("add_on_ids", core.serialization.list(core.serialization.string())),
     customPlanConfig: core.serialization.property("custom_plan_config", CustomPlanConfig.optional()),
     customPlanId: core.serialization.property("custom_plan_id", core.serialization.string().optional()),
@@ -26,6 +31,7 @@ export const UpdatePlanGroupRequestBody: core.serialization.Schema<
 
 export declare namespace UpdatePlanGroupRequestBody {
     export interface Raw {
+        add_on_compatibilities?: CompatiblePlans.Raw[] | null;
         add_on_ids: string[];
         custom_plan_config?: CustomPlanConfig.Raw | null;
         custom_plan_id?: string | null;

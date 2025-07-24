@@ -22,6 +22,7 @@ export const BillingProductPriceResponseData: core.serialization.ObjectSchema<
     priceDecimal: core.serialization.property("price_decimal", core.serialization.string().optional()),
     priceExternalId: core.serialization.property("price_external_id", core.serialization.string()),
     productExternalId: core.serialization.property("product_external_id", core.serialization.string()),
+    tiersMode: core.serialization.property("tiers_mode", core.serialization.string().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     usageType: core.serialization.property("usage_type", core.serialization.string()),
 });
@@ -40,6 +41,7 @@ export declare namespace BillingProductPriceResponseData {
         price_decimal?: string | null;
         price_external_id: string;
         product_external_id: string;
+        tiers_mode?: string | null;
         updated_at: string;
         usage_type: string;
     }

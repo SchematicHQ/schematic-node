@@ -23,6 +23,7 @@ export interface BillingPriceView {
     productExternalId: string;
     productId: string;
     productName: string;
+    tiersMode?: string;
     updatedAt: Date;
     usageType: string;
 }

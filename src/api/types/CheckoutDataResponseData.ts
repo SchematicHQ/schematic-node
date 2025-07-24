@@ -11,8 +11,10 @@ export interface CheckoutDataResponseData {
     activeAddOns: Schematic.PlanDetailResponseData[];
     activePlan?: Schematic.PlanDetailResponseData;
     activeUsageBasedEntitlements: Schematic.UsageBasedEntitlementResponseData[];
+    availableCreditBundles: Schematic.BillingCreditBundleResponseData[];
     company?: Schematic.CompanyDetailResponseData;
     featureUsage?: Schematic.FeatureUsageDetailResponseData;
+    selectedCreditBundles: Schematic.CreditBundlePurchaseResponseData[];
     selectedPlan?: Schematic.PlanDetailResponseData;
     selectedUsageBasedEntitlements: Schematic.UsageBasedEntitlementResponseData[];
     subscription?: Schematic.CompanySubscriptionResponseData;
