@@ -8,8 +8,8 @@
  */
 export interface CountApiRequestsRequest {
     q?: string;
-    requestType?: string;
-    environmentId?: string;
+    request_type?: string;
+    environment_id?: string;
     /**
      * Page limit (default 100)
      */

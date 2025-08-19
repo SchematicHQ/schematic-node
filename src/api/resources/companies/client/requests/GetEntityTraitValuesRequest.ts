@@ -5,11 +5,11 @@
 /**
  * @example
  *     {
- *         definitionId: "definition_id"
+ *         definition_id: "definition_id"
  *     }
  */
 export interface GetEntityTraitValuesRequest {
-    definitionId: string;
+    definition_id: string;
     q?: string;
     /**
      * Page limit (default 100)

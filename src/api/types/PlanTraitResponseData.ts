@@ -6,12 +6,13 @@
  * The updated resource
  */
 export interface PlanTraitResponseData {
-    accountId: string;
-    createdAt: Date;
-    environmentId: string;
+    account_id: string;
+    created_at: string;
+    environment_id: string;
     id: string;
-    planId: string;
-    traitId: string;
-    traitValue: string;
-    updatedAt: Date;
+    plan_id: string;
+    plan_type: string;
+    trait_id: string;
+    trait_value: string;
+    updated_at: string;
 }

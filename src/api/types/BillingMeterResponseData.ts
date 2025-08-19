@@ -3,9 +3,9 @@
  */
 
 export interface BillingMeterResponseData {
-    dispalyName: string;
-    eventName: string;
-    eventPayloadKey: string;
-    externalPriceId: string;
+    dispaly_name: string;
+    event_name: string;
+    event_payload_key: string;
+    external_price_id: string;
     id: string;
 }

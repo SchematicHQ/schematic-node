@@ -5,11 +5,11 @@
 /**
  * @example
  *     {
- *         companyId: "company_id",
- *         userId: "user_id"
+ *         company_id: "company_id",
+ *         user_id: "user_id"
  *     }
  */
 export interface GetOrCreateCompanyMembershipRequestBody {
-    companyId: string;
-    userId: string;
+    company_id: string;
+    user_id: string;
 }

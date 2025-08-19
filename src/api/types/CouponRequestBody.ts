@@ -3,12 +3,12 @@
  */
 
 export interface CouponRequestBody {
-    amountOff: number;
+    amount_off: number;
     currency?: string;
     duration: string;
-    durationInMonths: number;
-    maxRedemptions: number;
+    duration_in_months: number;
+    max_redemptions: number;
     name: string;
-    percentOff: number;
-    timesRedeemed: number;
+    percent_off: number;
+    times_redeemed: number;
 }

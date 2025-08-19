@@ -5,13 +5,13 @@
 /**
  * @example
  *     {
- *         companyId: "company_id",
- *         dealStage: "deal_stage"
+ *         company_id: "company_id",
+ *         deal_stage: "deal_stage"
  *     }
  */
 export interface GetActiveDealsRequest {
-    companyId: string;
-    dealStage: string;
+    company_id: string;
+    deal_stage: string;
     /**
      * Page limit (default 100)
      */

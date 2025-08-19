@@ -3,18 +3,18 @@
  */
 
 export interface BillingSubscriptionDiscountView {
-    amountOff?: number;
-    couponId: string;
-    couponName: string;
+    amount_off?: number;
+    coupon_id: string;
+    coupon_name: string;
     currency?: string;
-    customerFacingCode?: string;
-    discountExternalId: string;
+    customer_facing_code?: string;
+    discount_external_id: string;
     duration: string;
-    durationInMonths?: number;
-    endedAt?: Date;
-    isActive: boolean;
-    percentOff?: number;
-    promoCodeExternalId?: string;
-    startedAt: Date;
-    subscriptionExternalId: string;
+    duration_in_months?: number;
+    ended_at?: string;
+    is_active: boolean;
+    percent_off?: number;
+    promo_code_external_id?: string;
+    started_at: string;
+    subscription_external_id: string;
 }

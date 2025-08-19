@@ -3,6 +3,6 @@
  */
 
 export interface UpdateCreditBundleRequestBody {
-    bundleId: string;
+    bundle_id: string;
     quantity: number;
 }

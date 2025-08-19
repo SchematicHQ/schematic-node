@@ -7,11 +7,11 @@
  *     {}
  */
 export interface CountFeatureUsageRequest {
-    companyId?: string;
-    companyKeys?: Record<string, string>;
-    featureIds?: string | string[];
+    company_id?: string;
+    company_keys?: Record<string, string>;
+    feature_ids?: string | string[];
     q?: string;
-    withoutNegativeEntitlements?: boolean;
+    without_negative_entitlements?: boolean;
     /**
      * Page limit (default 100)
      */

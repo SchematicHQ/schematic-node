@@ -7,7 +7,7 @@
  *     {}
  */
 export interface ListGrantsForCreditRequest {
-    creditId?: string;
+    credit_id?: string;
     ids?: string | string[];
     /**
      * Page limit (default 100)

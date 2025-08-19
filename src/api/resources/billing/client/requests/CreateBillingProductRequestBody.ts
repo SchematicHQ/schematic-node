@@ -5,14 +5,14 @@
 /**
  * @example
  *     {
- *         externalId: "external_id",
+ *         external_id: "external_id",
  *         name: "name",
  *         price: 1.1
  *     }
  */
 export interface CreateBillingProductRequestBody {
-    externalId: string;
-    isActive?: boolean;
+    external_id: string;
+    is_active?: boolean;
     name: string;
     price: number;
 }

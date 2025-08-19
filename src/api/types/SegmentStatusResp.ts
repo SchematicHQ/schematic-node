@@ -7,6 +7,6 @@
  */
 export interface SegmentStatusResp {
     connected: boolean;
-    environmentId: string;
-    lastEventAt?: Date;
+    environment_id: string;
+    last_event_at?: string;
 }
