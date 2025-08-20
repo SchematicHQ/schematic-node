@@ -3,13 +3,13 @@
  */
 
 export interface BillingPlanCreditGrantResponseData {
-    createdAt: Date;
-    creditAmount: number;
-    creditId: string;
+    created_at: string;
+    credit_amount: number;
+    credit_id: string;
     id: string;
-    planId: string;
-    planName: string;
-    resetCadence: string;
-    resetStart: string;
-    updatedAt: Date;
+    plan_id: string;
+    plan_name: string;
+    reset_cadence: string;
+    reset_start: string;
+    updated_at: string;
 }

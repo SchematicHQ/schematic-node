@@ -14,7 +14,7 @@ export interface ListCompaniesRequest {
     /**
      * Filter companies by plan ID (starts with plan_)
      */
-    planId?: string;
+    plan_id?: string;
     /**
      * Search for companies by name, keys or string traits
      */
@@ -22,15 +22,15 @@ export interface ListCompaniesRequest {
     /**
      * Filter out companies that already have a company override for the specified feature ID
      */
-    withoutFeatureOverrideFor?: string;
+    without_feature_override_for?: string;
     /**
      * Filter out companies that have a plan
      */
-    withoutPlan?: boolean;
+    without_plan?: boolean;
     /**
      * Filter companies that have a subscription
      */
-    withSubscription?: boolean;
+    with_subscription?: boolean;
     /**
      * Page limit (default 100)
      */

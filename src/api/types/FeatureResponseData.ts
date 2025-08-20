@@ -3,17 +3,17 @@
  */
 
 export interface FeatureResponseData {
-    createdAt: Date;
+    created_at: string;
     description: string;
-    eventSubtype?: string;
-    featureType: string;
+    event_subtype?: string;
+    feature_type: string;
     icon: string;
     id: string;
-    lifecyclePhase?: string;
-    maintainerId?: string;
+    lifecycle_phase?: string;
+    maintainer_id?: string;
     name: string;
-    pluralName?: string;
-    singularName?: string;
-    traitId?: string;
-    updatedAt: Date;
+    plural_name?: string;
+    singular_name?: string;
+    trait_id?: string;
+    updated_at: string;
 }

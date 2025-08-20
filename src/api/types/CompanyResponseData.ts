@@ -3,11 +3,11 @@
  */
 
 export interface CompanyResponseData {
-    createdAt: Date;
-    environmentId: string;
+    created_at: string;
+    environment_id: string;
     id: string;
-    lastSeenAt?: Date;
-    logoUrl?: string;
+    last_seen_at?: string;
+    logo_url?: string;
     name: string;
-    updatedAt: Date;
+    updated_at: string;
 }

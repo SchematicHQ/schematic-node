@@ -3,20 +3,20 @@
  */
 
 export interface BillingCouponResponseData {
-    accountId: string;
-    amountOff?: number;
+    account_id: string;
+    amount_off?: number;
     currency?: string;
     duration?: string;
-    durationInMonths?: number;
-    environmentId: string;
-    externalId: string;
+    duration_in_months?: number;
+    environment_id: string;
+    external_id: string;
     id: string;
-    isActive: boolean;
-    maxRedemptions?: number;
+    is_active: boolean;
+    max_redemptions?: number;
     metadata: Record<string, unknown>;
     name: string;
-    percentOff?: number;
-    timesRedeemed: number;
-    validFrom?: Date;
-    validUntil?: Date;
+    percent_off?: number;
+    times_redeemed: number;
+    valid_from?: string;
+    valid_until?: string;
 }

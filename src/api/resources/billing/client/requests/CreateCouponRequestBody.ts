@@ -5,24 +5,24 @@
 /**
  * @example
  *     {
- *         amountOff: 1,
+ *         amount_off: 1,
  *         duration: "duration",
- *         durationInMonths: 1,
- *         externalId: "external_id",
- *         maxRedemptions: 1,
+ *         duration_in_months: 1,
+ *         external_id: "external_id",
+ *         max_redemptions: 1,
  *         name: "name",
- *         percentOff: 1.1,
- *         timesRedeemed: 1
+ *         percent_off: 1.1,
+ *         times_redeemed: 1
  *     }
  */
 export interface CreateCouponRequestBody {
-    amountOff: number;
+    amount_off: number;
     currency?: string;
     duration: string;
-    durationInMonths: number;
-    externalId: string;
-    maxRedemptions: number;
+    duration_in_months: number;
+    external_id: string;
+    max_redemptions: number;
     name: string;
-    percentOff: number;
-    timesRedeemed: number;
+    percent_off: number;
+    times_redeemed: number;
 }

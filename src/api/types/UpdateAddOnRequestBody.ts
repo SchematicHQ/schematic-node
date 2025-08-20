@@ -3,6 +3,6 @@
  */
 
 export interface UpdateAddOnRequestBody {
-    addOnId: string;
-    priceId: string;
+    add_on_id: string;
+    price_id: string;
 }

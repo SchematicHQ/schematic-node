@@ -7,10 +7,10 @@
  */
 export interface ComponentResponseData {
     ast?: Record<string, number>;
-    createdAt: Date;
+    created_at: string;
     id: string;
     name: string;
     state: string;
     type: string;
-    updatedAt: Date;
+    updated_at: string;
 }

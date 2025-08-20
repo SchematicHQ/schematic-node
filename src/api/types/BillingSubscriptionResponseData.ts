@@ -3,22 +3,22 @@
  */
 
 export interface BillingSubscriptionResponseData {
-    cancelAt?: number;
-    cancelAtPeriodEnd: boolean;
-    companyId?: string;
-    createdAt: Date;
+    cancel_at?: number;
+    cancel_at_period_end: boolean;
+    company_id?: string;
+    created_at: string;
     currency: string;
-    customerExternalId: string;
-    defaultPaymentMethodId?: string;
-    expiredAt?: Date;
+    customer_external_id: string;
+    default_payment_method_id?: string;
+    expired_at?: string;
     id: string;
     interval: string;
     metadata?: Record<string, unknown>;
-    periodEnd: number;
-    periodStart: number;
+    period_end: number;
+    period_start: number;
     status: string;
-    subscriptionExternalId: string;
-    totalPrice: number;
-    trialEnd?: number;
-    trialEndSetting?: string;
+    subscription_external_id: string;
+    total_price: number;
+    trial_end?: number;
+    trial_end_setting?: string;
 }

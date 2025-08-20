@@ -3,14 +3,14 @@
  */
 
 export interface FlagResponseData {
-    createdAt: Date;
-    defaultValue: boolean;
+    created_at: string;
+    default_value: boolean;
     description: string;
-    featureId?: string;
-    flagType: string;
+    feature_id?: string;
+    flag_type: string;
     id: string;
     key: string;
-    maintainerId?: string;
+    maintainer_id?: string;
     name: string;
-    updatedAt: Date;
+    updated_at: string;
 }

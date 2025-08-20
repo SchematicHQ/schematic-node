@@ -7,8 +7,8 @@
  *     {}
  */
 export interface GetActiveCompanySubscriptionRequest {
-    companyId?: string;
-    companyIds?: string | string[];
+    company_id?: string;
+    company_ids?: string | string[];
     /**
      * Page limit (default 100)
      */

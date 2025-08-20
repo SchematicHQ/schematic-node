@@ -7,7 +7,7 @@
  *     {}
  */
 export interface ListFlagsRequest {
-    featureId?: string;
+    feature_id?: string;
     ids?: string | string[];
     q?: string;
     /**
