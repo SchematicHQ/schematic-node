@@ -7,31 +7,31 @@
  */
 export interface CheckFlagResponseData {
     /** If company keys were provided and matched a company, its ID */
-    companyId?: string;
+    company_id?: string;
     /** If an error occurred while checking the flag, the error message */
     error?: string;
     /** If a numeric feature entitlement rule was matched, its allocation */
-    featureAllocation?: number;
+    feature_allocation?: number;
     /** If a numeric feature entitlement rule was matched, the company's usage */
-    featureUsage?: number;
+    feature_usage?: number;
     /** If an event-based numeric feature entitlement rule was matched, the event used to track its usage */
-    featureUsageEvent?: string;
+    feature_usage_event?: string;
     /** For event-based feature entitlement rules, the period over which usage is tracked (current_month, current_day, current_week, all_time) */
-    featureUsagePeriod?: string;
+    feature_usage_period?: string;
     /** For event-based feature entitlement rules, when the usage period will reset */
-    featureUsageResetAt?: Date;
+    feature_usage_reset_at?: string;
     /** The key used to check the flag */
     flag: string;
     /** If a flag was found, its ID */
-    flagId?: string;
+    flag_id?: string;
     /** A human-readable explanation of the result */
     reason: string;
     /** If a rule was found, its ID */
-    ruleId?: string;
+    rule_id?: string;
     /** If a rule was found, its type */
-    ruleType?: string;
+    rule_type?: string;
     /** If user keys were provided and matched a user, its ID */
-    userId?: string;
+    user_id?: string;
     /** A boolean flag check result; for feature entitlements, this represents whether further consumption of the feature is permitted */
     value: boolean;
 }

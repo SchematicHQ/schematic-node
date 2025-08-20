@@ -3,9 +3,9 @@
  */
 
 export interface CreateBillingPriceTierRequestBody {
-    flatAmount?: number;
-    perUnitDecimal?: string;
-    perUnitPrice?: number;
-    priceExternalId: string;
-    upTo?: number;
+    flat_amount?: number;
+    per_unit_decimal?: string;
+    per_unit_price?: number;
+    price_external_id: string;
+    up_to?: number;
 }

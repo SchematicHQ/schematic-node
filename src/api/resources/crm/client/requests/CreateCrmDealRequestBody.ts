@@ -5,19 +5,19 @@
 /**
  * @example
  *     {
- *         crmCompanyKey: "crm_company_key",
- *         crmType: "crm_type",
- *         dealExternalId: "deal_external_id"
+ *         crm_company_key: "crm_company_key",
+ *         crm_type: "crm_type",
+ *         deal_external_id: "deal_external_id"
  *     }
  */
 export interface CreateCrmDealRequestBody {
     arr?: string;
-    crmCompanyId?: string;
-    crmCompanyKey: string;
-    crmProductId?: string;
-    crmType: string;
-    dealExternalId: string;
-    dealName?: string;
-    dealStage?: string;
+    crm_company_id?: string;
+    crm_company_key: string;
+    crm_product_id?: string;
+    crm_type: string;
+    deal_external_id: string;
+    deal_name?: string;
+    deal_stage?: string;
     mrr?: string;
 }

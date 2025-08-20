@@ -6,10 +6,10 @@
  * The created resource
  */
 export interface CrmLineItemResponseData {
-    accountId: string;
-    createdAt: Date;
-    dealId?: string;
-    environmentId: string;
-    productExternalId?: string;
-    updatedAt: Date;
+    account_id: string;
+    created_at: string;
+    deal_id?: string;
+    environment_id: string;
+    product_external_id?: string;
+    updated_at: string;
 }

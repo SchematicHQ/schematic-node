@@ -5,6 +5,6 @@
 export interface PreviewObjectResponseData {
     description?: string;
     id: string;
-    imageUrl?: string;
+    image_url?: string;
     name: string;
 }

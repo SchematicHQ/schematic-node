@@ -3,11 +3,11 @@
  */
 
 export interface RuleConditionGroupResponseData {
-    createdAt: Date;
-    environmentId: string;
-    flagId?: string;
+    created_at: string;
+    environment_id: string;
+    flag_id?: string;
     id: string;
-    planId?: string;
-    ruleId: string;
-    updatedAt: Date;
+    plan_id?: string;
+    rule_id: string;
+    updated_at: string;
 }

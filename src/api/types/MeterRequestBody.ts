@@ -3,7 +3,7 @@
  */
 
 export interface MeterRequestBody {
-    displayName: string;
-    eventName: string;
-    eventPayloadKey: string;
+    display_name: string;
+    event_name: string;
+    event_payload_key: string;
 }

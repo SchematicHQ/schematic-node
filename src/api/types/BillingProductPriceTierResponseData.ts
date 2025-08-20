@@ -3,8 +3,8 @@
  */
 
 export interface BillingProductPriceTierResponseData {
-    flatAmount?: number;
-    perUnitPrice?: number;
-    perUnitPriceDecimal?: string;
-    upTo?: number;
+    flat_amount?: number;
+    per_unit_price?: number;
+    per_unit_price_decimal?: string;
+    up_to?: number;
 }

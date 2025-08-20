@@ -3,6 +3,6 @@
  */
 
 export interface CompatiblePlansResponseData {
-    compatiblePlanIds: string[];
-    sourcePlanId: string;
+    compatible_plan_ids: string[];
+    source_plan_id: string;
 }

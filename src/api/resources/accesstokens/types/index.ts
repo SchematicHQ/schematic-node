@@ -1,1 +1,1 @@
-export * from "./IssueTemporaryAccessTokenResponse";
+export * from "./IssueTemporaryAccessTokenResponse.js";

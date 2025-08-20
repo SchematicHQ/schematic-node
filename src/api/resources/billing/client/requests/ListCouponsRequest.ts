@@ -7,7 +7,7 @@
  *     {}
  */
 export interface ListCouponsRequest {
-    isActive?: boolean;
+    is_active?: boolean;
     q?: string;
     /**
      * Page limit (default 100)

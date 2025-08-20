@@ -4,10 +4,10 @@
 
 export interface BillingPriceResponseData {
     currency: string;
-    externalPriceId: string;
+    external_price_id: string;
     id: string;
     interval: string;
     price: number;
-    priceDecimal?: string;
+    price_decimal?: string;
     scheme: string;
 }

@@ -3,12 +3,12 @@
  */
 
 export interface PlanResponseData {
-    audienceType?: string;
-    createdAt: Date;
+    audience_type?: string;
+    created_at: string;
     description: string;
     icon: string;
     id: string;
     name: string;
-    planType: string;
-    updatedAt: Date;
+    plan_type: string;
+    updated_at: string;
 }

@@ -5,7 +5,7 @@
 export interface PreviewSubscriptionUpcomingInvoiceLineItems {
     amount: number;
     description: string;
-    priceId: string;
+    price_id: string;
     proration: boolean;
     quantity: number;
 }

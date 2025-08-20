@@ -5,15 +5,15 @@
 /**
  * @example
  *     {
- *         displayName: "display_name",
- *         eventName: "event_name",
- *         eventPayloadKey: "event_payload_key",
- *         externalId: "external_id"
+ *         display_name: "display_name",
+ *         event_name: "event_name",
+ *         event_payload_key: "event_payload_key",
+ *         external_id: "external_id"
  *     }
  */
 export interface CreateMeterRequestBody {
-    displayName: string;
-    eventName: string;
-    eventPayloadKey: string;
-    externalId: string;
+    display_name: string;
+    event_name: string;
+    event_payload_key: string;
+    external_id: string;
 }

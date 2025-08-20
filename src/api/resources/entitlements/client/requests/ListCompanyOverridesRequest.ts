@@ -10,19 +10,19 @@ export interface ListCompanyOverridesRequest {
     /**
      * Filter company overrides by a single company ID (starting with comp_)
      */
-    companyId?: string;
+    company_id?: string;
     /**
      * Filter company overrides by multiple company IDs (starting with comp_)
      */
-    companyIds?: string | string[];
+    company_ids?: string | string[];
     /**
      * Filter company overrides by a single feature ID (starting with feat_)
      */
-    featureId?: string;
+    feature_id?: string;
     /**
      * Filter company overrides by multiple feature IDs (starting with feat_)
      */
-    featureIds?: string | string[];
+    feature_ids?: string | string[];
     /**
      * Filter company overrides by multiple company override IDs (starting with cmov_)
      */
@@ -30,7 +30,7 @@ export interface ListCompanyOverridesRequest {
     /**
      * Filter company overrides by whether they have not expired
      */
-    withoutExpired?: boolean;
+    without_expired?: boolean;
     /**
      * Search for company overrides by feature or company name
      */

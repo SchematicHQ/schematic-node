@@ -5,26 +5,26 @@
 /**
  * @example
  *     {
- *         amountDue: 1,
- *         amountPaid: 1,
- *         amountRemaining: 1,
- *         collectionMethod: "collection_method",
+ *         amount_due: 1,
+ *         amount_paid: 1,
+ *         amount_remaining: 1,
+ *         collection_method: "collection_method",
  *         currency: "currency",
- *         customerExternalId: "customer_external_id",
+ *         customer_external_id: "customer_external_id",
  *         subtotal: 1
  *     }
  */
 export interface CreateInvoiceRequestBody {
-    amountDue: number;
-    amountPaid: number;
-    amountRemaining: number;
-    collectionMethod: string;
+    amount_due: number;
+    amount_paid: number;
+    amount_remaining: number;
+    collection_method: string;
     currency: string;
-    customerExternalId: string;
-    dueDate?: Date;
-    externalId?: string;
-    paymentMethodExternalId?: string;
-    subscriptionExternalId?: string;
+    customer_external_id: string;
+    due_date?: string;
+    external_id?: string;
+    payment_method_external_id?: string;
+    subscription_external_id?: string;
     subtotal: number;
     url?: string;
 }

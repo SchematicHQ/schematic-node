@@ -5,10 +5,10 @@
 /**
  * @example
  *     {
- *         companyId: "company_id"
+ *         company_id: "company_id"
  *     }
  */
 export interface CheckoutDataRequestBody {
-    companyId: string;
-    selectedPlanId?: string;
+    company_id: string;
+    selected_plan_id?: string;
 }

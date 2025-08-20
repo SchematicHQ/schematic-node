@@ -7,7 +7,7 @@
  *     {}
  */
 export interface CountFlagsRequest {
-    featureId?: string;
+    feature_id?: string;
     ids?: string | string[];
     q?: string;
     /**

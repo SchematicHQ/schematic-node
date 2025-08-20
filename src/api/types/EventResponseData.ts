@@ -3,23 +3,23 @@
  */
 
 export interface EventResponseData {
-    apiKey?: string;
+    api_key?: string;
     body: Record<string, unknown>;
-    bodyPreview: string;
-    capturedAt: Date;
-    companyId?: string;
-    enrichedAt?: Date;
-    environmentId?: string;
-    errorMessage?: string;
-    featureIds: string[];
+    body_preview: string;
+    captured_at: string;
+    company_id?: string;
+    enriched_at?: string;
+    environment_id?: string;
+    error_message?: string;
+    feature_ids: string[];
     id: string;
-    loadedAt?: Date;
-    processedAt?: Date;
+    loaded_at?: string;
+    processed_at?: string;
     quantity: number;
-    sentAt?: Date;
+    sent_at?: string;
     status: string;
     subtype?: string;
     type: string;
-    updatedAt: Date;
-    userId?: string;
+    updated_at: string;
+    user_id?: string;
 }

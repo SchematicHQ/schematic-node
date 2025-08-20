@@ -3,13 +3,13 @@
  */
 
 export interface FeatureUsageDataResponseData {
-    entitlementSource: string;
-    entitlementValueType: string;
-    featureId: string;
-    featureName: string;
-    featureType: string;
-    hardLimit: string;
-    hasAccess: boolean;
-    softLimit: string;
+    entitlement_source: string;
+    entitlement_value_type: string;
+    feature_id: string;
+    feature_name: string;
+    feature_type: string;
+    hard_limit: string;
+    has_access: boolean;
+    soft_limit: string;
     usage: string;
 }

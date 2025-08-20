@@ -7,7 +7,7 @@
  *     {
  *         currency: "currency",
  *         description: "description",
- *         externalId: "external_id",
+ *         external_id: "external_id",
  *         interval: "interval",
  *         name: "name",
  *         price: "price",
@@ -18,7 +18,7 @@
 export interface CreateCrmProductRequestBody {
     currency: string;
     description: string;
-    externalId: string;
+    external_id: string;
     interval: string;
     name: string;
     price: string;

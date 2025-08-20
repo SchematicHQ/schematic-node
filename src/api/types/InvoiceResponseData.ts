@@ -3,21 +3,21 @@
  */
 
 export interface InvoiceResponseData {
-    amountDue: number;
-    amountPaid: number;
-    amountRemaining: number;
-    collectionMethod: string;
-    companyId?: string;
-    createdAt: Date;
+    amount_due: number;
+    amount_paid: number;
+    amount_remaining: number;
+    collection_method: string;
+    company_id?: string;
+    created_at: string;
     currency: string;
-    customerExternalId: string;
-    dueDate?: Date;
-    environmentId: string;
-    externalId?: string;
+    customer_external_id: string;
+    due_date?: string;
+    environment_id: string;
+    external_id?: string;
     id: string;
-    paymentMethodExternalId?: string;
-    subscriptionExternalId?: string;
+    payment_method_external_id?: string;
+    subscription_external_id?: string;
     subtotal: number;
-    updatedAt: Date;
+    updated_at: string;
     url?: string;
 }

@@ -7,8 +7,8 @@
  *     {}
  */
 export interface ListCompanyMembershipsRequest {
-    companyId?: string;
-    userId?: string;
+    company_id?: string;
+    user_id?: string;
     /**
      * Page limit (default 100)
      */

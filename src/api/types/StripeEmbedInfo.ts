@@ -3,6 +3,8 @@
  */
 
 export interface StripeEmbedInfo {
-    publishableKey: string;
-    setupIntentClientSecret?: string;
+    account_id?: string;
+    publishable_key?: string;
+    schematic_publishable_key: string;
+    setup_intent_client_secret?: string;
 }

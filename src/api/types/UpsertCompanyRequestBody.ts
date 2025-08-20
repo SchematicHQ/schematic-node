@@ -7,9 +7,9 @@ export interface UpsertCompanyRequestBody {
     id?: string;
     /** See [Key Management](https://docs.schematichq.com/developer_resources/key_management) for more information */
     keys: Record<string, string>;
-    lastSeenAt?: Date;
+    last_seen_at?: string;
     name?: string;
     /** A map of trait names to trait values */
     traits?: Record<string, unknown>;
-    updateOnly?: boolean;
+    update_only?: boolean;
 }

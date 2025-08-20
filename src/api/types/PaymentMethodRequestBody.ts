@@ -3,15 +3,15 @@
  */
 
 export interface PaymentMethodRequestBody {
-    accountLast4?: string;
-    accountName?: string;
-    bankName?: string;
-    billingEmail?: string;
-    billingName?: string;
-    cardBrand?: string;
-    cardExpMonth?: number;
-    cardExpYear?: number;
-    cardLast4?: string;
-    customerExternalId: string;
-    paymentMethodType: string;
+    account_last4?: string;
+    account_name?: string;
+    bank_name?: string;
+    billing_email?: string;
+    billing_name?: string;
+    card_brand?: string;
+    card_exp_month?: number;
+    card_exp_year?: number;
+    card_last4?: string;
+    customer_external_id: string;
+    payment_method_type: string;
 }

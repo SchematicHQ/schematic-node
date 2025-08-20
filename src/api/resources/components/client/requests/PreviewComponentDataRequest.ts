@@ -7,6 +7,6 @@
  *     {}
  */
 export interface PreviewComponentDataRequest {
-    companyId?: string;
-    componentId?: string;
+    company_id?: string;
+    component_id?: string;
 }

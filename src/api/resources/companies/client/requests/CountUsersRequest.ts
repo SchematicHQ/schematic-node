@@ -10,7 +10,7 @@ export interface CountUsersRequest {
     /**
      * Filter users by company ID (starts with comp_)
      */
-    companyId?: string;
+    company_id?: string;
     /**
      * Filter users by multiple user IDs (starts with user_)
      */
@@ -18,7 +18,7 @@ export interface CountUsersRequest {
     /**
      * Filter users by plan ID (starts with plan_)
      */
-    planId?: string;
+    plan_id?: string;
     /**
      * Search for users by name, keys or string traits
      */

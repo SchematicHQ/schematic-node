@@ -5,12 +5,12 @@
 /**
  * @example
  *     {
- *         requireEnvironment: true
+ *         require_environment: true
  *     }
  */
 export interface CountApiKeysRequest {
-    environmentId?: string;
-    requireEnvironment: boolean;
+    environment_id?: string;
+    require_environment: boolean;
     /**
      * Page limit (default 100)
      */
