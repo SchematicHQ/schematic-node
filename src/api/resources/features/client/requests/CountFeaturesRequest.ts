@@ -12,19 +12,19 @@ export interface CountFeaturesRequest {
     /**
      * Filter out features that already have a company override for the specified company ID
      */
-    withoutCompanyOverrideFor?: string;
+    without_company_override_for?: string;
     /**
      * Filter out features that already have a plan entitlement for the specified plan ID
      */
-    withoutPlanEntitlementFor?: string;
+    without_plan_entitlement_for?: string;
     /**
      * Filter by one or more feature types (boolean, event, trait)
      */
-    featureType?: string | string[];
+    feature_type?: string | string[];
     /**
      * Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter.
      */
-    booleanRequireEvent?: boolean;
+    boolean_require_event?: boolean;
     /**
      * Page limit (default 100)
      */

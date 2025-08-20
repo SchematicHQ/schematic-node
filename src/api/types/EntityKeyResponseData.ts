@@ -3,13 +3,13 @@
  */
 
 export interface EntityKeyResponseData {
-    createdAt: Date;
-    definitionId: string;
-    entityId: string;
-    entityType: string;
-    environmentId: string;
+    created_at: string;
+    definition_id: string;
+    entity_id: string;
+    entity_type: string;
+    environment_id: string;
     id: string;
     key: string;
-    updatedAt: Date;
+    updated_at: string;
     value: string;
 }

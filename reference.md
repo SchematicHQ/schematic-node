@@ -16,7 +16,7 @@
 
 ```typescript
 await client.accounts.listApiKeys({
-    requireEnvironment: true,
+    require_environment: true,
 });
 ```
 
@@ -268,7 +268,7 @@ await client.accounts.deleteApiKey("api_key_id");
 
 ```typescript
 await client.accounts.countApiKeys({
-    requireEnvironment: true,
+    require_environment: true,
 });
 ```
 
@@ -510,7 +510,7 @@ await client.accounts.listEnvironments();
 
 ```typescript
 await client.accounts.createEnvironment({
-    environmentType: "development",
+    environment_type: "development",
     name: "name",
 });
 ```
@@ -755,22 +755,22 @@ await client.accounts.quickstart();
 
 ```typescript
 await client.features.countAudienceCompanies({
-    conditionGroups: [
+    condition_groups: [
         {
             conditions: [
                 {
-                    conditionType: "company",
+                    condition_type: "company",
                     operator: "eq",
-                    resourceIds: ["resource_ids"],
+                    resource_ids: ["resource_ids"],
                 },
             ],
         },
     ],
     conditions: [
         {
-            conditionType: "company",
+            condition_type: "company",
             operator: "eq",
-            resourceIds: ["resource_ids"],
+            resource_ids: ["resource_ids"],
         },
     ],
 });
@@ -822,22 +822,22 @@ await client.features.countAudienceCompanies({
 
 ```typescript
 await client.features.countAudienceUsers({
-    conditionGroups: [
+    condition_groups: [
         {
             conditions: [
                 {
-                    conditionType: "company",
+                    condition_type: "company",
                     operator: "eq",
-                    resourceIds: ["resource_ids"],
+                    resource_ids: ["resource_ids"],
                 },
             ],
         },
     ],
     conditions: [
         {
-            conditionType: "company",
+            condition_type: "company",
             operator: "eq",
-            resourceIds: ["resource_ids"],
+            resource_ids: ["resource_ids"],
         },
     ],
 });
@@ -889,22 +889,22 @@ await client.features.countAudienceUsers({
 
 ```typescript
 await client.features.listAudienceCompanies({
-    conditionGroups: [
+    condition_groups: [
         {
             conditions: [
                 {
-                    conditionType: "company",
+                    condition_type: "company",
                     operator: "eq",
-                    resourceIds: ["resource_ids"],
+                    resource_ids: ["resource_ids"],
                 },
             ],
         },
     ],
     conditions: [
         {
-            conditionType: "company",
+            condition_type: "company",
             operator: "eq",
-            resourceIds: ["resource_ids"],
+            resource_ids: ["resource_ids"],
         },
     ],
 });
@@ -956,22 +956,22 @@ await client.features.listAudienceCompanies({
 
 ```typescript
 await client.features.listAudienceUsers({
-    conditionGroups: [
+    condition_groups: [
         {
             conditions: [
                 {
-                    conditionType: "company",
+                    condition_type: "company",
                     operator: "eq",
-                    resourceIds: ["resource_ids"],
+                    resource_ids: ["resource_ids"],
                 },
             ],
         },
     ],
     conditions: [
         {
-            conditionType: "company",
+            condition_type: "company",
             operator: "eq",
-            resourceIds: ["resource_ids"],
+            resource_ids: ["resource_ids"],
         },
     ],
 });
@@ -1072,7 +1072,7 @@ await client.features.listFeatures();
 ```typescript
 await client.features.createFeature({
     description: "description",
-    featureType: "boolean",
+    feature_type: "boolean",
     name: "name",
 });
 ```
@@ -1371,9 +1371,9 @@ await client.features.listFlags();
 
 ```typescript
 await client.features.createFlag({
-    defaultValue: true,
+    default_value: true,
     description: "description",
-    flagType: "boolean",
+    flag_type: "boolean",
     key: "key",
     name: "name",
 });
@@ -1473,9 +1473,9 @@ await client.features.getFlag("flag_id");
 
 ```typescript
 await client.features.updateFlag("flag_id", {
-    defaultValue: true,
+    default_value: true,
     description: "description",
-    flagType: "boolean",
+    flag_type: "boolean",
     key: "key",
     name: "name",
 });
@@ -1585,22 +1585,22 @@ await client.features.deleteFlag("flag_id");
 await client.features.updateFlagRules("flag_id", {
     rules: [
         {
-            conditionGroups: [
+            condition_groups: [
                 {
                     conditions: [
                         {
-                            conditionType: "company",
+                            condition_type: "company",
                             operator: "eq",
-                            resourceIds: ["resource_ids"],
+                            resource_ids: ["resource_ids"],
                         },
                     ],
                 },
             ],
             conditions: [
                 {
-                    conditionType: "company",
+                    condition_type: "company",
                     operator: "eq",
-                    resourceIds: ["resource_ids"],
+                    resource_ids: ["resource_ids"],
                 },
             ],
             name: "name",
@@ -1867,14 +1867,14 @@ await client.billing.listCoupons();
 
 ```typescript
 await client.billing.upsertBillingCoupon({
-    amountOff: 1,
+    amount_off: 1,
     duration: "duration",
-    durationInMonths: 1,
-    externalId: "external_id",
-    maxRedemptions: 1,
+    duration_in_months: 1,
+    external_id: "external_id",
+    max_redemptions: 1,
     name: "name",
-    percentOff: 1.1,
-    timesRedeemed: 1,
+    percent_off: 1.1,
+    times_redeemed: 1,
 });
 ```
 
@@ -1925,8 +1925,8 @@ await client.billing.upsertBillingCoupon({
 ```typescript
 await client.billing.upsertBillingCustomer({
     email: "email",
-    externalId: "external_id",
-    failedToImport: true,
+    external_id: "external_id",
+    failed_to_import: true,
     meta: {
         key: "value",
     },
@@ -2076,7 +2076,8 @@ await client.billing.countCustomers();
 
 ```typescript
 await client.billing.listInvoices({
-    customerExternalId: "customer_external_id",
+    customer_external_id: "customer_external_id",
+    subscription_external_id: "subscription_external_id",
 });
 ```
 
@@ -2126,12 +2127,12 @@ await client.billing.listInvoices({
 
 ```typescript
 await client.billing.upsertInvoice({
-    amountDue: 1,
-    amountPaid: 1,
-    amountRemaining: 1,
-    collectionMethod: "collection_method",
+    amount_due: 1,
+    amount_paid: 1,
+    amount_remaining: 1,
+    collection_method: "collection_method",
     currency: "currency",
-    customerExternalId: "customer_external_id",
+    customer_external_id: "customer_external_id",
     subtotal: 1,
 });
 ```
@@ -2230,10 +2231,10 @@ await client.billing.listMeters();
 
 ```typescript
 await client.billing.upsertBillingMeter({
-    displayName: "display_name",
-    eventName: "event_name",
-    eventPayloadKey: "event_payload_key",
-    externalId: "external_id",
+    display_name: "display_name",
+    event_name: "event_name",
+    event_payload_key: "event_payload_key",
+    external_id: "external_id",
 });
 ```
 
@@ -2283,7 +2284,7 @@ await client.billing.upsertBillingMeter({
 
 ```typescript
 await client.billing.listPaymentMethods({
-    customerExternalId: "customer_external_id",
+    customer_external_id: "customer_external_id",
 });
 ```
 
@@ -2333,9 +2334,9 @@ await client.billing.listPaymentMethods({
 
 ```typescript
 await client.billing.upsertPaymentMethod({
-    customerExternalId: "customer_external_id",
-    externalId: "external_id",
-    paymentMethodType: "payment_method_type",
+    customer_external_id: "customer_external_id",
+    external_id: "external_id",
+    payment_method_type: "payment_method_type",
 });
 ```
 
@@ -2433,20 +2434,20 @@ await client.billing.searchBillingPrices();
 
 ```typescript
 await client.billing.upsertBillingPrice({
-    billingScheme: "per_unit",
+    billing_scheme: "per_unit",
     currency: "currency",
-    externalAccountId: "external_account_id",
+    external_account_id: "external_account_id",
     interval: "interval",
-    isActive: true,
+    is_active: true,
     price: 1,
-    priceExternalId: "price_external_id",
-    priceTiers: [
+    price_external_id: "price_external_id",
+    price_tiers: [
         {
-            priceExternalId: "price_external_id",
+            price_external_id: "price_external_id",
         },
     ],
-    productExternalId: "product_external_id",
-    usageType: "licensed",
+    product_external_id: "product_external_id",
+    usage_type: "licensed",
 });
 ```
 
@@ -2640,7 +2641,7 @@ await client.billing.deleteProductPrice("billing_id");
 
 ```typescript
 await client.billing.upsertBillingProduct({
-    externalId: "external_id",
+    external_id: "external_id",
     name: "name",
     price: 1.1,
 });
@@ -2788,31 +2789,31 @@ await client.billing.countBillingProducts();
 
 ```typescript
 await client.billing.upsertBillingSubscription({
-    cancelAtPeriodEnd: true,
+    cancel_at_period_end: true,
     currency: "currency",
-    customerExternalId: "customer_external_id",
+    customer_external_id: "customer_external_id",
     discounts: [
         {
-            couponExternalId: "coupon_external_id",
-            externalId: "external_id",
-            isActive: true,
-            startedAt: "2024-01-15T09:30:00Z",
+            coupon_external_id: "coupon_external_id",
+            external_id: "external_id",
+            is_active: true,
+            started_at: "2024-01-15T09:30:00Z",
         },
     ],
-    expiredAt: "2024-01-15T09:30:00Z",
-    productExternalIds: [
+    expired_at: "2024-01-15T09:30:00Z",
+    product_external_ids: [
         {
             currency: "currency",
             interval: "interval",
             price: 1,
-            priceExternalId: "price_external_id",
-            productExternalId: "product_external_id",
+            price_external_id: "price_external_id",
+            product_external_id: "product_external_id",
             quantity: 1,
-            usageType: "licensed",
+            usage_type: "licensed",
         },
     ],
-    subscriptionExternalId: "subscription_external_id",
-    totalPrice: 1,
+    subscription_external_id: "subscription_external_id",
+    total_price: 1,
 });
 ```
 
@@ -3057,6 +3058,54 @@ await client.credits.updateBillingCredit("billing_id", {
 </dl>
 </details>
 
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">softDeleteBillingCredit</a>(billingId) -> Schematic.SoftDeleteBillingCreditResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.credits.softDeleteBillingCredit("billing_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**billingId:** `string` — billing_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Credits.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">listCreditBundles</a>({ ...params }) -> Schematic.ListCreditBundlesResponse</code></summary>
 <dl>
 <dd>
@@ -3119,9 +3168,10 @@ await client.credits.listCreditBundles();
 
 ```typescript
 await client.credits.createCreditBundle({
-    creditId: "credit_id",
+    bundle_name: "bundle_name",
+    credit_id: "credit_id",
     currency: "currency",
-    pricePerUnit: 1,
+    price_per_unit: 1,
 });
 ```
 
@@ -3205,7 +3255,7 @@ await client.credits.getCreditBundle("billing_id");
 </dl>
 </details>
 
-<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">updateCreditBundle</a>(billingId, { ...params }) -> Schematic.UpdateCreditBundleResponse</code></summary>
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">updateCreditBundleDetails</a>(billingId, { ...params }) -> Schematic.UpdateCreditBundleDetailsResponse</code></summary>
 <dl>
 <dd>
 
@@ -3218,9 +3268,9 @@ await client.credits.getCreditBundle("billing_id");
 <dd>
 
 ```typescript
-await client.credits.updateCreditBundle("billing_id", {
-    bundleId: "bundle_id",
-    quantity: 1,
+await client.credits.updateCreditBundleDetails("billing_id", {
+    bundle_name: "bundle_name",
+    price_per_unit: 1,
 });
 ```
 
@@ -3245,7 +3295,7 @@ await client.credits.updateCreditBundle("billing_id", {
 <dl>
 <dd>
 
-**request:** `Schematic.UpdateCreditBundleRequestBody`
+**request:** `Schematic.UpdateCreditBundleDetailsRequestBody`
 
 </dd>
 </dl>
@@ -3446,6 +3496,59 @@ await client.credits.zeroOutGrant("billing_id");
 <dd>
 
 **request:** `Schematic.ZeroOutGrantRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Credits.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">grantBillingCreditsToCompany</a>({ ...params }) -> Schematic.GrantBillingCreditsToCompanyResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.credits.grantBillingCreditsToCompany({
+    company_id: "company_id",
+    credit_id: "credit_id",
+    quantity: 1,
+    reason: "reason",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CreateCompanyCreditGrant`
 
 </dd>
 </dl>
@@ -3670,11 +3773,11 @@ await client.credits.listBillingPlanCreditGrants();
 
 ```typescript
 await client.credits.createBillingPlanCreditGrant({
-    creditAmount: 1,
-    creditId: "credit_id",
-    planId: "plan_id",
-    resetCadence: "monthly",
-    resetStart: "billing_period",
+    credit_amount: 1,
+    credit_id: "credit_id",
+    plan_id: "plan_id",
+    reset_cadence: "monthly",
+    reset_start: "billing_period",
 });
 ```
 
@@ -3822,28 +3925,28 @@ await client.credits.countBillingPlanCreditGrants();
 
 ```typescript
 await client.checkout.internal({
-    addOnIds: [
+    add_on_ids: [
         {
-            addOnId: "add_on_id",
-            priceId: "price_id",
+            add_on_id: "add_on_id",
+            price_id: "price_id",
         },
     ],
-    companyId: "company_id",
-    creditBundles: [
+    company_id: "company_id",
+    credit_bundles: [
         {
-            bundleId: "bundle_id",
+            bundle_id: "bundle_id",
             quantity: 1,
         },
     ],
-    newPlanId: "new_plan_id",
-    newPriceId: "new_price_id",
-    payInAdvance: [
+    new_plan_id: "new_plan_id",
+    new_price_id: "new_price_id",
+    pay_in_advance: [
         {
-            priceId: "price_id",
+            price_id: "price_id",
             quantity: 1,
         },
     ],
-    skipTrial: true,
+    skip_trial: true,
 });
 ```
 
@@ -3893,7 +3996,7 @@ await client.checkout.internal({
 
 ```typescript
 await client.checkout.getCheckoutData({
-    companyId: "company_id",
+    company_id: "company_id",
 });
 ```
 
@@ -3943,28 +4046,28 @@ await client.checkout.getCheckoutData({
 
 ```typescript
 await client.checkout.previewCheckoutInternal({
-    addOnIds: [
+    add_on_ids: [
         {
-            addOnId: "add_on_id",
-            priceId: "price_id",
+            add_on_id: "add_on_id",
+            price_id: "price_id",
         },
     ],
-    companyId: "company_id",
-    creditBundles: [
+    company_id: "company_id",
+    credit_bundles: [
         {
-            bundleId: "bundle_id",
+            bundle_id: "bundle_id",
             quantity: 1,
         },
     ],
-    newPlanId: "new_plan_id",
-    newPriceId: "new_price_id",
-    payInAdvance: [
+    new_plan_id: "new_plan_id",
+    new_price_id: "new_price_id",
+    pay_in_advance: [
         {
-            priceId: "price_id",
+            price_id: "price_id",
             quantity: 1,
         },
     ],
-    skipTrial: true,
+    skip_trial: true,
 });
 ```
 
@@ -4568,8 +4671,8 @@ await client.companies.lookupCompany({
 
 ```typescript
 await client.companies.getActiveDeals({
-    companyId: "company_id",
-    dealStage: "deal_stage",
+    company_id: "company_id",
+    deal_stage: "deal_stage",
 });
 ```
 
@@ -4667,8 +4770,8 @@ await client.companies.listCompanyMemberships();
 
 ```typescript
 await client.companies.getOrCreateCompanyMembership({
-    companyId: "company_id",
-    userId: "user_id",
+    company_id: "company_id",
+    user_id: "user_id",
 });
 ```
 
@@ -5011,9 +5114,9 @@ await client.companies.listEntityTraitDefinitions();
 
 ```typescript
 await client.companies.getOrCreateEntityTraitDefinition({
-    entityType: "company",
+    entity_type: "company",
     hierarchy: ["hierarchy"],
-    traitType: "boolean",
+    trait_type: "boolean",
 });
 ```
 
@@ -5111,7 +5214,7 @@ await client.companies.getEntityTraitDefinition("entity_trait_definition_id");
 
 ```typescript
 await client.companies.updateEntityTraitDefinition("entity_trait_definition_id", {
-    traitType: "boolean",
+    trait_type: "boolean",
 });
 ```
 
@@ -5217,7 +5320,7 @@ await client.companies.countEntityTraitDefinitions();
 
 ```typescript
 await client.companies.getEntityTraitValues({
-    definitionId: "definition_id",
+    definition_id: "definition_id",
 });
 ```
 
@@ -5235,6 +5338,309 @@ await client.companies.getEntityTraitValues({
 <dd>
 
 **request:** `Schematic.GetEntityTraitValuesRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Companies.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">listPlanTraits</a>({ ...params }) -> Schematic.ListPlanTraitsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.companies.listPlanTraits();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListPlanTraitsRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Companies.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">createPlanTrait</a>({ ...params }) -> Schematic.CreatePlanTraitResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.companies.createPlanTrait({
+    plan_id: "plan_id",
+    trait_id: "trait_id",
+    trait_value: "trait_value",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CreatePlanTraitRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Companies.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">getPlanTrait</a>(planTraitId) -> Schematic.GetPlanTraitResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.companies.getPlanTrait("plan_trait_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**planTraitId:** `string` — plan_trait_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Companies.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">updatePlanTrait</a>(planTraitId, { ...params }) -> Schematic.UpdatePlanTraitResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.companies.updatePlanTrait("plan_trait_id", {
+    plan_id: "plan_id",
+    trait_value: "trait_value",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**planTraitId:** `string` — plan_trait_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.UpdatePlanTraitRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Companies.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">deletePlanTrait</a>(planTraitId) -> Schematic.DeletePlanTraitResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.companies.deletePlanTrait("plan_trait_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**planTraitId:** `string` — plan_trait_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Companies.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">countPlanTraits</a>({ ...params }) -> Schematic.CountPlanTraitsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.companies.countPlanTraits();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CountPlanTraitsRequest`
 
 </dd>
 </dl>
@@ -5770,9 +6176,9 @@ await client.entitlements.listCompanyOverrides();
 
 ```typescript
 await client.entitlements.createCompanyOverride({
-    companyId: "company_id",
-    featureId: "feature_id",
-    valueType: "boolean",
+    company_id: "company_id",
+    feature_id: "feature_id",
+    value_type: "boolean",
 });
 ```
 
@@ -5870,7 +6276,7 @@ await client.entitlements.getCompanyOverride("company_override_id");
 
 ```typescript
 await client.entitlements.updateCompanyOverride("company_override_id", {
-    valueType: "boolean",
+    value_type: "boolean",
 });
 ```
 
@@ -6024,7 +6430,7 @@ await client.entitlements.countCompanyOverrides();
 
 ```typescript
 await client.entitlements.listFeatureCompanies({
-    featureId: "feature_id",
+    feature_id: "feature_id",
 });
 ```
 
@@ -6074,7 +6480,7 @@ await client.entitlements.listFeatureCompanies({
 
 ```typescript
 await client.entitlements.countFeatureCompanies({
-    featureId: "feature_id",
+    feature_id: "feature_id",
 });
 ```
 
@@ -6220,7 +6626,7 @@ await client.entitlements.countFeatureUsage();
 
 ```typescript
 await client.entitlements.listFeatureUsers({
-    featureId: "feature_id",
+    feature_id: "feature_id",
 });
 ```
 
@@ -6270,7 +6676,7 @@ await client.entitlements.listFeatureUsers({
 
 ```typescript
 await client.entitlements.countFeatureUsers({
-    featureId: "feature_id",
+    feature_id: "feature_id",
 });
 ```
 
@@ -6368,11 +6774,9 @@ await client.entitlements.listPlanEntitlements();
 
 ```typescript
 await client.entitlements.createPlanEntitlement({
-    featureId: "feature_id",
-    planId: "plan_id",
-    priceTiers: [{}],
-    tierMode: "tier_mode",
-    valueType: "boolean",
+    feature_id: "feature_id",
+    plan_id: "plan_id",
+    value_type: "boolean",
 });
 ```
 
@@ -6470,9 +6874,7 @@ await client.entitlements.getPlanEntitlement("plan_entitlement_id");
 
 ```typescript
 await client.entitlements.updatePlanEntitlement("plan_entitlement_id", {
-    priceTiers: [{}],
-    tierMode: "tier_mode",
-    valueType: "boolean",
+    value_type: "boolean",
 });
 ```
 
@@ -6680,7 +7082,7 @@ await client.entitlements.getFeatureUsageByCompany({
 
 ```typescript
 await client.plans.updateCompanyPlans("company_plan_id", {
-    addOnIds: ["add_on_ids"],
+    add_on_ids: ["add_on_ids"],
 });
 ```
 
@@ -6786,22 +7188,22 @@ await client.plans.getAudience("plan_audience_id");
 
 ```typescript
 await client.plans.updateAudience("plan_audience_id", {
-    conditionGroups: [
+    condition_groups: [
         {
             conditions: [
                 {
-                    conditionType: "company",
+                    condition_type: "company",
                     operator: "eq",
-                    resourceIds: ["resource_ids"],
+                    resource_ids: ["resource_ids"],
                 },
             ],
         },
     ],
     conditions: [
         {
-            conditionType: "company",
+            condition_type: "company",
             operator: "eq",
-            resourceIds: ["resource_ids"],
+            resource_ids: ["resource_ids"],
         },
     ],
 });
@@ -6895,309 +7297,6 @@ await client.plans.deleteAudience("plan_audience_id");
 </dl>
 </details>
 
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">listPlanTraits</a>({ ...params }) -> Schematic.ListPlanTraitsResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.listPlanTraits();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.ListPlanTraitsRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">createPlanTrait</a>({ ...params }) -> Schematic.CreatePlanTraitResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.createPlanTrait({
-    planId: "plan_id",
-    traitId: "trait_id",
-    traitValue: "trait_value",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.CreatePlanTraitRequestBody`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">getPlanTrait</a>(planTraitId) -> Schematic.GetPlanTraitResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.getPlanTrait("plan_trait_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**planTraitId:** `string` — plan_trait_id
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">updatePlanTrait</a>(planTraitId, { ...params }) -> Schematic.UpdatePlanTraitResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.updatePlanTrait("plan_trait_id", {
-    planId: "plan_id",
-    traitValue: "trait_value",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**planTraitId:** `string` — plan_trait_id
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Schematic.UpdatePlanTraitRequestBody`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">deletePlanTrait</a>(planTraitId) -> Schematic.DeletePlanTraitResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.deletePlanTrait("plan_trait_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**planTraitId:** `string` — plan_trait_id
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">countPlanTraits</a>({ ...params }) -> Schematic.CountPlanTraitsResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.countPlanTraits();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.CountPlanTraitsRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">listPlans</a>({ ...params }) -> Schematic.ListPlansResponse</code></summary>
 <dl>
 <dd>
@@ -7262,7 +7361,7 @@ await client.plans.listPlans();
 await client.plans.createPlan({
     description: "description",
     name: "name",
-    planType: "plan",
+    plan_type: "plan",
 });
 ```
 
@@ -7466,8 +7565,8 @@ await client.plans.deletePlan("plan_id");
 
 ```typescript
 await client.plans.upsertBillingProductPlan("plan_id", {
-    chargeType: "one_time",
-    isTrialable: true,
+    charge_type: "one_time",
+    is_trialable: true,
 });
 ```
 
@@ -7623,7 +7722,7 @@ await client.components.listComponents();
 
 ```typescript
 await client.components.createComponent({
-    entityType: "entitlement",
+    entity_type: "entitlement",
     name: "name",
 });
 ```
@@ -7924,8 +8023,8 @@ await client.components.previewComponentData();
 
 ```typescript
 await client.crm.upsertDealLineItemAssociation({
-    dealExternalId: "deal_external_id",
-    lineItemExternalId: "line_item_external_id",
+    deal_external_id: "deal_external_id",
+    line_item_external_id: "line_item_external_id",
 });
 ```
 
@@ -7977,8 +8076,8 @@ await client.crm.upsertDealLineItemAssociation({
 await client.crm.upsertLineItem({
     amount: "amount",
     interval: "interval",
-    lineItemExternalId: "line_item_external_id",
-    productExternalId: "product_external_id",
+    line_item_external_id: "line_item_external_id",
+    product_external_id: "product_external_id",
     quantity: 1,
 });
 ```
@@ -8029,9 +8128,9 @@ await client.crm.upsertLineItem({
 
 ```typescript
 await client.crm.upsertCrmDeal({
-    crmCompanyKey: "crm_company_key",
-    crmType: "crm_type",
-    dealExternalId: "deal_external_id",
+    crm_company_key: "crm_company_key",
+    crm_type: "crm_type",
+    deal_external_id: "deal_external_id",
 });
 ```
 
@@ -8131,7 +8230,7 @@ await client.crm.listCrmProducts();
 await client.crm.upsertCrmProduct({
     currency: "currency",
     description: "description",
-    externalId: "external_id",
+    external_id: "external_id",
     interval: "interval",
     name: "name",
     price: "price",
@@ -8242,7 +8341,7 @@ await client.dataexports.createDataExport({
 await client.events.createEventBatch({
     events: [
         {
-            eventType: "identify",
+            event_type: "identify",
         },
     ],
 });
@@ -8390,7 +8489,7 @@ await client.events.listEvents();
 
 ```typescript
 await client.events.createEvent({
-    eventType: "identify",
+    event_type: "identify",
 });
 ```
 
@@ -8570,12 +8669,23 @@ await client.plangroups.getPlanGroup();
 
 ```typescript
 await client.plangroups.createPlanGroup({
-    addOnIds: ["add_on_ids"],
-    orderedPlans: [
+    add_on_ids: ["add_on_ids"],
+    ordered_add_ons: [
         {
-            planId: "plan_id",
+            plan_id: "plan_id",
         },
     ],
+    ordered_bundle_list: [
+        {
+            bundleId: "bundleId",
+        },
+    ],
+    ordered_plans: [
+        {
+            plan_id: "plan_id",
+        },
+    ],
+    show_period_toggle: true,
 });
 ```
 
@@ -8625,12 +8735,23 @@ await client.plangroups.createPlanGroup({
 
 ```typescript
 await client.plangroups.updatePlanGroup("plan_group_id", {
-    addOnIds: ["add_on_ids"],
-    orderedPlans: [
+    add_on_ids: ["add_on_ids"],
+    ordered_add_ons: [
         {
-            planId: "plan_id",
+            plan_id: "plan_id",
         },
     ],
+    ordered_bundle_list: [
+        {
+            bundleId: "bundleId",
+        },
+    ],
+    ordered_plans: [
+        {
+            plan_id: "plan_id",
+        },
+    ],
+    show_period_toggle: true,
 });
 ```
 
@@ -8937,7 +9058,7 @@ await client.webhooks.listWebhooks();
 ```typescript
 await client.webhooks.createWebhook({
     name: "name",
-    requestTypes: ["company.updated"],
+    request_types: ["company.updated"],
     url: "url",
 });
 ```

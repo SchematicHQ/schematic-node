@@ -3,9 +3,9 @@
  */
 
 export interface EntityKeyDefinitionResponseData {
-    createdAt: Date;
-    entityType: string;
+    created_at: string;
+    entity_type: string;
     id: string;
     key: string;
-    updatedAt: Date;
+    updated_at: string;
 }

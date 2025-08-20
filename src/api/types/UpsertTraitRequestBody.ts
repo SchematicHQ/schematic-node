@@ -12,5 +12,5 @@ export interface UpsertTraitRequestBody {
     /** Name of the trait to update */
     trait: string;
     /** Unless this is set, the company or user will be created if it does not already exist */
-    updateOnly?: boolean;
+    update_only?: boolean;
 }

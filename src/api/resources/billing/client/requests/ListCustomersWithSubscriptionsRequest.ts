@@ -7,9 +7,9 @@
  *     {}
  */
 export interface ListCustomersWithSubscriptionsRequest {
-    companyIds?: string | string[];
+    company_ids?: string | string[];
     name?: string;
-    failedToImport?: boolean;
+    failed_to_import?: boolean;
     q?: string;
     /**
      * Page limit (default 100)

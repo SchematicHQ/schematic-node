@@ -3,13 +3,13 @@
  */
 
 export interface WebhookEventResponseData {
-    createdAt: Date;
+    created_at: string;
     id: string;
     payload?: string;
-    requestType: string;
-    responseCode?: number;
-    sentAt?: Date;
+    request_type: string;
+    response_code?: number;
+    sent_at?: string;
     status: string;
-    updatedAt: Date;
-    webhookId: string;
+    updated_at: string;
+    webhook_id: string;
 }

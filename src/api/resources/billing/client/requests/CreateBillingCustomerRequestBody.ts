@@ -6,8 +6,8 @@
  * @example
  *     {
  *         email: "email",
- *         externalId: "external_id",
- *         failedToImport: true,
+ *         external_id: "external_id",
+ *         failed_to_import: true,
  *         meta: {
  *             "key": "value"
  *         },
@@ -15,11 +15,11 @@
  *     }
  */
 export interface CreateBillingCustomerRequestBody {
-    companyId?: string;
-    defaultPaymentMethodId?: string;
+    company_id?: string;
+    default_payment_method_id?: string;
     email: string;
-    externalId: string;
-    failedToImport: boolean;
+    external_id: string;
+    failed_to_import: boolean;
     meta: Record<string, string>;
     name: string;
 }

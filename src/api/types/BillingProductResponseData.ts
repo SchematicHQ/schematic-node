@@ -3,16 +3,16 @@
  */
 
 export interface BillingProductResponseData {
-    accountId: string;
-    createdAt: Date;
+    account_id: string;
+    created_at: string;
     currency: string;
-    environmentId: string;
-    externalId: string;
-    isActive: boolean;
+    environment_id: string;
+    external_id: string;
+    is_active: boolean;
     name: string;
     price: number;
-    priceDecimal?: string;
-    productId: string;
+    price_decimal?: string;
+    product_id: string;
     quantity: number;
-    updatedAt: Date;
+    updated_at: string;
 }

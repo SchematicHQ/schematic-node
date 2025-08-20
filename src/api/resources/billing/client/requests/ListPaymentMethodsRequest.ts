@@ -5,12 +5,12 @@
 /**
  * @example
  *     {
- *         customerExternalId: "customer_external_id"
+ *         customer_external_id: "customer_external_id"
  *     }
  */
 export interface ListPaymentMethodsRequest {
-    companyId?: string;
-    customerExternalId: string;
+    company_id?: string;
+    customer_external_id: string;
     /**
      * Page limit (default 100)
      */

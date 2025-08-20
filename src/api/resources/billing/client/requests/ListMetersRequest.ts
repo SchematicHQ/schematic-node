@@ -7,7 +7,7 @@
  *     {}
  */
 export interface ListMetersRequest {
-    displayName?: string;
+    display_name?: string;
     /**
      * Page limit (default 100)
      */

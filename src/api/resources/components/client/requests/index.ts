@@ -1,5 +1,5 @@
-export { type ListComponentsRequest } from "./ListComponentsRequest";
-export { type CreateComponentRequestBody } from "./CreateComponentRequestBody";
-export { type UpdateComponentRequestBody } from "./UpdateComponentRequestBody";
-export { type CountComponentsRequest } from "./CountComponentsRequest";
-export { type PreviewComponentDataRequest } from "./PreviewComponentDataRequest";
+export { type ListComponentsRequest } from "./ListComponentsRequest.js";
+export { type CreateComponentRequestBody } from "./CreateComponentRequestBody.js";
+export { type UpdateComponentRequestBody } from "./UpdateComponentRequestBody.js";
+export { type CountComponentsRequest } from "./CountComponentsRequest.js";
+export { type PreviewComponentDataRequest } from "./PreviewComponentDataRequest.js";

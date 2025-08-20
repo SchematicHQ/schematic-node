@@ -3,15 +3,15 @@
  */
 
 export interface CompanyEventPeriodMetricsResponseData {
-    accountId: string;
-    capturedAtMax: Date;
-    capturedAtMin: Date;
-    companyId: string;
-    createdAt: Date;
-    environmentId: string;
-    eventSubtype: string;
-    monthReset: string;
+    account_id: string;
+    captured_at_max: string;
+    captured_at_min: string;
+    company_id: string;
+    created_at: string;
+    environment_id: string;
+    event_subtype: string;
+    month_reset: string;
     period: string;
-    validUntil?: Date;
+    valid_until?: string;
     value: number;
 }

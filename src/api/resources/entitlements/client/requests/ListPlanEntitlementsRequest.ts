@@ -10,11 +10,11 @@ export interface ListPlanEntitlementsRequest {
     /**
      * Filter plan entitlements by a single feature ID (starting with feat_)
      */
-    featureId?: string;
+    feature_id?: string;
     /**
      * Filter plan entitlements by multiple feature IDs (starting with feat_)
      */
-    featureIds?: string | string[];
+    feature_ids?: string | string[];
     /**
      * Filter plan entitlements by multiple plan entitlement IDs (starting with pltl_)
      */
@@ -22,11 +22,11 @@ export interface ListPlanEntitlementsRequest {
     /**
      * Filter plan entitlements by a single plan ID (starting with plan_)
      */
-    planId?: string;
+    plan_id?: string;
     /**
      * Filter plan entitlements by multiple plan IDs (starting with plan_)
      */
-    planIds?: string | string[];
+    plan_ids?: string | string[];
     /**
      * Search for plan entitlements by feature or company name
      */
@@ -34,7 +34,7 @@ export interface ListPlanEntitlementsRequest {
     /**
      * Filter plan entitlements only with metered products
      */
-    withMeteredProducts?: boolean;
+    with_metered_products?: boolean;
     /**
      * Page limit (default 100)
      */

@@ -3,6 +3,6 @@
  */
 
 export interface ComponentCapabilities {
-    badgeVisibility: boolean;
+    badge_visibility: boolean;
     checkout: boolean;
 }

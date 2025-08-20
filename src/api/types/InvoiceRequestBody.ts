@@ -3,15 +3,15 @@
  */
 
 export interface InvoiceRequestBody {
-    amountDue: number;
-    amountPaid: number;
-    amountRemaining: number;
-    collectionMethod: string;
+    amount_due: number;
+    amount_paid: number;
+    amount_remaining: number;
+    collection_method: string;
     currency: string;
-    customerExternalId: string;
-    dueDate?: Date;
-    paymentMethodExternalId?: string;
-    subscriptionExternalId?: string;
+    customer_external_id: string;
+    due_date?: string;
+    payment_method_external_id?: string;
+    subscription_external_id?: string;
     subtotal: number;
     url?: string;
 }
