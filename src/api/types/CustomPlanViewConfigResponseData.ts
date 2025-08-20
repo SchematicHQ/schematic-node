@@ -3,7 +3,7 @@
  */
 
 export interface CustomPlanViewConfigResponseData {
-    ctaText: string;
-    ctaWebSite: string;
-    priceText: string;
+    cta_text: string;
+    cta_web_site: string;
+    price_text: string;
 }

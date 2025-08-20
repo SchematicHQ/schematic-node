@@ -7,8 +7,9 @@
  *     {}
  */
 export interface CountBillingPlanCreditGrantsRequest {
-    creditId?: string;
-    planId?: string;
+    credit_id?: string;
+    plan_id?: string;
+    plan_ids?: string | string[];
     ids?: string | string[];
     /**
      * Page limit (default 100)

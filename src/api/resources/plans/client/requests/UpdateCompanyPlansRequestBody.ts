@@ -5,10 +5,10 @@
 /**
  * @example
  *     {
- *         addOnIds: ["add_on_ids"]
+ *         add_on_ids: ["add_on_ids"]
  *     }
  */
 export interface UpdateCompanyPlansRequestBody {
-    addOnIds: string[];
-    basePlanId?: string;
+    add_on_ids: string[];
+    base_plan_id?: string;
 }

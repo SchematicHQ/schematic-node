@@ -7,5 +7,5 @@
  *     {}
  */
 export interface UpdateTrialEndRequestBody {
-    trialEnd?: Date;
+    trial_end?: string;
 }

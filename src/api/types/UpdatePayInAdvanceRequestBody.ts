@@ -3,6 +3,6 @@
  */
 
 export interface UpdatePayInAdvanceRequestBody {
-    priceId: string;
+    price_id: string;
     quantity: number;
 }

@@ -3,10 +3,10 @@
  */
 
 export interface EventSummaryResponseData {
-    companyCount?: number;
-    environmentId: string;
-    eventCount: number;
-    eventSubtype: string;
-    lastSeenAt?: Date;
-    userCount?: number;
+    company_count: number;
+    environment_id: string;
+    event_count: number;
+    event_subtype: string;
+    last_seen_at?: string;
+    user_count: number;
 }

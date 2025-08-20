@@ -5,11 +5,11 @@
 /**
  * @example
  *     {
- *         featureId: "feature_id"
+ *         feature_id: "feature_id"
  *     }
  */
 export interface ListFeatureUsersRequest {
-    featureId: string;
+    feature_id: string;
     q?: string;
     /**
      * Page limit (default 100)

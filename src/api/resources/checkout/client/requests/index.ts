@@ -1,2 +1,2 @@
-export { type CheckoutDataRequestBody } from "./CheckoutDataRequestBody";
-export { type UpdateTrialEndRequestBody } from "./UpdateTrialEndRequestBody";
+export { type CheckoutDataRequestBody } from "./CheckoutDataRequestBody.js";
+export { type UpdateTrialEndRequestBody } from "./UpdateTrialEndRequestBody.js";

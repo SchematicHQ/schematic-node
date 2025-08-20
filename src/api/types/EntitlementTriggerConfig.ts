@@ -3,5 +3,5 @@
  */
 
 export interface EntitlementTriggerConfig {
-    featureId: string;
+    feature_id: string;
 }

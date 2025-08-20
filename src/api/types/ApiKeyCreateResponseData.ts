@@ -6,13 +6,13 @@
  * The created resource
  */
 export interface ApiKeyCreateResponseData {
-    createdAt: Date;
+    created_at: string;
     description?: string;
-    environmentId?: string;
+    environment_id?: string;
     id: string;
-    lastUsedAt?: Date;
+    last_used_at?: string;
     name: string;
     scopes: string[];
     secret: string;
-    updatedAt: Date;
+    updated_at: string;
 }

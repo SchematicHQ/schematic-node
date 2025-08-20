@@ -3,11 +3,11 @@
  */
 
 export interface BillingSubscriptionDiscount {
-    couponExternalId: string;
-    customerFacingCode?: string;
-    endedAt?: Date;
-    externalId: string;
-    isActive: boolean;
-    promoCodeExternalId?: string;
-    startedAt: Date;
+    coupon_external_id: string;
+    customer_facing_code?: string;
+    ended_at?: string;
+    external_id: string;
+    is_active: boolean;
+    promo_code_external_id?: string;
+    started_at: string;
 }

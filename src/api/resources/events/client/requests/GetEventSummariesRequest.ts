@@ -8,7 +8,7 @@
  */
 export interface GetEventSummariesRequest {
     q?: string;
-    eventSubtypes?: string | string[];
+    event_subtypes?: string | string[];
     /**
      * Page limit (default 100)
      */

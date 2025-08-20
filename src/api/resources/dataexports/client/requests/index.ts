@@ -1,1 +1,1 @@
-export { type CreateDataExportRequestBody } from "./CreateDataExportRequestBody";
+export { type CreateDataExportRequestBody } from "./CreateDataExportRequestBody.js";

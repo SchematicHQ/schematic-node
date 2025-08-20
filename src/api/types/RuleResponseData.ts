@@ -3,14 +3,14 @@
  */
 
 export interface RuleResponseData {
-    createdAt: Date;
-    environmentId: string;
-    flagId?: string;
+    created_at: string;
+    environment_id: string;
+    flag_id?: string;
     id: string;
     name: string;
-    planId?: string;
+    plan_id?: string;
     priority: number;
-    ruleType: string;
-    updatedAt: Date;
+    rule_type: string;
+    updated_at: string;
     value: boolean;
 }

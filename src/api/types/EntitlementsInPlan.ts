@@ -3,6 +3,6 @@
  */
 
 export interface EntitlementsInPlan {
-    entitlementId: string;
+    entitlement_id: string;
     visible?: boolean;
 }

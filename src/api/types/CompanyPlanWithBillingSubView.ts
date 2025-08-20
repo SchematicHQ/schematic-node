@@ -3,13 +3,13 @@
  */
 
 export interface CompanyPlanWithBillingSubView {
-    addedOn?: Date;
-    billingProductExternalId?: string;
-    billingProductId?: string;
+    added_on?: string;
+    billing_product_external_id?: string;
+    billing_product_id?: string;
     description?: string;
     id: string;
-    imageUrl?: string;
+    image_url?: string;
     name: string;
-    planPeriod?: string;
-    planPrice?: number;
+    plan_period?: string;
+    plan_price?: number;
 }

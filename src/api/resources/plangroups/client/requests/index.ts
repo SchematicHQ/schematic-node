@@ -1,2 +1,2 @@
-export { type CreatePlanGroupRequestBody } from "./CreatePlanGroupRequestBody";
-export { type UpdatePlanGroupRequestBody } from "./UpdatePlanGroupRequestBody";
+export { type CreatePlanGroupRequestBody } from "./CreatePlanGroupRequestBody.js";
+export { type UpdatePlanGroupRequestBody } from "./UpdatePlanGroupRequestBody.js";

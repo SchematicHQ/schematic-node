@@ -5,11 +5,11 @@
 /**
  * @example
  *     {
- *         dealExternalId: "deal_external_id",
- *         lineItemExternalId: "line_item_external_id"
+ *         deal_external_id: "deal_external_id",
+ *         line_item_external_id: "line_item_external_id"
  *     }
  */
 export interface CreateCrmDealLineItemAssociationRequestBody {
-    dealExternalId: string;
-    lineItemExternalId: string;
+    deal_external_id: string;
+    line_item_external_id: string;
 }
