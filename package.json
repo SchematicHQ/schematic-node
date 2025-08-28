@@ -3,13 +3,19 @@
     "version": "1.1.13",
     "private": false,
     "repository": "https://github.com/schematichq/schematic-node",
-    "main": "./index.js",
-    "types": "./index.d.ts",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist/**/*.js",
+        "dist/**/*.d.ts",
+        "!dist/**/*.js.map",
+        "!dist/**/*.test.*",
+        "README.md"
+    ],
     "scripts": {
         "format": "prettier . --write --ignore-unknown",
         "build": "node build.js",
         "build:legacy": "tsc",
-        "prepack": "cp -rv dist/. .",
         "test": "jest"
     },
     "dependencies": {

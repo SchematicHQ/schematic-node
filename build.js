@@ -8,7 +8,7 @@ const sharedConfig = {
   platform: 'node',
   target: 'node18.19',
   minify: true,
-  sourcemap: true,
+  sourcemap: 'external',
   external: [
     // Keep dependencies external since this is a library
     'url-join',
