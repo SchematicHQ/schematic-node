@@ -8,7 +8,6 @@
     "scripts": {
         "format": "prettier . --write --ignore-unknown",
         "build": "node build.js",
-        "prepack": "cp -rv dist/. .",
         "test": "jest",
         "build:legacy": "tsc"
     },
