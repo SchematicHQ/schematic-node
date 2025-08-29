@@ -14,8 +14,11 @@ export interface PlanGroupDetailResponseData {
     defaultPlan?: Schematic.PlanGroupPlanDetailResponseData;
     defaultPlanId?: string;
     id: string;
+    orderedAddOnList: Schematic.PlanGroupPlanEntitlementsOrder[];
+    orderedBundleList: Schematic.PlanGroupBundleOrder[];
     orderedPlanList: Schematic.PlanGroupPlanEntitlementsOrder[];
     plans: Schematic.PlanGroupPlanDetailResponseData[];
+    showPeriodToggle: boolean;
     trialDays?: number;
     trialPaymentMethodRequired?: boolean;
 }

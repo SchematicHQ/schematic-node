@@ -7,14 +7,15 @@ import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import { CreatePlanEntitlementRequestBodyMetricPeriod } from "../../types/CreatePlanEntitlementRequestBodyMetricPeriod";
 import { CreatePlanEntitlementRequestBodyMetricPeriodMonthReset } from "../../types/CreatePlanEntitlementRequestBodyMetricPeriodMonthReset";
-import { CreatePlanEntitlementRequestBodyPriceBehavior } from "../../types/CreatePlanEntitlementRequestBodyPriceBehavior";
 import { CreatePriceTierRequestBody } from "../../../../types/CreatePriceTierRequestBody";
+import { CreatePlanEntitlementRequestBodyPriceBehavior } from "../../types/CreatePlanEntitlementRequestBodyPriceBehavior";
 import { CreatePlanEntitlementRequestBodyValueType } from "../../types/CreatePlanEntitlementRequestBodyValueType";
 
 export const CreatePlanEntitlementRequestBody: core.serialization.Schema<
     serializers.CreatePlanEntitlementRequestBody.Raw,
     Schematic.CreatePlanEntitlementRequestBody
 > = core.serialization.object({
+    billingProductId: core.serialization.property("billing_product_id", core.serialization.string().optional()),
     creditConsumptionRate: core.serialization.property(
         "credit_consumption_rate",
         core.serialization.number().optional(),
@@ -30,6 +31,10 @@ export const CreatePlanEntitlementRequestBody: core.serialization.Schema<
         "monthly_metered_price_id",
         core.serialization.string().optional(),
     ),
+    monthlyPriceTiers: core.serialization.property(
+        "monthly_price_tiers",
+        core.serialization.list(CreatePriceTierRequestBody).optional(),
+    ),
     monthlyUnitPrice: core.serialization.property("monthly_unit_price", core.serialization.number().optional()),
     monthlyUnitPriceDecimal: core.serialization.property(
         "monthly_unit_price_decimal",
@@ -44,9 +49,12 @@ export const CreatePlanEntitlementRequestBody: core.serialization.Schema<
         "price_behavior",
         CreatePlanEntitlementRequestBodyPriceBehavior.optional(),
     ),
-    priceTiers: core.serialization.property("price_tiers", core.serialization.list(CreatePriceTierRequestBody)),
+    priceTiers: core.serialization.property(
+        "price_tiers",
+        core.serialization.list(CreatePriceTierRequestBody).optional(),
+    ),
     softLimit: core.serialization.property("soft_limit", core.serialization.number().optional()),
-    tierMode: core.serialization.property("tier_mode", core.serialization.string()),
+    tierMode: core.serialization.property("tier_mode", core.serialization.string().optional()),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
     valueCreditId: core.serialization.property("value_credit_id", core.serialization.string().optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
@@ -55,6 +63,10 @@ export const CreatePlanEntitlementRequestBody: core.serialization.Schema<
     yearlyMeteredPriceId: core.serialization.property(
         "yearly_metered_price_id",
         core.serialization.string().optional(),
+    ),
+    yearlyPriceTiers: core.serialization.property(
+        "yearly_price_tiers",
+        core.serialization.list(CreatePriceTierRequestBody).optional(),
     ),
     yearlyUnitPrice: core.serialization.property("yearly_unit_price", core.serialization.number().optional()),
     yearlyUnitPriceDecimal: core.serialization.property(
@@ -65,26 +77,29 @@ export const CreatePlanEntitlementRequestBody: core.serialization.Schema<
 
 export declare namespace CreatePlanEntitlementRequestBody {
     export interface Raw {
+        billing_product_id?: string | null;
         credit_consumption_rate?: number | null;
         currency?: string | null;
         feature_id: string;
         metric_period?: CreatePlanEntitlementRequestBodyMetricPeriod.Raw | null;
         metric_period_month_reset?: CreatePlanEntitlementRequestBodyMetricPeriodMonthReset.Raw | null;
         monthly_metered_price_id?: string | null;
+        monthly_price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
         monthly_unit_price?: number | null;
         monthly_unit_price_decimal?: string | null;
         overage_billing_product_id?: string | null;
         plan_id: string;
         price_behavior?: CreatePlanEntitlementRequestBodyPriceBehavior.Raw | null;
-        price_tiers: CreatePriceTierRequestBody.Raw[];
+        price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
         soft_limit?: number | null;
-        tier_mode: string;
+        tier_mode?: string | null;
         value_bool?: boolean | null;
         value_credit_id?: string | null;
         value_numeric?: number | null;
         value_trait_id?: string | null;
         value_type: CreatePlanEntitlementRequestBodyValueType.Raw;
         yearly_metered_price_id?: string | null;
+        yearly_price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
         yearly_unit_price?: number | null;
         yearly_unit_price_decimal?: string | null;
     }

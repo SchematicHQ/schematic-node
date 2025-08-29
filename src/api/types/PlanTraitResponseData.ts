@@ -11,6 +11,7 @@ export interface PlanTraitResponseData {
     environmentId: string;
     id: string;
     planId: string;
+    planType: string;
     traitId: string;
     traitValue: string;
     updatedAt: Date;

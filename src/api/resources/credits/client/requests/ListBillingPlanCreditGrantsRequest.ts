@@ -9,6 +9,7 @@
 export interface ListBillingPlanCreditGrantsRequest {
     creditId?: string;
     planId?: string;
+    planIds?: string | string[];
     ids?: string | string[];
     /**
      * Page limit (default 100)

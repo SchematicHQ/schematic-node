@@ -4,9 +4,6 @@
 
 import * as Schematic from "../index";
 
-/**
- * The updated resource
- */
 export interface CompanyOverrideResponseData {
     company?: Schematic.CompanyDetailResponseData;
     companyId: string;

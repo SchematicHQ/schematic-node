@@ -14,6 +14,10 @@ export { type CreateEntityTraitDefinitionRequestBody } from "./CreateEntityTrait
 export { type UpdateEntityTraitDefinitionRequestBody } from "./UpdateEntityTraitDefinitionRequestBody";
 export { type CountEntityTraitDefinitionsRequest } from "./CountEntityTraitDefinitionsRequest";
 export { type GetEntityTraitValuesRequest } from "./GetEntityTraitValuesRequest";
+export { type ListPlanTraitsRequest } from "./ListPlanTraitsRequest";
+export { type CreatePlanTraitRequestBody } from "./CreatePlanTraitRequestBody";
+export { type UpdatePlanTraitRequestBody } from "./UpdatePlanTraitRequestBody";
+export { type CountPlanTraitsRequest } from "./CountPlanTraitsRequest";
 export { type ListUsersRequest } from "./ListUsersRequest";
 export { type CountUsersRequest } from "./CountUsersRequest";
 export { type LookupUserRequest } from "./LookupUserRequest";

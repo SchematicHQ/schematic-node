@@ -19,6 +19,10 @@ export const CompanyViewWithFeatureUsageResponseData: core.serialization.ObjectS
     Schematic.CompanyViewWithFeatureUsageResponseData
 > = core.serialization.object({
     addOns: core.serialization.property("add_ons", core.serialization.list(CompanyPlanWithBillingSubView)),
+    billingCreditBalances: core.serialization.property(
+        "billing_credit_balances",
+        core.serialization.record(core.serialization.string(), core.serialization.number()).optional(),
+    ),
     billingSubscription: core.serialization.property("billing_subscription", BillingSubscriptionView.optional()),
     billingSubscriptions: core.serialization.property(
         "billing_subscriptions",
@@ -46,6 +50,7 @@ export const CompanyViewWithFeatureUsageResponseData: core.serialization.ObjectS
 export declare namespace CompanyViewWithFeatureUsageResponseData {
     export interface Raw {
         add_ons: CompanyPlanWithBillingSubView.Raw[];
+        billing_credit_balances?: Record<string, number> | null;
         billing_subscription?: BillingSubscriptionView.Raw | null;
         billing_subscriptions: BillingSubscriptionView.Raw[];
         created_at: string;

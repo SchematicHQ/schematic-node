@@ -5,6 +5,7 @@
 import * as serializers from "../../../../index";
 import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
+import { CreditTriggerConfig } from "../../../../types/CreditTriggerConfig";
 import { EntitlementTriggerConfig } from "../../../../types/EntitlementTriggerConfig";
 import { CreateWebhookRequestBodyRequestTypesItem } from "../../types/CreateWebhookRequestBodyRequestTypesItem";
 
@@ -12,6 +13,10 @@ export const CreateWebhookRequestBody: core.serialization.Schema<
     serializers.CreateWebhookRequestBody.Raw,
     Schematic.CreateWebhookRequestBody
 > = core.serialization.object({
+    creditTriggerConfigs: core.serialization.property(
+        "credit_trigger_configs",
+        core.serialization.list(CreditTriggerConfig).optional(),
+    ),
     entitlementTriggerConfigs: core.serialization.property(
         "entitlement_trigger_configs",
         core.serialization.list(EntitlementTriggerConfig).optional(),
@@ -26,6 +31,7 @@ export const CreateWebhookRequestBody: core.serialization.Schema<
 
 export declare namespace CreateWebhookRequestBody {
     export interface Raw {
+        credit_trigger_configs?: CreditTriggerConfig.Raw[] | null;
         entitlement_trigger_configs?: EntitlementTriggerConfig.Raw[] | null;
         name: string;
         request_types: CreateWebhookRequestBodyRequestTypesItem.Raw[];

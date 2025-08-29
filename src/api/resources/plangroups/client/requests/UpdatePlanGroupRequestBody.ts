@@ -8,18 +8,29 @@ import * as Schematic from "../../../../index";
  * @example
  *     {
  *         addOnIds: ["add_on_ids"],
+ *         orderedAddOns: [{
+ *                 planId: "plan_id"
+ *             }],
+ *         orderedBundleList: [{
+ *                 bundleId: "bundleId"
+ *             }],
  *         orderedPlans: [{
  *                 planId: "plan_id"
- *             }]
+ *             }],
+ *         showPeriodToggle: true
  *     }
  */
 export interface UpdatePlanGroupRequestBody {
     addOnCompatibilities?: Schematic.CompatiblePlans[];
+    /** Use OrderedAddOns instead */
     addOnIds: string[];
     customPlanConfig?: Schematic.CustomPlanConfig;
     customPlanId?: string;
     defaultPlanId?: string;
+    orderedAddOns: Schematic.OrderedPlansInGroup[];
+    orderedBundleList: Schematic.PlanGroupBundleOrder[];
     orderedPlans: Schematic.OrderedPlansInGroup[];
+    showPeriodToggle: boolean;
     trialDays?: number;
     trialPaymentMethodRequired?: boolean;
 }

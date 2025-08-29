@@ -12,6 +12,7 @@ export const CreateCreditBundleRequestBody: core.serialization.Schema<
     serializers.CreateCreditBundleRequestBody.Raw,
     Schematic.CreateCreditBundleRequestBody
 > = core.serialization.object({
+    bundleName: core.serialization.property("bundle_name", core.serialization.string()),
     bundleType: core.serialization.property("bundle_type", core.serialization.stringLiteral("fixed").optional()),
     creditId: core.serialization.property("credit_id", core.serialization.string()),
     currency: core.serialization.string(),
@@ -26,6 +27,7 @@ export const CreateCreditBundleRequestBody: core.serialization.Schema<
 
 export declare namespace CreateCreditBundleRequestBody {
     export interface Raw {
+        bundle_name: string;
         bundle_type?: "fixed" | null;
         credit_id: string;
         currency: string;

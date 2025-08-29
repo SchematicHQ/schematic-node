@@ -11,6 +11,8 @@ import { CompatiblePlans } from "./CompatiblePlans";
 import { ComponentCapabilities } from "./ComponentCapabilities";
 import { CompanyDetailResponseData } from "./CompanyDetailResponseData";
 import { ComponentResponseData } from "./ComponentResponseData";
+import { BillingCreditBundleView } from "./BillingCreditBundleView";
+import { CreditCompanyGrantView } from "./CreditCompanyGrantView";
 import { PlanDetailResponseData } from "./PlanDetailResponseData";
 import { FeatureUsageDetailResponseData } from "./FeatureUsageDetailResponseData";
 import { InvoiceResponseData } from "./InvoiceResponseData";
@@ -34,9 +36,12 @@ export const ComponentPreviewResponseData: core.serialization.ObjectSchema<
     capabilities: ComponentCapabilities.optional(),
     company: CompanyDetailResponseData.optional(),
     component: ComponentResponseData.optional(),
+    creditBundles: core.serialization.property("credit_bundles", core.serialization.list(BillingCreditBundleView)),
+    creditGrants: core.serialization.property("credit_grants", core.serialization.list(CreditCompanyGrantView)),
     defaultPlan: core.serialization.property("default_plan", PlanDetailResponseData.optional()),
     featureUsage: core.serialization.property("feature_usage", FeatureUsageDetailResponseData.optional()),
     invoices: core.serialization.list(InvoiceResponseData),
+    showPeriodToggle: core.serialization.property("show_period_toggle", core.serialization.boolean()),
     stripeEmbed: core.serialization.property("stripe_embed", StripeEmbedInfo.optional()),
     subscription: CompanySubscriptionResponseData.optional(),
     trialPaymentMethodRequired: core.serialization.property(
@@ -55,9 +60,12 @@ export declare namespace ComponentPreviewResponseData {
         capabilities?: ComponentCapabilities.Raw | null;
         company?: CompanyDetailResponseData.Raw | null;
         component?: ComponentResponseData.Raw | null;
+        credit_bundles: BillingCreditBundleView.Raw[];
+        credit_grants: CreditCompanyGrantView.Raw[];
         default_plan?: PlanDetailResponseData.Raw | null;
         feature_usage?: FeatureUsageDetailResponseData.Raw | null;
         invoices: InvoiceResponseData.Raw[];
+        show_period_toggle: boolean;
         stripe_embed?: StripeEmbedInfo.Raw | null;
         subscription?: CompanySubscriptionResponseData.Raw | null;
         trial_payment_method_required?: boolean | null;

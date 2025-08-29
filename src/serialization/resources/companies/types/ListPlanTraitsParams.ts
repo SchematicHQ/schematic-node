@@ -6,23 +6,25 @@ import * as serializers from "../../../index";
 import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
-export const CountPlanTraitsParams: core.serialization.ObjectSchema<
-    serializers.CountPlanTraitsParams.Raw,
-    Schematic.CountPlanTraitsParams
+export const ListPlanTraitsParams: core.serialization.ObjectSchema<
+    serializers.ListPlanTraitsParams.Raw,
+    Schematic.ListPlanTraitsParams
 > = core.serialization.object({
     ids: core.serialization.list(core.serialization.string()).optional(),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
     planId: core.serialization.property("plan_id", core.serialization.string().optional()),
     traitId: core.serialization.property("trait_id", core.serialization.string().optional()),
+    traitIds: core.serialization.property("trait_ids", core.serialization.list(core.serialization.string()).optional()),
 });
 
-export declare namespace CountPlanTraitsParams {
+export declare namespace ListPlanTraitsParams {
     export interface Raw {
         ids?: string[] | null;
         limit?: number | null;
         offset?: number | null;
         plan_id?: string | null;
         trait_id?: string | null;
+        trait_ids?: string[] | null;
     }
 }

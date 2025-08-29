@@ -13,4 +13,5 @@ export interface CountPlanTraitsParams {
     offset?: number;
     planId?: string;
     traitId?: string;
+    traitIds?: string[];
 }

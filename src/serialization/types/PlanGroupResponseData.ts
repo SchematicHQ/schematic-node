@@ -19,7 +19,9 @@ export const PlanGroupResponseData: core.serialization.ObjectSchema<
     addOnIds: core.serialization.property("add_on_ids", core.serialization.list(core.serialization.string())),
     defaultPlanId: core.serialization.property("default_plan_id", core.serialization.string().optional()),
     id: core.serialization.string(),
+    orderedAddOnIds: core.serialization.property("ordered_add_on_ids", core.serialization.list(OrderedPlansInGroup)),
     planIds: core.serialization.property("plan_ids", core.serialization.list(OrderedPlansInGroup)),
+    showPeriodToggle: core.serialization.property("show_period_toggle", core.serialization.boolean()),
     trialDays: core.serialization.property("trial_days", core.serialization.number().optional()),
     trialPaymentMethodRequired: core.serialization.property(
         "trial_payment_method_required",
@@ -33,7 +35,9 @@ export declare namespace PlanGroupResponseData {
         add_on_ids: string[];
         default_plan_id?: string | null;
         id: string;
+        ordered_add_on_ids: OrderedPlansInGroup.Raw[];
         plan_ids: OrderedPlansInGroup.Raw[];
+        show_period_toggle: boolean;
         trial_days?: number | null;
         trial_payment_method_required?: boolean | null;
     }

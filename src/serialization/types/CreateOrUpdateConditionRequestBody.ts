@@ -16,6 +16,8 @@ export const CreateOrUpdateConditionRequestBody: core.serialization.ObjectSchema
 > = core.serialization.object({
     comparisonTraitId: core.serialization.property("comparison_trait_id", core.serialization.string().optional()),
     conditionType: core.serialization.property("condition_type", CreateOrUpdateConditionRequestBodyConditionType),
+    creditCost: core.serialization.property("credit_cost", core.serialization.number().optional()),
+    creditId: core.serialization.property("credit_id", core.serialization.string().optional()),
     eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
     id: core.serialization.string().optional(),
     metricPeriod: core.serialization.property(
@@ -37,6 +39,8 @@ export declare namespace CreateOrUpdateConditionRequestBody {
     export interface Raw {
         comparison_trait_id?: string | null;
         condition_type: CreateOrUpdateConditionRequestBodyConditionType.Raw;
+        credit_cost?: number | null;
+        credit_id?: string | null;
         event_subtype?: string | null;
         id?: string | null;
         metric_period?: CreateOrUpdateConditionRequestBodyMetricPeriod.Raw | null;

@@ -5,40 +5,53 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { BillingPriceResponseData } from "./BillingPriceResponseData";
 
 export const BillingCreditBundleResponseData: core.serialization.ObjectSchema<
     serializers.BillingCreditBundleResponseData.Raw,
     Schematic.BillingCreditBundleResponseData
 > = core.serialization.object({
+    billingInvoiceId: core.serialization.property("billing_invoice_id", core.serialization.string().optional()),
     bundleType: core.serialization.property("bundle_type", core.serialization.string()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
+    creditDescription: core.serialization.property("credit_description", core.serialization.string().optional()),
+    creditIcon: core.serialization.property("credit_icon", core.serialization.string().optional()),
     creditId: core.serialization.property("credit_id", core.serialization.string()),
-    currency: core.serialization.string(),
+    creditName: core.serialization.property("credit_name", core.serialization.string()),
     expiryType: core.serialization.property("expiry_type", core.serialization.string()),
     expiryUnit: core.serialization.property("expiry_unit", core.serialization.string()),
     expiryUnitCount: core.serialization.property("expiry_unit_count", core.serialization.number().optional()),
     id: core.serialization.string(),
-    pricePerUnit: core.serialization.property("price_per_unit", core.serialization.number()),
-    pricePerUnitDecimal: core.serialization.property("price_per_unit_decimal", core.serialization.string().optional()),
+    name: core.serialization.string(),
+    pluralName: core.serialization.property("plural_name", core.serialization.string().optional()),
+    price: BillingPriceResponseData.optional(),
     quantity: core.serialization.number().optional(),
+    singularName: core.serialization.property("singular_name", core.serialization.string().optional()),
     status: core.serialization.string(),
+    unitPrice: core.serialization.property("unit_price", BillingPriceResponseData.optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
 export declare namespace BillingCreditBundleResponseData {
     export interface Raw {
+        billing_invoice_id?: string | null;
         bundle_type: string;
         created_at: string;
+        credit_description?: string | null;
+        credit_icon?: string | null;
         credit_id: string;
-        currency: string;
+        credit_name: string;
         expiry_type: string;
         expiry_unit: string;
         expiry_unit_count?: number | null;
         id: string;
-        price_per_unit: number;
-        price_per_unit_decimal?: string | null;
+        name: string;
+        plural_name?: string | null;
+        price?: BillingPriceResponseData.Raw | null;
         quantity?: number | null;
+        singular_name?: string | null;
         status: string;
+        unit_price?: BillingPriceResponseData.Raw | null;
         updated_at: string;
     }
 }

@@ -3,9 +3,11 @@ export { type CreateBillingCreditRequestBody } from "./CreateBillingCreditReques
 export { type UpdateBillingCreditRequestBody } from "./UpdateBillingCreditRequestBody";
 export { type ListCreditBundlesRequest } from "./ListCreditBundlesRequest";
 export { type CreateCreditBundleRequestBody } from "./CreateCreditBundleRequestBody";
+export { type UpdateCreditBundleDetailsRequestBody } from "./UpdateCreditBundleDetailsRequestBody";
 export { type CountCreditBundlesRequest } from "./CountCreditBundlesRequest";
 export { type CountBillingCreditsRequest } from "./CountBillingCreditsRequest";
 export { type ZeroOutGrantRequestBody } from "./ZeroOutGrantRequestBody";
+export { type CreateCompanyCreditGrant } from "./CreateCompanyCreditGrant";
 export { type ListCompanyGrantsRequest } from "./ListCompanyGrantsRequest";
 export { type CountBillingCreditsGrantsRequest } from "./CountBillingCreditsGrantsRequest";
 export { type ListGrantsForCreditRequest } from "./ListGrantsForCreditRequest";

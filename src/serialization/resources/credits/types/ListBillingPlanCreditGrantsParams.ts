@@ -15,6 +15,7 @@ export const ListBillingPlanCreditGrantsParams: core.serialization.ObjectSchema<
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
     planId: core.serialization.property("plan_id", core.serialization.string().optional()),
+    planIds: core.serialization.property("plan_ids", core.serialization.list(core.serialization.string()).optional()),
 });
 
 export declare namespace ListBillingPlanCreditGrantsParams {
@@ -24,5 +25,6 @@ export declare namespace ListBillingPlanCreditGrantsParams {
         limit?: number | null;
         offset?: number | null;
         plan_id?: string | null;
+        plan_ids?: string[] | null;
     }
 }

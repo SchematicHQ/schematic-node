@@ -5,17 +5,20 @@
 import * as Schematic from "../index";
 
 export interface UsageBasedEntitlementRequestBody {
-    creditConsumptionRate?: number;
+    billingProductId?: string;
     currency?: string;
     monthlyMeteredPriceId?: string;
+    monthlyPriceTiers?: Schematic.CreatePriceTierRequestBody[];
     monthlyUnitPrice?: number;
     monthlyUnitPriceDecimal?: string;
     overageBillingProductId?: string;
     priceBehavior?: Schematic.UsageBasedEntitlementRequestBodyPriceBehavior;
-    priceTiers: Schematic.CreatePriceTierRequestBody[];
+    /** Use MonthlyPriceTiers or YearlyPriceTiers instead */
+    priceTiers?: Schematic.CreatePriceTierRequestBody[];
     softLimit?: number;
-    tierMode: string;
+    tierMode?: string;
     yearlyMeteredPriceId?: string;
+    yearlyPriceTiers?: Schematic.CreatePriceTierRequestBody[];
     yearlyUnitPrice?: number;
     yearlyUnitPriceDecimal?: string;
 }

@@ -6,6 +6,7 @@ import * as Schematic from "../index";
 
 export interface WebhookResponseData {
     createdAt: Date;
+    creditTriggerConfigs?: Schematic.CreditTriggerConfig[];
     entitlementTriggerConfigs?: Schematic.EntitlementTriggerConfig[];
     id: string;
     name: string;

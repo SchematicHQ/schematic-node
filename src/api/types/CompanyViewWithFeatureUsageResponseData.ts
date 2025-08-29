@@ -6,6 +6,7 @@ import * as Schematic from "../index";
 
 export interface CompanyViewWithFeatureUsageResponseData {
     addOns: Schematic.CompanyPlanWithBillingSubView[];
+    billingCreditBalances?: Record<string, number>;
     billingSubscription?: Schematic.BillingSubscriptionView;
     billingSubscriptions: Schematic.BillingSubscriptionView[];
     createdAt: Date;

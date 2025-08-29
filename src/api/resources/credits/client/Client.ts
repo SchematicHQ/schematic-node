@@ -90,8 +90,8 @@ export class Credits {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.12",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.12",
+                "X-Fern-SDK-Version": "1.2.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -239,8 +239,8 @@ export class Credits {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.12",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.12",
+                "X-Fern-SDK-Version": "1.2.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -383,8 +383,8 @@ export class Credits {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.12",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.12",
+                "X-Fern-SDK-Version": "1.2.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -524,8 +524,8 @@ export class Credits {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.12",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.12",
+                "X-Fern-SDK-Version": "1.2.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -637,6 +637,152 @@ export class Credits {
     }
 
     /**
+     * @param {string} billingId - billing_id
+     * @param {Credits.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.BadRequestError}
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
+     * @throws {@link Schematic.InternalServerError}
+     *
+     * @example
+     *     await client.credits.softDeleteBillingCredit("billing_id")
+     */
+    public softDeleteBillingCredit(
+        billingId: string,
+        requestOptions?: Credits.RequestOptions,
+    ): core.HttpResponsePromise<Schematic.SoftDeleteBillingCreditResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__softDeleteBillingCredit(billingId, requestOptions));
+    }
+
+    private async __softDeleteBillingCredit(
+        billingId: string,
+        requestOptions?: Credits.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.SoftDeleteBillingCreditResponse>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                `billing/credits/${encodeURIComponent(billingId)}`,
+            ),
+            method: "DELETE",
+            headers: {
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
+                "X-Fern-SDK-Version": "1.2.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.SoftDeleteBillingCreditResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Schematic.BadRequestError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.SchematicError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.SchematicTimeoutError(
+                    "Timeout exceeded when calling DELETE /billing/credits/{billing_id}.",
+                );
+            case "unknown":
+                throw new errors.SchematicError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
      * @param {Schematic.ListCreditBundlesRequest} request
      * @param {Credits.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -703,8 +849,8 @@ export class Credits {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.12",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.12",
+                "X-Fern-SDK-Version": "1.2.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -825,6 +971,7 @@ export class Credits {
      *
      * @example
      *     await client.credits.createCreditBundle({
+     *         bundleName: "bundle_name",
      *         creditId: "credit_id",
      *         currency: "currency",
      *         pricePerUnit: 1
@@ -852,8 +999,8 @@ export class Credits {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.12",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.12",
+                "X-Fern-SDK-Version": "1.2.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -996,8 +1143,8 @@ export class Credits {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.12",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.12",
+                "X-Fern-SDK-Version": "1.2.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1098,7 +1245,7 @@ export class Credits {
 
     /**
      * @param {string} billingId - billing_id
-     * @param {Schematic.UpdateCreditBundleRequestBody} request
+     * @param {Schematic.UpdateCreditBundleDetailsRequestBody} request
      * @param {Credits.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Schematic.BadRequestError}
@@ -1108,24 +1255,26 @@ export class Credits {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.credits.updateCreditBundle("billing_id", {
-     *         bundleId: "bundle_id",
-     *         quantity: 1
+     *     await client.credits.updateCreditBundleDetails("billing_id", {
+     *         bundleName: "bundle_name",
+     *         pricePerUnit: 1
      *     })
      */
-    public updateCreditBundle(
+    public updateCreditBundleDetails(
         billingId: string,
-        request: Schematic.UpdateCreditBundleRequestBody,
+        request: Schematic.UpdateCreditBundleDetailsRequestBody,
         requestOptions?: Credits.RequestOptions,
-    ): core.HttpResponsePromise<Schematic.UpdateCreditBundleResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__updateCreditBundle(billingId, request, requestOptions));
+    ): core.HttpResponsePromise<Schematic.UpdateCreditBundleDetailsResponse> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__updateCreditBundleDetails(billingId, request, requestOptions),
+        );
     }
 
-    private async __updateCreditBundle(
+    private async __updateCreditBundleDetails(
         billingId: string,
-        request: Schematic.UpdateCreditBundleRequestBody,
+        request: Schematic.UpdateCreditBundleDetailsRequestBody,
         requestOptions?: Credits.RequestOptions,
-    ): Promise<core.WithRawResponse<Schematic.UpdateCreditBundleResponse>> {
+    ): Promise<core.WithRawResponse<Schematic.UpdateCreditBundleDetailsResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -1137,8 +1286,8 @@ export class Credits {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.12",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.12",
+                "X-Fern-SDK-Version": "1.2.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1146,14 +1295,16 @@ export class Credits {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.UpdateCreditBundleRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: serializers.UpdateCreditBundleDetailsRequestBody.jsonOrThrow(request, {
+                unrecognizedObjectKeys: "strip",
+            }),
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
             return {
-                data: serializers.UpdateCreditBundleResponse.parseOrThrow(_response.body, {
+                data: serializers.UpdateCreditBundleDetailsResponse.parseOrThrow(_response.body, {
                     unrecognizedObjectKeys: "passthrough",
                     allowUnrecognizedUnionMembers: true,
                     allowUnrecognizedEnumValues: true,
@@ -1284,8 +1435,8 @@ export class Credits {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.12",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.12",
+                "X-Fern-SDK-Version": "1.2.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1462,8 +1613,8 @@ export class Credits {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.12",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.12",
+                "X-Fern-SDK-Version": "1.2.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1631,8 +1782,8 @@ export class Credits {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.12",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.12",
+                "X-Fern-SDK-Version": "1.2.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1779,8 +1930,8 @@ export class Credits {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.12",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.12",
+                "X-Fern-SDK-Version": "1.2.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1892,6 +2043,158 @@ export class Credits {
     }
 
     /**
+     * @param {Schematic.CreateCompanyCreditGrant} request
+     * @param {Credits.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.BadRequestError}
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
+     * @throws {@link Schematic.InternalServerError}
+     *
+     * @example
+     *     await client.credits.grantBillingCreditsToCompany({
+     *         companyId: "company_id",
+     *         creditId: "credit_id",
+     *         quantity: 1,
+     *         reason: "reason"
+     *     })
+     */
+    public grantBillingCreditsToCompany(
+        request: Schematic.CreateCompanyCreditGrant,
+        requestOptions?: Credits.RequestOptions,
+    ): core.HttpResponsePromise<Schematic.GrantBillingCreditsToCompanyResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__grantBillingCreditsToCompany(request, requestOptions));
+    }
+
+    private async __grantBillingCreditsToCompany(
+        request: Schematic.CreateCompanyCreditGrant,
+        requestOptions?: Credits.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.GrantBillingCreditsToCompanyResponse>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "billing/credits/grants/company",
+            ),
+            method: "POST",
+            headers: {
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
+                "X-Fern-SDK-Version": "1.2.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: serializers.CreateCompanyCreditGrant.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.GrantBillingCreditsToCompanyResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Schematic.BadRequestError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.SchematicError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.SchematicTimeoutError(
+                    "Timeout exceeded when calling POST /billing/credits/grants/company.",
+                );
+            case "unknown":
+                throw new errors.SchematicError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
      * @param {Schematic.ListCompanyGrantsRequest} request
      * @param {Credits.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -1952,8 +2255,8 @@ export class Credits {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.12",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.12",
+                "X-Fern-SDK-Version": "1.2.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2121,8 +2424,8 @@ export class Credits {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.12",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.12",
+                "X-Fern-SDK-Version": "1.2.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2290,8 +2593,8 @@ export class Credits {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.12",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.12",
+                "X-Fern-SDK-Version": "1.2.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2426,7 +2729,7 @@ export class Credits {
         request: Schematic.ListBillingPlanCreditGrantsRequest = {},
         requestOptions?: Credits.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListBillingPlanCreditGrantsResponse>> {
-        const { creditId, planId, ids, limit, offset } = request;
+        const { creditId, planId, planIds, ids, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (creditId != null) {
             _queryParams["credit_id"] = creditId;
@@ -2434,6 +2737,14 @@ export class Credits {
 
         if (planId != null) {
             _queryParams["plan_id"] = planId;
+        }
+
+        if (planIds != null) {
+            if (Array.isArray(planIds)) {
+                _queryParams["plan_ids"] = planIds.map((item) => item);
+            } else {
+                _queryParams["plan_ids"] = planIds;
+            }
         }
 
         if (ids != null) {
@@ -2463,8 +2774,8 @@ export class Credits {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.12",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.12",
+                "X-Fern-SDK-Version": "1.2.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2616,8 +2927,8 @@ export class Credits {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.12",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.12",
+                "X-Fern-SDK-Version": "1.2.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2765,8 +3076,8 @@ export class Credits {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.12",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.12",
+                "X-Fern-SDK-Version": "1.2.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2900,7 +3211,7 @@ export class Credits {
         request: Schematic.CountBillingPlanCreditGrantsRequest = {},
         requestOptions?: Credits.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountBillingPlanCreditGrantsResponse>> {
-        const { creditId, planId, ids, limit, offset } = request;
+        const { creditId, planId, planIds, ids, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (creditId != null) {
             _queryParams["credit_id"] = creditId;
@@ -2908,6 +3219,14 @@ export class Credits {
 
         if (planId != null) {
             _queryParams["plan_id"] = planId;
+        }
+
+        if (planIds != null) {
+            if (Array.isArray(planIds)) {
+                _queryParams["plan_ids"] = planIds.map((item) => item);
+            } else {
+                _queryParams["plan_ids"] = planIds;
+            }
         }
 
         if (ids != null) {
@@ -2937,8 +3256,8 @@ export class Credits {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.1.12",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.1.12",
+                "X-Fern-SDK-Version": "1.2.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

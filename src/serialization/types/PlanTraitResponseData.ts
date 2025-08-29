@@ -15,6 +15,7 @@ export const PlanTraitResponseData: core.serialization.ObjectSchema<
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     id: core.serialization.string(),
     planId: core.serialization.property("plan_id", core.serialization.string()),
+    planType: core.serialization.property("plan_type", core.serialization.string()),
     traitId: core.serialization.property("trait_id", core.serialization.string()),
     traitValue: core.serialization.property("trait_value", core.serialization.string()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -27,6 +28,7 @@ export declare namespace PlanTraitResponseData {
         environment_id: string;
         id: string;
         plan_id: string;
+        plan_type: string;
         trait_id: string;
         trait_value: string;
         updated_at: string;

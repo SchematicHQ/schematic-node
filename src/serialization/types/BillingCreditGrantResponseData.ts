@@ -5,24 +5,26 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { BillingPriceResponseData } from "./BillingPriceResponseData";
 
 export const BillingCreditGrantResponseData: core.serialization.ObjectSchema<
     serializers.BillingCreditGrantResponseData.Raw,
     Schematic.BillingCreditGrantResponseData
 > = core.serialization.object({
-    bundleCurrency: core.serialization.property("bundle_currency", core.serialization.string().optional()),
-    bundlePriceDecimal: core.serialization.property("bundle_price_decimal", core.serialization.string().optional()),
-    bundlePricePerUnit: core.serialization.property("bundle_price_per_unit", core.serialization.number().optional()),
     companyId: core.serialization.property("company_id", core.serialization.string()),
     companyName: core.serialization.property("company_name", core.serialization.string()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
+    creditIcon: core.serialization.property("credit_icon", core.serialization.string().optional()),
+    creditName: core.serialization.property("credit_name", core.serialization.string()),
     expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
     grantReason: core.serialization.property("grant_reason", core.serialization.string()),
     id: core.serialization.string(),
     planId: core.serialization.property("plan_id", core.serialization.string().optional()),
     planName: core.serialization.property("plan_name", core.serialization.string().optional()),
+    price: BillingPriceResponseData.optional(),
     quantity: core.serialization.number(),
     quantityRemaining: core.serialization.property("quantity_remaining", core.serialization.number()),
+    quantityUsed: core.serialization.property("quantity_used", core.serialization.number()),
     sourceLabel: core.serialization.property("source_label", core.serialization.string()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     validFrom: core.serialization.property("valid_from", core.serialization.date().optional()),
@@ -32,19 +34,20 @@ export const BillingCreditGrantResponseData: core.serialization.ObjectSchema<
 
 export declare namespace BillingCreditGrantResponseData {
     export interface Raw {
-        bundle_currency?: string | null;
-        bundle_price_decimal?: string | null;
-        bundle_price_per_unit?: number | null;
         company_id: string;
         company_name: string;
         created_at: string;
+        credit_icon?: string | null;
+        credit_name: string;
         expires_at?: string | null;
         grant_reason: string;
         id: string;
         plan_id?: string | null;
         plan_name?: string | null;
+        price?: BillingPriceResponseData.Raw | null;
         quantity: number;
         quantity_remaining: number;
+        quantity_used: number;
         source_label: string;
         updated_at: string;
         valid_from?: string | null;

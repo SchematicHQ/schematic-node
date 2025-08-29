@@ -6,9 +6,11 @@ import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { FeatureUsageResponseDataAllocationType } from "./FeatureUsageResponseDataAllocationType";
+import { CompanyOverrideResponseData } from "./CompanyOverrideResponseData";
 import { FeatureDetailResponseData } from "./FeatureDetailResponseData";
 import { BillingPriceView } from "./BillingPriceView";
 import { PlanResponseData } from "./PlanResponseData";
+import { PlanEntitlementResponseData } from "./PlanEntitlementResponseData";
 
 export const FeatureUsageResponseData: core.serialization.ObjectSchema<
     serializers.FeatureUsageResponseData.Raw,
@@ -17,6 +19,7 @@ export const FeatureUsageResponseData: core.serialization.ObjectSchema<
     access: core.serialization.boolean(),
     allocation: core.serialization.number().optional(),
     allocationType: core.serialization.property("allocation_type", FeatureUsageResponseDataAllocationType),
+    companyOverride: core.serialization.property("company_override", CompanyOverrideResponseData.optional()),
     entitlementExpirationDate: core.serialization.property(
         "entitlement_expiration_date",
         core.serialization.date().optional(),
@@ -29,6 +32,7 @@ export const FeatureUsageResponseData: core.serialization.ObjectSchema<
     monthlyUsageBasedPrice: core.serialization.property("monthly_usage_based_price", BillingPriceView.optional()),
     period: core.serialization.string().optional(),
     plan: PlanResponseData.optional(),
+    planEntitlement: core.serialization.property("plan_entitlement", PlanEntitlementResponseData.optional()),
     priceBehavior: core.serialization.property("price_behavior", core.serialization.string().optional()),
     softLimit: core.serialization.property("soft_limit", core.serialization.number().optional()),
     usage: core.serialization.number().optional(),
@@ -40,6 +44,7 @@ export declare namespace FeatureUsageResponseData {
         access: boolean;
         allocation?: number | null;
         allocation_type: FeatureUsageResponseDataAllocationType.Raw;
+        company_override?: CompanyOverrideResponseData.Raw | null;
         entitlement_expiration_date?: string | null;
         entitlement_id: string;
         entitlement_type: string;
@@ -49,6 +54,7 @@ export declare namespace FeatureUsageResponseData {
         monthly_usage_based_price?: BillingPriceView.Raw | null;
         period?: string | null;
         plan?: PlanResponseData.Raw | null;
+        plan_entitlement?: PlanEntitlementResponseData.Raw | null;
         price_behavior?: string | null;
         soft_limit?: number | null;
         usage?: number | null;

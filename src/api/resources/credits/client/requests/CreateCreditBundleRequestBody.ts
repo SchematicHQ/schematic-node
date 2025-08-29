@@ -7,12 +7,14 @@ import * as Schematic from "../../../../index";
 /**
  * @example
  *     {
+ *         bundleName: "bundle_name",
  *         creditId: "credit_id",
  *         currency: "currency",
  *         pricePerUnit: 1
  *     }
  */
 export interface CreateCreditBundleRequestBody {
+    bundleName: string;
     bundleType?: "fixed";
     creditId: string;
     currency: string;
