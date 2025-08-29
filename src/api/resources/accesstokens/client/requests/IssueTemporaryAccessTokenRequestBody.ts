@@ -7,9 +7,11 @@
  *     {
  *         lookup: {
  *             "key": "value"
- *         }
+ *         },
+ *         resource_type: "value"
  *     }
  */
 export interface IssueTemporaryAccessTokenRequestBody {
     lookup: Record<string, string>;
+    resource_type: string;
 }
