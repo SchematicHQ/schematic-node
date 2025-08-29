@@ -2077,6 +2077,7 @@ await client.billing.countCustomers();
 ```typescript
 await client.billing.listInvoices({
     customerExternalId: "customer_external_id",
+    subscriptionExternalId: "subscription_external_id",
 });
 ```
 
@@ -3057,6 +3058,54 @@ await client.credits.updateBillingCredit("billing_id", {
 </dl>
 </details>
 
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">softDeleteBillingCredit</a>(billingId) -> Schematic.SoftDeleteBillingCreditResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.credits.softDeleteBillingCredit("billing_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**billingId:** `string` — billing_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Credits.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">listCreditBundles</a>({ ...params }) -> Schematic.ListCreditBundlesResponse</code></summary>
 <dl>
 <dd>
@@ -3119,6 +3168,7 @@ await client.credits.listCreditBundles();
 
 ```typescript
 await client.credits.createCreditBundle({
+    bundleName: "bundle_name",
     creditId: "credit_id",
     currency: "currency",
     pricePerUnit: 1,
@@ -3205,7 +3255,7 @@ await client.credits.getCreditBundle("billing_id");
 </dl>
 </details>
 
-<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">updateCreditBundle</a>(billingId, { ...params }) -> Schematic.UpdateCreditBundleResponse</code></summary>
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">updateCreditBundleDetails</a>(billingId, { ...params }) -> Schematic.UpdateCreditBundleDetailsResponse</code></summary>
 <dl>
 <dd>
 
@@ -3218,9 +3268,9 @@ await client.credits.getCreditBundle("billing_id");
 <dd>
 
 ```typescript
-await client.credits.updateCreditBundle("billing_id", {
-    bundleId: "bundle_id",
-    quantity: 1,
+await client.credits.updateCreditBundleDetails("billing_id", {
+    bundleName: "bundle_name",
+    pricePerUnit: 1,
 });
 ```
 
@@ -3245,7 +3295,7 @@ await client.credits.updateCreditBundle("billing_id", {
 <dl>
 <dd>
 
-**request:** `Schematic.UpdateCreditBundleRequestBody`
+**request:** `Schematic.UpdateCreditBundleDetailsRequestBody`
 
 </dd>
 </dl>
@@ -3446,6 +3496,59 @@ await client.credits.zeroOutGrant("billing_id");
 <dd>
 
 **request:** `Schematic.ZeroOutGrantRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Credits.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">grantBillingCreditsToCompany</a>({ ...params }) -> Schematic.GrantBillingCreditsToCompanyResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.credits.grantBillingCreditsToCompany({
+    companyId: "company_id",
+    creditId: "credit_id",
+    quantity: 1,
+    reason: "reason",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CreateCompanyCreditGrant`
 
 </dd>
 </dl>
@@ -5253,6 +5356,309 @@ await client.companies.getEntityTraitValues({
 </dl>
 </details>
 
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">listPlanTraits</a>({ ...params }) -> Schematic.ListPlanTraitsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.companies.listPlanTraits();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListPlanTraitsRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Companies.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">createPlanTrait</a>({ ...params }) -> Schematic.CreatePlanTraitResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.companies.createPlanTrait({
+    planId: "plan_id",
+    traitId: "trait_id",
+    traitValue: "trait_value",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CreatePlanTraitRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Companies.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">getPlanTrait</a>(planTraitId) -> Schematic.GetPlanTraitResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.companies.getPlanTrait("plan_trait_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**planTraitId:** `string` — plan_trait_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Companies.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">updatePlanTrait</a>(planTraitId, { ...params }) -> Schematic.UpdatePlanTraitResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.companies.updatePlanTrait("plan_trait_id", {
+    planId: "plan_id",
+    traitValue: "trait_value",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**planTraitId:** `string` — plan_trait_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.UpdatePlanTraitRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Companies.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">deletePlanTrait</a>(planTraitId) -> Schematic.DeletePlanTraitResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.companies.deletePlanTrait("plan_trait_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**planTraitId:** `string` — plan_trait_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Companies.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">countPlanTraits</a>({ ...params }) -> Schematic.CountPlanTraitsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.companies.countPlanTraits();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CountPlanTraitsRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Companies.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">upsertUserTrait</a>({ ...params }) -> Schematic.UpsertUserTraitResponse</code></summary>
 <dl>
 <dd>
@@ -6370,8 +6776,6 @@ await client.entitlements.listPlanEntitlements();
 await client.entitlements.createPlanEntitlement({
     featureId: "feature_id",
     planId: "plan_id",
-    priceTiers: [{}],
-    tierMode: "tier_mode",
     valueType: "boolean",
 });
 ```
@@ -6470,8 +6874,6 @@ await client.entitlements.getPlanEntitlement("plan_entitlement_id");
 
 ```typescript
 await client.entitlements.updatePlanEntitlement("plan_entitlement_id", {
-    priceTiers: [{}],
-    tierMode: "tier_mode",
     valueType: "boolean",
 });
 ```
@@ -6877,309 +7279,6 @@ await client.plans.deleteAudience("plan_audience_id");
 <dd>
 
 **planAudienceId:** `string` — plan_audience_id
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">listPlanTraits</a>({ ...params }) -> Schematic.ListPlanTraitsResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.listPlanTraits();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.ListPlanTraitsRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">createPlanTrait</a>({ ...params }) -> Schematic.CreatePlanTraitResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.createPlanTrait({
-    planId: "plan_id",
-    traitId: "trait_id",
-    traitValue: "trait_value",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.CreatePlanTraitRequestBody`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">getPlanTrait</a>(planTraitId) -> Schematic.GetPlanTraitResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.getPlanTrait("plan_trait_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**planTraitId:** `string` — plan_trait_id
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">updatePlanTrait</a>(planTraitId, { ...params }) -> Schematic.UpdatePlanTraitResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.updatePlanTrait("plan_trait_id", {
-    planId: "plan_id",
-    traitValue: "trait_value",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**planTraitId:** `string` — plan_trait_id
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Schematic.UpdatePlanTraitRequestBody`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">deletePlanTrait</a>(planTraitId) -> Schematic.DeletePlanTraitResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.deletePlanTrait("plan_trait_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**planTraitId:** `string` — plan_trait_id
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">countPlanTraits</a>({ ...params }) -> Schematic.CountPlanTraitsResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.countPlanTraits();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.CountPlanTraitsRequest`
 
 </dd>
 </dl>
@@ -8571,11 +8670,22 @@ await client.plangroups.getPlanGroup();
 ```typescript
 await client.plangroups.createPlanGroup({
     addOnIds: ["add_on_ids"],
+    orderedAddOns: [
+        {
+            planId: "plan_id",
+        },
+    ],
+    orderedBundleList: [
+        {
+            bundleId: "bundleId",
+        },
+    ],
     orderedPlans: [
         {
             planId: "plan_id",
         },
     ],
+    showPeriodToggle: true,
 });
 ```
 
@@ -8626,11 +8736,22 @@ await client.plangroups.createPlanGroup({
 ```typescript
 await client.plangroups.updatePlanGroup("plan_group_id", {
     addOnIds: ["add_on_ids"],
+    orderedAddOns: [
+        {
+            planId: "plan_id",
+        },
+    ],
+    orderedBundleList: [
+        {
+            bundleId: "bundleId",
+        },
+    ],
     orderedPlans: [
         {
             planId: "plan_id",
         },
     ],
+    showPeriodToggle: true,
 });
 ```
 

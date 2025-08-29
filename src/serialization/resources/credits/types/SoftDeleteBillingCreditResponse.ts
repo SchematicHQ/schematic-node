@@ -5,19 +5,19 @@
 import * as serializers from "../../../index";
 import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
-import { BillingCreditBundleResponseData } from "../../../types/BillingCreditBundleResponseData";
+import { DeleteResponse } from "../../../types/DeleteResponse";
 
-export const UpdateCreditBundleResponse: core.serialization.ObjectSchema<
-    serializers.UpdateCreditBundleResponse.Raw,
-    Schematic.UpdateCreditBundleResponse
+export const SoftDeleteBillingCreditResponse: core.serialization.ObjectSchema<
+    serializers.SoftDeleteBillingCreditResponse.Raw,
+    Schematic.SoftDeleteBillingCreditResponse
 > = core.serialization.object({
-    data: BillingCreditBundleResponseData,
+    data: DeleteResponse,
     params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
-export declare namespace UpdateCreditBundleResponse {
+export declare namespace SoftDeleteBillingCreditResponse {
     export interface Raw {
-        data: BillingCreditBundleResponseData.Raw;
+        data: DeleteResponse.Raw;
         params: Record<string, unknown>;
     }
 }

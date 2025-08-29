@@ -13,6 +13,10 @@ export const UpdateCompanyOverrideRequestBody: core.serialization.Schema<
     serializers.UpdateCompanyOverrideRequestBody.Raw,
     Schematic.UpdateCompanyOverrideRequestBody
 > = core.serialization.object({
+    creditConsumptionRate: core.serialization.property(
+        "credit_consumption_rate",
+        core.serialization.number().optional(),
+    ),
     expirationDate: core.serialization.property("expiration_date", core.serialization.date().optional()),
     metricPeriod: core.serialization.property("metric_period", UpdateCompanyOverrideRequestBodyMetricPeriod.optional()),
     metricPeriodMonthReset: core.serialization.property(
@@ -28,6 +32,7 @@ export const UpdateCompanyOverrideRequestBody: core.serialization.Schema<
 
 export declare namespace UpdateCompanyOverrideRequestBody {
     export interface Raw {
+        credit_consumption_rate?: number | null;
         expiration_date?: string | null;
         metric_period?: UpdateCompanyOverrideRequestBodyMetricPeriod.Raw | null;
         metric_period_month_reset?: UpdateCompanyOverrideRequestBodyMetricPeriodMonthReset.Raw | null;

@@ -23,13 +23,12 @@ export const BillingCreditResponseData: core.serialization.ObjectSchema<
     description: core.serialization.string(),
     icon: core.serialization.string().optional(),
     id: core.serialization.string(),
-    monthlyPrice: core.serialization.property("monthly_price", BillingPriceResponseData.optional()),
     name: core.serialization.string(),
     pluralName: core.serialization.property("plural_name", core.serialization.string().optional()),
+    price: BillingPriceResponseData.optional(),
     product: BillingProductResponseData.optional(),
     singularName: core.serialization.property("singular_name", core.serialization.string().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
-    yearlyPrice: core.serialization.property("yearly_price", BillingPriceResponseData.optional()),
 });
 
 export declare namespace BillingCreditResponseData {
@@ -42,12 +41,11 @@ export declare namespace BillingCreditResponseData {
         description: string;
         icon?: string | null;
         id: string;
-        monthly_price?: BillingPriceResponseData.Raw | null;
         name: string;
         plural_name?: string | null;
+        price?: BillingPriceResponseData.Raw | null;
         product?: BillingProductResponseData.Raw | null;
         singular_name?: string | null;
         updated_at: string;
-        yearly_price?: BillingPriceResponseData.Raw | null;
     }
 }

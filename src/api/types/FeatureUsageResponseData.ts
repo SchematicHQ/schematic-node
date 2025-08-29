@@ -11,6 +11,7 @@ export interface FeatureUsageResponseData {
     allocation?: number;
     /** The type of allocation that is being used. */
     allocationType: Schematic.FeatureUsageResponseDataAllocationType;
+    companyOverride?: Schematic.CompanyOverrideResponseData;
     entitlementExpirationDate?: Date;
     entitlementId: string;
     entitlementType: string;
@@ -23,6 +24,7 @@ export interface FeatureUsageResponseData {
     /** The period over which usage is measured. */
     period?: string;
     plan?: Schematic.PlanResponseData;
+    planEntitlement?: Schematic.PlanEntitlementResponseData;
     priceBehavior?: string;
     /** The soft limit for the feature usage. Available only for overage price behavior */
     softLimit?: number;

@@ -7,30 +7,32 @@ import * as Schematic from "../../../../index";
 /**
  * @example
  *     {
- *         priceTiers: [{}],
- *         tierMode: "tier_mode",
  *         valueType: "boolean"
  *     }
  */
 export interface UpdatePlanEntitlementRequestBody {
+    billingProductId?: string;
     creditConsumptionRate?: number;
     currency?: string;
     metricPeriod?: Schematic.UpdatePlanEntitlementRequestBodyMetricPeriod;
     metricPeriodMonthReset?: Schematic.UpdatePlanEntitlementRequestBodyMetricPeriodMonthReset;
     monthlyMeteredPriceId?: string;
+    monthlyPriceTiers?: Schematic.CreatePriceTierRequestBody[];
     monthlyUnitPrice?: number;
     monthlyUnitPriceDecimal?: string;
     overageBillingProductId?: string;
     priceBehavior?: Schematic.UpdatePlanEntitlementRequestBodyPriceBehavior;
-    priceTiers: Schematic.CreatePriceTierRequestBody[];
+    /** Use MonthlyPriceTiers or YearlyPriceTiers instead */
+    priceTiers?: Schematic.CreatePriceTierRequestBody[];
     softLimit?: number;
-    tierMode: string;
+    tierMode?: string;
     valueBool?: boolean;
     valueCreditId?: string;
     valueNumeric?: number;
     valueTraitId?: string;
     valueType: Schematic.UpdatePlanEntitlementRequestBodyValueType;
     yearlyMeteredPriceId?: string;
+    yearlyPriceTiers?: Schematic.CreatePriceTierRequestBody[];
     yearlyUnitPrice?: number;
     yearlyUnitPriceDecimal?: string;
 }

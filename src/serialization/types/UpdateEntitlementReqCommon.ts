@@ -13,6 +13,10 @@ export const UpdateEntitlementReqCommon: core.serialization.ObjectSchema<
     serializers.UpdateEntitlementReqCommon.Raw,
     Schematic.UpdateEntitlementReqCommon
 > = core.serialization.object({
+    creditConsumptionRate: core.serialization.property(
+        "credit_consumption_rate",
+        core.serialization.number().optional(),
+    ),
     metricPeriod: core.serialization.property("metric_period", UpdateEntitlementReqCommonMetricPeriod.optional()),
     metricPeriodMonthReset: core.serialization.property(
         "metric_period_month_reset",
@@ -27,6 +31,7 @@ export const UpdateEntitlementReqCommon: core.serialization.ObjectSchema<
 
 export declare namespace UpdateEntitlementReqCommon {
     export interface Raw {
+        credit_consumption_rate?: number | null;
         metric_period?: UpdateEntitlementReqCommonMetricPeriod.Raw | null;
         metric_period_month_reset?: UpdateEntitlementReqCommonMetricPeriodMonthReset.Raw | null;
         value_bool?: boolean | null;

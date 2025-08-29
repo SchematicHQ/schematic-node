@@ -12,7 +12,9 @@ export interface PlanGroupResponseData {
     addOnIds: string[];
     defaultPlanId?: string;
     id: string;
+    orderedAddOnIds: Schematic.OrderedPlansInGroup[];
     planIds: Schematic.OrderedPlansInGroup[];
+    showPeriodToggle: boolean;
     trialDays?: number;
     trialPaymentMethodRequired?: boolean;
 }

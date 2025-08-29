@@ -21,6 +21,7 @@ export interface CompanyPlanDetailResponseData {
     features: Schematic.FeatureDetailResponseData[];
     icon: string;
     id: string;
+    includedCreditGrants: Schematic.PlanCreditGrantView[];
     isCustom: boolean;
     isDefault: boolean;
     isFree: boolean;

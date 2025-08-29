@@ -8,6 +8,10 @@ export interface CreateOrUpdateConditionRequestBody {
     /** Optionally provide a trait ID to compare a metric or trait value against instead of a value */
     comparisonTraitId?: string;
     conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType;
+    /** Cost of credit to use to measure this condition */
+    creditCost?: number;
+    /** ID of credit to use to measure this condition */
+    creditId?: string;
     /** Name of track event type used to measure this condition */
     eventSubtype?: string;
     id?: string;

@@ -13,6 +13,7 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface CreateWebhookRequestBody {
+    creditTriggerConfigs?: Schematic.CreditTriggerConfig[];
     entitlementTriggerConfigs?: Schematic.EntitlementTriggerConfig[];
     name: string;
     requestTypes: Schematic.CreateWebhookRequestBodyRequestTypesItem[];

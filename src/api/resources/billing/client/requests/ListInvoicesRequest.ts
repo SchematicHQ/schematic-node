@@ -5,13 +5,14 @@
 /**
  * @example
  *     {
- *         customerExternalId: "customer_external_id"
+ *         customerExternalId: "customer_external_id",
+ *         subscriptionExternalId: "subscription_external_id"
  *     }
  */
 export interface ListInvoicesRequest {
     companyId?: string;
     customerExternalId: string;
-    subscriptionExternalId?: string;
+    subscriptionExternalId: string;
     /**
      * Page limit (default 100)
      */

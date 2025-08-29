@@ -8,6 +8,7 @@ import * as core from "../../../../../core";
 import { CompatiblePlans } from "../../../../types/CompatiblePlans";
 import { CustomPlanConfig } from "../../../../types/CustomPlanConfig";
 import { OrderedPlansInGroup } from "../../../../types/OrderedPlansInGroup";
+import { PlanGroupBundleOrder } from "../../../../types/PlanGroupBundleOrder";
 
 export const UpdatePlanGroupRequestBody: core.serialization.Schema<
     serializers.UpdatePlanGroupRequestBody.Raw,
@@ -21,7 +22,13 @@ export const UpdatePlanGroupRequestBody: core.serialization.Schema<
     customPlanConfig: core.serialization.property("custom_plan_config", CustomPlanConfig.optional()),
     customPlanId: core.serialization.property("custom_plan_id", core.serialization.string().optional()),
     defaultPlanId: core.serialization.property("default_plan_id", core.serialization.string().optional()),
+    orderedAddOns: core.serialization.property("ordered_add_ons", core.serialization.list(OrderedPlansInGroup)),
+    orderedBundleList: core.serialization.property(
+        "ordered_bundle_list",
+        core.serialization.list(PlanGroupBundleOrder),
+    ),
     orderedPlans: core.serialization.property("ordered_plans", core.serialization.list(OrderedPlansInGroup)),
+    showPeriodToggle: core.serialization.property("show_period_toggle", core.serialization.boolean()),
     trialDays: core.serialization.property("trial_days", core.serialization.number().optional()),
     trialPaymentMethodRequired: core.serialization.property(
         "trial_payment_method_required",
@@ -36,7 +43,10 @@ export declare namespace UpdatePlanGroupRequestBody {
         custom_plan_config?: CustomPlanConfig.Raw | null;
         custom_plan_id?: string | null;
         default_plan_id?: string | null;
+        ordered_add_ons: OrderedPlansInGroup.Raw[];
+        ordered_bundle_list: PlanGroupBundleOrder.Raw[];
         ordered_plans: OrderedPlansInGroup.Raw[];
+        show_period_toggle: boolean;
         trial_days?: number | null;
         trial_payment_method_required?: boolean | null;
     }

@@ -9,8 +9,8 @@ import * as core from "../../../../core";
 export const ZeroOutGrantRequestBodyReason: core.serialization.Schema<
     serializers.ZeroOutGrantRequestBodyReason.Raw,
     Schematic.ZeroOutGrantRequestBodyReason
-> = core.serialization.enum_(["plan_change", "manual"]);
+> = core.serialization.enum_(["plan_change", "manual", "plan_period_reset"]);
 
 export declare namespace ZeroOutGrantRequestBodyReason {
-    export type Raw = "plan_change" | "manual";
+    export type Raw = "plan_change" | "manual" | "plan_period_reset";
 }

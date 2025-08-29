@@ -13,4 +13,5 @@ export interface ListPlanTraitsParams {
     offset?: number;
     planId?: string;
     traitId?: string;
+    traitIds?: string[];
 }

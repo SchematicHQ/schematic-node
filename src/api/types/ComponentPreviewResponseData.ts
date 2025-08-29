@@ -15,9 +15,12 @@ export interface ComponentPreviewResponseData {
     capabilities?: Schematic.ComponentCapabilities;
     company?: Schematic.CompanyDetailResponseData;
     component?: Schematic.ComponentResponseData;
+    creditBundles: Schematic.BillingCreditBundleView[];
+    creditGrants: Schematic.CreditCompanyGrantView[];
     defaultPlan?: Schematic.PlanDetailResponseData;
     featureUsage?: Schematic.FeatureUsageDetailResponseData;
     invoices: Schematic.InvoiceResponseData[];
+    showPeriodToggle: boolean;
     stripeEmbed?: Schematic.StripeEmbedInfo;
     subscription?: Schematic.CompanySubscriptionResponseData;
     trialPaymentMethodRequired?: boolean;

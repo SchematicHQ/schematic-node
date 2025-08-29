@@ -13,11 +13,10 @@ export interface BillingCreditResponseData {
     description: string;
     icon?: string;
     id: string;
-    monthlyPrice?: Schematic.BillingPriceResponseData;
     name: string;
     pluralName?: string;
+    price?: Schematic.BillingPriceResponseData;
     product?: Schematic.BillingProductResponseData;
     singularName?: string;
     updatedAt: Date;
-    yearlyPrice?: Schematic.BillingPriceResponseData;
 }

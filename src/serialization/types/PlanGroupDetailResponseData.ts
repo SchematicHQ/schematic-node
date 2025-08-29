@@ -8,6 +8,7 @@ import * as core from "../../core";
 import { PlanGroupPlanDetailResponseData } from "./PlanGroupPlanDetailResponseData";
 import { CustomPlanViewConfigResponseData } from "./CustomPlanViewConfigResponseData";
 import { PlanGroupPlanEntitlementsOrder } from "./PlanGroupPlanEntitlementsOrder";
+import { PlanGroupBundleOrder } from "./PlanGroupBundleOrder";
 
 export const PlanGroupDetailResponseData: core.serialization.ObjectSchema<
     serializers.PlanGroupDetailResponseData.Raw,
@@ -19,11 +20,20 @@ export const PlanGroupDetailResponseData: core.serialization.ObjectSchema<
     defaultPlan: core.serialization.property("default_plan", PlanGroupPlanDetailResponseData.optional()),
     defaultPlanId: core.serialization.property("default_plan_id", core.serialization.string().optional()),
     id: core.serialization.string(),
+    orderedAddOnList: core.serialization.property(
+        "ordered_add_on_list",
+        core.serialization.list(PlanGroupPlanEntitlementsOrder),
+    ),
+    orderedBundleList: core.serialization.property(
+        "ordered_bundle_list",
+        core.serialization.list(PlanGroupBundleOrder),
+    ),
     orderedPlanList: core.serialization.property(
         "ordered_plan_list",
         core.serialization.list(PlanGroupPlanEntitlementsOrder),
     ),
     plans: core.serialization.list(PlanGroupPlanDetailResponseData),
+    showPeriodToggle: core.serialization.property("show_period_toggle", core.serialization.boolean()),
     trialDays: core.serialization.property("trial_days", core.serialization.number().optional()),
     trialPaymentMethodRequired: core.serialization.property(
         "trial_payment_method_required",
@@ -39,8 +49,11 @@ export declare namespace PlanGroupDetailResponseData {
         default_plan?: PlanGroupPlanDetailResponseData.Raw | null;
         default_plan_id?: string | null;
         id: string;
+        ordered_add_on_list: PlanGroupPlanEntitlementsOrder.Raw[];
+        ordered_bundle_list: PlanGroupBundleOrder.Raw[];
         ordered_plan_list: PlanGroupPlanEntitlementsOrder.Raw[];
         plans: PlanGroupPlanDetailResponseData.Raw[];
+        show_period_toggle: boolean;
         trial_days?: number | null;
         trial_payment_method_required?: boolean | null;
     }

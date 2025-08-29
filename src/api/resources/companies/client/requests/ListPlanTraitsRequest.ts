@@ -6,10 +6,11 @@
  * @example
  *     {}
  */
-export interface CountPlanTraitsRequest {
+export interface ListPlanTraitsRequest {
     ids?: string | string[];
     planId?: string;
     traitId?: string;
+    traitIds?: string | string[];
     /**
      * Page limit (default 100)
      */

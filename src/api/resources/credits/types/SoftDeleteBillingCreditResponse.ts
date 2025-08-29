@@ -4,8 +4,8 @@
 
 import * as Schematic from "../../../index";
 
-export interface UpdateCreditBundleResponse {
-    data: Schematic.BillingCreditBundleResponseData;
+export interface SoftDeleteBillingCreditResponse {
+    data: Schematic.DeleteResponse;
     /** Input parameters */
     params: Record<string, unknown>;
 }

@@ -5,21 +5,22 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
-import { UsageBasedEntitlementRequestBodyPriceBehavior } from "./UsageBasedEntitlementRequestBodyPriceBehavior";
 import { CreatePriceTierRequestBody } from "./CreatePriceTierRequestBody";
+import { UsageBasedEntitlementRequestBodyPriceBehavior } from "./UsageBasedEntitlementRequestBodyPriceBehavior";
 
 export const UsageBasedEntitlementRequestBody: core.serialization.ObjectSchema<
     serializers.UsageBasedEntitlementRequestBody.Raw,
     Schematic.UsageBasedEntitlementRequestBody
 > = core.serialization.object({
-    creditConsumptionRate: core.serialization.property(
-        "credit_consumption_rate",
-        core.serialization.number().optional(),
-    ),
+    billingProductId: core.serialization.property("billing_product_id", core.serialization.string().optional()),
     currency: core.serialization.string().optional(),
     monthlyMeteredPriceId: core.serialization.property(
         "monthly_metered_price_id",
         core.serialization.string().optional(),
+    ),
+    monthlyPriceTiers: core.serialization.property(
+        "monthly_price_tiers",
+        core.serialization.list(CreatePriceTierRequestBody).optional(),
     ),
     monthlyUnitPrice: core.serialization.property("monthly_unit_price", core.serialization.number().optional()),
     monthlyUnitPriceDecimal: core.serialization.property(
@@ -34,12 +35,19 @@ export const UsageBasedEntitlementRequestBody: core.serialization.ObjectSchema<
         "price_behavior",
         UsageBasedEntitlementRequestBodyPriceBehavior.optional(),
     ),
-    priceTiers: core.serialization.property("price_tiers", core.serialization.list(CreatePriceTierRequestBody)),
+    priceTiers: core.serialization.property(
+        "price_tiers",
+        core.serialization.list(CreatePriceTierRequestBody).optional(),
+    ),
     softLimit: core.serialization.property("soft_limit", core.serialization.number().optional()),
-    tierMode: core.serialization.property("tier_mode", core.serialization.string()),
+    tierMode: core.serialization.property("tier_mode", core.serialization.string().optional()),
     yearlyMeteredPriceId: core.serialization.property(
         "yearly_metered_price_id",
         core.serialization.string().optional(),
+    ),
+    yearlyPriceTiers: core.serialization.property(
+        "yearly_price_tiers",
+        core.serialization.list(CreatePriceTierRequestBody).optional(),
     ),
     yearlyUnitPrice: core.serialization.property("yearly_unit_price", core.serialization.number().optional()),
     yearlyUnitPriceDecimal: core.serialization.property(
@@ -50,17 +58,19 @@ export const UsageBasedEntitlementRequestBody: core.serialization.ObjectSchema<
 
 export declare namespace UsageBasedEntitlementRequestBody {
     export interface Raw {
-        credit_consumption_rate?: number | null;
+        billing_product_id?: string | null;
         currency?: string | null;
         monthly_metered_price_id?: string | null;
+        monthly_price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
         monthly_unit_price?: number | null;
         monthly_unit_price_decimal?: string | null;
         overage_billing_product_id?: string | null;
         price_behavior?: UsageBasedEntitlementRequestBodyPriceBehavior.Raw | null;
-        price_tiers: CreatePriceTierRequestBody.Raw[];
+        price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
         soft_limit?: number | null;
-        tier_mode: string;
+        tier_mode?: string | null;
         yearly_metered_price_id?: string | null;
+        yearly_price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
         yearly_unit_price?: number | null;
         yearly_unit_price_decimal?: string | null;
     }

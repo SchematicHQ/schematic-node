@@ -7,4 +7,3 @@ tests
 .prettierrc.yml
 tsconfig.json
 yarn.lock
-*.js.map

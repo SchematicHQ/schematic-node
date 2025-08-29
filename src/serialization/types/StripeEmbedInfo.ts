@@ -10,7 +10,9 @@ export const StripeEmbedInfo: core.serialization.ObjectSchema<
     serializers.StripeEmbedInfo.Raw,
     Schematic.StripeEmbedInfo
 > = core.serialization.object({
-    publishableKey: core.serialization.property("publishable_key", core.serialization.string()),
+    accountId: core.serialization.property("account_id", core.serialization.string().optional()),
+    publishableKey: core.serialization.property("publishable_key", core.serialization.string().optional()),
+    schematicPublishableKey: core.serialization.property("schematic_publishable_key", core.serialization.string()),
     setupIntentClientSecret: core.serialization.property(
         "setup_intent_client_secret",
         core.serialization.string().optional(),
@@ -19,7 +21,9 @@ export const StripeEmbedInfo: core.serialization.ObjectSchema<
 
 export declare namespace StripeEmbedInfo {
     export interface Raw {
-        publishable_key: string;
+        account_id?: string | null;
+        publishable_key?: string | null;
+        schematic_publishable_key: string;
         setup_intent_client_secret?: string | null;
     }
 }

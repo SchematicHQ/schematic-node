@@ -14,6 +14,7 @@ import * as Schematic from "../../../../index";
  */
 export interface CreateCompanyOverrideRequestBody {
     companyId: string;
+    creditConsumptionRate?: number;
     expirationDate?: Date;
     featureId: string;
     metricPeriod?: Schematic.CreateCompanyOverrideRequestBodyMetricPeriod;
