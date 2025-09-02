@@ -113,7 +113,7 @@ export class SchematicClient extends BaseClient {
             }
 
             const response = await this.features.checkFlag(key, evalCtx);
-            if (!response.data.value) {
+            if (response.data.value === undefined) {
                 return this.getFlagDefault(key);
             }
 
