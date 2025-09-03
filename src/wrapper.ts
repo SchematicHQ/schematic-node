@@ -100,6 +100,7 @@ export class SchematicClient extends BaseClient {
      */
     async checkFlag(evalCtx: api.CheckFlagRequestBody, key: string): Promise<boolean> {
         if (this.offline) {
+            this.logger.debug(`Offline mode enabled, returning default flag value for flag ${key}`);
             return this.getFlagDefault(key);
         }
 
@@ -108,12 +109,14 @@ export class SchematicClient extends BaseClient {
             for (const provider of this.flagCheckCacheProviders) {
                 const cachedValue = await provider.get(cacheKey);
                 if (cachedValue !== undefined) {
+                    this.logger.debug(`${provider.constructor.name} cache hit for flag ${key}`);
                     return cachedValue;
                 }
             }
 
             const response = await this.features.checkFlag(key, evalCtx);
             if (response.data.value === undefined) {
+                this.logger.debug(`No value returned from feature flag API for flag ${key}, falling back to default`);
                 return this.getFlagDefault(key);
             }
 
@@ -121,6 +124,7 @@ export class SchematicClient extends BaseClient {
                 await provider.set(cacheKey, response.data.value);
             }
 
+            this.logger.debug(`Feature flag API response for ${key}: ${response.data}`);
             return response.data.value;
         } catch (err) {
             this.logger.error(`Error checking flag ${key}: ${err}`);
