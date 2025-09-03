@@ -125,7 +125,7 @@ export class SchematicClient extends BaseClient {
                 await provider.set(cacheKey, response.data.value);
             }
 
-            this.logger.debug(`Feature flag API response for ${key}: ${JSON.stringify(response.data)}`);
+            this.logger.debug(`Feature flag API response for ${key}: ${response.data}`);
             return response.data.value;
         } catch (err) {
             this.logger.error(`Error checking flag ${key}: ${err}`);
