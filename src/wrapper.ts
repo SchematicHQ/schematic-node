@@ -212,7 +212,6 @@ export class SchematicClient extends BaseClient {
                     // Cache the fresh result
                     const cacheKey = JSON.stringify({ evalCtx, key });
                     for (const provider of this.flagCheckCacheProviders) {
-                        this.logger.debug(`Caching value for flag ${cacheKey} in ${provider.constructor.name}`);
                         await provider.set(cacheKey, apiResult.value);
                     }
                     results.push(apiResult);
