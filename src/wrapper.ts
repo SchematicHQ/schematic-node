@@ -121,10 +121,11 @@ export class SchematicClient extends BaseClient {
             }
 
             for (const provider of this.flagCheckCacheProviders) {
+                this.logger.debug(`Caching value for flag ${key} in ${provider.constructor.name}`);
                 await provider.set(cacheKey, response.data.value);
             }
 
-            this.logger.debug(`Feature flag API response for ${key}: ${response.data}`);
+            this.logger.debug(`Feature flag API response for ${key}: ${JSON.stringify(response.data)}`);
             return response.data.value;
         } catch (err) {
             this.logger.error(`Error checking flag ${key}: ${err}`);
@@ -211,6 +212,7 @@ export class SchematicClient extends BaseClient {
                     // Cache the fresh result
                     const cacheKey = JSON.stringify({ evalCtx, key });
                     for (const provider of this.flagCheckCacheProviders) {
+                        this.logger.debug(`Caching value for flag ${cacheKey} in ${provider.constructor.name}`);
                         await provider.set(cacheKey, apiResult.value);
                     }
                     results.push(apiResult);
