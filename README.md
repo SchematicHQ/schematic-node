@@ -340,6 +340,48 @@ client
 client.close();
 ```
 
+### Checking multiple flags
+
+The `checkFlags` method allows you to efficiently check multiple feature flags in a single operation. When you provide specific flag keys, it will only return the flag values for those flags, leveraging intelligent caching to minimize API calls.
+
+```ts
+import { SchematicClient } from "@schematichq/schematic-typescript-node";
+
+const apiKey = process.env.SCHEMATIC_API_KEY;
+const client = new SchematicClient({ apiKey });
+
+const evaluationCtx = {
+    company: { id: "your-company-id" },
+};
+
+// Check specific flags by providing an array of flag keys
+client
+    .checkFlags(evaluationCtx, ["feature-flag-1", "feature-flag-2", "feature-flag-3"])
+    .then((flagResults) => {
+        flagResults.forEach((result) => {
+            console.log(`Flag ${result.flag}: ${result.value} (${result.reason})`);
+            if (result.value) {
+                // This flag is enabled
+            } else {
+                // This flag is disabled
+            }
+        });
+    })
+    .catch(console.error);
+
+// Or check all available flags by omitting the keys parameter
+client
+    .checkFlags(evaluationCtx)
+    .then((flagResults) => {
+        flagResults.forEach((result) => {
+            console.log(`Flag ${result.flag}: ${result.value}`);
+        });
+    })
+    .catch(console.error);
+
+client.close();
+```
+
 ### Other API operations
 
 The Schematic API supports many operations beyond these, accessible via the API modules on the client, `Accounts`, `Billing`, `Companies`, `Entitlements`, `Events`, `Features`, and `Plans`.
