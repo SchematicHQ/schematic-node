@@ -83,6 +83,78 @@ const client = new SchematicClient({
 client.close();
 ```
 
+### Custom Logging
+
+You can provide your own logger implementation to control how the Schematic client logs messages. The logger must implement the `Logger` interface with `error`, `warn`, `info`, and `debug` methods:
+
+```ts
+import { SchematicClient, Logger } from "@schematichq/schematic-typescript-node";
+
+// Example using a custom logger (could be Winston, Pino, etc.)
+class CustomLogger implements Logger {
+    error(message: string, ...args: any[]): void {
+        // Your custom error logging logic
+        console.error(`[ERROR] ${message}`, ...args);
+    }
+    
+    warn(message: string, ...args: any[]): void {
+        // Your custom warning logging logic
+        console.warn(`[WARN] ${message}`, ...args);
+    }
+    
+    info(message: string, ...args: any[]): void {
+        // Your custom info logging logic
+        console.info(`[INFO] ${message}`, ...args);
+    }
+    
+    debug(message: string, ...args: any[]): void {
+        // Your custom debug logging logic
+        console.debug(`[DEBUG] ${message}`, ...args);
+    }
+}
+
+const apiKey = process.env.SCHEMATIC_API_KEY;
+const client = new SchematicClient({
+    apiKey,
+    logger: new CustomLogger(),
+});
+
+// interactions with the client
+
+client.close();
+```
+
+Example using a popular logging library like Winston:
+
+```ts
+import winston from 'winston';
+import { SchematicClient } from "@schematichq/schematic-typescript-node";
+
+// Create a Winston logger instance
+const winstonLogger = winston.createLogger({
+    level: 'debug',
+    format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.json()
+    ),
+    transports: [
+        new winston.transports.Console(),
+    ]
+});
+
+const apiKey = process.env.SCHEMATIC_API_KEY;
+const client = new SchematicClient({
+    apiKey,
+    logger: winstonLogger, // Winston logger directly implements the Logger interface
+});
+
+// interactions with the client
+
+client.close();
+```
+
+If no logger is provided, the client will use a default console logger that outputs to the standard console methods.
+
 ## Usage examples
 
 A number of these examples use `keys` to identify companies and users. Learn more about keys [here](https://docs.schematichq.com/developer_resources/key_management).
@@ -262,6 +334,48 @@ client
         } else {
             // Flag is off
         }
+    })
+    .catch(console.error);
+
+client.close();
+```
+
+### Checking multiple flags
+
+The `checkFlags` method allows you to efficiently check multiple feature flags in a single operation. When you provide specific flag keys, it will only return the flag values for those flags, leveraging intelligent caching to minimize API calls.
+
+```ts
+import { SchematicClient } from "@schematichq/schematic-typescript-node";
+
+const apiKey = process.env.SCHEMATIC_API_KEY;
+const client = new SchematicClient({ apiKey });
+
+const evaluationCtx = {
+    company: { id: "your-company-id" },
+};
+
+// Check specific flags by providing an array of flag keys
+client
+    .checkFlags(evaluationCtx, ["feature-flag-1", "feature-flag-2", "feature-flag-3"])
+    .then((flagResults) => {
+        flagResults.forEach((result) => {
+            console.log(`Flag ${result.flag}: ${result.value} (${result.reason})`);
+            if (result.value) {
+                // This flag is enabled
+            } else {
+                // This flag is disabled
+            }
+        });
+    })
+    .catch(console.error);
+
+// Or check all available flags by omitting the keys parameter
+client
+    .checkFlags(evaluationCtx)
+    .then((flagResults) => {
+        flagResults.forEach((result) => {
+            console.log(`Flag ${result.flag}: ${result.value}`);
+        });
     })
     .catch(console.error);
 

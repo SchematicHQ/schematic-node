@@ -100,6 +100,7 @@ export class SchematicClient extends BaseClient {
      */
     async checkFlag(evalCtx: api.CheckFlagRequestBody, key: string): Promise<boolean> {
         if (this.offline) {
+            this.logger.debug(`Offline mode enabled, returning default flag value for flag ${key}`);
             return this.getFlagDefault(key);
         }
 
@@ -108,23 +109,147 @@ export class SchematicClient extends BaseClient {
             for (const provider of this.flagCheckCacheProviders) {
                 const cachedValue = await provider.get(cacheKey);
                 if (cachedValue !== undefined) {
+                    this.logger.debug(`${provider.constructor.name} cache hit for flag ${key}`);
                     return cachedValue;
                 }
             }
 
             const response = await this.features.checkFlag(key, evalCtx);
             if (response.data.value === undefined) {
+                this.logger.debug(`No value returned from feature flag API for flag ${key}, falling back to default`);
                 return this.getFlagDefault(key);
             }
 
             for (const provider of this.flagCheckCacheProviders) {
+                this.logger.debug(`Caching value for flag ${key} in ${provider.constructor.name}`);
                 await provider.set(cacheKey, response.data.value);
             }
 
+            this.logger.debug(`Feature flag API response for ${key}: ${JSON.stringify(response.data)}`);
             return response.data.value;
         } catch (err) {
             this.logger.error(`Error checking flag ${key}: ${err}`);
             return this.getFlagDefault(key);
+        }
+    }
+
+    /**
+     * Checks multiple feature flags with caching optimization
+     * @param evalCtx - The context (company and/or user) for evaluating the feature flags
+     * @param keys - Optional array of flag keys to check. If empty, calls standard checkFlags API
+     * @returns Promise resolving to an array of flag check results
+     * @throws Will log error and return default values if check fails
+     */
+    async checkFlags(evalCtx: api.CheckFlagRequestBody, keys?: string[]): Promise<api.CheckFlagResponseData[]> {
+        if (this.offline) {
+            this.logger.debug(`Offline mode enabled, returning default flag values for flags ${keys ? keys.join(', ') : 'all'}`);
+            if (keys && keys.length > 0) {
+                return keys.map(key => ({
+                    flag: key,
+                    value: this.getFlagDefault(key),
+                    reason: 'Offline mode - using default value'
+                }));
+            } else {
+                // In offline mode with no keys, return empty array
+                return [];
+            }
+        }
+
+        try {
+            // If no keys provided or empty array, call standard checkFlags
+            if (!keys || keys.length === 0) {
+                this.logger.debug('No specific flag keys provided, calling standard checkFlags API');
+                const response = await this.features.checkFlags(evalCtx);
+                return response.data.flags;
+            }
+
+            // Check cache for all requested keys
+            const cachedResults: Map<string, api.CheckFlagResponseData> = new Map();
+            const missingKeys: string[] = [];
+
+            for (const key of keys) {
+                const cacheKey = JSON.stringify({ evalCtx, key });
+                let foundInCache = false;
+
+                for (const provider of this.flagCheckCacheProviders) {
+                    const cachedValue = await provider.get(cacheKey);
+                    if (cachedValue !== undefined) {
+                        this.logger.debug(`${provider.constructor.name} cache hit for flag ${key}`);
+                        cachedResults.set(key, {
+                            flag: key,
+                            value: cachedValue,
+                            reason: 'Retrieved from cache'
+                        });
+                        foundInCache = true;
+                        break;
+                    }
+                }
+
+                if (!foundInCache) {
+                    missingKeys.push(key);
+                }
+            }
+
+            // If all keys were found in cache, return cached results
+            if (missingKeys.length === 0) {
+                this.logger.debug(`All ${keys.length} flags found in cache`);
+                return keys.map(key => cachedResults.get(key)!);
+            }
+
+            // Call API for missing keys by calling standard checkFlags and filtering results
+            this.logger.debug(`Cache miss for ${missingKeys.length} flags: ${missingKeys.join(', ')}, calling API`);
+            const response = await this.features.checkFlags(evalCtx);
+            const apiResults = response.data.flags;
+
+            // Use fresh API values for ALL requested keys to ensure consistency
+            // Cache and return the fresh values
+            const results: api.CheckFlagResponseData[] = [];
+
+            for (const key of keys) {
+                // Find result from API response first (prioritize fresh data)
+                const apiResult = apiResults.find(flag => flag.flag === key);
+                if (apiResult) {
+                    // Cache the fresh result
+                    const cacheKey = JSON.stringify({ evalCtx, key });
+                    for (const provider of this.flagCheckCacheProviders) {
+                        this.logger.debug(`Caching value for flag ${cacheKey} in ${provider.constructor.name}`);
+                        await provider.set(cacheKey, apiResult.value);
+                    }
+                    results.push(apiResult);
+                } else {
+                    // Fall back to cached result if API doesn't return this flag
+                    const cachedResult = cachedResults.get(key);
+                    if (cachedResult) {
+                        results.push(cachedResult);
+                    } else {
+                        // Flag not found anywhere, use default
+                        this.logger.debug(`Flag ${key} not found in API response or cache, using default value`);
+                        const defaultResult: api.CheckFlagResponseData = {
+                            flag: key,
+                            value: this.getFlagDefault(key),
+                            reason: 'Flag not found - using default value'
+                        };
+                        results.push(defaultResult);
+                    }
+                }
+            }
+
+            this.logger.debug(`Checked ${keys.length} flags: used fresh API values for consistency (${missingKeys.length} were cache misses)`);
+            return results;
+
+        } catch (err) {
+            this.logger.error(`Error checking flags ${keys ? keys.join(', ') : 'all'}: ${err}`);
+            
+            // Return default values for all requested keys
+            if (keys && keys.length > 0) {
+                return keys.map(key => ({
+                    flag: key,
+                    value: this.getFlagDefault(key),
+                    reason: `Error occurred - using default value: ${err}`
+                }));
+            } else {
+                return [];
+            }
         }
     }
 
