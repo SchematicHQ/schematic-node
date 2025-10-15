@@ -16,12 +16,16 @@ export const PlanCreditGrantView: core.serialization.ObjectSchema<
     creditIcon: core.serialization.property("credit_icon", core.serialization.string().optional()),
     creditId: core.serialization.property("credit_id", core.serialization.string()),
     creditName: core.serialization.property("credit_name", core.serialization.string()),
+    expiryType: core.serialization.property("expiry_type", core.serialization.string().optional()),
+    expiryUnit: core.serialization.property("expiry_unit", core.serialization.string().optional()),
+    expiryUnitCount: core.serialization.property("expiry_unit_count", core.serialization.number().optional()),
     id: core.serialization.string(),
     planId: core.serialization.property("plan_id", core.serialization.string()),
     planName: core.serialization.property("plan_name", core.serialization.string()),
     pluralName: core.serialization.property("plural_name", core.serialization.string().optional()),
     resetCadence: core.serialization.property("reset_cadence", core.serialization.string()),
     resetStart: core.serialization.property("reset_start", core.serialization.string()),
+    resetType: core.serialization.property("reset_type", core.serialization.string()),
     singularName: core.serialization.property("singular_name", core.serialization.string().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
@@ -34,12 +38,16 @@ export declare namespace PlanCreditGrantView {
         credit_icon?: string | null;
         credit_id: string;
         credit_name: string;
+        expiry_type?: string | null;
+        expiry_unit?: string | null;
+        expiry_unit_count?: number | null;
         id: string;
         plan_id: string;
         plan_name: string;
         plural_name?: string | null;
         reset_cadence: string;
         reset_start: string;
+        reset_type: string;
         singular_name?: string | null;
         updated_at: string;
     }

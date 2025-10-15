@@ -5,7 +5,6 @@
 import * as Schematic from "../../../index";
 
 export interface ListAudienceUsersResponse {
-    /** The returned resources */
     data: Schematic.UserDetailResponseData[];
     /** Input parameters */
     params: Record<string, unknown>;

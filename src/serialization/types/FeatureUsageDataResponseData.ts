@@ -5,11 +5,15 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { CreditUsageResponseData } from "./CreditUsageResponseData";
+import { BillingPriceView } from "./BillingPriceView";
 
 export const FeatureUsageDataResponseData: core.serialization.ObjectSchema<
     serializers.FeatureUsageDataResponseData.Raw,
     Schematic.FeatureUsageDataResponseData
 > = core.serialization.object({
+    creditTypeId: core.serialization.property("credit_type_id", core.serialization.string().optional()),
+    creditUsage: core.serialization.property("credit_usage", CreditUsageResponseData.optional()),
     entitlementSource: core.serialization.property("entitlement_source", core.serialization.string()),
     entitlementValueType: core.serialization.property("entitlement_value_type", core.serialization.string()),
     featureId: core.serialization.property("feature_id", core.serialization.string()),
@@ -17,12 +21,19 @@ export const FeatureUsageDataResponseData: core.serialization.ObjectSchema<
     featureType: core.serialization.property("feature_type", core.serialization.string()),
     hardLimit: core.serialization.property("hard_limit", core.serialization.string()),
     hasAccess: core.serialization.property("has_access", core.serialization.boolean()),
+    metricResetAt: core.serialization.property("metric_reset_at", core.serialization.date().optional()),
+    monthlyUsageBasedPrice: core.serialization.property("monthly_usage_based_price", BillingPriceView.optional()),
+    priceBehavior: core.serialization.property("price_behavior", core.serialization.string().optional()),
     softLimit: core.serialization.property("soft_limit", core.serialization.string()),
     usage: core.serialization.string(),
+    valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
+    yearlyUsageBasedPrice: core.serialization.property("yearly_usage_based_price", BillingPriceView.optional()),
 });
 
 export declare namespace FeatureUsageDataResponseData {
     export interface Raw {
+        credit_type_id?: string | null;
+        credit_usage?: CreditUsageResponseData.Raw | null;
         entitlement_source: string;
         entitlement_value_type: string;
         feature_id: string;
@@ -30,7 +41,12 @@ export declare namespace FeatureUsageDataResponseData {
         feature_type: string;
         hard_limit: string;
         has_access: boolean;
+        metric_reset_at?: string | null;
+        monthly_usage_based_price?: BillingPriceView.Raw | null;
+        price_behavior?: string | null;
         soft_limit: string;
         usage: string;
+        value_numeric?: number | null;
+        yearly_usage_based_price?: BillingPriceView.Raw | null;
     }
 }

@@ -4,21 +4,34 @@
 
 import * as Schematic from "../index";
 
-/**
- * The returned resource
- */
 export interface PlanGroupDetailResponseData {
     addOns: Schematic.PlanGroupPlanDetailResponseData[];
+    checkoutSettings: Schematic.CheckoutSettingsResponseData;
     customPlanConfig?: Schematic.CustomPlanViewConfigResponseData;
     customPlanId?: string;
     defaultPlan?: Schematic.PlanGroupPlanDetailResponseData;
     defaultPlanId?: string;
+    fallbackPlan?: Schematic.PlanGroupPlanDetailResponseData;
+    fallbackPlanId?: string;
     id: string;
+    initialPlan?: Schematic.PlanGroupPlanDetailResponseData;
+    initialPlanId?: string;
+    initialPlanPrice?: Schematic.BillingPriceResponseData;
+    initialPlanPriceId?: string;
     orderedAddOnList: Schematic.PlanGroupPlanEntitlementsOrder[];
     orderedBundleList: Schematic.PlanGroupBundleOrder[];
     orderedPlanList: Schematic.PlanGroupPlanEntitlementsOrder[];
     plans: Schematic.PlanGroupPlanDetailResponseData[];
+    preventDowngradesWhenOverLimit: boolean;
+    showCredits: boolean;
     showPeriodToggle: boolean;
+    showZeroPriceAsFree: boolean;
+    syncCustomerBillingDetailsForTax: boolean;
+    taxCollectionEnabled: boolean;
     trialDays?: number;
+    trialExpiryPlan?: Schematic.PlanGroupPlanDetailResponseData;
+    trialExpiryPlanId?: string;
+    trialExpiryPlanPrice?: Schematic.BillingPriceResponseData;
+    trialExpiryPlanPriceId?: string;
     trialPaymentMethodRequired?: boolean;
 }

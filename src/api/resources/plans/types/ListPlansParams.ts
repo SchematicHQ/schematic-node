@@ -9,6 +9,12 @@ import * as Schematic from "../../../index";
  */
 export interface ListPlansParams {
     companyId?: string;
+    /** Filter for plans valid as fallback plans (not linked to billing) */
+    forFallbackPlan?: boolean;
+    /** Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) */
+    forInitialPlan?: boolean;
+    /** Filter for plans valid as trial expiry plans (not linked to billing or free) */
+    forTrialExpiryPlan?: boolean;
     /** Filter out plans that do not have a billing product ID */
     hasProductId?: boolean;
     ids?: string[];
@@ -19,6 +25,8 @@ export interface ListPlansParams {
     /** Filter by plan type */
     planType?: Schematic.ListPlansResponseParamsPlanType;
     q?: string;
+    /** Filter for plans that require a payment method (inverse of ForInitialPlan) */
+    requiresPaymentMethod?: boolean;
     /** Filter out plans that already have a plan entitlement for the specified feature ID */
     withoutEntitlementFor?: string;
     /** Filter out plans that have a paid billing product ID */

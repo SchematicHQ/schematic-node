@@ -4,7 +4,15 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         planId: "plan_id",
+ *         q: "q",
+ *         withoutFeatureOverrideFor: "without_feature_override_for",
+ *         withoutPlan: true,
+ *         withSubscription: true,
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface CountCompaniesRequest {
     /**

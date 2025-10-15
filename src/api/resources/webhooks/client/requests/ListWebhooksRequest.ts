@@ -4,7 +4,11 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         q: "q",
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface ListWebhooksRequest {
     q?: string;

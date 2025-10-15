@@ -19,7 +19,7 @@ export interface CreateCreditBundleRequestBody {
     creditId: string;
     currency: string;
     expiryType?: Schematic.CreateCreditBundleRequestBodyExpiryType;
-    expiryUnit?: "days";
+    expiryUnit?: Schematic.CreateCreditBundleRequestBodyExpiryUnit;
     expiryUnitCount?: number;
     pricePerUnit: number;
     pricePerUnitDecimal?: string;

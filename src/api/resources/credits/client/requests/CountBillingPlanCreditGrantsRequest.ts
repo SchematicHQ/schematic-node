@@ -4,7 +4,12 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         creditId: "credit_id",
+ *         planId: "plan_id",
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface CountBillingPlanCreditGrantsRequest {
     creditId?: string;

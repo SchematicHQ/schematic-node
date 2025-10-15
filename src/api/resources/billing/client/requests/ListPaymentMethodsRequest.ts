@@ -5,7 +5,10 @@
 /**
  * @example
  *     {
- *         customerExternalId: "customer_external_id"
+ *         companyId: "company_id",
+ *         customerExternalId: "customer_external_id",
+ *         limit: 1,
+ *         offset: 1
  *     }
  */
 export interface ListPaymentMethodsRequest {

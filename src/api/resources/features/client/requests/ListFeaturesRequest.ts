@@ -4,10 +4,20 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         q: "q",
+ *         withoutCompanyOverrideFor: "without_company_override_for",
+ *         withoutPlanEntitlementFor: "without_plan_entitlement_for",
+ *         booleanRequireEvent: true,
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface ListFeaturesRequest {
     ids?: string | string[];
+    /**
+     * Search by feature name or ID
+     */
     q?: string;
     /**
      * Filter out features that already have a company override for the specified company ID

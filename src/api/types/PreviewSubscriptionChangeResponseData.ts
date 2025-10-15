@@ -4,9 +4,6 @@
 
 import * as Schematic from "../index";
 
-/**
- * The requested resource
- */
 export interface PreviewSubscriptionChangeResponseData {
     amountOff: number;
     dueNow: number;

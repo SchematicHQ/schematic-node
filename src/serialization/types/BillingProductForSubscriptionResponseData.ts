@@ -12,6 +12,7 @@ export const BillingProductForSubscriptionResponseData: core.serialization.Objec
     Schematic.BillingProductForSubscriptionResponseData
 > = core.serialization.object({
     billingScheme: core.serialization.property("billing_scheme", core.serialization.string()),
+    billingThreshold: core.serialization.property("billing_threshold", core.serialization.number().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     currency: core.serialization.string(),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
@@ -28,6 +29,10 @@ export const BillingProductForSubscriptionResponseData: core.serialization.Objec
     priceTier: core.serialization.property("price_tier", core.serialization.list(BillingProductPriceTierResponseData)),
     quantity: core.serialization.number(),
     subscriptionId: core.serialization.property("subscription_id", core.serialization.string()),
+    subscriptionItemExternalId: core.serialization.property(
+        "subscription_item_external_id",
+        core.serialization.string().optional(),
+    ),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     usageType: core.serialization.property("usage_type", core.serialization.string()),
 });
@@ -35,6 +40,7 @@ export const BillingProductForSubscriptionResponseData: core.serialization.Objec
 export declare namespace BillingProductForSubscriptionResponseData {
     export interface Raw {
         billing_scheme: string;
+        billing_threshold?: number | null;
         created_at: string;
         currency: string;
         environment_id: string;
@@ -51,6 +57,7 @@ export declare namespace BillingProductForSubscriptionResponseData {
         price_tier: BillingProductPriceTierResponseData.Raw[];
         quantity: number;
         subscription_id: string;
+        subscription_item_external_id?: string | null;
         updated_at: string;
         usage_type: string;
     }

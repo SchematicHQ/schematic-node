@@ -4,7 +4,11 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         displayName: "display_name",
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface ListMetersRequest {
     displayName?: string;

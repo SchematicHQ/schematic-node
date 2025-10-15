@@ -5,7 +5,6 @@
 import * as Schematic from "../../../index";
 
 export interface ListComponentsResponse {
-    /** The returned resources */
     data: Schematic.ComponentResponseData[];
     /** Input parameters */
     params: Schematic.ListComponentsParams;

@@ -15,4 +15,4 @@ export { type ListProductPricesRequest } from "./ListProductPricesRequest";
 export { type CreateBillingProductRequestBody } from "./CreateBillingProductRequestBody";
 export { type ListBillingProductsRequest } from "./ListBillingProductsRequest";
 export { type CountBillingProductsRequest } from "./CountBillingProductsRequest";
-export { type CreateBillingSubscriptionsRequestBody } from "./CreateBillingSubscriptionsRequestBody";
+export { type CreateBillingSubscriptionRequestBody } from "./CreateBillingSubscriptionRequestBody";

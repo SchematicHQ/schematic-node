@@ -5,6 +5,7 @@
 import * as Schematic from "../index";
 
 export interface PlanEntitlementResponseData {
+    billingThreshold?: number;
     consumptionRate?: number;
     createdAt: Date;
     environmentId: string;

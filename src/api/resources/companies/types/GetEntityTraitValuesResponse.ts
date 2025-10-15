@@ -5,7 +5,6 @@
 import * as Schematic from "../../../index";
 
 export interface GetEntityTraitValuesResponse {
-    /** The returned resources */
     data: Schematic.EntityTraitValue[];
     /** Input parameters */
     params: Schematic.GetEntityTraitValuesParams;

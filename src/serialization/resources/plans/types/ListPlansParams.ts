@@ -12,12 +12,19 @@ export const ListPlansParams: core.serialization.ObjectSchema<
     Schematic.ListPlansParams
 > = core.serialization.object({
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
+    forFallbackPlan: core.serialization.property("for_fallback_plan", core.serialization.boolean().optional()),
+    forInitialPlan: core.serialization.property("for_initial_plan", core.serialization.boolean().optional()),
+    forTrialExpiryPlan: core.serialization.property("for_trial_expiry_plan", core.serialization.boolean().optional()),
     hasProductId: core.serialization.property("has_product_id", core.serialization.boolean().optional()),
     ids: core.serialization.list(core.serialization.string()).optional(),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
     planType: core.serialization.property("plan_type", ListPlansResponseParamsPlanType.optional()),
     q: core.serialization.string().optional(),
+    requiresPaymentMethod: core.serialization.property(
+        "requires_payment_method",
+        core.serialization.boolean().optional(),
+    ),
     withoutEntitlementFor: core.serialization.property(
         "without_entitlement_for",
         core.serialization.string().optional(),
@@ -32,12 +39,16 @@ export const ListPlansParams: core.serialization.ObjectSchema<
 export declare namespace ListPlansParams {
     export interface Raw {
         company_id?: string | null;
+        for_fallback_plan?: boolean | null;
+        for_initial_plan?: boolean | null;
+        for_trial_expiry_plan?: boolean | null;
         has_product_id?: boolean | null;
         ids?: string[] | null;
         limit?: number | null;
         offset?: number | null;
         plan_type?: ListPlansResponseParamsPlanType.Raw | null;
         q?: string | null;
+        requires_payment_method?: boolean | null;
         without_entitlement_for?: string | null;
         without_paid_product_id?: boolean | null;
         without_product_id?: boolean | null;

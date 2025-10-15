@@ -6,6 +6,7 @@ import * as serializers from "../../../../index";
 import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import { UpdateCreditBundleDetailsRequestBodyExpiryType } from "../../types/UpdateCreditBundleDetailsRequestBodyExpiryType";
+import { UpdateCreditBundleDetailsRequestBodyExpiryUnit } from "../../types/UpdateCreditBundleDetailsRequestBodyExpiryUnit";
 import { UpdateCreditBundleDetailsRequestBodyStatus } from "../../types/UpdateCreditBundleDetailsRequestBodyStatus";
 
 export const UpdateCreditBundleDetailsRequestBody: core.serialization.Schema<
@@ -14,6 +15,7 @@ export const UpdateCreditBundleDetailsRequestBody: core.serialization.Schema<
 > = core.serialization.object({
     bundleName: core.serialization.property("bundle_name", core.serialization.string()),
     expiryType: core.serialization.property("expiry_type", UpdateCreditBundleDetailsRequestBodyExpiryType.optional()),
+    expiryUnit: core.serialization.property("expiry_unit", UpdateCreditBundleDetailsRequestBodyExpiryUnit.optional()),
     expiryUnitCount: core.serialization.property("expiry_unit_count", core.serialization.number().optional()),
     pricePerUnit: core.serialization.property("price_per_unit", core.serialization.number()),
     pricePerUnitDecimal: core.serialization.property("price_per_unit_decimal", core.serialization.string().optional()),
@@ -25,6 +27,7 @@ export declare namespace UpdateCreditBundleDetailsRequestBody {
     export interface Raw {
         bundle_name: string;
         expiry_type?: UpdateCreditBundleDetailsRequestBodyExpiryType.Raw | null;
+        expiry_unit?: UpdateCreditBundleDetailsRequestBodyExpiryUnit.Raw | null;
         expiry_unit_count?: number | null;
         price_per_unit: number;
         price_per_unit_decimal?: string | null;

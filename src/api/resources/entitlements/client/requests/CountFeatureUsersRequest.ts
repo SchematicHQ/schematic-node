@@ -5,7 +5,10 @@
 /**
  * @example
  *     {
- *         featureId: "feature_id"
+ *         featureId: "feature_id",
+ *         q: "q",
+ *         limit: 1,
+ *         offset: 1
  *     }
  */
 export interface CountFeatureUsersRequest {

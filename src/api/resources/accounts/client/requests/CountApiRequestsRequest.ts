@@ -4,7 +4,13 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         q: "q",
+ *         requestType: "request_type",
+ *         environmentId: "environment_id",
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface CountApiRequestsRequest {
     q?: string;

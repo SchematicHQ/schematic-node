@@ -6,7 +6,13 @@ import * as Schematic from "../../../../index";
 
 /**
  * @example
- *     {}
+ *     {
+ *         creditId: "credit_id",
+ *         status: "active",
+ *         bundleType: "fixed",
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface ListCreditBundlesRequest {
     ids?: string | string[];

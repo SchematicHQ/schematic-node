@@ -5,7 +5,6 @@
 import * as Schematic from "../../../index";
 
 export interface ListPaymentMethodsResponse {
-    /** The returned resources */
     data: Schematic.PaymentMethodResponseData[];
     /** Input parameters */
     params: Schematic.ListPaymentMethodsParams;

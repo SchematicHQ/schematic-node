@@ -4,7 +4,11 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         name: "name",
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface CountBillingCreditsRequest {
     ids?: string | string[];

@@ -5,7 +5,6 @@
 import * as Schematic from "../../../index";
 
 export interface SearchBillingPricesResponse {
-    /** The returned resources */
     data: Schematic.BillingPriceView[];
     /** Input parameters */
     params: Schematic.SearchBillingPricesParams;

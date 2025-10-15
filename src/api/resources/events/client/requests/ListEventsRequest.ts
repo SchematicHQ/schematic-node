@@ -6,7 +6,14 @@ import * as Schematic from "../../../../index";
 
 /**
  * @example
- *     {}
+ *     {
+ *         companyId: "company_id",
+ *         eventSubtype: "event_subtype",
+ *         flagId: "flag_id",
+ *         userId: "user_id",
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface ListEventsRequest {
     companyId?: string;

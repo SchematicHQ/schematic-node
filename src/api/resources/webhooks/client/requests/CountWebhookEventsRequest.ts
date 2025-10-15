@@ -4,7 +4,12 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         q: "q",
+ *         webhookId: "webhook_id",
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface CountWebhookEventsRequest {
     ids?: string | string[];

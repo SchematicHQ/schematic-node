@@ -5,6 +5,7 @@
 import * as Schematic from "../index";
 
 export interface BillingProductPricing {
+    billingThreshold?: number;
     currency: string;
     interval: string;
     meterId?: string;
@@ -14,5 +15,6 @@ export interface BillingProductPricing {
     priceExternalId: string;
     productExternalId: string;
     quantity: number;
+    subscriptionItemExternalId?: string;
     usageType: Schematic.BillingProductPricingUsageType;
 }

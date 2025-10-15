@@ -13,11 +13,18 @@ export const BillingPlanCreditGrantResponseData: core.serialization.ObjectSchema
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     creditAmount: core.serialization.property("credit_amount", core.serialization.number()),
     creditId: core.serialization.property("credit_id", core.serialization.string()),
+    creditName: core.serialization.property("credit_name", core.serialization.string()),
+    creditPluralName: core.serialization.property("credit_plural_name", core.serialization.string().optional()),
+    creditSingularName: core.serialization.property("credit_singular_name", core.serialization.string().optional()),
+    expiryType: core.serialization.property("expiry_type", core.serialization.string().optional()),
+    expiryUnit: core.serialization.property("expiry_unit", core.serialization.string().optional()),
+    expiryUnitCount: core.serialization.property("expiry_unit_count", core.serialization.number().optional()),
     id: core.serialization.string(),
     planId: core.serialization.property("plan_id", core.serialization.string()),
     planName: core.serialization.property("plan_name", core.serialization.string()),
     resetCadence: core.serialization.property("reset_cadence", core.serialization.string()),
     resetStart: core.serialization.property("reset_start", core.serialization.string()),
+    resetType: core.serialization.property("reset_type", core.serialization.string().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
@@ -26,11 +33,18 @@ export declare namespace BillingPlanCreditGrantResponseData {
         created_at: string;
         credit_amount: number;
         credit_id: string;
+        credit_name: string;
+        credit_plural_name?: string | null;
+        credit_singular_name?: string | null;
+        expiry_type?: string | null;
+        expiry_unit?: string | null;
+        expiry_unit_count?: number | null;
         id: string;
         plan_id: string;
         plan_name: string;
         reset_cadence: string;
         reset_start: string;
+        reset_type?: string | null;
         updated_at: string;
     }
 }

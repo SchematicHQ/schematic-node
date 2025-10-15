@@ -16,6 +16,7 @@ export const PlanEntitlementResponseData: core.serialization.ObjectSchema<
     serializers.PlanEntitlementResponseData.Raw,
     Schematic.PlanEntitlementResponseData
 > = core.serialization.object({
+    billingThreshold: core.serialization.property("billing_threshold", core.serialization.number().optional()),
     consumptionRate: core.serialization.property("consumption_rate", core.serialization.number().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
@@ -47,6 +48,7 @@ export const PlanEntitlementResponseData: core.serialization.ObjectSchema<
 
 export declare namespace PlanEntitlementResponseData {
     export interface Raw {
+        billing_threshold?: number | null;
         consumption_rate?: number | null;
         created_at: string;
         environment_id: string;

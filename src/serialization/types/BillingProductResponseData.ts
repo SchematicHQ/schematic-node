@@ -12,7 +12,7 @@ export const BillingProductResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     accountId: core.serialization.property("account_id", core.serialization.string()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
-    currency: core.serialization.string(),
+    currency: core.serialization.string().optional(),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     externalId: core.serialization.property("external_id", core.serialization.string()),
     isActive: core.serialization.property("is_active", core.serialization.boolean()),
@@ -28,7 +28,7 @@ export declare namespace BillingProductResponseData {
     export interface Raw {
         account_id: string;
         created_at: string;
-        currency: string;
+        currency?: string | null;
         environment_id: string;
         external_id: string;
         is_active: boolean;

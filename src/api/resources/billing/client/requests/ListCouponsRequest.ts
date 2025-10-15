@@ -4,7 +4,12 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         isActive: true,
+ *         q: "q",
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface ListCouponsRequest {
     isActive?: boolean;

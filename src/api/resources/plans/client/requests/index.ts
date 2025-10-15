@@ -5,3 +5,4 @@ export { type CreatePlanRequestBody } from "./CreatePlanRequestBody";
 export { type UpdatePlanRequestBody } from "./UpdatePlanRequestBody";
 export { type UpsertBillingProductRequestBody } from "./UpsertBillingProductRequestBody";
 export { type CountPlansRequest } from "./CountPlansRequest";
+export { type ListPlanIssuesRequest } from "./ListPlanIssuesRequest";

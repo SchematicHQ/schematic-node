@@ -6,6 +6,7 @@ import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { CompatiblePlansResponseData } from "./CompatiblePlansResponseData";
+import { CheckoutSettingsResponseData } from "./CheckoutSettingsResponseData";
 import { OrderedPlansInGroup } from "./OrderedPlansInGroup";
 
 export const PlanGroupResponseData: core.serialization.ObjectSchema<
@@ -17,12 +18,32 @@ export const PlanGroupResponseData: core.serialization.ObjectSchema<
         core.serialization.list(CompatiblePlansResponseData),
     ),
     addOnIds: core.serialization.property("add_on_ids", core.serialization.list(core.serialization.string())),
+    checkoutSettings: core.serialization.property("checkout_settings", CheckoutSettingsResponseData),
     defaultPlanId: core.serialization.property("default_plan_id", core.serialization.string().optional()),
+    fallbackPlanId: core.serialization.property("fallback_plan_id", core.serialization.string().optional()),
     id: core.serialization.string(),
+    initialPlanId: core.serialization.property("initial_plan_id", core.serialization.string().optional()),
+    initialPlanPriceId: core.serialization.property("initial_plan_price_id", core.serialization.string().optional()),
     orderedAddOnIds: core.serialization.property("ordered_add_on_ids", core.serialization.list(OrderedPlansInGroup)),
     planIds: core.serialization.property("plan_ids", core.serialization.list(OrderedPlansInGroup)),
+    preventDowngradesWhenOverLimit: core.serialization.property(
+        "prevent_downgrades_when_over_limit",
+        core.serialization.boolean(),
+    ),
+    showCredits: core.serialization.property("show_credits", core.serialization.boolean()),
     showPeriodToggle: core.serialization.property("show_period_toggle", core.serialization.boolean()),
+    showZeroPriceAsFree: core.serialization.property("show_zero_price_as_free", core.serialization.boolean()),
+    syncCustomerBillingDetailsForTax: core.serialization.property(
+        "sync_customer_billing_details_for_tax",
+        core.serialization.boolean(),
+    ),
+    taxCollectionEnabled: core.serialization.property("tax_collection_enabled", core.serialization.boolean()),
     trialDays: core.serialization.property("trial_days", core.serialization.number().optional()),
+    trialExpiryPlanId: core.serialization.property("trial_expiry_plan_id", core.serialization.string().optional()),
+    trialExpiryPlanPriceId: core.serialization.property(
+        "trial_expiry_plan_price_id",
+        core.serialization.string().optional(),
+    ),
     trialPaymentMethodRequired: core.serialization.property(
         "trial_payment_method_required",
         core.serialization.boolean().optional(),
@@ -33,12 +54,23 @@ export declare namespace PlanGroupResponseData {
     export interface Raw {
         add_on_compatibilities: CompatiblePlansResponseData.Raw[];
         add_on_ids: string[];
+        checkout_settings: CheckoutSettingsResponseData.Raw;
         default_plan_id?: string | null;
+        fallback_plan_id?: string | null;
         id: string;
+        initial_plan_id?: string | null;
+        initial_plan_price_id?: string | null;
         ordered_add_on_ids: OrderedPlansInGroup.Raw[];
         plan_ids: OrderedPlansInGroup.Raw[];
+        prevent_downgrades_when_over_limit: boolean;
+        show_credits: boolean;
         show_period_toggle: boolean;
+        show_zero_price_as_free: boolean;
+        sync_customer_billing_details_for_tax: boolean;
+        tax_collection_enabled: boolean;
         trial_days?: number | null;
+        trial_expiry_plan_id?: string | null;
+        trial_expiry_plan_price_id?: string | null;
         trial_payment_method_required?: boolean | null;
     }
 }

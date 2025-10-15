@@ -10,13 +10,17 @@ export interface ComponentHydrateResponseData {
     activeUsageBasedEntitlements: Schematic.UsageBasedEntitlementResponseData[];
     addOnCompatibilities: Schematic.CompatiblePlans[];
     capabilities?: Schematic.ComponentCapabilities;
+    checkoutSettings: Schematic.ComponentCheckoutSettings;
     company?: Schematic.CompanyDetailResponseData;
     component?: Schematic.ComponentResponseData;
     creditBundles: Schematic.BillingCreditBundleView[];
     creditGrants: Schematic.CreditCompanyGrantView[];
     defaultPlan?: Schematic.PlanDetailResponseData;
     featureUsage?: Schematic.FeatureUsageDetailResponseData;
+    postTrialPlan?: Schematic.PlanDetailResponseData;
+    showCredits: boolean;
     showPeriodToggle: boolean;
+    showZeroPriceAsFree: boolean;
     stripeEmbed?: Schematic.StripeEmbedInfo;
     subscription?: Schematic.CompanySubscriptionResponseData;
     trialPaymentMethodRequired?: boolean;

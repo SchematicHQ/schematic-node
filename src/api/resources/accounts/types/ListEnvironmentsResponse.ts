@@ -5,7 +5,6 @@
 import * as Schematic from "../../../index";
 
 export interface ListEnvironmentsResponse {
-    /** The returned resources */
     data: Schematic.EnvironmentResponseData[];
     /** Input parameters */
     params: Schematic.ListEnvironmentsParams;

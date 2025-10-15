@@ -5,7 +5,10 @@
 /**
  * @example
  *     {
- *         definitionId: "definition_id"
+ *         definitionId: "definition_id",
+ *         q: "q",
+ *         limit: 1,
+ *         offset: 1
  *     }
  */
 export interface GetEntityTraitValuesRequest {

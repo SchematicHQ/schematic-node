@@ -8,11 +8,11 @@ import * as core from "../../core";
 
 export const CountResponse: core.serialization.ObjectSchema<serializers.CountResponse.Raw, Schematic.CountResponse> =
     core.serialization.object({
-        count: core.serialization.number(),
+        count: core.serialization.number().optional(),
     });
 
 export declare namespace CountResponse {
     export interface Raw {
-        count: number;
+        count?: number | null;
     }
 }

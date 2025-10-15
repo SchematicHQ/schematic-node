@@ -7,7 +7,8 @@ import * as Schematic from "../index";
 export interface BillingProductDetailResponseData {
     accountId: string;
     createdAt: Date;
-    currency: string;
+    /** Deprecated; currencies are associated with prices, not products */
+    currency?: string;
     environmentId: string;
     externalId: string;
     isActive: boolean;

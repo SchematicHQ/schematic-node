@@ -5,10 +5,11 @@
 /**
  * The type of allocation that is being used.
  */
-export type FeatureCompanyUserResponseDataAllocationType = "boolean" | "numeric" | "trait" | "unlimited";
+export type FeatureCompanyUserResponseDataAllocationType = "boolean" | "numeric" | "trait" | "unlimited" | "unknown";
 export const FeatureCompanyUserResponseDataAllocationType = {
     Boolean: "boolean",
     Numeric: "numeric",
     Trait: "trait",
     Unlimited: "unlimited",
+    Unknown: "unknown",
 } as const;

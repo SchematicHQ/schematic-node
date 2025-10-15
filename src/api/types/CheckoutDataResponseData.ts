@@ -4,9 +4,6 @@
 
 import * as Schematic from "../index";
 
-/**
- * The requested resource
- */
 export interface CheckoutDataResponseData {
     activeAddOns: Schematic.PlanDetailResponseData[];
     activePlan?: Schematic.PlanDetailResponseData;

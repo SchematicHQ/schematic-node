@@ -5,7 +5,6 @@
 import * as Schematic from "../../../index";
 
 export interface ListCrmProductsResponse {
-    /** The returned resources */
     data: Schematic.CrmProductResponseData[];
     /** Input parameters */
     params: Schematic.ListCrmProductsParams;

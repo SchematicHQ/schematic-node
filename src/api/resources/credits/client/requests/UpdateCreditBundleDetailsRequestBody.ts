@@ -14,6 +14,7 @@ import * as Schematic from "../../../../index";
 export interface UpdateCreditBundleDetailsRequestBody {
     bundleName: string;
     expiryType?: Schematic.UpdateCreditBundleDetailsRequestBodyExpiryType;
+    expiryUnit?: Schematic.UpdateCreditBundleDetailsRequestBodyExpiryUnit;
     expiryUnitCount?: number;
     pricePerUnit: number;
     pricePerUnitDecimal?: string;

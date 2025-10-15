@@ -14,6 +14,9 @@ export interface CreditCompanyGrantView {
     creditIcon?: string;
     creditName: string;
     expiresAt?: Date;
+    expiryType?: string;
+    expiryUnit?: string;
+    expiryUnitCount?: number;
     grantReason: string;
     id: string;
     planId?: string;

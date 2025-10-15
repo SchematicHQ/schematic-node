@@ -5,7 +5,6 @@
 import * as Schematic from "../../../index";
 
 export interface ListCreditBundlesResponse {
-    /** The returned resources */
     data: Schematic.BillingCreditBundleResponseData[];
     /** Input parameters */
     params: Schematic.ListCreditBundlesParams;

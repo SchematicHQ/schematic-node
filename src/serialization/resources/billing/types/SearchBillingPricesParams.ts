@@ -12,24 +12,35 @@ export const SearchBillingPricesParams: core.serialization.ObjectSchema<
     serializers.SearchBillingPricesParams.Raw,
     Schematic.SearchBillingPricesParams
 > = core.serialization.object({
+    forInitialPlan: core.serialization.property("for_initial_plan", core.serialization.boolean().optional()),
+    forTrialExpiryPlan: core.serialization.property("for_trial_expiry_plan", core.serialization.boolean().optional()),
     ids: core.serialization.list(core.serialization.string()).optional(),
     interval: core.serialization.string().optional(),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
     price: core.serialization.number().optional(),
+    productId: core.serialization.property("product_id", core.serialization.string().optional()),
     q: core.serialization.string().optional(),
+    requiresPaymentMethod: core.serialization.property(
+        "requires_payment_method",
+        core.serialization.boolean().optional(),
+    ),
     tiersMode: core.serialization.property("tiers_mode", SearchBillingPricesResponseParamsTiersMode.optional()),
     usageType: core.serialization.property("usage_type", SearchBillingPricesResponseParamsUsageType.optional()),
 });
 
 export declare namespace SearchBillingPricesParams {
     export interface Raw {
+        for_initial_plan?: boolean | null;
+        for_trial_expiry_plan?: boolean | null;
         ids?: string[] | null;
         interval?: string | null;
         limit?: number | null;
         offset?: number | null;
         price?: number | null;
+        product_id?: string | null;
         q?: string | null;
+        requires_payment_method?: boolean | null;
         tiers_mode?: SearchBillingPricesResponseParamsTiersMode.Raw | null;
         usage_type?: SearchBillingPricesResponseParamsUsageType.Raw | null;
     }

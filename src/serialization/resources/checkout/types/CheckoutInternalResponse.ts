@@ -5,19 +5,19 @@
 import * as serializers from "../../../index";
 import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
-import { BillingSubscriptionResponseData } from "../../../types/BillingSubscriptionResponseData";
+import { CheckoutSubscription } from "../../../types/CheckoutSubscription";
 
 export const CheckoutInternalResponse: core.serialization.ObjectSchema<
     serializers.CheckoutInternalResponse.Raw,
     Schematic.CheckoutInternalResponse
 > = core.serialization.object({
-    data: BillingSubscriptionResponseData,
+    data: CheckoutSubscription,
     params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
 export declare namespace CheckoutInternalResponse {
     export interface Raw {
-        data: BillingSubscriptionResponseData.Raw;
+        data: CheckoutSubscription.Raw;
         params: Record<string, unknown>;
     }
 }

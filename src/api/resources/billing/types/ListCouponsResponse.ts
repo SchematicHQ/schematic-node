@@ -5,7 +5,6 @@
 import * as Schematic from "../../../index";
 
 export interface ListCouponsResponse {
-    /** The returned resources */
     data: Schematic.BillingCouponResponseData[];
     /** Input parameters */
     params: Schematic.ListCouponsParams;

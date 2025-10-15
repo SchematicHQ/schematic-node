@@ -32,6 +32,7 @@ export interface CompanyPlanDetailResponseData {
     planType: string;
     trialDays?: number;
     updatedAt: Date;
+    usageViolations: Schematic.FeatureUsageResponseData[];
     valid: boolean;
     yearlyPrice?: Schematic.BillingPriceResponseData;
 }

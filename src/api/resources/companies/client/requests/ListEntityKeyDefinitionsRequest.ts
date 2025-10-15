@@ -6,7 +6,12 @@ import * as Schematic from "../../../../index";
 
 /**
  * @example
- *     {}
+ *     {
+ *         entityType: "company",
+ *         q: "q",
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface ListEntityKeyDefinitionsRequest {
     entityType?: Schematic.ListEntityKeyDefinitionsRequestEntityType;

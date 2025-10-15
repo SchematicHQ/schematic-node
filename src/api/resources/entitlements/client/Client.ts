@@ -15,7 +15,7 @@ export declare namespace Entitlements {
         environment?: core.Supplier<environments.SchematicEnvironment | string>;
         /** Specify a custom URL to connect the client to. */
         baseUrl?: core.Supplier<string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -32,7 +32,7 @@ export declare namespace Entitlements {
 }
 
 export class Entitlements {
-    constructor(protected readonly _options: Entitlements.Options) {}
+    constructor(protected readonly _options: Entitlements.Options = {}) {}
 
     /**
      * @param {Schematic.ListCompanyOverridesRequest} request
@@ -45,7 +45,14 @@ export class Entitlements {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.entitlements.listCompanyOverrides()
+     *     await client.entitlements.listCompanyOverrides({
+     *         companyId: "company_id",
+     *         featureId: "feature_id",
+     *         withoutExpired: true,
+     *         q: "q",
+     *         limit: 1,
+     *         offset: 1
+     *     })
      */
     public listCompanyOverrides(
         request: Schematic.ListCompanyOverridesRequest = {},
@@ -119,8 +126,8 @@ export class Entitlements {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -268,8 +275,8 @@ export class Entitlements {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -414,8 +421,8 @@ export class Entitlements {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -556,8 +563,8 @@ export class Entitlements {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -705,8 +712,8 @@ export class Entitlements {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -827,7 +834,14 @@ export class Entitlements {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.entitlements.countCompanyOverrides()
+     *     await client.entitlements.countCompanyOverrides({
+     *         companyId: "company_id",
+     *         featureId: "feature_id",
+     *         withoutExpired: true,
+     *         q: "q",
+     *         limit: 1,
+     *         offset: 1
+     *     })
      */
     public countCompanyOverrides(
         request: Schematic.CountCompanyOverridesRequest = {},
@@ -901,8 +915,8 @@ export class Entitlements {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1023,7 +1037,10 @@ export class Entitlements {
      *
      * @example
      *     await client.entitlements.listFeatureCompanies({
-     *         featureId: "feature_id"
+     *         featureId: "feature_id",
+     *         q: "q",
+     *         limit: 1,
+     *         offset: 1
      *     })
      */
     public listFeatureCompanies(
@@ -1063,8 +1080,8 @@ export class Entitlements {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1185,7 +1202,10 @@ export class Entitlements {
      *
      * @example
      *     await client.entitlements.countFeatureCompanies({
-     *         featureId: "feature_id"
+     *         featureId: "feature_id",
+     *         q: "q",
+     *         limit: 1,
+     *         offset: 1
      *     })
      */
     public countFeatureCompanies(
@@ -1225,8 +1245,8 @@ export class Entitlements {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1346,7 +1366,13 @@ export class Entitlements {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.entitlements.listFeatureUsage()
+     *     await client.entitlements.listFeatureUsage({
+     *         companyId: "company_id",
+     *         q: "q",
+     *         withoutNegativeEntitlements: true,
+     *         limit: 1,
+     *         offset: 1
+     *     })
      */
     public listFeatureUsage(
         request: Schematic.ListFeatureUsageRequest = {},
@@ -1404,8 +1430,8 @@ export class Entitlements {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1525,7 +1551,13 @@ export class Entitlements {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.entitlements.countFeatureUsage()
+     *     await client.entitlements.countFeatureUsage({
+     *         companyId: "company_id",
+     *         q: "q",
+     *         withoutNegativeEntitlements: true,
+     *         limit: 1,
+     *         offset: 1
+     *     })
      */
     public countFeatureUsage(
         request: Schematic.CountFeatureUsageRequest = {},
@@ -1583,8 +1615,8 @@ export class Entitlements {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1705,7 +1737,10 @@ export class Entitlements {
      *
      * @example
      *     await client.entitlements.listFeatureUsers({
-     *         featureId: "feature_id"
+     *         featureId: "feature_id",
+     *         q: "q",
+     *         limit: 1,
+     *         offset: 1
      *     })
      */
     public listFeatureUsers(
@@ -1745,8 +1780,8 @@ export class Entitlements {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1867,7 +1902,10 @@ export class Entitlements {
      *
      * @example
      *     await client.entitlements.countFeatureUsers({
-     *         featureId: "feature_id"
+     *         featureId: "feature_id",
+     *         q: "q",
+     *         limit: 1,
+     *         offset: 1
      *     })
      */
     public countFeatureUsers(
@@ -1907,8 +1945,8 @@ export class Entitlements {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2028,7 +2066,14 @@ export class Entitlements {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.entitlements.listPlanEntitlements()
+     *     await client.entitlements.listPlanEntitlements({
+     *         featureId: "feature_id",
+     *         planId: "plan_id",
+     *         q: "q",
+     *         withMeteredProducts: true,
+     *         limit: 1,
+     *         offset: 1
+     *     })
      */
     public listPlanEntitlements(
         request: Schematic.ListPlanEntitlementsRequest = {},
@@ -2102,8 +2147,8 @@ export class Entitlements {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2251,8 +2296,8 @@ export class Entitlements {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2397,8 +2442,8 @@ export class Entitlements {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2539,8 +2584,8 @@ export class Entitlements {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2688,8 +2733,8 @@ export class Entitlements {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2810,7 +2855,14 @@ export class Entitlements {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.entitlements.countPlanEntitlements()
+     *     await client.entitlements.countPlanEntitlements({
+     *         featureId: "feature_id",
+     *         planId: "plan_id",
+     *         q: "q",
+     *         withMeteredProducts: true,
+     *         limit: 1,
+     *         offset: 1
+     *     })
      */
     public countPlanEntitlements(
         request: Schematic.CountPlanEntitlementsRequest = {},
@@ -2884,8 +2936,8 @@ export class Entitlements {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -3035,8 +3087,8 @@ export class Entitlements {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

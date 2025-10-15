@@ -4,9 +4,6 @@
 
 import * as Schematic from "../index";
 
-/**
- * The updated resource
- */
 export interface PlanAudienceDetailResponseData {
     conditionGroups: Schematic.RuleConditionGroupDetailResponseData[];
     conditions: Schematic.RuleConditionDetailResponseData[];

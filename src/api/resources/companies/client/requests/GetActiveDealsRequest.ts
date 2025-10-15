@@ -6,7 +6,9 @@
  * @example
  *     {
  *         companyId: "company_id",
- *         dealStage: "deal_stage"
+ *         dealStage: "deal_stage",
+ *         limit: 1,
+ *         offset: 1
  *     }
  */
 export interface GetActiveDealsRequest {

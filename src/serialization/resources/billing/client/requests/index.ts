@@ -5,4 +5,4 @@ export { CreateMeterRequestBody } from "./CreateMeterRequestBody";
 export { CreatePaymentMethodRequestBody } from "./CreatePaymentMethodRequestBody";
 export { CreateBillingPriceRequestBody } from "./CreateBillingPriceRequestBody";
 export { CreateBillingProductRequestBody } from "./CreateBillingProductRequestBody";
-export { CreateBillingSubscriptionsRequestBody } from "./CreateBillingSubscriptionsRequestBody";
+export { CreateBillingSubscriptionRequestBody } from "./CreateBillingSubscriptionRequestBody";

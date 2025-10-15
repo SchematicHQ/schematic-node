@@ -5,7 +5,6 @@
 import * as Schematic from "../../../index";
 
 export interface ListMetersResponse {
-    /** The returned resources */
     data: Schematic.BillingMeterResponseData[];
     /** Input parameters */
     params: Schematic.ListMetersParams;

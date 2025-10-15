@@ -25,7 +25,7 @@ export declare namespace SchematicClient {
         environment?: core.Supplier<environments.SchematicEnvironment | string>;
         /** Specify a custom URL to connect the client to. */
         baseUrl?: core.Supplier<string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -58,7 +58,7 @@ export class SchematicClient {
     protected _accesstokens: Accesstokens | undefined;
     protected _webhooks: Webhooks | undefined;
 
-    constructor(protected readonly _options: SchematicClient.Options) {}
+    constructor(protected readonly _options: SchematicClient.Options = {}) {}
 
     public get accounts(): Accounts {
         return (this._accounts ??= new Accounts(this._options));

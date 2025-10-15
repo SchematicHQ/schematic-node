@@ -9,6 +9,7 @@ import { CompanyPlanDetailResponseData } from "./CompanyPlanDetailResponseData";
 import { UsageBasedEntitlementResponseData } from "./UsageBasedEntitlementResponseData";
 import { CompatiblePlans } from "./CompatiblePlans";
 import { ComponentCapabilities } from "./ComponentCapabilities";
+import { ComponentCheckoutSettings } from "./ComponentCheckoutSettings";
 import { CompanyDetailResponseData } from "./CompanyDetailResponseData";
 import { ComponentResponseData } from "./ComponentResponseData";
 import { BillingCreditBundleView } from "./BillingCreditBundleView";
@@ -34,6 +35,7 @@ export const ComponentPreviewResponseData: core.serialization.ObjectSchema<
         core.serialization.list(CompatiblePlans),
     ),
     capabilities: ComponentCapabilities.optional(),
+    checkoutSettings: core.serialization.property("checkout_settings", ComponentCheckoutSettings),
     company: CompanyDetailResponseData.optional(),
     component: ComponentResponseData.optional(),
     creditBundles: core.serialization.property("credit_bundles", core.serialization.list(BillingCreditBundleView)),
@@ -41,7 +43,10 @@ export const ComponentPreviewResponseData: core.serialization.ObjectSchema<
     defaultPlan: core.serialization.property("default_plan", PlanDetailResponseData.optional()),
     featureUsage: core.serialization.property("feature_usage", FeatureUsageDetailResponseData.optional()),
     invoices: core.serialization.list(InvoiceResponseData),
+    postTrialPlan: core.serialization.property("post_trial_plan", PlanDetailResponseData.optional()),
+    showCredits: core.serialization.property("show_credits", core.serialization.boolean()),
     showPeriodToggle: core.serialization.property("show_period_toggle", core.serialization.boolean()),
+    showZeroPriceAsFree: core.serialization.property("show_zero_price_as_free", core.serialization.boolean()),
     stripeEmbed: core.serialization.property("stripe_embed", StripeEmbedInfo.optional()),
     subscription: CompanySubscriptionResponseData.optional(),
     trialPaymentMethodRequired: core.serialization.property(
@@ -58,6 +63,7 @@ export declare namespace ComponentPreviewResponseData {
         active_usage_based_entitlements: UsageBasedEntitlementResponseData.Raw[];
         add_on_compatibilities: CompatiblePlans.Raw[];
         capabilities?: ComponentCapabilities.Raw | null;
+        checkout_settings: ComponentCheckoutSettings.Raw;
         company?: CompanyDetailResponseData.Raw | null;
         component?: ComponentResponseData.Raw | null;
         credit_bundles: BillingCreditBundleView.Raw[];
@@ -65,7 +71,10 @@ export declare namespace ComponentPreviewResponseData {
         default_plan?: PlanDetailResponseData.Raw | null;
         feature_usage?: FeatureUsageDetailResponseData.Raw | null;
         invoices: InvoiceResponseData.Raw[];
+        post_trial_plan?: PlanDetailResponseData.Raw | null;
+        show_credits: boolean;
         show_period_toggle: boolean;
+        show_zero_price_as_free: boolean;
         stripe_embed?: StripeEmbedInfo.Raw | null;
         subscription?: CompanySubscriptionResponseData.Raw | null;
         trial_payment_method_required?: boolean | null;

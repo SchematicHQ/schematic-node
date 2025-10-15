@@ -4,11 +4,19 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         featureId: "feature_id",
+ *         q: "q",
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface ListFlagsRequest {
     featureId?: string;
     ids?: string | string[];
+    /**
+     * Search by flag name, key, or ID
+     */
     q?: string;
     /**
      * Page limit (default 100)

@@ -15,6 +15,7 @@ export interface BillingCreditBundleResponseData {
     expiryType: string;
     expiryUnit: string;
     expiryUnitCount?: number;
+    hasGrants: boolean;
     id: string;
     name: string;
     pluralName?: string;
