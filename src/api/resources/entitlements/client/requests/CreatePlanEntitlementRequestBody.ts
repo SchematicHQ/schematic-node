@@ -14,6 +14,7 @@ import * as Schematic from "../../../../index";
  */
 export interface CreatePlanEntitlementRequestBody {
     billingProductId?: string;
+    billingThreshold?: number;
     creditConsumptionRate?: number;
     currency?: string;
     featureId: string;

@@ -14,7 +14,7 @@ export declare namespace Accounts {
         environment?: core.Supplier<environments.SchematicEnvironment | string>;
         /** Specify a custom URL to connect the client to. */
         baseUrl?: core.Supplier<string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -31,7 +31,7 @@ export declare namespace Accounts {
 }
 
 export class Accounts {
-    constructor(protected readonly _options: Accounts.Options) {}
+    constructor(protected readonly _options: Accounts.Options = {}) {}
 
     /**
      * @param {Schematic.ListApiKeysRequest} request
@@ -45,7 +45,10 @@ export class Accounts {
      *
      * @example
      *     await client.accounts.listApiKeys({
-     *         requireEnvironment: true
+     *         environmentId: "environment_id",
+     *         requireEnvironment: true,
+     *         limit: 1,
+     *         offset: 1
      *     })
      */
     public listApiKeys(
@@ -85,8 +88,8 @@ export class Accounts {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -232,8 +235,8 @@ export class Accounts {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -376,8 +379,8 @@ export class Accounts {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -512,8 +515,8 @@ export class Accounts {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -657,8 +660,8 @@ export class Accounts {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -778,7 +781,10 @@ export class Accounts {
      *
      * @example
      *     await client.accounts.countApiKeys({
-     *         requireEnvironment: true
+     *         environmentId: "environment_id",
+     *         requireEnvironment: true,
+     *         limit: 1,
+     *         offset: 1
      *     })
      */
     public countApiKeys(
@@ -818,8 +824,8 @@ export class Accounts {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -939,7 +945,13 @@ export class Accounts {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.accounts.listApiRequests()
+     *     await client.accounts.listApiRequests({
+     *         q: "q",
+     *         requestType: "request_type",
+     *         environmentId: "environment_id",
+     *         limit: 1,
+     *         offset: 1
+     *     })
      */
     public listApiRequests(
         request: Schematic.ListApiRequestsRequest = {},
@@ -985,8 +997,8 @@ export class Accounts {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1129,8 +1141,8 @@ export class Accounts {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1240,7 +1252,13 @@ export class Accounts {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.accounts.countApiRequests()
+     *     await client.accounts.countApiRequests({
+     *         q: "q",
+     *         requestType: "request_type",
+     *         environmentId: "environment_id",
+     *         limit: 1,
+     *         offset: 1
+     *     })
      */
     public countApiRequests(
         request: Schematic.CountApiRequestsRequest = {},
@@ -1286,8 +1304,8 @@ export class Accounts {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1407,7 +1425,10 @@ export class Accounts {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.accounts.listEnvironments()
+     *     await client.accounts.listEnvironments({
+     *         limit: 1,
+     *         offset: 1
+     *     })
      */
     public listEnvironments(
         request: Schematic.ListEnvironmentsRequest = {},
@@ -1449,8 +1470,8 @@ export class Accounts {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1597,8 +1618,8 @@ export class Accounts {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1741,8 +1762,8 @@ export class Accounts {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1879,8 +1900,8 @@ export class Accounts {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2026,8 +2047,8 @@ export class Accounts {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2169,8 +2190,8 @@ export class Accounts {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

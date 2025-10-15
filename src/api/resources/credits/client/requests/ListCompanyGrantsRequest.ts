@@ -6,7 +6,13 @@ import * as Schematic from "../../../../index";
 
 /**
  * @example
- *     {}
+ *     {
+ *         companyId: "company_id",
+ *         order: "created_at",
+ *         dir: "asc",
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface ListCompanyGrantsRequest {
     companyId?: string;

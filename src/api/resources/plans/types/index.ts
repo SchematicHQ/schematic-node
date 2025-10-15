@@ -17,3 +17,5 @@ export * from "./CountPlansRequestPlanType";
 export * from "./CountPlansResponseParamsPlanType";
 export * from "./CountPlansParams";
 export * from "./CountPlansResponse";
+export * from "./ListPlanIssuesParams";
+export * from "./ListPlanIssuesResponse";

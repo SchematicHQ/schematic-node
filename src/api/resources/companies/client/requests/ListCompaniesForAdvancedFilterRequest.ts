@@ -6,7 +6,16 @@ import * as Schematic from "../../../../index";
 
 /**
  * @example
- *     {}
+ *     {
+ *         monetizedSubscriptions: true,
+ *         q: "q",
+ *         withoutPlan: true,
+ *         withoutSubscription: true,
+ *         sortOrderColumn: "sort_order_column",
+ *         sortOrderDirection: "asc",
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface ListCompaniesForAdvancedFilterRequest {
     /**
@@ -21,6 +30,10 @@ export interface ListCompaniesForAdvancedFilterRequest {
      * Filter companies by one or more feature IDs (each ID starts with feat_)
      */
     featureIds?: string | string[];
+    /**
+     * Filter companies by one or more credit type IDs (each ID starts with bcrd_)
+     */
+    creditTypeIds?: string | string[];
     /**
      * Filter companies by one or more subscription statuses (active, canceled, expired, incomplete, incomplete_expired, past_due, paused, trialing, unpaid)
      */
@@ -54,7 +67,7 @@ export interface ListCompaniesForAdvancedFilterRequest {
      */
     sortOrderDirection?: Schematic.ListCompaniesForAdvancedFilterRequestSortOrderDirection;
     /**
-     * Select the display columns to return (e.g. plan, subscription, users, last_seen)
+     * Select the display columns to return (e.g. plan, subscription, users, last_seen_at)
      */
     displayProperties?: string | string[];
     /**

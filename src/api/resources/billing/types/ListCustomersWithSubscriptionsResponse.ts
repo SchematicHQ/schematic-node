@@ -5,7 +5,6 @@
 import * as Schematic from "../../../index";
 
 export interface ListCustomersWithSubscriptionsResponse {
-    /** The returned resources */
     data: Schematic.BillingCustomerWithSubscriptionsResponseData[];
     /** Input parameters */
     params: Schematic.ListCustomersWithSubscriptionsParams;

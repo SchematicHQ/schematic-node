@@ -4,7 +4,13 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         companyId: "company_id",
+ *         q: "q",
+ *         withoutNegativeEntitlements: true,
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface CountFeatureUsageRequest {
     companyId?: string;

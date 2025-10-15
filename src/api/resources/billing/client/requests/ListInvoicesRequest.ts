@@ -5,8 +5,11 @@
 /**
  * @example
  *     {
+ *         companyId: "company_id",
  *         customerExternalId: "customer_external_id",
- *         subscriptionExternalId: "subscription_external_id"
+ *         subscriptionExternalId: "subscription_external_id",
+ *         limit: 1,
+ *         offset: 1
  *     }
  */
 export interface ListInvoicesRequest {

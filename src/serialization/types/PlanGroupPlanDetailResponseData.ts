@@ -9,6 +9,7 @@ import { BillingProductDetailResponseData } from "./BillingProductDetailResponse
 import { CustomPlanViewConfigResponseData } from "./CustomPlanViewConfigResponseData";
 import { PlanEntitlementResponseData } from "./PlanEntitlementResponseData";
 import { FeatureDetailResponseData } from "./FeatureDetailResponseData";
+import { BillingPlanCreditGrantResponseData } from "./BillingPlanCreditGrantResponseData";
 import { BillingPriceResponseData } from "./BillingPriceResponseData";
 
 export const PlanGroupPlanDetailResponseData: core.serialization.ObjectSchema<
@@ -31,6 +32,10 @@ export const PlanGroupPlanDetailResponseData: core.serialization.ObjectSchema<
     features: core.serialization.list(FeatureDetailResponseData),
     icon: core.serialization.string(),
     id: core.serialization.string(),
+    includedCreditGrants: core.serialization.property(
+        "included_credit_grants",
+        core.serialization.list(BillingPlanCreditGrantResponseData).optional(),
+    ),
     isCustom: core.serialization.property("is_custom", core.serialization.boolean()),
     isDefault: core.serialization.property("is_default", core.serialization.boolean()),
     isFree: core.serialization.property("is_free", core.serialization.boolean()),
@@ -59,6 +64,7 @@ export declare namespace PlanGroupPlanDetailResponseData {
         features: FeatureDetailResponseData.Raw[];
         icon: string;
         id: string;
+        included_credit_grants?: BillingPlanCreditGrantResponseData.Raw[] | null;
         is_custom: boolean;
         is_default: boolean;
         is_free: boolean;

@@ -14,7 +14,7 @@ export declare namespace Plans {
         environment?: core.Supplier<environments.SchematicEnvironment | string>;
         /** Specify a custom URL to connect the client to. */
         baseUrl?: core.Supplier<string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -31,7 +31,7 @@ export declare namespace Plans {
 }
 
 export class Plans {
-    constructor(protected readonly _options: Plans.Options) {}
+    constructor(protected readonly _options: Plans.Options = {}) {}
 
     /**
      * @param {string} companyPlanId - company_plan_id
@@ -73,8 +73,8 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -219,8 +219,8 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -370,8 +370,8 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -517,8 +517,8 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -639,7 +639,21 @@ export class Plans {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.plans.listPlans()
+     *     await client.plans.listPlans({
+     *         companyId: "company_id",
+     *         forFallbackPlan: true,
+     *         forInitialPlan: true,
+     *         forTrialExpiryPlan: true,
+     *         hasProductId: true,
+     *         planType: "plan",
+     *         q: "q",
+     *         requiresPaymentMethod: true,
+     *         withoutEntitlementFor: "without_entitlement_for",
+     *         withoutProductId: true,
+     *         withoutPaidProductId: true,
+     *         limit: 1,
+     *         offset: 1
+     *     })
      */
     public listPlans(
         request: Schematic.ListPlansRequest = {},
@@ -654,10 +668,14 @@ export class Plans {
     ): Promise<core.WithRawResponse<Schematic.ListPlansResponse>> {
         const {
             companyId,
+            forFallbackPlan,
+            forInitialPlan,
+            forTrialExpiryPlan,
             hasProductId,
             ids,
             planType,
             q,
+            requiresPaymentMethod,
             withoutEntitlementFor,
             withoutProductId,
             withoutPaidProductId,
@@ -667,6 +685,18 @@ export class Plans {
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (companyId != null) {
             _queryParams["company_id"] = companyId;
+        }
+
+        if (forFallbackPlan != null) {
+            _queryParams["for_fallback_plan"] = forFallbackPlan.toString();
+        }
+
+        if (forInitialPlan != null) {
+            _queryParams["for_initial_plan"] = forInitialPlan.toString();
+        }
+
+        if (forTrialExpiryPlan != null) {
+            _queryParams["for_trial_expiry_plan"] = forTrialExpiryPlan.toString();
         }
 
         if (hasProductId != null) {
@@ -689,6 +719,10 @@ export class Plans {
 
         if (q != null) {
             _queryParams["q"] = q;
+        }
+
+        if (requiresPaymentMethod != null) {
+            _queryParams["requires_payment_method"] = requiresPaymentMethod.toString();
         }
 
         if (withoutEntitlementFor != null) {
@@ -722,8 +756,8 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -871,8 +905,8 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1015,8 +1049,8 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1153,8 +1187,8 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1298,8 +1332,8 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1448,8 +1482,8 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1571,7 +1605,21 @@ export class Plans {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.plans.countPlans()
+     *     await client.plans.countPlans({
+     *         companyId: "company_id",
+     *         forFallbackPlan: true,
+     *         forInitialPlan: true,
+     *         forTrialExpiryPlan: true,
+     *         hasProductId: true,
+     *         planType: "plan",
+     *         q: "q",
+     *         requiresPaymentMethod: true,
+     *         withoutEntitlementFor: "without_entitlement_for",
+     *         withoutProductId: true,
+     *         withoutPaidProductId: true,
+     *         limit: 1,
+     *         offset: 1
+     *     })
      */
     public countPlans(
         request: Schematic.CountPlansRequest = {},
@@ -1586,10 +1634,14 @@ export class Plans {
     ): Promise<core.WithRawResponse<Schematic.CountPlansResponse>> {
         const {
             companyId,
+            forFallbackPlan,
+            forInitialPlan,
+            forTrialExpiryPlan,
             hasProductId,
             ids,
             planType,
             q,
+            requiresPaymentMethod,
             withoutEntitlementFor,
             withoutProductId,
             withoutPaidProductId,
@@ -1599,6 +1651,18 @@ export class Plans {
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (companyId != null) {
             _queryParams["company_id"] = companyId;
+        }
+
+        if (forFallbackPlan != null) {
+            _queryParams["for_fallback_plan"] = forFallbackPlan.toString();
+        }
+
+        if (forInitialPlan != null) {
+            _queryParams["for_initial_plan"] = forInitialPlan.toString();
+        }
+
+        if (forTrialExpiryPlan != null) {
+            _queryParams["for_trial_expiry_plan"] = forTrialExpiryPlan.toString();
         }
 
         if (hasProductId != null) {
@@ -1621,6 +1685,10 @@ export class Plans {
 
         if (q != null) {
             _queryParams["q"] = q;
+        }
+
+        if (requiresPaymentMethod != null) {
+            _queryParams["requires_payment_method"] = requiresPaymentMethod.toString();
         }
 
         if (withoutEntitlementFor != null) {
@@ -1654,8 +1722,8 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1756,6 +1824,156 @@ export class Plans {
                 });
             case "timeout":
                 throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /plans/count.");
+            case "unknown":
+                throw new errors.SchematicError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * @param {Schematic.ListPlanIssuesRequest} request
+     * @param {Plans.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.BadRequestError}
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
+     * @throws {@link Schematic.InternalServerError}
+     *
+     * @example
+     *     await client.plans.listPlanIssues({
+     *         planId: "plan_id"
+     *     })
+     */
+    public listPlanIssues(
+        request: Schematic.ListPlanIssuesRequest,
+        requestOptions?: Plans.RequestOptions,
+    ): core.HttpResponsePromise<Schematic.ListPlanIssuesResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__listPlanIssues(request, requestOptions));
+    }
+
+    private async __listPlanIssues(
+        request: Schematic.ListPlanIssuesRequest,
+        requestOptions?: Plans.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.ListPlanIssuesResponse>> {
+        const { planId } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        _queryParams["plan_id"] = planId;
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "plans/issues",
+            ),
+            method: "GET",
+            headers: {
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            queryParameters: _queryParams,
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.ListPlanIssuesResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Schematic.BadRequestError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.SchematicError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.SchematicTimeoutError("Timeout exceeded when calling GET /plans/issues.");
             case "unknown":
                 throw new errors.SchematicError({
                     message: _response.error.errorMessage,

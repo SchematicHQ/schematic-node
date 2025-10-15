@@ -8,7 +8,9 @@ import * as Schematic from "../../../index";
  * Input parameters
  */
 export interface CountCompaniesForAdvancedFilterParams {
-    /** Select the display columns to return (e.g. plan, subscription, users, last_seen) */
+    /** Filter companies by one or more credit type IDs (each ID starts with bcrd_) */
+    creditTypeIds?: string[];
+    /** Select the display columns to return (e.g. plan, subscription, users, last_seen_at) */
     displayProperties?: string[];
     /** Filter companies by one or more feature IDs (each ID starts with feat_) */
     featureIds?: string[];

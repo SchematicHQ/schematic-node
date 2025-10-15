@@ -4,15 +4,13 @@
 
 import * as Schematic from "../index";
 
-/**
- * The returned resource
- */
 export interface ComponentPreviewResponseData {
     activeAddOns: Schematic.CompanyPlanDetailResponseData[];
     activePlans: Schematic.CompanyPlanDetailResponseData[];
     activeUsageBasedEntitlements: Schematic.UsageBasedEntitlementResponseData[];
     addOnCompatibilities: Schematic.CompatiblePlans[];
     capabilities?: Schematic.ComponentCapabilities;
+    checkoutSettings: Schematic.ComponentCheckoutSettings;
     company?: Schematic.CompanyDetailResponseData;
     component?: Schematic.ComponentResponseData;
     creditBundles: Schematic.BillingCreditBundleView[];
@@ -20,7 +18,10 @@ export interface ComponentPreviewResponseData {
     defaultPlan?: Schematic.PlanDetailResponseData;
     featureUsage?: Schematic.FeatureUsageDetailResponseData;
     invoices: Schematic.InvoiceResponseData[];
+    postTrialPlan?: Schematic.PlanDetailResponseData;
+    showCredits: boolean;
     showPeriodToggle: boolean;
+    showZeroPriceAsFree: boolean;
     stripeEmbed?: Schematic.StripeEmbedInfo;
     subscription?: Schematic.CompanySubscriptionResponseData;
     trialPaymentMethodRequired?: boolean;

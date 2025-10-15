@@ -7,16 +7,20 @@ import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import { BillingSubscriptionDiscount } from "../../../../types/BillingSubscriptionDiscount";
 import { BillingProductPricing } from "../../../../types/BillingProductPricing";
-import { CreateBillingSubscriptionsRequestBodyTrialEndSetting } from "../../types/CreateBillingSubscriptionsRequestBodyTrialEndSetting";
+import { CreateBillingSubscriptionRequestBodyTrialEndSetting } from "../../types/CreateBillingSubscriptionRequestBodyTrialEndSetting";
 
-export const CreateBillingSubscriptionsRequestBody: core.serialization.Schema<
-    serializers.CreateBillingSubscriptionsRequestBody.Raw,
-    Schematic.CreateBillingSubscriptionsRequestBody
+export const CreateBillingSubscriptionRequestBody: core.serialization.Schema<
+    serializers.CreateBillingSubscriptionRequestBody.Raw,
+    Schematic.CreateBillingSubscriptionRequestBody
 > = core.serialization.object({
     cancelAt: core.serialization.property("cancel_at", core.serialization.number().optional()),
     cancelAtPeriodEnd: core.serialization.property("cancel_at_period_end", core.serialization.boolean()),
     currency: core.serialization.string(),
     customerExternalId: core.serialization.property("customer_external_id", core.serialization.string()),
+    defaultPaymentMethodExternalId: core.serialization.property(
+        "default_payment_method_external_id",
+        core.serialization.string().optional(),
+    ),
     defaultPaymentMethodId: core.serialization.property(
         "default_payment_method_id",
         core.serialization.string().optional(),
@@ -37,16 +41,17 @@ export const CreateBillingSubscriptionsRequestBody: core.serialization.Schema<
     trialEnd: core.serialization.property("trial_end", core.serialization.number().optional()),
     trialEndSetting: core.serialization.property(
         "trial_end_setting",
-        CreateBillingSubscriptionsRequestBodyTrialEndSetting.optional(),
+        CreateBillingSubscriptionRequestBodyTrialEndSetting.optional(),
     ),
 });
 
-export declare namespace CreateBillingSubscriptionsRequestBody {
+export declare namespace CreateBillingSubscriptionRequestBody {
     export interface Raw {
         cancel_at?: number | null;
         cancel_at_period_end: boolean;
         currency: string;
         customer_external_id: string;
+        default_payment_method_external_id?: string | null;
         default_payment_method_id?: string | null;
         discounts: BillingSubscriptionDiscount.Raw[];
         expired_at: string;
@@ -59,6 +64,6 @@ export declare namespace CreateBillingSubscriptionsRequestBody {
         subscription_external_id: string;
         total_price: number;
         trial_end?: number | null;
-        trial_end_setting?: CreateBillingSubscriptionsRequestBodyTrialEndSetting.Raw | null;
+        trial_end_setting?: CreateBillingSubscriptionRequestBodyTrialEndSetting.Raw | null;
     }
 }

@@ -17,6 +17,7 @@ export { type GetEntityTraitValuesRequest } from "./GetEntityTraitValuesRequest"
 export { type ListPlanTraitsRequest } from "./ListPlanTraitsRequest";
 export { type CreatePlanTraitRequestBody } from "./CreatePlanTraitRequestBody";
 export { type UpdatePlanTraitRequestBody } from "./UpdatePlanTraitRequestBody";
+export { type UpdatePlanTraitBulkRequestBody } from "./UpdatePlanTraitBulkRequestBody";
 export { type CountPlanTraitsRequest } from "./CountPlanTraitsRequest";
 export { type ListUsersRequest } from "./ListUsersRequest";
 export { type CountUsersRequest } from "./CountUsersRequest";

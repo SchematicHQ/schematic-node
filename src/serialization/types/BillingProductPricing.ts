@@ -11,6 +11,7 @@ export const BillingProductPricing: core.serialization.ObjectSchema<
     serializers.BillingProductPricing.Raw,
     Schematic.BillingProductPricing
 > = core.serialization.object({
+    billingThreshold: core.serialization.property("billing_threshold", core.serialization.number().optional()),
     currency: core.serialization.string(),
     interval: core.serialization.string(),
     meterId: core.serialization.property("meter_id", core.serialization.string().optional()),
@@ -20,11 +21,16 @@ export const BillingProductPricing: core.serialization.ObjectSchema<
     priceExternalId: core.serialization.property("price_external_id", core.serialization.string()),
     productExternalId: core.serialization.property("product_external_id", core.serialization.string()),
     quantity: core.serialization.number(),
+    subscriptionItemExternalId: core.serialization.property(
+        "subscription_item_external_id",
+        core.serialization.string().optional(),
+    ),
     usageType: core.serialization.property("usage_type", BillingProductPricingUsageType),
 });
 
 export declare namespace BillingProductPricing {
     export interface Raw {
+        billing_threshold?: number | null;
         currency: string;
         interval: string;
         meter_id?: string | null;
@@ -34,6 +40,7 @@ export declare namespace BillingProductPricing {
         price_external_id: string;
         product_external_id: string;
         quantity: number;
+        subscription_item_external_id?: string | null;
         usage_type: BillingProductPricingUsageType.Raw;
     }
 }

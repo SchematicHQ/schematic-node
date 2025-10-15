@@ -23,6 +23,7 @@ export interface CompanyViewWithFeatureUsageResponseData {
     paymentMethods: Schematic.PaymentMethodResponseData[];
     plan?: Schematic.CompanyPlanWithBillingSubView;
     plans: Schematic.GenericPreviewObject[];
+    rules: Schematic.Rule[];
     /** A map of trait names to trait values */
     traits?: Record<string, unknown>;
     updatedAt: Date;

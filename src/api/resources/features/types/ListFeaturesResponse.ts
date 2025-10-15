@@ -5,7 +5,6 @@
 import * as Schematic from "../../../index";
 
 export interface ListFeaturesResponse {
-    /** The returned resources */
     data: Schematic.FeatureDetailResponseData[];
     /** Input parameters */
     params: Schematic.ListFeaturesParams;

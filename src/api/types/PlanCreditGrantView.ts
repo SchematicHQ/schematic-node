@@ -9,12 +9,16 @@ export interface PlanCreditGrantView {
     creditIcon?: string;
     creditId: string;
     creditName: string;
+    expiryType?: string;
+    expiryUnit?: string;
+    expiryUnitCount?: number;
     id: string;
     planId: string;
     planName: string;
     pluralName?: string;
     resetCadence: string;
     resetStart: string;
+    resetType: string;
     singularName?: string;
     updatedAt: Date;
 }

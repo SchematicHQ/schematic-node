@@ -6,10 +6,17 @@ export interface BillingPlanCreditGrantResponseData {
     createdAt: Date;
     creditAmount: number;
     creditId: string;
+    creditName: string;
+    creditPluralName?: string;
+    creditSingularName?: string;
+    expiryType?: string;
+    expiryUnit?: string;
+    expiryUnitCount?: number;
     id: string;
     planId: string;
     planName: string;
     resetCadence: string;
     resetStart: string;
+    resetType?: string;
     updatedAt: Date;
 }

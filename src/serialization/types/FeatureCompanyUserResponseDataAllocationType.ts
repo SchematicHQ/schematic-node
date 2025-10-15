@@ -9,8 +9,8 @@ import * as core from "../../core";
 export const FeatureCompanyUserResponseDataAllocationType: core.serialization.Schema<
     serializers.FeatureCompanyUserResponseDataAllocationType.Raw,
     Schematic.FeatureCompanyUserResponseDataAllocationType
-> = core.serialization.enum_(["boolean", "numeric", "trait", "unlimited"]);
+> = core.serialization.enum_(["boolean", "numeric", "trait", "unlimited", "unknown"]);
 
 export declare namespace FeatureCompanyUserResponseDataAllocationType {
-    export type Raw = "boolean" | "numeric" | "trait" | "unlimited";
+    export type Raw = "boolean" | "numeric" | "trait" | "unlimited" | "unknown";
 }

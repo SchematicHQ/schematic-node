@@ -5,7 +5,6 @@
 import * as Schematic from "../../../index";
 
 export interface ListCompaniesForAdvancedFilterResponse {
-    /** The returned resources */
     data: Schematic.CompanyViewWithFeatureUsageResponseData[];
     /** Input parameters */
     params: Schematic.ListCompaniesForAdvancedFilterParams;

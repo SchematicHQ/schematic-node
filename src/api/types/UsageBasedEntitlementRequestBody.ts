@@ -6,6 +6,7 @@ import * as Schematic from "../index";
 
 export interface UsageBasedEntitlementRequestBody {
     billingProductId?: string;
+    billingThreshold?: number;
     currency?: string;
     monthlyMeteredPriceId?: string;
     monthlyPriceTiers?: Schematic.CreatePriceTierRequestBody[];

@@ -30,11 +30,12 @@ import * as Schematic from "../../../../index";
  *         totalPrice: 1
  *     }
  */
-export interface CreateBillingSubscriptionsRequestBody {
+export interface CreateBillingSubscriptionRequestBody {
     cancelAt?: number;
     cancelAtPeriodEnd: boolean;
     currency: string;
     customerExternalId: string;
+    defaultPaymentMethodExternalId?: string;
     defaultPaymentMethodId?: string;
     discounts: Schematic.BillingSubscriptionDiscount[];
     expiredAt: Date;
@@ -47,5 +48,5 @@ export interface CreateBillingSubscriptionsRequestBody {
     subscriptionExternalId: string;
     totalPrice: number;
     trialEnd?: number;
-    trialEndSetting?: Schematic.CreateBillingSubscriptionsRequestBodyTrialEndSetting;
+    trialEndSetting?: Schematic.CreateBillingSubscriptionRequestBodyTrialEndSetting;
 }

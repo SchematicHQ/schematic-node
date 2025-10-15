@@ -16,6 +16,7 @@ export const UpdatePlanEntitlementRequestBody: core.serialization.Schema<
     Schematic.UpdatePlanEntitlementRequestBody
 > = core.serialization.object({
     billingProductId: core.serialization.property("billing_product_id", core.serialization.string().optional()),
+    billingThreshold: core.serialization.property("billing_threshold", core.serialization.number().optional()),
     creditConsumptionRate: core.serialization.property(
         "credit_consumption_rate",
         core.serialization.number().optional(),
@@ -76,6 +77,7 @@ export const UpdatePlanEntitlementRequestBody: core.serialization.Schema<
 export declare namespace UpdatePlanEntitlementRequestBody {
     export interface Raw {
         billing_product_id?: string | null;
+        billing_threshold?: number | null;
         credit_consumption_rate?: number | null;
         currency?: string | null;
         metric_period?: UpdatePlanEntitlementRequestBodyMetricPeriod.Raw | null;

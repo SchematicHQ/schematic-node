@@ -11,6 +11,10 @@ export const ListCompaniesForAdvancedFilterParams: core.serialization.ObjectSche
     serializers.ListCompaniesForAdvancedFilterParams.Raw,
     Schematic.ListCompaniesForAdvancedFilterParams
 > = core.serialization.object({
+    creditTypeIds: core.serialization.property(
+        "credit_type_ids",
+        core.serialization.list(core.serialization.string()).optional(),
+    ),
     displayProperties: core.serialization.property(
         "display_properties",
         core.serialization.list(core.serialization.string()).optional(),
@@ -47,6 +51,7 @@ export const ListCompaniesForAdvancedFilterParams: core.serialization.ObjectSche
 
 export declare namespace ListCompaniesForAdvancedFilterParams {
     export interface Raw {
+        credit_type_ids?: string[] | null;
         display_properties?: string[] | null;
         feature_ids?: string[] | null;
         ids?: string[] | null;

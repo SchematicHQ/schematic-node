@@ -13,6 +13,7 @@ export const UsageBasedEntitlementRequestBody: core.serialization.ObjectSchema<
     Schematic.UsageBasedEntitlementRequestBody
 > = core.serialization.object({
     billingProductId: core.serialization.property("billing_product_id", core.serialization.string().optional()),
+    billingThreshold: core.serialization.property("billing_threshold", core.serialization.number().optional()),
     currency: core.serialization.string().optional(),
     monthlyMeteredPriceId: core.serialization.property(
         "monthly_metered_price_id",
@@ -59,6 +60,7 @@ export const UsageBasedEntitlementRequestBody: core.serialization.ObjectSchema<
 export declare namespace UsageBasedEntitlementRequestBody {
     export interface Raw {
         billing_product_id?: string | null;
+        billing_threshold?: number | null;
         currency?: string | null;
         monthly_metered_price_id?: string | null;
         monthly_price_tiers?: CreatePriceTierRequestBody.Raw[] | null;

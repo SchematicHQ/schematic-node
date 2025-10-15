@@ -14,7 +14,7 @@ export declare namespace Crm {
         environment?: core.Supplier<environments.SchematicEnvironment | string>;
         /** Specify a custom URL to connect the client to. */
         baseUrl?: core.Supplier<string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -31,7 +31,7 @@ export declare namespace Crm {
 }
 
 export class Crm {
-    constructor(protected readonly _options: Crm.Options) {}
+    constructor(protected readonly _options: Crm.Options = {}) {}
 
     /**
      * @param {Schematic.CreateCrmDealLineItemAssociationRequestBody} request
@@ -71,8 +71,8 @@ export class Crm {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -226,8 +226,8 @@ export class Crm {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -377,8 +377,8 @@ export class Crm {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -498,7 +498,11 @@ export class Crm {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.crm.listCrmProducts()
+     *     await client.crm.listCrmProducts({
+     *         name: "name",
+     *         limit: 1,
+     *         offset: 1
+     *     })
      */
     public listCrmProducts(
         request: Schematic.ListCrmProductsRequest = {},
@@ -544,8 +548,8 @@ export class Crm {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -698,8 +702,8 @@ export class Crm {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

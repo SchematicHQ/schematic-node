@@ -4,7 +4,12 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         companyId: "company_id",
+ *         userId: "user_id",
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface ListCompanyMembershipsRequest {
     companyId?: string;

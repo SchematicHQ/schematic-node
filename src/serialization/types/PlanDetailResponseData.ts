@@ -7,6 +7,7 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { BillingProductDetailResponseData } from "./BillingProductDetailResponseData";
 import { FeatureDetailResponseData } from "./FeatureDetailResponseData";
+import { BillingPlanCreditGrantResponseData } from "./BillingPlanCreditGrantResponseData";
 import { BillingPriceResponseData } from "./BillingPriceResponseData";
 
 export const PlanDetailResponseData: core.serialization.ObjectSchema<
@@ -23,6 +24,10 @@ export const PlanDetailResponseData: core.serialization.ObjectSchema<
     features: core.serialization.list(FeatureDetailResponseData),
     icon: core.serialization.string(),
     id: core.serialization.string(),
+    includedCreditGrants: core.serialization.property(
+        "included_credit_grants",
+        core.serialization.list(BillingPlanCreditGrantResponseData).optional(),
+    ),
     isDefault: core.serialization.property("is_default", core.serialization.boolean()),
     isFree: core.serialization.property("is_free", core.serialization.boolean()),
     isTrialable: core.serialization.property("is_trialable", core.serialization.boolean()),
@@ -47,6 +52,7 @@ export declare namespace PlanDetailResponseData {
         features: FeatureDetailResponseData.Raw[];
         icon: string;
         id: string;
+        included_credit_grants?: BillingPlanCreditGrantResponseData.Raw[] | null;
         is_default: boolean;
         is_free: boolean;
         is_trialable: boolean;

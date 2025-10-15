@@ -5,7 +5,6 @@
 import * as Schematic from "../../../index";
 
 export interface ListCompanyOverridesResponse {
-    /** The returned resources */
     data: Schematic.CompanyOverrideResponseData[];
     /** Input parameters */
     params: Schematic.ListCompanyOverridesParams;

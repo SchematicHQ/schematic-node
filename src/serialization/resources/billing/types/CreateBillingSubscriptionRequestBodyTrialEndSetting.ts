@@ -6,11 +6,11 @@ import * as serializers from "../../../index";
 import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 
-export const CreateBillingSubscriptionsRequestBodyTrialEndSetting: core.serialization.Schema<
-    serializers.CreateBillingSubscriptionsRequestBodyTrialEndSetting.Raw,
-    Schematic.CreateBillingSubscriptionsRequestBodyTrialEndSetting
+export const CreateBillingSubscriptionRequestBodyTrialEndSetting: core.serialization.Schema<
+    serializers.CreateBillingSubscriptionRequestBodyTrialEndSetting.Raw,
+    Schematic.CreateBillingSubscriptionRequestBodyTrialEndSetting
 > = core.serialization.enum_(["subscribe", "cancel"]);
 
-export declare namespace CreateBillingSubscriptionsRequestBodyTrialEndSetting {
+export declare namespace CreateBillingSubscriptionRequestBodyTrialEndSetting {
     export type Raw = "subscribe" | "cancel";
 }

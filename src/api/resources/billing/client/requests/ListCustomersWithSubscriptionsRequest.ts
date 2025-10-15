@@ -4,7 +4,13 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         name: "name",
+ *         failedToImport: true,
+ *         q: "q",
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface ListCustomersWithSubscriptionsRequest {
     companyIds?: string | string[];

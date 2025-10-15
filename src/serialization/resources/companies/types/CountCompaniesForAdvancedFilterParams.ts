@@ -11,6 +11,10 @@ export const CountCompaniesForAdvancedFilterParams: core.serialization.ObjectSch
     serializers.CountCompaniesForAdvancedFilterParams.Raw,
     Schematic.CountCompaniesForAdvancedFilterParams
 > = core.serialization.object({
+    creditTypeIds: core.serialization.property(
+        "credit_type_ids",
+        core.serialization.list(core.serialization.string()).optional(),
+    ),
     displayProperties: core.serialization.property(
         "display_properties",
         core.serialization.list(core.serialization.string()).optional(),
@@ -47,6 +51,7 @@ export const CountCompaniesForAdvancedFilterParams: core.serialization.ObjectSch
 
 export declare namespace CountCompaniesForAdvancedFilterParams {
     export interface Raw {
+        credit_type_ids?: string[] | null;
         display_properties?: string[] | null;
         feature_ids?: string[] | null;
         ids?: string[] | null;

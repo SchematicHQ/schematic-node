@@ -6,7 +6,18 @@ import * as Schematic from "../../../../index";
 
 /**
  * @example
- *     {}
+ *     {
+ *         name: "name",
+ *         q: "q",
+ *         priceUsageType: "licensed",
+ *         withoutLinkedToPlan: true,
+ *         withOneTimeCharges: true,
+ *         withZeroPrice: true,
+ *         withPricesOnly: true,
+ *         isActive: true,
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface CountBillingProductsRequest {
     ids?: string | string[];

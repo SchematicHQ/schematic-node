@@ -11,6 +11,8 @@ export { type CreateCompanyCreditGrant } from "./CreateCompanyCreditGrant";
 export { type ListCompanyGrantsRequest } from "./ListCompanyGrantsRequest";
 export { type CountBillingCreditsGrantsRequest } from "./CountBillingCreditsGrantsRequest";
 export { type ListGrantsForCreditRequest } from "./ListGrantsForCreditRequest";
+export { type GetEnrichedCreditLedgerRequest } from "./GetEnrichedCreditLedgerRequest";
+export { type CountCreditLedgerRequest } from "./CountCreditLedgerRequest";
 export { type ListBillingPlanCreditGrantsRequest } from "./ListBillingPlanCreditGrantsRequest";
 export { type CreateBillingPlanCreditGrantRequestBody } from "./CreateBillingPlanCreditGrantRequestBody";
 export { type CountBillingPlanCreditGrantsRequest } from "./CountBillingPlanCreditGrantsRequest";

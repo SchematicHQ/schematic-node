@@ -14,7 +14,7 @@ export declare namespace Events {
         environment?: core.Supplier<environments.SchematicEnvironment | string>;
         /** Specify a custom URL to connect the client to. */
         baseUrl?: core.Supplier<string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -31,7 +31,7 @@ export declare namespace Events {
 }
 
 export class Events {
-    constructor(protected readonly _options: Events.Options) {}
+    constructor(protected readonly _options: Events.Options = {}) {}
 
     /**
      * @param {Schematic.CreateEventBatchRequestBody} request
@@ -72,8 +72,8 @@ export class Events {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -193,7 +193,11 @@ export class Events {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.events.getEventSummaries()
+     *     await client.events.getEventSummaries({
+     *         q: "q",
+     *         limit: 1,
+     *         offset: 1
+     *     })
      */
     public getEventSummaries(
         request: Schematic.GetEventSummariesRequest = {},
@@ -239,8 +243,8 @@ export class Events {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -360,7 +364,14 @@ export class Events {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.events.listEvents()
+     *     await client.events.listEvents({
+     *         companyId: "company_id",
+     *         eventSubtype: "event_subtype",
+     *         flagId: "flag_id",
+     *         userId: "user_id",
+     *         limit: 1,
+     *         offset: 1
+     *     })
      */
     public listEvents(
         request: Schematic.ListEventsRequest = {},
@@ -422,8 +433,8 @@ export class Events {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -569,8 +580,8 @@ export class Events {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -713,8 +724,8 @@ export class Events {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -842,8 +853,8 @@ export class Events {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

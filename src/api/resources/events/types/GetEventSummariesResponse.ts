@@ -5,7 +5,6 @@
 import * as Schematic from "../../../index";
 
 export interface GetEventSummariesResponse {
-    /** The returned resources */
     data: Schematic.EventSummaryResponseData[];
     /** Input parameters */
     params: Schematic.GetEventSummariesParams;

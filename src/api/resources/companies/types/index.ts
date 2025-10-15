@@ -60,6 +60,7 @@ export * from "./CreatePlanTraitResponse";
 export * from "./GetPlanTraitResponse";
 export * from "./UpdatePlanTraitResponse";
 export * from "./DeletePlanTraitResponse";
+export * from "./UpdatePlanTraitsBulkResponse";
 export * from "./CountPlanTraitsParams";
 export * from "./CountPlanTraitsResponse";
 export * from "./UpsertUserTraitResponse";

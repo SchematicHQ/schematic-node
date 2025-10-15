@@ -7,6 +7,7 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { CompanyDetailResponseData } from "./CompanyDetailResponseData";
 import { FeatureResponseData } from "./FeatureResponseData";
+import { CompanyOverrideNoteResponseData } from "./CompanyOverrideNoteResponseData";
 import { EntityTraitDefinitionResponseData } from "./EntityTraitDefinitionResponseData";
 
 export const CompanyOverrideResponseData: core.serialization.ObjectSchema<
@@ -27,6 +28,7 @@ export const CompanyOverrideResponseData: core.serialization.ObjectSchema<
         "metric_period_month_reset",
         core.serialization.string().optional(),
     ),
+    notes: core.serialization.list(CompanyOverrideNoteResponseData),
     ruleId: core.serialization.property("rule_id", core.serialization.string().optional()),
     ruleIdUsageExceeded: core.serialization.property("rule_id_usage_exceeded", core.serialization.string().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -50,6 +52,7 @@ export declare namespace CompanyOverrideResponseData {
         id: string;
         metric_period?: string | null;
         metric_period_month_reset?: string | null;
+        notes: CompanyOverrideNoteResponseData.Raw[];
         rule_id?: string | null;
         rule_id_usage_exceeded?: string | null;
         updated_at: string;

@@ -4,7 +4,13 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         companyId: "company_id",
+ *         planId: "plan_id",
+ *         q: "q",
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface ListUsersRequest {
     /**

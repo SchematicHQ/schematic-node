@@ -6,7 +6,13 @@ import * as Schematic from "../../../../index";
 
 /**
  * @example
- *     {}
+ *     {
+ *         entityType: "company",
+ *         q: "q",
+ *         traitType: "boolean",
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface CountEntityTraitDefinitionsRequest {
     entityType?: Schematic.CountEntityTraitDefinitionsRequestEntityType;

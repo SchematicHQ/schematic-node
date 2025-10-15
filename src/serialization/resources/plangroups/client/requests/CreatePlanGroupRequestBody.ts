@@ -19,17 +19,39 @@ export const CreatePlanGroupRequestBody: core.serialization.Schema<
         core.serialization.list(CompatiblePlans).optional(),
     ),
     addOnIds: core.serialization.property("add_on_ids", core.serialization.list(core.serialization.string())),
+    checkoutCollectAddress: core.serialization.property("checkout_collect_address", core.serialization.boolean()),
+    checkoutCollectEmail: core.serialization.property("checkout_collect_email", core.serialization.boolean()),
+    checkoutCollectPhone: core.serialization.property("checkout_collect_phone", core.serialization.boolean()),
     customPlanConfig: core.serialization.property("custom_plan_config", CustomPlanConfig.optional()),
     customPlanId: core.serialization.property("custom_plan_id", core.serialization.string().optional()),
     defaultPlanId: core.serialization.property("default_plan_id", core.serialization.string().optional()),
+    enableTaxCollection: core.serialization.property("enable_tax_collection", core.serialization.boolean()),
+    fallbackPlanId: core.serialization.property("fallback_plan_id", core.serialization.string().optional()),
+    initialPlanId: core.serialization.property("initial_plan_id", core.serialization.string().optional()),
+    initialPlanPriceId: core.serialization.property("initial_plan_price_id", core.serialization.string().optional()),
     orderedAddOns: core.serialization.property("ordered_add_ons", core.serialization.list(OrderedPlansInGroup)),
     orderedBundleList: core.serialization.property(
         "ordered_bundle_list",
         core.serialization.list(PlanGroupBundleOrder),
     ),
     orderedPlans: core.serialization.property("ordered_plans", core.serialization.list(OrderedPlansInGroup)),
+    preventDowngradesWhenOverLimit: core.serialization.property(
+        "prevent_downgrades_when_over_limit",
+        core.serialization.boolean(),
+    ),
+    showCredits: core.serialization.property("show_credits", core.serialization.boolean()),
     showPeriodToggle: core.serialization.property("show_period_toggle", core.serialization.boolean()),
+    showZeroPriceAsFree: core.serialization.property("show_zero_price_as_free", core.serialization.boolean()),
+    syncCustomerBillingDetailsForTax: core.serialization.property(
+        "sync_customer_billing_details_for_tax",
+        core.serialization.boolean(),
+    ),
     trialDays: core.serialization.property("trial_days", core.serialization.number().optional()),
+    trialExpiryPlanId: core.serialization.property("trial_expiry_plan_id", core.serialization.string().optional()),
+    trialExpiryPlanPriceId: core.serialization.property(
+        "trial_expiry_plan_price_id",
+        core.serialization.string().optional(),
+    ),
     trialPaymentMethodRequired: core.serialization.property(
         "trial_payment_method_required",
         core.serialization.boolean().optional(),
@@ -40,14 +62,27 @@ export declare namespace CreatePlanGroupRequestBody {
     export interface Raw {
         add_on_compatibilities?: CompatiblePlans.Raw[] | null;
         add_on_ids: string[];
+        checkout_collect_address: boolean;
+        checkout_collect_email: boolean;
+        checkout_collect_phone: boolean;
         custom_plan_config?: CustomPlanConfig.Raw | null;
         custom_plan_id?: string | null;
         default_plan_id?: string | null;
+        enable_tax_collection: boolean;
+        fallback_plan_id?: string | null;
+        initial_plan_id?: string | null;
+        initial_plan_price_id?: string | null;
         ordered_add_ons: OrderedPlansInGroup.Raw[];
         ordered_bundle_list: PlanGroupBundleOrder.Raw[];
         ordered_plans: OrderedPlansInGroup.Raw[];
+        prevent_downgrades_when_over_limit: boolean;
+        show_credits: boolean;
         show_period_toggle: boolean;
+        show_zero_price_as_free: boolean;
+        sync_customer_billing_details_for_tax: boolean;
         trial_days?: number | null;
+        trial_expiry_plan_id?: string | null;
+        trial_expiry_plan_price_id?: string | null;
         trial_payment_method_required?: boolean | null;
     }
 }

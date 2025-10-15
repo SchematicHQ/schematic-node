@@ -5,7 +5,10 @@
 /**
  * @example
  *     {
- *         requireEnvironment: true
+ *         environmentId: "environment_id",
+ *         requireEnvironment: true,
+ *         limit: 1,
+ *         offset: 1
  *     }
  */
 export interface CountApiKeysRequest {

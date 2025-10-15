@@ -12,15 +12,40 @@ export interface FeatureUsageResponseData {
     /** The type of allocation that is being used. */
     allocationType: Schematic.FeatureUsageResponseDataAllocationType;
     companyOverride?: Schematic.CompanyOverrideResponseData;
+    /** The rate at which credits are consumed per unit of usage */
+    creditConsumptionRate?: number;
+    creditGrantCounts?: Record<string, number>;
+    creditGrantDetails?: Schematic.CreditGrantDetail[];
+    /** Reason for the credit grant */
+    creditGrantReason?: Schematic.FeatureUsageResponseDataCreditGrantReason;
+    creditRemaining?: number;
+    creditTotal?: number;
+    /** Icon identifier for the credit type */
+    creditTypeIcon?: string;
+    creditUsed?: number;
+    /** Effective limit for usage calculations. For overage pricing, this is the soft limit where overage charges begin. For tiered pricing, this is the first tier boundary. For other pricing models, this is the base allocation. Used to calculate usage percentages and determine access thresholds. */
+    effectiveLimit?: number;
+    /** Per-unit price for current usage scenario */
+    effectivePrice?: number;
     entitlementExpirationDate?: Date;
     entitlementId: string;
+    /** Source of the entitlement (plan or company_override) */
+    entitlementSource?: string;
     entitlementType: string;
     feature?: Schematic.FeatureDetailResponseData;
+    /** Whether a valid allocation exists */
+    hasValidAllocation?: boolean;
+    /** Whether this is an unlimited allocation */
+    isUnlimited?: boolean;
     /** The time at which the metric will reset. */
     metricResetAt?: Date;
     /** If the period is current_month, when the month resets. */
     monthReset?: string;
     monthlyUsageBasedPrice?: Schematic.BillingPriceView;
+    /** Amount of usage exceeding soft limit (overage pricing only) */
+    overuse?: number;
+    /** Percentage of allocation consumed (0-100+) */
+    percentUsed?: number;
     /** The period over which usage is measured. */
     period?: string;
     plan?: Schematic.PlanResponseData;

@@ -4,7 +4,12 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         planId: "plan_id",
+ *         traitId: "trait_id",
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface ListPlanTraitsRequest {
     ids?: string | string[];

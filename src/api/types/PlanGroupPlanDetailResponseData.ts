@@ -18,6 +18,7 @@ export interface PlanGroupPlanDetailResponseData {
     features: Schematic.FeatureDetailResponseData[];
     icon: string;
     id: string;
+    includedCreditGrants?: Schematic.BillingPlanCreditGrantResponseData[];
     isCustom: boolean;
     isDefault: boolean;
     isFree: boolean;

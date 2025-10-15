@@ -19,6 +19,7 @@ export interface CreateCompanyOverrideRequestBody {
     featureId: string;
     metricPeriod?: Schematic.CreateCompanyOverrideRequestBodyMetricPeriod;
     metricPeriodMonthReset?: Schematic.CreateCompanyOverrideRequestBodyMetricPeriodMonthReset;
+    note?: string;
     valueBool?: boolean;
     valueCreditId?: string;
     valueNumeric?: number;

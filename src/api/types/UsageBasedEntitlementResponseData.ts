@@ -5,6 +5,7 @@
 import * as Schematic from "../index";
 
 export interface UsageBasedEntitlementResponseData {
+    billingThreshold?: number;
     consumptionRate?: number;
     featureId: string;
     meteredPrice?: Schematic.BillingPriceView;

@@ -12,6 +12,7 @@ import * as Schematic from "../../../../index";
  */
 export interface UpdatePlanEntitlementRequestBody {
     billingProductId?: string;
+    billingThreshold?: number;
     creditConsumptionRate?: number;
     currency?: string;
     metricPeriod?: Schematic.UpdatePlanEntitlementRequestBodyMetricPeriod;

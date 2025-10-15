@@ -14,7 +14,7 @@ export declare namespace Plangroups {
         environment?: core.Supplier<environments.SchematicEnvironment | string>;
         /** Specify a custom URL to connect the client to. */
         baseUrl?: core.Supplier<string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -31,7 +31,7 @@ export declare namespace Plangroups {
 }
 
 export class Plangroups {
-    constructor(protected readonly _options: Plangroups.Options) {}
+    constructor(protected readonly _options: Plangroups.Options = {}) {}
 
     /**
      * @param {Plangroups.RequestOptions} requestOptions - Request-specific configuration.
@@ -64,8 +64,8 @@ export class Plangroups {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -175,6 +175,10 @@ export class Plangroups {
      * @example
      *     await client.plangroups.createPlanGroup({
      *         addOnIds: ["add_on_ids"],
+     *         checkoutCollectAddress: true,
+     *         checkoutCollectEmail: true,
+     *         checkoutCollectPhone: true,
+     *         enableTaxCollection: true,
      *         orderedAddOns: [{
      *                 planId: "plan_id"
      *             }],
@@ -184,7 +188,11 @@ export class Plangroups {
      *         orderedPlans: [{
      *                 planId: "plan_id"
      *             }],
-     *         showPeriodToggle: true
+     *         preventDowngradesWhenOverLimit: true,
+     *         showCredits: true,
+     *         showPeriodToggle: true,
+     *         showZeroPriceAsFree: true,
+     *         syncCustomerBillingDetailsForTax: true
      *     })
      */
     public createPlanGroup(
@@ -209,8 +217,8 @@ export class Plangroups {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -333,6 +341,10 @@ export class Plangroups {
      * @example
      *     await client.plangroups.updatePlanGroup("plan_group_id", {
      *         addOnIds: ["add_on_ids"],
+     *         checkoutCollectAddress: true,
+     *         checkoutCollectEmail: true,
+     *         checkoutCollectPhone: true,
+     *         enableTaxCollection: true,
      *         orderedAddOns: [{
      *                 planId: "plan_id"
      *             }],
@@ -342,7 +354,11 @@ export class Plangroups {
      *         orderedPlans: [{
      *                 planId: "plan_id"
      *             }],
-     *         showPeriodToggle: true
+     *         preventDowngradesWhenOverLimit: true,
+     *         showCredits: true,
+     *         showPeriodToggle: true,
+     *         showZeroPriceAsFree: true,
+     *         syncCustomerBillingDetailsForTax: true
      *     })
      */
     public updatePlanGroup(
@@ -369,8 +385,8 @@ export class Plangroups {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.2",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.2",
+                "X-Fern-SDK-Version": "1.2.3",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

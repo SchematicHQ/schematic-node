@@ -6,10 +6,36 @@ import * as Schematic from "../../../../index";
 
 /**
  * @example
- *     {}
+ *     {
+ *         companyId: "company_id",
+ *         forFallbackPlan: true,
+ *         forInitialPlan: true,
+ *         forTrialExpiryPlan: true,
+ *         hasProductId: true,
+ *         planType: "plan",
+ *         q: "q",
+ *         requiresPaymentMethod: true,
+ *         withoutEntitlementFor: "without_entitlement_for",
+ *         withoutProductId: true,
+ *         withoutPaidProductId: true,
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface CountPlansRequest {
     companyId?: string;
+    /**
+     * Filter for plans valid as fallback plans (not linked to billing)
+     */
+    forFallbackPlan?: boolean;
+    /**
+     * Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial)
+     */
+    forInitialPlan?: boolean;
+    /**
+     * Filter for plans valid as trial expiry plans (not linked to billing or free)
+     */
+    forTrialExpiryPlan?: boolean;
     /**
      * Filter out plans that do not have a billing product ID
      */
@@ -20,6 +46,10 @@ export interface CountPlansRequest {
      */
     planType?: Schematic.CountPlansRequestPlanType;
     q?: string;
+    /**
+     * Filter for plans that require a payment method (inverse of ForInitialPlan)
+     */
+    requiresPaymentMethod?: boolean;
     /**
      * Filter out plans that already have a plan entitlement for the specified feature ID
      */

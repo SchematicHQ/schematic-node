@@ -5,7 +5,8 @@
 export interface BillingProductResponseData {
     accountId: string;
     createdAt: Date;
-    currency: string;
+    /** Deprecated; currencies are associated with prices, not products */
+    currency?: string;
     environmentId: string;
     externalId: string;
     isActive: boolean;

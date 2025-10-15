@@ -15,6 +15,7 @@ export interface UpdateCompanyOverrideRequestBody {
     expirationDate?: Date;
     metricPeriod?: Schematic.UpdateCompanyOverrideRequestBodyMetricPeriod;
     metricPeriodMonthReset?: Schematic.UpdateCompanyOverrideRequestBodyMetricPeriodMonthReset;
+    note?: string;
     valueBool?: boolean;
     valueCreditId?: string;
     valueNumeric?: number;

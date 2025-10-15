@@ -4,7 +4,11 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         companyId: "company_id",
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface GetActiveCompanySubscriptionRequest {
     companyId?: string;

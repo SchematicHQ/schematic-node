@@ -9,8 +9,19 @@ import * as core from "../../../../core";
 export const CreateCreditBundleRequestBodyExpiryType: core.serialization.Schema<
     serializers.CreateCreditBundleRequestBodyExpiryType.Raw,
     Schematic.CreateCreditBundleRequestBodyExpiryType
-> = core.serialization.enum_(["days_from_purchase", "no_expiry"]);
+> = core.serialization.enum_([
+    "duration",
+    "no_expiry",
+    "end_of_trial",
+    "end_of_billing_period",
+    "end_of_next_billing_period",
+]);
 
 export declare namespace CreateCreditBundleRequestBodyExpiryType {
-    export type Raw = "days_from_purchase" | "no_expiry";
+    export type Raw =
+        | "duration"
+        | "no_expiry"
+        | "end_of_trial"
+        | "end_of_billing_period"
+        | "end_of_next_billing_period";
 }

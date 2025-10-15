@@ -12,6 +12,9 @@ export interface PreviewSubscriptionFinanceResponseData {
     periodStart: Date;
     promoCodeApplied: boolean;
     proration: number;
+    taxAmount?: number;
+    taxDisplayName?: string;
+    taxRequireBillingDetails: boolean;
     trialEnd?: Date;
     upcomingInvoiceLineItems: Schematic.PreviewSubscriptionUpcomingInvoiceLineItems[];
 }

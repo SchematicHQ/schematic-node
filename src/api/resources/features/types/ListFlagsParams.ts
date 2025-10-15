@@ -12,5 +12,6 @@ export interface ListFlagsParams {
     limit?: number;
     /** Page offset (default 0) */
     offset?: number;
+    /** Search by flag name, key, or ID */
     q?: string;
 }

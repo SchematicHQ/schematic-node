@@ -12,6 +12,7 @@ import { EntityTraitDetailResponseData } from "./EntityTraitDetailResponseData";
 import { EntityKeyDetailResponseData } from "./EntityKeyDetailResponseData";
 import { CompanyEventPeriodMetricsResponseData } from "./CompanyEventPeriodMetricsResponseData";
 import { GenericPreviewObject } from "./GenericPreviewObject";
+import { Rule } from "./Rule";
 
 export const CompanyDetailResponseData: core.serialization.ObjectSchema<
     serializers.CompanyDetailResponseData.Raw,
@@ -40,6 +41,7 @@ export const CompanyDetailResponseData: core.serialization.ObjectSchema<
     paymentMethods: core.serialization.property("payment_methods", core.serialization.list(PaymentMethodResponseData)),
     plan: CompanyPlanWithBillingSubView.optional(),
     plans: core.serialization.list(GenericPreviewObject),
+    rules: core.serialization.list(Rule),
     traits: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     userCount: core.serialization.property("user_count", core.serialization.number()),
@@ -64,6 +66,7 @@ export declare namespace CompanyDetailResponseData {
         payment_methods: PaymentMethodResponseData.Raw[];
         plan?: CompanyPlanWithBillingSubView.Raw | null;
         plans: GenericPreviewObject.Raw[];
+        rules: Rule.Raw[];
         traits?: Record<string, unknown> | null;
         updated_at: string;
         user_count: number;

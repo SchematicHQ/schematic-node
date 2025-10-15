@@ -4,7 +4,14 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         featureId: "feature_id",
+ *         planId: "plan_id",
+ *         q: "q",
+ *         withMeteredProducts: true,
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface CountPlanEntitlementsRequest {
     /**

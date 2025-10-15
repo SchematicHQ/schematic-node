@@ -6,15 +6,40 @@ import * as Schematic from "../../../../index";
 
 /**
  * @example
- *     {}
+ *     {
+ *         forInitialPlan: true,
+ *         forTrialExpiryPlan: true,
+ *         productId: "product_id",
+ *         interval: "interval",
+ *         price: 1,
+ *         q: "q",
+ *         requiresPaymentMethod: true,
+ *         tiersMode: "volume",
+ *         usageType: "licensed",
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface SearchBillingPricesRequest {
+    /**
+     * Filter for prices valid for initial plans (free prices only)
+     */
+    forInitialPlan?: boolean;
+    /**
+     * Filter for prices valid for trial expiry plans (free prices only)
+     */
+    forTrialExpiryPlan?: boolean;
     ids?: string | string[];
-    q?: string;
+    productId?: string;
     interval?: string;
-    usageType?: Schematic.SearchBillingPricesRequestUsageType;
     price?: number;
+    q?: string;
+    /**
+     * Filter for prices that require a payment method (inverse of ForInitialPlan)
+     */
+    requiresPaymentMethod?: boolean;
     tiersMode?: Schematic.SearchBillingPricesRequestTiersMode;
+    usageType?: Schematic.SearchBillingPricesRequestUsageType;
     /**
      * Page limit (default 100)
      */

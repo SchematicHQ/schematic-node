@@ -17,7 +17,11 @@ import * as Schematic from "../../../../index";
 export interface CreateBillingPlanCreditGrantRequestBody {
     creditAmount: number;
     creditId: string;
+    expiryType?: Schematic.CreateBillingPlanCreditGrantRequestBodyExpiryType;
+    expiryUnit?: Schematic.CreateBillingPlanCreditGrantRequestBodyExpiryUnit;
+    expiryUnitCount?: number;
     planId: string;
     resetCadence: Schematic.CreateBillingPlanCreditGrantRequestBodyResetCadence;
     resetStart: Schematic.CreateBillingPlanCreditGrantRequestBodyResetStart;
+    resetType?: Schematic.CreateBillingPlanCreditGrantRequestBodyResetType;
 }

@@ -3,3 +3,4 @@ export { CreateEntityTraitDefinitionRequestBody } from "./CreateEntityTraitDefin
 export { UpdateEntityTraitDefinitionRequestBody } from "./UpdateEntityTraitDefinitionRequestBody";
 export { CreatePlanTraitRequestBody } from "./CreatePlanTraitRequestBody";
 export { UpdatePlanTraitRequestBody } from "./UpdatePlanTraitRequestBody";
+export { UpdatePlanTraitBulkRequestBody } from "./UpdatePlanTraitBulkRequestBody";

@@ -5,7 +5,7 @@
 import * as Schematic from "../../../index";
 
 export interface CheckoutInternalResponse {
-    data: Schematic.BillingSubscriptionResponseData;
+    data: Schematic.CheckoutSubscription;
     /** Input parameters */
     params: Record<string, unknown>;
 }

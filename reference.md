@@ -16,7 +16,10 @@
 
 ```typescript
 await client.accounts.listApiKeys({
+    environmentId: "environment_id",
     requireEnvironment: true,
+    limit: 1,
+    offset: 1,
 });
 ```
 
@@ -268,7 +271,10 @@ await client.accounts.deleteApiKey("api_key_id");
 
 ```typescript
 await client.accounts.countApiKeys({
+    environmentId: "environment_id",
     requireEnvironment: true,
+    limit: 1,
+    offset: 1,
 });
 ```
 
@@ -317,7 +323,13 @@ await client.accounts.countApiKeys({
 <dd>
 
 ```typescript
-await client.accounts.listApiRequests();
+await client.accounts.listApiRequests({
+    q: "q",
+    requestType: "request_type",
+    environmentId: "environment_id",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -413,7 +425,13 @@ await client.accounts.getApiRequest("api_request_id");
 <dd>
 
 ```typescript
-await client.accounts.countApiRequests();
+await client.accounts.countApiRequests({
+    q: "q",
+    requestType: "request_type",
+    environmentId: "environment_id",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -461,7 +479,10 @@ await client.accounts.countApiRequests();
 <dd>
 
 ```typescript
-await client.accounts.listEnvironments();
+await client.accounts.listEnvironments({
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -1022,7 +1043,14 @@ await client.features.listAudienceUsers({
 <dd>
 
 ```typescript
-await client.features.listFeatures();
+await client.features.listFeatures({
+    q: "q",
+    withoutCompanyOverrideFor: "without_company_override_for",
+    withoutPlanEntitlementFor: "without_plan_entitlement_for",
+    booleanRequireEvent: true,
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -1274,7 +1302,14 @@ await client.features.deleteFeature("feature_id");
 <dd>
 
 ```typescript
-await client.features.countFeatures();
+await client.features.countFeatures({
+    q: "q",
+    withoutCompanyOverrideFor: "without_company_override_for",
+    withoutPlanEntitlementFor: "without_plan_entitlement_for",
+    booleanRequireEvent: true,
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -1322,7 +1357,12 @@ await client.features.countFeatures();
 <dd>
 
 ```typescript
-await client.features.listFlags();
+await client.features.listFlags({
+    featureId: "feature_id",
+    q: "q",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -1768,7 +1808,12 @@ await client.features.checkFlags({});
 <dd>
 
 ```typescript
-await client.features.countFlags();
+await client.features.countFlags({
+    featureId: "feature_id",
+    q: "q",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -1818,7 +1863,12 @@ await client.features.countFlags();
 <dd>
 
 ```typescript
-await client.billing.listCoupons();
+await client.billing.listCoupons({
+    isActive: true,
+    q: "q",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -1979,7 +2029,13 @@ await client.billing.upsertBillingCustomer({
 <dd>
 
 ```typescript
-await client.billing.listCustomersWithSubscriptions();
+await client.billing.listCustomersWithSubscriptions({
+    name: "name",
+    failedToImport: true,
+    q: "q",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -2027,7 +2083,13 @@ await client.billing.listCustomersWithSubscriptions();
 <dd>
 
 ```typescript
-await client.billing.countCustomers();
+await client.billing.countCustomers({
+    name: "name",
+    failedToImport: true,
+    q: "q",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -2076,8 +2138,11 @@ await client.billing.countCustomers();
 
 ```typescript
 await client.billing.listInvoices({
+    companyId: "company_id",
     customerExternalId: "customer_external_id",
     subscriptionExternalId: "subscription_external_id",
+    limit: 1,
+    offset: 1,
 });
 ```
 
@@ -2182,7 +2247,11 @@ await client.billing.upsertInvoice({
 <dd>
 
 ```typescript
-await client.billing.listMeters();
+await client.billing.listMeters({
+    displayName: "display_name",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -2284,7 +2353,10 @@ await client.billing.upsertBillingMeter({
 
 ```typescript
 await client.billing.listPaymentMethods({
+    companyId: "company_id",
     customerExternalId: "customer_external_id",
+    limit: 1,
+    offset: 1,
 });
 ```
 
@@ -2385,7 +2457,19 @@ await client.billing.upsertPaymentMethod({
 <dd>
 
 ```typescript
-await client.billing.searchBillingPrices();
+await client.billing.searchBillingPrices({
+    forInitialPlan: true,
+    forTrialExpiryPlan: true,
+    productId: "product_id",
+    interval: "interval",
+    price: 1,
+    q: "q",
+    requiresPaymentMethod: true,
+    tiersMode: "volume",
+    usageType: "licensed",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -2544,7 +2628,18 @@ await client.billing.deleteBillingProduct("billing_id");
 <dd>
 
 ```typescript
-await client.billing.listProductPrices();
+await client.billing.listProductPrices({
+    name: "name",
+    q: "q",
+    priceUsageType: "licensed",
+    withoutLinkedToPlan: true,
+    withOneTimeCharges: true,
+    withZeroPrice: true,
+    withPricesOnly: true,
+    isActive: true,
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -2692,7 +2787,18 @@ await client.billing.upsertBillingProduct({
 <dd>
 
 ```typescript
-await client.billing.listBillingProducts();
+await client.billing.listBillingProducts({
+    name: "name",
+    q: "q",
+    priceUsageType: "licensed",
+    withoutLinkedToPlan: true,
+    withOneTimeCharges: true,
+    withZeroPrice: true,
+    withPricesOnly: true,
+    isActive: true,
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -2740,7 +2846,18 @@ await client.billing.listBillingProducts();
 <dd>
 
 ```typescript
-await client.billing.countBillingProducts();
+await client.billing.countBillingProducts({
+    name: "name",
+    q: "q",
+    priceUsageType: "licensed",
+    withoutLinkedToPlan: true,
+    withOneTimeCharges: true,
+    withZeroPrice: true,
+    withPricesOnly: true,
+    isActive: true,
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -2830,7 +2947,7 @@ await client.billing.upsertBillingSubscription({
 <dl>
 <dd>
 
-**request:** `Schematic.CreateBillingSubscriptionsRequestBody`
+**request:** `Schematic.CreateBillingSubscriptionRequestBody`
 
 </dd>
 </dl>
@@ -2864,7 +2981,11 @@ await client.billing.upsertBillingSubscription({
 <dd>
 
 ```typescript
-await client.credits.listBillingCredits();
+await client.credits.listBillingCredits({
+    name: "name",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -3119,7 +3240,13 @@ await client.credits.softDeleteBillingCredit("billing_id");
 <dd>
 
 ```typescript
-await client.credits.listCreditBundles();
+await client.credits.listCreditBundles({
+    creditId: "credit_id",
+    status: "active",
+    bundleType: "fixed",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -3375,7 +3502,13 @@ await client.credits.deleteCreditBundle("billing_id");
 <dd>
 
 ```typescript
-await client.credits.countCreditBundles();
+await client.credits.countCreditBundles({
+    creditId: "credit_id",
+    status: "active",
+    bundleType: "fixed",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -3423,7 +3556,11 @@ await client.credits.countCreditBundles();
 <dd>
 
 ```typescript
-await client.credits.countBillingCredits();
+await client.credits.countBillingCredits({
+    name: "name",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -3580,7 +3717,13 @@ await client.credits.grantBillingCreditsToCompany({
 <dd>
 
 ```typescript
-await client.credits.listCompanyGrants();
+await client.credits.listCompanyGrants({
+    companyId: "company_id",
+    order: "created_at",
+    dir: "asc",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -3628,7 +3771,11 @@ await client.credits.listCompanyGrants();
 <dd>
 
 ```typescript
-await client.credits.countBillingCreditsGrants();
+await client.credits.countBillingCreditsGrants({
+    creditId: "credit_id",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -3676,7 +3823,11 @@ await client.credits.countBillingCreditsGrants();
 <dd>
 
 ```typescript
-await client.credits.listGrantsForCredit();
+await client.credits.listGrantsForCredit({
+    creditId: "credit_id",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -3711,6 +3862,120 @@ await client.credits.listGrantsForCredit();
 </dl>
 </details>
 
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">getEnrichedCreditLedger</a>({ ...params }) -> Schematic.GetEnrichedCreditLedgerResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.credits.getEnrichedCreditLedger({
+    companyId: "company_id",
+    billingCreditId: "billing_credit_id",
+    featureId: "feature_id",
+    period: "daily",
+    startTime: "start_time",
+    endTime: "end_time",
+    limit: 1,
+    offset: 1,
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.GetEnrichedCreditLedgerRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Credits.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">countCreditLedger</a>({ ...params }) -> Schematic.CountCreditLedgerResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.credits.countCreditLedger({
+    companyId: "company_id",
+    billingCreditId: "billing_credit_id",
+    featureId: "feature_id",
+    period: "daily",
+    startTime: "start_time",
+    endTime: "end_time",
+    limit: 1,
+    offset: 1,
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CountCreditLedgerRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Credits.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">listBillingPlanCreditGrants</a>({ ...params }) -> Schematic.ListBillingPlanCreditGrantsResponse</code></summary>
 <dl>
 <dd>
@@ -3724,7 +3989,12 @@ await client.credits.listGrantsForCredit();
 <dd>
 
 ```typescript
-await client.credits.listBillingPlanCreditGrants();
+await client.credits.listBillingPlanCreditGrants({
+    creditId: "credit_id",
+    planId: "plan_id",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -3874,7 +4144,12 @@ await client.credits.deleteBillingPlanCreditGrant("billing_id");
 <dd>
 
 ```typescript
-await client.credits.countBillingPlanCreditGrants();
+await client.credits.countBillingPlanCreditGrants({
+    creditId: "credit_id",
+    planId: "plan_id",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -4103,6 +4378,140 @@ await client.checkout.previewCheckoutInternal({
 </dl>
 </details>
 
+<details><summary><code>client.checkout.<a href="/src/api/resources/checkout/client/Client.ts">managePlan</a>({ ...params }) -> Schematic.ManagePlanResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.checkout.managePlan({
+    addOnSelections: [
+        {
+            planId: "plan_id",
+        },
+    ],
+    companyId: "company_id",
+    creditBundles: [
+        {
+            bundleId: "bundle_id",
+            quantity: 1,
+        },
+    ],
+    payInAdvanceEntitlements: [
+        {
+            priceId: "price_id",
+            quantity: 1,
+        },
+    ],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ManagePlanRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Checkout.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.checkout.<a href="/src/api/resources/checkout/client/Client.ts">previewManagePlan</a>({ ...params }) -> Schematic.PreviewManagePlanResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.checkout.previewManagePlan({
+    addOnSelections: [
+        {
+            planId: "plan_id",
+        },
+    ],
+    companyId: "company_id",
+    creditBundles: [
+        {
+            bundleId: "bundle_id",
+            quantity: 1,
+        },
+    ],
+    payInAdvanceEntitlements: [
+        {
+            priceId: "price_id",
+            quantity: 1,
+        },
+    ],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ManagePlanRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Checkout.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.checkout.<a href="/src/api/resources/checkout/client/Client.ts">updateCustomerSubscriptionTrialEnd</a>(subscriptionId, { ...params }) -> Schematic.UpdateCustomerSubscriptionTrialEndResponse</code></summary>
 <dl>
 <dd>
@@ -4174,7 +4583,15 @@ await client.checkout.updateCustomerSubscriptionTrialEnd("subscription_id");
 <dd>
 
 ```typescript
-await client.companies.listCompanies();
+await client.companies.listCompanies({
+    planId: "plan_id",
+    q: "q",
+    withoutFeatureOverrideFor: "without_feature_override_for",
+    withoutPlan: true,
+    withSubscription: true,
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -4370,7 +4787,15 @@ await client.companies.deleteCompany("company_id");
 <dd>
 
 ```typescript
-await client.companies.countCompanies();
+await client.companies.countCompanies({
+    planId: "plan_id",
+    q: "q",
+    withoutFeatureOverrideFor: "without_feature_override_for",
+    withoutPlan: true,
+    withSubscription: true,
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -4418,7 +4843,16 @@ await client.companies.countCompanies();
 <dd>
 
 ```typescript
-await client.companies.countCompaniesForAdvancedFilter();
+await client.companies.countCompaniesForAdvancedFilter({
+    monetizedSubscriptions: true,
+    q: "q",
+    withoutPlan: true,
+    withoutSubscription: true,
+    sortOrderColumn: "sort_order_column",
+    sortOrderDirection: "asc",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -4570,7 +5004,16 @@ await client.companies.deleteCompanyByKeys({
 <dd>
 
 ```typescript
-await client.companies.listCompaniesForAdvancedFilter();
+await client.companies.listCompaniesForAdvancedFilter({
+    monetizedSubscriptions: true,
+    q: "q",
+    withoutPlan: true,
+    withoutSubscription: true,
+    sortOrderColumn: "sort_order_column",
+    sortOrderDirection: "asc",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -4673,6 +5116,8 @@ await client.companies.lookupCompany({
 await client.companies.getActiveDeals({
     companyId: "company_id",
     dealStage: "deal_stage",
+    limit: 1,
+    offset: 1,
 });
 ```
 
@@ -4721,7 +5166,12 @@ await client.companies.getActiveDeals({
 <dd>
 
 ```typescript
-await client.companies.listCompanyMemberships();
+await client.companies.listCompanyMemberships({
+    companyId: "company_id",
+    userId: "user_id",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -4868,7 +5318,11 @@ await client.companies.deleteCompanyMembership("company_membership_id");
 <dd>
 
 ```typescript
-await client.companies.getActiveCompanySubscription();
+await client.companies.getActiveCompanySubscription({
+    companyId: "company_id",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -4969,7 +5423,12 @@ await client.companies.upsertCompanyTrait({
 <dd>
 
 ```typescript
-await client.companies.listEntityKeyDefinitions();
+await client.companies.listEntityKeyDefinitions({
+    entityType: "company",
+    q: "q",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -5017,7 +5476,12 @@ await client.companies.listEntityKeyDefinitions();
 <dd>
 
 ```typescript
-await client.companies.countEntityKeyDefinitions();
+await client.companies.countEntityKeyDefinitions({
+    entityType: "company",
+    q: "q",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -5065,7 +5529,13 @@ await client.companies.countEntityKeyDefinitions();
 <dd>
 
 ```typescript
-await client.companies.listEntityTraitDefinitions();
+await client.companies.listEntityTraitDefinitions({
+    entityType: "company",
+    q: "q",
+    traitType: "boolean",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -5271,7 +5741,13 @@ await client.companies.updateEntityTraitDefinition("entity_trait_definition_id",
 <dd>
 
 ```typescript
-await client.companies.countEntityTraitDefinitions();
+await client.companies.countEntityTraitDefinitions({
+    entityType: "company",
+    q: "q",
+    traitType: "boolean",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -5321,6 +5797,9 @@ await client.companies.countEntityTraitDefinitions();
 ```typescript
 await client.companies.getEntityTraitValues({
     definitionId: "definition_id",
+    q: "q",
+    limit: 1,
+    offset: 1,
 });
 ```
 
@@ -5369,7 +5848,12 @@ await client.companies.getEntityTraitValues({
 <dd>
 
 ```typescript
-await client.companies.listPlanTraits();
+await client.companies.listPlanTraits({
+    planId: "plan_id",
+    traitId: "trait_id",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -5611,6 +6095,62 @@ await client.companies.deletePlanTrait("plan_trait_id");
 </dl>
 </details>
 
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">updatePlanTraitsBulk</a>({ ...params }) -> Schematic.UpdatePlanTraitsBulkResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.companies.updatePlanTraitsBulk({
+    planId: "plan_id",
+    traits: [
+        {
+            traitId: "trait_id",
+            traitValue: "trait_value",
+        },
+    ],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.UpdatePlanTraitBulkRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Companies.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">countPlanTraits</a>({ ...params }) -> Schematic.CountPlanTraitsResponse</code></summary>
 <dl>
 <dd>
@@ -5624,7 +6164,12 @@ await client.companies.deletePlanTrait("plan_trait_id");
 <dd>
 
 ```typescript
-await client.companies.countPlanTraits();
+await client.companies.countPlanTraits({
+    planId: "plan_id",
+    traitId: "trait_id",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -5725,7 +6270,13 @@ await client.companies.upsertUserTrait({
 <dd>
 
 ```typescript
-await client.companies.listUsers();
+await client.companies.listUsers({
+    companyId: "company_id",
+    planId: "plan_id",
+    q: "q",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -5921,7 +6472,13 @@ await client.companies.deleteUser("user_id");
 <dd>
 
 ```typescript
-await client.companies.countUsers();
+await client.companies.countUsers({
+    companyId: "company_id",
+    planId: "plan_id",
+    q: "q",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -6127,7 +6684,14 @@ await client.companies.lookupUser({
 <dd>
 
 ```typescript
-await client.entitlements.listCompanyOverrides();
+await client.entitlements.listCompanyOverrides({
+    companyId: "company_id",
+    featureId: "feature_id",
+    withoutExpired: true,
+    q: "q",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -6381,7 +6945,14 @@ await client.entitlements.deleteCompanyOverride("company_override_id");
 <dd>
 
 ```typescript
-await client.entitlements.countCompanyOverrides();
+await client.entitlements.countCompanyOverrides({
+    companyId: "company_id",
+    featureId: "feature_id",
+    withoutExpired: true,
+    q: "q",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -6431,6 +7002,9 @@ await client.entitlements.countCompanyOverrides();
 ```typescript
 await client.entitlements.listFeatureCompanies({
     featureId: "feature_id",
+    q: "q",
+    limit: 1,
+    offset: 1,
 });
 ```
 
@@ -6481,6 +7055,9 @@ await client.entitlements.listFeatureCompanies({
 ```typescript
 await client.entitlements.countFeatureCompanies({
     featureId: "feature_id",
+    q: "q",
+    limit: 1,
+    offset: 1,
 });
 ```
 
@@ -6529,7 +7106,13 @@ await client.entitlements.countFeatureCompanies({
 <dd>
 
 ```typescript
-await client.entitlements.listFeatureUsage();
+await client.entitlements.listFeatureUsage({
+    companyId: "company_id",
+    q: "q",
+    withoutNegativeEntitlements: true,
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -6577,7 +7160,13 @@ await client.entitlements.listFeatureUsage();
 <dd>
 
 ```typescript
-await client.entitlements.countFeatureUsage();
+await client.entitlements.countFeatureUsage({
+    companyId: "company_id",
+    q: "q",
+    withoutNegativeEntitlements: true,
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -6627,6 +7216,9 @@ await client.entitlements.countFeatureUsage();
 ```typescript
 await client.entitlements.listFeatureUsers({
     featureId: "feature_id",
+    q: "q",
+    limit: 1,
+    offset: 1,
 });
 ```
 
@@ -6677,6 +7269,9 @@ await client.entitlements.listFeatureUsers({
 ```typescript
 await client.entitlements.countFeatureUsers({
     featureId: "feature_id",
+    q: "q",
+    limit: 1,
+    offset: 1,
 });
 ```
 
@@ -6725,7 +7320,14 @@ await client.entitlements.countFeatureUsers({
 <dd>
 
 ```typescript
-await client.entitlements.listPlanEntitlements();
+await client.entitlements.listPlanEntitlements({
+    featureId: "feature_id",
+    planId: "plan_id",
+    q: "q",
+    withMeteredProducts: true,
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -6979,7 +7581,14 @@ await client.entitlements.deletePlanEntitlement("plan_entitlement_id");
 <dd>
 
 ```typescript
-await client.entitlements.countPlanEntitlements();
+await client.entitlements.countPlanEntitlements({
+    featureId: "feature_id",
+    planId: "plan_id",
+    q: "q",
+    withMeteredProducts: true,
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -7310,7 +7919,21 @@ await client.plans.deleteAudience("plan_audience_id");
 <dd>
 
 ```typescript
-await client.plans.listPlans();
+await client.plans.listPlans({
+    companyId: "company_id",
+    forFallbackPlan: true,
+    forInitialPlan: true,
+    forTrialExpiryPlan: true,
+    hasProductId: true,
+    planType: "plan",
+    q: "q",
+    requiresPaymentMethod: true,
+    withoutEntitlementFor: "without_entitlement_for",
+    withoutProductId: true,
+    withoutPaidProductId: true,
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -7623,7 +8246,21 @@ await client.plans.upsertBillingProductPlan("plan_id", {
 <dd>
 
 ```typescript
-await client.plans.countPlans();
+await client.plans.countPlans({
+    companyId: "company_id",
+    forFallbackPlan: true,
+    forInitialPlan: true,
+    forTrialExpiryPlan: true,
+    hasProductId: true,
+    planType: "plan",
+    q: "q",
+    requiresPaymentMethod: true,
+    withoutEntitlementFor: "without_entitlement_for",
+    withoutProductId: true,
+    withoutPaidProductId: true,
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -7658,6 +8295,56 @@ await client.plans.countPlans();
 </dl>
 </details>
 
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">listPlanIssues</a>({ ...params }) -> Schematic.ListPlanIssuesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.listPlanIssues({
+    planId: "plan_id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListPlanIssuesRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Plans.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## components
 
 <details><summary><code>client.components.<a href="/src/api/resources/components/client/Client.ts">listComponents</a>({ ...params }) -> Schematic.ListComponentsResponse</code></summary>
@@ -7673,7 +8360,11 @@ await client.plans.countPlans();
 <dd>
 
 ```typescript
-await client.components.listComponents();
+await client.components.listComponents({
+    q: "q",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -7924,7 +8615,11 @@ await client.components.deleteComponent("component_id");
 <dd>
 
 ```typescript
-await client.components.countComponents();
+await client.components.countComponents({
+    q: "q",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -7972,7 +8667,10 @@ await client.components.countComponents();
 <dd>
 
 ```typescript
-await client.components.previewComponentData();
+await client.components.previewComponentData({
+    companyId: "company_id",
+    componentId: "component_id",
+});
 ```
 
 </dd>
@@ -8179,7 +8877,11 @@ await client.crm.upsertCrmDeal({
 <dd>
 
 ```typescript
-await client.crm.listCrmProducts();
+await client.crm.listCrmProducts({
+    name: "name",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -8323,6 +9025,54 @@ await client.dataexports.createDataExport({
 </dl>
 </details>
 
+<details><summary><code>client.dataexports.<a href="/src/api/resources/dataexports/client/Client.ts">getDataExportArtifact</a>(dataExportId) -> stream.Readable</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.dataexports.getDataExportArtifact("data_export_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**dataExportId:** `string` — data_export_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Dataexports.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## events
 
 <details><summary><code>client.events.<a href="/src/api/resources/events/client/Client.ts">createEventBatch</a>({ ...params }) -> Schematic.CreateEventBatchResponse</code></summary>
@@ -8392,7 +9142,11 @@ await client.events.createEventBatch({
 <dd>
 
 ```typescript
-await client.events.getEventSummaries();
+await client.events.getEventSummaries({
+    q: "q",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -8440,7 +9194,14 @@ await client.events.getEventSummaries();
 <dd>
 
 ```typescript
-await client.events.listEvents();
+await client.events.listEvents({
+    companyId: "company_id",
+    eventSubtype: "event_subtype",
+    flagId: "flag_id",
+    userId: "user_id",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -8670,6 +9431,10 @@ await client.plangroups.getPlanGroup();
 ```typescript
 await client.plangroups.createPlanGroup({
     addOnIds: ["add_on_ids"],
+    checkoutCollectAddress: true,
+    checkoutCollectEmail: true,
+    checkoutCollectPhone: true,
+    enableTaxCollection: true,
     orderedAddOns: [
         {
             planId: "plan_id",
@@ -8685,7 +9450,11 @@ await client.plangroups.createPlanGroup({
             planId: "plan_id",
         },
     ],
+    preventDowngradesWhenOverLimit: true,
+    showCredits: true,
     showPeriodToggle: true,
+    showZeroPriceAsFree: true,
+    syncCustomerBillingDetailsForTax: true,
 });
 ```
 
@@ -8736,6 +9505,10 @@ await client.plangroups.createPlanGroup({
 ```typescript
 await client.plangroups.updatePlanGroup("plan_group_id", {
     addOnIds: ["add_on_ids"],
+    checkoutCollectAddress: true,
+    checkoutCollectEmail: true,
+    checkoutCollectPhone: true,
+    enableTaxCollection: true,
     orderedAddOns: [
         {
             planId: "plan_id",
@@ -8751,7 +9524,11 @@ await client.plangroups.updatePlanGroup("plan_group_id", {
             planId: "plan_id",
         },
     ],
+    preventDowngradesWhenOverLimit: true,
+    showCredits: true,
     showPeriodToggle: true,
+    showZeroPriceAsFree: true,
+    syncCustomerBillingDetailsForTax: true,
 });
 ```
 
@@ -8864,7 +9641,12 @@ await client.accesstokens.issueTemporaryAccessToken({
 <dd>
 
 ```typescript
-await client.webhooks.listWebhookEvents();
+await client.webhooks.listWebhookEvents({
+    q: "q",
+    webhookId: "webhook_id",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -8960,7 +9742,12 @@ await client.webhooks.getWebhookEvent("webhook_event_id");
 <dd>
 
 ```typescript
-await client.webhooks.countWebhookEvents();
+await client.webhooks.countWebhookEvents({
+    q: "q",
+    webhookId: "webhook_id",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -9008,7 +9795,11 @@ await client.webhooks.countWebhookEvents();
 <dd>
 
 ```typescript
-await client.webhooks.listWebhooks();
+await client.webhooks.listWebhooks({
+    q: "q",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>
@@ -9260,7 +10051,11 @@ await client.webhooks.deleteWebhook("webhook_id");
 <dd>
 
 ```typescript
-await client.webhooks.countWebhooks();
+await client.webhooks.countWebhooks({
+    q: "q",
+    limit: 1,
+    offset: 1,
+});
 ```
 
 </dd>

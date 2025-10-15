@@ -4,7 +4,10 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         companyId: "company_id",
+ *         componentId: "component_id"
+ *     }
  */
 export interface PreviewComponentDataRequest {
     companyId?: string;

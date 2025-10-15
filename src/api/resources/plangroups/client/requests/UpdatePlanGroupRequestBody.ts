@@ -8,6 +8,10 @@ import * as Schematic from "../../../../index";
  * @example
  *     {
  *         addOnIds: ["add_on_ids"],
+ *         checkoutCollectAddress: true,
+ *         checkoutCollectEmail: true,
+ *         checkoutCollectPhone: true,
+ *         enableTaxCollection: true,
  *         orderedAddOns: [{
  *                 planId: "plan_id"
  *             }],
@@ -17,20 +21,37 @@ import * as Schematic from "../../../../index";
  *         orderedPlans: [{
  *                 planId: "plan_id"
  *             }],
- *         showPeriodToggle: true
+ *         preventDowngradesWhenOverLimit: true,
+ *         showCredits: true,
+ *         showPeriodToggle: true,
+ *         showZeroPriceAsFree: true,
+ *         syncCustomerBillingDetailsForTax: true
  *     }
  */
 export interface UpdatePlanGroupRequestBody {
     addOnCompatibilities?: Schematic.CompatiblePlans[];
     /** Use OrderedAddOns instead */
     addOnIds: string[];
+    checkoutCollectAddress: boolean;
+    checkoutCollectEmail: boolean;
+    checkoutCollectPhone: boolean;
     customPlanConfig?: Schematic.CustomPlanConfig;
     customPlanId?: string;
     defaultPlanId?: string;
+    enableTaxCollection: boolean;
+    fallbackPlanId?: string;
+    initialPlanId?: string;
+    initialPlanPriceId?: string;
     orderedAddOns: Schematic.OrderedPlansInGroup[];
     orderedBundleList: Schematic.PlanGroupBundleOrder[];
     orderedPlans: Schematic.OrderedPlansInGroup[];
+    preventDowngradesWhenOverLimit: boolean;
+    showCredits: boolean;
     showPeriodToggle: boolean;
+    showZeroPriceAsFree: boolean;
+    syncCustomerBillingDetailsForTax: boolean;
     trialDays?: number;
+    trialExpiryPlanId?: string;
+    trialExpiryPlanPriceId?: string;
     trialPaymentMethodRequired?: boolean;
 }

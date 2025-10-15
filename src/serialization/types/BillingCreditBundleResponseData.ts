@@ -21,6 +21,7 @@ export const BillingCreditBundleResponseData: core.serialization.ObjectSchema<
     expiryType: core.serialization.property("expiry_type", core.serialization.string()),
     expiryUnit: core.serialization.property("expiry_unit", core.serialization.string()),
     expiryUnitCount: core.serialization.property("expiry_unit_count", core.serialization.number().optional()),
+    hasGrants: core.serialization.property("has_grants", core.serialization.boolean()),
     id: core.serialization.string(),
     name: core.serialization.string(),
     pluralName: core.serialization.property("plural_name", core.serialization.string().optional()),
@@ -44,6 +45,7 @@ export declare namespace BillingCreditBundleResponseData {
         expiry_type: string;
         expiry_unit: string;
         expiry_unit_count?: number | null;
+        has_grants: boolean;
         id: string;
         name: string;
         plural_name?: string | null;

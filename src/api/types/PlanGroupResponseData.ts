@@ -4,17 +4,25 @@
 
 import * as Schematic from "../index";
 
-/**
- * The updated resource
- */
 export interface PlanGroupResponseData {
     addOnCompatibilities: Schematic.CompatiblePlansResponseData[];
     addOnIds: string[];
+    checkoutSettings: Schematic.CheckoutSettingsResponseData;
     defaultPlanId?: string;
+    fallbackPlanId?: string;
     id: string;
+    initialPlanId?: string;
+    initialPlanPriceId?: string;
     orderedAddOnIds: Schematic.OrderedPlansInGroup[];
     planIds: Schematic.OrderedPlansInGroup[];
+    preventDowngradesWhenOverLimit: boolean;
+    showCredits: boolean;
     showPeriodToggle: boolean;
+    showZeroPriceAsFree: boolean;
+    syncCustomerBillingDetailsForTax: boolean;
+    taxCollectionEnabled: boolean;
     trialDays?: number;
+    trialExpiryPlanId?: string;
+    trialExpiryPlanPriceId?: string;
     trialPaymentMethodRequired?: boolean;
 }
