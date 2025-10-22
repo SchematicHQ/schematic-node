@@ -31,6 +31,8 @@ export type UpdateWebhookRequestBodyRequestTypesItem =
     | "entitlement.limit.reached"
     | "entitlement.soft_limit.warning"
     | "entitlement.soft_limit.reached"
+    | "entitlement.tier_limit.warning"
+    | "entitlement.tier_limit.reached"
     | "credit.limit.warning"
     | "credit.limit.reached";
 export const UpdateWebhookRequestBodyRequestTypesItem = {
@@ -62,6 +64,8 @@ export const UpdateWebhookRequestBodyRequestTypesItem = {
     EntitlementLimitReached: "entitlement.limit.reached",
     EntitlementSoftLimitWarning: "entitlement.soft_limit.warning",
     EntitlementSoftLimitReached: "entitlement.soft_limit.reached",
+    EntitlementTierLimitWarning: "entitlement.tier_limit.warning",
+    EntitlementTierLimitReached: "entitlement.tier_limit.reached",
     CreditLimitWarning: "credit.limit.warning",
     CreditLimitReached: "credit.limit.reached",
 } as const;

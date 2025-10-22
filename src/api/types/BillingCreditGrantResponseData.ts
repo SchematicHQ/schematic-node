@@ -9,6 +9,7 @@ export interface BillingCreditGrantResponseData {
     companyName: string;
     createdAt: Date;
     creditIcon?: string;
+    creditId: string;
     creditName: string;
     expiresAt?: Date;
     grantReason: string;
