@@ -28,6 +28,7 @@ class EventBuffer {
     private initialRetryDelay: number;
     private shutdown: boolean = false;
     private stopped: boolean = false;
+    private flushing: boolean = false;  // Add flush state tracking
 
     constructor(eventsApi: Events, opts?: EventBufferOptions) {
         const {
@@ -50,56 +51,61 @@ class EventBuffer {
     }
 
     public async flush(): Promise<void> {
-        if (this.events.length === 0) {
+        if (this.events.length === 0 || this.flushing) {
             return;
         }
 
-        const events = [...this.events];
-        this.events = [];
+        this.flushing = true;
+        try {
+            const events = [...this.events];
+            this.events = [];
 
-        // Initialize retry counter and success flag
-        let retryCount = 0;
-        let success = false;
-        let lastError: any = null;
+            // Initialize retry counter and success flag
+            let retryCount = 0;
+            let success = false;
+            let lastError: any = null;
 
-        // Try with retries and exponential backoff
-        while (retryCount <= this.maxRetries && !success) {
-            try {
-                if (retryCount > 0) {
-                    // Log retry attempt
-                    this.logger.info(`Retrying event batch submission (attempt ${retryCount} of ${this.maxRetries})`);
-                }
+            // Try with retries and exponential backoff
+            while (retryCount <= this.maxRetries && !success) {
+                try {
+                    if (retryCount > 0) {
+                        // Log retry attempt
+                        this.logger.info(`Retrying event batch submission (attempt ${retryCount} of ${this.maxRetries})`);
+                    }
 
-                // Attempt to send events
-                await this.eventsApi.createEventBatch({ events });
-                success = true;
-            } catch (err) {
-                lastError = err;
-                retryCount++;
+                    // Attempt to send events
+                    await this.eventsApi.createEventBatch({ events });
+                    success = true;
+                } catch (err) {
+                    lastError = err;
+                    retryCount++;
 
-                if (retryCount <= this.maxRetries) {
-                    // Calculate backoff with jitter
-                    const delay = this.initialRetryDelay * Math.pow(2, retryCount - 1);
-                    const jitter = Math.random() * 0.1 * delay; // 10% jitter
-                    const waitTime = delay + jitter;
+                    if (retryCount <= this.maxRetries) {
+                        // Calculate backoff with jitter
+                        const delay = this.initialRetryDelay * Math.pow(2, retryCount - 1);
+                        const jitter = Math.random() * 0.1 * delay; // 10% jitter
+                        const waitTime = delay + jitter;
 
-                    this.logger.warn(
-                        `Event batch submission failed: ${err}. Retrying in ${(waitTime / 1000).toFixed(2)} seconds...`
-                    );
+                        this.logger.warn(
+                            `Event batch submission failed: ${err}. Retrying in ${(waitTime / 1000).toFixed(2)} seconds...`
+                        );
 
-                    // Wait before retry
-                    if (process.env.NODE_ENV !== "test") {
-                        await new Promise((resolve) => setTimeout(resolve, waitTime));
+                        // Wait before retry
+                        if (process.env.NODE_ENV !== "test") {
+                            await new Promise((resolve) => setTimeout(resolve, waitTime));
+                        }
                     }
                 }
             }
-        }
 
-        // After all retries, if still not successful, log the error
-        if (!success) {
-            this.logger.error(`Event batch submission failed after ${this.maxRetries} retries:`, lastError);
-        } else if (retryCount > 0) {
-            this.logger.info(`Event batch submission succeeded after ${retryCount} retries`);
+            // After all retries, if still not successful, log the error
+            if (!success) {
+                this.logger.error(`Event batch submission failed after ${this.maxRetries} retries:`, lastError);
+            } else if (retryCount > 0) {
+                this.logger.info(`Event batch submission succeeded after ${retryCount} retries`);
+            }
+        } finally {
+            this.flushing = false;
         }
     }
 
@@ -113,7 +119,7 @@ class EventBuffer {
             return;
         }
 
-        if (this.events.length >= this.maxSize) {
+        if (this.events.length >= this.maxSize && !this.flushing) {
             await this.flush();
         }
 
