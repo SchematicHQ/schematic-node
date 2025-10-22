@@ -5,11 +5,13 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { ApiKeyResponseData } from "./ApiKeyResponseData";
 
 export const ApiKeyRequestResponseData: core.serialization.ObjectSchema<
     serializers.ApiKeyRequestResponseData.Raw,
     Schematic.ApiKeyRequestResponseData
 > = core.serialization.object({
+    apiKey: core.serialization.property("api_key", ApiKeyResponseData.optional()),
     apiKeyId: core.serialization.property("api_key_id", core.serialization.string()),
     endedAt: core.serialization.property("ended_at", core.serialization.date().optional()),
     environmentId: core.serialization.property("environment_id", core.serialization.string().optional()),
@@ -33,6 +35,7 @@ export const ApiKeyRequestResponseData: core.serialization.ObjectSchema<
 
 export declare namespace ApiKeyRequestResponseData {
     export interface Raw {
+        api_key?: ApiKeyResponseData.Raw | null;
         api_key_id: string;
         ended_at?: string | null;
         environment_id?: string | null;
