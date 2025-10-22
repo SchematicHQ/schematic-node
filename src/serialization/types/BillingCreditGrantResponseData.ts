@@ -15,6 +15,7 @@ export const BillingCreditGrantResponseData: core.serialization.ObjectSchema<
     companyName: core.serialization.property("company_name", core.serialization.string()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     creditIcon: core.serialization.property("credit_icon", core.serialization.string().optional()),
+    creditId: core.serialization.property("credit_id", core.serialization.string()),
     creditName: core.serialization.property("credit_name", core.serialization.string()),
     expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
     grantReason: core.serialization.property("grant_reason", core.serialization.string()),
@@ -38,6 +39,7 @@ export declare namespace BillingCreditGrantResponseData {
         company_name: string;
         created_at: string;
         credit_icon?: string | null;
+        credit_id: string;
         credit_name: string;
         expires_at?: string | null;
         grant_reason: string;
