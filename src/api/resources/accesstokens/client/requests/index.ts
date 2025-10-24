@@ -1,1 +1,1 @@
-export { type IssueTemporaryAccessTokenRequestBody } from "./IssueTemporaryAccessTokenRequestBody";
+export type { IssueTemporaryAccessTokenRequestBody } from "./IssueTemporaryAccessTokenRequestBody.js";

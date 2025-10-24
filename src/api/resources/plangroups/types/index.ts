@@ -1,3 +1,3 @@
-export * from "./GetPlanGroupResponse";
-export * from "./CreatePlanGroupResponse";
-export * from "./UpdatePlanGroupResponse";
+export * from "./CreatePlanGroupResponse.js";
+export * from "./GetPlanGroupResponse.js";
+export * from "./UpdatePlanGroupResponse.js";
