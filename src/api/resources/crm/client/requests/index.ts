@@ -1,5 +1,5 @@
-export { type CreateCrmDealLineItemAssociationRequestBody } from "./CreateCrmDealLineItemAssociationRequestBody";
-export { type CreateCrmLineItemRequestBody } from "./CreateCrmLineItemRequestBody";
-export { type CreateCrmDealRequestBody } from "./CreateCrmDealRequestBody";
-export { type ListCrmProductsRequest } from "./ListCrmProductsRequest";
-export { type CreateCrmProductRequestBody } from "./CreateCrmProductRequestBody";
+export type { CreateCrmDealLineItemAssociationRequestBody } from "./CreateCrmDealLineItemAssociationRequestBody.js";
+export type { CreateCrmDealRequestBody } from "./CreateCrmDealRequestBody.js";
+export type { CreateCrmLineItemRequestBody } from "./CreateCrmLineItemRequestBody.js";
+export type { CreateCrmProductRequestBody } from "./CreateCrmProductRequestBody.js";
+export type { ListCrmProductsRequest } from "./ListCrmProductsRequest.js";
