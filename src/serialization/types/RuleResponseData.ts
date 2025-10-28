@@ -15,7 +15,6 @@ export const RuleResponseData: core.serialization.ObjectSchema<
     flagId: core.serialization.property("flag_id", core.serialization.string().optional()),
     id: core.serialization.string(),
     name: core.serialization.string(),
-    planId: core.serialization.property("plan_id", core.serialization.string().optional()),
     priority: core.serialization.number(),
     ruleType: core.serialization.property("rule_type", core.serialization.string()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -29,7 +28,6 @@ export declare namespace RuleResponseData {
         flag_id?: string | null;
         id: string;
         name: string;
-        plan_id?: string | null;
         priority: number;
         rule_type: string;
         updated_at: string;

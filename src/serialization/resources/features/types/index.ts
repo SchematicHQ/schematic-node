@@ -1,7 +1,3 @@
-export * from "./CountAudienceCompaniesResponse";
-export * from "./CountAudienceUsersResponse";
-export * from "./ListAudienceCompaniesResponse";
-export * from "./ListAudienceUsersResponse";
 export * from "./ListFeaturesParams";
 export * from "./ListFeaturesResponse";
 export * from "./CreateFeatureRequestBodyFeatureType";

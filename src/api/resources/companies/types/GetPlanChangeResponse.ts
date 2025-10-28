@@ -4,8 +4,8 @@
 
 import * as Schematic from "../../../index";
 
-export interface DeleteAudienceResponse {
-    data: Schematic.DeleteResponse;
+export interface GetPlanChangeResponse {
+    data: Schematic.PlanChangeResponseData;
     /** Input parameters */
     params: Record<string, unknown>;
 }

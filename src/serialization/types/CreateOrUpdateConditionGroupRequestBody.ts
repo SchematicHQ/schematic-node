@@ -14,7 +14,6 @@ export const CreateOrUpdateConditionGroupRequestBody: core.serialization.ObjectS
     conditions: core.serialization.list(CreateOrUpdateConditionRequestBody),
     flagId: core.serialization.property("flag_id", core.serialization.string().optional()),
     id: core.serialization.string().optional(),
-    planId: core.serialization.property("plan_id", core.serialization.string().optional()),
 });
 
 export declare namespace CreateOrUpdateConditionGroupRequestBody {
@@ -22,6 +21,5 @@ export declare namespace CreateOrUpdateConditionGroupRequestBody {
         conditions: CreateOrUpdateConditionRequestBody.Raw[];
         flag_id?: string | null;
         id?: string | null;
-        plan_id?: string | null;
     }
 }

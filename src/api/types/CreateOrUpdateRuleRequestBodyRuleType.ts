@@ -7,13 +7,11 @@ export type CreateOrUpdateRuleRequestBodyRuleType =
     | "company_override"
     | "plan_entitlement"
     | "standard"
-    | "default"
-    | "plan_audience";
+    | "default";
 export const CreateOrUpdateRuleRequestBodyRuleType = {
     GlobalOverride: "global_override",
     CompanyOverride: "company_override",
     PlanEntitlement: "plan_entitlement",
     Standard: "standard",
     Default: "default",
-    PlanAudience: "plan_audience",
 } as const;
