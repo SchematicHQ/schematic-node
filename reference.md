@@ -1,6 +1,6 @@
 # Reference
 
-<details><summary><code>client.<a href="/src/Client.ts">deletePlanCreditGrant</a>() -> void</code></summary>
+<details><summary><code>client.<a href="/src/Client.ts">deletePlanAudiencesPlanAudienceId</a>(planAudienceId) -> void</code></summary>
 <dl>
 <dd>
 
@@ -13,7 +13,7 @@
 <dd>
 
 ```typescript
-await client.deletePlanCreditGrant();
+await client.deletePlanAudiencesPlanAudienceId("plan_audience_id");
 ```
 
 </dd>
@@ -25,6 +25,14 @@ await client.deletePlanCreditGrant();
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**planAudienceId:** `string`
+
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -792,1094 +800,6 @@ await client.accounts.quickstart();
 <dd>
 
 **requestOptions:** `Accounts.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## features
-
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">countAudienceCompanies</a>({ ...params }) -> Schematic.CountAudienceCompaniesResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.features.countAudienceCompanies({
-    conditionGroups: [
-        {
-            conditions: [
-                {
-                    conditionType: "company",
-                    operator: "eq",
-                    resourceIds: ["resource_ids"],
-                },
-            ],
-        },
-    ],
-    conditions: [
-        {
-            conditionType: "company",
-            operator: "eq",
-            resourceIds: ["resource_ids"],
-        },
-    ],
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.AudienceRequestBody`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Features.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">countAudienceUsers</a>({ ...params }) -> Schematic.CountAudienceUsersResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.features.countAudienceUsers({
-    conditionGroups: [
-        {
-            conditions: [
-                {
-                    conditionType: "company",
-                    operator: "eq",
-                    resourceIds: ["resource_ids"],
-                },
-            ],
-        },
-    ],
-    conditions: [
-        {
-            conditionType: "company",
-            operator: "eq",
-            resourceIds: ["resource_ids"],
-        },
-    ],
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.AudienceRequestBody`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Features.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">listAudienceCompanies</a>({ ...params }) -> Schematic.ListAudienceCompaniesResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.features.listAudienceCompanies({
-    conditionGroups: [
-        {
-            conditions: [
-                {
-                    conditionType: "company",
-                    operator: "eq",
-                    resourceIds: ["resource_ids"],
-                },
-            ],
-        },
-    ],
-    conditions: [
-        {
-            conditionType: "company",
-            operator: "eq",
-            resourceIds: ["resource_ids"],
-        },
-    ],
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.AudienceRequestBody`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Features.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">listAudienceUsers</a>({ ...params }) -> Schematic.ListAudienceUsersResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.features.listAudienceUsers({
-    conditionGroups: [
-        {
-            conditions: [
-                {
-                    conditionType: "company",
-                    operator: "eq",
-                    resourceIds: ["resource_ids"],
-                },
-            ],
-        },
-    ],
-    conditions: [
-        {
-            conditionType: "company",
-            operator: "eq",
-            resourceIds: ["resource_ids"],
-        },
-    ],
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.AudienceRequestBody`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Features.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">listFeatures</a>({ ...params }) -> Schematic.ListFeaturesResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.features.listFeatures({
-    q: "q",
-    withoutCompanyOverrideFor: "without_company_override_for",
-    withoutPlanEntitlementFor: "without_plan_entitlement_for",
-    booleanRequireEvent: true,
-    limit: 1,
-    offset: 1,
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.ListFeaturesRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Features.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">createFeature</a>({ ...params }) -> Schematic.CreateFeatureResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.features.createFeature({
-    description: "description",
-    featureType: "boolean",
-    name: "name",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.CreateFeatureRequestBody`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Features.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">getFeature</a>(featureId) -> Schematic.GetFeatureResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.features.getFeature("feature_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**featureId:** `string` — feature_id
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Features.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">updateFeature</a>(featureId, { ...params }) -> Schematic.UpdateFeatureResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.features.updateFeature("feature_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**featureId:** `string` — feature_id
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Schematic.UpdateFeatureRequestBody`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Features.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">deleteFeature</a>(featureId) -> Schematic.DeleteFeatureResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.features.deleteFeature("feature_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**featureId:** `string` — feature_id
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Features.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">countFeatures</a>({ ...params }) -> Schematic.CountFeaturesResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.features.countFeatures({
-    q: "q",
-    withoutCompanyOverrideFor: "without_company_override_for",
-    withoutPlanEntitlementFor: "without_plan_entitlement_for",
-    booleanRequireEvent: true,
-    limit: 1,
-    offset: 1,
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.CountFeaturesRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Features.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">listFlags</a>({ ...params }) -> Schematic.ListFlagsResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.features.listFlags({
-    featureId: "feature_id",
-    q: "q",
-    limit: 1,
-    offset: 1,
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.ListFlagsRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Features.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">createFlag</a>({ ...params }) -> Schematic.CreateFlagResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.features.createFlag({
-    defaultValue: true,
-    description: "description",
-    flagType: "boolean",
-    key: "key",
-    name: "name",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.CreateFlagRequestBody`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Features.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">getFlag</a>(flagId) -> Schematic.GetFlagResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.features.getFlag("flag_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**flagId:** `string` — flag_id
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Features.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">updateFlag</a>(flagId, { ...params }) -> Schematic.UpdateFlagResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.features.updateFlag("flag_id", {
-    defaultValue: true,
-    description: "description",
-    flagType: "boolean",
-    key: "key",
-    name: "name",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**flagId:** `string` — flag_id
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Schematic.CreateFlagRequestBody`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Features.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">deleteFlag</a>(flagId) -> Schematic.DeleteFlagResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.features.deleteFlag("flag_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**flagId:** `string` — flag_id
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Features.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">updateFlagRules</a>(flagId, { ...params }) -> Schematic.UpdateFlagRulesResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.features.updateFlagRules("flag_id", {
-    rules: [
-        {
-            conditionGroups: [
-                {
-                    conditions: [
-                        {
-                            conditionType: "company",
-                            operator: "eq",
-                            resourceIds: ["resource_ids"],
-                        },
-                    ],
-                },
-            ],
-            conditions: [
-                {
-                    conditionType: "company",
-                    operator: "eq",
-                    resourceIds: ["resource_ids"],
-                },
-            ],
-            name: "name",
-            priority: 1,
-            value: true,
-        },
-    ],
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**flagId:** `string` — flag_id
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Schematic.UpdateFlagRulesRequestBody`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Features.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">checkFlag</a>(key, { ...params }) -> Schematic.CheckFlagResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.features.checkFlag("key", {});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**key:** `string` — key
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Schematic.CheckFlagRequestBody`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Features.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">checkFlags</a>({ ...params }) -> Schematic.CheckFlagsResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.features.checkFlags({});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.CheckFlagRequestBody`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Features.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">countFlags</a>({ ...params }) -> Schematic.CountFlagsResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.features.countFlags({
-    featureId: "feature_id",
-    q: "q",
-    limit: 1,
-    offset: 1,
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.CountFlagsRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Features.RequestOptions`
 
 </dd>
 </dl>
@@ -3114,7 +2034,7 @@ await client.credits.createBillingCredit({
 </dl>
 </details>
 
-<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">getSingleBillingCredit</a>(billingId) -> Schematic.GetSingleBillingCreditResponse</code></summary>
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">getSingleBillingCredit</a>(creditId) -> Schematic.GetSingleBillingCreditResponse</code></summary>
 <dl>
 <dd>
 
@@ -3127,7 +2047,7 @@ await client.credits.createBillingCredit({
 <dd>
 
 ```typescript
-await client.credits.getSingleBillingCredit("billing_id");
+await client.credits.getSingleBillingCredit("credit_id");
 ```
 
 </dd>
@@ -3143,7 +2063,7 @@ await client.credits.getSingleBillingCredit("billing_id");
 <dl>
 <dd>
 
-**billingId:** `string` — billing_id
+**creditId:** `string` — credit_id
 
 </dd>
 </dl>
@@ -3162,7 +2082,7 @@ await client.credits.getSingleBillingCredit("billing_id");
 </dl>
 </details>
 
-<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">updateBillingCredit</a>(billingId, { ...params }) -> Schematic.UpdateBillingCreditResponse</code></summary>
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">updateBillingCredit</a>(creditId, { ...params }) -> Schematic.UpdateBillingCreditResponse</code></summary>
 <dl>
 <dd>
 
@@ -3175,7 +2095,7 @@ await client.credits.getSingleBillingCredit("billing_id");
 <dd>
 
 ```typescript
-await client.credits.updateBillingCredit("billing_id", {
+await client.credits.updateBillingCredit("credit_id", {
     description: "description",
     name: "name",
 });
@@ -3194,7 +2114,7 @@ await client.credits.updateBillingCredit("billing_id", {
 <dl>
 <dd>
 
-**billingId:** `string` — billing_id
+**creditId:** `string` — credit_id
 
 </dd>
 </dl>
@@ -3221,7 +2141,7 @@ await client.credits.updateBillingCredit("billing_id", {
 </dl>
 </details>
 
-<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">softDeleteBillingCredit</a>(billingId) -> Schematic.SoftDeleteBillingCreditResponse</code></summary>
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">softDeleteBillingCredit</a>(creditId) -> Schematic.SoftDeleteBillingCreditResponse</code></summary>
 <dl>
 <dd>
 
@@ -3234,7 +2154,7 @@ await client.credits.updateBillingCredit("billing_id", {
 <dd>
 
 ```typescript
-await client.credits.softDeleteBillingCredit("billing_id");
+await client.credits.softDeleteBillingCredit("credit_id");
 ```
 
 </dd>
@@ -3250,7 +2170,7 @@ await client.credits.softDeleteBillingCredit("billing_id");
 <dl>
 <dd>
 
-**billingId:** `string` — billing_id
+**creditId:** `string` — credit_id
 
 </dd>
 </dl>
@@ -3376,7 +2296,7 @@ await client.credits.createCreditBundle({
 </dl>
 </details>
 
-<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">getCreditBundle</a>(billingId) -> Schematic.GetCreditBundleResponse</code></summary>
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">getCreditBundle</a>(bundleId) -> Schematic.GetCreditBundleResponse</code></summary>
 <dl>
 <dd>
 
@@ -3389,7 +2309,7 @@ await client.credits.createCreditBundle({
 <dd>
 
 ```typescript
-await client.credits.getCreditBundle("billing_id");
+await client.credits.getCreditBundle("bundle_id");
 ```
 
 </dd>
@@ -3405,7 +2325,7 @@ await client.credits.getCreditBundle("billing_id");
 <dl>
 <dd>
 
-**billingId:** `string` — billing_id
+**bundleId:** `string` — bundle_id
 
 </dd>
 </dl>
@@ -3424,7 +2344,7 @@ await client.credits.getCreditBundle("billing_id");
 </dl>
 </details>
 
-<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">updateCreditBundleDetails</a>(billingId, { ...params }) -> Schematic.UpdateCreditBundleDetailsResponse</code></summary>
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">updateCreditBundleDetails</a>(bundleId, { ...params }) -> Schematic.UpdateCreditBundleDetailsResponse</code></summary>
 <dl>
 <dd>
 
@@ -3437,7 +2357,7 @@ await client.credits.getCreditBundle("billing_id");
 <dd>
 
 ```typescript
-await client.credits.updateCreditBundleDetails("billing_id", {
+await client.credits.updateCreditBundleDetails("bundle_id", {
     bundleName: "bundle_name",
     pricePerUnit: 1,
 });
@@ -3456,7 +2376,7 @@ await client.credits.updateCreditBundleDetails("billing_id", {
 <dl>
 <dd>
 
-**billingId:** `string` — billing_id
+**bundleId:** `string` — bundle_id
 
 </dd>
 </dl>
@@ -3483,7 +2403,7 @@ await client.credits.updateCreditBundleDetails("billing_id", {
 </dl>
 </details>
 
-<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">deleteCreditBundle</a>(billingId) -> Schematic.DeleteCreditBundleResponse</code></summary>
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">deleteCreditBundle</a>(bundleId) -> Schematic.DeleteCreditBundleResponse</code></summary>
 <dl>
 <dd>
 
@@ -3496,7 +2416,7 @@ await client.credits.updateCreditBundleDetails("billing_id", {
 <dd>
 
 ```typescript
-await client.credits.deleteCreditBundle("billing_id");
+await client.credits.deleteCreditBundle("bundle_id");
 ```
 
 </dd>
@@ -3512,7 +2432,7 @@ await client.credits.deleteCreditBundle("billing_id");
 <dl>
 <dd>
 
-**billingId:** `string` — billing_id
+**bundleId:** `string` — bundle_id
 
 </dd>
 </dl>
@@ -3637,7 +2557,7 @@ await client.credits.countBillingCredits({
 </dl>
 </details>
 
-<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">zeroOutGrant</a>(billingId, { ...params }) -> Schematic.ZeroOutGrantResponse</code></summary>
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">zeroOutGrant</a>(grantId, { ...params }) -> Schematic.ZeroOutGrantResponse</code></summary>
 <dl>
 <dd>
 
@@ -3650,7 +2570,7 @@ await client.credits.countBillingCredits({
 <dd>
 
 ```typescript
-await client.credits.zeroOutGrant("billing_id");
+await client.credits.zeroOutGrant("grant_id");
 ```
 
 </dd>
@@ -3666,7 +2586,7 @@ await client.credits.zeroOutGrant("billing_id");
 <dl>
 <dd>
 
-**billingId:** `string` — billing_id
+**grantId:** `string` — grant_id
 
 </dd>
 </dl>
@@ -4125,7 +3045,7 @@ await client.credits.createBillingPlanCreditGrant({
 </dl>
 </details>
 
-<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">deleteBillingPlanCreditGrant</a>(billingId) -> Schematic.DeleteBillingPlanCreditGrantResponse</code></summary>
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">deleteBillingPlanCreditGrant</a>(planGrantId) -> Schematic.DeleteBillingPlanCreditGrantResponse</code></summary>
 <dl>
 <dd>
 
@@ -4138,7 +3058,7 @@ await client.credits.createBillingPlanCreditGrant({
 <dd>
 
 ```typescript
-await client.credits.deleteBillingPlanCreditGrant("billing_id");
+await client.credits.deleteBillingPlanCreditGrant("plan_grant_id");
 ```
 
 </dd>
@@ -4154,7 +3074,7 @@ await client.credits.deleteBillingPlanCreditGrant("billing_id");
 <dl>
 <dd>
 
-**billingId:** `string` — billing_id
+**planGrantId:** `string` — plan_grant_id
 
 </dd>
 </dl>
@@ -5859,6 +4779,108 @@ await client.companies.getEntityTraitValues({
 <dd>
 
 **request:** `Schematic.GetEntityTraitValuesRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Companies.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">listPlanChanges</a>({ ...params }) -> Schematic.ListPlanChangesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.companies.listPlanChanges({
+    action: "action",
+    basePlanAction: "base_plan_action",
+    companyId: "company_id",
+    limit: 1,
+    offset: 1,
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListPlanChangesRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Companies.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">getPlanChange</a>(planChangeId) -> Schematic.GetPlanChangeResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.companies.getPlanChange("plan_change_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**planChangeId:** `string` — plan_change_id
 
 </dd>
 </dl>
@@ -7777,177 +6799,6 @@ await client.plans.updateCompanyPlans("company_plan_id", {
 </dl>
 </details>
 
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">getAudience</a>(planAudienceId) -> Schematic.GetAudienceResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.getAudience("plan_audience_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**planAudienceId:** `string` — plan_audience_id
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">updateAudience</a>(planAudienceId, { ...params }) -> Schematic.UpdateAudienceResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.updateAudience("plan_audience_id", {
-    conditionGroups: [
-        {
-            conditions: [
-                {
-                    conditionType: "company",
-                    operator: "eq",
-                    resourceIds: ["resource_ids"],
-                },
-            ],
-        },
-    ],
-    conditions: [
-        {
-            conditionType: "company",
-            operator: "eq",
-            resourceIds: ["resource_ids"],
-        },
-    ],
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**planAudienceId:** `string` — plan_audience_id
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Schematic.UpdateAudienceRequestBody`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">deleteAudience</a>(planAudienceId) -> Schematic.DeleteAudienceResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.plans.deleteAudience("plan_audience_id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**planAudienceId:** `string` — plan_audience_id
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Plans.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">listPlans</a>({ ...params }) -> Schematic.ListPlansResponse</code></summary>
 <dl>
 <dd>
@@ -9406,6 +8257,826 @@ await client.events.getSegmentIntegrationStatus();
 <dd>
 
 **requestOptions:** `Events.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## features
+
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">listFeatures</a>({ ...params }) -> Schematic.ListFeaturesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.features.listFeatures({
+    q: "q",
+    withoutCompanyOverrideFor: "without_company_override_for",
+    withoutPlanEntitlementFor: "without_plan_entitlement_for",
+    booleanRequireEvent: true,
+    limit: 1,
+    offset: 1,
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListFeaturesRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Features.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">createFeature</a>({ ...params }) -> Schematic.CreateFeatureResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.features.createFeature({
+    description: "description",
+    featureType: "boolean",
+    name: "name",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CreateFeatureRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Features.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">getFeature</a>(featureId) -> Schematic.GetFeatureResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.features.getFeature("feature_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**featureId:** `string` — feature_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Features.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">updateFeature</a>(featureId, { ...params }) -> Schematic.UpdateFeatureResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.features.updateFeature("feature_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**featureId:** `string` — feature_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.UpdateFeatureRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Features.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">deleteFeature</a>(featureId) -> Schematic.DeleteFeatureResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.features.deleteFeature("feature_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**featureId:** `string` — feature_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Features.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">countFeatures</a>({ ...params }) -> Schematic.CountFeaturesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.features.countFeatures({
+    q: "q",
+    withoutCompanyOverrideFor: "without_company_override_for",
+    withoutPlanEntitlementFor: "without_plan_entitlement_for",
+    booleanRequireEvent: true,
+    limit: 1,
+    offset: 1,
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CountFeaturesRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Features.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">listFlags</a>({ ...params }) -> Schematic.ListFlagsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.features.listFlags({
+    featureId: "feature_id",
+    q: "q",
+    limit: 1,
+    offset: 1,
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListFlagsRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Features.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">createFlag</a>({ ...params }) -> Schematic.CreateFlagResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.features.createFlag({
+    defaultValue: true,
+    description: "description",
+    flagType: "boolean",
+    key: "key",
+    name: "name",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CreateFlagRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Features.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">getFlag</a>(flagId) -> Schematic.GetFlagResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.features.getFlag("flag_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**flagId:** `string` — flag_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Features.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">updateFlag</a>(flagId, { ...params }) -> Schematic.UpdateFlagResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.features.updateFlag("flag_id", {
+    defaultValue: true,
+    description: "description",
+    flagType: "boolean",
+    key: "key",
+    name: "name",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**flagId:** `string` — flag_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CreateFlagRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Features.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">deleteFlag</a>(flagId) -> Schematic.DeleteFlagResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.features.deleteFlag("flag_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**flagId:** `string` — flag_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Features.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">updateFlagRules</a>(flagId, { ...params }) -> Schematic.UpdateFlagRulesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.features.updateFlagRules("flag_id", {
+    rules: [
+        {
+            conditionGroups: [
+                {
+                    conditions: [
+                        {
+                            conditionType: "company",
+                            operator: "eq",
+                            resourceIds: ["resource_ids"],
+                        },
+                    ],
+                },
+            ],
+            conditions: [
+                {
+                    conditionType: "company",
+                    operator: "eq",
+                    resourceIds: ["resource_ids"],
+                },
+            ],
+            name: "name",
+            priority: 1,
+            value: true,
+        },
+    ],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**flagId:** `string` — flag_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.UpdateFlagRulesRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Features.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">checkFlag</a>(key, { ...params }) -> Schematic.CheckFlagResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.features.checkFlag("key", {});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**key:** `string` — key
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CheckFlagRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Features.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">checkFlags</a>({ ...params }) -> Schematic.CheckFlagsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.features.checkFlags({});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CheckFlagRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Features.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">countFlags</a>({ ...params }) -> Schematic.CountFlagsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.features.countFlags({
+    featureId: "feature_id",
+    q: "q",
+    limit: 1,
+    offset: 1,
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CountFlagsRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Features.RequestOptions`
 
 </dd>
 </dl>

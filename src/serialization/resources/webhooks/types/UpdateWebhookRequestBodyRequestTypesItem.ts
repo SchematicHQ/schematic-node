@@ -42,6 +42,7 @@ export const UpdateWebhookRequestBodyRequestTypesItem: core.serialization.Schema
     "entitlement.tier_limit.reached",
     "credit.limit.warning",
     "credit.limit.reached",
+    "company.plan_change",
 ]);
 
 export declare namespace UpdateWebhookRequestBodyRequestTypesItem {
@@ -77,5 +78,6 @@ export declare namespace UpdateWebhookRequestBodyRequestTypesItem {
         | "entitlement.tier_limit.warning"
         | "entitlement.tier_limit.reached"
         | "credit.limit.warning"
-        | "credit.limit.reached";
+        | "credit.limit.reached"
+        | "company.plan_change";
 }

@@ -16,7 +16,6 @@ export const RuleConditionGroupDetailResponseData: core.serialization.ObjectSche
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     flagId: core.serialization.property("flag_id", core.serialization.string().optional()),
     id: core.serialization.string(),
-    planId: core.serialization.property("plan_id", core.serialization.string().optional()),
     ruleId: core.serialization.property("rule_id", core.serialization.string()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
@@ -28,7 +27,6 @@ export declare namespace RuleConditionGroupDetailResponseData {
         environment_id: string;
         flag_id?: string | null;
         id: string;
-        plan_id?: string | null;
         rule_id: string;
         updated_at: string;
     }
