@@ -7,6 +7,7 @@ export type PlanChangeResponseDataAction =
     | "company_upsert"
     | "fallback_plan"
     | "manage_plan"
+    | "migration"
     | "plan_billing_product_changed"
     | "plan_deleted"
     | "quickstart"
@@ -16,6 +17,7 @@ export const PlanChangeResponseDataAction = {
     CompanyUpsert: "company_upsert",
     FallbackPlan: "fallback_plan",
     ManagePlan: "manage_plan",
+    Migration: "migration",
     PlanBillingProductChanged: "plan_billing_product_changed",
     PlanDeleted: "plan_deleted",
     Quickstart: "quickstart",

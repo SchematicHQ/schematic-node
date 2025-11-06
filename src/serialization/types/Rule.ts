@@ -7,6 +7,7 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { ConditionGroup } from "./ConditionGroup";
 import { Condition } from "./Condition";
+import { RuleRuleType } from "./RuleRuleType";
 
 export const Rule: core.serialization.ObjectSchema<serializers.Rule.Raw, Schematic.Rule> = core.serialization.object({
     accountId: core.serialization.property("account_id", core.serialization.string()),
@@ -17,7 +18,7 @@ export const Rule: core.serialization.ObjectSchema<serializers.Rule.Raw, Schemat
     id: core.serialization.string(),
     name: core.serialization.string(),
     priority: core.serialization.number(),
-    ruleType: core.serialization.property("rule_type", core.serialization.string()),
+    ruleType: core.serialization.property("rule_type", RuleRuleType),
     value: core.serialization.boolean(),
 });
 
@@ -31,7 +32,7 @@ export declare namespace Rule {
         id: string;
         name: string;
         priority: number;
-        rule_type: string;
+        rule_type: RuleRuleType.Raw;
         value: boolean;
     }
 }

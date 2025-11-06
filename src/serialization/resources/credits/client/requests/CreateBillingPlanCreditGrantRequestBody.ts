@@ -5,6 +5,8 @@
 import * as serializers from "../../../../index";
 import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
+import { CreateBillingPlanCreditGrantRequestBodyAutoTopupExpiryType } from "../../types/CreateBillingPlanCreditGrantRequestBodyAutoTopupExpiryType";
+import { CreateBillingPlanCreditGrantRequestBodyAutoTopupExpiryUnit } from "../../types/CreateBillingPlanCreditGrantRequestBodyAutoTopupExpiryUnit";
 import { CreateBillingPlanCreditGrantRequestBodyExpiryType } from "../../types/CreateBillingPlanCreditGrantRequestBodyExpiryType";
 import { CreateBillingPlanCreditGrantRequestBodyExpiryUnit } from "../../types/CreateBillingPlanCreditGrantRequestBodyExpiryUnit";
 import { CreateBillingPlanCreditGrantRequestBodyResetCadence } from "../../types/CreateBillingPlanCreditGrantRequestBodyResetCadence";
@@ -15,6 +17,29 @@ export const CreateBillingPlanCreditGrantRequestBody: core.serialization.Schema<
     serializers.CreateBillingPlanCreditGrantRequestBody.Raw,
     Schematic.CreateBillingPlanCreditGrantRequestBody
 > = core.serialization.object({
+    applyToExisting: core.serialization.property("apply_to_existing", core.serialization.boolean().optional()),
+    autoTopupAmount: core.serialization.property("auto_topup_amount", core.serialization.number().optional()),
+    autoTopupAmountType: core.serialization.property(
+        "auto_topup_amount_type",
+        core.serialization.stringLiteral("credit").optional(),
+    ),
+    autoTopupEnabled: core.serialization.property("auto_topup_enabled", core.serialization.boolean().optional()),
+    autoTopupExpiryType: core.serialization.property(
+        "auto_topup_expiry_type",
+        CreateBillingPlanCreditGrantRequestBodyAutoTopupExpiryType.optional(),
+    ),
+    autoTopupExpiryUnit: core.serialization.property(
+        "auto_topup_expiry_unit",
+        CreateBillingPlanCreditGrantRequestBodyAutoTopupExpiryUnit.optional(),
+    ),
+    autoTopupExpiryUnitCount: core.serialization.property(
+        "auto_topup_expiry_unit_count",
+        core.serialization.number().optional(),
+    ),
+    autoTopupThresholdPercent: core.serialization.property(
+        "auto_topup_threshold_percent",
+        core.serialization.number().optional(),
+    ),
     creditAmount: core.serialization.property("credit_amount", core.serialization.number()),
     creditId: core.serialization.property("credit_id", core.serialization.string()),
     expiryType: core.serialization.property(
@@ -34,6 +59,14 @@ export const CreateBillingPlanCreditGrantRequestBody: core.serialization.Schema<
 
 export declare namespace CreateBillingPlanCreditGrantRequestBody {
     export interface Raw {
+        apply_to_existing?: boolean | null;
+        auto_topup_amount?: number | null;
+        auto_topup_amount_type?: "credit" | null;
+        auto_topup_enabled?: boolean | null;
+        auto_topup_expiry_type?: CreateBillingPlanCreditGrantRequestBodyAutoTopupExpiryType.Raw | null;
+        auto_topup_expiry_unit?: CreateBillingPlanCreditGrantRequestBodyAutoTopupExpiryUnit.Raw | null;
+        auto_topup_expiry_unit_count?: number | null;
+        auto_topup_threshold_percent?: number | null;
         credit_amount: number;
         credit_id: string;
         expiry_type?: CreateBillingPlanCreditGrantRequestBodyExpiryType.Raw | null;

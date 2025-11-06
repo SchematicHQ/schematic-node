@@ -5,6 +5,7 @@
 import * as Schematic from "../index";
 
 export interface CreditLedgerEnrichedEntryResponseData {
+    billingCreditAutoTopupGrantCount: number;
     billingCreditId: string;
     company?: Schematic.CompanyLedgerResponseData;
     companyId: string;

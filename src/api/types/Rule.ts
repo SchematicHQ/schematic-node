@@ -13,6 +13,6 @@ export interface Rule {
     id: string;
     name: string;
     priority: number;
-    ruleType: string;
+    ruleType: Schematic.RuleRuleType;
     value: boolean;
 }

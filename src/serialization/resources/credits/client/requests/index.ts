@@ -5,3 +5,4 @@ export { UpdateCreditBundleDetailsRequestBody } from "./UpdateCreditBundleDetail
 export { ZeroOutGrantRequestBody } from "./ZeroOutGrantRequestBody";
 export { CreateCompanyCreditGrant } from "./CreateCompanyCreditGrant";
 export { CreateBillingPlanCreditGrantRequestBody } from "./CreateBillingPlanCreditGrantRequestBody";
+export { UpdateBillingPlanCreditGrantRequestBody } from "./UpdateBillingPlanCreditGrantRequestBody";

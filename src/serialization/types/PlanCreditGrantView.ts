@@ -10,6 +10,34 @@ export const PlanCreditGrantView: core.serialization.ObjectSchema<
     serializers.PlanCreditGrantView.Raw,
     Schematic.PlanCreditGrantView
 > = core.serialization.object({
+    billingCreditAutoTopupAmount: core.serialization.property(
+        "billing_credit_auto_topup_amount",
+        core.serialization.number().optional(),
+    ),
+    billingCreditAutoTopupAmountType: core.serialization.property(
+        "billing_credit_auto_topup_amount_type",
+        core.serialization.string().optional(),
+    ),
+    billingCreditAutoTopupEnabled: core.serialization.property(
+        "billing_credit_auto_topup_enabled",
+        core.serialization.boolean(),
+    ),
+    billingCreditAutoTopupExpiryType: core.serialization.property(
+        "billing_credit_auto_topup_expiry_type",
+        core.serialization.string().optional(),
+    ),
+    billingCreditAutoTopupExpiryUnit: core.serialization.property(
+        "billing_credit_auto_topup_expiry_unit",
+        core.serialization.string().optional(),
+    ),
+    billingCreditAutoTopupExpiryUnitCount: core.serialization.property(
+        "billing_credit_auto_topup_expiry_unit_count",
+        core.serialization.number().optional(),
+    ),
+    billingCreditAutoTopupThresholdPercent: core.serialization.property(
+        "billing_credit_auto_topup_threshold_percent",
+        core.serialization.number().optional(),
+    ),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     creditAmount: core.serialization.property("credit_amount", core.serialization.number()),
     creditDescription: core.serialization.property("credit_description", core.serialization.string()),
@@ -32,6 +60,13 @@ export const PlanCreditGrantView: core.serialization.ObjectSchema<
 
 export declare namespace PlanCreditGrantView {
     export interface Raw {
+        billing_credit_auto_topup_amount?: number | null;
+        billing_credit_auto_topup_amount_type?: string | null;
+        billing_credit_auto_topup_enabled: boolean;
+        billing_credit_auto_topup_expiry_type?: string | null;
+        billing_credit_auto_topup_expiry_unit?: string | null;
+        billing_credit_auto_topup_expiry_unit_count?: number | null;
+        billing_credit_auto_topup_threshold_percent?: number | null;
         created_at: string;
         credit_amount: number;
         credit_description: string;

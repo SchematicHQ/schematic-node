@@ -1,4 +1,5 @@
 export { type ListCompaniesRequest } from "./ListCompaniesRequest";
+export { type DeleteCompanyRequest } from "./DeleteCompanyRequest";
 export { type CountCompaniesRequest } from "./CountCompaniesRequest";
 export { type CountCompaniesForAdvancedFilterRequest } from "./CountCompaniesForAdvancedFilterRequest";
 export { type ListCompaniesForAdvancedFilterRequest } from "./ListCompaniesForAdvancedFilterRequest";
