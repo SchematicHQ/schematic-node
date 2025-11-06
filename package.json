@@ -1,6 +1,6 @@
 {
     "name": "@schematichq/schematic-typescript-node",
-    "version": "1.2.4",
+    "version": "1.2.5",
     "private": false,
     "repository": "https://github.com/schematichq/schematic-node",
     "main": "./dist/index.js",

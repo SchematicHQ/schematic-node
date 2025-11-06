@@ -15,7 +15,6 @@ export interface RuleConditionResponseData {
     metricPeriodMonthReset?: string;
     metricValue?: number;
     operator: string;
-    planId?: string;
     resourceIds: string[];
     ruleId: string;
     traitEntityType?: string;

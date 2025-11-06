@@ -8,7 +8,6 @@ export interface RuleResponseData {
     flagId?: string;
     id: string;
     name: string;
-    planId?: string;
     priority: number;
     ruleType: string;
     updatedAt: Date;

@@ -8,5 +8,4 @@ export interface CreateOrUpdateConditionGroupRequestBody {
     conditions: Schematic.CreateOrUpdateConditionRequestBody[];
     flagId?: string;
     id?: string;
-    planId?: string;
 }

@@ -34,7 +34,8 @@ export type CreateWebhookRequestBodyRequestTypesItem =
     | "entitlement.tier_limit.warning"
     | "entitlement.tier_limit.reached"
     | "credit.limit.warning"
-    | "credit.limit.reached";
+    | "credit.limit.reached"
+    | "company.plan_change";
 export const CreateWebhookRequestBodyRequestTypesItem = {
     CompanyUpdated: "company.updated",
     UserUpdated: "user.updated",
@@ -68,4 +69,5 @@ export const CreateWebhookRequestBodyRequestTypesItem = {
     EntitlementTierLimitReached: "entitlement.tier_limit.reached",
     CreditLimitWarning: "credit.limit.warning",
     CreditLimitReached: "credit.limit.reached",
+    CompanyPlanChange: "company.plan_change",
 } as const;

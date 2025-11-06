@@ -7,7 +7,6 @@ export interface RuleConditionGroupResponseData {
     environmentId: string;
     flagId?: string;
     id: string;
-    planId?: string;
     ruleId: string;
     updatedAt: Date;
 }

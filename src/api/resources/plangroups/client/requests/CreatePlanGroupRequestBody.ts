@@ -37,7 +37,6 @@ export interface CreatePlanGroupRequestBody {
     checkoutCollectPhone: boolean;
     customPlanConfig?: Schematic.CustomPlanConfig;
     customPlanId?: string;
-    defaultPlanId?: string;
     enableTaxCollection: boolean;
     fallbackPlanId?: string;
     initialPlanId?: string;

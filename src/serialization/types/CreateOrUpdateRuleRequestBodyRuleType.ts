@@ -9,21 +9,8 @@ import * as core from "../../core";
 export const CreateOrUpdateRuleRequestBodyRuleType: core.serialization.Schema<
     serializers.CreateOrUpdateRuleRequestBodyRuleType.Raw,
     Schematic.CreateOrUpdateRuleRequestBodyRuleType
-> = core.serialization.enum_([
-    "global_override",
-    "company_override",
-    "plan_entitlement",
-    "standard",
-    "default",
-    "plan_audience",
-]);
+> = core.serialization.enum_(["global_override", "company_override", "plan_entitlement", "standard", "default"]);
 
 export declare namespace CreateOrUpdateRuleRequestBodyRuleType {
-    export type Raw =
-        | "global_override"
-        | "company_override"
-        | "plan_entitlement"
-        | "standard"
-        | "default"
-        | "plan_audience";
+    export type Raw = "global_override" | "company_override" | "plan_entitlement" | "standard" | "default";
 }

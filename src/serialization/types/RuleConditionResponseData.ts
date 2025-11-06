@@ -25,7 +25,6 @@ export const RuleConditionResponseData: core.serialization.ObjectSchema<
     ),
     metricValue: core.serialization.property("metric_value", core.serialization.number().optional()),
     operator: core.serialization.string(),
-    planId: core.serialization.property("plan_id", core.serialization.string().optional()),
     resourceIds: core.serialization.property("resource_ids", core.serialization.list(core.serialization.string())),
     ruleId: core.serialization.property("rule_id", core.serialization.string()),
     traitEntityType: core.serialization.property("trait_entity_type", core.serialization.string().optional()),
@@ -48,7 +47,6 @@ export declare namespace RuleConditionResponseData {
         metric_period_month_reset?: string | null;
         metric_value?: number | null;
         operator: string;
-        plan_id?: string | null;
         resource_ids: string[];
         rule_id: string;
         trait_entity_type?: string | null;

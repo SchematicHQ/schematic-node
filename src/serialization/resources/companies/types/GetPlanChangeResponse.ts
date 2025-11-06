@@ -5,19 +5,19 @@
 import * as serializers from "../../../index";
 import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
-import { PlanAudienceDetailResponseData } from "../../../types/PlanAudienceDetailResponseData";
+import { PlanChangeResponseData } from "../../../types/PlanChangeResponseData";
 
-export const GetAudienceResponse: core.serialization.ObjectSchema<
-    serializers.GetAudienceResponse.Raw,
-    Schematic.GetAudienceResponse
+export const GetPlanChangeResponse: core.serialization.ObjectSchema<
+    serializers.GetPlanChangeResponse.Raw,
+    Schematic.GetPlanChangeResponse
 > = core.serialization.object({
-    data: PlanAudienceDetailResponseData,
+    data: PlanChangeResponseData,
     params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
-export declare namespace GetAudienceResponse {
+export declare namespace GetPlanChangeResponse {
     export interface Raw {
-        data: PlanAudienceDetailResponseData.Raw;
+        data: PlanChangeResponseData.Raw;
         params: Record<string, unknown>;
     }
 }

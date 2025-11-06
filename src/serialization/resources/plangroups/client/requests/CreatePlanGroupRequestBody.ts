@@ -24,7 +24,6 @@ export const CreatePlanGroupRequestBody: core.serialization.Schema<
     checkoutCollectPhone: core.serialization.property("checkout_collect_phone", core.serialization.boolean()),
     customPlanConfig: core.serialization.property("custom_plan_config", CustomPlanConfig.optional()),
     customPlanId: core.serialization.property("custom_plan_id", core.serialization.string().optional()),
-    defaultPlanId: core.serialization.property("default_plan_id", core.serialization.string().optional()),
     enableTaxCollection: core.serialization.property("enable_tax_collection", core.serialization.boolean()),
     fallbackPlanId: core.serialization.property("fallback_plan_id", core.serialization.string().optional()),
     initialPlanId: core.serialization.property("initial_plan_id", core.serialization.string().optional()),
@@ -67,7 +66,6 @@ export declare namespace CreatePlanGroupRequestBody {
         checkout_collect_phone: boolean;
         custom_plan_config?: CustomPlanConfig.Raw | null;
         custom_plan_id?: string | null;
-        default_plan_id?: string | null;
         enable_tax_collection: boolean;
         fallback_plan_id?: string | null;
         initial_plan_id?: string | null;
