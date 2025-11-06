@@ -10,6 +10,19 @@ export const BillingPlanCreditGrantResponseData: core.serialization.ObjectSchema
     serializers.BillingPlanCreditGrantResponseData.Raw,
     Schematic.BillingPlanCreditGrantResponseData
 > = core.serialization.object({
+    autoTopupAmount: core.serialization.property("auto_topup_amount", core.serialization.number().optional()),
+    autoTopupAmountType: core.serialization.property("auto_topup_amount_type", core.serialization.string().optional()),
+    autoTopupEnabled: core.serialization.property("auto_topup_enabled", core.serialization.boolean()),
+    autoTopupExpiryType: core.serialization.property("auto_topup_expiry_type", core.serialization.string().optional()),
+    autoTopupExpiryUnit: core.serialization.property("auto_topup_expiry_unit", core.serialization.string().optional()),
+    autoTopupExpiryUnitCount: core.serialization.property(
+        "auto_topup_expiry_unit_count",
+        core.serialization.number().optional(),
+    ),
+    autoTopupThresholdPercent: core.serialization.property(
+        "auto_topup_threshold_percent",
+        core.serialization.number().optional(),
+    ),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     creditAmount: core.serialization.property("credit_amount", core.serialization.number()),
     creditId: core.serialization.property("credit_id", core.serialization.string()),
@@ -30,6 +43,13 @@ export const BillingPlanCreditGrantResponseData: core.serialization.ObjectSchema
 
 export declare namespace BillingPlanCreditGrantResponseData {
     export interface Raw {
+        auto_topup_amount?: number | null;
+        auto_topup_amount_type?: string | null;
+        auto_topup_enabled: boolean;
+        auto_topup_expiry_type?: string | null;
+        auto_topup_expiry_unit?: string | null;
+        auto_topup_expiry_unit_count?: number | null;
+        auto_topup_threshold_percent?: number | null;
         created_at: string;
         credit_amount: number;
         credit_id: string;

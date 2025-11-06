@@ -13,6 +13,10 @@ export const CreditLedgerEnrichedEntryResponseData: core.serialization.ObjectSch
     serializers.CreditLedgerEnrichedEntryResponseData.Raw,
     Schematic.CreditLedgerEnrichedEntryResponseData
 > = core.serialization.object({
+    billingCreditAutoTopupGrantCount: core.serialization.property(
+        "billing_credit_auto_topup_grant_count",
+        core.serialization.number(),
+    ),
     billingCreditId: core.serialization.property("billing_credit_id", core.serialization.string()),
     company: CompanyLedgerResponseData.optional(),
     companyId: core.serialization.property("company_id", core.serialization.string()),
@@ -38,6 +42,7 @@ export const CreditLedgerEnrichedEntryResponseData: core.serialization.ObjectSch
 
 export declare namespace CreditLedgerEnrichedEntryResponseData {
     export interface Raw {
+        billing_credit_auto_topup_grant_count: number;
         billing_credit_id: string;
         company?: CompanyLedgerResponseData.Raw | null;
         company_id: string;

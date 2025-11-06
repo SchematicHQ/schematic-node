@@ -3,6 +3,13 @@
  */
 
 export interface BillingPlanCreditGrantResponseData {
+    autoTopupAmount?: number;
+    autoTopupAmountType?: string;
+    autoTopupEnabled: boolean;
+    autoTopupExpiryType?: string;
+    autoTopupExpiryUnit?: string;
+    autoTopupExpiryUnitCount?: number;
+    autoTopupThresholdPercent?: number;
     createdAt: Date;
     creditAmount: number;
     creditId: string;

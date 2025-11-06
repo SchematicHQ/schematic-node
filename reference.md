@@ -3045,7 +3045,7 @@ await client.credits.createBillingPlanCreditGrant({
 </dl>
 </details>
 
-<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">deleteBillingPlanCreditGrant</a>(planGrantId) -> Schematic.DeleteBillingPlanCreditGrantResponse</code></summary>
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">updateBillingPlanCreditGrant</a>(planGrantId, { ...params }) -> Schematic.UpdateBillingPlanCreditGrantResponse</code></summary>
 <dl>
 <dd>
 
@@ -3058,7 +3058,10 @@ await client.credits.createBillingPlanCreditGrant({
 <dd>
 
 ```typescript
-await client.credits.deleteBillingPlanCreditGrant("plan_grant_id");
+await client.credits.updateBillingPlanCreditGrant("plan_grant_id", {
+    resetCadence: "monthly",
+    resetStart: "billing_period",
+});
 ```
 
 </dd>
@@ -3075,6 +3078,72 @@ await client.credits.deleteBillingPlanCreditGrant("plan_grant_id");
 <dd>
 
 **planGrantId:** `string` — plan_grant_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.UpdateBillingPlanCreditGrantRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Credits.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">deleteBillingPlanCreditGrant</a>(planGrantId, { ...params }) -> Schematic.DeleteBillingPlanCreditGrantResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.credits.deleteBillingPlanCreditGrant("plan_grant_id", {
+    applyToExisting: true,
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**planGrantId:** `string` — plan_grant_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.DeleteBillingPlanCreditGrantRequest`
 
 </dd>
 </dl>
@@ -3688,7 +3757,7 @@ await client.companies.getCompany("company_id");
 </dl>
 </details>
 
-<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">deleteCompany</a>(companyId) -> Schematic.DeleteCompanyResponse</code></summary>
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">deleteCompany</a>(companyId, { ...params }) -> Schematic.DeleteCompanyResponse</code></summary>
 <dl>
 <dd>
 
@@ -3701,7 +3770,10 @@ await client.companies.getCompany("company_id");
 <dd>
 
 ```typescript
-await client.companies.deleteCompany("company_id");
+await client.companies.deleteCompany("company_id", {
+    cancelSubscription: true,
+    prorate: true,
+});
 ```
 
 </dd>
@@ -3718,6 +3790,14 @@ await client.companies.deleteCompany("company_id");
 <dd>
 
 **companyId:** `string` — company_id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.DeleteCompanyRequest`
 
 </dd>
 </dl>

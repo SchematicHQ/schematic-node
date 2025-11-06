@@ -1,5 +1,6 @@
 # Specify files that shouldn't be modified by Fern
 
+.github/CODEOWNERS
 CLAUDE.md
 LICENSE
 README.md

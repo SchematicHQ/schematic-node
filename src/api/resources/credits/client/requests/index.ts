@@ -15,4 +15,6 @@ export { type GetEnrichedCreditLedgerRequest } from "./GetEnrichedCreditLedgerRe
 export { type CountCreditLedgerRequest } from "./CountCreditLedgerRequest";
 export { type ListBillingPlanCreditGrantsRequest } from "./ListBillingPlanCreditGrantsRequest";
 export { type CreateBillingPlanCreditGrantRequestBody } from "./CreateBillingPlanCreditGrantRequestBody";
+export { type UpdateBillingPlanCreditGrantRequestBody } from "./UpdateBillingPlanCreditGrantRequestBody";
+export { type DeleteBillingPlanCreditGrantRequest } from "./DeleteBillingPlanCreditGrantRequest";
 export { type CountBillingPlanCreditGrantsRequest } from "./CountBillingPlanCreditGrantsRequest";

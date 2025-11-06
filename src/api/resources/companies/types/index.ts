@@ -2,6 +2,7 @@ export * from "./ListCompaniesParams";
 export * from "./ListCompaniesResponse";
 export * from "./UpsertCompanyResponse";
 export * from "./GetCompanyResponse";
+export * from "./DeleteCompanyParams";
 export * from "./DeleteCompanyResponse";
 export * from "./CountCompaniesParams";
 export * from "./CountCompaniesResponse";

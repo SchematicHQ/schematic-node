@@ -3,6 +3,13 @@
  */
 
 export interface PlanCreditGrantView {
+    billingCreditAutoTopupAmount?: number;
+    billingCreditAutoTopupAmountType?: string;
+    billingCreditAutoTopupEnabled: boolean;
+    billingCreditAutoTopupExpiryType?: string;
+    billingCreditAutoTopupExpiryUnit?: string;
+    billingCreditAutoTopupExpiryUnitCount?: number;
+    billingCreditAutoTopupThresholdPercent?: number;
     createdAt: Date;
     creditAmount: number;
     creditDescription: string;

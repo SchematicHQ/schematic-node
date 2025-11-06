@@ -115,8 +115,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -264,8 +264,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -408,8 +408,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -508,6 +508,7 @@ export class Companies {
 
     /**
      * @param {string} companyId - company_id
+     * @param {Schematic.DeleteCompanyRequest} request
      * @param {Companies.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Schematic.BadRequestError}
@@ -517,19 +518,34 @@ export class Companies {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.companies.deleteCompany("company_id")
+     *     await client.companies.deleteCompany("company_id", {
+     *         cancelSubscription: true,
+     *         prorate: true
+     *     })
      */
     public deleteCompany(
         companyId: string,
+        request: Schematic.DeleteCompanyRequest = {},
         requestOptions?: Companies.RequestOptions,
     ): core.HttpResponsePromise<Schematic.DeleteCompanyResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__deleteCompany(companyId, requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__deleteCompany(companyId, request, requestOptions));
     }
 
     private async __deleteCompany(
         companyId: string,
+        request: Schematic.DeleteCompanyRequest = {},
         requestOptions?: Companies.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.DeleteCompanyResponse>> {
+        const { cancelSubscription, prorate } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (cancelSubscription != null) {
+            _queryParams["cancel_subscription"] = cancelSubscription.toString();
+        }
+
+        if (prorate != null) {
+            _queryParams["prorate"] = prorate.toString();
+        }
+
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -541,14 +557,15 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
                 ...requestOptions?.headers,
             },
             contentType: "application/json",
+            queryParameters: _queryParams,
             requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
@@ -731,8 +748,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -994,8 +1011,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1143,8 +1160,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1292,8 +1309,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1555,8 +1572,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1706,8 +1723,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1857,8 +1874,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2025,8 +2042,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2173,8 +2190,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2322,8 +2339,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2494,8 +2511,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2644,8 +2661,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2823,8 +2840,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -3002,8 +3019,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -3190,8 +3207,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -3339,8 +3356,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -3487,8 +3504,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -3629,8 +3646,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -3820,8 +3837,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -3987,8 +4004,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -4176,8 +4193,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -4320,8 +4337,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -4494,8 +4511,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -4643,8 +4660,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -4787,8 +4804,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -4928,8 +4945,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -5075,8 +5092,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -5227,8 +5244,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -5411,8 +5428,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -5561,8 +5578,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -5742,8 +5759,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -5891,8 +5908,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -6035,8 +6052,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -6168,8 +6185,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -6348,8 +6365,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -6497,8 +6514,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -6646,8 +6663,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -6797,8 +6814,8 @@ export class Companies {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.5",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.5",
+                "X-Fern-SDK-Version": "1.2.6",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

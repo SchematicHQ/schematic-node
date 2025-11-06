@@ -7,5 +7,5 @@ import * as Schematic from "../../../index";
 export interface DeleteCompanyResponse {
     data: Schematic.DeleteResponse;
     /** Input parameters */
-    params: Record<string, unknown>;
+    params: Schematic.DeleteCompanyParams;
 }
