@@ -9,7 +9,7 @@ export interface EntityKeyDetailResponseData {
     definition?: Schematic.EntityKeyDefinitionResponseData;
     definitionId: string;
     entityId: string;
-    entityType: string;
+    entityType: Schematic.EntityType;
     environmentId: string;
     id: string;
     key: string;

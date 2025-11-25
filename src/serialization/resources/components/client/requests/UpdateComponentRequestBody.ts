@@ -5,24 +5,24 @@
 import * as serializers from "../../../../index";
 import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
-import { UpdateComponentRequestBodyEntityType } from "../../types/UpdateComponentRequestBodyEntityType";
-import { UpdateComponentRequestBodyState } from "../../types/UpdateComponentRequestBodyState";
+import { ComponentEntityType } from "../../../../types/ComponentEntityType";
+import { ComponentState } from "../../../../types/ComponentState";
 
 export const UpdateComponentRequestBody: core.serialization.Schema<
     serializers.UpdateComponentRequestBody.Raw,
     Schematic.UpdateComponentRequestBody
 > = core.serialization.object({
     ast: core.serialization.record(core.serialization.string(), core.serialization.number()).optional(),
-    entityType: core.serialization.property("entity_type", UpdateComponentRequestBodyEntityType.optional()),
+    entityType: core.serialization.property("entity_type", ComponentEntityType.optional()),
     name: core.serialization.string().optional(),
-    state: UpdateComponentRequestBodyState.optional(),
+    state: ComponentState.optional(),
 });
 
 export declare namespace UpdateComponentRequestBody {
     export interface Raw {
         ast?: Record<string, number> | null;
-        entity_type?: UpdateComponentRequestBodyEntityType.Raw | null;
+        entity_type?: ComponentEntityType.Raw | null;
         name?: string | null;
-        state?: UpdateComponentRequestBodyState.Raw | null;
+        state?: ComponentState.Raw | null;
     }
 }

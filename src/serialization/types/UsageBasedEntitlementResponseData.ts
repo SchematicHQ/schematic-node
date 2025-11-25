@@ -6,6 +6,8 @@ import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { BillingPriceView } from "./BillingPriceView";
+import { EntitlementPriceBehavior } from "./EntitlementPriceBehavior";
+import { EntitlementValueType } from "./EntitlementValueType";
 
 export const UsageBasedEntitlementResponseData: core.serialization.ObjectSchema<
     serializers.UsageBasedEntitlementResponseData.Raw,
@@ -21,10 +23,10 @@ export const UsageBasedEntitlementResponseData: core.serialization.ObjectSchema<
         core.serialization.string().optional(),
     ),
     monthlyUsageBasedPrice: core.serialization.property("monthly_usage_based_price", BillingPriceView.optional()),
-    priceBehavior: core.serialization.property("price_behavior", core.serialization.string().optional()),
+    priceBehavior: core.serialization.property("price_behavior", EntitlementPriceBehavior.optional()),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
-    valueType: core.serialization.property("value_type", core.serialization.string()),
+    valueType: core.serialization.property("value_type", EntitlementValueType),
     yearlyUsageBasedPrice: core.serialization.property("yearly_usage_based_price", BillingPriceView.optional()),
 });
 
@@ -37,10 +39,10 @@ export declare namespace UsageBasedEntitlementResponseData {
         metric_period?: string | null;
         metric_period_month_reset?: string | null;
         monthly_usage_based_price?: BillingPriceView.Raw | null;
-        price_behavior?: string | null;
+        price_behavior?: EntitlementPriceBehavior.Raw | null;
         value_bool?: boolean | null;
         value_numeric?: number | null;
-        value_type: string;
+        value_type: EntitlementValueType.Raw;
         yearly_usage_based_price?: BillingPriceView.Raw | null;
     }
 }

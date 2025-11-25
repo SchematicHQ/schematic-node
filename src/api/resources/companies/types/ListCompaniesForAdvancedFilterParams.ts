@@ -31,9 +31,9 @@ export interface ListCompaniesForAdvancedFilterParams {
     /** Direction to sort by (asc or desc) */
     sortOrderDirection?: Schematic.ListCompaniesForAdvancedFilterResponseParamsSortOrderDirection;
     /** Filter companies by one or more subscription statuses (active, canceled, expired, incomplete, incomplete_expired, past_due, paused, trialing, unpaid) */
-    subscriptionStatuses?: string[];
+    subscriptionStatuses?: Schematic.SubscriptionStatus[];
     /** Filter companies by one or more subscription types (paid, free, trial) */
-    subscriptionTypes?: string[];
+    subscriptionTypes?: Schematic.SubscriptionType[];
     /** Filter out companies that have a plan */
     withoutPlan?: boolean;
     /** Filter out companies that have a subscription */

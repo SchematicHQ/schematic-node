@@ -8,10 +8,14 @@ export interface ManagePlanRequest {
     addOnSelections: Schematic.PlanSelection[];
     basePlanId?: string;
     basePlanPriceId?: string;
+    /** If false, subscription cancels at period end. Only applies when removing all plans. Defaults to true. */
+    cancelImmediately?: boolean;
     companyId: string;
     couponExternalId?: string;
     creditBundles: Schematic.UpdateCreditBundleRequestBody[];
     payInAdvanceEntitlements: Schematic.UpdatePayInAdvanceRequestBody[];
     paymentMethodExternalId?: string;
     promoCode?: string;
+    /** If true and cancel_immediately is true, issue prorated credit. Only applies when removing all plans. Defaults to true. */
+    prorate?: boolean;
 }

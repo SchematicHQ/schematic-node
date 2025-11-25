@@ -5,19 +5,19 @@
 import * as serializers from "../../../../index";
 import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
-import { UpdateEntityTraitDefinitionRequestBodyTraitType } from "../../types/UpdateEntityTraitDefinitionRequestBodyTraitType";
+import { TraitType } from "../../../../types/TraitType";
 
 export const UpdateEntityTraitDefinitionRequestBody: core.serialization.Schema<
     serializers.UpdateEntityTraitDefinitionRequestBody.Raw,
     Schematic.UpdateEntityTraitDefinitionRequestBody
 > = core.serialization.object({
     displayName: core.serialization.property("display_name", core.serialization.string().optional()),
-    traitType: core.serialization.property("trait_type", UpdateEntityTraitDefinitionRequestBodyTraitType),
+    traitType: core.serialization.property("trait_type", TraitType),
 });
 
 export declare namespace UpdateEntityTraitDefinitionRequestBody {
     export interface Raw {
         display_name?: string | null;
-        trait_type: UpdateEntityTraitDefinitionRequestBodyTraitType.Raw;
+        trait_type: TraitType.Raw;
     }
 }

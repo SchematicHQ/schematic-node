@@ -10,7 +10,7 @@ import * as Schematic from "../../../index";
 export interface ListEventsParams {
     companyId?: string;
     eventSubtype?: string;
-    eventTypes?: Schematic.ListEventsResponseParamsEventTypesItem[];
+    eventTypes?: Schematic.EventType[];
     flagId?: string;
     /** Page limit (default 100) */
     limit?: number;

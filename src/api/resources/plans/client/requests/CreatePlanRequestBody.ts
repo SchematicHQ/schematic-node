@@ -16,5 +16,5 @@ export interface CreatePlanRequestBody {
     description: string;
     icon?: string;
     name: string;
-    planType: Schematic.CreatePlanRequestBodyPlanType;
+    planType: Schematic.PlanType;
 }

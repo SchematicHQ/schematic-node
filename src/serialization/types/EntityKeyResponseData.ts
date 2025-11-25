@@ -5,6 +5,7 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { EntityType } from "./EntityType";
 
 export const EntityKeyResponseData: core.serialization.ObjectSchema<
     serializers.EntityKeyResponseData.Raw,
@@ -13,7 +14,7 @@ export const EntityKeyResponseData: core.serialization.ObjectSchema<
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     definitionId: core.serialization.property("definition_id", core.serialization.string()),
     entityId: core.serialization.property("entity_id", core.serialization.string()),
-    entityType: core.serialization.property("entity_type", core.serialization.string()),
+    entityType: core.serialization.property("entity_type", EntityType),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     id: core.serialization.string(),
     key: core.serialization.string(),
@@ -26,7 +27,7 @@ export declare namespace EntityKeyResponseData {
         created_at: string;
         definition_id: string;
         entity_id: string;
-        entity_type: string;
+        entity_type: EntityType.Raw;
         environment_id: string;
         id: string;
         key: string;

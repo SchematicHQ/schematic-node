@@ -5,6 +5,8 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { EntityType } from "./EntityType";
+import { TraitType } from "./TraitType";
 
 export const EntityTraitDefinitionResponseData: core.serialization.ObjectSchema<
     serializers.EntityTraitDefinitionResponseData.Raw,
@@ -12,10 +14,10 @@ export const EntityTraitDefinitionResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     displayName: core.serialization.property("display_name", core.serialization.string()),
-    entityType: core.serialization.property("entity_type", core.serialization.string()),
+    entityType: core.serialization.property("entity_type", EntityType),
     hierarchy: core.serialization.list(core.serialization.string()),
     id: core.serialization.string(),
-    traitType: core.serialization.property("trait_type", core.serialization.string()),
+    traitType: core.serialization.property("trait_type", TraitType),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
@@ -23,10 +25,10 @@ export declare namespace EntityTraitDefinitionResponseData {
     export interface Raw {
         created_at: string;
         display_name: string;
-        entity_type: string;
+        entity_type: EntityType.Raw;
         hierarchy: string[];
         id: string;
-        trait_type: string;
+        trait_type: TraitType.Raw;
         updated_at: string;
     }
 }

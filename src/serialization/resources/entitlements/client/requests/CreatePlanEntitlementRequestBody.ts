@@ -8,8 +8,8 @@ import * as core from "../../../../../core";
 import { CreatePlanEntitlementRequestBodyMetricPeriod } from "../../types/CreatePlanEntitlementRequestBodyMetricPeriod";
 import { CreatePlanEntitlementRequestBodyMetricPeriodMonthReset } from "../../types/CreatePlanEntitlementRequestBodyMetricPeriodMonthReset";
 import { CreatePriceTierRequestBody } from "../../../../types/CreatePriceTierRequestBody";
-import { CreatePlanEntitlementRequestBodyPriceBehavior } from "../../types/CreatePlanEntitlementRequestBodyPriceBehavior";
-import { CreatePlanEntitlementRequestBodyValueType } from "../../types/CreatePlanEntitlementRequestBodyValueType";
+import { EntitlementPriceBehavior } from "../../../../types/EntitlementPriceBehavior";
+import { EntitlementValueType } from "../../../../types/EntitlementValueType";
 
 export const CreatePlanEntitlementRequestBody: core.serialization.Schema<
     serializers.CreatePlanEntitlementRequestBody.Raw,
@@ -46,10 +46,7 @@ export const CreatePlanEntitlementRequestBody: core.serialization.Schema<
         core.serialization.string().optional(),
     ),
     planId: core.serialization.property("plan_id", core.serialization.string()),
-    priceBehavior: core.serialization.property(
-        "price_behavior",
-        CreatePlanEntitlementRequestBodyPriceBehavior.optional(),
-    ),
+    priceBehavior: core.serialization.property("price_behavior", EntitlementPriceBehavior.optional()),
     priceTiers: core.serialization.property(
         "price_tiers",
         core.serialization.list(CreatePriceTierRequestBody).optional(),
@@ -60,7 +57,7 @@ export const CreatePlanEntitlementRequestBody: core.serialization.Schema<
     valueCreditId: core.serialization.property("value_credit_id", core.serialization.string().optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
     valueTraitId: core.serialization.property("value_trait_id", core.serialization.string().optional()),
-    valueType: core.serialization.property("value_type", CreatePlanEntitlementRequestBodyValueType),
+    valueType: core.serialization.property("value_type", EntitlementValueType),
     yearlyMeteredPriceId: core.serialization.property(
         "yearly_metered_price_id",
         core.serialization.string().optional(),
@@ -91,7 +88,7 @@ export declare namespace CreatePlanEntitlementRequestBody {
         monthly_unit_price_decimal?: string | null;
         overage_billing_product_id?: string | null;
         plan_id: string;
-        price_behavior?: CreatePlanEntitlementRequestBodyPriceBehavior.Raw | null;
+        price_behavior?: EntitlementPriceBehavior.Raw | null;
         price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
         soft_limit?: number | null;
         tier_mode?: string | null;
@@ -99,7 +96,7 @@ export declare namespace CreatePlanEntitlementRequestBody {
         value_credit_id?: string | null;
         value_numeric?: number | null;
         value_trait_id?: string | null;
-        value_type: CreatePlanEntitlementRequestBodyValueType.Raw;
+        value_type: EntitlementValueType.Raw;
         yearly_metered_price_id?: string | null;
         yearly_price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
         yearly_unit_price?: number | null;

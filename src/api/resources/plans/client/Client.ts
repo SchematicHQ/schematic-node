@@ -73,8 +73,8 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -204,9 +204,7 @@ export class Plans {
      *         hasProductId: true,
      *         planType: "plan",
      *         q: "q",
-     *         requiresPaymentMethod: true,
      *         withoutEntitlementFor: "without_entitlement_for",
-     *         withoutProductId: true,
      *         withoutPaidProductId: true,
      *         limit: 1,
      *         offset: 1
@@ -232,9 +230,7 @@ export class Plans {
             ids,
             planType,
             q,
-            requiresPaymentMethod,
             withoutEntitlementFor,
-            withoutProductId,
             withoutPaidProductId,
             limit,
             offset,
@@ -269,25 +265,15 @@ export class Plans {
         }
 
         if (planType != null) {
-            _queryParams["plan_type"] = serializers.ListPlansRequestPlanType.jsonOrThrow(planType, {
-                unrecognizedObjectKeys: "strip",
-            });
+            _queryParams["plan_type"] = serializers.PlanType.jsonOrThrow(planType, { unrecognizedObjectKeys: "strip" });
         }
 
         if (q != null) {
             _queryParams["q"] = q;
         }
 
-        if (requiresPaymentMethod != null) {
-            _queryParams["requires_payment_method"] = requiresPaymentMethod.toString();
-        }
-
         if (withoutEntitlementFor != null) {
             _queryParams["without_entitlement_for"] = withoutEntitlementFor;
-        }
-
-        if (withoutProductId != null) {
-            _queryParams["without_product_id"] = withoutProductId.toString();
         }
 
         if (withoutPaidProductId != null) {
@@ -313,8 +299,8 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -462,8 +448,8 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -606,8 +592,8 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -744,8 +730,8 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -889,8 +875,8 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1011,7 +997,7 @@ export class Plans {
      *
      * @example
      *     await client.plans.upsertBillingProductPlan("plan_id", {
-     *         chargeType: "one_time",
+     *         chargeType: "free",
      *         isTrialable: true
      *     })
      */
@@ -1039,8 +1025,8 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1170,9 +1156,7 @@ export class Plans {
      *         hasProductId: true,
      *         planType: "plan",
      *         q: "q",
-     *         requiresPaymentMethod: true,
      *         withoutEntitlementFor: "without_entitlement_for",
-     *         withoutProductId: true,
      *         withoutPaidProductId: true,
      *         limit: 1,
      *         offset: 1
@@ -1198,9 +1182,7 @@ export class Plans {
             ids,
             planType,
             q,
-            requiresPaymentMethod,
             withoutEntitlementFor,
-            withoutProductId,
             withoutPaidProductId,
             limit,
             offset,
@@ -1235,25 +1217,15 @@ export class Plans {
         }
 
         if (planType != null) {
-            _queryParams["plan_type"] = serializers.CountPlansRequestPlanType.jsonOrThrow(planType, {
-                unrecognizedObjectKeys: "strip",
-            });
+            _queryParams["plan_type"] = serializers.PlanType.jsonOrThrow(planType, { unrecognizedObjectKeys: "strip" });
         }
 
         if (q != null) {
             _queryParams["q"] = q;
         }
 
-        if (requiresPaymentMethod != null) {
-            _queryParams["requires_payment_method"] = requiresPaymentMethod.toString();
-        }
-
         if (withoutEntitlementFor != null) {
             _queryParams["without_entitlement_for"] = withoutEntitlementFor;
-        }
-
-        if (withoutProductId != null) {
-            _queryParams["without_product_id"] = withoutProductId.toString();
         }
 
         if (withoutPaidProductId != null) {
@@ -1279,8 +1251,8 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1429,8 +1401,8 @@ export class Plans {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

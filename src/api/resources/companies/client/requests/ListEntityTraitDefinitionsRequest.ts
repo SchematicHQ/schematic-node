@@ -18,7 +18,8 @@ export interface ListEntityTraitDefinitionsRequest {
     entityType?: Schematic.ListEntityTraitDefinitionsRequestEntityType;
     ids?: string | string[];
     q?: string;
-    traitType?: Schematic.ListEntityTraitDefinitionsRequestTraitType;
+    traitType?: Schematic.TraitType;
+    traitTypes?: Schematic.TraitType | Schematic.TraitType[];
     /**
      * Page limit (default 100)
      */

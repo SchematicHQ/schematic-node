@@ -6,7 +6,7 @@ import * as serializers from "../../../index";
 import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 import { CountEntityTraitDefinitionsResponseParamsEntityType } from "./CountEntityTraitDefinitionsResponseParamsEntityType";
-import { CountEntityTraitDefinitionsResponseParamsTraitType } from "./CountEntityTraitDefinitionsResponseParamsTraitType";
+import { TraitType } from "../../../types/TraitType";
 
 export const CountEntityTraitDefinitionsParams: core.serialization.ObjectSchema<
     serializers.CountEntityTraitDefinitionsParams.Raw,
@@ -20,7 +20,8 @@ export const CountEntityTraitDefinitionsParams: core.serialization.ObjectSchema<
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
     q: core.serialization.string().optional(),
-    traitType: core.serialization.property("trait_type", CountEntityTraitDefinitionsResponseParamsTraitType.optional()),
+    traitType: core.serialization.property("trait_type", TraitType.optional()),
+    traitTypes: core.serialization.property("trait_types", core.serialization.list(TraitType).optional()),
 });
 
 export declare namespace CountEntityTraitDefinitionsParams {
@@ -30,6 +31,7 @@ export declare namespace CountEntityTraitDefinitionsParams {
         limit?: number | null;
         offset?: number | null;
         q?: string | null;
-        trait_type?: CountEntityTraitDefinitionsResponseParamsTraitType.Raw | null;
+        trait_type?: TraitType.Raw | null;
+        trait_types?: TraitType.Raw[] | null;
     }
 }

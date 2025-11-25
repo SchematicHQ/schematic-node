@@ -5,7 +5,7 @@
 import * as serializers from "../../../../index";
 import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
-import { CreatePlanRequestBodyPlanType } from "../../types/CreatePlanRequestBodyPlanType";
+import { PlanType } from "../../../../types/PlanType";
 
 export const CreatePlanRequestBody: core.serialization.Schema<
     serializers.CreatePlanRequestBody.Raw,
@@ -14,7 +14,7 @@ export const CreatePlanRequestBody: core.serialization.Schema<
     description: core.serialization.string(),
     icon: core.serialization.string().optional(),
     name: core.serialization.string(),
-    planType: core.serialization.property("plan_type", CreatePlanRequestBodyPlanType),
+    planType: core.serialization.property("plan_type", PlanType),
 });
 
 export declare namespace CreatePlanRequestBody {
@@ -22,6 +22,6 @@ export declare namespace CreatePlanRequestBody {
         description: string;
         icon?: string | null;
         name: string;
-        plan_type: CreatePlanRequestBodyPlanType.Raw;
+        plan_type: PlanType.Raw;
     }
 }

@@ -6,21 +6,21 @@ import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { EventBody } from "./EventBody";
-import { CreateEventRequestBodyEventType } from "./CreateEventRequestBodyEventType";
+import { EventType } from "./EventType";
 
 export const CreateEventRequestBody: core.serialization.ObjectSchema<
     serializers.CreateEventRequestBody.Raw,
     Schematic.CreateEventRequestBody
 > = core.serialization.object({
     body: EventBody.optional(),
-    eventType: core.serialization.property("event_type", CreateEventRequestBodyEventType),
+    eventType: core.serialization.property("event_type", EventType),
     sentAt: core.serialization.property("sent_at", core.serialization.date().optional()),
 });
 
 export declare namespace CreateEventRequestBody {
     export interface Raw {
         body?: EventBody.Raw | null;
-        event_type: CreateEventRequestBodyEventType.Raw;
+        event_type: EventType.Raw;
         sent_at?: string | null;
     }
 }

@@ -5,6 +5,7 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { FlagType } from "./FlagType";
 
 export const FlagResponseData: core.serialization.ObjectSchema<
     serializers.FlagResponseData.Raw,
@@ -14,7 +15,7 @@ export const FlagResponseData: core.serialization.ObjectSchema<
     defaultValue: core.serialization.property("default_value", core.serialization.boolean()),
     description: core.serialization.string(),
     featureId: core.serialization.property("feature_id", core.serialization.string().optional()),
-    flagType: core.serialization.property("flag_type", core.serialization.string()),
+    flagType: core.serialization.property("flag_type", FlagType),
     id: core.serialization.string(),
     key: core.serialization.string(),
     maintainerId: core.serialization.property("maintainer_id", core.serialization.string().optional()),
@@ -28,7 +29,7 @@ export declare namespace FlagResponseData {
         default_value: boolean;
         description: string;
         feature_id?: string | null;
-        flag_type: string;
+        flag_type: FlagType.Raw;
         id: string;
         key: string;
         maintainer_id?: string | null;

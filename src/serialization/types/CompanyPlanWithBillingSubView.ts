@@ -5,6 +5,7 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { PlanCreditGrantView } from "./PlanCreditGrantView";
 
 export const CompanyPlanWithBillingSubView: core.serialization.ObjectSchema<
     serializers.CompanyPlanWithBillingSubView.Raw,
@@ -19,6 +20,10 @@ export const CompanyPlanWithBillingSubView: core.serialization.ObjectSchema<
     description: core.serialization.string().optional(),
     id: core.serialization.string(),
     imageUrl: core.serialization.property("image_url", core.serialization.string().optional()),
+    includedCreditGrants: core.serialization.property(
+        "included_credit_grants",
+        core.serialization.list(PlanCreditGrantView),
+    ),
     name: core.serialization.string(),
     planPeriod: core.serialization.property("plan_period", core.serialization.string().optional()),
     planPrice: core.serialization.property("plan_price", core.serialization.number().optional()),
@@ -32,6 +37,7 @@ export declare namespace CompanyPlanWithBillingSubView {
         description?: string | null;
         id: string;
         image_url?: string | null;
+        included_credit_grants: PlanCreditGrantView.Raw[];
         name: string;
         plan_period?: string | null;
         plan_price?: number | null;

@@ -22,7 +22,7 @@ export interface RuleConditionDetailResponseData {
     resources: Schematic.PreviewObjectResponseData[];
     ruleId: string;
     trait?: Schematic.EntityTraitDefinitionResponseData;
-    traitEntityType?: string;
+    traitEntityType?: Schematic.EntityType;
     traitId?: string;
     traitValue: string;
     updatedAt: Date;

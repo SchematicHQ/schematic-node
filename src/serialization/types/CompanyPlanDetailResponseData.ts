@@ -6,11 +6,15 @@ import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { BillingProductDetailResponseData } from "./BillingProductDetailResponseData";
+import { ChargeType } from "./ChargeType";
+import { PlanControlledByType } from "./PlanControlledByType";
 import { CustomPlanConfig } from "./CustomPlanConfig";
 import { PlanEntitlementResponseData } from "./PlanEntitlementResponseData";
 import { FeatureDetailResponseData } from "./FeatureDetailResponseData";
 import { PlanCreditGrantView } from "./PlanCreditGrantView";
+import { CompanyPlanDetailResponseDataInvalidReason } from "./CompanyPlanDetailResponseDataInvalidReason";
 import { BillingPriceResponseData } from "./BillingPriceResponseData";
+import { PlanType } from "./PlanType";
 import { FeatureUsageResponseData } from "./FeatureUsageResponseData";
 
 export const CompanyPlanDetailResponseData: core.serialization.ObjectSchema<
@@ -19,14 +23,14 @@ export const CompanyPlanDetailResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     audienceType: core.serialization.property("audience_type", core.serialization.string().optional()),
     billingProduct: core.serialization.property("billing_product", BillingProductDetailResponseData.optional()),
-    chargeType: core.serialization.property("charge_type", core.serialization.string()),
+    chargeType: core.serialization.property("charge_type", ChargeType),
     companyCanTrial: core.serialization.property("company_can_trial", core.serialization.boolean()),
     companyCount: core.serialization.property("company_count", core.serialization.number()),
     compatiblePlanIds: core.serialization.property(
         "compatible_plan_ids",
         core.serialization.list(core.serialization.string()),
     ),
-    controlledBy: core.serialization.property("controlled_by", core.serialization.string()),
+    controlledBy: core.serialization.property("controlled_by", PlanControlledByType),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     current: core.serialization.boolean(),
     custom: core.serialization.boolean(),
@@ -40,6 +44,7 @@ export const CompanyPlanDetailResponseData: core.serialization.ObjectSchema<
         "included_credit_grants",
         core.serialization.list(PlanCreditGrantView),
     ),
+    invalidReason: core.serialization.property("invalid_reason", CompanyPlanDetailResponseDataInvalidReason.optional()),
     isCustom: core.serialization.property("is_custom", core.serialization.boolean()),
     isDefault: core.serialization.property("is_default", core.serialization.boolean()),
     isFree: core.serialization.property("is_free", core.serialization.boolean()),
@@ -47,7 +52,7 @@ export const CompanyPlanDetailResponseData: core.serialization.ObjectSchema<
     monthlyPrice: core.serialization.property("monthly_price", BillingPriceResponseData.optional()),
     name: core.serialization.string(),
     oneTimePrice: core.serialization.property("one_time_price", BillingPriceResponseData.optional()),
-    planType: core.serialization.property("plan_type", core.serialization.string()),
+    planType: core.serialization.property("plan_type", PlanType),
     trialDays: core.serialization.property("trial_days", core.serialization.number().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     usageViolations: core.serialization.property("usage_violations", core.serialization.list(FeatureUsageResponseData)),
@@ -59,11 +64,11 @@ export declare namespace CompanyPlanDetailResponseData {
     export interface Raw {
         audience_type?: string | null;
         billing_product?: BillingProductDetailResponseData.Raw | null;
-        charge_type: string;
+        charge_type: ChargeType.Raw;
         company_can_trial: boolean;
         company_count: number;
         compatible_plan_ids: string[];
-        controlled_by: string;
+        controlled_by: PlanControlledByType.Raw;
         created_at: string;
         current: boolean;
         custom: boolean;
@@ -74,6 +79,7 @@ export declare namespace CompanyPlanDetailResponseData {
         icon: string;
         id: string;
         included_credit_grants: PlanCreditGrantView.Raw[];
+        invalid_reason?: CompanyPlanDetailResponseDataInvalidReason.Raw | null;
         is_custom: boolean;
         is_default: boolean;
         is_free: boolean;
@@ -81,7 +87,7 @@ export declare namespace CompanyPlanDetailResponseData {
         monthly_price?: BillingPriceResponseData.Raw | null;
         name: string;
         one_time_price?: BillingPriceResponseData.Raw | null;
-        plan_type: string;
+        plan_type: PlanType.Raw;
         trial_days?: number | null;
         updated_at: string;
         usage_violations: FeatureUsageResponseData.Raw[];

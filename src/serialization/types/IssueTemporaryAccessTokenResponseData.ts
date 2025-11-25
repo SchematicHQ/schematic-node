@@ -5,6 +5,7 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { TemporaryAccessTokenResourceType } from "./TemporaryAccessTokenResourceType";
 
 export const IssueTemporaryAccessTokenResponseData: core.serialization.ObjectSchema<
     serializers.IssueTemporaryAccessTokenResponseData.Raw,
@@ -15,7 +16,7 @@ export const IssueTemporaryAccessTokenResponseData: core.serialization.ObjectSch
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     expiredAt: core.serialization.property("expired_at", core.serialization.date()),
     id: core.serialization.string(),
-    resourceType: core.serialization.property("resource_type", core.serialization.string()),
+    resourceType: core.serialization.property("resource_type", TemporaryAccessTokenResourceType),
     token: core.serialization.string(),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
@@ -27,7 +28,7 @@ export declare namespace IssueTemporaryAccessTokenResponseData {
         environment_id: string;
         expired_at: string;
         id: string;
-        resource_type: string;
+        resource_type: TemporaryAccessTokenResourceType.Raw;
         token: string;
         updated_at: string;
     }

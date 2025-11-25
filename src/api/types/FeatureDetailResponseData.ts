@@ -9,11 +9,11 @@ export interface FeatureDetailResponseData {
     description: string;
     eventSubtype?: string;
     eventSummary?: Schematic.EventSummaryResponseData;
-    featureType: string;
+    featureType: Schematic.FeatureType;
     flags: Schematic.FlagDetailResponseData[];
     icon: string;
     id: string;
-    lifecyclePhase?: string;
+    lifecyclePhase?: Schematic.FeatureLifecyclePhase;
     maintainerId?: string;
     name: string;
     plans: Schematic.PreviewObject[];

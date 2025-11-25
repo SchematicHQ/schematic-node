@@ -6,11 +6,14 @@ import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { BillingProductDetailResponseData } from "./BillingProductDetailResponseData";
+import { ChargeType } from "./ChargeType";
+import { PlanControlledByType } from "./PlanControlledByType";
 import { CustomPlanViewConfigResponseData } from "./CustomPlanViewConfigResponseData";
 import { PlanEntitlementResponseData } from "./PlanEntitlementResponseData";
 import { FeatureDetailResponseData } from "./FeatureDetailResponseData";
 import { BillingPlanCreditGrantResponseData } from "./BillingPlanCreditGrantResponseData";
 import { BillingPriceResponseData } from "./BillingPriceResponseData";
+import { PlanType } from "./PlanType";
 
 export const PlanGroupPlanDetailResponseData: core.serialization.ObjectSchema<
     serializers.PlanGroupPlanDetailResponseData.Raw,
@@ -18,13 +21,13 @@ export const PlanGroupPlanDetailResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     audienceType: core.serialization.property("audience_type", core.serialization.string().optional()),
     billingProduct: core.serialization.property("billing_product", BillingProductDetailResponseData.optional()),
-    chargeType: core.serialization.property("charge_type", core.serialization.string()),
+    chargeType: core.serialization.property("charge_type", ChargeType),
     companyCount: core.serialization.property("company_count", core.serialization.number()),
     compatiblePlanIds: core.serialization.property(
         "compatible_plan_ids",
         core.serialization.list(core.serialization.string()),
     ),
-    controlledBy: core.serialization.property("controlled_by", core.serialization.string()),
+    controlledBy: core.serialization.property("controlled_by", PlanControlledByType),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     customPlanConfig: core.serialization.property("custom_plan_config", CustomPlanViewConfigResponseData.optional()),
     description: core.serialization.string(),
@@ -43,7 +46,7 @@ export const PlanGroupPlanDetailResponseData: core.serialization.ObjectSchema<
     monthlyPrice: core.serialization.property("monthly_price", BillingPriceResponseData.optional()),
     name: core.serialization.string(),
     oneTimePrice: core.serialization.property("one_time_price", BillingPriceResponseData.optional()),
-    planType: core.serialization.property("plan_type", core.serialization.string()),
+    planType: core.serialization.property("plan_type", PlanType),
     trialDays: core.serialization.property("trial_days", core.serialization.number().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     yearlyPrice: core.serialization.property("yearly_price", BillingPriceResponseData.optional()),
@@ -53,10 +56,10 @@ export declare namespace PlanGroupPlanDetailResponseData {
     export interface Raw {
         audience_type?: string | null;
         billing_product?: BillingProductDetailResponseData.Raw | null;
-        charge_type: string;
+        charge_type: ChargeType.Raw;
         company_count: number;
         compatible_plan_ids: string[];
-        controlled_by: string;
+        controlled_by: PlanControlledByType.Raw;
         created_at: string;
         custom_plan_config?: CustomPlanViewConfigResponseData.Raw | null;
         description: string;
@@ -72,7 +75,7 @@ export declare namespace PlanGroupPlanDetailResponseData {
         monthly_price?: BillingPriceResponseData.Raw | null;
         name: string;
         one_time_price?: BillingPriceResponseData.Raw | null;
-        plan_type: string;
+        plan_type: PlanType.Raw;
         trial_days?: number | null;
         updated_at: string;
         yearly_price?: BillingPriceResponseData.Raw | null;

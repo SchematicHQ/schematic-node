@@ -20,7 +20,7 @@ export interface CreateBillingPlanCreditGrantRequestBody {
     autoTopupAmountType?: "credit";
     autoTopupEnabled?: boolean;
     autoTopupExpiryType?: Schematic.CreateBillingPlanCreditGrantRequestBodyAutoTopupExpiryType;
-    autoTopupExpiryUnit?: Schematic.CreateBillingPlanCreditGrantRequestBodyAutoTopupExpiryUnit;
+    autoTopupExpiryUnit?: "days";
     autoTopupExpiryUnitCount?: number;
     autoTopupThresholdPercent?: number;
     creditAmount: number;

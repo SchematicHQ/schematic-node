@@ -5,13 +5,13 @@
 import * as serializers from "../../../index";
 import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
-import { ListEntityKeyDefinitionsResponseParamsEntityType } from "./ListEntityKeyDefinitionsResponseParamsEntityType";
+import { EntityType } from "../../../types/EntityType";
 
 export const ListEntityKeyDefinitionsParams: core.serialization.ObjectSchema<
     serializers.ListEntityKeyDefinitionsParams.Raw,
     Schematic.ListEntityKeyDefinitionsParams
 > = core.serialization.object({
-    entityType: core.serialization.property("entity_type", ListEntityKeyDefinitionsResponseParamsEntityType.optional()),
+    entityType: core.serialization.property("entity_type", EntityType.optional()),
     ids: core.serialization.list(core.serialization.string()).optional(),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
@@ -20,7 +20,7 @@ export const ListEntityKeyDefinitionsParams: core.serialization.ObjectSchema<
 
 export declare namespace ListEntityKeyDefinitionsParams {
     export interface Raw {
-        entity_type?: ListEntityKeyDefinitionsResponseParamsEntityType.Raw | null;
+        entity_type?: EntityType.Raw | null;
         ids?: string[] | null;
         limit?: number | null;
         offset?: number | null;

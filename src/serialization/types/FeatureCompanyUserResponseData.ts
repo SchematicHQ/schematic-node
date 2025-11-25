@@ -5,8 +5,9 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
-import { FeatureCompanyUserResponseDataAllocationType } from "./FeatureCompanyUserResponseDataAllocationType";
+import { EntitlementValueType } from "./EntitlementValueType";
 import { CompanyDetailResponseData } from "./CompanyDetailResponseData";
+import { EntitlementType } from "./EntitlementType";
 import { FeatureDetailResponseData } from "./FeatureDetailResponseData";
 import { PlanResponseData } from "./PlanResponseData";
 import { UserResponseData } from "./UserResponseData";
@@ -17,10 +18,10 @@ export const FeatureCompanyUserResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     access: core.serialization.boolean(),
     allocation: core.serialization.number().optional(),
-    allocationType: core.serialization.property("allocation_type", FeatureCompanyUserResponseDataAllocationType),
+    allocationType: core.serialization.property("allocation_type", EntitlementValueType),
     company: CompanyDetailResponseData.optional(),
     entitlementId: core.serialization.property("entitlement_id", core.serialization.string()),
-    entitlementType: core.serialization.property("entitlement_type", core.serialization.string()),
+    entitlementType: core.serialization.property("entitlement_type", EntitlementType),
     feature: FeatureDetailResponseData.optional(),
     metricResetAt: core.serialization.property("metric_reset_at", core.serialization.date().optional()),
     monthReset: core.serialization.property("month_reset", core.serialization.string().optional()),
@@ -34,10 +35,10 @@ export declare namespace FeatureCompanyUserResponseData {
     export interface Raw {
         access: boolean;
         allocation?: number | null;
-        allocation_type: FeatureCompanyUserResponseDataAllocationType.Raw;
+        allocation_type: EntitlementValueType.Raw;
         company?: CompanyDetailResponseData.Raw | null;
         entitlement_id: string;
-        entitlement_type: string;
+        entitlement_type: EntitlementType.Raw;
         feature?: FeatureDetailResponseData.Raw | null;
         metric_reset_at?: string | null;
         month_reset?: string | null;

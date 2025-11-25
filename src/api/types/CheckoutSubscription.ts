@@ -3,6 +3,7 @@
  */
 
 export interface CheckoutSubscription {
+    applicationId?: string;
     cancelAt?: number;
     cancelAtPeriodEnd: boolean;
     companyId?: string;

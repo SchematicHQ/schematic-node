@@ -26,7 +26,7 @@ export interface CreatePlanEntitlementRequestBody {
     monthlyUnitPriceDecimal?: string;
     overageBillingProductId?: string;
     planId: string;
-    priceBehavior?: Schematic.CreatePlanEntitlementRequestBodyPriceBehavior;
+    priceBehavior?: Schematic.EntitlementPriceBehavior;
     /** Use MonthlyPriceTiers or YearlyPriceTiers instead */
     priceTiers?: Schematic.CreatePriceTierRequestBody[];
     softLimit?: number;
@@ -35,7 +35,7 @@ export interface CreatePlanEntitlementRequestBody {
     valueCreditId?: string;
     valueNumeric?: number;
     valueTraitId?: string;
-    valueType: Schematic.CreatePlanEntitlementRequestBodyValueType;
+    valueType: Schematic.EntitlementValueType;
     yearlyMeteredPriceId?: string;
     yearlyPriceTiers?: Schematic.CreatePriceTierRequestBody[];
     yearlyUnitPrice?: number;

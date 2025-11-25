@@ -31,6 +31,7 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface CreateBillingSubscriptionRequestBody {
+    applicationId?: string;
     cancelAt?: number;
     cancelAtPeriodEnd: boolean;
     currency: string;

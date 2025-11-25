@@ -1406,7 +1406,7 @@ await client.billing.upsertPaymentMethod({
 </dl>
 </details>
 
-<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">searchBillingPrices</a>({ ...params }) -> Schematic.SearchBillingPricesResponse</code></summary>
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">listBillingPrices</a>({ ...params }) -> Schematic.ListBillingPricesResponse</code></summary>
 <dl>
 <dd>
 
@@ -1419,16 +1419,17 @@ await client.billing.upsertPaymentMethod({
 <dd>
 
 ```typescript
-await client.billing.searchBillingPrices({
+await client.billing.listBillingPrices({
     forInitialPlan: true,
     forTrialExpiryPlan: true,
-    productId: "product_id",
     interval: "interval",
+    isActive: true,
     price: 1,
+    productId: "product_id",
     q: "q",
-    requiresPaymentMethod: true,
     tiersMode: "volume",
     usageType: "licensed",
+    withMeter: true,
     limit: 1,
     offset: 1,
 });
@@ -1447,7 +1448,7 @@ await client.billing.searchBillingPrices({
 <dl>
 <dd>
 
-**request:** `Schematic.SearchBillingPricesRequest`
+**request:** `Schematic.ListBillingPricesRequest`
 
 </dd>
 </dl>
@@ -1577,7 +1578,7 @@ await client.billing.deleteBillingProduct("billing_id");
 </dl>
 </details>
 
-<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">listProductPrices</a>({ ...params }) -> Schematic.ListProductPricesResponse</code></summary>
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">listBillingProductPrices</a>({ ...params }) -> Schematic.ListBillingProductPricesResponse</code></summary>
 <dl>
 <dd>
 
@@ -1590,15 +1591,17 @@ await client.billing.deleteBillingProduct("billing_id");
 <dd>
 
 ```typescript
-await client.billing.listProductPrices({
-    name: "name",
-    q: "q",
-    priceUsageType: "licensed",
-    withoutLinkedToPlan: true,
-    withOneTimeCharges: true,
-    withZeroPrice: true,
-    withPricesOnly: true,
+await client.billing.listBillingProductPrices({
+    forInitialPlan: true,
+    forTrialExpiryPlan: true,
+    interval: "interval",
     isActive: true,
+    price: 1,
+    productId: "product_id",
+    q: "q",
+    tiersMode: "volume",
+    usageType: "licensed",
+    withMeter: true,
     limit: 1,
     offset: 1,
 });
@@ -1617,7 +1620,7 @@ await client.billing.listProductPrices({
 <dl>
 <dd>
 
-**request:** `Schematic.ListProductPricesRequest`
+**request:** `Schematic.ListBillingProductPricesRequest`
 
 </dd>
 </dl>
@@ -3525,6 +3528,56 @@ await client.checkout.previewManagePlan({
 <dd>
 
 **request:** `Schematic.ManagePlanRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Checkout.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.checkout.<a href="/src/api/resources/checkout/client/Client.ts">cancelSubscription</a>({ ...params }) -> Schematic.CancelSubscriptionResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.checkout.cancelSubscription({
+    companyId: "company_id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CancelSubscriptionRequest`
 
 </dd>
 </dl>
@@ -6767,6 +6820,57 @@ await client.entitlements.countPlanEntitlements({
 </dl>
 </details>
 
+<details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">duplicatePlanEntitlements</a>({ ...params }) -> Schematic.DuplicatePlanEntitlementsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.entitlements.duplicatePlanEntitlements({
+    sourcePlanId: "source_plan_id",
+    targetPlanId: "target_plan_id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.DuplicatePlanEntitlementsRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Entitlements.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">getFeatureUsageByCompany</a>({ ...params }) -> Schematic.GetFeatureUsageByCompanyResponse</code></summary>
 <dl>
 <dd>
@@ -6900,9 +7004,7 @@ await client.plans.listPlans({
     hasProductId: true,
     planType: "plan",
     q: "q",
-    requiresPaymentMethod: true,
     withoutEntitlementFor: "without_entitlement_for",
-    withoutProductId: true,
     withoutPaidProductId: true,
     limit: 1,
     offset: 1,
@@ -7161,7 +7263,7 @@ await client.plans.deletePlan("plan_id");
 
 ```typescript
 await client.plans.upsertBillingProductPlan("plan_id", {
-    chargeType: "one_time",
+    chargeType: "free",
     isTrialable: true,
 });
 ```
@@ -7227,9 +7329,7 @@ await client.plans.countPlans({
     hasProductId: true,
     planType: "plan",
     q: "q",
-    requiresPaymentMethod: true,
     withoutEntitlementFor: "without_entitlement_for",
-    withoutProductId: true,
     withoutPaidProductId: true,
     limit: 1,
     offset: 1,
@@ -7386,7 +7486,7 @@ await client.components.listComponents({
 
 ```typescript
 await client.components.createComponent({
-    entityType: "entitlement",
+    entityType: "billing",
     name: "name",
 });
 ```
@@ -7962,7 +8062,9 @@ await client.crm.upsertCrmProduct({
 
 ```typescript
 await client.dataexports.createDataExport({
+    exportType: "company-feature-usage",
     metadata: "metadata",
+    outputFileType: "csv",
 });
 ```
 
@@ -8064,7 +8166,7 @@ await client.dataexports.getDataExportArtifact("data_export_id");
 await client.events.createEventBatch({
     events: [
         {
-            eventType: "identify",
+            eventType: "flag_check",
         },
     ],
 });
@@ -8223,7 +8325,7 @@ await client.events.listEvents({
 
 ```typescript
 await client.events.createEvent({
-    eventType: "identify",
+    eventType: "flag_check",
 });
 ```
 
@@ -9244,6 +9346,8 @@ await client.plangroups.createPlanGroup({
         },
     ],
     preventDowngradesWhenOverLimit: true,
+    preventSelfServiceDowngrade: true,
+    prorationBehavior: "create_prorations",
     showCredits: true,
     showPeriodToggle: true,
     showZeroPriceAsFree: true,
@@ -9318,6 +9422,8 @@ await client.plangroups.updatePlanGroup("plan_group_id", {
         },
     ],
     preventDowngradesWhenOverLimit: true,
+    preventSelfServiceDowngrade: true,
+    prorationBehavior: "create_prorations",
     showCredits: true,
     showPeriodToggle: true,
     showZeroPriceAsFree: true,
@@ -9384,6 +9490,7 @@ await client.accesstokens.issueTemporaryAccessToken({
     lookup: {
         key: "value",
     },
+    resourceType: "company",
 });
 ```
 

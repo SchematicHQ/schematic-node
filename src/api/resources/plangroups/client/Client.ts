@@ -64,8 +64,8 @@ export class Plangroups {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -189,6 +189,8 @@ export class Plangroups {
      *                 planId: "plan_id"
      *             }],
      *         preventDowngradesWhenOverLimit: true,
+     *         preventSelfServiceDowngrade: true,
+     *         prorationBehavior: "create_prorations",
      *         showCredits: true,
      *         showPeriodToggle: true,
      *         showZeroPriceAsFree: true,
@@ -217,8 +219,8 @@ export class Plangroups {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -355,6 +357,8 @@ export class Plangroups {
      *                 planId: "plan_id"
      *             }],
      *         preventDowngradesWhenOverLimit: true,
+     *         preventSelfServiceDowngrade: true,
+     *         prorationBehavior: "create_prorations",
      *         showCredits: true,
      *         showPeriodToggle: true,
      *         showZeroPriceAsFree: true,
@@ -385,8 +389,8 @@ export class Plangroups {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

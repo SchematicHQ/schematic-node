@@ -18,7 +18,7 @@ export interface PlanEntitlementResponseData {
     metricPeriodMonthReset?: string;
     plan?: Schematic.PlanResponseData;
     planId: string;
-    priceBehavior?: string;
+    priceBehavior?: Schematic.EntitlementPriceBehavior;
     ruleId: string;
     ruleIdUsageExceeded?: string;
     softLimit?: number;
@@ -29,5 +29,5 @@ export interface PlanEntitlementResponseData {
     valueNumeric?: number;
     valueTrait?: Schematic.EntityTraitDefinitionResponseData;
     valueTraitId?: string;
-    valueType: string;
+    valueType: Schematic.EntitlementValueType;
 }

@@ -15,10 +15,10 @@ import * as Schematic from "../../../../index";
 export interface CreateFeatureRequestBody {
     description: string;
     eventSubtype?: string;
-    featureType: Schematic.CreateFeatureRequestBodyFeatureType;
+    featureType: Schematic.FeatureType;
     flag?: Schematic.CreateOrUpdateFlagRequestBody;
     icon?: string;
-    lifecyclePhase?: Schematic.CreateFeatureRequestBodyLifecyclePhase;
+    lifecyclePhase?: Schematic.FeatureLifecyclePhase;
     maintainerId?: string;
     name: string;
     pluralName?: string;

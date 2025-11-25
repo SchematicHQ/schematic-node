@@ -5,6 +5,7 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { FlagType } from "./FlagType";
 
 export const CreateOrUpdateFlagRequestBody: core.serialization.ObjectSchema<
     serializers.CreateOrUpdateFlagRequestBody.Raw,
@@ -13,7 +14,7 @@ export const CreateOrUpdateFlagRequestBody: core.serialization.ObjectSchema<
     defaultValue: core.serialization.property("default_value", core.serialization.boolean()),
     description: core.serialization.string(),
     featureId: core.serialization.property("feature_id", core.serialization.string().optional()),
-    flagType: core.serialization.property("flag_type", core.serialization.stringLiteral("boolean")),
+    flagType: core.serialization.property("flag_type", FlagType),
     id: core.serialization.string().optional(),
     key: core.serialization.string(),
     maintainerId: core.serialization.property("maintainer_id", core.serialization.string().optional()),
@@ -25,7 +26,7 @@ export declare namespace CreateOrUpdateFlagRequestBody {
         default_value: boolean;
         description: string;
         feature_id?: string | null;
-        flag_type: "boolean";
+        flag_type: FlagType.Raw;
         id?: string | null;
         key: string;
         maintainer_id?: string | null;

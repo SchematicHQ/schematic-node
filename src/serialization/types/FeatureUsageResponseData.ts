@@ -5,14 +5,16 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
-import { FeatureUsageResponseDataAllocationType } from "./FeatureUsageResponseDataAllocationType";
+import { EntitlementValueType } from "./EntitlementValueType";
 import { CompanyOverrideResponseData } from "./CompanyOverrideResponseData";
 import { CreditGrantDetail } from "./CreditGrantDetail";
-import { FeatureUsageResponseDataCreditGrantReason } from "./FeatureUsageResponseDataCreditGrantReason";
+import { GrantReason } from "./GrantReason";
+import { EntitlementType } from "./EntitlementType";
 import { FeatureDetailResponseData } from "./FeatureDetailResponseData";
 import { BillingPriceView } from "./BillingPriceView";
 import { PlanResponseData } from "./PlanResponseData";
 import { PlanEntitlementResponseData } from "./PlanEntitlementResponseData";
+import { EntitlementPriceBehavior } from "./EntitlementPriceBehavior";
 
 export const FeatureUsageResponseData: core.serialization.ObjectSchema<
     serializers.FeatureUsageResponseData.Raw,
@@ -20,7 +22,7 @@ export const FeatureUsageResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     access: core.serialization.boolean(),
     allocation: core.serialization.number().optional(),
-    allocationType: core.serialization.property("allocation_type", FeatureUsageResponseDataAllocationType),
+    allocationType: core.serialization.property("allocation_type", EntitlementValueType),
     companyOverride: core.serialization.property("company_override", CompanyOverrideResponseData.optional()),
     creditConsumptionRate: core.serialization.property(
         "credit_consumption_rate",
@@ -34,10 +36,7 @@ export const FeatureUsageResponseData: core.serialization.ObjectSchema<
         "credit_grant_details",
         core.serialization.list(CreditGrantDetail).optional(),
     ),
-    creditGrantReason: core.serialization.property(
-        "credit_grant_reason",
-        FeatureUsageResponseDataCreditGrantReason.optional(),
-    ),
+    creditGrantReason: core.serialization.property("credit_grant_reason", GrantReason.optional()),
     creditRemaining: core.serialization.property("credit_remaining", core.serialization.number().optional()),
     creditTotal: core.serialization.property("credit_total", core.serialization.number().optional()),
     creditTypeIcon: core.serialization.property("credit_type_icon", core.serialization.string().optional()),
@@ -50,7 +49,7 @@ export const FeatureUsageResponseData: core.serialization.ObjectSchema<
     ),
     entitlementId: core.serialization.property("entitlement_id", core.serialization.string()),
     entitlementSource: core.serialization.property("entitlement_source", core.serialization.string().optional()),
-    entitlementType: core.serialization.property("entitlement_type", core.serialization.string()),
+    entitlementType: core.serialization.property("entitlement_type", EntitlementType),
     feature: FeatureDetailResponseData.optional(),
     hasValidAllocation: core.serialization.property("has_valid_allocation", core.serialization.boolean().optional()),
     isUnlimited: core.serialization.property("is_unlimited", core.serialization.boolean().optional()),
@@ -62,7 +61,7 @@ export const FeatureUsageResponseData: core.serialization.ObjectSchema<
     period: core.serialization.string().optional(),
     plan: PlanResponseData.optional(),
     planEntitlement: core.serialization.property("plan_entitlement", PlanEntitlementResponseData.optional()),
-    priceBehavior: core.serialization.property("price_behavior", core.serialization.string().optional()),
+    priceBehavior: core.serialization.property("price_behavior", EntitlementPriceBehavior.optional()),
     softLimit: core.serialization.property("soft_limit", core.serialization.number().optional()),
     usage: core.serialization.number().optional(),
     yearlyUsageBasedPrice: core.serialization.property("yearly_usage_based_price", BillingPriceView.optional()),
@@ -72,12 +71,12 @@ export declare namespace FeatureUsageResponseData {
     export interface Raw {
         access: boolean;
         allocation?: number | null;
-        allocation_type: FeatureUsageResponseDataAllocationType.Raw;
+        allocation_type: EntitlementValueType.Raw;
         company_override?: CompanyOverrideResponseData.Raw | null;
         credit_consumption_rate?: number | null;
         credit_grant_counts?: Record<string, number> | null;
         credit_grant_details?: CreditGrantDetail.Raw[] | null;
-        credit_grant_reason?: FeatureUsageResponseDataCreditGrantReason.Raw | null;
+        credit_grant_reason?: GrantReason.Raw | null;
         credit_remaining?: number | null;
         credit_total?: number | null;
         credit_type_icon?: string | null;
@@ -87,7 +86,7 @@ export declare namespace FeatureUsageResponseData {
         entitlement_expiration_date?: string | null;
         entitlement_id: string;
         entitlement_source?: string | null;
-        entitlement_type: string;
+        entitlement_type: EntitlementType.Raw;
         feature?: FeatureDetailResponseData.Raw | null;
         has_valid_allocation?: boolean | null;
         is_unlimited?: boolean | null;
@@ -99,7 +98,7 @@ export declare namespace FeatureUsageResponseData {
         period?: string | null;
         plan?: PlanResponseData.Raw | null;
         plan_entitlement?: PlanEntitlementResponseData.Raw | null;
-        price_behavior?: string | null;
+        price_behavior?: EntitlementPriceBehavior.Raw | null;
         soft_limit?: number | null;
         usage?: number | null;
         yearly_usage_based_price?: BillingPriceView.Raw | null;

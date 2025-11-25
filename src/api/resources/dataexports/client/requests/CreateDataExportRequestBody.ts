@@ -5,7 +5,9 @@
 /**
  * @example
  *     {
- *         metadata: "metadata"
+ *         exportType: "company-feature-usage",
+ *         metadata: "metadata",
+ *         outputFileType: "csv"
  *     }
  */
 export interface CreateDataExportRequestBody {

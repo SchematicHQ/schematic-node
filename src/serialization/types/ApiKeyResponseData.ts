@@ -5,6 +5,7 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { ApiKeyScope } from "./ApiKeyScope";
 
 export const ApiKeyResponseData: core.serialization.ObjectSchema<
     serializers.ApiKeyResponseData.Raw,
@@ -16,7 +17,7 @@ export const ApiKeyResponseData: core.serialization.ObjectSchema<
     id: core.serialization.string(),
     lastUsedAt: core.serialization.property("last_used_at", core.serialization.date().optional()),
     name: core.serialization.string(),
-    scopes: core.serialization.list(core.serialization.string()),
+    scopes: core.serialization.list(ApiKeyScope),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
@@ -28,7 +29,7 @@ export declare namespace ApiKeyResponseData {
         id: string;
         last_used_at?: string | null;
         name: string;
-        scopes: string[];
+        scopes: ApiKeyScope.Raw[];
         updated_at: string;
     }
 }

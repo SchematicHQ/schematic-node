@@ -30,6 +30,7 @@ export const PlanGroupResponseData: core.serialization.ObjectSchema<
         "prevent_downgrades_when_over_limit",
         core.serialization.boolean(),
     ),
+    prorationBehavior: core.serialization.property("proration_behavior", core.serialization.string()),
     showCredits: core.serialization.property("show_credits", core.serialization.boolean()),
     showPeriodToggle: core.serialization.property("show_period_toggle", core.serialization.boolean()),
     showZeroPriceAsFree: core.serialization.property("show_zero_price_as_free", core.serialization.boolean()),
@@ -63,6 +64,7 @@ export declare namespace PlanGroupResponseData {
         ordered_add_on_ids: OrderedPlansInGroup.Raw[];
         plan_ids: OrderedPlansInGroup.Raw[];
         prevent_downgrades_when_over_limit: boolean;
+        proration_behavior: string;
         show_credits: boolean;
         show_period_toggle: boolean;
         show_zero_price_as_free: boolean;

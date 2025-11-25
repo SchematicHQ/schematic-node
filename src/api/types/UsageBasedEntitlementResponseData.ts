@@ -12,9 +12,9 @@ export interface UsageBasedEntitlementResponseData {
     metricPeriod?: string;
     metricPeriodMonthReset?: string;
     monthlyUsageBasedPrice?: Schematic.BillingPriceView;
-    priceBehavior?: string;
+    priceBehavior?: Schematic.EntitlementPriceBehavior;
     valueBool?: boolean;
     valueNumeric?: number;
-    valueType: string;
+    valueType: Schematic.EntitlementValueType;
     yearlyUsageBasedPrice?: Schematic.BillingPriceView;
 }

@@ -24,5 +24,5 @@ export interface CompanyOverrideResponseData {
     valueNumeric?: number;
     valueTrait?: Schematic.EntityTraitDefinitionResponseData;
     valueTraitId?: string;
-    valueType: string;
+    valueType: Schematic.EntitlementValueType;
 }

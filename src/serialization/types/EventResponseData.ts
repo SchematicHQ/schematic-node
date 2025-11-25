@@ -5,6 +5,7 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { EventType } from "./EventType";
 
 export const EventResponseData: core.serialization.ObjectSchema<
     serializers.EventResponseData.Raw,
@@ -26,7 +27,7 @@ export const EventResponseData: core.serialization.ObjectSchema<
     sentAt: core.serialization.property("sent_at", core.serialization.date().optional()),
     status: core.serialization.string(),
     subtype: core.serialization.string().optional(),
-    type: core.serialization.string(),
+    type: EventType,
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     userId: core.serialization.property("user_id", core.serialization.string().optional()),
 });
@@ -49,7 +50,7 @@ export declare namespace EventResponseData {
         sent_at?: string | null;
         status: string;
         subtype?: string | null;
-        type: string;
+        type: EventType.Raw;
         updated_at: string;
         user_id?: string | null;
     }

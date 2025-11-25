@@ -5,13 +5,14 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { EnvironmentType } from "./EnvironmentType";
 
 export const EnvironmentResponseData: core.serialization.ObjectSchema<
     serializers.EnvironmentResponseData.Raw,
     Schematic.EnvironmentResponseData
 > = core.serialization.object({
     createdAt: core.serialization.property("created_at", core.serialization.date()),
-    environmentType: core.serialization.property("environment_type", core.serialization.string()),
+    environmentType: core.serialization.property("environment_type", EnvironmentType),
     id: core.serialization.string(),
     name: core.serialization.string(),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -20,7 +21,7 @@ export const EnvironmentResponseData: core.serialization.ObjectSchema<
 export declare namespace EnvironmentResponseData {
     export interface Raw {
         created_at: string;
-        environment_type: string;
+        environment_type: EnvironmentType.Raw;
         id: string;
         name: string;
         updated_at: string;

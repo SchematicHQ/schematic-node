@@ -12,4 +12,5 @@ export { type ListPlanEntitlementsRequest } from "./ListPlanEntitlementsRequest"
 export { type CreatePlanEntitlementRequestBody } from "./CreatePlanEntitlementRequestBody";
 export { type UpdatePlanEntitlementRequestBody } from "./UpdatePlanEntitlementRequestBody";
 export { type CountPlanEntitlementsRequest } from "./CountPlanEntitlementsRequest";
+export { type DuplicatePlanEntitlementsRequestBody } from "./DuplicatePlanEntitlementsRequestBody";
 export { type GetFeatureUsageByCompanyRequest } from "./GetFeatureUsageByCompanyRequest";

@@ -5,6 +5,7 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { PlanType } from "./PlanType";
 
 export const PlanResponseData: core.serialization.ObjectSchema<
     serializers.PlanResponseData.Raw,
@@ -16,7 +17,7 @@ export const PlanResponseData: core.serialization.ObjectSchema<
     icon: core.serialization.string(),
     id: core.serialization.string(),
     name: core.serialization.string(),
-    planType: core.serialization.property("plan_type", core.serialization.string()),
+    planType: core.serialization.property("plan_type", PlanType),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
@@ -28,7 +29,7 @@ export declare namespace PlanResponseData {
         icon: string;
         id: string;
         name: string;
-        plan_type: string;
+        plan_type: PlanType.Raw;
         updated_at: string;
     }
 }

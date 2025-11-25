@@ -5,6 +5,8 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { ChargeType } from "./ChargeType";
+import { PlanControlledByType } from "./PlanControlledByType";
 
 export const BillingProductPlanResponseData: core.serialization.ObjectSchema<
     serializers.BillingProductPlanResponseData.Raw,
@@ -12,8 +14,8 @@ export const BillingProductPlanResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     accountId: core.serialization.property("account_id", core.serialization.string()),
     billingProductId: core.serialization.property("billing_product_id", core.serialization.string()),
-    chargeType: core.serialization.property("charge_type", core.serialization.string()),
-    controlledBy: core.serialization.property("controlled_by", core.serialization.string()),
+    chargeType: core.serialization.property("charge_type", ChargeType),
+    controlledBy: core.serialization.property("controlled_by", PlanControlledByType),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     isTrialable: core.serialization.property("is_trialable", core.serialization.boolean()),
     monthlyPriceId: core.serialization.property("monthly_price_id", core.serialization.string().optional()),
@@ -27,8 +29,8 @@ export declare namespace BillingProductPlanResponseData {
     export interface Raw {
         account_id: string;
         billing_product_id: string;
-        charge_type: string;
-        controlled_by: string;
+        charge_type: ChargeType.Raw;
+        controlled_by: PlanControlledByType.Raw;
         environment_id: string;
         is_trialable: boolean;
         monthly_price_id?: string | null;

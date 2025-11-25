@@ -6,7 +6,7 @@ import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { CreatePriceTierRequestBody } from "./CreatePriceTierRequestBody";
-import { UsageBasedEntitlementRequestBodyPriceBehavior } from "./UsageBasedEntitlementRequestBodyPriceBehavior";
+import { EntitlementPriceBehavior } from "./EntitlementPriceBehavior";
 
 export const UsageBasedEntitlementRequestBody: core.serialization.ObjectSchema<
     serializers.UsageBasedEntitlementRequestBody.Raw,
@@ -32,10 +32,7 @@ export const UsageBasedEntitlementRequestBody: core.serialization.ObjectSchema<
         "overage_billing_product_id",
         core.serialization.string().optional(),
     ),
-    priceBehavior: core.serialization.property(
-        "price_behavior",
-        UsageBasedEntitlementRequestBodyPriceBehavior.optional(),
-    ),
+    priceBehavior: core.serialization.property("price_behavior", EntitlementPriceBehavior.optional()),
     priceTiers: core.serialization.property(
         "price_tiers",
         core.serialization.list(CreatePriceTierRequestBody).optional(),
@@ -67,7 +64,7 @@ export declare namespace UsageBasedEntitlementRequestBody {
         monthly_unit_price?: number | null;
         monthly_unit_price_decimal?: string | null;
         overage_billing_product_id?: string | null;
-        price_behavior?: UsageBasedEntitlementRequestBodyPriceBehavior.Raw | null;
+        price_behavior?: EntitlementPriceBehavior.Raw | null;
         price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
         soft_limit?: number | null;
         tier_mode?: string | null;

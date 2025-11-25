@@ -7,6 +7,7 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { EntityTraitDefinitionResponseData } from "./EntityTraitDefinitionResponseData";
 import { PreviewObjectResponseData } from "./PreviewObjectResponseData";
+import { EntityType } from "./EntityType";
 
 export const RuleConditionDetailResponseData: core.serialization.ObjectSchema<
     serializers.RuleConditionDetailResponseData.Raw,
@@ -32,7 +33,7 @@ export const RuleConditionDetailResponseData: core.serialization.ObjectSchema<
     resources: core.serialization.list(PreviewObjectResponseData),
     ruleId: core.serialization.property("rule_id", core.serialization.string()),
     trait: EntityTraitDefinitionResponseData.optional(),
-    traitEntityType: core.serialization.property("trait_entity_type", core.serialization.string().optional()),
+    traitEntityType: core.serialization.property("trait_entity_type", EntityType.optional()),
     traitId: core.serialization.property("trait_id", core.serialization.string().optional()),
     traitValue: core.serialization.property("trait_value", core.serialization.string()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -57,7 +58,7 @@ export declare namespace RuleConditionDetailResponseData {
         resources: PreviewObjectResponseData.Raw[];
         rule_id: string;
         trait?: EntityTraitDefinitionResponseData.Raw | null;
-        trait_entity_type?: string | null;
+        trait_entity_type?: EntityType.Raw | null;
         trait_id?: string | null;
         trait_value: string;
         updated_at: string;

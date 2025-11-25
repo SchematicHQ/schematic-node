@@ -14,7 +14,7 @@ import * as Schematic from "../../../../index";
  */
 export interface CreateEntityTraitDefinitionRequestBody {
     displayName?: string;
-    entityType: Schematic.CreateEntityTraitDefinitionRequestBodyEntityType;
+    entityType: Schematic.EntityType;
     hierarchy: string[];
-    traitType: Schematic.CreateEntityTraitDefinitionRequestBodyTraitType;
+    traitType: Schematic.TraitType;
 }
