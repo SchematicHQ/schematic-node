@@ -13,3 +13,17 @@ export {
   WEBHOOK_SIGNATURE_HEADER,
   WEBHOOK_TIMESTAMP_HEADER
 } from "./webhooks";
+export {
+  DatastreamClient,
+  Logger,
+  MessageHandlerFunc,
+  ConnectionReadyHandlerFunc,
+  ClientOptions,
+  Action,
+  EntityType,
+  MessageType,
+  DataStreamReq,
+  DataStreamBaseReq,
+  DataStreamResp,
+  DataStreamError,
+} from "./datastream";

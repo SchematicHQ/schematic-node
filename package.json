@@ -50,7 +50,9 @@
         "path": false,
         "stream": false,
         "crypto": false,
-        "timers": false
+        "timers": false,
+        "url": false,
+        "ws": false
     },
     "packageManager": "yarn@1.22.22",
     "engines": {
