@@ -3,6 +3,7 @@ export { LocalCache } from "./cache";
 export { SchematicClient } from "./wrapper";
 export { SchematicEnvironment } from "./environments";
 export { SchematicError, SchematicTimeoutError } from "./errors";
+export { RulesEngineClient } from "./rules-engine";
 export {
   verifyWebhookSignature,
   verifySignature,

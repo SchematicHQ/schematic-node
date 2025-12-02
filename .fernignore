@@ -13,7 +13,10 @@ src/events.test.ts
 src/events.ts
 src/index.ts
 src/logger.ts
+src/rules-engine.test.ts
+src/rules-engine.ts
 src/version.ts
+src/wasm/
 src/webhooks.ts
 src/wrapper.ts
 tests/unit/webhooks.test.ts

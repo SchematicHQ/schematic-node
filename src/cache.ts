@@ -71,8 +71,10 @@ class LocalCache<T> implements CacheProvider<T> {
             value,
             accessCounter: this.accessCounter,
             expiration: Date.now() + ttl,
-            timeoutId: setTimeout(() => this.evictItem(key, newItem), ttl),
         };
+        
+        // Set timeout after item is created to avoid circular reference
+        newItem.timeoutId = setTimeout(() => this.evictItem(key, newItem), ttl);
         this.cache.set(key, newItem);
     }
 
