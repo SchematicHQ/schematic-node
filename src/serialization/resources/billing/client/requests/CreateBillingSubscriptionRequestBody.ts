@@ -13,6 +13,7 @@ export const CreateBillingSubscriptionRequestBody: core.serialization.Schema<
     serializers.CreateBillingSubscriptionRequestBody.Raw,
     Schematic.CreateBillingSubscriptionRequestBody
 > = core.serialization.object({
+    applicationId: core.serialization.property("application_id", core.serialization.string().optional()),
     cancelAt: core.serialization.property("cancel_at", core.serialization.number().optional()),
     cancelAtPeriodEnd: core.serialization.property("cancel_at_period_end", core.serialization.boolean()),
     currency: core.serialization.string(),
@@ -47,6 +48,7 @@ export const CreateBillingSubscriptionRequestBody: core.serialization.Schema<
 
 export declare namespace CreateBillingSubscriptionRequestBody {
     export interface Raw {
+        application_id?: string | null;
         cancel_at?: number | null;
         cancel_at_period_end: boolean;
         currency: string;

@@ -18,7 +18,8 @@ export interface CountEntityTraitDefinitionsRequest {
     entityType?: Schematic.CountEntityTraitDefinitionsRequestEntityType;
     ids?: string | string[];
     q?: string;
-    traitType?: Schematic.CountEntityTraitDefinitionsRequestTraitType;
+    traitType?: Schematic.TraitType;
+    traitTypes?: Schematic.TraitType | Schematic.TraitType[];
     /**
      * Page limit (default 100)
      */

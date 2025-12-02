@@ -7,6 +7,6 @@ import * as Schematic from "../index";
 export interface CreditGrantDetail {
     creditTypeIcon?: string;
     expiresAt?: Date;
-    grantReason: Schematic.CreditGrantDetailGrantReason;
+    grantReason: Schematic.GrantReason;
     quantity: number;
 }

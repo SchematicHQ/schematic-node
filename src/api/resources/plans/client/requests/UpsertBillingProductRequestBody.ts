@@ -7,13 +7,13 @@ import * as Schematic from "../../../../index";
 /**
  * @example
  *     {
- *         chargeType: "one_time",
+ *         chargeType: "free",
  *         isTrialable: true
  *     }
  */
 export interface UpsertBillingProductRequestBody {
     billingProductId?: string;
-    chargeType: Schematic.UpsertBillingProductRequestBodyChargeType;
+    chargeType: Schematic.ChargeType;
     currency?: string;
     isTrialable: boolean;
     monthlyPrice?: number;

@@ -16,13 +16,14 @@ export interface PlanGroupDetailResponseData {
     id: string;
     initialPlan?: Schematic.PlanGroupPlanDetailResponseData;
     initialPlanId?: string;
-    initialPlanPrice?: Schematic.BillingPriceResponseData;
+    initialPlanPrice?: Schematic.BillingPriceView;
     initialPlanPriceId?: string;
     orderedAddOnList: Schematic.PlanGroupPlanEntitlementsOrder[];
     orderedBundleList: Schematic.PlanGroupBundleOrder[];
     orderedPlanList: Schematic.PlanGroupPlanEntitlementsOrder[];
     plans: Schematic.PlanGroupPlanDetailResponseData[];
     preventDowngradesWhenOverLimit: boolean;
+    prorationBehavior: string;
     showCredits: boolean;
     showPeriodToggle: boolean;
     showZeroPriceAsFree: boolean;
@@ -31,7 +32,7 @@ export interface PlanGroupDetailResponseData {
     trialDays?: number;
     trialExpiryPlan?: Schematic.PlanGroupPlanDetailResponseData;
     trialExpiryPlanId?: string;
-    trialExpiryPlanPrice?: Schematic.BillingPriceResponseData;
+    trialExpiryPlanPrice?: Schematic.BillingPriceView;
     trialExpiryPlanPriceId?: string;
     trialPaymentMethodRequired?: boolean;
 }

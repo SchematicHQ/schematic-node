@@ -37,11 +37,11 @@ export interface CountCompaniesForAdvancedFilterRequest {
     /**
      * Filter companies by one or more subscription statuses (active, canceled, expired, incomplete, incomplete_expired, past_due, paused, trialing, unpaid)
      */
-    subscriptionStatuses?: string | string[];
+    subscriptionStatuses?: Schematic.SubscriptionStatus | Schematic.SubscriptionStatus[];
     /**
      * Filter companies by one or more subscription types (paid, free, trial)
      */
-    subscriptionTypes?: string | string[];
+    subscriptionTypes?: Schematic.SubscriptionType | Schematic.SubscriptionType[];
     /**
      * Filter companies that have monetized subscriptions
      */

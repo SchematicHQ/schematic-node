@@ -6,6 +6,6 @@ import * as Schematic from "../index";
 
 export interface TraitDefinition {
     comparableType: Schematic.TraitDefinitionComparableType;
-    entityType: Schematic.TraitDefinitionEntityType;
+    entityType: Schematic.EntityType;
     id: string;
 }

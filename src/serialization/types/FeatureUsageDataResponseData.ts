@@ -6,6 +6,7 @@ import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { CreditUsageResponseData } from "./CreditUsageResponseData";
+import { FeatureType } from "./FeatureType";
 import { BillingPriceView } from "./BillingPriceView";
 
 export const FeatureUsageDataResponseData: core.serialization.ObjectSchema<
@@ -18,7 +19,7 @@ export const FeatureUsageDataResponseData: core.serialization.ObjectSchema<
     entitlementValueType: core.serialization.property("entitlement_value_type", core.serialization.string()),
     featureId: core.serialization.property("feature_id", core.serialization.string()),
     featureName: core.serialization.property("feature_name", core.serialization.string()),
-    featureType: core.serialization.property("feature_type", core.serialization.string()),
+    featureType: core.serialization.property("feature_type", FeatureType),
     hardLimit: core.serialization.property("hard_limit", core.serialization.string()),
     hasAccess: core.serialization.property("has_access", core.serialization.boolean()),
     metricResetAt: core.serialization.property("metric_reset_at", core.serialization.date().optional()),
@@ -38,7 +39,7 @@ export declare namespace FeatureUsageDataResponseData {
         entitlement_value_type: string;
         feature_id: string;
         feature_name: string;
-        feature_type: string;
+        feature_type: FeatureType.Raw;
         hard_limit: string;
         has_access: boolean;
         metric_reset_at?: string | null;

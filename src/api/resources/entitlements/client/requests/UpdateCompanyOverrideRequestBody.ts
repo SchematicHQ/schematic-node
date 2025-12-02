@@ -20,5 +20,5 @@ export interface UpdateCompanyOverrideRequestBody {
     valueCreditId?: string;
     valueNumeric?: number;
     valueTraitId?: string;
-    valueType: Schematic.UpdateCompanyOverrideRequestBodyValueType;
+    valueType: Schematic.EntitlementValueType;
 }

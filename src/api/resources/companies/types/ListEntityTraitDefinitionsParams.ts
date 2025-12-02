@@ -15,5 +15,6 @@ export interface ListEntityTraitDefinitionsParams {
     /** Page offset (default 0) */
     offset?: number;
     q?: string;
-    traitType?: Schematic.ListEntityTraitDefinitionsResponseParamsTraitType;
+    traitType?: Schematic.TraitType;
+    traitTypes?: Schematic.TraitType[];
 }

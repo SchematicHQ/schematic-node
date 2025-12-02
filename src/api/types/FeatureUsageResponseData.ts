@@ -9,15 +9,13 @@ export interface FeatureUsageResponseData {
     access: boolean;
     /** The maximum amount of usage that is permitted; a null value indicates that unlimited usage is permitted. */
     allocation?: number;
-    /** The type of allocation that is being used. */
-    allocationType: Schematic.FeatureUsageResponseDataAllocationType;
+    allocationType: Schematic.EntitlementValueType;
     companyOverride?: Schematic.CompanyOverrideResponseData;
     /** The rate at which credits are consumed per unit of usage */
     creditConsumptionRate?: number;
     creditGrantCounts?: Record<string, number>;
     creditGrantDetails?: Schematic.CreditGrantDetail[];
-    /** Reason for the credit grant */
-    creditGrantReason?: Schematic.FeatureUsageResponseDataCreditGrantReason;
+    creditGrantReason?: Schematic.GrantReason;
     creditRemaining?: number;
     creditTotal?: number;
     /** Icon identifier for the credit type */
@@ -31,7 +29,7 @@ export interface FeatureUsageResponseData {
     entitlementId: string;
     /** Source of the entitlement (plan or company_override) */
     entitlementSource?: string;
-    entitlementType: string;
+    entitlementType: Schematic.EntitlementType;
     feature?: Schematic.FeatureDetailResponseData;
     /** Whether a valid allocation exists */
     hasValidAllocation?: boolean;
@@ -50,7 +48,7 @@ export interface FeatureUsageResponseData {
     period?: string;
     plan?: Schematic.PlanResponseData;
     planEntitlement?: Schematic.PlanEntitlementResponseData;
-    priceBehavior?: string;
+    priceBehavior?: Schematic.EntitlementPriceBehavior;
     /** The soft limit for the feature usage. Available only for overage price behavior */
     softLimit?: number;
     /** The amount of usage that has been consumed; a null value indicates that usage is not being measured. */

@@ -9,19 +9,8 @@ import * as core from "../../../../core";
 export const CreateBillingPlanCreditGrantRequestBodyAutoTopupExpiryType: core.serialization.Schema<
     serializers.CreateBillingPlanCreditGrantRequestBodyAutoTopupExpiryType.Raw,
     Schematic.CreateBillingPlanCreditGrantRequestBodyAutoTopupExpiryType
-> = core.serialization.enum_([
-    "duration",
-    "no_expiry",
-    "end_of_trial",
-    "end_of_billing_period",
-    "end_of_next_billing_period",
-]);
+> = core.serialization.enum_(["duration", "no_expiry", "end_of_trial"]);
 
 export declare namespace CreateBillingPlanCreditGrantRequestBodyAutoTopupExpiryType {
-    export type Raw =
-        | "duration"
-        | "no_expiry"
-        | "end_of_trial"
-        | "end_of_billing_period"
-        | "end_of_next_billing_period";
+    export type Raw = "duration" | "no_expiry" | "end_of_trial";
 }

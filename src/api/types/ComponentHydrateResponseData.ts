@@ -18,6 +18,9 @@ export interface ComponentHydrateResponseData {
     defaultPlan?: Schematic.PlanDetailResponseData;
     featureUsage?: Schematic.FeatureUsageDetailResponseData;
     postTrialPlan?: Schematic.PlanDetailResponseData;
+    preventSelfServiceDowngrade: boolean;
+    preventSelfServiceDowngradeButtonText?: string;
+    preventSelfServiceDowngradeUrl?: string;
     showCredits: boolean;
     showPeriodToggle: boolean;
     showZeroPriceAsFree: boolean;

@@ -43,6 +43,18 @@ export const ComponentHydrateResponseData: core.serialization.ObjectSchema<
     defaultPlan: core.serialization.property("default_plan", PlanDetailResponseData.optional()),
     featureUsage: core.serialization.property("feature_usage", FeatureUsageDetailResponseData.optional()),
     postTrialPlan: core.serialization.property("post_trial_plan", PlanDetailResponseData.optional()),
+    preventSelfServiceDowngrade: core.serialization.property(
+        "prevent_self_service_downgrade",
+        core.serialization.boolean(),
+    ),
+    preventSelfServiceDowngradeButtonText: core.serialization.property(
+        "prevent_self_service_downgrade_button_text",
+        core.serialization.string().optional(),
+    ),
+    preventSelfServiceDowngradeUrl: core.serialization.property(
+        "prevent_self_service_downgrade_url",
+        core.serialization.string().optional(),
+    ),
     showCredits: core.serialization.property("show_credits", core.serialization.boolean()),
     showPeriodToggle: core.serialization.property("show_period_toggle", core.serialization.boolean()),
     showZeroPriceAsFree: core.serialization.property("show_zero_price_as_free", core.serialization.boolean()),
@@ -70,6 +82,9 @@ export declare namespace ComponentHydrateResponseData {
         default_plan?: PlanDetailResponseData.Raw | null;
         feature_usage?: FeatureUsageDetailResponseData.Raw | null;
         post_trial_plan?: PlanDetailResponseData.Raw | null;
+        prevent_self_service_downgrade: boolean;
+        prevent_self_service_downgrade_button_text?: string | null;
+        prevent_self_service_downgrade_url?: string | null;
         show_credits: boolean;
         show_period_toggle: boolean;
         show_zero_price_as_free: boolean;

@@ -2,3 +2,4 @@ export { CreateCompanyOverrideRequestBody } from "./CreateCompanyOverrideRequest
 export { UpdateCompanyOverrideRequestBody } from "./UpdateCompanyOverrideRequestBody";
 export { CreatePlanEntitlementRequestBody } from "./CreatePlanEntitlementRequestBody";
 export { UpdatePlanEntitlementRequestBody } from "./UpdatePlanEntitlementRequestBody";
+export { DuplicatePlanEntitlementsRequestBody } from "./DuplicatePlanEntitlementsRequestBody";

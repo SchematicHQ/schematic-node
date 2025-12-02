@@ -5,13 +5,14 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { EntityType } from "./EntityType";
 
 export const EntityKeyDefinitionResponseData: core.serialization.ObjectSchema<
     serializers.EntityKeyDefinitionResponseData.Raw,
     Schematic.EntityKeyDefinitionResponseData
 > = core.serialization.object({
     createdAt: core.serialization.property("created_at", core.serialization.date()),
-    entityType: core.serialization.property("entity_type", core.serialization.string()),
+    entityType: core.serialization.property("entity_type", EntityType),
     id: core.serialization.string(),
     key: core.serialization.string(),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -20,7 +21,7 @@ export const EntityKeyDefinitionResponseData: core.serialization.ObjectSchema<
 export declare namespace EntityKeyDefinitionResponseData {
     export interface Raw {
         created_at: string;
-        entity_type: string;
+        entity_type: EntityType.Raw;
         id: string;
         key: string;
         updated_at: string;

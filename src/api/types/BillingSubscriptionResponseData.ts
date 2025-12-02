@@ -3,6 +3,7 @@
  */
 
 export interface BillingSubscriptionResponseData {
+    applicationId?: string;
     cancelAt?: number;
     cancelAtPeriodEnd: boolean;
     companyId?: string;

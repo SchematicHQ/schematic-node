@@ -5,16 +5,14 @@
 import * as serializers from "../../../index";
 import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
+import { FeatureType } from "../../../types/FeatureType";
 
 export const ListFeaturesParams: core.serialization.ObjectSchema<
     serializers.ListFeaturesParams.Raw,
     Schematic.ListFeaturesParams
 > = core.serialization.object({
     booleanRequireEvent: core.serialization.property("boolean_require_event", core.serialization.boolean().optional()),
-    featureType: core.serialization.property(
-        "feature_type",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    featureType: core.serialization.property("feature_type", core.serialization.list(FeatureType).optional()),
     ids: core.serialization.list(core.serialization.string()).optional(),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
@@ -32,7 +30,7 @@ export const ListFeaturesParams: core.serialization.ObjectSchema<
 export declare namespace ListFeaturesParams {
     export interface Raw {
         boolean_require_event?: boolean | null;
-        feature_type?: string[] | null;
+        feature_type?: FeatureType.Raw[] | null;
         ids?: string[] | null;
         limit?: number | null;
         offset?: number | null;

@@ -13,6 +13,13 @@ import * as Schematic from "../../../../index";
  */
 export interface UpdateBillingPlanCreditGrantRequestBody {
     applyToExisting?: boolean;
+    autoTopupAmount?: number;
+    autoTopupAmountType?: "credit";
+    autoTopupEnabled?: boolean;
+    autoTopupExpiryType?: Schematic.UpdateBillingPlanCreditGrantRequestBodyAutoTopupExpiryType;
+    autoTopupExpiryUnit?: "days";
+    autoTopupExpiryUnitCount?: number;
+    autoTopupThresholdPercent?: number;
     creditAmount?: number;
     expiryType?: Schematic.UpdateBillingPlanCreditGrantRequestBodyExpiryType;
     expiryUnit?: Schematic.UpdateBillingPlanCreditGrantRequestBodyExpiryUnit;

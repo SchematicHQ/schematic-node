@@ -6,7 +6,9 @@ import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { EventSummaryResponseData } from "./EventSummaryResponseData";
+import { FeatureType } from "./FeatureType";
 import { FlagDetailResponseData } from "./FlagDetailResponseData";
+import { FeatureLifecyclePhase } from "./FeatureLifecyclePhase";
 import { PreviewObject } from "./PreviewObject";
 import { EntityTraitDefinitionResponseData } from "./EntityTraitDefinitionResponseData";
 
@@ -18,11 +20,11 @@ export const FeatureDetailResponseData: core.serialization.ObjectSchema<
     description: core.serialization.string(),
     eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
     eventSummary: core.serialization.property("event_summary", EventSummaryResponseData.optional()),
-    featureType: core.serialization.property("feature_type", core.serialization.string()),
+    featureType: core.serialization.property("feature_type", FeatureType),
     flags: core.serialization.list(FlagDetailResponseData),
     icon: core.serialization.string(),
     id: core.serialization.string(),
-    lifecyclePhase: core.serialization.property("lifecycle_phase", core.serialization.string().optional()),
+    lifecyclePhase: core.serialization.property("lifecycle_phase", FeatureLifecyclePhase.optional()),
     maintainerId: core.serialization.property("maintainer_id", core.serialization.string().optional()),
     name: core.serialization.string(),
     plans: core.serialization.list(PreviewObject),
@@ -39,11 +41,11 @@ export declare namespace FeatureDetailResponseData {
         description: string;
         event_subtype?: string | null;
         event_summary?: EventSummaryResponseData.Raw | null;
-        feature_type: string;
+        feature_type: FeatureType.Raw;
         flags: FlagDetailResponseData.Raw[];
         icon: string;
         id: string;
-        lifecycle_phase?: string | null;
+        lifecycle_phase?: FeatureLifecyclePhase.Raw | null;
         maintainer_id?: string | null;
         name: string;
         plans: PreviewObject.Raw[];

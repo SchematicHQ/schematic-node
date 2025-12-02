@@ -8,8 +8,7 @@
  *         lookup: {
  *             "key": "value"
  *         },
- *         resource_type: "value"
- * 
+ *         resourceType: "company"
  *     }
  */
 export interface IssueTemporaryAccessTokenRequestBody {

@@ -14,9 +14,7 @@ import * as Schematic from "../../../../index";
  *         hasProductId: true,
  *         planType: "plan",
  *         q: "q",
- *         requiresPaymentMethod: true,
  *         withoutEntitlementFor: "without_entitlement_for",
- *         withoutProductId: true,
  *         withoutPaidProductId: true,
  *         limit: 1,
  *         offset: 1
@@ -44,20 +42,12 @@ export interface ListPlansRequest {
     /**
      * Filter by plan type
      */
-    planType?: Schematic.ListPlansRequestPlanType;
+    planType?: Schematic.PlanType;
     q?: string;
-    /**
-     * Filter for plans that require a payment method (inverse of ForInitialPlan)
-     */
-    requiresPaymentMethod?: boolean;
     /**
      * Filter out plans that already have a plan entitlement for the specified feature ID
      */
     withoutEntitlementFor?: string;
-    /**
-     * Filter out plans that have a billing product ID
-     */
-    withoutProductId?: boolean;
     /**
      * Filter out plans that have a paid billing product ID
      */

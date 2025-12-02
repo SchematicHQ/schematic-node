@@ -14,7 +14,7 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface CountEntityKeyDefinitionsRequest {
-    entityType?: Schematic.CountEntityKeyDefinitionsRequestEntityType;
+    entityType?: Schematic.EntityType;
     ids?: string | string[];
     q?: string;
     /**

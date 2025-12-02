@@ -19,6 +19,9 @@ export interface ComponentPreviewResponseData {
     featureUsage?: Schematic.FeatureUsageDetailResponseData;
     invoices: Schematic.InvoiceResponseData[];
     postTrialPlan?: Schematic.PlanDetailResponseData;
+    preventSelfServiceDowngrade: boolean;
+    preventSelfServiceDowngradeButtonText?: string;
+    preventSelfServiceDowngradeUrl?: string;
     showCredits: boolean;
     showPeriodToggle: boolean;
     showZeroPriceAsFree: boolean;

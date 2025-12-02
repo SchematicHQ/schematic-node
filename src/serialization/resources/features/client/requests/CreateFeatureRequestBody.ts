@@ -5,9 +5,9 @@
 import * as serializers from "../../../../index";
 import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
-import { CreateFeatureRequestBodyFeatureType } from "../../types/CreateFeatureRequestBodyFeatureType";
+import { FeatureType } from "../../../../types/FeatureType";
 import { CreateOrUpdateFlagRequestBody } from "../../../../types/CreateOrUpdateFlagRequestBody";
-import { CreateFeatureRequestBodyLifecyclePhase } from "../../types/CreateFeatureRequestBodyLifecyclePhase";
+import { FeatureLifecyclePhase } from "../../../../types/FeatureLifecyclePhase";
 
 export const CreateFeatureRequestBody: core.serialization.Schema<
     serializers.CreateFeatureRequestBody.Raw,
@@ -15,10 +15,10 @@ export const CreateFeatureRequestBody: core.serialization.Schema<
 > = core.serialization.object({
     description: core.serialization.string(),
     eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
-    featureType: core.serialization.property("feature_type", CreateFeatureRequestBodyFeatureType),
+    featureType: core.serialization.property("feature_type", FeatureType),
     flag: CreateOrUpdateFlagRequestBody.optional(),
     icon: core.serialization.string().optional(),
-    lifecyclePhase: core.serialization.property("lifecycle_phase", CreateFeatureRequestBodyLifecyclePhase.optional()),
+    lifecyclePhase: core.serialization.property("lifecycle_phase", FeatureLifecyclePhase.optional()),
     maintainerId: core.serialization.property("maintainer_id", core.serialization.string().optional()),
     name: core.serialization.string(),
     pluralName: core.serialization.property("plural_name", core.serialization.string().optional()),
@@ -30,10 +30,10 @@ export declare namespace CreateFeatureRequestBody {
     export interface Raw {
         description: string;
         event_subtype?: string | null;
-        feature_type: CreateFeatureRequestBodyFeatureType.Raw;
+        feature_type: FeatureType.Raw;
         flag?: CreateOrUpdateFlagRequestBody.Raw | null;
         icon?: string | null;
-        lifecycle_phase?: CreateFeatureRequestBodyLifecyclePhase.Raw | null;
+        lifecycle_phase?: FeatureLifecyclePhase.Raw | null;
         maintainer_id?: string | null;
         name: string;
         plural_name?: string | null;

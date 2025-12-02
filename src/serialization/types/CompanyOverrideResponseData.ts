@@ -9,6 +9,7 @@ import { CompanyDetailResponseData } from "./CompanyDetailResponseData";
 import { FeatureResponseData } from "./FeatureResponseData";
 import { CompanyOverrideNoteResponseData } from "./CompanyOverrideNoteResponseData";
 import { EntityTraitDefinitionResponseData } from "./EntityTraitDefinitionResponseData";
+import { EntitlementValueType } from "./EntitlementValueType";
 
 export const CompanyOverrideResponseData: core.serialization.ObjectSchema<
     serializers.CompanyOverrideResponseData.Raw,
@@ -36,7 +37,7 @@ export const CompanyOverrideResponseData: core.serialization.ObjectSchema<
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
     valueTrait: core.serialization.property("value_trait", EntityTraitDefinitionResponseData.optional()),
     valueTraitId: core.serialization.property("value_trait_id", core.serialization.string().optional()),
-    valueType: core.serialization.property("value_type", core.serialization.string()),
+    valueType: core.serialization.property("value_type", EntitlementValueType),
 });
 
 export declare namespace CompanyOverrideResponseData {
@@ -60,6 +61,6 @@ export declare namespace CompanyOverrideResponseData {
         value_numeric?: number | null;
         value_trait?: EntityTraitDefinitionResponseData.Raw | null;
         value_trait_id?: string | null;
-        value_type: string;
+        value_type: EntitlementValueType.Raw;
     }
 }

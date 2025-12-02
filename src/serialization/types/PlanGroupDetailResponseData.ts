@@ -8,7 +8,7 @@ import * as core from "../../core";
 import { PlanGroupPlanDetailResponseData } from "./PlanGroupPlanDetailResponseData";
 import { CheckoutSettingsResponseData } from "./CheckoutSettingsResponseData";
 import { CustomPlanViewConfigResponseData } from "./CustomPlanViewConfigResponseData";
-import { BillingPriceResponseData } from "./BillingPriceResponseData";
+import { BillingPriceView } from "./BillingPriceView";
 import { PlanGroupPlanEntitlementsOrder } from "./PlanGroupPlanEntitlementsOrder";
 import { PlanGroupBundleOrder } from "./PlanGroupBundleOrder";
 
@@ -27,7 +27,7 @@ export const PlanGroupDetailResponseData: core.serialization.ObjectSchema<
     id: core.serialization.string(),
     initialPlan: core.serialization.property("initial_plan", PlanGroupPlanDetailResponseData.optional()),
     initialPlanId: core.serialization.property("initial_plan_id", core.serialization.string().optional()),
-    initialPlanPrice: core.serialization.property("initial_plan_price", BillingPriceResponseData.optional()),
+    initialPlanPrice: core.serialization.property("initial_plan_price", BillingPriceView.optional()),
     initialPlanPriceId: core.serialization.property("initial_plan_price_id", core.serialization.string().optional()),
     orderedAddOnList: core.serialization.property(
         "ordered_add_on_list",
@@ -46,6 +46,7 @@ export const PlanGroupDetailResponseData: core.serialization.ObjectSchema<
         "prevent_downgrades_when_over_limit",
         core.serialization.boolean(),
     ),
+    prorationBehavior: core.serialization.property("proration_behavior", core.serialization.string()),
     showCredits: core.serialization.property("show_credits", core.serialization.boolean()),
     showPeriodToggle: core.serialization.property("show_period_toggle", core.serialization.boolean()),
     showZeroPriceAsFree: core.serialization.property("show_zero_price_as_free", core.serialization.boolean()),
@@ -57,7 +58,7 @@ export const PlanGroupDetailResponseData: core.serialization.ObjectSchema<
     trialDays: core.serialization.property("trial_days", core.serialization.number().optional()),
     trialExpiryPlan: core.serialization.property("trial_expiry_plan", PlanGroupPlanDetailResponseData.optional()),
     trialExpiryPlanId: core.serialization.property("trial_expiry_plan_id", core.serialization.string().optional()),
-    trialExpiryPlanPrice: core.serialization.property("trial_expiry_plan_price", BillingPriceResponseData.optional()),
+    trialExpiryPlanPrice: core.serialization.property("trial_expiry_plan_price", BillingPriceView.optional()),
     trialExpiryPlanPriceId: core.serialization.property(
         "trial_expiry_plan_price_id",
         core.serialization.string().optional(),
@@ -81,13 +82,14 @@ export declare namespace PlanGroupDetailResponseData {
         id: string;
         initial_plan?: PlanGroupPlanDetailResponseData.Raw | null;
         initial_plan_id?: string | null;
-        initial_plan_price?: BillingPriceResponseData.Raw | null;
+        initial_plan_price?: BillingPriceView.Raw | null;
         initial_plan_price_id?: string | null;
         ordered_add_on_list: PlanGroupPlanEntitlementsOrder.Raw[];
         ordered_bundle_list: PlanGroupBundleOrder.Raw[];
         ordered_plan_list: PlanGroupPlanEntitlementsOrder.Raw[];
         plans: PlanGroupPlanDetailResponseData.Raw[];
         prevent_downgrades_when_over_limit: boolean;
+        proration_behavior: string;
         show_credits: boolean;
         show_period_toggle: boolean;
         show_zero_price_as_free: boolean;
@@ -96,7 +98,7 @@ export declare namespace PlanGroupDetailResponseData {
         trial_days?: number | null;
         trial_expiry_plan?: PlanGroupPlanDetailResponseData.Raw | null;
         trial_expiry_plan_id?: string | null;
-        trial_expiry_plan_price?: BillingPriceResponseData.Raw | null;
+        trial_expiry_plan_price?: BillingPriceView.Raw | null;
         trial_expiry_plan_price_id?: string | null;
         trial_payment_method_required?: boolean | null;
     }

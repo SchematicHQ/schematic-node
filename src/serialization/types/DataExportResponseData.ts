@@ -5,6 +5,9 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { DataExportType } from "./DataExportType";
+import { DataExportOutputFileType } from "./DataExportOutputFileType";
+import { DataExportStatus } from "./DataExportStatus";
 
 export const DataExportResponseData: core.serialization.ObjectSchema<
     serializers.DataExportResponseData.Raw,
@@ -13,11 +16,11 @@ export const DataExportResponseData: core.serialization.ObjectSchema<
     accountId: core.serialization.property("account_id", core.serialization.string()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
-    exportType: core.serialization.property("export_type", core.serialization.string()),
+    exportType: core.serialization.property("export_type", DataExportType),
     id: core.serialization.string(),
     metadata: core.serialization.string(),
-    outputFileType: core.serialization.property("output_file_type", core.serialization.string()),
-    status: core.serialization.string(),
+    outputFileType: core.serialization.property("output_file_type", DataExportOutputFileType),
+    status: DataExportStatus,
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
@@ -26,11 +29,11 @@ export declare namespace DataExportResponseData {
         account_id: string;
         created_at: string;
         environment_id: string;
-        export_type: string;
+        export_type: DataExportType.Raw;
         id: string;
         metadata: string;
-        output_file_type: string;
-        status: string;
+        output_file_type: DataExportOutputFileType.Raw;
+        status: DataExportStatus.Raw;
         updated_at: string;
     }
 }

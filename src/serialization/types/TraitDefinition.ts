@@ -6,21 +6,21 @@ import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { TraitDefinitionComparableType } from "./TraitDefinitionComparableType";
-import { TraitDefinitionEntityType } from "./TraitDefinitionEntityType";
+import { EntityType } from "./EntityType";
 
 export const TraitDefinition: core.serialization.ObjectSchema<
     serializers.TraitDefinition.Raw,
     Schematic.TraitDefinition
 > = core.serialization.object({
     comparableType: core.serialization.property("comparable_type", TraitDefinitionComparableType),
-    entityType: core.serialization.property("entity_type", TraitDefinitionEntityType),
+    entityType: core.serialization.property("entity_type", EntityType),
     id: core.serialization.string(),
 });
 
 export declare namespace TraitDefinition {
     export interface Raw {
         comparable_type: TraitDefinitionComparableType.Raw;
-        entity_type: TraitDefinitionEntityType.Raw;
+        entity_type: EntityType.Raw;
         id: string;
     }
 }

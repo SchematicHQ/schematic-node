@@ -7,11 +7,11 @@ import * as Schematic from "../index";
 export interface CompanyPlanDetailResponseData {
     audienceType?: string;
     billingProduct?: Schematic.BillingProductDetailResponseData;
-    chargeType: string;
+    chargeType: Schematic.ChargeType;
     companyCanTrial: boolean;
     companyCount: number;
     compatiblePlanIds: string[];
-    controlledBy: string;
+    controlledBy: Schematic.PlanControlledByType;
     createdAt: Date;
     current: boolean;
     custom: boolean;
@@ -22,6 +22,7 @@ export interface CompanyPlanDetailResponseData {
     icon: string;
     id: string;
     includedCreditGrants: Schematic.PlanCreditGrantView[];
+    invalidReason?: Schematic.CompanyPlanDetailResponseDataInvalidReason;
     isCustom: boolean;
     isDefault: boolean;
     isFree: boolean;
@@ -29,7 +30,7 @@ export interface CompanyPlanDetailResponseData {
     monthlyPrice?: Schematic.BillingPriceResponseData;
     name: string;
     oneTimePrice?: Schematic.BillingPriceResponseData;
-    planType: string;
+    planType: Schematic.PlanType;
     trialDays?: number;
     updatedAt: Date;
     usageViolations: Schematic.FeatureUsageResponseData[];

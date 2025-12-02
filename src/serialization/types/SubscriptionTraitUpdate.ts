@@ -5,6 +5,7 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { TraitType } from "./TraitType";
 
 export const SubscriptionTraitUpdate: core.serialization.ObjectSchema<
     serializers.SubscriptionTraitUpdate.Raw,
@@ -15,7 +16,7 @@ export const SubscriptionTraitUpdate: core.serialization.ObjectSchema<
     reason: core.serialization.string(),
     traitId: core.serialization.property("trait_id", core.serialization.string()),
     traitName: core.serialization.property("trait_name", core.serialization.string()),
-    traitType: core.serialization.property("trait_type", core.serialization.string()),
+    traitType: core.serialization.property("trait_type", TraitType),
     value: core.serialization.string(),
 });
 
@@ -26,7 +27,7 @@ export declare namespace SubscriptionTraitUpdate {
         reason: string;
         trait_id: string;
         trait_name: string;
-        trait_type: string;
+        trait_type: TraitType.Raw;
         value: string;
     }
 }

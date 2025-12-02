@@ -10,6 +10,7 @@ export const CheckoutSubscription: core.serialization.ObjectSchema<
     serializers.CheckoutSubscription.Raw,
     Schematic.CheckoutSubscription
 > = core.serialization.object({
+    applicationId: core.serialization.property("application_id", core.serialization.string().optional()),
     cancelAt: core.serialization.property("cancel_at", core.serialization.number().optional()),
     cancelAtPeriodEnd: core.serialization.property("cancel_at_period_end", core.serialization.boolean()),
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
@@ -43,6 +44,7 @@ export const CheckoutSubscription: core.serialization.ObjectSchema<
 
 export declare namespace CheckoutSubscription {
     export interface Raw {
+        application_id?: string | null;
         cancel_at?: number | null;
         cancel_at_period_end: boolean;
         company_id?: string | null;

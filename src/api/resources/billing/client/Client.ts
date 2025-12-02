@@ -91,8 +91,8 @@ export class Billing {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -245,8 +245,8 @@ export class Billing {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -398,8 +398,8 @@ export class Billing {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -581,8 +581,8 @@ export class Billing {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -762,8 +762,8 @@ export class Billing {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -929,8 +929,8 @@ export class Billing {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1082,8 +1082,8 @@ export class Billing {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1245,8 +1245,8 @@ export class Billing {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1395,8 +1395,8 @@ export class Billing {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1560,8 +1560,8 @@ export class Billing {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1709,8 +1709,8 @@ export class Billing {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1820,7 +1820,7 @@ export class Billing {
     }
 
     /**
-     * @param {Schematic.SearchBillingPricesRequest} request
+     * @param {Schematic.ListBillingPricesRequest} request
      * @param {Billing.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Schematic.BadRequestError}
@@ -1830,42 +1830,45 @@ export class Billing {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.billing.searchBillingPrices({
+     *     await client.billing.listBillingPrices({
      *         forInitialPlan: true,
      *         forTrialExpiryPlan: true,
-     *         productId: "product_id",
      *         interval: "interval",
+     *         isActive: true,
      *         price: 1,
+     *         productId: "product_id",
      *         q: "q",
-     *         requiresPaymentMethod: true,
      *         tiersMode: "volume",
      *         usageType: "licensed",
+     *         withMeter: true,
      *         limit: 1,
      *         offset: 1
      *     })
      */
-    public searchBillingPrices(
-        request: Schematic.SearchBillingPricesRequest = {},
+    public listBillingPrices(
+        request: Schematic.ListBillingPricesRequest = {},
         requestOptions?: Billing.RequestOptions,
-    ): core.HttpResponsePromise<Schematic.SearchBillingPricesResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__searchBillingPrices(request, requestOptions));
+    ): core.HttpResponsePromise<Schematic.ListBillingPricesResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__listBillingPrices(request, requestOptions));
     }
 
-    private async __searchBillingPrices(
-        request: Schematic.SearchBillingPricesRequest = {},
+    private async __listBillingPrices(
+        request: Schematic.ListBillingPricesRequest = {},
         requestOptions?: Billing.RequestOptions,
-    ): Promise<core.WithRawResponse<Schematic.SearchBillingPricesResponse>> {
+    ): Promise<core.WithRawResponse<Schematic.ListBillingPricesResponse>> {
         const {
             forInitialPlan,
             forTrialExpiryPlan,
             ids,
-            productId,
             interval,
+            isActive,
             price,
+            productId,
+            productIds,
             q,
-            requiresPaymentMethod,
             tiersMode,
             usageType,
+            withMeter,
             limit,
             offset,
         } = request;
@@ -1886,36 +1889,48 @@ export class Billing {
             }
         }
 
-        if (productId != null) {
-            _queryParams["product_id"] = productId;
-        }
-
         if (interval != null) {
             _queryParams["interval"] = interval;
+        }
+
+        if (isActive != null) {
+            _queryParams["is_active"] = isActive.toString();
         }
 
         if (price != null) {
             _queryParams["price"] = price.toString();
         }
 
+        if (productId != null) {
+            _queryParams["product_id"] = productId;
+        }
+
+        if (productIds != null) {
+            if (Array.isArray(productIds)) {
+                _queryParams["product_ids"] = productIds.map((item) => item);
+            } else {
+                _queryParams["product_ids"] = productIds;
+            }
+        }
+
         if (q != null) {
             _queryParams["q"] = q;
         }
 
-        if (requiresPaymentMethod != null) {
-            _queryParams["requires_payment_method"] = requiresPaymentMethod.toString();
-        }
-
         if (tiersMode != null) {
-            _queryParams["tiers_mode"] = serializers.SearchBillingPricesRequestTiersMode.jsonOrThrow(tiersMode, {
+            _queryParams["tiers_mode"] = serializers.ListBillingPricesRequestTiersMode.jsonOrThrow(tiersMode, {
                 unrecognizedObjectKeys: "strip",
             });
         }
 
         if (usageType != null) {
-            _queryParams["usage_type"] = serializers.SearchBillingPricesRequestUsageType.jsonOrThrow(usageType, {
+            _queryParams["usage_type"] = serializers.ListBillingPricesRequestUsageType.jsonOrThrow(usageType, {
                 unrecognizedObjectKeys: "strip",
             });
+        }
+
+        if (withMeter != null) {
+            _queryParams["with_meter"] = withMeter.toString();
         }
 
         if (limit != null) {
@@ -1937,8 +1952,8 @@ export class Billing {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1953,7 +1968,7 @@ export class Billing {
         });
         if (_response.ok) {
             return {
-                data: serializers.SearchBillingPricesResponse.parseOrThrow(_response.body, {
+                data: serializers.ListBillingPricesResponse.parseOrThrow(_response.body, {
                     unrecognizedObjectKeys: "passthrough",
                     allowUnrecognizedUnionMembers: true,
                     allowUnrecognizedEnumValues: true,
@@ -2095,8 +2110,8 @@ export class Billing {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2240,8 +2255,8 @@ export class Billing {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2352,7 +2367,7 @@ export class Billing {
     }
 
     /**
-     * @param {Schematic.ListProductPricesRequest} request
+     * @param {Schematic.ListBillingProductPricesRequest} request
      * @param {Billing.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Schematic.BadRequestError}
@@ -2362,44 +2377,57 @@ export class Billing {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.billing.listProductPrices({
-     *         name: "name",
-     *         q: "q",
-     *         priceUsageType: "licensed",
-     *         withoutLinkedToPlan: true,
-     *         withOneTimeCharges: true,
-     *         withZeroPrice: true,
-     *         withPricesOnly: true,
+     *     await client.billing.listBillingProductPrices({
+     *         forInitialPlan: true,
+     *         forTrialExpiryPlan: true,
+     *         interval: "interval",
      *         isActive: true,
+     *         price: 1,
+     *         productId: "product_id",
+     *         q: "q",
+     *         tiersMode: "volume",
+     *         usageType: "licensed",
+     *         withMeter: true,
      *         limit: 1,
      *         offset: 1
      *     })
      */
-    public listProductPrices(
-        request: Schematic.ListProductPricesRequest = {},
+    public listBillingProductPrices(
+        request: Schematic.ListBillingProductPricesRequest = {},
         requestOptions?: Billing.RequestOptions,
-    ): core.HttpResponsePromise<Schematic.ListProductPricesResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__listProductPrices(request, requestOptions));
+    ): core.HttpResponsePromise<Schematic.ListBillingProductPricesResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__listBillingProductPrices(request, requestOptions));
     }
 
-    private async __listProductPrices(
-        request: Schematic.ListProductPricesRequest = {},
+    private async __listBillingProductPrices(
+        request: Schematic.ListBillingProductPricesRequest = {},
         requestOptions?: Billing.RequestOptions,
-    ): Promise<core.WithRawResponse<Schematic.ListProductPricesResponse>> {
+    ): Promise<core.WithRawResponse<Schematic.ListBillingProductPricesResponse>> {
         const {
+            forInitialPlan,
+            forTrialExpiryPlan,
             ids,
-            name,
-            q,
-            priceUsageType,
-            withoutLinkedToPlan,
-            withOneTimeCharges,
-            withZeroPrice,
-            withPricesOnly,
+            interval,
             isActive,
+            price,
+            productId,
+            productIds,
+            q,
+            tiersMode,
+            usageType,
+            withMeter,
             limit,
             offset,
         } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (forInitialPlan != null) {
+            _queryParams["for_initial_plan"] = forInitialPlan.toString();
+        }
+
+        if (forTrialExpiryPlan != null) {
+            _queryParams["for_trial_expiry_plan"] = forTrialExpiryPlan.toString();
+        }
+
         if (ids != null) {
             if (Array.isArray(ids)) {
                 _queryParams["ids"] = ids.map((item) => item);
@@ -2408,39 +2436,48 @@ export class Billing {
             }
         }
 
-        if (name != null) {
-            _queryParams["name"] = name;
+        if (interval != null) {
+            _queryParams["interval"] = interval;
+        }
+
+        if (isActive != null) {
+            _queryParams["is_active"] = isActive.toString();
+        }
+
+        if (price != null) {
+            _queryParams["price"] = price.toString();
+        }
+
+        if (productId != null) {
+            _queryParams["product_id"] = productId;
+        }
+
+        if (productIds != null) {
+            if (Array.isArray(productIds)) {
+                _queryParams["product_ids"] = productIds.map((item) => item);
+            } else {
+                _queryParams["product_ids"] = productIds;
+            }
         }
 
         if (q != null) {
             _queryParams["q"] = q;
         }
 
-        if (priceUsageType != null) {
-            _queryParams["price_usage_type"] = serializers.ListProductPricesRequestPriceUsageType.jsonOrThrow(
-                priceUsageType,
-                { unrecognizedObjectKeys: "strip" },
-            );
+        if (tiersMode != null) {
+            _queryParams["tiers_mode"] = serializers.ListBillingProductPricesRequestTiersMode.jsonOrThrow(tiersMode, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
-        if (withoutLinkedToPlan != null) {
-            _queryParams["without_linked_to_plan"] = withoutLinkedToPlan.toString();
+        if (usageType != null) {
+            _queryParams["usage_type"] = serializers.ListBillingProductPricesRequestUsageType.jsonOrThrow(usageType, {
+                unrecognizedObjectKeys: "strip",
+            });
         }
 
-        if (withOneTimeCharges != null) {
-            _queryParams["with_one_time_charges"] = withOneTimeCharges.toString();
-        }
-
-        if (withZeroPrice != null) {
-            _queryParams["with_zero_price"] = withZeroPrice.toString();
-        }
-
-        if (withPricesOnly != null) {
-            _queryParams["with_prices_only"] = withPricesOnly.toString();
-        }
-
-        if (isActive != null) {
-            _queryParams["is_active"] = isActive.toString();
+        if (withMeter != null) {
+            _queryParams["with_meter"] = withMeter.toString();
         }
 
         if (limit != null) {
@@ -2462,8 +2499,8 @@ export class Billing {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2478,7 +2515,7 @@ export class Billing {
         });
         if (_response.ok) {
             return {
-                data: serializers.ListProductPricesResponse.parseOrThrow(_response.body, {
+                data: serializers.ListBillingProductPricesResponse.parseOrThrow(_response.body, {
                     unrecognizedObjectKeys: "passthrough",
                     allowUnrecognizedUnionMembers: true,
                     allowUnrecognizedEnumValues: true,
@@ -2607,8 +2644,8 @@ export class Billing {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2757,8 +2794,8 @@ export class Billing {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2978,8 +3015,8 @@ export class Billing {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -3199,8 +3236,8 @@ export class Billing {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -3366,8 +3403,8 @@ export class Billing {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.6",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.6",
+                "X-Fern-SDK-Version": "1.3.0",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

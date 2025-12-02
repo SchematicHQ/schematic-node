@@ -9,6 +9,7 @@ import { CompatiblePlans } from "../../../../types/CompatiblePlans";
 import { CustomPlanConfig } from "../../../../types/CustomPlanConfig";
 import { OrderedPlansInGroup } from "../../../../types/OrderedPlansInGroup";
 import { PlanGroupBundleOrder } from "../../../../types/PlanGroupBundleOrder";
+import { ProrationBehavior } from "../../../../types/ProrationBehavior";
 
 export const CreatePlanGroupRequestBody: core.serialization.Schema<
     serializers.CreatePlanGroupRequestBody.Raw,
@@ -38,6 +39,19 @@ export const CreatePlanGroupRequestBody: core.serialization.Schema<
         "prevent_downgrades_when_over_limit",
         core.serialization.boolean(),
     ),
+    preventSelfServiceDowngrade: core.serialization.property(
+        "prevent_self_service_downgrade",
+        core.serialization.boolean(),
+    ),
+    preventSelfServiceDowngradeButtonText: core.serialization.property(
+        "prevent_self_service_downgrade_button_text",
+        core.serialization.string().optional(),
+    ),
+    preventSelfServiceDowngradeUrl: core.serialization.property(
+        "prevent_self_service_downgrade_url",
+        core.serialization.string().optional(),
+    ),
+    prorationBehavior: core.serialization.property("proration_behavior", ProrationBehavior),
     showCredits: core.serialization.property("show_credits", core.serialization.boolean()),
     showPeriodToggle: core.serialization.property("show_period_toggle", core.serialization.boolean()),
     showZeroPriceAsFree: core.serialization.property("show_zero_price_as_free", core.serialization.boolean()),
@@ -74,6 +88,10 @@ export declare namespace CreatePlanGroupRequestBody {
         ordered_bundle_list: PlanGroupBundleOrder.Raw[];
         ordered_plans: OrderedPlansInGroup.Raw[];
         prevent_downgrades_when_over_limit: boolean;
+        prevent_self_service_downgrade: boolean;
+        prevent_self_service_downgrade_button_text?: string | null;
+        prevent_self_service_downgrade_url?: string | null;
+        proration_behavior: ProrationBehavior.Raw;
         show_credits: boolean;
         show_period_toggle: boolean;
         show_zero_price_as_free: boolean;

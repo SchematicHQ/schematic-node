@@ -5,6 +5,8 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { FeatureType } from "./FeatureType";
+import { FeatureLifecyclePhase } from "./FeatureLifecyclePhase";
 
 export const FeatureResponseData: core.serialization.ObjectSchema<
     serializers.FeatureResponseData.Raw,
@@ -13,10 +15,10 @@ export const FeatureResponseData: core.serialization.ObjectSchema<
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     description: core.serialization.string(),
     eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
-    featureType: core.serialization.property("feature_type", core.serialization.string()),
+    featureType: core.serialization.property("feature_type", FeatureType),
     icon: core.serialization.string(),
     id: core.serialization.string(),
-    lifecyclePhase: core.serialization.property("lifecycle_phase", core.serialization.string().optional()),
+    lifecyclePhase: core.serialization.property("lifecycle_phase", FeatureLifecyclePhase.optional()),
     maintainerId: core.serialization.property("maintainer_id", core.serialization.string().optional()),
     name: core.serialization.string(),
     pluralName: core.serialization.property("plural_name", core.serialization.string().optional()),
@@ -30,10 +32,10 @@ export declare namespace FeatureResponseData {
         created_at: string;
         description: string;
         event_subtype?: string | null;
-        feature_type: string;
+        feature_type: FeatureType.Raw;
         icon: string;
         id: string;
-        lifecycle_phase?: string | null;
+        lifecycle_phase?: FeatureLifecyclePhase.Raw | null;
         maintainer_id?: string | null;
         name: string;
         plural_name?: string | null;

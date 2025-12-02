@@ -6,6 +6,8 @@ import * as serializers from "../../../index";
 import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 import { ListCompaniesForAdvancedFilterResponseParamsSortOrderDirection } from "./ListCompaniesForAdvancedFilterResponseParamsSortOrderDirection";
+import { SubscriptionStatus } from "../../../types/SubscriptionStatus";
+import { SubscriptionType } from "../../../types/SubscriptionType";
 
 export const ListCompaniesForAdvancedFilterParams: core.serialization.ObjectSchema<
     serializers.ListCompaniesForAdvancedFilterParams.Raw,
@@ -39,11 +41,11 @@ export const ListCompaniesForAdvancedFilterParams: core.serialization.ObjectSche
     ),
     subscriptionStatuses: core.serialization.property(
         "subscription_statuses",
-        core.serialization.list(core.serialization.string()).optional(),
+        core.serialization.list(SubscriptionStatus).optional(),
     ),
     subscriptionTypes: core.serialization.property(
         "subscription_types",
-        core.serialization.list(core.serialization.string()).optional(),
+        core.serialization.list(SubscriptionType).optional(),
     ),
     withoutPlan: core.serialization.property("without_plan", core.serialization.boolean().optional()),
     withoutSubscription: core.serialization.property("without_subscription", core.serialization.boolean().optional()),
@@ -62,8 +64,8 @@ export declare namespace ListCompaniesForAdvancedFilterParams {
         q?: string | null;
         sort_order_column?: string | null;
         sort_order_direction?: ListCompaniesForAdvancedFilterResponseParamsSortOrderDirection.Raw | null;
-        subscription_statuses?: string[] | null;
-        subscription_types?: string[] | null;
+        subscription_statuses?: SubscriptionStatus.Raw[] | null;
+        subscription_types?: SubscriptionType.Raw[] | null;
         without_plan?: boolean | null;
         without_subscription?: boolean | null;
     }

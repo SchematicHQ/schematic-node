@@ -18,7 +18,7 @@ import * as Schematic from "../../../../index";
 export interface ListEventsRequest {
     companyId?: string;
     eventSubtype?: string;
-    eventTypes?: Schematic.ListEventsRequestEventTypesItem | Schematic.ListEventsRequestEventTypesItem[];
+    eventTypes?: Schematic.EventType | Schematic.EventType[];
     flagId?: string;
     userId?: string;
     /**

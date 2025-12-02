@@ -11,7 +11,7 @@ export interface FeatureUsageDataResponseData {
     entitlementValueType: string;
     featureId: string;
     featureName: string;
-    featureType: string;
+    featureType: Schematic.FeatureType;
     hardLimit: string;
     hasAccess: boolean;
     metricResetAt?: Date;

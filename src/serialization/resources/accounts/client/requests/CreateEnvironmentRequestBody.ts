@@ -5,19 +5,19 @@
 import * as serializers from "../../../../index";
 import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
-import { CreateEnvironmentRequestBodyEnvironmentType } from "../../types/CreateEnvironmentRequestBodyEnvironmentType";
+import { EnvironmentType } from "../../../../types/EnvironmentType";
 
 export const CreateEnvironmentRequestBody: core.serialization.Schema<
     serializers.CreateEnvironmentRequestBody.Raw,
     Schematic.CreateEnvironmentRequestBody
 > = core.serialization.object({
-    environmentType: core.serialization.property("environment_type", CreateEnvironmentRequestBodyEnvironmentType),
+    environmentType: core.serialization.property("environment_type", EnvironmentType),
     name: core.serialization.string(),
 });
 
 export declare namespace CreateEnvironmentRequestBody {
     export interface Raw {
-        environment_type: CreateEnvironmentRequestBodyEnvironmentType.Raw;
+        environment_type: EnvironmentType.Raw;
         name: string;
     }
 }

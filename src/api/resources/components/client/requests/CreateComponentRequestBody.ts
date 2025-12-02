@@ -7,12 +7,12 @@ import * as Schematic from "../../../../index";
 /**
  * @example
  *     {
- *         entityType: "entitlement",
+ *         entityType: "billing",
  *         name: "name"
  *     }
  */
 export interface CreateComponentRequestBody {
     ast?: Record<string, number>;
-    entityType: Schematic.CreateComponentRequestBodyEntityType;
+    entityType: Schematic.ComponentEntityType;
     name: string;
 }

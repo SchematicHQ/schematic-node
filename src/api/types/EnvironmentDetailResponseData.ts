@@ -7,7 +7,7 @@ import * as Schematic from "../index";
 export interface EnvironmentDetailResponseData {
     apiKeys: Schematic.ApiKeyResponseData[];
     createdAt: Date;
-    environmentType: string;
+    environmentType: Schematic.EnvironmentType;
     id: string;
     name: string;
     updatedAt: Date;

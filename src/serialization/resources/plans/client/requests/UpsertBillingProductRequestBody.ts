@@ -5,14 +5,14 @@
 import * as serializers from "../../../../index";
 import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
-import { UpsertBillingProductRequestBodyChargeType } from "../../types/UpsertBillingProductRequestBodyChargeType";
+import { ChargeType } from "../../../../types/ChargeType";
 
 export const UpsertBillingProductRequestBody: core.serialization.Schema<
     serializers.UpsertBillingProductRequestBody.Raw,
     Schematic.UpsertBillingProductRequestBody
 > = core.serialization.object({
     billingProductId: core.serialization.property("billing_product_id", core.serialization.string().optional()),
-    chargeType: core.serialization.property("charge_type", UpsertBillingProductRequestBodyChargeType),
+    chargeType: core.serialization.property("charge_type", ChargeType),
     currency: core.serialization.string().optional(),
     isTrialable: core.serialization.property("is_trialable", core.serialization.boolean()),
     monthlyPrice: core.serialization.property("monthly_price", core.serialization.number().optional()),
@@ -27,7 +27,7 @@ export const UpsertBillingProductRequestBody: core.serialization.Schema<
 export declare namespace UpsertBillingProductRequestBody {
     export interface Raw {
         billing_product_id?: string | null;
-        charge_type: UpsertBillingProductRequestBodyChargeType.Raw;
+        charge_type: ChargeType.Raw;
         currency?: string | null;
         is_trialable: boolean;
         monthly_price?: number | null;

@@ -5,6 +5,7 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { EntityType } from "./EntityType";
 
 export const RuleConditionResponseData: core.serialization.ObjectSchema<
     serializers.RuleConditionResponseData.Raw,
@@ -27,7 +28,7 @@ export const RuleConditionResponseData: core.serialization.ObjectSchema<
     operator: core.serialization.string(),
     resourceIds: core.serialization.property("resource_ids", core.serialization.list(core.serialization.string())),
     ruleId: core.serialization.property("rule_id", core.serialization.string()),
-    traitEntityType: core.serialization.property("trait_entity_type", core.serialization.string().optional()),
+    traitEntityType: core.serialization.property("trait_entity_type", EntityType.optional()),
     traitId: core.serialization.property("trait_id", core.serialization.string().optional()),
     traitValue: core.serialization.property("trait_value", core.serialization.string()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -49,7 +50,7 @@ export declare namespace RuleConditionResponseData {
         operator: string;
         resource_ids: string[];
         rule_id: string;
-        trait_entity_type?: string | null;
+        trait_entity_type?: EntityType.Raw | null;
         trait_id?: string | null;
         trait_value: string;
         updated_at: string;

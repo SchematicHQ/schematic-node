@@ -23,7 +23,7 @@ export interface EventDetailResponseData {
     sentAt?: Date;
     status: string;
     subtype?: string;
-    type: string;
+    type: Schematic.EventType;
     updatedAt: Date;
     user?: Schematic.PreviewObject;
     userId?: string;

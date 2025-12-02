@@ -14,7 +14,7 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface ListEntityKeyDefinitionsRequest {
-    entityType?: Schematic.ListEntityKeyDefinitionsRequestEntityType;
+    entityType?: Schematic.EntityType;
     ids?: string | string[];
     q?: string;
     /**

@@ -7,10 +7,10 @@ import * as Schematic from "../index";
 export interface PlanGroupPlanDetailResponseData {
     audienceType?: string;
     billingProduct?: Schematic.BillingProductDetailResponseData;
-    chargeType: string;
+    chargeType: Schematic.ChargeType;
     companyCount: number;
     compatiblePlanIds: string[];
-    controlledBy: string;
+    controlledBy: Schematic.PlanControlledByType;
     createdAt: Date;
     customPlanConfig?: Schematic.CustomPlanViewConfigResponseData;
     description: string;
@@ -26,7 +26,7 @@ export interface PlanGroupPlanDetailResponseData {
     monthlyPrice?: Schematic.BillingPriceResponseData;
     name: string;
     oneTimePrice?: Schematic.BillingPriceResponseData;
-    planType: string;
+    planType: Schematic.PlanType;
     trialDays?: number;
     updatedAt: Date;
     yearlyPrice?: Schematic.BillingPriceResponseData;

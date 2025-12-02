@@ -7,9 +7,9 @@ import * as Schematic from "../index";
 export interface PlanDetailResponseData {
     audienceType?: string;
     billingProduct?: Schematic.BillingProductDetailResponseData;
-    chargeType: string;
+    chargeType: Schematic.ChargeType;
     companyCount: number;
-    controlledBy: string;
+    controlledBy: Schematic.PlanControlledByType;
     createdAt: Date;
     description: string;
     features: Schematic.FeatureDetailResponseData[];
@@ -22,7 +22,7 @@ export interface PlanDetailResponseData {
     monthlyPrice?: Schematic.BillingPriceResponseData;
     name: string;
     oneTimePrice?: Schematic.BillingPriceResponseData;
-    planType: string;
+    planType: Schematic.PlanType;
     trialDays?: number;
     updatedAt: Date;
     yearlyPrice?: Schematic.BillingPriceResponseData;

@@ -13,5 +13,5 @@ export interface CreateEntitlementReqCommon {
     valueCreditId?: string;
     valueNumeric?: number;
     valueTraitId?: string;
-    valueType: Schematic.CreateEntitlementReqCommonValueType;
+    valueType: Schematic.EntitlementValueType;
 }

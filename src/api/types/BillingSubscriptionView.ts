@@ -5,6 +5,7 @@
 import * as Schematic from "../index";
 
 export interface BillingSubscriptionView {
+    applicationId?: string;
     cancelAt?: number;
     cancelAtPeriodEnd: boolean;
     companyId?: string;

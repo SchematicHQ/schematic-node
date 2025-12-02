@@ -13,7 +13,7 @@ export interface UsageBasedEntitlementRequestBody {
     monthlyUnitPrice?: number;
     monthlyUnitPriceDecimal?: string;
     overageBillingProductId?: string;
-    priceBehavior?: Schematic.UsageBasedEntitlementRequestBodyPriceBehavior;
+    priceBehavior?: Schematic.EntitlementPriceBehavior;
     /** Use MonthlyPriceTiers or YearlyPriceTiers instead */
     priceTiers?: Schematic.CreatePriceTierRequestBody[];
     softLimit?: number;

@@ -16,6 +16,7 @@ export interface PlanGroupResponseData {
     orderedAddOnIds: Schematic.OrderedPlansInGroup[];
     planIds: Schematic.OrderedPlansInGroup[];
     preventDowngradesWhenOverLimit: boolean;
+    prorationBehavior: string;
     showCredits: boolean;
     showPeriodToggle: boolean;
     showZeroPriceAsFree: boolean;

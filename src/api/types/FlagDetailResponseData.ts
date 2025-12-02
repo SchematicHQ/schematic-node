@@ -10,7 +10,7 @@ export interface FlagDetailResponseData {
     description: string;
     feature?: Schematic.FeatureResponseData;
     featureId?: string;
-    flagType: string;
+    flagType: Schematic.FlagType;
     id: string;
     key: string;
     lastCheckedAt?: Date;

@@ -5,21 +5,21 @@
 import * as serializers from "../../../../index";
 import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
-import { CreateComponentRequestBodyEntityType } from "../../types/CreateComponentRequestBodyEntityType";
+import { ComponentEntityType } from "../../../../types/ComponentEntityType";
 
 export const CreateComponentRequestBody: core.serialization.Schema<
     serializers.CreateComponentRequestBody.Raw,
     Schematic.CreateComponentRequestBody
 > = core.serialization.object({
     ast: core.serialization.record(core.serialization.string(), core.serialization.number()).optional(),
-    entityType: core.serialization.property("entity_type", CreateComponentRequestBodyEntityType),
+    entityType: core.serialization.property("entity_type", ComponentEntityType),
     name: core.serialization.string(),
 });
 
 export declare namespace CreateComponentRequestBody {
     export interface Raw {
         ast?: Record<string, number> | null;
-        entity_type: CreateComponentRequestBodyEntityType.Raw;
+        entity_type: ComponentEntityType.Raw;
         name: string;
     }
 }

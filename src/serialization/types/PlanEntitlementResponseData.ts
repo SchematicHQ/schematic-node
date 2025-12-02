@@ -8,9 +8,11 @@ import * as core from "../../core";
 import { FeatureResponseData } from "./FeatureResponseData";
 import { BillingPriceView } from "./BillingPriceView";
 import { PlanResponseData } from "./PlanResponseData";
+import { EntitlementPriceBehavior } from "./EntitlementPriceBehavior";
 import { BillingProductResponseData } from "./BillingProductResponseData";
 import { BillingCreditResponseData } from "./BillingCreditResponseData";
 import { EntityTraitDefinitionResponseData } from "./EntityTraitDefinitionResponseData";
+import { EntitlementValueType } from "./EntitlementValueType";
 
 export const PlanEntitlementResponseData: core.serialization.ObjectSchema<
     serializers.PlanEntitlementResponseData.Raw,
@@ -32,7 +34,7 @@ export const PlanEntitlementResponseData: core.serialization.ObjectSchema<
     ),
     plan: PlanResponseData.optional(),
     planId: core.serialization.property("plan_id", core.serialization.string()),
-    priceBehavior: core.serialization.property("price_behavior", core.serialization.string().optional()),
+    priceBehavior: core.serialization.property("price_behavior", EntitlementPriceBehavior.optional()),
     ruleId: core.serialization.property("rule_id", core.serialization.string()),
     ruleIdUsageExceeded: core.serialization.property("rule_id_usage_exceeded", core.serialization.string().optional()),
     softLimit: core.serialization.property("soft_limit", core.serialization.number().optional()),
@@ -43,7 +45,7 @@ export const PlanEntitlementResponseData: core.serialization.ObjectSchema<
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
     valueTrait: core.serialization.property("value_trait", EntityTraitDefinitionResponseData.optional()),
     valueTraitId: core.serialization.property("value_trait_id", core.serialization.string().optional()),
-    valueType: core.serialization.property("value_type", core.serialization.string()),
+    valueType: core.serialization.property("value_type", EntitlementValueType),
 });
 
 export declare namespace PlanEntitlementResponseData {
@@ -61,7 +63,7 @@ export declare namespace PlanEntitlementResponseData {
         metric_period_month_reset?: string | null;
         plan?: PlanResponseData.Raw | null;
         plan_id: string;
-        price_behavior?: string | null;
+        price_behavior?: EntitlementPriceBehavior.Raw | null;
         rule_id: string;
         rule_id_usage_exceeded?: string | null;
         soft_limit?: number | null;
@@ -72,6 +74,6 @@ export declare namespace PlanEntitlementResponseData {
         value_numeric?: number | null;
         value_trait?: EntityTraitDefinitionResponseData.Raw | null;
         value_trait_id?: string | null;
-        value_type: string;
+        value_type: EntitlementValueType.Raw;
     }
 }

@@ -5,6 +5,8 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { ComponentState } from "./ComponentState";
+import { ComponentEntityType } from "./ComponentEntityType";
 
 export const ComponentResponseData: core.serialization.ObjectSchema<
     serializers.ComponentResponseData.Raw,
@@ -14,8 +16,8 @@ export const ComponentResponseData: core.serialization.ObjectSchema<
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     id: core.serialization.string(),
     name: core.serialization.string(),
-    state: core.serialization.string(),
-    type: core.serialization.string(),
+    state: ComponentState,
+    type: ComponentEntityType,
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
@@ -25,8 +27,8 @@ export declare namespace ComponentResponseData {
         created_at: string;
         id: string;
         name: string;
-        state: string;
-        type: string;
+        state: ComponentState.Raw;
+        type: ComponentEntityType.Raw;
         updated_at: string;
     }
 }

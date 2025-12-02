@@ -22,6 +22,8 @@ import * as Schematic from "../../../../index";
  *                 planId: "plan_id"
  *             }],
  *         preventDowngradesWhenOverLimit: true,
+ *         preventSelfServiceDowngrade: true,
+ *         prorationBehavior: "create_prorations",
  *         showCredits: true,
  *         showPeriodToggle: true,
  *         showZeroPriceAsFree: true,
@@ -45,6 +47,10 @@ export interface UpdatePlanGroupRequestBody {
     orderedBundleList: Schematic.PlanGroupBundleOrder[];
     orderedPlans: Schematic.OrderedPlansInGroup[];
     preventDowngradesWhenOverLimit: boolean;
+    preventSelfServiceDowngrade: boolean;
+    preventSelfServiceDowngradeButtonText?: string;
+    preventSelfServiceDowngradeUrl?: string;
+    prorationBehavior: Schematic.ProrationBehavior;
     showCredits: boolean;
     showPeriodToggle: boolean;
     showZeroPriceAsFree: boolean;

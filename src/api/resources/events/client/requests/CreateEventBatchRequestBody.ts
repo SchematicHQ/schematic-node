@@ -8,7 +8,7 @@ import * as Schematic from "../../../../index";
  * @example
  *     {
  *         events: [{
- *                 eventType: "identify"
+ *                 eventType: "flag_check"
  *             }]
  *     }
  */
