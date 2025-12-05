@@ -4,27 +4,26 @@
 export type Action = "start" | "stop";
 
 export enum EntityType {
-  Company = "rulesengine.Company",
-  Companies = "rulesengine.Companies",
-  Flag = "rulesengine.Flag",
-  Flags = "rulesengine.Flags",
-  User = "rulesengine.User",
-  Users = "rulesengine.Users",
+  COMPANY = "rulesengine.Company",
+  COMPANIES = "rulesengine.Companies",
+  USER = "rulesengine.User",
+  USERS = "rulesengine.Users",
+  FLAG = "rulesengine.Flag",
+  FLAGS = "rulesengine.Flags",
 }
 
 export enum MessageType {
-  Full = "full",
-  Partial = "partial",
-  Delete = "delete",
-  Error = "error",
-  Unknown = "unknown",
+  FULL = "full",
+  PARTIAL = "partial",
+  DELETE = "delete",
+  ERROR = "error",
+  UNKNOWN = "unknown",
 }
 
 /**
  * DataStreamReq represents a request message to the datastream
  */
 export interface DataStreamReq {
-  action: Action;
   entity_type: EntityType;
   keys?: Record<string, string>;
 }
@@ -41,9 +40,8 @@ export interface DataStreamBaseReq {
  */
 export interface DataStreamResp {
   data: any; // JSON raw message equivalent
-  entity_id?: string;
   entity_type: string;
-  message_type: MessageType;
+  message_type: string;
 }
 
 /**

@@ -1,8 +1,8 @@
-export { Client as DatastreamClient } from './client';
+// Main datastream client for external use
+export { 
+  DataStreamClient
+} from './datastream-client';
 export type {
-  Logger,
-  MessageHandlerFunc,
-  ConnectionReadyHandlerFunc,
-  ClientOptions,
-} from './client';
-export * from './types';
+  DataStreamClientOptions,
+  DataStreamRedisConfig,
+} from './datastream-client';
