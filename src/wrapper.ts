@@ -1,7 +1,7 @@
 import * as api from "./api";
 import { SchematicClient as BaseClient } from "./Client";
 
-import { CacheProvider, LocalCache } from "./cache";
+import { type CacheProvider, LocalCache } from "./cache";
 import { ConsoleLogger, Logger } from "./logger";
 import { EventBuffer } from "./events";
 import { offlineFetcher, provideFetcher } from "./core/fetcher/custom";
