@@ -115,9 +115,9 @@ function convertAPIURLToWebSocketURL(apiURL: string): any {
 }
 
 /**
- * Client represents a Schematic datastream websocket client with automatic reconnection
+ * DatastreamWSClient represents a Schematic datastream websocket client with automatic reconnection
  */
-export class Client extends EventEmitter {
+export class DatastreamWSClient extends EventEmitter {
   // Configuration
   private readonly url: any;
   private readonly headers: Record<string, string>;
@@ -442,7 +442,7 @@ export class Client extends EventEmitter {
         return;
       }
 
-      this.log('debug', `Parsed message - EntityType: ${message.entity_type}, MessageType: ${message.message_type}, EntityID: ${message.entity_id}, DataLength: ${JSON.stringify(message.data).length}`);
+      this.log('debug', `Parsed message - EntityType: ${message.entity_type}, MessageType: ${message.message_type}, DataLength: ${JSON.stringify(message.data).length}`);
 
       // Handle the parsed message using the provided handler
       this.log('debug', 'Calling message handler...');
