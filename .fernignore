@@ -6,9 +6,9 @@ LICENSE
 README.md
 build.js
 scripts/
-src/cache.test.ts
-src/cache.ts
+src/cache/
 src/core/fetcher/custom.ts
+src/datastream/
 src/events.test.ts
 src/events.ts
 src/index.ts

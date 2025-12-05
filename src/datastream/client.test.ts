@@ -1,4 +1,5 @@
-import { DatastreamClient, Logger, MessageHandlerFunc, ConnectionReadyHandlerFunc, DataStreamResp, EntityType, Action } from '../datastream';
+import { DatastreamWSClient, Logger, MessageHandlerFunc, ConnectionReadyHandlerFunc } from './client';
+import { DataStreamResp, EntityType, Action } from './types';
 
 // Mock logger implementation
 class MockLogger implements Logger {
@@ -19,8 +20,8 @@ class MockLogger implements Logger {
   }
 }
 
-describe('DatastreamClient', () => {
-  let client: DatastreamClient;
+describe('DatastreamWSClient', () => {
+  let client: DatastreamWSClient;
   const mockLogger = new MockLogger();
 
   const mockMessageHandler: MessageHandlerFunc = async (ctx: any, message: DataStreamResp) => {
@@ -39,9 +40,9 @@ describe('DatastreamClient', () => {
 
   test('should create client with required options', () => {
     expect(() => {
-      client = new DatastreamClient({
-        url: 'wss://datastream.example.com/datastream',
-        apiKey: 'test-key',
+      client = new DatastreamWSClient({
+        url: 'wss://test.example.com/datastream',
+        apiKey: 'test-api-key',
         messageHandler: mockMessageHandler,
         logger: mockLogger,
       });
@@ -53,7 +54,7 @@ describe('DatastreamClient', () => {
 
   test('should throw error when URL is missing', () => {
     expect(() => {
-      new DatastreamClient({
+      new DatastreamWSClient({
         url: '',
         apiKey: 'test-key',
         messageHandler: mockMessageHandler,
@@ -63,7 +64,7 @@ describe('DatastreamClient', () => {
 
   test('should throw error when API key is missing', () => {
     expect(() => {
-      new DatastreamClient({
+      new DatastreamWSClient({
         url: 'wss://example.com',
         apiKey: '',
         messageHandler: mockMessageHandler,
@@ -73,7 +74,7 @@ describe('DatastreamClient', () => {
 
   test('should throw error when message handler is missing', () => {
     expect(() => {
-      new DatastreamClient({
+      new DatastreamWSClient({
         url: 'wss://example.com',
         apiKey: 'test-key',
         messageHandler: undefined as any,
@@ -82,7 +83,7 @@ describe('DatastreamClient', () => {
   });
 
   test('should convert HTTP URL to WebSocket URL', () => {
-    client = new DatastreamClient({
+    client = new DatastreamWSClient({
       url: 'https://api.schematichq.com',
       apiKey: 'test-key',
       messageHandler: mockMessageHandler,
@@ -96,7 +97,7 @@ describe('DatastreamClient', () => {
   });
 
   test('should convert HTTP localhost URL to WebSocket URL', () => {
-    client = new DatastreamClient({
+    client = new DatastreamWSClient({
       url: 'http://localhost:8080',
       apiKey: 'test-key',
       messageHandler: mockMessageHandler,
@@ -108,7 +109,7 @@ describe('DatastreamClient', () => {
   });
 
   test('should handle WebSocket URL directly', () => {
-    client = new DatastreamClient({
+    client = new DatastreamWSClient({
       url: 'wss://datastream.example.com/datastream',
       apiKey: 'test-key',
       messageHandler: mockMessageHandler,
@@ -120,7 +121,7 @@ describe('DatastreamClient', () => {
   });
 
   test('should set default options when not provided', () => {
-    client = new DatastreamClient({
+    client = new DatastreamWSClient({
       url: 'wss://example.com',
       apiKey: 'test-key',
       messageHandler: mockMessageHandler,
@@ -131,7 +132,7 @@ describe('DatastreamClient', () => {
   });
 
   test('should use custom options when provided', () => {
-    client = new DatastreamClient({
+    client = new DatastreamWSClient({
       url: 'wss://example.com',
       apiKey: 'test-key',
       messageHandler: mockMessageHandler,
@@ -146,7 +147,7 @@ describe('DatastreamClient', () => {
   });
 
   test('should emit events', (done) => {
-    client = new DatastreamClient({
+    client = new DatastreamWSClient({
       url: 'wss://example.com',
       apiKey: 'test-key',
       messageHandler: mockMessageHandler,
@@ -154,7 +155,7 @@ describe('DatastreamClient', () => {
     });
 
     // Test that the client can emit events
-    client.on('error', (error) => {
+    client.on('error', (error: any) => {
       expect(error).toBeDefined();
       done();
     });
@@ -164,7 +165,7 @@ describe('DatastreamClient', () => {
   });
 
   test('should reject sendMessage when not connected', async () => {
-    client = new DatastreamClient({
+    client = new DatastreamWSClient({
       url: 'wss://example.com',
       apiKey: 'test-key',
       messageHandler: mockMessageHandler,

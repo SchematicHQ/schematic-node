@@ -5,6 +5,7 @@ import { type CacheProvider, LocalCache } from "./cache";
 import { ConsoleLogger, Logger } from "./logger";
 import { EventBuffer } from "./events";
 import { offlineFetcher, provideFetcher } from "./core/fetcher/custom";
+import { DataStreamClient, type DataStreamClientOptions, type DataStreamRedisConfig } from "./datastream";
 
 /**
  * Configuration options for the SchematicClient
@@ -18,6 +19,21 @@ export interface SchematicOptions {
     cacheProviders?: {
         /** Providers for caching flag check results */
         flagChecks?: CacheProvider<boolean>[];
+    };
+    /** DataStream configuration options */
+    dataStream?: {
+        /** Enable DataStream for real-time updates */
+        enabled?: boolean;
+        /** Cache TTL in milliseconds (default: 5 minutes) */
+        cacheTTL?: number;
+        /** Redis configuration for DataStream caching */
+        redisConfig?: DataStreamRedisConfig;
+        /** Enable replicator mode for external data synchronization */
+        replicatorMode?: boolean;
+        /** Health check URL for replicator mode */
+        replicatorHealthURL?: string;
+        /** Health check interval for replicator mode in milliseconds */
+        replicatorHealthCheck?: number;
     };
     /** If using an API key that is not environment-specific, use this option to specify the environment */
     environmentId?: string;
@@ -43,6 +59,7 @@ export interface CheckFlagOptions {
 }
 
 export class SchematicClient extends BaseClient {
+    private datastreamClient?: DataStreamClient;
     private eventBuffer: EventBuffer;
     private flagCheckCacheProviders: CacheProvider<boolean>[];
     private flagDefaults: { [key: string]: boolean };
@@ -100,6 +117,30 @@ export class SchematicClient extends BaseClient {
         this.flagCheckCacheProviders = opts?.cacheProviders?.flagChecks ?? [new LocalCache<boolean>()];
         this.flagDefaults = flagDefaults;
         this.offline = offline;
+
+        // Initialize DataStream client if enabled
+        if (opts?.dataStream?.enabled && !offline) {
+            const datastreamOptions: DataStreamClientOptions = {
+                apiKey,
+                baseURL: basePath,
+                logger,
+                cacheTTL: opts.dataStream.cacheTTL,
+                redisConfig: opts.dataStream.redisConfig,
+                replicatorMode: opts.dataStream.replicatorMode,
+                replicatorHealthURL: opts.dataStream.replicatorHealthURL,
+                replicatorHealthCheck: opts.dataStream.replicatorHealthCheck,
+            };
+
+            this.datastreamClient = new DataStreamClient(datastreamOptions);
+            this.datastreamClient.start();
+        }
+    }
+
+    /**
+     * Returns whether DataStream is enabled and available
+     */
+    private useDataStream(): boolean {
+        return this.datastreamClient !== undefined;
     }
 
     /**
@@ -123,11 +164,52 @@ export class SchematicClient extends BaseClient {
             return getDefault();
         }
 
+        if (this.useDataStream()) {
+            // In replicator mode, check if replicator is ready before using datastream
+            if (this.datastreamClient!.isReplicatorMode() && !this.datastreamClient!.isReplicatorReady()) {
+                this.logger.debug("Replicator mode enabled but replicator not ready, falling back to API");
+                return this.checkFlagViaAPI(evalCtx, key);
+            }
+
+            try {
+                const resp = await this.datastreamClient!.checkFlag(evalCtx, key);
+
+                // Extract boolean value from DataStream response
+                const flagValue = typeof resp === 'boolean' ? resp : resp?.value;
+
+                // Track the flag check event
+                this.track({
+                    event: "flag_check",
+                    company: evalCtx.company,
+                    user: evalCtx.user,
+                    traits: {
+                        flag_key: key,
+                        value: flagValue,
+                        company_id: resp?.company?.id,
+                        user_id: resp?.user?.id,
+                        flag_id: resp?.flag?.id,
+                        req_company: evalCtx.company,
+                        req_user: evalCtx.user,
+                        reason: resp?.reason,
+                    },
+                });
+
+                return flagValue ?? this.getFlagDefault(key);
+            } catch (err) {
+                this.logger.debug(`Datastream flag check failed (${err}), falling back to API`);
+                return this.checkFlagViaAPI(evalCtx, key);
+            }
+        }
+
+        return this.checkFlagViaAPI(evalCtx, key);
+    }
+
+    private async checkFlagViaAPI(evalCtx: api.CheckFlagRequestBody, key: string): Promise<boolean> {
         try {
             const cacheKey = JSON.stringify({ evalCtx, key });
             for (const provider of this.flagCheckCacheProviders) {
                 const cachedValue = await provider.get(cacheKey);
-                if (cachedValue !== undefined) {
+                if (cachedValue !== null && cachedValue !== undefined) {
                     this.logger.debug(`${provider.constructor.name} cache hit for flag ${key}`);
                     return cachedValue;
                 }
@@ -194,7 +276,7 @@ export class SchematicClient extends BaseClient {
 
                 for (const provider of this.flagCheckCacheProviders) {
                     const cachedValue = await provider.get(cacheKey);
-                    if (cachedValue !== undefined) {
+                    if (cachedValue !== null && cachedValue !== undefined) {
                         this.logger.debug(`${provider.constructor.name} cache hit for flag ${key}`);
                         cachedResults.set(key, {
                             flag: key,
@@ -275,10 +357,13 @@ export class SchematicClient extends BaseClient {
     }
 
     /**
-     * Gracefully shuts down the client by stopping the event buffer
-     * @returns Promise that resolves when the event buffer has been stopped
+     * Gracefully shuts down the client by stopping the event buffer and DataStream client
+     * @returns Promise that resolves when everything has been stopped
      */
     async close(): Promise<void> {
+        if (this.datastreamClient) {
+            this.datastreamClient.close();
+        }
         return this.eventBuffer.stop();
     }
 
@@ -309,6 +394,19 @@ export class SchematicClient extends BaseClient {
 
         try {
             await this.enqueueEvent("track", body);
+
+            // Update company metrics in DataStream if available and connected
+            if (body.company && this.useDataStream() && this.datastreamClient!.isConnected()) {
+                try {
+                    await this.datastreamClient!.updateCompanyMetrics(
+                        body.company,
+                        body.event,
+                        body.quantity || 1
+                    );
+                } catch (err) {
+                    this.logger.error(`Failed to update company metrics: ${err}`);
+                }
+            }
         } catch (err) {
             this.logger.error(`Error sending track event: ${err}`);
         }
