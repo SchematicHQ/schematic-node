@@ -5,11 +5,11 @@
 import * as Schematic from "../index";
 
 export interface BillingPriceView {
-    billingScheme: string;
+    billingScheme: Schematic.BillingPriceScheme;
     createdAt: Date;
     currency: string;
     id: string;
-    interval: string;
+    interval: Schematic.BillingProductPriceInterval;
     isActive: boolean;
     meterEventName?: string;
     meterEventPayloadKey?: string;
@@ -23,7 +23,7 @@ export interface BillingPriceView {
     productExternalId: string;
     productId: string;
     productName: string;
-    tiersMode?: string;
+    tiersMode?: Schematic.BillingTiersMode;
     updatedAt: Date;
-    usageType: string;
+    usageType: Schematic.BillingPriceUsageType;
 }

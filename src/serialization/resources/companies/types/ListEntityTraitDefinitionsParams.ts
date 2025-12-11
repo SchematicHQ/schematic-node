@@ -5,17 +5,14 @@
 import * as serializers from "../../../index";
 import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
-import { ListEntityTraitDefinitionsResponseParamsEntityType } from "./ListEntityTraitDefinitionsResponseParamsEntityType";
+import { EntityType } from "../../../types/EntityType";
 import { TraitType } from "../../../types/TraitType";
 
 export const ListEntityTraitDefinitionsParams: core.serialization.ObjectSchema<
     serializers.ListEntityTraitDefinitionsParams.Raw,
     Schematic.ListEntityTraitDefinitionsParams
 > = core.serialization.object({
-    entityType: core.serialization.property(
-        "entity_type",
-        ListEntityTraitDefinitionsResponseParamsEntityType.optional(),
-    ),
+    entityType: core.serialization.property("entity_type", EntityType.optional()),
     ids: core.serialization.list(core.serialization.string()).optional(),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
@@ -26,7 +23,7 @@ export const ListEntityTraitDefinitionsParams: core.serialization.ObjectSchema<
 
 export declare namespace ListEntityTraitDefinitionsParams {
     export interface Raw {
-        entity_type?: ListEntityTraitDefinitionsResponseParamsEntityType.Raw | null;
+        entity_type?: EntityType.Raw | null;
         ids?: string[] | null;
         limit?: number | null;
         offset?: number | null;

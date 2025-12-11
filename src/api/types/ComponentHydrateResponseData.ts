@@ -16,11 +16,13 @@ export interface ComponentHydrateResponseData {
     creditBundles: Schematic.BillingCreditBundleView[];
     creditGrants: Schematic.CreditCompanyGrantView[];
     defaultPlan?: Schematic.PlanDetailResponseData;
+    displaySettings: Schematic.ComponentDisplaySettings;
     featureUsage?: Schematic.FeatureUsageDetailResponseData;
     postTrialPlan?: Schematic.PlanDetailResponseData;
     preventSelfServiceDowngrade: boolean;
     preventSelfServiceDowngradeButtonText?: string;
     preventSelfServiceDowngradeUrl?: string;
+    showAsMonthlyPrices: boolean;
     showCredits: boolean;
     showPeriodToggle: boolean;
     showZeroPriceAsFree: boolean;

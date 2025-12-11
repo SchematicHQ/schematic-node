@@ -16,5 +16,5 @@ export interface BillingProductPricing {
     productExternalId: string;
     quantity: number;
     subscriptionItemExternalId?: string;
-    usageType: Schematic.BillingProductPricingUsageType;
+    usageType: Schematic.BillingPriceUsageType;
 }

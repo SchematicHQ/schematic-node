@@ -15,6 +15,7 @@ export interface PreviewSubscriptionFinanceResponseData {
     taxAmount?: number;
     taxDisplayName?: string;
     taxRequireBillingDetails: boolean;
+    totalPerBillingPeriod: number;
     trialEnd?: Date;
     upcomingInvoiceLineItems: Schematic.PreviewSubscriptionUpcomingInvoiceLineItems[];
 }

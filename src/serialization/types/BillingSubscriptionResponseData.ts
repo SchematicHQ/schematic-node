@@ -5,6 +5,7 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { BillingSubscriptionTrialEndSetting } from "./BillingSubscriptionTrialEndSetting";
 
 export const BillingSubscriptionResponseData: core.serialization.ObjectSchema<
     serializers.BillingSubscriptionResponseData.Raw,
@@ -31,7 +32,7 @@ export const BillingSubscriptionResponseData: core.serialization.ObjectSchema<
     subscriptionExternalId: core.serialization.property("subscription_external_id", core.serialization.string()),
     totalPrice: core.serialization.property("total_price", core.serialization.number()),
     trialEnd: core.serialization.property("trial_end", core.serialization.number().optional()),
-    trialEndSetting: core.serialization.property("trial_end_setting", core.serialization.string().optional()),
+    trialEndSetting: core.serialization.property("trial_end_setting", BillingSubscriptionTrialEndSetting.optional()),
 });
 
 export declare namespace BillingSubscriptionResponseData {
@@ -54,6 +55,6 @@ export declare namespace BillingSubscriptionResponseData {
         subscription_external_id: string;
         total_price: number;
         trial_end?: number | null;
-        trial_end_setting?: string | null;
+        trial_end_setting?: BillingSubscriptionTrialEndSetting.Raw | null;
     }
 }

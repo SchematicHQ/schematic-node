@@ -8,7 +8,7 @@ import * as Schematic from "../../../../index";
  * @example
  *     {
  *         name: "name",
- *         requestTypes: ["company.updated"],
+ *         requestTypes: ["subscription.trial.ended"],
  *         url: "url"
  *     }
  */
@@ -16,6 +16,6 @@ export interface CreateWebhookRequestBody {
     creditTriggerConfigs?: Schematic.CreditTriggerConfig[];
     entitlementTriggerConfigs?: Schematic.EntitlementTriggerConfig[];
     name: string;
-    requestTypes: Schematic.CreateWebhookRequestBodyRequestTypesItem[];
+    requestTypes: Schematic.WebhookRequestType[];
     url: string;
 }

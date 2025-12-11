@@ -16,8 +16,8 @@ import * as Schematic from "../../../../index";
  */
 export interface ListCompanyGrantsRequest {
     companyId?: string;
-    order?: Schematic.ListCompanyGrantsRequestOrder;
-    dir?: Schematic.ListCompanyGrantsRequestDir;
+    order?: Schematic.CreditGrantSortOrder;
+    dir?: Schematic.SortDirection;
     /**
      * Page limit (default 100)
      */

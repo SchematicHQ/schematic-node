@@ -8,6 +8,7 @@ export interface PlanGroupResponseData {
     addOnCompatibilities: Schematic.CompatiblePlansResponseData[];
     addOnIds: string[];
     checkoutSettings: Schematic.CheckoutSettingsResponseData;
+    componentSettings: Schematic.ComponentSettingsResponseData;
     defaultPlanId?: string;
     fallbackPlanId?: string;
     id: string;
@@ -16,11 +17,15 @@ export interface PlanGroupResponseData {
     orderedAddOnIds: Schematic.OrderedPlansInGroup[];
     planIds: Schematic.OrderedPlansInGroup[];
     preventDowngradesWhenOverLimit: boolean;
+    preventSelfServiceDowngrade: boolean;
+    preventSelfServiceDowngradeButtonText?: string;
+    preventSelfServiceDowngradeUrl?: string;
     prorationBehavior: string;
+    showAsMonthlyPrices: boolean;
     showCredits: boolean;
     showPeriodToggle: boolean;
     showZeroPriceAsFree: boolean;
-    syncCustomerBillingDetailsForTax: boolean;
+    syncCustomerBillingDetails: boolean;
     taxCollectionEnabled: boolean;
     trialDays?: number;
     trialExpiryPlanId?: string;

@@ -6,6 +6,7 @@ import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { PreviewObject } from "./PreviewObject";
+import { EventStatus } from "./EventStatus";
 import { EventType } from "./EventType";
 
 export const EventDetailResponseData: core.serialization.ObjectSchema<
@@ -28,7 +29,7 @@ export const EventDetailResponseData: core.serialization.ObjectSchema<
     processedAt: core.serialization.property("processed_at", core.serialization.date().optional()),
     quantity: core.serialization.number(),
     sentAt: core.serialization.property("sent_at", core.serialization.date().optional()),
-    status: core.serialization.string(),
+    status: EventStatus,
     subtype: core.serialization.string().optional(),
     type: EventType,
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -54,7 +55,7 @@ export declare namespace EventDetailResponseData {
         processed_at?: string | null;
         quantity: number;
         sent_at?: string | null;
-        status: string;
+        status: EventStatus.Raw;
         subtype?: string | null;
         type: EventType.Raw;
         updated_at: string;

@@ -11,12 +11,14 @@ export const UpdatePlanTraitBulkRequestBody: core.serialization.Schema<
     serializers.UpdatePlanTraitBulkRequestBody.Raw,
     Schematic.UpdatePlanTraitBulkRequestBody
 > = core.serialization.object({
+    applyToExistingCompanies: core.serialization.property("apply_to_existing_companies", core.serialization.boolean()),
     planId: core.serialization.property("plan_id", core.serialization.string()),
     traits: core.serialization.list(UpdatePlanTraitTraitRequestBody),
 });
 
 export declare namespace UpdatePlanTraitBulkRequestBody {
     export interface Raw {
+        apply_to_existing_companies: boolean;
         plan_id: string;
         traits: UpdatePlanTraitTraitRequestBody.Raw[];
     }

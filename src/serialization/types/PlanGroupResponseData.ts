@@ -7,6 +7,7 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { CompatiblePlansResponseData } from "./CompatiblePlansResponseData";
 import { CheckoutSettingsResponseData } from "./CheckoutSettingsResponseData";
+import { ComponentSettingsResponseData } from "./ComponentSettingsResponseData";
 import { OrderedPlansInGroup } from "./OrderedPlansInGroup";
 
 export const PlanGroupResponseData: core.serialization.ObjectSchema<
@@ -19,6 +20,7 @@ export const PlanGroupResponseData: core.serialization.ObjectSchema<
     ),
     addOnIds: core.serialization.property("add_on_ids", core.serialization.list(core.serialization.string())),
     checkoutSettings: core.serialization.property("checkout_settings", CheckoutSettingsResponseData),
+    componentSettings: core.serialization.property("component_settings", ComponentSettingsResponseData),
     defaultPlanId: core.serialization.property("default_plan_id", core.serialization.string().optional()),
     fallbackPlanId: core.serialization.property("fallback_plan_id", core.serialization.string().optional()),
     id: core.serialization.string(),
@@ -30,12 +32,25 @@ export const PlanGroupResponseData: core.serialization.ObjectSchema<
         "prevent_downgrades_when_over_limit",
         core.serialization.boolean(),
     ),
+    preventSelfServiceDowngrade: core.serialization.property(
+        "prevent_self_service_downgrade",
+        core.serialization.boolean(),
+    ),
+    preventSelfServiceDowngradeButtonText: core.serialization.property(
+        "prevent_self_service_downgrade_button_text",
+        core.serialization.string().optional(),
+    ),
+    preventSelfServiceDowngradeUrl: core.serialization.property(
+        "prevent_self_service_downgrade_url",
+        core.serialization.string().optional(),
+    ),
     prorationBehavior: core.serialization.property("proration_behavior", core.serialization.string()),
+    showAsMonthlyPrices: core.serialization.property("show_as_monthly_prices", core.serialization.boolean()),
     showCredits: core.serialization.property("show_credits", core.serialization.boolean()),
     showPeriodToggle: core.serialization.property("show_period_toggle", core.serialization.boolean()),
     showZeroPriceAsFree: core.serialization.property("show_zero_price_as_free", core.serialization.boolean()),
-    syncCustomerBillingDetailsForTax: core.serialization.property(
-        "sync_customer_billing_details_for_tax",
+    syncCustomerBillingDetails: core.serialization.property(
+        "sync_customer_billing_details",
         core.serialization.boolean(),
     ),
     taxCollectionEnabled: core.serialization.property("tax_collection_enabled", core.serialization.boolean()),
@@ -56,6 +71,7 @@ export declare namespace PlanGroupResponseData {
         add_on_compatibilities: CompatiblePlansResponseData.Raw[];
         add_on_ids: string[];
         checkout_settings: CheckoutSettingsResponseData.Raw;
+        component_settings: ComponentSettingsResponseData.Raw;
         default_plan_id?: string | null;
         fallback_plan_id?: string | null;
         id: string;
@@ -64,11 +80,15 @@ export declare namespace PlanGroupResponseData {
         ordered_add_on_ids: OrderedPlansInGroup.Raw[];
         plan_ids: OrderedPlansInGroup.Raw[];
         prevent_downgrades_when_over_limit: boolean;
+        prevent_self_service_downgrade: boolean;
+        prevent_self_service_downgrade_button_text?: string | null;
+        prevent_self_service_downgrade_url?: string | null;
         proration_behavior: string;
+        show_as_monthly_prices: boolean;
         show_credits: boolean;
         show_period_toggle: boolean;
         show_zero_price_as_free: boolean;
-        sync_customer_billing_details_for_tax: boolean;
+        sync_customer_billing_details: boolean;
         tax_collection_enabled: boolean;
         trial_days?: number | null;
         trial_expiry_plan_id?: string | null;

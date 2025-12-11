@@ -5,6 +5,8 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { WebhookRequestType } from "./WebhookRequestType";
+import { WebhookEventStatus } from "./WebhookEventStatus";
 import { WebhookResponseData } from "./WebhookResponseData";
 
 export const WebhookEventDetailResponseData: core.serialization.ObjectSchema<
@@ -14,10 +16,10 @@ export const WebhookEventDetailResponseData: core.serialization.ObjectSchema<
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     id: core.serialization.string(),
     payload: core.serialization.string().optional(),
-    requestType: core.serialization.property("request_type", core.serialization.string()),
+    requestType: core.serialization.property("request_type", WebhookRequestType),
     responseCode: core.serialization.property("response_code", core.serialization.number().optional()),
     sentAt: core.serialization.property("sent_at", core.serialization.date().optional()),
-    status: core.serialization.string(),
+    status: WebhookEventStatus,
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     webhook: WebhookResponseData.optional(),
     webhookId: core.serialization.property("webhook_id", core.serialization.string()),
@@ -28,10 +30,10 @@ export declare namespace WebhookEventDetailResponseData {
         created_at: string;
         id: string;
         payload?: string | null;
-        request_type: string;
+        request_type: WebhookRequestType.Raw;
         response_code?: number | null;
         sent_at?: string | null;
-        status: string;
+        status: WebhookEventStatus.Raw;
         updated_at: string;
         webhook?: WebhookResponseData.Raw | null;
         webhook_id: string;

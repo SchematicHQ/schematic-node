@@ -7,8 +7,8 @@ import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import { CreditTriggerConfig } from "../../../../types/CreditTriggerConfig";
 import { EntitlementTriggerConfig } from "../../../../types/EntitlementTriggerConfig";
-import { UpdateWebhookRequestBodyRequestTypesItem } from "../../types/UpdateWebhookRequestBodyRequestTypesItem";
-import { UpdateWebhookRequestBodyStatus } from "../../types/UpdateWebhookRequestBodyStatus";
+import { WebhookRequestType } from "../../../../types/WebhookRequestType";
+import { WebhookStatus } from "../../../../types/WebhookStatus";
 
 export const UpdateWebhookRequestBody: core.serialization.Schema<
     serializers.UpdateWebhookRequestBody.Raw,
@@ -23,11 +23,8 @@ export const UpdateWebhookRequestBody: core.serialization.Schema<
         core.serialization.list(EntitlementTriggerConfig).optional(),
     ),
     name: core.serialization.string().optional(),
-    requestTypes: core.serialization.property(
-        "request_types",
-        core.serialization.list(UpdateWebhookRequestBodyRequestTypesItem).optional(),
-    ),
-    status: UpdateWebhookRequestBodyStatus.optional(),
+    requestTypes: core.serialization.property("request_types", core.serialization.list(WebhookRequestType).optional()),
+    status: WebhookStatus.optional(),
     url: core.serialization.string().optional(),
 });
 
@@ -36,8 +33,8 @@ export declare namespace UpdateWebhookRequestBody {
         credit_trigger_configs?: CreditTriggerConfig.Raw[] | null;
         entitlement_trigger_configs?: EntitlementTriggerConfig.Raw[] | null;
         name?: string | null;
-        request_types?: UpdateWebhookRequestBodyRequestTypesItem.Raw[] | null;
-        status?: UpdateWebhookRequestBodyStatus.Raw | null;
+        request_types?: WebhookRequestType.Raw[] | null;
+        status?: WebhookStatus.Raw | null;
         url?: string | null;
     }
 }

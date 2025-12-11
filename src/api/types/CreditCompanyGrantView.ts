@@ -14,10 +14,10 @@ export interface CreditCompanyGrantView {
     creditIcon?: string;
     creditName: string;
     expiresAt?: Date;
-    expiryType?: string;
-    expiryUnit?: string;
+    expiryType?: Schematic.BillingCreditExpiryType;
+    expiryUnit?: Schematic.BillingCreditExpiryUnit;
     expiryUnitCount?: number;
-    grantReason: string;
+    grantReason: Schematic.BillingCreditGrantReason;
     id: string;
     planId?: string;
     planName?: string;
@@ -31,5 +31,5 @@ export interface CreditCompanyGrantView {
     updatedAt: Date;
     validFrom?: Date;
     zeroedOutDate?: Date;
-    zeroedOutReason?: string;
+    zeroedOutReason?: Schematic.BillingCreditGrantZeroedOutReason;
 }

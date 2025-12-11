@@ -5,26 +5,26 @@
 import * as serializers from "../../../index";
 import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
-import { ListCompanyGrantsResponseParamsDir } from "./ListCompanyGrantsResponseParamsDir";
-import { ListCompanyGrantsResponseParamsOrder } from "./ListCompanyGrantsResponseParamsOrder";
+import { SortDirection } from "../../../types/SortDirection";
+import { CreditGrantSortOrder } from "../../../types/CreditGrantSortOrder";
 
 export const ListCompanyGrantsParams: core.serialization.ObjectSchema<
     serializers.ListCompanyGrantsParams.Raw,
     Schematic.ListCompanyGrantsParams
 > = core.serialization.object({
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
-    dir: ListCompanyGrantsResponseParamsDir.optional(),
+    dir: SortDirection.optional(),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
-    order: ListCompanyGrantsResponseParamsOrder.optional(),
+    order: CreditGrantSortOrder.optional(),
 });
 
 export declare namespace ListCompanyGrantsParams {
     export interface Raw {
         company_id?: string | null;
-        dir?: ListCompanyGrantsResponseParamsDir.Raw | null;
+        dir?: SortDirection.Raw | null;
         limit?: number | null;
         offset?: number | null;
-        order?: ListCompanyGrantsResponseParamsOrder.Raw | null;
+        order?: CreditGrantSortOrder.Raw | null;
     }
 }

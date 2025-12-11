@@ -7,6 +7,7 @@ import * as Schematic from "../index";
 export interface PlanGroupDetailResponseData {
     addOns: Schematic.PlanGroupPlanDetailResponseData[];
     checkoutSettings: Schematic.CheckoutSettingsResponseData;
+    componentSettings: Schematic.ComponentSettingsResponseData;
     customPlanConfig?: Schematic.CustomPlanViewConfigResponseData;
     customPlanId?: string;
     defaultPlan?: Schematic.PlanGroupPlanDetailResponseData;
@@ -23,11 +24,15 @@ export interface PlanGroupDetailResponseData {
     orderedPlanList: Schematic.PlanGroupPlanEntitlementsOrder[];
     plans: Schematic.PlanGroupPlanDetailResponseData[];
     preventDowngradesWhenOverLimit: boolean;
+    preventSelfServiceDowngrade: boolean;
+    preventSelfServiceDowngradeButtonText?: string;
+    preventSelfServiceDowngradeUrl?: string;
     prorationBehavior: string;
+    showAsMonthlyPrices: boolean;
     showCredits: boolean;
     showPeriodToggle: boolean;
     showZeroPriceAsFree: boolean;
-    syncCustomerBillingDetailsForTax: boolean;
+    syncCustomerBillingDetails: boolean;
     taxCollectionEnabled: boolean;
     trialDays?: number;
     trialExpiryPlan?: Schematic.PlanGroupPlanDetailResponseData;

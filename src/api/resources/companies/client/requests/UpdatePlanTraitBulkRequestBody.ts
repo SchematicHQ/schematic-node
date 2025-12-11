@@ -7,6 +7,7 @@ import * as Schematic from "../../../../index";
 /**
  * @example
  *     {
+ *         applyToExistingCompanies: true,
  *         planId: "plan_id",
  *         traits: [{
  *                 traitId: "trait_id",
@@ -15,6 +16,7 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface UpdatePlanTraitBulkRequestBody {
+    applyToExistingCompanies: boolean;
     planId: string;
     traits: Schematic.UpdatePlanTraitTraitRequestBody[];
 }

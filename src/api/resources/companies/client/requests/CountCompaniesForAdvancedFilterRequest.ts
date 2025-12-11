@@ -65,7 +65,7 @@ export interface CountCompaniesForAdvancedFilterRequest {
     /**
      * Direction to sort by (asc or desc)
      */
-    sortOrderDirection?: Schematic.CountCompaniesForAdvancedFilterRequestSortOrderDirection;
+    sortOrderDirection?: Schematic.SortDirection;
     /**
      * Select the display columns to return (e.g. plan, subscription, users, last_seen_at)
      */

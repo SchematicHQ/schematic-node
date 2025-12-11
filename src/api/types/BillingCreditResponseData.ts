@@ -5,11 +5,11 @@
 import * as Schematic from "../index";
 
 export interface BillingCreditResponseData {
-    burnStrategy: string;
+    burnStrategy: Schematic.BillingCreditBurnStrategy;
     createdAt: Date;
-    defaultExpiryUnit: string;
+    defaultExpiryUnit: Schematic.BillingCreditExpiryUnit;
     defaultExpiryUnitCount?: number;
-    defaultRolloverPolicy: string;
+    defaultRolloverPolicy: Schematic.BillingCreditRolloverPolicy;
     description: string;
     icon?: string;
     id: string;

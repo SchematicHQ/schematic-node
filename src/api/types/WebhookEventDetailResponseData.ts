@@ -8,10 +8,10 @@ export interface WebhookEventDetailResponseData {
     createdAt: Date;
     id: string;
     payload?: string;
-    requestType: string;
+    requestType: Schematic.WebhookRequestType;
     responseCode?: number;
     sentAt?: Date;
-    status: string;
+    status: Schematic.WebhookEventStatus;
     updatedAt: Date;
     webhook?: Schematic.WebhookResponseData;
     webhookId: string;

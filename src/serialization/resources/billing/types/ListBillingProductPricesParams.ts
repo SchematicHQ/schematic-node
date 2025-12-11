@@ -5,8 +5,8 @@
 import * as serializers from "../../../index";
 import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
-import { ListBillingProductPricesResponseParamsTiersMode } from "./ListBillingProductPricesResponseParamsTiersMode";
-import { ListBillingProductPricesResponseParamsUsageType } from "./ListBillingProductPricesResponseParamsUsageType";
+import { BillingTiersMode } from "../../../types/BillingTiersMode";
+import { BillingPriceUsageType } from "../../../types/BillingPriceUsageType";
 
 export const ListBillingProductPricesParams: core.serialization.ObjectSchema<
     serializers.ListBillingProductPricesParams.Raw,
@@ -26,8 +26,8 @@ export const ListBillingProductPricesParams: core.serialization.ObjectSchema<
         core.serialization.list(core.serialization.string()).optional(),
     ),
     q: core.serialization.string().optional(),
-    tiersMode: core.serialization.property("tiers_mode", ListBillingProductPricesResponseParamsTiersMode.optional()),
-    usageType: core.serialization.property("usage_type", ListBillingProductPricesResponseParamsUsageType.optional()),
+    tiersMode: core.serialization.property("tiers_mode", BillingTiersMode.optional()),
+    usageType: core.serialization.property("usage_type", BillingPriceUsageType.optional()),
     withMeter: core.serialization.property("with_meter", core.serialization.boolean().optional()),
 });
 
@@ -44,8 +44,8 @@ export declare namespace ListBillingProductPricesParams {
         product_id?: string | null;
         product_ids?: string[] | null;
         q?: string | null;
-        tiers_mode?: ListBillingProductPricesResponseParamsTiersMode.Raw | null;
-        usage_type?: ListBillingProductPricesResponseParamsUsageType.Raw | null;
+        tiers_mode?: BillingTiersMode.Raw | null;
+        usage_type?: BillingPriceUsageType.Raw | null;
         with_meter?: boolean | null;
     }
 }

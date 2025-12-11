@@ -16,6 +16,6 @@ export interface CountCreditLedgerParams {
     limit?: number;
     /** Page offset (default 0) */
     offset?: number;
-    period?: Schematic.CountCreditLedgerResponseParamsPeriod;
+    period?: Schematic.CreditLedgerPeriod;
     startTime?: string;
 }

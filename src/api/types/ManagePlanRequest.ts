@@ -18,4 +18,5 @@ export interface ManagePlanRequest {
     promoCode?: string;
     /** If true and cancel_immediately is true, issue prorated credit. Only applies when removing all plans. Defaults to true. */
     prorate?: boolean;
+    trialEnd?: Date;
 }

@@ -5,7 +5,7 @@
 import * as serializers from "../../../index";
 import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
-import { ListBillingProductsResponseParamsPriceUsageType } from "./ListBillingProductsResponseParamsPriceUsageType";
+import { BillingPriceUsageType } from "../../../types/BillingPriceUsageType";
 
 export const ListBillingProductsParams: core.serialization.ObjectSchema<
     serializers.ListBillingProductsParams.Raw,
@@ -16,10 +16,7 @@ export const ListBillingProductsParams: core.serialization.ObjectSchema<
     limit: core.serialization.number().optional(),
     name: core.serialization.string().optional(),
     offset: core.serialization.number().optional(),
-    priceUsageType: core.serialization.property(
-        "price_usage_type",
-        ListBillingProductsResponseParamsPriceUsageType.optional(),
-    ),
+    priceUsageType: core.serialization.property("price_usage_type", BillingPriceUsageType.optional()),
     q: core.serialization.string().optional(),
     withOneTimeCharges: core.serialization.property("with_one_time_charges", core.serialization.boolean().optional()),
     withPricesOnly: core.serialization.property("with_prices_only", core.serialization.boolean().optional()),
@@ -34,7 +31,7 @@ export declare namespace ListBillingProductsParams {
         limit?: number | null;
         name?: string | null;
         offset?: number | null;
-        price_usage_type?: ListBillingProductsResponseParamsPriceUsageType.Raw | null;
+        price_usage_type?: BillingPriceUsageType.Raw | null;
         q?: string | null;
         with_one_time_charges?: boolean | null;
         with_prices_only?: boolean | null;

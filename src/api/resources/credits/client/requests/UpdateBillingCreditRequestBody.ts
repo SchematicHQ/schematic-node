@@ -12,10 +12,10 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface UpdateBillingCreditRequestBody {
-    burnStrategy?: Schematic.UpdateBillingCreditRequestBodyBurnStrategy;
-    defaultExpiryUnit?: "days";
+    burnStrategy?: Schematic.BillingCreditBurnStrategy;
+    defaultExpiryUnit?: Schematic.BillingCreditExpiryUnit;
     defaultExpiryUnitCount?: number;
-    defaultRolloverPolicy?: Schematic.UpdateBillingCreditRequestBodyDefaultRolloverPolicy;
+    defaultRolloverPolicy?: Schematic.BillingCreditRolloverPolicy;
     description: string;
     icon?: string;
     name: string;

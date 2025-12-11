@@ -22,7 +22,7 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface CreateBillingPriceRequestBody {
-    billingScheme: Schematic.CreateBillingPriceRequestBodyBillingScheme;
+    billingScheme: Schematic.BillingPriceScheme;
     currency: string;
     externalAccountId: string;
     interval: string;
@@ -34,6 +34,6 @@ export interface CreateBillingPriceRequestBody {
     priceExternalId: string;
     priceTiers: Schematic.CreateBillingPriceTierRequestBody[];
     productExternalId: string;
-    tiersMode?: Schematic.CreateBillingPriceRequestBodyTiersMode;
-    usageType: Schematic.CreateBillingPriceRequestBodyUsageType;
+    tiersMode?: Schematic.BillingTiersMode;
+    usageType: Schematic.BillingPriceUsageType;
 }

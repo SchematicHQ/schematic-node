@@ -19,7 +19,7 @@ export interface EventResponseData {
     processedAt?: Date;
     quantity: number;
     sentAt?: Date;
-    status: string;
+    status: Schematic.EventStatus;
     subtype?: string;
     type: Schematic.EventType;
     updatedAt: Date;

@@ -5,16 +5,20 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { BillingPriceScheme } from "./BillingPriceScheme";
+import { BillingProductPriceInterval } from "./BillingProductPriceInterval";
+import { BillingTiersMode } from "./BillingTiersMode";
+import { BillingPriceUsageType } from "./BillingPriceUsageType";
 
 export const BillingProductPriceResponseData: core.serialization.ObjectSchema<
     serializers.BillingProductPriceResponseData.Raw,
     Schematic.BillingProductPriceResponseData
 > = core.serialization.object({
-    billingScheme: core.serialization.property("billing_scheme", core.serialization.string()),
+    billingScheme: core.serialization.property("billing_scheme", BillingPriceScheme),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     currency: core.serialization.string(),
     id: core.serialization.string(),
-    interval: core.serialization.string(),
+    interval: BillingProductPriceInterval,
     isActive: core.serialization.property("is_active", core.serialization.boolean()),
     meterId: core.serialization.property("meter_id", core.serialization.string().optional()),
     packageSize: core.serialization.property("package_size", core.serialization.number()),
@@ -22,18 +26,18 @@ export const BillingProductPriceResponseData: core.serialization.ObjectSchema<
     priceDecimal: core.serialization.property("price_decimal", core.serialization.string().optional()),
     priceExternalId: core.serialization.property("price_external_id", core.serialization.string()),
     productExternalId: core.serialization.property("product_external_id", core.serialization.string()),
-    tiersMode: core.serialization.property("tiers_mode", core.serialization.string().optional()),
+    tiersMode: core.serialization.property("tiers_mode", BillingTiersMode.optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
-    usageType: core.serialization.property("usage_type", core.serialization.string()),
+    usageType: core.serialization.property("usage_type", BillingPriceUsageType),
 });
 
 export declare namespace BillingProductPriceResponseData {
     export interface Raw {
-        billing_scheme: string;
+        billing_scheme: BillingPriceScheme.Raw;
         created_at: string;
         currency: string;
         id: string;
-        interval: string;
+        interval: BillingProductPriceInterval.Raw;
         is_active: boolean;
         meter_id?: string | null;
         package_size: number;
@@ -41,8 +45,8 @@ export declare namespace BillingProductPriceResponseData {
         price_decimal?: string | null;
         price_external_id: string;
         product_external_id: string;
-        tiers_mode?: string | null;
+        tiers_mode?: BillingTiersMode.Raw | null;
         updated_at: string;
-        usage_type: string;
+        usage_type: BillingPriceUsageType.Raw;
     }
 }

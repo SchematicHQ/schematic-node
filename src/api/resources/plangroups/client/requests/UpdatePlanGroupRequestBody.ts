@@ -24,10 +24,11 @@ import * as Schematic from "../../../../index";
  *         preventDowngradesWhenOverLimit: true,
  *         preventSelfServiceDowngrade: true,
  *         prorationBehavior: "create_prorations",
+ *         showAsMonthlyPrices: true,
  *         showCredits: true,
  *         showPeriodToggle: true,
  *         showZeroPriceAsFree: true,
- *         syncCustomerBillingDetailsForTax: true
+ *         syncCustomerBillingDetails: true
  *     }
  */
 export interface UpdatePlanGroupRequestBody {
@@ -51,10 +52,11 @@ export interface UpdatePlanGroupRequestBody {
     preventSelfServiceDowngradeButtonText?: string;
     preventSelfServiceDowngradeUrl?: string;
     prorationBehavior: Schematic.ProrationBehavior;
+    showAsMonthlyPrices: boolean;
     showCredits: boolean;
     showPeriodToggle: boolean;
     showZeroPriceAsFree: boolean;
-    syncCustomerBillingDetailsForTax: boolean;
+    syncCustomerBillingDetails: boolean;
     trialDays?: number;
     trialExpiryPlanId?: string;
     trialExpiryPlanPriceId?: string;

@@ -5,31 +5,31 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
-import { CreditGrantExpiryRequestBodyExpiryType } from "./CreditGrantExpiryRequestBodyExpiryType";
-import { CreditGrantExpiryRequestBodyExpiryUnit } from "./CreditGrantExpiryRequestBodyExpiryUnit";
-import { CreditGrantExpiryRequestBodyResetCadence } from "./CreditGrantExpiryRequestBodyResetCadence";
-import { CreditGrantExpiryRequestBodyResetStart } from "./CreditGrantExpiryRequestBodyResetStart";
-import { CreditGrantExpiryRequestBodyResetType } from "./CreditGrantExpiryRequestBodyResetType";
+import { BillingCreditExpiryType } from "./BillingCreditExpiryType";
+import { BillingCreditExpiryUnit } from "./BillingCreditExpiryUnit";
+import { BillingPlanCreditGrantResetCadence } from "./BillingPlanCreditGrantResetCadence";
+import { BillingPlanCreditGrantResetStart } from "./BillingPlanCreditGrantResetStart";
+import { BillingPlanCreditGrantResetType } from "./BillingPlanCreditGrantResetType";
 
 export const CreditGrantExpiryRequestBody: core.serialization.ObjectSchema<
     serializers.CreditGrantExpiryRequestBody.Raw,
     Schematic.CreditGrantExpiryRequestBody
 > = core.serialization.object({
-    expiryType: core.serialization.property("expiry_type", CreditGrantExpiryRequestBodyExpiryType.optional()),
-    expiryUnit: core.serialization.property("expiry_unit", CreditGrantExpiryRequestBodyExpiryUnit.optional()),
+    expiryType: core.serialization.property("expiry_type", BillingCreditExpiryType.optional()),
+    expiryUnit: core.serialization.property("expiry_unit", BillingCreditExpiryUnit.optional()),
     expiryUnitCount: core.serialization.property("expiry_unit_count", core.serialization.number().optional()),
-    resetCadence: core.serialization.property("reset_cadence", CreditGrantExpiryRequestBodyResetCadence),
-    resetStart: core.serialization.property("reset_start", CreditGrantExpiryRequestBodyResetStart),
-    resetType: core.serialization.property("reset_type", CreditGrantExpiryRequestBodyResetType.optional()),
+    resetCadence: core.serialization.property("reset_cadence", BillingPlanCreditGrantResetCadence),
+    resetStart: core.serialization.property("reset_start", BillingPlanCreditGrantResetStart),
+    resetType: core.serialization.property("reset_type", BillingPlanCreditGrantResetType.optional()),
 });
 
 export declare namespace CreditGrantExpiryRequestBody {
     export interface Raw {
-        expiry_type?: CreditGrantExpiryRequestBodyExpiryType.Raw | null;
-        expiry_unit?: CreditGrantExpiryRequestBodyExpiryUnit.Raw | null;
+        expiry_type?: BillingCreditExpiryType.Raw | null;
+        expiry_unit?: BillingCreditExpiryUnit.Raw | null;
         expiry_unit_count?: number | null;
-        reset_cadence: CreditGrantExpiryRequestBodyResetCadence.Raw;
-        reset_start: CreditGrantExpiryRequestBodyResetStart.Raw;
-        reset_type?: CreditGrantExpiryRequestBodyResetType.Raw | null;
+        reset_cadence: BillingPlanCreditGrantResetCadence.Raw;
+        reset_start: BillingPlanCreditGrantResetStart.Raw;
+        reset_type?: BillingPlanCreditGrantResetType.Raw | null;
     }
 }

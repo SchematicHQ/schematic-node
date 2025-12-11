@@ -16,7 +16,7 @@ export interface ListBillingProductsParams {
     name?: string;
     /** Page offset (default 0) */
     offset?: number;
-    priceUsageType?: Schematic.ListBillingProductsResponseParamsPriceUsageType;
+    priceUsageType?: Schematic.BillingPriceUsageType;
     q?: string;
     /** Filter products that are one time charges */
     withOneTimeCharges?: boolean;

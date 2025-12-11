@@ -22,7 +22,7 @@ export interface CompanyPlanDetailResponseData {
     icon: string;
     id: string;
     includedCreditGrants: Schematic.PlanCreditGrantView[];
-    invalidReason?: Schematic.CompanyPlanDetailResponseDataInvalidReason;
+    invalidReason?: Schematic.CompanyPlanInvalidReason;
     isCustom: boolean;
     isDefault: boolean;
     isFree: boolean;

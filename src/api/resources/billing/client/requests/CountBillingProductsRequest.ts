@@ -23,7 +23,7 @@ export interface CountBillingProductsRequest {
     ids?: string | string[];
     name?: string;
     q?: string;
-    priceUsageType?: Schematic.CountBillingProductsRequestPriceUsageType;
+    priceUsageType?: Schematic.BillingPriceUsageType;
     /**
      * Filter products that are not linked to any plan
      */

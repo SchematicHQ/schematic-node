@@ -8,7 +8,7 @@ import * as Schematic from "../../../index";
  * Input parameters
  */
 export interface ListEntityTraitDefinitionsParams {
-    entityType?: Schematic.ListEntityTraitDefinitionsResponseParamsEntityType;
+    entityType?: Schematic.EntityType;
     ids?: string[];
     /** Page limit (default 100) */
     limit?: number;

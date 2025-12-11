@@ -10,7 +10,7 @@ import * as Schematic from "../../../../index";
  *         companyId: "company_id",
  *         creditId: "credit_id",
  *         quantity: 1,
- *         reason: "reason"
+ *         reason: "billing_credit_auto_topup"
  *     }
  */
 export interface CreateCompanyCreditGrant {
@@ -18,9 +18,11 @@ export interface CreateCompanyCreditGrant {
     companyId: string;
     creditId: string;
     expiresAt?: Date;
-    expiryType?: Schematic.CreateCompanyCreditGrantExpiryType;
-    expiryUnit?: Schematic.CreateCompanyCreditGrantExpiryUnit;
+    expiryType?: Schematic.BillingCreditExpiryType;
+    expiryUnit?: Schematic.BillingCreditExpiryUnit;
     expiryUnitCount?: number;
     quantity: number;
-    reason: string;
+    reason: Schematic.BillingCreditGrantReason;
+    renewalEnabled?: boolean;
+    renewalPeriod?: Schematic.BillingPlanCreditGrantResetStart;
 }

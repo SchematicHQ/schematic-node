@@ -9,10 +9,10 @@ import * as Schematic from "../../../index";
  */
 export interface ListCompanyGrantsParams {
     companyId?: string;
-    dir?: Schematic.ListCompanyGrantsResponseParamsDir;
+    dir?: Schematic.SortDirection;
     /** Page limit (default 100) */
     limit?: number;
     /** Page offset (default 0) */
     offset?: number;
-    order?: Schematic.ListCompanyGrantsResponseParamsOrder;
+    order?: Schematic.CreditGrantSortOrder;
 }

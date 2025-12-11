@@ -1427,7 +1427,7 @@ await client.billing.listBillingPrices({
     price: 1,
     productId: "product_id",
     q: "q",
-    tiersMode: "volume",
+    tiersMode: "graduated",
     usageType: "licensed",
     withMeter: true,
     limit: 1,
@@ -1599,7 +1599,7 @@ await client.billing.listBillingProductPrices({
     price: 1,
     productId: "product_id",
     q: "q",
-    tiersMode: "volume",
+    tiersMode: "graduated",
     usageType: "licensed",
     withMeter: true,
     limit: 1,
@@ -2633,7 +2633,7 @@ await client.credits.grantBillingCreditsToCompany({
     companyId: "company_id",
     creditId: "credit_id",
     quantity: 1,
-    reason: "reason",
+    reason: "billing_credit_auto_topup",
 });
 ```
 
@@ -3011,7 +3011,7 @@ await client.credits.createBillingPlanCreditGrant({
     creditAmount: 1,
     creditId: "credit_id",
     planId: "plan_id",
-    resetCadence: "monthly",
+    resetCadence: "daily",
     resetStart: "billing_period",
 });
 ```
@@ -3062,7 +3062,7 @@ await client.credits.createBillingPlanCreditGrant({
 
 ```typescript
 await client.credits.updateBillingPlanCreditGrant("plan_grant_id", {
-    resetCadence: "monthly",
+    resetCadence: "daily",
     resetStart: "billing_period",
 });
 ```
@@ -5306,6 +5306,7 @@ await client.companies.deletePlanTrait("plan_trait_id");
 
 ```typescript
 await client.companies.updatePlanTraitsBulk({
+    applyToExistingCompanies: true,
     planId: "plan_id",
     traits: [
         {
@@ -9216,6 +9217,56 @@ await client.features.checkFlags({});
 </dl>
 </details>
 
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">checkFlagsBulk</a>({ ...params }) -> Schematic.CheckFlagsBulkResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.features.checkFlagsBulk({
+    contexts: [{}],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CheckFlagsBulkRequestBody`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Features.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">countFlags</a>({ ...params }) -> Schematic.CountFlagsResponse</code></summary>
 <dl>
 <dd>
@@ -9348,10 +9399,11 @@ await client.plangroups.createPlanGroup({
     preventDowngradesWhenOverLimit: true,
     preventSelfServiceDowngrade: true,
     prorationBehavior: "create_prorations",
+    showAsMonthlyPrices: true,
     showCredits: true,
     showPeriodToggle: true,
     showZeroPriceAsFree: true,
-    syncCustomerBillingDetailsForTax: true,
+    syncCustomerBillingDetails: true,
 });
 ```
 
@@ -9424,10 +9476,11 @@ await client.plangroups.updatePlanGroup("plan_group_id", {
     preventDowngradesWhenOverLimit: true,
     preventSelfServiceDowngrade: true,
     prorationBehavior: "create_prorations",
+    showAsMonthlyPrices: true,
     showCredits: true,
     showPeriodToggle: true,
     showZeroPriceAsFree: true,
-    syncCustomerBillingDetailsForTax: true,
+    syncCustomerBillingDetails: true,
 });
 ```
 
@@ -9749,7 +9802,7 @@ await client.webhooks.listWebhooks({
 ```typescript
 await client.webhooks.createWebhook({
     name: "name",
-    requestTypes: ["company.updated"],
+    requestTypes: ["subscription.trial.ended"],
     url: "url",
 });
 ```

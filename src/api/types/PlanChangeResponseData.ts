@@ -5,15 +5,14 @@
 import * as Schematic from "../index";
 
 export interface PlanChangeResponseData {
-    action: Schematic.PlanChangeResponseDataAction;
-    actorType: Schematic.PlanChangeResponseDataActorType;
+    action: Schematic.PlanChangeAction;
+    actorType: Schematic.PlanChangeActorType;
     addOnsAdded: Schematic.PlanSnapshotView[];
     addOnsRemoved: Schematic.PlanSnapshotView[];
     apiKey?: Schematic.ApiKeyResponseData;
     apiKeyRequest?: Schematic.ApiKeyRequestListResponseData;
     basePlan?: Schematic.PlanSnapshotView;
-    /** Any special behavior that affected the assignment of the base plan during this change. */
-    basePlanAction?: Schematic.PlanChangeResponseDataBasePlanAction;
+    basePlanAction?: Schematic.PlanChangeBasePlanAction;
     company?: Schematic.CompanyResponseData;
     companyId: string;
     createdAt: Date;
@@ -21,8 +20,7 @@ export interface PlanChangeResponseData {
     id: string;
     previousBasePlan?: Schematic.PlanSnapshotView;
     requestId?: string;
-    /** If a subscription was changed as a part of this plan change, indicates the type of change that was made. */
-    subscriptionChangeAction?: Schematic.PlanChangeResponseDataSubscriptionChangeAction;
+    subscriptionChangeAction?: Schematic.PlanChangeSubscriptionAction;
     /** Any traits were updated as part of this plan change (via pay-in-advance entitlements). */
     traitsUpdated: Schematic.SubscriptionTraitUpdate[];
     updatedAt: Date;

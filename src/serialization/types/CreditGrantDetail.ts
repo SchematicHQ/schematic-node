@@ -5,7 +5,7 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
-import { GrantReason } from "./GrantReason";
+import { BillingCreditGrantReason } from "./BillingCreditGrantReason";
 
 export const CreditGrantDetail: core.serialization.ObjectSchema<
     serializers.CreditGrantDetail.Raw,
@@ -13,7 +13,7 @@ export const CreditGrantDetail: core.serialization.ObjectSchema<
 > = core.serialization.object({
     creditTypeIcon: core.serialization.property("credit_type_icon", core.serialization.string().optional()),
     expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
-    grantReason: core.serialization.property("grant_reason", GrantReason),
+    grantReason: core.serialization.property("grant_reason", BillingCreditGrantReason),
     quantity: core.serialization.number(),
 });
 
@@ -21,7 +21,7 @@ export declare namespace CreditGrantDetail {
     export interface Raw {
         credit_type_icon?: string | null;
         expires_at?: string | null;
-        grant_reason: GrantReason.Raw;
+        grant_reason: BillingCreditGrantReason.Raw;
         quantity: number;
     }
 }

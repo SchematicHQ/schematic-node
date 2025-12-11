@@ -15,6 +15,7 @@ import { ComponentResponseData } from "./ComponentResponseData";
 import { BillingCreditBundleView } from "./BillingCreditBundleView";
 import { CreditCompanyGrantView } from "./CreditCompanyGrantView";
 import { PlanDetailResponseData } from "./PlanDetailResponseData";
+import { ComponentDisplaySettings } from "./ComponentDisplaySettings";
 import { FeatureUsageDetailResponseData } from "./FeatureUsageDetailResponseData";
 import { InvoiceResponseData } from "./InvoiceResponseData";
 import { StripeEmbedInfo } from "./StripeEmbedInfo";
@@ -41,6 +42,7 @@ export const ComponentPreviewResponseData: core.serialization.ObjectSchema<
     creditBundles: core.serialization.property("credit_bundles", core.serialization.list(BillingCreditBundleView)),
     creditGrants: core.serialization.property("credit_grants", core.serialization.list(CreditCompanyGrantView)),
     defaultPlan: core.serialization.property("default_plan", PlanDetailResponseData.optional()),
+    displaySettings: core.serialization.property("display_settings", ComponentDisplaySettings),
     featureUsage: core.serialization.property("feature_usage", FeatureUsageDetailResponseData.optional()),
     invoices: core.serialization.list(InvoiceResponseData),
     postTrialPlan: core.serialization.property("post_trial_plan", PlanDetailResponseData.optional()),
@@ -56,6 +58,7 @@ export const ComponentPreviewResponseData: core.serialization.ObjectSchema<
         "prevent_self_service_downgrade_url",
         core.serialization.string().optional(),
     ),
+    showAsMonthlyPrices: core.serialization.property("show_as_monthly_prices", core.serialization.boolean()),
     showCredits: core.serialization.property("show_credits", core.serialization.boolean()),
     showPeriodToggle: core.serialization.property("show_period_toggle", core.serialization.boolean()),
     showZeroPriceAsFree: core.serialization.property("show_zero_price_as_free", core.serialization.boolean()),
@@ -81,12 +84,14 @@ export declare namespace ComponentPreviewResponseData {
         credit_bundles: BillingCreditBundleView.Raw[];
         credit_grants: CreditCompanyGrantView.Raw[];
         default_plan?: PlanDetailResponseData.Raw | null;
+        display_settings: ComponentDisplaySettings.Raw;
         feature_usage?: FeatureUsageDetailResponseData.Raw | null;
         invoices: InvoiceResponseData.Raw[];
         post_trial_plan?: PlanDetailResponseData.Raw | null;
         prevent_self_service_downgrade: boolean;
         prevent_self_service_downgrade_button_text?: string | null;
         prevent_self_service_downgrade_url?: string | null;
+        show_as_monthly_prices: boolean;
         show_credits: boolean;
         show_period_toggle: boolean;
         show_zero_price_as_free: boolean;

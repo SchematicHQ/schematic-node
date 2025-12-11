@@ -5,13 +5,15 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { BillingPriceScheme } from "./BillingPriceScheme";
 import { BillingProductPriceTierResponseData } from "./BillingProductPriceTierResponseData";
+import { BillingPriceUsageType } from "./BillingPriceUsageType";
 
 export const BillingProductForSubscriptionResponseData: core.serialization.ObjectSchema<
     serializers.BillingProductForSubscriptionResponseData.Raw,
     Schematic.BillingProductForSubscriptionResponseData
 > = core.serialization.object({
-    billingScheme: core.serialization.property("billing_scheme", core.serialization.string()),
+    billingScheme: core.serialization.property("billing_scheme", BillingPriceScheme),
     billingThreshold: core.serialization.property("billing_threshold", core.serialization.number().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     currency: core.serialization.string(),
@@ -34,12 +36,12 @@ export const BillingProductForSubscriptionResponseData: core.serialization.Objec
         core.serialization.string().optional(),
     ),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
-    usageType: core.serialization.property("usage_type", core.serialization.string()),
+    usageType: core.serialization.property("usage_type", BillingPriceUsageType),
 });
 
 export declare namespace BillingProductForSubscriptionResponseData {
     export interface Raw {
-        billing_scheme: string;
+        billing_scheme: BillingPriceScheme.Raw;
         billing_threshold?: number | null;
         created_at: string;
         currency: string;
@@ -59,6 +61,6 @@ export declare namespace BillingProductForSubscriptionResponseData {
         subscription_id: string;
         subscription_item_external_id?: string | null;
         updated_at: string;
-        usage_type: string;
+        usage_type: BillingPriceUsageType.Raw;
     }
 }
