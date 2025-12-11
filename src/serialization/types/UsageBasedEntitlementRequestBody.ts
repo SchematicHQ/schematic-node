@@ -7,6 +7,7 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { CreatePriceTierRequestBody } from "./CreatePriceTierRequestBody";
 import { EntitlementPriceBehavior } from "./EntitlementPriceBehavior";
+import { BillingTiersMode } from "./BillingTiersMode";
 
 export const UsageBasedEntitlementRequestBody: core.serialization.ObjectSchema<
     serializers.UsageBasedEntitlementRequestBody.Raw,
@@ -38,7 +39,7 @@ export const UsageBasedEntitlementRequestBody: core.serialization.ObjectSchema<
         core.serialization.list(CreatePriceTierRequestBody).optional(),
     ),
     softLimit: core.serialization.property("soft_limit", core.serialization.number().optional()),
-    tierMode: core.serialization.property("tier_mode", core.serialization.string().optional()),
+    tierMode: core.serialization.property("tier_mode", BillingTiersMode.optional()),
     yearlyMeteredPriceId: core.serialization.property(
         "yearly_metered_price_id",
         core.serialization.string().optional(),
@@ -67,7 +68,7 @@ export declare namespace UsageBasedEntitlementRequestBody {
         price_behavior?: EntitlementPriceBehavior.Raw | null;
         price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
         soft_limit?: number | null;
-        tier_mode?: string | null;
+        tier_mode?: BillingTiersMode.Raw | null;
         yearly_metered_price_id?: string | null;
         yearly_price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
         yearly_unit_price?: number | null;

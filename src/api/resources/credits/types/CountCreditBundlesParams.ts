@@ -8,12 +8,12 @@ import * as Schematic from "../../../index";
  * Input parameters
  */
 export interface CountCreditBundlesParams {
-    bundleType?: "fixed";
+    bundleType?: Schematic.BillingCreditBundleType;
     creditId?: string;
     ids?: string[];
     /** Page limit (default 100) */
     limit?: number;
     /** Page offset (default 0) */
     offset?: number;
-    status?: Schematic.CountCreditBundlesResponseParamsStatus;
+    status?: Schematic.BillingCreditBundleStatus;
 }

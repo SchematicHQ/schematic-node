@@ -5,8 +5,10 @@
 import * as serializers from "../../../../index";
 import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
-import { CreateCompanyCreditGrantExpiryType } from "../../types/CreateCompanyCreditGrantExpiryType";
-import { CreateCompanyCreditGrantExpiryUnit } from "../../types/CreateCompanyCreditGrantExpiryUnit";
+import { BillingCreditExpiryType } from "../../../../types/BillingCreditExpiryType";
+import { BillingCreditExpiryUnit } from "../../../../types/BillingCreditExpiryUnit";
+import { BillingCreditGrantReason } from "../../../../types/BillingCreditGrantReason";
+import { BillingPlanCreditGrantResetStart } from "../../../../types/BillingPlanCreditGrantResetStart";
 
 export const CreateCompanyCreditGrant: core.serialization.Schema<
     serializers.CreateCompanyCreditGrant.Raw,
@@ -16,11 +18,13 @@ export const CreateCompanyCreditGrant: core.serialization.Schema<
     companyId: core.serialization.property("company_id", core.serialization.string()),
     creditId: core.serialization.property("credit_id", core.serialization.string()),
     expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
-    expiryType: core.serialization.property("expiry_type", CreateCompanyCreditGrantExpiryType.optional()),
-    expiryUnit: core.serialization.property("expiry_unit", CreateCompanyCreditGrantExpiryUnit.optional()),
+    expiryType: core.serialization.property("expiry_type", BillingCreditExpiryType.optional()),
+    expiryUnit: core.serialization.property("expiry_unit", BillingCreditExpiryUnit.optional()),
     expiryUnitCount: core.serialization.property("expiry_unit_count", core.serialization.number().optional()),
     quantity: core.serialization.number(),
-    reason: core.serialization.string(),
+    reason: BillingCreditGrantReason,
+    renewalEnabled: core.serialization.property("renewal_enabled", core.serialization.boolean().optional()),
+    renewalPeriod: core.serialization.property("renewal_period", BillingPlanCreditGrantResetStart.optional()),
 });
 
 export declare namespace CreateCompanyCreditGrant {
@@ -29,10 +33,12 @@ export declare namespace CreateCompanyCreditGrant {
         company_id: string;
         credit_id: string;
         expires_at?: string | null;
-        expiry_type?: CreateCompanyCreditGrantExpiryType.Raw | null;
-        expiry_unit?: CreateCompanyCreditGrantExpiryUnit.Raw | null;
+        expiry_type?: BillingCreditExpiryType.Raw | null;
+        expiry_unit?: BillingCreditExpiryUnit.Raw | null;
         expiry_unit_count?: number | null;
         quantity: number;
-        reason: string;
+        reason: BillingCreditGrantReason.Raw;
+        renewal_enabled?: boolean | null;
+        renewal_period?: BillingPlanCreditGrantResetStart.Raw | null;
     }
 }

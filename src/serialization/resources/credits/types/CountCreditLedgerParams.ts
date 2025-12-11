@@ -5,7 +5,7 @@
 import * as serializers from "../../../index";
 import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
-import { CountCreditLedgerResponseParamsPeriod } from "./CountCreditLedgerResponseParamsPeriod";
+import { CreditLedgerPeriod } from "../../../types/CreditLedgerPeriod";
 
 export const CountCreditLedgerParams: core.serialization.ObjectSchema<
     serializers.CountCreditLedgerParams.Raw,
@@ -17,7 +17,7 @@ export const CountCreditLedgerParams: core.serialization.ObjectSchema<
     featureId: core.serialization.property("feature_id", core.serialization.string().optional()),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
-    period: CountCreditLedgerResponseParamsPeriod.optional(),
+    period: CreditLedgerPeriod.optional(),
     startTime: core.serialization.property("start_time", core.serialization.string().optional()),
 });
 
@@ -29,7 +29,7 @@ export declare namespace CountCreditLedgerParams {
         feature_id?: string | null;
         limit?: number | null;
         offset?: number | null;
-        period?: CountCreditLedgerResponseParamsPeriod.Raw | null;
+        period?: CreditLedgerPeriod.Raw | null;
         start_time?: string | null;
     }
 }

@@ -8,7 +8,7 @@ import * as core from "../../core";
 import { EntitlementValueType } from "./EntitlementValueType";
 import { CompanyOverrideResponseData } from "./CompanyOverrideResponseData";
 import { CreditGrantDetail } from "./CreditGrantDetail";
-import { GrantReason } from "./GrantReason";
+import { BillingCreditGrantReason } from "./BillingCreditGrantReason";
 import { EntitlementType } from "./EntitlementType";
 import { FeatureDetailResponseData } from "./FeatureDetailResponseData";
 import { BillingPriceView } from "./BillingPriceView";
@@ -36,7 +36,7 @@ export const FeatureUsageResponseData: core.serialization.ObjectSchema<
         "credit_grant_details",
         core.serialization.list(CreditGrantDetail).optional(),
     ),
-    creditGrantReason: core.serialization.property("credit_grant_reason", GrantReason.optional()),
+    creditGrantReason: core.serialization.property("credit_grant_reason", BillingCreditGrantReason.optional()),
     creditRemaining: core.serialization.property("credit_remaining", core.serialization.number().optional()),
     creditTotal: core.serialization.property("credit_total", core.serialization.number().optional()),
     creditTypeIcon: core.serialization.property("credit_type_icon", core.serialization.string().optional()),
@@ -76,7 +76,7 @@ export declare namespace FeatureUsageResponseData {
         credit_consumption_rate?: number | null;
         credit_grant_counts?: Record<string, number> | null;
         credit_grant_details?: CreditGrantDetail.Raw[] | null;
-        credit_grant_reason?: GrantReason.Raw | null;
+        credit_grant_reason?: BillingCreditGrantReason.Raw | null;
         credit_remaining?: number | null;
         credit_total?: number | null;
         credit_type_icon?: string | null;

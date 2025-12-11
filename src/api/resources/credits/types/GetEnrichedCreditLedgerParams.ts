@@ -16,6 +16,6 @@ export interface GetEnrichedCreditLedgerParams {
     limit?: number;
     /** Page offset (default 0) */
     offset?: number;
-    period?: Schematic.GetEnrichedCreditLedgerResponseParamsPeriod;
+    period?: Schematic.CreditLedgerPeriod;
     startTime?: string;
 }

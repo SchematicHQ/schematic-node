@@ -5,6 +5,11 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { BillingCreditExpiryType } from "./BillingCreditExpiryType";
+import { BillingCreditExpiryUnit } from "./BillingCreditExpiryUnit";
+import { BillingPlanCreditGrantResetCadence } from "./BillingPlanCreditGrantResetCadence";
+import { BillingPlanCreditGrantResetStart } from "./BillingPlanCreditGrantResetStart";
+import { BillingPlanCreditGrantResetType } from "./BillingPlanCreditGrantResetType";
 
 export const BillingPlanCreditGrantResponseData: core.serialization.ObjectSchema<
     serializers.BillingPlanCreditGrantResponseData.Raw,
@@ -13,8 +18,8 @@ export const BillingPlanCreditGrantResponseData: core.serialization.ObjectSchema
     autoTopupAmount: core.serialization.property("auto_topup_amount", core.serialization.number().optional()),
     autoTopupAmountType: core.serialization.property("auto_topup_amount_type", core.serialization.string().optional()),
     autoTopupEnabled: core.serialization.property("auto_topup_enabled", core.serialization.boolean()),
-    autoTopupExpiryType: core.serialization.property("auto_topup_expiry_type", core.serialization.string().optional()),
-    autoTopupExpiryUnit: core.serialization.property("auto_topup_expiry_unit", core.serialization.string().optional()),
+    autoTopupExpiryType: core.serialization.property("auto_topup_expiry_type", BillingCreditExpiryType.optional()),
+    autoTopupExpiryUnit: core.serialization.property("auto_topup_expiry_unit", BillingCreditExpiryUnit.optional()),
     autoTopupExpiryUnitCount: core.serialization.property(
         "auto_topup_expiry_unit_count",
         core.serialization.number().optional(),
@@ -29,15 +34,15 @@ export const BillingPlanCreditGrantResponseData: core.serialization.ObjectSchema
     creditName: core.serialization.property("credit_name", core.serialization.string()),
     creditPluralName: core.serialization.property("credit_plural_name", core.serialization.string().optional()),
     creditSingularName: core.serialization.property("credit_singular_name", core.serialization.string().optional()),
-    expiryType: core.serialization.property("expiry_type", core.serialization.string().optional()),
-    expiryUnit: core.serialization.property("expiry_unit", core.serialization.string().optional()),
+    expiryType: core.serialization.property("expiry_type", BillingCreditExpiryType.optional()),
+    expiryUnit: core.serialization.property("expiry_unit", BillingCreditExpiryUnit.optional()),
     expiryUnitCount: core.serialization.property("expiry_unit_count", core.serialization.number().optional()),
     id: core.serialization.string(),
     planId: core.serialization.property("plan_id", core.serialization.string()),
     planName: core.serialization.property("plan_name", core.serialization.string()),
-    resetCadence: core.serialization.property("reset_cadence", core.serialization.string()),
-    resetStart: core.serialization.property("reset_start", core.serialization.string()),
-    resetType: core.serialization.property("reset_type", core.serialization.string().optional()),
+    resetCadence: core.serialization.property("reset_cadence", BillingPlanCreditGrantResetCadence),
+    resetStart: core.serialization.property("reset_start", BillingPlanCreditGrantResetStart),
+    resetType: core.serialization.property("reset_type", BillingPlanCreditGrantResetType.optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
@@ -46,8 +51,8 @@ export declare namespace BillingPlanCreditGrantResponseData {
         auto_topup_amount?: number | null;
         auto_topup_amount_type?: string | null;
         auto_topup_enabled: boolean;
-        auto_topup_expiry_type?: string | null;
-        auto_topup_expiry_unit?: string | null;
+        auto_topup_expiry_type?: BillingCreditExpiryType.Raw | null;
+        auto_topup_expiry_unit?: BillingCreditExpiryUnit.Raw | null;
         auto_topup_expiry_unit_count?: number | null;
         auto_topup_threshold_percent?: number | null;
         created_at: string;
@@ -56,15 +61,15 @@ export declare namespace BillingPlanCreditGrantResponseData {
         credit_name: string;
         credit_plural_name?: string | null;
         credit_singular_name?: string | null;
-        expiry_type?: string | null;
-        expiry_unit?: string | null;
+        expiry_type?: BillingCreditExpiryType.Raw | null;
+        expiry_unit?: BillingCreditExpiryUnit.Raw | null;
         expiry_unit_count?: number | null;
         id: string;
         plan_id: string;
         plan_name: string;
-        reset_cadence: string;
-        reset_start: string;
-        reset_type?: string | null;
+        reset_cadence: BillingPlanCreditGrantResetCadence.Raw;
+        reset_start: BillingPlanCreditGrantResetStart.Raw;
+        reset_type?: BillingPlanCreditGrantResetType.Raw | null;
         updated_at: string;
     }
 }

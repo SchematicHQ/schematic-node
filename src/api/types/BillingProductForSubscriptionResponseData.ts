@@ -5,7 +5,7 @@
 import * as Schematic from "../index";
 
 export interface BillingProductForSubscriptionResponseData {
-    billingScheme: string;
+    billingScheme: Schematic.BillingPriceScheme;
     billingThreshold?: number;
     createdAt: Date;
     currency: string;
@@ -25,5 +25,5 @@ export interface BillingProductForSubscriptionResponseData {
     subscriptionId: string;
     subscriptionItemExternalId?: string;
     updatedAt: Date;
-    usageType: string;
+    usageType: Schematic.BillingPriceUsageType;
 }

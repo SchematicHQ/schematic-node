@@ -5,7 +5,7 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
-import { BillingProductPricingUsageType } from "./BillingProductPricingUsageType";
+import { BillingPriceUsageType } from "./BillingPriceUsageType";
 
 export const BillingProductPricing: core.serialization.ObjectSchema<
     serializers.BillingProductPricing.Raw,
@@ -25,7 +25,7 @@ export const BillingProductPricing: core.serialization.ObjectSchema<
         "subscription_item_external_id",
         core.serialization.string().optional(),
     ),
-    usageType: core.serialization.property("usage_type", BillingProductPricingUsageType),
+    usageType: core.serialization.property("usage_type", BillingPriceUsageType),
 });
 
 export declare namespace BillingProductPricing {
@@ -41,6 +41,6 @@ export declare namespace BillingProductPricing {
         product_external_id: string;
         quantity: number;
         subscription_item_external_id?: string | null;
-        usage_type: BillingProductPricingUsageType.Raw;
+        usage_type: BillingPriceUsageType.Raw;
     }
 }

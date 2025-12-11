@@ -5,12 +5,12 @@
 import * as serializers from "../../../../index";
 import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
-import { CreateBillingPlanCreditGrantRequestBodyAutoTopupExpiryType } from "../../types/CreateBillingPlanCreditGrantRequestBodyAutoTopupExpiryType";
-import { CreateBillingPlanCreditGrantRequestBodyExpiryType } from "../../types/CreateBillingPlanCreditGrantRequestBodyExpiryType";
-import { CreateBillingPlanCreditGrantRequestBodyExpiryUnit } from "../../types/CreateBillingPlanCreditGrantRequestBodyExpiryUnit";
-import { CreateBillingPlanCreditGrantRequestBodyResetCadence } from "../../types/CreateBillingPlanCreditGrantRequestBodyResetCadence";
-import { CreateBillingPlanCreditGrantRequestBodyResetStart } from "../../types/CreateBillingPlanCreditGrantRequestBodyResetStart";
-import { CreateBillingPlanCreditGrantRequestBodyResetType } from "../../types/CreateBillingPlanCreditGrantRequestBodyResetType";
+import { CreditAutoTopupAmountType } from "../../../../types/CreditAutoTopupAmountType";
+import { BillingCreditExpiryType } from "../../../../types/BillingCreditExpiryType";
+import { BillingCreditExpiryUnit } from "../../../../types/BillingCreditExpiryUnit";
+import { BillingPlanCreditGrantResetCadence } from "../../../../types/BillingPlanCreditGrantResetCadence";
+import { BillingPlanCreditGrantResetStart } from "../../../../types/BillingPlanCreditGrantResetStart";
+import { BillingPlanCreditGrantResetType } from "../../../../types/BillingPlanCreditGrantResetType";
 
 export const CreateBillingPlanCreditGrantRequestBody: core.serialization.Schema<
     serializers.CreateBillingPlanCreditGrantRequestBody.Raw,
@@ -18,19 +18,10 @@ export const CreateBillingPlanCreditGrantRequestBody: core.serialization.Schema<
 > = core.serialization.object({
     applyToExisting: core.serialization.property("apply_to_existing", core.serialization.boolean().optional()),
     autoTopupAmount: core.serialization.property("auto_topup_amount", core.serialization.number().optional()),
-    autoTopupAmountType: core.serialization.property(
-        "auto_topup_amount_type",
-        core.serialization.stringLiteral("credit").optional(),
-    ),
+    autoTopupAmountType: core.serialization.property("auto_topup_amount_type", CreditAutoTopupAmountType.optional()),
     autoTopupEnabled: core.serialization.property("auto_topup_enabled", core.serialization.boolean().optional()),
-    autoTopupExpiryType: core.serialization.property(
-        "auto_topup_expiry_type",
-        CreateBillingPlanCreditGrantRequestBodyAutoTopupExpiryType.optional(),
-    ),
-    autoTopupExpiryUnit: core.serialization.property(
-        "auto_topup_expiry_unit",
-        core.serialization.stringLiteral("days").optional(),
-    ),
+    autoTopupExpiryType: core.serialization.property("auto_topup_expiry_type", BillingCreditExpiryType.optional()),
+    autoTopupExpiryUnit: core.serialization.property("auto_topup_expiry_unit", BillingCreditExpiryUnit.optional()),
     autoTopupExpiryUnitCount: core.serialization.property(
         "auto_topup_expiry_unit_count",
         core.serialization.number().optional(),
@@ -41,39 +32,33 @@ export const CreateBillingPlanCreditGrantRequestBody: core.serialization.Schema<
     ),
     creditAmount: core.serialization.property("credit_amount", core.serialization.number()),
     creditId: core.serialization.property("credit_id", core.serialization.string()),
-    expiryType: core.serialization.property(
-        "expiry_type",
-        CreateBillingPlanCreditGrantRequestBodyExpiryType.optional(),
-    ),
-    expiryUnit: core.serialization.property(
-        "expiry_unit",
-        CreateBillingPlanCreditGrantRequestBodyExpiryUnit.optional(),
-    ),
+    expiryType: core.serialization.property("expiry_type", BillingCreditExpiryType.optional()),
+    expiryUnit: core.serialization.property("expiry_unit", BillingCreditExpiryUnit.optional()),
     expiryUnitCount: core.serialization.property("expiry_unit_count", core.serialization.number().optional()),
     planId: core.serialization.property("plan_id", core.serialization.string()),
-    resetCadence: core.serialization.property("reset_cadence", CreateBillingPlanCreditGrantRequestBodyResetCadence),
-    resetStart: core.serialization.property("reset_start", CreateBillingPlanCreditGrantRequestBodyResetStart),
-    resetType: core.serialization.property("reset_type", CreateBillingPlanCreditGrantRequestBodyResetType.optional()),
+    resetCadence: core.serialization.property("reset_cadence", BillingPlanCreditGrantResetCadence),
+    resetStart: core.serialization.property("reset_start", BillingPlanCreditGrantResetStart),
+    resetType: core.serialization.property("reset_type", BillingPlanCreditGrantResetType.optional()),
 });
 
 export declare namespace CreateBillingPlanCreditGrantRequestBody {
     export interface Raw {
         apply_to_existing?: boolean | null;
         auto_topup_amount?: number | null;
-        auto_topup_amount_type?: "credit" | null;
+        auto_topup_amount_type?: CreditAutoTopupAmountType.Raw | null;
         auto_topup_enabled?: boolean | null;
-        auto_topup_expiry_type?: CreateBillingPlanCreditGrantRequestBodyAutoTopupExpiryType.Raw | null;
-        auto_topup_expiry_unit?: "days" | null;
+        auto_topup_expiry_type?: BillingCreditExpiryType.Raw | null;
+        auto_topup_expiry_unit?: BillingCreditExpiryUnit.Raw | null;
         auto_topup_expiry_unit_count?: number | null;
         auto_topup_threshold_percent?: number | null;
         credit_amount: number;
         credit_id: string;
-        expiry_type?: CreateBillingPlanCreditGrantRequestBodyExpiryType.Raw | null;
-        expiry_unit?: CreateBillingPlanCreditGrantRequestBodyExpiryUnit.Raw | null;
+        expiry_type?: BillingCreditExpiryType.Raw | null;
+        expiry_unit?: BillingCreditExpiryUnit.Raw | null;
         expiry_unit_count?: number | null;
         plan_id: string;
-        reset_cadence: CreateBillingPlanCreditGrantRequestBodyResetCadence.Raw;
-        reset_start: CreateBillingPlanCreditGrantRequestBodyResetStart.Raw;
-        reset_type?: CreateBillingPlanCreditGrantRequestBodyResetType.Raw | null;
+        reset_cadence: BillingPlanCreditGrantResetCadence.Raw;
+        reset_start: BillingPlanCreditGrantResetStart.Raw;
+        reset_type?: BillingPlanCreditGrantResetType.Raw | null;
     }
 }

@@ -5,6 +5,9 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { BillingCreditBurnStrategy } from "./BillingCreditBurnStrategy";
+import { BillingCreditExpiryUnit } from "./BillingCreditExpiryUnit";
+import { BillingCreditRolloverPolicy } from "./BillingCreditRolloverPolicy";
 import { BillingPriceResponseData } from "./BillingPriceResponseData";
 import { BillingProductResponseData } from "./BillingProductResponseData";
 
@@ -12,14 +15,14 @@ export const BillingCreditResponseData: core.serialization.ObjectSchema<
     serializers.BillingCreditResponseData.Raw,
     Schematic.BillingCreditResponseData
 > = core.serialization.object({
-    burnStrategy: core.serialization.property("burn_strategy", core.serialization.string()),
+    burnStrategy: core.serialization.property("burn_strategy", BillingCreditBurnStrategy),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
-    defaultExpiryUnit: core.serialization.property("default_expiry_unit", core.serialization.string()),
+    defaultExpiryUnit: core.serialization.property("default_expiry_unit", BillingCreditExpiryUnit),
     defaultExpiryUnitCount: core.serialization.property(
         "default_expiry_unit_count",
         core.serialization.number().optional(),
     ),
-    defaultRolloverPolicy: core.serialization.property("default_rollover_policy", core.serialization.string()),
+    defaultRolloverPolicy: core.serialization.property("default_rollover_policy", BillingCreditRolloverPolicy),
     description: core.serialization.string(),
     icon: core.serialization.string().optional(),
     id: core.serialization.string(),
@@ -33,11 +36,11 @@ export const BillingCreditResponseData: core.serialization.ObjectSchema<
 
 export declare namespace BillingCreditResponseData {
     export interface Raw {
-        burn_strategy: string;
+        burn_strategy: BillingCreditBurnStrategy.Raw;
         created_at: string;
-        default_expiry_unit: string;
+        default_expiry_unit: BillingCreditExpiryUnit.Raw;
         default_expiry_unit_count?: number | null;
-        default_rollover_policy: string;
+        default_rollover_policy: BillingCreditRolloverPolicy.Raw;
         description: string;
         icon?: string | null;
         id: string;

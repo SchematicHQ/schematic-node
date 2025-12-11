@@ -5,7 +5,11 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { BillingCreditExpiryType } from "./BillingCreditExpiryType";
+import { BillingCreditExpiryUnit } from "./BillingCreditExpiryUnit";
+import { BillingCreditGrantReason } from "./BillingCreditGrantReason";
 import { BillingProductPriceResponseData } from "./BillingProductPriceResponseData";
+import { BillingCreditGrantZeroedOutReason } from "./BillingCreditGrantZeroedOutReason";
 
 export const CreditCompanyGrantView: core.serialization.ObjectSchema<
     serializers.CreditCompanyGrantView.Raw,
@@ -23,10 +27,10 @@ export const CreditCompanyGrantView: core.serialization.ObjectSchema<
     creditIcon: core.serialization.property("credit_icon", core.serialization.string().optional()),
     creditName: core.serialization.property("credit_name", core.serialization.string()),
     expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
-    expiryType: core.serialization.property("expiry_type", core.serialization.string().optional()),
-    expiryUnit: core.serialization.property("expiry_unit", core.serialization.string().optional()),
+    expiryType: core.serialization.property("expiry_type", BillingCreditExpiryType.optional()),
+    expiryUnit: core.serialization.property("expiry_unit", BillingCreditExpiryUnit.optional()),
     expiryUnitCount: core.serialization.property("expiry_unit_count", core.serialization.number().optional()),
-    grantReason: core.serialization.property("grant_reason", core.serialization.string()),
+    grantReason: core.serialization.property("grant_reason", BillingCreditGrantReason),
     id: core.serialization.string(),
     planId: core.serialization.property("plan_id", core.serialization.string().optional()),
     planName: core.serialization.property("plan_name", core.serialization.string().optional()),
@@ -40,7 +44,7 @@ export const CreditCompanyGrantView: core.serialization.ObjectSchema<
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     validFrom: core.serialization.property("valid_from", core.serialization.date().optional()),
     zeroedOutDate: core.serialization.property("zeroed_out_date", core.serialization.date().optional()),
-    zeroedOutReason: core.serialization.property("zeroed_out_reason", core.serialization.string().optional()),
+    zeroedOutReason: core.serialization.property("zeroed_out_reason", BillingCreditGrantZeroedOutReason.optional()),
 });
 
 export declare namespace CreditCompanyGrantView {
@@ -54,10 +58,10 @@ export declare namespace CreditCompanyGrantView {
         credit_icon?: string | null;
         credit_name: string;
         expires_at?: string | null;
-        expiry_type?: string | null;
-        expiry_unit?: string | null;
+        expiry_type?: BillingCreditExpiryType.Raw | null;
+        expiry_unit?: BillingCreditExpiryUnit.Raw | null;
         expiry_unit_count?: number | null;
-        grant_reason: string;
+        grant_reason: BillingCreditGrantReason.Raw;
         id: string;
         plan_id?: string | null;
         plan_name?: string | null;
@@ -71,6 +75,6 @@ export declare namespace CreditCompanyGrantView {
         updated_at: string;
         valid_from?: string | null;
         zeroed_out_date?: string | null;
-        zeroed_out_reason?: string | null;
+        zeroed_out_reason?: BillingCreditGrantZeroedOutReason.Raw | null;
     }
 }

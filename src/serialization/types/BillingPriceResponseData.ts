@@ -5,6 +5,8 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { BillingProductPriceInterval } from "./BillingProductPriceInterval";
+import { BillingPriceScheme } from "./BillingPriceScheme";
 
 export const BillingPriceResponseData: core.serialization.ObjectSchema<
     serializers.BillingPriceResponseData.Raw,
@@ -13,10 +15,10 @@ export const BillingPriceResponseData: core.serialization.ObjectSchema<
     currency: core.serialization.string(),
     externalPriceId: core.serialization.property("external_price_id", core.serialization.string()),
     id: core.serialization.string(),
-    interval: core.serialization.string(),
+    interval: BillingProductPriceInterval,
     price: core.serialization.number(),
     priceDecimal: core.serialization.property("price_decimal", core.serialization.string().optional()),
-    scheme: core.serialization.string(),
+    scheme: BillingPriceScheme,
 });
 
 export declare namespace BillingPriceResponseData {
@@ -24,9 +26,9 @@ export declare namespace BillingPriceResponseData {
         currency: string;
         external_price_id: string;
         id: string;
-        interval: string;
+        interval: BillingProductPriceInterval.Raw;
         price: number;
         price_decimal?: string | null;
-        scheme: string;
+        scheme: BillingPriceScheme.Raw;
     }
 }

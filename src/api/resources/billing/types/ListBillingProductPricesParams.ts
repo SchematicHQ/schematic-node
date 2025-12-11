@@ -24,8 +24,8 @@ export interface ListBillingProductPricesParams {
     productId?: string;
     productIds?: string[];
     q?: string;
-    tiersMode?: Schematic.ListBillingProductPricesResponseParamsTiersMode;
-    usageType?: Schematic.ListBillingProductPricesResponseParamsUsageType;
+    tiersMode?: Schematic.BillingTiersMode;
+    usageType?: Schematic.BillingPriceUsageType;
     /** Filter for prices with a meter */
     withMeter?: boolean;
 }

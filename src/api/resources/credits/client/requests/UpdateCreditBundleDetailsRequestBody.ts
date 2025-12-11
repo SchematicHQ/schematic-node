@@ -13,11 +13,11 @@ import * as Schematic from "../../../../index";
  */
 export interface UpdateCreditBundleDetailsRequestBody {
     bundleName: string;
-    expiryType?: Schematic.UpdateCreditBundleDetailsRequestBodyExpiryType;
-    expiryUnit?: Schematic.UpdateCreditBundleDetailsRequestBodyExpiryUnit;
+    expiryType?: Schematic.BillingCreditExpiryType;
+    expiryUnit?: Schematic.BillingCreditExpiryUnit;
     expiryUnitCount?: number;
     pricePerUnit: number;
     pricePerUnitDecimal?: string;
     quantity?: number;
-    status?: Schematic.UpdateCreditBundleDetailsRequestBodyStatus;
+    status?: Schematic.BillingCreditBundleStatus;
 }

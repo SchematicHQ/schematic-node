@@ -17,8 +17,8 @@ import * as Schematic from "../../../../index";
 export interface ListCreditBundlesRequest {
     ids?: string | string[];
     creditId?: string;
-    status?: Schematic.ListCreditBundlesRequestStatus;
-    bundleType?: "fixed";
+    status?: Schematic.BillingCreditBundleStatus;
+    bundleType?: Schematic.BillingCreditBundleType;
     /**
      * Page limit (default 100)
      */

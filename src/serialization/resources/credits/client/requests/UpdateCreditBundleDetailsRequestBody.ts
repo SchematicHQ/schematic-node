@@ -5,33 +5,33 @@
 import * as serializers from "../../../../index";
 import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
-import { UpdateCreditBundleDetailsRequestBodyExpiryType } from "../../types/UpdateCreditBundleDetailsRequestBodyExpiryType";
-import { UpdateCreditBundleDetailsRequestBodyExpiryUnit } from "../../types/UpdateCreditBundleDetailsRequestBodyExpiryUnit";
-import { UpdateCreditBundleDetailsRequestBodyStatus } from "../../types/UpdateCreditBundleDetailsRequestBodyStatus";
+import { BillingCreditExpiryType } from "../../../../types/BillingCreditExpiryType";
+import { BillingCreditExpiryUnit } from "../../../../types/BillingCreditExpiryUnit";
+import { BillingCreditBundleStatus } from "../../../../types/BillingCreditBundleStatus";
 
 export const UpdateCreditBundleDetailsRequestBody: core.serialization.Schema<
     serializers.UpdateCreditBundleDetailsRequestBody.Raw,
     Schematic.UpdateCreditBundleDetailsRequestBody
 > = core.serialization.object({
     bundleName: core.serialization.property("bundle_name", core.serialization.string()),
-    expiryType: core.serialization.property("expiry_type", UpdateCreditBundleDetailsRequestBodyExpiryType.optional()),
-    expiryUnit: core.serialization.property("expiry_unit", UpdateCreditBundleDetailsRequestBodyExpiryUnit.optional()),
+    expiryType: core.serialization.property("expiry_type", BillingCreditExpiryType.optional()),
+    expiryUnit: core.serialization.property("expiry_unit", BillingCreditExpiryUnit.optional()),
     expiryUnitCount: core.serialization.property("expiry_unit_count", core.serialization.number().optional()),
     pricePerUnit: core.serialization.property("price_per_unit", core.serialization.number()),
     pricePerUnitDecimal: core.serialization.property("price_per_unit_decimal", core.serialization.string().optional()),
     quantity: core.serialization.number().optional(),
-    status: UpdateCreditBundleDetailsRequestBodyStatus.optional(),
+    status: BillingCreditBundleStatus.optional(),
 });
 
 export declare namespace UpdateCreditBundleDetailsRequestBody {
     export interface Raw {
         bundle_name: string;
-        expiry_type?: UpdateCreditBundleDetailsRequestBodyExpiryType.Raw | null;
-        expiry_unit?: UpdateCreditBundleDetailsRequestBodyExpiryUnit.Raw | null;
+        expiry_type?: BillingCreditExpiryType.Raw | null;
+        expiry_unit?: BillingCreditExpiryUnit.Raw | null;
         expiry_unit_count?: number | null;
         price_per_unit: number;
         price_per_unit_decimal?: string | null;
         quantity?: number | null;
-        status?: UpdateCreditBundleDetailsRequestBodyStatus.Raw | null;
+        status?: BillingCreditBundleStatus.Raw | null;
     }
 }

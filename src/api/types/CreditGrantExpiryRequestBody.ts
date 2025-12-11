@@ -5,10 +5,10 @@
 import * as Schematic from "../index";
 
 export interface CreditGrantExpiryRequestBody {
-    expiryType?: Schematic.CreditGrantExpiryRequestBodyExpiryType;
-    expiryUnit?: Schematic.CreditGrantExpiryRequestBodyExpiryUnit;
+    expiryType?: Schematic.BillingCreditExpiryType;
+    expiryUnit?: Schematic.BillingCreditExpiryUnit;
     expiryUnitCount?: number;
-    resetCadence: Schematic.CreditGrantExpiryRequestBodyResetCadence;
-    resetStart: Schematic.CreditGrantExpiryRequestBodyResetStart;
-    resetType?: Schematic.CreditGrantExpiryRequestBodyResetType;
+    resetCadence: Schematic.BillingPlanCreditGrantResetCadence;
+    resetStart: Schematic.BillingPlanCreditGrantResetStart;
+    resetType?: Schematic.BillingPlanCreditGrantResetType;
 }

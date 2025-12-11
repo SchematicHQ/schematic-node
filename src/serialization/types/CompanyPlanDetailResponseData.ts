@@ -12,7 +12,7 @@ import { CustomPlanConfig } from "./CustomPlanConfig";
 import { PlanEntitlementResponseData } from "./PlanEntitlementResponseData";
 import { FeatureDetailResponseData } from "./FeatureDetailResponseData";
 import { PlanCreditGrantView } from "./PlanCreditGrantView";
-import { CompanyPlanDetailResponseDataInvalidReason } from "./CompanyPlanDetailResponseDataInvalidReason";
+import { CompanyPlanInvalidReason } from "./CompanyPlanInvalidReason";
 import { BillingPriceResponseData } from "./BillingPriceResponseData";
 import { PlanType } from "./PlanType";
 import { FeatureUsageResponseData } from "./FeatureUsageResponseData";
@@ -44,7 +44,7 @@ export const CompanyPlanDetailResponseData: core.serialization.ObjectSchema<
         "included_credit_grants",
         core.serialization.list(PlanCreditGrantView),
     ),
-    invalidReason: core.serialization.property("invalid_reason", CompanyPlanDetailResponseDataInvalidReason.optional()),
+    invalidReason: core.serialization.property("invalid_reason", CompanyPlanInvalidReason.optional()),
     isCustom: core.serialization.property("is_custom", core.serialization.boolean()),
     isDefault: core.serialization.property("is_default", core.serialization.boolean()),
     isFree: core.serialization.property("is_free", core.serialization.boolean()),
@@ -79,7 +79,7 @@ export declare namespace CompanyPlanDetailResponseData {
         icon: string;
         id: string;
         included_credit_grants: PlanCreditGrantView.Raw[];
-        invalid_reason?: CompanyPlanDetailResponseDataInvalidReason.Raw | null;
+        invalid_reason?: CompanyPlanInvalidReason.Raw | null;
         is_custom: boolean;
         is_default: boolean;
         is_free: boolean;

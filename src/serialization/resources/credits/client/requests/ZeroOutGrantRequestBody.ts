@@ -5,17 +5,17 @@
 import * as serializers from "../../../../index";
 import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
-import { ZeroOutGrantRequestBodyReason } from "../../types/ZeroOutGrantRequestBodyReason";
+import { BillingCreditGrantZeroedOutReason } from "../../../../types/BillingCreditGrantZeroedOutReason";
 
 export const ZeroOutGrantRequestBody: core.serialization.Schema<
     serializers.ZeroOutGrantRequestBody.Raw,
     Schematic.ZeroOutGrantRequestBody
 > = core.serialization.object({
-    reason: ZeroOutGrantRequestBodyReason.optional(),
+    reason: BillingCreditGrantZeroedOutReason.optional(),
 });
 
 export declare namespace ZeroOutGrantRequestBody {
     export interface Raw {
-        reason?: ZeroOutGrantRequestBodyReason.Raw | null;
+        reason?: BillingCreditGrantZeroedOutReason.Raw | null;
     }
 }

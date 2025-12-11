@@ -5,28 +5,28 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
-import { PlanChangeResponseDataAction } from "./PlanChangeResponseDataAction";
-import { PlanChangeResponseDataActorType } from "./PlanChangeResponseDataActorType";
+import { PlanChangeAction } from "./PlanChangeAction";
+import { PlanChangeActorType } from "./PlanChangeActorType";
 import { PlanSnapshotView } from "./PlanSnapshotView";
 import { ApiKeyResponseData } from "./ApiKeyResponseData";
 import { ApiKeyRequestListResponseData } from "./ApiKeyRequestListResponseData";
-import { PlanChangeResponseDataBasePlanAction } from "./PlanChangeResponseDataBasePlanAction";
+import { PlanChangeBasePlanAction } from "./PlanChangeBasePlanAction";
 import { CompanyResponseData } from "./CompanyResponseData";
-import { PlanChangeResponseDataSubscriptionChangeAction } from "./PlanChangeResponseDataSubscriptionChangeAction";
+import { PlanChangeSubscriptionAction } from "./PlanChangeSubscriptionAction";
 import { SubscriptionTraitUpdate } from "./SubscriptionTraitUpdate";
 
 export const PlanChangeResponseData: core.serialization.ObjectSchema<
     serializers.PlanChangeResponseData.Raw,
     Schematic.PlanChangeResponseData
 > = core.serialization.object({
-    action: PlanChangeResponseDataAction,
-    actorType: core.serialization.property("actor_type", PlanChangeResponseDataActorType),
+    action: PlanChangeAction,
+    actorType: core.serialization.property("actor_type", PlanChangeActorType),
     addOnsAdded: core.serialization.property("add_ons_added", core.serialization.list(PlanSnapshotView)),
     addOnsRemoved: core.serialization.property("add_ons_removed", core.serialization.list(PlanSnapshotView)),
     apiKey: core.serialization.property("api_key", ApiKeyResponseData.optional()),
     apiKeyRequest: core.serialization.property("api_key_request", ApiKeyRequestListResponseData.optional()),
     basePlan: core.serialization.property("base_plan", PlanSnapshotView.optional()),
-    basePlanAction: core.serialization.property("base_plan_action", PlanChangeResponseDataBasePlanAction.optional()),
+    basePlanAction: core.serialization.property("base_plan_action", PlanChangeBasePlanAction.optional()),
     company: CompanyResponseData.optional(),
     companyId: core.serialization.property("company_id", core.serialization.string()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
@@ -36,7 +36,7 @@ export const PlanChangeResponseData: core.serialization.ObjectSchema<
     requestId: core.serialization.property("request_id", core.serialization.string().optional()),
     subscriptionChangeAction: core.serialization.property(
         "subscription_change_action",
-        PlanChangeResponseDataSubscriptionChangeAction.optional(),
+        PlanChangeSubscriptionAction.optional(),
     ),
     traitsUpdated: core.serialization.property("traits_updated", core.serialization.list(SubscriptionTraitUpdate)),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -46,14 +46,14 @@ export const PlanChangeResponseData: core.serialization.ObjectSchema<
 
 export declare namespace PlanChangeResponseData {
     export interface Raw {
-        action: PlanChangeResponseDataAction.Raw;
-        actor_type: PlanChangeResponseDataActorType.Raw;
+        action: PlanChangeAction.Raw;
+        actor_type: PlanChangeActorType.Raw;
         add_ons_added: PlanSnapshotView.Raw[];
         add_ons_removed: PlanSnapshotView.Raw[];
         api_key?: ApiKeyResponseData.Raw | null;
         api_key_request?: ApiKeyRequestListResponseData.Raw | null;
         base_plan?: PlanSnapshotView.Raw | null;
-        base_plan_action?: PlanChangeResponseDataBasePlanAction.Raw | null;
+        base_plan_action?: PlanChangeBasePlanAction.Raw | null;
         company?: CompanyResponseData.Raw | null;
         company_id: string;
         created_at: string;
@@ -61,7 +61,7 @@ export declare namespace PlanChangeResponseData {
         id: string;
         previous_base_plan?: PlanSnapshotView.Raw | null;
         request_id?: string | null;
-        subscription_change_action?: PlanChangeResponseDataSubscriptionChangeAction.Raw | null;
+        subscription_change_action?: PlanChangeSubscriptionAction.Raw | null;
         traits_updated: SubscriptionTraitUpdate.Raw[];
         updated_at: string;
         user_id?: string | null;

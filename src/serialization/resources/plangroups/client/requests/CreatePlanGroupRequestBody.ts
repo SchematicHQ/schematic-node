@@ -52,11 +52,12 @@ export const CreatePlanGroupRequestBody: core.serialization.Schema<
         core.serialization.string().optional(),
     ),
     prorationBehavior: core.serialization.property("proration_behavior", ProrationBehavior),
+    showAsMonthlyPrices: core.serialization.property("show_as_monthly_prices", core.serialization.boolean()),
     showCredits: core.serialization.property("show_credits", core.serialization.boolean()),
     showPeriodToggle: core.serialization.property("show_period_toggle", core.serialization.boolean()),
     showZeroPriceAsFree: core.serialization.property("show_zero_price_as_free", core.serialization.boolean()),
-    syncCustomerBillingDetailsForTax: core.serialization.property(
-        "sync_customer_billing_details_for_tax",
+    syncCustomerBillingDetails: core.serialization.property(
+        "sync_customer_billing_details",
         core.serialization.boolean(),
     ),
     trialDays: core.serialization.property("trial_days", core.serialization.number().optional()),
@@ -92,10 +93,11 @@ export declare namespace CreatePlanGroupRequestBody {
         prevent_self_service_downgrade_button_text?: string | null;
         prevent_self_service_downgrade_url?: string | null;
         proration_behavior: ProrationBehavior.Raw;
+        show_as_monthly_prices: boolean;
         show_credits: boolean;
         show_period_toggle: boolean;
         show_zero_price_as_free: boolean;
-        sync_customer_billing_details_for_tax: boolean;
+        sync_customer_billing_details: boolean;
         trial_days?: number | null;
         trial_expiry_plan_id?: string | null;
         trial_expiry_plan_price_id?: string | null;

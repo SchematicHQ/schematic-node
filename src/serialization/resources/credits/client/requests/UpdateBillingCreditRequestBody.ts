@@ -5,25 +5,23 @@
 import * as serializers from "../../../../index";
 import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
-import { UpdateBillingCreditRequestBodyBurnStrategy } from "../../types/UpdateBillingCreditRequestBodyBurnStrategy";
-import { UpdateBillingCreditRequestBodyDefaultRolloverPolicy } from "../../types/UpdateBillingCreditRequestBodyDefaultRolloverPolicy";
+import { BillingCreditBurnStrategy } from "../../../../types/BillingCreditBurnStrategy";
+import { BillingCreditExpiryUnit } from "../../../../types/BillingCreditExpiryUnit";
+import { BillingCreditRolloverPolicy } from "../../../../types/BillingCreditRolloverPolicy";
 
 export const UpdateBillingCreditRequestBody: core.serialization.Schema<
     serializers.UpdateBillingCreditRequestBody.Raw,
     Schematic.UpdateBillingCreditRequestBody
 > = core.serialization.object({
-    burnStrategy: core.serialization.property("burn_strategy", UpdateBillingCreditRequestBodyBurnStrategy.optional()),
-    defaultExpiryUnit: core.serialization.property(
-        "default_expiry_unit",
-        core.serialization.stringLiteral("days").optional(),
-    ),
+    burnStrategy: core.serialization.property("burn_strategy", BillingCreditBurnStrategy.optional()),
+    defaultExpiryUnit: core.serialization.property("default_expiry_unit", BillingCreditExpiryUnit.optional()),
     defaultExpiryUnitCount: core.serialization.property(
         "default_expiry_unit_count",
         core.serialization.number().optional(),
     ),
     defaultRolloverPolicy: core.serialization.property(
         "default_rollover_policy",
-        UpdateBillingCreditRequestBodyDefaultRolloverPolicy.optional(),
+        BillingCreditRolloverPolicy.optional(),
     ),
     description: core.serialization.string(),
     icon: core.serialization.string().optional(),
@@ -36,10 +34,10 @@ export const UpdateBillingCreditRequestBody: core.serialization.Schema<
 
 export declare namespace UpdateBillingCreditRequestBody {
     export interface Raw {
-        burn_strategy?: UpdateBillingCreditRequestBodyBurnStrategy.Raw | null;
-        default_expiry_unit?: "days" | null;
+        burn_strategy?: BillingCreditBurnStrategy.Raw | null;
+        default_expiry_unit?: BillingCreditExpiryUnit.Raw | null;
         default_expiry_unit_count?: number | null;
-        default_rollover_policy?: UpdateBillingCreditRequestBodyDefaultRolloverPolicy.Raw | null;
+        default_rollover_policy?: BillingCreditRolloverPolicy.Raw | null;
         description: string;
         icon?: string | null;
         name: string;

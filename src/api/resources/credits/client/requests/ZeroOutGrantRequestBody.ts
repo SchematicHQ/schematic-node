@@ -9,5 +9,5 @@ import * as Schematic from "../../../../index";
  *     {}
  */
 export interface ZeroOutGrantRequestBody {
-    reason?: Schematic.ZeroOutGrantRequestBodyReason;
+    reason?: Schematic.BillingCreditGrantZeroedOutReason;
 }

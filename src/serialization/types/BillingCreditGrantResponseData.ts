@@ -5,7 +5,9 @@
 import * as serializers from "../index";
 import * as Schematic from "../../api/index";
 import * as core from "../../core";
+import { BillingCreditGrantReason } from "./BillingCreditGrantReason";
 import { BillingPriceResponseData } from "./BillingPriceResponseData";
+import { BillingCreditGrantZeroedOutReason } from "./BillingCreditGrantZeroedOutReason";
 
 export const BillingCreditGrantResponseData: core.serialization.ObjectSchema<
     serializers.BillingCreditGrantResponseData.Raw,
@@ -18,7 +20,7 @@ export const BillingCreditGrantResponseData: core.serialization.ObjectSchema<
     creditId: core.serialization.property("credit_id", core.serialization.string()),
     creditName: core.serialization.property("credit_name", core.serialization.string()),
     expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
-    grantReason: core.serialization.property("grant_reason", core.serialization.string()),
+    grantReason: core.serialization.property("grant_reason", BillingCreditGrantReason),
     id: core.serialization.string(),
     planId: core.serialization.property("plan_id", core.serialization.string().optional()),
     planName: core.serialization.property("plan_name", core.serialization.string().optional()),
@@ -30,7 +32,7 @@ export const BillingCreditGrantResponseData: core.serialization.ObjectSchema<
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     validFrom: core.serialization.property("valid_from", core.serialization.date().optional()),
     zeroedOutDate: core.serialization.property("zeroed_out_date", core.serialization.date().optional()),
-    zeroedOutReason: core.serialization.property("zeroed_out_reason", core.serialization.string().optional()),
+    zeroedOutReason: core.serialization.property("zeroed_out_reason", BillingCreditGrantZeroedOutReason.optional()),
 });
 
 export declare namespace BillingCreditGrantResponseData {
@@ -42,7 +44,7 @@ export declare namespace BillingCreditGrantResponseData {
         credit_id: string;
         credit_name: string;
         expires_at?: string | null;
-        grant_reason: string;
+        grant_reason: BillingCreditGrantReason.Raw;
         id: string;
         plan_id?: string | null;
         plan_name?: string | null;
@@ -54,6 +56,6 @@ export declare namespace BillingCreditGrantResponseData {
         updated_at: string;
         valid_from?: string | null;
         zeroed_out_date?: string | null;
-        zeroed_out_reason?: string | null;
+        zeroed_out_reason?: BillingCreditGrantZeroedOutReason.Raw | null;
     }
 }

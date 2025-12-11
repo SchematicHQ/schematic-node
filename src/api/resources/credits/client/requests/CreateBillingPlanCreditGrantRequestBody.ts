@@ -10,26 +10,26 @@ import * as Schematic from "../../../../index";
  *         creditAmount: 1,
  *         creditId: "credit_id",
  *         planId: "plan_id",
- *         resetCadence: "monthly",
+ *         resetCadence: "daily",
  *         resetStart: "billing_period"
  *     }
  */
 export interface CreateBillingPlanCreditGrantRequestBody {
     applyToExisting?: boolean;
     autoTopupAmount?: number;
-    autoTopupAmountType?: "credit";
+    autoTopupAmountType?: Schematic.CreditAutoTopupAmountType;
     autoTopupEnabled?: boolean;
-    autoTopupExpiryType?: Schematic.CreateBillingPlanCreditGrantRequestBodyAutoTopupExpiryType;
-    autoTopupExpiryUnit?: "days";
+    autoTopupExpiryType?: Schematic.BillingCreditExpiryType;
+    autoTopupExpiryUnit?: Schematic.BillingCreditExpiryUnit;
     autoTopupExpiryUnitCount?: number;
     autoTopupThresholdPercent?: number;
     creditAmount: number;
     creditId: string;
-    expiryType?: Schematic.CreateBillingPlanCreditGrantRequestBodyExpiryType;
-    expiryUnit?: Schematic.CreateBillingPlanCreditGrantRequestBodyExpiryUnit;
+    expiryType?: Schematic.BillingCreditExpiryType;
+    expiryUnit?: Schematic.BillingCreditExpiryUnit;
     expiryUnitCount?: number;
     planId: string;
-    resetCadence: Schematic.CreateBillingPlanCreditGrantRequestBodyResetCadence;
-    resetStart: Schematic.CreateBillingPlanCreditGrantRequestBodyResetStart;
-    resetType?: Schematic.CreateBillingPlanCreditGrantRequestBodyResetType;
+    resetCadence: Schematic.BillingPlanCreditGrantResetCadence;
+    resetStart: Schematic.BillingPlanCreditGrantResetStart;
+    resetType?: Schematic.BillingPlanCreditGrantResetType;
 }

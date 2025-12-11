@@ -17,8 +17,8 @@ import * as Schematic from "../../../../index";
 export interface CountCreditBundlesRequest {
     ids?: string | string[];
     creditId?: string;
-    status?: Schematic.CountCreditBundlesRequestStatus;
-    bundleType?: "fixed";
+    status?: Schematic.BillingCreditBundleStatus;
+    bundleType?: Schematic.BillingCreditBundleType;
     /**
      * Page limit (default 100)
      */

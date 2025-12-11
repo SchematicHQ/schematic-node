@@ -21,7 +21,7 @@ export interface CountCreditLedgerRequest {
     companyId: string;
     billingCreditId?: string;
     featureId?: string;
-    period: Schematic.CountCreditLedgerRequestPeriod;
+    period: Schematic.CreditLedgerPeriod;
     startTime?: string;
     endTime?: string;
     /**

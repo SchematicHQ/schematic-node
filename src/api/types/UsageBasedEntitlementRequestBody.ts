@@ -17,7 +17,7 @@ export interface UsageBasedEntitlementRequestBody {
     /** Use MonthlyPriceTiers or YearlyPriceTiers instead */
     priceTiers?: Schematic.CreatePriceTierRequestBody[];
     softLimit?: number;
-    tierMode?: string;
+    tierMode?: Schematic.BillingTiersMode;
     yearlyMeteredPriceId?: string;
     yearlyPriceTiers?: Schematic.CreatePriceTierRequestBody[];
     yearlyUnitPrice?: number;

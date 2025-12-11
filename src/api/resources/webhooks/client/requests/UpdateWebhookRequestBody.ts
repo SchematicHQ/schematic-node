@@ -12,7 +12,7 @@ export interface UpdateWebhookRequestBody {
     creditTriggerConfigs?: Schematic.CreditTriggerConfig[];
     entitlementTriggerConfigs?: Schematic.EntitlementTriggerConfig[];
     name?: string;
-    requestTypes?: Schematic.UpdateWebhookRequestBodyRequestTypesItem[];
-    status?: Schematic.UpdateWebhookRequestBodyStatus;
+    requestTypes?: Schematic.WebhookRequestType[];
+    status?: Schematic.WebhookStatus;
     url?: string;
 }

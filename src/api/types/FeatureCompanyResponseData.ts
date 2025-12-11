@@ -16,7 +16,7 @@ export interface FeatureCompanyResponseData {
     creditConsumptionRate?: number;
     creditGrantCounts?: Record<string, number>;
     creditGrantDetails?: Schematic.CreditGrantDetail[];
-    creditGrantReason?: Schematic.GrantReason;
+    creditGrantReason?: Schematic.BillingCreditGrantReason;
     creditRemaining?: number;
     creditTotal?: number;
     /** Icon identifier for the credit type */

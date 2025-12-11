@@ -7,7 +7,7 @@ import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import { BillingSubscriptionDiscount } from "../../../../types/BillingSubscriptionDiscount";
 import { BillingProductPricing } from "../../../../types/BillingProductPricing";
-import { CreateBillingSubscriptionRequestBodyTrialEndSetting } from "../../types/CreateBillingSubscriptionRequestBodyTrialEndSetting";
+import { BillingSubscriptionTrialEndSetting } from "../../../../types/BillingSubscriptionTrialEndSetting";
 
 export const CreateBillingSubscriptionRequestBody: core.serialization.Schema<
     serializers.CreateBillingSubscriptionRequestBody.Raw,
@@ -40,10 +40,7 @@ export const CreateBillingSubscriptionRequestBody: core.serialization.Schema<
     subscriptionExternalId: core.serialization.property("subscription_external_id", core.serialization.string()),
     totalPrice: core.serialization.property("total_price", core.serialization.number()),
     trialEnd: core.serialization.property("trial_end", core.serialization.number().optional()),
-    trialEndSetting: core.serialization.property(
-        "trial_end_setting",
-        CreateBillingSubscriptionRequestBodyTrialEndSetting.optional(),
-    ),
+    trialEndSetting: core.serialization.property("trial_end_setting", BillingSubscriptionTrialEndSetting.optional()),
 });
 
 export declare namespace CreateBillingSubscriptionRequestBody {
@@ -66,6 +63,6 @@ export declare namespace CreateBillingSubscriptionRequestBody {
         subscription_external_id: string;
         total_price: number;
         trial_end?: number | null;
-        trial_end_setting?: CreateBillingSubscriptionRequestBodyTrialEndSetting.Raw | null;
+        trial_end_setting?: BillingSubscriptionTrialEndSetting.Raw | null;
     }
 }

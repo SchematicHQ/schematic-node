@@ -15,14 +15,14 @@ import * as Schematic from "../../../../index";
  */
 export interface CreateCreditBundleRequestBody {
     bundleName: string;
-    bundleType?: "fixed";
+    bundleType?: Schematic.BillingCreditBundleType;
     creditId: string;
     currency: string;
-    expiryType?: Schematic.CreateCreditBundleRequestBodyExpiryType;
-    expiryUnit?: Schematic.CreateCreditBundleRequestBodyExpiryUnit;
+    expiryType?: Schematic.BillingCreditExpiryType;
+    expiryUnit?: Schematic.BillingCreditExpiryUnit;
     expiryUnitCount?: number;
     pricePerUnit: number;
     pricePerUnitDecimal?: string;
     quantity?: number;
-    status?: Schematic.CreateCreditBundleRequestBodyStatus;
+    status?: Schematic.BillingCreditBundleStatus;
 }

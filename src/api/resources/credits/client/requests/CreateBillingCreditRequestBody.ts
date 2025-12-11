@@ -13,11 +13,11 @@ import * as Schematic from "../../../../index";
  *     }
  */
 export interface CreateBillingCreditRequestBody {
-    burnStrategy?: Schematic.CreateBillingCreditRequestBodyBurnStrategy;
+    burnStrategy?: Schematic.BillingCreditBurnStrategy;
     currency: string;
-    defaultExpiryUnit?: string;
+    defaultExpiryUnit?: Schematic.BillingCreditExpiryUnit;
     defaultExpiryUnitCount?: number;
-    defaultRolloverPolicy?: Schematic.CreateBillingCreditRequestBodyDefaultRolloverPolicy;
+    defaultRolloverPolicy?: Schematic.BillingCreditRolloverPolicy;
     description: string;
     icon?: string;
     name: string;

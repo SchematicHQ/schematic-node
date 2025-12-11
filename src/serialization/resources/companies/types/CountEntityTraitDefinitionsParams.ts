@@ -5,17 +5,14 @@
 import * as serializers from "../../../index";
 import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
-import { CountEntityTraitDefinitionsResponseParamsEntityType } from "./CountEntityTraitDefinitionsResponseParamsEntityType";
+import { EntityType } from "../../../types/EntityType";
 import { TraitType } from "../../../types/TraitType";
 
 export const CountEntityTraitDefinitionsParams: core.serialization.ObjectSchema<
     serializers.CountEntityTraitDefinitionsParams.Raw,
     Schematic.CountEntityTraitDefinitionsParams
 > = core.serialization.object({
-    entityType: core.serialization.property(
-        "entity_type",
-        CountEntityTraitDefinitionsResponseParamsEntityType.optional(),
-    ),
+    entityType: core.serialization.property("entity_type", EntityType.optional()),
     ids: core.serialization.list(core.serialization.string()).optional(),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
@@ -26,7 +23,7 @@ export const CountEntityTraitDefinitionsParams: core.serialization.ObjectSchema<
 
 export declare namespace CountEntityTraitDefinitionsParams {
     export interface Raw {
-        entity_type?: CountEntityTraitDefinitionsResponseParamsEntityType.Raw | null;
+        entity_type?: EntityType.Raw | null;
         ids?: string[] | null;
         limit?: number | null;
         offset?: number | null;

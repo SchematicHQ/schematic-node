@@ -49,5 +49,5 @@ export interface CreateBillingSubscriptionRequestBody {
     subscriptionExternalId: string;
     totalPrice: number;
     trialEnd?: number;
-    trialEndSetting?: Schematic.CreateBillingSubscriptionRequestBodyTrialEndSetting;
+    trialEndSetting?: Schematic.BillingSubscriptionTrialEndSetting;
 }

@@ -6,14 +6,14 @@ import * as Schematic from "../index";
 
 export interface BillingCreditBundleResponseData {
     billingInvoiceId?: string;
-    bundleType: string;
+    bundleType: Schematic.BillingCreditBundleType;
     createdAt: Date;
     creditDescription?: string;
     creditIcon?: string;
     creditId: string;
     creditName: string;
-    expiryType: string;
-    expiryUnit: string;
+    expiryType: Schematic.BillingCreditExpiryType;
+    expiryUnit: Schematic.BillingCreditExpiryUnit;
     expiryUnitCount?: number;
     hasGrants: boolean;
     id: string;
@@ -22,7 +22,7 @@ export interface BillingCreditBundleResponseData {
     price?: Schematic.BillingPriceResponseData;
     quantity?: number;
     singularName?: string;
-    status: string;
+    status: Schematic.BillingCreditBundleStatus;
     unitPrice?: Schematic.BillingPriceResponseData;
     updatedAt: Date;
 }

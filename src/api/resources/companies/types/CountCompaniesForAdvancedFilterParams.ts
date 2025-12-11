@@ -28,8 +28,7 @@ export interface CountCompaniesForAdvancedFilterParams {
     q?: string;
     /** Column to sort by (e.g. name, created_at, last_seen_at) */
     sortOrderColumn?: string;
-    /** Direction to sort by (asc or desc) */
-    sortOrderDirection?: Schematic.CountCompaniesForAdvancedFilterResponseParamsSortOrderDirection;
+    sortOrderDirection?: Schematic.SortDirection;
     /** Filter companies by one or more subscription statuses (active, canceled, expired, incomplete, incomplete_expired, past_due, paused, trialing, unpaid) */
     subscriptionStatuses?: Schematic.SubscriptionStatus[];
     /** Filter companies by one or more subscription types (paid, free, trial) */

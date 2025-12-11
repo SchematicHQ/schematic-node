@@ -73,8 +73,8 @@ export class Accesstokens {
             headers: {
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.3.0",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.3.0",
+                "X-Fern-SDK-Version": "1.2.7",
+                "User-Agent": "@schematichq/schematic-typescript-node/1.2.7",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

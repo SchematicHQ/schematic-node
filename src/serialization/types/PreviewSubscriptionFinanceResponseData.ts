@@ -21,6 +21,7 @@ export const PreviewSubscriptionFinanceResponseData: core.serialization.ObjectSc
     taxAmount: core.serialization.property("tax_amount", core.serialization.number().optional()),
     taxDisplayName: core.serialization.property("tax_display_name", core.serialization.string().optional()),
     taxRequireBillingDetails: core.serialization.property("tax_require_billing_details", core.serialization.boolean()),
+    totalPerBillingPeriod: core.serialization.property("total_per_billing_period", core.serialization.number()),
     trialEnd: core.serialization.property("trial_end", core.serialization.date().optional()),
     upcomingInvoiceLineItems: core.serialization.property(
         "upcoming_invoice_line_items",
@@ -40,6 +41,7 @@ export declare namespace PreviewSubscriptionFinanceResponseData {
         tax_amount?: number | null;
         tax_display_name?: string | null;
         tax_require_billing_details: boolean;
+        total_per_billing_period: number;
         trial_end?: string | null;
         upcoming_invoice_line_items: PreviewSubscriptionUpcomingInvoiceLineItems.Raw[];
     }

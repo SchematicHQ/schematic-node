@@ -15,5 +15,6 @@ export * from "./DeleteFlagResponse";
 export * from "./UpdateFlagRulesResponse";
 export * from "./CheckFlagResponse";
 export * from "./CheckFlagsResponse";
+export * from "./CheckFlagsBulkResponse";
 export * from "./CountFlagsParams";
 export * from "./CountFlagsResponse";

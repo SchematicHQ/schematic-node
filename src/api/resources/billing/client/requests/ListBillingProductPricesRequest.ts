@@ -14,7 +14,7 @@ import * as Schematic from "../../../../index";
  *         price: 1,
  *         productId: "product_id",
  *         q: "q",
- *         tiersMode: "volume",
+ *         tiersMode: "graduated",
  *         usageType: "licensed",
  *         withMeter: true,
  *         limit: 1,
@@ -40,8 +40,8 @@ export interface ListBillingProductPricesRequest {
     productId?: string;
     productIds?: string | string[];
     q?: string;
-    tiersMode?: Schematic.ListBillingProductPricesRequestTiersMode;
-    usageType?: Schematic.ListBillingProductPricesRequestUsageType;
+    tiersMode?: Schematic.BillingTiersMode;
+    usageType?: Schematic.BillingPriceUsageType;
     /**
      * Filter for prices with a meter
      */

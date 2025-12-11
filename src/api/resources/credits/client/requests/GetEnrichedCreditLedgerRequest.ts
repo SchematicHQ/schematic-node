@@ -21,7 +21,7 @@ export interface GetEnrichedCreditLedgerRequest {
     companyId: string;
     billingCreditId?: string;
     featureId?: string;
-    period: Schematic.GetEnrichedCreditLedgerRequestPeriod;
+    period: Schematic.CreditLedgerPeriod;
     startTime?: string;
     endTime?: string;
     /**

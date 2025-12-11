@@ -26,7 +26,7 @@ export interface UpdatePlanEntitlementRequestBody {
     /** Use MonthlyPriceTiers or YearlyPriceTiers instead */
     priceTiers?: Schematic.CreatePriceTierRequestBody[];
     softLimit?: number;
-    tierMode?: string;
+    tierMode?: Schematic.BillingTiersMode;
     valueBool?: boolean;
     valueCreditId?: string;
     valueNumeric?: number;

@@ -7,7 +7,7 @@ import * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import { CreditTriggerConfig } from "../../../../types/CreditTriggerConfig";
 import { EntitlementTriggerConfig } from "../../../../types/EntitlementTriggerConfig";
-import { CreateWebhookRequestBodyRequestTypesItem } from "../../types/CreateWebhookRequestBodyRequestTypesItem";
+import { WebhookRequestType } from "../../../../types/WebhookRequestType";
 
 export const CreateWebhookRequestBody: core.serialization.Schema<
     serializers.CreateWebhookRequestBody.Raw,
@@ -22,10 +22,7 @@ export const CreateWebhookRequestBody: core.serialization.Schema<
         core.serialization.list(EntitlementTriggerConfig).optional(),
     ),
     name: core.serialization.string(),
-    requestTypes: core.serialization.property(
-        "request_types",
-        core.serialization.list(CreateWebhookRequestBodyRequestTypesItem),
-    ),
+    requestTypes: core.serialization.property("request_types", core.serialization.list(WebhookRequestType)),
     url: core.serialization.string(),
 });
 
@@ -34,7 +31,7 @@ export declare namespace CreateWebhookRequestBody {
         credit_trigger_configs?: CreditTriggerConfig.Raw[] | null;
         entitlement_trigger_configs?: EntitlementTriggerConfig.Raw[] | null;
         name: string;
-        request_types: CreateWebhookRequestBodyRequestTypesItem.Raw[];
+        request_types: WebhookRequestType.Raw[];
         url: string;
     }
 }

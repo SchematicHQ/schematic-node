@@ -7,6 +7,8 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { CreditTriggerConfig } from "./CreditTriggerConfig";
 import { EntitlementTriggerConfig } from "./EntitlementTriggerConfig";
+import { WebhookRequestType } from "./WebhookRequestType";
+import { WebhookStatus } from "./WebhookStatus";
 
 export const WebhookResponseData: core.serialization.ObjectSchema<
     serializers.WebhookResponseData.Raw,
@@ -23,9 +25,9 @@ export const WebhookResponseData: core.serialization.ObjectSchema<
     ),
     id: core.serialization.string(),
     name: core.serialization.string(),
-    requestTypes: core.serialization.property("request_types", core.serialization.list(core.serialization.string())),
+    requestTypes: core.serialization.property("request_types", core.serialization.list(WebhookRequestType)),
     secret: core.serialization.string(),
-    status: core.serialization.string(),
+    status: WebhookStatus,
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     url: core.serialization.string(),
 });
@@ -37,9 +39,9 @@ export declare namespace WebhookResponseData {
         entitlement_trigger_configs?: EntitlementTriggerConfig.Raw[] | null;
         id: string;
         name: string;
-        request_types: string[];
+        request_types: WebhookRequestType.Raw[];
         secret: string;
-        status: string;
+        status: WebhookStatus.Raw;
         updated_at: string;
         url: string;
     }

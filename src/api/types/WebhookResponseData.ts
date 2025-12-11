@@ -10,9 +10,9 @@ export interface WebhookResponseData {
     entitlementTriggerConfigs?: Schematic.EntitlementTriggerConfig[];
     id: string;
     name: string;
-    requestTypes: string[];
+    requestTypes: Schematic.WebhookRequestType[];
     secret: string;
-    status: string;
+    status: Schematic.WebhookStatus;
     updatedAt: Date;
     url: string;
 }

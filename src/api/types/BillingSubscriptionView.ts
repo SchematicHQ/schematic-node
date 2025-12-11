@@ -27,5 +27,5 @@ export interface BillingSubscriptionView {
     subscriptionExternalId: string;
     totalPrice: number;
     trialEnd?: number;
-    trialEndSetting?: string;
+    trialEndSetting?: Schematic.BillingSubscriptionTrialEndSetting;
 }

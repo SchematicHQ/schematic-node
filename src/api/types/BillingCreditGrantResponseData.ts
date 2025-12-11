@@ -12,7 +12,7 @@ export interface BillingCreditGrantResponseData {
     creditId: string;
     creditName: string;
     expiresAt?: Date;
-    grantReason: string;
+    grantReason: Schematic.BillingCreditGrantReason;
     id: string;
     planId?: string;
     planName?: string;
@@ -24,5 +24,5 @@ export interface BillingCreditGrantResponseData {
     updatedAt: Date;
     validFrom?: Date;
     zeroedOutDate?: Date;
-    zeroedOutReason?: string;
+    zeroedOutReason?: Schematic.BillingCreditGrantZeroedOutReason;
 }

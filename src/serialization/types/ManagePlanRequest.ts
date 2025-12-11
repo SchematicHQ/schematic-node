@@ -33,6 +33,7 @@ export const ManagePlanRequest: core.serialization.ObjectSchema<
     ),
     promoCode: core.serialization.property("promo_code", core.serialization.string().optional()),
     prorate: core.serialization.boolean().optional(),
+    trialEnd: core.serialization.property("trial_end", core.serialization.date().optional()),
 });
 
 export declare namespace ManagePlanRequest {
@@ -48,5 +49,6 @@ export declare namespace ManagePlanRequest {
         payment_method_external_id?: string | null;
         promo_code?: string | null;
         prorate?: boolean | null;
+        trial_end?: string | null;
     }
 }

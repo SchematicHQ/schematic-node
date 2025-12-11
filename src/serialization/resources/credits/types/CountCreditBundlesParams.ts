@@ -5,27 +5,28 @@
 import * as serializers from "../../../index";
 import * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
-import { CountCreditBundlesResponseParamsStatus } from "./CountCreditBundlesResponseParamsStatus";
+import { BillingCreditBundleType } from "../../../types/BillingCreditBundleType";
+import { BillingCreditBundleStatus } from "../../../types/BillingCreditBundleStatus";
 
 export const CountCreditBundlesParams: core.serialization.ObjectSchema<
     serializers.CountCreditBundlesParams.Raw,
     Schematic.CountCreditBundlesParams
 > = core.serialization.object({
-    bundleType: core.serialization.property("bundle_type", core.serialization.stringLiteral("fixed").optional()),
+    bundleType: core.serialization.property("bundle_type", BillingCreditBundleType.optional()),
     creditId: core.serialization.property("credit_id", core.serialization.string().optional()),
     ids: core.serialization.list(core.serialization.string()).optional(),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
-    status: CountCreditBundlesResponseParamsStatus.optional(),
+    status: BillingCreditBundleStatus.optional(),
 });
 
 export declare namespace CountCreditBundlesParams {
     export interface Raw {
-        bundle_type?: "fixed" | null;
+        bundle_type?: BillingCreditBundleType.Raw | null;
         credit_id?: string | null;
         ids?: string[] | null;
         limit?: number | null;
         offset?: number | null;
-        status?: CountCreditBundlesResponseParamsStatus.Raw | null;
+        status?: BillingCreditBundleStatus.Raw | null;
     }
 }
