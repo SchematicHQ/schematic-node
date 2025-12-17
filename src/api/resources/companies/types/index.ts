@@ -14,8 +14,6 @@ export * from "./ListCompaniesForAdvancedFilterParams";
 export * from "./ListCompaniesForAdvancedFilterResponse";
 export * from "./LookupCompanyParams";
 export * from "./LookupCompanyResponse";
-export * from "./GetActiveDealsParams";
-export * from "./GetActiveDealsResponse";
 export * from "./ListCompanyMembershipsParams";
 export * from "./ListCompanyMembershipsResponse";
 export * from "./GetOrCreateCompanyMembershipResponse";

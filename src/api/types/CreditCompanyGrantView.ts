@@ -13,6 +13,7 @@ export interface CreditCompanyGrantView {
     creditDescription: string;
     creditIcon?: string;
     creditName: string;
+    exhaustedAt?: Date;
     expiresAt?: Date;
     expiryType?: Schematic.BillingCreditExpiryType;
     expiryUnit?: Schematic.BillingCreditExpiryUnit;
@@ -28,6 +29,7 @@ export interface CreditCompanyGrantView {
     quantityUsed: number;
     singularName?: string;
     sourceLabel: string;
+    transfers?: Schematic.CreditTransferView[];
     updatedAt: Date;
     validFrom?: Date;
     zeroedOutDate?: Date;

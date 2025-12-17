@@ -21,6 +21,7 @@ export interface BillingCreditGrantResponseData {
     quantityRemaining: number;
     quantityUsed: number;
     sourceLabel: string;
+    transfers?: Schematic.CreditTransferResponseData[];
     updatedAt: Date;
     validFrom?: Date;
     zeroedOutDate?: Date;

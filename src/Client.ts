@@ -14,7 +14,6 @@ import { Companies } from "./api/resources/companies/client/Client";
 import { Entitlements } from "./api/resources/entitlements/client/Client";
 import { Plans } from "./api/resources/plans/client/Client";
 import { Components } from "./api/resources/components/client/Client";
-import { Crm } from "./api/resources/crm/client/Client";
 import { Dataexports } from "./api/resources/dataexports/client/Client";
 import { Events } from "./api/resources/events/client/Client";
 import { Features } from "./api/resources/features/client/Client";
@@ -27,7 +26,7 @@ export declare namespace SchematicClient {
         environment?: core.Supplier<environments.SchematicEnvironment | string>;
         /** Specify a custom URL to connect the client to. */
         baseUrl?: core.Supplier<string>;
-        apiKey?: core.Supplier<string | undefined>;
+        apiKey: core.Supplier<string>;
         fetcher?: core.FetchFunction;
     }
 
@@ -52,7 +51,6 @@ export class SchematicClient {
     protected _entitlements: Entitlements | undefined;
     protected _plans: Plans | undefined;
     protected _components: Components | undefined;
-    protected _crm: Crm | undefined;
     protected _dataexports: Dataexports | undefined;
     protected _events: Events | undefined;
     protected _features: Features | undefined;
@@ -60,7 +58,7 @@ export class SchematicClient {
     protected _accesstokens: Accesstokens | undefined;
     protected _webhooks: Webhooks | undefined;
 
-    constructor(protected readonly _options: SchematicClient.Options = {}) {}
+    constructor(protected readonly _options: SchematicClient.Options) {}
 
     public get accounts(): Accounts {
         return (this._accounts ??= new Accounts(this._options));
@@ -92,10 +90,6 @@ export class SchematicClient {
 
     public get components(): Components {
         return (this._components ??= new Components(this._options));
-    }
-
-    public get crm(): Crm {
-        return (this._crm ??= new Crm(this._options));
     }
 
     public get dataexports(): Dataexports {
@@ -152,9 +146,8 @@ export class SchematicClient {
             method: "PUT",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.7",
+                "X-Fern-SDK-Name": "",
+                "X-Fern-SDK-Version": "0.0.67",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -227,9 +220,8 @@ export class SchematicClient {
             method: "DELETE",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.7",
+                "X-Fern-SDK-Name": "",
+                "X-Fern-SDK-Version": "0.0.67",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

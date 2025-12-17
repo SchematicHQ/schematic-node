@@ -9,25 +9,8 @@ import * as core from "../../core";
 export const CreateOrUpdateConditionRequestBodyConditionType: core.serialization.Schema<
     serializers.CreateOrUpdateConditionRequestBodyConditionType.Raw,
     Schematic.CreateOrUpdateConditionRequestBodyConditionType
-> = core.serialization.enum_([
-    "company",
-    "metric",
-    "trait",
-    "user",
-    "plan",
-    "billing_product",
-    "crm_product",
-    "base_plan",
-]);
+> = core.serialization.enum_(["company", "metric", "trait", "user", "plan", "billing_product", "base_plan"]);
 
 export declare namespace CreateOrUpdateConditionRequestBodyConditionType {
-    export type Raw =
-        | "company"
-        | "metric"
-        | "trait"
-        | "user"
-        | "plan"
-        | "billing_product"
-        | "crm_product"
-        | "base_plan";
+    export type Raw = "company" | "metric" | "trait" | "user" | "plan" | "billing_product" | "base_plan";
 }

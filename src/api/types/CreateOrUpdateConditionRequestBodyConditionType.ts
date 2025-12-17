@@ -9,7 +9,6 @@ export type CreateOrUpdateConditionRequestBodyConditionType =
     | "user"
     | "plan"
     | "billing_product"
-    | "crm_product"
     | "base_plan";
 export const CreateOrUpdateConditionRequestBodyConditionType = {
     Company: "company",
@@ -18,6 +17,5 @@ export const CreateOrUpdateConditionRequestBodyConditionType = {
     User: "user",
     Plan: "plan",
     BillingProduct: "billing_product",
-    CrmProduct: "crm_product",
     BasePlan: "base_plan",
 } as const;

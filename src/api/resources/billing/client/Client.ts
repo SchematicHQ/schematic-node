@@ -14,7 +14,7 @@ export declare namespace Billing {
         environment?: core.Supplier<environments.SchematicEnvironment | string>;
         /** Specify a custom URL to connect the client to. */
         baseUrl?: core.Supplier<string>;
-        apiKey?: core.Supplier<string | undefined>;
+        apiKey: core.Supplier<string>;
         fetcher?: core.FetchFunction;
     }
 
@@ -31,7 +31,7 @@ export declare namespace Billing {
 }
 
 export class Billing {
-    constructor(protected readonly _options: Billing.Options = {}) {}
+    constructor(protected readonly _options: Billing.Options) {}
 
     /**
      * @param {Schematic.ListCouponsRequest} request
@@ -90,9 +90,8 @@ export class Billing {
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.7",
+                "X-Fern-SDK-Name": "",
+                "X-Fern-SDK-Version": "0.0.67",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -244,9 +243,8 @@ export class Billing {
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.7",
+                "X-Fern-SDK-Name": "",
+                "X-Fern-SDK-Version": "0.0.67",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -397,9 +395,8 @@ export class Billing {
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.7",
+                "X-Fern-SDK-Name": "",
+                "X-Fern-SDK-Version": "0.0.67",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -580,9 +577,8 @@ export class Billing {
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.7",
+                "X-Fern-SDK-Name": "",
+                "X-Fern-SDK-Version": "0.0.67",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -761,9 +757,8 @@ export class Billing {
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.7",
+                "X-Fern-SDK-Name": "",
+                "X-Fern-SDK-Version": "0.0.67",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -928,9 +923,8 @@ export class Billing {
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.7",
+                "X-Fern-SDK-Name": "",
+                "X-Fern-SDK-Version": "0.0.67",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1081,9 +1075,8 @@ export class Billing {
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.7",
+                "X-Fern-SDK-Name": "",
+                "X-Fern-SDK-Version": "0.0.67",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1244,9 +1237,8 @@ export class Billing {
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.7",
+                "X-Fern-SDK-Name": "",
+                "X-Fern-SDK-Version": "0.0.67",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1394,9 +1386,8 @@ export class Billing {
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.7",
+                "X-Fern-SDK-Name": "",
+                "X-Fern-SDK-Version": "0.0.67",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1559,9 +1550,8 @@ export class Billing {
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.7",
+                "X-Fern-SDK-Name": "",
+                "X-Fern-SDK-Version": "0.0.67",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1708,9 +1698,8 @@ export class Billing {
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.7",
+                "X-Fern-SDK-Name": "",
+                "X-Fern-SDK-Version": "0.0.67",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1951,9 +1940,8 @@ export class Billing {
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.7",
+                "X-Fern-SDK-Name": "",
+                "X-Fern-SDK-Version": "0.0.67",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2109,9 +2097,8 @@ export class Billing {
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.7",
+                "X-Fern-SDK-Name": "",
+                "X-Fern-SDK-Version": "0.0.67",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2254,9 +2241,8 @@ export class Billing {
             method: "DELETE",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.7",
+                "X-Fern-SDK-Name": "",
+                "X-Fern-SDK-Version": "0.0.67",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2498,9 +2484,8 @@ export class Billing {
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.7",
+                "X-Fern-SDK-Name": "",
+                "X-Fern-SDK-Version": "0.0.67",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2643,9 +2628,8 @@ export class Billing {
             method: "DELETE",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.7",
+                "X-Fern-SDK-Name": "",
+                "X-Fern-SDK-Version": "0.0.67",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -2793,9 +2777,8 @@ export class Billing {
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.7",
+                "X-Fern-SDK-Name": "",
+                "X-Fern-SDK-Version": "0.0.67",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -3013,9 +2996,8 @@ export class Billing {
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.7",
+                "X-Fern-SDK-Name": "",
+                "X-Fern-SDK-Version": "0.0.67",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -3233,9 +3215,8 @@ export class Billing {
             method: "GET",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.7",
+                "X-Fern-SDK-Name": "",
+                "X-Fern-SDK-Version": "0.0.67",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -3400,9 +3381,8 @@ export class Billing {
             method: "POST",
             headers: {
                 "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@schematichq/schematic-typescript-node",
-                "X-Fern-SDK-Version": "1.2.7",
-                "User-Agent": "@schematichq/schematic-typescript-node/1.2.7",
+                "X-Fern-SDK-Name": "",
+                "X-Fern-SDK-Version": "0.0.67",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

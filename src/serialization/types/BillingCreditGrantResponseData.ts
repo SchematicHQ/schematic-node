@@ -7,6 +7,7 @@ import * as Schematic from "../../api/index";
 import * as core from "../../core";
 import { BillingCreditGrantReason } from "./BillingCreditGrantReason";
 import { BillingPriceResponseData } from "./BillingPriceResponseData";
+import { CreditTransferResponseData } from "./CreditTransferResponseData";
 import { BillingCreditGrantZeroedOutReason } from "./BillingCreditGrantZeroedOutReason";
 
 export const BillingCreditGrantResponseData: core.serialization.ObjectSchema<
@@ -29,6 +30,7 @@ export const BillingCreditGrantResponseData: core.serialization.ObjectSchema<
     quantityRemaining: core.serialization.property("quantity_remaining", core.serialization.number()),
     quantityUsed: core.serialization.property("quantity_used", core.serialization.number()),
     sourceLabel: core.serialization.property("source_label", core.serialization.string()),
+    transfers: core.serialization.list(CreditTransferResponseData).optional(),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     validFrom: core.serialization.property("valid_from", core.serialization.date().optional()),
     zeroedOutDate: core.serialization.property("zeroed_out_date", core.serialization.date().optional()),
@@ -53,6 +55,7 @@ export declare namespace BillingCreditGrantResponseData {
         quantity_remaining: number;
         quantity_used: number;
         source_label: string;
+        transfers?: CreditTransferResponseData.Raw[] | null;
         updated_at: string;
         valid_from?: string | null;
         zeroed_out_date?: string | null;
