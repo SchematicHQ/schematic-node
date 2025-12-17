@@ -1,3 +1,3 @@
-export { type CheckoutDataRequestBody } from "./CheckoutDataRequestBody";
-export { type CancelSubscriptionRequest } from "./CancelSubscriptionRequest";
-export { type UpdateTrialEndRequestBody } from "./UpdateTrialEndRequestBody";
+export type { CancelSubscriptionRequest } from "./CancelSubscriptionRequest.js";
+export type { CheckoutDataRequestBody } from "./CheckoutDataRequestBody.js";
+export type { UpdateTrialEndRequestBody } from "./UpdateTrialEndRequestBody.js";

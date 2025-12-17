@@ -1,8 +1,8 @@
-export { type ListFeaturesRequest } from "./ListFeaturesRequest";
-export { type CreateFeatureRequestBody } from "./CreateFeatureRequestBody";
-export { type UpdateFeatureRequestBody } from "./UpdateFeatureRequestBody";
-export { type CountFeaturesRequest } from "./CountFeaturesRequest";
-export { type ListFlagsRequest } from "./ListFlagsRequest";
-export { type UpdateFlagRulesRequestBody } from "./UpdateFlagRulesRequestBody";
-export { type CheckFlagsBulkRequestBody } from "./CheckFlagsBulkRequestBody";
-export { type CountFlagsRequest } from "./CountFlagsRequest";
+export type { CheckFlagsBulkRequestBody } from "./CheckFlagsBulkRequestBody.js";
+export type { CountFeaturesRequest } from "./CountFeaturesRequest.js";
+export type { CountFlagsRequest } from "./CountFlagsRequest.js";
+export type { CreateFeatureRequestBody } from "./CreateFeatureRequestBody.js";
+export type { ListFeaturesRequest } from "./ListFeaturesRequest.js";
+export type { ListFlagsRequest } from "./ListFlagsRequest.js";
+export type { UpdateFeatureRequestBody } from "./UpdateFeatureRequestBody.js";
+export type { UpdateFlagRulesRequestBody } from "./UpdateFlagRulesRequestBody.js";

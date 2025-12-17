@@ -1,7 +1,7 @@
-export { type UpdateCompanyPlansRequestBody } from "./UpdateCompanyPlansRequestBody";
-export { type ListPlansRequest } from "./ListPlansRequest";
-export { type CreatePlanRequestBody } from "./CreatePlanRequestBody";
-export { type UpdatePlanRequestBody } from "./UpdatePlanRequestBody";
-export { type UpsertBillingProductRequestBody } from "./UpsertBillingProductRequestBody";
-export { type CountPlansRequest } from "./CountPlansRequest";
-export { type ListPlanIssuesRequest } from "./ListPlanIssuesRequest";
+export type { CountPlansRequest } from "./CountPlansRequest.js";
+export type { CreatePlanRequestBody } from "./CreatePlanRequestBody.js";
+export type { ListPlanIssuesRequest } from "./ListPlanIssuesRequest.js";
+export type { ListPlansRequest } from "./ListPlansRequest.js";
+export type { UpdateCompanyPlansRequestBody } from "./UpdateCompanyPlansRequestBody.js";
+export type { UpdatePlanRequestBody } from "./UpdatePlanRequestBody.js";
+export type { UpsertBillingProductRequestBody } from "./UpsertBillingProductRequestBody.js";
