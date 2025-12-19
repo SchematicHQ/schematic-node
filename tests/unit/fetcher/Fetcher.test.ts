@@ -1,7 +1,6 @@
 import fs from "fs";
 import { join } from "path";
-
-import { Fetcher, fetcherImpl } from "../../../src/core/fetcher/Fetcher";
+import { type Fetcher, fetcherImpl } from "../../../src/core/fetcher/Fetcher";
 
 describe("Test fetcherImpl", () => {
     it("should handle successful request", async () => {
@@ -12,14 +11,16 @@ describe("Test fetcherImpl", () => {
             body: { data: "test" },
             contentType: "application/json",
             requestType: "json",
+            maxRetries: 0,
+            responseType: "json",
         };
 
-        global.fetch = jest.fn().mockResolvedValue({
-            ok: true,
-            status: 200,
-            text: () => Promise.resolve(JSON.stringify({ data: "test" })),
-            json: () => ({ data: "test" }),
-        });
+        global.fetch = jest.fn().mockResolvedValue(
+            new Response(JSON.stringify({ data: "test" }), {
+                status: 200,
+                statusText: "OK",
+            }),
+        );
 
         const result = await fetcherImpl(mockArgs);
         expect(result.ok).toBe(true);
@@ -31,7 +32,7 @@ describe("Test fetcherImpl", () => {
             "https://httpbin.org/post",
             expect.objectContaining({
                 method: "POST",
-                headers: expect.objectContaining({ "X-Test": "x-test-header" }),
+                headers: expect.toContainHeaders({ "X-Test": "x-test-header" }),
                 body: JSON.stringify({ data: "test" }),
             }),
         );
@@ -45,16 +46,17 @@ describe("Test fetcherImpl", () => {
             headers: { "X-Test": "x-test-header" },
             contentType: "application/octet-stream",
             requestType: "bytes",
-            duplex: "half",
+            maxRetries: 0,
+            responseType: "json",
             body: fs.createReadStream(join(__dirname, "test-file.txt")),
         };
 
-        global.fetch = jest.fn().mockResolvedValue({
-            ok: true,
-            status: 200,
-            text: () => Promise.resolve(JSON.stringify({ data: "test" })),
-            json: () => Promise.resolve({ data: "test" }),
-        });
+        global.fetch = jest.fn().mockResolvedValue(
+            new Response(JSON.stringify({ data: "test" }), {
+                status: 200,
+                statusText: "OK",
+            }),
+        );
 
         const result = await fetcherImpl(mockArgs);
 
@@ -62,7 +64,7 @@ describe("Test fetcherImpl", () => {
             url,
             expect.objectContaining({
                 method: "POST",
-                headers: expect.objectContaining({ "X-Test": "x-test-header" }),
+                headers: expect.toContainHeaders({ "X-Test": "x-test-header" }),
                 body: expect.any(fs.ReadStream),
             }),
         );
