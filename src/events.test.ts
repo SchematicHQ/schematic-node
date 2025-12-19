@@ -1,7 +1,7 @@
 /* eslint @typescript-eslint/no-explicit-any: 0 */
 
 import { EventBuffer } from "./events";
-import { Events } from "./api/resources/events/client/Client";
+import { EventsClient } from "./api/resources/events/client/Client";
 import { CreateEventRequestBody } from "./api";
 import { Logger } from "./logger";
 
@@ -10,7 +10,7 @@ process.env.NODE_ENV = "test";
 jest.useFakeTimers();
 
 describe("EventBuffer", () => {
-    let mockEventsApi: jest.Mocked<Events>;
+    let mockEventsApi: jest.Mocked<EventsClient>;
     let mockLogger: jest.Mocked<Logger>;
 
     beforeEach(() => {

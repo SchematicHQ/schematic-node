@@ -120,4 +120,4 @@ class LocalCache<T> implements CacheProvider<T> {
     }
 }
 
-export { CacheProvider, LocalCache };
+export { type CacheProvider, LocalCache };
