@@ -22,7 +22,7 @@ export function provideFetcher(defaultHeaders?: Record<string, string>): FetchFu
 
         if (args.headers != null) {
             for (const [key, value] of Object.entries(args.headers)) {
-                if (value != null) {
+                if (value != null && typeof value === "string") {
                     headers[key] = value;
                 }
             }
