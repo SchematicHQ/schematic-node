@@ -1,6 +1,5 @@
 # Reference
-
-<details><summary><code>client.<a href="/src/Client.ts">deletePlanAudiencesPlanAudienceId</a>(planAudienceId) -> void</code></summary>
+<details><summary><code>client.<a href="/src/Client.ts">putPlanAudiencesPlanAudienceId</a>(plan_audience_id) -> void</code></summary>
 <dl>
 <dd>
 
@@ -13,9 +12,9 @@
 <dd>
 
 ```typescript
-await client.deletePlanAudiencesPlanAudienceId("plan_audience_id");
-```
+await client.putPlanAudiencesPlanAudienceId("plan_audience_id");
 
+```
 </dd>
 </dl>
 </dd>
@@ -29,29 +28,76 @@ await client.deletePlanAudiencesPlanAudienceId("plan_audience_id");
 <dl>
 <dd>
 
-**planAudienceId:** `string`
-
+**plan_audience_id:** `string` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `SchematicClient.RequestOptions`
+**requestOptions:** `SchematicClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-##
+<details><summary><code>client.<a href="/src/Client.ts">deletePlanAudiencesPlanAudienceId</a>(plan_audience_id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.deletePlanAudiencesPlanAudienceId("plan_audience_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**plan_audience_id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `SchematicClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
 
 ## accounts
-
 <details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">listApiKeys</a>({ ...params }) -> Schematic.ListApiKeysResponse</code></summary>
 <dl>
 <dd>
@@ -69,10 +115,10 @@ await client.accounts.listApiKeys({
     environmentId: "environment_id",
     requireEnvironment: true,
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -86,20 +132,21 @@ await client.accounts.listApiKeys({
 <dl>
 <dd>
 
-**request:** `Schematic.ListApiKeysRequest`
-
+**request:** `Schematic.ListApiKeysRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Accounts.RequestOptions`
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -119,10 +166,10 @@ await client.accounts.listApiKeys({
 
 ```typescript
 await client.accounts.createApiKey({
-    name: "name",
+    name: "name"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -136,26 +183,27 @@ await client.accounts.createApiKey({
 <dl>
 <dd>
 
-**request:** `Schematic.CreateApiKeyRequestBody`
-
+**request:** `Schematic.CreateApiKeyRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Accounts.RequestOptions`
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">getApiKey</a>(apiKeyId) -> Schematic.GetApiKeyResponse</code></summary>
+<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">getApiKey</a>(api_key_id) -> Schematic.GetApiKeyResponse</code></summary>
 <dl>
 <dd>
 
@@ -169,8 +217,8 @@ await client.accounts.createApiKey({
 
 ```typescript
 await client.accounts.getApiKey("api_key_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -184,26 +232,27 @@ await client.accounts.getApiKey("api_key_id");
 <dl>
 <dd>
 
-**apiKeyId:** `string` — api_key_id
-
+**api_key_id:** `string` — api_key_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Accounts.RequestOptions`
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">updateApiKey</a>(apiKeyId, { ...params }) -> Schematic.UpdateApiKeyResponse</code></summary>
+<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">updateApiKey</a>(api_key_id, { ...params }) -> Schematic.UpdateApiKeyResponse</code></summary>
 <dl>
 <dd>
 
@@ -217,8 +266,8 @@ await client.accounts.getApiKey("api_key_id");
 
 ```typescript
 await client.accounts.updateApiKey("api_key_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -232,34 +281,35 @@ await client.accounts.updateApiKey("api_key_id");
 <dl>
 <dd>
 
-**apiKeyId:** `string` — api_key_id
-
+**api_key_id:** `string` — api_key_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Schematic.UpdateApiKeyRequestBody`
-
+**request:** `Schematic.UpdateApiKeyRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Accounts.RequestOptions`
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">deleteApiKey</a>(apiKeyId) -> Schematic.DeleteApiKeyResponse</code></summary>
+<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">deleteApiKey</a>(api_key_id) -> Schematic.DeleteApiKeyResponse</code></summary>
 <dl>
 <dd>
 
@@ -273,8 +323,8 @@ await client.accounts.updateApiKey("api_key_id");
 
 ```typescript
 await client.accounts.deleteApiKey("api_key_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -288,20 +338,21 @@ await client.accounts.deleteApiKey("api_key_id");
 <dl>
 <dd>
 
-**apiKeyId:** `string` — api_key_id
-
+**api_key_id:** `string` — api_key_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Accounts.RequestOptions`
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -324,10 +375,10 @@ await client.accounts.countApiKeys({
     environmentId: "environment_id",
     requireEnvironment: true,
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -341,20 +392,21 @@ await client.accounts.countApiKeys({
 <dl>
 <dd>
 
-**request:** `Schematic.CountApiKeysRequest`
-
+**request:** `Schematic.CountApiKeysRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Accounts.RequestOptions`
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -378,10 +430,10 @@ await client.accounts.listApiRequests({
     requestType: "request_type",
     environmentId: "environment_id",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -395,26 +447,27 @@ await client.accounts.listApiRequests({
 <dl>
 <dd>
 
-**request:** `Schematic.ListApiRequestsRequest`
-
+**request:** `Schematic.ListApiRequestsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Accounts.RequestOptions`
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">getApiRequest</a>(apiRequestId) -> Schematic.GetApiRequestResponse</code></summary>
+<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">getApiRequest</a>(api_request_id) -> Schematic.GetApiRequestResponse</code></summary>
 <dl>
 <dd>
 
@@ -428,8 +481,8 @@ await client.accounts.listApiRequests({
 
 ```typescript
 await client.accounts.getApiRequest("api_request_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -443,20 +496,21 @@ await client.accounts.getApiRequest("api_request_id");
 <dl>
 <dd>
 
-**apiRequestId:** `string` — api_request_id
-
+**api_request_id:** `string` — api_request_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Accounts.RequestOptions`
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -480,10 +534,10 @@ await client.accounts.countApiRequests({
     requestType: "request_type",
     environmentId: "environment_id",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -497,20 +551,21 @@ await client.accounts.countApiRequests({
 <dl>
 <dd>
 
-**request:** `Schematic.CountApiRequestsRequest`
-
+**request:** `Schematic.CountApiRequestsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Accounts.RequestOptions`
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -531,10 +586,10 @@ await client.accounts.countApiRequests({
 ```typescript
 await client.accounts.listEnvironments({
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -548,20 +603,21 @@ await client.accounts.listEnvironments({
 <dl>
 <dd>
 
-**request:** `Schematic.ListEnvironmentsRequest`
-
+**request:** `Schematic.ListEnvironmentsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Accounts.RequestOptions`
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -582,10 +638,10 @@ await client.accounts.listEnvironments({
 ```typescript
 await client.accounts.createEnvironment({
     environmentType: "development",
-    name: "name",
+    name: "name"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -599,26 +655,27 @@ await client.accounts.createEnvironment({
 <dl>
 <dd>
 
-**request:** `Schematic.CreateEnvironmentRequestBody`
-
+**request:** `Schematic.CreateEnvironmentRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Accounts.RequestOptions`
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">getEnvironment</a>(environmentId) -> Schematic.GetEnvironmentResponse</code></summary>
+<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">getEnvironment</a>(environment_id) -> Schematic.GetEnvironmentResponse</code></summary>
 <dl>
 <dd>
 
@@ -632,8 +689,8 @@ await client.accounts.createEnvironment({
 
 ```typescript
 await client.accounts.getEnvironment("environment_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -647,26 +704,27 @@ await client.accounts.getEnvironment("environment_id");
 <dl>
 <dd>
 
-**environmentId:** `string` — environment_id
-
+**environment_id:** `string` — environment_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Accounts.RequestOptions`
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">updateEnvironment</a>(environmentId, { ...params }) -> Schematic.UpdateEnvironmentResponse</code></summary>
+<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">updateEnvironment</a>(environment_id, { ...params }) -> Schematic.UpdateEnvironmentResponse</code></summary>
 <dl>
 <dd>
 
@@ -680,8 +738,8 @@ await client.accounts.getEnvironment("environment_id");
 
 ```typescript
 await client.accounts.updateEnvironment("environment_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -695,34 +753,35 @@ await client.accounts.updateEnvironment("environment_id");
 <dl>
 <dd>
 
-**environmentId:** `string` — environment_id
-
+**environment_id:** `string` — environment_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Schematic.UpdateEnvironmentRequestBody`
-
+**request:** `Schematic.UpdateEnvironmentRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Accounts.RequestOptions`
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">deleteEnvironment</a>(environmentId) -> Schematic.DeleteEnvironmentResponse</code></summary>
+<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">deleteEnvironment</a>(environment_id) -> Schematic.DeleteEnvironmentResponse</code></summary>
 <dl>
 <dd>
 
@@ -736,8 +795,8 @@ await client.accounts.updateEnvironment("environment_id");
 
 ```typescript
 await client.accounts.deleteEnvironment("environment_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -751,20 +810,21 @@ await client.accounts.deleteEnvironment("environment_id");
 <dl>
 <dd>
 
-**environmentId:** `string` — environment_id
-
+**environment_id:** `string` — environment_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Accounts.RequestOptions`
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -784,8 +844,8 @@ await client.accounts.deleteEnvironment("environment_id");
 
 ```typescript
 await client.accounts.quickstart();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -799,19 +859,19 @@ await client.accounts.quickstart();
 <dl>
 <dd>
 
-**requestOptions:** `Accounts.RequestOptions`
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## billing
-
 <details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">listCoupons</a>({ ...params }) -> Schematic.ListCouponsResponse</code></summary>
 <dl>
 <dd>
@@ -829,10 +889,10 @@ await client.billing.listCoupons({
     isActive: true,
     q: "q",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -846,20 +906,21 @@ await client.billing.listCoupons({
 <dl>
 <dd>
 
-**request:** `Schematic.ListCouponsRequest`
-
+**request:** `Schematic.ListCouponsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Billing.RequestOptions`
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -886,10 +947,10 @@ await client.billing.upsertBillingCoupon({
     maxRedemptions: 1,
     name: "name",
     percentOff: 1.1,
-    timesRedeemed: 1,
+    timesRedeemed: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -903,20 +964,21 @@ await client.billing.upsertBillingCoupon({
 <dl>
 <dd>
 
-**request:** `Schematic.CreateCouponRequestBody`
-
+**request:** `Schematic.CreateCouponRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Billing.RequestOptions`
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -940,12 +1002,12 @@ await client.billing.upsertBillingCustomer({
     externalId: "external_id",
     failedToImport: true,
     meta: {
-        key: "value",
+        "key": "value"
     },
-    name: "name",
+    name: "name"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -959,20 +1021,21 @@ await client.billing.upsertBillingCustomer({
 <dl>
 <dd>
 
-**request:** `Schematic.CreateBillingCustomerRequestBody`
-
+**request:** `Schematic.CreateBillingCustomerRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Billing.RequestOptions`
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -992,14 +1055,15 @@ await client.billing.upsertBillingCustomer({
 
 ```typescript
 await client.billing.listCustomersWithSubscriptions({
-    name: "name",
     failedToImport: true,
+    name: "name",
+    providerType: "schematic",
     q: "q",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1013,20 +1077,21 @@ await client.billing.listCustomersWithSubscriptions({
 <dl>
 <dd>
 
-**request:** `Schematic.ListCustomersWithSubscriptionsRequest`
-
+**request:** `Schematic.ListCustomersWithSubscriptionsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Billing.RequestOptions`
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1046,14 +1111,15 @@ await client.billing.listCustomersWithSubscriptions({
 
 ```typescript
 await client.billing.countCustomers({
-    name: "name",
     failedToImport: true,
+    name: "name",
+    providerType: "schematic",
     q: "q",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1067,20 +1133,21 @@ await client.billing.countCustomers({
 <dl>
 <dd>
 
-**request:** `Schematic.CountCustomersRequest`
-
+**request:** `Schematic.CountCustomersRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Billing.RequestOptions`
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1104,10 +1171,10 @@ await client.billing.listInvoices({
     customerExternalId: "customer_external_id",
     subscriptionExternalId: "subscription_external_id",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1121,20 +1188,21 @@ await client.billing.listInvoices({
 <dl>
 <dd>
 
-**request:** `Schematic.ListInvoicesRequest`
-
+**request:** `Schematic.ListInvoicesRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Billing.RequestOptions`
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1160,10 +1228,10 @@ await client.billing.upsertInvoice({
     collectionMethod: "collection_method",
     currency: "currency",
     customerExternalId: "customer_external_id",
-    subtotal: 1,
+    subtotal: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1177,20 +1245,21 @@ await client.billing.upsertInvoice({
 <dl>
 <dd>
 
-**request:** `Schematic.CreateInvoiceRequestBody`
-
+**request:** `Schematic.CreateInvoiceRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Billing.RequestOptions`
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1212,10 +1281,10 @@ await client.billing.upsertInvoice({
 await client.billing.listMeters({
     displayName: "display_name",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1229,20 +1298,21 @@ await client.billing.listMeters({
 <dl>
 <dd>
 
-**request:** `Schematic.ListMetersRequest`
-
+**request:** `Schematic.ListMetersRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Billing.RequestOptions`
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1265,10 +1335,10 @@ await client.billing.upsertBillingMeter({
     displayName: "display_name",
     eventName: "event_name",
     eventPayloadKey: "event_payload_key",
-    externalId: "external_id",
+    externalId: "external_id"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1282,20 +1352,21 @@ await client.billing.upsertBillingMeter({
 <dl>
 <dd>
 
-**request:** `Schematic.CreateMeterRequestBody`
-
+**request:** `Schematic.CreateMeterRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Billing.RequestOptions`
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1318,10 +1389,10 @@ await client.billing.listPaymentMethods({
     companyId: "company_id",
     customerExternalId: "customer_external_id",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1335,20 +1406,21 @@ await client.billing.listPaymentMethods({
 <dl>
 <dd>
 
-**request:** `Schematic.ListPaymentMethodsRequest`
-
+**request:** `Schematic.ListPaymentMethodsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Billing.RequestOptions`
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1370,10 +1442,10 @@ await client.billing.listPaymentMethods({
 await client.billing.upsertPaymentMethod({
     customerExternalId: "customer_external_id",
     externalId: "external_id",
-    paymentMethodType: "payment_method_type",
+    paymentMethodType: "payment_method_type"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1387,20 +1459,21 @@ await client.billing.upsertPaymentMethod({
 <dl>
 <dd>
 
-**request:** `Schematic.CreatePaymentMethodRequestBody`
-
+**request:** `Schematic.CreatePaymentMethodRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Billing.RequestOptions`
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1426,15 +1499,16 @@ await client.billing.listBillingPrices({
     isActive: true,
     price: 1,
     productId: "product_id",
+    providerType: "schematic",
     q: "q",
     tiersMode: "graduated",
     usageType: "licensed",
     withMeter: true,
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1448,20 +1522,21 @@ await client.billing.listBillingPrices({
 <dl>
 <dd>
 
-**request:** `Schematic.ListBillingPricesRequest`
-
+**request:** `Schematic.ListBillingPricesRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Billing.RequestOptions`
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1488,16 +1563,14 @@ await client.billing.upsertBillingPrice({
     isActive: true,
     price: 1,
     priceExternalId: "price_external_id",
-    priceTiers: [
-        {
-            priceExternalId: "price_external_id",
-        },
-    ],
+    priceTiers: [{
+            priceExternalId: "price_external_id"
+        }],
     productExternalId: "product_external_id",
-    usageType: "licensed",
+    usageType: "licensed"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1511,26 +1584,27 @@ await client.billing.upsertBillingPrice({
 <dl>
 <dd>
 
-**request:** `Schematic.CreateBillingPriceRequestBody`
-
+**request:** `Schematic.CreateBillingPriceRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Billing.RequestOptions`
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">deleteBillingProduct</a>(billingId) -> Schematic.DeleteBillingProductResponse</code></summary>
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">deleteBillingProduct</a>(billing_id) -> Schematic.DeleteBillingProductResponse</code></summary>
 <dl>
 <dd>
 
@@ -1544,8 +1618,8 @@ await client.billing.upsertBillingPrice({
 
 ```typescript
 await client.billing.deleteBillingProduct("billing_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1559,20 +1633,21 @@ await client.billing.deleteBillingProduct("billing_id");
 <dl>
 <dd>
 
-**billingId:** `string` — billing_id
-
+**billing_id:** `string` — billing_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Billing.RequestOptions`
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1598,15 +1673,16 @@ await client.billing.listBillingProductPrices({
     isActive: true,
     price: 1,
     productId: "product_id",
+    providerType: "schematic",
     q: "q",
     tiersMode: "graduated",
     usageType: "licensed",
     withMeter: true,
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1620,26 +1696,27 @@ await client.billing.listBillingProductPrices({
 <dl>
 <dd>
 
-**request:** `Schematic.ListBillingProductPricesRequest`
-
+**request:** `Schematic.ListBillingProductPricesRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Billing.RequestOptions`
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">deleteProductPrice</a>(billingId) -> Schematic.DeleteProductPriceResponse</code></summary>
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">deleteProductPrice</a>(billing_id) -> Schematic.DeleteProductPriceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1653,8 +1730,8 @@ await client.billing.listBillingProductPrices({
 
 ```typescript
 await client.billing.deleteProductPrice("billing_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1668,20 +1745,21 @@ await client.billing.deleteProductPrice("billing_id");
 <dl>
 <dd>
 
-**billingId:** `string` — billing_id
-
+**billing_id:** `string` — billing_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Billing.RequestOptions`
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1703,10 +1781,10 @@ await client.billing.deleteProductPrice("billing_id");
 await client.billing.upsertBillingProduct({
     externalId: "external_id",
     name: "name",
-    price: 1.1,
+    price: 1.1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1720,20 +1798,21 @@ await client.billing.upsertBillingProduct({
 <dl>
 <dd>
 
-**request:** `Schematic.CreateBillingProductRequestBody`
-
+**request:** `Schematic.CreateBillingProductRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Billing.RequestOptions`
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1753,19 +1832,20 @@ await client.billing.upsertBillingProduct({
 
 ```typescript
 await client.billing.listBillingProducts({
-    name: "name",
-    q: "q",
-    priceUsageType: "licensed",
-    withoutLinkedToPlan: true,
-    withOneTimeCharges: true,
-    withZeroPrice: true,
-    withPricesOnly: true,
     isActive: true,
+    name: "name",
+    priceUsageType: "licensed",
+    providerType: "schematic",
+    q: "q",
+    withOneTimeCharges: true,
+    withPricesOnly: true,
+    withZeroPrice: true,
+    withoutLinkedToPlan: true,
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1779,20 +1859,21 @@ await client.billing.listBillingProducts({
 <dl>
 <dd>
 
-**request:** `Schematic.ListBillingProductsRequest`
-
+**request:** `Schematic.ListBillingProductsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Billing.RequestOptions`
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1812,19 +1893,20 @@ await client.billing.listBillingProducts({
 
 ```typescript
 await client.billing.countBillingProducts({
-    name: "name",
-    q: "q",
-    priceUsageType: "licensed",
-    withoutLinkedToPlan: true,
-    withOneTimeCharges: true,
-    withZeroPrice: true,
-    withPricesOnly: true,
     isActive: true,
+    name: "name",
+    priceUsageType: "licensed",
+    providerType: "schematic",
+    q: "q",
+    withOneTimeCharges: true,
+    withPricesOnly: true,
+    withZeroPrice: true,
+    withoutLinkedToPlan: true,
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1838,20 +1920,21 @@ await client.billing.countBillingProducts({
 <dl>
 <dd>
 
-**request:** `Schematic.CountBillingProductsRequest`
-
+**request:** `Schematic.CountBillingProductsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Billing.RequestOptions`
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -1874,31 +1957,27 @@ await client.billing.upsertBillingSubscription({
     cancelAtPeriodEnd: true,
     currency: "currency",
     customerExternalId: "customer_external_id",
-    discounts: [
-        {
+    discounts: [{
             couponExternalId: "coupon_external_id",
             externalId: "external_id",
             isActive: true,
-            startedAt: "2024-01-15T09:30:00Z",
-        },
-    ],
-    expiredAt: "2024-01-15T09:30:00Z",
-    productExternalIds: [
-        {
+            startedAt: new Date("2024-01-15T09:30:00.000Z")
+        }],
+    expiredAt: new Date("2024-01-15T09:30:00.000Z"),
+    productExternalIds: [{
             currency: "currency",
             interval: "interval",
             price: 1,
             priceExternalId: "price_external_id",
             productExternalId: "product_external_id",
             quantity: 1,
-            usageType: "licensed",
-        },
-    ],
+            usageType: "licensed"
+        }],
     subscriptionExternalId: "subscription_external_id",
-    totalPrice: 1,
+    totalPrice: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1912,27 +1991,27 @@ await client.billing.upsertBillingSubscription({
 <dl>
 <dd>
 
-**request:** `Schematic.CreateBillingSubscriptionRequestBody`
-
+**request:** `Schematic.CreateBillingSubscriptionRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Billing.RequestOptions`
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## credits
-
 <details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">listBillingCredits</a>({ ...params }) -> Schematic.ListBillingCreditsResponse</code></summary>
 <dl>
 <dd>
@@ -1949,10 +2028,10 @@ await client.billing.upsertBillingSubscription({
 await client.credits.listBillingCredits({
     name: "name",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -1966,20 +2045,21 @@ await client.credits.listBillingCredits({
 <dl>
 <dd>
 
-**request:** `Schematic.ListBillingCreditsRequest`
-
+**request:** `Schematic.ListBillingCreditsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Credits.RequestOptions`
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2001,10 +2081,10 @@ await client.credits.listBillingCredits({
 await client.credits.createBillingCredit({
     currency: "currency",
     description: "description",
-    name: "name",
+    name: "name"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2018,26 +2098,27 @@ await client.credits.createBillingCredit({
 <dl>
 <dd>
 
-**request:** `Schematic.CreateBillingCreditRequestBody`
-
+**request:** `Schematic.CreateBillingCreditRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Credits.RequestOptions`
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">getSingleBillingCredit</a>(creditId) -> Schematic.GetSingleBillingCreditResponse</code></summary>
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">getSingleBillingCredit</a>(credit_id) -> Schematic.GetSingleBillingCreditResponse</code></summary>
 <dl>
 <dd>
 
@@ -2051,8 +2132,8 @@ await client.credits.createBillingCredit({
 
 ```typescript
 await client.credits.getSingleBillingCredit("credit_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2066,26 +2147,27 @@ await client.credits.getSingleBillingCredit("credit_id");
 <dl>
 <dd>
 
-**creditId:** `string` — credit_id
-
+**credit_id:** `string` — credit_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Credits.RequestOptions`
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">updateBillingCredit</a>(creditId, { ...params }) -> Schematic.UpdateBillingCreditResponse</code></summary>
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">updateBillingCredit</a>(credit_id, { ...params }) -> Schematic.UpdateBillingCreditResponse</code></summary>
 <dl>
 <dd>
 
@@ -2100,10 +2182,10 @@ await client.credits.getSingleBillingCredit("credit_id");
 ```typescript
 await client.credits.updateBillingCredit("credit_id", {
     description: "description",
-    name: "name",
+    name: "name"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2117,34 +2199,35 @@ await client.credits.updateBillingCredit("credit_id", {
 <dl>
 <dd>
 
-**creditId:** `string` — credit_id
-
+**credit_id:** `string` — credit_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Schematic.UpdateBillingCreditRequestBody`
-
+**request:** `Schematic.UpdateBillingCreditRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Credits.RequestOptions`
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">softDeleteBillingCredit</a>(creditId) -> Schematic.SoftDeleteBillingCreditResponse</code></summary>
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">softDeleteBillingCredit</a>(credit_id) -> Schematic.SoftDeleteBillingCreditResponse</code></summary>
 <dl>
 <dd>
 
@@ -2158,8 +2241,8 @@ await client.credits.updateBillingCredit("credit_id", {
 
 ```typescript
 await client.credits.softDeleteBillingCredit("credit_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2173,20 +2256,21 @@ await client.credits.softDeleteBillingCredit("credit_id");
 <dl>
 <dd>
 
-**creditId:** `string` — credit_id
-
+**credit_id:** `string` — credit_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Credits.RequestOptions`
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2210,10 +2294,10 @@ await client.credits.listCreditBundles({
     status: "active",
     bundleType: "fixed",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2227,20 +2311,21 @@ await client.credits.listCreditBundles({
 <dl>
 <dd>
 
-**request:** `Schematic.ListCreditBundlesRequest`
-
+**request:** `Schematic.ListCreditBundlesRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Credits.RequestOptions`
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2263,10 +2348,10 @@ await client.credits.createCreditBundle({
     bundleName: "bundle_name",
     creditId: "credit_id",
     currency: "currency",
-    pricePerUnit: 1,
+    pricePerUnit: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2280,26 +2365,27 @@ await client.credits.createCreditBundle({
 <dl>
 <dd>
 
-**request:** `Schematic.CreateCreditBundleRequestBody`
-
+**request:** `Schematic.CreateCreditBundleRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Credits.RequestOptions`
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">getCreditBundle</a>(bundleId) -> Schematic.GetCreditBundleResponse</code></summary>
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">getCreditBundle</a>(bundle_id) -> Schematic.GetCreditBundleResponse</code></summary>
 <dl>
 <dd>
 
@@ -2313,8 +2399,8 @@ await client.credits.createCreditBundle({
 
 ```typescript
 await client.credits.getCreditBundle("bundle_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2328,26 +2414,27 @@ await client.credits.getCreditBundle("bundle_id");
 <dl>
 <dd>
 
-**bundleId:** `string` — bundle_id
-
+**bundle_id:** `string` — bundle_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Credits.RequestOptions`
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">updateCreditBundleDetails</a>(bundleId, { ...params }) -> Schematic.UpdateCreditBundleDetailsResponse</code></summary>
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">updateCreditBundleDetails</a>(bundle_id, { ...params }) -> Schematic.UpdateCreditBundleDetailsResponse</code></summary>
 <dl>
 <dd>
 
@@ -2362,10 +2449,10 @@ await client.credits.getCreditBundle("bundle_id");
 ```typescript
 await client.credits.updateCreditBundleDetails("bundle_id", {
     bundleName: "bundle_name",
-    pricePerUnit: 1,
+    pricePerUnit: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2379,34 +2466,35 @@ await client.credits.updateCreditBundleDetails("bundle_id", {
 <dl>
 <dd>
 
-**bundleId:** `string` — bundle_id
-
+**bundle_id:** `string` — bundle_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Schematic.UpdateCreditBundleDetailsRequestBody`
-
+**request:** `Schematic.UpdateCreditBundleDetailsRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Credits.RequestOptions`
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">deleteCreditBundle</a>(bundleId) -> Schematic.DeleteCreditBundleResponse</code></summary>
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">deleteCreditBundle</a>(bundle_id) -> Schematic.DeleteCreditBundleResponse</code></summary>
 <dl>
 <dd>
 
@@ -2420,8 +2508,8 @@ await client.credits.updateCreditBundleDetails("bundle_id", {
 
 ```typescript
 await client.credits.deleteCreditBundle("bundle_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2435,20 +2523,21 @@ await client.credits.deleteCreditBundle("bundle_id");
 <dl>
 <dd>
 
-**bundleId:** `string` — bundle_id
-
+**bundle_id:** `string` — bundle_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Credits.RequestOptions`
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2472,10 +2561,10 @@ await client.credits.countCreditBundles({
     status: "active",
     bundleType: "fixed",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2489,20 +2578,21 @@ await client.credits.countCreditBundles({
 <dl>
 <dd>
 
-**request:** `Schematic.CountCreditBundlesRequest`
-
+**request:** `Schematic.CountCreditBundlesRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Credits.RequestOptions`
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2524,10 +2614,10 @@ await client.credits.countCreditBundles({
 await client.credits.countBillingCredits({
     name: "name",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2541,26 +2631,27 @@ await client.credits.countBillingCredits({
 <dl>
 <dd>
 
-**request:** `Schematic.CountBillingCreditsRequest`
-
+**request:** `Schematic.CountBillingCreditsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Credits.RequestOptions`
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">zeroOutGrant</a>(grantId, { ...params }) -> Schematic.ZeroOutGrantResponse</code></summary>
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">zeroOutGrant</a>(grant_id, { ...params }) -> Schematic.ZeroOutGrantResponse</code></summary>
 <dl>
 <dd>
 
@@ -2574,8 +2665,8 @@ await client.credits.countBillingCredits({
 
 ```typescript
 await client.credits.zeroOutGrant("grant_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2589,28 +2680,29 @@ await client.credits.zeroOutGrant("grant_id");
 <dl>
 <dd>
 
-**grantId:** `string` — grant_id
-
+**grant_id:** `string` — grant_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Schematic.ZeroOutGrantRequestBody`
-
+**request:** `Schematic.ZeroOutGrantRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Credits.RequestOptions`
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2633,10 +2725,10 @@ await client.credits.grantBillingCreditsToCompany({
     companyId: "company_id",
     creditId: "credit_id",
     quantity: 1,
-    reason: "billing_credit_auto_topup",
+    reason: "billing_credit_auto_topup"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2650,20 +2742,21 @@ await client.credits.grantBillingCreditsToCompany({
 <dl>
 <dd>
 
-**request:** `Schematic.CreateCompanyCreditGrant`
-
+**request:** `Schematic.CreateCompanyCreditGrant` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Credits.RequestOptions`
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2687,10 +2780,10 @@ await client.credits.listCompanyGrants({
     order: "created_at",
     dir: "asc",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2704,20 +2797,21 @@ await client.credits.listCompanyGrants({
 <dl>
 <dd>
 
-**request:** `Schematic.ListCompanyGrantsRequest`
-
+**request:** `Schematic.ListCompanyGrantsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Credits.RequestOptions`
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2739,10 +2833,10 @@ await client.credits.listCompanyGrants({
 await client.credits.countBillingCreditsGrants({
     creditId: "credit_id",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2756,20 +2850,21 @@ await client.credits.countBillingCreditsGrants({
 <dl>
 <dd>
 
-**request:** `Schematic.CountBillingCreditsGrantsRequest`
-
+**request:** `Schematic.CountBillingCreditsGrantsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Credits.RequestOptions`
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2791,10 +2886,10 @@ await client.credits.countBillingCreditsGrants({
 await client.credits.listGrantsForCredit({
     creditId: "credit_id",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2808,20 +2903,21 @@ await client.credits.listGrantsForCredit({
 <dl>
 <dd>
 
-**request:** `Schematic.ListGrantsForCreditRequest`
-
+**request:** `Schematic.ListGrantsForCreditRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Credits.RequestOptions`
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2848,10 +2944,10 @@ await client.credits.getEnrichedCreditLedger({
     startTime: "start_time",
     endTime: "end_time",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2865,20 +2961,21 @@ await client.credits.getEnrichedCreditLedger({
 <dl>
 <dd>
 
-**request:** `Schematic.GetEnrichedCreditLedgerRequest`
-
+**request:** `Schematic.GetEnrichedCreditLedgerRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Credits.RequestOptions`
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2905,10 +3002,10 @@ await client.credits.countCreditLedger({
     startTime: "start_time",
     endTime: "end_time",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2922,20 +3019,21 @@ await client.credits.countCreditLedger({
 <dl>
 <dd>
 
-**request:** `Schematic.CountCreditLedgerRequest`
-
+**request:** `Schematic.CountCreditLedgerRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Credits.RequestOptions`
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -2958,10 +3056,10 @@ await client.credits.listBillingPlanCreditGrants({
     creditId: "credit_id",
     planId: "plan_id",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -2975,20 +3073,21 @@ await client.credits.listBillingPlanCreditGrants({
 <dl>
 <dd>
 
-**request:** `Schematic.ListBillingPlanCreditGrantsRequest`
-
+**request:** `Schematic.ListBillingPlanCreditGrantsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Credits.RequestOptions`
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3012,10 +3111,10 @@ await client.credits.createBillingPlanCreditGrant({
     creditId: "credit_id",
     planId: "plan_id",
     resetCadence: "daily",
-    resetStart: "billing_period",
+    resetStart: "billing_period"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3029,26 +3128,27 @@ await client.credits.createBillingPlanCreditGrant({
 <dl>
 <dd>
 
-**request:** `Schematic.CreateBillingPlanCreditGrantRequestBody`
-
+**request:** `Schematic.CreateBillingPlanCreditGrantRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Credits.RequestOptions`
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">updateBillingPlanCreditGrant</a>(planGrantId, { ...params }) -> Schematic.UpdateBillingPlanCreditGrantResponse</code></summary>
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">updateBillingPlanCreditGrant</a>(plan_grant_id, { ...params }) -> Schematic.UpdateBillingPlanCreditGrantResponse</code></summary>
 <dl>
 <dd>
 
@@ -3063,10 +3163,10 @@ await client.credits.createBillingPlanCreditGrant({
 ```typescript
 await client.credits.updateBillingPlanCreditGrant("plan_grant_id", {
     resetCadence: "daily",
-    resetStart: "billing_period",
+    resetStart: "billing_period"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3080,34 +3180,35 @@ await client.credits.updateBillingPlanCreditGrant("plan_grant_id", {
 <dl>
 <dd>
 
-**planGrantId:** `string` — plan_grant_id
-
+**plan_grant_id:** `string` — plan_grant_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Schematic.UpdateBillingPlanCreditGrantRequestBody`
-
+**request:** `Schematic.UpdateBillingPlanCreditGrantRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Credits.RequestOptions`
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">deleteBillingPlanCreditGrant</a>(planGrantId, { ...params }) -> Schematic.DeleteBillingPlanCreditGrantResponse</code></summary>
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">deleteBillingPlanCreditGrant</a>(plan_grant_id, { ...params }) -> Schematic.DeleteBillingPlanCreditGrantResponse</code></summary>
 <dl>
 <dd>
 
@@ -3121,10 +3222,10 @@ await client.credits.updateBillingPlanCreditGrant("plan_grant_id", {
 
 ```typescript
 await client.credits.deleteBillingPlanCreditGrant("plan_grant_id", {
-    applyToExisting: true,
+    applyToExisting: true
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3138,28 +3239,29 @@ await client.credits.deleteBillingPlanCreditGrant("plan_grant_id", {
 <dl>
 <dd>
 
-**planGrantId:** `string` — plan_grant_id
-
+**plan_grant_id:** `string` — plan_grant_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Schematic.DeleteBillingPlanCreditGrantRequest`
-
+**request:** `Schematic.DeleteBillingPlanCreditGrantRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Credits.RequestOptions`
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3182,10 +3284,10 @@ await client.credits.countBillingPlanCreditGrants({
     creditId: "credit_id",
     planId: "plan_id",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3199,27 +3301,27 @@ await client.credits.countBillingPlanCreditGrants({
 <dl>
 <dd>
 
-**request:** `Schematic.CountBillingPlanCreditGrantsRequest`
-
+**request:** `Schematic.CountBillingPlanCreditGrantsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Credits.RequestOptions`
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## checkout
-
 <details><summary><code>client.checkout.<a href="/src/api/resources/checkout/client/Client.ts">internal</a>({ ...params }) -> Schematic.CheckoutInternalResponse</code></summary>
 <dl>
 <dd>
@@ -3234,31 +3336,25 @@ await client.credits.countBillingPlanCreditGrants({
 
 ```typescript
 await client.checkout.internal({
-    addOnIds: [
-        {
+    addOnIds: [{
             addOnId: "add_on_id",
-            priceId: "price_id",
-        },
-    ],
+            priceId: "price_id"
+        }],
     companyId: "company_id",
-    creditBundles: [
-        {
+    creditBundles: [{
             bundleId: "bundle_id",
-            quantity: 1,
-        },
-    ],
+            quantity: 1
+        }],
     newPlanId: "new_plan_id",
     newPriceId: "new_price_id",
-    payInAdvance: [
-        {
+    payInAdvance: [{
             priceId: "price_id",
-            quantity: 1,
-        },
-    ],
-    skipTrial: true,
+            quantity: 1
+        }],
+    skipTrial: true
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3272,20 +3368,21 @@ await client.checkout.internal({
 <dl>
 <dd>
 
-**request:** `Schematic.ChangeSubscriptionInternalRequestBody`
-
+**request:** `Schematic.ChangeSubscriptionInternalRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Checkout.RequestOptions`
+**requestOptions:** `CheckoutClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3305,10 +3402,10 @@ await client.checkout.internal({
 
 ```typescript
 await client.checkout.getCheckoutData({
-    companyId: "company_id",
+    companyId: "company_id"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3322,20 +3419,21 @@ await client.checkout.getCheckoutData({
 <dl>
 <dd>
 
-**request:** `Schematic.CheckoutDataRequestBody`
-
+**request:** `Schematic.CheckoutDataRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Checkout.RequestOptions`
+**requestOptions:** `CheckoutClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3355,31 +3453,25 @@ await client.checkout.getCheckoutData({
 
 ```typescript
 await client.checkout.previewCheckoutInternal({
-    addOnIds: [
-        {
+    addOnIds: [{
             addOnId: "add_on_id",
-            priceId: "price_id",
-        },
-    ],
+            priceId: "price_id"
+        }],
     companyId: "company_id",
-    creditBundles: [
-        {
+    creditBundles: [{
             bundleId: "bundle_id",
-            quantity: 1,
-        },
-    ],
+            quantity: 1
+        }],
     newPlanId: "new_plan_id",
     newPriceId: "new_price_id",
-    payInAdvance: [
-        {
+    payInAdvance: [{
             priceId: "price_id",
-            quantity: 1,
-        },
-    ],
-    skipTrial: true,
+            quantity: 1
+        }],
+    skipTrial: true
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3393,20 +3485,21 @@ await client.checkout.previewCheckoutInternal({
 <dl>
 <dd>
 
-**request:** `Schematic.ChangeSubscriptionInternalRequestBody`
-
+**request:** `Schematic.ChangeSubscriptionInternalRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Checkout.RequestOptions`
+**requestOptions:** `CheckoutClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3426,27 +3519,21 @@ await client.checkout.previewCheckoutInternal({
 
 ```typescript
 await client.checkout.managePlan({
-    addOnSelections: [
-        {
-            planId: "plan_id",
-        },
-    ],
+    addOnSelections: [{
+            planId: "plan_id"
+        }],
     companyId: "company_id",
-    creditBundles: [
-        {
+    creditBundles: [{
             bundleId: "bundle_id",
-            quantity: 1,
-        },
-    ],
-    payInAdvanceEntitlements: [
-        {
+            quantity: 1
+        }],
+    payInAdvanceEntitlements: [{
             priceId: "price_id",
-            quantity: 1,
-        },
-    ],
+            quantity: 1
+        }]
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3460,20 +3547,21 @@ await client.checkout.managePlan({
 <dl>
 <dd>
 
-**request:** `Schematic.ManagePlanRequest`
-
+**request:** `Schematic.ManagePlanRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Checkout.RequestOptions`
+**requestOptions:** `CheckoutClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3493,27 +3581,21 @@ await client.checkout.managePlan({
 
 ```typescript
 await client.checkout.previewManagePlan({
-    addOnSelections: [
-        {
-            planId: "plan_id",
-        },
-    ],
+    addOnSelections: [{
+            planId: "plan_id"
+        }],
     companyId: "company_id",
-    creditBundles: [
-        {
+    creditBundles: [{
             bundleId: "bundle_id",
-            quantity: 1,
-        },
-    ],
-    payInAdvanceEntitlements: [
-        {
+            quantity: 1
+        }],
+    payInAdvanceEntitlements: [{
             priceId: "price_id",
-            quantity: 1,
-        },
-    ],
+            quantity: 1
+        }]
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3527,20 +3609,21 @@ await client.checkout.previewManagePlan({
 <dl>
 <dd>
 
-**request:** `Schematic.ManagePlanRequest`
-
+**request:** `Schematic.ManagePlanRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Checkout.RequestOptions`
+**requestOptions:** `CheckoutClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3560,10 +3643,10 @@ await client.checkout.previewManagePlan({
 
 ```typescript
 await client.checkout.cancelSubscription({
-    companyId: "company_id",
+    companyId: "company_id"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3577,26 +3660,27 @@ await client.checkout.cancelSubscription({
 <dl>
 <dd>
 
-**request:** `Schematic.CancelSubscriptionRequest`
-
+**request:** `Schematic.CancelSubscriptionRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Checkout.RequestOptions`
+**requestOptions:** `CheckoutClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.checkout.<a href="/src/api/resources/checkout/client/Client.ts">updateCustomerSubscriptionTrialEnd</a>(subscriptionId, { ...params }) -> Schematic.UpdateCustomerSubscriptionTrialEndResponse</code></summary>
+<details><summary><code>client.checkout.<a href="/src/api/resources/checkout/client/Client.ts">updateCustomerSubscriptionTrialEnd</a>(subscription_id, { ...params }) -> Schematic.UpdateCustomerSubscriptionTrialEndResponse</code></summary>
 <dl>
 <dd>
 
@@ -3610,8 +3694,8 @@ await client.checkout.cancelSubscription({
 
 ```typescript
 await client.checkout.updateCustomerSubscriptionTrialEnd("subscription_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3625,35 +3709,35 @@ await client.checkout.updateCustomerSubscriptionTrialEnd("subscription_id");
 <dl>
 <dd>
 
-**subscriptionId:** `string` — subscription_id
-
+**subscription_id:** `string` — subscription_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Schematic.UpdateTrialEndRequestBody`
-
+**request:** `Schematic.UpdateTrialEndRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Checkout.RequestOptions`
+**requestOptions:** `CheckoutClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## companies
-
 <details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">listCompanies</a>({ ...params }) -> Schematic.ListCompaniesResponse</code></summary>
 <dl>
 <dd>
@@ -3674,10 +3758,10 @@ await client.companies.listCompanies({
     withoutPlan: true,
     withSubscription: true,
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3691,20 +3775,21 @@ await client.companies.listCompanies({
 <dl>
 <dd>
 
-**request:** `Schematic.ListCompaniesRequest`
-
+**request:** `Schematic.ListCompaniesRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3725,11 +3810,11 @@ await client.companies.listCompanies({
 ```typescript
 await client.companies.upsertCompany({
     keys: {
-        key: "value",
-    },
+        "key": "value"
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3743,26 +3828,27 @@ await client.companies.upsertCompany({
 <dl>
 <dd>
 
-**request:** `Schematic.UpsertCompanyRequestBody`
-
+**request:** `Schematic.UpsertCompanyRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">getCompany</a>(companyId) -> Schematic.GetCompanyResponse</code></summary>
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">getCompany</a>(company_id) -> Schematic.GetCompanyResponse</code></summary>
 <dl>
 <dd>
 
@@ -3776,8 +3862,8 @@ await client.companies.upsertCompany({
 
 ```typescript
 await client.companies.getCompany("company_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3791,26 +3877,27 @@ await client.companies.getCompany("company_id");
 <dl>
 <dd>
 
-**companyId:** `string` — company_id
-
+**company_id:** `string` — company_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">deleteCompany</a>(companyId, { ...params }) -> Schematic.DeleteCompanyResponse</code></summary>
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">deleteCompany</a>(company_id, { ...params }) -> Schematic.DeleteCompanyResponse</code></summary>
 <dl>
 <dd>
 
@@ -3825,10 +3912,10 @@ await client.companies.getCompany("company_id");
 ```typescript
 await client.companies.deleteCompany("company_id", {
     cancelSubscription: true,
-    prorate: true,
+    prorate: true
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3842,28 +3929,29 @@ await client.companies.deleteCompany("company_id", {
 <dl>
 <dd>
 
-**companyId:** `string` — company_id
-
+**company_id:** `string` — company_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Schematic.DeleteCompanyRequest`
-
+**request:** `Schematic.DeleteCompanyRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3889,10 +3977,10 @@ await client.companies.countCompanies({
     withoutPlan: true,
     withSubscription: true,
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3906,20 +3994,21 @@ await client.companies.countCompanies({
 <dl>
 <dd>
 
-**request:** `Schematic.CountCompaniesRequest`
-
+**request:** `Schematic.CountCompaniesRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3946,10 +4035,10 @@ await client.companies.countCompaniesForAdvancedFilter({
     sortOrderColumn: "sort_order_column",
     sortOrderDirection: "asc",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -3963,20 +4052,21 @@ await client.companies.countCompaniesForAdvancedFilter({
 <dl>
 <dd>
 
-**request:** `Schematic.CountCompaniesForAdvancedFilterRequest`
-
+**request:** `Schematic.CountCompaniesForAdvancedFilterRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -3997,11 +4087,11 @@ await client.companies.countCompaniesForAdvancedFilter({
 ```typescript
 await client.companies.createCompany({
     keys: {
-        key: "value",
-    },
+        "key": "value"
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4015,20 +4105,21 @@ await client.companies.createCompany({
 <dl>
 <dd>
 
-**request:** `Schematic.UpsertCompanyRequestBody`
-
+**request:** `Schematic.UpsertCompanyRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4049,11 +4140,11 @@ await client.companies.createCompany({
 ```typescript
 await client.companies.deleteCompanyByKeys({
     keys: {
-        key: "value",
-    },
+        "key": "value"
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4067,20 +4158,21 @@ await client.companies.deleteCompanyByKeys({
 <dl>
 <dd>
 
-**request:** `Schematic.KeysRequestBody`
-
+**request:** `Schematic.KeysRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4107,10 +4199,10 @@ await client.companies.listCompaniesForAdvancedFilter({
     sortOrderColumn: "sort_order_column",
     sortOrderDirection: "asc",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4124,20 +4216,21 @@ await client.companies.listCompaniesForAdvancedFilter({
 <dl>
 <dd>
 
-**request:** `Schematic.ListCompaniesForAdvancedFilterRequest`
-
+**request:** `Schematic.ListCompaniesForAdvancedFilterRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4158,11 +4251,11 @@ await client.companies.listCompaniesForAdvancedFilter({
 ```typescript
 await client.companies.lookupCompany({
     keys: {
-        keys: "keys",
-    },
+        "keys": "keys"
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4176,73 +4269,21 @@ await client.companies.lookupCompany({
 <dl>
 <dd>
 
-**request:** `Schematic.LookupCompanyRequest`
-
+**request:** `Schematic.LookupCompanyRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
-
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
 </dd>
 </dl>
 </dd>
 </dl>
 
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">getActiveDeals</a>({ ...params }) -> Schematic.GetActiveDealsResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.companies.getActiveDeals({
-    companyId: "company_id",
-    dealStage: "deal_stage",
-    limit: 1,
-    offset: 1,
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.GetActiveDealsRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Companies.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4265,10 +4306,10 @@ await client.companies.listCompanyMemberships({
     companyId: "company_id",
     userId: "user_id",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4282,20 +4323,21 @@ await client.companies.listCompanyMemberships({
 <dl>
 <dd>
 
-**request:** `Schematic.ListCompanyMembershipsRequest`
-
+**request:** `Schematic.ListCompanyMembershipsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4316,10 +4358,10 @@ await client.companies.listCompanyMemberships({
 ```typescript
 await client.companies.getOrCreateCompanyMembership({
     companyId: "company_id",
-    userId: "user_id",
+    userId: "user_id"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4333,26 +4375,27 @@ await client.companies.getOrCreateCompanyMembership({
 <dl>
 <dd>
 
-**request:** `Schematic.GetOrCreateCompanyMembershipRequestBody`
-
+**request:** `Schematic.GetOrCreateCompanyMembershipRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">deleteCompanyMembership</a>(companyMembershipId) -> Schematic.DeleteCompanyMembershipResponse</code></summary>
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">deleteCompanyMembership</a>(company_membership_id) -> Schematic.DeleteCompanyMembershipResponse</code></summary>
 <dl>
 <dd>
 
@@ -4366,8 +4409,8 @@ await client.companies.getOrCreateCompanyMembership({
 
 ```typescript
 await client.companies.deleteCompanyMembership("company_membership_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4381,20 +4424,21 @@ await client.companies.deleteCompanyMembership("company_membership_id");
 <dl>
 <dd>
 
-**companyMembershipId:** `string` — company_membership_id
-
+**company_membership_id:** `string` — company_membership_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4416,10 +4460,10 @@ await client.companies.deleteCompanyMembership("company_membership_id");
 await client.companies.getActiveCompanySubscription({
     companyId: "company_id",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4433,20 +4477,21 @@ await client.companies.getActiveCompanySubscription({
 <dl>
 <dd>
 
-**request:** `Schematic.GetActiveCompanySubscriptionRequest`
-
+**request:** `Schematic.GetActiveCompanySubscriptionRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4467,12 +4512,12 @@ await client.companies.getActiveCompanySubscription({
 ```typescript
 await client.companies.upsertCompanyTrait({
     keys: {
-        key: "value",
+        "key": "value"
     },
-    trait: "trait",
+    trait: "trait"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4486,20 +4531,21 @@ await client.companies.upsertCompanyTrait({
 <dl>
 <dd>
 
-**request:** `Schematic.UpsertTraitRequestBody`
-
+**request:** `Schematic.UpsertTraitRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4522,10 +4568,10 @@ await client.companies.listEntityKeyDefinitions({
     entityType: "company",
     q: "q",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4539,20 +4585,21 @@ await client.companies.listEntityKeyDefinitions({
 <dl>
 <dd>
 
-**request:** `Schematic.ListEntityKeyDefinitionsRequest`
-
+**request:** `Schematic.ListEntityKeyDefinitionsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4575,10 +4622,10 @@ await client.companies.countEntityKeyDefinitions({
     entityType: "company",
     q: "q",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4592,20 +4639,21 @@ await client.companies.countEntityKeyDefinitions({
 <dl>
 <dd>
 
-**request:** `Schematic.CountEntityKeyDefinitionsRequest`
-
+**request:** `Schematic.CountEntityKeyDefinitionsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4629,10 +4677,10 @@ await client.companies.listEntityTraitDefinitions({
     q: "q",
     traitType: "boolean",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4646,20 +4694,21 @@ await client.companies.listEntityTraitDefinitions({
 <dl>
 <dd>
 
-**request:** `Schematic.ListEntityTraitDefinitionsRequest`
-
+**request:** `Schematic.ListEntityTraitDefinitionsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4681,10 +4730,10 @@ await client.companies.listEntityTraitDefinitions({
 await client.companies.getOrCreateEntityTraitDefinition({
     entityType: "company",
     hierarchy: ["hierarchy"],
-    traitType: "boolean",
+    traitType: "boolean"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4698,26 +4747,27 @@ await client.companies.getOrCreateEntityTraitDefinition({
 <dl>
 <dd>
 
-**request:** `Schematic.CreateEntityTraitDefinitionRequestBody`
-
+**request:** `Schematic.CreateEntityTraitDefinitionRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">getEntityTraitDefinition</a>(entityTraitDefinitionId) -> Schematic.GetEntityTraitDefinitionResponse</code></summary>
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">getEntityTraitDefinition</a>(entity_trait_definition_id) -> Schematic.GetEntityTraitDefinitionResponse</code></summary>
 <dl>
 <dd>
 
@@ -4731,8 +4781,8 @@ await client.companies.getOrCreateEntityTraitDefinition({
 
 ```typescript
 await client.companies.getEntityTraitDefinition("entity_trait_definition_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4746,26 +4796,27 @@ await client.companies.getEntityTraitDefinition("entity_trait_definition_id");
 <dl>
 <dd>
 
-**entityTraitDefinitionId:** `string` — entity_trait_definition_id
-
+**entity_trait_definition_id:** `string` — entity_trait_definition_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">updateEntityTraitDefinition</a>(entityTraitDefinitionId, { ...params }) -> Schematic.UpdateEntityTraitDefinitionResponse</code></summary>
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">updateEntityTraitDefinition</a>(entity_trait_definition_id, { ...params }) -> Schematic.UpdateEntityTraitDefinitionResponse</code></summary>
 <dl>
 <dd>
 
@@ -4779,10 +4830,10 @@ await client.companies.getEntityTraitDefinition("entity_trait_definition_id");
 
 ```typescript
 await client.companies.updateEntityTraitDefinition("entity_trait_definition_id", {
-    traitType: "boolean",
+    traitType: "boolean"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4796,28 +4847,29 @@ await client.companies.updateEntityTraitDefinition("entity_trait_definition_id",
 <dl>
 <dd>
 
-**entityTraitDefinitionId:** `string` — entity_trait_definition_id
-
+**entity_trait_definition_id:** `string` — entity_trait_definition_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Schematic.UpdateEntityTraitDefinitionRequestBody`
-
+**request:** `Schematic.UpdateEntityTraitDefinitionRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4841,10 +4893,10 @@ await client.companies.countEntityTraitDefinitions({
     q: "q",
     traitType: "boolean",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4858,20 +4910,21 @@ await client.companies.countEntityTraitDefinitions({
 <dl>
 <dd>
 
-**request:** `Schematic.CountEntityTraitDefinitionsRequest`
-
+**request:** `Schematic.CountEntityTraitDefinitionsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4894,10 +4947,10 @@ await client.companies.getEntityTraitValues({
     definitionId: "definition_id",
     q: "q",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4911,20 +4964,21 @@ await client.companies.getEntityTraitValues({
 <dl>
 <dd>
 
-**request:** `Schematic.GetEntityTraitValuesRequest`
-
+**request:** `Schematic.GetEntityTraitValuesRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -4948,10 +5002,10 @@ await client.companies.listPlanChanges({
     basePlanAction: "base_plan_action",
     companyId: "company_id",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -4965,26 +5019,27 @@ await client.companies.listPlanChanges({
 <dl>
 <dd>
 
-**request:** `Schematic.ListPlanChangesRequest`
-
+**request:** `Schematic.ListPlanChangesRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">getPlanChange</a>(planChangeId) -> Schematic.GetPlanChangeResponse</code></summary>
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">getPlanChange</a>(plan_change_id) -> Schematic.GetPlanChangeResponse</code></summary>
 <dl>
 <dd>
 
@@ -4998,8 +5053,8 @@ await client.companies.listPlanChanges({
 
 ```typescript
 await client.companies.getPlanChange("plan_change_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5013,20 +5068,21 @@ await client.companies.getPlanChange("plan_change_id");
 <dl>
 <dd>
 
-**planChangeId:** `string` — plan_change_id
-
+**plan_change_id:** `string` — plan_change_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5049,10 +5105,10 @@ await client.companies.listPlanTraits({
     planId: "plan_id",
     traitId: "trait_id",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5066,20 +5122,21 @@ await client.companies.listPlanTraits({
 <dl>
 <dd>
 
-**request:** `Schematic.ListPlanTraitsRequest`
-
+**request:** `Schematic.ListPlanTraitsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5101,10 +5158,10 @@ await client.companies.listPlanTraits({
 await client.companies.createPlanTrait({
     planId: "plan_id",
     traitId: "trait_id",
-    traitValue: "trait_value",
+    traitValue: "trait_value"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5118,26 +5175,27 @@ await client.companies.createPlanTrait({
 <dl>
 <dd>
 
-**request:** `Schematic.CreatePlanTraitRequestBody`
-
+**request:** `Schematic.CreatePlanTraitRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">getPlanTrait</a>(planTraitId) -> Schematic.GetPlanTraitResponse</code></summary>
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">getPlanTrait</a>(plan_trait_id) -> Schematic.GetPlanTraitResponse</code></summary>
 <dl>
 <dd>
 
@@ -5151,8 +5209,8 @@ await client.companies.createPlanTrait({
 
 ```typescript
 await client.companies.getPlanTrait("plan_trait_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5166,26 +5224,27 @@ await client.companies.getPlanTrait("plan_trait_id");
 <dl>
 <dd>
 
-**planTraitId:** `string` — plan_trait_id
-
+**plan_trait_id:** `string` — plan_trait_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">updatePlanTrait</a>(planTraitId, { ...params }) -> Schematic.UpdatePlanTraitResponse</code></summary>
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">updatePlanTrait</a>(plan_trait_id, { ...params }) -> Schematic.UpdatePlanTraitResponse</code></summary>
 <dl>
 <dd>
 
@@ -5200,10 +5259,10 @@ await client.companies.getPlanTrait("plan_trait_id");
 ```typescript
 await client.companies.updatePlanTrait("plan_trait_id", {
     planId: "plan_id",
-    traitValue: "trait_value",
+    traitValue: "trait_value"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5217,34 +5276,35 @@ await client.companies.updatePlanTrait("plan_trait_id", {
 <dl>
 <dd>
 
-**planTraitId:** `string` — plan_trait_id
-
+**plan_trait_id:** `string` — plan_trait_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Schematic.UpdatePlanTraitRequestBody`
-
+**request:** `Schematic.UpdatePlanTraitRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">deletePlanTrait</a>(planTraitId) -> Schematic.DeletePlanTraitResponse</code></summary>
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">deletePlanTrait</a>(plan_trait_id) -> Schematic.DeletePlanTraitResponse</code></summary>
 <dl>
 <dd>
 
@@ -5258,8 +5318,8 @@ await client.companies.updatePlanTrait("plan_trait_id", {
 
 ```typescript
 await client.companies.deletePlanTrait("plan_trait_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5273,20 +5333,21 @@ await client.companies.deletePlanTrait("plan_trait_id");
 <dl>
 <dd>
 
-**planTraitId:** `string` — plan_trait_id
-
+**plan_trait_id:** `string` — plan_trait_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5308,15 +5369,13 @@ await client.companies.deletePlanTrait("plan_trait_id");
 await client.companies.updatePlanTraitsBulk({
     applyToExistingCompanies: true,
     planId: "plan_id",
-    traits: [
-        {
+    traits: [{
             traitId: "trait_id",
-            traitValue: "trait_value",
-        },
-    ],
+            traitValue: "trait_value"
+        }]
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5330,20 +5389,21 @@ await client.companies.updatePlanTraitsBulk({
 <dl>
 <dd>
 
-**request:** `Schematic.UpdatePlanTraitBulkRequestBody`
-
+**request:** `Schematic.UpdatePlanTraitBulkRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5366,10 +5426,10 @@ await client.companies.countPlanTraits({
     planId: "plan_id",
     traitId: "trait_id",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5383,20 +5443,21 @@ await client.companies.countPlanTraits({
 <dl>
 <dd>
 
-**request:** `Schematic.CountPlanTraitsRequest`
-
+**request:** `Schematic.CountPlanTraitsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5417,12 +5478,12 @@ await client.companies.countPlanTraits({
 ```typescript
 await client.companies.upsertUserTrait({
     keys: {
-        key: "value",
+        "key": "value"
     },
-    trait: "trait",
+    trait: "trait"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5436,20 +5497,21 @@ await client.companies.upsertUserTrait({
 <dl>
 <dd>
 
-**request:** `Schematic.UpsertTraitRequestBody`
-
+**request:** `Schematic.UpsertTraitRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5473,10 +5535,10 @@ await client.companies.listUsers({
     planId: "plan_id",
     q: "q",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5490,20 +5552,21 @@ await client.companies.listUsers({
 <dl>
 <dd>
 
-**request:** `Schematic.ListUsersRequest`
-
+**request:** `Schematic.ListUsersRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5524,11 +5587,11 @@ await client.companies.listUsers({
 ```typescript
 await client.companies.upsertUser({
     keys: {
-        key: "value",
-    },
+        "key": "value"
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5542,26 +5605,27 @@ await client.companies.upsertUser({
 <dl>
 <dd>
 
-**request:** `Schematic.UpsertUserRequestBody`
-
+**request:** `Schematic.UpsertUserRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">getUser</a>(userId) -> Schematic.GetUserResponse</code></summary>
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">getUser</a>(user_id) -> Schematic.GetUserResponse</code></summary>
 <dl>
 <dd>
 
@@ -5575,8 +5639,8 @@ await client.companies.upsertUser({
 
 ```typescript
 await client.companies.getUser("user_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5590,26 +5654,27 @@ await client.companies.getUser("user_id");
 <dl>
 <dd>
 
-**userId:** `string` — user_id
-
+**user_id:** `string` — user_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">deleteUser</a>(userId) -> Schematic.DeleteUserResponse</code></summary>
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">deleteUser</a>(user_id) -> Schematic.DeleteUserResponse</code></summary>
 <dl>
 <dd>
 
@@ -5623,8 +5688,8 @@ await client.companies.getUser("user_id");
 
 ```typescript
 await client.companies.deleteUser("user_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5638,20 +5703,21 @@ await client.companies.deleteUser("user_id");
 <dl>
 <dd>
 
-**userId:** `string` — user_id
-
+**user_id:** `string` — user_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5675,10 +5741,10 @@ await client.companies.countUsers({
     planId: "plan_id",
     q: "q",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5692,20 +5758,21 @@ await client.companies.countUsers({
 <dl>
 <dd>
 
-**request:** `Schematic.CountUsersRequest`
-
+**request:** `Schematic.CountUsersRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5726,11 +5793,11 @@ await client.companies.countUsers({
 ```typescript
 await client.companies.createUser({
     keys: {
-        key: "value",
-    },
+        "key": "value"
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5744,20 +5811,21 @@ await client.companies.createUser({
 <dl>
 <dd>
 
-**request:** `Schematic.UpsertUserRequestBody`
-
+**request:** `Schematic.UpsertUserRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5778,11 +5846,11 @@ await client.companies.createUser({
 ```typescript
 await client.companies.deleteUserByKeys({
     keys: {
-        key: "value",
-    },
+        "key": "value"
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5796,20 +5864,21 @@ await client.companies.deleteUserByKeys({
 <dl>
 <dd>
 
-**request:** `Schematic.KeysRequestBody`
-
+**request:** `Schematic.KeysRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5830,11 +5899,11 @@ await client.companies.deleteUserByKeys({
 ```typescript
 await client.companies.lookupUser({
     keys: {
-        keys: "keys",
-    },
+        "keys": "keys"
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5848,27 +5917,27 @@ await client.companies.lookupUser({
 <dl>
 <dd>
 
-**request:** `Schematic.LookupUserRequest`
-
+**request:** `Schematic.LookupUserRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Companies.RequestOptions`
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## entitlements
-
 <details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">listCompanyOverrides</a>({ ...params }) -> Schematic.ListCompanyOverridesResponse</code></summary>
 <dl>
 <dd>
@@ -5888,10 +5957,10 @@ await client.entitlements.listCompanyOverrides({
     withoutExpired: true,
     q: "q",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5905,20 +5974,21 @@ await client.entitlements.listCompanyOverrides({
 <dl>
 <dd>
 
-**request:** `Schematic.ListCompanyOverridesRequest`
-
+**request:** `Schematic.ListCompanyOverridesRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Entitlements.RequestOptions`
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -5940,10 +6010,10 @@ await client.entitlements.listCompanyOverrides({
 await client.entitlements.createCompanyOverride({
     companyId: "company_id",
     featureId: "feature_id",
-    valueType: "boolean",
+    valueType: "boolean"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -5957,26 +6027,27 @@ await client.entitlements.createCompanyOverride({
 <dl>
 <dd>
 
-**request:** `Schematic.CreateCompanyOverrideRequestBody`
-
+**request:** `Schematic.CreateCompanyOverrideRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Entitlements.RequestOptions`
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">getCompanyOverride</a>(companyOverrideId) -> Schematic.GetCompanyOverrideResponse</code></summary>
+<details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">getCompanyOverride</a>(company_override_id) -> Schematic.GetCompanyOverrideResponse</code></summary>
 <dl>
 <dd>
 
@@ -5990,8 +6061,8 @@ await client.entitlements.createCompanyOverride({
 
 ```typescript
 await client.entitlements.getCompanyOverride("company_override_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6005,26 +6076,27 @@ await client.entitlements.getCompanyOverride("company_override_id");
 <dl>
 <dd>
 
-**companyOverrideId:** `string` — company_override_id
-
+**company_override_id:** `string` — company_override_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Entitlements.RequestOptions`
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">updateCompanyOverride</a>(companyOverrideId, { ...params }) -> Schematic.UpdateCompanyOverrideResponse</code></summary>
+<details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">updateCompanyOverride</a>(company_override_id, { ...params }) -> Schematic.UpdateCompanyOverrideResponse</code></summary>
 <dl>
 <dd>
 
@@ -6038,10 +6110,10 @@ await client.entitlements.getCompanyOverride("company_override_id");
 
 ```typescript
 await client.entitlements.updateCompanyOverride("company_override_id", {
-    valueType: "boolean",
+    valueType: "boolean"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6055,34 +6127,35 @@ await client.entitlements.updateCompanyOverride("company_override_id", {
 <dl>
 <dd>
 
-**companyOverrideId:** `string` — company_override_id
-
+**company_override_id:** `string` — company_override_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Schematic.UpdateCompanyOverrideRequestBody`
-
+**request:** `Schematic.UpdateCompanyOverrideRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Entitlements.RequestOptions`
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">deleteCompanyOverride</a>(companyOverrideId) -> Schematic.DeleteCompanyOverrideResponse</code></summary>
+<details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">deleteCompanyOverride</a>(company_override_id) -> Schematic.DeleteCompanyOverrideResponse</code></summary>
 <dl>
 <dd>
 
@@ -6096,8 +6169,8 @@ await client.entitlements.updateCompanyOverride("company_override_id", {
 
 ```typescript
 await client.entitlements.deleteCompanyOverride("company_override_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6111,20 +6184,21 @@ await client.entitlements.deleteCompanyOverride("company_override_id");
 <dl>
 <dd>
 
-**companyOverrideId:** `string` — company_override_id
-
+**company_override_id:** `string` — company_override_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Entitlements.RequestOptions`
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -6149,10 +6223,10 @@ await client.entitlements.countCompanyOverrides({
     withoutExpired: true,
     q: "q",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6166,20 +6240,21 @@ await client.entitlements.countCompanyOverrides({
 <dl>
 <dd>
 
-**request:** `Schematic.CountCompanyOverridesRequest`
-
+**request:** `Schematic.CountCompanyOverridesRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Entitlements.RequestOptions`
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -6202,10 +6277,10 @@ await client.entitlements.listFeatureCompanies({
     featureId: "feature_id",
     q: "q",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6219,20 +6294,21 @@ await client.entitlements.listFeatureCompanies({
 <dl>
 <dd>
 
-**request:** `Schematic.ListFeatureCompaniesRequest`
-
+**request:** `Schematic.ListFeatureCompaniesRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Entitlements.RequestOptions`
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -6255,10 +6331,10 @@ await client.entitlements.countFeatureCompanies({
     featureId: "feature_id",
     q: "q",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6272,20 +6348,21 @@ await client.entitlements.countFeatureCompanies({
 <dl>
 <dd>
 
-**request:** `Schematic.CountFeatureCompaniesRequest`
-
+**request:** `Schematic.CountFeatureCompaniesRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Entitlements.RequestOptions`
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -6306,13 +6383,14 @@ await client.entitlements.countFeatureCompanies({
 ```typescript
 await client.entitlements.listFeatureUsage({
     companyId: "company_id",
+    includeUsageAggregation: true,
     q: "q",
     withoutNegativeEntitlements: true,
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6326,20 +6404,21 @@ await client.entitlements.listFeatureUsage({
 <dl>
 <dd>
 
-**request:** `Schematic.ListFeatureUsageRequest`
-
+**request:** `Schematic.ListFeatureUsageRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Entitlements.RequestOptions`
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -6360,13 +6439,14 @@ await client.entitlements.listFeatureUsage({
 ```typescript
 await client.entitlements.countFeatureUsage({
     companyId: "company_id",
+    includeUsageAggregation: true,
     q: "q",
     withoutNegativeEntitlements: true,
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6380,20 +6460,21 @@ await client.entitlements.countFeatureUsage({
 <dl>
 <dd>
 
-**request:** `Schematic.CountFeatureUsageRequest`
-
+**request:** `Schematic.CountFeatureUsageRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Entitlements.RequestOptions`
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -6416,10 +6497,10 @@ await client.entitlements.listFeatureUsers({
     featureId: "feature_id",
     q: "q",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6433,20 +6514,21 @@ await client.entitlements.listFeatureUsers({
 <dl>
 <dd>
 
-**request:** `Schematic.ListFeatureUsersRequest`
-
+**request:** `Schematic.ListFeatureUsersRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Entitlements.RequestOptions`
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -6469,10 +6551,10 @@ await client.entitlements.countFeatureUsers({
     featureId: "feature_id",
     q: "q",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6486,20 +6568,21 @@ await client.entitlements.countFeatureUsers({
 <dl>
 <dd>
 
-**request:** `Schematic.CountFeatureUsersRequest`
-
+**request:** `Schematic.CountFeatureUsersRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Entitlements.RequestOptions`
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -6524,10 +6607,10 @@ await client.entitlements.listPlanEntitlements({
     q: "q",
     withMeteredProducts: true,
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6541,20 +6624,21 @@ await client.entitlements.listPlanEntitlements({
 <dl>
 <dd>
 
-**request:** `Schematic.ListPlanEntitlementsRequest`
-
+**request:** `Schematic.ListPlanEntitlementsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Entitlements.RequestOptions`
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -6576,10 +6660,10 @@ await client.entitlements.listPlanEntitlements({
 await client.entitlements.createPlanEntitlement({
     featureId: "feature_id",
     planId: "plan_id",
-    valueType: "boolean",
+    valueType: "boolean"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6593,26 +6677,27 @@ await client.entitlements.createPlanEntitlement({
 <dl>
 <dd>
 
-**request:** `Schematic.CreatePlanEntitlementRequestBody`
-
+**request:** `Schematic.CreatePlanEntitlementRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Entitlements.RequestOptions`
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">getPlanEntitlement</a>(planEntitlementId) -> Schematic.GetPlanEntitlementResponse</code></summary>
+<details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">getPlanEntitlement</a>(plan_entitlement_id) -> Schematic.GetPlanEntitlementResponse</code></summary>
 <dl>
 <dd>
 
@@ -6626,8 +6711,8 @@ await client.entitlements.createPlanEntitlement({
 
 ```typescript
 await client.entitlements.getPlanEntitlement("plan_entitlement_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6641,26 +6726,27 @@ await client.entitlements.getPlanEntitlement("plan_entitlement_id");
 <dl>
 <dd>
 
-**planEntitlementId:** `string` — plan_entitlement_id
-
+**plan_entitlement_id:** `string` — plan_entitlement_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Entitlements.RequestOptions`
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">updatePlanEntitlement</a>(planEntitlementId, { ...params }) -> Schematic.UpdatePlanEntitlementResponse</code></summary>
+<details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">updatePlanEntitlement</a>(plan_entitlement_id, { ...params }) -> Schematic.UpdatePlanEntitlementResponse</code></summary>
 <dl>
 <dd>
 
@@ -6674,10 +6760,10 @@ await client.entitlements.getPlanEntitlement("plan_entitlement_id");
 
 ```typescript
 await client.entitlements.updatePlanEntitlement("plan_entitlement_id", {
-    valueType: "boolean",
+    valueType: "boolean"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6691,34 +6777,35 @@ await client.entitlements.updatePlanEntitlement("plan_entitlement_id", {
 <dl>
 <dd>
 
-**planEntitlementId:** `string` — plan_entitlement_id
-
+**plan_entitlement_id:** `string` — plan_entitlement_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Schematic.UpdatePlanEntitlementRequestBody`
-
+**request:** `Schematic.UpdatePlanEntitlementRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Entitlements.RequestOptions`
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">deletePlanEntitlement</a>(planEntitlementId) -> Schematic.DeletePlanEntitlementResponse</code></summary>
+<details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">deletePlanEntitlement</a>(plan_entitlement_id) -> Schematic.DeletePlanEntitlementResponse</code></summary>
 <dl>
 <dd>
 
@@ -6732,8 +6819,8 @@ await client.entitlements.updatePlanEntitlement("plan_entitlement_id", {
 
 ```typescript
 await client.entitlements.deletePlanEntitlement("plan_entitlement_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6747,20 +6834,21 @@ await client.entitlements.deletePlanEntitlement("plan_entitlement_id");
 <dl>
 <dd>
 
-**planEntitlementId:** `string` — plan_entitlement_id
-
+**plan_entitlement_id:** `string` — plan_entitlement_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Entitlements.RequestOptions`
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -6785,10 +6873,10 @@ await client.entitlements.countPlanEntitlements({
     q: "q",
     withMeteredProducts: true,
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6802,20 +6890,21 @@ await client.entitlements.countPlanEntitlements({
 <dl>
 <dd>
 
-**request:** `Schematic.CountPlanEntitlementsRequest`
-
+**request:** `Schematic.CountPlanEntitlementsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Entitlements.RequestOptions`
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -6836,10 +6925,10 @@ await client.entitlements.countPlanEntitlements({
 ```typescript
 await client.entitlements.duplicatePlanEntitlements({
     sourcePlanId: "source_plan_id",
-    targetPlanId: "target_plan_id",
+    targetPlanId: "target_plan_id"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6853,20 +6942,21 @@ await client.entitlements.duplicatePlanEntitlements({
 <dl>
 <dd>
 
-**request:** `Schematic.DuplicatePlanEntitlementsRequestBody`
-
+**request:** `Schematic.DuplicatePlanEntitlementsRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Entitlements.RequestOptions`
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -6887,11 +6977,11 @@ await client.entitlements.duplicatePlanEntitlements({
 ```typescript
 await client.entitlements.getFeatureUsageByCompany({
     keys: {
-        keys: "keys",
-    },
+        "keys": "keys"
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6905,28 +6995,28 @@ await client.entitlements.getFeatureUsageByCompany({
 <dl>
 <dd>
 
-**request:** `Schematic.GetFeatureUsageByCompanyRequest`
-
+**request:** `Schematic.GetFeatureUsageByCompanyRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Entitlements.RequestOptions`
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## plans
-
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">updateCompanyPlans</a>(companyPlanId, { ...params }) -> Schematic.UpdateCompanyPlansResponse</code></summary>
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">updateCompanyPlans</a>(company_plan_id, { ...params }) -> Schematic.UpdateCompanyPlansResponse</code></summary>
 <dl>
 <dd>
 
@@ -6940,10 +7030,10 @@ await client.entitlements.getFeatureUsageByCompany({
 
 ```typescript
 await client.plans.updateCompanyPlans("company_plan_id", {
-    addOnIds: ["add_on_ids"],
+    addOnIds: ["add_on_ids"]
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -6957,28 +7047,29 @@ await client.plans.updateCompanyPlans("company_plan_id", {
 <dl>
 <dd>
 
-**companyPlanId:** `string` — company_plan_id
-
+**company_plan_id:** `string` — company_plan_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Schematic.UpdateCompanyPlansRequestBody`
-
+**request:** `Schematic.UpdateCompanyPlansRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Plans.RequestOptions`
+**requestOptions:** `PlansClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -7008,10 +7099,10 @@ await client.plans.listPlans({
     withoutEntitlementFor: "without_entitlement_for",
     withoutPaidProductId: true,
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7025,20 +7116,21 @@ await client.plans.listPlans({
 <dl>
 <dd>
 
-**request:** `Schematic.ListPlansRequest`
-
+**request:** `Schematic.ListPlansRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Plans.RequestOptions`
+**requestOptions:** `PlansClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -7060,10 +7152,10 @@ await client.plans.listPlans({
 await client.plans.createPlan({
     description: "description",
     name: "name",
-    planType: "plan",
+    planType: "plan"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7077,26 +7169,27 @@ await client.plans.createPlan({
 <dl>
 <dd>
 
-**request:** `Schematic.CreatePlanRequestBody`
-
+**request:** `Schematic.CreatePlanRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Plans.RequestOptions`
+**requestOptions:** `PlansClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">getPlan</a>(planId) -> Schematic.GetPlanResponse</code></summary>
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">getPlan</a>(plan_id) -> Schematic.GetPlanResponse</code></summary>
 <dl>
 <dd>
 
@@ -7110,8 +7203,8 @@ await client.plans.createPlan({
 
 ```typescript
 await client.plans.getPlan("plan_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7125,26 +7218,27 @@ await client.plans.getPlan("plan_id");
 <dl>
 <dd>
 
-**planId:** `string` — plan_id
-
+**plan_id:** `string` — plan_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Plans.RequestOptions`
+**requestOptions:** `PlansClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">updatePlan</a>(planId, { ...params }) -> Schematic.UpdatePlanResponse</code></summary>
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">updatePlan</a>(plan_id, { ...params }) -> Schematic.UpdatePlanResponse</code></summary>
 <dl>
 <dd>
 
@@ -7158,10 +7252,10 @@ await client.plans.getPlan("plan_id");
 
 ```typescript
 await client.plans.updatePlan("plan_id", {
-    name: "name",
+    name: "name"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7175,34 +7269,35 @@ await client.plans.updatePlan("plan_id", {
 <dl>
 <dd>
 
-**planId:** `string` — plan_id
-
+**plan_id:** `string` — plan_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Schematic.UpdatePlanRequestBody`
-
+**request:** `Schematic.UpdatePlanRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Plans.RequestOptions`
+**requestOptions:** `PlansClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">deletePlan</a>(planId) -> Schematic.DeletePlanResponse</code></summary>
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">deletePlan</a>(plan_id) -> Schematic.DeletePlanResponse</code></summary>
 <dl>
 <dd>
 
@@ -7216,8 +7311,8 @@ await client.plans.updatePlan("plan_id", {
 
 ```typescript
 await client.plans.deletePlan("plan_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7231,26 +7326,27 @@ await client.plans.deletePlan("plan_id");
 <dl>
 <dd>
 
-**planId:** `string` — plan_id
-
+**plan_id:** `string` — plan_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Plans.RequestOptions`
+**requestOptions:** `PlansClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">upsertBillingProductPlan</a>(planId, { ...params }) -> Schematic.UpsertBillingProductPlanResponse</code></summary>
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">upsertBillingProductPlan</a>(plan_id, { ...params }) -> Schematic.UpsertBillingProductPlanResponse</code></summary>
 <dl>
 <dd>
 
@@ -7265,10 +7361,10 @@ await client.plans.deletePlan("plan_id");
 ```typescript
 await client.plans.upsertBillingProductPlan("plan_id", {
     chargeType: "free",
-    isTrialable: true,
+    isTrialable: true
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7282,28 +7378,29 @@ await client.plans.upsertBillingProductPlan("plan_id", {
 <dl>
 <dd>
 
-**planId:** `string` — plan_id
-
+**plan_id:** `string` — plan_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Schematic.UpsertBillingProductRequestBody`
-
+**request:** `Schematic.UpsertBillingProductRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Plans.RequestOptions`
+**requestOptions:** `PlansClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -7333,10 +7430,10 @@ await client.plans.countPlans({
     withoutEntitlementFor: "without_entitlement_for",
     withoutPaidProductId: true,
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7350,20 +7447,21 @@ await client.plans.countPlans({
 <dl>
 <dd>
 
-**request:** `Schematic.CountPlansRequest`
-
+**request:** `Schematic.CountPlansRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Plans.RequestOptions`
+**requestOptions:** `PlansClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -7383,10 +7481,10 @@ await client.plans.countPlans({
 
 ```typescript
 await client.plans.listPlanIssues({
-    planId: "plan_id",
+    planId: "plan_id"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7400,27 +7498,27 @@ await client.plans.listPlanIssues({
 <dl>
 <dd>
 
-**request:** `Schematic.ListPlanIssuesRequest`
-
+**request:** `Schematic.ListPlanIssuesRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Plans.RequestOptions`
+**requestOptions:** `PlansClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## components
-
 <details><summary><code>client.components.<a href="/src/api/resources/components/client/Client.ts">listComponents</a>({ ...params }) -> Schematic.ListComponentsResponse</code></summary>
 <dl>
 <dd>
@@ -7437,10 +7535,10 @@ await client.plans.listPlanIssues({
 await client.components.listComponents({
     q: "q",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7454,20 +7552,21 @@ await client.components.listComponents({
 <dl>
 <dd>
 
-**request:** `Schematic.ListComponentsRequest`
-
+**request:** `Schematic.ListComponentsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Components.RequestOptions`
+**requestOptions:** `ComponentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -7488,10 +7587,10 @@ await client.components.listComponents({
 ```typescript
 await client.components.createComponent({
     entityType: "billing",
-    name: "name",
+    name: "name"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7505,26 +7604,27 @@ await client.components.createComponent({
 <dl>
 <dd>
 
-**request:** `Schematic.CreateComponentRequestBody`
-
+**request:** `Schematic.CreateComponentRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Components.RequestOptions`
+**requestOptions:** `ComponentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.components.<a href="/src/api/resources/components/client/Client.ts">getComponent</a>(componentId) -> Schematic.GetComponentResponse</code></summary>
+<details><summary><code>client.components.<a href="/src/api/resources/components/client/Client.ts">getComponent</a>(component_id) -> Schematic.GetComponentResponse</code></summary>
 <dl>
 <dd>
 
@@ -7538,8 +7638,8 @@ await client.components.createComponent({
 
 ```typescript
 await client.components.getComponent("component_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7553,26 +7653,27 @@ await client.components.getComponent("component_id");
 <dl>
 <dd>
 
-**componentId:** `string` — component_id
-
+**component_id:** `string` — component_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Components.RequestOptions`
+**requestOptions:** `ComponentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.components.<a href="/src/api/resources/components/client/Client.ts">updateComponent</a>(componentId, { ...params }) -> Schematic.UpdateComponentResponse</code></summary>
+<details><summary><code>client.components.<a href="/src/api/resources/components/client/Client.ts">updateComponent</a>(component_id, { ...params }) -> Schematic.UpdateComponentResponse</code></summary>
 <dl>
 <dd>
 
@@ -7586,8 +7687,8 @@ await client.components.getComponent("component_id");
 
 ```typescript
 await client.components.updateComponent("component_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7601,34 +7702,35 @@ await client.components.updateComponent("component_id");
 <dl>
 <dd>
 
-**componentId:** `string` — component_id
-
+**component_id:** `string` — component_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Schematic.UpdateComponentRequestBody`
-
+**request:** `Schematic.UpdateComponentRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Components.RequestOptions`
+**requestOptions:** `ComponentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.components.<a href="/src/api/resources/components/client/Client.ts">deleteComponent</a>(componentId) -> Schematic.DeleteComponentResponse</code></summary>
+<details><summary><code>client.components.<a href="/src/api/resources/components/client/Client.ts">deleteComponent</a>(component_id) -> Schematic.DeleteComponentResponse</code></summary>
 <dl>
 <dd>
 
@@ -7642,8 +7744,8 @@ await client.components.updateComponent("component_id");
 
 ```typescript
 await client.components.deleteComponent("component_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7657,20 +7759,21 @@ await client.components.deleteComponent("component_id");
 <dl>
 <dd>
 
-**componentId:** `string` — component_id
-
+**component_id:** `string` — component_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Components.RequestOptions`
+**requestOptions:** `ComponentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -7692,10 +7795,10 @@ await client.components.deleteComponent("component_id");
 await client.components.countComponents({
     q: "q",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7709,20 +7812,21 @@ await client.components.countComponents({
 <dl>
 <dd>
 
-**request:** `Schematic.CountComponentsRequest`
-
+**request:** `Schematic.CountComponentsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Components.RequestOptions`
+**requestOptions:** `ComponentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -7743,10 +7847,10 @@ await client.components.countComponents({
 ```typescript
 await client.components.previewComponentData({
     companyId: "company_id",
-    componentId: "component_id",
+    componentId: "component_id"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -7760,295 +7864,27 @@ await client.components.previewComponentData({
 <dl>
 <dd>
 
-**request:** `Schematic.PreviewComponentDataRequest`
-
+**request:** `Schematic.PreviewComponentDataRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Components.RequestOptions`
-
+**requestOptions:** `ComponentsClient.RequestOptions` 
+    
 </dd>
 </dl>
 </dd>
 </dl>
 
-</dd>
-</dl>
-</details>
-
-## crm
-
-<details><summary><code>client.crm.<a href="/src/api/resources/crm/client/Client.ts">upsertDealLineItemAssociation</a>({ ...params }) -> Schematic.UpsertDealLineItemAssociationResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.upsertDealLineItemAssociation({
-    dealExternalId: "deal_external_id",
-    lineItemExternalId: "line_item_external_id",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.CreateCrmDealLineItemAssociationRequestBody`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Crm.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.<a href="/src/api/resources/crm/client/Client.ts">upsertLineItem</a>({ ...params }) -> Schematic.UpsertLineItemResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.upsertLineItem({
-    amount: "amount",
-    interval: "interval",
-    lineItemExternalId: "line_item_external_id",
-    productExternalId: "product_external_id",
-    quantity: 1,
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.CreateCrmLineItemRequestBody`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Crm.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.<a href="/src/api/resources/crm/client/Client.ts">upsertCrmDeal</a>({ ...params }) -> Schematic.UpsertCrmDealResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.upsertCrmDeal({
-    crmCompanyKey: "crm_company_key",
-    crmType: "crm_type",
-    dealExternalId: "deal_external_id",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.CreateCrmDealRequestBody`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Crm.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.<a href="/src/api/resources/crm/client/Client.ts">listCrmProducts</a>({ ...params }) -> Schematic.ListCrmProductsResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.listCrmProducts({
-    name: "name",
-    limit: 1,
-    offset: 1,
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.ListCrmProductsRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Crm.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.crm.<a href="/src/api/resources/crm/client/Client.ts">upsertCrmProduct</a>({ ...params }) -> Schematic.UpsertCrmProductResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.crm.upsertCrmProduct({
-    currency: "currency",
-    description: "description",
-    externalId: "external_id",
-    interval: "interval",
-    name: "name",
-    price: "price",
-    quantity: 1,
-    sku: "sku",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.CreateCrmProductRequestBody`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Crm.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## dataexports
-
 <details><summary><code>client.dataexports.<a href="/src/api/resources/dataexports/client/Client.ts">createDataExport</a>({ ...params }) -> Schematic.CreateDataExportResponse</code></summary>
 <dl>
 <dd>
@@ -8063,12 +7899,10 @@ await client.crm.upsertCrmProduct({
 
 ```typescript
 await client.dataexports.createDataExport({
-    exportType: "company-feature-usage",
-    metadata: "metadata",
-    outputFileType: "csv",
+    metadata: "metadata"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8082,26 +7916,27 @@ await client.dataexports.createDataExport({
 <dl>
 <dd>
 
-**request:** `Schematic.CreateDataExportRequestBody`
-
+**request:** `Schematic.CreateDataExportRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Dataexports.RequestOptions`
+**requestOptions:** `DataexportsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.dataexports.<a href="/src/api/resources/dataexports/client/Client.ts">getDataExportArtifact</a>(dataExportId) -> stream.Readable</code></summary>
+<details><summary><code>client.dataexports.<a href="/src/api/resources/dataexports/client/Client.ts">getDataExportArtifact</a>(data_export_id) -> stream.Readable</code></summary>
 <dl>
 <dd>
 
@@ -8115,8 +7950,8 @@ await client.dataexports.createDataExport({
 
 ```typescript
 await client.dataexports.getDataExportArtifact("data_export_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8130,27 +7965,27 @@ await client.dataexports.getDataExportArtifact("data_export_id");
 <dl>
 <dd>
 
-**dataExportId:** `string` — data_export_id
-
+**data_export_id:** `string` — data_export_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Dataexports.RequestOptions`
+**requestOptions:** `DataexportsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## events
-
 <details><summary><code>client.events.<a href="/src/api/resources/events/client/Client.ts">createEventBatch</a>({ ...params }) -> Schematic.CreateEventBatchResponse</code></summary>
 <dl>
 <dd>
@@ -8165,14 +8000,12 @@ await client.dataexports.getDataExportArtifact("data_export_id");
 
 ```typescript
 await client.events.createEventBatch({
-    events: [
-        {
-            eventType: "flag_check",
-        },
-    ],
+    events: [{
+            eventType: "flag_check"
+        }]
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8186,20 +8019,21 @@ await client.events.createEventBatch({
 <dl>
 <dd>
 
-**request:** `Schematic.CreateEventBatchRequestBody`
-
+**request:** `Schematic.CreateEventBatchRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Events.RequestOptions`
+**requestOptions:** `EventsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -8221,10 +8055,10 @@ await client.events.createEventBatch({
 await client.events.getEventSummaries({
     q: "q",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8238,20 +8072,21 @@ await client.events.getEventSummaries({
 <dl>
 <dd>
 
-**request:** `Schematic.GetEventSummariesRequest`
-
+**request:** `Schematic.GetEventSummariesRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Events.RequestOptions`
+**requestOptions:** `EventsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -8276,10 +8111,10 @@ await client.events.listEvents({
     flagId: "flag_id",
     userId: "user_id",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8293,20 +8128,21 @@ await client.events.listEvents({
 <dl>
 <dd>
 
-**request:** `Schematic.ListEventsRequest`
-
+**request:** `Schematic.ListEventsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Events.RequestOptions`
+**requestOptions:** `EventsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -8326,10 +8162,10 @@ await client.events.listEvents({
 
 ```typescript
 await client.events.createEvent({
-    eventType: "flag_check",
+    eventType: "flag_check"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8343,26 +8179,27 @@ await client.events.createEvent({
 <dl>
 <dd>
 
-**request:** `Schematic.CreateEventRequestBody`
-
+**request:** `Schematic.CreateEventRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Events.RequestOptions`
+**requestOptions:** `EventsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.events.<a href="/src/api/resources/events/client/Client.ts">getEvent</a>(eventId) -> Schematic.GetEventResponse</code></summary>
+<details><summary><code>client.events.<a href="/src/api/resources/events/client/Client.ts">getEvent</a>(event_id) -> Schematic.GetEventResponse</code></summary>
 <dl>
 <dd>
 
@@ -8376,8 +8213,8 @@ await client.events.createEvent({
 
 ```typescript
 await client.events.getEvent("event_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8391,20 +8228,21 @@ await client.events.getEvent("event_id");
 <dl>
 <dd>
 
-**eventId:** `string` — event_id
-
+**event_id:** `string` — event_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Events.RequestOptions`
+**requestOptions:** `EventsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -8424,8 +8262,8 @@ await client.events.getEvent("event_id");
 
 ```typescript
 await client.events.getSegmentIntegrationStatus();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8439,19 +8277,19 @@ await client.events.getSegmentIntegrationStatus();
 <dl>
 <dd>
 
-**requestOptions:** `Events.RequestOptions`
+**requestOptions:** `EventsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## features
-
 <details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">listFeatures</a>({ ...params }) -> Schematic.ListFeaturesResponse</code></summary>
 <dl>
 <dd>
@@ -8471,10 +8309,10 @@ await client.features.listFeatures({
     withoutPlanEntitlementFor: "without_plan_entitlement_for",
     booleanRequireEvent: true,
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8488,20 +8326,21 @@ await client.features.listFeatures({
 <dl>
 <dd>
 
-**request:** `Schematic.ListFeaturesRequest`
-
+**request:** `Schematic.ListFeaturesRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Features.RequestOptions`
+**requestOptions:** `FeaturesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -8523,10 +8362,10 @@ await client.features.listFeatures({
 await client.features.createFeature({
     description: "description",
     featureType: "boolean",
-    name: "name",
+    name: "name"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8540,26 +8379,27 @@ await client.features.createFeature({
 <dl>
 <dd>
 
-**request:** `Schematic.CreateFeatureRequestBody`
-
+**request:** `Schematic.CreateFeatureRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Features.RequestOptions`
+**requestOptions:** `FeaturesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">getFeature</a>(featureId) -> Schematic.GetFeatureResponse</code></summary>
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">getFeature</a>(feature_id) -> Schematic.GetFeatureResponse</code></summary>
 <dl>
 <dd>
 
@@ -8573,8 +8413,8 @@ await client.features.createFeature({
 
 ```typescript
 await client.features.getFeature("feature_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8588,26 +8428,27 @@ await client.features.getFeature("feature_id");
 <dl>
 <dd>
 
-**featureId:** `string` — feature_id
-
+**feature_id:** `string` — feature_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Features.RequestOptions`
+**requestOptions:** `FeaturesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">updateFeature</a>(featureId, { ...params }) -> Schematic.UpdateFeatureResponse</code></summary>
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">updateFeature</a>(feature_id, { ...params }) -> Schematic.UpdateFeatureResponse</code></summary>
 <dl>
 <dd>
 
@@ -8621,8 +8462,8 @@ await client.features.getFeature("feature_id");
 
 ```typescript
 await client.features.updateFeature("feature_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8636,34 +8477,35 @@ await client.features.updateFeature("feature_id");
 <dl>
 <dd>
 
-**featureId:** `string` — feature_id
-
+**feature_id:** `string` — feature_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Schematic.UpdateFeatureRequestBody`
-
+**request:** `Schematic.UpdateFeatureRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Features.RequestOptions`
+**requestOptions:** `FeaturesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">deleteFeature</a>(featureId) -> Schematic.DeleteFeatureResponse</code></summary>
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">deleteFeature</a>(feature_id) -> Schematic.DeleteFeatureResponse</code></summary>
 <dl>
 <dd>
 
@@ -8677,8 +8519,8 @@ await client.features.updateFeature("feature_id");
 
 ```typescript
 await client.features.deleteFeature("feature_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8692,20 +8534,21 @@ await client.features.deleteFeature("feature_id");
 <dl>
 <dd>
 
-**featureId:** `string` — feature_id
-
+**feature_id:** `string` — feature_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Features.RequestOptions`
+**requestOptions:** `FeaturesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -8730,10 +8573,10 @@ await client.features.countFeatures({
     withoutPlanEntitlementFor: "without_plan_entitlement_for",
     booleanRequireEvent: true,
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8747,20 +8590,21 @@ await client.features.countFeatures({
 <dl>
 <dd>
 
-**request:** `Schematic.CountFeaturesRequest`
-
+**request:** `Schematic.CountFeaturesRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Features.RequestOptions`
+**requestOptions:** `FeaturesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -8783,10 +8627,10 @@ await client.features.listFlags({
     featureId: "feature_id",
     q: "q",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8800,20 +8644,21 @@ await client.features.listFlags({
 <dl>
 <dd>
 
-**request:** `Schematic.ListFlagsRequest`
-
+**request:** `Schematic.ListFlagsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Features.RequestOptions`
+**requestOptions:** `FeaturesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -8837,10 +8682,10 @@ await client.features.createFlag({
     description: "description",
     flagType: "boolean",
     key: "key",
-    name: "name",
+    name: "name"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8854,26 +8699,27 @@ await client.features.createFlag({
 <dl>
 <dd>
 
-**request:** `Schematic.CreateFlagRequestBody`
-
+**request:** `Schematic.CreateFlagRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Features.RequestOptions`
+**requestOptions:** `FeaturesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">getFlag</a>(flagId) -> Schematic.GetFlagResponse</code></summary>
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">getFlag</a>(flag_id) -> Schematic.GetFlagResponse</code></summary>
 <dl>
 <dd>
 
@@ -8887,8 +8733,8 @@ await client.features.createFlag({
 
 ```typescript
 await client.features.getFlag("flag_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8902,26 +8748,27 @@ await client.features.getFlag("flag_id");
 <dl>
 <dd>
 
-**flagId:** `string` — flag_id
-
+**flag_id:** `string` — flag_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Features.RequestOptions`
+**requestOptions:** `FeaturesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">updateFlag</a>(flagId, { ...params }) -> Schematic.UpdateFlagResponse</code></summary>
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">updateFlag</a>(flag_id, { ...params }) -> Schematic.UpdateFlagResponse</code></summary>
 <dl>
 <dd>
 
@@ -8939,10 +8786,10 @@ await client.features.updateFlag("flag_id", {
     description: "description",
     flagType: "boolean",
     key: "key",
-    name: "name",
+    name: "name"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -8956,34 +8803,35 @@ await client.features.updateFlag("flag_id", {
 <dl>
 <dd>
 
-**flagId:** `string` — flag_id
-
+**flag_id:** `string` — flag_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Schematic.CreateFlagRequestBody`
-
+**request:** `Schematic.CreateFlagRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Features.RequestOptions`
+**requestOptions:** `FeaturesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">deleteFlag</a>(flagId) -> Schematic.DeleteFlagResponse</code></summary>
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">deleteFlag</a>(flag_id) -> Schematic.DeleteFlagResponse</code></summary>
 <dl>
 <dd>
 
@@ -8997,8 +8845,8 @@ await client.features.updateFlag("flag_id", {
 
 ```typescript
 await client.features.deleteFlag("flag_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9012,26 +8860,27 @@ await client.features.deleteFlag("flag_id");
 <dl>
 <dd>
 
-**flagId:** `string` — flag_id
-
+**flag_id:** `string` — flag_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Features.RequestOptions`
+**requestOptions:** `FeaturesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">updateFlagRules</a>(flagId, { ...params }) -> Schematic.UpdateFlagRulesResponse</code></summary>
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">updateFlagRules</a>(flag_id, { ...params }) -> Schematic.UpdateFlagRulesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9045,34 +8894,26 @@ await client.features.deleteFlag("flag_id");
 
 ```typescript
 await client.features.updateFlagRules("flag_id", {
-    rules: [
-        {
-            conditionGroups: [
-                {
-                    conditions: [
-                        {
+    rules: [{
+            conditionGroups: [{
+                    conditions: [{
                             conditionType: "company",
                             operator: "eq",
-                            resourceIds: ["resource_ids"],
-                        },
-                    ],
-                },
-            ],
-            conditions: [
-                {
+                            resourceIds: ["resource_ids"]
+                        }]
+                }],
+            conditions: [{
                     conditionType: "company",
                     operator: "eq",
-                    resourceIds: ["resource_ids"],
-                },
-            ],
+                    resourceIds: ["resource_ids"]
+                }],
             name: "name",
             priority: 1,
-            value: true,
-        },
-    ],
+            value: true
+        }]
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9086,28 +8927,29 @@ await client.features.updateFlagRules("flag_id", {
 <dl>
 <dd>
 
-**flagId:** `string` — flag_id
-
+**flag_id:** `string` — flag_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Schematic.UpdateFlagRulesRequestBody`
-
+**request:** `Schematic.UpdateFlagRulesRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Features.RequestOptions`
+**requestOptions:** `FeaturesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -9127,8 +8969,8 @@ await client.features.updateFlagRules("flag_id", {
 
 ```typescript
 await client.features.checkFlag("key", {});
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9143,27 +8985,28 @@ await client.features.checkFlag("key", {});
 <dd>
 
 **key:** `string` — key
-
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Schematic.CheckFlagRequestBody`
-
+**request:** `Schematic.CheckFlagRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Features.RequestOptions`
+**requestOptions:** `FeaturesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -9183,8 +9026,8 @@ await client.features.checkFlag("key", {});
 
 ```typescript
 await client.features.checkFlags({});
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9198,20 +9041,21 @@ await client.features.checkFlags({});
 <dl>
 <dd>
 
-**request:** `Schematic.CheckFlagRequestBody`
-
+**request:** `Schematic.CheckFlagRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Features.RequestOptions`
+**requestOptions:** `FeaturesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -9231,10 +9075,10 @@ await client.features.checkFlags({});
 
 ```typescript
 await client.features.checkFlagsBulk({
-    contexts: [{}],
+    contexts: [{}]
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9248,20 +9092,21 @@ await client.features.checkFlagsBulk({
 <dl>
 <dd>
 
-**request:** `Schematic.CheckFlagsBulkRequestBody`
-
+**request:** `Schematic.CheckFlagsBulkRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Features.RequestOptions`
+**requestOptions:** `FeaturesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -9284,10 +9129,10 @@ await client.features.countFlags({
     featureId: "feature_id",
     q: "q",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9301,27 +9146,27 @@ await client.features.countFlags({
 <dl>
 <dd>
 
-**request:** `Schematic.CountFlagsRequest`
-
+**request:** `Schematic.CountFlagsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Features.RequestOptions`
+**requestOptions:** `FeaturesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## plangroups
-
 <details><summary><code>client.plangroups.<a href="/src/api/resources/plangroups/client/Client.ts">getPlanGroup</a>() -> Schematic.GetPlanGroupResponse</code></summary>
 <dl>
 <dd>
@@ -9336,8 +9181,8 @@ await client.features.countFlags({
 
 ```typescript
 await client.plangroups.getPlanGroup();
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9351,12 +9196,13 @@ await client.plangroups.getPlanGroup();
 <dl>
 <dd>
 
-**requestOptions:** `Plangroups.RequestOptions`
+**requestOptions:** `PlangroupsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -9381,21 +9227,15 @@ await client.plangroups.createPlanGroup({
     checkoutCollectEmail: true,
     checkoutCollectPhone: true,
     enableTaxCollection: true,
-    orderedAddOns: [
-        {
-            planId: "plan_id",
-        },
-    ],
-    orderedBundleList: [
-        {
-            bundleId: "bundleId",
-        },
-    ],
-    orderedPlans: [
-        {
-            planId: "plan_id",
-        },
-    ],
+    orderedAddOns: [{
+            planId: "plan_id"
+        }],
+    orderedBundleList: [{
+            bundleId: "bundleId"
+        }],
+    orderedPlans: [{
+            planId: "plan_id"
+        }],
     preventDowngradesWhenOverLimit: true,
     preventSelfServiceDowngrade: true,
     prorationBehavior: "create_prorations",
@@ -9403,10 +9243,10 @@ await client.plangroups.createPlanGroup({
     showCredits: true,
     showPeriodToggle: true,
     showZeroPriceAsFree: true,
-    syncCustomerBillingDetails: true,
+    syncCustomerBillingDetails: true
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9420,26 +9260,27 @@ await client.plangroups.createPlanGroup({
 <dl>
 <dd>
 
-**request:** `Schematic.CreatePlanGroupRequestBody`
-
+**request:** `Schematic.CreatePlanGroupRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Plangroups.RequestOptions`
+**requestOptions:** `PlangroupsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.plangroups.<a href="/src/api/resources/plangroups/client/Client.ts">updatePlanGroup</a>(planGroupId, { ...params }) -> Schematic.UpdatePlanGroupResponse</code></summary>
+<details><summary><code>client.plangroups.<a href="/src/api/resources/plangroups/client/Client.ts">updatePlanGroup</a>(plan_group_id, { ...params }) -> Schematic.UpdatePlanGroupResponse</code></summary>
 <dl>
 <dd>
 
@@ -9458,21 +9299,15 @@ await client.plangroups.updatePlanGroup("plan_group_id", {
     checkoutCollectEmail: true,
     checkoutCollectPhone: true,
     enableTaxCollection: true,
-    orderedAddOns: [
-        {
-            planId: "plan_id",
-        },
-    ],
-    orderedBundleList: [
-        {
-            bundleId: "bundleId",
-        },
-    ],
-    orderedPlans: [
-        {
-            planId: "plan_id",
-        },
-    ],
+    orderedAddOns: [{
+            planId: "plan_id"
+        }],
+    orderedBundleList: [{
+            bundleId: "bundleId"
+        }],
+    orderedPlans: [{
+            planId: "plan_id"
+        }],
     preventDowngradesWhenOverLimit: true,
     preventSelfServiceDowngrade: true,
     prorationBehavior: "create_prorations",
@@ -9480,10 +9315,10 @@ await client.plangroups.updatePlanGroup("plan_group_id", {
     showCredits: true,
     showPeriodToggle: true,
     showZeroPriceAsFree: true,
-    syncCustomerBillingDetails: true,
+    syncCustomerBillingDetails: true
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9497,35 +9332,35 @@ await client.plangroups.updatePlanGroup("plan_group_id", {
 <dl>
 <dd>
 
-**planGroupId:** `string` — plan_group_id
-
+**plan_group_id:** `string` — plan_group_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Schematic.UpdatePlanGroupRequestBody`
-
+**request:** `Schematic.UpdatePlanGroupRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Plangroups.RequestOptions`
+**requestOptions:** `PlangroupsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## accesstokens
-
 <details><summary><code>client.accesstokens.<a href="/src/api/resources/accesstokens/client/Client.ts">issueTemporaryAccessToken</a>({ ...params }) -> Schematic.IssueTemporaryAccessTokenResponse</code></summary>
 <dl>
 <dd>
@@ -9541,12 +9376,11 @@ await client.plangroups.updatePlanGroup("plan_group_id", {
 ```typescript
 await client.accesstokens.issueTemporaryAccessToken({
     lookup: {
-        key: "value",
-    },
-    resourceType: "company",
+        "key": "value"
+    }
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9560,27 +9394,27 @@ await client.accesstokens.issueTemporaryAccessToken({
 <dl>
 <dd>
 
-**request:** `Schematic.IssueTemporaryAccessTokenRequestBody`
-
+**request:** `Schematic.IssueTemporaryAccessTokenRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Accesstokens.RequestOptions`
+**requestOptions:** `AccesstokensClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
 ## webhooks
-
 <details><summary><code>client.webhooks.<a href="/src/api/resources/webhooks/client/Client.ts">listWebhookEvents</a>({ ...params }) -> Schematic.ListWebhookEventsResponse</code></summary>
 <dl>
 <dd>
@@ -9598,10 +9432,10 @@ await client.webhooks.listWebhookEvents({
     q: "q",
     webhookId: "webhook_id",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9615,26 +9449,27 @@ await client.webhooks.listWebhookEvents({
 <dl>
 <dd>
 
-**request:** `Schematic.ListWebhookEventsRequest`
-
+**request:** `Schematic.ListWebhookEventsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions`
+**requestOptions:** `WebhooksClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.webhooks.<a href="/src/api/resources/webhooks/client/Client.ts">getWebhookEvent</a>(webhookEventId) -> Schematic.GetWebhookEventResponse</code></summary>
+<details><summary><code>client.webhooks.<a href="/src/api/resources/webhooks/client/Client.ts">getWebhookEvent</a>(webhook_event_id) -> Schematic.GetWebhookEventResponse</code></summary>
 <dl>
 <dd>
 
@@ -9648,8 +9483,8 @@ await client.webhooks.listWebhookEvents({
 
 ```typescript
 await client.webhooks.getWebhookEvent("webhook_event_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9663,20 +9498,21 @@ await client.webhooks.getWebhookEvent("webhook_event_id");
 <dl>
 <dd>
 
-**webhookEventId:** `string` — webhook_event_id
-
+**webhook_event_id:** `string` — webhook_event_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions`
+**requestOptions:** `WebhooksClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -9699,10 +9535,10 @@ await client.webhooks.countWebhookEvents({
     q: "q",
     webhookId: "webhook_id",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9716,20 +9552,21 @@ await client.webhooks.countWebhookEvents({
 <dl>
 <dd>
 
-**request:** `Schematic.CountWebhookEventsRequest`
-
+**request:** `Schematic.CountWebhookEventsRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions`
+**requestOptions:** `WebhooksClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -9751,10 +9588,10 @@ await client.webhooks.countWebhookEvents({
 await client.webhooks.listWebhooks({
     q: "q",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9768,20 +9605,21 @@ await client.webhooks.listWebhooks({
 <dl>
 <dd>
 
-**request:** `Schematic.ListWebhooksRequest`
-
+**request:** `Schematic.ListWebhooksRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions`
+**requestOptions:** `WebhooksClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -9803,10 +9641,10 @@ await client.webhooks.listWebhooks({
 await client.webhooks.createWebhook({
     name: "name",
     requestTypes: ["subscription.trial.ended"],
-    url: "url",
+    url: "url"
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9820,26 +9658,27 @@ await client.webhooks.createWebhook({
 <dl>
 <dd>
 
-**request:** `Schematic.CreateWebhookRequestBody`
-
+**request:** `Schematic.CreateWebhookRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions`
+**requestOptions:** `WebhooksClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.webhooks.<a href="/src/api/resources/webhooks/client/Client.ts">getWebhook</a>(webhookId) -> Schematic.GetWebhookResponse</code></summary>
+<details><summary><code>client.webhooks.<a href="/src/api/resources/webhooks/client/Client.ts">getWebhook</a>(webhook_id) -> Schematic.GetWebhookResponse</code></summary>
 <dl>
 <dd>
 
@@ -9853,8 +9692,8 @@ await client.webhooks.createWebhook({
 
 ```typescript
 await client.webhooks.getWebhook("webhook_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9868,26 +9707,27 @@ await client.webhooks.getWebhook("webhook_id");
 <dl>
 <dd>
 
-**webhookId:** `string` — webhook_id
-
+**webhook_id:** `string` — webhook_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions`
+**requestOptions:** `WebhooksClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.webhooks.<a href="/src/api/resources/webhooks/client/Client.ts">updateWebhook</a>(webhookId, { ...params }) -> Schematic.UpdateWebhookResponse</code></summary>
+<details><summary><code>client.webhooks.<a href="/src/api/resources/webhooks/client/Client.ts">updateWebhook</a>(webhook_id, { ...params }) -> Schematic.UpdateWebhookResponse</code></summary>
 <dl>
 <dd>
 
@@ -9901,8 +9741,8 @@ await client.webhooks.getWebhook("webhook_id");
 
 ```typescript
 await client.webhooks.updateWebhook("webhook_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9916,34 +9756,35 @@ await client.webhooks.updateWebhook("webhook_id");
 <dl>
 <dd>
 
-**webhookId:** `string` — webhook_id
-
+**webhook_id:** `string` — webhook_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**request:** `Schematic.UpdateWebhookRequestBody`
-
+**request:** `Schematic.UpdateWebhookRequestBody` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions`
+**requestOptions:** `WebhooksClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
 </details>
 
-<details><summary><code>client.webhooks.<a href="/src/api/resources/webhooks/client/Client.ts">deleteWebhook</a>(webhookId) -> Schematic.DeleteWebhookResponse</code></summary>
+<details><summary><code>client.webhooks.<a href="/src/api/resources/webhooks/client/Client.ts">deleteWebhook</a>(webhook_id) -> Schematic.DeleteWebhookResponse</code></summary>
 <dl>
 <dd>
 
@@ -9957,8 +9798,8 @@ await client.webhooks.updateWebhook("webhook_id");
 
 ```typescript
 await client.webhooks.deleteWebhook("webhook_id");
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -9972,20 +9813,21 @@ await client.webhooks.deleteWebhook("webhook_id");
 <dl>
 <dd>
 
-**webhookId:** `string` — webhook_id
-
+**webhook_id:** `string` — webhook_id
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions`
+**requestOptions:** `WebhooksClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
@@ -10007,10 +9849,10 @@ await client.webhooks.deleteWebhook("webhook_id");
 await client.webhooks.countWebhooks({
     q: "q",
     limit: 1,
-    offset: 1,
+    offset: 1
 });
-```
 
+```
 </dd>
 </dl>
 </dd>
@@ -10024,20 +9866,21 @@ await client.webhooks.countWebhooks({
 <dl>
 <dd>
 
-**request:** `Schematic.CountWebhooksRequest`
-
+**request:** `Schematic.CountWebhooksRequest` 
+    
 </dd>
 </dl>
 
 <dl>
 <dd>
 
-**requestOptions:** `Webhooks.RequestOptions`
+**requestOptions:** `WebhooksClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
 
-</dd>
-</dl>
-</dd>
-</dl>
 
 </dd>
 </dl>
