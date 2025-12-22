@@ -1,0 +1,45 @@
+{
+    "cliVersion": "3.24.4",
+    "generatorName": "fernapi/fern-typescript-node-sdk",
+    "generatorVersion": "3.42.7",
+    "generatorConfig": {
+        "allowCustomFetcher": true,
+        "includeApiReference": true,
+        "namespaceExport": "Schematic",
+        "inlineFileProperties": false,
+        "inlinePathParameters": false,
+        "enableInlineTypes": false,
+        "noSerdeLayer": false,
+        "omitUndefined": false,
+        "useLegacyExports": true,
+        "skipResponseValidation": true,
+        "streamType": "wrapper",
+        "fileResponseType": "stream",
+        "formDataSupport": "Node16",
+        "fetchSupport": "node-fetch",
+        "packageManager": "yarn",
+        "testFramework": "jest",
+        "packageJson": {
+            "license": "MIT",
+            "browser": {
+                "crypto": false,
+                "timers": false
+            },
+            "dependencies": {
+                "form-data": "^4.0.4"
+            },
+            "devDependencies": {
+                "esbuild": "^0.25.9"
+            },
+            "scripts": {
+                "build": "node build.js",
+                "build:legacy": "tsc",
+                "prepack": ""
+            },
+            "main": "./dist/index.js",
+            "types": "./dist/index.d.ts",
+            "files": ["dist/**/*.js", "dist/**/*.d.ts", "!dist/**/*.js.map", "!dist/**/*.test.*", "README.md"]
+        }
+    },
+    "sdkVersion": "1.2.8"
+}
