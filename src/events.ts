@@ -1,5 +1,5 @@
 import { CreateEventRequestBody } from "./api";
-import { Events } from "./api/resources/events/client/Client";
+import { EventsClient } from "./api/resources/events/client/Client";
 import { ConsoleLogger, Logger } from "./logger";
 
 const DEFAULT_FLUSH_INTERVAL = 1000; // 1 second
@@ -18,7 +18,7 @@ interface EventBufferOptions {
 
 class EventBuffer {
     private events: CreateEventRequestBody[] = [];
-    private eventsApi: Events;
+    private eventsApi: EventsClient;
     private interval: number;
     private intervalId: NodeJS.Timeout | null = null;
     private logger: Logger;
@@ -30,7 +30,7 @@ class EventBuffer {
     private stopped: boolean = false;
     private flushing: boolean = false;  // Add flush state tracking
 
-    constructor(eventsApi: Events, opts?: EventBufferOptions) {
+    constructor(eventsApi: EventsClient, opts?: EventBufferOptions) {
         const {
             logger = new ConsoleLogger(),
             maxSize = DEFAULT_MAX_SIZE,
