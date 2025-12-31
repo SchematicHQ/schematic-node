@@ -20,6 +20,6 @@ export interface EventResponseData {
     status: Schematic.EventStatus;
     subtype?: string;
     type: Schematic.EventType;
-    updatedAt: Date;
+    updatedAt?: Date;
     userId?: string;
 }
