@@ -1000,7 +1000,6 @@ await client.billing.upsertBillingCoupon({
 await client.billing.upsertBillingCustomer({
     email: "email",
     externalId: "external_id",
-    failedToImport: true,
     meta: {
         "key": "value"
     },
@@ -1055,7 +1054,6 @@ await client.billing.upsertBillingCustomer({
 
 ```typescript
 await client.billing.listCustomersWithSubscriptions({
-    failedToImport: true,
     name: "name",
     providerType: "schematic",
     q: "q",
@@ -1111,7 +1109,6 @@ await client.billing.listCustomersWithSubscriptions({
 
 ```typescript
 await client.billing.countCustomers({
-    failedToImport: true,
     name: "name",
     providerType: "schematic",
     q: "q",
