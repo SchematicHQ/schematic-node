@@ -5,6 +5,7 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingCreditGrantReason } from "./BillingCreditGrantReason";
 import { BillingCreditGrantZeroedOutReason } from "./BillingCreditGrantZeroedOutReason";
+import { BillingPlanCreditGrantResetCadence } from "./BillingPlanCreditGrantResetCadence";
 import { BillingPriceResponseData } from "./BillingPriceResponseData";
 import { CreditTransferResponseData } from "./CreditTransferResponseData";
 
@@ -27,6 +28,8 @@ export const BillingCreditGrantResponseData: core.serialization.ObjectSchema<
     quantity: core.serialization.number(),
     quantityRemaining: core.serialization.property("quantity_remaining", core.serialization.number()),
     quantityUsed: core.serialization.property("quantity_used", core.serialization.number()),
+    renewalEnabled: core.serialization.property("renewal_enabled", core.serialization.boolean()),
+    renewalPeriod: core.serialization.property("renewal_period", BillingPlanCreditGrantResetCadence.optional()),
     sourceLabel: core.serialization.property("source_label", core.serialization.string()),
     transfers: core.serialization.list(CreditTransferResponseData).optional(),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -52,6 +55,8 @@ export declare namespace BillingCreditGrantResponseData {
         quantity: number;
         quantity_remaining: number;
         quantity_used: number;
+        renewal_enabled: boolean;
+        renewal_period?: BillingPlanCreditGrantResetCadence.Raw | null;
         source_label: string;
         transfers?: CreditTransferResponseData.Raw[] | null;
         updated_at: string;

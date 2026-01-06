@@ -2144,6 +2144,8 @@ describe("CreditsClient", () => {
                 quantity: 1,
                 quantity_remaining: 1.1,
                 quantity_used: 1.1,
+                renewal_enabled: true,
+                renewal_period: "daily",
                 source_label: "source_label",
                 transfers: [
                     {
@@ -2198,6 +2200,8 @@ describe("CreditsClient", () => {
                 quantity: 1,
                 quantityRemaining: 1.1,
                 quantityUsed: 1.1,
+                renewalEnabled: true,
+                renewalPeriod: "daily",
                 sourceLabel: "source_label",
                 transfers: [
                     {
@@ -2350,6 +2354,8 @@ describe("CreditsClient", () => {
                 quantity: 1,
                 quantity_remaining: 1.1,
                 quantity_used: 1.1,
+                renewal_enabled: true,
+                renewal_period: "daily",
                 source_label: "source_label",
                 transfers: [
                     {
@@ -2409,6 +2415,8 @@ describe("CreditsClient", () => {
                 quantity: 1,
                 quantityRemaining: 1.1,
                 quantityUsed: 1.1,
+                renewalEnabled: true,
+                renewalPeriod: "daily",
                 sourceLabel: "source_label",
                 transfers: [
                     {
@@ -2606,6 +2614,8 @@ describe("CreditsClient", () => {
                     quantity: 1,
                     quantity_remaining: 1.1,
                     quantity_used: 1.1,
+                    renewal_enabled: true,
+                    renewal_period: "daily",
                     source_label: "source_label",
                     transfers: [
                         {
@@ -2666,6 +2676,8 @@ describe("CreditsClient", () => {
                     quantity: 1,
                     quantityRemaining: 1.1,
                     quantityUsed: 1.1,
+                    renewalEnabled: true,
+                    renewalPeriod: "daily",
                     sourceLabel: "source_label",
                     transfers: [
                         {
@@ -2937,6 +2949,8 @@ describe("CreditsClient", () => {
                     quantity: 1,
                     quantity_remaining: 1.1,
                     quantity_used: 1.1,
+                    renewal_enabled: true,
+                    renewal_period: "daily",
                     source_label: "source_label",
                     transfers: [
                         {
@@ -2995,6 +3009,8 @@ describe("CreditsClient", () => {
                     quantity: 1,
                     quantityRemaining: 1.1,
                     quantityUsed: 1.1,
+                    renewalEnabled: true,
+                    renewalPeriod: "daily",
                     sourceLabel: "source_label",
                     transfers: [
                         {

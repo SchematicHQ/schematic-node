@@ -16,7 +16,6 @@ export const CreateBillingCustomerRequestBody: core.serialization.Schema<
     ),
     email: core.serialization.string(),
     externalId: core.serialization.property("external_id", core.serialization.string()),
-    failedToImport: core.serialization.property("failed_to_import", core.serialization.boolean()),
     meta: core.serialization.record(core.serialization.string(), core.serialization.string()),
     name: core.serialization.string(),
     providerType: core.serialization.property("provider_type", BillingProviderType.optional()),
@@ -28,7 +27,6 @@ export declare namespace CreateBillingCustomerRequestBody {
         default_payment_method_id?: string | null;
         email: string;
         external_id: string;
-        failed_to_import: boolean;
         meta: Record<string, string>;
         name: string;
         provider_type?: BillingProviderType.Raw | null;

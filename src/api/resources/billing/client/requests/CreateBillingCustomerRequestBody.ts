@@ -7,7 +7,6 @@ import type * as Schematic from "../../../../index";
  *     {
  *         email: "email",
  *         externalId: "external_id",
- *         failedToImport: true,
  *         meta: {
  *             "key": "value"
  *         },
@@ -19,7 +18,6 @@ export interface CreateBillingCustomerRequestBody {
     defaultPaymentMethodId?: string;
     email: string;
     externalId: string;
-    failedToImport: boolean;
     meta: Record<string, string>;
     name: string;
     providerType?: Schematic.BillingProviderType;
