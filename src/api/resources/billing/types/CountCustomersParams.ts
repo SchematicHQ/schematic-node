@@ -7,7 +7,6 @@ import type * as Schematic from "../../../index";
  */
 export interface CountCustomersParams {
     companyIds?: string[];
-    failedToImport?: boolean;
     /** Page limit (default 100) */
     limit?: number;
     name?: string;
