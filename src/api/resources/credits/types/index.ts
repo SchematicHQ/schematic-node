@@ -4,6 +4,8 @@ export * from "./CountBillingCreditsParams";
 export * from "./CountBillingCreditsResponse";
 export * from "./CountBillingPlanCreditGrantsParams";
 export * from "./CountBillingPlanCreditGrantsResponse";
+export * from "./CountCompanyGrantsParams";
+export * from "./CountCompanyGrantsResponse";
 export * from "./CountCreditBundlesParams";
 export * from "./CountCreditBundlesResponse";
 export * from "./CountCreditLedgerParams";

@@ -328,7 +328,6 @@ export class BillingClient {
      *     await client.billing.upsertBillingCustomer({
      *         email: "email",
      *         externalId: "external_id",
-     *         failedToImport: true,
      *         meta: {
      *             "key": "value"
      *         },
@@ -467,7 +466,6 @@ export class BillingClient {
      *
      * @example
      *     await client.billing.listCustomersWithSubscriptions({
-     *         failedToImport: true,
      *         name: "name",
      *         providerType: "schematic",
      *         q: "q",
@@ -486,7 +484,7 @@ export class BillingClient {
         request: Schematic.ListCustomersWithSubscriptionsRequest = {},
         requestOptions?: BillingClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListCustomersWithSubscriptionsResponse>> {
-        const { companyIds, failedToImport, name, providerType, q, limit, offset } = request;
+        const { companyIds, name, providerType, q, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (companyIds != null) {
             if (Array.isArray(companyIds)) {
@@ -494,10 +492,6 @@ export class BillingClient {
             } else {
                 _queryParams.company_ids = companyIds;
             }
-        }
-
-        if (failedToImport != null) {
-            _queryParams.failed_to_import = failedToImport.toString();
         }
 
         if (name != null) {
@@ -638,7 +632,6 @@ export class BillingClient {
      *
      * @example
      *     await client.billing.countCustomers({
-     *         failedToImport: true,
      *         name: "name",
      *         providerType: "schematic",
      *         q: "q",
@@ -657,7 +650,7 @@ export class BillingClient {
         request: Schematic.CountCustomersRequest = {},
         requestOptions?: BillingClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountCustomersResponse>> {
-        const { companyIds, failedToImport, name, providerType, q, limit, offset } = request;
+        const { companyIds, name, providerType, q, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (companyIds != null) {
             if (Array.isArray(companyIds)) {
@@ -665,10 +658,6 @@ export class BillingClient {
             } else {
                 _queryParams.company_ids = companyIds;
             }
-        }
-
-        if (failedToImport != null) {
-            _queryParams.failed_to_import = failedToImport.toString();
         }
 
         if (name != null) {

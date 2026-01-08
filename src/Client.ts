@@ -11,6 +11,7 @@ import { DataexportsClient } from "./api/resources/dataexports/client/Client";
 import { EntitlementsClient } from "./api/resources/entitlements/client/Client";
 import { EventsClient } from "./api/resources/events/client/Client";
 import { FeaturesClient } from "./api/resources/features/client/Client";
+import { PlanbundleClient } from "./api/resources/planbundle/client/Client";
 import { PlangroupsClient } from "./api/resources/plangroups/client/Client";
 import { PlansClient } from "./api/resources/plans/client/Client";
 import { WebhooksClient } from "./api/resources/webhooks/client/Client";
@@ -41,6 +42,7 @@ export class SchematicClient {
     protected _dataexports: DataexportsClient | undefined;
     protected _events: EventsClient | undefined;
     protected _features: FeaturesClient | undefined;
+    protected _planbundle: PlanbundleClient | undefined;
     protected _plangroups: PlangroupsClient | undefined;
     protected _accesstokens: AccesstokensClient | undefined;
     protected _webhooks: WebhooksClient | undefined;
@@ -91,6 +93,10 @@ export class SchematicClient {
 
     public get features(): FeaturesClient {
         return (this._features ??= new FeaturesClient(this._options));
+    }
+
+    public get planbundle(): PlanbundleClient {
+        return (this._planbundle ??= new PlanbundleClient(this._options));
     }
 
     public get plangroups(): PlangroupsClient {

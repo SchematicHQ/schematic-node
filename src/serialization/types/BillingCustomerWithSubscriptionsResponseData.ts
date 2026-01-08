@@ -14,7 +14,6 @@ export const BillingCustomerWithSubscriptionsResponseData: core.serialization.Ob
     deletedAt: core.serialization.property("deleted_at", core.serialization.date().optional()),
     email: core.serialization.string(),
     externalId: core.serialization.property("external_id", core.serialization.string()),
-    failedToImport: core.serialization.property("failed_to_import", core.serialization.boolean()),
     id: core.serialization.string(),
     name: core.serialization.string(),
     providerType: core.serialization.property("provider_type", BillingProviderType),
@@ -28,7 +27,6 @@ export declare namespace BillingCustomerWithSubscriptionsResponseData {
         deleted_at?: string | null;
         email: string;
         external_id: string;
-        failed_to_import: boolean;
         id: string;
         name: string;
         provider_type: BillingProviderType.Raw;
