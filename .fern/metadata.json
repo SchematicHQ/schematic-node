@@ -41,5 +41,5 @@
             "files": ["dist/**/*.js", "dist/**/*.d.ts", "!dist/**/*.js.map", "!dist/**/*.test.*", "README.md"]
         }
     },
-    "sdkVersion": "1.3.0"
+    "sdkVersion": "1.3.1"
 }
