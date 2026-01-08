@@ -17,3 +17,4 @@ src/version.ts
 src/webhooks.ts
 src/wrapper.ts
 tests/unit/webhooks.test.ts
+changelog.md

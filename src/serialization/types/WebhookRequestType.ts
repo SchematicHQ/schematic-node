@@ -43,6 +43,8 @@ export const WebhookRequestType: core.serialization.Schema<
     "user.created",
     "user.deleted",
     "user.updated",
+    "auto.topup.hard.failure",
+    "auto.topup.retry.exceeded",
 ]);
 
 export declare namespace WebhookRequestType {
@@ -81,5 +83,7 @@ export declare namespace WebhookRequestType {
         | "test.send"
         | "user.created"
         | "user.deleted"
-        | "user.updated";
+        | "user.updated"
+        | "auto.topup.hard.failure"
+        | "auto.topup.retry.exceeded";
 }

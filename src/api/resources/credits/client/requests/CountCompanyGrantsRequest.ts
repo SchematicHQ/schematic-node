@@ -5,18 +5,17 @@ import type * as Schematic from "../../../../index";
 /**
  * @example
  *     {
- *         name: "name",
- *         providerType: "schematic",
- *         q: "q",
+ *         companyId: "company_id",
+ *         order: "created_at",
+ *         dir: "asc",
  *         limit: 1,
  *         offset: 1
  *     }
  */
-export interface ListCustomersWithSubscriptionsRequest {
-    companyIds?: string | string[];
-    name?: string;
-    providerType?: Schematic.BillingProviderType;
-    q?: string;
+export interface CountCompanyGrantsRequest {
+    companyId?: string;
+    order?: Schematic.CreditGrantSortOrder;
+    dir?: Schematic.SortDirection;
     /** Page limit (default 100) */
     limit?: number;
     /** Page offset (default 0) */

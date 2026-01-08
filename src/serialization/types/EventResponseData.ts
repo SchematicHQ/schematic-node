@@ -27,7 +27,7 @@ export const EventResponseData: core.serialization.ObjectSchema<
     status: EventStatus,
     subtype: core.serialization.string().optional(),
     type: EventType,
-    updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+    updatedAt: core.serialization.property("updated_at", core.serialization.date().optional()),
     userId: core.serialization.property("user_id", core.serialization.string().optional()),
 });
 
@@ -50,7 +50,7 @@ export declare namespace EventResponseData {
         status: EventStatus.Raw;
         subtype?: string | null;
         type: EventType.Raw;
-        updated_at: string;
+        updated_at?: string | null;
         user_id?: string | null;
     }
 }

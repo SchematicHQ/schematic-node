@@ -5,13 +5,12 @@ import type * as Schematic from "../../../index";
 /**
  * Input parameters
  */
-export interface ListCustomersWithSubscriptionsParams {
-    companyIds?: string[];
+export interface CountCompanyGrantsParams {
+    companyId?: string;
+    dir?: Schematic.SortDirection;
     /** Page limit (default 100) */
     limit?: number;
-    name?: string;
     /** Page offset (default 0) */
     offset?: number;
-    providerType?: Schematic.BillingProviderType;
-    q?: string;
+    order?: Schematic.CreditGrantSortOrder;
 }

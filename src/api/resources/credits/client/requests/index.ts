@@ -1,6 +1,7 @@
 export type { CountBillingCreditsGrantsRequest } from "./CountBillingCreditsGrantsRequest";
 export type { CountBillingCreditsRequest } from "./CountBillingCreditsRequest";
 export type { CountBillingPlanCreditGrantsRequest } from "./CountBillingPlanCreditGrantsRequest";
+export type { CountCompanyGrantsRequest } from "./CountCompanyGrantsRequest";
 export type { CountCreditBundlesRequest } from "./CountCreditBundlesRequest";
 export type { CountCreditLedgerRequest } from "./CountCreditLedgerRequest";
 export type { CreateBillingCreditRequestBody } from "./CreateBillingCreditRequestBody";
