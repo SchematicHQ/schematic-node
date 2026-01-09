@@ -404,20 +404,13 @@ describe("BillingClient", () => {
     test("upsertBillingCustomer (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            email: "email",
-            external_id: "external_id",
-            failed_to_import: true,
-            meta: { key: "value" },
-            name: "name",
-        };
+        const rawRequestBody = { email: "email", external_id: "external_id", meta: { key: "value" }, name: "name" };
         const rawResponseBody = {
             data: {
                 company_id: "company_id",
                 deleted_at: "2024-01-15T09:30:00Z",
                 email: "email",
                 external_id: "external_id",
-                failed_to_import: true,
                 id: "id",
                 name: "name",
                 provider_type: "schematic",
@@ -437,7 +430,6 @@ describe("BillingClient", () => {
         const response = await client.billing.upsertBillingCustomer({
             email: "email",
             externalId: "external_id",
-            failedToImport: true,
             meta: {
                 key: "value",
             },
@@ -449,7 +441,6 @@ describe("BillingClient", () => {
                 deletedAt: new Date("2024-01-15T09:30:00.000Z"),
                 email: "email",
                 externalId: "external_id",
-                failedToImport: true,
                 id: "id",
                 name: "name",
                 providerType: "schematic",
@@ -464,13 +455,7 @@ describe("BillingClient", () => {
     test("upsertBillingCustomer (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            email: "email",
-            external_id: "external_id",
-            failed_to_import: true,
-            meta: { meta: "meta" },
-            name: "name",
-        };
+        const rawRequestBody = { email: "email", external_id: "external_id", meta: { meta: "meta" }, name: "name" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -485,7 +470,6 @@ describe("BillingClient", () => {
             return await client.billing.upsertBillingCustomer({
                 email: "email",
                 externalId: "external_id",
-                failedToImport: true,
                 meta: {
                     meta: "meta",
                 },
@@ -497,13 +481,7 @@ describe("BillingClient", () => {
     test("upsertBillingCustomer (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            email: "email",
-            external_id: "external_id",
-            failed_to_import: true,
-            meta: { meta: "meta" },
-            name: "name",
-        };
+        const rawRequestBody = { email: "email", external_id: "external_id", meta: { meta: "meta" }, name: "name" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -518,7 +496,6 @@ describe("BillingClient", () => {
             return await client.billing.upsertBillingCustomer({
                 email: "email",
                 externalId: "external_id",
-                failedToImport: true,
                 meta: {
                     meta: "meta",
                 },
@@ -530,13 +507,7 @@ describe("BillingClient", () => {
     test("upsertBillingCustomer (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            email: "email",
-            external_id: "external_id",
-            failed_to_import: true,
-            meta: { meta: "meta" },
-            name: "name",
-        };
+        const rawRequestBody = { email: "email", external_id: "external_id", meta: { meta: "meta" }, name: "name" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -551,7 +522,6 @@ describe("BillingClient", () => {
             return await client.billing.upsertBillingCustomer({
                 email: "email",
                 externalId: "external_id",
-                failedToImport: true,
                 meta: {
                     meta: "meta",
                 },
@@ -563,13 +533,7 @@ describe("BillingClient", () => {
     test("upsertBillingCustomer (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            email: "email",
-            external_id: "external_id",
-            failed_to_import: true,
-            meta: { meta: "meta" },
-            name: "name",
-        };
+        const rawRequestBody = { email: "email", external_id: "external_id", meta: { meta: "meta" }, name: "name" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -584,7 +548,6 @@ describe("BillingClient", () => {
             return await client.billing.upsertBillingCustomer({
                 email: "email",
                 externalId: "external_id",
-                failedToImport: true,
                 meta: {
                     meta: "meta",
                 },
@@ -596,13 +559,7 @@ describe("BillingClient", () => {
     test("upsertBillingCustomer (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            email: "email",
-            external_id: "external_id",
-            failed_to_import: true,
-            meta: { meta: "meta" },
-            name: "name",
-        };
+        const rawRequestBody = { email: "email", external_id: "external_id", meta: { meta: "meta" }, name: "name" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -617,7 +574,6 @@ describe("BillingClient", () => {
             return await client.billing.upsertBillingCustomer({
                 email: "email",
                 externalId: "external_id",
-                failedToImport: true,
                 meta: {
                     meta: "meta",
                 },
@@ -637,7 +593,6 @@ describe("BillingClient", () => {
                     deleted_at: "2024-01-15T09:30:00Z",
                     email: "email",
                     external_id: "external_id",
-                    failed_to_import: true,
                     id: "id",
                     name: "name",
                     provider_type: "schematic",
@@ -655,7 +610,6 @@ describe("BillingClient", () => {
             ],
             params: {
                 company_ids: ["company_ids"],
-                failed_to_import: true,
                 limit: 1,
                 name: "name",
                 offset: 1,
@@ -666,7 +620,6 @@ describe("BillingClient", () => {
         server.mockEndpoint().get("/billing/customers").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.billing.listCustomersWithSubscriptions({
-            failedToImport: true,
             name: "name",
             providerType: "schematic",
             q: "q",
@@ -680,7 +633,6 @@ describe("BillingClient", () => {
                     deletedAt: new Date("2024-01-15T09:30:00.000Z"),
                     email: "email",
                     externalId: "external_id",
-                    failedToImport: true,
                     id: "id",
                     name: "name",
                     providerType: "schematic",
@@ -698,7 +650,6 @@ describe("BillingClient", () => {
             ],
             params: {
                 companyIds: ["company_ids"],
-                failedToImport: true,
                 limit: 1,
                 name: "name",
                 offset: 1,
@@ -776,7 +727,6 @@ describe("BillingClient", () => {
             data: { count: 1 },
             params: {
                 company_ids: ["company_ids"],
-                failed_to_import: true,
                 limit: 1,
                 name: "name",
                 offset: 1,
@@ -793,7 +743,6 @@ describe("BillingClient", () => {
             .build();
 
         const response = await client.billing.countCustomers({
-            failedToImport: true,
             name: "name",
             providerType: "schematic",
             q: "q",
@@ -806,7 +755,6 @@ describe("BillingClient", () => {
             },
             params: {
                 companyIds: ["company_ids"],
-                failedToImport: true,
                 limit: 1,
                 name: "name",
                 offset: 1,
