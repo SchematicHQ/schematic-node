@@ -18,6 +18,8 @@ export interface BillingCreditGrantResponseData {
     quantity: number;
     quantityRemaining: number;
     quantityUsed: number;
+    renewalEnabled: boolean;
+    renewalPeriod?: Schematic.BillingPlanCreditGrantResetCadence;
     sourceLabel: string;
     transfers?: Schematic.CreditTransferResponseData[];
     updatedAt: Date;

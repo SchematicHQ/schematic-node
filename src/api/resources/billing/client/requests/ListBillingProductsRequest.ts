@@ -20,7 +20,7 @@ import type * as Schematic from "../../../../index";
  */
 export interface ListBillingProductsRequest {
     ids?: string | string[];
-    /** Filter products that are active */
+    /** Filter products that are active. Defaults to true if not specified */
     isActive?: boolean;
     name?: string;
     priceUsageType?: Schematic.BillingPriceUsageType;
