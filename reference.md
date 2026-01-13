@@ -1000,7 +1000,6 @@ await client.billing.upsertBillingCoupon({
 await client.billing.upsertBillingCustomer({
     email: "email",
     externalId: "external_id",
-    failedToImport: true,
     meta: {
         "key": "value"
     },
@@ -1055,7 +1054,6 @@ await client.billing.upsertBillingCustomer({
 
 ```typescript
 await client.billing.listCustomersWithSubscriptions({
-    failedToImport: true,
     name: "name",
     providerType: "schematic",
     q: "q",
@@ -1111,7 +1109,6 @@ await client.billing.listCustomersWithSubscriptions({
 
 ```typescript
 await client.billing.countCustomers({
-    failedToImport: true,
     name: "name",
     providerType: "schematic",
     q: "q",
@@ -2743,6 +2740,61 @@ await client.credits.grantBillingCreditsToCompany({
 <dd>
 
 **request:** `Schematic.CreateCompanyCreditGrant` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">countCompanyGrants</a>({ ...params }) -> Schematic.CountCompanyGrantsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.credits.countCompanyGrants({
+    companyId: "company_id",
+    order: "created_at",
+    dir: "asc",
+    limit: 1,
+    offset: 1
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CountCompanyGrantsRequest` 
     
 </dd>
 </dl>
@@ -9155,6 +9207,121 @@ await client.features.countFlags({
 <dd>
 
 **requestOptions:** `FeaturesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## planbundle
+<details><summary><code>client.planbundle.<a href="/src/api/resources/planbundle/client/Client.ts">createPlanBundle</a>({ ...params }) -> Schematic.CreatePlanBundleResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.planbundle.createPlanBundle({
+    entitlements: [{
+            action: "create"
+        }]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CreatePlanBundleRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PlanbundleClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.planbundle.<a href="/src/api/resources/planbundle/client/Client.ts">updatePlanBundle</a>(plan_bundle_id, { ...params }) -> Schematic.UpdatePlanBundleResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.planbundle.updatePlanBundle("plan_bundle_id", {
+    entitlements: [{
+            action: "create"
+        }]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**plan_bundle_id:** `string` — plan_bundle_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.UpdatePlanBundleRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PlanbundleClient.RequestOptions` 
     
 </dd>
 </dl>

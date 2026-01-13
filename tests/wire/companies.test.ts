@@ -9160,7 +9160,7 @@ describe("CompaniesClient", () => {
                         name: "name",
                     },
                     request_id: "request_id",
-                    subscription_change_action: "downgrade",
+                    subscription_change_action: "adjustment",
                     traits_updated: [
                         {
                             feature_id: "feature_id",
@@ -9260,7 +9260,7 @@ describe("CompaniesClient", () => {
                         name: "name",
                     },
                     requestId: "request_id",
-                    subscriptionChangeAction: "downgrade",
+                    subscriptionChangeAction: "adjustment",
                     traitsUpdated: [
                         {
                             featureId: "feature_id",
@@ -9404,7 +9404,7 @@ describe("CompaniesClient", () => {
                 id: "id",
                 previous_base_plan: { deleted: true, description: "description", icon: "icon", id: "id", name: "name" },
                 request_id: "request_id",
-                subscription_change_action: "downgrade",
+                subscription_change_action: "adjustment",
                 traits_updated: [
                     {
                         feature_id: "feature_id",
@@ -9510,7 +9510,7 @@ describe("CompaniesClient", () => {
                     name: "name",
                 },
                 requestId: "request_id",
-                subscriptionChangeAction: "downgrade",
+                subscriptionChangeAction: "adjustment",
                 traitsUpdated: [
                     {
                         featureId: "feature_id",

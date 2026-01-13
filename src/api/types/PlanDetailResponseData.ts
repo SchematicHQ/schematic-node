@@ -23,5 +23,6 @@ export interface PlanDetailResponseData {
     planType: Schematic.PlanType;
     trialDays?: number;
     updatedAt: Date;
+    versions: Schematic.PlanVersionResponseData[];
     yearlyPrice?: Schematic.BillingPriceResponseData;
 }

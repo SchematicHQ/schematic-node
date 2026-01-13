@@ -7,8 +7,23 @@ import type * as serializers from "../index";
 export const PlanChangeSubscriptionAction: core.serialization.Schema<
     serializers.PlanChangeSubscriptionAction.Raw,
     Schematic.PlanChangeSubscriptionAction
-> = core.serialization.enum_(["downgrade", "invalid", "subscribe", "unsubscribe", "upgrade", "upgrade_trial"]);
+> = core.serialization.enum_([
+    "adjustment",
+    "downgrade",
+    "invalid",
+    "subscribe",
+    "unsubscribe",
+    "upgrade",
+    "upgrade_trial",
+]);
 
 export declare namespace PlanChangeSubscriptionAction {
-    export type Raw = "downgrade" | "invalid" | "subscribe" | "unsubscribe" | "upgrade" | "upgrade_trial";
+    export type Raw =
+        | "adjustment"
+        | "downgrade"
+        | "invalid"
+        | "subscribe"
+        | "unsubscribe"
+        | "upgrade"
+        | "upgrade_trial";
 }

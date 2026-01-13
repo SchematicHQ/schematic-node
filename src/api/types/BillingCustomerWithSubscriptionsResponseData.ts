@@ -7,7 +7,6 @@ export interface BillingCustomerWithSubscriptionsResponseData {
     deletedAt?: Date;
     email: string;
     externalId: string;
-    failedToImport: boolean;
     id: string;
     name: string;
     providerType: Schematic.BillingProviderType;
