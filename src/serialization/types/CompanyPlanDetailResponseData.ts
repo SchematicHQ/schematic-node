@@ -14,6 +14,7 @@ import { PlanControlledByType } from "./PlanControlledByType";
 import { PlanCreditGrantView } from "./PlanCreditGrantView";
 import { PlanEntitlementResponseData } from "./PlanEntitlementResponseData";
 import { PlanType } from "./PlanType";
+import { PlanVersionResponseData } from "./PlanVersionResponseData";
 
 export const CompanyPlanDetailResponseData: core.serialization.ObjectSchema<
     serializers.CompanyPlanDetailResponseData.Raw,
@@ -55,6 +56,7 @@ export const CompanyPlanDetailResponseData: core.serialization.ObjectSchema<
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     usageViolations: core.serialization.property("usage_violations", core.serialization.list(FeatureUsageResponseData)),
     valid: core.serialization.boolean(),
+    versions: core.serialization.list(PlanVersionResponseData),
     yearlyPrice: core.serialization.property("yearly_price", BillingPriceResponseData.optional()),
 });
 
@@ -90,6 +92,7 @@ export declare namespace CompanyPlanDetailResponseData {
         updated_at: string;
         usage_violations: FeatureUsageResponseData.Raw[];
         valid: boolean;
+        versions: PlanVersionResponseData.Raw[];
         yearly_price?: BillingPriceResponseData.Raw | null;
     }
 }

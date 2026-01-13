@@ -33,5 +33,6 @@ export interface CompanyPlanDetailResponseData {
     updatedAt: Date;
     usageViolations: Schematic.FeatureUsageResponseData[];
     valid: boolean;
+    versions: Schematic.PlanVersionResponseData[];
     yearlyPrice?: Schematic.BillingPriceResponseData;
 }

@@ -7,7 +7,7 @@ import type * as Schematic from "../../../index";
  */
 export interface ListBillingProductsParams {
     ids?: string[];
-    /** Filter products that are active */
+    /** Filter products that are active. Defaults to true if not specified */
     isActive?: boolean;
     /** Page limit (default 100) */
     limit?: number;
