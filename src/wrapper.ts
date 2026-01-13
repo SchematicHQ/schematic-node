@@ -31,6 +31,8 @@ export interface SchematicOptions {
     logger?: Logger;
     /** Enable offline mode to prevent network activity */
     offline?: boolean;
+    /** The default maximum time to wait for a response in seconds */
+    timeoutInSeconds?: number;
 }
 
 export class SchematicClient extends BaseClient {
@@ -51,6 +53,7 @@ export class SchematicClient extends BaseClient {
             eventBufferInterval,
             flagDefaults = {},
             logger = new ConsoleLogger(),
+            timeoutInSeconds,
         } = opts ?? {};
         let { offline = false } = opts ?? {};
 
@@ -78,6 +81,7 @@ export class SchematicClient extends BaseClient {
             apiKey,
             environment: basePath,
             fetcher: offline ? offlineFetcher : provideFetcher(headers),
+            timeoutInSeconds,
         });
 
         this.logger = logger;
