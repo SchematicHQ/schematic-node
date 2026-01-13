@@ -10,6 +10,7 @@ import { ChargeType } from "./ChargeType";
 import { FeatureDetailResponseData } from "./FeatureDetailResponseData";
 import { PlanControlledByType } from "./PlanControlledByType";
 import { PlanType } from "./PlanType";
+import { PlanVersionResponseData } from "./PlanVersionResponseData";
 
 export const PlanDetailResponseData: core.serialization.ObjectSchema<
     serializers.PlanDetailResponseData.Raw,
@@ -38,6 +39,7 @@ export const PlanDetailResponseData: core.serialization.ObjectSchema<
     planType: core.serialization.property("plan_type", PlanType),
     trialDays: core.serialization.property("trial_days", core.serialization.number().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+    versions: core.serialization.list(PlanVersionResponseData),
     yearlyPrice: core.serialization.property("yearly_price", BillingPriceResponseData.optional()),
 });
 
@@ -63,6 +65,7 @@ export declare namespace PlanDetailResponseData {
         plan_type: PlanType.Raw;
         trial_days?: number | null;
         updated_at: string;
+        versions: PlanVersionResponseData.Raw[];
         yearly_price?: BillingPriceResponseData.Raw | null;
     }
 }

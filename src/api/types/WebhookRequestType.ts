@@ -36,5 +36,7 @@ export const WebhookRequestType = {
     UserCreated: "user.created",
     UserDeleted: "user.deleted",
     UserUpdated: "user.updated",
+    AutoTopupHardFailure: "auto.topup.hard.failure",
+    AutoTopupRetryExceeded: "auto.topup.retry.exceeded",
 } as const;
 export type WebhookRequestType = (typeof WebhookRequestType)[keyof typeof WebhookRequestType];
