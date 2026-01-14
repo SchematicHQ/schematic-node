@@ -35,6 +35,13 @@ export interface SchematicOptions {
     timeoutInSeconds?: number;
 }
 
+export interface CheckFlagOptions {
+    /** Default value to return on error. Can be a boolean or a function returning a boolean. If not provided, uses configured flag defaults */
+    defaultValue?: boolean | (() => boolean);
+    /** The maximum time to wait for a response in seconds */
+    timeoutInSeconds?: number;
+}
+
 export class SchematicClient extends BaseClient {
     private eventBuffer: EventBuffer;
     private flagCheckCacheProviders: CacheProvider<boolean>[];
@@ -99,20 +106,16 @@ export class SchematicClient extends BaseClient {
      * Checks the value of a feature flag for the given evaluation context
      * @param evalCtx - The context (company and/or user) for evaluating the feature flag
      * @param key - The unique identifier of the feature flag
-     * @param defaultValue - Optional default value to return on error. Can be a boolean or a function returning a boolean. If not provided, uses configured flag defaults
+     * @param options - Optional configuration for the flag check
      * @returns Promise resolving to the flag's boolean value, falling back to default if unavailable
      * @throws Will log error and return flag default if check fails
      */
-    async checkFlag(
-        evalCtx: api.CheckFlagRequestBody,
-        key: string,
-        defaultValue?: boolean | (() => boolean),
-    ): Promise<boolean> {
+    async checkFlag(evalCtx: api.CheckFlagRequestBody, key: string, options?: CheckFlagOptions): Promise<boolean> {
         const getDefault = (): boolean => {
-            if (defaultValue === undefined) {
+            if (options?.defaultValue === undefined) {
                 return this.getFlagDefault(key);
             }
-            return typeof defaultValue === "function" ? defaultValue() : defaultValue;
+            return typeof options.defaultValue === "function" ? options.defaultValue() : options.defaultValue;
         };
 
         if (this.offline) {
@@ -130,7 +133,9 @@ export class SchematicClient extends BaseClient {
                 }
             }
 
-            const response = await this.features.checkFlag(key, evalCtx);
+            const response = await this.features.checkFlag(key, evalCtx, {
+                timeoutInSeconds: options?.timeoutInSeconds,
+            });
             if (response.data.value === undefined) {
                 this.logger.debug(`No value returned from feature flag API for flag ${key}, falling back to default`);
                 return getDefault();
