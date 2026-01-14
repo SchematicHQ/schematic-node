@@ -99,13 +99,25 @@ export class SchematicClient extends BaseClient {
      * Checks the value of a feature flag for the given evaluation context
      * @param evalCtx - The context (company and/or user) for evaluating the feature flag
      * @param key - The unique identifier of the feature flag
+     * @param defaultValue - Optional default value to return on error. Can be a boolean or a function returning a boolean. If not provided, uses configured flag defaults
      * @returns Promise resolving to the flag's boolean value, falling back to default if unavailable
      * @throws Will log error and return flag default if check fails
      */
-    async checkFlag(evalCtx: api.CheckFlagRequestBody, key: string): Promise<boolean> {
+    async checkFlag(
+        evalCtx: api.CheckFlagRequestBody,
+        key: string,
+        defaultValue?: boolean | (() => boolean),
+    ): Promise<boolean> {
+        const getDefault = (): boolean => {
+            if (defaultValue === undefined) {
+                return this.getFlagDefault(key);
+            }
+            return typeof defaultValue === "function" ? defaultValue() : defaultValue;
+        };
+
         if (this.offline) {
             this.logger.debug(`Offline mode enabled, returning default flag value for flag ${key}`);
-            return this.getFlagDefault(key);
+            return getDefault();
         }
 
         try {
@@ -121,7 +133,7 @@ export class SchematicClient extends BaseClient {
             const response = await this.features.checkFlag(key, evalCtx);
             if (response.data.value === undefined) {
                 this.logger.debug(`No value returned from feature flag API for flag ${key}, falling back to default`);
-                return this.getFlagDefault(key);
+                return getDefault();
             }
 
             for (const provider of this.flagCheckCacheProviders) {
@@ -133,7 +145,7 @@ export class SchematicClient extends BaseClient {
             return response.data.value;
         } catch (err) {
             this.logger.error(`Error checking flag ${key}: ${err}`);
-            return this.getFlagDefault(key);
+            return getDefault();
         }
     }
 
