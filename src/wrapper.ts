@@ -31,15 +31,15 @@ export interface SchematicOptions {
     logger?: Logger;
     /** Enable offline mode to prevent network activity */
     offline?: boolean;
-    /** The default maximum time to wait for a response in seconds */
-    timeoutInSeconds?: number;
+    /** The default maximum time to wait for a response in milliseconds */
+    timeoutMs?: number;
 }
 
 export interface CheckFlagOptions {
     /** Default value to return on error. Can be a boolean or a function returning a boolean. If not provided, uses configured flag defaults */
     defaultValue?: boolean | (() => boolean);
-    /** The maximum time to wait for a response in seconds */
-    timeoutInSeconds?: number;
+    /** The maximum time to wait for a response in milliseconds */
+    timeoutMs?: number;
 }
 
 export class SchematicClient extends BaseClient {
@@ -60,7 +60,7 @@ export class SchematicClient extends BaseClient {
             eventBufferInterval,
             flagDefaults = {},
             logger = new ConsoleLogger(),
-            timeoutInSeconds,
+            timeoutMs,
         } = opts ?? {};
         let { offline = false } = opts ?? {};
 
@@ -88,7 +88,7 @@ export class SchematicClient extends BaseClient {
             apiKey,
             environment: basePath,
             fetcher: offline ? offlineFetcher : provideFetcher(headers),
-            timeoutInSeconds,
+            timeoutInSeconds: timeoutMs !== undefined ? timeoutMs / 1000 : undefined,
         });
 
         this.logger = logger;
@@ -134,7 +134,7 @@ export class SchematicClient extends BaseClient {
             }
 
             const response = await this.features.checkFlag(key, evalCtx, {
-                timeoutInSeconds: options?.timeoutInSeconds,
+                timeoutInSeconds: options?.timeoutMs !== undefined ? options.timeoutMs / 1000 : undefined,
             });
             if (response.data.value === undefined) {
                 this.logger.debug(`No value returned from feature flag API for flag ${key}, falling back to default`);
