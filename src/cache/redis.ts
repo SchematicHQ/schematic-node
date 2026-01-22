@@ -60,8 +60,7 @@ export class RedisCacheProvider<T> implements CacheProvider<T> {
 
       this.client = createClient(clientConfig);
       
-      this.client.on('error', (err: Error) => {
-        console.error('Redis Client Error:', err);
+      this.client.on('error', () => {
         this.isConnected = false;
       });
 
@@ -89,26 +88,17 @@ export class RedisCacheProvider<T> implements CacheProvider<T> {
 
   async get(key: string): Promise<T | null> {
     if (!this.isConnected || !this.client) {
-      console.log(`Debug: Redis not connected (connected: ${this.isConnected}, client: ${!!this.client}) for key: ${key}`);
       return null;
     }
 
-    try {
-      const fullKey = this.getFullKey(key);
-      console.log(`Debug: Redis GET attempt - key: ${key}, fullKey: ${fullKey}, port: ${this.client.options?.socket?.port || 'unknown'}`);
-      const value = await this.client.get(fullKey);
-      
-      if (value === null) {
-        console.log(`Debug: Redis GET result - key not found: ${fullKey}`);
-        return null;
-      }
-
-      console.log(`Debug: Redis GET result - key found: ${fullKey}`);
-      return JSON.parse(value) as T;
-    } catch (error) {
-      console.error('Redis get error:', error);
+    const fullKey = this.getFullKey(key);
+    const value = await this.client.get(fullKey);
+    
+    if (value === null) {
       return null;
     }
+
+    return JSON.parse(value) as T;
   }
 
   async set(key: string, value: T, ttl?: number): Promise<void> {
@@ -116,18 +106,14 @@ export class RedisCacheProvider<T> implements CacheProvider<T> {
       return;
     }
 
-    try {
-      const fullKey = this.getFullKey(key);
-      const serializedValue = JSON.stringify(value);
-      const actualTTL = ttl ? Math.floor(ttl / 1000) : this.defaultTTL;
+    const fullKey = this.getFullKey(key);
+    const serializedValue = JSON.stringify(value);
+    const actualTTL = ttl ? Math.floor(ttl / 1000) : this.defaultTTL;
 
-      if (actualTTL > 0) {
-        await this.client.setEx(fullKey, actualTTL, serializedValue);
-      } else {
-        await this.client.set(fullKey, serializedValue);
-      }
-    } catch (error) {
-      console.error('Redis set error:', error);
+    if (actualTTL > 0) {
+      await this.client.setEx(fullKey, actualTTL, serializedValue);
+    } else {
+      await this.client.set(fullKey, serializedValue);
     }
   }
 
@@ -136,12 +122,8 @@ export class RedisCacheProvider<T> implements CacheProvider<T> {
       return;
     }
 
-    try {
-      const fullKey = this.getFullKey(key);
-      await this.client.del(fullKey);
-    } catch (error) {
-      console.error('Redis delete error:', error);
-    }
+    const fullKey = this.getFullKey(key);
+    await this.client.del(fullKey);
   }
 
   async deleteMissing(keysToKeep: string[]): Promise<void> {
@@ -149,26 +131,22 @@ export class RedisCacheProvider<T> implements CacheProvider<T> {
       return;
     }
 
-    try {
-      // Get all keys with our prefix
-      const pattern = this.keyPrefix + '*';
-      const allKeys = await this.client.keys(pattern);
-      
-      if (allKeys.length === 0) {
-        return;
-      }
+    // Get all keys with our prefix
+    const pattern = this.keyPrefix + '*';
+    const allKeys = await this.client.keys(pattern);
+    
+    if (allKeys.length === 0) {
+      return;
+    }
 
-      // Convert keysToKeep to full keys
-      const fullKeysToKeep = new Set(keysToKeep.map(k => this.getFullKey(k)));
-      
-      // Find keys to delete
-      const keysToDelete = allKeys.filter((key: string) => !fullKeysToKeep.has(key));
-      
-      if (keysToDelete.length > 0) {
-        await this.client.del(keysToDelete);
-      }
-    } catch (error) {
-      console.error('Redis deleteMissing error:', error);
+    // Convert keysToKeep to full keys
+    const fullKeysToKeep = new Set(keysToKeep.map(k => this.getFullKey(k)));
+    
+    // Find keys to delete
+    const keysToDelete = allKeys.filter((key: string) => !fullKeysToKeep.has(key));
+    
+    if (keysToDelete.length > 0) {
+      await this.client.del(keysToDelete);
     }
   }
 
@@ -176,7 +154,7 @@ export class RedisCacheProvider<T> implements CacheProvider<T> {
    * Reset all keys with our prefix (implements resetCache)
    */
   resetCache(): void {
-    this.clear().catch(console.error);
+    this.clear();
   }
 
   /**
@@ -187,15 +165,11 @@ export class RedisCacheProvider<T> implements CacheProvider<T> {
       return;
     }
 
-    try {
-      const pattern = this.keyPrefix + '*';
-      const keys = await this.client.keys(pattern);
-      
-      if (keys.length > 0) {
-        await this.client.del(keys);
-      }
-    } catch (error) {
-      console.error('Redis clear error:', error);
+    const pattern = this.keyPrefix + '*';
+    const keys = await this.client.keys(pattern);
+    
+    if (keys.length > 0) {
+      await this.client.del(keys);
     }
   }
 
