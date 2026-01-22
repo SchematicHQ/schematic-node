@@ -2144,6 +2144,8 @@ describe("CreditsClient", () => {
                 quantity: 1,
                 quantity_remaining: 1.1,
                 quantity_used: 1.1,
+                renewal_enabled: true,
+                renewal_period: "daily",
                 source_label: "source_label",
                 transfers: [
                     {
@@ -2198,6 +2200,8 @@ describe("CreditsClient", () => {
                 quantity: 1,
                 quantityRemaining: 1.1,
                 quantityUsed: 1.1,
+                renewalEnabled: true,
+                renewalPeriod: "daily",
                 sourceLabel: "source_label",
                 transfers: [
                     {
@@ -2350,6 +2354,8 @@ describe("CreditsClient", () => {
                 quantity: 1,
                 quantity_remaining: 1.1,
                 quantity_used: 1.1,
+                renewal_enabled: true,
+                renewal_period: "daily",
                 source_label: "source_label",
                 transfers: [
                     {
@@ -2409,6 +2415,8 @@ describe("CreditsClient", () => {
                 quantity: 1,
                 quantityRemaining: 1.1,
                 quantityUsed: 1.1,
+                renewalEnabled: true,
+                renewalPeriod: "daily",
                 sourceLabel: "source_label",
                 transfers: [
                     {
@@ -2576,6 +2584,133 @@ describe("CreditsClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("countCompanyGrants (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: { count: 1 },
+            params: { company_id: "company_id", dir: "asc", limit: 1, offset: 1, order: "created_at" },
+        };
+        server
+            .mockEndpoint()
+            .get("/billing/credits/grants/company/count")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.credits.countCompanyGrants({
+            companyId: "company_id",
+            order: "created_at",
+            dir: "asc",
+            limit: 1,
+            offset: 1,
+        });
+        expect(response).toEqual({
+            data: {
+                count: 1,
+            },
+            params: {
+                companyId: "company_id",
+                dir: "asc",
+                limit: 1,
+                offset: 1,
+                order: "created_at",
+            },
+        });
+    });
+
+    test("countCompanyGrants (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .get("/billing/credits/grants/company/count")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.countCompanyGrants();
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("countCompanyGrants (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .get("/billing/credits/grants/company/count")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.countCompanyGrants();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("countCompanyGrants (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .get("/billing/credits/grants/company/count")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.countCompanyGrants();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("countCompanyGrants (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .get("/billing/credits/grants/company/count")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.countCompanyGrants();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("countCompanyGrants (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .get("/billing/credits/grants/company/count")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.countCompanyGrants();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("listCompanyGrants (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -2606,6 +2741,8 @@ describe("CreditsClient", () => {
                     quantity: 1,
                     quantity_remaining: 1.1,
                     quantity_used: 1.1,
+                    renewal_enabled: true,
+                    renewal_period: "daily",
                     source_label: "source_label",
                     transfers: [
                         {
@@ -2666,6 +2803,8 @@ describe("CreditsClient", () => {
                     quantity: 1,
                     quantityRemaining: 1.1,
                     quantityUsed: 1.1,
+                    renewalEnabled: true,
+                    renewalPeriod: "daily",
                     sourceLabel: "source_label",
                     transfers: [
                         {
@@ -2937,6 +3076,8 @@ describe("CreditsClient", () => {
                     quantity: 1,
                     quantity_remaining: 1.1,
                     quantity_used: 1.1,
+                    renewal_enabled: true,
+                    renewal_period: "daily",
                     source_label: "source_label",
                     transfers: [
                         {
@@ -2995,6 +3136,8 @@ describe("CreditsClient", () => {
                     quantity: 1,
                     quantityRemaining: 1.1,
                     quantityUsed: 1.1,
+                    renewalEnabled: true,
+                    renewalPeriod: "daily",
                     sourceLabel: "source_label",
                     transfers: [
                         {

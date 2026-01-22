@@ -7,6 +7,7 @@ import { BillingCreditExpiryType } from "./BillingCreditExpiryType";
 import { BillingCreditExpiryUnit } from "./BillingCreditExpiryUnit";
 import { BillingCreditGrantReason } from "./BillingCreditGrantReason";
 import { BillingCreditGrantZeroedOutReason } from "./BillingCreditGrantZeroedOutReason";
+import { BillingPlanCreditGrantResetCadence } from "./BillingPlanCreditGrantResetCadence";
 import { BillingProductPriceResponseData } from "./BillingProductPriceResponseData";
 import { CreditTransferView } from "./CreditTransferView";
 
@@ -39,6 +40,8 @@ export const CreditCompanyGrantView: core.serialization.ObjectSchema<
     quantity: core.serialization.number(),
     quantityRemaining: core.serialization.property("quantity_remaining", core.serialization.number()),
     quantityUsed: core.serialization.property("quantity_used", core.serialization.number()),
+    renewalEnabled: core.serialization.property("renewal_enabled", core.serialization.boolean()),
+    renewalPeriod: core.serialization.property("renewal_period", BillingPlanCreditGrantResetCadence.optional()),
     singularName: core.serialization.property("singular_name", core.serialization.string().optional()),
     sourceLabel: core.serialization.property("source_label", core.serialization.string()),
     transfers: core.serialization.list(CreditTransferView).optional(),
@@ -72,6 +75,8 @@ export declare namespace CreditCompanyGrantView {
         quantity: number;
         quantity_remaining: number;
         quantity_used: number;
+        renewal_enabled: boolean;
+        renewal_period?: BillingPlanCreditGrantResetCadence.Raw | null;
         singular_name?: string | null;
         source_label: string;
         transfers?: CreditTransferView.Raw[] | null;
