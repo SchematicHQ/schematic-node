@@ -168,7 +168,7 @@ export class SchematicClient extends BaseClient {
             // In replicator mode, check if replicator is ready before using datastream
             if (this.datastreamClient!.isReplicatorMode() && !this.datastreamClient!.isReplicatorReady()) {
                 this.logger.debug("Replicator mode enabled but replicator not ready, falling back to API");
-                return this.checkFlagViaAPI(evalCtx, key);
+                return this.checkFlagViaAPI(evalCtx, key, options, getDefault);
             }
 
             try {
@@ -197,14 +197,16 @@ export class SchematicClient extends BaseClient {
                 return flagValue ?? this.getFlagDefault(key);
             } catch (err) {
                 this.logger.debug(`Datastream flag check failed (${err}), falling back to API`);
-                return this.checkFlagViaAPI(evalCtx, key);
+                return this.checkFlagViaAPI(evalCtx, key, options, getDefault);
             }
         }
 
-        return this.checkFlagViaAPI(evalCtx, key);
+        return this.checkFlagViaAPI(evalCtx, key, options, getDefault);
     }
 
-    private async checkFlagViaAPI(evalCtx: api.CheckFlagRequestBody, key: string): Promise<boolean> {
+    private async checkFlagViaAPI(evalCtx: api.CheckFlagRequestBody, key: string, options?: CheckFlagOptions, getDefault?: () => boolean): Promise<boolean> {
+        const getDefaultValue = getDefault ?? (() => this.getFlagDefault(key));
+        
         try {
             const cacheKey = JSON.stringify({ evalCtx, key });
             for (const provider of this.flagCheckCacheProviders) {
@@ -220,7 +222,7 @@ export class SchematicClient extends BaseClient {
             });
             if (response.data.value === undefined) {
                 this.logger.debug(`No value returned from feature flag API for flag ${key}, falling back to default`);
-                return getDefault();
+                return getDefaultValue();
             }
 
             for (const provider of this.flagCheckCacheProviders) {
@@ -232,7 +234,7 @@ export class SchematicClient extends BaseClient {
             return response.data.value;
         } catch (err) {
             this.logger.error(`Error checking flag ${key}: ${err}`);
-            return getDefault();
+            return getDefaultValue();
         }
     }
 
