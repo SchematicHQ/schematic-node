@@ -25,6 +25,7 @@ export const CompanyPlanWithBillingSubView: core.serialization.ObjectSchema<
     name: core.serialization.string(),
     planPeriod: core.serialization.property("plan_period", core.serialization.string().optional()),
     planPrice: core.serialization.property("plan_price", core.serialization.number().optional()),
+    planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
 });
 
 export declare namespace CompanyPlanWithBillingSubView {
@@ -39,5 +40,6 @@ export declare namespace CompanyPlanWithBillingSubView {
         name: string;
         plan_period?: string | null;
         plan_price?: number | null;
+        plan_version_id?: string | null;
     }
 }

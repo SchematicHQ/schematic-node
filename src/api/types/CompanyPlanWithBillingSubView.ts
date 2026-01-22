@@ -13,4 +13,5 @@ export interface CompanyPlanWithBillingSubView {
     name: string;
     planPeriod?: string;
     planPrice?: number;
+    planVersionId?: string;
 }

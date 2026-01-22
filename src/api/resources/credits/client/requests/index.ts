@@ -1,10 +1,10 @@
 export type { CountBillingCreditsGrantsRequest } from "./CountBillingCreditsGrantsRequest";
 export type { CountBillingCreditsRequest } from "./CountBillingCreditsRequest";
 export type { CountBillingPlanCreditGrantsRequest } from "./CountBillingPlanCreditGrantsRequest";
+export type { CountCompanyGrantsRequest } from "./CountCompanyGrantsRequest";
 export type { CountCreditBundlesRequest } from "./CountCreditBundlesRequest";
 export type { CountCreditLedgerRequest } from "./CountCreditLedgerRequest";
 export type { CreateBillingCreditRequestBody } from "./CreateBillingCreditRequestBody";
-export type { CreateBillingPlanCreditGrantRequestBody } from "./CreateBillingPlanCreditGrantRequestBody";
 export type { CreateCompanyCreditGrant } from "./CreateCompanyCreditGrant";
 export type { CreateCreditBundleRequestBody } from "./CreateCreditBundleRequestBody";
 export type { DeleteBillingPlanCreditGrantRequest } from "./DeleteBillingPlanCreditGrantRequest";
@@ -15,6 +15,5 @@ export type { ListCompanyGrantsRequest } from "./ListCompanyGrantsRequest";
 export type { ListCreditBundlesRequest } from "./ListCreditBundlesRequest";
 export type { ListGrantsForCreditRequest } from "./ListGrantsForCreditRequest";
 export type { UpdateBillingCreditRequestBody } from "./UpdateBillingCreditRequestBody";
-export type { UpdateBillingPlanCreditGrantRequestBody } from "./UpdateBillingPlanCreditGrantRequestBody";
 export type { UpdateCreditBundleDetailsRequestBody } from "./UpdateCreditBundleDetailsRequestBody";
 export type { ZeroOutGrantRequestBody } from "./ZeroOutGrantRequestBody";

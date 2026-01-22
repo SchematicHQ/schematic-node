@@ -5,7 +5,6 @@ import type * as Schematic from "../../../../index";
 /**
  * @example
  *     {
- *         failedToImport: true,
  *         name: "name",
  *         providerType: "schematic",
  *         q: "q",
@@ -15,7 +14,6 @@ import type * as Schematic from "../../../../index";
  */
 export interface ListCustomersWithSubscriptionsRequest {
     companyIds?: string | string[];
-    failedToImport?: boolean;
     name?: string;
     providerType?: Schematic.BillingProviderType;
     q?: string;

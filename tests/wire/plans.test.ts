@@ -265,6 +265,7 @@ describe("PlansClient", () => {
                     name: "name",
                     plan_period: "plan_period",
                     plan_price: 1,
+                    plan_version_id: "plan_version_id",
                 },
                 plans: [{ id: "id", name: "name" }],
                 rules: [
@@ -582,6 +583,7 @@ describe("PlansClient", () => {
                     name: "name",
                     planPeriod: "plan_period",
                     planPrice: 1,
+                    planVersionId: "plan_version_id",
                 },
                 plans: [
                     {
@@ -895,6 +897,20 @@ describe("PlansClient", () => {
                     plan_type: "plan",
                     trial_days: 1,
                     updated_at: "2024-01-15T09:30:00Z",
+                    versions: [
+                        {
+                            created_at: "2024-01-15T09:30:00Z",
+                            description: "description",
+                            environment_id: "environment_id",
+                            icon: "icon",
+                            id: "id",
+                            name: "name",
+                            plan_type: "plan",
+                            status: "published",
+                            updated_at: "2024-01-15T09:30:00Z",
+                            version: 1,
+                        },
+                    ],
                     yearly_price: {
                         currency: "currency",
                         external_price_id: "external_price_id",
@@ -1099,6 +1115,20 @@ describe("PlansClient", () => {
                     planType: "plan",
                     trialDays: 1,
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    versions: [
+                        {
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            description: "description",
+                            environmentId: "environment_id",
+                            icon: "icon",
+                            id: "id",
+                            name: "name",
+                            planType: "plan",
+                            status: "published",
+                            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                            version: 1,
+                        },
+                    ],
                     yearlyPrice: {
                         currency: "currency",
                         externalPriceId: "external_price_id",
@@ -1341,6 +1371,20 @@ describe("PlansClient", () => {
                 plan_type: "plan",
                 trial_days: 1,
                 updated_at: "2024-01-15T09:30:00Z",
+                versions: [
+                    {
+                        created_at: "2024-01-15T09:30:00Z",
+                        description: "description",
+                        environment_id: "environment_id",
+                        icon: "icon",
+                        id: "id",
+                        name: "name",
+                        plan_type: "plan",
+                        status: "published",
+                        updated_at: "2024-01-15T09:30:00Z",
+                        version: 1,
+                    },
+                ],
                 yearly_price: {
                     currency: "currency",
                     external_price_id: "external_price_id",
@@ -1533,6 +1577,20 @@ describe("PlansClient", () => {
                 planType: "plan",
                 trialDays: 1,
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                versions: [
+                    {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        description: "description",
+                        environmentId: "environment_id",
+                        icon: "icon",
+                        id: "id",
+                        name: "name",
+                        planType: "plan",
+                        status: "published",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        version: 1,
+                    },
+                ],
                 yearlyPrice: {
                     currency: "currency",
                     externalPriceId: "external_price_id",
@@ -1819,6 +1877,20 @@ describe("PlansClient", () => {
                 plan_type: "plan",
                 trial_days: 1,
                 updated_at: "2024-01-15T09:30:00Z",
+                versions: [
+                    {
+                        created_at: "2024-01-15T09:30:00Z",
+                        description: "description",
+                        environment_id: "environment_id",
+                        icon: "icon",
+                        id: "id",
+                        name: "name",
+                        plan_type: "plan",
+                        status: "published",
+                        updated_at: "2024-01-15T09:30:00Z",
+                        version: 1,
+                    },
+                ],
                 yearly_price: {
                     currency: "currency",
                     external_price_id: "external_price_id",
@@ -2000,6 +2072,20 @@ describe("PlansClient", () => {
                 planType: "plan",
                 trialDays: 1,
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                versions: [
+                    {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        description: "description",
+                        environmentId: "environment_id",
+                        icon: "icon",
+                        id: "id",
+                        name: "name",
+                        planType: "plan",
+                        status: "published",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        version: 1,
+                    },
+                ],
                 yearlyPrice: {
                     currency: "currency",
                     externalPriceId: "external_price_id",
@@ -2219,6 +2305,20 @@ describe("PlansClient", () => {
                 plan_type: "plan",
                 trial_days: 1,
                 updated_at: "2024-01-15T09:30:00Z",
+                versions: [
+                    {
+                        created_at: "2024-01-15T09:30:00Z",
+                        description: "description",
+                        environment_id: "environment_id",
+                        icon: "icon",
+                        id: "id",
+                        name: "name",
+                        plan_type: "plan",
+                        status: "published",
+                        updated_at: "2024-01-15T09:30:00Z",
+                        version: 1,
+                    },
+                ],
                 yearly_price: {
                     currency: "currency",
                     external_price_id: "external_price_id",
@@ -2409,6 +2509,20 @@ describe("PlansClient", () => {
                 planType: "plan",
                 trialDays: 1,
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                versions: [
+                    {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        description: "description",
+                        environmentId: "environment_id",
+                        icon: "icon",
+                        id: "id",
+                        name: "name",
+                        planType: "plan",
+                        status: "published",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        version: 1,
+                    },
+                ],
                 yearlyPrice: {
                     currency: "currency",
                     externalPriceId: "external_price_id",
