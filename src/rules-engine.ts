@@ -1,6 +1,4 @@
 import { RulesEngineJS } from './wasm/rulesengine.js';
-import { readFileSync } from 'fs';
-import { join } from 'path';
 
 /**
  * High-performance rules engine for flag evaluation and rule processing.
