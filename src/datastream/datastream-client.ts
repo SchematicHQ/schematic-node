@@ -395,8 +395,13 @@ export class DataStreamClient extends EventEmitter {
   public async getFlag(flagKey: string): Promise<Schematic.RulesengineFlag | null> {
     const cacheKey = this.flagCacheKey(flagKey);
     this.log('debug', `Retrieving flag from cache: ${flagKey} (cache key: ${cacheKey})`);
-    const result = await this.flagsCacheProvider.get(cacheKey);
-    return result || null;
+    try {
+      const result = await this.flagsCacheProvider.get(cacheKey);
+      return result || null;
+    } catch (error) {
+      this.log('warn', `Failed to retrieve flag from cache: ${error}`);
+      return null;
+    }
   }
 
   /**
@@ -690,7 +695,11 @@ export class DataStreamClient extends EventEmitter {
       if (company.keys) {
         for (const [key, value] of Object.entries(company.keys)) {
           const cacheKey = this.resourceKeyToCacheKey(CACHE_KEY_PREFIX_COMPANY, key, value);
-          await this.companyCacheProvider.delete(cacheKey);
+          try {
+            await this.companyCacheProvider.delete(cacheKey);
+          } catch (error) {
+            this.log('warn', `Failed to delete company from cache: ${error}`);
+          }
         }
       }
       return;
@@ -718,7 +727,11 @@ export class DataStreamClient extends EventEmitter {
       if (user.keys) {
         for (const [key, value] of Object.entries(user.keys)) {
           const cacheKey = this.resourceKeyToCacheKey(CACHE_KEY_PREFIX_USER, key, value);
-          await this.userCacheProvider.delete(cacheKey);
+          try {
+            await this.userCacheProvider.delete(cacheKey);
+          } catch (error) {
+            this.log('warn', `Failed to delete user from cache: ${error}`);
+          }
         }
       }
       return;
@@ -728,7 +741,11 @@ export class DataStreamClient extends EventEmitter {
     if (user.keys) {
       for (const [key, value] of Object.entries(user.keys)) {
         const cacheKey = this.resourceKeyToCacheKey(CACHE_KEY_PREFIX_USER, key, value);
-        await this.userCacheProvider.set(cacheKey, user, this.cacheTTL);
+        try {
+          await this.userCacheProvider.set(cacheKey, user, this.cacheTTL);
+        } catch (error) {
+          this.log('warn', `Failed to cache user: ${error}`);
+        }
       }
     }
 
@@ -751,14 +768,22 @@ export class DataStreamClient extends EventEmitter {
     for (const flag of flags) {
       if (flag?.key) {
         const cacheKey = this.flagCacheKey(flag.key);
-        await this.flagsCacheProvider.set(cacheKey, flag);
-        cacheKeys.push(cacheKey);
+        try {
+          await this.flagsCacheProvider.set(cacheKey, flag);
+          cacheKeys.push(cacheKey);
+        } catch (error) {
+          this.log('warn', `Failed to cache flag: ${error}`);
+        }
       }
     }
 
     // Delete flags not in the response
     if (this.flagsCacheProvider.deleteMissing) {
-      await this.flagsCacheProvider.deleteMissing(cacheKeys);
+      try {
+        await this.flagsCacheProvider.deleteMissing(cacheKeys);
+      } catch (error) {
+        this.log('warn', `Failed to delete missing flags: ${error}`);
+      }
     }
 
     // Notify pending flag request
@@ -779,16 +804,20 @@ export class DataStreamClient extends EventEmitter {
 
     const cacheKey = this.flagCacheKey(flag.key);
 
-    switch (message.message_type) {
-      case MessageType.DELETE:
-        await this.flagsCacheProvider.delete(cacheKey);
-        break;
-      case MessageType.FULL:
-        await this.flagsCacheProvider.set(cacheKey, flag);
-        break;
-      default:
-        this.log('warn', `Unhandled message type for flag: ${message.message_type}`);
-        break;
+    try {
+      switch (message.message_type) {
+        case MessageType.DELETE:
+          await this.flagsCacheProvider.delete(cacheKey);
+          break;
+        case MessageType.FULL:
+          await this.flagsCacheProvider.set(cacheKey, flag);
+          break;
+        default:
+          this.log('warn', `Unhandled message type for flag: ${message.message_type}`);
+          break;
+      }
+    } catch (error) {
+      this.log('warn', `Failed to update flag cache: ${error}`);
     }
 
     // Notify pending flag request
@@ -862,9 +891,13 @@ export class DataStreamClient extends EventEmitter {
   private async getCompanyFromCache(keys: Record<string, string>): Promise<Schematic.RulesengineCompany | null> {
     for (const [key, value] of Object.entries(keys)) {
       const cacheKey = this.resourceKeyToCacheKey(CACHE_KEY_PREFIX_COMPANY, key, value);
-      const company = await this.companyCacheProvider.get(cacheKey);
-      if (company) {
-        return company;
+      try {
+        const company = await this.companyCacheProvider.get(cacheKey);
+        if (company) {
+          return company;
+        }
+      } catch (error) {
+        this.log('warn', `Failed to retrieve company from cache: ${error}`);
       }
     }
     return null;
@@ -876,9 +909,13 @@ export class DataStreamClient extends EventEmitter {
   private async getUserFromCache(keys: Record<string, string>): Promise<Schematic.RulesengineUser | null> {
     for (const [key, value] of Object.entries(keys)) {
       const cacheKey = this.resourceKeyToCacheKey(CACHE_KEY_PREFIX_USER, key, value);
-      const user = await this.userCacheProvider.get(cacheKey);
-      if (user) {
-        return user;
+      try {
+        const user = await this.userCacheProvider.get(cacheKey);
+        if (user) {
+          return user;
+        }
+      } catch (error) {
+        this.log('warn', `Failed to retrieve user from cache: ${error}`);
       }
     }
     return null;
