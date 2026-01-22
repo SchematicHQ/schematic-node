@@ -35,8 +35,8 @@ export class RedisCacheProvider<T> implements CacheProvider<T> {
 
   private async initRedisClient(options: RedisOptions): Promise<void> {
     try {
-      // Try to dynamically import redis using eval to avoid TypeScript compilation errors
-      const redisModule = await eval(`import('redis')`);
+      // Dynamically import redis so it's only loaded if actually used
+      const redisModule = await import('redis' as any);
       const { createClient } = redisModule;
       
       let clientConfig: any = {};
