@@ -165,12 +165,6 @@ export class SchematicClient extends BaseClient {
         }
 
         if (this.useDataStream()) {
-            // In replicator mode, check if replicator is ready before using datastream
-            if (this.datastreamClient!.isReplicatorMode() && !this.datastreamClient!.isReplicatorReady()) {
-                this.logger.debug("Replicator mode enabled but replicator not ready, falling back to API");
-                return this.checkFlagViaAPI(evalCtx, key, options, getDefault);
-            }
-
             try {
                 const resp = await this.datastreamClient!.checkFlag(evalCtx, key);
 
