@@ -140,20 +140,25 @@ export class RedisCacheProvider<T> implements CacheProvider<T> {
       return;
     }
 
-    // Get all keys with our prefix
+    // Get all keys with our prefix using SCAN (non-blocking)
     const pattern = this.keyPrefix + '*';
-    const allKeys = await this.client.keys(pattern);
-    
-    if (allKeys.length === 0) {
-      return;
-    }
-
-    // Convert keysToKeep to full keys
     const fullKeysToKeep = new Set(keysToKeep.map(k => this.getFullKey(k)));
+    const keysToDelete: string[] = [];
+    const batchSize = 1000;
     
-    // Find keys to delete
-    const keysToDelete = allKeys.filter((key: string) => !fullKeysToKeep.has(key));
+    for await (const key of this.client.scanIterator({ MATCH: pattern, COUNT: 1000 })) {
+      if (!fullKeysToKeep.has(key)) {
+        keysToDelete.push(key);
+        
+        // Delete in batches to avoid memory buildup with millions of keys
+        if (keysToDelete.length >= batchSize) {
+          await this.client.del(keysToDelete);
+          keysToDelete.length = 0; // Clear array
+        }
+      }
+    }
     
+    // Delete remaining keys
     if (keysToDelete.length > 0) {
       await this.client.del(keysToDelete);
     }
