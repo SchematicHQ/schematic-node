@@ -24,13 +24,14 @@ export class RedisCacheProvider<T> implements CacheProvider<T> {
   private defaultTTL: number;
   private keyPrefix: string;
   private isConnected: boolean = false;
+  private initPromise: Promise<void>;
 
   constructor(options: RedisOptions = {}) {
     this.defaultTTL = Math.floor((options.ttl || 5000) / 1000); // Convert to seconds for Redis
     this.keyPrefix = options.keyPrefix || 'schematic:';
     
     // Dynamically import Redis to avoid requiring it if not used
-    this.initRedisClient(options);
+    this.initPromise = this.initRedisClient(options);
   }
 
   private async initRedisClient(options: RedisOptions): Promise<void> {
@@ -87,6 +88,8 @@ export class RedisCacheProvider<T> implements CacheProvider<T> {
   }
 
   async get(key: string): Promise<T | null> {
+    await this.initPromise;
+    
     if (!this.isConnected || !this.client) {
       return null;
     }
@@ -100,8 +103,10 @@ export class RedisCacheProvider<T> implements CacheProvider<T> {
 
     return JSON.parse(value) as T;
   }
-
+    
   async set(key: string, value: T, ttl?: number): Promise<void> {
+    await this.initPromise;
+    
     if (!this.isConnected || !this.client) {
       return;
     }
@@ -116,8 +121,10 @@ export class RedisCacheProvider<T> implements CacheProvider<T> {
       await this.client.set(fullKey, serializedValue);
     }
   }
-
+    
   async delete(key: string): Promise<void> {
+    await this.initPromise;
+    
     if (!this.isConnected || !this.client) {
       return;
     }
@@ -125,8 +132,10 @@ export class RedisCacheProvider<T> implements CacheProvider<T> {
     const fullKey = this.getFullKey(key);
     await this.client.del(fullKey);
   }
-
+    
   async deleteMissing(keysToKeep: string[]): Promise<void> {
+    await this.initPromise;
+    
     if (!this.isConnected || !this.client) {
       return;
     }
@@ -154,6 +163,8 @@ export class RedisCacheProvider<T> implements CacheProvider<T> {
    * Close the Redis connection
    */
   async close(): Promise<void> {
+    await this.initPromise;
+    
     if (this.client) {
       await this.client.quit();
       this.isConnected = false;
