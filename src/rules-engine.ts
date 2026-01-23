@@ -56,9 +56,8 @@ export class RulesEngineClient {
                 userJson
             );
 
-            // The WASM function returns a JSON-encoded string, so we need to parse twice
-            const jsonString = JSON.parse(resultJson); // First parse to get the actual JSON string
-            return JSON.parse(jsonString); // Second parse to get the object
+            // Parse the JSON string returned by WASM
+            return JSON.parse(resultJson);
         } catch (error) {
             throw new Error(`WASM flag check failed: ${error}`);
         }
