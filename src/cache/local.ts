@@ -88,23 +88,6 @@ class LocalCache<T> implements CacheProvider<T> {
         }
     }
 
-    resetCache(): void {
-        this.cache.forEach((item) => {
-            if (item.timeoutId) {
-                clearTimeout(item.timeoutId);
-            }
-        });
-        this.cache.clear();
-        this.accessCounter = 0;
-    }
-
-    /**
-     * Clear all items from the cache (alias for resetCache)
-     */
-    clear(): void {
-        this.resetCache();
-    }
-
     private evictItem(key: string, item: CacheItem<T>): void {
         if (item.timeoutId) {
             clearTimeout(item.timeoutId);

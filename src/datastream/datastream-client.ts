@@ -565,17 +565,6 @@ export class DataStreamClient extends EventEmitter {
     // Clear all pending requests
     this.clearPendingRequests();
 
-    // Clear cache timers to prevent hanging
-    if (this.companyCacheProvider && 'clear' in this.companyCacheProvider) {
-      (this.companyCacheProvider as any).clear();
-    }
-    if (this.userCacheProvider && 'clear' in this.userCacheProvider) {
-      (this.userCacheProvider as any).clear();
-    }
-    if (this.flagsCacheProvider && 'clear' in this.flagsCacheProvider) {
-      (this.flagsCacheProvider as any).clear();
-    }
-
     // Close WebSocket client
     if (this.wsClient) {
       this.wsClient.close();

@@ -151,29 +151,6 @@ export class RedisCacheProvider<T> implements CacheProvider<T> {
   }
 
   /**
-   * Reset all keys with our prefix (implements resetCache)
-   */
-  resetCache(): void {
-    this.clear();
-  }
-
-  /**
-   * Clear all keys with our prefix
-   */
-  async clear(): Promise<void> {
-    if (!this.isConnected || !this.client) {
-      return;
-    }
-
-    const pattern = this.keyPrefix + '*';
-    const keys = await this.client.keys(pattern);
-    
-    if (keys.length > 0) {
-      await this.client.del(keys);
-    }
-  }
-
-  /**
    * Close the Redis connection
    */
   async close(): Promise<void> {

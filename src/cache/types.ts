@@ -10,8 +10,6 @@ export interface CacheProvider<T> {
   delete(key: string): Promise<void>;
   /** Delete all keys not in the keysToKeep array (optional, for bulk operations) */
   deleteMissing?(keysToKeep: string[]): Promise<void>;
-  /** Reset/clear the entire cache */
-  resetCache?(): void;
 }
 
 export interface CacheOptions {

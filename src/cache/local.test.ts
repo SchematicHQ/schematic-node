@@ -12,7 +12,6 @@ describe("LocalCache", () => {
     });
 
     afterEach(() => {
-        cache.resetCache();
         jest.clearAllTimers();
     });
 
@@ -53,7 +52,6 @@ describe("LocalCache", () => {
         expect(value2).toBeNull(); // key2 should be evicted
         expect(value3).toEqual({ data: "value3" });
         expect(value4).toEqual({ data: "value4" });
-        smallCache.resetCache();
     });
 
     it("should update the access counter on get", async () => {
@@ -84,7 +82,6 @@ describe("LocalCache", () => {
         await zeroItemCache.set("key1", { data: "value1" });
         const value = await zeroItemCache.get("key1");
         expect(value).toBeNull();
-        zeroItemCache.resetCache();
     });
 
     it("should maintain the correct number of items", async () => {
@@ -96,6 +93,5 @@ describe("LocalCache", () => {
         }
 
         expect((testCache as any).cache.size).toBe(maxItems);
-        testCache.resetCache();
     });
 });
