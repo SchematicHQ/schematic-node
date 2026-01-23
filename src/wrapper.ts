@@ -179,9 +179,9 @@ export class SchematicClient extends BaseClient {
                     traits: {
                         flag_key: key,
                         value: flagValue,
-                        company_id: resp?.company?.id,
-                        user_id: resp?.user?.id,
-                        flag_id: resp?.flag?.id,
+                        company_id: resp?.companyId,
+                        user_id: resp?.userId,
+                        flag_id: resp?.flagId,
                         req_company: evalCtx.company,
                         req_user: evalCtx.user,
                         reason: resp?.reason,

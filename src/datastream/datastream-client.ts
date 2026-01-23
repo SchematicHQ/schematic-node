@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
 import * as Schematic from '../api/types';
-import { DatastreamWSClient, Logger, MessageHandlerFunc, ConnectionReadyHandlerFunc } from './client';
+import { DatastreamWSClient, Logger } from './client';
 import { DataStreamResp, DataStreamReq, EntityType, MessageType } from './types';
 import { RulesEngineClient } from '../rules-engine';
 
@@ -456,7 +456,7 @@ export class DataStreamClient extends EventEmitter {
   public async checkFlag(
     evalCtx: { company?: Record<string, string>; user?: Record<string, string> },
     flagKey: string
-  ): Promise<any> {
+  ): Promise<Schematic.RulesengineCheckFlagResult> {
     // Get flag first - return error if not found
     const flag = await this.getFlag(flagKey);
     if (!flag) {
@@ -1194,7 +1194,7 @@ export class DataStreamClient extends EventEmitter {
     flag: Schematic.RulesengineFlag,
     company: Schematic.RulesengineCompany | null,
     user: Schematic.RulesengineUser | null
-  ): Promise<any> {
+  ): Promise<Schematic.RulesengineCheckFlagResult> {
     try {
       // Use rules engine if initialized
       if (this.rulesEngine.isInitialized()) {
@@ -1213,42 +1213,36 @@ export class DataStreamClient extends EventEmitter {
         const result = await this.rulesEngine.checkFlag(sanitizedFlag, sanitizedCompany, sanitizedUser);
         this.log('debug', `Rules engine evaluation result: ${JSON.stringify(result)}`);
         return {
-          flag: flag,
-          company: company,
-          user: user,
+          flagKey: flag.key,
           value: result.value ?? flag.defaultValue,
           reason: result.reason || 'RULES_ENGINE_EVALUATION',
-          companyID: company?.id,
-          userID: user?.id,
-          flagID: flag.id,
-          ruleID: result.ruleId
+          companyId: company?.id,
+          userId: user?.id,
+          flagId: flag.id,
+          ruleId: result.ruleId
         };
       } else {
         // Fallback to default value if rules engine not available
         this.log('warn', 'Rules engine not initialized, using default flag value');
         return {
-          flag: flag,
-          company: company,
-          user: user,
+          flagKey: flag.key,
           value: flag.defaultValue,
           reason: 'RULES_ENGINE_UNAVAILABLE',
-          companyID: company?.id,
-          userID: user?.id,
-          flagID: flag.id
+          companyId: company?.id,
+          userId: user?.id,
+          flagId: flag.id
         };
       }
     } catch (error) {
       this.log('error', `Rules engine evaluation failed: ${error}`);
       // Fallback to default value on error
       return {
-        flag: flag,
-        company: company,
-        user: user,
+        flagKey: flag.key,
         value: flag.defaultValue,
         reason: 'RULES_ENGINE_ERROR',
-        companyID: company?.id,
-        userID: user?.id,
-        flagID: flag.id
+        companyId: company?.id,
+        userId: user?.id,
+        flagId: flag.id
       };
     }
   }
