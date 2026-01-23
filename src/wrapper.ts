@@ -20,10 +20,10 @@ export interface SchematicOptions {
         /** Providers for caching flag check results */
         flagChecks?: CacheProvider<boolean>[];
     };
+    /** Enable DataStream for real-time updates */
+    useDataStream?: boolean;
     /** DataStream configuration options */
     dataStream?: {
-        /** Enable DataStream for real-time updates */
-        enabled?: boolean;
         /** Cache TTL in milliseconds (default: 5 minutes) */
         cacheTTL?: number;
         /** Redis configuration for DataStream caching */
@@ -119,16 +119,16 @@ export class SchematicClient extends BaseClient {
         this.offline = offline;
 
         // Initialize DataStream client if enabled
-        if (opts?.dataStream?.enabled && !offline) {
+        if (opts?.useDataStream && !offline) {
             const datastreamOptions: DataStreamClientOptions = {
                 apiKey,
                 baseURL: basePath,
                 logger,
-                cacheTTL: opts.dataStream.cacheTTL,
-                redisConfig: opts.dataStream.redisConfig,
-                replicatorMode: opts.dataStream.replicatorMode,
-                replicatorHealthURL: opts.dataStream.replicatorHealthURL,
-                replicatorHealthCheck: opts.dataStream.replicatorHealthCheck,
+                cacheTTL: opts.dataStream?.cacheTTL,
+                redisConfig: opts.dataStream?.redisConfig,
+                replicatorMode: opts.dataStream?.replicatorMode,
+                replicatorHealthURL: opts.dataStream?.replicatorHealthURL,
+                replicatorHealthCheck: opts.dataStream?.replicatorHealthCheck,
             };
 
             this.datastreamClient = new DataStreamClient(datastreamOptions);
