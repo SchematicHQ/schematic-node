@@ -3,6 +3,7 @@
 
 import { EventEmitter } from 'events';
 import { DataStreamResp } from './types';
+import { Logger } from '../logger';
 
 // Dynamic imports to avoid webpack issues
 const createWebSocket = () => {
@@ -33,16 +34,6 @@ const MIN_RECONNECT_DELAY = 1 * 1000; // 1 second
 const MAX_RECONNECT_DELAY = 30 * 1000; // 30 seconds
 
 /**
- * Logger interface for logging datastream events
- */
-export interface Logger {
-  debug(ctx: any, message: string, ...args: any[]): void;
-  info(ctx: any, message: string, ...args: any[]): void;
-  warn(ctx: any, message: string, ...args: any[]): void;
-  error(ctx: any, message: string, ...args: any[]): void;
-}
-
-/**
  * MessageHandlerFunc is a function type for handling incoming datastream messages
  * Expects parsed DataStreamResp messages
  */
@@ -66,7 +57,7 @@ export interface ClientOptions {
   /** Handler called when connection is ready */
   connectionReadyHandler?: ConnectionReadyHandlerFunc;
   /** Logger for debug/info/error messages */
-  logger?: Logger;
+  logger: Logger;
   /** Maximum number of reconnection attempts */
   maxReconnectAttempts?: number;
   /** Minimum delay between reconnection attempts */
@@ -121,7 +112,7 @@ export class DatastreamWSClient extends EventEmitter {
   // Configuration
   private readonly url: any;
   private readonly headers: Record<string, string>;
-  private readonly logger?: Logger;
+  private readonly logger: Logger;
   private readonly messageHandler: MessageHandlerFunc;
   private readonly connectionReadyHandler?: ConnectionReadyHandlerFunc;
   private readonly maxReconnectAttempts: number;
@@ -242,7 +233,7 @@ export class DatastreamWSClient extends EventEmitter {
    * Close gracefully closes the WebSocket connection
    */
   public close(): void {
-    this.log('info', 'Closing WebSocket client');
+    this.logger.info('Closing WebSocket connection');
 
     this.shouldReconnect = false;
     this.setReady(false);
@@ -268,7 +259,6 @@ export class DatastreamWSClient extends EventEmitter {
       this.ws = undefined;
     }
 
-    this.log('info', 'WebSocket client closed');
   }
 
   /**
@@ -279,7 +269,6 @@ export class DatastreamWSClient extends EventEmitter {
       while (this.shouldReconnect) {
         try {
           const ws = await this.connect();
-          this.log('info', 'Connected to WebSocket');
           
           this.reconnectAttempts = 0;
           this.ws = ws;
@@ -290,12 +279,11 @@ export class DatastreamWSClient extends EventEmitter {
 
           // Call connection ready handler if provided
           if (this.connectionReadyHandler) {
-            this.log('debug', 'Calling connection ready handler');
             try {
               await this.connectionReadyHandler(this.ctx);
-              this.log('debug', 'Connection ready handler completed successfully');
+              this.logger.debug('Connection ready handler completed successfully');
             } catch (err) {
-              this.log('error', `Connection ready handler failed: ${err}`);
+              this.logger.error(`Connection ready handler failed: ${err}`);
               this.setConnected(false);
               this.setReady(false);
               ws.close();
@@ -305,7 +293,7 @@ export class DatastreamWSClient extends EventEmitter {
 
           // Mark as ready only after successful initialization
           this.setReady(true);
-          this.log('info', 'Datastream client is ready');
+          this.logger.debug('WebSocket client is ready');
 
           // Start ping/pong mechanism
           this.startPingPong();
@@ -313,13 +301,13 @@ export class DatastreamWSClient extends EventEmitter {
           // Wait for connection to close or error
           await new Promise<void>((resolve) => {
             const onClose = () => {
-              this.log('info', 'WebSocket connection closed');
+              this.logger.info('WebSocket connection closed');
               this.cleanup();
               resolve();
             };
 
             const onError = (error: Error) => {
-              this.log('error', `WebSocket error: ${error.message}`);
+              this.logger.error(`WebSocket error: ${error.message}`);
               this.emit('error', error);
               this.cleanup();
               resolve();
@@ -333,22 +321,23 @@ export class DatastreamWSClient extends EventEmitter {
             break;
           }
 
-          this.log('info', 'Reconnecting to WebSocket...');
 
         } catch (err) {
-          this.log('error', `Failed to connect to WebSocket: ${err}`);
           this.reconnectAttempts++;
           this.setConnected(false);
           this.setReady(false);
 
+          const error = err instanceof Error ? err.message : String(err);
+          this.logger.warn(`WebSocket connection failed: ${error}, attempt ${this.reconnectAttempts}/${this.maxReconnectAttempts}`);
+
           if (this.reconnectAttempts >= this.maxReconnectAttempts) {
-            this.log('error', 'Max reconnection attempts reached');
+            this.logger.error('Max reconnection attempts reached');
             this.emit('error', new Error('Max reconnection attempts reached'));
             break;
           }
 
           const delay = this.calculateBackoffDelay(this.reconnectAttempts);
-          this.log('info', `Retrying WebSocket connection in ${delay}ms (attempt ${this.reconnectAttempts}/${this.maxReconnectAttempts})`);
+          this.logger.debug(`Waiting ${delay}ms before reconnecting...`);
 
           await new Promise(resolve => {
             this.reconnectTimeout = setTimeout(resolve, delay);
@@ -356,7 +345,6 @@ export class DatastreamWSClient extends EventEmitter {
         }
       }
     } catch (err) {
-      this.log('error', `Fatal error in connectAndRead: ${err}`);
       this.emit('error', err);
     }
   }
@@ -366,7 +354,7 @@ export class DatastreamWSClient extends EventEmitter {
    */
   private connect(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.log('debug', `Attempting to dial WebSocket URL: ${this.url.toString()}`);
+      this.logger.debug(`Connecting to WebSocket: ${this.url.toString()}`);
 
       const WebSocketClass = createWebSocket();
       const ws = new WebSocketClass(this.url.toString(), {
@@ -381,13 +369,11 @@ export class DatastreamWSClient extends EventEmitter {
 
       ws.on('open', () => {
         clearTimeout(timeout);
-        this.log('info', `Successfully established WebSocket connection to ${this.url.toString()}`);
         resolve(ws);
       });
 
       ws.on('error', (error: Error) => {
         clearTimeout(timeout);
-        this.log('error', `Failed to dial WebSocket: ${error.message}`);
         reject(error);
       });
     });
@@ -406,12 +392,10 @@ export class DatastreamWSClient extends EventEmitter {
     });
 
     ws.on('close', (code: number, reason: Buffer) => {
-      this.log('debug', `WebSocket closed with code ${code}: ${reason.toString()}`);
       this.handleClose(code);
     });
 
     ws.on('error', (error: Error) => {
-      this.log('error', `WebSocket error: ${error.message}`);
       this.handleError(error);
     });
   }
@@ -421,7 +405,6 @@ export class DatastreamWSClient extends EventEmitter {
    */
   private async handleMessage(data: any): Promise<void> {
     try {
-      this.log('debug', 'Waiting for WebSocket message...');
       
       let messageStr: string;
       if (Buffer.isBuffer(data)) {
@@ -437,24 +420,18 @@ export class DatastreamWSClient extends EventEmitter {
       try {
         message = JSON.parse(messageStr);
       } catch (err) {
-        this.log('error', `Failed to parse datastream message: ${err}, raw data: ${messageStr}`);
         this.emit('error', new Error(`Failed to parse datastream message: ${err}`));
         return;
       }
 
-      this.log('debug', `Parsed message - EntityType: ${message.entity_type}, MessageType: ${message.message_type}, DataLength: ${JSON.stringify(message.data).length}`);
 
       // Handle the parsed message using the provided handler
-      this.log('debug', 'Calling message handler...');
       try {
         await this.messageHandler(this.ctx, message);
-        this.log('debug', 'Message handler completed successfully');
       } catch (err) {
-        this.log('error', `Message handler error: ${err}`);
         this.emit('error', new Error(`Message handler error: ${err}`));
       }
     } catch (err) {
-      this.log('error', `Error in handleMessage: ${err}`);
       this.emit('error', err);
     }
   }
@@ -463,26 +440,17 @@ export class DatastreamWSClient extends EventEmitter {
    * handleClose processes WebSocket close events
    */
   private handleClose(code: number): void {
-    this.log('debug', `Processing WebSocket close with code: ${code}`);
+    this.logger.info(`WebSocket connection closed with code ${code}`);
     this.setConnected(false);
     this.setReady(false);
     this.cleanup();
-
-    // Normal closure codes that shouldn't trigger reconnection
-    if (code === 1000 || code === 1001) {
-      this.log('debug', `Normal WebSocket close detected: ${code}`);
-      return;
-    }
-
-    // Trigger reconnection for other close codes
-    this.log('debug', `Unexpected WebSocket close: ${code}, will attempt reconnection`);
   }
 
   /**
    * handleError processes WebSocket error events
    */
   private handleError(error: Error): void {
-    this.log('debug', `Processing WebSocket error: ${error.message}`);
+    this.logger.error(`WebSocket error: ${error.message}`);
     this.setConnected(false);
     this.setReady(false);
     this.cleanup();
@@ -492,6 +460,7 @@ export class DatastreamWSClient extends EventEmitter {
    * startPingPong initiates the ping/pong keepalive mechanism
    */
   private startPingPong(): void {
+    this.logger.debug('Starting ping/pong keepalive mechanism');
     this.pingInterval = setInterval(() => {
       this.sendPing();
     }, PING_PERIOD);
@@ -502,15 +471,13 @@ export class DatastreamWSClient extends EventEmitter {
    */
   private sendPing(): void {
     if (!this.ws) {
-      this.log('error', 'No connection available for ping');
       return;
     }
 
-    this.log('debug', 'Sending ping');
     
     // Set pong timeout
     this.pongTimeout = setTimeout(() => {
-      this.log('error', 'Pong timeout - connection may be dead');
+      this.logger.warn('Pong timeout - closing connection');
       this.setConnected(false);
       if (this.ws) {
         this.ws.close();
@@ -520,7 +487,7 @@ export class DatastreamWSClient extends EventEmitter {
     try {
       this.ws.ping();
     } catch (err) {
-      this.log('error', `Failed to send ping: ${err}`);
+      this.logger.error(`Failed to send ping: ${err}`);
       this.setConnected(false);
     }
   }
@@ -529,7 +496,7 @@ export class DatastreamWSClient extends EventEmitter {
    * handlePong handles pong responses from the server
    */
   private handlePong(): void {
-    this.log('debug', 'Received pong');
+    this.logger.debug('Received pong from server');
     if (this.pongTimeout) {
       clearTimeout(this.pongTimeout);
       this.pongTimeout = undefined;
@@ -562,6 +529,7 @@ export class DatastreamWSClient extends EventEmitter {
 
     // Emit connection state change events
     if (wasConnected !== connected) {
+      this.logger.debug(`Connection state changed: ${connected}`);
       if (connected) {
         this.emit('connected');
       } else {
@@ -579,6 +547,7 @@ export class DatastreamWSClient extends EventEmitter {
 
     // Emit ready state change events
     if (wasReady !== ready) {
+      this.logger.debug(`Ready state changed: ${ready}`);
       if (ready) {
         this.emit('ready');
       } else {
@@ -598,32 +567,6 @@ export class DatastreamWSClient extends EventEmitter {
     if (this.pongTimeout) {
       clearTimeout(this.pongTimeout);
       this.pongTimeout = undefined;
-    }
-  }
-
-  /**
-   * log helper function that safely logs messages
-   */
-  private log(level: 'debug' | 'info' | 'warn' | 'error', msg: string): void {
-    if (!this.logger) {
-      return;
-    }
-
-    const ctx = this.ctx || {};
-
-    switch (level) {
-      case 'debug':
-        this.logger.debug(ctx, msg);
-        break;
-      case 'info':
-        this.logger.info(ctx, msg);
-        break;
-      case 'warn':
-        this.logger.warn(ctx, msg);
-        break;
-      case 'error':
-        this.logger.error(ctx, msg);
-        break;
     }
   }
 }

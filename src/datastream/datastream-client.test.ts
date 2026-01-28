@@ -4,8 +4,9 @@ import {
   DataStreamClientOptions,
 } from './datastream-client';
 import { LocalCache } from '../cache/local';
-import { DatastreamWSClient, Logger } from './client';
+import { DatastreamWSClient } from './websocket-client';
 import { DataStreamResp, EntityType, MessageType } from './types';
+import { Logger } from '../logger';
 import * as Schematic from '../api/types';
 
 // Mock DatastreamWSClient

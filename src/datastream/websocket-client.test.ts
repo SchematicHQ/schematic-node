@@ -1,5 +1,6 @@
-import { DatastreamWSClient, Logger, MessageHandlerFunc, ConnectionReadyHandlerFunc } from './client';
-import { DataStreamResp, EntityType, Action } from './types';
+import { DatastreamWSClient, MessageHandlerFunc, ConnectionReadyHandlerFunc } from './websocket-client';
+import { DataStreamResp } from './types';
+import { Logger } from '../logger';
 
 // Mock logger implementation
 class MockLogger implements Logger {
@@ -58,6 +59,7 @@ describe('DatastreamWSClient', () => {
         url: '',
         apiKey: 'test-key',
         messageHandler: mockMessageHandler,
+        logger: mockLogger,
       });
     }).toThrow('URL is required');
   });
@@ -68,6 +70,7 @@ describe('DatastreamWSClient', () => {
         url: 'wss://example.com',
         apiKey: '',
         messageHandler: mockMessageHandler,
+        logger: mockLogger,
       });
     }).toThrow('ApiKey is required');
   });
@@ -78,6 +81,7 @@ describe('DatastreamWSClient', () => {
         url: 'wss://example.com',
         apiKey: 'test-key',
         messageHandler: undefined as any,
+        logger: mockLogger,
       });
     }).toThrow('MessageHandler is required');
   });
@@ -125,6 +129,7 @@ describe('DatastreamWSClient', () => {
       url: 'wss://example.com',
       apiKey: 'test-key',
       messageHandler: mockMessageHandler,
+      logger: mockLogger,
     });
 
     // Defaults are applied internally - we verify by successful construction
