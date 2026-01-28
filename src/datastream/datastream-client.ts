@@ -770,7 +770,8 @@ export class DataStreamClient extends EventEmitter {
     // Delete flags not in the response
     if (this.flagsCacheProvider.deleteMissing) {
       try {
-        await this.flagsCacheProvider.deleteMissing(cacheKeys);
+        // Only scan flag keys (flags:*) for better performance
+        await this.flagsCacheProvider.deleteMissing(cacheKeys, { scanPattern: 'flags:*' });
       } catch (error) {
         this.logger.warn(`Failed to delete missing flags: ${error}`);
       }

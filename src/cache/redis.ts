@@ -133,7 +133,7 @@ export class RedisCacheProvider<T> implements CacheProvider<T> {
     await this.client.del(fullKey);
   }
     
-  async deleteMissing(keysToKeep: string[]): Promise<void> {
+  async deleteMissing(keysToKeep: string[], options?: { scanPattern?: string }): Promise<void> {
     await this.initPromise;
     
     if (!this.isConnected || !this.client) {
@@ -141,7 +141,10 @@ export class RedisCacheProvider<T> implements CacheProvider<T> {
     }
 
     // Get all keys with our prefix using SCAN (non-blocking)
-    const pattern = this.keyPrefix + '*';
+    // Allow more specific pattern to reduce keys scanned (e.g., 'flag:*' to only scan flag keys)
+    const pattern = options?.scanPattern 
+      ? this.keyPrefix + options.scanPattern 
+      : this.keyPrefix + '*';
     const fullKeysToKeep = new Set(keysToKeep.map(k => this.getFullKey(k)));
     const keysToDelete: string[] = [];
     const batchSize = 1000;

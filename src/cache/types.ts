@@ -9,7 +9,7 @@ export interface CacheProvider<T> {
   /** Delete a value from cache */
   delete(key: string): Promise<void>;
   /** Delete all keys not in the keysToKeep array (optional, for bulk operations) */
-  deleteMissing?(keysToKeep: string[]): Promise<void>;
+  deleteMissing?(keysToKeep: string[], options?: { scanPattern?: string }): Promise<void>;
 }
 
 export interface CacheOptions {

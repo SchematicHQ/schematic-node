@@ -79,7 +79,7 @@ class LocalCache<T> implements CacheProvider<T> {
         }
     }
 
-    async deleteMissing(keysToKeep: string[]): Promise<void> {
+    async deleteMissing(keysToKeep: string[], _?: { scanPattern?: string }): Promise<void> {
         const keysToKeepSet = new Set(keysToKeep);
         for (const [key, item] of this.cache) {
             if (!keysToKeepSet.has(key)) {
