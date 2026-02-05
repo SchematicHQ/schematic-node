@@ -2,8 +2,9 @@
 // The ws package is required and provides the WebSocket implementation
 
 import { EventEmitter } from 'events';
-import { DataStreamResp } from './types';
+import { DataStreamResp, DataStreamBaseReq } from './types';
 import { Logger } from '../logger';
+import type WebSocket from 'ws';
 
 // Dynamic imports to avoid webpack issues
 const createWebSocket = () => {
@@ -37,12 +38,12 @@ const MAX_RECONNECT_DELAY = 30 * 1000; // 30 seconds
  * MessageHandlerFunc is a function type for handling incoming datastream messages
  * Expects parsed DataStreamResp messages
  */
-export type MessageHandlerFunc = (ctx: any, message: DataStreamResp) => Promise<void>;
+export type MessageHandlerFunc = (message: DataStreamResp) => Promise<void>;
 
 /**
  * ConnectionReadyHandlerFunc is a function type for functions that need to be called before connection is considered ready
  */
-export type ConnectionReadyHandlerFunc = (ctx: any) => Promise<void>;
+export type ConnectionReadyHandlerFunc = () => Promise<void>;
 
 /**
  * ClientOptions contains configuration for the datastream client
@@ -74,7 +75,7 @@ export interface ClientOptions {
  *   https://custom.example.com -> wss://custom.example.com/datastream
  *   http://localhost:8080 -> ws://localhost:8080/datastream
  */
-function convertAPIURLToWebSocketURL(apiURL: string): any {
+function convertAPIURLToWebSocketURL(apiURL: string): string {
   const URLClass = createURL();
   const parsedURL = new URLClass(apiURL);
 
@@ -110,7 +111,7 @@ function convertAPIURLToWebSocketURL(apiURL: string): any {
  */
 export class DatastreamWSClient extends EventEmitter {
   // Configuration
-  private readonly url: any;
+  private readonly url: string;
   private readonly headers: Record<string, string>;
   private readonly logger: Logger;
   private readonly messageHandler: MessageHandlerFunc;
@@ -120,7 +121,7 @@ export class DatastreamWSClient extends EventEmitter {
   private readonly maxReconnectDelay: number;
 
   // Connection state
-  private ws?: any;
+  private ws?: WebSocket;
   private connected: boolean = false;
   private ready: boolean = false;
 
@@ -130,9 +131,6 @@ export class DatastreamWSClient extends EventEmitter {
   private pingInterval?: NodeJS.Timeout;
   private pongTimeout?: NodeJS.Timeout;
   private reconnectTimeout?: NodeJS.Timeout;
-
-  // Context
-  private ctx: any = {};
 
   constructor(options: ClientOptions) {
     super();
@@ -153,8 +151,7 @@ export class DatastreamWSClient extends EventEmitter {
     if (options.url.startsWith('http://') || options.url.startsWith('https://')) {
       this.url = convertAPIURLToWebSocketURL(options.url);
     } else {
-      const URLClass = createURL();
-      this.url = new URLClass(options.url);
+      this.url = options.url;
     }
 
     // Create headers with API key
@@ -198,7 +195,7 @@ export class DatastreamWSClient extends EventEmitter {
   /**
    * SendMessage sends a message through the WebSocket connection
    */
-  public async sendMessage(message: any): Promise<void> {
+  public async sendMessage(message: DataStreamBaseReq): Promise<void> {
     if (!this.isConnected() || !this.ws) {
       throw new Error('WebSocket connection is not available!');
     }
@@ -280,7 +277,7 @@ export class DatastreamWSClient extends EventEmitter {
           // Call connection ready handler if provided
           if (this.connectionReadyHandler) {
             try {
-              await this.connectionReadyHandler(this.ctx);
+              await this.connectionReadyHandler();
               this.logger.debug('Connection ready handler completed successfully');
             } catch (err) {
               this.logger.error(`Connection ready handler failed: ${err}`);
@@ -354,10 +351,10 @@ export class DatastreamWSClient extends EventEmitter {
    */
   private connect(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.logger.debug(`Connecting to WebSocket: ${this.url.toString()}`);
+      this.logger.debug(`Connecting to WebSocket: ${this.url}`);
 
       const WebSocketClass = createWebSocket();
-      const ws = new WebSocketClass(this.url.toString(), {
+      const ws = new WebSocketClass(this.url, {
         headers: this.headers,
         handshakeTimeout: 30000, // 30 seconds
       });
@@ -382,8 +379,8 @@ export class DatastreamWSClient extends EventEmitter {
   /**
    * setupWebSocketHandlers sets up message and error handlers for the WebSocket
    */
-  private setupWebSocketHandlers(ws: any): void {
-    ws.on('message', (data: any) => {
+  private setupWebSocketHandlers(ws: WebSocket): void {
+    ws.on('message', (data: Buffer | Buffer[]) => {
       this.handleMessage(data);
     });
 
@@ -403,7 +400,7 @@ export class DatastreamWSClient extends EventEmitter {
   /**
    * handleMessage processes incoming WebSocket messages
    */
-  private async handleMessage(data: any): Promise<void> {
+  private async handleMessage(data: Buffer | Buffer[]): Promise<void> {
     try {
       
       let messageStr: string;
@@ -412,7 +409,8 @@ export class DatastreamWSClient extends EventEmitter {
       } else if (Array.isArray(data)) {
         messageStr = Buffer.concat(data).toString();
       } else {
-        messageStr = data.toString();
+        // Fallback for other string-like types
+        messageStr = String(data);
       }
 
       // Parse the datastream message
@@ -427,7 +425,7 @@ export class DatastreamWSClient extends EventEmitter {
 
       // Handle the parsed message using the provided handler
       try {
-        await this.messageHandler(this.ctx, message);
+        await this.messageHandler(message);
       } catch (err) {
         this.emit('error', new Error(`Message handler error: ${err}`));
       }

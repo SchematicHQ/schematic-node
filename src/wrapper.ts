@@ -5,7 +5,8 @@ import { type CacheProvider, LocalCache } from "./cache";
 import { ConsoleLogger, Logger } from "./logger";
 import { EventBuffer } from "./events";
 import { offlineFetcher, provideFetcher } from "./core/fetcher/custom";
-import { DataStreamClient, type DataStreamClientOptions, type DataStreamRedisConfig } from "./datastream";
+import { DataStreamClient, type DataStreamClientOptions } from "./datastream";
+import type { RedisOptions } from "./cache/redis";
 
 /**
  * Configuration options for the SchematicClient
@@ -27,7 +28,7 @@ export interface SchematicOptions {
         /** Cache TTL in milliseconds (default: 5 minutes) */
         cacheTTL?: number;
         /** Redis configuration for DataStream caching */
-        redisConfig?: DataStreamRedisConfig;
+        redisConfig?: RedisOptions;
         /** Enable replicator mode for external data synchronization */
         replicatorMode?: boolean;
         /** Health check URL for replicator mode */
@@ -174,22 +175,17 @@ export class SchematicClient extends BaseClient {
                 // Extract boolean value from DataStream response
                 const flagValue = typeof resp === 'boolean' ? resp : resp?.value;
 
-                // Track the flag check event
-                this.track({
-                    event: "flag_check",
-                    company: evalCtx.company,
-                    user: evalCtx.user,
-                    traits: {
-                        flag_key: key,
-                        value: flagValue,
-                        company_id: resp?.companyId,
-                        user_id: resp?.userId,
-                        flag_id: resp?.flagId,
-                        req_company: evalCtx.company,
-                        req_user: evalCtx.user,
-                        reason: resp?.reason,
-                    },
-                });
+                // Enqueue the flag check event
+                this.enqueueEvent(api.EventType.FlagCheck, {
+                    flagKey: key,
+                    value: flagValue ?? false,
+                    reason: resp?.reason ?? "unknown",
+                    companyId: resp?.companyId,
+                    userId: resp?.userId,
+                    flagId: resp?.flagId,
+                    reqCompany: evalCtx.company,
+                    reqUser: evalCtx.user,
+                } satisfies api.EventBodyFlagCheck);
 
                 return flagValue ?? this.getFlagDefault(key);
             } catch (err) {
@@ -433,8 +429,8 @@ export class SchematicClient extends BaseClient {
     }
 
     private async enqueueEvent(
-        eventType: "identify" | "track",
-        body: api.EventBodyIdentify | api.EventBodyTrack
+        eventType: api.EventType,
+        body: api.EventBody
     ): Promise<void> {
         try {
             this.eventBuffer.push({

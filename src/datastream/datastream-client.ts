@@ -11,24 +11,6 @@ import { LocalCache } from '../cache/local';
 import { RedisCacheProvider, type RedisOptions } from '../cache/redis';
 
 /**
- * Redis cache configuration options for DataStream client
- */
-export interface DataStreamRedisConfig {
-  /** Redis connection URL (e.g., 'redis://localhost:6379') */
-  url?: string;
-  /** Redis host (default: 'localhost') */
-  host?: string;
-  /** Redis port (default: 6379) */
-  port?: number;
-  /** Redis password */
-  password?: string;
-  /** Redis database number (default: 0) */
-  db?: number;
-  /** Redis key prefix for all cache keys (default: 'schematic:') */
-  keyPrefix?: string;
-}
-
-/**
  * Options for configuring the DataStream client
  */
 export interface DataStreamClientOptions {
@@ -41,7 +23,7 @@ export interface DataStreamClientOptions {
   /** Cache TTL in milliseconds (default: 5 minutes) */
   cacheTTL?: number;
   /** Redis configuration for all cache providers (if not provided, uses memory cache) */
-  redisConfig?: DataStreamRedisConfig;
+  redisConfig?: RedisOptions;
   /** Custom cache provider for company entities (overrides Redis config if provided) */
   companyCache?: CacheProvider<Schematic.RulesengineCompany>;
   /** Custom cache provider for user entities (overrides Redis config if provided) */
@@ -637,7 +619,7 @@ export class DataStreamClient extends EventEmitter {
   /**
    * handleMessage processes incoming datastream messages
    */
-  private async handleMessage(ctx: any, message: DataStreamResp): Promise<void> {
+  private async handleMessage(message: DataStreamResp): Promise<void> {
     this.logger.debug(`Processing datastream message: EntityType=${message.entity_type}, MessageType=${message.message_type}`);
 
     try {
@@ -754,17 +736,23 @@ export class DataStreamClient extends EventEmitter {
       return;
     }
 
-    const cacheKeys: string[] = [];
-    for (const flag of flags) {
-      if (flag?.key) {
-        const cacheKey = this.flagCacheKey(flag.key);
-        try {
+    const results = await Promise.allSettled(
+      flags
+        .filter((flag) => flag?.key)
+        .map(async (flag) => {
+          const cacheKey = this.flagCacheKey(flag.key!);
           await this.flagsCacheProvider.set(cacheKey, flag);
-          cacheKeys.push(cacheKey);
-        } catch (error) {
-          this.logger.warn(`Failed to cache flag: ${error}`);
-        }
-      }
+          return cacheKey;
+        }),
+    );
+
+    const cacheKeys = results
+      .filter((r): r is PromiseFulfilledResult<string> => r.status === 'fulfilled')
+      .map((r) => r.value);
+
+    const failures = results.filter((r) => r.status === 'rejected');
+    if (failures.length > 0) {
+      this.logger.warn(`Failed to cache ${failures.length} flag(s)`);
     }
 
     // Delete flags not in the response
@@ -845,7 +833,7 @@ export class DataStreamClient extends EventEmitter {
   /**
    * handleConnectionReady is called when the WebSocket connection is ready
    */
-  private async handleConnectionReady(ctx: any): Promise<void> {
+  private async handleConnectionReady(): Promise<void> {
     this.logger.info('DataStream connection is ready');
     
     // Request initial flag data

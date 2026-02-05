@@ -1,16 +1,15 @@
-import { EventEmitter } from 'events';
 import {
   DataStreamClient,
   DataStreamClientOptions,
-} from './datastream-client';
-import { LocalCache } from '../cache/local';
-import { DatastreamWSClient } from './websocket-client';
-import { DataStreamResp, EntityType, MessageType } from './types';
-import { Logger } from '../logger';
-import * as Schematic from '../api/types';
+} from '../../../src/datastream/datastream-client';
+import { LocalCache } from '../../../src/cache/local';
+import { DatastreamWSClient } from '../../../src/datastream/websocket-client';
+import { DataStreamResp, EntityType, MessageType } from '../../../src/datastream/types';
+import { Logger } from '../../../src/logger';
+import * as Schematic from '../../../src/api/types';
 
 // Mock DatastreamWSClient
-const mockDatastreamWSClientInstanceInstance = {
+const mockDatastreamWSClientInstance = {
   on: jest.fn(),
   start: jest.fn(),
   close: jest.fn(),
@@ -19,9 +18,9 @@ const mockDatastreamWSClientInstanceInstance = {
   sendMessage: jest.fn().mockResolvedValue(undefined),
 };
 
-jest.mock('./client', () => {
+jest.mock('../../../src/datastream/websocket-client', () => {
   return {
-    DatastreamWSClient: jest.fn().mockImplementation(() => mockDatastreamWSClientInstanceInstance),
+    DatastreamWSClient: jest.fn().mockImplementation(() => mockDatastreamWSClientInstance),
   };
 });
 
@@ -65,7 +64,7 @@ describe('DataStreamClient', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     // Reset sendMessage to default implementation
-    mockDatastreamWSClientInstanceInstance.sendMessage.mockResolvedValue(undefined);
+    mockDatastreamWSClientInstance.sendMessage.mockResolvedValue(undefined);
     
     mockLogger = {
       debug: jest.fn(),
@@ -93,7 +92,7 @@ describe('DataStreamClient', () => {
     }
     jest.clearAllMocks();
     // Reset sendMessage to default implementation
-    mockDatastreamWSClientInstanceInstance.sendMessage.mockResolvedValue(undefined);
+    mockDatastreamWSClientInstance.sendMessage.mockResolvedValue(undefined);
   });
 
   test('should initialize with default options', () => {
@@ -149,7 +148,7 @@ describe('DataStreamClient', () => {
       connectionReadyHandler: expect.any(Function),
       logger: mockLogger,
     });
-    expect(mockDatastreamWSClientInstanceInstance.start).toHaveBeenCalled();
+    expect(mockDatastreamWSClientInstance.start).toHaveBeenCalled();
   });
 
   test('should handle WebSocket events', async () => {
@@ -166,7 +165,7 @@ describe('DataStreamClient', () => {
     await client.start();
 
     // Simulate WebSocket events
-    const onCalls = mockDatastreamWSClientInstanceInstance.on.mock.calls;
+    const onCalls = mockDatastreamWSClientInstance.on.mock.calls;
     const connectedHandler = onCalls.find((call: any) => call[0] === 'connected')?.[1];
     const disconnectedHandler = onCalls.find((call: any) => call[0] === 'disconnected')?.[1];
     const readyHandler = onCalls.find((call: any) => call[0] === 'ready')?.[1];
@@ -198,7 +197,7 @@ describe('DataStreamClient', () => {
     };
 
     // Handle message
-    await messageHandler({}, companyMessage);
+    await messageHandler(companyMessage);
 
     // Verify company is cached and can be retrieved using the correct keys
     const retrievedCompany = await client.getCompany(mockCompany.keys!);
@@ -220,7 +219,7 @@ describe('DataStreamClient', () => {
     };
 
     // Handle message
-    await messageHandler({}, userMessage);
+    await messageHandler(userMessage);
 
     // Verify user is cached and can be retrieved using the correct keys
     const retrievedUser = await client.getUser(mockUser.keys!);
@@ -242,7 +241,7 @@ describe('DataStreamClient', () => {
     };
 
     // Handle message
-    await messageHandler({}, flagMessage);
+    await messageHandler(flagMessage);
 
     // Verify flag is cached and can be retrieved
     const retrievedFlag = await client.getFlag(mockFlag.key);
@@ -251,7 +250,7 @@ describe('DataStreamClient', () => {
 
   test('should request data from datastream when not in cache', async () => {
     // Set up connected state
-    mockDatastreamWSClientInstanceInstance.isConnected.mockReturnValue(true);
+    mockDatastreamWSClientInstance.isConnected.mockReturnValue(true);
     
     await client.start();
 
@@ -260,11 +259,11 @@ describe('DataStreamClient', () => {
     const messageHandler = DatastreamWSClientMock.mock.calls[0][0].messageHandler;
 
     // Get the connection handler from the WebSocket client mock
-    const onCalls = mockDatastreamWSClientInstanceInstance.on.mock.calls;
+    const onCalls = mockDatastreamWSClientInstance.on.mock.calls;
     const connectedHandler = onCalls.find((call: any) => call[0] === 'connected')?.[1];
 
     // Mock sendMessage to automatically trigger response
-    mockDatastreamWSClientInstanceInstance.sendMessage.mockImplementation(async (message: any) => {
+    mockDatastreamWSClientInstance.sendMessage.mockImplementation(async (message: any) => {
       if (message.data?.entity_type === EntityType.COMPANY) {
         const responseCompany = { 
           ...mockCompany, 
@@ -278,7 +277,7 @@ describe('DataStreamClient', () => {
         };
         // Use process.nextTick for immediate execution
         process.nextTick(() => {
-          messageHandler({}, companyMessage);
+          messageHandler(companyMessage);
         });
       }
     });
@@ -290,7 +289,7 @@ describe('DataStreamClient', () => {
     const result = await client.getCompany({ id: 'company-456' });
 
     // Verify request was sent
-    expect(mockDatastreamWSClientInstanceInstance.sendMessage).toHaveBeenCalledWith({
+    expect(mockDatastreamWSClientInstance.sendMessage).toHaveBeenCalledWith({
       data: {
         entity_type: EntityType.COMPANY,
         keys: { id: 'company-456' },
@@ -302,7 +301,7 @@ describe('DataStreamClient', () => {
   });
 
   test('should handle multiple pending requests for same entity', async () => {
-    mockDatastreamWSClientInstanceInstance.isConnected.mockReturnValue(true);
+    mockDatastreamWSClientInstance.isConnected.mockReturnValue(true);
     
     let sentRequestCount = 0;
     
@@ -313,11 +312,11 @@ describe('DataStreamClient', () => {
     const messageHandler = DatastreamWSClientMock.mock.calls[0][0].messageHandler;
 
     // Get the connection handler from the WebSocket client mock
-    const onCalls = mockDatastreamWSClientInstanceInstance.on.mock.calls;
+    const onCalls = mockDatastreamWSClientInstance.on.mock.calls;
     const connectedHandler = onCalls.find((call: any) => call[0] === 'connected')?.[1];
 
     // Mock sendMessage to track requests and auto-respond
-    mockDatastreamWSClientInstanceInstance.sendMessage.mockImplementation(async (message: any) => {
+    mockDatastreamWSClientInstance.sendMessage.mockImplementation(async (message: any) => {
       sentRequestCount++;
       if (message.data?.entity_type === EntityType.COMPANY) {
         const responseCompany = { 
@@ -332,7 +331,7 @@ describe('DataStreamClient', () => {
         };
         // Use process.nextTick for immediate execution
         process.nextTick(() => {
-          messageHandler({}, companyMessage);
+          messageHandler(companyMessage);
         });
       }
     });
@@ -359,7 +358,7 @@ describe('DataStreamClient', () => {
 
   test('should throw error when requesting data while disconnected', async () => {
     // Don't start client or set connected state
-    mockDatastreamWSClientInstanceInstance.isConnected.mockReturnValue(false);
+    mockDatastreamWSClientInstance.isConnected.mockReturnValue(false);
 
     await expect(client.getCompany({ id: 'company-123' })).rejects.toThrow('DataStream client is not connected');
     await expect(client.getUser({ id: 'user-123' })).rejects.toThrow('DataStream client is not connected');
@@ -373,21 +372,21 @@ describe('DataStreamClient', () => {
     const messageHandler = DatastreamWSClientMock.mock.calls[0][0].messageHandler;
 
     // Send company message
-    await messageHandler({}, {
+    await messageHandler({
       entity_type: EntityType.COMPANY,
       message_type: MessageType.FULL,
       data: mockCompany,
     });
 
     // Send user message
-    await messageHandler({}, {
+    await messageHandler({
       entity_type: EntityType.USER,
       message_type: MessageType.FULL,
       data: mockUser,
     });
 
     // Send flag message
-    await messageHandler({}, {
+    await messageHandler({
       entity_type: EntityType.FLAGS,
       message_type: MessageType.FULL,
       data: [mockFlag],
@@ -424,10 +423,10 @@ describe('DataStreamClient', () => {
       }
     };
 
-    await messageHandler({}, companyErrorMessage);
+    await messageHandler(companyErrorMessage);
 
     // Verify warning was logged but no error event was emitted
-    expect(mockLogger.warn).toHaveBeenCalledWith({}, 'DataStream error received: Company not found');
+    expect(mockLogger.warn).toHaveBeenCalledWith('DataStream error received: Company not found');
 
     // Test 2: Error message with entity type and keys for user
     const userErrorMessage: DataStreamResp = {
@@ -440,10 +439,10 @@ describe('DataStreamClient', () => {
       }
     };
 
-    await messageHandler({}, userErrorMessage);
+    await messageHandler(userErrorMessage);
 
     // Verify warning was logged
-    expect(mockLogger.warn).toHaveBeenCalledWith({}, 'DataStream error received: User not found');
+    expect(mockLogger.warn).toHaveBeenCalledWith('DataStream error received: User not found');
 
     // Test 3: Generic error message without entity type or keys
     const genericErrorMessage: DataStreamResp = {
@@ -454,10 +453,10 @@ describe('DataStreamClient', () => {
       }
     };
 
-    await messageHandler({}, genericErrorMessage);
+    await messageHandler(genericErrorMessage);
 
     // Verify warning was logged
-    expect(mockLogger.warn).toHaveBeenCalledWith({}, 'DataStream error received: Generic datastream error');
+    expect(mockLogger.warn).toHaveBeenCalledWith('DataStream error received: Generic datastream error');
 
     // Test 4: Error message with no error text (should use default)
     const noErrorTextMessage: DataStreamResp = {
@@ -466,10 +465,10 @@ describe('DataStreamClient', () => {
       data: {}
     };
 
-    await messageHandler({}, noErrorTextMessage);
+    await messageHandler(noErrorTextMessage);
 
     // Verify warning was logged with default message
-    expect(mockLogger.warn).toHaveBeenCalledWith({}, 'DataStream error received: Unknown datastream error');
+    expect(mockLogger.warn).toHaveBeenCalledWith('DataStream error received: Unknown datastream error');
 
     // Test 5: Unsupported entity type in error message should log warning
     const unsupportedEntityErrorMessage: DataStreamResp = {
@@ -482,11 +481,11 @@ describe('DataStreamClient', () => {
       }
     };
 
-    await messageHandler({}, unsupportedEntityErrorMessage);
+    await messageHandler(unsupportedEntityErrorMessage);
 
     // Verify warnings were logged for both unsupported entity type and the error message
-    expect(mockLogger.warn).toHaveBeenCalledWith({}, 'Received error for unsupported entity type: rulesengine.Flags');
-    expect(mockLogger.warn).toHaveBeenCalledWith({}, 'DataStream error received: Unsupported entity error');
+    expect(mockLogger.warn).toHaveBeenCalledWith('Received error for unsupported entity type: rulesengine.Flags');
+    expect(mockLogger.warn).toHaveBeenCalledWith('DataStream error received: Unsupported entity error');
     
     // Verify no error events were emitted throughout the test
     expect(errorSpy).not.toHaveBeenCalled();
@@ -559,22 +558,22 @@ describe('DataStreamClient', () => {
     
     client.close();
     
-    expect(mockDatastreamWSClientInstanceInstance.close).toHaveBeenCalled();
+    expect(mockDatastreamWSClientInstance.close).toHaveBeenCalled();
     expect(client.isConnected()).toBe(false);
   });
 
   test('should clear pending requests on disconnect', async () => {
-    mockDatastreamWSClientInstanceInstance.isConnected.mockReturnValue(true);
+    mockDatastreamWSClientInstance.isConnected.mockReturnValue(true);
     
     // Mock sendMessage to not respond (simulating pending request)
-    mockDatastreamWSClientInstanceInstance.sendMessage.mockImplementation(() => {
+    mockDatastreamWSClientInstance.sendMessage.mockImplementation(() => {
       // Don't send any response - leave the request pending
       return Promise.resolve();
     });
 
     await client.start();
 
-    const onCalls = mockDatastreamWSClientInstanceInstance.on.mock.calls;
+    const onCalls = mockDatastreamWSClientInstance.on.mock.calls;
     const connectedHandler = onCalls.find(call => call[0] === 'connected')?.[1];
     if (connectedHandler) connectedHandler();
 
@@ -585,7 +584,7 @@ describe('DataStreamClient', () => {
     await new Promise(resolve => process.nextTick(resolve));
 
     // Now simulate disconnect to trigger cleanup
-    mockDatastreamWSClientInstanceInstance.isConnected.mockReturnValue(false);
+    mockDatastreamWSClientInstance.isConnected.mockReturnValue(false);
     const disconnectedHandler = onCalls.find(call => call[0] === 'disconnected')?.[1];
     if (disconnectedHandler) disconnectedHandler();
 

@@ -25,11 +25,11 @@ describe('DatastreamWSClient', () => {
   let client: DatastreamWSClient;
   const mockLogger = new MockLogger();
 
-  const mockMessageHandler: MessageHandlerFunc = async (ctx: any, message: DataStreamResp) => {
+  const mockMessageHandler: MessageHandlerFunc = async (message: DataStreamResp) => {
     console.log('Received message:', message);
   };
 
-  const mockConnectionReadyHandler: ConnectionReadyHandlerFunc = async (ctx: any) => {
+  const mockConnectionReadyHandler: ConnectionReadyHandlerFunc = async () => {
     console.log('Connection ready');
   };
 
@@ -177,6 +177,6 @@ describe('DatastreamWSClient', () => {
       logger: mockLogger,
     });
 
-    await expect(client.sendMessage({ test: 'message' })).rejects.toThrow('WebSocket connection is not available!');
+    await expect(client.sendMessage({ data: { entity_type: 'rulesengine.Company' as any, keys: {} } })).rejects.toThrow('WebSocket connection is not available!');
   });
 });
