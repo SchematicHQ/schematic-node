@@ -12,11 +12,9 @@ const sharedConfig = {
   sourcemap: 'external',
   external: [
     // Keep dependencies external since this is a library
-    'url-join',
     'form-data',
-    'formdata-node', 
+    'formdata-node',
     'node-fetch',
-    'qs',
     'readable-stream'
   ],
   tsconfig: './tsconfig.json',

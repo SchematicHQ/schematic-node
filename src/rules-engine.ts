@@ -1,28 +1,31 @@
 import { RulesEngineJS } from './wasm/rulesengine.js';
+import type * as Schematic from './api/types';
 
-/**
- * High-performance rules engine for flag evaluation and rule processing.
- * 
- * This engine provides significant performance improvements over traditional JavaScript
- * implementations by leveraging compiled Rust code running in WebAssembly.
- */
+/** Result returned by the WASM rules engine (snake_case keys) */
+export interface WasmCheckFlagResult {
+    value: boolean;
+    reason: string;
+    rule_id?: string;
+    flag_id?: string;
+    flag_key?: string;
+    company_id?: string;
+    user_id?: string;
+    rule_type?: string;
+    err?: string;
+}
+
 export class RulesEngineClient {
     private wasmInstance: RulesEngineJS | null = null;
     private initialized = false;
 
     constructor() {}
 
-    /**
-     * Initialize the WASM rules engine.
-     * Must be called before using any other methods.
-     */
     async initialize(): Promise<void> {
         if (this.initialized) {
             return;
         }
 
         try {
-            // Initialize the WASM module
             this.wasmInstance = new RulesEngineJS();
             this.initialized = true;
         } catch (error) {
@@ -30,19 +33,11 @@ export class RulesEngineClient {
         }
     }
 
-    /**
-     * Check a feature flag using the WASM engine.
-     * 
-     * @param flag - The flag configuration object
-     * @param company - Optional company context
-     * @param user - Optional user context
-     * @returns Promise resolving to the flag check result
-     */
     async checkFlag(
-        flag: any,
-        company?: any,
-        user?: any
-    ): Promise<any> {
+        flag: Schematic.RulesengineFlag,
+        company?: Schematic.RulesengineCompany | null,
+        user?: Schematic.RulesengineUser | null
+    ): Promise<WasmCheckFlagResult> {
         this.ensureInitialized();
 
         try {

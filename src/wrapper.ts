@@ -180,6 +180,7 @@ export class SchematicClient extends BaseClient {
                     flagKey: key,
                     value: flagValue ?? false,
                     reason: resp?.reason ?? "unknown",
+                    ruleId: resp?.ruleId,
                     companyId: resp?.companyId,
                     userId: resp?.userId,
                     flagId: resp?.flagId,

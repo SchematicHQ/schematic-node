@@ -1,7 +1,7 @@
 import { EventEmitter } from 'events';
 import * as Schematic from '../api/types';
 import { DatastreamWSClient } from './websocket-client';
-import { DataStreamResp, DataStreamReq, EntityType, MessageType } from './types';
+import { DataStreamResp, DataStreamReq, DataStreamError, EntityType, MessageType } from './types';
 import { RulesEngineClient } from '../rules-engine';
 import { Logger } from '../logger';
 
@@ -44,7 +44,6 @@ export interface DataStreamClientOptions {
 type PendingRequestHandler<T> = (value: T | null) => void;
 
 // Cache key constants
-const CACHE_KEY_PREFIX = 'schematic';
 const CACHE_KEY_PREFIX_COMPANY = 'company';
 const CACHE_KEY_PREFIX_USER = 'user';  
 const CACHE_KEY_PREFIX_FLAGS = 'flags';
@@ -796,7 +795,7 @@ export class DataStreamClient extends EventEmitter {
    * handleErrorMessage processes error messages
    */
   private async handleErrorMessage(message: DataStreamResp): Promise<void> {
-    const errorData = message.data as any;
+    const errorData = message.data as DataStreamError;
     
     if (errorData?.keys && errorData?.entity_type) {
       // Notify pending requests with null/error
@@ -1146,28 +1145,28 @@ export class DataStreamClient extends EventEmitter {
   }
 
   /**
-   * evaluateFlag evaluates a flag using the rules engine
+   * sanitizeForWasm removes null/undefined values from objects for WASM compatibility
    */
-  private sanitizeForWasm(obj: any): any {
+  private sanitizeForWasm<T>(obj: T): T {
     if (obj === null || obj === undefined) {
-      return null;
+      return null as T;
     }
-    
+
     if (Array.isArray(obj)) {
-      return obj.map(item => this.sanitizeForWasm(item)).filter(item => item !== null);
+      return obj.map(item => this.sanitizeForWasm(item)).filter(item => item !== null) as T;
     }
-    
+
     if (typeof obj === 'object') {
-      const sanitized: any = {};
+      const sanitized: Record<string, unknown> = {};
       for (const [key, value] of Object.entries(obj)) {
         const sanitizedValue = this.sanitizeForWasm(value);
         if (sanitizedValue !== null) {
           sanitized[key] = sanitizedValue;
         }
       }
-      return sanitized;
+      return sanitized as T;
     }
-    
+
     return obj;
   }
 

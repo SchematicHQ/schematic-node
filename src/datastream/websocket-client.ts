@@ -349,7 +349,7 @@ export class DatastreamWSClient extends EventEmitter {
   /**
    * connect establishes the WebSocket connection
    */
-  private connect(): Promise<any> {
+  private connect(): Promise<WebSocket> {
     return new Promise((resolve, reject) => {
       this.logger.debug(`Connecting to WebSocket: ${this.url}`);
 
@@ -472,7 +472,12 @@ export class DatastreamWSClient extends EventEmitter {
       return;
     }
 
-    
+    // Clear any existing pong timeout before setting a new one
+    if (this.pongTimeout) {
+      clearTimeout(this.pongTimeout);
+      this.pongTimeout = undefined;
+    }
+
     // Set pong timeout
     this.pongTimeout = setTimeout(() => {
       this.logger.warn('Pong timeout - closing connection');

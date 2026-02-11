@@ -166,10 +166,10 @@ describe('DataStreamClient', () => {
 
     // Simulate WebSocket events
     const onCalls = mockDatastreamWSClientInstance.on.mock.calls;
-    const connectedHandler = onCalls.find((call: any) => call[0] === 'connected')?.[1];
-    const disconnectedHandler = onCalls.find((call: any) => call[0] === 'disconnected')?.[1];
-    const readyHandler = onCalls.find((call: any) => call[0] === 'ready')?.[1];
-    const errorHandler = onCalls.find((call: any) => call[0] === 'error')?.[1];
+    const connectedHandler = onCalls.find((call: [string, Function]) => call[0] === 'connected')?.[1];
+    const disconnectedHandler = onCalls.find((call: [string, Function]) => call[0] === 'disconnected')?.[1];
+    const readyHandler = onCalls.find((call: [string, Function]) => call[0] === 'ready')?.[1];
+    const errorHandler = onCalls.find((call: [string, Function]) => call[0] === 'error')?.[1];
 
     if (connectedHandler) connectedHandler();
     if (disconnectedHandler) disconnectedHandler();
@@ -260,7 +260,7 @@ describe('DataStreamClient', () => {
 
     // Get the connection handler from the WebSocket client mock
     const onCalls = mockDatastreamWSClientInstance.on.mock.calls;
-    const connectedHandler = onCalls.find((call: any) => call[0] === 'connected')?.[1];
+    const connectedHandler = onCalls.find((call: [string, Function]) => call[0] === 'connected')?.[1];
 
     // Mock sendMessage to automatically trigger response
     mockDatastreamWSClientInstance.sendMessage.mockImplementation(async (message: any) => {
@@ -313,7 +313,7 @@ describe('DataStreamClient', () => {
 
     // Get the connection handler from the WebSocket client mock
     const onCalls = mockDatastreamWSClientInstance.on.mock.calls;
-    const connectedHandler = onCalls.find((call: any) => call[0] === 'connected')?.[1];
+    const connectedHandler = onCalls.find((call: [string, Function]) => call[0] === 'connected')?.[1];
 
     // Mock sendMessage to track requests and auto-respond
     mockDatastreamWSClientInstance.sendMessage.mockImplementation(async (message: any) => {

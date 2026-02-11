@@ -20,7 +20,8 @@ export interface RedisOptions extends CacheOptions {
  * Requires the 'redis' package to be installed: npm install redis
  */
 export class RedisCacheProvider<T> implements CacheProvider<T> {
-  private client: any; // Redis client type
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- redis client is dynamically imported
+  private client: any;
   private defaultTTL: number;
   private keyPrefix: string;
   private isConnected: boolean = false;
@@ -37,10 +38,11 @@ export class RedisCacheProvider<T> implements CacheProvider<T> {
   private async initRedisClient(options: RedisOptions): Promise<void> {
     try {
       // Dynamically import redis so it's only loaded if actually used
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- dynamic import for optional dependency
       const redisModule = await import('redis' as any);
       const { createClient } = redisModule;
-      
-      let clientConfig: any = {};
+
+      let clientConfig: Record<string, unknown> = {};
       
       if (options.url) {
         clientConfig.url = options.url;

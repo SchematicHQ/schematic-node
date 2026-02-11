@@ -39,7 +39,7 @@ export interface DataStreamBaseReq {
  * DataStreamResp represents a response message from the datastream
  */
 export interface DataStreamResp {
-  data: any; // JSON raw message equivalent
+  data: unknown;
   entity_type: string;
   message_type: string;
 }
