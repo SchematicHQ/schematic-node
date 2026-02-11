@@ -1,22 +1,22 @@
-import { DatastreamWSClient, MessageHandlerFunc, ConnectionReadyHandlerFunc } from './websocket-client';
-import { DataStreamResp } from './types';
-import { Logger } from '../logger';
+import { DatastreamWSClient, MessageHandlerFunc, ConnectionReadyHandlerFunc } from '../../../src/datastream/websocket-client';
+import { DataStreamResp } from '../../../src/datastream/types';
+import { Logger } from '../../../src/logger';
 
 // Mock logger implementation
 class MockLogger implements Logger {
-  debug(ctx: any, message: string, ...args: any[]): void {
+  debug(message: string, ...args: any[]): void {
     console.log(`[DEBUG] ${message}`, ...args);
   }
-  
-  info(ctx: any, message: string, ...args: any[]): void {
+
+  info(message: string, ...args: any[]): void {
     console.log(`[INFO] ${message}`, ...args);
   }
-  
-  warn(ctx: any, message: string, ...args: any[]): void {
+
+  warn(message: string, ...args: any[]): void {
     console.log(`[WARN] ${message}`, ...args);
   }
-  
-  error(ctx: any, message: string, ...args: any[]): void {
+
+  error(message: string, ...args: any[]): void {
     console.error(`[ERROR] ${message}`, ...args);
   }
 }

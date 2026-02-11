@@ -1,6 +1,6 @@
 /* eslint @typescript-eslint/no-explicit-any: 0 */
 
-import { LocalCache } from "./local";
+import { LocalCache } from "../../../src/cache/local";
 
 jest.useFakeTimers();
 
