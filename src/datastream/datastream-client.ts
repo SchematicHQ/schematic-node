@@ -480,29 +480,16 @@ export class DataStreamClient extends EventEmitter {
       throw new Error('Datastream not connected and required entities not in cache');
     }
 
-    // Fetch missing data from datastream
-    let company: Schematic.RulesengineCompany | null = null;
-    let user: Schematic.RulesengineUser | null = null;
+    // Fetch missing data from datastream in parallel
+    const companyPromise = needsCompany && !cachedCompany
+      ? this.getCompany(evalCtx.company!)
+      : Promise.resolve(cachedCompany);
 
-    if (needsCompany) {
-      if (cachedCompany) {
-        company = cachedCompany;
-        this.logger.debug(`Using cached company data for keys: ${JSON.stringify(evalCtx.company)}`);
-      } else {
-        this.logger.debug(`Fetching company from datastream for keys: ${JSON.stringify(evalCtx.company)}`);
-        company = await this.getCompany(evalCtx.company!);
-      }
-    }
+    const userPromise = needsUser && !cachedUser
+      ? this.getUser(evalCtx.user!)
+      : Promise.resolve(cachedUser);
 
-    if (needsUser) {
-      if (cachedUser) {
-        user = cachedUser;
-        this.logger.debug(`Using cached user data for keys: ${JSON.stringify(evalCtx.user)}`);
-      } else {
-        this.logger.debug(`Fetching user from datastream for keys: ${JSON.stringify(evalCtx.user)}`);
-        user = await this.getUser(evalCtx.user!);
-      }
-    }
+    const [company, user] = await Promise.all([companyPromise, userPromise]);
 
     // Evaluate against the rules engine
     return this.evaluateFlag(flag, company, user);
@@ -1079,11 +1066,15 @@ export class DataStreamClient extends EventEmitter {
     }
 
     try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
+
       const response = await fetch(this.replicatorHealthURL, {
         method: 'GET',
-        // @ts-ignore - timeout is supported in newer Node.js versions
-        timeout: 5000,
+        signal: controller.signal,
       });
+
+      clearTimeout(timeoutId);
 
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -1209,7 +1200,7 @@ export class DataStreamClient extends EventEmitter {
           companyId: company?.id,
           userId: user?.id,
           flagId: flag.id,
-          ruleId: result.ruleId
+          ruleId: result.rule_id
         };
       } else {
         // Fallback to default value if rules engine not available
