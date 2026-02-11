@@ -136,25 +136,6 @@ class RulesEngineJS {
         }
     }
     /**
-     * @param {string} rule_json
-     * @param {string | null} [company_json]
-     * @param {string | null} [user_json]
-     * @returns {boolean}
-     */
-    evaluateRule(rule_json, company_json, user_json) {
-        const ptr0 = passStringToWasm0(rule_json, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len0 = WASM_VECTOR_LEN;
-        var ptr1 = isLikeNone(company_json) ? 0 : passStringToWasm0(company_json, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        var len1 = WASM_VECTOR_LEN;
-        var ptr2 = isLikeNone(user_json) ? 0 : passStringToWasm0(user_json, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        var len2 = WASM_VECTOR_LEN;
-        const ret = wasm.rulesenginejs_evaluateRule(this.__wbg_ptr, ptr0, len0, ptr1, len1, ptr2, len2);
-        if (ret[2]) {
-            throw takeFromExternrefTable0(ret[1]);
-        }
-        return ret[0] !== 0;
-    }
-    /**
      * @returns {string}
      */
     getVersionKey() {

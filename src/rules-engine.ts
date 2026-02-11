@@ -56,40 +56,9 @@ export class RulesEngineClient {
                 userJson
             );
 
-            // Parse the JSON string returned by WASM
             return JSON.parse(resultJson);
         } catch (error) {
             throw new Error(`WASM flag check failed: ${error}`);
-        }
-    }
-
-    /**
-     * Evaluate a rule using the WASM engine.
-     * 
-     * @param rule - The rule configuration object
-     * @param company - Optional company context
-     * @param user - Optional user context
-     * @returns Promise resolving to boolean indicating if rule matched
-     */
-    async evaluateRule(
-        rule: any,
-        company?: any,
-        user?: any
-    ): Promise<boolean> {
-        this.ensureInitialized();
-
-        try {
-            const ruleJson = JSON.stringify(rule);
-            const companyJson = company ? JSON.stringify(company) : undefined;
-            const userJson = user ? JSON.stringify(user) : undefined;
-
-            return this.wasmInstance!.evaluateRule(
-                ruleJson,
-                companyJson,
-                userJson
-            );
-        } catch (error) {
-            throw new Error(`WASM rule evaluation failed: ${error}`);
         }
     }
 
