@@ -103,7 +103,7 @@ function convertAPIURLToWebSocketURL(apiURL: string): string {
   // Add datastream path
   parsedURL.pathname = '/datastream';
 
-  return parsedURL;
+  return parsedURL.toString();
 }
 
 /**
