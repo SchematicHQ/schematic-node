@@ -15,7 +15,10 @@ const sharedConfig = {
     'form-data',
     'formdata-node',
     'node-fetch',
-    'readable-stream'
+    'readable-stream',
+    // Optional peer dependencies - resolved from consumer's node_modules
+    'redis',
+    'ws',
   ],
   tsconfig: './tsconfig.json',
 };

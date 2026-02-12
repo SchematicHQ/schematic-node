@@ -37,10 +37,10 @@ export class RedisCacheProvider<T> implements CacheProvider<T> {
 
   private async initRedisClient(options: RedisOptions): Promise<void> {
     try {
-      // Dynamically import redis so it's only loaded if actually used
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- dynamic import for optional dependency
-      const redisModule = await import('redis' as any);
-      const { createClient } = redisModule;
+      // Use require() to avoid TypeScript resolving the module at compile time.
+      // This matches the pattern used for 'ws' in websocket-client.ts.
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const { createClient } = require('redis');
 
       let clientConfig: Record<string, unknown> = {};
       

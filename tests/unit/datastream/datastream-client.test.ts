@@ -29,37 +29,38 @@ describe('DataStreamClient', () => {
   let mockLogger: Logger;
   let options: DataStreamClientOptions;
 
-  const mockCompany: Schematic.RulesengineCompany = {
+  // Mock data uses snake_case to match wire format from WebSocket
+  const mockCompany = {
     id: 'company-123',
-    accountId: 'account-123',
-    environmentId: 'env-123',
+    account_id: 'account-123',
+    environment_id: 'env-123',
     keys: { name: 'Test Company' },
     traits: [],
     rules: [],
     metrics: [],
-    planIds: [],
-    billingProductIds: [],
-    crmProductIds: [],
-    creditBalances: {},
-  };
+    plan_ids: [],
+    billing_product_ids: [],
+    crm_product_ids: [],
+    credit_balances: {},
+  } as unknown as Schematic.RulesengineCompany;
 
-  const mockUser: Schematic.RulesengineUser = {
+  const mockUser = {
     id: 'user-123',
-    accountId: 'account-123',
-    environmentId: 'env-123',
+    account_id: 'account-123',
+    environment_id: 'env-123',
     keys: { email: 'test@example.com' },
     traits: [],
     rules: [],
-  };
+  } as unknown as Schematic.RulesengineUser;
 
-  const mockFlag: Schematic.RulesengineFlag = {
+  const mockFlag = {
     id: 'flag-123',
     key: 'test-flag',
-    accountId: 'account-123',
-    environmentId: 'env-123',
-    defaultValue: false,
+    account_id: 'account-123',
+    environment_id: 'env-123',
+    default_value: false,
     rules: [],
-  };
+  } as unknown as Schematic.RulesengineFlag;
 
   beforeEach(() => {
     jest.clearAllMocks();

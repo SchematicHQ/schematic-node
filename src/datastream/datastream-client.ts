@@ -509,7 +509,10 @@ export class DataStreamClient extends EventEmitter {
     // Update the metric value if it matches the event
     if (updatedCompany.metrics) {
       for (const metric of updatedCompany.metrics) {
-        if (metric?.eventSubtype === event) {
+        // Cache data may use snake_case (wire) or camelCase (Fern) for multi-word keys
+        const eventSubtype = metric.eventSubtype
+          ?? (metric as unknown as Record<string, unknown>)['event_subtype'];
+        if (eventSubtype === event) {
           metric.value = (metric.value || 0) + quantity;
         }
       }
@@ -1144,57 +1147,28 @@ export class DataStreamClient extends EventEmitter {
     return JSON.parse(JSON.stringify(company));
   }
 
-  /**
-   * sanitizeForWasm removes null/undefined values from objects for WASM compatibility
-   */
-  private sanitizeForWasm<T>(obj: T): T {
-    if (obj === null || obj === undefined) {
-      return null as T;
-    }
-
-    if (Array.isArray(obj)) {
-      return obj.map(item => this.sanitizeForWasm(item)).filter(item => item !== null) as T;
-    }
-
-    if (typeof obj === 'object') {
-      const sanitized: Record<string, unknown> = {};
-      for (const [key, value] of Object.entries(obj)) {
-        const sanitizedValue = this.sanitizeForWasm(value);
-        if (sanitizedValue !== null) {
-          sanitized[key] = sanitizedValue;
-        }
-      }
-      return sanitized as T;
-    }
-
-    return obj;
-  }
-
   private async evaluateFlag(
     flag: Schematic.RulesengineFlag,
     company: Schematic.RulesengineCompany | null,
     user: Schematic.RulesengineUser | null
   ): Promise<Schematic.RulesengineCheckFlagResult> {
+    // Cache data may use snake_case (wire) or camelCase (Fern) keys.
+    // Single-word properties (id, key, rules) are identical in both formats.
+    // For multi-word properties, try camelCase first then fall back to snake_case.
+    const defaultValue = flag.defaultValue
+      ?? (flag as unknown as Record<string, unknown>)['default_value']
+      ?? false;
+
     try {
       // Use rules engine if initialized
       if (this.rulesEngine.isInitialized()) {
         this.logger.debug(`Evaluating flag with rules engine: ${JSON.stringify({ flagId: flag.id, flagRules: flag.rules?.length || 0, companyId: company?.id, userId: user?.id })}`);
-        
-        // Sanitize flag data for WASM - ensure no null values in required arrays
-        const sanitizedFlag = this.sanitizeForWasm(flag);
-        if (!sanitizedFlag.rules) {
-          sanitizedFlag.rules = [];
-        }
-        
-        // Sanitize company and user data as well
-        const sanitizedCompany = company ? this.sanitizeForWasm(company) : null;
-        const sanitizedUser = user ? this.sanitizeForWasm(user) : null;
-        
-        const result = await this.rulesEngine.checkFlag(sanitizedFlag, sanitizedCompany, sanitizedUser);
+
+        const result = await this.rulesEngine.checkFlag(flag, company, user);
         this.logger.debug(`Rules engine evaluation result: ${JSON.stringify(result)}`);
         return {
           flagKey: flag.key,
-          value: result.value ?? flag.defaultValue,
+          value: result.value ?? defaultValue,
           reason: result.reason || 'RULES_ENGINE_EVALUATION',
           companyId: company?.id,
           userId: user?.id,
@@ -1206,7 +1180,7 @@ export class DataStreamClient extends EventEmitter {
         this.logger.warn('Rules engine not initialized, using default flag value');
         return {
           flagKey: flag.key,
-          value: flag.defaultValue,
+          value: defaultValue,
           reason: 'RULES_ENGINE_UNAVAILABLE',
           companyId: company?.id,
           userId: user?.id,
@@ -1218,7 +1192,7 @@ export class DataStreamClient extends EventEmitter {
       // Fallback to default value on error
       return {
         flagKey: flag.key,
-        value: flag.defaultValue,
+        value: defaultValue,
         reason: 'RULES_ENGINE_ERROR',
         companyId: company?.id,
         userId: user?.id,

@@ -388,7 +388,7 @@ export class DatastreamWSClient extends EventEmitter {
       this.handlePong();
     });
 
-    ws.on('close', (code: number, reason: Buffer) => {
+    ws.on('close', (code: number) => {
       this.handleClose(code);
     });
 

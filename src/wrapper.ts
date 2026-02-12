@@ -172,8 +172,7 @@ export class SchematicClient extends BaseClient {
             try {
                 const resp = await this.datastreamClient!.checkFlag(evalCtx, key);
 
-                // Extract boolean value from DataStream response
-                const flagValue = typeof resp === 'boolean' ? resp : resp?.value;
+                const flagValue = resp?.value;
 
                 // Enqueue the flag check event
                 this.enqueueEvent(api.EventType.FlagCheck, {

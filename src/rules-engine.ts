@@ -1,5 +1,4 @@
 import { RulesEngineJS } from './wasm/rulesengine.js';
-import type * as Schematic from './api/types';
 
 /** Result returned by the WASM rules engine (snake_case keys) */
 export interface WasmCheckFlagResult {
@@ -34,16 +33,20 @@ export class RulesEngineClient {
     }
 
     async checkFlag(
-        flag: Schematic.RulesengineFlag,
-        company?: Schematic.RulesengineCompany | null,
-        user?: Schematic.RulesengineUser | null
+        flag: object,
+        company?: object | null,
+        user?: object | null
     ): Promise<WasmCheckFlagResult> {
         this.ensureInitialized();
 
+        // Strip null values — WASM/Rust serde expects arrays not null, and
+        // uses #[serde(default)] to default missing fields to empty values.
+        const stripNulls = (_key: string, value: unknown) => value === null ? undefined : value;
+
         try {
-            const flagJson = JSON.stringify(flag);
-            const companyJson = company ? JSON.stringify(company) : undefined;
-            const userJson = user ? JSON.stringify(user) : undefined;
+            const flagJson = JSON.stringify(flag, stripNulls);
+            const companyJson = company ? JSON.stringify(company, stripNulls) : undefined;
+            const userJson = user ? JSON.stringify(user, stripNulls) : undefined;
 
             const resultJson = this.wasmInstance!.checkFlag(
                 flagJson,

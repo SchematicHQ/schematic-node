@@ -165,6 +165,16 @@ exports.__wbg___wbindgen_throw_b855445ff6a94295 = function(arg0, arg1) {
     throw new Error(getStringFromWasm0(arg0, arg1));
 };
 
+exports.__wbg_getTime_14776bfb48a1bff9 = function(arg0) {
+    const ret = arg0.getTime();
+    return ret;
+};
+
+exports.__wbg_new_0_f9740686d739025c = function() {
+    const ret = new Date();
+    return ret;
+};
+
 exports.__wbindgen_cast_2241b6af4c4b2941 = function(arg0, arg1) {
     // Cast intrinsic for `Ref(String) -> Externref`.
     const ret = getStringFromWasm0(arg0, arg1);

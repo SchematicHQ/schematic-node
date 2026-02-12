@@ -22,4 +22,5 @@ tests/unit/cache/local.test.ts
 tests/unit/datastream/datastream-client.test.ts
 tests/unit/datastream/websocket-client.test.ts
 tests/unit/rules-engine.test.ts
+tests/unit/wasm-integration.test.ts
 tests/unit/webhooks.test.ts

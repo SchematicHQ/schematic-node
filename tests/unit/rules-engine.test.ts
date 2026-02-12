@@ -1,6 +1,5 @@
 import { RulesEngineClient } from '../../src/rules-engine';
 
-// Mock data using realistic test data structures
 const mockFlag = {
     id: 'test-flag',
     account_id: 'account-123',
@@ -26,7 +25,8 @@ const mockFlag = {
                     resource_ids: [],
                     trait_value: '10'
                 }
-            ]
+            ],
+            condition_groups: []
         }
     ]
 };
@@ -154,14 +154,15 @@ describe('RulesEngineClient', () => {
         test('should handle malformed JSON gracefully', async () => {
             // Test with circular reference (should be handled by JSON.stringify error)
             const circularFlag = { ...mockFlag };
-            (circularFlag as any).self = circularFlag;
+            circularFlag.self = circularFlag;
 
             await expect(rulesEngine.checkFlag(circularFlag)).rejects.toThrow();
         });
 
         test('should provide meaningful error messages', async () => {
             try {
-                await rulesEngine.checkFlag(null as any);
+                // @ts-expect-error testing invalid input
+                await rulesEngine.checkFlag(null);
             } catch (error) {
                 expect(error).toBeInstanceOf(Error);
                 expect((error as Error).message).toContain('WASM flag check failed');
