@@ -6,7 +6,7 @@ import { ConsoleLogger, Logger } from "./logger";
 import { EventBuffer } from "./events";
 import { offlineFetcher, provideFetcher } from "./core/fetcher/custom";
 import { DataStreamClient, type DataStreamClientOptions } from "./datastream";
-import type { RedisOptions } from "./cache/redis";
+import type { RedisClient } from "./cache/redis";
 
 /**
  * Configuration options for the SchematicClient
@@ -27,8 +27,10 @@ export interface SchematicOptions {
     dataStream?: {
         /** Cache TTL in milliseconds (default: 5 minutes) */
         cacheTTL?: number;
-        /** Redis configuration for DataStream caching */
-        redisConfig?: RedisOptions;
+        /** Pre-created, connected redis client for DataStream caching */
+        redisClient?: RedisClient;
+        /** Redis key prefix for all cache keys (default: 'schematic:') */
+        redisKeyPrefix?: string;
         /** Enable replicator mode for external data synchronization */
         replicatorMode?: boolean;
         /** Health check URL for replicator mode */
@@ -126,7 +128,8 @@ export class SchematicClient extends BaseClient {
                 baseURL: basePath,
                 logger,
                 cacheTTL: opts.dataStream?.cacheTTL,
-                redisConfig: opts.dataStream?.redisConfig,
+                redisClient: opts.dataStream?.redisClient,
+                redisKeyPrefix: opts.dataStream?.redisKeyPrefix,
                 replicatorMode: opts.dataStream?.replicatorMode,
                 replicatorHealthURL: opts.dataStream?.replicatorHealthURL,
                 replicatorHealthCheck: opts.dataStream?.replicatorHealthCheck,

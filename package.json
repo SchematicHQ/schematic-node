@@ -26,22 +26,16 @@
         "form-data": "^4.0.4",
         "formdata-node": "^6.0.3",
         "node-fetch": "^2.7.0",
-        "readable-stream": "^4.5.2"
+        "readable-stream": "^4.5.2",
+        "ws": "^8.0.0"
     },
     "peerDependencies": {
-        "redis": "^4.0.0",
-        "ws": "^8.0.0"
+        "redis": "^4.0.0"
     },
     "peerDependenciesMeta": {
         "redis": {
             "optional": true
-        },
-        "ws": {
-            "optional": true
         }
-    },
-    "optionalDependencies": {
-        "redis": "^4.0.0"
     },
     "devDependencies": {
         "@biomejs/biome": "2.3.1",

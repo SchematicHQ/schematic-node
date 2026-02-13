@@ -1,28 +1,10 @@
 // Note: This client is designed for Node.js server environments only
-// The ws package is required and provides the WebSocket implementation
 
 import { EventEmitter } from 'events';
+import { URL } from 'url';
+import WebSocketClass, { type WebSocket } from 'ws';
 import { DataStreamResp, DataStreamBaseReq } from './types';
 import { Logger } from '../logger';
-import type WebSocket from 'ws';
-
-// Dynamic imports to avoid webpack issues
-const createWebSocket = () => {
-  try {
-    const WebSocketClass = require('ws');
-    return WebSocketClass;
-  } catch (e) {
-    throw new Error('WebSocket client requires Node.js environment with ws package installed: npm install ws');
-  }
-};
-
-const createURL = () => {
-  try {
-    return require('url').URL;
-  } catch (e) {
-    throw new Error('URL implementation not available in this environment');
-  }
-};
 
 /**
  * WebSocket configuration constants
@@ -76,8 +58,7 @@ export interface ClientOptions {
  *   http://localhost:8080 -> ws://localhost:8080/datastream
  */
 function convertAPIURLToWebSocketURL(apiURL: string): string {
-  const URLClass = createURL();
-  const parsedURL = new URLClass(apiURL);
+  const parsedURL = new URL(apiURL);
 
   // Convert HTTP schemes to WebSocket schemes
   switch (parsedURL.protocol) {
@@ -353,7 +334,6 @@ export class DatastreamWSClient extends EventEmitter {
     return new Promise((resolve, reject) => {
       this.logger.debug(`Connecting to WebSocket: ${this.url}`);
 
-      const WebSocketClass = createWebSocket();
       const ws = new WebSocketClass(this.url, {
         headers: this.headers,
         handshakeTimeout: 30000, // 30 seconds

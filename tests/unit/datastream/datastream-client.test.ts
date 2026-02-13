@@ -493,16 +493,34 @@ describe('DataStreamClient', () => {
   });
 
   test('should handle replicator mode configuration', () => {
+    const mockRedisClient = {
+      get: jest.fn().mockResolvedValue(null),
+      set: jest.fn().mockResolvedValue('OK'),
+      setEx: jest.fn().mockResolvedValue('OK'),
+      del: jest.fn().mockResolvedValue(1),
+      scanIterator: jest.fn().mockReturnValue((async function* () {})()),
+    };
+
     const replicatorClient = new DataStreamClient({
       ...options,
       replicatorMode: true,
       replicatorHealthURL: 'http://localhost:8080/health',
       replicatorHealthCheck: 10000,
+      redisClient: mockRedisClient,
     });
 
     expect(replicatorClient).toBeInstanceOf(DataStreamClient);
     expect(replicatorClient.isReplicatorMode()).toBe(true);
     expect(replicatorClient.getReplicatorCacheVersion()).toBeUndefined();
+  });
+
+  test('should throw if replicator mode is enabled without redis client or custom cache providers', () => {
+    expect(() => {
+      new DataStreamClient({
+        ...options,
+        replicatorMode: true,
+      });
+    }).toThrow('Replicator mode requires a Redis client or custom cache providers for shared cache access');
   });
 
   test('should fetch and use replicator cache version', async () => {
@@ -519,11 +537,20 @@ describe('DataStreamClient', () => {
       })
     });
 
+    const mockRedisClient = {
+      get: jest.fn().mockResolvedValue(null),
+      set: jest.fn().mockResolvedValue('OK'),
+      setEx: jest.fn().mockResolvedValue('OK'),
+      del: jest.fn().mockResolvedValue(1),
+      scanIterator: jest.fn().mockReturnValue((async function* () {})()),
+    };
+
     const replicatorClient = new DataStreamClient({
       ...options,
       replicatorMode: true,
       replicatorHealthURL: 'http://localhost:8080/health',
       replicatorHealthCheck: 30000, // Long interval to prevent multiple calls
+      redisClient: mockRedisClient,
     });
 
     // Start the client to trigger initial health check

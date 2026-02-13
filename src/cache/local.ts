@@ -1,6 +1,9 @@
 import { setTimeout, clearTimeout } from "timers";
 import { CacheProvider, CacheOptions } from "./types";
 
+// setTimeout max: 2^31 - 1 ms (~24.8 days). Larger values overflow to 1ms.
+const MAX_TIMEOUT_MS = 2_147_483_647;
+
 type CacheItem<T> = {
     value: T;
     accessCounter: number;
@@ -68,7 +71,8 @@ class LocalCache<T> implements CacheProvider<T> {
         };
         
         // Set timeout after item is created to avoid circular reference
-        newItem.timeoutId = setTimeout(() => this.evictItem(key, newItem), ttl);
+        // Cap at MAX_TIMEOUT_MS to avoid 32-bit overflow; expiration field handles the real TTL
+        newItem.timeoutId = setTimeout(() => this.evictItem(key, newItem), Math.min(ttl, MAX_TIMEOUT_MS));
         this.cache.set(key, newItem);
     }
 

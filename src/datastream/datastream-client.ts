@@ -5,10 +5,10 @@ import { DataStreamResp, DataStreamReq, DataStreamError, EntityType, MessageType
 import { RulesEngineClient } from '../rules-engine';
 import { Logger } from '../logger';
 
-// Import cache providers from the cache module  
+// Import cache providers from the cache module
 import type { CacheProvider } from '../cache/types';
 import { LocalCache } from '../cache/local';
-import { RedisCacheProvider, type RedisOptions } from '../cache/redis';
+import { RedisCacheProvider, type RedisClient } from '../cache/redis';
 
 /**
  * Options for configuring the DataStream client
@@ -22,8 +22,10 @@ export interface DataStreamClientOptions {
   logger: Logger;
   /** Cache TTL in milliseconds (default: 5 minutes) */
   cacheTTL?: number;
-  /** Redis configuration for all cache providers (if not provided, uses memory cache) */
-  redisConfig?: RedisOptions;
+  /** Pre-created, connected redis client for all cache providers (if not provided, uses memory cache) */
+  redisClient?: RedisClient;
+  /** Redis key prefix for all cache keys (default: 'schematic:') */
+  redisKeyPrefix?: string;
   /** Custom cache provider for company entities (overrides Redis config if provided) */
   companyCache?: CacheProvider<Schematic.RulesengineCompany>;
   /** Custom cache provider for user entities (overrides Redis config if provided) */
@@ -103,13 +105,18 @@ export class DataStreamClient extends EventEmitter {
     this.replicatorHealthURL = options.replicatorHealthURL;
     this.replicatorHealthCheck = options.replicatorHealthCheck ?? 30 * 1000; // Default 30 seconds
 
+    // Replicator mode requires a shared cache (Redis or custom providers)
+    if (this.replicatorMode && !options.redisClient && !options.companyCache && !options.userCache && !options.flagCache) {
+      throw new Error('Replicator mode requires a Redis client or custom cache providers for shared cache access');
+    }
+
     // Initialize rules engine
     this.rulesEngine = new RulesEngineClient();
   }
 
   /**
    * Creates cache providers based on configuration options
-   * Priority: custom cache provider > Redis config > memory cache
+   * Priority: custom cache provider > Redis client > memory cache
    * Flag cache uses special TTL logic matching Go implementation
    */
   private createCacheProvider<T>(options: DataStreamClientOptions, cacheType: 'company' | 'user' | 'flag'): CacheProvider<T> {
@@ -128,24 +135,26 @@ export class DataStreamClient extends EventEmitter {
     }
 
     if (customProvider) {
+      this.logger.debug(`Using custom cache provider for ${cacheType} cache`);
       return customProvider;
     }
 
     // Calculate TTL based on cache type
     const cacheTTL = this.calculateCacheTTL(cacheType);
 
-    // Use Redis if configuration is provided
-    if (options.redisConfig) {
-      const redisOptions: RedisOptions = {
-        ...options.redisConfig,
+    // Use Redis if a client is provided
+    if (options.redisClient) {
+      this.logger.debug(`Using Redis cache provider for ${cacheType} cache (TTL: ${cacheTTL}ms)`);
+      return new RedisCacheProvider<T>({
+        client: options.redisClient,
+        keyPrefix: options.redisKeyPrefix || 'schematic:',
         ttl: cacheTTL,
-        keyPrefix: options.redisConfig.keyPrefix || 'schematic:'
-      };
-      return new RedisCacheProvider<T>(redisOptions);
+      });
     }
 
     // Default to memory cache
-    return new LocalCache<T>();
+    this.logger.debug(`Using memory cache provider for ${cacheType} cache (TTL: ${cacheTTL}ms)`);
+    return new LocalCache<T>({ ttl: cacheTTL });
   }
 
   /**
