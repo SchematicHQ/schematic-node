@@ -1,6 +1,6 @@
 /* eslint @typescript-eslint/no-explicit-any: 0 */
 
-import { LocalCache } from "./cache";
+import { LocalCache } from "../../../src/cache/local";
 
 jest.useFakeTimers();
 
@@ -12,7 +12,6 @@ describe("LocalCache", () => {
     });
 
     afterEach(() => {
-        cache.resetCache();
         jest.clearAllTimers();
     });
 
@@ -26,7 +25,7 @@ describe("LocalCache", () => {
         await cache.set("key1", { data: "value1" }, 1000); // TTL: 1 second
         jest.advanceTimersByTime(1001); // Advance time by 1 second and 1 millisecond
         const value = await cache.get("key1");
-        expect(value).toBeUndefined();
+        expect(value).toBeNull();
     });
 
     it("should evict least recently used item when maxItems is exceeded", async () => {
@@ -50,10 +49,9 @@ describe("LocalCache", () => {
         const value4 = await smallCache.get("key4");
 
         expect(value1).toEqual({ data: "value1" });
-        expect(value2).toBeUndefined(); // key2 should be evicted
+        expect(value2).toBeNull(); // key2 should be evicted
         expect(value3).toEqual({ data: "value3" });
         expect(value4).toEqual({ data: "value4" });
-        smallCache.resetCache();
     });
 
     it("should update the access counter on get", async () => {
@@ -83,8 +81,7 @@ describe("LocalCache", () => {
         const zeroItemCache = new LocalCache({ maxItems: 0 });
         await zeroItemCache.set("key1", { data: "value1" });
         const value = await zeroItemCache.get("key1");
-        expect(value).toBeUndefined();
-        zeroItemCache.resetCache();
+        expect(value).toBeNull();
     });
 
     it("should maintain the correct number of items", async () => {
@@ -96,6 +93,5 @@ describe("LocalCache", () => {
         }
 
         expect((testCache as any).cache.size).toBe(maxItems);
-        testCache.resetCache();
     });
 });
