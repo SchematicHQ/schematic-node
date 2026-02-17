@@ -1,9 +1,8 @@
 import { setTimeout, clearTimeout } from "timers";
+import { CacheProvider, CacheOptions } from "./types";
 
-interface CacheProvider<T> {
-    get(key: string): Promise<T | undefined>;
-    set(key: string, value: T, ttlOverride?: number): Promise<void>;
-}
+// setTimeout max: 2^31 - 1 ms (~24.8 days). Larger values overflow to 1ms.
+const MAX_TIMEOUT_MS = 2_147_483_647;
 
 type CacheItem<T> = {
     value: T;
@@ -12,11 +11,9 @@ type CacheItem<T> = {
     timeoutId?: ReturnType<typeof setTimeout>;
 };
 
-export interface CacheOptions {
-    maxItems?: number;
-    ttl?: number;
-}
-
+/**
+ * In-memory cache implementation with LRU eviction and TTL support
+ */
 class LocalCache<T> implements CacheProvider<T> {
     private cache: Map<string, CacheItem<T>>;
     private maxItems: number;
@@ -29,14 +26,14 @@ class LocalCache<T> implements CacheProvider<T> {
         this.defaultTTL = ttl;
     }
 
-    async get(key: string): Promise<T | undefined> {
+    async get(key: string): Promise<T | null> {
         const item = this.cache.get(key);
-        if (!item) return undefined;
+        if (!item) return null;
 
         // Check if the item has expired
         if (item.expiration <= Date.now()) {
             this.evictItem(key, item);
-            return undefined;
+            return null;
         }
 
         // Update the access counter for LRU eviction
@@ -71,19 +68,28 @@ class LocalCache<T> implements CacheProvider<T> {
             value,
             accessCounter: this.accessCounter,
             expiration: Date.now() + ttl,
-            timeoutId: setTimeout(() => this.evictItem(key, newItem), ttl),
         };
+        
+        // Set timeout after item is created to avoid circular reference
+        // Cap at MAX_TIMEOUT_MS to avoid 32-bit overflow; expiration field handles the real TTL
+        newItem.timeoutId = setTimeout(() => this.evictItem(key, newItem), Math.min(ttl, MAX_TIMEOUT_MS));
         this.cache.set(key, newItem);
     }
 
-    resetCache(): void {
-        this.cache.forEach((item) => {
-            if (item.timeoutId) {
-                clearTimeout(item.timeoutId);
+    async delete(key: string): Promise<void> {
+        const item = this.cache.get(key);
+        if (item) {
+            this.evictItem(key, item);
+        }
+    }
+
+    async deleteMissing(keysToKeep: string[], _?: { scanPattern?: string }): Promise<void> {
+        const keysToKeepSet = new Set(keysToKeep);
+        for (const [key, item] of this.cache) {
+            if (!keysToKeepSet.has(key)) {
+                this.evictItem(key, item);
             }
-        });
-        this.cache.clear();
-        this.accessCounter = 0;
+        }
     }
 
     private evictItem(key: string, item: CacheItem<T>): void {

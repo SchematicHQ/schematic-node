@@ -1,10 +1,12 @@
 import * as api from "./api";
 import { SchematicClient as BaseClient } from "./Client";
 
-import { CacheProvider, LocalCache } from "./cache";
+import { type CacheProvider, LocalCache } from "./cache";
 import { ConsoleLogger, Logger } from "./logger";
 import { EventBuffer } from "./events";
 import { offlineFetcher, provideFetcher } from "./core/fetcher/custom";
+import { DataStreamClient, type DataStreamClientOptions } from "./datastream";
+import type { RedisClient } from "./cache/redis";
 
 /**
  * Configuration options for the SchematicClient
@@ -18,6 +20,23 @@ export interface SchematicOptions {
     cacheProviders?: {
         /** Providers for caching flag check results */
         flagChecks?: CacheProvider<boolean>[];
+    };
+    /** Enable DataStream for real-time updates */
+    useDataStream?: boolean;
+    /** DataStream configuration options */
+    dataStream?: {
+        /** Cache TTL in milliseconds (default: 5 minutes) */
+        cacheTTL?: number;
+        /** Pre-created, connected redis client for DataStream caching */
+        redisClient?: RedisClient;
+        /** Redis key prefix for all cache keys (default: 'schematic:') */
+        redisKeyPrefix?: string;
+        /** Enable replicator mode for external data synchronization */
+        replicatorMode?: boolean;
+        /** Health check URL for replicator mode */
+        replicatorHealthURL?: string;
+        /** Health check interval for replicator mode in milliseconds */
+        replicatorHealthCheck?: number;
     };
     /** If using an API key that is not environment-specific, use this option to specify the environment */
     environmentId?: string;
@@ -43,6 +62,7 @@ export interface CheckFlagOptions {
 }
 
 export class SchematicClient extends BaseClient {
+    private datastreamClient?: DataStreamClient;
     private eventBuffer: EventBuffer;
     private flagCheckCacheProviders: CacheProvider<boolean>[];
     private flagDefaults: { [key: string]: boolean };
@@ -100,6 +120,34 @@ export class SchematicClient extends BaseClient {
         this.flagCheckCacheProviders = opts?.cacheProviders?.flagChecks ?? [new LocalCache<boolean>()];
         this.flagDefaults = flagDefaults;
         this.offline = offline;
+
+        // Initialize DataStream client if enabled
+        if (opts?.useDataStream && !offline) {
+            const datastreamOptions: DataStreamClientOptions = {
+                apiKey,
+                baseURL: basePath,
+                logger,
+                cacheTTL: opts.dataStream?.cacheTTL,
+                redisClient: opts.dataStream?.redisClient,
+                redisKeyPrefix: opts.dataStream?.redisKeyPrefix,
+                replicatorMode: opts.dataStream?.replicatorMode,
+                replicatorHealthURL: opts.dataStream?.replicatorHealthURL,
+                replicatorHealthCheck: opts.dataStream?.replicatorHealthCheck,
+            };
+
+            this.datastreamClient = new DataStreamClient(datastreamOptions);
+            this.datastreamClient.start().catch((error) => {
+                logger.error(`Failed to start DataStream client: ${error}`);
+                this.datastreamClient = undefined;
+            });
+        }
+    }
+
+    /**
+     * Returns whether DataStream is enabled and available
+     */
+    private useDataStream(): boolean {
+        return this.datastreamClient !== undefined;
     }
 
     /**
@@ -123,11 +171,43 @@ export class SchematicClient extends BaseClient {
             return getDefault();
         }
 
+        if (this.useDataStream()) {
+            try {
+                const resp = await this.datastreamClient!.checkFlag(evalCtx, key);
+
+                const flagValue = resp?.value;
+
+                // Enqueue the flag check event
+                this.enqueueEvent(api.EventType.FlagCheck, {
+                    flagKey: key,
+                    value: flagValue ?? false,
+                    reason: resp?.reason ?? "unknown",
+                    ruleId: resp?.ruleId,
+                    companyId: resp?.companyId,
+                    userId: resp?.userId,
+                    flagId: resp?.flagId,
+                    reqCompany: evalCtx.company,
+                    reqUser: evalCtx.user,
+                } satisfies api.EventBodyFlagCheck);
+
+                return flagValue ?? this.getFlagDefault(key);
+            } catch (err) {
+                this.logger.debug(`Datastream flag check failed (${err}), falling back to API`);
+                return this.checkFlagViaAPI(evalCtx, key, options, getDefault);
+            }
+        }
+
+        return this.checkFlagViaAPI(evalCtx, key, options, getDefault);
+    }
+
+    private async checkFlagViaAPI(evalCtx: api.CheckFlagRequestBody, key: string, options?: CheckFlagOptions, getDefault?: () => boolean): Promise<boolean> {
+        const getDefaultValue = getDefault ?? (() => this.getFlagDefault(key));
+        
         try {
             const cacheKey = JSON.stringify({ evalCtx, key });
             for (const provider of this.flagCheckCacheProviders) {
                 const cachedValue = await provider.get(cacheKey);
-                if (cachedValue !== undefined) {
+                if (cachedValue !== null && cachedValue !== undefined) {
                     this.logger.debug(`${provider.constructor.name} cache hit for flag ${key}`);
                     return cachedValue;
                 }
@@ -138,7 +218,7 @@ export class SchematicClient extends BaseClient {
             });
             if (response.data.value === undefined) {
                 this.logger.debug(`No value returned from feature flag API for flag ${key}, falling back to default`);
-                return getDefault();
+                return getDefaultValue();
             }
 
             for (const provider of this.flagCheckCacheProviders) {
@@ -150,7 +230,7 @@ export class SchematicClient extends BaseClient {
             return response.data.value;
         } catch (err) {
             this.logger.error(`Error checking flag ${key}: ${err}`);
-            return getDefault();
+            return getDefaultValue();
         }
     }
 
@@ -194,7 +274,7 @@ export class SchematicClient extends BaseClient {
 
                 for (const provider of this.flagCheckCacheProviders) {
                     const cachedValue = await provider.get(cacheKey);
-                    if (cachedValue !== undefined) {
+                    if (cachedValue !== null && cachedValue !== undefined) {
                         this.logger.debug(`${provider.constructor.name} cache hit for flag ${key}`);
                         cachedResults.set(key, {
                             flag: key,
@@ -275,10 +355,13 @@ export class SchematicClient extends BaseClient {
     }
 
     /**
-     * Gracefully shuts down the client by stopping the event buffer
-     * @returns Promise that resolves when the event buffer has been stopped
+     * Gracefully shuts down the client by stopping the event buffer and DataStream client
+     * @returns Promise that resolves when everything has been stopped
      */
     async close(): Promise<void> {
+        if (this.datastreamClient) {
+            this.datastreamClient.close();
+        }
         return this.eventBuffer.stop();
     }
 
@@ -309,6 +392,19 @@ export class SchematicClient extends BaseClient {
 
         try {
             await this.enqueueEvent("track", body);
+
+            // Update company metrics in DataStream if available and connected
+            if (body.company && this.useDataStream() && this.datastreamClient!.isConnected()) {
+                try {
+                    await this.datastreamClient!.updateCompanyMetrics(
+                        body.company,
+                        body.event,
+                        body.quantity || 1
+                    );
+                } catch (err) {
+                    this.logger.error(`Failed to update company metrics: ${err}`);
+                }
+            }
         } catch (err) {
             this.logger.error(`Error sending track event: ${err}`);
         }
@@ -336,8 +432,8 @@ export class SchematicClient extends BaseClient {
     }
 
     private async enqueueEvent(
-        eventType: "identify" | "track",
-        body: api.EventBodyIdentify | api.EventBodyTrack
+        eventType: api.EventType,
+        body: api.EventBody
     ): Promise<void> {
         try {
             this.eventBuffer.push({

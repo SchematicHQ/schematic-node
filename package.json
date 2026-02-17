@@ -26,23 +26,33 @@
         "form-data": "^4.0.4",
         "formdata-node": "^6.0.3",
         "node-fetch": "^2.7.0",
-        "readable-stream": "^4.5.2"
+        "readable-stream": "^4.5.2",
+        "ws": "^8.0.0"
+    },
+    "peerDependencies": {
+        "redis": "^4.0.0"
+    },
+    "peerDependenciesMeta": {
+        "redis": {
+            "optional": true
+        }
     },
     "devDependencies": {
-        "@types/node-fetch": "^2.6.12",
-        "@types/readable-stream": "^4.0.18",
-        "webpack": "^5.97.1",
-        "ts-loader": "^9.5.1",
-        "jest": "^29.7.0",
+        "@biomejs/biome": "2.3.1",
         "@jest/globals": "^29.7.0",
         "@types/jest": "^29.5.14",
-        "ts-jest": "^29.3.4",
+        "@types/node": "^18.19.70",
+        "@types/node-fetch": "^2.6.12",
+        "@types/readable-stream": "^4.0.18",
+        "@types/ws": "^8.18.1",
+        "esbuild": "^0.25.9",
+        "jest": "^29.7.0",
         "jest-environment-jsdom": "^29.7.0",
         "msw": "2.11.2",
-        "@types/node": "^18.19.70",
+        "ts-jest": "^29.3.4",
+        "ts-loader": "^9.5.1",
         "typescript": "~5.7.2",
-        "@biomejs/biome": "2.3.1",
-        "esbuild": "^0.25.9"
+        "webpack": "^5.97.1"
     },
     "browser": {
         "fs": false,
@@ -50,7 +60,9 @@
         "path": false,
         "stream": false,
         "crypto": false,
-        "timers": false
+        "timers": false,
+        "url": false,
+        "ws": false
     },
     "packageManager": "yarn@1.22.22",
     "engines": {
@@ -61,6 +73,7 @@
     "files": [
         "dist/**/*.js",
         "dist/**/*.d.ts",
+        "dist/**/*.wasm",
         "!dist/**/*.js.map",
         "!dist/**/*.test.*",
         "README.md"
