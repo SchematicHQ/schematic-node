@@ -68,6 +68,10 @@ export class DataStreamClient extends EventEmitter {
   private readonly userCacheProvider: CacheProvider<Schematic.RulesengineUser>;
   private readonly flagsCacheProvider: CacheProvider<Schematic.RulesengineFlag>;
 
+  // Key→ID mapping cache providers (two-level caching)
+  private readonly companyKeyCacheProvider: CacheProvider<string>;
+  private readonly userKeyCacheProvider: CacheProvider<string>;
+
   // WebSocket client
   private wsClient?: DatastreamWSClient;
 
@@ -99,6 +103,10 @@ export class DataStreamClient extends EventEmitter {
     this.companyCacheProvider = this.createCacheProvider(options, 'company');
     this.userCacheProvider = this.createCacheProvider(options, 'user');
     this.flagsCacheProvider = this.createCacheProvider(options, 'flag');
+
+    // Initialize key→ID mapping cache providers
+    this.companyKeyCacheProvider = this.createKeyCacheProvider(options);
+    this.userKeyCacheProvider = this.createKeyCacheProvider(options);
 
     // Replicator mode settings
     this.replicatorMode = options.replicatorMode ?? false;
@@ -155,6 +163,24 @@ export class DataStreamClient extends EventEmitter {
     // Default to memory cache
     this.logger.debug(`Using memory cache provider for ${cacheType} cache (TTL: ${cacheTTL}ms)`);
     return new LocalCache<T>({ ttl: cacheTTL });
+  }
+
+  /**
+   * Creates a key→ID mapping cache provider (always string values)
+   * Uses Redis if available, otherwise memory cache
+   */
+  private createKeyCacheProvider(options: DataStreamClientOptions): CacheProvider<string> {
+    const cacheTTL = this.cacheTTL;
+
+    if (options.redisClient) {
+      return new RedisCacheProvider<string>({
+        client: options.redisClient,
+        keyPrefix: options.redisKeyPrefix || 'schematic:',
+        ttl: cacheTTL,
+      });
+    }
+
+    return new LocalCache<string>({ ttl: cacheTTL });
   }
 
   /**
@@ -661,16 +687,23 @@ export class DataStreamClient extends EventEmitter {
     }
 
     if (message.message_type === MessageType.DELETE) {
-      // Remove company from cache
+      // Remove key→ID mappings
       if (company.keys) {
         for (const [key, value] of Object.entries(company.keys)) {
           const cacheKey = this.resourceKeyToCacheKey(CACHE_KEY_PREFIX_COMPANY, key, value);
           try {
-            await this.companyCacheProvider.delete(cacheKey);
+            await this.companyKeyCacheProvider.delete(cacheKey);
           } catch (error) {
-            this.logger.warn(`Failed to delete company from cache: ${error}`);
+            this.logger.warn(`Failed to delete company key mapping from cache: ${error}`);
           }
         }
+      }
+      // Remove ID→resource
+      const resourceKey = this.resourceIdCacheKey(CACHE_KEY_PREFIX_COMPANY, company.id);
+      try {
+        await this.companyCacheProvider.delete(resourceKey);
+      } catch (error) {
+        this.logger.warn(`Failed to delete company resource from cache: ${error}`);
       }
       return;
     }
@@ -693,31 +726,29 @@ export class DataStreamClient extends EventEmitter {
     }
 
     if (message.message_type === MessageType.DELETE) {
-      // Remove user from cache
+      // Remove key→ID mappings
       if (user.keys) {
         for (const [key, value] of Object.entries(user.keys)) {
           const cacheKey = this.resourceKeyToCacheKey(CACHE_KEY_PREFIX_USER, key, value);
           try {
-            await this.userCacheProvider.delete(cacheKey);
+            await this.userKeyCacheProvider.delete(cacheKey);
           } catch (error) {
-            this.logger.warn(`Failed to delete user from cache: ${error}`);
+            this.logger.warn(`Failed to delete user key mapping from cache: ${error}`);
           }
         }
+      }
+      // Remove ID→resource
+      const resourceKey = this.resourceIdCacheKey(CACHE_KEY_PREFIX_USER, user.id);
+      try {
+        await this.userCacheProvider.delete(resourceKey);
+      } catch (error) {
+        this.logger.warn(`Failed to delete user resource from cache: ${error}`);
       }
       return;
     }
 
     // Cache the user
-    if (user.keys) {
-      for (const [key, value] of Object.entries(user.keys)) {
-        const cacheKey = this.resourceKeyToCacheKey(CACHE_KEY_PREFIX_USER, key, value);
-        try {
-          await this.userCacheProvider.set(cacheKey, user, this.cacheTTL);
-        } catch (error) {
-          this.logger.warn(`Failed to cache user: ${error}`);
-        }
-      }
-    }
+    await this.cacheUserForKeys(user);
 
     // Notify pending requests
     this.notifyPendingUserRequests(user.keys || {}, user);
@@ -869,9 +900,11 @@ export class DataStreamClient extends EventEmitter {
     for (const [key, value] of Object.entries(keys)) {
       const cacheKey = this.resourceKeyToCacheKey(CACHE_KEY_PREFIX_COMPANY, key, value);
       try {
-        const company = await this.companyCacheProvider.get(cacheKey);
-        if (company) {
-          return company;
+        const companyId = await this.companyKeyCacheProvider.get(cacheKey);
+        if (companyId) {
+          const resourceKey = this.resourceIdCacheKey(CACHE_KEY_PREFIX_COMPANY, companyId);
+          const company = await this.companyCacheProvider.get(resourceKey);
+          if (company) return company;
         }
       } catch (error) {
         this.logger.warn(`Failed to retrieve company from cache: ${error}`);
@@ -887,9 +920,11 @@ export class DataStreamClient extends EventEmitter {
     for (const [key, value] of Object.entries(keys)) {
       const cacheKey = this.resourceKeyToCacheKey(CACHE_KEY_PREFIX_USER, key, value);
       try {
-        const user = await this.userCacheProvider.get(cacheKey);
-        if (user) {
-          return user;
+        const userId = await this.userKeyCacheProvider.get(cacheKey);
+        if (userId) {
+          const resourceKey = this.resourceIdCacheKey(CACHE_KEY_PREFIX_USER, userId);
+          const user = await this.userCacheProvider.get(resourceKey);
+          if (user) return user;
         }
       } catch (error) {
         this.logger.warn(`Failed to retrieve user from cache: ${error}`);
@@ -906,12 +941,40 @@ export class DataStreamClient extends EventEmitter {
       throw new Error('No keys provided for company lookup');
     }
 
+    // Cache ID → full resource (single entry)
+    const resourceKey = this.resourceIdCacheKey(CACHE_KEY_PREFIX_COMPANY, company.id);
+    await this.companyCacheProvider.set(resourceKey, company, this.cacheTTL);
+
+    // Cache each key → ID
     for (const [key, value] of Object.entries(company.keys)) {
       const cacheKey = this.resourceKeyToCacheKey(CACHE_KEY_PREFIX_COMPANY, key, value);
       try {
-        await this.companyCacheProvider.set(cacheKey, company, this.cacheTTL);
+        await this.companyKeyCacheProvider.set(cacheKey, company.id, this.cacheTTL);
       } catch (error) {
-        this.logger.warn(`Failed to cache company for key '${cacheKey}': ${error}`);
+        this.logger.warn(`Failed to cache company key mapping '${cacheKey}': ${error}`);
+      }
+    }
+  }
+
+  /**
+   * cacheUserForKeys caches a user for all of its keys using two-level indirection
+   */
+  private async cacheUserForKeys(user: Schematic.RulesengineUser): Promise<void> {
+    if (!user.keys || Object.keys(user.keys).length === 0) {
+      throw new Error('No keys provided for user lookup');
+    }
+
+    // Cache ID → full resource (single entry)
+    const resourceKey = this.resourceIdCacheKey(CACHE_KEY_PREFIX_USER, user.id);
+    await this.userCacheProvider.set(resourceKey, user, this.cacheTTL);
+
+    // Cache each key → ID
+    for (const [key, value] of Object.entries(user.keys)) {
+      const cacheKey = this.resourceKeyToCacheKey(CACHE_KEY_PREFIX_USER, key, value);
+      try {
+        await this.userKeyCacheProvider.set(cacheKey, user.id, this.cacheTTL);
+      } catch (error) {
+        this.logger.warn(`Failed to cache user key mapping '${cacheKey}': ${error}`);
       }
     }
   }
@@ -1135,6 +1198,16 @@ export class DataStreamClient extends EventEmitter {
     this.logger.debug(`Generated flag cache key - flag: ${key}, mode: ${this.replicatorMode ? 'replicator' : 'datastream'}, version: ${versionKey}, cacheKey: ${cacheKey}`);
     
     return cacheKey;
+  }
+
+  /**
+   * resourceIdCacheKey generates a cache key for an ID-based resource lookup
+   */
+  private resourceIdCacheKey(resourceType: string, id: string): string {
+    const versionKey = this.replicatorMode && this.replicatorCacheVersion
+      ? this.replicatorCacheVersion
+      : this.getRulesEngineVersionKey();
+    return `${resourceType}:${versionKey}:${id}`;
   }
 
   /**

@@ -620,5 +620,207 @@ describe('DataStreamClient', () => {
     await expect(companyPromise).rejects.toThrow('Company not found');
   });
 
+  describe('two-level caching', () => {
+    const multiKeyCompany = {
+      id: 'company-multi',
+      account_id: 'account-123',
+      environment_id: 'env-123',
+      keys: { name: 'acme', slug: 'acme-corp', external_id: 'ext-1' },
+      traits: [],
+      rules: [],
+      metrics: [],
+      plan_ids: [],
+      billing_product_ids: [],
+      crm_product_ids: [],
+      credit_balances: {},
+    } as unknown as Schematic.RulesengineCompany;
+
+    const multiKeyUser = {
+      id: 'user-multi',
+      account_id: 'account-123',
+      environment_id: 'env-123',
+      keys: { email: 'alice@example.com', user_id: 'u-1' },
+      traits: [],
+      rules: [],
+    } as unknown as Schematic.RulesengineUser;
+
+    let messageHandler: (message: DataStreamResp) => Promise<void>;
+
+    beforeEach(async () => {
+      await client.start();
+      const DatastreamWSClientMock = DatastreamWSClient as jest.MockedClass<typeof DatastreamWSClient>;
+      messageHandler = DatastreamWSClientMock.mock.calls[0][0].messageHandler;
+    });
+
+    test('should retrieve company by any of its keys after caching', async () => {
+      await messageHandler({
+        entity_type: EntityType.COMPANY,
+        message_type: MessageType.FULL,
+        data: multiKeyCompany,
+      });
+
+      // Look up by each key individually
+      const byName = await client.getCompany({ name: 'acme' });
+      const bySlug = await client.getCompany({ slug: 'acme-corp' });
+      const byExtId = await client.getCompany({ external_id: 'ext-1' });
+
+      expect(byName).toEqual(multiKeyCompany);
+      expect(bySlug).toEqual(multiKeyCompany);
+      expect(byExtId).toEqual(multiKeyCompany);
+    });
+
+    test('should retrieve user by any of its keys after caching', async () => {
+      await messageHandler({
+        entity_type: EntityType.USER,
+        message_type: MessageType.FULL,
+        data: multiKeyUser,
+      });
+
+      const byEmail = await client.getUser({ email: 'alice@example.com' });
+      const byUserId = await client.getUser({ user_id: 'u-1' });
+
+      expect(byEmail).toEqual(multiKeyUser);
+      expect(byUserId).toEqual(multiKeyUser);
+    });
+
+    test('should remove company from cache on DELETE for all keys', async () => {
+      mockDatastreamWSClientInstance.isConnected.mockReturnValue(true);
+
+      // Cache the company first
+      await messageHandler({
+        entity_type: EntityType.COMPANY,
+        message_type: MessageType.FULL,
+        data: multiKeyCompany,
+      });
+
+      // Verify it's cached — returns from cache without sending a WS request
+      mockDatastreamWSClientInstance.sendMessage.mockClear();
+      const cached = await client.getCompany({ name: 'acme' });
+      expect(cached).toEqual(multiKeyCompany);
+      expect(mockDatastreamWSClientInstance.sendMessage).not.toHaveBeenCalled();
+
+      // Send DELETE
+      await messageHandler({
+        entity_type: EntityType.COMPANY,
+        message_type: MessageType.DELETE,
+        data: multiKeyCompany,
+      });
+
+      // Don't respond — leave requests pending so we can inspect sendMessage calls
+      mockDatastreamWSClientInstance.sendMessage.mockResolvedValue(undefined);
+
+      // After delete, each key should miss cache and trigger a WS request
+      for (const [key, value] of Object.entries(multiKeyCompany.keys!)) {
+        mockDatastreamWSClientInstance.sendMessage.mockClear();
+        // Don't await — the promise will pend waiting for a WS response
+        const pending = client.getCompany({ [key]: value });
+        // Let the async cache lookup resolve before checking
+        await new Promise(resolve => process.nextTick(resolve));
+        // A WS request proves the cache was empty for this key
+        expect(mockDatastreamWSClientInstance.sendMessage).toHaveBeenCalledTimes(1);
+        // Resolve the pending request so it doesn't leak
+        await messageHandler({
+          entity_type: EntityType.COMPANY,
+          message_type: MessageType.FULL,
+          data: { ...multiKeyCompany, keys: { [key]: value } },
+        });
+        await pending;
+      }
+    });
+
+    test('should remove user from cache on DELETE for all keys', async () => {
+      mockDatastreamWSClientInstance.isConnected.mockReturnValue(true);
+
+      // Cache the user
+      await messageHandler({
+        entity_type: EntityType.USER,
+        message_type: MessageType.FULL,
+        data: multiKeyUser,
+      });
+
+      // Verify it's cached — returns from cache without sending a WS request
+      mockDatastreamWSClientInstance.sendMessage.mockClear();
+      const cached = await client.getUser({ email: 'alice@example.com' });
+      expect(cached).toEqual(multiKeyUser);
+      expect(mockDatastreamWSClientInstance.sendMessage).not.toHaveBeenCalled();
+
+      // Send DELETE
+      await messageHandler({
+        entity_type: EntityType.USER,
+        message_type: MessageType.DELETE,
+        data: multiKeyUser,
+      });
+
+      // Don't respond — leave requests pending so we can inspect sendMessage calls
+      mockDatastreamWSClientInstance.sendMessage.mockResolvedValue(undefined);
+
+      // After delete, each key should miss cache and trigger a WS request
+      for (const [key, value] of Object.entries(multiKeyUser.keys!)) {
+        mockDatastreamWSClientInstance.sendMessage.mockClear();
+        const pending = client.getUser({ [key]: value });
+        await new Promise(resolve => process.nextTick(resolve));
+        // A WS request proves the cache was empty for this key
+        expect(mockDatastreamWSClientInstance.sendMessage).toHaveBeenCalledTimes(1);
+        // Resolve the pending request so it doesn't leak
+        await messageHandler({
+          entity_type: EntityType.USER,
+          message_type: MessageType.FULL,
+          data: { ...multiKeyUser, keys: { [key]: value } },
+        });
+        await pending;
+      }
+    });
+
+    test('should update company in cache and reflect changes across all keys', async () => {
+      // Cache initial company
+      await messageHandler({
+        entity_type: EntityType.COMPANY,
+        message_type: MessageType.FULL,
+        data: multiKeyCompany,
+      });
+
+      // Send updated company with same keys but different data
+      const updatedCompany = {
+        ...multiKeyCompany,
+        traits: [{ key: 'tier', value: 'enterprise' }],
+      } as unknown as Schematic.RulesengineCompany;
+
+      await messageHandler({
+        entity_type: EntityType.COMPANY,
+        message_type: MessageType.FULL,
+        data: updatedCompany,
+      });
+
+      // All keys should return the updated company
+      const byName = await client.getCompany({ name: 'acme' });
+      const bySlug = await client.getCompany({ slug: 'acme-corp' });
+
+      expect(byName).toEqual(updatedCompany);
+      expect(bySlug).toEqual(updatedCompany);
+    });
+
+    test('should update company metrics and reflect via all keys', async () => {
+      const companyWithMetrics = {
+        ...multiKeyCompany,
+        metrics: [
+          { eventSubtype: 'api-call', value: 10 },
+        ],
+      } as unknown as Schematic.RulesengineCompany;
+
+      await messageHandler({
+        entity_type: EntityType.COMPANY,
+        message_type: MessageType.FULL,
+        data: companyWithMetrics,
+      });
+
+      // Update metrics via one key set
+      await client.updateCompanyMetrics({ name: 'acme' }, 'api-call', 5);
+
+      // Read back via a different key
+      const bySlug = await client.getCompany({ slug: 'acme-corp' });
+      const metric = (bySlug as any).metrics.find((m: any) => m.eventSubtype === 'api-call');
+      expect(metric.value).toBe(15);
+    });
+  });
 
 });
