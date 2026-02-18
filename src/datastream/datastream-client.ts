@@ -1207,7 +1207,7 @@ export class DataStreamClient extends EventEmitter {
     const versionKey = this.replicatorMode && this.replicatorCacheVersion
       ? this.replicatorCacheVersion
       : this.getRulesEngineVersionKey();
-    return `${resourceType}:${versionKey}:_id:${id}`;
+    return `${resourceType}:${versionKey}:${id}`;
   }
 
   /**
