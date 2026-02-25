@@ -1,7 +1,6 @@
 // Note: This client is designed for Node.js server environments only
 
 import { EventEmitter } from 'events';
-import { URL } from 'url';
 import WebSocketClass, { type WebSocket } from 'ws';
 import { DataStreamResp, DataStreamBaseReq } from './types';
 import { Logger } from '../logger';
