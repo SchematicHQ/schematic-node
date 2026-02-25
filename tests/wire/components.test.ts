@@ -162,7 +162,7 @@ describe("ComponentsClient", () => {
     test("createComponent (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entity_type: "billing", name: "name" };
+        const rawRequestBody = { entity_type: "billing", name: "x" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -176,7 +176,7 @@ describe("ComponentsClient", () => {
         await expect(async () => {
             return await client.components.createComponent({
                 entityType: "billing",
-                name: "name",
+                name: "x",
             });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
@@ -184,7 +184,7 @@ describe("ComponentsClient", () => {
     test("createComponent (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entity_type: "billing", name: "name" };
+        const rawRequestBody = { entity_type: "billing", name: "x" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -198,7 +198,7 @@ describe("ComponentsClient", () => {
         await expect(async () => {
             return await client.components.createComponent({
                 entityType: "billing",
-                name: "name",
+                name: "x",
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
@@ -206,7 +206,7 @@ describe("ComponentsClient", () => {
     test("createComponent (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entity_type: "billing", name: "name" };
+        const rawRequestBody = { entity_type: "billing", name: "x" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -220,7 +220,7 @@ describe("ComponentsClient", () => {
         await expect(async () => {
             return await client.components.createComponent({
                 entityType: "billing",
-                name: "name",
+                name: "x",
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
@@ -228,7 +228,7 @@ describe("ComponentsClient", () => {
     test("createComponent (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entity_type: "billing", name: "name" };
+        const rawRequestBody = { entity_type: "billing", name: "x" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -242,7 +242,7 @@ describe("ComponentsClient", () => {
         await expect(async () => {
             return await client.components.createComponent({
                 entityType: "billing",
-                name: "name",
+                name: "x",
             });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
@@ -250,7 +250,7 @@ describe("ComponentsClient", () => {
     test("createComponent (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entity_type: "billing", name: "name" };
+        const rawRequestBody = { entity_type: "billing", name: "x" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -264,7 +264,7 @@ describe("ComponentsClient", () => {
         await expect(async () => {
             return await client.components.createComponent({
                 entityType: "billing",
-                name: "name",
+                name: "x",
             });
         }).rejects.toThrow(Schematic.InternalServerError);
     });
@@ -835,9 +835,6 @@ describe("ComponentsClient", () => {
                                 credit_name: "credit_name",
                                 id: "id",
                                 plan_id: "plan_id",
-                                plan_name: "plan_name",
-                                reset_cadence: "daily",
-                                reset_start: "billing_period",
                                 reset_type: "no_reset",
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
@@ -982,9 +979,6 @@ describe("ComponentsClient", () => {
                                 credit_name: "credit_name",
                                 id: "id",
                                 plan_id: "plan_id",
-                                plan_name: "plan_name",
-                                reset_cadence: "daily",
-                                reset_start: "billing_period",
                                 reset_type: "no_reset",
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
@@ -1046,9 +1040,6 @@ describe("ComponentsClient", () => {
                                     credit_name: "credit_name",
                                     id: "id",
                                     plan_id: "plan_id",
-                                    plan_name: "plan_name",
-                                    reset_cadence: "daily",
-                                    reset_start: "billing_period",
                                     reset_type: "no_reset",
                                     updated_at: "2024-01-15T09:30:00Z",
                                 },
@@ -1164,6 +1155,7 @@ describe("ComponentsClient", () => {
                         provider_type: "schematic",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
+                    entitlements: [{ feature_id: "feature_id", feature_key: "feature_key", value_type: "boolean" }],
                     entity_traits: [
                         {
                             created_at: "2024-01-15T09:30:00Z",
@@ -1230,9 +1222,6 @@ describe("ComponentsClient", () => {
                                 credit_name: "credit_name",
                                 id: "id",
                                 plan_id: "plan_id",
-                                plan_name: "plan_name",
-                                reset_cadence: "daily",
-                                reset_start: "billing_period",
                                 reset_type: "no_reset",
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
@@ -1277,6 +1266,17 @@ describe("ComponentsClient", () => {
                             value: true,
                         },
                     ],
+                    scheduled_downgrade: {
+                        currency: "currency",
+                        effective_after: "2024-01-15T09:30:00Z",
+                        from_plan_id: "from_plan_id",
+                        from_plan_name: "from_plan_name",
+                        from_subscription_price: 1,
+                        id: "id",
+                        interval: "interval",
+                        to_plan_id: "to_plan_id",
+                        to_plan_name: "to_plan_name",
+                    },
                     traits: { key: "value" },
                     updated_at: "2024-01-15T09:30:00Z",
                     user_count: 1,
@@ -1324,6 +1324,18 @@ describe("ComponentsClient", () => {
                     },
                 ],
                 default_plan: {
+                    active_version: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        description: "description",
+                        environment_id: "environment_id",
+                        icon: "icon",
+                        id: "id",
+                        name: "name",
+                        plan_type: "plan",
+                        status: "published",
+                        updated_at: "2024-01-15T09:30:00Z",
+                        version: 1,
+                    },
                     billing_product: {
                         account_id: "account_id",
                         created_at: "2024-01-15T09:30:00Z",
@@ -1354,6 +1366,18 @@ describe("ComponentsClient", () => {
                     controlled_by: "schematic",
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
+                    draft_version: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        description: "description",
+                        environment_id: "environment_id",
+                        icon: "icon",
+                        id: "id",
+                        name: "name",
+                        plan_type: "plan",
+                        status: "published",
+                        updated_at: "2024-01-15T09:30:00Z",
+                        version: 1,
+                    },
                     features: [
                         {
                             created_at: "2024-01-15T09:30:00Z",
@@ -1439,8 +1463,6 @@ describe("ComponentsClient", () => {
                             id: "id",
                             plan_id: "plan_id",
                             plan_name: "plan_name",
-                            reset_cadence: "daily",
-                            reset_start: "billing_period",
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
@@ -1496,6 +1518,7 @@ describe("ComponentsClient", () => {
                 display_settings: {
                     show_as_monthly_prices: true,
                     show_credits: true,
+                    show_feature_description: true,
                     show_period_toggle: true,
                     show_zero_price_as_free: true,
                 },
@@ -1526,6 +1549,18 @@ describe("ComponentsClient", () => {
                     },
                 ],
                 post_trial_plan: {
+                    active_version: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        description: "description",
+                        environment_id: "environment_id",
+                        icon: "icon",
+                        id: "id",
+                        name: "name",
+                        plan_type: "plan",
+                        status: "published",
+                        updated_at: "2024-01-15T09:30:00Z",
+                        version: 1,
+                    },
                     billing_product: {
                         account_id: "account_id",
                         created_at: "2024-01-15T09:30:00Z",
@@ -1556,6 +1591,18 @@ describe("ComponentsClient", () => {
                     controlled_by: "schematic",
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
+                    draft_version: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        description: "description",
+                        environment_id: "environment_id",
+                        icon: "icon",
+                        id: "id",
+                        name: "name",
+                        plan_type: "plan",
+                        status: "published",
+                        updated_at: "2024-01-15T09:30:00Z",
+                        version: 1,
+                    },
                     features: [
                         {
                             created_at: "2024-01-15T09:30:00Z",
@@ -1641,8 +1688,6 @@ describe("ComponentsClient", () => {
                             id: "id",
                             plan_id: "plan_id",
                             plan_name: "plan_name",
-                            reset_cadence: "daily",
-                            reset_start: "billing_period",
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
@@ -1698,6 +1743,19 @@ describe("ComponentsClient", () => {
                 prevent_self_service_downgrade: true,
                 prevent_self_service_downgrade_button_text: "prevent_self_service_downgrade_button_text",
                 prevent_self_service_downgrade_url: "prevent_self_service_downgrade_url",
+                scheduled_downgrade: {
+                    currency: "currency",
+                    effective_after: "2024-01-15T09:30:00Z",
+                    from_plan_id: "from_plan_id",
+                    from_plan_name: "from_plan_name",
+                    from_subscription_price: 1,
+                    id: "id",
+                    interval: "interval",
+                    scheduled_interval: "scheduled_interval",
+                    scheduled_price: 1,
+                    to_plan_id: "to_plan_id",
+                    to_plan_name: "to_plan_name",
+                },
                 show_as_monthly_prices: true,
                 show_credits: true,
                 show_period_toggle: true,
@@ -1938,9 +1996,6 @@ describe("ComponentsClient", () => {
                                 creditName: "credit_name",
                                 id: "id",
                                 planId: "plan_id",
-                                planName: "plan_name",
-                                resetCadence: "daily",
-                                resetStart: "billing_period",
                                 resetType: "no_reset",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
@@ -2100,9 +2155,6 @@ describe("ComponentsClient", () => {
                                 creditName: "credit_name",
                                 id: "id",
                                 planId: "plan_id",
-                                planName: "plan_name",
-                                resetCadence: "daily",
-                                resetStart: "billing_period",
                                 resetType: "no_reset",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
@@ -2175,9 +2227,6 @@ describe("ComponentsClient", () => {
                                     creditName: "credit_name",
                                     id: "id",
                                     planId: "plan_id",
-                                    planName: "plan_name",
-                                    resetCadence: "daily",
-                                    resetStart: "billing_period",
                                     resetType: "no_reset",
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 },
@@ -2295,6 +2344,13 @@ describe("ComponentsClient", () => {
                         providerType: "schematic",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
+                    entitlements: [
+                        {
+                            featureId: "feature_id",
+                            featureKey: "feature_key",
+                            valueType: "boolean",
+                        },
+                    ],
                     entityTraits: [
                         {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2361,9 +2417,6 @@ describe("ComponentsClient", () => {
                                 creditName: "credit_name",
                                 id: "id",
                                 planId: "plan_id",
-                                planName: "plan_name",
-                                resetCadence: "daily",
-                                resetStart: "billing_period",
                                 resetType: "no_reset",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
@@ -2413,6 +2466,17 @@ describe("ComponentsClient", () => {
                             value: true,
                         },
                     ],
+                    scheduledDowngrade: {
+                        currency: "currency",
+                        effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
+                        fromPlanId: "from_plan_id",
+                        fromPlanName: "from_plan_name",
+                        fromSubscriptionPrice: 1,
+                        id: "id",
+                        interval: "interval",
+                        toPlanId: "to_plan_id",
+                        toPlanName: "to_plan_name",
+                    },
                     traits: {
                         key: "value",
                     },
@@ -2464,6 +2528,18 @@ describe("ComponentsClient", () => {
                     },
                 ],
                 defaultPlan: {
+                    activeVersion: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        description: "description",
+                        environmentId: "environment_id",
+                        icon: "icon",
+                        id: "id",
+                        name: "name",
+                        planType: "plan",
+                        status: "published",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        version: 1,
+                    },
                     billingProduct: {
                         accountId: "account_id",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2494,6 +2570,18 @@ describe("ComponentsClient", () => {
                     controlledBy: "schematic",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
+                    draftVersion: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        description: "description",
+                        environmentId: "environment_id",
+                        icon: "icon",
+                        id: "id",
+                        name: "name",
+                        planType: "plan",
+                        status: "published",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        version: 1,
+                    },
                     features: [
                         {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2594,8 +2682,6 @@ describe("ComponentsClient", () => {
                             id: "id",
                             planId: "plan_id",
                             planName: "plan_name",
-                            resetCadence: "daily",
-                            resetStart: "billing_period",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                     ],
@@ -2651,6 +2737,7 @@ describe("ComponentsClient", () => {
                 displaySettings: {
                     showAsMonthlyPrices: true,
                     showCredits: true,
+                    showFeatureDescription: true,
                     showPeriodToggle: true,
                     showZeroPriceAsFree: true,
                 },
@@ -2681,6 +2768,18 @@ describe("ComponentsClient", () => {
                     },
                 ],
                 postTrialPlan: {
+                    activeVersion: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        description: "description",
+                        environmentId: "environment_id",
+                        icon: "icon",
+                        id: "id",
+                        name: "name",
+                        planType: "plan",
+                        status: "published",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        version: 1,
+                    },
                     billingProduct: {
                         accountId: "account_id",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2711,6 +2810,18 @@ describe("ComponentsClient", () => {
                     controlledBy: "schematic",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
+                    draftVersion: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        description: "description",
+                        environmentId: "environment_id",
+                        icon: "icon",
+                        id: "id",
+                        name: "name",
+                        planType: "plan",
+                        status: "published",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        version: 1,
+                    },
                     features: [
                         {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2811,8 +2922,6 @@ describe("ComponentsClient", () => {
                             id: "id",
                             planId: "plan_id",
                             planName: "plan_name",
-                            resetCadence: "daily",
-                            resetStart: "billing_period",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                     ],
@@ -2868,6 +2977,19 @@ describe("ComponentsClient", () => {
                 preventSelfServiceDowngrade: true,
                 preventSelfServiceDowngradeButtonText: "prevent_self_service_downgrade_button_text",
                 preventSelfServiceDowngradeUrl: "prevent_self_service_downgrade_url",
+                scheduledDowngrade: {
+                    currency: "currency",
+                    effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
+                    fromPlanId: "from_plan_id",
+                    fromPlanName: "from_plan_name",
+                    fromSubscriptionPrice: 1,
+                    id: "id",
+                    interval: "interval",
+                    scheduledInterval: "scheduled_interval",
+                    scheduledPrice: 1,
+                    toPlanId: "to_plan_id",
+                    toPlanName: "to_plan_name",
+                },
                 showAsMonthlyPrices: true,
                 showCredits: true,
                 showPeriodToggle: true,

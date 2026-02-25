@@ -6,12 +6,14 @@ export interface PreviewSubscriptionChangeResponseData {
     amountOff: number;
     dueNow: number;
     finance?: Schematic.PreviewSubscriptionFinanceResponseData;
+    isScheduledDowngrade: boolean;
     newCharges: number;
     paymentMethodRequired: boolean;
     percentOff: number;
     periodStart: Date;
     promoCodeApplied: boolean;
     proration: number;
+    scheduledChangeTime?: Date;
     trialEnd?: Date;
     usageViolations: Schematic.FeatureUsageResponseData[];
 }

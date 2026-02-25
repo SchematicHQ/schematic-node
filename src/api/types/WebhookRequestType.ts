@@ -31,6 +31,7 @@ export const WebhookRequestType = {
     PlanEntitlementDeleted: "plan.entitlement.deleted",
     PlanEntitlementUpdated: "plan.entitlement.updated",
     PlanUpdated: "plan.updated",
+    PlanVersionDeleted: "plan_version.deleted",
     RuleDeleted: "rule.deleted",
     TestSend: "test.send",
     UserCreated: "user.created",

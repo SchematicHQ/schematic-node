@@ -20,6 +20,8 @@ export * from "./DuplicatePlanEntitlementsResponse";
 export * from "./GetCompanyOverrideResponse";
 export * from "./GetFeatureUsageByCompanyParams";
 export * from "./GetFeatureUsageByCompanyResponse";
+export * from "./GetFeatureUsageTimeSeriesParams";
+export * from "./GetFeatureUsageTimeSeriesResponse";
 export * from "./GetPlanEntitlementResponse";
 export * from "./ListCompanyOverridesParams";
 export * from "./ListCompanyOverridesResponse";

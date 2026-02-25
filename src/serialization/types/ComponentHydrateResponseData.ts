@@ -16,6 +16,7 @@ import { CreditCompanyGrantView } from "./CreditCompanyGrantView";
 import { FeatureUsageDetailResponseData } from "./FeatureUsageDetailResponseData";
 import { InvoiceResponseData } from "./InvoiceResponseData";
 import { PlanDetailResponseData } from "./PlanDetailResponseData";
+import { ScheduledDowngradeResponseData } from "./ScheduledDowngradeResponseData";
 import { StripeEmbedInfo } from "./StripeEmbedInfo";
 import { UsageBasedEntitlementResponseData } from "./UsageBasedEntitlementResponseData";
 
@@ -55,6 +56,7 @@ export const ComponentHydrateResponseData: core.serialization.ObjectSchema<
         "prevent_self_service_downgrade_url",
         core.serialization.string().optional(),
     ),
+    scheduledDowngrade: core.serialization.property("scheduled_downgrade", ScheduledDowngradeResponseData.optional()),
     showAsMonthlyPrices: core.serialization.property("show_as_monthly_prices", core.serialization.boolean()),
     showCredits: core.serialization.property("show_credits", core.serialization.boolean()),
     showPeriodToggle: core.serialization.property("show_period_toggle", core.serialization.boolean()),
@@ -87,6 +89,7 @@ export declare namespace ComponentHydrateResponseData {
         prevent_self_service_downgrade: boolean;
         prevent_self_service_downgrade_button_text?: string | null;
         prevent_self_service_downgrade_url?: string | null;
+        scheduled_downgrade?: ScheduledDowngradeResponseData.Raw | null;
         show_as_monthly_prices: boolean;
         show_credits: boolean;
         show_period_toggle: boolean;

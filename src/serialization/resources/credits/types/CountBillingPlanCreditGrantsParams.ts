@@ -14,6 +14,7 @@ export const CountBillingPlanCreditGrantsParams: core.serialization.ObjectSchema
     offset: core.serialization.number().optional(),
     planId: core.serialization.property("plan_id", core.serialization.string().optional()),
     planIds: core.serialization.property("plan_ids", core.serialization.list(core.serialization.string()).optional()),
+    planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
 });
 
 export declare namespace CountBillingPlanCreditGrantsParams {
@@ -24,5 +25,6 @@ export declare namespace CountBillingPlanCreditGrantsParams {
         offset?: number | null;
         plan_id?: string | null;
         plan_ids?: string[] | null;
+        plan_version_id?: string | null;
     }
 }

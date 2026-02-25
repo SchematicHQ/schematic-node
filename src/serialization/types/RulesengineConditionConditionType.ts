@@ -12,9 +12,9 @@ export const RulesengineConditionConditionType: core.serialization.Schema<
     "billing_product",
     "company",
     "credit",
-    "crm_product",
     "metric",
     "plan",
+    "plan_version",
     "trait",
     "user",
 ]);
@@ -25,9 +25,9 @@ export declare namespace RulesengineConditionConditionType {
         | "billing_product"
         | "company"
         | "credit"
-        | "crm_product"
         | "metric"
         | "plan"
+        | "plan_version"
         | "trait"
         | "user";
 }

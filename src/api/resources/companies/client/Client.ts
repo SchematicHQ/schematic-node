@@ -36,10 +36,16 @@ export class CompaniesClient {
      *
      * @example
      *     await client.companies.listCompanies({
+     *         monetizedSubscriptions: true,
      *         planId: "plan_id",
+     *         planVersionId: "plan_version_id",
      *         q: "q",
+     *         sortOrderColumn: "sort_order_column",
+     *         sortOrderDirection: "asc",
+     *         withEntitlementFor: "with_entitlement_for",
      *         withoutFeatureOverrideFor: "without_feature_override_for",
      *         withoutPlan: true,
+     *         withoutSubscription: true,
      *         withSubscription: true,
      *         limit: 1,
      *         offset: 1
@@ -56,8 +62,35 @@ export class CompaniesClient {
         request: Schematic.ListCompaniesRequest = {},
         requestOptions?: CompaniesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListCompaniesResponse>> {
-        const { ids, planId, q, withoutFeatureOverrideFor, withoutPlan, withSubscription, limit, offset } = request;
+        const {
+            creditTypeIds,
+            ids,
+            monetizedSubscriptions,
+            planId,
+            planIds,
+            planVersionId,
+            q,
+            sortOrderColumn,
+            sortOrderDirection,
+            subscriptionStatuses,
+            subscriptionTypes,
+            withEntitlementFor,
+            withoutFeatureOverrideFor,
+            withoutPlan,
+            withoutSubscription,
+            withSubscription,
+            limit,
+            offset,
+        } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (creditTypeIds != null) {
+            if (Array.isArray(creditTypeIds)) {
+                _queryParams.credit_type_ids = creditTypeIds.map((item) => item);
+            } else {
+                _queryParams.credit_type_ids = creditTypeIds;
+            }
+        }
+
         if (ids != null) {
             if (Array.isArray(ids)) {
                 _queryParams.ids = ids.map((item) => item);
@@ -66,12 +99,66 @@ export class CompaniesClient {
             }
         }
 
+        if (monetizedSubscriptions != null) {
+            _queryParams.monetized_subscriptions = monetizedSubscriptions.toString();
+        }
+
         if (planId != null) {
             _queryParams.plan_id = planId;
         }
 
+        if (planIds != null) {
+            if (Array.isArray(planIds)) {
+                _queryParams.plan_ids = planIds.map((item) => item);
+            } else {
+                _queryParams.plan_ids = planIds;
+            }
+        }
+
+        if (planVersionId != null) {
+            _queryParams.plan_version_id = planVersionId;
+        }
+
         if (q != null) {
             _queryParams.q = q;
+        }
+
+        if (sortOrderColumn != null) {
+            _queryParams.sort_order_column = sortOrderColumn;
+        }
+
+        if (sortOrderDirection != null) {
+            _queryParams.sort_order_direction = serializers.SortDirection.jsonOrThrow(sortOrderDirection, {
+                unrecognizedObjectKeys: "strip",
+            });
+        }
+
+        if (subscriptionStatuses != null) {
+            if (Array.isArray(subscriptionStatuses)) {
+                _queryParams.subscription_statuses = subscriptionStatuses.map((item) =>
+                    serializers.SubscriptionStatus.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
+                );
+            } else {
+                _queryParams.subscription_statuses = serializers.SubscriptionStatus.jsonOrThrow(subscriptionStatuses, {
+                    unrecognizedObjectKeys: "strip",
+                });
+            }
+        }
+
+        if (subscriptionTypes != null) {
+            if (Array.isArray(subscriptionTypes)) {
+                _queryParams.subscription_types = subscriptionTypes.map((item) =>
+                    serializers.SubscriptionType.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
+                );
+            } else {
+                _queryParams.subscription_types = serializers.SubscriptionType.jsonOrThrow(subscriptionTypes, {
+                    unrecognizedObjectKeys: "strip",
+                });
+            }
+        }
+
+        if (withEntitlementFor != null) {
+            _queryParams.with_entitlement_for = withEntitlementFor;
         }
 
         if (withoutFeatureOverrideFor != null) {
@@ -80,6 +167,10 @@ export class CompaniesClient {
 
         if (withoutPlan != null) {
             _queryParams.without_plan = withoutPlan.toString();
+        }
+
+        if (withoutSubscription != null) {
+            _queryParams.without_subscription = withoutSubscription.toString();
         }
 
         if (withSubscription != null) {
@@ -605,10 +696,16 @@ export class CompaniesClient {
      *
      * @example
      *     await client.companies.countCompanies({
+     *         monetizedSubscriptions: true,
      *         planId: "plan_id",
+     *         planVersionId: "plan_version_id",
      *         q: "q",
+     *         sortOrderColumn: "sort_order_column",
+     *         sortOrderDirection: "asc",
+     *         withEntitlementFor: "with_entitlement_for",
      *         withoutFeatureOverrideFor: "without_feature_override_for",
      *         withoutPlan: true,
+     *         withoutSubscription: true,
      *         withSubscription: true,
      *         limit: 1,
      *         offset: 1
@@ -625,8 +722,35 @@ export class CompaniesClient {
         request: Schematic.CountCompaniesRequest = {},
         requestOptions?: CompaniesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountCompaniesResponse>> {
-        const { ids, planId, q, withoutFeatureOverrideFor, withoutPlan, withSubscription, limit, offset } = request;
+        const {
+            creditTypeIds,
+            ids,
+            monetizedSubscriptions,
+            planId,
+            planIds,
+            planVersionId,
+            q,
+            sortOrderColumn,
+            sortOrderDirection,
+            subscriptionStatuses,
+            subscriptionTypes,
+            withEntitlementFor,
+            withoutFeatureOverrideFor,
+            withoutPlan,
+            withoutSubscription,
+            withSubscription,
+            limit,
+            offset,
+        } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (creditTypeIds != null) {
+            if (Array.isArray(creditTypeIds)) {
+                _queryParams.credit_type_ids = creditTypeIds.map((item) => item);
+            } else {
+                _queryParams.credit_type_ids = creditTypeIds;
+            }
+        }
+
         if (ids != null) {
             if (Array.isArray(ids)) {
                 _queryParams.ids = ids.map((item) => item);
@@ -635,12 +759,66 @@ export class CompaniesClient {
             }
         }
 
+        if (monetizedSubscriptions != null) {
+            _queryParams.monetized_subscriptions = monetizedSubscriptions.toString();
+        }
+
         if (planId != null) {
             _queryParams.plan_id = planId;
         }
 
+        if (planIds != null) {
+            if (Array.isArray(planIds)) {
+                _queryParams.plan_ids = planIds.map((item) => item);
+            } else {
+                _queryParams.plan_ids = planIds;
+            }
+        }
+
+        if (planVersionId != null) {
+            _queryParams.plan_version_id = planVersionId;
+        }
+
         if (q != null) {
             _queryParams.q = q;
+        }
+
+        if (sortOrderColumn != null) {
+            _queryParams.sort_order_column = sortOrderColumn;
+        }
+
+        if (sortOrderDirection != null) {
+            _queryParams.sort_order_direction = serializers.SortDirection.jsonOrThrow(sortOrderDirection, {
+                unrecognizedObjectKeys: "strip",
+            });
+        }
+
+        if (subscriptionStatuses != null) {
+            if (Array.isArray(subscriptionStatuses)) {
+                _queryParams.subscription_statuses = subscriptionStatuses.map((item) =>
+                    serializers.SubscriptionStatus.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
+                );
+            } else {
+                _queryParams.subscription_statuses = serializers.SubscriptionStatus.jsonOrThrow(subscriptionStatuses, {
+                    unrecognizedObjectKeys: "strip",
+                });
+            }
+        }
+
+        if (subscriptionTypes != null) {
+            if (Array.isArray(subscriptionTypes)) {
+                _queryParams.subscription_types = subscriptionTypes.map((item) =>
+                    serializers.SubscriptionType.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
+                );
+            } else {
+                _queryParams.subscription_types = serializers.SubscriptionType.jsonOrThrow(subscriptionTypes, {
+                    unrecognizedObjectKeys: "strip",
+                });
+            }
+        }
+
+        if (withEntitlementFor != null) {
+            _queryParams.with_entitlement_for = withEntitlementFor;
         }
 
         if (withoutFeatureOverrideFor != null) {
@@ -649,6 +827,10 @@ export class CompaniesClient {
 
         if (withoutPlan != null) {
             _queryParams.without_plan = withoutPlan.toString();
+        }
+
+        if (withoutSubscription != null) {
+            _queryParams.without_subscription = withoutSubscription.toString();
         }
 
         if (withSubscription != null) {
@@ -765,259 +947,6 @@ export class CompaniesClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/companies/count");
-    }
-
-    /**
-     * @param {Schematic.CountCompaniesForAdvancedFilterRequest} request
-     * @param {CompaniesClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Schematic.BadRequestError}
-     * @throws {@link Schematic.UnauthorizedError}
-     * @throws {@link Schematic.ForbiddenError}
-     * @throws {@link Schematic.NotFoundError}
-     * @throws {@link Schematic.InternalServerError}
-     *
-     * @example
-     *     await client.companies.countCompaniesForAdvancedFilter({
-     *         monetizedSubscriptions: true,
-     *         q: "q",
-     *         withoutPlan: true,
-     *         withoutSubscription: true,
-     *         sortOrderColumn: "sort_order_column",
-     *         sortOrderDirection: "asc",
-     *         limit: 1,
-     *         offset: 1
-     *     })
-     */
-    public countCompaniesForAdvancedFilter(
-        request: Schematic.CountCompaniesForAdvancedFilterRequest = {},
-        requestOptions?: CompaniesClient.RequestOptions,
-    ): core.HttpResponsePromise<Schematic.CountCompaniesForAdvancedFilterResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__countCompaniesForAdvancedFilter(request, requestOptions));
-    }
-
-    private async __countCompaniesForAdvancedFilter(
-        request: Schematic.CountCompaniesForAdvancedFilterRequest = {},
-        requestOptions?: CompaniesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Schematic.CountCompaniesForAdvancedFilterResponse>> {
-        const {
-            ids,
-            planIds,
-            featureIds,
-            creditTypeIds,
-            subscriptionStatuses,
-            subscriptionTypes,
-            monetizedSubscriptions,
-            q,
-            withoutPlan,
-            withoutSubscription,
-            sortOrderColumn,
-            sortOrderDirection,
-            displayProperties,
-            limit,
-            offset,
-        } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (planIds != null) {
-            if (Array.isArray(planIds)) {
-                _queryParams.plan_ids = planIds.map((item) => item);
-            } else {
-                _queryParams.plan_ids = planIds;
-            }
-        }
-
-        if (featureIds != null) {
-            if (Array.isArray(featureIds)) {
-                _queryParams.feature_ids = featureIds.map((item) => item);
-            } else {
-                _queryParams.feature_ids = featureIds;
-            }
-        }
-
-        if (creditTypeIds != null) {
-            if (Array.isArray(creditTypeIds)) {
-                _queryParams.credit_type_ids = creditTypeIds.map((item) => item);
-            } else {
-                _queryParams.credit_type_ids = creditTypeIds;
-            }
-        }
-
-        if (subscriptionStatuses != null) {
-            if (Array.isArray(subscriptionStatuses)) {
-                _queryParams.subscription_statuses = subscriptionStatuses.map((item) =>
-                    serializers.SubscriptionStatus.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
-                );
-            } else {
-                _queryParams.subscription_statuses = serializers.SubscriptionStatus.jsonOrThrow(subscriptionStatuses, {
-                    unrecognizedObjectKeys: "strip",
-                });
-            }
-        }
-
-        if (subscriptionTypes != null) {
-            if (Array.isArray(subscriptionTypes)) {
-                _queryParams.subscription_types = subscriptionTypes.map((item) =>
-                    serializers.SubscriptionType.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
-                );
-            } else {
-                _queryParams.subscription_types = serializers.SubscriptionType.jsonOrThrow(subscriptionTypes, {
-                    unrecognizedObjectKeys: "strip",
-                });
-            }
-        }
-
-        if (monetizedSubscriptions != null) {
-            _queryParams.monetized_subscriptions = monetizedSubscriptions.toString();
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (withoutPlan != null) {
-            _queryParams.without_plan = withoutPlan.toString();
-        }
-
-        if (withoutSubscription != null) {
-            _queryParams.without_subscription = withoutSubscription.toString();
-        }
-
-        if (sortOrderColumn != null) {
-            _queryParams.sort_order_column = sortOrderColumn;
-        }
-
-        if (sortOrderDirection != null) {
-            _queryParams.sort_order_direction = serializers.SortDirection.jsonOrThrow(sortOrderDirection, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (displayProperties != null) {
-            if (Array.isArray(displayProperties)) {
-                _queryParams.display_properties = displayProperties.map((item) => item);
-            } else {
-                _queryParams.display_properties = displayProperties;
-            }
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.SchematicEnvironment.Default,
-                "companies/count2",
-            ),
-            method: "GET",
-            headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return {
-                data: serializers.CountCompaniesForAdvancedFilterResponse.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Schematic.BadRequestError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                case 401:
-                    throw new Schematic.UnauthorizedError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                case 403:
-                    throw new Schematic.ForbiddenError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                case 404:
-                    throw new Schematic.NotFoundError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                case 500:
-                    throw new Schematic.InternalServerError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.SchematicError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/companies/count2");
     }
 
     /**
@@ -1288,259 +1217,6 @@ export class CompaniesClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/companies/delete");
-    }
-
-    /**
-     * @param {Schematic.ListCompaniesForAdvancedFilterRequest} request
-     * @param {CompaniesClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Schematic.BadRequestError}
-     * @throws {@link Schematic.UnauthorizedError}
-     * @throws {@link Schematic.ForbiddenError}
-     * @throws {@link Schematic.NotFoundError}
-     * @throws {@link Schematic.InternalServerError}
-     *
-     * @example
-     *     await client.companies.listCompaniesForAdvancedFilter({
-     *         monetizedSubscriptions: true,
-     *         q: "q",
-     *         withoutPlan: true,
-     *         withoutSubscription: true,
-     *         sortOrderColumn: "sort_order_column",
-     *         sortOrderDirection: "asc",
-     *         limit: 1,
-     *         offset: 1
-     *     })
-     */
-    public listCompaniesForAdvancedFilter(
-        request: Schematic.ListCompaniesForAdvancedFilterRequest = {},
-        requestOptions?: CompaniesClient.RequestOptions,
-    ): core.HttpResponsePromise<Schematic.ListCompaniesForAdvancedFilterResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__listCompaniesForAdvancedFilter(request, requestOptions));
-    }
-
-    private async __listCompaniesForAdvancedFilter(
-        request: Schematic.ListCompaniesForAdvancedFilterRequest = {},
-        requestOptions?: CompaniesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Schematic.ListCompaniesForAdvancedFilterResponse>> {
-        const {
-            ids,
-            planIds,
-            featureIds,
-            creditTypeIds,
-            subscriptionStatuses,
-            subscriptionTypes,
-            monetizedSubscriptions,
-            q,
-            withoutPlan,
-            withoutSubscription,
-            sortOrderColumn,
-            sortOrderDirection,
-            displayProperties,
-            limit,
-            offset,
-        } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (planIds != null) {
-            if (Array.isArray(planIds)) {
-                _queryParams.plan_ids = planIds.map((item) => item);
-            } else {
-                _queryParams.plan_ids = planIds;
-            }
-        }
-
-        if (featureIds != null) {
-            if (Array.isArray(featureIds)) {
-                _queryParams.feature_ids = featureIds.map((item) => item);
-            } else {
-                _queryParams.feature_ids = featureIds;
-            }
-        }
-
-        if (creditTypeIds != null) {
-            if (Array.isArray(creditTypeIds)) {
-                _queryParams.credit_type_ids = creditTypeIds.map((item) => item);
-            } else {
-                _queryParams.credit_type_ids = creditTypeIds;
-            }
-        }
-
-        if (subscriptionStatuses != null) {
-            if (Array.isArray(subscriptionStatuses)) {
-                _queryParams.subscription_statuses = subscriptionStatuses.map((item) =>
-                    serializers.SubscriptionStatus.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
-                );
-            } else {
-                _queryParams.subscription_statuses = serializers.SubscriptionStatus.jsonOrThrow(subscriptionStatuses, {
-                    unrecognizedObjectKeys: "strip",
-                });
-            }
-        }
-
-        if (subscriptionTypes != null) {
-            if (Array.isArray(subscriptionTypes)) {
-                _queryParams.subscription_types = subscriptionTypes.map((item) =>
-                    serializers.SubscriptionType.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
-                );
-            } else {
-                _queryParams.subscription_types = serializers.SubscriptionType.jsonOrThrow(subscriptionTypes, {
-                    unrecognizedObjectKeys: "strip",
-                });
-            }
-        }
-
-        if (monetizedSubscriptions != null) {
-            _queryParams.monetized_subscriptions = monetizedSubscriptions.toString();
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (withoutPlan != null) {
-            _queryParams.without_plan = withoutPlan.toString();
-        }
-
-        if (withoutSubscription != null) {
-            _queryParams.without_subscription = withoutSubscription.toString();
-        }
-
-        if (sortOrderColumn != null) {
-            _queryParams.sort_order_column = sortOrderColumn;
-        }
-
-        if (sortOrderDirection != null) {
-            _queryParams.sort_order_direction = serializers.SortDirection.jsonOrThrow(sortOrderDirection, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (displayProperties != null) {
-            if (Array.isArray(displayProperties)) {
-                _queryParams.display_properties = displayProperties.map((item) => item);
-            } else {
-                _queryParams.display_properties = displayProperties;
-            }
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.SchematicEnvironment.Default,
-                "companies/list2",
-            ),
-            method: "GET",
-            headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return {
-                data: serializers.ListCompaniesForAdvancedFilterResponse.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Schematic.BadRequestError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                case 401:
-                    throw new Schematic.UnauthorizedError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                case 403:
-                    throw new Schematic.ForbiddenError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                case 404:
-                    throw new Schematic.NotFoundError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                case 500:
-                    throw new Schematic.InternalServerError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.SchematicError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/companies/list2");
     }
 
     /**

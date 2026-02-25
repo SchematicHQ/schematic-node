@@ -7,18 +7,21 @@ export interface FeatureUsageResponseData {
     access: boolean;
     /** The maximum amount of usage that is permitted; a null value indicates that unlimited usage is permitted or that this is a credit-based entitlement (use credit_remaining instead). */
     allocation?: number;
+    /** The type of allocation that is being used. */
     allocationType: Schematic.EntitlementValueType;
     companyOverride?: Schematic.CompanyOverrideResponseData;
     /** The rate at which credits are consumed per unit of usage */
     creditConsumptionRate?: number;
     creditGrantCounts?: Record<string, number>;
     creditGrantDetails?: Schematic.CreditGrantDetail[];
+    /** Reason for the credit grant */
     creditGrantReason?: Schematic.BillingCreditGrantReason;
     creditRemaining?: number;
     /** Deprecated: Use credit_remaining instead. */
     creditTotal?: number;
     /** Icon identifier for the credit type */
     creditTypeIcon?: string;
+    /** Aggregated credit usage by time period (day, week, month, billing period) */
     creditUsageAggregation?: Schematic.CreditUsageAggregation;
     creditUsed?: number;
     /** Effective limit for usage calculations. For overage pricing, this is the soft limit where overage charges begin. For tiered pricing, this is the first tier boundary. For other pricing models, this is the base allocation. Used to calculate usage percentages and determine access thresholds. */

@@ -18,6 +18,7 @@ describe("AccountsClient", () => {
                     id: "id",
                     last_used_at: "2024-01-15T09:30:00Z",
                     name: "name",
+                    readonly: true,
                     scopes: ["admin"],
                     updated_at: "2024-01-15T09:30:00Z",
                 },
@@ -41,6 +42,7 @@ describe("AccountsClient", () => {
                     id: "id",
                     lastUsedAt: new Date("2024-01-15T09:30:00.000Z"),
                     name: "name",
+                    readonly: true,
                     scopes: ["admin"],
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
@@ -136,6 +138,7 @@ describe("AccountsClient", () => {
                 id: "id",
                 last_used_at: "2024-01-15T09:30:00Z",
                 name: "name",
+                readonly: true,
                 scopes: ["admin"],
                 secret: "secret",
                 updated_at: "2024-01-15T09:30:00Z",
@@ -162,6 +165,7 @@ describe("AccountsClient", () => {
                 id: "id",
                 lastUsedAt: new Date("2024-01-15T09:30:00.000Z"),
                 name: "name",
+                readonly: true,
                 scopes: ["admin"],
                 secret: "secret",
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -175,7 +179,7 @@ describe("AccountsClient", () => {
     test("createApiKey (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { name: "name" };
+        const rawRequestBody = { name: "x" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -188,7 +192,7 @@ describe("AccountsClient", () => {
 
         await expect(async () => {
             return await client.accounts.createApiKey({
-                name: "name",
+                name: "x",
             });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
@@ -196,7 +200,7 @@ describe("AccountsClient", () => {
     test("createApiKey (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { name: "name" };
+        const rawRequestBody = { name: "x" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -209,7 +213,7 @@ describe("AccountsClient", () => {
 
         await expect(async () => {
             return await client.accounts.createApiKey({
-                name: "name",
+                name: "x",
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
@@ -217,7 +221,7 @@ describe("AccountsClient", () => {
     test("createApiKey (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { name: "name" };
+        const rawRequestBody = { name: "x" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -230,7 +234,7 @@ describe("AccountsClient", () => {
 
         await expect(async () => {
             return await client.accounts.createApiKey({
-                name: "name",
+                name: "x",
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
@@ -238,7 +242,7 @@ describe("AccountsClient", () => {
     test("createApiKey (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { name: "name" };
+        const rawRequestBody = { name: "x" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -251,7 +255,7 @@ describe("AccountsClient", () => {
 
         await expect(async () => {
             return await client.accounts.createApiKey({
-                name: "name",
+                name: "x",
             });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
@@ -259,7 +263,7 @@ describe("AccountsClient", () => {
     test("createApiKey (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { name: "name" };
+        const rawRequestBody = { name: "x" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -272,7 +276,7 @@ describe("AccountsClient", () => {
 
         await expect(async () => {
             return await client.accounts.createApiKey({
-                name: "name",
+                name: "x",
             });
         }).rejects.toThrow(Schematic.InternalServerError);
     });
@@ -289,6 +293,7 @@ describe("AccountsClient", () => {
                 id: "id",
                 last_used_at: "2024-01-15T09:30:00Z",
                 name: "name",
+                readonly: true,
                 scopes: ["admin"],
                 updated_at: "2024-01-15T09:30:00Z",
             },
@@ -311,6 +316,7 @@ describe("AccountsClient", () => {
                 id: "id",
                 lastUsedAt: new Date("2024-01-15T09:30:00.000Z"),
                 name: "name",
+                readonly: true,
                 scopes: ["admin"],
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
             },
@@ -404,6 +410,7 @@ describe("AccountsClient", () => {
                 id: "id",
                 last_used_at: "2024-01-15T09:30:00Z",
                 name: "name",
+                readonly: true,
                 scopes: ["admin"],
                 updated_at: "2024-01-15T09:30:00Z",
             },
@@ -427,6 +434,7 @@ describe("AccountsClient", () => {
                 id: "id",
                 lastUsedAt: new Date("2024-01-15T09:30:00.000Z"),
                 name: "name",
+                readonly: true,
                 scopes: ["admin"],
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
             },
@@ -744,20 +752,19 @@ describe("AccountsClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
-    test("listApiRequests (1)", async () => {
+    test("listAuditLogs (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             data: [
                 {
+                    actor_type: "api_key",
                     api_key_id: "api_key_id",
                     ended_at: "2024-01-15T09:30:00Z",
                     environment_id: "environment_id",
                     id: "id",
                     method: "method",
-                    req_body: "req_body",
-                    request_type: "request_type",
                     resource_id: 1,
                     resource_id_string: "resource_id_string",
                     resource_name: "resource_name",
@@ -769,27 +776,36 @@ describe("AccountsClient", () => {
                     user_name: "user_name",
                 },
             ],
-            params: { environment_id: "environment_id", limit: 1, offset: 1, q: "q", request_type: "request_type" },
+            params: {
+                actor_type: "api_key",
+                end_time: "2024-01-15T09:30:00Z",
+                environment_id: "environment_id",
+                limit: 1,
+                offset: 1,
+                q: "q",
+                start_time: "2024-01-15T09:30:00Z",
+            },
         };
-        server.mockEndpoint().get("/api-requests").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+        server.mockEndpoint().get("/audit-log").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.accounts.listApiRequests({
-            q: "q",
-            requestType: "request_type",
+        const response = await client.accounts.listAuditLogs({
+            actorType: "api_key",
+            endTime: new Date("2024-01-15T09:30:00.000Z"),
             environmentId: "environment_id",
+            q: "q",
+            startTime: new Date("2024-01-15T09:30:00.000Z"),
             limit: 1,
             offset: 1,
         });
         expect(response).toEqual({
             data: [
                 {
+                    actorType: "api_key",
                     apiKeyId: "api_key_id",
                     endedAt: new Date("2024-01-15T09:30:00.000Z"),
                     environmentId: "environment_id",
                     id: "id",
                     method: "method",
-                    reqBody: "req_body",
-                    requestType: "request_type",
                     resourceId: 1,
                     resourceIdString: "resource_id_string",
                     resourceName: "resource_name",
@@ -802,98 +818,90 @@ describe("AccountsClient", () => {
                 },
             ],
             params: {
+                actorType: "api_key",
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
                 environmentId: "environment_id",
                 limit: 1,
                 offset: 1,
                 q: "q",
-                requestType: "request_type",
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
             },
         });
     });
 
-    test("listApiRequests (2)", async () => {
+    test("listAuditLogs (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
-        server.mockEndpoint().get("/api-requests").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
+        server.mockEndpoint().get("/audit-log").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.accounts.listApiRequests();
+            return await client.accounts.listAuditLogs();
         }).rejects.toThrow(Schematic.BadRequestError);
     });
 
-    test("listApiRequests (3)", async () => {
+    test("listAuditLogs (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
-        server.mockEndpoint().get("/api-requests").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+        server.mockEndpoint().get("/audit-log").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.accounts.listApiRequests();
+            return await client.accounts.listAuditLogs();
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
 
-    test("listApiRequests (4)", async () => {
+    test("listAuditLogs (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
-        server.mockEndpoint().get("/api-requests").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
+        server.mockEndpoint().get("/audit-log").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.accounts.listApiRequests();
+            return await client.accounts.listAuditLogs();
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
 
-    test("listApiRequests (5)", async () => {
+    test("listAuditLogs (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
-        server.mockEndpoint().get("/api-requests").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
+        server.mockEndpoint().get("/audit-log").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.accounts.listApiRequests();
+            return await client.accounts.listAuditLogs();
         }).rejects.toThrow(Schematic.NotFoundError);
     });
 
-    test("listApiRequests (6)", async () => {
+    test("listAuditLogs (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
-        server.mockEndpoint().get("/api-requests").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+        server.mockEndpoint().get("/audit-log").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.accounts.listApiRequests();
+            return await client.accounts.listAuditLogs();
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
-    test("getApiRequest (1)", async () => {
+    test("getAuditLog (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             data: {
-                api_key: {
-                    created_at: "2024-01-15T09:30:00Z",
-                    description: "description",
-                    environment_id: "environment_id",
-                    id: "id",
-                    last_used_at: "2024-01-15T09:30:00Z",
-                    name: "name",
-                    scopes: ["admin"],
-                    updated_at: "2024-01-15T09:30:00Z",
-                },
+                actor_type: "api_key",
                 api_key_id: "api_key_id",
                 ended_at: "2024-01-15T09:30:00Z",
                 environment_id: "environment_id",
                 id: "id",
                 method: "method",
                 req_body: "req_body",
-                request_type: "request_type",
                 resource_id: 1,
                 resource_id_string: "resource_id_string",
                 resource_name: "resource_name",
@@ -903,7 +911,6 @@ describe("AccountsClient", () => {
                 secondary_resource: "secondary_resource",
                 started_at: "2024-01-15T09:30:00Z",
                 url: "url",
-                user_agent: "user_agent",
                 user_id: "user_id",
                 user_name: "user_name",
             },
@@ -911,32 +918,22 @@ describe("AccountsClient", () => {
         };
         server
             .mockEndpoint()
-            .get("/api-requests/api_request_id")
+            .get("/audit-log/audit_log_id")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.accounts.getApiRequest("api_request_id");
+        const response = await client.accounts.getAuditLog("audit_log_id");
         expect(response).toEqual({
             data: {
-                apiKey: {
-                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    description: "description",
-                    environmentId: "environment_id",
-                    id: "id",
-                    lastUsedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    name: "name",
-                    scopes: ["admin"],
-                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                },
+                actorType: "api_key",
                 apiKeyId: "api_key_id",
                 endedAt: new Date("2024-01-15T09:30:00.000Z"),
                 environmentId: "environment_id",
                 id: "id",
                 method: "method",
                 reqBody: "req_body",
-                requestType: "request_type",
                 resourceId: 1,
                 resourceIdString: "resource_id_string",
                 resourceName: "resource_name",
@@ -946,7 +943,6 @@ describe("AccountsClient", () => {
                 secondaryResource: "secondary_resource",
                 startedAt: new Date("2024-01-15T09:30:00.000Z"),
                 url: "url",
-                userAgent: "user_agent",
                 userId: "user_id",
                 userName: "user_name",
             },
@@ -956,98 +952,102 @@ describe("AccountsClient", () => {
         });
     });
 
-    test("getApiRequest (2)", async () => {
+    test("getAuditLog (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
-            .get("/api-requests/api_request_id")
+            .get("/audit-log/audit_log_id")
             .respondWith()
             .statusCode(401)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
-            return await client.accounts.getApiRequest("api_request_id");
+            return await client.accounts.getAuditLog("audit_log_id");
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
 
-    test("getApiRequest (3)", async () => {
+    test("getAuditLog (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
-            .get("/api-requests/api_request_id")
+            .get("/audit-log/audit_log_id")
             .respondWith()
             .statusCode(403)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
-            return await client.accounts.getApiRequest("api_request_id");
+            return await client.accounts.getAuditLog("audit_log_id");
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
 
-    test("getApiRequest (4)", async () => {
+    test("getAuditLog (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
-            .get("/api-requests/api_request_id")
+            .get("/audit-log/audit_log_id")
             .respondWith()
             .statusCode(404)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
-            return await client.accounts.getApiRequest("api_request_id");
+            return await client.accounts.getAuditLog("audit_log_id");
         }).rejects.toThrow(Schematic.NotFoundError);
     });
 
-    test("getApiRequest (5)", async () => {
+    test("getAuditLog (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
-            .get("/api-requests/api_request_id")
+            .get("/audit-log/audit_log_id")
             .respondWith()
             .statusCode(500)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
-            return await client.accounts.getApiRequest("api_request_id");
+            return await client.accounts.getAuditLog("audit_log_id");
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
-    test("countApiRequests (1)", async () => {
+    test("countAuditLogs (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             data: { count: 1 },
-            params: { environment_id: "environment_id", limit: 1, offset: 1, q: "q", request_type: "request_type" },
+            params: {
+                actor_type: "api_key",
+                end_time: "2024-01-15T09:30:00Z",
+                environment_id: "environment_id",
+                limit: 1,
+                offset: 1,
+                q: "q",
+                start_time: "2024-01-15T09:30:00Z",
+            },
         };
-        server
-            .mockEndpoint()
-            .get("/api-requests/count")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+        server.mockEndpoint().get("/audit-log/count").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.accounts.countApiRequests({
-            q: "q",
-            requestType: "request_type",
+        const response = await client.accounts.countAuditLogs({
+            actorType: "api_key",
+            endTime: new Date("2024-01-15T09:30:00.000Z"),
             environmentId: "environment_id",
+            q: "q",
+            startTime: new Date("2024-01-15T09:30:00.000Z"),
             limit: 1,
             offset: 1,
         });
@@ -1056,102 +1056,74 @@ describe("AccountsClient", () => {
                 count: 1,
             },
             params: {
+                actorType: "api_key",
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
                 environmentId: "environment_id",
                 limit: 1,
                 offset: 1,
                 q: "q",
-                requestType: "request_type",
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
             },
         });
     });
 
-    test("countApiRequests (2)", async () => {
+    test("countAuditLogs (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
-        server
-            .mockEndpoint()
-            .get("/api-requests/count")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+        server.mockEndpoint().get("/audit-log/count").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.accounts.countApiRequests();
+            return await client.accounts.countAuditLogs();
         }).rejects.toThrow(Schematic.BadRequestError);
     });
 
-    test("countApiRequests (3)", async () => {
+    test("countAuditLogs (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
-        server
-            .mockEndpoint()
-            .get("/api-requests/count")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+        server.mockEndpoint().get("/audit-log/count").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.accounts.countApiRequests();
+            return await client.accounts.countAuditLogs();
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
 
-    test("countApiRequests (4)", async () => {
+    test("countAuditLogs (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
-        server
-            .mockEndpoint()
-            .get("/api-requests/count")
-            .respondWith()
-            .statusCode(403)
-            .jsonBody(rawResponseBody)
-            .build();
+        server.mockEndpoint().get("/audit-log/count").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.accounts.countApiRequests();
+            return await client.accounts.countAuditLogs();
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
 
-    test("countApiRequests (5)", async () => {
+    test("countAuditLogs (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
-        server
-            .mockEndpoint()
-            .get("/api-requests/count")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+        server.mockEndpoint().get("/audit-log/count").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.accounts.countApiRequests();
+            return await client.accounts.countAuditLogs();
         }).rejects.toThrow(Schematic.NotFoundError);
     });
 
-    test("countApiRequests (6)", async () => {
+    test("countAuditLogs (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
-        server
-            .mockEndpoint()
-            .get("/api-requests/count")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+        server.mockEndpoint().get("/audit-log/count").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.accounts.countApiRequests();
+            return await client.accounts.countAuditLogs();
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
@@ -1266,6 +1238,7 @@ describe("AccountsClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         id: "id",
                         name: "name",
+                        readonly: true,
                         scopes: ["admin"],
                         updated_at: "2024-01-15T09:30:00Z",
                     },
@@ -1298,6 +1271,7 @@ describe("AccountsClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         id: "id",
                         name: "name",
+                        readonly: true,
                         scopes: ["admin"],
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
@@ -1317,7 +1291,7 @@ describe("AccountsClient", () => {
     test("createEnvironment (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { environment_type: "development", name: "name" };
+        const rawRequestBody = { environment_type: "development", name: "x" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -1331,7 +1305,7 @@ describe("AccountsClient", () => {
         await expect(async () => {
             return await client.accounts.createEnvironment({
                 environmentType: "development",
-                name: "name",
+                name: "x",
             });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
@@ -1339,7 +1313,7 @@ describe("AccountsClient", () => {
     test("createEnvironment (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { environment_type: "development", name: "name" };
+        const rawRequestBody = { environment_type: "development", name: "x" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -1353,7 +1327,7 @@ describe("AccountsClient", () => {
         await expect(async () => {
             return await client.accounts.createEnvironment({
                 environmentType: "development",
-                name: "name",
+                name: "x",
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
@@ -1361,7 +1335,7 @@ describe("AccountsClient", () => {
     test("createEnvironment (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { environment_type: "development", name: "name" };
+        const rawRequestBody = { environment_type: "development", name: "x" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -1375,7 +1349,7 @@ describe("AccountsClient", () => {
         await expect(async () => {
             return await client.accounts.createEnvironment({
                 environmentType: "development",
-                name: "name",
+                name: "x",
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
@@ -1383,7 +1357,7 @@ describe("AccountsClient", () => {
     test("createEnvironment (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { environment_type: "development", name: "name" };
+        const rawRequestBody = { environment_type: "development", name: "x" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -1397,7 +1371,7 @@ describe("AccountsClient", () => {
         await expect(async () => {
             return await client.accounts.createEnvironment({
                 environmentType: "development",
-                name: "name",
+                name: "x",
             });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
@@ -1405,7 +1379,7 @@ describe("AccountsClient", () => {
     test("createEnvironment (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { environment_type: "development", name: "name" };
+        const rawRequestBody = { environment_type: "development", name: "x" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -1419,7 +1393,7 @@ describe("AccountsClient", () => {
         await expect(async () => {
             return await client.accounts.createEnvironment({
                 environmentType: "development",
-                name: "name",
+                name: "x",
             });
         }).rejects.toThrow(Schematic.InternalServerError);
     });
@@ -1855,6 +1829,109 @@ describe("AccountsClient", () => {
 
         await expect(async () => {
             return await client.accounts.quickstart();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("getWhoAmI (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                account_id: "account_id",
+                account_name: "account_name",
+                actor_type: "actor_type",
+                api_key_id: "api_key_id",
+                environment_id: "environment_id",
+                environments: [
+                    {
+                        created_at: "2024-01-15T09:30:00Z",
+                        environment_type: "development",
+                        id: "id",
+                        name: "name",
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
+                ],
+                stripe_user_id: "stripe_user_id",
+                user_id: "user_id",
+                user_name: "user_name",
+            },
+            params: { key: "value" },
+        };
+        server.mockEndpoint().get("/whoami").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.accounts.getWhoAmI();
+        expect(response).toEqual({
+            data: {
+                accountId: "account_id",
+                accountName: "account_name",
+                actorType: "actor_type",
+                apiKeyId: "api_key_id",
+                environmentId: "environment_id",
+                environments: [
+                    {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        environmentType: "development",
+                        id: "id",
+                        name: "name",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                ],
+                stripeUserId: "stripe_user_id",
+                userId: "user_id",
+                userName: "user_name",
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("getWhoAmI (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server.mockEndpoint().get("/whoami").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.accounts.getWhoAmI();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getWhoAmI (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server.mockEndpoint().get("/whoami").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.accounts.getWhoAmI();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getWhoAmI (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server.mockEndpoint().get("/whoami").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.accounts.getWhoAmI();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getWhoAmI (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server.mockEndpoint().get("/whoami").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.accounts.getWhoAmI();
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 });

@@ -6,6 +6,7 @@ import { BillingClient } from "./api/resources/billing/client/Client";
 import { CheckoutClient } from "./api/resources/checkout/client/Client";
 import { CompaniesClient } from "./api/resources/companies/client/Client";
 import { ComponentsClient } from "./api/resources/components/client/Client";
+import { ComponentspublicClient } from "./api/resources/componentspublic/client/Client";
 import { CreditsClient } from "./api/resources/credits/client/Client";
 import { DataexportsClient } from "./api/resources/dataexports/client/Client";
 import { EntitlementsClient } from "./api/resources/entitlements/client/Client";
@@ -13,7 +14,9 @@ import { EventsClient } from "./api/resources/events/client/Client";
 import { FeaturesClient } from "./api/resources/features/client/Client";
 import { PlanbundleClient } from "./api/resources/planbundle/client/Client";
 import { PlangroupsClient } from "./api/resources/plangroups/client/Client";
+import { PlanmigrationsClient } from "./api/resources/planmigrations/client/Client";
 import { PlansClient } from "./api/resources/plans/client/Client";
+import { ScheduledcheckoutClient } from "./api/resources/scheduledcheckout/client/Client";
 import { WebhooksClient } from "./api/resources/webhooks/client/Client";
 import type { BaseClientOptions, BaseRequestOptions } from "./BaseClient";
 import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "./BaseClient";
@@ -44,6 +47,9 @@ export class SchematicClient {
     protected _features: FeaturesClient | undefined;
     protected _planbundle: PlanbundleClient | undefined;
     protected _plangroups: PlangroupsClient | undefined;
+    protected _planmigrations: PlanmigrationsClient | undefined;
+    protected _componentspublic: ComponentspublicClient | undefined;
+    protected _scheduledcheckout: ScheduledcheckoutClient | undefined;
     protected _accesstokens: AccesstokensClient | undefined;
     protected _webhooks: WebhooksClient | undefined;
 
@@ -101,6 +107,18 @@ export class SchematicClient {
 
     public get plangroups(): PlangroupsClient {
         return (this._plangroups ??= new PlangroupsClient(this._options));
+    }
+
+    public get planmigrations(): PlanmigrationsClient {
+        return (this._planmigrations ??= new PlanmigrationsClient(this._options));
+    }
+
+    public get componentspublic(): ComponentspublicClient {
+        return (this._componentspublic ??= new ComponentspublicClient(this._options));
+    }
+
+    public get scheduledcheckout(): ScheduledcheckoutClient {
+        return (this._scheduledcheckout ??= new ScheduledcheckoutClient(this._options));
     }
 
     public get accesstokens(): AccesstokensClient {

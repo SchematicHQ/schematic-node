@@ -38,6 +38,7 @@ export const WebhookRequestType: core.serialization.Schema<
     "plan.entitlement.deleted",
     "plan.entitlement.updated",
     "plan.updated",
+    "plan_version.deleted",
     "rule.deleted",
     "test.send",
     "user.created",
@@ -79,6 +80,7 @@ export declare namespace WebhookRequestType {
         | "plan.entitlement.deleted"
         | "plan.entitlement.updated"
         | "plan.updated"
+        | "plan_version.deleted"
         | "rule.deleted"
         | "test.send"
         | "user.created"

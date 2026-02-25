@@ -595,9 +595,9 @@ describe("WebhooksClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            name: "name",
+            name: "x",
             request_types: ["subscription.trial.ended", "subscription.trial.ended"],
-            url: "url",
+            url: "x",
         };
         const rawResponseBody = { error: "error" };
         server
@@ -611,9 +611,9 @@ describe("WebhooksClient", () => {
 
         await expect(async () => {
             return await client.webhooks.createWebhook({
-                name: "name",
+                name: "x",
                 requestTypes: ["subscription.trial.ended", "subscription.trial.ended"],
-                url: "url",
+                url: "x",
             });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
@@ -622,9 +622,9 @@ describe("WebhooksClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            name: "name",
+            name: "x",
             request_types: ["subscription.trial.ended", "subscription.trial.ended"],
-            url: "url",
+            url: "x",
         };
         const rawResponseBody = { error: "error" };
         server
@@ -638,9 +638,9 @@ describe("WebhooksClient", () => {
 
         await expect(async () => {
             return await client.webhooks.createWebhook({
-                name: "name",
+                name: "x",
                 requestTypes: ["subscription.trial.ended", "subscription.trial.ended"],
-                url: "url",
+                url: "x",
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
@@ -649,9 +649,9 @@ describe("WebhooksClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            name: "name",
+            name: "x",
             request_types: ["subscription.trial.ended", "subscription.trial.ended"],
-            url: "url",
+            url: "x",
         };
         const rawResponseBody = { error: "error" };
         server
@@ -665,9 +665,9 @@ describe("WebhooksClient", () => {
 
         await expect(async () => {
             return await client.webhooks.createWebhook({
-                name: "name",
+                name: "x",
                 requestTypes: ["subscription.trial.ended", "subscription.trial.ended"],
-                url: "url",
+                url: "x",
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
@@ -676,9 +676,9 @@ describe("WebhooksClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            name: "name",
+            name: "x",
             request_types: ["subscription.trial.ended", "subscription.trial.ended"],
-            url: "url",
+            url: "x",
         };
         const rawResponseBody = { error: "error" };
         server
@@ -692,9 +692,9 @@ describe("WebhooksClient", () => {
 
         await expect(async () => {
             return await client.webhooks.createWebhook({
-                name: "name",
+                name: "x",
                 requestTypes: ["subscription.trial.ended", "subscription.trial.ended"],
-                url: "url",
+                url: "x",
             });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
@@ -703,9 +703,9 @@ describe("WebhooksClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            name: "name",
+            name: "x",
             request_types: ["subscription.trial.ended", "subscription.trial.ended"],
-            url: "url",
+            url: "x",
         };
         const rawResponseBody = { error: "error" };
         server
@@ -719,9 +719,9 @@ describe("WebhooksClient", () => {
 
         await expect(async () => {
             return await client.webhooks.createWebhook({
-                name: "name",
+                name: "x",
                 requestTypes: ["subscription.trial.ended", "subscription.trial.ended"],
-                url: "url",
+                url: "x",
             });
         }).rejects.toThrow(Schematic.InternalServerError);
     });

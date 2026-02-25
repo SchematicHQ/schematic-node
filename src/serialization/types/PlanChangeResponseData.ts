@@ -3,11 +3,11 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
-import { ApiKeyRequestListResponseData } from "./ApiKeyRequestListResponseData";
+import { ActorType } from "./ActorType";
 import { ApiKeyResponseData } from "./ApiKeyResponseData";
+import { AuditLogListResponseData } from "./AuditLogListResponseData";
 import { CompanyResponseData } from "./CompanyResponseData";
 import { PlanChangeAction } from "./PlanChangeAction";
-import { PlanChangeActorType } from "./PlanChangeActorType";
 import { PlanChangeBasePlanAction } from "./PlanChangeBasePlanAction";
 import { PlanChangeSubscriptionAction } from "./PlanChangeSubscriptionAction";
 import { PlanSnapshotView } from "./PlanSnapshotView";
@@ -18,11 +18,11 @@ export const PlanChangeResponseData: core.serialization.ObjectSchema<
     Schematic.PlanChangeResponseData
 > = core.serialization.object({
     action: PlanChangeAction,
-    actorType: core.serialization.property("actor_type", PlanChangeActorType),
+    actorType: core.serialization.property("actor_type", ActorType),
     addOnsAdded: core.serialization.property("add_ons_added", core.serialization.list(PlanSnapshotView)),
     addOnsRemoved: core.serialization.property("add_ons_removed", core.serialization.list(PlanSnapshotView)),
     apiKey: core.serialization.property("api_key", ApiKeyResponseData.optional()),
-    apiKeyRequest: core.serialization.property("api_key_request", ApiKeyRequestListResponseData.optional()),
+    auditLog: core.serialization.property("audit_log", AuditLogListResponseData.optional()),
     basePlan: core.serialization.property("base_plan", PlanSnapshotView.optional()),
     basePlanAction: core.serialization.property("base_plan_action", PlanChangeBasePlanAction.optional()),
     company: CompanyResponseData.optional(),
@@ -45,11 +45,11 @@ export const PlanChangeResponseData: core.serialization.ObjectSchema<
 export declare namespace PlanChangeResponseData {
     export interface Raw {
         action: PlanChangeAction.Raw;
-        actor_type: PlanChangeActorType.Raw;
+        actor_type: ActorType.Raw;
         add_ons_added: PlanSnapshotView.Raw[];
         add_ons_removed: PlanSnapshotView.Raw[];
         api_key?: ApiKeyResponseData.Raw | null;
-        api_key_request?: ApiKeyRequestListResponseData.Raw | null;
+        audit_log?: AuditLogListResponseData.Raw | null;
         base_plan?: PlanSnapshotView.Raw | null;
         base_plan_action?: PlanChangeBasePlanAction.Raw | null;
         company?: CompanyResponseData.Raw | null;

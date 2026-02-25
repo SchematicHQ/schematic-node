@@ -1,5 +1,3 @@
-export * from "./CountCompaniesForAdvancedFilterParams";
-export * from "./CountCompaniesForAdvancedFilterResponse";
 export * from "./CountCompaniesParams";
 export * from "./CountCompaniesResponse";
 export * from "./CountEntityKeyDefinitionsParams";
@@ -31,8 +29,6 @@ export * from "./GetOrCreateEntityTraitDefinitionResponse";
 export * from "./GetPlanChangeResponse";
 export * from "./GetPlanTraitResponse";
 export * from "./GetUserResponse";
-export * from "./ListCompaniesForAdvancedFilterParams";
-export * from "./ListCompaniesForAdvancedFilterResponse";
 export * from "./ListCompaniesParams";
 export * from "./ListCompaniesResponse";
 export * from "./ListCompanyMembershipsParams";

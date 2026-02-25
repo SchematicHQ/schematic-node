@@ -19,6 +19,8 @@ export interface PlanGroupResponseData {
     preventSelfServiceDowngradeButtonText?: string;
     preventSelfServiceDowngradeUrl?: string;
     prorationBehavior: string;
+    scheduledDowngradeBehavior?: string;
+    scheduledDowngradePreventWhenOverLimit?: boolean;
     showAsMonthlyPrices: boolean;
     showCredits: boolean;
     showPeriodToggle: boolean;

@@ -21,6 +21,7 @@ export interface ComponentPreviewResponseData {
     preventSelfServiceDowngrade: boolean;
     preventSelfServiceDowngradeButtonText?: string;
     preventSelfServiceDowngradeUrl?: string;
+    scheduledDowngrade?: Schematic.ScheduledDowngradeResponseData;
     showAsMonthlyPrices: boolean;
     showCredits: boolean;
     showPeriodToggle: boolean;

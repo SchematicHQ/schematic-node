@@ -20,6 +20,7 @@ export const UpdatePlanBundleRequestBody: core.serialization.Schema<
     ),
     entitlements: core.serialization.list(PlanBundleEntitlementRequestBody),
     plan: UpdatePlanRequestBody.optional(),
+    planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
     traits: core.serialization.list(UpdatePlanTraitTraitRequestBody).optional(),
 });
 
@@ -29,6 +30,7 @@ export declare namespace UpdatePlanBundleRequestBody {
         credit_grants?: PlanBundleCreditGrantRequestBody.Raw[] | null;
         entitlements: PlanBundleEntitlementRequestBody.Raw[];
         plan?: UpdatePlanRequestBody.Raw | null;
+        plan_version_id?: string | null;
         traits?: UpdatePlanTraitTraitRequestBody.Raw[] | null;
     }
 }

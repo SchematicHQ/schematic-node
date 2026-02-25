@@ -8,9 +8,11 @@ import { CompanyEventPeriodMetricsResponseData } from "./CompanyEventPeriodMetri
 import { CompanyPlanWithBillingSubView } from "./CompanyPlanWithBillingSubView";
 import { EntityKeyDetailResponseData } from "./EntityKeyDetailResponseData";
 import { EntityTraitDetailResponseData } from "./EntityTraitDetailResponseData";
+import { FeatureEntitlement } from "./FeatureEntitlement";
 import { GenericPreviewObject } from "./GenericPreviewObject";
 import { PaymentMethodResponseData } from "./PaymentMethodResponseData";
 import { Rule } from "./Rule";
+import { ScheduledDowngradeResponseData } from "./ScheduledDowngradeResponseData";
 
 export const CompanyDetailResponseData: core.serialization.ObjectSchema<
     serializers.CompanyDetailResponseData.Raw,
@@ -28,6 +30,7 @@ export const CompanyDetailResponseData: core.serialization.ObjectSchema<
     ),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     defaultPaymentMethod: core.serialization.property("default_payment_method", PaymentMethodResponseData.optional()),
+    entitlements: core.serialization.list(FeatureEntitlement),
     entityTraits: core.serialization.property("entity_traits", core.serialization.list(EntityTraitDetailResponseData)),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     id: core.serialization.string(),
@@ -40,6 +43,7 @@ export const CompanyDetailResponseData: core.serialization.ObjectSchema<
     plan: CompanyPlanWithBillingSubView.optional(),
     plans: core.serialization.list(GenericPreviewObject),
     rules: core.serialization.list(Rule),
+    scheduledDowngrade: core.serialization.property("scheduled_downgrade", ScheduledDowngradeResponseData.optional()),
     traits: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     userCount: core.serialization.property("user_count", core.serialization.number()),
@@ -53,6 +57,7 @@ export declare namespace CompanyDetailResponseData {
         billing_subscriptions: BillingSubscriptionView.Raw[];
         created_at: string;
         default_payment_method?: PaymentMethodResponseData.Raw | null;
+        entitlements: FeatureEntitlement.Raw[];
         entity_traits: EntityTraitDetailResponseData.Raw[];
         environment_id: string;
         id: string;
@@ -65,6 +70,7 @@ export declare namespace CompanyDetailResponseData {
         plan?: CompanyPlanWithBillingSubView.Raw | null;
         plans: GenericPreviewObject.Raw[];
         rules: Rule.Raw[];
+        scheduled_downgrade?: ScheduledDowngradeResponseData.Raw | null;
         traits?: Record<string, unknown> | null;
         updated_at: string;
         user_count: number;

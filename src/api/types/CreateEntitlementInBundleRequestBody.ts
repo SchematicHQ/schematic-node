@@ -15,6 +15,8 @@ export interface CreateEntitlementInBundleRequestBody {
     monthlyUnitPrice?: number;
     monthlyUnitPriceDecimal?: string;
     overageBillingProductId?: string;
+    planId: string;
+    planVersionId?: string;
     priceBehavior?: Schematic.EntitlementPriceBehavior;
     /** Use MonthlyPriceTiers or YearlyPriceTiers instead */
     priceTiers?: Schematic.CreatePriceTierRequestBody[];

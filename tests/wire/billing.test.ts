@@ -2189,7 +2189,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             billing_scheme: "per_unit",
-            currency: "currency",
+            currency: "foo",
             external_account_id: "external_account_id",
             interval: "interval",
             is_active: true,
@@ -2212,7 +2212,7 @@ describe("BillingClient", () => {
         await expect(async () => {
             return await client.billing.upsertBillingPrice({
                 billingScheme: "per_unit",
-                currency: "currency",
+                currency: "foo",
                 externalAccountId: "external_account_id",
                 interval: "interval",
                 isActive: true,
@@ -2237,7 +2237,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             billing_scheme: "per_unit",
-            currency: "currency",
+            currency: "foo",
             external_account_id: "external_account_id",
             interval: "interval",
             is_active: true,
@@ -2260,7 +2260,7 @@ describe("BillingClient", () => {
         await expect(async () => {
             return await client.billing.upsertBillingPrice({
                 billingScheme: "per_unit",
-                currency: "currency",
+                currency: "foo",
                 externalAccountId: "external_account_id",
                 interval: "interval",
                 isActive: true,
@@ -2285,7 +2285,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             billing_scheme: "per_unit",
-            currency: "currency",
+            currency: "foo",
             external_account_id: "external_account_id",
             interval: "interval",
             is_active: true,
@@ -2308,7 +2308,7 @@ describe("BillingClient", () => {
         await expect(async () => {
             return await client.billing.upsertBillingPrice({
                 billingScheme: "per_unit",
-                currency: "currency",
+                currency: "foo",
                 externalAccountId: "external_account_id",
                 interval: "interval",
                 isActive: true,
@@ -2333,7 +2333,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             billing_scheme: "per_unit",
-            currency: "currency",
+            currency: "foo",
             external_account_id: "external_account_id",
             interval: "interval",
             is_active: true,
@@ -2356,7 +2356,7 @@ describe("BillingClient", () => {
         await expect(async () => {
             return await client.billing.upsertBillingPrice({
                 billingScheme: "per_unit",
-                currency: "currency",
+                currency: "foo",
                 externalAccountId: "external_account_id",
                 interval: "interval",
                 isActive: true,
@@ -2381,7 +2381,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             billing_scheme: "per_unit",
-            currency: "currency",
+            currency: "foo",
             external_account_id: "external_account_id",
             interval: "interval",
             is_active: true,
@@ -2404,7 +2404,7 @@ describe("BillingClient", () => {
         await expect(async () => {
             return await client.billing.upsertBillingPrice({
                 billingScheme: "per_unit",
-                currency: "currency",
+                currency: "foo",
                 externalAccountId: "external_account_id",
                 interval: "interval",
                 isActive: true,
@@ -3481,7 +3481,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             cancel_at_period_end: true,
-            currency: "currency",
+            currency: "foo",
             customer_external_id: "customer_external_id",
             discounts: [
                 {
@@ -3500,7 +3500,7 @@ describe("BillingClient", () => {
             expired_at: "2024-01-15T09:30:00Z",
             product_external_ids: [
                 {
-                    currency: "currency",
+                    currency: "foo",
                     interval: "interval",
                     price: 1,
                     price_external_id: "price_external_id",
@@ -3509,7 +3509,7 @@ describe("BillingClient", () => {
                     usage_type: "licensed",
                 },
                 {
-                    currency: "currency",
+                    currency: "foo",
                     interval: "interval",
                     price: 1,
                     price_external_id: "price_external_id",
@@ -3534,7 +3534,7 @@ describe("BillingClient", () => {
         await expect(async () => {
             return await client.billing.upsertBillingSubscription({
                 cancelAtPeriodEnd: true,
-                currency: "currency",
+                currency: "foo",
                 customerExternalId: "customer_external_id",
                 discounts: [
                     {
@@ -3553,7 +3553,7 @@ describe("BillingClient", () => {
                 expiredAt: new Date("2024-01-15T09:30:00.000Z"),
                 productExternalIds: [
                     {
-                        currency: "currency",
+                        currency: "foo",
                         interval: "interval",
                         price: 1,
                         priceExternalId: "price_external_id",
@@ -3562,7 +3562,7 @@ describe("BillingClient", () => {
                         usageType: "licensed",
                     },
                     {
-                        currency: "currency",
+                        currency: "foo",
                         interval: "interval",
                         price: 1,
                         priceExternalId: "price_external_id",
@@ -3582,7 +3582,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             cancel_at_period_end: true,
-            currency: "currency",
+            currency: "foo",
             customer_external_id: "customer_external_id",
             discounts: [
                 {
@@ -3601,7 +3601,7 @@ describe("BillingClient", () => {
             expired_at: "2024-01-15T09:30:00Z",
             product_external_ids: [
                 {
-                    currency: "currency",
+                    currency: "foo",
                     interval: "interval",
                     price: 1,
                     price_external_id: "price_external_id",
@@ -3610,7 +3610,7 @@ describe("BillingClient", () => {
                     usage_type: "licensed",
                 },
                 {
-                    currency: "currency",
+                    currency: "foo",
                     interval: "interval",
                     price: 1,
                     price_external_id: "price_external_id",
@@ -3635,7 +3635,7 @@ describe("BillingClient", () => {
         await expect(async () => {
             return await client.billing.upsertBillingSubscription({
                 cancelAtPeriodEnd: true,
-                currency: "currency",
+                currency: "foo",
                 customerExternalId: "customer_external_id",
                 discounts: [
                     {
@@ -3654,7 +3654,7 @@ describe("BillingClient", () => {
                 expiredAt: new Date("2024-01-15T09:30:00.000Z"),
                 productExternalIds: [
                     {
-                        currency: "currency",
+                        currency: "foo",
                         interval: "interval",
                         price: 1,
                         priceExternalId: "price_external_id",
@@ -3663,7 +3663,7 @@ describe("BillingClient", () => {
                         usageType: "licensed",
                     },
                     {
-                        currency: "currency",
+                        currency: "foo",
                         interval: "interval",
                         price: 1,
                         priceExternalId: "price_external_id",
@@ -3683,7 +3683,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             cancel_at_period_end: true,
-            currency: "currency",
+            currency: "foo",
             customer_external_id: "customer_external_id",
             discounts: [
                 {
@@ -3702,7 +3702,7 @@ describe("BillingClient", () => {
             expired_at: "2024-01-15T09:30:00Z",
             product_external_ids: [
                 {
-                    currency: "currency",
+                    currency: "foo",
                     interval: "interval",
                     price: 1,
                     price_external_id: "price_external_id",
@@ -3711,7 +3711,7 @@ describe("BillingClient", () => {
                     usage_type: "licensed",
                 },
                 {
-                    currency: "currency",
+                    currency: "foo",
                     interval: "interval",
                     price: 1,
                     price_external_id: "price_external_id",
@@ -3736,7 +3736,7 @@ describe("BillingClient", () => {
         await expect(async () => {
             return await client.billing.upsertBillingSubscription({
                 cancelAtPeriodEnd: true,
-                currency: "currency",
+                currency: "foo",
                 customerExternalId: "customer_external_id",
                 discounts: [
                     {
@@ -3755,7 +3755,7 @@ describe("BillingClient", () => {
                 expiredAt: new Date("2024-01-15T09:30:00.000Z"),
                 productExternalIds: [
                     {
-                        currency: "currency",
+                        currency: "foo",
                         interval: "interval",
                         price: 1,
                         priceExternalId: "price_external_id",
@@ -3764,7 +3764,7 @@ describe("BillingClient", () => {
                         usageType: "licensed",
                     },
                     {
-                        currency: "currency",
+                        currency: "foo",
                         interval: "interval",
                         price: 1,
                         priceExternalId: "price_external_id",
@@ -3784,7 +3784,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             cancel_at_period_end: true,
-            currency: "currency",
+            currency: "foo",
             customer_external_id: "customer_external_id",
             discounts: [
                 {
@@ -3803,7 +3803,7 @@ describe("BillingClient", () => {
             expired_at: "2024-01-15T09:30:00Z",
             product_external_ids: [
                 {
-                    currency: "currency",
+                    currency: "foo",
                     interval: "interval",
                     price: 1,
                     price_external_id: "price_external_id",
@@ -3812,7 +3812,7 @@ describe("BillingClient", () => {
                     usage_type: "licensed",
                 },
                 {
-                    currency: "currency",
+                    currency: "foo",
                     interval: "interval",
                     price: 1,
                     price_external_id: "price_external_id",
@@ -3837,7 +3837,7 @@ describe("BillingClient", () => {
         await expect(async () => {
             return await client.billing.upsertBillingSubscription({
                 cancelAtPeriodEnd: true,
-                currency: "currency",
+                currency: "foo",
                 customerExternalId: "customer_external_id",
                 discounts: [
                     {
@@ -3856,7 +3856,7 @@ describe("BillingClient", () => {
                 expiredAt: new Date("2024-01-15T09:30:00.000Z"),
                 productExternalIds: [
                     {
-                        currency: "currency",
+                        currency: "foo",
                         interval: "interval",
                         price: 1,
                         priceExternalId: "price_external_id",
@@ -3865,7 +3865,7 @@ describe("BillingClient", () => {
                         usageType: "licensed",
                     },
                     {
-                        currency: "currency",
+                        currency: "foo",
                         interval: "interval",
                         price: 1,
                         priceExternalId: "price_external_id",
@@ -3885,7 +3885,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             cancel_at_period_end: true,
-            currency: "currency",
+            currency: "foo",
             customer_external_id: "customer_external_id",
             discounts: [
                 {
@@ -3904,7 +3904,7 @@ describe("BillingClient", () => {
             expired_at: "2024-01-15T09:30:00Z",
             product_external_ids: [
                 {
-                    currency: "currency",
+                    currency: "foo",
                     interval: "interval",
                     price: 1,
                     price_external_id: "price_external_id",
@@ -3913,7 +3913,7 @@ describe("BillingClient", () => {
                     usage_type: "licensed",
                 },
                 {
-                    currency: "currency",
+                    currency: "foo",
                     interval: "interval",
                     price: 1,
                     price_external_id: "price_external_id",
@@ -3938,7 +3938,7 @@ describe("BillingClient", () => {
         await expect(async () => {
             return await client.billing.upsertBillingSubscription({
                 cancelAtPeriodEnd: true,
-                currency: "currency",
+                currency: "foo",
                 customerExternalId: "customer_external_id",
                 discounts: [
                     {
@@ -3957,7 +3957,7 @@ describe("BillingClient", () => {
                 expiredAt: new Date("2024-01-15T09:30:00.000Z"),
                 productExternalIds: [
                     {
-                        currency: "currency",
+                        currency: "foo",
                         interval: "interval",
                         price: 1,
                         priceExternalId: "price_external_id",
@@ -3966,7 +3966,7 @@ describe("BillingClient", () => {
                         usageType: "licensed",
                     },
                     {
-                        currency: "currency",
+                        currency: "foo",
                         interval: "interval",
                         price: 1,
                         priceExternalId: "price_external_id",

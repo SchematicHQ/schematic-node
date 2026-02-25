@@ -20,6 +20,7 @@ export const CompanyPlanDetailResponseData: core.serialization.ObjectSchema<
     serializers.CompanyPlanDetailResponseData.Raw,
     Schematic.CompanyPlanDetailResponseData
 > = core.serialization.object({
+    activeVersion: core.serialization.property("active_version", PlanVersionResponseData.optional()),
     audienceType: core.serialization.property("audience_type", core.serialization.string().optional()),
     billingProduct: core.serialization.property("billing_product", BillingProductDetailResponseData.optional()),
     chargeType: core.serialization.property("charge_type", ChargeType),
@@ -35,6 +36,7 @@ export const CompanyPlanDetailResponseData: core.serialization.ObjectSchema<
     custom: core.serialization.boolean(),
     customPlanConfig: core.serialization.property("custom_plan_config", CustomPlanConfig.optional()),
     description: core.serialization.string(),
+    draftVersion: core.serialization.property("draft_version", PlanVersionResponseData.optional()),
     entitlements: core.serialization.list(PlanEntitlementResponseData),
     features: core.serialization.list(FeatureDetailResponseData),
     icon: core.serialization.string(),
@@ -62,6 +64,7 @@ export const CompanyPlanDetailResponseData: core.serialization.ObjectSchema<
 
 export declare namespace CompanyPlanDetailResponseData {
     export interface Raw {
+        active_version?: PlanVersionResponseData.Raw | null;
         audience_type?: string | null;
         billing_product?: BillingProductDetailResponseData.Raw | null;
         charge_type: ChargeType.Raw;
@@ -74,6 +77,7 @@ export declare namespace CompanyPlanDetailResponseData {
         custom: boolean;
         custom_plan_config?: CustomPlanConfig.Raw | null;
         description: string;
+        draft_version?: PlanVersionResponseData.Raw | null;
         entitlements: PlanEntitlementResponseData.Raw[];
         features: FeatureDetailResponseData.Raw[];
         icon: string;

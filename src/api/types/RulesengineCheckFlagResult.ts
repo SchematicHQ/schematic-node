@@ -4,6 +4,7 @@ import type * as Schematic from "../index";
 
 export interface RulesengineCheckFlagResult {
     companyId?: string;
+    entitlement?: Schematic.RulesengineFeatureEntitlement;
     err?: string;
     featureAllocation?: number;
     featureUsage?: number;
