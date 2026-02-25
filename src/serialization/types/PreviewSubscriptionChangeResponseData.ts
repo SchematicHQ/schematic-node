@@ -13,12 +13,14 @@ export const PreviewSubscriptionChangeResponseData: core.serialization.ObjectSch
     amountOff: core.serialization.property("amount_off", core.serialization.number()),
     dueNow: core.serialization.property("due_now", core.serialization.number()),
     finance: PreviewSubscriptionFinanceResponseData.optional(),
+    isScheduledDowngrade: core.serialization.property("is_scheduled_downgrade", core.serialization.boolean()),
     newCharges: core.serialization.property("new_charges", core.serialization.number()),
     paymentMethodRequired: core.serialization.property("payment_method_required", core.serialization.boolean()),
     percentOff: core.serialization.property("percent_off", core.serialization.number()),
     periodStart: core.serialization.property("period_start", core.serialization.date()),
     promoCodeApplied: core.serialization.property("promo_code_applied", core.serialization.boolean()),
     proration: core.serialization.number(),
+    scheduledChangeTime: core.serialization.property("scheduled_change_time", core.serialization.date().optional()),
     trialEnd: core.serialization.property("trial_end", core.serialization.date().optional()),
     usageViolations: core.serialization.property("usage_violations", core.serialization.list(FeatureUsageResponseData)),
 });
@@ -28,12 +30,14 @@ export declare namespace PreviewSubscriptionChangeResponseData {
         amount_off: number;
         due_now: number;
         finance?: PreviewSubscriptionFinanceResponseData.Raw | null;
+        is_scheduled_downgrade: boolean;
         new_charges: number;
         payment_method_required: boolean;
         percent_off: number;
         period_start: string;
         promo_code_applied: boolean;
         proration: number;
+        scheduled_change_time?: string | null;
         trial_end?: string | null;
         usage_violations: FeatureUsageResponseData.Raw[];
     }

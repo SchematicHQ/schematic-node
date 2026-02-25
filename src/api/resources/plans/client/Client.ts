@@ -510,6 +510,7 @@ export class PlansClient {
 
     /**
      * @param {string} plan_id - plan_id
+     * @param {Schematic.GetPlanRequest} request
      * @param {PlansClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Schematic.UnauthorizedError}
@@ -518,19 +519,29 @@ export class PlansClient {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.plans.getPlan("plan_id")
+     *     await client.plans.getPlan("plan_id", {
+     *         planVersionId: "plan_version_id"
+     *     })
      */
     public getPlan(
         plan_id: string,
+        request: Schematic.GetPlanRequest = {},
         requestOptions?: PlansClient.RequestOptions,
     ): core.HttpResponsePromise<Schematic.GetPlanResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__getPlan(plan_id, requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__getPlan(plan_id, request, requestOptions));
     }
 
     private async __getPlan(
         plan_id: string,
+        request: Schematic.GetPlanRequest = {},
         requestOptions?: PlansClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.GetPlanResponse>> {
+        const { planVersionId } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (planVersionId != null) {
+            _queryParams.plan_version_id = planVersionId;
+        }
+
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -546,7 +557,7 @@ export class PlansClient {
             ),
             method: "GET",
             headers: _headers,
-            queryParameters: requestOptions?.queryParams,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -1249,7 +1260,8 @@ export class PlansClient {
      *
      * @example
      *     await client.plans.listPlanIssues({
-     *         planId: "plan_id"
+     *         planId: "plan_id",
+     *         planVersionId: "plan_version_id"
      *     })
      */
     public listPlanIssues(
@@ -1263,9 +1275,13 @@ export class PlansClient {
         request: Schematic.ListPlanIssuesRequest,
         requestOptions?: PlansClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListPlanIssuesResponse>> {
-        const { planId } = request;
+        const { planId, planVersionId } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         _queryParams.plan_id = planId;
+        if (planVersionId != null) {
+            _queryParams.plan_version_id = planVersionId;
+        }
+
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1368,5 +1384,275 @@ export class PlansClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/plans/issues");
+    }
+
+    /**
+     * @param {string} plan_id - plan_id
+     * @param {PlansClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.BadRequestError}
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
+     * @throws {@link Schematic.InternalServerError}
+     *
+     * @example
+     *     await client.plans.deletePlanVersion("plan_id")
+     */
+    public deletePlanVersion(
+        plan_id: string,
+        requestOptions?: PlansClient.RequestOptions,
+    ): core.HttpResponsePromise<Schematic.DeletePlanVersionResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__deletePlanVersion(plan_id, requestOptions));
+    }
+
+    private async __deletePlanVersion(
+        plan_id: string,
+        requestOptions?: PlansClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.DeletePlanVersionResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                `plans/version/${core.url.encodePathParam(plan_id)}`,
+            ),
+            method: "DELETE",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.DeletePlanVersionResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Schematic.BadRequestError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/plans/version/{plan_id}");
+    }
+
+    /**
+     * @param {string} plan_id - plan_id
+     * @param {Schematic.PublishPlanVersionRequestBody} request
+     * @param {PlansClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.BadRequestError}
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
+     * @throws {@link Schematic.InternalServerError}
+     *
+     * @example
+     *     await client.plans.publishPlanVersion("plan_id", {
+     *         excludedCompanyIds: ["excluded_company_ids"],
+     *         migrationStrategy: "immediate"
+     *     })
+     */
+    public publishPlanVersion(
+        plan_id: string,
+        request: Schematic.PublishPlanVersionRequestBody,
+        requestOptions?: PlansClient.RequestOptions,
+    ): core.HttpResponsePromise<Schematic.PublishPlanVersionResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__publishPlanVersion(plan_id, request, requestOptions));
+    }
+
+    private async __publishPlanVersion(
+        plan_id: string,
+        request: Schematic.PublishPlanVersionRequestBody,
+        requestOptions?: PlansClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.PublishPlanVersionResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                `plans/version/${core.url.encodePathParam(plan_id)}/publish`,
+            ),
+            method: "PUT",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
+            requestType: "json",
+            body: serializers.PublishPlanVersionRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.PublishPlanVersionResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Schematic.BadRequestError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "PUT",
+            "/plans/version/{plan_id}/publish",
+        );
     }
 }

@@ -34,6 +34,7 @@ export const CreateBillingPlanCreditGrantRequestBody: core.serialization.ObjectS
     expiryUnit: core.serialization.property("expiry_unit", BillingCreditExpiryUnit.optional()),
     expiryUnitCount: core.serialization.property("expiry_unit_count", core.serialization.number().optional()),
     planId: core.serialization.property("plan_id", core.serialization.string()),
+    planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
     resetCadence: core.serialization.property("reset_cadence", BillingPlanCreditGrantResetCadence),
     resetStart: core.serialization.property("reset_start", BillingPlanCreditGrantResetStart),
     resetType: core.serialization.property("reset_type", BillingPlanCreditGrantResetType.optional()),
@@ -55,6 +56,7 @@ export declare namespace CreateBillingPlanCreditGrantRequestBody {
         expiry_unit?: BillingCreditExpiryUnit.Raw | null;
         expiry_unit_count?: number | null;
         plan_id: string;
+        plan_version_id?: string | null;
         reset_cadence: BillingPlanCreditGrantResetCadence.Raw;
         reset_start: BillingPlanCreditGrantResetStart.Raw;
         reset_type?: BillingPlanCreditGrantResetType.Raw | null;

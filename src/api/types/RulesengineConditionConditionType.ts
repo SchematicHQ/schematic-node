@@ -5,9 +5,9 @@ export const RulesengineConditionConditionType = {
     BillingProduct: "billing_product",
     Company: "company",
     Credit: "credit",
-    CrmProduct: "crm_product",
     Metric: "metric",
     Plan: "plan",
+    PlanVersion: "plan_version",
     Trait: "trait",
     User: "user",
 } as const;

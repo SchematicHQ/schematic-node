@@ -5,6 +5,7 @@
  *     {
  *         featureId: "feature_id",
  *         planId: "plan_id",
+ *         planVersionId: "plan_version_id",
  *         q: "q",
  *         withMeteredProducts: true,
  *         limit: 1,
@@ -22,6 +23,10 @@ export interface ListPlanEntitlementsRequest {
     planId?: string;
     /** Filter plan entitlements by multiple plan IDs (starting with plan_) */
     planIds?: string | string[];
+    /** Filter plan entitlements by a single plan version ID (starting with plvr_) */
+    planVersionId?: string;
+    /** Filter plan entitlements by multiple plan version IDs (starting with plvr_) */
+    planVersionIds?: string | string[];
     /** Search for plan entitlements by feature or company name */
     q?: string;
     /** Filter plan entitlements only with metered products */

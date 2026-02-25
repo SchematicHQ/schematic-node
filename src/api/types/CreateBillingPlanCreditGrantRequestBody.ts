@@ -17,6 +17,7 @@ export interface CreateBillingPlanCreditGrantRequestBody {
     expiryUnit?: Schematic.BillingCreditExpiryUnit;
     expiryUnitCount?: number;
     planId: string;
+    planVersionId?: string;
     resetCadence: Schematic.BillingPlanCreditGrantResetCadence;
     resetStart: Schematic.BillingPlanCreditGrantResetStart;
     resetType?: Schematic.BillingPlanCreditGrantResetType;

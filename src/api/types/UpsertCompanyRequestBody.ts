@@ -7,6 +7,7 @@ export interface UpsertCompanyRequestBody {
     keys: Record<string, string>;
     lastSeenAt?: Date;
     name?: string;
+    preventKeyRemap?: boolean;
     /** A map of trait names to trait values */
     traits?: Record<string, unknown>;
     updateOnly?: boolean;

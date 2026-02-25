@@ -3,6 +3,7 @@
 export interface ComponentSettingsResponseData {
     showAsMonthlyPrices: boolean;
     showCredits: boolean;
+    showFeatureDescription: boolean;
     showPeriodToggle: boolean;
     showZeroPriceAsFree: boolean;
 }

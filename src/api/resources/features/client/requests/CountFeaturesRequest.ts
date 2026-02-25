@@ -7,6 +7,7 @@ import type * as Schematic from "../../../../index";
  *     {
  *         q: "q",
  *         withoutCompanyOverrideFor: "without_company_override_for",
+ *         planVersionId: "plan_version_id",
  *         withoutPlanEntitlementFor: "without_plan_entitlement_for",
  *         booleanRequireEvent: true,
  *         limit: 1,
@@ -19,6 +20,8 @@ export interface CountFeaturesRequest {
     q?: string;
     /** Filter out features that already have a company override for the specified company ID */
     withoutCompanyOverrideFor?: string;
+    /** Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used */
+    planVersionId?: string;
     /** Filter out features that already have a plan entitlement for the specified plan ID */
     withoutPlanEntitlementFor?: string;
     /** Filter by one or more feature types (boolean, event, trait) */

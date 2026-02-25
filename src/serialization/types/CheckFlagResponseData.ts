@@ -3,12 +3,14 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { FeatureEntitlement } from "./FeatureEntitlement";
 
 export const CheckFlagResponseData: core.serialization.ObjectSchema<
     serializers.CheckFlagResponseData.Raw,
     Schematic.CheckFlagResponseData
 > = core.serialization.object({
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
+    entitlement: FeatureEntitlement.optional(),
     error: core.serialization.string().optional(),
     featureAllocation: core.serialization.property("feature_allocation", core.serialization.number().optional()),
     featureUsage: core.serialization.property("feature_usage", core.serialization.number().optional()),
@@ -27,6 +29,7 @@ export const CheckFlagResponseData: core.serialization.ObjectSchema<
 export declare namespace CheckFlagResponseData {
     export interface Raw {
         company_id?: string | null;
+        entitlement?: FeatureEntitlement.Raw | null;
         error?: string | null;
         feature_allocation?: number | null;
         feature_usage?: number | null;

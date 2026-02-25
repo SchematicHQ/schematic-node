@@ -20,6 +20,7 @@ export interface CountPlansParams {
     limit?: number;
     /** Page offset (default 0) */
     offset?: number;
+    /** Filter by plan type */
     planType?: Schematic.PlanType;
     q?: string;
     /** Filter out plans that already have a plan entitlement for the specified feature ID */

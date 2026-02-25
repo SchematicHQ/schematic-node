@@ -1409,6 +1409,140 @@ export class EntitlementsClient {
     }
 
     /**
+     * @param {Schematic.GetFeatureUsageTimeSeriesRequest} request
+     * @param {EntitlementsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
+     * @throws {@link Schematic.InternalServerError}
+     *
+     * @example
+     *     await client.entitlements.getFeatureUsageTimeSeries({
+     *         companyId: "company_id",
+     *         endTime: new Date("2024-01-15T09:30:00.000Z"),
+     *         featureId: "feature_id",
+     *         granularity: "daily",
+     *         startTime: new Date("2024-01-15T09:30:00.000Z")
+     *     })
+     */
+    public getFeatureUsageTimeSeries(
+        request: Schematic.GetFeatureUsageTimeSeriesRequest,
+        requestOptions?: EntitlementsClient.RequestOptions,
+    ): core.HttpResponsePromise<Schematic.GetFeatureUsageTimeSeriesResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getFeatureUsageTimeSeries(request, requestOptions));
+    }
+
+    private async __getFeatureUsageTimeSeries(
+        request: Schematic.GetFeatureUsageTimeSeriesRequest,
+        requestOptions?: EntitlementsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.GetFeatureUsageTimeSeriesResponse>> {
+        const { companyId, endTime, featureId, granularity, startTime } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        _queryParams.company_id = companyId;
+        _queryParams.end_time = endTime.toISOString();
+        _queryParams.feature_id = featureId;
+        if (granularity != null) {
+            _queryParams.granularity = serializers.TimeSeriesGranularity.jsonOrThrow(granularity, {
+                unrecognizedObjectKeys: "strip",
+            });
+        }
+
+        _queryParams.start_time = startTime.toISOString();
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "feature-usage-timeseries",
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.GetFeatureUsageTimeSeriesResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/feature-usage-timeseries");
+    }
+
+    /**
      * @param {Schematic.CountFeatureUsageRequest} request
      * @param {EntitlementsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -1900,6 +2034,7 @@ export class EntitlementsClient {
      *     await client.entitlements.listPlanEntitlements({
      *         featureId: "feature_id",
      *         planId: "plan_id",
+     *         planVersionId: "plan_version_id",
      *         q: "q",
      *         withMeteredProducts: true,
      *         limit: 1,
@@ -1917,7 +2052,19 @@ export class EntitlementsClient {
         request: Schematic.ListPlanEntitlementsRequest = {},
         requestOptions?: EntitlementsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListPlanEntitlementsResponse>> {
-        const { featureId, featureIds, ids, planId, planIds, q, withMeteredProducts, limit, offset } = request;
+        const {
+            featureId,
+            featureIds,
+            ids,
+            planId,
+            planIds,
+            planVersionId,
+            planVersionIds,
+            q,
+            withMeteredProducts,
+            limit,
+            offset,
+        } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (featureId != null) {
             _queryParams.feature_id = featureId;
@@ -1948,6 +2095,18 @@ export class EntitlementsClient {
                 _queryParams.plan_ids = planIds.map((item) => item);
             } else {
                 _queryParams.plan_ids = planIds;
+            }
+        }
+
+        if (planVersionId != null) {
+            _queryParams.plan_version_id = planVersionId;
+        }
+
+        if (planVersionIds != null) {
+            if (Array.isArray(planVersionIds)) {
+                _queryParams.plan_version_ids = planVersionIds.map((item) => item);
+            } else {
+                _queryParams.plan_version_ids = planVersionIds;
             }
         }
 
@@ -2621,6 +2780,7 @@ export class EntitlementsClient {
      *     await client.entitlements.countPlanEntitlements({
      *         featureId: "feature_id",
      *         planId: "plan_id",
+     *         planVersionId: "plan_version_id",
      *         q: "q",
      *         withMeteredProducts: true,
      *         limit: 1,
@@ -2638,7 +2798,19 @@ export class EntitlementsClient {
         request: Schematic.CountPlanEntitlementsRequest = {},
         requestOptions?: EntitlementsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountPlanEntitlementsResponse>> {
-        const { featureId, featureIds, ids, planId, planIds, q, withMeteredProducts, limit, offset } = request;
+        const {
+            featureId,
+            featureIds,
+            ids,
+            planId,
+            planIds,
+            planVersionId,
+            planVersionIds,
+            q,
+            withMeteredProducts,
+            limit,
+            offset,
+        } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (featureId != null) {
             _queryParams.feature_id = featureId;
@@ -2669,6 +2841,18 @@ export class EntitlementsClient {
                 _queryParams.plan_ids = planIds.map((item) => item);
             } else {
                 _queryParams.plan_ids = planIds;
+            }
+        }
+
+        if (planVersionId != null) {
+            _queryParams.plan_version_id = planVersionId;
+        }
+
+        if (planVersionIds != null) {
+            if (Array.isArray(planVersionIds)) {
+                _queryParams.plan_version_ids = planVersionIds.map((item) => item);
+            } else {
+                _queryParams.plan_version_ids = planVersionIds;
             }
         }
 

@@ -5,4 +5,5 @@
  */
 export interface ListPlanIssuesParams {
     planId?: string;
+    planVersionId?: string;
 }

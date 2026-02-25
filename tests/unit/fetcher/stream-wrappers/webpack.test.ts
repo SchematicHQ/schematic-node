@@ -23,13 +23,6 @@ describe("test env compatibility", () => {
                             ".jsx": [".tsx", ".jsx"],
                         },
                     },
-                    externals: {
-                        // Node.js-only optional dependencies, not needed in browser bundles
-                        redis: "commonjs redis",
-                        ws: "commonjs ws",
-                        fs: "commonjs fs",
-                        path: "commonjs path",
-                    },
                 },
                 (err, stats) => {
                     try {

@@ -16,6 +16,7 @@ export const PlanDetailResponseData: core.serialization.ObjectSchema<
     serializers.PlanDetailResponseData.Raw,
     Schematic.PlanDetailResponseData
 > = core.serialization.object({
+    activeVersion: core.serialization.property("active_version", PlanVersionResponseData.optional()),
     audienceType: core.serialization.property("audience_type", core.serialization.string().optional()),
     billingProduct: core.serialization.property("billing_product", BillingProductDetailResponseData.optional()),
     chargeType: core.serialization.property("charge_type", ChargeType),
@@ -23,6 +24,7 @@ export const PlanDetailResponseData: core.serialization.ObjectSchema<
     controlledBy: core.serialization.property("controlled_by", PlanControlledByType),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     description: core.serialization.string(),
+    draftVersion: core.serialization.property("draft_version", PlanVersionResponseData.optional()),
     features: core.serialization.list(FeatureDetailResponseData),
     icon: core.serialization.string(),
     id: core.serialization.string(),
@@ -45,6 +47,7 @@ export const PlanDetailResponseData: core.serialization.ObjectSchema<
 
 export declare namespace PlanDetailResponseData {
     export interface Raw {
+        active_version?: PlanVersionResponseData.Raw | null;
         audience_type?: string | null;
         billing_product?: BillingProductDetailResponseData.Raw | null;
         charge_type: ChargeType.Raw;
@@ -52,6 +55,7 @@ export declare namespace PlanDetailResponseData {
         controlled_by: PlanControlledByType.Raw;
         created_at: string;
         description: string;
+        draft_version?: PlanVersionResponseData.Raw | null;
         features: FeatureDetailResponseData.Raw[];
         icon: string;
         id: string;

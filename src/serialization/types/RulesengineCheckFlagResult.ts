@@ -5,12 +5,14 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 import { RulesengineCheckFlagResultFeatureUsagePeriod } from "./RulesengineCheckFlagResultFeatureUsagePeriod";
 import { RulesengineCheckFlagResultRuleType } from "./RulesengineCheckFlagResultRuleType";
+import { RulesengineFeatureEntitlement } from "./RulesengineFeatureEntitlement";
 
 export const RulesengineCheckFlagResult: core.serialization.ObjectSchema<
     serializers.RulesengineCheckFlagResult.Raw,
     Schematic.RulesengineCheckFlagResult
 > = core.serialization.object({
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
+    entitlement: RulesengineFeatureEntitlement.optional(),
     err: core.serialization.string().optional(),
     featureAllocation: core.serialization.property("feature_allocation", core.serialization.number().optional()),
     featureUsage: core.serialization.property("feature_usage", core.serialization.number().optional()),
@@ -32,6 +34,7 @@ export const RulesengineCheckFlagResult: core.serialization.ObjectSchema<
 export declare namespace RulesengineCheckFlagResult {
     export interface Raw {
         company_id?: string | null;
+        entitlement?: RulesengineFeatureEntitlement.Raw | null;
         err?: string | null;
         feature_allocation?: number | null;
         feature_usage?: number | null;

@@ -3,9 +3,11 @@
 /**
  * @example
  *     {
- *         planId: "plan_id"
+ *         planId: "plan_id",
+ *         planVersionId: "plan_version_id"
  *     }
  */
 export interface ListPlanIssuesRequest {
     planId: string;
+    planVersionId?: string;
 }

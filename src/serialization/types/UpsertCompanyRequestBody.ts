@@ -12,6 +12,7 @@ export const UpsertCompanyRequestBody: core.serialization.ObjectSchema<
     keys: core.serialization.record(core.serialization.string(), core.serialization.string()),
     lastSeenAt: core.serialization.property("last_seen_at", core.serialization.date().optional()),
     name: core.serialization.string().optional(),
+    preventKeyRemap: core.serialization.property("prevent_key_remap", core.serialization.boolean().optional()),
     traits: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     updateOnly: core.serialization.property("update_only", core.serialization.boolean().optional()),
 });
@@ -22,6 +23,7 @@ export declare namespace UpsertCompanyRequestBody {
         keys: Record<string, string>;
         last_seen_at?: string | null;
         name?: string | null;
+        prevent_key_remap?: boolean | null;
         traits?: Record<string, unknown> | null;
         update_only?: boolean | null;
     }

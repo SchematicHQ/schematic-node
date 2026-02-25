@@ -24,9 +24,6 @@ describe("PlansClient", () => {
                                 credit_name: "credit_name",
                                 id: "id",
                                 plan_id: "plan_id",
-                                plan_name: "plan_name",
-                                reset_cadence: "daily",
-                                reset_start: "billing_period",
                                 reset_type: "no_reset",
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
@@ -184,6 +181,7 @@ describe("PlansClient", () => {
                     provider_type: "schematic",
                     updated_at: "2024-01-15T09:30:00Z",
                 },
+                entitlements: [{ feature_id: "feature_id", feature_key: "feature_key", value_type: "boolean" }],
                 entity_traits: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
@@ -255,9 +253,6 @@ describe("PlansClient", () => {
                             credit_name: "credit_name",
                             id: "id",
                             plan_id: "plan_id",
-                            plan_name: "plan_name",
-                            reset_cadence: "daily",
-                            reset_start: "billing_period",
                             reset_type: "no_reset",
                             updated_at: "2024-01-15T09:30:00Z",
                         },
@@ -305,6 +300,19 @@ describe("PlansClient", () => {
                         value: true,
                     },
                 ],
+                scheduled_downgrade: {
+                    currency: "currency",
+                    effective_after: "2024-01-15T09:30:00Z",
+                    from_plan_id: "from_plan_id",
+                    from_plan_name: "from_plan_name",
+                    from_subscription_price: 1,
+                    id: "id",
+                    interval: "interval",
+                    scheduled_interval: "scheduled_interval",
+                    scheduled_price: 1,
+                    to_plan_id: "to_plan_id",
+                    to_plan_name: "to_plan_name",
+                },
                 traits: { key: "value" },
                 updated_at: "2024-01-15T09:30:00Z",
                 user_count: 1,
@@ -338,9 +346,6 @@ describe("PlansClient", () => {
                                 creditName: "credit_name",
                                 id: "id",
                                 planId: "plan_id",
-                                planName: "plan_name",
-                                resetCadence: "daily",
-                                resetStart: "billing_period",
                                 resetType: "no_reset",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
@@ -502,6 +507,13 @@ describe("PlansClient", () => {
                     providerType: "schematic",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
+                entitlements: [
+                    {
+                        featureId: "feature_id",
+                        featureKey: "feature_key",
+                        valueType: "boolean",
+                    },
+                ],
                 entityTraits: [
                     {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -573,9 +585,6 @@ describe("PlansClient", () => {
                             creditName: "credit_name",
                             id: "id",
                             planId: "plan_id",
-                            planName: "plan_name",
-                            resetCadence: "daily",
-                            resetStart: "billing_period",
                             resetType: "no_reset",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
@@ -628,6 +637,19 @@ describe("PlansClient", () => {
                         value: true,
                     },
                 ],
+                scheduledDowngrade: {
+                    currency: "currency",
+                    effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
+                    fromPlanId: "from_plan_id",
+                    fromPlanName: "from_plan_name",
+                    fromSubscriptionPrice: 1,
+                    id: "id",
+                    interval: "interval",
+                    scheduledInterval: "scheduled_interval",
+                    scheduledPrice: 1,
+                    toPlanId: "to_plan_id",
+                    toPlanName: "to_plan_name",
+                },
                 traits: {
                     key: "value",
                 },
@@ -752,6 +774,18 @@ describe("PlansClient", () => {
         const rawResponseBody = {
             data: [
                 {
+                    active_version: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        description: "description",
+                        environment_id: "environment_id",
+                        icon: "icon",
+                        id: "id",
+                        name: "name",
+                        plan_type: "plan",
+                        status: "published",
+                        updated_at: "2024-01-15T09:30:00Z",
+                        version: 1,
+                    },
                     billing_product: {
                         account_id: "account_id",
                         created_at: "2024-01-15T09:30:00Z",
@@ -782,6 +816,18 @@ describe("PlansClient", () => {
                     controlled_by: "schematic",
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
+                    draft_version: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        description: "description",
+                        environment_id: "environment_id",
+                        icon: "icon",
+                        id: "id",
+                        name: "name",
+                        plan_type: "plan",
+                        status: "published",
+                        updated_at: "2024-01-15T09:30:00Z",
+                        version: 1,
+                    },
                     features: [
                         {
                             created_at: "2024-01-15T09:30:00Z",
@@ -867,8 +913,6 @@ describe("PlansClient", () => {
                             id: "id",
                             plan_id: "plan_id",
                             plan_name: "plan_name",
-                            reset_cadence: "daily",
-                            reset_start: "billing_period",
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
@@ -955,6 +999,18 @@ describe("PlansClient", () => {
         expect(response).toEqual({
             data: [
                 {
+                    activeVersion: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        description: "description",
+                        environmentId: "environment_id",
+                        icon: "icon",
+                        id: "id",
+                        name: "name",
+                        planType: "plan",
+                        status: "published",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        version: 1,
+                    },
                     billingProduct: {
                         accountId: "account_id",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -985,6 +1041,18 @@ describe("PlansClient", () => {
                     controlledBy: "schematic",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
+                    draftVersion: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        description: "description",
+                        environmentId: "environment_id",
+                        icon: "icon",
+                        id: "id",
+                        name: "name",
+                        planType: "plan",
+                        status: "published",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        version: 1,
+                    },
                     features: [
                         {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1085,8 +1153,6 @@ describe("PlansClient", () => {
                             id: "id",
                             planId: "plan_id",
                             planName: "plan_name",
-                            resetCadence: "daily",
-                            resetStart: "billing_period",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                     ],
@@ -1223,6 +1289,19 @@ describe("PlansClient", () => {
         const rawRequestBody = { description: "description", name: "name", plan_type: "plan" };
         const rawResponseBody = {
             data: {
+                active_version: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    description: "description",
+                    environment_id: "environment_id",
+                    icon: "icon",
+                    id: "id",
+                    name: "name",
+                    original_plan_id: "original_plan_id",
+                    plan_type: "plan",
+                    status: "published",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    version: 1,
+                },
                 billing_product: {
                     account_id: "account_id",
                     created_at: "2024-01-15T09:30:00Z",
@@ -1254,6 +1333,19 @@ describe("PlansClient", () => {
                 controlled_by: "schematic",
                 created_at: "2024-01-15T09:30:00Z",
                 description: "description",
+                draft_version: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    description: "description",
+                    environment_id: "environment_id",
+                    icon: "icon",
+                    id: "id",
+                    name: "name",
+                    original_plan_id: "original_plan_id",
+                    plan_type: "plan",
+                    status: "published",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    version: 1,
+                },
                 features: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
@@ -1339,8 +1431,6 @@ describe("PlansClient", () => {
                         id: "id",
                         plan_id: "plan_id",
                         plan_name: "plan_name",
-                        reset_cadence: "daily",
-                        reset_start: "billing_period",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                 ],
@@ -1414,6 +1504,19 @@ describe("PlansClient", () => {
         });
         expect(response).toEqual({
             data: {
+                activeVersion: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    description: "description",
+                    environmentId: "environment_id",
+                    icon: "icon",
+                    id: "id",
+                    name: "name",
+                    originalPlanId: "original_plan_id",
+                    planType: "plan",
+                    status: "published",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    version: 1,
+                },
                 billingProduct: {
                     accountId: "account_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1445,6 +1548,19 @@ describe("PlansClient", () => {
                 controlledBy: "schematic",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 description: "description",
+                draftVersion: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    description: "description",
+                    environmentId: "environment_id",
+                    icon: "icon",
+                    id: "id",
+                    name: "name",
+                    originalPlanId: "original_plan_id",
+                    planType: "plan",
+                    status: "published",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    version: 1,
+                },
                 features: [
                     {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1545,8 +1661,6 @@ describe("PlansClient", () => {
                         id: "id",
                         planId: "plan_id",
                         planName: "plan_name",
-                        resetCadence: "daily",
-                        resetStart: "billing_period",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                 ],
@@ -1611,7 +1725,7 @@ describe("PlansClient", () => {
     test("createPlan (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { description: "description", name: "name", plan_type: "plan" };
+        const rawRequestBody = { description: "description", name: "x", plan_type: "plan" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -1625,7 +1739,7 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.createPlan({
                 description: "description",
-                name: "name",
+                name: "x",
                 planType: "plan",
             });
         }).rejects.toThrow(Schematic.BadRequestError);
@@ -1634,7 +1748,7 @@ describe("PlansClient", () => {
     test("createPlan (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { description: "description", name: "name", plan_type: "plan" };
+        const rawRequestBody = { description: "description", name: "x", plan_type: "plan" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -1648,7 +1762,7 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.createPlan({
                 description: "description",
-                name: "name",
+                name: "x",
                 planType: "plan",
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
@@ -1657,7 +1771,7 @@ describe("PlansClient", () => {
     test("createPlan (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { description: "description", name: "name", plan_type: "plan" };
+        const rawRequestBody = { description: "description", name: "x", plan_type: "plan" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -1671,7 +1785,7 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.createPlan({
                 description: "description",
-                name: "name",
+                name: "x",
                 planType: "plan",
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
@@ -1680,7 +1794,7 @@ describe("PlansClient", () => {
     test("createPlan (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { description: "description", name: "name", plan_type: "plan" };
+        const rawRequestBody = { description: "description", name: "x", plan_type: "plan" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -1694,7 +1808,7 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.createPlan({
                 description: "description",
-                name: "name",
+                name: "x",
                 planType: "plan",
             });
         }).rejects.toThrow(Schematic.NotFoundError);
@@ -1703,7 +1817,7 @@ describe("PlansClient", () => {
     test("createPlan (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { description: "description", name: "name", plan_type: "plan" };
+        const rawRequestBody = { description: "description", name: "x", plan_type: "plan" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -1717,7 +1831,7 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.createPlan({
                 description: "description",
-                name: "name",
+                name: "x",
                 planType: "plan",
             });
         }).rejects.toThrow(Schematic.InternalServerError);
@@ -1729,6 +1843,19 @@ describe("PlansClient", () => {
 
         const rawResponseBody = {
             data: {
+                active_version: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    description: "description",
+                    environment_id: "environment_id",
+                    icon: "icon",
+                    id: "id",
+                    name: "name",
+                    original_plan_id: "original_plan_id",
+                    plan_type: "plan",
+                    status: "published",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    version: 1,
+                },
                 billing_product: {
                     account_id: "account_id",
                     created_at: "2024-01-15T09:30:00Z",
@@ -1760,6 +1887,19 @@ describe("PlansClient", () => {
                 controlled_by: "schematic",
                 created_at: "2024-01-15T09:30:00Z",
                 description: "description",
+                draft_version: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    description: "description",
+                    environment_id: "environment_id",
+                    icon: "icon",
+                    id: "id",
+                    name: "name",
+                    original_plan_id: "original_plan_id",
+                    plan_type: "plan",
+                    status: "published",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    version: 1,
+                },
                 features: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
@@ -1845,8 +1985,6 @@ describe("PlansClient", () => {
                         id: "id",
                         plan_id: "plan_id",
                         plan_name: "plan_name",
-                        reset_cadence: "daily",
-                        reset_start: "billing_period",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                 ],
@@ -1902,13 +2040,28 @@ describe("PlansClient", () => {
                     scheme: "per_unit",
                 },
             },
-            params: { key: "value" },
+            params: { plan_version_id: "plan_version_id" },
         };
         server.mockEndpoint().get("/plans/plan_id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.plans.getPlan("plan_id");
+        const response = await client.plans.getPlan("plan_id", {
+            planVersionId: "plan_version_id",
+        });
         expect(response).toEqual({
             data: {
+                activeVersion: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    description: "description",
+                    environmentId: "environment_id",
+                    icon: "icon",
+                    id: "id",
+                    name: "name",
+                    originalPlanId: "original_plan_id",
+                    planType: "plan",
+                    status: "published",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    version: 1,
+                },
                 billingProduct: {
                     accountId: "account_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1940,6 +2093,19 @@ describe("PlansClient", () => {
                 controlledBy: "schematic",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 description: "description",
+                draftVersion: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    description: "description",
+                    environmentId: "environment_id",
+                    icon: "icon",
+                    id: "id",
+                    name: "name",
+                    originalPlanId: "original_plan_id",
+                    planType: "plan",
+                    status: "published",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    version: 1,
+                },
                 features: [
                     {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2040,8 +2206,6 @@ describe("PlansClient", () => {
                         id: "id",
                         planId: "plan_id",
                         planName: "plan_name",
-                        resetCadence: "daily",
-                        resetStart: "billing_period",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                 ],
@@ -2098,7 +2262,7 @@ describe("PlansClient", () => {
                 },
             },
             params: {
-                key: "value",
+                planVersionId: "plan_version_id",
             },
         });
     });
@@ -2157,6 +2321,19 @@ describe("PlansClient", () => {
         const rawRequestBody = { name: "name" };
         const rawResponseBody = {
             data: {
+                active_version: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    description: "description",
+                    environment_id: "environment_id",
+                    icon: "icon",
+                    id: "id",
+                    name: "name",
+                    original_plan_id: "original_plan_id",
+                    plan_type: "plan",
+                    status: "published",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    version: 1,
+                },
                 billing_product: {
                     account_id: "account_id",
                     created_at: "2024-01-15T09:30:00Z",
@@ -2188,6 +2365,19 @@ describe("PlansClient", () => {
                 controlled_by: "schematic",
                 created_at: "2024-01-15T09:30:00Z",
                 description: "description",
+                draft_version: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    description: "description",
+                    environment_id: "environment_id",
+                    icon: "icon",
+                    id: "id",
+                    name: "name",
+                    original_plan_id: "original_plan_id",
+                    plan_type: "plan",
+                    status: "published",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    version: 1,
+                },
                 features: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
@@ -2273,8 +2463,6 @@ describe("PlansClient", () => {
                         id: "id",
                         plan_id: "plan_id",
                         plan_name: "plan_name",
-                        reset_cadence: "daily",
-                        reset_start: "billing_period",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                 ],
@@ -2346,6 +2534,19 @@ describe("PlansClient", () => {
         });
         expect(response).toEqual({
             data: {
+                activeVersion: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    description: "description",
+                    environmentId: "environment_id",
+                    icon: "icon",
+                    id: "id",
+                    name: "name",
+                    originalPlanId: "original_plan_id",
+                    planType: "plan",
+                    status: "published",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    version: 1,
+                },
                 billingProduct: {
                     accountId: "account_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2377,6 +2578,19 @@ describe("PlansClient", () => {
                 controlledBy: "schematic",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 description: "description",
+                draftVersion: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    description: "description",
+                    environmentId: "environment_id",
+                    icon: "icon",
+                    id: "id",
+                    name: "name",
+                    originalPlanId: "original_plan_id",
+                    planType: "plan",
+                    status: "published",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    version: 1,
+                },
                 features: [
                     {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2477,8 +2691,6 @@ describe("PlansClient", () => {
                         id: "id",
                         planId: "plan_id",
                         planName: "plan_name",
-                        resetCadence: "daily",
-                        resetStart: "billing_period",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                 ],
@@ -2543,7 +2755,7 @@ describe("PlansClient", () => {
     test("updatePlan (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { name: "name" };
+        const rawRequestBody = { name: "x" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -2556,7 +2768,7 @@ describe("PlansClient", () => {
 
         await expect(async () => {
             return await client.plans.updatePlan("plan_id", {
-                name: "name",
+                name: "x",
             });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
@@ -2564,7 +2776,7 @@ describe("PlansClient", () => {
     test("updatePlan (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { name: "name" };
+        const rawRequestBody = { name: "x" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -2577,7 +2789,7 @@ describe("PlansClient", () => {
 
         await expect(async () => {
             return await client.plans.updatePlan("plan_id", {
-                name: "name",
+                name: "x",
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
@@ -2585,7 +2797,7 @@ describe("PlansClient", () => {
     test("updatePlan (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { name: "name" };
+        const rawRequestBody = { name: "x" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -2598,7 +2810,7 @@ describe("PlansClient", () => {
 
         await expect(async () => {
             return await client.plans.updatePlan("plan_id", {
-                name: "name",
+                name: "x",
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
@@ -2606,7 +2818,7 @@ describe("PlansClient", () => {
     test("updatePlan (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { name: "name" };
+        const rawRequestBody = { name: "x" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -2619,7 +2831,7 @@ describe("PlansClient", () => {
 
         await expect(async () => {
             return await client.plans.updatePlan("plan_id", {
-                name: "name",
+                name: "x",
             });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
@@ -2627,7 +2839,7 @@ describe("PlansClient", () => {
     test("updatePlan (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { name: "name" };
+        const rawRequestBody = { name: "x" };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -2640,7 +2852,7 @@ describe("PlansClient", () => {
 
         await expect(async () => {
             return await client.plans.updatePlan("plan_id", {
-                name: "name",
+                name: "x",
             });
         }).rejects.toThrow(Schematic.InternalServerError);
     });
@@ -3009,12 +3221,13 @@ describe("PlansClient", () => {
 
         const rawResponseBody = {
             data: [{ code: "code", description: "description", detail: "detail", id: "id" }],
-            params: { plan_id: "plan_id" },
+            params: { plan_id: "plan_id", plan_version_id: "plan_version_id" },
         };
         server.mockEndpoint().get("/plans/issues").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.plans.listPlanIssues({
             planId: "plan_id",
+            planVersionId: "plan_version_id",
         });
         expect(response).toEqual({
             data: [
@@ -3027,6 +3240,7 @@ describe("PlansClient", () => {
             ],
             params: {
                 planId: "plan_id",
+                planVersionId: "plan_version_id",
             },
         });
     });
@@ -3097,6 +3311,298 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.listPlanIssues({
                 planId: "plan_id",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("deletePlanVersion (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
+        server
+            .mockEndpoint()
+            .delete("/plans/version/plan_id")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.plans.deletePlanVersion("plan_id");
+        expect(response).toEqual({
+            data: {
+                deleted: true,
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("deletePlanVersion (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .delete("/plans/version/plan_id")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.deletePlanVersion("plan_id");
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("deletePlanVersion (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .delete("/plans/version/plan_id")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.deletePlanVersion("plan_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("deletePlanVersion (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .delete("/plans/version/plan_id")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.deletePlanVersion("plan_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("deletePlanVersion (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .delete("/plans/version/plan_id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.deletePlanVersion("plan_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("deletePlanVersion (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .delete("/plans/version/plan_id")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.deletePlanVersion("plan_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("publishPlanVersion (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { excluded_company_ids: ["excluded_company_ids"], migration_strategy: "immediate" };
+        const rawResponseBody = {
+            data: {
+                created_at: "2024-01-15T09:30:00Z",
+                description: "description",
+                environment_id: "environment_id",
+                icon: "icon",
+                id: "id",
+                name: "name",
+                original_plan_id: "original_plan_id",
+                plan_type: "plan",
+                status: "published",
+                updated_at: "2024-01-15T09:30:00Z",
+                version: 1,
+            },
+            params: { key: "value" },
+        };
+        server
+            .mockEndpoint()
+            .put("/plans/version/plan_id/publish")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.plans.publishPlanVersion("plan_id", {
+            excludedCompanyIds: ["excluded_company_ids"],
+            migrationStrategy: "immediate",
+        });
+        expect(response).toEqual({
+            data: {
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                description: "description",
+                environmentId: "environment_id",
+                icon: "icon",
+                id: "id",
+                name: "name",
+                originalPlanId: "original_plan_id",
+                planType: "plan",
+                status: "published",
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                version: 1,
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("publishPlanVersion (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
+            migration_strategy: "immediate",
+        };
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .put("/plans/version/plan_id/publish")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.publishPlanVersion("plan_id", {
+                excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
+                migrationStrategy: "immediate",
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("publishPlanVersion (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
+            migration_strategy: "immediate",
+        };
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .put("/plans/version/plan_id/publish")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.publishPlanVersion("plan_id", {
+                excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
+                migrationStrategy: "immediate",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("publishPlanVersion (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
+            migration_strategy: "immediate",
+        };
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .put("/plans/version/plan_id/publish")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.publishPlanVersion("plan_id", {
+                excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
+                migrationStrategy: "immediate",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("publishPlanVersion (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
+            migration_strategy: "immediate",
+        };
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .put("/plans/version/plan_id/publish")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.publishPlanVersion("plan_id", {
+                excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
+                migrationStrategy: "immediate",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("publishPlanVersion (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
+            migration_strategy: "immediate",
+        };
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .put("/plans/version/plan_id/publish")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.publishPlanVersion("plan_id", {
+                excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
+                migrationStrategy: "immediate",
             });
         }).rejects.toThrow(Schematic.InternalServerError);
     });

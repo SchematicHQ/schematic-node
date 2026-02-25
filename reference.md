@@ -412,7 +412,7 @@ await client.accounts.countApiKeys({
 </dl>
 </details>
 
-<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">listApiRequests</a>({ ...params }) -> Schematic.ListApiRequestsResponse</code></summary>
+<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">listAuditLogs</a>({ ...params }) -> Schematic.ListAuditLogsResponse</code></summary>
 <dl>
 <dd>
 
@@ -425,10 +425,12 @@ await client.accounts.countApiKeys({
 <dd>
 
 ```typescript
-await client.accounts.listApiRequests({
-    q: "q",
-    requestType: "request_type",
+await client.accounts.listAuditLogs({
+    actorType: "api_key",
+    endTime: new Date("2024-01-15T09:30:00.000Z"),
     environmentId: "environment_id",
+    q: "q",
+    startTime: new Date("2024-01-15T09:30:00.000Z"),
     limit: 1,
     offset: 1
 });
@@ -447,7 +449,7 @@ await client.accounts.listApiRequests({
 <dl>
 <dd>
 
-**request:** `Schematic.ListApiRequestsRequest` 
+**request:** `Schematic.ListAuditLogsRequest` 
     
 </dd>
 </dl>
@@ -467,7 +469,7 @@ await client.accounts.listApiRequests({
 </dl>
 </details>
 
-<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">getApiRequest</a>(api_request_id) -> Schematic.GetApiRequestResponse</code></summary>
+<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">getAuditLog</a>(audit_log_id) -> Schematic.GetAuditLogResponse</code></summary>
 <dl>
 <dd>
 
@@ -480,7 +482,7 @@ await client.accounts.listApiRequests({
 <dd>
 
 ```typescript
-await client.accounts.getApiRequest("api_request_id");
+await client.accounts.getAuditLog("audit_log_id");
 
 ```
 </dd>
@@ -496,7 +498,7 @@ await client.accounts.getApiRequest("api_request_id");
 <dl>
 <dd>
 
-**api_request_id:** `string` — api_request_id
+**audit_log_id:** `string` — audit_log_id
     
 </dd>
 </dl>
@@ -516,7 +518,7 @@ await client.accounts.getApiRequest("api_request_id");
 </dl>
 </details>
 
-<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">countApiRequests</a>({ ...params }) -> Schematic.CountApiRequestsResponse</code></summary>
+<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">countAuditLogs</a>({ ...params }) -> Schematic.CountAuditLogsResponse</code></summary>
 <dl>
 <dd>
 
@@ -529,10 +531,12 @@ await client.accounts.getApiRequest("api_request_id");
 <dd>
 
 ```typescript
-await client.accounts.countApiRequests({
-    q: "q",
-    requestType: "request_type",
+await client.accounts.countAuditLogs({
+    actorType: "api_key",
+    endTime: new Date("2024-01-15T09:30:00.000Z"),
     environmentId: "environment_id",
+    q: "q",
+    startTime: new Date("2024-01-15T09:30:00.000Z"),
     limit: 1,
     offset: 1
 });
@@ -551,7 +555,7 @@ await client.accounts.countApiRequests({
 <dl>
 <dd>
 
-**request:** `Schematic.CountApiRequestsRequest` 
+**request:** `Schematic.CountAuditLogsRequest` 
     
 </dd>
 </dl>
@@ -844,6 +848,47 @@ await client.accounts.deleteEnvironment("environment_id");
 
 ```typescript
 await client.accounts.quickstart();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">getWhoAmI</a>() -> Schematic.GetWhoAmIResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounts.getWhoAmI();
 
 ```
 </dd>
@@ -3107,6 +3152,7 @@ await client.credits.countCreditLedger({
 await client.credits.listBillingPlanCreditGrants({
     creditId: "credit_id",
     planId: "plan_id",
+    planVersionId: "plan_version_id",
     limit: 1,
     offset: 1
 });
@@ -3335,6 +3381,7 @@ await client.credits.deleteBillingPlanCreditGrant("plan_grant_id", {
 await client.credits.countBillingPlanCreditGrants({
     creditId: "credit_id",
     planId: "plan_id",
+    planVersionId: "plan_version_id",
     limit: 1,
     offset: 1
 });
@@ -3804,10 +3851,16 @@ await client.checkout.updateCustomerSubscriptionTrialEnd("subscription_id");
 
 ```typescript
 await client.companies.listCompanies({
+    monetizedSubscriptions: true,
     planId: "plan_id",
+    planVersionId: "plan_version_id",
     q: "q",
+    sortOrderColumn: "sort_order_column",
+    sortOrderDirection: "asc",
+    withEntitlementFor: "with_entitlement_for",
     withoutFeatureOverrideFor: "without_feature_override_for",
     withoutPlan: true,
+    withoutSubscription: true,
     withSubscription: true,
     limit: 1,
     offset: 1
@@ -4023,10 +4076,16 @@ await client.companies.deleteCompany("company_id", {
 
 ```typescript
 await client.companies.countCompanies({
+    monetizedSubscriptions: true,
     planId: "plan_id",
+    planVersionId: "plan_version_id",
     q: "q",
+    sortOrderColumn: "sort_order_column",
+    sortOrderDirection: "asc",
+    withEntitlementFor: "with_entitlement_for",
     withoutFeatureOverrideFor: "without_feature_override_for",
     withoutPlan: true,
+    withoutSubscription: true,
     withSubscription: true,
     limit: 1,
     offset: 1
@@ -4047,64 +4106,6 @@ await client.companies.countCompanies({
 <dd>
 
 **request:** `Schematic.CountCompaniesRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CompaniesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">countCompaniesForAdvancedFilter</a>({ ...params }) -> Schematic.CountCompaniesForAdvancedFilterResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.companies.countCompaniesForAdvancedFilter({
-    monetizedSubscriptions: true,
-    q: "q",
-    withoutPlan: true,
-    withoutSubscription: true,
-    sortOrderColumn: "sort_order_column",
-    sortOrderDirection: "asc",
-    limit: 1,
-    offset: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.CountCompaniesForAdvancedFilterRequest` 
     
 </dd>
 </dl>
@@ -4211,64 +4212,6 @@ await client.companies.deleteCompanyByKeys({
 <dd>
 
 **request:** `Schematic.KeysRequestBody` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CompaniesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">listCompaniesForAdvancedFilter</a>({ ...params }) -> Schematic.ListCompaniesForAdvancedFilterResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.companies.listCompaniesForAdvancedFilter({
-    monetizedSubscriptions: true,
-    q: "q",
-    withoutPlan: true,
-    withoutSubscription: true,
-    sortOrderColumn: "sort_order_column",
-    sortOrderDirection: "asc",
-    limit: 1,
-    offset: 1
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.ListCompaniesForAdvancedFilterRequest` 
     
 </dd>
 </dl>
@@ -6476,6 +6419,61 @@ await client.entitlements.listFeatureUsage({
 </dl>
 </details>
 
+<details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">getFeatureUsageTimeSeries</a>({ ...params }) -> Schematic.GetFeatureUsageTimeSeriesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.entitlements.getFeatureUsageTimeSeries({
+    companyId: "company_id",
+    endTime: new Date("2024-01-15T09:30:00.000Z"),
+    featureId: "feature_id",
+    granularity: "daily",
+    startTime: new Date("2024-01-15T09:30:00.000Z")
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.GetFeatureUsageTimeSeriesRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">countFeatureUsage</a>({ ...params }) -> Schematic.CountFeatureUsageResponse</code></summary>
 <dl>
 <dd>
@@ -6656,6 +6654,7 @@ await client.entitlements.countFeatureUsers({
 await client.entitlements.listPlanEntitlements({
     featureId: "feature_id",
     planId: "plan_id",
+    planVersionId: "plan_version_id",
     q: "q",
     withMeteredProducts: true,
     limit: 1,
@@ -6922,6 +6921,7 @@ await client.entitlements.deletePlanEntitlement("plan_entitlement_id");
 await client.entitlements.countPlanEntitlements({
     featureId: "feature_id",
     planId: "plan_id",
+    planVersionId: "plan_version_id",
     q: "q",
     withMeteredProducts: true,
     limit: 1,
@@ -7241,7 +7241,7 @@ await client.plans.createPlan({
 </dl>
 </details>
 
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">getPlan</a>(plan_id) -> Schematic.GetPlanResponse</code></summary>
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">getPlan</a>(plan_id, { ...params }) -> Schematic.GetPlanResponse</code></summary>
 <dl>
 <dd>
 
@@ -7254,7 +7254,9 @@ await client.plans.createPlan({
 <dd>
 
 ```typescript
-await client.plans.getPlan("plan_id");
+await client.plans.getPlan("plan_id", {
+    planVersionId: "plan_version_id"
+});
 
 ```
 </dd>
@@ -7271,6 +7273,14 @@ await client.plans.getPlan("plan_id");
 <dd>
 
 **plan_id:** `string` — plan_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.GetPlanRequest` 
     
 </dd>
 </dl>
@@ -7533,7 +7543,8 @@ await client.plans.countPlans({
 
 ```typescript
 await client.plans.listPlanIssues({
-    planId: "plan_id"
+    planId: "plan_id",
+    planVersionId: "plan_version_id"
 });
 
 ```
@@ -7551,6 +7562,115 @@ await client.plans.listPlanIssues({
 <dd>
 
 **request:** `Schematic.ListPlanIssuesRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PlansClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">deletePlanVersion</a>(plan_id) -> Schematic.DeletePlanVersionResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.deletePlanVersion("plan_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**plan_id:** `string` — plan_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PlansClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">publishPlanVersion</a>(plan_id, { ...params }) -> Schematic.PublishPlanVersionResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.publishPlanVersion("plan_id", {
+    excludedCompanyIds: ["excluded_company_ids"],
+    migrationStrategy: "immediate"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**plan_id:** `string` — plan_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.PublishPlanVersionRequestBody` 
     
 </dd>
 </dl>
@@ -8358,6 +8478,7 @@ await client.events.getSegmentIntegrationStatus();
 await client.features.listFeatures({
     q: "q",
     withoutCompanyOverrideFor: "without_company_override_for",
+    planVersionId: "plan_version_id",
     withoutPlanEntitlementFor: "without_plan_entitlement_for",
     booleanRequireEvent: true,
     limit: 1,
@@ -8622,6 +8743,7 @@ await client.features.deleteFeature("feature_id");
 await client.features.countFeatures({
     q: "q",
     withoutCompanyOverrideFor: "without_company_override_for",
+    planVersionId: "plan_version_id",
     withoutPlanEntitlementFor: "without_plan_entitlement_for",
     booleanRequireEvent: true,
     limit: 1,
@@ -9408,6 +9530,7 @@ await client.plangroups.createPlanGroup({
     prorationBehavior: "create_prorations",
     showAsMonthlyPrices: true,
     showCredits: true,
+    showFeatureDescription: true,
     showPeriodToggle: true,
     showZeroPriceAsFree: true,
     syncCustomerBillingDetails: true
@@ -9480,6 +9603,7 @@ await client.plangroups.updatePlanGroup("plan_group_id", {
     prorationBehavior: "create_prorations",
     showAsMonthlyPrices: true,
     showCredits: true,
+    showFeatureDescription: true,
     showPeriodToggle: true,
     showZeroPriceAsFree: true,
     syncCustomerBillingDetails: true
@@ -9516,6 +9640,531 @@ await client.plangroups.updatePlanGroup("plan_group_id", {
 <dd>
 
 **requestOptions:** `PlangroupsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## planmigrations
+<details><summary><code>client.planmigrations.<a href="/src/api/resources/planmigrations/client/Client.ts">listCompanyMigrations</a>({ ...params }) -> Schematic.ListCompanyMigrationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.planmigrations.listCompanyMigrations({
+    migrationId: "migration_id",
+    q: "q",
+    status: "completed",
+    limit: 1,
+    offset: 1
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListCompanyMigrationsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PlanmigrationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.planmigrations.<a href="/src/api/resources/planmigrations/client/Client.ts">countCompanyMigrations</a>({ ...params }) -> Schematic.CountCompanyMigrationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.planmigrations.countCompanyMigrations({
+    migrationId: "migration_id",
+    q: "q",
+    status: "completed",
+    limit: 1,
+    offset: 1
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CountCompanyMigrationsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PlanmigrationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.planmigrations.<a href="/src/api/resources/planmigrations/client/Client.ts">listMigrations</a>({ ...params }) -> Schematic.ListMigrationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.planmigrations.listMigrations({
+    planVersionId: "plan_version_id",
+    status: "completed",
+    limit: 1,
+    offset: 1
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListMigrationsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PlanmigrationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.planmigrations.<a href="/src/api/resources/planmigrations/client/Client.ts">getMigration</a>(plan_version_migration_id) -> Schematic.GetMigrationResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.planmigrations.getMigration("plan_version_migration_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**plan_version_migration_id:** `string` — plan_version_migration_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PlanmigrationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.planmigrations.<a href="/src/api/resources/planmigrations/client/Client.ts">countMigrations</a>({ ...params }) -> Schematic.CountMigrationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.planmigrations.countMigrations({
+    planVersionId: "plan_version_id",
+    status: "completed",
+    limit: 1,
+    offset: 1
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CountMigrationsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PlanmigrationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## componentspublic
+<details><summary><code>client.componentspublic.<a href="/src/api/resources/componentspublic/client/Client.ts">getPublicPlans</a>() -> Schematic.GetPublicPlansResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.componentspublic.getPublicPlans();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `ComponentspublicClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## scheduledcheckout
+<details><summary><code>client.scheduledcheckout.<a href="/src/api/resources/scheduledcheckout/client/Client.ts">listScheduledCheckouts</a>({ ...params }) -> Schematic.ListScheduledCheckoutsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.scheduledcheckout.listScheduledCheckouts({
+    companyId: "company_id",
+    status: "cancelled",
+    limit: 1,
+    offset: 1
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListScheduledCheckoutsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ScheduledcheckoutClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.scheduledcheckout.<a href="/src/api/resources/scheduledcheckout/client/Client.ts">createScheduledCheckout</a>({ ...params }) -> Schematic.CreateScheduledCheckoutResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.scheduledcheckout.createScheduledCheckout({
+    companyId: "company_id",
+    executeAfter: new Date("2024-01-15T09:30:00.000Z"),
+    fromPlanId: "from_plan_id",
+    toPlanId: "to_plan_id"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CreateScheduledCheckoutRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ScheduledcheckoutClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.scheduledcheckout.<a href="/src/api/resources/scheduledcheckout/client/Client.ts">getScheduledCheckout</a>(scheduled_checkout_id) -> Schematic.GetScheduledCheckoutResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.scheduledcheckout.getScheduledCheckout("scheduled_checkout_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**scheduled_checkout_id:** `string` — scheduled_checkout_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ScheduledcheckoutClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.scheduledcheckout.<a href="/src/api/resources/scheduledcheckout/client/Client.ts">updateScheduledCheckout</a>(scheduled_checkout_id, { ...params }) -> Schematic.UpdateScheduledCheckoutResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.scheduledcheckout.updateScheduledCheckout("scheduled_checkout_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**scheduled_checkout_id:** `string` — scheduled_checkout_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.UpdateScheduledCheckoutRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ScheduledcheckoutClient.RequestOptions` 
     
 </dd>
 </dl>

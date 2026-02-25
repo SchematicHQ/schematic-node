@@ -7,6 +7,7 @@ export interface FeatureCompanyUserResponseData {
     access: boolean;
     /** The maximum amount of usage that is permitted; a null value indicates that unlimited usage is permitted. */
     allocation?: number;
+    /** The type of allocation that is being used. */
     allocationType: Schematic.EntitlementValueType;
     company?: Schematic.CompanyDetailResponseData;
     entitlementId: string;

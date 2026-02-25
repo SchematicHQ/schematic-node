@@ -15,6 +15,8 @@ export interface CountFeaturesParams {
     limit?: number;
     /** Page offset (default 0) */
     offset?: number;
+    /** Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used */
+    planVersionId?: string;
     /** Search by feature name or ID */
     q?: string;
     /** Filter out features that already have a company override for the specified company ID */

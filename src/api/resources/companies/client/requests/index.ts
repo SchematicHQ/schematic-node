@@ -1,4 +1,3 @@
-export type { CountCompaniesForAdvancedFilterRequest } from "./CountCompaniesForAdvancedFilterRequest";
 export type { CountCompaniesRequest } from "./CountCompaniesRequest";
 export type { CountEntityKeyDefinitionsRequest } from "./CountEntityKeyDefinitionsRequest";
 export type { CountEntityTraitDefinitionsRequest } from "./CountEntityTraitDefinitionsRequest";
@@ -10,7 +9,6 @@ export type { DeleteCompanyRequest } from "./DeleteCompanyRequest";
 export type { GetActiveCompanySubscriptionRequest } from "./GetActiveCompanySubscriptionRequest";
 export type { GetEntityTraitValuesRequest } from "./GetEntityTraitValuesRequest";
 export type { GetOrCreateCompanyMembershipRequestBody } from "./GetOrCreateCompanyMembershipRequestBody";
-export type { ListCompaniesForAdvancedFilterRequest } from "./ListCompaniesForAdvancedFilterRequest";
 export type { ListCompaniesRequest } from "./ListCompaniesRequest";
 export type { ListCompanyMembershipsRequest } from "./ListCompanyMembershipsRequest";
 export type { ListEntityKeyDefinitionsRequest } from "./ListEntityKeyDefinitionsRequest";

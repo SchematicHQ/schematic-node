@@ -43,6 +43,14 @@ export const PlanGroupResponseData: core.serialization.ObjectSchema<
         core.serialization.string().optional(),
     ),
     prorationBehavior: core.serialization.property("proration_behavior", core.serialization.string()),
+    scheduledDowngradeBehavior: core.serialization.property(
+        "scheduled_downgrade_behavior",
+        core.serialization.string().optional(),
+    ),
+    scheduledDowngradePreventWhenOverLimit: core.serialization.property(
+        "scheduled_downgrade_prevent_when_over_limit",
+        core.serialization.boolean().optional(),
+    ),
     showAsMonthlyPrices: core.serialization.property("show_as_monthly_prices", core.serialization.boolean()),
     showCredits: core.serialization.property("show_credits", core.serialization.boolean()),
     showPeriodToggle: core.serialization.property("show_period_toggle", core.serialization.boolean()),
@@ -82,6 +90,8 @@ export declare namespace PlanGroupResponseData {
         prevent_self_service_downgrade_button_text?: string | null;
         prevent_self_service_downgrade_url?: string | null;
         proration_behavior: string;
+        scheduled_downgrade_behavior?: string | null;
+        scheduled_downgrade_prevent_when_over_limit?: boolean | null;
         show_as_monthly_prices: boolean;
         show_credits: boolean;
         show_period_toggle: boolean;

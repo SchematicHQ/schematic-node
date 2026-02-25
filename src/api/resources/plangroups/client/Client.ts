@@ -167,6 +167,7 @@ export class PlangroupsClient {
      *         prorationBehavior: "create_prorations",
      *         showAsMonthlyPrices: true,
      *         showCredits: true,
+     *         showFeatureDescription: true,
      *         showPeriodToggle: true,
      *         showZeroPriceAsFree: true,
      *         syncCustomerBillingDetails: true
@@ -322,6 +323,7 @@ export class PlangroupsClient {
      *         prorationBehavior: "create_prorations",
      *         showAsMonthlyPrices: true,
      *         showCredits: true,
+     *         showFeatureDescription: true,
      *         showPeriodToggle: true,
      *         showZeroPriceAsFree: true,
      *         syncCustomerBillingDetails: true
