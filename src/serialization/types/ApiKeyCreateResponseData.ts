@@ -15,6 +15,7 @@ export const ApiKeyCreateResponseData: core.serialization.ObjectSchema<
     id: core.serialization.string(),
     lastUsedAt: core.serialization.property("last_used_at", core.serialization.date().optional()),
     name: core.serialization.string(),
+    readonly: core.serialization.boolean(),
     scopes: core.serialization.list(ApiKeyScope),
     secret: core.serialization.string(),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -28,6 +29,7 @@ export declare namespace ApiKeyCreateResponseData {
         id: string;
         last_used_at?: string | null;
         name: string;
+        readonly: boolean;
         scopes: ApiKeyScope.Raw[];
         secret: string;
         updated_at: string;

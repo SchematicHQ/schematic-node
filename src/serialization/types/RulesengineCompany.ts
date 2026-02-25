@@ -4,6 +4,7 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { RulesengineCompanyMetric } from "./RulesengineCompanyMetric";
+import { RulesengineFeatureEntitlement } from "./RulesengineFeatureEntitlement";
 import { RulesengineRule } from "./RulesengineRule";
 import { RulesengineSubscription } from "./RulesengineSubscription";
 import { RulesengineTrait } from "./RulesengineTrait";
@@ -22,12 +23,16 @@ export const RulesengineCompany: core.serialization.ObjectSchema<
         "credit_balances",
         core.serialization.record(core.serialization.string(), core.serialization.number()),
     ),
-    crmProductIds: core.serialization.property("crm_product_ids", core.serialization.list(core.serialization.string())),
+    entitlements: core.serialization.list(RulesengineFeatureEntitlement).optional(),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     id: core.serialization.string(),
     keys: core.serialization.record(core.serialization.string(), core.serialization.string()),
     metrics: core.serialization.list(RulesengineCompanyMetric),
     planIds: core.serialization.property("plan_ids", core.serialization.list(core.serialization.string())),
+    planVersionIds: core.serialization.property(
+        "plan_version_ids",
+        core.serialization.list(core.serialization.string()),
+    ),
     rules: core.serialization.list(RulesengineRule),
     subscription: RulesengineSubscription.optional(),
     traits: core.serialization.list(RulesengineTrait),
@@ -39,12 +44,13 @@ export declare namespace RulesengineCompany {
         base_plan_id?: string | null;
         billing_product_ids: string[];
         credit_balances: Record<string, number>;
-        crm_product_ids: string[];
+        entitlements?: RulesengineFeatureEntitlement.Raw[] | null;
         environment_id: string;
         id: string;
         keys: Record<string, string>;
         metrics: RulesengineCompanyMetric.Raw[];
         plan_ids: string[];
+        plan_version_ids: string[];
         rules: RulesengineRule.Raw[];
         subscription?: RulesengineSubscription.Raw | null;
         traits: RulesengineTrait.Raw[];

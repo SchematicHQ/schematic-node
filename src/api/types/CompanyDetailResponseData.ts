@@ -9,6 +9,7 @@ export interface CompanyDetailResponseData {
     billingSubscriptions: Schematic.BillingSubscriptionView[];
     createdAt: Date;
     defaultPaymentMethod?: Schematic.PaymentMethodResponseData;
+    entitlements: Schematic.FeatureEntitlement[];
     entityTraits: Schematic.EntityTraitDetailResponseData[];
     environmentId: string;
     id: string;
@@ -21,6 +22,7 @@ export interface CompanyDetailResponseData {
     plan?: Schematic.CompanyPlanWithBillingSubView;
     plans: Schematic.GenericPreviewObject[];
     rules: Schematic.Rule[];
+    scheduledDowngrade?: Schematic.ScheduledDowngradeResponseData;
     /** A map of trait names to trait values */
     traits?: Record<string, unknown>;
     updatedAt: Date;

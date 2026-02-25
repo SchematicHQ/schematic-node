@@ -3,33 +3,68 @@
 import type * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { SortDirection } from "../../../types/SortDirection";
+import { SubscriptionStatus } from "../../../types/SubscriptionStatus";
+import { SubscriptionType } from "../../../types/SubscriptionType";
 
 export const CountCompaniesParams: core.serialization.ObjectSchema<
     serializers.CountCompaniesParams.Raw,
     Schematic.CountCompaniesParams
 > = core.serialization.object({
+    creditTypeIds: core.serialization.property(
+        "credit_type_ids",
+        core.serialization.list(core.serialization.string()).optional(),
+    ),
     ids: core.serialization.list(core.serialization.string()).optional(),
     limit: core.serialization.number().optional(),
+    monetizedSubscriptions: core.serialization.property(
+        "monetized_subscriptions",
+        core.serialization.boolean().optional(),
+    ),
     offset: core.serialization.number().optional(),
     planId: core.serialization.property("plan_id", core.serialization.string().optional()),
+    planIds: core.serialization.property("plan_ids", core.serialization.list(core.serialization.string()).optional()),
+    planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
     q: core.serialization.string().optional(),
+    sortOrderColumn: core.serialization.property("sort_order_column", core.serialization.string().optional()),
+    sortOrderDirection: core.serialization.property("sort_order_direction", SortDirection.optional()),
+    subscriptionStatuses: core.serialization.property(
+        "subscription_statuses",
+        core.serialization.list(SubscriptionStatus).optional(),
+    ),
+    subscriptionTypes: core.serialization.property(
+        "subscription_types",
+        core.serialization.list(SubscriptionType).optional(),
+    ),
+    withEntitlementFor: core.serialization.property("with_entitlement_for", core.serialization.string().optional()),
     withSubscription: core.serialization.property("with_subscription", core.serialization.boolean().optional()),
     withoutFeatureOverrideFor: core.serialization.property(
         "without_feature_override_for",
         core.serialization.string().optional(),
     ),
     withoutPlan: core.serialization.property("without_plan", core.serialization.boolean().optional()),
+    withoutSubscription: core.serialization.property("without_subscription", core.serialization.boolean().optional()),
 });
 
 export declare namespace CountCompaniesParams {
     export interface Raw {
+        credit_type_ids?: string[] | null;
         ids?: string[] | null;
         limit?: number | null;
+        monetized_subscriptions?: boolean | null;
         offset?: number | null;
         plan_id?: string | null;
+        plan_ids?: string[] | null;
+        plan_version_id?: string | null;
         q?: string | null;
+        sort_order_column?: string | null;
+        sort_order_direction?: SortDirection.Raw | null;
+        subscription_statuses?: SubscriptionStatus.Raw[] | null;
+        subscription_types?: SubscriptionType.Raw[] | null;
+        with_entitlement_for?: string | null;
         with_subscription?: boolean | null;
         without_feature_override_for?: string | null;
         without_plan?: boolean | null;
+        without_subscription?: boolean | null;
     }
 }

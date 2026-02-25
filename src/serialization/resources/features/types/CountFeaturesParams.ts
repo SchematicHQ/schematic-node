@@ -14,6 +14,7 @@ export const CountFeaturesParams: core.serialization.ObjectSchema<
     ids: core.serialization.list(core.serialization.string()).optional(),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
+    planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
     q: core.serialization.string().optional(),
     withoutCompanyOverrideFor: core.serialization.property(
         "without_company_override_for",
@@ -32,6 +33,7 @@ export declare namespace CountFeaturesParams {
         ids?: string[] | null;
         limit?: number | null;
         offset?: number | null;
+        plan_version_id?: string | null;
         q?: string | null;
         without_company_override_for?: string | null;
         without_plan_entitlement_for?: string | null;

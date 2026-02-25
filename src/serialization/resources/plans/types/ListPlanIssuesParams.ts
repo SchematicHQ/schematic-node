@@ -9,10 +9,12 @@ export const ListPlanIssuesParams: core.serialization.ObjectSchema<
     Schematic.ListPlanIssuesParams
 > = core.serialization.object({
     planId: core.serialization.property("plan_id", core.serialization.string().optional()),
+    planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
 });
 
 export declare namespace ListPlanIssuesParams {
     export interface Raw {
         plan_id?: string | null;
+        plan_version_id?: string | null;
     }
 }

@@ -14,6 +14,7 @@ export const PlanChangeAction: core.serialization.Schema<serializers.PlanChangeA
         "plan_billing_product_changed",
         "plan_deleted",
         "plan_trait_change",
+        "plan_version_migration",
         "quickstart",
         "subscription_change",
     ]);
@@ -28,6 +29,7 @@ export declare namespace PlanChangeAction {
         | "plan_billing_product_changed"
         | "plan_deleted"
         | "plan_trait_change"
+        | "plan_version_migration"
         | "quickstart"
         | "subscription_change";
 }

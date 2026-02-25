@@ -831,7 +831,7 @@ export class AccountsClient {
     }
 
     /**
-     * @param {Schematic.ListApiRequestsRequest} request
+     * @param {Schematic.ListAuditLogsRequest} request
      * @param {AccountsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Schematic.BadRequestError}
@@ -841,37 +841,47 @@ export class AccountsClient {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.accounts.listApiRequests({
-     *         q: "q",
-     *         requestType: "request_type",
+     *     await client.accounts.listAuditLogs({
+     *         actorType: "api_key",
+     *         endTime: new Date("2024-01-15T09:30:00.000Z"),
      *         environmentId: "environment_id",
+     *         q: "q",
+     *         startTime: new Date("2024-01-15T09:30:00.000Z"),
      *         limit: 1,
      *         offset: 1
      *     })
      */
-    public listApiRequests(
-        request: Schematic.ListApiRequestsRequest = {},
+    public listAuditLogs(
+        request: Schematic.ListAuditLogsRequest = {},
         requestOptions?: AccountsClient.RequestOptions,
-    ): core.HttpResponsePromise<Schematic.ListApiRequestsResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__listApiRequests(request, requestOptions));
+    ): core.HttpResponsePromise<Schematic.ListAuditLogsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__listAuditLogs(request, requestOptions));
     }
 
-    private async __listApiRequests(
-        request: Schematic.ListApiRequestsRequest = {},
+    private async __listAuditLogs(
+        request: Schematic.ListAuditLogsRequest = {},
         requestOptions?: AccountsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Schematic.ListApiRequestsResponse>> {
-        const { q, requestType, environmentId, limit, offset } = request;
+    ): Promise<core.WithRawResponse<Schematic.ListAuditLogsResponse>> {
+        const { actorType, endTime, environmentId, q, startTime, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (q != null) {
-            _queryParams.q = q;
+        if (actorType != null) {
+            _queryParams.actor_type = serializers.ActorType.jsonOrThrow(actorType, { unrecognizedObjectKeys: "strip" });
         }
 
-        if (requestType != null) {
-            _queryParams.request_type = requestType;
+        if (endTime != null) {
+            _queryParams.end_time = endTime.toISOString();
         }
 
         if (environmentId != null) {
             _queryParams.environment_id = environmentId;
+        }
+
+        if (q != null) {
+            _queryParams.q = q;
+        }
+
+        if (startTime != null) {
+            _queryParams.start_time = startTime.toISOString();
         }
 
         if (limit != null) {
@@ -893,7 +903,7 @@ export class AccountsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                "api-requests",
+                "audit-log",
             ),
             method: "GET",
             headers: _headers,
@@ -906,7 +916,7 @@ export class AccountsClient {
         });
         if (_response.ok) {
             return {
-                data: serializers.ListApiRequestsResponse.parseOrThrow(_response.body, {
+                data: serializers.ListAuditLogsResponse.parseOrThrow(_response.body, {
                     unrecognizedObjectKeys: "passthrough",
                     allowUnrecognizedUnionMembers: true,
                     allowUnrecognizedEnumValues: true,
@@ -983,11 +993,11 @@ export class AccountsClient {
             }
         }
 
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/api-requests");
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/audit-log");
     }
 
     /**
-     * @param {string} api_request_id - api_request_id
+     * @param {string} audit_log_id - audit_log_id
      * @param {AccountsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Schematic.UnauthorizedError}
@@ -996,19 +1006,19 @@ export class AccountsClient {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.accounts.getApiRequest("api_request_id")
+     *     await client.accounts.getAuditLog("audit_log_id")
      */
-    public getApiRequest(
-        api_request_id: string,
+    public getAuditLog(
+        audit_log_id: string,
         requestOptions?: AccountsClient.RequestOptions,
-    ): core.HttpResponsePromise<Schematic.GetApiRequestResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__getApiRequest(api_request_id, requestOptions));
+    ): core.HttpResponsePromise<Schematic.GetAuditLogResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getAuditLog(audit_log_id, requestOptions));
     }
 
-    private async __getApiRequest(
-        api_request_id: string,
+    private async __getAuditLog(
+        audit_log_id: string,
         requestOptions?: AccountsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Schematic.GetApiRequestResponse>> {
+    ): Promise<core.WithRawResponse<Schematic.GetAuditLogResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1020,7 +1030,7 @@ export class AccountsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `api-requests/${core.url.encodePathParam(api_request_id)}`,
+                `audit-log/${core.url.encodePathParam(audit_log_id)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -1033,7 +1043,7 @@ export class AccountsClient {
         });
         if (_response.ok) {
             return {
-                data: serializers.GetApiRequestResponse.parseOrThrow(_response.body, {
+                data: serializers.GetAuditLogResponse.parseOrThrow(_response.body, {
                     unrecognizedObjectKeys: "passthrough",
                     allowUnrecognizedUnionMembers: true,
                     allowUnrecognizedEnumValues: true,
@@ -1099,16 +1109,11 @@ export class AccountsClient {
             }
         }
 
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "GET",
-            "/api-requests/{api_request_id}",
-        );
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/audit-log/{audit_log_id}");
     }
 
     /**
-     * @param {Schematic.CountApiRequestsRequest} request
+     * @param {Schematic.CountAuditLogsRequest} request
      * @param {AccountsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Schematic.BadRequestError}
@@ -1118,37 +1123,47 @@ export class AccountsClient {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.accounts.countApiRequests({
-     *         q: "q",
-     *         requestType: "request_type",
+     *     await client.accounts.countAuditLogs({
+     *         actorType: "api_key",
+     *         endTime: new Date("2024-01-15T09:30:00.000Z"),
      *         environmentId: "environment_id",
+     *         q: "q",
+     *         startTime: new Date("2024-01-15T09:30:00.000Z"),
      *         limit: 1,
      *         offset: 1
      *     })
      */
-    public countApiRequests(
-        request: Schematic.CountApiRequestsRequest = {},
+    public countAuditLogs(
+        request: Schematic.CountAuditLogsRequest = {},
         requestOptions?: AccountsClient.RequestOptions,
-    ): core.HttpResponsePromise<Schematic.CountApiRequestsResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__countApiRequests(request, requestOptions));
+    ): core.HttpResponsePromise<Schematic.CountAuditLogsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__countAuditLogs(request, requestOptions));
     }
 
-    private async __countApiRequests(
-        request: Schematic.CountApiRequestsRequest = {},
+    private async __countAuditLogs(
+        request: Schematic.CountAuditLogsRequest = {},
         requestOptions?: AccountsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Schematic.CountApiRequestsResponse>> {
-        const { q, requestType, environmentId, limit, offset } = request;
+    ): Promise<core.WithRawResponse<Schematic.CountAuditLogsResponse>> {
+        const { actorType, endTime, environmentId, q, startTime, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (q != null) {
-            _queryParams.q = q;
+        if (actorType != null) {
+            _queryParams.actor_type = serializers.ActorType.jsonOrThrow(actorType, { unrecognizedObjectKeys: "strip" });
         }
 
-        if (requestType != null) {
-            _queryParams.request_type = requestType;
+        if (endTime != null) {
+            _queryParams.end_time = endTime.toISOString();
         }
 
         if (environmentId != null) {
             _queryParams.environment_id = environmentId;
+        }
+
+        if (q != null) {
+            _queryParams.q = q;
+        }
+
+        if (startTime != null) {
+            _queryParams.start_time = startTime.toISOString();
         }
 
         if (limit != null) {
@@ -1170,7 +1185,7 @@ export class AccountsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                "api-requests/count",
+                "audit-log/count",
             ),
             method: "GET",
             headers: _headers,
@@ -1183,7 +1198,7 @@ export class AccountsClient {
         });
         if (_response.ok) {
             return {
-                data: serializers.CountApiRequestsResponse.parseOrThrow(_response.body, {
+                data: serializers.CountAuditLogsResponse.parseOrThrow(_response.body, {
                     unrecognizedObjectKeys: "passthrough",
                     allowUnrecognizedUnionMembers: true,
                     allowUnrecognizedEnumValues: true,
@@ -1260,7 +1275,7 @@ export class AccountsClient {
             }
         }
 
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/api-requests/count");
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/audit-log/count");
     }
 
     /**
@@ -2062,5 +2077,118 @@ export class AccountsClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/quickstart");
+    }
+
+    /**
+     * @param {AccountsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
+     * @throws {@link Schematic.InternalServerError}
+     *
+     * @example
+     *     await client.accounts.getWhoAmI()
+     */
+    public getWhoAmI(
+        requestOptions?: AccountsClient.RequestOptions,
+    ): core.HttpResponsePromise<Schematic.GetWhoAmIResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getWhoAmI(requestOptions));
+    }
+
+    private async __getWhoAmI(
+        requestOptions?: AccountsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.GetWhoAmIResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "whoami",
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.GetWhoAmIResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/whoami");
     }
 }

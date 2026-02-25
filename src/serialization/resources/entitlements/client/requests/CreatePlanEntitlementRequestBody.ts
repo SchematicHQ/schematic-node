@@ -45,6 +45,7 @@ export const CreatePlanEntitlementRequestBody: core.serialization.Schema<
         core.serialization.string().optional(),
     ),
     planId: core.serialization.property("plan_id", core.serialization.string()),
+    planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
     priceBehavior: core.serialization.property("price_behavior", EntitlementPriceBehavior.optional()),
     priceTiers: core.serialization.property(
         "price_tiers",
@@ -87,6 +88,7 @@ export declare namespace CreatePlanEntitlementRequestBody {
         monthly_unit_price_decimal?: string | null;
         overage_billing_product_id?: string | null;
         plan_id: string;
+        plan_version_id?: string | null;
         price_behavior?: EntitlementPriceBehavior.Raw | null;
         price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
         soft_limit?: number | null;

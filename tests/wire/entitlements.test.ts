@@ -26,9 +26,6 @@ describe("EntitlementsClient", () => {
                                         credit_name: "credit_name",
                                         id: "id",
                                         plan_id: "plan_id",
-                                        plan_name: "plan_name",
-                                        reset_cadence: "daily",
-                                        reset_start: "billing_period",
                                         reset_type: "no_reset",
                                         updated_at: "2024-01-15T09:30:00Z",
                                     },
@@ -86,6 +83,7 @@ describe("EntitlementsClient", () => {
                             },
                         ],
                         created_at: "2024-01-15T09:30:00Z",
+                        entitlements: [{ feature_id: "feature_id", feature_key: "feature_key", value_type: "boolean" }],
                         entity_traits: [
                             {
                                 created_at: "2024-01-15T09:30:00Z",
@@ -264,9 +262,6 @@ describe("EntitlementsClient", () => {
                                         creditName: "credit_name",
                                         id: "id",
                                         planId: "plan_id",
-                                        planName: "plan_name",
-                                        resetCadence: "daily",
-                                        resetStart: "billing_period",
                                         resetType: "no_reset",
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                     },
@@ -324,6 +319,13 @@ describe("EntitlementsClient", () => {
                             },
                         ],
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        entitlements: [
+                            {
+                                featureId: "feature_id",
+                                featureKey: "feature_key",
+                                valueType: "boolean",
+                            },
+                        ],
                         entityTraits: [
                             {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -562,9 +564,6 @@ describe("EntitlementsClient", () => {
                                     credit_name: "credit_name",
                                     id: "id",
                                     plan_id: "plan_id",
-                                    plan_name: "plan_name",
-                                    reset_cadence: "daily",
-                                    reset_start: "billing_period",
                                     reset_type: "no_reset",
                                     updated_at: "2024-01-15T09:30:00Z",
                                 },
@@ -680,6 +679,7 @@ describe("EntitlementsClient", () => {
                         provider_type: "schematic",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
+                    entitlements: [{ feature_id: "feature_id", feature_key: "feature_key", value_type: "boolean" }],
                     entity_traits: [
                         {
                             created_at: "2024-01-15T09:30:00Z",
@@ -746,9 +746,6 @@ describe("EntitlementsClient", () => {
                                 credit_name: "credit_name",
                                 id: "id",
                                 plan_id: "plan_id",
-                                plan_name: "plan_name",
-                                reset_cadence: "daily",
-                                reset_start: "billing_period",
                                 reset_type: "no_reset",
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
@@ -793,6 +790,17 @@ describe("EntitlementsClient", () => {
                             value: true,
                         },
                     ],
+                    scheduled_downgrade: {
+                        currency: "currency",
+                        effective_after: "2024-01-15T09:30:00Z",
+                        from_plan_id: "from_plan_id",
+                        from_plan_name: "from_plan_name",
+                        from_subscription_price: 1,
+                        id: "id",
+                        interval: "interval",
+                        to_plan_id: "to_plan_id",
+                        to_plan_name: "to_plan_name",
+                    },
                     traits: { key: "value" },
                     updated_at: "2024-01-15T09:30:00Z",
                     user_count: 1,
@@ -880,9 +888,6 @@ describe("EntitlementsClient", () => {
                                     creditName: "credit_name",
                                     id: "id",
                                     planId: "plan_id",
-                                    planName: "plan_name",
-                                    resetCadence: "daily",
-                                    resetStart: "billing_period",
                                     resetType: "no_reset",
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 },
@@ -1000,6 +1005,13 @@ describe("EntitlementsClient", () => {
                         providerType: "schematic",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
+                    entitlements: [
+                        {
+                            featureId: "feature_id",
+                            featureKey: "feature_key",
+                            valueType: "boolean",
+                        },
+                    ],
                     entityTraits: [
                         {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1066,9 +1078,6 @@ describe("EntitlementsClient", () => {
                                 creditName: "credit_name",
                                 id: "id",
                                 planId: "plan_id",
-                                planName: "plan_name",
-                                resetCadence: "daily",
-                                resetStart: "billing_period",
                                 resetType: "no_reset",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
@@ -1118,6 +1127,17 @@ describe("EntitlementsClient", () => {
                             value: true,
                         },
                     ],
+                    scheduledDowngrade: {
+                        currency: "currency",
+                        effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
+                        fromPlanId: "from_plan_id",
+                        fromPlanName: "from_plan_name",
+                        fromSubscriptionPrice: 1,
+                        id: "id",
+                        interval: "interval",
+                        toPlanId: "to_plan_id",
+                        toPlanName: "to_plan_name",
+                    },
                     traits: {
                         key: "value",
                     },
@@ -1316,9 +1336,6 @@ describe("EntitlementsClient", () => {
                                     credit_name: "credit_name",
                                     id: "id",
                                     plan_id: "plan_id",
-                                    plan_name: "plan_name",
-                                    reset_cadence: "daily",
-                                    reset_start: "billing_period",
                                     reset_type: "no_reset",
                                     updated_at: "2024-01-15T09:30:00Z",
                                 },
@@ -1434,6 +1451,7 @@ describe("EntitlementsClient", () => {
                         provider_type: "schematic",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
+                    entitlements: [{ feature_id: "feature_id", feature_key: "feature_key", value_type: "boolean" }],
                     entity_traits: [
                         {
                             created_at: "2024-01-15T09:30:00Z",
@@ -1500,9 +1518,6 @@ describe("EntitlementsClient", () => {
                                 credit_name: "credit_name",
                                 id: "id",
                                 plan_id: "plan_id",
-                                plan_name: "plan_name",
-                                reset_cadence: "daily",
-                                reset_start: "billing_period",
                                 reset_type: "no_reset",
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
@@ -1547,6 +1562,17 @@ describe("EntitlementsClient", () => {
                             value: true,
                         },
                     ],
+                    scheduled_downgrade: {
+                        currency: "currency",
+                        effective_after: "2024-01-15T09:30:00Z",
+                        from_plan_id: "from_plan_id",
+                        from_plan_name: "from_plan_name",
+                        from_subscription_price: 1,
+                        id: "id",
+                        interval: "interval",
+                        to_plan_id: "to_plan_id",
+                        to_plan_name: "to_plan_name",
+                    },
                     traits: { key: "value" },
                     updated_at: "2024-01-15T09:30:00Z",
                     user_count: 1,
@@ -1629,9 +1655,6 @@ describe("EntitlementsClient", () => {
                                     creditName: "credit_name",
                                     id: "id",
                                     planId: "plan_id",
-                                    planName: "plan_name",
-                                    resetCadence: "daily",
-                                    resetStart: "billing_period",
                                     resetType: "no_reset",
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 },
@@ -1749,6 +1772,13 @@ describe("EntitlementsClient", () => {
                         providerType: "schematic",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
+                    entitlements: [
+                        {
+                            featureId: "feature_id",
+                            featureKey: "feature_key",
+                            valueType: "boolean",
+                        },
+                    ],
                     entityTraits: [
                         {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1815,9 +1845,6 @@ describe("EntitlementsClient", () => {
                                 creditName: "credit_name",
                                 id: "id",
                                 planId: "plan_id",
-                                planName: "plan_name",
-                                resetCadence: "daily",
-                                resetStart: "billing_period",
                                 resetType: "no_reset",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
@@ -1867,6 +1894,17 @@ describe("EntitlementsClient", () => {
                             value: true,
                         },
                     ],
+                    scheduledDowngrade: {
+                        currency: "currency",
+                        effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
+                        fromPlanId: "from_plan_id",
+                        fromPlanName: "from_plan_name",
+                        fromSubscriptionPrice: 1,
+                        id: "id",
+                        interval: "interval",
+                        toPlanId: "to_plan_id",
+                        toPlanName: "to_plan_name",
+                    },
                     traits: {
                         key: "value",
                     },
@@ -2022,9 +2060,6 @@ describe("EntitlementsClient", () => {
                                     credit_name: "credit_name",
                                     id: "id",
                                     plan_id: "plan_id",
-                                    plan_name: "plan_name",
-                                    reset_cadence: "daily",
-                                    reset_start: "billing_period",
                                     reset_type: "no_reset",
                                     updated_at: "2024-01-15T09:30:00Z",
                                 },
@@ -2140,6 +2175,7 @@ describe("EntitlementsClient", () => {
                         provider_type: "schematic",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
+                    entitlements: [{ feature_id: "feature_id", feature_key: "feature_key", value_type: "boolean" }],
                     entity_traits: [
                         {
                             created_at: "2024-01-15T09:30:00Z",
@@ -2206,9 +2242,6 @@ describe("EntitlementsClient", () => {
                                 credit_name: "credit_name",
                                 id: "id",
                                 plan_id: "plan_id",
-                                plan_name: "plan_name",
-                                reset_cadence: "daily",
-                                reset_start: "billing_period",
                                 reset_type: "no_reset",
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
@@ -2253,6 +2286,17 @@ describe("EntitlementsClient", () => {
                             value: true,
                         },
                     ],
+                    scheduled_downgrade: {
+                        currency: "currency",
+                        effective_after: "2024-01-15T09:30:00Z",
+                        from_plan_id: "from_plan_id",
+                        from_plan_name: "from_plan_name",
+                        from_subscription_price: 1,
+                        id: "id",
+                        interval: "interval",
+                        to_plan_id: "to_plan_id",
+                        to_plan_name: "to_plan_name",
+                    },
                     traits: { key: "value" },
                     updated_at: "2024-01-15T09:30:00Z",
                     user_count: 1,
@@ -2338,9 +2382,6 @@ describe("EntitlementsClient", () => {
                                     creditName: "credit_name",
                                     id: "id",
                                     planId: "plan_id",
-                                    planName: "plan_name",
-                                    resetCadence: "daily",
-                                    resetStart: "billing_period",
                                     resetType: "no_reset",
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 },
@@ -2458,6 +2499,13 @@ describe("EntitlementsClient", () => {
                         providerType: "schematic",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
+                    entitlements: [
+                        {
+                            featureId: "feature_id",
+                            featureKey: "feature_key",
+                            valueType: "boolean",
+                        },
+                    ],
                     entityTraits: [
                         {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2524,9 +2572,6 @@ describe("EntitlementsClient", () => {
                                 creditName: "credit_name",
                                 id: "id",
                                 planId: "plan_id",
-                                planName: "plan_name",
-                                resetCadence: "daily",
-                                resetStart: "billing_period",
                                 resetType: "no_reset",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
@@ -2576,6 +2621,17 @@ describe("EntitlementsClient", () => {
                             value: true,
                         },
                     ],
+                    scheduledDowngrade: {
+                        currency: "currency",
+                        effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
+                        fromPlanId: "from_plan_id",
+                        fromPlanName: "from_plan_name",
+                        fromSubscriptionPrice: 1,
+                        id: "id",
+                        interval: "interval",
+                        toPlanId: "to_plan_id",
+                        toPlanName: "to_plan_name",
+                    },
                     traits: {
                         key: "value",
                     },
@@ -3024,9 +3080,6 @@ describe("EntitlementsClient", () => {
                                         credit_name: "credit_name",
                                         id: "id",
                                         plan_id: "plan_id",
-                                        plan_name: "plan_name",
-                                        reset_cadence: "daily",
-                                        reset_start: "billing_period",
                                         reset_type: "no_reset",
                                         updated_at: "2024-01-15T09:30:00Z",
                                     },
@@ -3084,6 +3137,7 @@ describe("EntitlementsClient", () => {
                             },
                         ],
                         created_at: "2024-01-15T09:30:00Z",
+                        entitlements: [{ feature_id: "feature_id", feature_key: "feature_key", value_type: "boolean" }],
                         entity_traits: [
                             {
                                 created_at: "2024-01-15T09:30:00Z",
@@ -3379,9 +3433,6 @@ describe("EntitlementsClient", () => {
                                         creditName: "credit_name",
                                         id: "id",
                                         planId: "plan_id",
-                                        planName: "plan_name",
-                                        resetCadence: "daily",
-                                        resetStart: "billing_period",
                                         resetType: "no_reset",
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                     },
@@ -3439,6 +3490,13 @@ describe("EntitlementsClient", () => {
                             },
                         ],
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        entitlements: [
+                            {
+                                featureId: "feature_id",
+                                featureKey: "feature_key",
+                                valueType: "boolean",
+                            },
+                        ],
                         entityTraits: [
                             {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -4423,6 +4481,164 @@ describe("EntitlementsClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("getFeatureUsageTimeSeries (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                feature_id: "feature_id",
+                feature_type: "boolean",
+                limits: [
+                    { effective_at: "2024-01-15T09:30:00Z", is_soft_limit: true, limit_source: "company_override" },
+                ],
+                period_type: "period_type",
+                usage_points: [{ timestamp: "2024-01-15T09:30:00Z", usage: 1 }],
+            },
+            params: {
+                company_id: "company_id",
+                end_time: "2024-01-15T09:30:00Z",
+                feature_id: "feature_id",
+                granularity: "daily",
+                start_time: "2024-01-15T09:30:00Z",
+            },
+        };
+        server
+            .mockEndpoint()
+            .get("/feature-usage-timeseries")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.entitlements.getFeatureUsageTimeSeries({
+            companyId: "company_id",
+            endTime: new Date("2024-01-15T09:30:00.000Z"),
+            featureId: "feature_id",
+            granularity: "daily",
+            startTime: new Date("2024-01-15T09:30:00.000Z"),
+        });
+        expect(response).toEqual({
+            data: {
+                featureId: "feature_id",
+                featureType: "boolean",
+                limits: [
+                    {
+                        effectiveAt: new Date("2024-01-15T09:30:00.000Z"),
+                        isSoftLimit: true,
+                        limitSource: "company_override",
+                    },
+                ],
+                periodType: "period_type",
+                usagePoints: [
+                    {
+                        timestamp: new Date("2024-01-15T09:30:00.000Z"),
+                        usage: 1,
+                    },
+                ],
+            },
+            params: {
+                companyId: "company_id",
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                featureId: "feature_id",
+                granularity: "daily",
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+            },
+        });
+    });
+
+    test("getFeatureUsageTimeSeries (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .get("/feature-usage-timeseries")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.getFeatureUsageTimeSeries({
+                companyId: "company_id",
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                featureId: "feature_id",
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getFeatureUsageTimeSeries (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .get("/feature-usage-timeseries")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.getFeatureUsageTimeSeries({
+                companyId: "company_id",
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                featureId: "feature_id",
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getFeatureUsageTimeSeries (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .get("/feature-usage-timeseries")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.getFeatureUsageTimeSeries({
+                companyId: "company_id",
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                featureId: "feature_id",
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getFeatureUsageTimeSeries (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .get("/feature-usage-timeseries")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.getFeatureUsageTimeSeries({
+                companyId: "company_id",
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                featureId: "feature_id",
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("countFeatureUsage (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -4589,9 +4805,6 @@ describe("EntitlementsClient", () => {
                                         credit_name: "credit_name",
                                         id: "id",
                                         plan_id: "plan_id",
-                                        plan_name: "plan_name",
-                                        reset_cadence: "daily",
-                                        reset_start: "billing_period",
                                         reset_type: "no_reset",
                                         updated_at: "2024-01-15T09:30:00Z",
                                     },
@@ -4649,6 +4862,7 @@ describe("EntitlementsClient", () => {
                             },
                         ],
                         created_at: "2024-01-15T09:30:00Z",
+                        entitlements: [{ feature_id: "feature_id", feature_key: "feature_key", value_type: "boolean" }],
                         entity_traits: [
                             {
                                 created_at: "2024-01-15T09:30:00Z",
@@ -4867,9 +5081,6 @@ describe("EntitlementsClient", () => {
                                         creditName: "credit_name",
                                         id: "id",
                                         planId: "plan_id",
-                                        planName: "plan_name",
-                                        resetCadence: "daily",
-                                        resetStart: "billing_period",
                                         resetType: "no_reset",
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                     },
@@ -4927,6 +5138,13 @@ describe("EntitlementsClient", () => {
                             },
                         ],
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        entitlements: [
+                            {
+                                featureId: "feature_id",
+                                featureKey: "feature_key",
+                                valueType: "boolean",
+                            },
+                        ],
                         entityTraits: [
                             {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -5442,6 +5660,7 @@ describe("EntitlementsClient", () => {
                     value_bool: true,
                     value_credit: {
                         burn_strategy: "expiration_priority",
+                        cost_editable: true,
                         created_at: "2024-01-15T09:30:00Z",
                         default_expiry_unit: "billing_periods",
                         default_rollover_policy: "expire",
@@ -5472,6 +5691,8 @@ describe("EntitlementsClient", () => {
                 offset: 1,
                 plan_id: "plan_id",
                 plan_ids: ["plan_ids"],
+                plan_version_id: "plan_version_id",
+                plan_version_ids: ["plan_version_ids"],
                 q: "q",
                 with_metered_products: true,
             },
@@ -5481,6 +5702,7 @@ describe("EntitlementsClient", () => {
         const response = await client.entitlements.listPlanEntitlements({
             featureId: "feature_id",
             planId: "plan_id",
+            planVersionId: "plan_version_id",
             q: "q",
             withMeteredProducts: true,
             limit: 1,
@@ -5575,6 +5797,7 @@ describe("EntitlementsClient", () => {
                     valueBool: true,
                     valueCredit: {
                         burnStrategy: "expiration_priority",
+                        costEditable: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         defaultExpiryUnit: "billing_periods",
                         defaultRolloverPolicy: "expire",
@@ -5605,6 +5828,8 @@ describe("EntitlementsClient", () => {
                 offset: 1,
                 planId: "plan_id",
                 planIds: ["plan_ids"],
+                planVersionId: "plan_version_id",
+                planVersionIds: ["plan_version_ids"],
                 q: "q",
                 withMeteredProducts: true,
             },
@@ -5780,6 +6005,7 @@ describe("EntitlementsClient", () => {
                 value_bool: true,
                 value_credit: {
                     burn_strategy: "expiration_priority",
+                    cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
                     default_expiry_unit: "billing_periods",
                     default_expiry_unit_count: 1,
@@ -5948,6 +6174,7 @@ describe("EntitlementsClient", () => {
                 valueBool: true,
                 valueCredit: {
                     burnStrategy: "expiration_priority",
+                    costEditable: true,
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     defaultExpiryUnit: "billing_periods",
                     defaultExpiryUnitCount: 1,
@@ -6225,6 +6452,7 @@ describe("EntitlementsClient", () => {
                 value_bool: true,
                 value_credit: {
                     burn_strategy: "expiration_priority",
+                    cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
                     default_expiry_unit: "billing_periods",
                     default_expiry_unit_count: 1,
@@ -6388,6 +6616,7 @@ describe("EntitlementsClient", () => {
                 valueBool: true,
                 valueCredit: {
                     burnStrategy: "expiration_priority",
+                    costEditable: true,
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     defaultExpiryUnit: "billing_periods",
                     defaultExpiryUnitCount: 1,
@@ -6622,6 +6851,7 @@ describe("EntitlementsClient", () => {
                 value_bool: true,
                 value_credit: {
                     burn_strategy: "expiration_priority",
+                    cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
                     default_expiry_unit: "billing_periods",
                     default_expiry_unit_count: 1,
@@ -6788,6 +7018,7 @@ describe("EntitlementsClient", () => {
                 valueBool: true,
                 valueCredit: {
                     burnStrategy: "expiration_priority",
+                    costEditable: true,
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     defaultExpiryUnit: "billing_periods",
                     defaultExpiryUnitCount: 1,
@@ -7074,6 +7305,8 @@ describe("EntitlementsClient", () => {
                 offset: 1,
                 plan_id: "plan_id",
                 plan_ids: ["plan_ids"],
+                plan_version_id: "plan_version_id",
+                plan_version_ids: ["plan_version_ids"],
                 q: "q",
                 with_metered_products: true,
             },
@@ -7089,6 +7322,7 @@ describe("EntitlementsClient", () => {
         const response = await client.entitlements.countPlanEntitlements({
             featureId: "feature_id",
             planId: "plan_id",
+            planVersionId: "plan_version_id",
             q: "q",
             withMeteredProducts: true,
             limit: 1,
@@ -7106,6 +7340,8 @@ describe("EntitlementsClient", () => {
                 offset: 1,
                 planId: "plan_id",
                 planIds: ["plan_ids"],
+                planVersionId: "plan_version_id",
+                planVersionIds: ["plan_version_ids"],
                 q: "q",
                 withMeteredProducts: true,
             },
@@ -7466,6 +7702,10 @@ describe("EntitlementsClient", () => {
                                     provider_type: "schematic",
                                     updated_at: "2024-01-15T09:30:00Z",
                                 },
+                                entitlements: [
+                                    { feature_id: "feature_id", feature_key: "feature_key", value_type: "boolean" },
+                                    { feature_id: "feature_id", feature_key: "feature_key", value_type: "boolean" },
+                                ],
                                 entity_traits: [
                                     {
                                         created_at: "2024-01-15T09:30:00Z",
@@ -7590,6 +7830,17 @@ describe("EntitlementsClient", () => {
                                         value: true,
                                     },
                                 ],
+                                scheduled_downgrade: {
+                                    currency: "currency",
+                                    effective_after: "2024-01-15T09:30:00Z",
+                                    from_plan_id: "from_plan_id",
+                                    from_plan_name: "from_plan_name",
+                                    from_subscription_price: 1,
+                                    id: "id",
+                                    interval: "interval",
+                                    to_plan_id: "to_plan_id",
+                                    to_plan_name: "to_plan_name",
+                                },
                                 traits: { traits: { key: "value" } },
                                 updated_at: "2024-01-15T09:30:00Z",
                                 user_count: 1,
@@ -7980,6 +8231,7 @@ describe("EntitlementsClient", () => {
                             value_bool: true,
                             value_credit: {
                                 burn_strategy: "expiration_priority",
+                                cost_editable: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 default_expiry_unit: "billing_periods",
                                 default_expiry_unit_count: 1,
@@ -8140,6 +8392,10 @@ describe("EntitlementsClient", () => {
                                     provider_type: "schematic",
                                     updated_at: "2024-01-15T09:30:00Z",
                                 },
+                                entitlements: [
+                                    { feature_id: "feature_id", feature_key: "feature_key", value_type: "boolean" },
+                                    { feature_id: "feature_id", feature_key: "feature_key", value_type: "boolean" },
+                                ],
                                 entity_traits: [
                                     {
                                         created_at: "2024-01-15T09:30:00Z",
@@ -8264,6 +8520,17 @@ describe("EntitlementsClient", () => {
                                         value: true,
                                     },
                                 ],
+                                scheduled_downgrade: {
+                                    currency: "currency",
+                                    effective_after: "2024-01-15T09:30:00Z",
+                                    from_plan_id: "from_plan_id",
+                                    from_plan_name: "from_plan_name",
+                                    from_subscription_price: 1,
+                                    id: "id",
+                                    interval: "interval",
+                                    to_plan_id: "to_plan_id",
+                                    to_plan_name: "to_plan_name",
+                                },
                                 traits: { traits: { key: "value" } },
                                 updated_at: "2024-01-15T09:30:00Z",
                                 user_count: 1,
@@ -8654,6 +8921,7 @@ describe("EntitlementsClient", () => {
                             value_bool: true,
                             value_credit: {
                                 burn_strategy: "expiration_priority",
+                                cost_editable: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 default_expiry_unit: "billing_periods",
                                 default_expiry_unit_count: 1,
@@ -8838,6 +9106,18 @@ describe("EntitlementsClient", () => {
                                     providerType: "schematic",
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 },
+                                entitlements: [
+                                    {
+                                        featureId: "feature_id",
+                                        featureKey: "feature_key",
+                                        valueType: "boolean",
+                                    },
+                                    {
+                                        featureId: "feature_id",
+                                        featureKey: "feature_key",
+                                        valueType: "boolean",
+                                    },
+                                ],
                                 entityTraits: [
                                     {
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -8972,6 +9252,17 @@ describe("EntitlementsClient", () => {
                                         value: true,
                                     },
                                 ],
+                                scheduledDowngrade: {
+                                    currency: "currency",
+                                    effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
+                                    fromPlanId: "from_plan_id",
+                                    fromPlanName: "from_plan_name",
+                                    fromSubscriptionPrice: 1,
+                                    id: "id",
+                                    interval: "interval",
+                                    toPlanId: "to_plan_id",
+                                    toPlanName: "to_plan_name",
+                                },
                                 traits: {
                                     traits: {
                                         key: "value",
@@ -9378,6 +9669,7 @@ describe("EntitlementsClient", () => {
                             valueBool: true,
                             valueCredit: {
                                 burnStrategy: "expiration_priority",
+                                costEditable: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 defaultExpiryUnit: "billing_periods",
                                 defaultExpiryUnitCount: 1,
@@ -9548,6 +9840,18 @@ describe("EntitlementsClient", () => {
                                     providerType: "schematic",
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 },
+                                entitlements: [
+                                    {
+                                        featureId: "feature_id",
+                                        featureKey: "feature_key",
+                                        valueType: "boolean",
+                                    },
+                                    {
+                                        featureId: "feature_id",
+                                        featureKey: "feature_key",
+                                        valueType: "boolean",
+                                    },
+                                ],
                                 entityTraits: [
                                     {
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -9682,6 +9986,17 @@ describe("EntitlementsClient", () => {
                                         value: true,
                                     },
                                 ],
+                                scheduledDowngrade: {
+                                    currency: "currency",
+                                    effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
+                                    fromPlanId: "from_plan_id",
+                                    fromPlanName: "from_plan_name",
+                                    fromSubscriptionPrice: 1,
+                                    id: "id",
+                                    interval: "interval",
+                                    toPlanId: "to_plan_id",
+                                    toPlanName: "to_plan_name",
+                                },
                                 traits: {
                                     traits: {
                                         key: "value",
@@ -10088,6 +10403,7 @@ describe("EntitlementsClient", () => {
                             valueBool: true,
                             valueCredit: {
                                 burnStrategy: "expiration_priority",
+                                costEditable: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 defaultExpiryUnit: "billing_periods",
                                 defaultExpiryUnitCount: 1,

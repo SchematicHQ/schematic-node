@@ -4,6 +4,7 @@ import type * as Schematic from "../index";
 
 export interface BillingCreditResponseData {
     burnStrategy: Schematic.BillingCreditBurnStrategy;
+    costEditable: boolean;
     createdAt: Date;
     defaultExpiryUnit: Schematic.BillingCreditExpiryUnit;
     defaultExpiryUnitCount?: number;

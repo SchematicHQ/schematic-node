@@ -24,6 +24,7 @@ import type * as Schematic from "../../../../index";
  *         prorationBehavior: "create_prorations",
  *         showAsMonthlyPrices: true,
  *         showCredits: true,
+ *         showFeatureDescription: true,
  *         showPeriodToggle: true,
  *         showZeroPriceAsFree: true,
  *         syncCustomerBillingDetails: true
@@ -50,8 +51,11 @@ export interface CreatePlanGroupRequestBody {
     preventSelfServiceDowngradeButtonText?: string;
     preventSelfServiceDowngradeUrl?: string;
     prorationBehavior: Schematic.ProrationBehavior;
+    scheduledDowngradeBehavior?: Schematic.ScheduledDowngradeConfigBehavior;
+    scheduledDowngradePreventWhenOverLimit?: boolean;
     showAsMonthlyPrices: boolean;
     showCredits: boolean;
+    showFeatureDescription: boolean;
     showPeriodToggle: boolean;
     showZeroPriceAsFree: boolean;
     syncCustomerBillingDetails: boolean;

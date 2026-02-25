@@ -14,6 +14,7 @@ export const BillingCreditResponseData: core.serialization.ObjectSchema<
     Schematic.BillingCreditResponseData
 > = core.serialization.object({
     burnStrategy: core.serialization.property("burn_strategy", BillingCreditBurnStrategy),
+    costEditable: core.serialization.property("cost_editable", core.serialization.boolean()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     defaultExpiryUnit: core.serialization.property("default_expiry_unit", BillingCreditExpiryUnit),
     defaultExpiryUnitCount: core.serialization.property(
@@ -35,6 +36,7 @@ export const BillingCreditResponseData: core.serialization.ObjectSchema<
 export declare namespace BillingCreditResponseData {
     export interface Raw {
         burn_strategy: BillingCreditBurnStrategy.Raw;
+        cost_editable: boolean;
         created_at: string;
         default_expiry_unit: BillingCreditExpiryUnit.Raw;
         default_expiry_unit_count?: number | null;

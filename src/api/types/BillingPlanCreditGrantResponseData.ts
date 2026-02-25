@@ -11,19 +11,26 @@ export interface BillingPlanCreditGrantResponseData {
     autoTopupExpiryUnitCount?: number;
     autoTopupThresholdPercent?: number;
     createdAt: Date;
+    credit?: Schematic.BillingCreditResponseData;
     creditAmount: number;
     creditId: string;
+    /** Use credit.name from the nested credit object instead */
     creditName: string;
+    /** Use plural_name from the nested credit object instead */
     creditPluralName?: string;
+    /** Use singular_name from the nested credit object instead */
     creditSingularName?: string;
     expiryType?: Schematic.BillingCreditExpiryType;
     expiryUnit?: Schematic.BillingCreditExpiryUnit;
     expiryUnitCount?: number;
     id: string;
+    plan?: Schematic.PreviewObjectResponseData;
     planId: string;
+    /** Use plan.name from the nested plan object instead */
     planName: string;
-    resetCadence: Schematic.BillingPlanCreditGrantResetCadence;
-    resetStart: Schematic.BillingPlanCreditGrantResetStart;
+    planVersionId?: string;
+    resetCadence?: Schematic.BillingPlanCreditGrantResetCadence;
+    resetStart?: Schematic.BillingPlanCreditGrantResetStart;
     resetType?: Schematic.BillingPlanCreditGrantResetType;
     updatedAt: Date;
 }

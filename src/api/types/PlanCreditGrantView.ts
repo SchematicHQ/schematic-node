@@ -11,21 +11,28 @@ export interface PlanCreditGrantView {
     billingCreditAutoTopupExpiryUnitCount?: number;
     billingCreditAutoTopupThresholdPercent?: number;
     createdAt: Date;
+    credit?: Schematic.BillingCreditView;
     creditAmount: number;
+    /** Deprecated field, will be removed in the future. Use Credit.Description instead. */
     creditDescription: string;
+    /** Deprecated field, will be removed in the future. Use Credit.Icon instead. */
     creditIcon?: string;
     creditId: string;
+    /** Deprecated field, will be removed in the future. Use Credit.Name instead. */
     creditName: string;
     expiryType?: Schematic.BillingCreditExpiryType;
     expiryUnit?: Schematic.BillingCreditExpiryUnit;
     expiryUnitCount?: number;
     id: string;
+    plan?: Schematic.GenericPreviewObject;
     planId: string;
-    planName: string;
+    planVersionId?: string;
+    /** Deprecated field, will be removed in the future. Use Credit.PluralName instead. */
     pluralName?: string;
-    resetCadence: Schematic.BillingPlanCreditGrantResetCadence;
-    resetStart: Schematic.BillingPlanCreditGrantResetStart;
+    resetCadence?: Schematic.BillingPlanCreditGrantResetCadence;
+    resetStart?: Schematic.BillingPlanCreditGrantResetStart;
     resetType: Schematic.BillingPlanCreditGrantResetType;
+    /** Deprecated field, will be removed in the future. Use Credit.SingularName instead. */
     singularName?: string;
     updatedAt: Date;
 }

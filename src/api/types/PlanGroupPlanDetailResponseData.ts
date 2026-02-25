@@ -3,6 +3,7 @@
 import type * as Schematic from "../index";
 
 export interface PlanGroupPlanDetailResponseData {
+    activeVersion?: Schematic.PlanVersionResponseData;
     audienceType?: string;
     billingProduct?: Schematic.BillingProductDetailResponseData;
     chargeType: Schematic.ChargeType;
@@ -12,6 +13,7 @@ export interface PlanGroupPlanDetailResponseData {
     createdAt: Date;
     customPlanConfig?: Schematic.CustomPlanViewConfigResponseData;
     description: string;
+    draftVersion?: Schematic.PlanVersionResponseData;
     entitlements: Schematic.PlanEntitlementResponseData[];
     features: Schematic.FeatureDetailResponseData[];
     icon: string;

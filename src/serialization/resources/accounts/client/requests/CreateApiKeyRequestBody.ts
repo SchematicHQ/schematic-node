@@ -11,6 +11,7 @@ export const CreateApiKeyRequestBody: core.serialization.Schema<
     description: core.serialization.string().optional(),
     environmentId: core.serialization.property("environment_id", core.serialization.string().optional()),
     name: core.serialization.string(),
+    readonly: core.serialization.boolean().optional(),
 });
 
 export declare namespace CreateApiKeyRequestBody {
@@ -18,5 +19,6 @@ export declare namespace CreateApiKeyRequestBody {
         description?: string | null;
         environment_id?: string | null;
         name: string;
+        readonly?: boolean | null;
     }
 }

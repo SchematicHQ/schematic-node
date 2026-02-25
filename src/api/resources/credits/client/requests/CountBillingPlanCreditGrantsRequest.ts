@@ -5,15 +5,17 @@
  *     {
  *         creditId: "credit_id",
  *         planId: "plan_id",
+ *         planVersionId: "plan_version_id",
  *         limit: 1,
  *         offset: 1
  *     }
  */
 export interface CountBillingPlanCreditGrantsRequest {
     creditId?: string;
+    ids?: string | string[];
     planId?: string;
     planIds?: string | string[];
-    ids?: string | string[];
+    planVersionId?: string;
     /** Page limit (default 100) */
     limit?: number;
     /** Page offset (default 0) */

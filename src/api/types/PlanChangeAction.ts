@@ -9,6 +9,7 @@ export const PlanChangeAction = {
     PlanBillingProductChanged: "plan_billing_product_changed",
     PlanDeleted: "plan_deleted",
     PlanTraitChange: "plan_trait_change",
+    PlanVersionMigration: "plan_version_migration",
     Quickstart: "quickstart",
     SubscriptionChange: "subscription_change",
 } as const;

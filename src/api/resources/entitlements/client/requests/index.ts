@@ -7,6 +7,7 @@ export type { CreateCompanyOverrideRequestBody } from "./CreateCompanyOverrideRe
 export type { CreatePlanEntitlementRequestBody } from "./CreatePlanEntitlementRequestBody";
 export type { DuplicatePlanEntitlementsRequestBody } from "./DuplicatePlanEntitlementsRequestBody";
 export type { GetFeatureUsageByCompanyRequest } from "./GetFeatureUsageByCompanyRequest";
+export type { GetFeatureUsageTimeSeriesRequest } from "./GetFeatureUsageTimeSeriesRequest";
 export type { ListCompanyOverridesRequest } from "./ListCompanyOverridesRequest";
 export type { ListFeatureCompaniesRequest } from "./ListFeatureCompaniesRequest";
 export type { ListFeatureUsageRequest } from "./ListFeatureUsageRequest";

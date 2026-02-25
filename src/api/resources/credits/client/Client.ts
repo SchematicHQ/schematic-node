@@ -2987,6 +2987,7 @@ export class CreditsClient {
      *     await client.credits.listBillingPlanCreditGrants({
      *         creditId: "credit_id",
      *         planId: "plan_id",
+     *         planVersionId: "plan_version_id",
      *         limit: 1,
      *         offset: 1
      *     })
@@ -3002,10 +3003,18 @@ export class CreditsClient {
         request: Schematic.ListBillingPlanCreditGrantsRequest = {},
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListBillingPlanCreditGrantsResponse>> {
-        const { creditId, planId, planIds, ids, limit, offset } = request;
+        const { creditId, ids, planId, planIds, planVersionId, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (creditId != null) {
             _queryParams.credit_id = creditId;
+        }
+
+        if (ids != null) {
+            if (Array.isArray(ids)) {
+                _queryParams.ids = ids.map((item) => item);
+            } else {
+                _queryParams.ids = ids;
+            }
         }
 
         if (planId != null) {
@@ -3020,12 +3029,8 @@ export class CreditsClient {
             }
         }
 
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
+        if (planVersionId != null) {
+            _queryParams.plan_version_id = planVersionId;
         }
 
         if (limit != null) {
@@ -3585,6 +3590,7 @@ export class CreditsClient {
      *     await client.credits.countBillingPlanCreditGrants({
      *         creditId: "credit_id",
      *         planId: "plan_id",
+     *         planVersionId: "plan_version_id",
      *         limit: 1,
      *         offset: 1
      *     })
@@ -3600,10 +3606,18 @@ export class CreditsClient {
         request: Schematic.CountBillingPlanCreditGrantsRequest = {},
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountBillingPlanCreditGrantsResponse>> {
-        const { creditId, planId, planIds, ids, limit, offset } = request;
+        const { creditId, ids, planId, planIds, planVersionId, limit, offset } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (creditId != null) {
             _queryParams.credit_id = creditId;
+        }
+
+        if (ids != null) {
+            if (Array.isArray(ids)) {
+                _queryParams.ids = ids.map((item) => item);
+            } else {
+                _queryParams.ids = ids;
+            }
         }
 
         if (planId != null) {
@@ -3618,12 +3632,8 @@ export class CreditsClient {
             }
         }
 
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
+        if (planVersionId != null) {
+            _queryParams.plan_version_id = planVersionId;
         }
 
         if (limit != null) {

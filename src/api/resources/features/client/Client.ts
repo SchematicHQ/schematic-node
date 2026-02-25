@@ -37,6 +37,7 @@ export class FeaturesClient {
      *     await client.features.listFeatures({
      *         q: "q",
      *         withoutCompanyOverrideFor: "without_company_override_for",
+     *         planVersionId: "plan_version_id",
      *         withoutPlanEntitlementFor: "without_plan_entitlement_for",
      *         booleanRequireEvent: true,
      *         limit: 1,
@@ -58,6 +59,7 @@ export class FeaturesClient {
             ids,
             q,
             withoutCompanyOverrideFor,
+            planVersionId,
             withoutPlanEntitlementFor,
             featureType,
             booleanRequireEvent,
@@ -79,6 +81,10 @@ export class FeaturesClient {
 
         if (withoutCompanyOverrideFor != null) {
             _queryParams.without_company_override_for = withoutCompanyOverrideFor;
+        }
+
+        if (planVersionId != null) {
+            _queryParams.plan_version_id = planVersionId;
         }
 
         if (withoutPlanEntitlementFor != null) {
@@ -740,6 +746,7 @@ export class FeaturesClient {
      *     await client.features.countFeatures({
      *         q: "q",
      *         withoutCompanyOverrideFor: "without_company_override_for",
+     *         planVersionId: "plan_version_id",
      *         withoutPlanEntitlementFor: "without_plan_entitlement_for",
      *         booleanRequireEvent: true,
      *         limit: 1,
@@ -761,6 +768,7 @@ export class FeaturesClient {
             ids,
             q,
             withoutCompanyOverrideFor,
+            planVersionId,
             withoutPlanEntitlementFor,
             featureType,
             booleanRequireEvent,
@@ -782,6 +790,10 @@ export class FeaturesClient {
 
         if (withoutCompanyOverrideFor != null) {
             _queryParams.without_company_override_for = withoutCompanyOverrideFor;
+        }
+
+        if (planVersionId != null) {
+            _queryParams.plan_version_id = planVersionId;
         }
 
         if (withoutPlanEntitlementFor != null) {

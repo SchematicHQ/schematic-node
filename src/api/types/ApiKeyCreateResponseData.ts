@@ -9,6 +9,7 @@ export interface ApiKeyCreateResponseData {
     id: string;
     lastUsedAt?: Date;
     name: string;
+    readonly: boolean;
     scopes: Schematic.ApiKeyScope[];
     secret: string;
     updatedAt: Date;

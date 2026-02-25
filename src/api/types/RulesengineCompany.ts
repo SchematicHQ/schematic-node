@@ -7,12 +7,13 @@ export interface RulesengineCompany {
     basePlanId?: string;
     billingProductIds: string[];
     creditBalances: Record<string, number>;
-    crmProductIds: string[];
+    entitlements?: Schematic.RulesengineFeatureEntitlement[];
     environmentId: string;
     id: string;
     keys: Record<string, string>;
     metrics: Schematic.RulesengineCompanyMetric[];
     planIds: string[];
+    planVersionIds: string[];
     rules: Schematic.RulesengineRule[];
     subscription?: Schematic.RulesengineSubscription;
     traits: Schematic.RulesengineTrait[];

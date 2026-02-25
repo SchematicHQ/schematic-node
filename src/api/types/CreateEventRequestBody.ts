@@ -4,6 +4,7 @@ import type * as Schematic from "../index";
 
 export interface CreateEventRequestBody {
     body?: Schematic.EventBody;
+    /** Either 'identify' or 'track' */
     eventType: Schematic.EventType;
     /** Optionally provide a timestamp at which the event was sent to Schematic */
     sentAt?: Date;

@@ -5,9 +5,11 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingCreditExpiryType } from "./BillingCreditExpiryType";
 import { BillingCreditExpiryUnit } from "./BillingCreditExpiryUnit";
+import { BillingCreditView } from "./BillingCreditView";
 import { BillingPlanCreditGrantResetCadence } from "./BillingPlanCreditGrantResetCadence";
 import { BillingPlanCreditGrantResetStart } from "./BillingPlanCreditGrantResetStart";
 import { BillingPlanCreditGrantResetType } from "./BillingPlanCreditGrantResetType";
+import { GenericPreviewObject } from "./GenericPreviewObject";
 
 export const PlanCreditGrantView: core.serialization.ObjectSchema<
     serializers.PlanCreditGrantView.Raw,
@@ -42,6 +44,7 @@ export const PlanCreditGrantView: core.serialization.ObjectSchema<
         core.serialization.number().optional(),
     ),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
+    credit: BillingCreditView.optional(),
     creditAmount: core.serialization.property("credit_amount", core.serialization.number()),
     creditDescription: core.serialization.property("credit_description", core.serialization.string()),
     creditIcon: core.serialization.property("credit_icon", core.serialization.string().optional()),
@@ -51,11 +54,12 @@ export const PlanCreditGrantView: core.serialization.ObjectSchema<
     expiryUnit: core.serialization.property("expiry_unit", BillingCreditExpiryUnit.optional()),
     expiryUnitCount: core.serialization.property("expiry_unit_count", core.serialization.number().optional()),
     id: core.serialization.string(),
+    plan: GenericPreviewObject.optional(),
     planId: core.serialization.property("plan_id", core.serialization.string()),
-    planName: core.serialization.property("plan_name", core.serialization.string()),
+    planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
     pluralName: core.serialization.property("plural_name", core.serialization.string().optional()),
-    resetCadence: core.serialization.property("reset_cadence", BillingPlanCreditGrantResetCadence),
-    resetStart: core.serialization.property("reset_start", BillingPlanCreditGrantResetStart),
+    resetCadence: core.serialization.property("reset_cadence", BillingPlanCreditGrantResetCadence.optional()),
+    resetStart: core.serialization.property("reset_start", BillingPlanCreditGrantResetStart.optional()),
     resetType: core.serialization.property("reset_type", BillingPlanCreditGrantResetType),
     singularName: core.serialization.property("singular_name", core.serialization.string().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -71,6 +75,7 @@ export declare namespace PlanCreditGrantView {
         billing_credit_auto_topup_expiry_unit_count?: number | null;
         billing_credit_auto_topup_threshold_percent?: number | null;
         created_at: string;
+        credit?: BillingCreditView.Raw | null;
         credit_amount: number;
         credit_description: string;
         credit_icon?: string | null;
@@ -80,11 +85,12 @@ export declare namespace PlanCreditGrantView {
         expiry_unit?: BillingCreditExpiryUnit.Raw | null;
         expiry_unit_count?: number | null;
         id: string;
+        plan?: GenericPreviewObject.Raw | null;
         plan_id: string;
-        plan_name: string;
+        plan_version_id?: string | null;
         plural_name?: string | null;
-        reset_cadence: BillingPlanCreditGrantResetCadence.Raw;
-        reset_start: BillingPlanCreditGrantResetStart.Raw;
+        reset_cadence?: BillingPlanCreditGrantResetCadence.Raw | null;
+        reset_start?: BillingPlanCreditGrantResetStart.Raw | null;
         reset_type: BillingPlanCreditGrantResetType.Raw;
         singular_name?: string | null;
         updated_at: string;

@@ -1,9 +1,9 @@
 export type { CountApiKeysRequest } from "./CountApiKeysRequest";
-export type { CountApiRequestsRequest } from "./CountApiRequestsRequest";
+export type { CountAuditLogsRequest } from "./CountAuditLogsRequest";
 export type { CreateApiKeyRequestBody } from "./CreateApiKeyRequestBody";
 export type { CreateEnvironmentRequestBody } from "./CreateEnvironmentRequestBody";
 export type { ListApiKeysRequest } from "./ListApiKeysRequest";
-export type { ListApiRequestsRequest } from "./ListApiRequestsRequest";
+export type { ListAuditLogsRequest } from "./ListAuditLogsRequest";
 export type { ListEnvironmentsRequest } from "./ListEnvironmentsRequest";
 export type { UpdateApiKeyRequestBody } from "./UpdateApiKeyRequestBody";
 export type { UpdateEnvironmentRequestBody } from "./UpdateEnvironmentRequestBody";

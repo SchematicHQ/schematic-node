@@ -12,4 +12,5 @@ export interface CountBillingPlanCreditGrantsParams {
     offset?: number;
     planId?: string;
     planIds?: string[];
+    planVersionId?: string;
 }
