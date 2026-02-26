@@ -19,7 +19,7 @@ export interface SchematicOptions {
     /** Cache provider configuration */
     cacheProviders?: {
         /** Providers for caching flag check results */
-        flagChecks?: CacheProvider<boolean>[];
+        flagChecks?: CacheProvider<CheckFlagWithEntitlementResponse>[];
     };
     /** Enable DataStream for real-time updates */
     useDataStream?: boolean;
@@ -77,7 +77,7 @@ export interface CheckFlagWithEntitlementResponse {
 export class SchematicClient extends BaseClient {
     private datastreamClient?: DataStreamClient;
     private eventBuffer: EventBuffer;
-    private flagCheckCacheProviders: CacheProvider<boolean>[];
+    private flagCheckCacheProviders: CacheProvider<CheckFlagWithEntitlementResponse>[];
     private flagDefaults: { [key: string]: boolean };
     private logger: Logger;
     private offline: boolean;
@@ -130,7 +130,7 @@ export class SchematicClient extends BaseClient {
             logger,
             offline,
         });
-        this.flagCheckCacheProviders = opts?.cacheProviders?.flagChecks ?? [new LocalCache<boolean>()];
+        this.flagCheckCacheProviders = opts?.cacheProviders?.flagChecks ?? [new LocalCache<CheckFlagWithEntitlementResponse>()];
         this.flagDefaults = flagDefaults;
         this.offline = offline;
 
@@ -246,14 +246,10 @@ export class SchematicClient extends BaseClient {
         try {
             const cacheKey = JSON.stringify({ evalCtx, key });
             for (const provider of this.flagCheckCacheProviders) {
-                const cachedValue = await provider.get(cacheKey);
-                if (cachedValue !== null && cachedValue !== undefined) {
+                const cached = await provider.get(cacheKey);
+                if (cached !== null && cached !== undefined) {
                     this.logger.debug(`${provider.constructor.name} cache hit for flag ${key}`);
-                    return {
-                        flagKey: key,
-                        reason: "Retrieved from cache",
-                        value: cachedValue,
-                    };
+                    return cached;
                 }
             }
 
@@ -269,14 +265,9 @@ export class SchematicClient extends BaseClient {
                 };
             }
 
-            for (const provider of this.flagCheckCacheProviders) {
-                this.logger.debug(`Caching value for flag ${key} in ${provider.constructor.name}`);
-                await provider.set(cacheKey, response.data.value);
-            }
-
             this.logger.debug(`Feature flag API response for ${key}: ${JSON.stringify(response.data)}`);
 
-            return {
+            const result: CheckFlagWithEntitlementResponse = {
                 companyId: response.data.companyId,
                 entitlement: response.data.entitlement,
                 err: response.data.error,
@@ -288,6 +279,13 @@ export class SchematicClient extends BaseClient {
                 userId: response.data.userId,
                 value: response.data.value,
             };
+
+            for (const provider of this.flagCheckCacheProviders) {
+                this.logger.debug(`Caching value for flag ${key} in ${provider.constructor.name}`);
+                await provider.set(cacheKey, result);
+            }
+
+            return result;
         } catch (err) {
             this.logger.error(`Error checking flag ${key}: ${err}`);
             return {
@@ -337,13 +335,13 @@ export class SchematicClient extends BaseClient {
                 let foundInCache = false;
 
                 for (const provider of this.flagCheckCacheProviders) {
-                    const cachedValue = await provider.get(cacheKey);
-                    if (cachedValue !== null && cachedValue !== undefined) {
+                    const cached = await provider.get(cacheKey);
+                    if (cached !== null && cached !== undefined) {
                         this.logger.debug(`${provider.constructor.name} cache hit for flag ${key}`);
                         cachedResults.set(key, {
                             flag: key,
-                            value: cachedValue,
-                            reason: 'Retrieved from cache'
+                            value: cached.value,
+                            reason: cached.reason,
                         });
                         foundInCache = true;
                         break;
@@ -376,9 +374,21 @@ export class SchematicClient extends BaseClient {
                 if (apiResult) {
                     // Cache the fresh result
                     const cacheKey = JSON.stringify({ evalCtx, key });
+                    const cacheEntry: CheckFlagWithEntitlementResponse = {
+                        companyId: apiResult.companyId,
+                        entitlement: apiResult.entitlement,
+                        err: apiResult.error,
+                        flagKey: apiResult.flag,
+                        flagId: apiResult.flagId,
+                        reason: apiResult.reason,
+                        ruleId: apiResult.ruleId,
+                        ruleType: apiResult.ruleType as api.RulesengineCheckFlagResultRuleType | undefined,
+                        userId: apiResult.userId,
+                        value: apiResult.value,
+                    };
                     for (const provider of this.flagCheckCacheProviders) {
                         this.logger.debug(`Caching value for flag ${cacheKey} in ${provider.constructor.name}`);
-                        await provider.set(cacheKey, apiResult.value);
+                        await provider.set(cacheKey, cacheEntry);
                     }
                     results.push(apiResult);
                 } else {
