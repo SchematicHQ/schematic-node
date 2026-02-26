@@ -7,8 +7,6 @@ import { DatastreamWSClient } from '../../../src/datastream/websocket-client';
 import { DataStreamResp, EntityType, MessageType } from '../../../src/datastream/types';
 import { Logger } from '../../../src/logger';
 import * as Schematic from '../../../src/api/types';
-import { RulesEngineClient } from '../../../src/rules-engine';
-
 // Mock DatastreamWSClient
 const mockDatastreamWSClientInstance = {
   on: jest.fn(),
@@ -880,15 +878,15 @@ describe('DataStreamClient', () => {
     });
 
     test('should include entitlement from WASM result in flag check response', async () => {
-      // Mock the WASM rules engine returning an entitlement (snake_case from WASM)
+      // Mock the WASM rules engine returning an entitlement (camelCase from WASM)
       mockRulesEngineInstance.checkFlag.mockResolvedValue({
         value: true,
         reason: 'PLAN_ENTITLEMENT',
-        rule_id: 'rule-1',
+        ruleId: 'rule-1',
         entitlement: {
-          feature_id: 'feature-123',
-          feature_key: 'test-flag',
-          value_type: 'numeric',
+          featureId: 'feature-123',
+          featureKey: 'test-flag',
+          valueType: 'numeric',
           allocation: 100,
           usage: 42,
         },
@@ -943,18 +941,18 @@ describe('DataStreamClient', () => {
       expect(result.entitlement).toBeUndefined();
     });
 
-    test('should convert WASM entitlement credit fields to camelCase', async () => {
+    test('should pass through WASM entitlement credit fields directly', async () => {
       mockRulesEngineInstance.checkFlag.mockResolvedValue({
         value: true,
         reason: 'PLAN_ENTITLEMENT',
         entitlement: {
-          feature_id: 'feature-456',
-          feature_key: 'test-flag',
-          value_type: 'credit',
-          credit_id: 'credit-1',
-          credit_total: 1000,
-          credit_used: 250,
-          credit_remaining: 750,
+          featureId: 'feature-456',
+          featureKey: 'test-flag',
+          valueType: 'credit',
+          creditId: 'credit-1',
+          creditTotal: 1000,
+          creditUsed: 250,
+          creditRemaining: 750,
         },
       });
 

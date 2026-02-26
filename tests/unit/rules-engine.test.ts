@@ -111,7 +111,7 @@ describe('RulesEngineClient', () => {
             expect(typeof result).toBe('object');
             expect(result).toHaveProperty('value');
             expect(result).toHaveProperty('reason');
-            expect(result).toHaveProperty('rule_id');
+            expect(result).toHaveProperty('ruleId');
         });
 
         test('should check flag with only company context', async () => {

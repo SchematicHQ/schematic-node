@@ -1,40 +1,40 @@
 import { RulesEngineJS } from './wasm/rulesengine.js';
 
-/** Entitlement details returned by the WASM rules engine (snake_case keys) */
+/** Entitlement details returned by the WASM rules engine  */
 export interface WasmFeatureEntitlement {
-    feature_id: string;
-    feature_key: string;
-    value_type: string;
+    featureId: string;
+    featureKey: string;
+    valueType: string;
     allocation?: number;
-    soft_limit?: number;
+    softLimit?: number;
     usage?: number;
-    event_name?: string;
-    metric_period?: string;
-    month_reset?: string;
-    metric_reset_at?: string;
-    credit_id?: string;
-    credit_total?: number;
-    credit_used?: number;
-    credit_remaining?: number;
+    eventName?: string;
+    metricPeriod?: string;
+    monthReset?: string;
+    metricResetAt?: string;
+    creditId?: string;
+    creditTotal?: number;
+    creditUsed?: number;
+    creditRemaining?: number;
 }
 
-/** Result returned by the WASM rules engine (snake_case keys) */
+/** Result returned by the WASM rules engine */
 export interface WasmCheckFlagResult {
     value: boolean;
     reason: string;
-    rule_id?: string;
-    flag_id?: string;
-    flag_key?: string;
-    company_id?: string;
-    user_id?: string;
-    rule_type?: string;
+    ruleId?: string;
+    flagId?: string;
+    flagKey?: string;
+    companyId?: string;
+    userId?: string;
+    ruleType?: string;
     err?: string;
     entitlement?: WasmFeatureEntitlement;
-    feature_allocation?: number;
-    feature_usage?: number;
-    feature_usage_event?: string;
-    feature_usage_period?: string;
-    feature_usage_reset_at?: string;
+    featureAllocation?: number;
+    featureUsage?: number;
+    featureUsageEvent?: string;
+    featureUsagePeriod?: string;
+    featureUsageResetAt?: string;
 }
 
 export class RulesEngineClient {
