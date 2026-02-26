@@ -71,7 +71,7 @@ describe('SchematicClient', () => {
 
       const result = await client.checkFlagWithEntitlement({}, 'test-flag');
       expect(result).toEqual({
-        flag: 'test-flag',
+        flagKey: 'test-flag',
         reason: 'flag default',
         value: true,
       });
@@ -84,7 +84,7 @@ describe('SchematicClient', () => {
 
       const result = await client.checkFlagWithEntitlement({}, 'unknown-flag');
       expect(result.value).toBe(false);
-      expect(result.flag).toBe('unknown-flag');
+      expect(result.flagKey).toBe('unknown-flag');
 
       await client.close();
     });
@@ -96,7 +96,7 @@ describe('SchematicClient', () => {
         defaultValue: true,
       });
       expect(result.value).toBe(true);
-      expect(result.flag).toBe('some-flag');
+      expect(result.flagKey).toBe('some-flag');
 
       await client.close();
     });

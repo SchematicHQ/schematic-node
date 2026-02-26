@@ -1252,8 +1252,15 @@ export class DataStreamClient extends EventEmitter {
           userId: user?.id,
           flagId: flag.id,
           ruleId: result.ruleId,
-          ruleType: result.ruleType as unknown as Schematic.RulesengineCheckFlagResultRuleType | undefined,
-          entitlement: result.entitlement as unknown as Schematic.RulesengineFeatureEntitlement | undefined,
+          ruleType: result.ruleType,
+          entitlement: result.entitlement
+            ? {
+                ...result.entitlement,
+                metricResetAt: result.entitlement.metricResetAt
+                  ? new Date(result.entitlement.metricResetAt)
+                  : undefined,
+              }
+            : undefined,
         };
       } else {
         // Fallback to default value if rules engine not available

@@ -1,16 +1,17 @@
+import * as Schematic from './api/types';
 import { RulesEngineJS } from './wasm/rulesengine.js';
 
 /** Entitlement details returned by the WASM rules engine  */
 export interface WasmFeatureEntitlement {
     featureId: string;
     featureKey: string;
-    valueType: string;
+    valueType: Schematic.RulesengineEntitlementValueType;
     allocation?: number;
     softLimit?: number;
     usage?: number;
     eventName?: string;
-    metricPeriod?: string;
-    monthReset?: string;
+    metricPeriod?: Schematic.RulesengineFeatureEntitlementMetricPeriod;
+    monthReset?: Schematic.RulesengineFeatureEntitlementMonthReset;
     metricResetAt?: string;
     creditId?: string;
     creditTotal?: number;
@@ -27,7 +28,7 @@ export interface WasmCheckFlagResult {
     flagKey?: string;
     companyId?: string;
     userId?: string;
-    ruleType?: string;
+    ruleType?: Schematic.RulesengineCheckFlagResultRuleType;
     err?: string;
     entitlement?: WasmFeatureEntitlement;
     featureAllocation?: number;

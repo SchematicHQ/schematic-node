@@ -63,9 +63,9 @@ export interface CheckFlagOptions {
 
 export interface CheckFlagWithEntitlementResponse {
     companyId?: string;
-    entitlement?: api.FeatureEntitlement;
-    error?: string;
-    flag: string;
+    entitlement?: api.RulesengineFeatureEntitlement;
+    err?: string;
+    flagKey: string;
     flagId?: string;
     reason: string;
     ruleId?: string;
@@ -198,7 +198,7 @@ export class SchematicClient extends BaseClient {
         if (this.offline) {
             this.logger.debug(`Offline mode enabled, returning default flag value for flag ${key}`);
             return {
-                flag: key,
+                flagKey: key,
                 reason: "flag default",
                 value: getDefault(),
             };
@@ -208,12 +208,10 @@ export class SchematicClient extends BaseClient {
             try {
                 const resp = await this.datastreamClient!.checkFlag(evalCtx, key);
 
-                const flagValue = resp?.value;
-
                 // Enqueue the flag check event
                 this.enqueueEvent(api.EventType.FlagCheck, {
                     flagKey: key,
-                    value: flagValue ?? false,
+                    value: resp?.value ?? false,
                     reason: resp?.reason ?? "unknown",
                     ruleId: resp?.ruleId,
                     companyId: resp?.companyId,
@@ -223,7 +221,11 @@ export class SchematicClient extends BaseClient {
                     reqUser: evalCtx.user,
                 } satisfies api.EventBodyFlagCheck);
 
-                return this.mapRulesengineResult(resp, key);
+                return {
+                    ...resp,
+                    flagKey: resp.flagKey ?? key,
+                    value: resp.value ?? this.getFlagDefault(key),
+                };
             } catch (err) {
                 this.logger.debug(`Datastream flag check failed (${err}), falling back to API`);
                 return this.checkFlagViaAPI(evalCtx, key, options, getDefault);
@@ -231,43 +233,6 @@ export class SchematicClient extends BaseClient {
         }
 
         return this.checkFlagViaAPI(evalCtx, key, options, getDefault);
-    }
-
-    private mapRulesengineResult(
-        resp: api.RulesengineCheckFlagResult,
-        key: string,
-    ): CheckFlagWithEntitlementResponse {
-        const entitlement = resp.entitlement
-            ? {
-                  allocation: resp.entitlement.allocation,
-                  creditId: resp.entitlement.creditId,
-                  creditRemaining: resp.entitlement.creditRemaining,
-                  creditTotal: resp.entitlement.creditTotal,
-                  creditUsed: resp.entitlement.creditUsed,
-                  eventName: resp.entitlement.eventName,
-                  featureId: resp.entitlement.featureId,
-                  featureKey: resp.entitlement.featureKey,
-                  metricPeriod: resp.entitlement.metricPeriod as unknown as api.FeatureEntitlementMetricPeriod | undefined,
-                  metricResetAt: resp.entitlement.metricResetAt,
-                  monthReset: resp.entitlement.monthReset as unknown as api.FeatureEntitlementMonthReset | undefined,
-                  softLimit: resp.entitlement.softLimit,
-                  usage: resp.entitlement.usage,
-                  valueType: resp.entitlement.valueType as unknown as api.EntitlementValueType,
-              }
-            : undefined;
-
-        return {
-            companyId: resp.companyId,
-            entitlement,
-            error: resp.err,
-            flag: resp.flagKey ?? key,
-            flagId: resp.flagId,
-            reason: resp.reason,
-            ruleId: resp.ruleId,
-            ruleType: resp.ruleType as api.RulesengineCheckFlagResultRuleType | undefined,
-            userId: resp.userId,
-            value: resp.value ?? this.getFlagDefault(key),
-        };
     }
 
     private async checkFlagViaAPI(
@@ -285,7 +250,7 @@ export class SchematicClient extends BaseClient {
                 if (cachedValue !== null && cachedValue !== undefined) {
                     this.logger.debug(`${provider.constructor.name} cache hit for flag ${key}`);
                     return {
-                        flag: key,
+                        flagKey: key,
                         reason: "Retrieved from cache",
                         value: cachedValue,
                     };
@@ -298,7 +263,7 @@ export class SchematicClient extends BaseClient {
             if (response.data.value === undefined) {
                 this.logger.debug(`No value returned from feature flag API for flag ${key}, falling back to default`);
                 return {
-                    flag: key,
+                    flagKey: key,
                     reason: "flag default",
                     value: getDefaultValue(),
                 };
@@ -314,8 +279,8 @@ export class SchematicClient extends BaseClient {
             return {
                 companyId: response.data.companyId,
                 entitlement: response.data.entitlement,
-                error: response.data.error,
-                flag: response.data.flag,
+                err: response.data.error,
+                flagKey: response.data.flag,
                 flagId: response.data.flagId,
                 reason: response.data.reason,
                 ruleId: response.data.ruleId,
@@ -326,7 +291,7 @@ export class SchematicClient extends BaseClient {
         } catch (err) {
             this.logger.error(`Error checking flag ${key}: ${err}`);
             return {
-                flag: key,
+                flagKey: key,
                 reason: "flag default",
                 value: getDefaultValue(),
             };
