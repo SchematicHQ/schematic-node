@@ -222,8 +222,15 @@ export class SchematicClient extends BaseClient {
                 } satisfies api.EventBodyFlagCheck);
 
                 return {
-                    ...resp,
+                    companyId: resp.companyId,
+                    entitlement: resp.entitlement,
+                    err: resp.err,
                     flagKey: resp.flagKey ?? key,
+                    flagId: resp.flagId,
+                    reason: resp.reason,
+                    ruleId: resp.ruleId,
+                    ruleType: resp.ruleType,
+                    userId: resp.userId,
                     value: resp.value ?? this.getFlagDefault(key),
                 };
             } catch (err) {
