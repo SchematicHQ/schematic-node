@@ -61,6 +61,19 @@ export interface CheckFlagOptions {
     timeoutMs?: number;
 }
 
+export interface CheckFlagWithEntitlementResponse {
+    companyId?: string;
+    entitlement?: api.FeatureEntitlement;
+    error?: string;
+    flag: string;
+    flagId?: string;
+    reason: string;
+    ruleId?: string;
+    ruleType?: api.RulesengineCheckFlagResultRuleType;
+    userId?: string;
+    value: boolean;
+}
+
 export class SchematicClient extends BaseClient {
     private datastreamClient?: DataStreamClient;
     private eventBuffer: EventBuffer;
@@ -159,6 +172,22 @@ export class SchematicClient extends BaseClient {
      * @throws Will log error and return flag default if check fails
      */
     async checkFlag(evalCtx: api.CheckFlagRequestBody, key: string, options?: CheckFlagOptions): Promise<boolean> {
+        const resp = await this.checkFlagWithEntitlement(evalCtx, key, options);
+        return resp.value;
+    }
+
+    /**
+     * Checks the value of a feature flag and returns entitlement details for the given evaluation context
+     * @param evalCtx - The context (company and/or user) for evaluating the feature flag
+     * @param key - The unique identifier of the feature flag
+     * @param options - Optional configuration for the flag check
+     * @returns Promise resolving to the flag check response including entitlement details
+     */
+    async checkFlagWithEntitlement(
+        evalCtx: api.CheckFlagRequestBody,
+        key: string,
+        options?: CheckFlagOptions,
+    ): Promise<CheckFlagWithEntitlementResponse> {
         const getDefault = (): boolean => {
             if (options?.defaultValue === undefined) {
                 return this.getFlagDefault(key);
@@ -168,7 +197,11 @@ export class SchematicClient extends BaseClient {
 
         if (this.offline) {
             this.logger.debug(`Offline mode enabled, returning default flag value for flag ${key}`);
-            return getDefault();
+            return {
+                flag: key,
+                reason: "flag default",
+                value: getDefault(),
+            };
         }
 
         if (this.useDataStream()) {
@@ -190,7 +223,7 @@ export class SchematicClient extends BaseClient {
                     reqUser: evalCtx.user,
                 } satisfies api.EventBodyFlagCheck);
 
-                return flagValue ?? this.getFlagDefault(key);
+                return this.mapRulesengineResult(resp, key);
             } catch (err) {
                 this.logger.debug(`Datastream flag check failed (${err}), falling back to API`);
                 return this.checkFlagViaAPI(evalCtx, key, options, getDefault);
@@ -200,16 +233,62 @@ export class SchematicClient extends BaseClient {
         return this.checkFlagViaAPI(evalCtx, key, options, getDefault);
     }
 
-    private async checkFlagViaAPI(evalCtx: api.CheckFlagRequestBody, key: string, options?: CheckFlagOptions, getDefault?: () => boolean): Promise<boolean> {
+    private mapRulesengineResult(
+        resp: api.RulesengineCheckFlagResult,
+        key: string,
+    ): CheckFlagWithEntitlementResponse {
+        const entitlement = resp.entitlement
+            ? {
+                  allocation: resp.entitlement.allocation,
+                  creditId: resp.entitlement.creditId,
+                  creditRemaining: resp.entitlement.creditRemaining,
+                  creditTotal: resp.entitlement.creditTotal,
+                  creditUsed: resp.entitlement.creditUsed,
+                  eventName: resp.entitlement.eventName,
+                  featureId: resp.entitlement.featureId,
+                  featureKey: resp.entitlement.featureKey,
+                  metricPeriod: resp.entitlement.metricPeriod as unknown as api.FeatureEntitlementMetricPeriod | undefined,
+                  metricResetAt: resp.entitlement.metricResetAt,
+                  monthReset: resp.entitlement.monthReset as unknown as api.FeatureEntitlementMonthReset | undefined,
+                  softLimit: resp.entitlement.softLimit,
+                  usage: resp.entitlement.usage,
+                  valueType: resp.entitlement.valueType as unknown as api.EntitlementValueType,
+              }
+            : undefined;
+
+        return {
+            companyId: resp.companyId,
+            entitlement,
+            error: resp.err,
+            flag: resp.flagKey ?? key,
+            flagId: resp.flagId,
+            reason: resp.reason,
+            ruleId: resp.ruleId,
+            ruleType: resp.ruleType as api.RulesengineCheckFlagResultRuleType | undefined,
+            userId: resp.userId,
+            value: resp.value ?? this.getFlagDefault(key),
+        };
+    }
+
+    private async checkFlagViaAPI(
+        evalCtx: api.CheckFlagRequestBody,
+        key: string,
+        options?: CheckFlagOptions,
+        getDefault?: () => boolean,
+    ): Promise<CheckFlagWithEntitlementResponse> {
         const getDefaultValue = getDefault ?? (() => this.getFlagDefault(key));
-        
+
         try {
             const cacheKey = JSON.stringify({ evalCtx, key });
             for (const provider of this.flagCheckCacheProviders) {
                 const cachedValue = await provider.get(cacheKey);
                 if (cachedValue !== null && cachedValue !== undefined) {
                     this.logger.debug(`${provider.constructor.name} cache hit for flag ${key}`);
-                    return cachedValue;
+                    return {
+                        flag: key,
+                        reason: "Retrieved from cache",
+                        value: cachedValue,
+                    };
                 }
             }
 
@@ -218,7 +297,11 @@ export class SchematicClient extends BaseClient {
             });
             if (response.data.value === undefined) {
                 this.logger.debug(`No value returned from feature flag API for flag ${key}, falling back to default`);
-                return getDefaultValue();
+                return {
+                    flag: key,
+                    reason: "flag default",
+                    value: getDefaultValue(),
+                };
             }
 
             for (const provider of this.flagCheckCacheProviders) {
@@ -227,10 +310,26 @@ export class SchematicClient extends BaseClient {
             }
 
             this.logger.debug(`Feature flag API response for ${key}: ${JSON.stringify(response.data)}`);
-            return response.data.value;
+
+            return {
+                companyId: response.data.companyId,
+                entitlement: response.data.entitlement,
+                error: response.data.error,
+                flag: response.data.flag,
+                flagId: response.data.flagId,
+                reason: response.data.reason,
+                ruleId: response.data.ruleId,
+                ruleType: response.data.ruleType as api.RulesengineCheckFlagResultRuleType | undefined,
+                userId: response.data.userId,
+                value: response.data.value,
+            };
         } catch (err) {
             this.logger.error(`Error checking flag ${key}: ${err}`);
-            return getDefaultValue();
+            return {
+                flag: key,
+                reason: "flag default",
+                value: getDefaultValue(),
+            };
         }
     }
 

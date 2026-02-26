@@ -1248,6 +1248,25 @@ export class DataStreamClient extends EventEmitter {
 
         const result = await this.rulesEngine.checkFlag(flag, company, user);
         this.logger.debug(`Rules engine evaluation result: ${JSON.stringify(result)}`);
+
+        // Convert WASM snake_case entitlement to camelCase RulesengineFeatureEntitlement
+        const entitlement = result.entitlement ? {
+          featureId: result.entitlement.feature_id,
+          featureKey: result.entitlement.feature_key,
+          valueType: result.entitlement.value_type as unknown as Schematic.RulesengineEntitlementValueType,
+          allocation: result.entitlement.allocation,
+          softLimit: result.entitlement.soft_limit,
+          usage: result.entitlement.usage,
+          eventName: result.entitlement.event_name,
+          metricPeriod: result.entitlement.metric_period as unknown as Schematic.RulesengineFeatureEntitlementMetricPeriod | undefined,
+          monthReset: result.entitlement.month_reset as unknown as Schematic.RulesengineFeatureEntitlementMonthReset | undefined,
+          metricResetAt: result.entitlement.metric_reset_at ? new Date(result.entitlement.metric_reset_at) : undefined,
+          creditId: result.entitlement.credit_id,
+          creditTotal: result.entitlement.credit_total,
+          creditUsed: result.entitlement.credit_used,
+          creditRemaining: result.entitlement.credit_remaining,
+        } as Schematic.RulesengineFeatureEntitlement : undefined;
+
         return {
           flagKey: flag.key,
           value: result.value ?? defaultValue,
@@ -1255,7 +1274,9 @@ export class DataStreamClient extends EventEmitter {
           companyId: company?.id,
           userId: user?.id,
           flagId: flag.id,
-          ruleId: result.rule_id
+          ruleId: result.rule_id,
+          ruleType: result.rule_type as unknown as Schematic.RulesengineCheckFlagResultRuleType | undefined,
+          entitlement,
         };
       } else {
         // Fallback to default value if rules engine not available
@@ -1266,7 +1287,7 @@ export class DataStreamClient extends EventEmitter {
           reason: 'RULES_ENGINE_UNAVAILABLE',
           companyId: company?.id,
           userId: user?.id,
-          flagId: flag.id
+          flagId: flag.id,
         };
       }
     } catch (error) {
@@ -1278,7 +1299,7 @@ export class DataStreamClient extends EventEmitter {
         reason: 'RULES_ENGINE_ERROR',
         companyId: company?.id,
         userId: user?.id,
-        flagId: flag.id
+        flagId: flag.id,
       };
     }
   }

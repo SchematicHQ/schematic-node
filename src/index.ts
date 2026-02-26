@@ -1,7 +1,7 @@
 export * as Schematic from "./api";
 export { LocalCache } from "./cache/local";
 export { RedisCacheProvider, type RedisClient } from "./cache/redis";
-export { SchematicClient } from "./wrapper";
+export { SchematicClient, type CheckFlagWithEntitlementResponse } from "./wrapper";
 export { SchematicEnvironment } from "./environments";
 export { SchematicError, SchematicTimeoutError } from "./errors";
 export { RulesEngineClient } from "./rules-engine";

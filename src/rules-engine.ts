@@ -1,5 +1,23 @@
 import { RulesEngineJS } from './wasm/rulesengine.js';
 
+/** Entitlement details returned by the WASM rules engine (snake_case keys) */
+export interface WasmFeatureEntitlement {
+    feature_id: string;
+    feature_key: string;
+    value_type: string;
+    allocation?: number;
+    soft_limit?: number;
+    usage?: number;
+    event_name?: string;
+    metric_period?: string;
+    month_reset?: string;
+    metric_reset_at?: string;
+    credit_id?: string;
+    credit_total?: number;
+    credit_used?: number;
+    credit_remaining?: number;
+}
+
 /** Result returned by the WASM rules engine (snake_case keys) */
 export interface WasmCheckFlagResult {
     value: boolean;
@@ -11,6 +29,12 @@ export interface WasmCheckFlagResult {
     user_id?: string;
     rule_type?: string;
     err?: string;
+    entitlement?: WasmFeatureEntitlement;
+    feature_allocation?: number;
+    feature_usage?: number;
+    feature_usage_event?: string;
+    feature_usage_period?: string;
+    feature_usage_reset_at?: string;
 }
 
 export class RulesEngineClient {
