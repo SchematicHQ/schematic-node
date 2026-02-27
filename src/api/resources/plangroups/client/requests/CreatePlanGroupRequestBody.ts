@@ -25,6 +25,7 @@ import type * as Schematic from "../../../../index";
  *         showAsMonthlyPrices: true,
  *         showCredits: true,
  *         showFeatureDescription: true,
+ *         showHardLimit: true,
  *         showPeriodToggle: true,
  *         showZeroPriceAsFree: true,
  *         syncCustomerBillingDetails: true
@@ -56,6 +57,7 @@ export interface CreatePlanGroupRequestBody {
     showAsMonthlyPrices: boolean;
     showCredits: boolean;
     showFeatureDescription: boolean;
+    showHardLimit: boolean;
     showPeriodToggle: boolean;
     showZeroPriceAsFree: boolean;
     syncCustomerBillingDetails: boolean;

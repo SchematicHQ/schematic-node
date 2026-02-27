@@ -168,6 +168,7 @@ export class PlangroupsClient {
      *         showAsMonthlyPrices: true,
      *         showCredits: true,
      *         showFeatureDescription: true,
+     *         showHardLimit: true,
      *         showPeriodToggle: true,
      *         showZeroPriceAsFree: true,
      *         syncCustomerBillingDetails: true
@@ -324,6 +325,7 @@ export class PlangroupsClient {
      *         showAsMonthlyPrices: true,
      *         showCredits: true,
      *         showFeatureDescription: true,
+     *         showHardLimit: true,
      *         showPeriodToggle: true,
      *         showZeroPriceAsFree: true,
      *         syncCustomerBillingDetails: true

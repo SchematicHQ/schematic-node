@@ -4,6 +4,7 @@ export interface ComponentDisplaySettings {
     showAsMonthlyPrices: boolean;
     showCredits: boolean;
     showFeatureDescription: boolean;
+    showHardLimit: boolean;
     showPeriodToggle: boolean;
     showZeroPriceAsFree: boolean;
 }
