@@ -7,7 +7,6 @@ import { DatastreamWSClient } from '../../../src/datastream/websocket-client';
 import { DataStreamResp, EntityType, MessageType } from '../../../src/datastream/types';
 import { Logger } from '../../../src/logger';
 import * as Schematic from '../../../src/api/types';
-
 // Mock DatastreamWSClient
 const mockDatastreamWSClientInstance = {
   on: jest.fn(),
@@ -21,6 +20,20 @@ const mockDatastreamWSClientInstance = {
 jest.mock('../../../src/datastream/websocket-client', () => {
   return {
     DatastreamWSClient: jest.fn().mockImplementation(() => mockDatastreamWSClientInstance),
+  };
+});
+
+// Mock RulesEngineClient so we can control what checkFlag returns
+const mockRulesEngineInstance = {
+  initialize: jest.fn().mockResolvedValue(undefined),
+  isInitialized: jest.fn().mockReturnValue(false),
+  checkFlag: jest.fn(),
+  getVersionKey: jest.fn().mockReturnValue('1'),
+};
+
+jest.mock('../../../src/rules-engine', () => {
+  return {
+    RulesEngineClient: jest.fn().mockImplementation(() => mockRulesEngineInstance),
   };
 });
 
@@ -820,6 +833,167 @@ describe('DataStreamClient', () => {
       const bySlug = await client.getCompany({ slug: 'acme-corp' });
       const metric = (bySlug as any).metrics.find((m: any) => m.eventSubtype === 'api-call');
       expect(metric.value).toBe(15);
+    });
+  });
+
+  describe('evaluateFlag entitlement population', () => {
+    let messageHandler: (message: DataStreamResp) => Promise<void>;
+
+    const companyForEntitlement = {
+      id: 'company-ent',
+      account_id: 'account-123',
+      environment_id: 'env-123',
+      keys: { name: 'Entitlement Corp' },
+      traits: [],
+      rules: [],
+      metrics: [],
+      plan_ids: [],
+      billing_product_ids: [],
+      crm_product_ids: [],
+      credit_balances: {},
+    } as unknown as Schematic.RulesengineCompany;
+
+    const flagForEntitlement = {
+      id: 'flag-ent',
+      key: 'test-flag',
+      account_id: 'account-123',
+      environment_id: 'env-123',
+      default_value: true,
+      rules: [],
+    } as unknown as Schematic.RulesengineFlag;
+
+    beforeEach(async () => {
+      // Enable the rules engine mock for entitlement tests
+      mockRulesEngineInstance.isInitialized.mockReturnValue(true);
+
+      await client.start();
+      const DatastreamWSClientMock = DatastreamWSClient as jest.MockedClass<typeof DatastreamWSClient>;
+      messageHandler = DatastreamWSClientMock.mock.calls[0][0].messageHandler;
+    });
+
+    afterEach(() => {
+      // Reset rules engine mock
+      mockRulesEngineInstance.isInitialized.mockReturnValue(false);
+      mockRulesEngineInstance.checkFlag.mockReset();
+    });
+
+    test('should include entitlement from WASM result in flag check response', async () => {
+      // Mock the WASM rules engine returning an entitlement (camelCase from WASM)
+      mockRulesEngineInstance.checkFlag.mockResolvedValue({
+        value: true,
+        reason: 'PLAN_ENTITLEMENT',
+        ruleId: 'rule-1',
+        entitlement: {
+          featureId: 'feature-123',
+          featureKey: 'test-flag',
+          valueType: 'numeric',
+          allocation: 100,
+          usage: 42,
+        },
+      });
+
+      // Cache company and flag
+      await messageHandler({
+        entity_type: EntityType.COMPANY,
+        message_type: MessageType.FULL,
+        data: companyForEntitlement,
+      });
+      await messageHandler({
+        entity_type: EntityType.FLAGS,
+        message_type: MessageType.FULL,
+        data: [flagForEntitlement],
+      });
+
+      const result = await client.checkFlag(
+        { company: { name: 'Entitlement Corp' } },
+        'test-flag',
+      );
+
+      expect(result.entitlement).toBeDefined();
+      expect(result.entitlement?.featureId).toBe('feature-123');
+      expect(result.entitlement?.featureKey).toBe('test-flag');
+      expect(result.entitlement?.allocation).toBe(100);
+      expect(result.entitlement?.usage).toBe(42);
+    });
+
+    test('should not include entitlement when WASM result has no entitlement', async () => {
+      mockRulesEngineInstance.checkFlag.mockResolvedValue({
+        value: false,
+        reason: 'DEFAULT',
+      });
+
+      await messageHandler({
+        entity_type: EntityType.COMPANY,
+        message_type: MessageType.FULL,
+        data: companyForEntitlement,
+      });
+      await messageHandler({
+        entity_type: EntityType.FLAGS,
+        message_type: MessageType.FULL,
+        data: [flagForEntitlement],
+      });
+
+      const result = await client.checkFlag(
+        { company: { name: 'Entitlement Corp' } },
+        'test-flag',
+      );
+
+      expect(result.entitlement).toBeUndefined();
+    });
+
+    test('should pass through WASM entitlement credit fields directly', async () => {
+      mockRulesEngineInstance.checkFlag.mockResolvedValue({
+        value: true,
+        reason: 'PLAN_ENTITLEMENT',
+        entitlement: {
+          featureId: 'feature-456',
+          featureKey: 'test-flag',
+          valueType: 'credit',
+          creditId: 'credit-1',
+          creditTotal: 1000,
+          creditUsed: 250,
+          creditRemaining: 750,
+        },
+      });
+
+      await messageHandler({
+        entity_type: EntityType.COMPANY,
+        message_type: MessageType.FULL,
+        data: companyForEntitlement,
+      });
+      await messageHandler({
+        entity_type: EntityType.FLAGS,
+        message_type: MessageType.FULL,
+        data: [flagForEntitlement],
+      });
+
+      const result = await client.checkFlag(
+        { company: { name: 'Entitlement Corp' } },
+        'test-flag',
+      );
+
+      expect(result.entitlement).toBeDefined();
+      expect(result.entitlement?.creditId).toBe('credit-1');
+      expect(result.entitlement?.creditTotal).toBe(1000);
+      expect(result.entitlement?.creditUsed).toBe(250);
+      expect(result.entitlement?.creditRemaining).toBe(750);
+    });
+
+    test('should not include entitlement when no company is provided', async () => {
+      mockRulesEngineInstance.checkFlag.mockResolvedValue({
+        value: true,
+        reason: 'DEFAULT',
+      });
+
+      await messageHandler({
+        entity_type: EntityType.FLAGS,
+        message_type: MessageType.FULL,
+        data: [flagForEntitlement],
+      });
+
+      const result = await client.checkFlag({}, 'test-flag');
+
+      expect(result.entitlement).toBeUndefined();
     });
   });
 

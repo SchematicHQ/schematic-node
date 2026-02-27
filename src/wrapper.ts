@@ -19,7 +19,7 @@ export interface SchematicOptions {
     /** Cache provider configuration */
     cacheProviders?: {
         /** Providers for caching flag check results */
-        flagChecks?: CacheProvider<boolean>[];
+        flagChecks?: CacheProvider<CheckFlagWithEntitlementResponse>[];
     };
     /** Enable DataStream for real-time updates */
     useDataStream?: boolean;
@@ -61,10 +61,23 @@ export interface CheckFlagOptions {
     timeoutMs?: number;
 }
 
+export interface CheckFlagWithEntitlementResponse {
+    companyId?: string;
+    entitlement?: api.RulesengineFeatureEntitlement;
+    err?: string;
+    flagKey: string;
+    flagId?: string;
+    reason: string;
+    ruleId?: string;
+    ruleType?: api.RulesengineCheckFlagResultRuleType;
+    userId?: string;
+    value: boolean;
+}
+
 export class SchematicClient extends BaseClient {
     private datastreamClient?: DataStreamClient;
     private eventBuffer: EventBuffer;
-    private flagCheckCacheProviders: CacheProvider<boolean>[];
+    private flagCheckCacheProviders: CacheProvider<CheckFlagWithEntitlementResponse>[];
     private flagDefaults: { [key: string]: boolean };
     private logger: Logger;
     private offline: boolean;
@@ -117,7 +130,7 @@ export class SchematicClient extends BaseClient {
             logger,
             offline,
         });
-        this.flagCheckCacheProviders = opts?.cacheProviders?.flagChecks ?? [new LocalCache<boolean>()];
+        this.flagCheckCacheProviders = opts?.cacheProviders?.flagChecks ?? [new LocalCache<CheckFlagWithEntitlementResponse>()];
         this.flagDefaults = flagDefaults;
         this.offline = offline;
 
@@ -159,6 +172,22 @@ export class SchematicClient extends BaseClient {
      * @throws Will log error and return flag default if check fails
      */
     async checkFlag(evalCtx: api.CheckFlagRequestBody, key: string, options?: CheckFlagOptions): Promise<boolean> {
+        const resp = await this.checkFlagWithEntitlement(evalCtx, key, options);
+        return resp.value;
+    }
+
+    /**
+     * Checks the value of a feature flag and returns entitlement details for the given evaluation context
+     * @param evalCtx - The context (company and/or user) for evaluating the feature flag
+     * @param key - The unique identifier of the feature flag
+     * @param options - Optional configuration for the flag check
+     * @returns Promise resolving to the flag check response including entitlement details
+     */
+    async checkFlagWithEntitlement(
+        evalCtx: api.CheckFlagRequestBody,
+        key: string,
+        options?: CheckFlagOptions,
+    ): Promise<CheckFlagWithEntitlementResponse> {
         const getDefault = (): boolean => {
             if (options?.defaultValue === undefined) {
                 return this.getFlagDefault(key);
@@ -168,19 +197,21 @@ export class SchematicClient extends BaseClient {
 
         if (this.offline) {
             this.logger.debug(`Offline mode enabled, returning default flag value for flag ${key}`);
-            return getDefault();
+            return {
+                flagKey: key,
+                reason: "flag default",
+                value: getDefault(),
+            };
         }
 
         if (this.useDataStream()) {
             try {
                 const resp = await this.datastreamClient!.checkFlag(evalCtx, key);
 
-                const flagValue = resp?.value;
-
                 // Enqueue the flag check event
                 this.enqueueEvent(api.EventType.FlagCheck, {
                     flagKey: key,
-                    value: flagValue ?? false,
+                    value: resp?.value ?? false,
                     reason: resp?.reason ?? "unknown",
                     ruleId: resp?.ruleId,
                     companyId: resp?.companyId,
@@ -190,7 +221,18 @@ export class SchematicClient extends BaseClient {
                     reqUser: evalCtx.user,
                 } satisfies api.EventBodyFlagCheck);
 
-                return flagValue ?? this.getFlagDefault(key);
+                return {
+                    companyId: resp.companyId,
+                    entitlement: resp.entitlement,
+                    err: resp.err,
+                    flagKey: resp.flagKey ?? key,
+                    flagId: resp.flagId,
+                    reason: resp.reason,
+                    ruleId: resp.ruleId,
+                    ruleType: resp.ruleType,
+                    userId: resp.userId,
+                    value: resp.value ?? this.getFlagDefault(key),
+                };
             } catch (err) {
                 this.logger.debug(`Datastream flag check failed (${err}), falling back to API`);
                 return this.checkFlagViaAPI(evalCtx, key, options, getDefault);
@@ -200,16 +242,21 @@ export class SchematicClient extends BaseClient {
         return this.checkFlagViaAPI(evalCtx, key, options, getDefault);
     }
 
-    private async checkFlagViaAPI(evalCtx: api.CheckFlagRequestBody, key: string, options?: CheckFlagOptions, getDefault?: () => boolean): Promise<boolean> {
+    private async checkFlagViaAPI(
+        evalCtx: api.CheckFlagRequestBody,
+        key: string,
+        options?: CheckFlagOptions,
+        getDefault?: () => boolean,
+    ): Promise<CheckFlagWithEntitlementResponse> {
         const getDefaultValue = getDefault ?? (() => this.getFlagDefault(key));
-        
+
         try {
             const cacheKey = JSON.stringify({ evalCtx, key });
             for (const provider of this.flagCheckCacheProviders) {
-                const cachedValue = await provider.get(cacheKey);
-                if (cachedValue !== null && cachedValue !== undefined) {
+                const cached = await provider.get(cacheKey);
+                if (cached !== null && cached !== undefined) {
                     this.logger.debug(`${provider.constructor.name} cache hit for flag ${key}`);
-                    return cachedValue;
+                    return cached;
                 }
             }
 
@@ -218,19 +265,41 @@ export class SchematicClient extends BaseClient {
             });
             if (response.data.value === undefined) {
                 this.logger.debug(`No value returned from feature flag API for flag ${key}, falling back to default`);
-                return getDefaultValue();
-            }
-
-            for (const provider of this.flagCheckCacheProviders) {
-                this.logger.debug(`Caching value for flag ${key} in ${provider.constructor.name}`);
-                await provider.set(cacheKey, response.data.value);
+                return {
+                    flagKey: key,
+                    reason: "flag default",
+                    value: getDefaultValue(),
+                };
             }
 
             this.logger.debug(`Feature flag API response for ${key}: ${JSON.stringify(response.data)}`);
-            return response.data.value;
+
+            const result: CheckFlagWithEntitlementResponse = {
+                companyId: response.data.companyId,
+                entitlement: response.data.entitlement,
+                err: response.data.error,
+                flagKey: response.data.flag,
+                flagId: response.data.flagId,
+                reason: response.data.reason,
+                ruleId: response.data.ruleId,
+                ruleType: response.data.ruleType as api.RulesengineCheckFlagResultRuleType | undefined,
+                userId: response.data.userId,
+                value: response.data.value,
+            };
+
+            for (const provider of this.flagCheckCacheProviders) {
+                this.logger.debug(`Caching value for flag ${key} in ${provider.constructor.name}`);
+                await provider.set(cacheKey, result);
+            }
+
+            return result;
         } catch (err) {
             this.logger.error(`Error checking flag ${key}: ${err}`);
-            return getDefaultValue();
+            return {
+                flagKey: key,
+                reason: "flag default",
+                value: getDefaultValue(),
+            };
         }
     }
 
@@ -273,13 +342,13 @@ export class SchematicClient extends BaseClient {
                 let foundInCache = false;
 
                 for (const provider of this.flagCheckCacheProviders) {
-                    const cachedValue = await provider.get(cacheKey);
-                    if (cachedValue !== null && cachedValue !== undefined) {
+                    const cached = await provider.get(cacheKey);
+                    if (cached !== null && cached !== undefined) {
                         this.logger.debug(`${provider.constructor.name} cache hit for flag ${key}`);
                         cachedResults.set(key, {
                             flag: key,
-                            value: cachedValue,
-                            reason: 'Retrieved from cache'
+                            value: cached.value,
+                            reason: cached.reason,
                         });
                         foundInCache = true;
                         break;
@@ -312,9 +381,21 @@ export class SchematicClient extends BaseClient {
                 if (apiResult) {
                     // Cache the fresh result
                     const cacheKey = JSON.stringify({ evalCtx, key });
+                    const cacheEntry: CheckFlagWithEntitlementResponse = {
+                        companyId: apiResult.companyId,
+                        entitlement: apiResult.entitlement,
+                        err: apiResult.error,
+                        flagKey: apiResult.flag,
+                        flagId: apiResult.flagId,
+                        reason: apiResult.reason,
+                        ruleId: apiResult.ruleId,
+                        ruleType: apiResult.ruleType as api.RulesengineCheckFlagResultRuleType | undefined,
+                        userId: apiResult.userId,
+                        value: apiResult.value,
+                    };
                     for (const provider of this.flagCheckCacheProviders) {
                         this.logger.debug(`Caching value for flag ${cacheKey} in ${provider.constructor.name}`);
-                        await provider.set(cacheKey, apiResult.value);
+                        await provider.set(cacheKey, cacheEntry);
                     }
                     results.push(apiResult);
                 } else {

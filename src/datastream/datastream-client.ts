@@ -1234,12 +1234,7 @@ export class DataStreamClient extends EventEmitter {
     company: Schematic.RulesengineCompany | null,
     user: Schematic.RulesengineUser | null
   ): Promise<Schematic.RulesengineCheckFlagResult> {
-    // Cache data may use snake_case (wire) or camelCase (Fern) keys.
-    // Single-word properties (id, key, rules) are identical in both formats.
-    // For multi-word properties, try camelCase first then fall back to snake_case.
-    const defaultValue = flag.defaultValue
-      ?? (flag as unknown as Record<string, unknown>)['default_value']
-      ?? false;
+    const defaultValue = flag.defaultValue ?? false;
 
     try {
       // Use rules engine if initialized
@@ -1248,6 +1243,7 @@ export class DataStreamClient extends EventEmitter {
 
         const result = await this.rulesEngine.checkFlag(flag, company, user);
         this.logger.debug(`Rules engine evaluation result: ${JSON.stringify(result)}`);
+
         return {
           flagKey: flag.key,
           value: result.value ?? defaultValue,
@@ -1255,7 +1251,16 @@ export class DataStreamClient extends EventEmitter {
           companyId: company?.id,
           userId: user?.id,
           flagId: flag.id,
-          ruleId: result.rule_id
+          ruleId: result.ruleId,
+          ruleType: result.ruleType,
+          entitlement: result.entitlement
+            ? {
+                ...result.entitlement,
+                metricResetAt: result.entitlement.metricResetAt
+                  ? new Date(result.entitlement.metricResetAt)
+                  : undefined,
+              }
+            : undefined,
         };
       } else {
         // Fallback to default value if rules engine not available
@@ -1266,7 +1271,7 @@ export class DataStreamClient extends EventEmitter {
           reason: 'RULES_ENGINE_UNAVAILABLE',
           companyId: company?.id,
           userId: user?.id,
-          flagId: flag.id
+          flagId: flag.id,
         };
       }
     } catch (error) {
@@ -1278,7 +1283,7 @@ export class DataStreamClient extends EventEmitter {
         reason: 'RULES_ENGINE_ERROR',
         companyId: company?.id,
         userId: user?.id,
-        flagId: flag.id
+        flagId: flag.id,
       };
     }
   }

@@ -1,16 +1,41 @@
+import * as Schematic from './api/types';
 import { RulesEngineJS } from './wasm/rulesengine.js';
 
-/** Result returned by the WASM rules engine (snake_case keys) */
+/** Entitlement details returned by the WASM rules engine  */
+export interface WasmFeatureEntitlement {
+    featureId: string;
+    featureKey: string;
+    valueType: Schematic.RulesengineEntitlementValueType;
+    allocation?: number;
+    softLimit?: number;
+    usage?: number;
+    eventName?: string;
+    metricPeriod?: Schematic.RulesengineFeatureEntitlementMetricPeriod;
+    monthReset?: Schematic.RulesengineFeatureEntitlementMonthReset;
+    metricResetAt?: string;
+    creditId?: string;
+    creditTotal?: number;
+    creditUsed?: number;
+    creditRemaining?: number;
+}
+
+/** Result returned by the WASM rules engine */
 export interface WasmCheckFlagResult {
     value: boolean;
     reason: string;
-    rule_id?: string;
-    flag_id?: string;
-    flag_key?: string;
-    company_id?: string;
-    user_id?: string;
-    rule_type?: string;
+    ruleId?: string;
+    flagId?: string;
+    flagKey?: string;
+    companyId?: string;
+    userId?: string;
+    ruleType?: Schematic.RulesengineCheckFlagResultRuleType;
     err?: string;
+    entitlement?: WasmFeatureEntitlement;
+    featureAllocation?: number;
+    featureUsage?: number;
+    featureUsageEvent?: string;
+    featureUsagePeriod?: string;
+    featureUsageResetAt?: string;
 }
 
 export class RulesEngineClient {
