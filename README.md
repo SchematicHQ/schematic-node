@@ -340,6 +340,40 @@ client
 client.close();
 ```
 
+### Checking flags with entitlement details
+
+If you need more detail about how a flag check was resolved, including any entitlement associated with the check, use `checkFlagWithEntitlement`. This returns a response object with the flag value, the reason for the evaluation result, and entitlement details such as usage, allocation, and credit balances when applicable.
+
+```ts
+import { SchematicClient } from "@schematichq/schematic-typescript-node";
+
+const apiKey = process.env.SCHEMATIC_API_KEY;
+const client = new SchematicClient({ apiKey });
+
+const evaluationCtx = {
+    company: { id: "your-company-id" },
+    user: {
+        email: "wcoyote@acme.net",
+        userId: "your-user-id",
+    },
+};
+
+client
+    .checkFlagWithEntitlement(evaluationCtx, "some-flag-key")
+    .then((resp) => {
+        console.log(`Flag: ${resp.flagKey}, Value: ${resp.value}, Reason: ${resp.reason}`);
+
+        if (resp.entitlement) {
+            console.log(`Entitlement type: ${resp.entitlement.valueType}`);
+            console.log(`Usage: ${resp.entitlement.usage}, Allocation: ${resp.entitlement.allocation}`);
+            console.log(`Credit remaining: ${resp.entitlement.creditRemaining}`);
+        }
+    })
+    .catch(console.error);
+
+client.close();
+```
+
 ### Checking multiple flags
 
 The `checkFlags` method allows you to efficiently check multiple feature flags in a single operation. When you provide specific flag keys, it will only return the flag values for those flags, leveraging intelligent caching to minimize API calls.
