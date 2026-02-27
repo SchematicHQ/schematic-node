@@ -4,6 +4,7 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingProviderType } from "./BillingProviderType";
+import { InvoiceStatus } from "./InvoiceStatus";
 
 export const InvoiceResponseData: core.serialization.ObjectSchema<
     serializers.InvoiceResponseData.Raw,
@@ -26,6 +27,7 @@ export const InvoiceResponseData: core.serialization.ObjectSchema<
         core.serialization.string().optional(),
     ),
     providerType: core.serialization.property("provider_type", BillingProviderType),
+    status: InvoiceStatus.optional(),
     subscriptionExternalId: core.serialization.property(
         "subscription_external_id",
         core.serialization.string().optional(),
@@ -51,6 +53,7 @@ export declare namespace InvoiceResponseData {
         id: string;
         payment_method_external_id?: string | null;
         provider_type: BillingProviderType.Raw;
+        status?: InvoiceStatus.Raw | null;
         subscription_external_id?: string | null;
         subtotal: number;
         updated_at: string;

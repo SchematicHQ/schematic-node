@@ -3,6 +3,7 @@
 import type * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
+import { InvoiceStatus } from "../../../../types/InvoiceStatus";
 
 export const CreateInvoiceRequestBody: core.serialization.Schema<
     serializers.CreateInvoiceRequestBody.Raw,
@@ -20,6 +21,7 @@ export const CreateInvoiceRequestBody: core.serialization.Schema<
         "payment_method_external_id",
         core.serialization.string().optional(),
     ),
+    status: InvoiceStatus.optional(),
     subscriptionExternalId: core.serialization.property(
         "subscription_external_id",
         core.serialization.string().optional(),
@@ -39,6 +41,7 @@ export declare namespace CreateInvoiceRequestBody {
         due_date?: string | null;
         external_id?: string | null;
         payment_method_external_id?: string | null;
+        status?: InvoiceStatus.Raw | null;
         subscription_external_id?: string | null;
         subtotal: number;
         url?: string | null;

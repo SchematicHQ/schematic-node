@@ -3420,6 +3420,122 @@ await client.credits.countBillingPlanCreditGrants({
 </dl>
 </details>
 
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">listCreditEventLedger</a>({ ...params }) -> Schematic.ListCreditEventLedgerResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.credits.listCreditEventLedger({
+    billingCreditId: "billing_credit_id",
+    companyId: "company_id",
+    endTime: "end_time",
+    eventType: "grant",
+    featureId: "feature_id",
+    startTime: "start_time",
+    limit: 1,
+    offset: 1
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListCreditEventLedgerRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">countCreditEventLedger</a>({ ...params }) -> Schematic.CountCreditEventLedgerResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.credits.countCreditEventLedger({
+    billingCreditId: "billing_credit_id",
+    companyId: "company_id",
+    endTime: "end_time",
+    eventType: "grant",
+    featureId: "feature_id",
+    startTime: "start_time",
+    limit: 1,
+    offset: 1
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CountCreditEventLedgerRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## checkout
 <details><summary><code>client.checkout.<a href="/src/api/resources/checkout/client/Client.ts">internal</a>({ ...params }) -> Schematic.CheckoutInternalResponse</code></summary>
 <dl>
@@ -9531,6 +9647,7 @@ await client.plangroups.createPlanGroup({
     showAsMonthlyPrices: true,
     showCredits: true,
     showFeatureDescription: true,
+    showHardLimit: true,
     showPeriodToggle: true,
     showZeroPriceAsFree: true,
     syncCustomerBillingDetails: true
@@ -9604,6 +9721,7 @@ await client.plangroups.updatePlanGroup("plan_group_id", {
     showAsMonthlyPrices: true,
     showCredits: true,
     showFeatureDescription: true,
+    showHardLimit: true,
     showPeriodToggle: true,
     showZeroPriceAsFree: true,
     syncCustomerBillingDetails: true

@@ -11,6 +11,7 @@ export const ComponentDisplaySettings: core.serialization.ObjectSchema<
     showAsMonthlyPrices: core.serialization.property("show_as_monthly_prices", core.serialization.boolean()),
     showCredits: core.serialization.property("show_credits", core.serialization.boolean()),
     showFeatureDescription: core.serialization.property("show_feature_description", core.serialization.boolean()),
+    showHardLimit: core.serialization.property("show_hard_limit", core.serialization.boolean()),
     showPeriodToggle: core.serialization.property("show_period_toggle", core.serialization.boolean()),
     showZeroPriceAsFree: core.serialization.property("show_zero_price_as_free", core.serialization.boolean()),
 });
@@ -20,6 +21,7 @@ export declare namespace ComponentDisplaySettings {
         show_as_monthly_prices: boolean;
         show_credits: boolean;
         show_feature_description: boolean;
+        show_hard_limit: boolean;
         show_period_toggle: boolean;
         show_zero_price_as_free: boolean;
     }

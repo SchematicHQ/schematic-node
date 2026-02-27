@@ -17,6 +17,7 @@ export interface InvoiceResponseData {
     id: string;
     paymentMethodExternalId?: string;
     providerType: Schematic.BillingProviderType;
+    status?: Schematic.InvoiceStatus;
     subscriptionExternalId?: string;
     subtotal: number;
     updatedAt: Date;

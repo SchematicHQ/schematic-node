@@ -4683,4 +4683,383 @@ describe("CreditsClient", () => {
             return await client.credits.countBillingPlanCreditGrants();
         }).rejects.toThrow(Schematic.InternalServerError);
     });
+
+    test("listCreditEventLedger (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    amount: 1.1,
+                    auto_topup_log_id: "auto_topup_log_id",
+                    billing_credit_bundle_id: "billing_credit_bundle_id",
+                    billing_credit_id: "billing_credit_id",
+                    company: { id: "id", name: "name" },
+                    company_id: "company_id",
+                    credit: { id: "id", name: "name" },
+                    credit_name: "credit_name",
+                    environment_id: "environment_id",
+                    event_at: "2024-01-15T09:30:00Z",
+                    event_id: "event_id",
+                    event_type: "grant",
+                    expiry_type: "duration",
+                    expiry_unit: "billing_periods",
+                    expiry_unit_count: 1,
+                    feature: { id: "id", name: "name" },
+                    feature_id: "feature_id",
+                    from_grant_id: "from_grant_id",
+                    grant_expires_at: "2024-01-15T09:30:00Z",
+                    grant_id: "grant_id",
+                    grant_quantity: 1,
+                    grant_quantity_remaining: 1.1,
+                    grant_reason: "billing_credit_auto_topup",
+                    grant_valid_from: "2024-01-15T09:30:00Z",
+                    plan_id: "plan_id",
+                    quantity_consumed: 1.1,
+                    quantity_remaining_at_zero_out: 1.1,
+                    source_id: 1,
+                    to_grant_id: "to_grant_id",
+                    usage_event_id: "usage_event_id",
+                    zeroed_out_reason: "expired",
+                },
+            ],
+            params: {
+                billing_credit_id: "billing_credit_id",
+                company_id: "company_id",
+                end_time: "end_time",
+                event_type: "grant",
+                feature_id: "feature_id",
+                limit: 1,
+                offset: 1,
+                start_time: "start_time",
+            },
+        };
+        server
+            .mockEndpoint()
+            .get("/v2/billing/credits/ledger")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.credits.listCreditEventLedger({
+            billingCreditId: "billing_credit_id",
+            companyId: "company_id",
+            endTime: "end_time",
+            eventType: "grant",
+            featureId: "feature_id",
+            startTime: "start_time",
+            limit: 1,
+            offset: 1,
+        });
+        expect(response).toEqual({
+            data: [
+                {
+                    amount: 1.1,
+                    autoTopupLogId: "auto_topup_log_id",
+                    billingCreditBundleId: "billing_credit_bundle_id",
+                    billingCreditId: "billing_credit_id",
+                    company: {
+                        id: "id",
+                        name: "name",
+                    },
+                    companyId: "company_id",
+                    credit: {
+                        id: "id",
+                        name: "name",
+                    },
+                    creditName: "credit_name",
+                    environmentId: "environment_id",
+                    eventAt: new Date("2024-01-15T09:30:00.000Z"),
+                    eventId: "event_id",
+                    eventType: "grant",
+                    expiryType: "duration",
+                    expiryUnit: "billing_periods",
+                    expiryUnitCount: 1,
+                    feature: {
+                        id: "id",
+                        name: "name",
+                    },
+                    featureId: "feature_id",
+                    fromGrantId: "from_grant_id",
+                    grantExpiresAt: new Date("2024-01-15T09:30:00.000Z"),
+                    grantId: "grant_id",
+                    grantQuantity: 1,
+                    grantQuantityRemaining: 1.1,
+                    grantReason: "billing_credit_auto_topup",
+                    grantValidFrom: new Date("2024-01-15T09:30:00.000Z"),
+                    planId: "plan_id",
+                    quantityConsumed: 1.1,
+                    quantityRemainingAtZeroOut: 1.1,
+                    sourceId: 1,
+                    toGrantId: "to_grant_id",
+                    usageEventId: "usage_event_id",
+                    zeroedOutReason: "expired",
+                },
+            ],
+            params: {
+                billingCreditId: "billing_credit_id",
+                companyId: "company_id",
+                endTime: "end_time",
+                eventType: "grant",
+                featureId: "feature_id",
+                limit: 1,
+                offset: 1,
+                startTime: "start_time",
+            },
+        });
+    });
+
+    test("listCreditEventLedger (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .get("/v2/billing/credits/ledger")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.listCreditEventLedger({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("listCreditEventLedger (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .get("/v2/billing/credits/ledger")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.listCreditEventLedger({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("listCreditEventLedger (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .get("/v2/billing/credits/ledger")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.listCreditEventLedger({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("listCreditEventLedger (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .get("/v2/billing/credits/ledger")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.listCreditEventLedger({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("listCreditEventLedger (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .get("/v2/billing/credits/ledger")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.listCreditEventLedger({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("countCreditEventLedger (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: { count: 1 },
+            params: {
+                billing_credit_id: "billing_credit_id",
+                company_id: "company_id",
+                end_time: "end_time",
+                event_type: "grant",
+                feature_id: "feature_id",
+                limit: 1,
+                offset: 1,
+                start_time: "start_time",
+            },
+        };
+        server
+            .mockEndpoint()
+            .get("/v2/billing/credits/ledger/count")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.credits.countCreditEventLedger({
+            billingCreditId: "billing_credit_id",
+            companyId: "company_id",
+            endTime: "end_time",
+            eventType: "grant",
+            featureId: "feature_id",
+            startTime: "start_time",
+            limit: 1,
+            offset: 1,
+        });
+        expect(response).toEqual({
+            data: {
+                count: 1,
+            },
+            params: {
+                billingCreditId: "billing_credit_id",
+                companyId: "company_id",
+                endTime: "end_time",
+                eventType: "grant",
+                featureId: "feature_id",
+                limit: 1,
+                offset: 1,
+                startTime: "start_time",
+            },
+        });
+    });
+
+    test("countCreditEventLedger (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .get("/v2/billing/credits/ledger/count")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.countCreditEventLedger({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("countCreditEventLedger (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .get("/v2/billing/credits/ledger/count")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.countCreditEventLedger({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("countCreditEventLedger (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .get("/v2/billing/credits/ledger/count")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.countCreditEventLedger({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("countCreditEventLedger (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .get("/v2/billing/credits/ledger/count")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.countCreditEventLedger({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("countCreditEventLedger (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+        server
+            .mockEndpoint()
+            .get("/v2/billing/credits/ledger/count")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.countCreditEventLedger({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
 });
