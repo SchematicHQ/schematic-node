@@ -1,9 +1,9 @@
 /* eslint @typescript-eslint/no-explicit-any: 0 */
 
-import { EventBuffer } from "./events";
-import { EventsClient } from "./api/resources/events/client/Client";
-import { CreateEventRequestBody } from "./api";
-import { Logger } from "./logger";
+import { EventBuffer } from "../src/events";
+import { EventsClient } from "../src/api/resources/events/client/Client";
+import { CreateEventRequestBody } from "../src/api";
+import { Logger } from "../src/logger";
 
 process.env.NODE_ENV = "test";
 

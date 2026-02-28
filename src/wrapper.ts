@@ -123,16 +123,22 @@ export class SchematicClient extends BaseClient {
             return getDefault();
         }
 
-        try {
-            const cacheKey = JSON.stringify({ evalCtx, key });
-            for (const provider of this.flagCheckCacheProviders) {
+        const cacheKey = JSON.stringify({ evalCtx, key });
+
+        for (const provider of this.flagCheckCacheProviders) {
+            try {
                 const cachedValue = await provider.get(cacheKey);
                 if (cachedValue !== undefined) {
                     this.logger.debug(`${provider.constructor.name} cache hit for flag ${key}`);
                     return cachedValue;
                 }
+            } catch (err) {
+                this.logger.warn(`Cache read error for flag ${key} from ${provider.constructor.name}: ${err}`);
             }
+        }
 
+        let value: boolean;
+        try {
             const response = await this.features.checkFlag(key, evalCtx, {
                 timeoutInSeconds: options?.timeoutMs !== undefined ? options.timeoutMs / 1000 : undefined,
             });
@@ -140,18 +146,23 @@ export class SchematicClient extends BaseClient {
                 this.logger.debug(`No value returned from feature flag API for flag ${key}, falling back to default`);
                 return getDefault();
             }
-
-            for (const provider of this.flagCheckCacheProviders) {
-                this.logger.debug(`Caching value for flag ${key} in ${provider.constructor.name}`);
-                await provider.set(cacheKey, response.data.value);
-            }
-
+            value = response.data.value;
             this.logger.debug(`Feature flag API response for ${key}: ${JSON.stringify(response.data)}`);
-            return response.data.value;
         } catch (err) {
             this.logger.error(`Error checking flag ${key}: ${err}`);
             return getDefault();
         }
+
+        for (const provider of this.flagCheckCacheProviders) {
+            try {
+                this.logger.debug(`Caching value for flag ${key} in ${provider.constructor.name}`);
+                await provider.set(cacheKey, value);
+            } catch (err) {
+                this.logger.warn(`Cache write error for flag ${key} to ${provider.constructor.name}: ${err}`);
+            }
+        }
+
+        return value;
     }
 
     /**
@@ -193,16 +204,20 @@ export class SchematicClient extends BaseClient {
                 let foundInCache = false;
 
                 for (const provider of this.flagCheckCacheProviders) {
-                    const cachedValue = await provider.get(cacheKey);
-                    if (cachedValue !== undefined) {
-                        this.logger.debug(`${provider.constructor.name} cache hit for flag ${key}`);
-                        cachedResults.set(key, {
-                            flag: key,
-                            value: cachedValue,
-                            reason: 'Retrieved from cache'
-                        });
-                        foundInCache = true;
-                        break;
+                    try {
+                        const cachedValue = await provider.get(cacheKey);
+                        if (cachedValue !== undefined) {
+                            this.logger.debug(`${provider.constructor.name} cache hit for flag ${key}`);
+                            cachedResults.set(key, {
+                                flag: key,
+                                value: cachedValue,
+                                reason: 'Retrieved from cache'
+                            });
+                            foundInCache = true;
+                            break;
+                        }
+                    } catch (err) {
+                        this.logger.warn(`Cache read error for flag ${key} from ${provider.constructor.name}: ${err}`);
                     }
                 }
 
@@ -233,8 +248,12 @@ export class SchematicClient extends BaseClient {
                     // Cache the fresh result
                     const cacheKey = JSON.stringify({ evalCtx, key });
                     for (const provider of this.flagCheckCacheProviders) {
-                        this.logger.debug(`Caching value for flag ${cacheKey} in ${provider.constructor.name}`);
-                        await provider.set(cacheKey, apiResult.value);
+                        try {
+                            this.logger.debug(`Caching value for flag ${cacheKey} in ${provider.constructor.name}`);
+                            await provider.set(cacheKey, apiResult.value);
+                        } catch (err) {
+                            this.logger.warn(`Cache write error for flag ${key} to ${provider.constructor.name}: ${err}`);
+                        }
                     }
                     results.push(apiResult);
                 } else {
@@ -260,7 +279,7 @@ export class SchematicClient extends BaseClient {
 
         } catch (err) {
             this.logger.error(`Error checking flags ${keys ? keys.join(', ') : 'all'}: ${err}`);
-            
+
             // Return default values for all requested keys
             if (keys && keys.length > 0) {
                 return keys.map(key => ({
