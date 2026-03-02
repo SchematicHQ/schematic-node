@@ -1,7 +1,7 @@
 // build.js
 const esbuild = require('esbuild');
 const { execSync } = require('child_process');
-const { copyFileSync } = require('fs');
+const { readFileSync, writeFileSync } = require('fs');
 
 const sharedConfig = {
   entryPoints: ['src/index.ts'],
@@ -25,6 +25,13 @@ const sharedConfig = {
 
 async function build() {
   try {
+    // Inline WASM as base64 for Cloudflare Workers compatibility
+    console.log('🔧 Generating base64-encoded WASM module...');
+    const wasmBytes = readFileSync('src/wasm/rulesengine_bg.wasm');
+    const wasmBase64 = wasmBytes.toString('base64');
+    writeFileSync('src/wasm/rulesengine_bg_wasm_base64.js', `module.exports = "${wasmBase64}";\n`);
+    console.log('✅ Base64 WASM module generated');
+
     // Build CommonJS version with esbuild
     await esbuild.build({
       ...sharedConfig,
@@ -33,11 +40,6 @@ async function build() {
     });
 
     console.log('✅ JavaScript build completed with esbuild');
-
-    // Copy WASM files to dist
-    console.log('🔧 Copying WASM files...');
-    copyFileSync('src/wasm/rulesengine_bg.wasm', 'dist/rulesengine_bg.wasm');
-    console.log('✅ WASM files copied');
 
     // Generate TypeScript declarations with tsc
     console.log('🔧 Generating TypeScript declarations...');
