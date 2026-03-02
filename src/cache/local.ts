@@ -1,4 +1,3 @@
-import { setTimeout, clearTimeout } from "timers";
 import { CacheProvider, CacheOptions } from "./types";
 
 // setTimeout max: 2^31 - 1 ms (~24.8 days). Larger values overflow to 1ms.
