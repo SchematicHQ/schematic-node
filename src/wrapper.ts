@@ -300,9 +300,13 @@ export class SchematicClient extends BaseClient {
                 value: response.data.value,
             };
 
-            for (const provider of this.flagCheckCacheProviders) {
-                this.logger.debug(`Caching value for flag ${key} in ${provider.constructor.name}`);
-                await provider.set(cacheKey, result);
+            try {
+                for (const provider of this.flagCheckCacheProviders) {
+                    this.logger.debug(`Caching value for flag ${key} in ${provider.constructor.name}`);
+                    await provider.set(cacheKey, result);
+                }
+            } catch (cacheErr) {
+                this.logger.warn(`Cache write failed for flag ${key}: ${cacheErr}`);
             }
 
             return result;
@@ -406,9 +410,13 @@ export class SchematicClient extends BaseClient {
                         userId: apiResult.userId,
                         value: apiResult.value,
                     };
-                    for (const provider of this.flagCheckCacheProviders) {
-                        this.logger.debug(`Caching value for flag ${cacheKey} in ${provider.constructor.name}`);
-                        await provider.set(cacheKey, cacheEntry);
+                    try {
+                        for (const provider of this.flagCheckCacheProviders) {
+                            this.logger.debug(`Caching value for flag ${cacheKey} in ${provider.constructor.name}`);
+                            await provider.set(cacheKey, cacheEntry);
+                        }
+                    } catch (cacheErr) {
+                        this.logger.warn(`Cache write failed for flag ${key}: ${cacheErr}`);
                     }
                     results.push(apiResult);
                 } else {
