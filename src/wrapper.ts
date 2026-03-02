@@ -5,6 +5,7 @@ import { type CacheProvider, LocalCache } from "./cache";
 import { ConsoleLogger, Logger } from "./logger";
 import { EventBuffer } from "./events";
 import { offlineFetcher, provideFetcher } from "./core/fetcher/custom";
+import { RUNTIME } from "./core/runtime";
 import { DataStreamClient, type DataStreamClientOptions } from "./datastream";
 import type { RedisClient } from "./cache/redis";
 
@@ -136,23 +137,35 @@ export class SchematicClient extends BaseClient {
 
         // Initialize DataStream client if enabled
         if (opts?.useDataStream && !offline) {
-            const datastreamOptions: DataStreamClientOptions = {
-                apiKey,
-                baseURL: basePath,
-                logger,
-                cacheTTL: opts.dataStream?.cacheTTL,
-                redisClient: opts.dataStream?.redisClient,
-                redisKeyPrefix: opts.dataStream?.redisKeyPrefix,
-                replicatorMode: opts.dataStream?.replicatorMode,
-                replicatorHealthURL: opts.dataStream?.replicatorHealthURL,
-                replicatorHealthCheck: opts.dataStream?.replicatorHealthCheck,
-            };
+            const edgeRuntimes = ["workerd", "edge-runtime", "browser", "web-worker"];
+            const isEdgeRuntime = edgeRuntimes.includes(RUNTIME.type);
+            const isReplicatorMode = opts.dataStream?.replicatorMode === true;
 
-            this.datastreamClient = new DataStreamClient(datastreamOptions);
-            this.datastreamClient.start().catch((error) => {
-                logger.error(`Failed to start DataStream client: ${error}`);
-                this.datastreamClient = undefined;
-            });
+            if (isEdgeRuntime && !isReplicatorMode) {
+                logger.warn(
+                    `DataStream is not supported in ${RUNTIME.type} runtime and will be disabled. ` +
+                    `DataStream requires Node.js APIs (WebSocket) that are not available in edge/browser environments. ` +
+                    `Use replicatorMode for edge runtime compatibility.`
+                );
+            } else {
+                const datastreamOptions: DataStreamClientOptions = {
+                    apiKey,
+                    baseURL: basePath,
+                    logger,
+                    cacheTTL: opts.dataStream?.cacheTTL,
+                    redisClient: opts.dataStream?.redisClient,
+                    redisKeyPrefix: opts.dataStream?.redisKeyPrefix,
+                    replicatorMode: opts.dataStream?.replicatorMode,
+                    replicatorHealthURL: opts.dataStream?.replicatorHealthURL,
+                    replicatorHealthCheck: opts.dataStream?.replicatorHealthCheck,
+                };
+
+                this.datastreamClient = new DataStreamClient(datastreamOptions);
+                this.datastreamClient.start().catch((error) => {
+                    logger.error(`Failed to start DataStream client: ${error}`);
+                    this.datastreamClient = undefined;
+                });
+            }
         }
     }
 
