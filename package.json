@@ -20,7 +20,8 @@
         "test": "jest --config jest.config.mjs",
         "test:unit": "jest --selectProjects unit",
         "test:wire": "jest --selectProjects wire",
-        "build:legacy": "tsc"
+        "build:legacy": "tsc",
+        "test:cloudflare": "node scripts/test-cloudflare.mjs"
     },
     "dependencies": {
         "form-data": "^4.0.4",
@@ -44,7 +45,8 @@
         "@types/node": "^18.19.70",
         "typescript": "~5.7.2",
         "@biomejs/biome": "2.3.1",
-        "esbuild": "^0.25.9"
+        "esbuild": "^0.25.9",
+        "miniflare": "^3.0.0"
     },
     "browser": {
         "fs": false,

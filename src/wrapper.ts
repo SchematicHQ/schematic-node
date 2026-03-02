@@ -5,7 +5,7 @@ import { type CacheProvider, LocalCache } from "./cache";
 import { ConsoleLogger, Logger } from "./logger";
 import { EventBuffer } from "./events";
 import { offlineFetcher, provideFetcher } from "./core/fetcher/custom";
-import { DataStreamClient, type DataStreamClientOptions } from "./datastream";
+import type { DataStreamClient as DataStreamClientType, DataStreamClientOptions } from "./datastream";
 import type { RedisClient } from "./cache/redis";
 
 /**
@@ -75,7 +75,7 @@ export interface CheckFlagWithEntitlementResponse {
 }
 
 export class SchematicClient extends BaseClient {
-    private datastreamClient?: DataStreamClient;
+    private datastreamClient?: DataStreamClientType;
     private eventBuffer: EventBuffer;
     private flagCheckCacheProviders: CacheProvider<CheckFlagWithEntitlementResponse>[];
     private flagDefaults: { [key: string]: boolean };
@@ -134,7 +134,7 @@ export class SchematicClient extends BaseClient {
         this.flagDefaults = flagDefaults;
         this.offline = offline;
 
-        // Initialize DataStream client if enabled
+        // Initialize DataStream client if enabled (dynamic import to avoid loading EventEmitter in edge runtimes)
         if (opts?.useDataStream && !offline) {
             const datastreamOptions: DataStreamClientOptions = {
                 apiKey,
@@ -148,10 +148,14 @@ export class SchematicClient extends BaseClient {
                 replicatorHealthCheck: opts.dataStream?.replicatorHealthCheck,
             };
 
-            this.datastreamClient = new DataStreamClient(datastreamOptions);
-            this.datastreamClient.start().catch((error) => {
-                logger.error(`Failed to start DataStream client: ${error}`);
-                this.datastreamClient = undefined;
+            import("./datastream").then(({ DataStreamClient }) => {
+                this.datastreamClient = new DataStreamClient(datastreamOptions);
+                this.datastreamClient.start().catch((error) => {
+                    logger.error(`Failed to start DataStream client: ${error}`);
+                    this.datastreamClient = undefined;
+                });
+            }).catch((error) => {
+                logger.error(`Failed to load DataStream module: ${error}`);
             });
         }
     }
