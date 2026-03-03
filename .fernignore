@@ -19,6 +19,7 @@ src/version.ts
 src/wasm/
 src/webhooks.ts
 src/wrapper.ts
+tests/cloudflare/
 tests/unit/cache/local.test.ts
 tests/unit/datastream/datastream-client.test.ts
 tests/unit/datastream/websocket-client.test.ts
