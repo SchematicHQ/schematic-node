@@ -1,9 +1,9 @@
-import { EventEmitter } from 'events';
 import * as Schematic from '../api/types';
-import { DatastreamWSClient } from './websocket-client';
+import type { DatastreamWSClient } from './websocket-client';
 import { DataStreamResp, DataStreamReq, DataStreamError, EntityType, MessageType } from './types';
 import { RulesEngineClient } from '../rules-engine';
 import { Logger } from '../logger';
+import { LazyEmitter } from './emitter';
 
 // Import cache providers from the cache module
 import type { CacheProvider } from '../cache/types';
@@ -57,7 +57,7 @@ const MAX_CACHE_TTL = 30 * 24 * 60 * 60 * 1000; // 30 days (matches Go maxCacheT
  * DataStreamClient provides a comprehensive client for Schematic's datastream
  * with caching, flag evaluation, and entity management matching the Go implementation
  */
-export class DataStreamClient extends EventEmitter {
+export class DataStreamClient extends LazyEmitter {
   private readonly apiKey: string;
   private readonly baseURL?: string;
   private readonly logger: Logger;
@@ -223,7 +223,8 @@ export class DataStreamClient extends EventEmitter {
 
     this.logger.info('Starting DataStream client');
 
-    // Create WebSocket client
+    // Create WebSocket client (lazy-require to avoid loading 'ws' in edge runtimes)
+    const { DatastreamWSClient } = require('./websocket-client') as typeof import('./websocket-client');
     this.wsClient = new DatastreamWSClient({
       url: this.baseURL,
       apiKey: this.apiKey,

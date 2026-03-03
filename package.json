@@ -17,6 +17,7 @@
         "check:fix": "biome check --fix --unsafe --skip-parse-errors --no-errors-on-unmatched --max-diagnostics=none",
         "build": "node build.js",
         "prepack": "cp -rv dist/. .",
+        "pretest": "node scripts/generate-wasm-base64.js",
         "test": "jest --config jest.config.mjs",
         "test:unit": "jest --selectProjects unit",
         "test:wire": "jest --selectProjects wire",
