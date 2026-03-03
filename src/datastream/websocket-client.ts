@@ -1,9 +1,9 @@
 // Note: This client is designed for Node.js server environments only
 
-import { EventEmitter } from 'events';
 import WebSocketClass, { type WebSocket } from 'ws';
 import { DataStreamResp, DataStreamBaseReq } from './types';
 import { Logger } from '../logger';
+import { LazyEmitter } from './emitter';
 
 /**
  * WebSocket configuration constants
@@ -89,7 +89,7 @@ function convertAPIURLToWebSocketURL(apiURL: string): string {
 /**
  * DatastreamWSClient represents a Schematic datastream websocket client with automatic reconnection
  */
-export class DatastreamWSClient extends EventEmitter {
+export class DatastreamWSClient extends LazyEmitter {
   // Configuration
   private readonly url: string;
   private readonly headers: Record<string, string>;

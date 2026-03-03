@@ -5,7 +5,8 @@ import { type CacheProvider, LocalCache } from "./cache";
 import { ConsoleLogger, Logger } from "./logger";
 import { EventBuffer } from "./events";
 import { offlineFetcher, provideFetcher } from "./core/fetcher/custom";
-import type { DataStreamClient as DataStreamClientType, DataStreamClientOptions } from "./datastream";
+import { RUNTIME } from "./core/runtime";
+import { DataStreamClient, type DataStreamClientOptions } from "./datastream";
 import type { RedisClient } from "./cache/redis";
 
 /**
@@ -75,7 +76,7 @@ export interface CheckFlagWithEntitlementResponse {
 }
 
 export class SchematicClient extends BaseClient {
-    private datastreamClient?: DataStreamClientType;
+    private datastreamClient?: DataStreamClient;
     private eventBuffer: EventBuffer;
     private flagCheckCacheProviders: CacheProvider<CheckFlagWithEntitlementResponse>[];
     private flagDefaults: { [key: string]: boolean };
@@ -134,29 +135,37 @@ export class SchematicClient extends BaseClient {
         this.flagDefaults = flagDefaults;
         this.offline = offline;
 
-        // Initialize DataStream client if enabled (dynamic import to avoid loading EventEmitter in edge runtimes)
+        // Initialize DataStream client if enabled
         if (opts?.useDataStream && !offline) {
-            const datastreamOptions: DataStreamClientOptions = {
-                apiKey,
-                baseURL: basePath,
-                logger,
-                cacheTTL: opts.dataStream?.cacheTTL,
-                redisClient: opts.dataStream?.redisClient,
-                redisKeyPrefix: opts.dataStream?.redisKeyPrefix,
-                replicatorMode: opts.dataStream?.replicatorMode,
-                replicatorHealthURL: opts.dataStream?.replicatorHealthURL,
-                replicatorHealthCheck: opts.dataStream?.replicatorHealthCheck,
-            };
+            const edgeRuntimes = ["workerd", "edge-runtime", "browser", "web-worker"];
+            const isEdgeRuntime = edgeRuntimes.includes(RUNTIME.type);
+            const isReplicatorMode = opts.dataStream?.replicatorMode === true;
 
-            import("./datastream").then(({ DataStreamClient }) => {
+            if (isEdgeRuntime && !isReplicatorMode) {
+                logger.warn(
+                    `DataStream is not supported in ${RUNTIME.type} runtime and will be disabled. ` +
+                    `DataStream requires Node.js APIs (WebSocket) that are not available in edge/browser environments. ` +
+                    `Use replicatorMode for edge runtime compatibility.`
+                );
+            } else {
+                const datastreamOptions: DataStreamClientOptions = {
+                    apiKey,
+                    baseURL: basePath,
+                    logger,
+                    cacheTTL: opts.dataStream?.cacheTTL,
+                    redisClient: opts.dataStream?.redisClient,
+                    redisKeyPrefix: opts.dataStream?.redisKeyPrefix,
+                    replicatorMode: opts.dataStream?.replicatorMode,
+                    replicatorHealthURL: opts.dataStream?.replicatorHealthURL,
+                    replicatorHealthCheck: opts.dataStream?.replicatorHealthCheck,
+                };
+
                 this.datastreamClient = new DataStreamClient(datastreamOptions);
                 this.datastreamClient.start().catch((error) => {
                     logger.error(`Failed to start DataStream client: ${error}`);
                     this.datastreamClient = undefined;
                 });
-            }).catch((error) => {
-                logger.error(`Failed to load DataStream module: ${error}`);
-            });
+            }
         }
     }
 
@@ -291,9 +300,13 @@ export class SchematicClient extends BaseClient {
                 value: response.data.value,
             };
 
-            for (const provider of this.flagCheckCacheProviders) {
-                this.logger.debug(`Caching value for flag ${key} in ${provider.constructor.name}`);
-                await provider.set(cacheKey, result);
+            try {
+                for (const provider of this.flagCheckCacheProviders) {
+                    this.logger.debug(`Caching value for flag ${key} in ${provider.constructor.name}`);
+                    await provider.set(cacheKey, result);
+                }
+            } catch (cacheErr) {
+                this.logger.warn(`Cache write failed for flag ${key}: ${cacheErr}`);
             }
 
             return result;
@@ -397,9 +410,13 @@ export class SchematicClient extends BaseClient {
                         userId: apiResult.userId,
                         value: apiResult.value,
                     };
-                    for (const provider of this.flagCheckCacheProviders) {
-                        this.logger.debug(`Caching value for flag ${cacheKey} in ${provider.constructor.name}`);
-                        await provider.set(cacheKey, cacheEntry);
+                    try {
+                        for (const provider of this.flagCheckCacheProviders) {
+                            this.logger.debug(`Caching value for flag ${cacheKey} in ${provider.constructor.name}`);
+                            await provider.set(cacheKey, cacheEntry);
+                        }
+                    } catch (cacheErr) {
+                        this.logger.warn(`Cache write failed for flag ${key}: ${cacheErr}`);
                     }
                     results.push(apiResult);
                 } else {

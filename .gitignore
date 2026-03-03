@@ -1,3 +1,4 @@
 node_modules
 .DS_Store
 /dist
+src/wasm/rulesengine_bg_wasm_base64.js
