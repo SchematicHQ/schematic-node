@@ -196,7 +196,6 @@ let wasm;
 
 exports.initWasm = async function() {
     if (wasm) return;
-    console.log('Initializing WebAssembly module...');
     const wasmBase64 = require('./rulesengine_bg_wasm_base64.js');
     const wasmBytes = Uint8Array.from(atob(wasmBase64), c => c.charCodeAt(0));
     const wasmModule = await WebAssembly.compile(wasmBytes);
