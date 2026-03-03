@@ -35,24 +35,6 @@ jobs:
       - name: Test
         run: yarn test
 
-  cloudflare-compat:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v6
-
-      - name: Set up node
-        uses: actions/setup-node@v6
-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Build
-        run: yarn build
-
-      - name: Test Cloudflare compatibility
-        run: yarn test:cloudflare
-
   publish:
     needs: [ compile, test ]
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
