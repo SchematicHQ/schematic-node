@@ -11,7 +11,7 @@ export const CreateBillingProductRequestBody: core.serialization.Schema<
 > = core.serialization.object({
     externalId: core.serialization.property("external_id", core.serialization.string()),
     isActive: core.serialization.property("is_active", core.serialization.boolean().optional()),
-    name: core.serialization.string(),
+    name: core.serialization.string().optional(),
     price: core.serialization.number(),
     providerType: core.serialization.property("provider_type", BillingProviderType.optional()),
 });
@@ -20,7 +20,7 @@ export declare namespace CreateBillingProductRequestBody {
     export interface Raw {
         external_id: string;
         is_active?: boolean | null;
-        name: string;
+        name?: string | null;
         price: number;
         provider_type?: BillingProviderType.Raw | null;
     }

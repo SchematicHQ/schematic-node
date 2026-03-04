@@ -5,5 +5,5 @@ import type * as Schematic from "../../../index";
 export interface GetPlanGroupResponse {
     data: Schematic.PlanGroupDetailResponseData;
     /** Input parameters */
-    params: Record<string, unknown>;
+    params: Schematic.GetPlanGroupParams;
 }

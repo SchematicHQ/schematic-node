@@ -2531,7 +2531,6 @@ export class BillingClient {
      * @example
      *     await client.billing.upsertBillingProduct({
      *         externalId: "external_id",
-     *         name: "name",
      *         price: 1.1
      *     })
      */
