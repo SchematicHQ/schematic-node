@@ -1175,11 +1175,13 @@ describe("PlangroupsClient", () => {
                 trial_expiry_plan_price_id: "trial_expiry_plan_price_id",
                 trial_payment_method_required: true,
             },
-            params: { key: "value" },
+            params: { include_company_counts: true },
         };
         server.mockEndpoint().get("/plan-groups").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.plangroups.getPlanGroup();
+        const response = await client.plangroups.getPlanGroup({
+            includeCompanyCounts: true,
+        });
         expect(response).toEqual({
             data: {
                 addOns: [
@@ -2457,7 +2459,7 @@ describe("PlangroupsClient", () => {
                 trialPaymentMethodRequired: true,
             },
             params: {
-                key: "value",
+                includeCompanyCounts: true,
             },
         });
     });

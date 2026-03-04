@@ -1822,7 +1822,6 @@ await client.billing.deleteProductPrice("billing_id");
 ```typescript
 await client.billing.upsertBillingProduct({
     externalId: "external_id",
-    name: "name",
     price: 1.1
 });
 
@@ -9572,7 +9571,7 @@ await client.planbundle.updatePlanBundle("plan_bundle_id", {
 </details>
 
 ## plangroups
-<details><summary><code>client.plangroups.<a href="/src/api/resources/plangroups/client/Client.ts">getPlanGroup</a>() -> Schematic.GetPlanGroupResponse</code></summary>
+<details><summary><code>client.plangroups.<a href="/src/api/resources/plangroups/client/Client.ts">getPlanGroup</a>({ ...params }) -> Schematic.GetPlanGroupResponse</code></summary>
 <dl>
 <dd>
 
@@ -9585,7 +9584,9 @@ await client.planbundle.updatePlanBundle("plan_bundle_id", {
 <dd>
 
 ```typescript
-await client.plangroups.getPlanGroup();
+await client.plangroups.getPlanGroup({
+    includeCompanyCounts: true
+});
 
 ```
 </dd>
@@ -9597,6 +9598,14 @@ await client.plangroups.getPlanGroup();
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.GetPlanGroupRequest` 
+    
+</dd>
+</dl>
 
 <dl>
 <dd>

@@ -6,14 +6,13 @@ import type * as Schematic from "../../../../index";
  * @example
  *     {
  *         externalId: "external_id",
- *         name: "name",
  *         price: 1.1
  *     }
  */
 export interface CreateBillingProductRequestBody {
     externalId: string;
     isActive?: boolean;
-    name: string;
+    name?: string;
     price: number;
     providerType?: Schematic.BillingProviderType;
 }

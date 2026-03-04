@@ -2868,7 +2868,7 @@ describe("BillingClient", () => {
     test("upsertBillingProduct (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { external_id: "external_id", name: "name", price: 1.1 };
+        const rawRequestBody = { external_id: "external_id", price: 1.1 };
         const rawResponseBody = {
             data: {
                 account_id: "account_id",
@@ -2897,7 +2897,6 @@ describe("BillingClient", () => {
 
         const response = await client.billing.upsertBillingProduct({
             externalId: "external_id",
-            name: "name",
             price: 1.1,
         });
         expect(response).toEqual({
@@ -2924,7 +2923,7 @@ describe("BillingClient", () => {
     test("upsertBillingProduct (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { external_id: "external_id", name: "name", price: 1.1 };
+        const rawRequestBody = { external_id: "external_id", price: 1.1 };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -2938,7 +2937,6 @@ describe("BillingClient", () => {
         await expect(async () => {
             return await client.billing.upsertBillingProduct({
                 externalId: "external_id",
-                name: "name",
                 price: 1.1,
             });
         }).rejects.toThrow(Schematic.BadRequestError);
@@ -2947,7 +2945,7 @@ describe("BillingClient", () => {
     test("upsertBillingProduct (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { external_id: "external_id", name: "name", price: 1.1 };
+        const rawRequestBody = { external_id: "external_id", price: 1.1 };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -2961,7 +2959,6 @@ describe("BillingClient", () => {
         await expect(async () => {
             return await client.billing.upsertBillingProduct({
                 externalId: "external_id",
-                name: "name",
                 price: 1.1,
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
@@ -2970,7 +2967,7 @@ describe("BillingClient", () => {
     test("upsertBillingProduct (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { external_id: "external_id", name: "name", price: 1.1 };
+        const rawRequestBody = { external_id: "external_id", price: 1.1 };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -2984,7 +2981,6 @@ describe("BillingClient", () => {
         await expect(async () => {
             return await client.billing.upsertBillingProduct({
                 externalId: "external_id",
-                name: "name",
                 price: 1.1,
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
@@ -2993,7 +2989,7 @@ describe("BillingClient", () => {
     test("upsertBillingProduct (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { external_id: "external_id", name: "name", price: 1.1 };
+        const rawRequestBody = { external_id: "external_id", price: 1.1 };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -3007,7 +3003,6 @@ describe("BillingClient", () => {
         await expect(async () => {
             return await client.billing.upsertBillingProduct({
                 externalId: "external_id",
-                name: "name",
                 price: 1.1,
             });
         }).rejects.toThrow(Schematic.NotFoundError);
@@ -3016,7 +3011,7 @@ describe("BillingClient", () => {
     test("upsertBillingProduct (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { external_id: "external_id", name: "name", price: 1.1 };
+        const rawRequestBody = { external_id: "external_id", price: 1.1 };
         const rawResponseBody = { error: "error" };
         server
             .mockEndpoint()
@@ -3030,7 +3025,6 @@ describe("BillingClient", () => {
         await expect(async () => {
             return await client.billing.upsertBillingProduct({
                 externalId: "external_id",
-                name: "name",
                 price: 1.1,
             });
         }).rejects.toThrow(Schematic.InternalServerError);

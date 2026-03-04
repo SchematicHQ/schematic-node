@@ -24,6 +24,7 @@ export class PlangroupsClient {
     }
 
     /**
+     * @param {Schematic.GetPlanGroupRequest} request
      * @param {PlangroupsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Schematic.UnauthorizedError}
@@ -32,17 +33,27 @@ export class PlangroupsClient {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.plangroups.getPlanGroup()
+     *     await client.plangroups.getPlanGroup({
+     *         includeCompanyCounts: true
+     *     })
      */
     public getPlanGroup(
+        request: Schematic.GetPlanGroupRequest = {},
         requestOptions?: PlangroupsClient.RequestOptions,
     ): core.HttpResponsePromise<Schematic.GetPlanGroupResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__getPlanGroup(requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__getPlanGroup(request, requestOptions));
     }
 
     private async __getPlanGroup(
+        request: Schematic.GetPlanGroupRequest = {},
         requestOptions?: PlangroupsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.GetPlanGroupResponse>> {
+        const { includeCompanyCounts } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (includeCompanyCounts != null) {
+            _queryParams.include_company_counts = includeCompanyCounts.toString();
+        }
+
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -58,7 +69,7 @@ export class PlangroupsClient {
             ),
             method: "GET",
             headers: _headers,
-            queryParameters: requestOptions?.queryParams,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

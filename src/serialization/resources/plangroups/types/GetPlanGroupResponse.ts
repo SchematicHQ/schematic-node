@@ -4,18 +4,19 @@ import type * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { PlanGroupDetailResponseData } from "../../../types/PlanGroupDetailResponseData";
+import { GetPlanGroupParams } from "./GetPlanGroupParams";
 
 export const GetPlanGroupResponse: core.serialization.ObjectSchema<
     serializers.GetPlanGroupResponse.Raw,
     Schematic.GetPlanGroupResponse
 > = core.serialization.object({
     data: PlanGroupDetailResponseData,
-    params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+    params: GetPlanGroupParams,
 });
 
 export declare namespace GetPlanGroupResponse {
     export interface Raw {
         data: PlanGroupDetailResponseData.Raw;
-        params: Record<string, unknown>;
+        params: GetPlanGroupParams.Raw;
     }
 }
