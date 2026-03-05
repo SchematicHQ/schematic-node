@@ -192,10 +192,14 @@ exports.__wbindgen_init_externref_table = function() {
     ;
 };
 
-const wasmBase64 = require('./rulesengine_bg_wasm_base64.js');
-const wasmBytes = Uint8Array.from(atob(wasmBase64), c => c.charCodeAt(0));
-const wasmModule = new WebAssembly.Module(wasmBytes);
-const wasm = exports.__wasm = new WebAssembly.Instance(wasmModule, imports).exports;
+let wasm;
 
-wasm.__wbindgen_start();
+exports.initWasm = async function() {
+    if (wasm) return;
+    const wasmBase64 = require('./rulesengine_bg_wasm_base64.js');
+    const wasmBytes = Uint8Array.from(atob(wasmBase64), c => c.charCodeAt(0));
+    const wasmModule = await WebAssembly.compile(wasmBytes);
+    wasm = exports.__wasm = (await WebAssembly.instantiate(wasmModule, imports)).exports;
+    wasm.__wbindgen_start();
+};
 

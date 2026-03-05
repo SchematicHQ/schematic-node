@@ -601,6 +601,97 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 }
 ```
 
+## DataStream
+
+DataStream enables local flag evaluation by maintaining a WebSocket connection to Schematic and caching flag rules, company, and user data locally.
+
+> **Runtime compatibility:** DataStream requires Node.js APIs (`WebSocket`, `EventEmitter`) and is not supported in edge runtimes such as Cloudflare Workers, Vercel Edge Functions, or Deno Deploy. For these runtimes, use [Replicator Mode](#replicator-mode) instead.
+
+### Setup
+
+```ts
+import { SchematicClient } from "@schematichq/schematic-typescript-node";
+
+const client = new SchematicClient({
+    apiKey: process.env.SCHEMATIC_API_KEY,
+    useDataStream: true,
+});
+
+// Flag checks are now evaluated locally
+const flagValue = await client.checkFlag(
+    { company: { id: "your-company-id" } },
+    "some-flag-key",
+);
+
+client.close();
+```
+
+### Configuration options
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `cacheTTL` | `number` | 24 hours | Cache TTL in milliseconds |
+| `redisClient` | `RedisClient` | — | Redis client for shared caching (uses in-memory cache if not provided) |
+| `redisKeyPrefix` | `string` | `schematic:` | Key prefix for Redis cache entries |
+
+```ts
+import { createClient } from "redis";
+import { SchematicClient } from "@schematichq/schematic-typescript-node";
+
+const redisClient = createClient({ url: "redis://localhost:6379" });
+await redisClient.connect();
+
+const client = new SchematicClient({
+    apiKey: process.env.SCHEMATIC_API_KEY,
+    useDataStream: true,
+    dataStream: {
+        redisClient,
+        redisKeyPrefix: "schematic:",
+        cacheTTL: 60 * 60 * 1000, // 1 hour
+    },
+});
+```
+
+## Replicator Mode
+
+Replicator mode is designed for environments where a separate process (the replicator) manages the WebSocket connection and populates a shared cache. The SDK reads from that cache and evaluates flags locally without establishing its own WebSocket connection.
+
+### Requirements
+
+Replicator mode requires a shared cache (Redis or custom cache providers) so the SDK can read data written by the external replicator process.
+
+### Setup
+
+```ts
+import { createClient } from "redis";
+import { SchematicClient } from "@schematichq/schematic-typescript-node";
+
+const redisClient = createClient({ url: "redis://localhost:6379" });
+await redisClient.connect();
+
+const client = new SchematicClient({
+    apiKey: process.env.SCHEMATIC_API_KEY,
+    useDataStream: true,
+    dataStream: {
+        replicatorMode: true,
+        redisClient,
+        replicatorHealthURL: "http://localhost:8080/health",
+        replicatorHealthCheck: 30000, // 30 seconds
+    },
+});
+```
+
+### Configuration options
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `replicatorMode` | `boolean` | `false` | Enable replicator mode |
+| `redisClient` | `RedisClient` | — | **Required.** Redis client for reading from the shared cache |
+| `redisKeyPrefix` | `string` | `schematic:` | Key prefix for Redis cache entries |
+| `replicatorHealthURL` | `string` | — | URL to poll for replicator health status |
+| `replicatorHealthCheck` | `number` | 30000 | Health check polling interval in milliseconds |
+| `cacheTTL` | `number` | 24 hours | Cache TTL in milliseconds |
+
 ## Testing
 
 ### Offline mode

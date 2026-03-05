@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+export function initWasm(): Promise<void>;
 export class RulesEngineJS {
   free(): void;
   [Symbol.dispose](): void;

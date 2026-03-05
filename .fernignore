@@ -2,6 +2,7 @@
 
 .claude/
 .github/CODEOWNERS
+.github/workflows/cloudflare.yml
 CLAUDE.md
 LICENSE
 README.md
@@ -19,6 +20,7 @@ src/version.ts
 src/wasm/
 src/webhooks.ts
 src/wrapper.ts
+tests/cloudflare/
 tests/unit/cache/local.test.ts
 tests/unit/datastream/datastream-client.test.ts
 tests/unit/datastream/websocket-client.test.ts

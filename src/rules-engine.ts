@@ -1,5 +1,5 @@
 import * as Schematic from './api/types';
-import { RulesEngineJS } from './wasm/rulesengine.js';
+import { RulesEngineJS, initWasm } from './wasm/rulesengine.js';
 
 /** Entitlement details returned by the WASM rules engine  */
 export interface WasmFeatureEntitlement {
@@ -50,6 +50,7 @@ export class RulesEngineClient {
         }
 
         try {
+            await initWasm();
             this.wasmInstance = new RulesEngineJS();
             this.initialized = true;
         } catch (error) {
