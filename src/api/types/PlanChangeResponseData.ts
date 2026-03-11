@@ -12,12 +12,16 @@ export interface PlanChangeResponseData {
     basePlan?: Schematic.PlanSnapshotView;
     /** Any special behavior that affected the assignment of the base plan during this change. */
     basePlanAction?: Schematic.PlanChangeBasePlanAction;
+    /** The plan version that was assigned during this change. */
+    basePlanVersion?: Schematic.PlanVersionSnapshotView;
     company?: Schematic.CompanyResponseData;
     companyId: string;
     createdAt: Date;
     environmentId: string;
     id: string;
     previousBasePlan?: Schematic.PlanSnapshotView;
+    /** The plan version of the previous base plan before this change. */
+    previousBasePlanVersion?: Schematic.PlanVersionSnapshotView;
     requestId?: string;
     /** If a subscription was changed as a part of this plan change, indicates the type of change that was made. */
     subscriptionChangeAction?: Schematic.PlanChangeSubscriptionAction;

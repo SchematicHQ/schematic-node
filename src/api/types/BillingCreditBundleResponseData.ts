@@ -3,7 +3,6 @@
 import type * as Schematic from "../index";
 
 export interface BillingCreditBundleResponseData {
-    billingInvoiceId?: string;
     bundleType: Schematic.BillingCreditBundleType;
     createdAt: Date;
     creditDescription?: string;

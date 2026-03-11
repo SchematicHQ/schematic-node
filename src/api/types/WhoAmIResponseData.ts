@@ -5,7 +5,7 @@ import type * as Schematic from "../index";
 export interface WhoAmIResponseData {
     accountId: string;
     accountName: string;
-    actorType: string;
+    actorType: Schematic.ActorType;
     apiKeyId?: string;
     environmentId?: string;
     environments: Schematic.EnvironmentResponseData[];

@@ -4,4 +4,5 @@ import type * as Schematic from "../index";
 
 export interface CheckFlagsResponseData {
     flags: Schematic.CheckFlagResponseData[];
+    plan?: Schematic.DatastreamCompanyPlan;
 }

@@ -13,7 +13,6 @@ export const BillingCreditBundleResponseData: core.serialization.ObjectSchema<
     serializers.BillingCreditBundleResponseData.Raw,
     Schematic.BillingCreditBundleResponseData
 > = core.serialization.object({
-    billingInvoiceId: core.serialization.property("billing_invoice_id", core.serialization.string().optional()),
     bundleType: core.serialization.property("bundle_type", BillingCreditBundleType),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     creditDescription: core.serialization.property("credit_description", core.serialization.string().optional()),
@@ -37,7 +36,6 @@ export const BillingCreditBundleResponseData: core.serialization.ObjectSchema<
 
 export declare namespace BillingCreditBundleResponseData {
     export interface Raw {
-        billing_invoice_id?: string | null;
         bundle_type: BillingCreditBundleType.Raw;
         created_at: string;
         credit_description?: string | null;

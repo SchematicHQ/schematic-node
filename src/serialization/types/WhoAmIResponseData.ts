@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { ActorType } from "./ActorType";
 import { EnvironmentResponseData } from "./EnvironmentResponseData";
 
 export const WhoAmIResponseData: core.serialization.ObjectSchema<
@@ -11,7 +12,7 @@ export const WhoAmIResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     accountId: core.serialization.property("account_id", core.serialization.string()),
     accountName: core.serialization.property("account_name", core.serialization.string()),
-    actorType: core.serialization.property("actor_type", core.serialization.string()),
+    actorType: core.serialization.property("actor_type", ActorType),
     apiKeyId: core.serialization.property("api_key_id", core.serialization.string().optional()),
     environmentId: core.serialization.property("environment_id", core.serialization.string().optional()),
     environments: core.serialization.list(EnvironmentResponseData),
@@ -24,7 +25,7 @@ export declare namespace WhoAmIResponseData {
     export interface Raw {
         account_id: string;
         account_name: string;
-        actor_type: string;
+        actor_type: ActorType.Raw;
         api_key_id?: string | null;
         environment_id?: string | null;
         environments: EnvironmentResponseData.Raw[];

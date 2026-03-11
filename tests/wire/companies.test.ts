@@ -9295,6 +9295,7 @@ describe("CompaniesClient", () => {
                     },
                     base_plan: { deleted: true, description: "description", icon: "icon", id: "id", name: "name" },
                     base_plan_action: "fallback",
+                    base_plan_version: { id: "id", name: "name", version: 1 },
                     company: {
                         created_at: "2024-01-15T09:30:00Z",
                         environment_id: "environment_id",
@@ -9313,6 +9314,7 @@ describe("CompaniesClient", () => {
                         id: "id",
                         name: "name",
                     },
+                    previous_base_plan_version: { id: "id", name: "name", version: 1 },
                     request_id: "request_id",
                     subscription_change_action: "adjustment",
                     traits_updated: [
@@ -9396,6 +9398,11 @@ describe("CompaniesClient", () => {
                         name: "name",
                     },
                     basePlanAction: "fallback",
+                    basePlanVersion: {
+                        id: "id",
+                        name: "name",
+                        version: 1,
+                    },
                     company: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         environmentId: "environment_id",
@@ -9413,6 +9420,11 @@ describe("CompaniesClient", () => {
                         icon: "icon",
                         id: "id",
                         name: "name",
+                    },
+                    previousBasePlanVersion: {
+                        id: "id",
+                        name: "name",
+                        version: 1,
                     },
                     requestId: "request_id",
                     subscriptionChangeAction: "adjustment",
@@ -9544,6 +9556,7 @@ describe("CompaniesClient", () => {
                 },
                 base_plan: { deleted: true, description: "description", icon: "icon", id: "id", name: "name" },
                 base_plan_action: "fallback",
+                base_plan_version: { id: "id", name: "name", version: 1 },
                 company: {
                     created_at: "2024-01-15T09:30:00Z",
                     environment_id: "environment_id",
@@ -9558,6 +9571,7 @@ describe("CompaniesClient", () => {
                 environment_id: "environment_id",
                 id: "id",
                 previous_base_plan: { deleted: true, description: "description", icon: "icon", id: "id", name: "name" },
+                previous_base_plan_version: { id: "id", name: "name", version: 1 },
                 request_id: "request_id",
                 subscription_change_action: "adjustment",
                 traits_updated: [
@@ -9644,6 +9658,11 @@ describe("CompaniesClient", () => {
                     name: "name",
                 },
                 basePlanAction: "fallback",
+                basePlanVersion: {
+                    id: "id",
+                    name: "name",
+                    version: 1,
+                },
                 company: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     environmentId: "environment_id",
@@ -9663,6 +9682,11 @@ describe("CompaniesClient", () => {
                     icon: "icon",
                     id: "id",
                     name: "name",
+                },
+                previousBasePlanVersion: {
+                    id: "id",
+                    name: "name",
+                    version: 1,
                 },
                 requestId: "request_id",
                 subscriptionChangeAction: "adjustment",

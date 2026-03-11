@@ -4120,7 +4120,10 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = {
-            data: { flags: [{ flag: "flag", reason: "reason", value: true }] },
+            data: {
+                flags: [{ flag: "flag", reason: "reason", value: true }],
+                plan: { id: "id", name: "name", trial_end_date: "2024-01-15T09:30:00Z" },
+            },
             params: { key: "value" },
         };
         server
@@ -4142,6 +4145,11 @@ describe("FeaturesClient", () => {
                         value: true,
                     },
                 ],
+                plan: {
+                    id: "id",
+                    name: "name",
+                    trialEndDate: new Date("2024-01-15T09:30:00.000Z"),
+                },
             },
             params: {
                 key: "value",

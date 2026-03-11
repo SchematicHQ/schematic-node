@@ -338,30 +338,30 @@
   dependencies:
     statuses "^2.0.1"
 
-"@cloudflare/workerd-darwin-64@1.20260305.0":
-  version "1.20260305.0"
-  resolved "https://registry.yarnpkg.com/@cloudflare/workerd-darwin-64/-/workerd-darwin-64-1.20260305.0.tgz#47587c591fa0629d4f8c570c8329affd917411eb"
-  integrity sha512-chhKOpymo0Eh9J3nymrauMqKGboCc4uz/j0gA1G4gioMnKsN2ZDKJ+qjRZDnCoVGy8u2C4pxlmyIfsXCAfIzhQ==
+"@cloudflare/workerd-darwin-64@1.20260310.1":
+  version "1.20260310.1"
+  resolved "https://registry.yarnpkg.com/@cloudflare/workerd-darwin-64/-/workerd-darwin-64-1.20260310.1.tgz#7bed9d84d85355b8685ed336b86e812eac615af6"
+  integrity sha512-hF2VpoWaMb1fiGCQJqCY6M8I+2QQqjkyY4LiDYdTL5D/w6C1l5v1zhc0/jrjdD1DXfpJtpcSMSmEPjHse4p9Ig==
 
-"@cloudflare/workerd-darwin-arm64@1.20260305.0":
-  version "1.20260305.0"
-  resolved "https://registry.yarnpkg.com/@cloudflare/workerd-darwin-arm64/-/workerd-darwin-arm64-1.20260305.0.tgz#3b0cac49a33672d2093001b44e4b285379ece3ca"
-  integrity sha512-K9aG2OQk5bBfOP+fyGPqLcqZ9OR3ra6uwnxJ8f2mveq2A2LsCI7ZeGxQiAj75Ti80ytH/gJffZIx4Np2JtU3aQ==
+"@cloudflare/workerd-darwin-arm64@1.20260310.1":
+  version "1.20260310.1"
+  resolved "https://registry.yarnpkg.com/@cloudflare/workerd-darwin-arm64/-/workerd-darwin-arm64-1.20260310.1.tgz#f4d22ca0405eac8a83947ec2c31d53d6d61e907d"
+  integrity sha512-h/Vl3XrYYPI6yFDE27XO1QPq/1G1lKIM8tzZGIWYpntK3IN5XtH3Ee/sLaegpJ49aIJoqhF2mVAZ6Yw+Vk2gJw==
 
-"@cloudflare/workerd-linux-64@1.20260305.0":
-  version "1.20260305.0"
-  resolved "https://registry.yarnpkg.com/@cloudflare/workerd-linux-64/-/workerd-linux-64-1.20260305.0.tgz#6d677ced8daaaf1dfdfb164157bb52c333befb82"
-  integrity sha512-tt7XUoIw/cYFeGbkPkcZ6XX1aZm26Aju/4ih+DXxOosbBeGshFSrNJDBfAKKOvkjsAZymJ+WWVDBU+hmNaGfwA==
+"@cloudflare/workerd-linux-64@1.20260310.1":
+  version "1.20260310.1"
+  resolved "https://registry.yarnpkg.com/@cloudflare/workerd-linux-64/-/workerd-linux-64-1.20260310.1.tgz#65c03d88737ba2371d9b2a98fc3d121eb59ea0f4"
+  integrity sha512-XzQ0GZ8G5P4d74bQYOIP2Su4CLdNPpYidrInaSOuSxMw+HamsHaFrjVsrV2mPy/yk2hi6SY2yMbgKFK9YjA7vw==
 
-"@cloudflare/workerd-linux-arm64@1.20260305.0":
-  version "1.20260305.0"
-  resolved "https://registry.yarnpkg.com/@cloudflare/workerd-linux-arm64/-/workerd-linux-arm64-1.20260305.0.tgz#7014d1b640add8934d631743901411c4a56e32df"
-  integrity sha512-72QTkY5EzylmvCZ8ZTrnJ9DctmQsfSof1OKyOWqu/pv/B2yACfuPMikq8RpPxvVu7hhS0ztGP6ZvXz72Htq4Zg==
+"@cloudflare/workerd-linux-arm64@1.20260310.1":
+  version "1.20260310.1"
+  resolved "https://registry.yarnpkg.com/@cloudflare/workerd-linux-arm64/-/workerd-linux-arm64-1.20260310.1.tgz#557379ae3e4b332b9e27a4ac30a10e07538ad805"
+  integrity sha512-sxv4CxnN4ZR0uQGTFVGa0V4KTqwdej/czpIc5tYS86G8FQQoGIBiAIs2VvU7b8EROPcandxYHDBPTb+D9HIMPw==
 
-"@cloudflare/workerd-windows-64@1.20260305.0":
-  version "1.20260305.0"
-  resolved "https://registry.yarnpkg.com/@cloudflare/workerd-windows-64/-/workerd-windows-64-1.20260305.0.tgz#c2de46e791b9c36f4198b8addc268316e2a80ff6"
-  integrity sha512-BA0uaQPOaI2F6mJtBDqplGnQQhpXCzwEMI33p/TnDxtSk9u8CGIfBFuI6uqo8mJ6ijIaPjeBLGOn2CiRMET4qg==
+"@cloudflare/workerd-windows-64@1.20260310.1":
+  version "1.20260310.1"
+  resolved "https://registry.yarnpkg.com/@cloudflare/workerd-windows-64/-/workerd-windows-64-1.20260310.1.tgz#8b542803c52804aef657a68c07641e0564e459d0"
+  integrity sha512-+1ZTViWKJypLfgH/luAHCqkent0DEBjAjvO40iAhOMHRLYP/SPphLvr4Jpi6lb+sIocS8Q1QZL4uM5Etg1Wskg==
 
 "@cspotcode/source-map-support@0.8.1":
   version "0.8.1"
@@ -2911,14 +2911,14 @@ mimic-fn@^2.1.0:
   integrity sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==
 
 miniflare@^4.20260305.0:
-  version "4.20260305.0"
-  resolved "https://registry.yarnpkg.com/miniflare/-/miniflare-4.20260305.0.tgz#d4f22d34927707ef674baa749f19f6ff144b332e"
-  integrity sha512-jVhtKJtiwaZa3rI+WgoLvSJmEazDsoUmAPYRUmEe2VO6VSbvkhbnDRm+dsPbYRatgNIExwrpqG1rv96jHiSb0w==
+  version "4.20260310.0"
+  resolved "https://registry.yarnpkg.com/miniflare/-/miniflare-4.20260310.0.tgz#ca786687fd81746bb066c5d9a1e185a539216b8f"
+  integrity sha512-uC5vNPenFpDSj5aUU3wGSABG6UUqMr+Xs1m4AkCrTHo37F4Z6xcQw5BXqViTfPDVT/zcYH1UgTVoXhr1l6ZMXw==
   dependencies:
     "@cspotcode/source-map-support" "0.8.1"
     sharp "^0.34.5"
     undici "7.18.2"
-    workerd "1.20260305.0"
+    workerd "1.20260310.1"
     ws "8.18.0"
     youch "4.1.0-beta.10"
 
@@ -3765,16 +3765,16 @@ wordwrap@^1.0.0:
   resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-1.0.0.tgz#27584810891456a4171c8d0226441ade90cbcaeb"
   integrity sha512-gvVzJFlPycKc5dZN4yPkP8w7Dc37BtP1yczEneOb4uq34pXZcvrtRTmWV8W+Ume+XCxKgbjM+nevkyFPMybd4Q==
 
-workerd@1.20260305.0:
-  version "1.20260305.0"
-  resolved "https://registry.yarnpkg.com/workerd/-/workerd-1.20260305.0.tgz#596791e7da1c58bc59ae8fb5c06933cc1f5a77d6"
-  integrity sha512-JkhfCLU+w+KbQmZ9k49IcDYc78GBo7eG8Mir8E2+KVjR7otQAmpcLlsous09YLh8WQ3Bt3Mi6/WMStvMAPukeA==
+workerd@1.20260310.1:
+  version "1.20260310.1"
+  resolved "https://registry.yarnpkg.com/workerd/-/workerd-1.20260310.1.tgz#42305f0eeba473494b88fecb9546d559bf2b03ef"
+  integrity sha512-yawXhypXXHtArikJj15HOMknNGikpBbSg2ZDe6lddUbqZnJXuCVSkgc/0ArUeVMG1jbbGvpst+REFtKwILvRTQ==
   optionalDependencies:
-    "@cloudflare/workerd-darwin-64" "1.20260305.0"
-    "@cloudflare/workerd-darwin-arm64" "1.20260305.0"
-    "@cloudflare/workerd-linux-64" "1.20260305.0"
-    "@cloudflare/workerd-linux-arm64" "1.20260305.0"
-    "@cloudflare/workerd-windows-64" "1.20260305.0"
+    "@cloudflare/workerd-darwin-64" "1.20260310.1"
+    "@cloudflare/workerd-darwin-arm64" "1.20260310.1"
+    "@cloudflare/workerd-linux-64" "1.20260310.1"
+    "@cloudflare/workerd-linux-arm64" "1.20260310.1"
+    "@cloudflare/workerd-windows-64" "1.20260310.1"
 
 wrap-ansi@^6.2.0:
   version "6.2.0"

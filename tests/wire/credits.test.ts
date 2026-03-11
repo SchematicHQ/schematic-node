@@ -897,7 +897,6 @@ describe("CreditsClient", () => {
         const rawResponseBody = {
             data: [
                 {
-                    billing_invoice_id: "billing_invoice_id",
                     bundle_type: "fixed",
                     created_at: "2024-01-15T09:30:00Z",
                     credit_description: "credit_description",
@@ -962,7 +961,6 @@ describe("CreditsClient", () => {
         expect(response).toEqual({
             data: [
                 {
-                    billingInvoiceId: "billing_invoice_id",
                     bundleType: "fixed",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     creditDescription: "credit_description",
@@ -1112,7 +1110,6 @@ describe("CreditsClient", () => {
         };
         const rawResponseBody = {
             data: {
-                billing_invoice_id: "billing_invoice_id",
                 bundle_type: "fixed",
                 created_at: "2024-01-15T09:30:00Z",
                 credit_description: "credit_description",
@@ -1170,7 +1167,6 @@ describe("CreditsClient", () => {
         });
         expect(response).toEqual({
             data: {
-                billingInvoiceId: "billing_invoice_id",
                 bundleType: "fixed",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 creditDescription: "credit_description",
@@ -1366,7 +1362,6 @@ describe("CreditsClient", () => {
 
         const rawResponseBody = {
             data: {
-                billing_invoice_id: "billing_invoice_id",
                 bundle_type: "fixed",
                 created_at: "2024-01-15T09:30:00Z",
                 credit_description: "credit_description",
@@ -1418,7 +1413,6 @@ describe("CreditsClient", () => {
         const response = await client.credits.getCreditBundle("bundle_id");
         expect(response).toEqual({
             data: {
-                billingInvoiceId: "billing_invoice_id",
                 bundleType: "fixed",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 creditDescription: "credit_description",
@@ -1541,7 +1535,6 @@ describe("CreditsClient", () => {
         const rawRequestBody = { bundle_name: "bundle_name", price_per_unit: 1 };
         const rawResponseBody = {
             data: {
-                billing_invoice_id: "billing_invoice_id",
                 bundle_type: "fixed",
                 created_at: "2024-01-15T09:30:00Z",
                 credit_description: "credit_description",
@@ -1597,7 +1590,6 @@ describe("CreditsClient", () => {
         });
         expect(response).toEqual({
             data: {
-                billingInvoiceId: "billing_invoice_id",
                 bundleType: "fixed",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 creditDescription: "credit_description",
