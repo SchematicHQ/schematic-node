@@ -1840,7 +1840,7 @@ describe("AccountsClient", () => {
             data: {
                 account_id: "account_id",
                 account_name: "account_name",
-                actor_type: "actor_type",
+                actor_type: "api_key",
                 api_key_id: "api_key_id",
                 environment_id: "environment_id",
                 environments: [
@@ -1865,7 +1865,7 @@ describe("AccountsClient", () => {
             data: {
                 accountId: "account_id",
                 accountName: "account_name",
-                actorType: "actor_type",
+                actorType: "api_key",
                 apiKeyId: "api_key_id",
                 environmentId: "environment_id",
                 environments: [
