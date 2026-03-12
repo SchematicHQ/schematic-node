@@ -136,6 +136,7 @@ export * from "./CreditUsage";
 export * from "./CreditUsageAggregation";
 export * from "./CustomPlanConfig";
 export * from "./CustomPlanViewConfigResponseData";
+export * from "./DataEventPayload";
 export * from "./DataExportOutputFileType";
 export * from "./DataExportResponseData";
 export * from "./DataExportStatus";

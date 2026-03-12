@@ -3,7 +3,7 @@
 export interface CaptureRawEvent {
     capturedAt: Date;
     eventId?: string;
-    rawBytes: number[];
+    rawBytes: string;
     remoteIp: string;
     userAgent: string;
 }
