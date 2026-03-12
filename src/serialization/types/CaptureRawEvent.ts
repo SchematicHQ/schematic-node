@@ -10,7 +10,7 @@ export const CaptureRawEvent: core.serialization.ObjectSchema<
 > = core.serialization.object({
     capturedAt: core.serialization.property("captured_at", core.serialization.date()),
     eventId: core.serialization.property("event_id", core.serialization.string().optional()),
-    rawBytes: core.serialization.property("raw_bytes", core.serialization.list(core.serialization.number())),
+    rawBytes: core.serialization.property("raw_bytes", core.serialization.string()),
     remoteIp: core.serialization.property("remote_ip", core.serialization.string()),
     userAgent: core.serialization.property("user_agent", core.serialization.string()),
 });
@@ -19,7 +19,7 @@ export declare namespace CaptureRawEvent {
     export interface Raw {
         captured_at: string;
         event_id?: string | null;
-        raw_bytes: number[];
+        raw_bytes: string;
         remote_ip: string;
         user_agent: string;
     }
