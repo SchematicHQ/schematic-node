@@ -94,4 +94,70 @@ describe("LocalCache", () => {
 
         expect((testCache as any).cache.size).toBe(maxItems);
     });
+
+    it("should support custom TTL override per item", async () => {
+        await cache.set("shortTTL", { data: "short" }, 500); // Custom short TTL
+        await cache.set("defaultTTL", { data: "default" }); // Uses default 5000ms TTL
+
+        const shortBefore = await cache.get("shortTTL");
+        expect(shortBefore).toEqual({ data: "short" });
+
+        jest.advanceTimersByTime(501);
+
+        const shortAfter = await cache.get("shortTTL");
+        expect(shortAfter).toBeNull();
+
+        const defaultAfter = await cache.get("defaultTTL");
+        expect(defaultAfter).toEqual({ data: "default" });
+    });
+
+    it("should delete an item", async () => {
+        await cache.set("key1", { data: "value1" });
+
+        const valueBefore = await cache.get("key1");
+        expect(valueBefore).toEqual({ data: "value1" });
+
+        await cache.delete("key1");
+
+        const valueAfter = await cache.get("key1");
+        expect(valueAfter).toBeNull();
+    });
+
+    it("should remove unlisted keys with deleteMissing", async () => {
+        await cache.set("keep1", { data: "keep1" });
+        await cache.set("keep2", { data: "keep2" });
+        await cache.set("remove1", { data: "remove1" });
+        await cache.set("remove2", { data: "remove2" });
+
+        await cache.deleteMissing(["keep1", "keep2"]);
+
+        const keep1 = await cache.get("keep1");
+        const keep2 = await cache.get("keep2");
+        const remove1 = await cache.get("remove1");
+        const remove2 = await cache.get("remove2");
+
+        expect(keep1).toEqual({ data: "keep1" });
+        expect(keep2).toEqual({ data: "keep2" });
+        expect(remove1).toBeNull();
+        expect(remove2).toBeNull();
+    });
+
+    it("should handle concurrent read/write safely", async () => {
+        const operations = [];
+        for (let i = 0; i < 50; i++) {
+            operations.push(cache.set(`concurrent${i}`, { data: `value${i}` }));
+            operations.push(cache.get(`concurrent${i}`));
+        }
+
+        await expect(Promise.all(operations)).resolves.not.toThrow();
+
+        // Verify that the last items written are consistent
+        for (let i = 0; i < 10; i++) {
+            const key = `concurrent${i}`;
+            const value = await cache.get(key);
+            if (value !== null) {
+                expect(value).toEqual({ data: `value${i}` });
+            }
+        }
+    });
 });

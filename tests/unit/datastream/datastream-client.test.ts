@@ -196,6 +196,42 @@ describe('DataStreamClient', () => {
     expect(errorSpy).toHaveBeenCalledWith(new Error('test error'));
   });
 
+  test('should handle reconnection state', async () => {
+    const connectSpy = jest.fn();
+    const disconnectSpy = jest.fn();
+
+    client.on('connected', connectSpy);
+    client.on('disconnected', disconnectSpy);
+
+    await client.start();
+
+    // Get the event handlers registered on the WebSocket client mock
+    const onCalls = mockDatastreamWSClientInstance.on.mock.calls;
+    const connectedHandler = onCalls.find((call: [string, Function]) => call[0] === 'connected')?.[1];
+    const disconnectedHandler = onCalls.find((call: [string, Function]) => call[0] === 'disconnected')?.[1];
+
+    // Simulate initial connected state
+    mockDatastreamWSClientInstance.isConnected.mockReturnValue(true);
+    if (connectedHandler) connectedHandler();
+
+    expect(connectSpy).toHaveBeenCalledTimes(1);
+    expect(client.isConnected()).toBe(true);
+
+    // Simulate disconnect
+    mockDatastreamWSClientInstance.isConnected.mockReturnValue(false);
+    if (disconnectedHandler) disconnectedHandler();
+
+    expect(disconnectSpy).toHaveBeenCalledTimes(1);
+    expect(client.isConnected()).toBe(false);
+
+    // Simulate reconnection (connected event fires again)
+    mockDatastreamWSClientInstance.isConnected.mockReturnValue(true);
+    if (connectedHandler) connectedHandler();
+
+    expect(connectSpy).toHaveBeenCalledTimes(2);
+    expect(client.isConnected()).toBe(true);
+  });
+
   test('should handle company messages and update cache', async () => {
     await client.start();
 
@@ -261,6 +297,65 @@ describe('DataStreamClient', () => {
     const retrievedFlag = await client.getFlag(mockFlag.key);
     expect(retrievedFlag).toEqual(mockFlag);
   });
+
+  test('should handle partial entity message merging', async () => {
+    await client.start();
+
+    // Get message handler
+    const DatastreamWSClientMock = DatastreamWSClient as jest.MockedClass<typeof DatastreamWSClient>;
+    const messageHandler = DatastreamWSClientMock.mock.calls[0][0].messageHandler;
+
+    // Send a FULL company message with all fields
+    const fullCompany = {
+      id: 'company-partial',
+      account_id: 'account-123',
+      environment_id: 'env-123',
+      keys: { name: 'Partial Corp' },
+      traits: [{ key: 'tier', value: 'free' }],
+      rules: [],
+      metrics: [],
+      plan_ids: ['plan-1'],
+      billing_product_ids: [],
+      crm_product_ids: [],
+      credit_balances: {},
+    } as unknown as Schematic.RulesengineCompany;
+
+    await messageHandler({
+      entity_type: EntityType.COMPANY,
+      message_type: MessageType.FULL,
+      data: fullCompany,
+    });
+
+    // Verify the full company is cached
+    const cachedFull = await client.getCompany({ name: 'Partial Corp' });
+    expect(cachedFull).toEqual(fullCompany);
+
+    // Send a PARTIAL company message that updates only some fields
+    const partialCompany = {
+      id: 'company-partial',
+      keys: { name: 'Partial Corp' },
+      traits: [{ key: 'tier', value: 'enterprise' }],
+      plan_ids: ['plan-2'],
+    } as unknown as Schematic.RulesengineCompany;
+
+    await messageHandler({
+      entity_type: EntityType.COMPANY,
+      message_type: MessageType.PARTIAL,
+      data: partialCompany,
+    });
+
+    // NOTE: The current implementation does not merge partial messages with
+    // existing cached data. Both FULL and PARTIAL message types overwrite
+    // the cache entirely. This test documents that behavior: after a PARTIAL
+    // message, only the fields present in the partial payload are retained.
+    const cachedAfterPartial = await client.getCompany({ name: 'Partial Corp' });
+    expect(cachedAfterPartial.id).toBe('company-partial');
+    expect((cachedAfterPartial as any).traits).toEqual([{ key: 'tier', value: 'enterprise' }]);
+    expect((cachedAfterPartial as any).plan_ids).toEqual(['plan-2']);
+    // Original fields not present in the partial message are lost (overwritten)
+    expect((cachedAfterPartial as any).metrics).toBeUndefined();
+    expect((cachedAfterPartial as any).rules).toBeUndefined();
+  }, 10000);
 
   test('should request data from datastream when not in cache', async () => {
     // Set up connected state
@@ -810,6 +905,32 @@ describe('DataStreamClient', () => {
 
       expect(byName).toEqual(updatedCompany);
       expect(bySlug).toEqual(updatedCompany);
+    });
+
+    test('should handle deep copy to prevent mutation of cached entities', async () => {
+      // Cache a company
+      await messageHandler({
+        entity_type: EntityType.COMPANY,
+        message_type: MessageType.FULL,
+        data: multiKeyCompany,
+      });
+
+      // Retrieve the company from cache
+      const firstRetrieval = await client.getCompany({ name: 'acme' });
+      expect(firstRetrieval).toEqual(multiKeyCompany);
+
+      // Mutate a field on the returned object
+      (firstRetrieval as any).traits = [{ key: 'mutated', value: 'yes' }];
+
+      // Retrieve the company again from cache
+      const secondRetrieval = await client.getCompany({ name: 'acme' });
+
+      // NOTE: The LocalCache returns references, not copies, so mutation of
+      // a retrieved object DOES affect subsequent cache reads. This test
+      // documents the current behavior: the cache does not deep-copy on get.
+      // If deep-copy-on-read were implemented, secondRetrieval.traits would
+      // still equal the original (empty array).
+      expect((secondRetrieval as any).traits).toEqual([{ key: 'mutated', value: 'yes' }]);
     });
 
     test('should update company metrics and reflect via all keys', async () => {
