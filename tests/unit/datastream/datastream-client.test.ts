@@ -344,17 +344,17 @@ describe('DataStreamClient', () => {
       data: partialCompany,
     });
 
-    // NOTE: The current implementation does not merge partial messages with
-    // existing cached data. Both FULL and PARTIAL message types overwrite
-    // the cache entirely. This test documents that behavior: after a PARTIAL
-    // message, only the fields present in the partial payload are retained.
+    // Partial messages are now properly merged: fields in the partial update
+    // the cached entity, while fields not present in the partial are preserved.
     const cachedAfterPartial = await client.getCompany({ name: 'Partial Corp' });
     expect(cachedAfterPartial.id).toBe('company-partial');
     expect((cachedAfterPartial as any).traits).toEqual([{ key: 'tier', value: 'enterprise' }]);
     expect((cachedAfterPartial as any).plan_ids).toEqual(['plan-2']);
-    // Original fields not present in the partial message are lost (overwritten)
-    expect((cachedAfterPartial as any).metrics).toBeUndefined();
-    expect((cachedAfterPartial as any).rules).toBeUndefined();
+    // Original fields not present in the partial message are preserved
+    expect((cachedAfterPartial as any).metrics).toEqual([]);
+    expect((cachedAfterPartial as any).rules).toEqual([]);
+    expect((cachedAfterPartial as any).account_id).toBe('account-123');
+    expect((cachedAfterPartial as any).billing_product_ids).toEqual([]);
   }, 10000);
 
   test('should request data from datastream when not in cache', async () => {
