@@ -4,6 +4,7 @@ import { DataStreamResp, DataStreamReq, DataStreamError, EntityType, MessageType
 import { RulesEngineClient } from '../rules-engine';
 import { Logger } from '../logger';
 import { LazyEmitter } from './emitter';
+import { partialCompany, partialUser, extractIdFromData, deepCopyCompany as deepCopyCompanyFn } from './merge';
 
 // Import cache providers from the cache module
 import type { CacheProvider } from '../cache/types';
@@ -681,8 +682,35 @@ export class DataStreamClient extends LazyEmitter {
    * handleCompanyMessage processes company-specific datastream messages
    */
   private async handleCompanyMessage(message: DataStreamResp): Promise<void> {
-    const company = message.data as Schematic.RulesengineCompany;
-    
+    let company: Schematic.RulesengineCompany;
+
+    if (message.message_type === MessageType.PARTIAL) {
+      const data = message.data as Record<string, unknown>;
+      let id: string;
+      try {
+        id = extractIdFromData(data);
+      } catch (error) {
+        this.logger.error(`Failed to extract company ID from partial message: ${error}`);
+        return;
+      }
+
+      const resourceKey = this.resourceIdCacheKey(CACHE_KEY_PREFIX_COMPANY, id);
+      const existing = await this.companyCacheProvider.get(resourceKey);
+      if (!existing) {
+        this.logger.warn(`Cache miss for partial company '${id}', skipping`);
+        return;
+      }
+
+      try {
+        company = partialCompany(existing, data);
+      } catch (error) {
+        this.logger.error(`Failed to merge partial company: ${error}`);
+        return;
+      }
+    } else {
+      company = message.data as Schematic.RulesengineCompany;
+    }
+
     if (!company) {
       return;
     }
@@ -720,8 +748,35 @@ export class DataStreamClient extends LazyEmitter {
    * handleUserMessage processes user-specific datastream messages
    */
   private async handleUserMessage(message: DataStreamResp): Promise<void> {
-    const user = message.data as Schematic.RulesengineUser;
-    
+    let user: Schematic.RulesengineUser;
+
+    if (message.message_type === MessageType.PARTIAL) {
+      const data = message.data as Record<string, unknown>;
+      let id: string;
+      try {
+        id = extractIdFromData(data);
+      } catch (error) {
+        this.logger.error(`Failed to extract user ID from partial message: ${error}`);
+        return;
+      }
+
+      const resourceKey = this.resourceIdCacheKey(CACHE_KEY_PREFIX_USER, id);
+      const existing = await this.userCacheProvider.get(resourceKey);
+      if (!existing) {
+        this.logger.warn(`Cache miss for partial user '${id}', skipping`);
+        return;
+      }
+
+      try {
+        user = partialUser(existing, data);
+      } catch (error) {
+        this.logger.error(`Failed to merge partial user: ${error}`);
+        return;
+      }
+    } else {
+      user = message.data as Schematic.RulesengineUser;
+    }
+
     if (!user) {
       return;
     }
@@ -1226,8 +1281,7 @@ export class DataStreamClient extends LazyEmitter {
    * deepCopyCompany creates a complete deep copy of a Company struct
    */
   private deepCopyCompany(company: Schematic.RulesengineCompany): Schematic.RulesengineCompany {
-    // Use JSON parsing for a deep copy - this matches the Go implementation approach
-    return JSON.parse(JSON.stringify(company));
+    return deepCopyCompanyFn(company);
   }
 
   private async evaluateFlag(
