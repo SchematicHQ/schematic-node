@@ -8,8 +8,8 @@
  *         planVersionId: "plan_version_id",
  *         q: "q",
  *         withMeteredProducts: true,
- *         limit: 1,
- *         offset: 1
+ *         limit: 1000000,
+ *         offset: 1000000
  *     }
  */
 export interface CountPlanEntitlementsRequest {

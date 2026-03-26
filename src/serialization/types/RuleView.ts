@@ -16,7 +16,6 @@ export const RuleView: core.serialization.ObjectSchema<serializers.RuleView.Raw,
         flagId: core.serialization.property("flag_id", core.serialization.string().optional()),
         id: core.serialization.string(),
         name: core.serialization.string(),
-        planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
         priority: core.serialization.number(),
         ruleType: core.serialization.property("rule_type", core.serialization.string()),
         updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -33,7 +32,6 @@ export declare namespace RuleView {
         flag_id?: string | null;
         id: string;
         name: string;
-        plan_version_id?: string | null;
         priority: number;
         rule_type: string;
         updated_at: string;

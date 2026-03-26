@@ -11,16 +11,16 @@ describe("CheckoutClient", () => {
         const rawRequestBody = {
             add_on_ids: [{ add_on_id: "add_on_id", price_id: "price_id" }],
             company_id: "company_id",
-            credit_bundles: [{ bundle_id: "bundle_id", quantity: 1 }],
+            credit_bundles: [{ bundle_id: "bundle_id", quantity: 1000000 }],
             new_plan_id: "new_plan_id",
             new_price_id: "new_price_id",
-            pay_in_advance: [{ price_id: "price_id", quantity: 1 }],
+            pay_in_advance: [{ price_id: "price_id", quantity: 1000000 }],
             skip_trial: true,
         };
         const rawResponseBody = {
             data: {
                 application_id: "application_id",
-                cancel_at: 1,
+                cancel_at: 1000000,
                 cancel_at_period_end: true,
                 company_id: "company_id",
                 confirm_payment_intent_client_secret: "confirm_payment_intent_client_secret",
@@ -33,17 +33,18 @@ describe("CheckoutClient", () => {
                 id: "id",
                 interval: "interval",
                 metadata: { key: "value" },
-                period_end: 1,
-                period_start: 1,
+                period_end: 1000000,
+                period_start: 1000000,
                 provider_type: "schematic",
                 status: "status",
                 subscription_external_id: "subscription_external_id",
-                total_price: 1,
-                trial_end: 1,
+                total_price: 1000000,
+                trial_end: 1000000,
                 trial_end_setting: "cancel",
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/checkout-internal")
@@ -64,7 +65,7 @@ describe("CheckoutClient", () => {
             creditBundles: [
                 {
                     bundleId: "bundle_id",
-                    quantity: 1,
+                    quantity: 1000000,
                 },
             ],
             newPlanId: "new_plan_id",
@@ -72,7 +73,7 @@ describe("CheckoutClient", () => {
             payInAdvance: [
                 {
                     priceId: "price_id",
-                    quantity: 1,
+                    quantity: 1000000,
                 },
             ],
             skipTrial: true,
@@ -80,7 +81,7 @@ describe("CheckoutClient", () => {
         expect(response).toEqual({
             data: {
                 applicationId: "application_id",
-                cancelAt: 1,
+                cancelAt: 1000000,
                 cancelAtPeriodEnd: true,
                 companyId: "company_id",
                 confirmPaymentIntentClientSecret: "confirm_payment_intent_client_secret",
@@ -95,13 +96,13 @@ describe("CheckoutClient", () => {
                 metadata: {
                     key: "value",
                 },
-                periodEnd: 1,
-                periodStart: 1,
+                periodEnd: 1000000,
+                periodStart: 1000000,
                 providerType: "schematic",
                 status: "status",
                 subscriptionExternalId: "subscription_external_id",
-                totalPrice: 1,
-                trialEnd: 1,
+                totalPrice: 1000000,
+                trialEnd: 1000000,
                 trialEndSetting: "cancel",
             },
             params: {
@@ -120,18 +121,19 @@ describe("CheckoutClient", () => {
             ],
             company_id: "company_id",
             credit_bundles: [
-                { bundle_id: "bundle_id", quantity: 1 },
-                { bundle_id: "bundle_id", quantity: 1 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
             ],
             new_plan_id: "new_plan_id",
             new_price_id: "new_price_id",
             pay_in_advance: [
-                { price_id: "price_id", quantity: 1 },
-                { price_id: "price_id", quantity: 1 },
+                { price_id: "price_id", quantity: 1000000 },
+                { price_id: "price_id", quantity: 1000000 },
             ],
             skip_trial: true,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/checkout-internal")
@@ -157,11 +159,11 @@ describe("CheckoutClient", () => {
                 creditBundles: [
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 newPlanId: "new_plan_id",
@@ -169,11 +171,11 @@ describe("CheckoutClient", () => {
                 payInAdvance: [
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 skipTrial: true,
@@ -191,18 +193,19 @@ describe("CheckoutClient", () => {
             ],
             company_id: "company_id",
             credit_bundles: [
-                { bundle_id: "bundle_id", quantity: 1 },
-                { bundle_id: "bundle_id", quantity: 1 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
             ],
             new_plan_id: "new_plan_id",
             new_price_id: "new_price_id",
             pay_in_advance: [
-                { price_id: "price_id", quantity: 1 },
-                { price_id: "price_id", quantity: 1 },
+                { price_id: "price_id", quantity: 1000000 },
+                { price_id: "price_id", quantity: 1000000 },
             ],
             skip_trial: true,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/checkout-internal")
@@ -228,11 +231,11 @@ describe("CheckoutClient", () => {
                 creditBundles: [
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 newPlanId: "new_plan_id",
@@ -240,11 +243,11 @@ describe("CheckoutClient", () => {
                 payInAdvance: [
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 skipTrial: true,
@@ -262,18 +265,19 @@ describe("CheckoutClient", () => {
             ],
             company_id: "company_id",
             credit_bundles: [
-                { bundle_id: "bundle_id", quantity: 1 },
-                { bundle_id: "bundle_id", quantity: 1 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
             ],
             new_plan_id: "new_plan_id",
             new_price_id: "new_price_id",
             pay_in_advance: [
-                { price_id: "price_id", quantity: 1 },
-                { price_id: "price_id", quantity: 1 },
+                { price_id: "price_id", quantity: 1000000 },
+                { price_id: "price_id", quantity: 1000000 },
             ],
             skip_trial: true,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/checkout-internal")
@@ -299,11 +303,11 @@ describe("CheckoutClient", () => {
                 creditBundles: [
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 newPlanId: "new_plan_id",
@@ -311,11 +315,11 @@ describe("CheckoutClient", () => {
                 payInAdvance: [
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 skipTrial: true,
@@ -333,18 +337,19 @@ describe("CheckoutClient", () => {
             ],
             company_id: "company_id",
             credit_bundles: [
-                { bundle_id: "bundle_id", quantity: 1 },
-                { bundle_id: "bundle_id", quantity: 1 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
             ],
             new_plan_id: "new_plan_id",
             new_price_id: "new_price_id",
             pay_in_advance: [
-                { price_id: "price_id", quantity: 1 },
-                { price_id: "price_id", quantity: 1 },
+                { price_id: "price_id", quantity: 1000000 },
+                { price_id: "price_id", quantity: 1000000 },
             ],
             skip_trial: true,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/checkout-internal")
@@ -370,11 +375,11 @@ describe("CheckoutClient", () => {
                 creditBundles: [
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 newPlanId: "new_plan_id",
@@ -382,11 +387,11 @@ describe("CheckoutClient", () => {
                 payInAdvance: [
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 skipTrial: true,
@@ -404,18 +409,19 @@ describe("CheckoutClient", () => {
             ],
             company_id: "company_id",
             credit_bundles: [
-                { bundle_id: "bundle_id", quantity: 1 },
-                { bundle_id: "bundle_id", quantity: 1 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
             ],
             new_plan_id: "new_plan_id",
             new_price_id: "new_price_id",
             pay_in_advance: [
-                { price_id: "price_id", quantity: 1 },
-                { price_id: "price_id", quantity: 1 },
+                { price_id: "price_id", quantity: 1000000 },
+                { price_id: "price_id", quantity: 1000000 },
             ],
             skip_trial: true,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/checkout-internal")
@@ -441,11 +447,11 @@ describe("CheckoutClient", () => {
                 creditBundles: [
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 newPlanId: "new_plan_id",
@@ -453,11 +459,11 @@ describe("CheckoutClient", () => {
                 payInAdvance: [
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 skipTrial: true,
@@ -474,7 +480,7 @@ describe("CheckoutClient", () => {
                 active_add_ons: [
                     {
                         charge_type: "free",
-                        company_count: 1,
+                        company_count: 1000000,
                         controlled_by: "schematic",
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
@@ -535,7 +541,7 @@ describe("CheckoutClient", () => {
                                                 environment_id: "environment_id",
                                                 id: "id",
                                                 name: "name",
-                                                priority: 1,
+                                                priority: 1000000,
                                                 rule_type: "rule_type",
                                                 updated_at: "2024-01-15T09:30:00Z",
                                                 value: true,
@@ -570,7 +576,7 @@ describe("CheckoutClient", () => {
                                 plan_type: "plan",
                                 status: "published",
                                 updated_at: "2024-01-15T09:30:00Z",
-                                version: 1,
+                                version: 1000000,
                             },
                         ],
                     },
@@ -586,7 +592,7 @@ describe("CheckoutClient", () => {
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
-                        version: 1,
+                        version: 1000000,
                     },
                     billing_product: {
                         account_id: "account_id",
@@ -602,7 +608,7 @@ describe("CheckoutClient", () => {
                                 external_price_id: "external_price_id",
                                 id: "id",
                                 interval: "day",
-                                price: 1,
+                                price: 1000000,
                                 provider_type: "schematic",
                                 scheme: "per_unit",
                             },
@@ -610,11 +616,11 @@ describe("CheckoutClient", () => {
                         product_id: "product_id",
                         provider_type: "schematic",
                         quantity: 1.1,
-                        subscription_count: 1,
+                        subscription_count: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     charge_type: "free",
-                    company_count: 1,
+                    company_count: 1000000,
                     controlled_by: "schematic",
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
@@ -628,7 +634,7 @@ describe("CheckoutClient", () => {
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
-                        version: 1,
+                        version: 1000000,
                     },
                     features: [
                         {
@@ -687,7 +693,7 @@ describe("CheckoutClient", () => {
                                             environment_id: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             rule_type: "rule_type",
                                             updated_at: "2024-01-15T09:30:00Z",
                                             value: true,
@@ -709,7 +715,7 @@ describe("CheckoutClient", () => {
                         {
                             auto_topup_enabled: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            credit_amount: 1,
+                            credit_amount: 1000000,
                             credit_id: "credit_id",
                             credit_name: "credit_name",
                             id: "id",
@@ -726,7 +732,7 @@ describe("CheckoutClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
@@ -736,12 +742,12 @@ describe("CheckoutClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
                     plan_type: "plan",
-                    trial_days: 1,
+                    trial_days: 1000000,
                     updated_at: "2024-01-15T09:30:00Z",
                     versions: [
                         {
@@ -754,7 +760,7 @@ describe("CheckoutClient", () => {
                             plan_type: "plan",
                             status: "published",
                             updated_at: "2024-01-15T09:30:00Z",
-                            version: 1,
+                            version: 1000000,
                         },
                     ],
                     yearly_price: {
@@ -762,7 +768,7 @@ describe("CheckoutClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
@@ -791,7 +797,7 @@ describe("CheckoutClient", () => {
                                 {
                                     billing_credit_auto_topup_enabled: true,
                                     created_at: "2024-01-15T09:30:00Z",
-                                    credit_amount: 1,
+                                    credit_amount: 1000000,
                                     credit_description: "credit_description",
                                     credit_id: "credit_id",
                                     credit_name: "credit_name",
@@ -823,8 +829,8 @@ describe("CheckoutClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        period_end: 1,
-                        period_start: 1,
+                        period_end: 1000000,
+                        period_start: 1000000,
                         products: [
                             {
                                 billing_scheme: "per_unit",
@@ -835,8 +841,8 @@ describe("CheckoutClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                package_size: 1,
-                                price: 1,
+                                package_size: 1000000,
+                                price: 1000000,
                                 price_external_id: "price_external_id",
                                 price_id: "price_id",
                                 price_tier: [{}],
@@ -850,7 +856,7 @@ describe("CheckoutClient", () => {
                         provider_type: "schematic",
                         status: "status",
                         subscription_external_id: "subscription_external_id",
-                        total_price: 1,
+                        total_price: 1000000,
                     },
                     billing_subscriptions: [
                         {
@@ -871,8 +877,8 @@ describe("CheckoutClient", () => {
                             ],
                             id: "id",
                             interval: "interval",
-                            period_end: 1,
-                            period_start: 1,
+                            period_end: 1000000,
+                            period_start: 1000000,
                             products: [
                                 {
                                     billing_scheme: "per_unit",
@@ -883,8 +889,8 @@ describe("CheckoutClient", () => {
                                     id: "id",
                                     interval: "interval",
                                     name: "name",
-                                    package_size: 1,
-                                    price: 1,
+                                    package_size: 1000000,
+                                    price: 1000000,
                                     price_external_id: "price_external_id",
                                     price_id: "price_id",
                                     price_tier: [{}],
@@ -898,7 +904,7 @@ describe("CheckoutClient", () => {
                             provider_type: "schematic",
                             status: "status",
                             subscription_external_id: "subscription_external_id",
-                            total_price: 1,
+                            total_price: 1000000,
                         },
                     ],
                     created_at: "2024-01-15T09:30:00Z",
@@ -951,7 +957,7 @@ describe("CheckoutClient", () => {
                             event_subtype: "event_subtype",
                             month_reset: "month_reset",
                             period: "period",
-                            value: 1,
+                            value: 1000000,
                         },
                     ],
                     name: "name",
@@ -973,7 +979,7 @@ describe("CheckoutClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                credit_amount: 1,
+                                credit_amount: 1000000,
                                 credit_description: "credit_description",
                                 credit_id: "credit_id",
                                 credit_name: "credit_name",
@@ -1018,7 +1024,7 @@ describe("CheckoutClient", () => {
                             environment_id: "environment_id",
                             id: "id",
                             name: "name",
-                            priority: 1,
+                            priority: 1000000,
                             rule_type: "default",
                             value: true,
                         },
@@ -1028,7 +1034,7 @@ describe("CheckoutClient", () => {
                         effective_after: "2024-01-15T09:30:00Z",
                         from_plan_id: "from_plan_id",
                         from_plan_name: "from_plan_name",
-                        from_subscription_price: 1,
+                        from_subscription_price: 1000000,
                         id: "id",
                         interval: "interval",
                         to_plan_id: "to_plan_id",
@@ -1036,7 +1042,7 @@ describe("CheckoutClient", () => {
                     },
                     traits: { key: "value" },
                     updated_at: "2024-01-15T09:30:00Z",
-                    user_count: 1,
+                    user_count: 1000000,
                 },
                 feature_usage: {
                     features: [
@@ -1048,7 +1054,7 @@ describe("CheckoutClient", () => {
                         },
                     ],
                 },
-                selected_credit_bundles: [{ quantity: 1, total: 1 }],
+                selected_credit_bundles: [{ quantity: 1000000, total: 1000000 }],
                 selected_plan: {
                     active_version: {
                         created_at: "2024-01-15T09:30:00Z",
@@ -1060,7 +1066,7 @@ describe("CheckoutClient", () => {
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
-                        version: 1,
+                        version: 1000000,
                     },
                     billing_product: {
                         account_id: "account_id",
@@ -1076,7 +1082,7 @@ describe("CheckoutClient", () => {
                                 external_price_id: "external_price_id",
                                 id: "id",
                                 interval: "day",
-                                price: 1,
+                                price: 1000000,
                                 provider_type: "schematic",
                                 scheme: "per_unit",
                             },
@@ -1084,11 +1090,11 @@ describe("CheckoutClient", () => {
                         product_id: "product_id",
                         provider_type: "schematic",
                         quantity: 1.1,
-                        subscription_count: 1,
+                        subscription_count: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     charge_type: "free",
-                    company_count: 1,
+                    company_count: 1000000,
                     controlled_by: "schematic",
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
@@ -1102,7 +1108,7 @@ describe("CheckoutClient", () => {
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
-                        version: 1,
+                        version: 1000000,
                     },
                     features: [
                         {
@@ -1161,7 +1167,7 @@ describe("CheckoutClient", () => {
                                             environment_id: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             rule_type: "rule_type",
                                             updated_at: "2024-01-15T09:30:00Z",
                                             value: true,
@@ -1183,7 +1189,7 @@ describe("CheckoutClient", () => {
                         {
                             auto_topup_enabled: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            credit_amount: 1,
+                            credit_amount: 1000000,
                             credit_id: "credit_id",
                             credit_name: "credit_name",
                             id: "id",
@@ -1200,7 +1206,7 @@ describe("CheckoutClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
@@ -1210,12 +1216,12 @@ describe("CheckoutClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
                     plan_type: "plan",
-                    trial_days: 1,
+                    trial_days: 1000000,
                     updated_at: "2024-01-15T09:30:00Z",
                     versions: [
                         {
@@ -1228,7 +1234,7 @@ describe("CheckoutClient", () => {
                             plan_type: "plan",
                             status: "published",
                             updated_at: "2024-01-15T09:30:00Z",
-                            version: 1,
+                            version: 1000000,
                         },
                     ],
                     yearly_price: {
@@ -1236,7 +1242,7 @@ describe("CheckoutClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
@@ -1261,9 +1267,9 @@ describe("CheckoutClient", () => {
                     expired_at: "2024-01-15T09:30:00Z",
                     interval: "interval",
                     latest_invoice: {
-                        amount_due: 1,
-                        amount_paid: 1,
-                        amount_remaining: 1,
+                        amount_due: 1000000,
+                        amount_paid: 1000000,
+                        amount_remaining: 1000000,
                         collection_method: "collection_method",
                         created_at: "2024-01-15T09:30:00Z",
                         currency: "currency",
@@ -1271,7 +1277,7 @@ describe("CheckoutClient", () => {
                         environment_id: "environment_id",
                         id: "id",
                         provider_type: "schematic",
-                        subtotal: 1,
+                        subtotal: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     payment_method: {
@@ -1294,8 +1300,8 @@ describe("CheckoutClient", () => {
                             id: "id",
                             interval: "interval",
                             name: "name",
-                            package_size: 1,
-                            price: 1,
+                            package_size: 1000000,
+                            price: 1000000,
                             price_external_id: "price_external_id",
                             price_id: "price_id",
                             price_tier: [{}],
@@ -1308,12 +1314,13 @@ describe("CheckoutClient", () => {
                     ],
                     status: "status",
                     subscription_external_id: "subscription_external_id",
-                    total_price: 1,
+                    total_price: 1000000,
                     trial_end: "2024-01-15T09:30:00Z",
                 },
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/checkout-internal/data")
@@ -1331,7 +1338,7 @@ describe("CheckoutClient", () => {
                 activeAddOns: [
                     {
                         chargeType: "free",
-                        companyCount: 1,
+                        companyCount: 1000000,
                         controlledBy: "schematic",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
@@ -1402,7 +1409,7 @@ describe("CheckoutClient", () => {
                                                 environmentId: "environment_id",
                                                 id: "id",
                                                 name: "name",
-                                                priority: 1,
+                                                priority: 1000000,
                                                 ruleType: "rule_type",
                                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                                 value: true,
@@ -1442,7 +1449,7 @@ describe("CheckoutClient", () => {
                                 planType: "plan",
                                 status: "published",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                                version: 1,
+                                version: 1000000,
                             },
                         ],
                     },
@@ -1458,7 +1465,7 @@ describe("CheckoutClient", () => {
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                        version: 1,
+                        version: 1000000,
                     },
                     billingProduct: {
                         accountId: "account_id",
@@ -1474,7 +1481,7 @@ describe("CheckoutClient", () => {
                                 externalPriceId: "external_price_id",
                                 id: "id",
                                 interval: "day",
-                                price: 1,
+                                price: 1000000,
                                 providerType: "schematic",
                                 scheme: "per_unit",
                             },
@@ -1482,11 +1489,11 @@ describe("CheckoutClient", () => {
                         productId: "product_id",
                         providerType: "schematic",
                         quantity: 1.1,
-                        subscriptionCount: 1,
+                        subscriptionCount: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     chargeType: "free",
-                    companyCount: 1,
+                    companyCount: 1000000,
                     controlledBy: "schematic",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
@@ -1500,7 +1507,7 @@ describe("CheckoutClient", () => {
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                        version: 1,
+                        version: 1000000,
                     },
                     features: [
                         {
@@ -1569,7 +1576,7 @@ describe("CheckoutClient", () => {
                                             environmentId: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             ruleType: "rule_type",
                                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                             value: true,
@@ -1596,7 +1603,7 @@ describe("CheckoutClient", () => {
                         {
                             autoTopupEnabled: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            creditAmount: 1,
+                            creditAmount: 1000000,
                             creditId: "credit_id",
                             creditName: "credit_name",
                             id: "id",
@@ -1613,7 +1620,7 @@ describe("CheckoutClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
@@ -1623,12 +1630,12 @@ describe("CheckoutClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
                     planType: "plan",
-                    trialDays: 1,
+                    trialDays: 1000000,
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     versions: [
                         {
@@ -1641,7 +1648,7 @@ describe("CheckoutClient", () => {
                             planType: "plan",
                             status: "published",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                            version: 1,
+                            version: 1000000,
                         },
                     ],
                     yearlyPrice: {
@@ -1649,7 +1656,7 @@ describe("CheckoutClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
@@ -1683,7 +1690,7 @@ describe("CheckoutClient", () => {
                                 {
                                     billingCreditAutoTopupEnabled: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    creditAmount: 1,
+                                    creditAmount: 1000000,
                                     creditDescription: "credit_description",
                                     creditId: "credit_id",
                                     creditName: "credit_name",
@@ -1717,8 +1724,8 @@ describe("CheckoutClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        periodEnd: 1,
-                        periodStart: 1,
+                        periodEnd: 1000000,
+                        periodStart: 1000000,
                         products: [
                             {
                                 billingScheme: "per_unit",
@@ -1729,8 +1736,8 @@ describe("CheckoutClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                packageSize: 1,
-                                price: 1,
+                                packageSize: 1000000,
+                                price: 1000000,
                                 priceExternalId: "price_external_id",
                                 priceId: "price_id",
                                 priceTier: [{}],
@@ -1744,7 +1751,7 @@ describe("CheckoutClient", () => {
                         providerType: "schematic",
                         status: "status",
                         subscriptionExternalId: "subscription_external_id",
-                        totalPrice: 1,
+                        totalPrice: 1000000,
                     },
                     billingSubscriptions: [
                         {
@@ -1765,8 +1772,8 @@ describe("CheckoutClient", () => {
                             ],
                             id: "id",
                             interval: "interval",
-                            periodEnd: 1,
-                            periodStart: 1,
+                            periodEnd: 1000000,
+                            periodStart: 1000000,
                             products: [
                                 {
                                     billingScheme: "per_unit",
@@ -1777,8 +1784,8 @@ describe("CheckoutClient", () => {
                                     id: "id",
                                     interval: "interval",
                                     name: "name",
-                                    packageSize: 1,
-                                    price: 1,
+                                    packageSize: 1000000,
+                                    price: 1000000,
                                     priceExternalId: "price_external_id",
                                     priceId: "price_id",
                                     priceTier: [{}],
@@ -1792,7 +1799,7 @@ describe("CheckoutClient", () => {
                             providerType: "schematic",
                             status: "status",
                             subscriptionExternalId: "subscription_external_id",
-                            totalPrice: 1,
+                            totalPrice: 1000000,
                         },
                     ],
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1851,7 +1858,7 @@ describe("CheckoutClient", () => {
                             eventSubtype: "event_subtype",
                             monthReset: "month_reset",
                             period: "period",
-                            value: 1,
+                            value: 1000000,
                         },
                     ],
                     name: "name",
@@ -1873,7 +1880,7 @@ describe("CheckoutClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                creditAmount: 1,
+                                creditAmount: 1000000,
                                 creditDescription: "credit_description",
                                 creditId: "credit_id",
                                 creditName: "credit_name",
@@ -1923,7 +1930,7 @@ describe("CheckoutClient", () => {
                             environmentId: "environment_id",
                             id: "id",
                             name: "name",
-                            priority: 1,
+                            priority: 1000000,
                             ruleType: "default",
                             value: true,
                         },
@@ -1933,7 +1940,7 @@ describe("CheckoutClient", () => {
                         effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                         fromPlanId: "from_plan_id",
                         fromPlanName: "from_plan_name",
-                        fromSubscriptionPrice: 1,
+                        fromSubscriptionPrice: 1000000,
                         id: "id",
                         interval: "interval",
                         toPlanId: "to_plan_id",
@@ -1943,7 +1950,7 @@ describe("CheckoutClient", () => {
                         key: "value",
                     },
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    userCount: 1,
+                    userCount: 1000000,
                 },
                 featureUsage: {
                     features: [
@@ -1957,8 +1964,8 @@ describe("CheckoutClient", () => {
                 },
                 selectedCreditBundles: [
                     {
-                        quantity: 1,
-                        total: 1,
+                        quantity: 1000000,
+                        total: 1000000,
                     },
                 ],
                 selectedPlan: {
@@ -1972,7 +1979,7 @@ describe("CheckoutClient", () => {
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                        version: 1,
+                        version: 1000000,
                     },
                     billingProduct: {
                         accountId: "account_id",
@@ -1988,7 +1995,7 @@ describe("CheckoutClient", () => {
                                 externalPriceId: "external_price_id",
                                 id: "id",
                                 interval: "day",
-                                price: 1,
+                                price: 1000000,
                                 providerType: "schematic",
                                 scheme: "per_unit",
                             },
@@ -1996,11 +2003,11 @@ describe("CheckoutClient", () => {
                         productId: "product_id",
                         providerType: "schematic",
                         quantity: 1.1,
-                        subscriptionCount: 1,
+                        subscriptionCount: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     chargeType: "free",
-                    companyCount: 1,
+                    companyCount: 1000000,
                     controlledBy: "schematic",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
@@ -2014,7 +2021,7 @@ describe("CheckoutClient", () => {
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                        version: 1,
+                        version: 1000000,
                     },
                     features: [
                         {
@@ -2083,7 +2090,7 @@ describe("CheckoutClient", () => {
                                             environmentId: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             ruleType: "rule_type",
                                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                             value: true,
@@ -2110,7 +2117,7 @@ describe("CheckoutClient", () => {
                         {
                             autoTopupEnabled: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            creditAmount: 1,
+                            creditAmount: 1000000,
                             creditId: "credit_id",
                             creditName: "credit_name",
                             id: "id",
@@ -2127,7 +2134,7 @@ describe("CheckoutClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
@@ -2137,12 +2144,12 @@ describe("CheckoutClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
                     planType: "plan",
-                    trialDays: 1,
+                    trialDays: 1000000,
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     versions: [
                         {
@@ -2155,7 +2162,7 @@ describe("CheckoutClient", () => {
                             planType: "plan",
                             status: "published",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                            version: 1,
+                            version: 1000000,
                         },
                     ],
                     yearlyPrice: {
@@ -2163,7 +2170,7 @@ describe("CheckoutClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
@@ -2193,9 +2200,9 @@ describe("CheckoutClient", () => {
                     expiredAt: new Date("2024-01-15T09:30:00.000Z"),
                     interval: "interval",
                     latestInvoice: {
-                        amountDue: 1,
-                        amountPaid: 1,
-                        amountRemaining: 1,
+                        amountDue: 1000000,
+                        amountPaid: 1000000,
+                        amountRemaining: 1000000,
                         collectionMethod: "collection_method",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currency: "currency",
@@ -2203,7 +2210,7 @@ describe("CheckoutClient", () => {
                         environmentId: "environment_id",
                         id: "id",
                         providerType: "schematic",
-                        subtotal: 1,
+                        subtotal: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     paymentMethod: {
@@ -2226,8 +2233,8 @@ describe("CheckoutClient", () => {
                             id: "id",
                             interval: "interval",
                             name: "name",
-                            packageSize: 1,
-                            price: 1,
+                            packageSize: 1000000,
+                            price: 1000000,
                             priceExternalId: "price_external_id",
                             priceId: "price_id",
                             priceTier: [{}],
@@ -2240,7 +2247,7 @@ describe("CheckoutClient", () => {
                     ],
                     status: "status",
                     subscriptionExternalId: "subscription_external_id",
-                    totalPrice: 1,
+                    totalPrice: 1000000,
                     trialEnd: new Date("2024-01-15T09:30:00.000Z"),
                 },
             },
@@ -2255,6 +2262,7 @@ describe("CheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { company_id: "company_id" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/checkout-internal/data")
@@ -2276,6 +2284,7 @@ describe("CheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { company_id: "company_id" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/checkout-internal/data")
@@ -2297,6 +2306,7 @@ describe("CheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { company_id: "company_id" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/checkout-internal/data")
@@ -2318,6 +2328,7 @@ describe("CheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { company_id: "company_id" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/checkout-internal/data")
@@ -2339,6 +2350,7 @@ describe("CheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { company_id: "company_id" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/checkout-internal/data")
@@ -2361,40 +2373,46 @@ describe("CheckoutClient", () => {
         const rawRequestBody = {
             add_on_ids: [{ add_on_id: "add_on_id", price_id: "price_id" }],
             company_id: "company_id",
-            credit_bundles: [{ bundle_id: "bundle_id", quantity: 1 }],
+            credit_bundles: [{ bundle_id: "bundle_id", quantity: 1000000 }],
             new_plan_id: "new_plan_id",
             new_price_id: "new_price_id",
-            pay_in_advance: [{ price_id: "price_id", quantity: 1 }],
+            pay_in_advance: [{ price_id: "price_id", quantity: 1000000 }],
             skip_trial: true,
         };
         const rawResponseBody = {
             data: {
-                amount_off: 1,
-                due_now: 1,
+                amount_off: 1000000,
+                due_now: 1000000,
                 finance: {
-                    amount_off: 1,
-                    due_now: 1,
-                    new_charges: 1,
+                    amount_off: 1000000,
+                    due_now: 1000000,
+                    new_charges: 1000000,
                     percent_off: 1.1,
                     period_start: "2024-01-15T09:30:00Z",
                     promo_code_applied: true,
-                    proration: 1,
-                    tax_amount: 1,
+                    proration: 1000000,
+                    tax_amount: 1000000,
                     tax_display_name: "tax_display_name",
                     tax_require_billing_details: true,
-                    total_per_billing_period: 1,
+                    total_per_billing_period: 1000000,
                     trial_end: "2024-01-15T09:30:00Z",
                     upcoming_invoice_line_items: [
-                        { amount: 1, description: "description", price_id: "price_id", proration: true, quantity: 1 },
+                        {
+                            amount: 1000000,
+                            description: "description",
+                            price_id: "price_id",
+                            proration: true,
+                            quantity: 1000000,
+                        },
                     ],
                 },
                 is_scheduled_downgrade: true,
-                new_charges: 1,
+                new_charges: 1000000,
                 payment_method_required: true,
                 percent_off: 1.1,
                 period_start: "2024-01-15T09:30:00Z",
                 promo_code_applied: true,
-                proration: 1,
+                proration: 1000000,
                 scheduled_change_time: "2024-01-15T09:30:00Z",
                 usage_violations: [
                     {
@@ -2407,6 +2425,7 @@ describe("CheckoutClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/checkout-internal/preview")
@@ -2427,7 +2446,7 @@ describe("CheckoutClient", () => {
             creditBundles: [
                 {
                     bundleId: "bundle_id",
-                    quantity: 1,
+                    quantity: 1000000,
                 },
             ],
             newPlanId: "new_plan_id",
@@ -2435,45 +2454,45 @@ describe("CheckoutClient", () => {
             payInAdvance: [
                 {
                     priceId: "price_id",
-                    quantity: 1,
+                    quantity: 1000000,
                 },
             ],
             skipTrial: true,
         });
         expect(response).toEqual({
             data: {
-                amountOff: 1,
-                dueNow: 1,
+                amountOff: 1000000,
+                dueNow: 1000000,
                 finance: {
-                    amountOff: 1,
-                    dueNow: 1,
-                    newCharges: 1,
+                    amountOff: 1000000,
+                    dueNow: 1000000,
+                    newCharges: 1000000,
                     percentOff: 1.1,
                     periodStart: new Date("2024-01-15T09:30:00.000Z"),
                     promoCodeApplied: true,
-                    proration: 1,
-                    taxAmount: 1,
+                    proration: 1000000,
+                    taxAmount: 1000000,
                     taxDisplayName: "tax_display_name",
                     taxRequireBillingDetails: true,
-                    totalPerBillingPeriod: 1,
+                    totalPerBillingPeriod: 1000000,
                     trialEnd: new Date("2024-01-15T09:30:00.000Z"),
                     upcomingInvoiceLineItems: [
                         {
-                            amount: 1,
+                            amount: 1000000,
                             description: "description",
                             priceId: "price_id",
                             proration: true,
-                            quantity: 1,
+                            quantity: 1000000,
                         },
                     ],
                 },
                 isScheduledDowngrade: true,
-                newCharges: 1,
+                newCharges: 1000000,
                 paymentMethodRequired: true,
                 percentOff: 1.1,
                 periodStart: new Date("2024-01-15T09:30:00.000Z"),
                 promoCodeApplied: true,
-                proration: 1,
+                proration: 1000000,
                 scheduledChangeTime: new Date("2024-01-15T09:30:00.000Z"),
                 usageViolations: [
                     {
@@ -2500,18 +2519,19 @@ describe("CheckoutClient", () => {
             ],
             company_id: "company_id",
             credit_bundles: [
-                { bundle_id: "bundle_id", quantity: 1 },
-                { bundle_id: "bundle_id", quantity: 1 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
             ],
             new_plan_id: "new_plan_id",
             new_price_id: "new_price_id",
             pay_in_advance: [
-                { price_id: "price_id", quantity: 1 },
-                { price_id: "price_id", quantity: 1 },
+                { price_id: "price_id", quantity: 1000000 },
+                { price_id: "price_id", quantity: 1000000 },
             ],
             skip_trial: true,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/checkout-internal/preview")
@@ -2537,11 +2557,11 @@ describe("CheckoutClient", () => {
                 creditBundles: [
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 newPlanId: "new_plan_id",
@@ -2549,11 +2569,11 @@ describe("CheckoutClient", () => {
                 payInAdvance: [
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 skipTrial: true,
@@ -2571,18 +2591,19 @@ describe("CheckoutClient", () => {
             ],
             company_id: "company_id",
             credit_bundles: [
-                { bundle_id: "bundle_id", quantity: 1 },
-                { bundle_id: "bundle_id", quantity: 1 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
             ],
             new_plan_id: "new_plan_id",
             new_price_id: "new_price_id",
             pay_in_advance: [
-                { price_id: "price_id", quantity: 1 },
-                { price_id: "price_id", quantity: 1 },
+                { price_id: "price_id", quantity: 1000000 },
+                { price_id: "price_id", quantity: 1000000 },
             ],
             skip_trial: true,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/checkout-internal/preview")
@@ -2608,11 +2629,11 @@ describe("CheckoutClient", () => {
                 creditBundles: [
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 newPlanId: "new_plan_id",
@@ -2620,11 +2641,11 @@ describe("CheckoutClient", () => {
                 payInAdvance: [
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 skipTrial: true,
@@ -2642,18 +2663,19 @@ describe("CheckoutClient", () => {
             ],
             company_id: "company_id",
             credit_bundles: [
-                { bundle_id: "bundle_id", quantity: 1 },
-                { bundle_id: "bundle_id", quantity: 1 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
             ],
             new_plan_id: "new_plan_id",
             new_price_id: "new_price_id",
             pay_in_advance: [
-                { price_id: "price_id", quantity: 1 },
-                { price_id: "price_id", quantity: 1 },
+                { price_id: "price_id", quantity: 1000000 },
+                { price_id: "price_id", quantity: 1000000 },
             ],
             skip_trial: true,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/checkout-internal/preview")
@@ -2679,11 +2701,11 @@ describe("CheckoutClient", () => {
                 creditBundles: [
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 newPlanId: "new_plan_id",
@@ -2691,11 +2713,11 @@ describe("CheckoutClient", () => {
                 payInAdvance: [
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 skipTrial: true,
@@ -2713,18 +2735,19 @@ describe("CheckoutClient", () => {
             ],
             company_id: "company_id",
             credit_bundles: [
-                { bundle_id: "bundle_id", quantity: 1 },
-                { bundle_id: "bundle_id", quantity: 1 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
             ],
             new_plan_id: "new_plan_id",
             new_price_id: "new_price_id",
             pay_in_advance: [
-                { price_id: "price_id", quantity: 1 },
-                { price_id: "price_id", quantity: 1 },
+                { price_id: "price_id", quantity: 1000000 },
+                { price_id: "price_id", quantity: 1000000 },
             ],
             skip_trial: true,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/checkout-internal/preview")
@@ -2750,11 +2773,11 @@ describe("CheckoutClient", () => {
                 creditBundles: [
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 newPlanId: "new_plan_id",
@@ -2762,11 +2785,11 @@ describe("CheckoutClient", () => {
                 payInAdvance: [
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 skipTrial: true,
@@ -2784,18 +2807,19 @@ describe("CheckoutClient", () => {
             ],
             company_id: "company_id",
             credit_bundles: [
-                { bundle_id: "bundle_id", quantity: 1 },
-                { bundle_id: "bundle_id", quantity: 1 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
             ],
             new_plan_id: "new_plan_id",
             new_price_id: "new_price_id",
             pay_in_advance: [
-                { price_id: "price_id", quantity: 1 },
-                { price_id: "price_id", quantity: 1 },
+                { price_id: "price_id", quantity: 1000000 },
+                { price_id: "price_id", quantity: 1000000 },
             ],
             skip_trial: true,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/checkout-internal/preview")
@@ -2821,11 +2845,11 @@ describe("CheckoutClient", () => {
                 creditBundles: [
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 newPlanId: "new_plan_id",
@@ -2833,11 +2857,11 @@ describe("CheckoutClient", () => {
                 payInAdvance: [
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 skipTrial: true,
@@ -2851,8 +2875,8 @@ describe("CheckoutClient", () => {
         const rawRequestBody = {
             add_on_selections: [{ plan_id: "plan_id" }],
             company_id: "company_id",
-            credit_bundles: [{ bundle_id: "bundle_id", quantity: 1 }],
-            pay_in_advance_entitlements: [{ price_id: "price_id", quantity: 1 }],
+            credit_bundles: [{ bundle_id: "bundle_id", quantity: 1000000 }],
+            pay_in_advance_entitlements: [{ price_id: "price_id", quantity: 1000000 }],
         };
         const rawResponseBody = {
             data: {
@@ -2864,7 +2888,7 @@ describe("CheckoutClient", () => {
                                 {
                                     billing_credit_auto_topup_enabled: true,
                                     created_at: "2024-01-15T09:30:00Z",
-                                    credit_amount: 1,
+                                    credit_amount: 1000000,
                                     credit_description: "credit_description",
                                     credit_id: "credit_id",
                                     credit_name: "credit_name",
@@ -2896,8 +2920,8 @@ describe("CheckoutClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        period_end: 1,
-                        period_start: 1,
+                        period_end: 1000000,
+                        period_start: 1000000,
                         products: [
                             {
                                 billing_scheme: "per_unit",
@@ -2908,8 +2932,8 @@ describe("CheckoutClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                package_size: 1,
-                                price: 1,
+                                package_size: 1000000,
+                                price: 1000000,
                                 price_external_id: "price_external_id",
                                 price_id: "price_id",
                                 price_tier: [{}],
@@ -2923,7 +2947,7 @@ describe("CheckoutClient", () => {
                         provider_type: "schematic",
                         status: "status",
                         subscription_external_id: "subscription_external_id",
-                        total_price: 1,
+                        total_price: 1000000,
                     },
                     billing_subscriptions: [
                         {
@@ -2944,8 +2968,8 @@ describe("CheckoutClient", () => {
                             ],
                             id: "id",
                             interval: "interval",
-                            period_end: 1,
-                            period_start: 1,
+                            period_end: 1000000,
+                            period_start: 1000000,
                             products: [
                                 {
                                     billing_scheme: "per_unit",
@@ -2956,8 +2980,8 @@ describe("CheckoutClient", () => {
                                     id: "id",
                                     interval: "interval",
                                     name: "name",
-                                    package_size: 1,
-                                    price: 1,
+                                    package_size: 1000000,
+                                    price: 1000000,
                                     price_external_id: "price_external_id",
                                     price_id: "price_id",
                                     price_tier: [{}],
@@ -2971,7 +2995,7 @@ describe("CheckoutClient", () => {
                             provider_type: "schematic",
                             status: "status",
                             subscription_external_id: "subscription_external_id",
-                            total_price: 1,
+                            total_price: 1000000,
                         },
                     ],
                     created_at: "2024-01-15T09:30:00Z",
@@ -3024,7 +3048,7 @@ describe("CheckoutClient", () => {
                             event_subtype: "event_subtype",
                             month_reset: "month_reset",
                             period: "period",
-                            value: 1,
+                            value: 1000000,
                         },
                     ],
                     name: "name",
@@ -3046,7 +3070,7 @@ describe("CheckoutClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                credit_amount: 1,
+                                credit_amount: 1000000,
                                 credit_description: "credit_description",
                                 credit_id: "credit_id",
                                 credit_name: "credit_name",
@@ -3091,7 +3115,7 @@ describe("CheckoutClient", () => {
                             environment_id: "environment_id",
                             id: "id",
                             name: "name",
-                            priority: 1,
+                            priority: 1000000,
                             rule_type: "default",
                             value: true,
                         },
@@ -3101,7 +3125,7 @@ describe("CheckoutClient", () => {
                         effective_after: "2024-01-15T09:30:00Z",
                         from_plan_id: "from_plan_id",
                         from_plan_name: "from_plan_name",
-                        from_subscription_price: 1,
+                        from_subscription_price: 1000000,
                         id: "id",
                         interval: "interval",
                         to_plan_id: "to_plan_id",
@@ -3109,12 +3133,13 @@ describe("CheckoutClient", () => {
                     },
                     traits: { key: "value" },
                     updated_at: "2024-01-15T09:30:00Z",
-                    user_count: 1,
+                    user_count: 1000000,
                 },
                 success: true,
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/manage-plan")
@@ -3134,13 +3159,13 @@ describe("CheckoutClient", () => {
             creditBundles: [
                 {
                     bundleId: "bundle_id",
-                    quantity: 1,
+                    quantity: 1000000,
                 },
             ],
             payInAdvanceEntitlements: [
                 {
                     priceId: "price_id",
-                    quantity: 1,
+                    quantity: 1000000,
                 },
             ],
         });
@@ -3154,7 +3179,7 @@ describe("CheckoutClient", () => {
                                 {
                                     billingCreditAutoTopupEnabled: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    creditAmount: 1,
+                                    creditAmount: 1000000,
                                     creditDescription: "credit_description",
                                     creditId: "credit_id",
                                     creditName: "credit_name",
@@ -3188,8 +3213,8 @@ describe("CheckoutClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        periodEnd: 1,
-                        periodStart: 1,
+                        periodEnd: 1000000,
+                        periodStart: 1000000,
                         products: [
                             {
                                 billingScheme: "per_unit",
@@ -3200,8 +3225,8 @@ describe("CheckoutClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                packageSize: 1,
-                                price: 1,
+                                packageSize: 1000000,
+                                price: 1000000,
                                 priceExternalId: "price_external_id",
                                 priceId: "price_id",
                                 priceTier: [{}],
@@ -3215,7 +3240,7 @@ describe("CheckoutClient", () => {
                         providerType: "schematic",
                         status: "status",
                         subscriptionExternalId: "subscription_external_id",
-                        totalPrice: 1,
+                        totalPrice: 1000000,
                     },
                     billingSubscriptions: [
                         {
@@ -3236,8 +3261,8 @@ describe("CheckoutClient", () => {
                             ],
                             id: "id",
                             interval: "interval",
-                            periodEnd: 1,
-                            periodStart: 1,
+                            periodEnd: 1000000,
+                            periodStart: 1000000,
                             products: [
                                 {
                                     billingScheme: "per_unit",
@@ -3248,8 +3273,8 @@ describe("CheckoutClient", () => {
                                     id: "id",
                                     interval: "interval",
                                     name: "name",
-                                    packageSize: 1,
-                                    price: 1,
+                                    packageSize: 1000000,
+                                    price: 1000000,
                                     priceExternalId: "price_external_id",
                                     priceId: "price_id",
                                     priceTier: [{}],
@@ -3263,7 +3288,7 @@ describe("CheckoutClient", () => {
                             providerType: "schematic",
                             status: "status",
                             subscriptionExternalId: "subscription_external_id",
-                            totalPrice: 1,
+                            totalPrice: 1000000,
                         },
                     ],
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -3322,7 +3347,7 @@ describe("CheckoutClient", () => {
                             eventSubtype: "event_subtype",
                             monthReset: "month_reset",
                             period: "period",
-                            value: 1,
+                            value: 1000000,
                         },
                     ],
                     name: "name",
@@ -3344,7 +3369,7 @@ describe("CheckoutClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                creditAmount: 1,
+                                creditAmount: 1000000,
                                 creditDescription: "credit_description",
                                 creditId: "credit_id",
                                 creditName: "credit_name",
@@ -3394,7 +3419,7 @@ describe("CheckoutClient", () => {
                             environmentId: "environment_id",
                             id: "id",
                             name: "name",
-                            priority: 1,
+                            priority: 1000000,
                             ruleType: "default",
                             value: true,
                         },
@@ -3404,7 +3429,7 @@ describe("CheckoutClient", () => {
                         effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                         fromPlanId: "from_plan_id",
                         fromPlanName: "from_plan_name",
-                        fromSubscriptionPrice: 1,
+                        fromSubscriptionPrice: 1000000,
                         id: "id",
                         interval: "interval",
                         toPlanId: "to_plan_id",
@@ -3414,7 +3439,7 @@ describe("CheckoutClient", () => {
                         key: "value",
                     },
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    userCount: 1,
+                    userCount: 1000000,
                 },
                 success: true,
             },
@@ -3431,15 +3456,16 @@ describe("CheckoutClient", () => {
             add_on_selections: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
             company_id: "company_id",
             credit_bundles: [
-                { bundle_id: "bundle_id", quantity: 1 },
-                { bundle_id: "bundle_id", quantity: 1 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
             ],
             pay_in_advance_entitlements: [
-                { price_id: "price_id", quantity: 1 },
-                { price_id: "price_id", quantity: 1 },
+                { price_id: "price_id", quantity: 1000000 },
+                { price_id: "price_id", quantity: 1000000 },
             ],
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/manage-plan")
@@ -3463,21 +3489,21 @@ describe("CheckoutClient", () => {
                 creditBundles: [
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 payInAdvanceEntitlements: [
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
             });
@@ -3491,15 +3517,16 @@ describe("CheckoutClient", () => {
             add_on_selections: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
             company_id: "company_id",
             credit_bundles: [
-                { bundle_id: "bundle_id", quantity: 1 },
-                { bundle_id: "bundle_id", quantity: 1 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
             ],
             pay_in_advance_entitlements: [
-                { price_id: "price_id", quantity: 1 },
-                { price_id: "price_id", quantity: 1 },
+                { price_id: "price_id", quantity: 1000000 },
+                { price_id: "price_id", quantity: 1000000 },
             ],
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/manage-plan")
@@ -3523,21 +3550,21 @@ describe("CheckoutClient", () => {
                 creditBundles: [
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 payInAdvanceEntitlements: [
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
             });
@@ -3551,15 +3578,16 @@ describe("CheckoutClient", () => {
             add_on_selections: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
             company_id: "company_id",
             credit_bundles: [
-                { bundle_id: "bundle_id", quantity: 1 },
-                { bundle_id: "bundle_id", quantity: 1 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
             ],
             pay_in_advance_entitlements: [
-                { price_id: "price_id", quantity: 1 },
-                { price_id: "price_id", quantity: 1 },
+                { price_id: "price_id", quantity: 1000000 },
+                { price_id: "price_id", quantity: 1000000 },
             ],
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/manage-plan")
@@ -3583,21 +3611,21 @@ describe("CheckoutClient", () => {
                 creditBundles: [
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 payInAdvanceEntitlements: [
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
             });
@@ -3611,15 +3639,16 @@ describe("CheckoutClient", () => {
             add_on_selections: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
             company_id: "company_id",
             credit_bundles: [
-                { bundle_id: "bundle_id", quantity: 1 },
-                { bundle_id: "bundle_id", quantity: 1 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
             ],
             pay_in_advance_entitlements: [
-                { price_id: "price_id", quantity: 1 },
-                { price_id: "price_id", quantity: 1 },
+                { price_id: "price_id", quantity: 1000000 },
+                { price_id: "price_id", quantity: 1000000 },
             ],
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/manage-plan")
@@ -3643,21 +3672,21 @@ describe("CheckoutClient", () => {
                 creditBundles: [
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 payInAdvanceEntitlements: [
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
             });
@@ -3671,15 +3700,16 @@ describe("CheckoutClient", () => {
             add_on_selections: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
             company_id: "company_id",
             credit_bundles: [
-                { bundle_id: "bundle_id", quantity: 1 },
-                { bundle_id: "bundle_id", quantity: 1 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
             ],
             pay_in_advance_entitlements: [
-                { price_id: "price_id", quantity: 1 },
-                { price_id: "price_id", quantity: 1 },
+                { price_id: "price_id", quantity: 1000000 },
+                { price_id: "price_id", quantity: 1000000 },
             ],
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/manage-plan")
@@ -3703,21 +3733,21 @@ describe("CheckoutClient", () => {
                 creditBundles: [
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 payInAdvanceEntitlements: [
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
             });
@@ -3730,41 +3760,41 @@ describe("CheckoutClient", () => {
         const rawRequestBody = {
             add_on_selections: [{ plan_id: "plan_id" }],
             company_id: "company_id",
-            credit_bundles: [{ bundle_id: "bundle_id", quantity: 1 }],
-            pay_in_advance_entitlements: [{ price_id: "price_id", quantity: 1 }],
+            credit_bundles: [{ bundle_id: "bundle_id", quantity: 1000000 }],
+            pay_in_advance_entitlements: [{ price_id: "price_id", quantity: 1000000 }],
         };
         const rawResponseBody = {
             data: {
                 subscription_change_preview: {
-                    amount_off: 1,
-                    due_now: 1,
+                    amount_off: 1000000,
+                    due_now: 1000000,
                     finance: {
-                        amount_off: 1,
-                        due_now: 1,
-                        new_charges: 1,
+                        amount_off: 1000000,
+                        due_now: 1000000,
+                        new_charges: 1000000,
                         percent_off: 1.1,
                         period_start: "2024-01-15T09:30:00Z",
                         promo_code_applied: true,
-                        proration: 1,
+                        proration: 1000000,
                         tax_require_billing_details: true,
-                        total_per_billing_period: 1,
+                        total_per_billing_period: 1000000,
                         upcoming_invoice_line_items: [
                             {
-                                amount: 1,
+                                amount: 1000000,
                                 description: "description",
                                 price_id: "price_id",
                                 proration: true,
-                                quantity: 1,
+                                quantity: 1000000,
                             },
                         ],
                     },
                     is_scheduled_downgrade: true,
-                    new_charges: 1,
+                    new_charges: 1000000,
                     payment_method_required: true,
                     percent_off: 1.1,
                     period_start: "2024-01-15T09:30:00Z",
                     promo_code_applied: true,
-                    proration: 1,
+                    proration: 1000000,
                     scheduled_change_time: "2024-01-15T09:30:00Z",
                     usage_violations: [
                         {
@@ -3778,6 +3808,7 @@ describe("CheckoutClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/manage-plan/preview")
@@ -3797,48 +3828,48 @@ describe("CheckoutClient", () => {
             creditBundles: [
                 {
                     bundleId: "bundle_id",
-                    quantity: 1,
+                    quantity: 1000000,
                 },
             ],
             payInAdvanceEntitlements: [
                 {
                     priceId: "price_id",
-                    quantity: 1,
+                    quantity: 1000000,
                 },
             ],
         });
         expect(response).toEqual({
             data: {
                 subscriptionChangePreview: {
-                    amountOff: 1,
-                    dueNow: 1,
+                    amountOff: 1000000,
+                    dueNow: 1000000,
                     finance: {
-                        amountOff: 1,
-                        dueNow: 1,
-                        newCharges: 1,
+                        amountOff: 1000000,
+                        dueNow: 1000000,
+                        newCharges: 1000000,
                         percentOff: 1.1,
                         periodStart: new Date("2024-01-15T09:30:00.000Z"),
                         promoCodeApplied: true,
-                        proration: 1,
+                        proration: 1000000,
                         taxRequireBillingDetails: true,
-                        totalPerBillingPeriod: 1,
+                        totalPerBillingPeriod: 1000000,
                         upcomingInvoiceLineItems: [
                             {
-                                amount: 1,
+                                amount: 1000000,
                                 description: "description",
                                 priceId: "price_id",
                                 proration: true,
-                                quantity: 1,
+                                quantity: 1000000,
                             },
                         ],
                     },
                     isScheduledDowngrade: true,
-                    newCharges: 1,
+                    newCharges: 1000000,
                     paymentMethodRequired: true,
                     percentOff: 1.1,
                     periodStart: new Date("2024-01-15T09:30:00.000Z"),
                     promoCodeApplied: true,
-                    proration: 1,
+                    proration: 1000000,
                     scheduledChangeTime: new Date("2024-01-15T09:30:00.000Z"),
                     usageViolations: [
                         {
@@ -3863,15 +3894,16 @@ describe("CheckoutClient", () => {
             add_on_selections: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
             company_id: "company_id",
             credit_bundles: [
-                { bundle_id: "bundle_id", quantity: 1 },
-                { bundle_id: "bundle_id", quantity: 1 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
             ],
             pay_in_advance_entitlements: [
-                { price_id: "price_id", quantity: 1 },
-                { price_id: "price_id", quantity: 1 },
+                { price_id: "price_id", quantity: 1000000 },
+                { price_id: "price_id", quantity: 1000000 },
             ],
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/manage-plan/preview")
@@ -3895,21 +3927,21 @@ describe("CheckoutClient", () => {
                 creditBundles: [
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 payInAdvanceEntitlements: [
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
             });
@@ -3923,15 +3955,16 @@ describe("CheckoutClient", () => {
             add_on_selections: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
             company_id: "company_id",
             credit_bundles: [
-                { bundle_id: "bundle_id", quantity: 1 },
-                { bundle_id: "bundle_id", quantity: 1 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
             ],
             pay_in_advance_entitlements: [
-                { price_id: "price_id", quantity: 1 },
-                { price_id: "price_id", quantity: 1 },
+                { price_id: "price_id", quantity: 1000000 },
+                { price_id: "price_id", quantity: 1000000 },
             ],
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/manage-plan/preview")
@@ -3955,21 +3988,21 @@ describe("CheckoutClient", () => {
                 creditBundles: [
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 payInAdvanceEntitlements: [
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
             });
@@ -3983,15 +4016,16 @@ describe("CheckoutClient", () => {
             add_on_selections: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
             company_id: "company_id",
             credit_bundles: [
-                { bundle_id: "bundle_id", quantity: 1 },
-                { bundle_id: "bundle_id", quantity: 1 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
             ],
             pay_in_advance_entitlements: [
-                { price_id: "price_id", quantity: 1 },
-                { price_id: "price_id", quantity: 1 },
+                { price_id: "price_id", quantity: 1000000 },
+                { price_id: "price_id", quantity: 1000000 },
             ],
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/manage-plan/preview")
@@ -4015,21 +4049,21 @@ describe("CheckoutClient", () => {
                 creditBundles: [
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 payInAdvanceEntitlements: [
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
             });
@@ -4043,15 +4077,16 @@ describe("CheckoutClient", () => {
             add_on_selections: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
             company_id: "company_id",
             credit_bundles: [
-                { bundle_id: "bundle_id", quantity: 1 },
-                { bundle_id: "bundle_id", quantity: 1 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
             ],
             pay_in_advance_entitlements: [
-                { price_id: "price_id", quantity: 1 },
-                { price_id: "price_id", quantity: 1 },
+                { price_id: "price_id", quantity: 1000000 },
+                { price_id: "price_id", quantity: 1000000 },
             ],
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/manage-plan/preview")
@@ -4075,21 +4110,21 @@ describe("CheckoutClient", () => {
                 creditBundles: [
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 payInAdvanceEntitlements: [
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
             });
@@ -4103,15 +4138,16 @@ describe("CheckoutClient", () => {
             add_on_selections: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
             company_id: "company_id",
             credit_bundles: [
-                { bundle_id: "bundle_id", quantity: 1 },
-                { bundle_id: "bundle_id", quantity: 1 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
+                { bundle_id: "bundle_id", quantity: 1000000 },
             ],
             pay_in_advance_entitlements: [
-                { price_id: "price_id", quantity: 1 },
-                { price_id: "price_id", quantity: 1 },
+                { price_id: "price_id", quantity: 1000000 },
+                { price_id: "price_id", quantity: 1000000 },
             ],
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/manage-plan/preview")
@@ -4135,21 +4171,21 @@ describe("CheckoutClient", () => {
                 creditBundles: [
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         bundleId: "bundle_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
                 payInAdvanceEntitlements: [
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                     {
                         priceId: "price_id",
-                        quantity: 1,
+                        quantity: 1000000,
                     },
                 ],
             });
@@ -4170,7 +4206,7 @@ describe("CheckoutClient", () => {
                                 {
                                     billing_credit_auto_topup_enabled: true,
                                     created_at: "2024-01-15T09:30:00Z",
-                                    credit_amount: 1,
+                                    credit_amount: 1000000,
                                     credit_description: "credit_description",
                                     credit_id: "credit_id",
                                     credit_name: "credit_name",
@@ -4202,8 +4238,8 @@ describe("CheckoutClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        period_end: 1,
-                        period_start: 1,
+                        period_end: 1000000,
+                        period_start: 1000000,
                         products: [
                             {
                                 billing_scheme: "per_unit",
@@ -4214,8 +4250,8 @@ describe("CheckoutClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                package_size: 1,
-                                price: 1,
+                                package_size: 1000000,
+                                price: 1000000,
                                 price_external_id: "price_external_id",
                                 price_id: "price_id",
                                 price_tier: [{}],
@@ -4229,7 +4265,7 @@ describe("CheckoutClient", () => {
                         provider_type: "schematic",
                         status: "status",
                         subscription_external_id: "subscription_external_id",
-                        total_price: 1,
+                        total_price: 1000000,
                     },
                     billing_subscriptions: [
                         {
@@ -4250,8 +4286,8 @@ describe("CheckoutClient", () => {
                             ],
                             id: "id",
                             interval: "interval",
-                            period_end: 1,
-                            period_start: 1,
+                            period_end: 1000000,
+                            period_start: 1000000,
                             products: [
                                 {
                                     billing_scheme: "per_unit",
@@ -4262,8 +4298,8 @@ describe("CheckoutClient", () => {
                                     id: "id",
                                     interval: "interval",
                                     name: "name",
-                                    package_size: 1,
-                                    price: 1,
+                                    package_size: 1000000,
+                                    price: 1000000,
                                     price_external_id: "price_external_id",
                                     price_id: "price_id",
                                     price_tier: [{}],
@@ -4277,7 +4313,7 @@ describe("CheckoutClient", () => {
                             provider_type: "schematic",
                             status: "status",
                             subscription_external_id: "subscription_external_id",
-                            total_price: 1,
+                            total_price: 1000000,
                         },
                     ],
                     created_at: "2024-01-15T09:30:00Z",
@@ -4330,7 +4366,7 @@ describe("CheckoutClient", () => {
                             event_subtype: "event_subtype",
                             month_reset: "month_reset",
                             period: "period",
-                            value: 1,
+                            value: 1000000,
                         },
                     ],
                     name: "name",
@@ -4352,7 +4388,7 @@ describe("CheckoutClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                credit_amount: 1,
+                                credit_amount: 1000000,
                                 credit_description: "credit_description",
                                 credit_id: "credit_id",
                                 credit_name: "credit_name",
@@ -4397,7 +4433,7 @@ describe("CheckoutClient", () => {
                             environment_id: "environment_id",
                             id: "id",
                             name: "name",
-                            priority: 1,
+                            priority: 1000000,
                             rule_type: "default",
                             value: true,
                         },
@@ -4407,7 +4443,7 @@ describe("CheckoutClient", () => {
                         effective_after: "2024-01-15T09:30:00Z",
                         from_plan_id: "from_plan_id",
                         from_plan_name: "from_plan_name",
-                        from_subscription_price: 1,
+                        from_subscription_price: 1000000,
                         id: "id",
                         interval: "interval",
                         to_plan_id: "to_plan_id",
@@ -4415,12 +4451,13 @@ describe("CheckoutClient", () => {
                     },
                     traits: { key: "value" },
                     updated_at: "2024-01-15T09:30:00Z",
-                    user_count: 1,
+                    user_count: 1000000,
                 },
                 success: true,
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/manage-plan/subscription/cancel")
@@ -4443,7 +4480,7 @@ describe("CheckoutClient", () => {
                                 {
                                     billingCreditAutoTopupEnabled: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    creditAmount: 1,
+                                    creditAmount: 1000000,
                                     creditDescription: "credit_description",
                                     creditId: "credit_id",
                                     creditName: "credit_name",
@@ -4477,8 +4514,8 @@ describe("CheckoutClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        periodEnd: 1,
-                        periodStart: 1,
+                        periodEnd: 1000000,
+                        periodStart: 1000000,
                         products: [
                             {
                                 billingScheme: "per_unit",
@@ -4489,8 +4526,8 @@ describe("CheckoutClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                packageSize: 1,
-                                price: 1,
+                                packageSize: 1000000,
+                                price: 1000000,
                                 priceExternalId: "price_external_id",
                                 priceId: "price_id",
                                 priceTier: [{}],
@@ -4504,7 +4541,7 @@ describe("CheckoutClient", () => {
                         providerType: "schematic",
                         status: "status",
                         subscriptionExternalId: "subscription_external_id",
-                        totalPrice: 1,
+                        totalPrice: 1000000,
                     },
                     billingSubscriptions: [
                         {
@@ -4525,8 +4562,8 @@ describe("CheckoutClient", () => {
                             ],
                             id: "id",
                             interval: "interval",
-                            periodEnd: 1,
-                            periodStart: 1,
+                            periodEnd: 1000000,
+                            periodStart: 1000000,
                             products: [
                                 {
                                     billingScheme: "per_unit",
@@ -4537,8 +4574,8 @@ describe("CheckoutClient", () => {
                                     id: "id",
                                     interval: "interval",
                                     name: "name",
-                                    packageSize: 1,
-                                    price: 1,
+                                    packageSize: 1000000,
+                                    price: 1000000,
                                     priceExternalId: "price_external_id",
                                     priceId: "price_id",
                                     priceTier: [{}],
@@ -4552,7 +4589,7 @@ describe("CheckoutClient", () => {
                             providerType: "schematic",
                             status: "status",
                             subscriptionExternalId: "subscription_external_id",
-                            totalPrice: 1,
+                            totalPrice: 1000000,
                         },
                     ],
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -4611,7 +4648,7 @@ describe("CheckoutClient", () => {
                             eventSubtype: "event_subtype",
                             monthReset: "month_reset",
                             period: "period",
-                            value: 1,
+                            value: 1000000,
                         },
                     ],
                     name: "name",
@@ -4633,7 +4670,7 @@ describe("CheckoutClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                creditAmount: 1,
+                                creditAmount: 1000000,
                                 creditDescription: "credit_description",
                                 creditId: "credit_id",
                                 creditName: "credit_name",
@@ -4683,7 +4720,7 @@ describe("CheckoutClient", () => {
                             environmentId: "environment_id",
                             id: "id",
                             name: "name",
-                            priority: 1,
+                            priority: 1000000,
                             ruleType: "default",
                             value: true,
                         },
@@ -4693,7 +4730,7 @@ describe("CheckoutClient", () => {
                         effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                         fromPlanId: "from_plan_id",
                         fromPlanName: "from_plan_name",
-                        fromSubscriptionPrice: 1,
+                        fromSubscriptionPrice: 1000000,
                         id: "id",
                         interval: "interval",
                         toPlanId: "to_plan_id",
@@ -4703,7 +4740,7 @@ describe("CheckoutClient", () => {
                         key: "value",
                     },
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    userCount: 1,
+                    userCount: 1000000,
                 },
                 success: true,
             },
@@ -4718,6 +4755,7 @@ describe("CheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { company_id: "company_id" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/manage-plan/subscription/cancel")
@@ -4739,6 +4777,7 @@ describe("CheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { company_id: "company_id" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/manage-plan/subscription/cancel")
@@ -4760,6 +4799,7 @@ describe("CheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { company_id: "company_id" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/manage-plan/subscription/cancel")
@@ -4781,6 +4821,7 @@ describe("CheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { company_id: "company_id" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/manage-plan/subscription/cancel")
@@ -4802,6 +4843,7 @@ describe("CheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { company_id: "company_id" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/manage-plan/subscription/cancel")
@@ -4825,7 +4867,7 @@ describe("CheckoutClient", () => {
         const rawResponseBody = {
             data: {
                 application_id: "application_id",
-                cancel_at: 1,
+                cancel_at: 1000000,
                 cancel_at_period_end: true,
                 company_id: "company_id",
                 created_at: "2024-01-15T09:30:00Z",
@@ -4847,9 +4889,9 @@ describe("CheckoutClient", () => {
                 id: "id",
                 interval: "interval",
                 latest_invoice: {
-                    amount_due: 1,
-                    amount_paid: 1,
-                    amount_remaining: 1,
+                    amount_due: 1000000,
+                    amount_paid: 1000000,
+                    amount_remaining: 1000000,
                     collection_method: "collection_method",
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
@@ -4863,7 +4905,7 @@ describe("CheckoutClient", () => {
                     provider_type: "schematic",
                     status: "draft",
                     subscription_external_id: "subscription_external_id",
-                    subtotal: 1,
+                    subtotal: 1000000,
                     updated_at: "2024-01-15T09:30:00Z",
                     url: "url",
                 },
@@ -4875,8 +4917,8 @@ describe("CheckoutClient", () => {
                     billing_email: "billing_email",
                     billing_name: "billing_name",
                     card_brand: "card_brand",
-                    card_exp_month: 1,
-                    card_exp_year: 1,
+                    card_exp_month: 1000000,
+                    card_exp_year: 1000000,
                     card_last4: "card_last4",
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
@@ -4888,8 +4930,8 @@ describe("CheckoutClient", () => {
                     provider_type: "schematic",
                     updated_at: "2024-01-15T09:30:00Z",
                 },
-                period_end: 1,
-                period_start: 1,
+                period_end: 1000000,
+                period_start: 1000000,
                 products: [
                     {
                         billing_scheme: "per_unit",
@@ -4900,8 +4942,8 @@ describe("CheckoutClient", () => {
                         id: "id",
                         interval: "interval",
                         name: "name",
-                        package_size: 1,
-                        price: 1,
+                        package_size: 1000000,
+                        price: 1000000,
                         price_external_id: "price_external_id",
                         price_id: "price_id",
                         price_tier: [{}],
@@ -4915,12 +4957,13 @@ describe("CheckoutClient", () => {
                 provider_type: "schematic",
                 status: "status",
                 subscription_external_id: "subscription_external_id",
-                total_price: 1,
-                trial_end: 1,
+                total_price: 1000000,
+                trial_end: 1000000,
                 trial_end_setting: "cancel",
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .put("/subscription/subscription_id/edit-trial-end")
@@ -4934,7 +4977,7 @@ describe("CheckoutClient", () => {
         expect(response).toEqual({
             data: {
                 applicationId: "application_id",
-                cancelAt: 1,
+                cancelAt: 1000000,
                 cancelAtPeriodEnd: true,
                 companyId: "company_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -4956,9 +4999,9 @@ describe("CheckoutClient", () => {
                 id: "id",
                 interval: "interval",
                 latestInvoice: {
-                    amountDue: 1,
-                    amountPaid: 1,
-                    amountRemaining: 1,
+                    amountDue: 1000000,
+                    amountPaid: 1000000,
+                    amountRemaining: 1000000,
                     collectionMethod: "collection_method",
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -4972,7 +5015,7 @@ describe("CheckoutClient", () => {
                     providerType: "schematic",
                     status: "draft",
                     subscriptionExternalId: "subscription_external_id",
-                    subtotal: 1,
+                    subtotal: 1000000,
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     url: "url",
                 },
@@ -4986,8 +5029,8 @@ describe("CheckoutClient", () => {
                     billingEmail: "billing_email",
                     billingName: "billing_name",
                     cardBrand: "card_brand",
-                    cardExpMonth: 1,
-                    cardExpYear: 1,
+                    cardExpMonth: 1000000,
+                    cardExpYear: 1000000,
                     cardLast4: "card_last4",
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -4999,8 +5042,8 @@ describe("CheckoutClient", () => {
                     providerType: "schematic",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
-                periodEnd: 1,
-                periodStart: 1,
+                periodEnd: 1000000,
+                periodStart: 1000000,
                 products: [
                     {
                         billingScheme: "per_unit",
@@ -5011,8 +5054,8 @@ describe("CheckoutClient", () => {
                         id: "id",
                         interval: "interval",
                         name: "name",
-                        packageSize: 1,
-                        price: 1,
+                        packageSize: 1000000,
+                        price: 1000000,
                         priceExternalId: "price_external_id",
                         priceId: "price_id",
                         priceTier: [{}],
@@ -5026,8 +5069,8 @@ describe("CheckoutClient", () => {
                 providerType: "schematic",
                 status: "status",
                 subscriptionExternalId: "subscription_external_id",
-                totalPrice: 1,
-                trialEnd: 1,
+                totalPrice: 1000000,
+                trialEnd: 1000000,
                 trialEndSetting: "cancel",
             },
             params: {
@@ -5041,6 +5084,7 @@ describe("CheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/subscription/subscription_id/edit-trial-end")
@@ -5060,6 +5104,7 @@ describe("CheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/subscription/subscription_id/edit-trial-end")
@@ -5079,6 +5124,7 @@ describe("CheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/subscription/subscription_id/edit-trial-end")
@@ -5098,6 +5144,7 @@ describe("CheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/subscription/subscription_id/edit-trial-end")
@@ -5117,6 +5164,7 @@ describe("CheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/subscription/subscription_id/edit-trial-end")

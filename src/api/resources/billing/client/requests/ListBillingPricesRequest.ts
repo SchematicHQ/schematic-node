@@ -9,15 +9,15 @@ import type * as Schematic from "../../../../index";
  *         forTrialExpiryPlan: true,
  *         interval: "interval",
  *         isActive: true,
- *         price: 1,
+ *         price: 1000000,
  *         productId: "product_id",
  *         providerType: "schematic",
  *         q: "q",
  *         tiersMode: "graduated",
  *         usageType: "licensed",
  *         withMeter: true,
- *         limit: 1,
- *         offset: 1
+ *         limit: 1000000,
+ *         offset: 1000000
  *     }
  */
 export interface ListBillingPricesRequest {

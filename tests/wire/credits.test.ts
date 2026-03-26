@@ -16,7 +16,7 @@ describe("CreditsClient", () => {
                     cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
                     default_expiry_unit: "billing_periods",
-                    default_expiry_unit_count: 1,
+                    default_expiry_unit_count: 1000000,
                     default_rollover_policy: "expire",
                     description: "description",
                     icon: "icon",
@@ -28,7 +28,7 @@ describe("CreditsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
@@ -49,14 +49,15 @@ describe("CreditsClient", () => {
                     updated_at: "2024-01-15T09:30:00Z",
                 },
             ],
-            params: { ids: ["ids"], limit: 1, name: "name", offset: 1 },
+            params: { ids: ["ids"], limit: 1000000, name: "name", offset: 1000000 },
         };
+
         server.mockEndpoint().get("/billing/credits").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.credits.listBillingCredits({
             name: "name",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -65,7 +66,7 @@ describe("CreditsClient", () => {
                     costEditable: true,
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     defaultExpiryUnit: "billing_periods",
-                    defaultExpiryUnitCount: 1,
+                    defaultExpiryUnitCount: 1000000,
                     defaultRolloverPolicy: "expire",
                     description: "description",
                     icon: "icon",
@@ -77,7 +78,7 @@ describe("CreditsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
@@ -100,9 +101,9 @@ describe("CreditsClient", () => {
             ],
             params: {
                 ids: ["ids"],
-                limit: 1,
+                limit: 1000000,
                 name: "name",
-                offset: 1,
+                offset: 1000000,
             },
         });
     });
@@ -112,6 +113,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/credits").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -124,6 +126,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/credits").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -136,6 +139,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/credits").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -148,6 +152,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/credits").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -160,6 +165,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/credits").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -177,7 +183,7 @@ describe("CreditsClient", () => {
                 cost_editable: true,
                 created_at: "2024-01-15T09:30:00Z",
                 default_expiry_unit: "billing_periods",
-                default_expiry_unit_count: 1,
+                default_expiry_unit_count: 1000000,
                 default_rollover_policy: "expire",
                 description: "description",
                 icon: "icon",
@@ -189,7 +195,7 @@ describe("CreditsClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "schematic",
                     scheme: "per_unit",
@@ -213,6 +219,7 @@ describe("CreditsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/billing/credits")
@@ -233,7 +240,7 @@ describe("CreditsClient", () => {
                 costEditable: true,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 defaultExpiryUnit: "billing_periods",
-                defaultExpiryUnitCount: 1,
+                defaultExpiryUnitCount: 1000000,
                 defaultRolloverPolicy: "expire",
                 description: "description",
                 icon: "icon",
@@ -245,7 +252,7 @@ describe("CreditsClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "schematic",
                     scheme: "per_unit",
@@ -278,6 +285,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { currency: "currency", description: "description", name: "name" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/credits")
@@ -301,6 +309,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { currency: "currency", description: "description", name: "name" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/credits")
@@ -324,6 +333,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { currency: "currency", description: "description", name: "name" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/credits")
@@ -347,6 +357,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { currency: "currency", description: "description", name: "name" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/credits")
@@ -370,6 +381,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { currency: "currency", description: "description", name: "name" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/credits")
@@ -398,7 +410,7 @@ describe("CreditsClient", () => {
                 cost_editable: true,
                 created_at: "2024-01-15T09:30:00Z",
                 default_expiry_unit: "billing_periods",
-                default_expiry_unit_count: 1,
+                default_expiry_unit_count: 1000000,
                 default_rollover_policy: "expire",
                 description: "description",
                 icon: "icon",
@@ -410,7 +422,7 @@ describe("CreditsClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "schematic",
                     scheme: "per_unit",
@@ -434,6 +446,7 @@ describe("CreditsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .get("/billing/credits/credit_id")
@@ -449,7 +462,7 @@ describe("CreditsClient", () => {
                 costEditable: true,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 defaultExpiryUnit: "billing_periods",
-                defaultExpiryUnitCount: 1,
+                defaultExpiryUnitCount: 1000000,
                 defaultRolloverPolicy: "expire",
                 description: "description",
                 icon: "icon",
@@ -461,7 +474,7 @@ describe("CreditsClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "schematic",
                     scheme: "per_unit",
@@ -494,6 +507,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/credit_id")
@@ -512,6 +526,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/credit_id")
@@ -530,6 +545,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/credit_id")
@@ -548,6 +564,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/credit_id")
@@ -571,7 +588,7 @@ describe("CreditsClient", () => {
                 cost_editable: true,
                 created_at: "2024-01-15T09:30:00Z",
                 default_expiry_unit: "billing_periods",
-                default_expiry_unit_count: 1,
+                default_expiry_unit_count: 1000000,
                 default_rollover_policy: "expire",
                 description: "description",
                 icon: "icon",
@@ -583,7 +600,7 @@ describe("CreditsClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "schematic",
                     scheme: "per_unit",
@@ -607,6 +624,7 @@ describe("CreditsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .put("/billing/credits/credit_id")
@@ -626,7 +644,7 @@ describe("CreditsClient", () => {
                 costEditable: true,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 defaultExpiryUnit: "billing_periods",
-                defaultExpiryUnitCount: 1,
+                defaultExpiryUnitCount: 1000000,
                 defaultRolloverPolicy: "expire",
                 description: "description",
                 icon: "icon",
@@ -638,7 +656,7 @@ describe("CreditsClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "schematic",
                     scheme: "per_unit",
@@ -671,6 +689,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { description: "description", name: "name" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/billing/credits/credit_id")
@@ -693,6 +712,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { description: "description", name: "name" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/billing/credits/credit_id")
@@ -715,6 +735,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { description: "description", name: "name" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/billing/credits/credit_id")
@@ -737,6 +758,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { description: "description", name: "name" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/billing/credits/credit_id")
@@ -759,6 +781,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { description: "description", name: "name" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/billing/credits/credit_id")
@@ -781,6 +804,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
+
         server
             .mockEndpoint()
             .delete("/billing/credits/credit_id")
@@ -805,6 +829,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/billing/credits/credit_id")
@@ -823,6 +848,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/billing/credits/credit_id")
@@ -841,6 +867,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/billing/credits/credit_id")
@@ -859,6 +886,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/billing/credits/credit_id")
@@ -877,6 +905,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/billing/credits/credit_id")
@@ -905,7 +934,7 @@ describe("CreditsClient", () => {
                     credit_name: "credit_name",
                     expiry_type: "duration",
                     expiry_unit: "billing_periods",
-                    expiry_unit_count: 1,
+                    expiry_unit_count: 1000000,
                     has_grants: true,
                     id: "id",
                     name: "name",
@@ -915,11 +944,11 @@ describe("CreditsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
-                    quantity: 1,
+                    quantity: 1000000,
                     singular_name: "singular_name",
                     status: "active",
                     unit_price: {
@@ -927,7 +956,7 @@ describe("CreditsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
@@ -938,11 +967,12 @@ describe("CreditsClient", () => {
                 bundle_type: "fixed",
                 credit_id: "credit_id",
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 status: "active",
             },
         };
+
         server
             .mockEndpoint()
             .get("/billing/credits/bundles")
@@ -955,8 +985,8 @@ describe("CreditsClient", () => {
             creditId: "credit_id",
             status: "active",
             bundleType: "fixed",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -969,7 +999,7 @@ describe("CreditsClient", () => {
                     creditName: "credit_name",
                     expiryType: "duration",
                     expiryUnit: "billing_periods",
-                    expiryUnitCount: 1,
+                    expiryUnitCount: 1000000,
                     hasGrants: true,
                     id: "id",
                     name: "name",
@@ -979,11 +1009,11 @@ describe("CreditsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
-                    quantity: 1,
+                    quantity: 1000000,
                     singularName: "singular_name",
                     status: "active",
                     unitPrice: {
@@ -991,7 +1021,7 @@ describe("CreditsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
@@ -1002,8 +1032,8 @@ describe("CreditsClient", () => {
                 bundleType: "fixed",
                 creditId: "credit_id",
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 status: "active",
             },
         });
@@ -1014,6 +1044,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/bundles")
@@ -1032,6 +1063,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/bundles")
@@ -1050,6 +1082,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/bundles")
@@ -1068,6 +1101,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/bundles")
@@ -1086,6 +1120,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/bundles")
@@ -1106,7 +1141,7 @@ describe("CreditsClient", () => {
             bundle_name: "bundle_name",
             credit_id: "credit_id",
             currency: "currency",
-            price_per_unit: 1,
+            price_per_unit: 1000000,
         };
         const rawResponseBody = {
             data: {
@@ -1118,7 +1153,7 @@ describe("CreditsClient", () => {
                 credit_name: "credit_name",
                 expiry_type: "duration",
                 expiry_unit: "billing_periods",
-                expiry_unit_count: 1,
+                expiry_unit_count: 1000000,
                 has_grants: true,
                 id: "id",
                 name: "name",
@@ -1128,12 +1163,12 @@ describe("CreditsClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "schematic",
                     scheme: "per_unit",
                 },
-                quantity: 1,
+                quantity: 1000000,
                 singular_name: "singular_name",
                 status: "active",
                 unit_price: {
@@ -1141,7 +1176,7 @@ describe("CreditsClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "schematic",
                     scheme: "per_unit",
@@ -1150,6 +1185,7 @@ describe("CreditsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/billing/credits/bundles")
@@ -1163,7 +1199,7 @@ describe("CreditsClient", () => {
             bundleName: "bundle_name",
             creditId: "credit_id",
             currency: "currency",
-            pricePerUnit: 1,
+            pricePerUnit: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -1175,7 +1211,7 @@ describe("CreditsClient", () => {
                 creditName: "credit_name",
                 expiryType: "duration",
                 expiryUnit: "billing_periods",
-                expiryUnitCount: 1,
+                expiryUnitCount: 1000000,
                 hasGrants: true,
                 id: "id",
                 name: "name",
@@ -1185,12 +1221,12 @@ describe("CreditsClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "schematic",
                     scheme: "per_unit",
                 },
-                quantity: 1,
+                quantity: 1000000,
                 singularName: "singular_name",
                 status: "active",
                 unitPrice: {
@@ -1198,7 +1234,7 @@ describe("CreditsClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "schematic",
                     scheme: "per_unit",
@@ -1218,9 +1254,10 @@ describe("CreditsClient", () => {
             bundle_name: "bundle_name",
             credit_id: "credit_id",
             currency: "currency",
-            price_per_unit: 1,
+            price_per_unit: 1000000,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/credits/bundles")
@@ -1235,7 +1272,7 @@ describe("CreditsClient", () => {
                 bundleName: "bundle_name",
                 creditId: "credit_id",
                 currency: "currency",
-                pricePerUnit: 1,
+                pricePerUnit: 1000000,
             });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
@@ -1247,9 +1284,10 @@ describe("CreditsClient", () => {
             bundle_name: "bundle_name",
             credit_id: "credit_id",
             currency: "currency",
-            price_per_unit: 1,
+            price_per_unit: 1000000,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/credits/bundles")
@@ -1264,7 +1302,7 @@ describe("CreditsClient", () => {
                 bundleName: "bundle_name",
                 creditId: "credit_id",
                 currency: "currency",
-                pricePerUnit: 1,
+                pricePerUnit: 1000000,
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
@@ -1276,9 +1314,10 @@ describe("CreditsClient", () => {
             bundle_name: "bundle_name",
             credit_id: "credit_id",
             currency: "currency",
-            price_per_unit: 1,
+            price_per_unit: 1000000,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/credits/bundles")
@@ -1293,7 +1332,7 @@ describe("CreditsClient", () => {
                 bundleName: "bundle_name",
                 creditId: "credit_id",
                 currency: "currency",
-                pricePerUnit: 1,
+                pricePerUnit: 1000000,
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
@@ -1305,9 +1344,10 @@ describe("CreditsClient", () => {
             bundle_name: "bundle_name",
             credit_id: "credit_id",
             currency: "currency",
-            price_per_unit: 1,
+            price_per_unit: 1000000,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/credits/bundles")
@@ -1322,7 +1362,7 @@ describe("CreditsClient", () => {
                 bundleName: "bundle_name",
                 creditId: "credit_id",
                 currency: "currency",
-                pricePerUnit: 1,
+                pricePerUnit: 1000000,
             });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
@@ -1334,9 +1374,10 @@ describe("CreditsClient", () => {
             bundle_name: "bundle_name",
             credit_id: "credit_id",
             currency: "currency",
-            price_per_unit: 1,
+            price_per_unit: 1000000,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/credits/bundles")
@@ -1351,7 +1392,7 @@ describe("CreditsClient", () => {
                 bundleName: "bundle_name",
                 creditId: "credit_id",
                 currency: "currency",
-                pricePerUnit: 1,
+                pricePerUnit: 1000000,
             });
         }).rejects.toThrow(Schematic.InternalServerError);
     });
@@ -1370,7 +1411,7 @@ describe("CreditsClient", () => {
                 credit_name: "credit_name",
                 expiry_type: "duration",
                 expiry_unit: "billing_periods",
-                expiry_unit_count: 1,
+                expiry_unit_count: 1000000,
                 has_grants: true,
                 id: "id",
                 name: "name",
@@ -1380,12 +1421,12 @@ describe("CreditsClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "schematic",
                     scheme: "per_unit",
                 },
-                quantity: 1,
+                quantity: 1000000,
                 singular_name: "singular_name",
                 status: "active",
                 unit_price: {
@@ -1393,7 +1434,7 @@ describe("CreditsClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "schematic",
                     scheme: "per_unit",
@@ -1402,6 +1443,7 @@ describe("CreditsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .get("/billing/credits/bundles/bundle_id")
@@ -1421,7 +1463,7 @@ describe("CreditsClient", () => {
                 creditName: "credit_name",
                 expiryType: "duration",
                 expiryUnit: "billing_periods",
-                expiryUnitCount: 1,
+                expiryUnitCount: 1000000,
                 hasGrants: true,
                 id: "id",
                 name: "name",
@@ -1431,12 +1473,12 @@ describe("CreditsClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "schematic",
                     scheme: "per_unit",
                 },
-                quantity: 1,
+                quantity: 1000000,
                 singularName: "singular_name",
                 status: "active",
                 unitPrice: {
@@ -1444,7 +1486,7 @@ describe("CreditsClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "schematic",
                     scheme: "per_unit",
@@ -1462,6 +1504,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/bundles/bundle_id")
@@ -1480,6 +1523,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/bundles/bundle_id")
@@ -1498,6 +1542,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/bundles/bundle_id")
@@ -1516,6 +1561,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/bundles/bundle_id")
@@ -1532,7 +1578,7 @@ describe("CreditsClient", () => {
     test("updateCreditBundleDetails (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { bundle_name: "bundle_name", price_per_unit: 1 };
+        const rawRequestBody = { bundle_name: "bundle_name", price_per_unit: 1000000 };
         const rawResponseBody = {
             data: {
                 bundle_type: "fixed",
@@ -1543,7 +1589,7 @@ describe("CreditsClient", () => {
                 credit_name: "credit_name",
                 expiry_type: "duration",
                 expiry_unit: "billing_periods",
-                expiry_unit_count: 1,
+                expiry_unit_count: 1000000,
                 has_grants: true,
                 id: "id",
                 name: "name",
@@ -1553,12 +1599,12 @@ describe("CreditsClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "schematic",
                     scheme: "per_unit",
                 },
-                quantity: 1,
+                quantity: 1000000,
                 singular_name: "singular_name",
                 status: "active",
                 unit_price: {
@@ -1566,7 +1612,7 @@ describe("CreditsClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "schematic",
                     scheme: "per_unit",
@@ -1575,6 +1621,7 @@ describe("CreditsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .put("/billing/credits/bundles/bundle_id")
@@ -1586,7 +1633,7 @@ describe("CreditsClient", () => {
 
         const response = await client.credits.updateCreditBundleDetails("bundle_id", {
             bundleName: "bundle_name",
-            pricePerUnit: 1,
+            pricePerUnit: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -1598,7 +1645,7 @@ describe("CreditsClient", () => {
                 creditName: "credit_name",
                 expiryType: "duration",
                 expiryUnit: "billing_periods",
-                expiryUnitCount: 1,
+                expiryUnitCount: 1000000,
                 hasGrants: true,
                 id: "id",
                 name: "name",
@@ -1608,12 +1655,12 @@ describe("CreditsClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "schematic",
                     scheme: "per_unit",
                 },
-                quantity: 1,
+                quantity: 1000000,
                 singularName: "singular_name",
                 status: "active",
                 unitPrice: {
@@ -1621,7 +1668,7 @@ describe("CreditsClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "schematic",
                     scheme: "per_unit",
@@ -1637,8 +1684,9 @@ describe("CreditsClient", () => {
     test("updateCreditBundleDetails (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { bundle_name: "bundle_name", price_per_unit: 1 };
+        const rawRequestBody = { bundle_name: "bundle_name", price_per_unit: 1000000 };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/billing/credits/bundles/bundle_id")
@@ -1651,7 +1699,7 @@ describe("CreditsClient", () => {
         await expect(async () => {
             return await client.credits.updateCreditBundleDetails("bundle_id", {
                 bundleName: "bundle_name",
-                pricePerUnit: 1,
+                pricePerUnit: 1000000,
             });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
@@ -1659,8 +1707,9 @@ describe("CreditsClient", () => {
     test("updateCreditBundleDetails (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { bundle_name: "bundle_name", price_per_unit: 1 };
+        const rawRequestBody = { bundle_name: "bundle_name", price_per_unit: 1000000 };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/billing/credits/bundles/bundle_id")
@@ -1673,7 +1722,7 @@ describe("CreditsClient", () => {
         await expect(async () => {
             return await client.credits.updateCreditBundleDetails("bundle_id", {
                 bundleName: "bundle_name",
-                pricePerUnit: 1,
+                pricePerUnit: 1000000,
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
@@ -1681,8 +1730,9 @@ describe("CreditsClient", () => {
     test("updateCreditBundleDetails (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { bundle_name: "bundle_name", price_per_unit: 1 };
+        const rawRequestBody = { bundle_name: "bundle_name", price_per_unit: 1000000 };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/billing/credits/bundles/bundle_id")
@@ -1695,7 +1745,7 @@ describe("CreditsClient", () => {
         await expect(async () => {
             return await client.credits.updateCreditBundleDetails("bundle_id", {
                 bundleName: "bundle_name",
-                pricePerUnit: 1,
+                pricePerUnit: 1000000,
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
@@ -1703,8 +1753,9 @@ describe("CreditsClient", () => {
     test("updateCreditBundleDetails (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { bundle_name: "bundle_name", price_per_unit: 1 };
+        const rawRequestBody = { bundle_name: "bundle_name", price_per_unit: 1000000 };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/billing/credits/bundles/bundle_id")
@@ -1717,7 +1768,7 @@ describe("CreditsClient", () => {
         await expect(async () => {
             return await client.credits.updateCreditBundleDetails("bundle_id", {
                 bundleName: "bundle_name",
-                pricePerUnit: 1,
+                pricePerUnit: 1000000,
             });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
@@ -1725,8 +1776,9 @@ describe("CreditsClient", () => {
     test("updateCreditBundleDetails (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { bundle_name: "bundle_name", price_per_unit: 1 };
+        const rawRequestBody = { bundle_name: "bundle_name", price_per_unit: 1000000 };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/billing/credits/bundles/bundle_id")
@@ -1739,7 +1791,7 @@ describe("CreditsClient", () => {
         await expect(async () => {
             return await client.credits.updateCreditBundleDetails("bundle_id", {
                 bundleName: "bundle_name",
-                pricePerUnit: 1,
+                pricePerUnit: 1000000,
             });
         }).rejects.toThrow(Schematic.InternalServerError);
     });
@@ -1749,6 +1801,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
+
         server
             .mockEndpoint()
             .delete("/billing/credits/bundles/bundle_id")
@@ -1773,6 +1826,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/billing/credits/bundles/bundle_id")
@@ -1791,6 +1845,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/billing/credits/bundles/bundle_id")
@@ -1809,6 +1864,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/billing/credits/bundles/bundle_id")
@@ -1827,6 +1883,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/billing/credits/bundles/bundle_id")
@@ -1845,6 +1902,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/billing/credits/bundles/bundle_id")
@@ -1868,11 +1926,12 @@ describe("CreditsClient", () => {
                 bundle_type: "fixed",
                 credit_id: "credit_id",
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 status: "active",
             },
         };
+
         server
             .mockEndpoint()
             .get("/billing/credits/bundles/count")
@@ -1885,8 +1944,8 @@ describe("CreditsClient", () => {
             creditId: "credit_id",
             status: "active",
             bundleType: "fixed",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -1896,8 +1955,8 @@ describe("CreditsClient", () => {
                 bundleType: "fixed",
                 creditId: "credit_id",
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 status: "active",
             },
         });
@@ -1908,6 +1967,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/bundles/count")
@@ -1926,6 +1986,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/bundles/count")
@@ -1944,6 +2005,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/bundles/count")
@@ -1962,6 +2024,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/bundles/count")
@@ -1980,6 +2043,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/bundles/count")
@@ -1997,7 +2061,11 @@ describe("CreditsClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { data: { count: 1 }, params: { ids: ["ids"], limit: 1, name: "name", offset: 1 } };
+        const rawResponseBody = {
+            data: { count: 1 },
+            params: { ids: ["ids"], limit: 1000000, name: "name", offset: 1000000 },
+        };
+
         server
             .mockEndpoint()
             .get("/billing/credits/count")
@@ -2008,8 +2076,8 @@ describe("CreditsClient", () => {
 
         const response = await client.credits.countBillingCredits({
             name: "name",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -2017,9 +2085,9 @@ describe("CreditsClient", () => {
             },
             params: {
                 ids: ["ids"],
-                limit: 1,
+                limit: 1000000,
                 name: "name",
-                offset: 1,
+                offset: 1000000,
             },
         });
     });
@@ -2029,6 +2097,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/count")
@@ -2047,6 +2116,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/count")
@@ -2065,6 +2135,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/count")
@@ -2083,6 +2154,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/count")
@@ -2101,6 +2173,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/count")
@@ -2136,12 +2209,12 @@ describe("CreditsClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "schematic",
                     scheme: "per_unit",
                 },
-                quantity: 1,
+                quantity: 1000000,
                 quantity_remaining: 1.1,
                 quantity_used: 1.1,
                 renewal_enabled: true,
@@ -2164,6 +2237,7 @@ describe("CreditsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .put("/billing/credits/grants/grant_id/zero-out")
@@ -2192,12 +2266,12 @@ describe("CreditsClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "schematic",
                     scheme: "per_unit",
                 },
-                quantity: 1,
+                quantity: 1000000,
                 quantityRemaining: 1.1,
                 quantityUsed: 1.1,
                 renewalEnabled: true,
@@ -2229,6 +2303,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/billing/credits/grants/grant_id/zero-out")
@@ -2248,6 +2323,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/billing/credits/grants/grant_id/zero-out")
@@ -2267,6 +2343,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/billing/credits/grants/grant_id/zero-out")
@@ -2286,6 +2363,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/billing/credits/grants/grant_id/zero-out")
@@ -2305,6 +2383,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/billing/credits/grants/grant_id/zero-out")
@@ -2325,7 +2404,7 @@ describe("CreditsClient", () => {
         const rawRequestBody = {
             company_id: "company_id",
             credit_id: "credit_id",
-            quantity: 1,
+            quantity: 1000000,
             reason: "billing_credit_auto_topup",
         };
         const rawResponseBody = {
@@ -2346,12 +2425,12 @@ describe("CreditsClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "schematic",
                     scheme: "per_unit",
                 },
-                quantity: 1,
+                quantity: 1000000,
                 quantity_remaining: 1.1,
                 quantity_used: 1.1,
                 renewal_enabled: true,
@@ -2374,6 +2453,7 @@ describe("CreditsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/billing/credits/grants/company")
@@ -2386,7 +2466,7 @@ describe("CreditsClient", () => {
         const response = await client.credits.grantBillingCreditsToCompany({
             companyId: "company_id",
             creditId: "credit_id",
-            quantity: 1,
+            quantity: 1000000,
             reason: "billing_credit_auto_topup",
         });
         expect(response).toEqual({
@@ -2407,12 +2487,12 @@ describe("CreditsClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "schematic",
                     scheme: "per_unit",
                 },
-                quantity: 1,
+                quantity: 1000000,
                 quantityRemaining: 1.1,
                 quantityUsed: 1.1,
                 renewalEnabled: true,
@@ -2445,10 +2525,11 @@ describe("CreditsClient", () => {
         const rawRequestBody = {
             company_id: "company_id",
             credit_id: "credit_id",
-            quantity: 1,
+            quantity: 1000000,
             reason: "billing_credit_auto_topup",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/credits/grants/company")
@@ -2462,7 +2543,7 @@ describe("CreditsClient", () => {
             return await client.credits.grantBillingCreditsToCompany({
                 companyId: "company_id",
                 creditId: "credit_id",
-                quantity: 1,
+                quantity: 1000000,
                 reason: "billing_credit_auto_topup",
             });
         }).rejects.toThrow(Schematic.BadRequestError);
@@ -2474,10 +2555,11 @@ describe("CreditsClient", () => {
         const rawRequestBody = {
             company_id: "company_id",
             credit_id: "credit_id",
-            quantity: 1,
+            quantity: 1000000,
             reason: "billing_credit_auto_topup",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/credits/grants/company")
@@ -2491,7 +2573,7 @@ describe("CreditsClient", () => {
             return await client.credits.grantBillingCreditsToCompany({
                 companyId: "company_id",
                 creditId: "credit_id",
-                quantity: 1,
+                quantity: 1000000,
                 reason: "billing_credit_auto_topup",
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
@@ -2503,10 +2585,11 @@ describe("CreditsClient", () => {
         const rawRequestBody = {
             company_id: "company_id",
             credit_id: "credit_id",
-            quantity: 1,
+            quantity: 1000000,
             reason: "billing_credit_auto_topup",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/credits/grants/company")
@@ -2520,7 +2603,7 @@ describe("CreditsClient", () => {
             return await client.credits.grantBillingCreditsToCompany({
                 companyId: "company_id",
                 creditId: "credit_id",
-                quantity: 1,
+                quantity: 1000000,
                 reason: "billing_credit_auto_topup",
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
@@ -2532,10 +2615,11 @@ describe("CreditsClient", () => {
         const rawRequestBody = {
             company_id: "company_id",
             credit_id: "credit_id",
-            quantity: 1,
+            quantity: 1000000,
             reason: "billing_credit_auto_topup",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/credits/grants/company")
@@ -2549,7 +2633,7 @@ describe("CreditsClient", () => {
             return await client.credits.grantBillingCreditsToCompany({
                 companyId: "company_id",
                 creditId: "credit_id",
-                quantity: 1,
+                quantity: 1000000,
                 reason: "billing_credit_auto_topup",
             });
         }).rejects.toThrow(Schematic.NotFoundError);
@@ -2561,10 +2645,11 @@ describe("CreditsClient", () => {
         const rawRequestBody = {
             company_id: "company_id",
             credit_id: "credit_id",
-            quantity: 1,
+            quantity: 1000000,
             reason: "billing_credit_auto_topup",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/credits/grants/company")
@@ -2578,7 +2663,7 @@ describe("CreditsClient", () => {
             return await client.credits.grantBillingCreditsToCompany({
                 companyId: "company_id",
                 creditId: "credit_id",
-                quantity: 1,
+                quantity: 1000000,
                 reason: "billing_credit_auto_topup",
             });
         }).rejects.toThrow(Schematic.InternalServerError);
@@ -2590,8 +2675,9 @@ describe("CreditsClient", () => {
 
         const rawResponseBody = {
             data: { count: 1 },
-            params: { company_id: "company_id", dir: "asc", limit: 1, offset: 1, order: "created_at" },
+            params: { company_id: "company_id", dir: "asc", limit: 1000000, offset: 1000000, order: "created_at" },
         };
+
         server
             .mockEndpoint()
             .get("/billing/credits/grants/company/count")
@@ -2604,8 +2690,8 @@ describe("CreditsClient", () => {
             companyId: "company_id",
             order: "created_at",
             dir: "asc",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -2614,8 +2700,8 @@ describe("CreditsClient", () => {
             params: {
                 companyId: "company_id",
                 dir: "asc",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 order: "created_at",
             },
         });
@@ -2626,6 +2712,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/grants/company/count")
@@ -2644,6 +2731,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/grants/company/count")
@@ -2662,6 +2750,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/grants/company/count")
@@ -2680,6 +2769,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/grants/company/count")
@@ -2698,6 +2788,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/grants/company/count")
@@ -2734,11 +2825,11 @@ describe("CreditsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
-                    quantity: 1,
+                    quantity: 1000000,
                     quantity_remaining: 1.1,
                     quantity_used: 1.1,
                     renewal_enabled: true,
@@ -2760,8 +2851,9 @@ describe("CreditsClient", () => {
                     zeroed_out_reason: "expired",
                 },
             ],
-            params: { company_id: "company_id", dir: "asc", limit: 1, offset: 1, order: "created_at" },
+            params: { company_id: "company_id", dir: "asc", limit: 1000000, offset: 1000000, order: "created_at" },
         };
+
         server
             .mockEndpoint()
             .get("/billing/credits/grants/company/list")
@@ -2774,8 +2866,8 @@ describe("CreditsClient", () => {
             companyId: "company_id",
             order: "created_at",
             dir: "asc",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -2796,11 +2888,11 @@ describe("CreditsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
-                    quantity: 1,
+                    quantity: 1000000,
                     quantityRemaining: 1.1,
                     quantityUsed: 1.1,
                     renewalEnabled: true,
@@ -2825,8 +2917,8 @@ describe("CreditsClient", () => {
             params: {
                 companyId: "company_id",
                 dir: "asc",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 order: "created_at",
             },
         });
@@ -2837,6 +2929,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/grants/company/list")
@@ -2855,6 +2948,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/grants/company/list")
@@ -2873,6 +2967,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/grants/company/list")
@@ -2891,6 +2986,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/grants/company/list")
@@ -2909,6 +3005,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/grants/company/list")
@@ -2928,8 +3025,9 @@ describe("CreditsClient", () => {
 
         const rawResponseBody = {
             data: { count: 1 },
-            params: { credit_id: "credit_id", ids: ["ids"], limit: 1, offset: 1 },
+            params: { credit_id: "credit_id", ids: ["ids"], limit: 1000000, offset: 1000000 },
         };
+
         server
             .mockEndpoint()
             .get("/billing/credits/grants/count")
@@ -2940,8 +3038,8 @@ describe("CreditsClient", () => {
 
         const response = await client.credits.countBillingCreditsGrants({
             creditId: "credit_id",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -2950,8 +3048,8 @@ describe("CreditsClient", () => {
             params: {
                 creditId: "credit_id",
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
             },
         });
     });
@@ -2961,6 +3059,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/grants/count")
@@ -2979,6 +3078,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/grants/count")
@@ -2997,6 +3097,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/grants/count")
@@ -3015,6 +3116,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/grants/count")
@@ -3033,6 +3135,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/grants/count")
@@ -3069,11 +3172,11 @@ describe("CreditsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
-                    quantity: 1,
+                    quantity: 1000000,
                     quantity_remaining: 1.1,
                     quantity_used: 1.1,
                     renewal_enabled: true,
@@ -3095,8 +3198,9 @@ describe("CreditsClient", () => {
                     zeroed_out_reason: "expired",
                 },
             ],
-            params: { credit_id: "credit_id", ids: ["ids"], limit: 1, offset: 1 },
+            params: { credit_id: "credit_id", ids: ["ids"], limit: 1000000, offset: 1000000 },
         };
+
         server
             .mockEndpoint()
             .get("/billing/credits/grants/list")
@@ -3107,8 +3211,8 @@ describe("CreditsClient", () => {
 
         const response = await client.credits.listGrantsForCredit({
             creditId: "credit_id",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -3129,11 +3233,11 @@ describe("CreditsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
-                    quantity: 1,
+                    quantity: 1000000,
                     quantityRemaining: 1.1,
                     quantityUsed: 1.1,
                     renewalEnabled: true,
@@ -3158,8 +3262,8 @@ describe("CreditsClient", () => {
             params: {
                 creditId: "credit_id",
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
             },
         });
     });
@@ -3169,6 +3273,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/grants/list")
@@ -3187,6 +3292,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/grants/list")
@@ -3205,6 +3311,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/grants/list")
@@ -3223,6 +3330,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/grants/list")
@@ -3241,6 +3349,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/grants/list")
@@ -3261,28 +3370,28 @@ describe("CreditsClient", () => {
         const rawResponseBody = {
             data: [
                 {
-                    billing_credit_auto_topup_grant_count: 1,
+                    billing_credit_auto_topup_grant_count: 1000000,
                     billing_credit_id: "billing_credit_id",
                     company: { id: "id", name: "name" },
                     company_id: "company_id",
                     credit: { id: "id", name: "name" },
-                    expired_grant_count: 1,
+                    expired_grant_count: 1000000,
                     feature: { id: "id", name: "name" },
                     feature_id: "feature_id",
                     first_transaction_at: "2024-01-15T09:30:00Z",
-                    free_grant_count: 1,
-                    grant_count: 1,
+                    free_grant_count: 1000000,
+                    grant_count: 1000000,
                     last_transaction_at: "2024-01-15T09:30:00Z",
-                    manually_zeroed_count: 1,
+                    manually_zeroed_count: 1000000,
                     net_change: 1.1,
-                    plan_grant_count: 1,
-                    purchased_grant_count: 1,
+                    plan_grant_count: 1000000,
+                    purchased_grant_count: 1000000,
                     time_bucket: "2024-01-15T09:30:00Z",
                     total_consumed: 1.1,
                     total_granted: 1.1,
-                    transaction_count: 1,
-                    usage_count: 1,
-                    zeroed_out_count: 1,
+                    transaction_count: 1000000,
+                    usage_count: 1000000,
+                    zeroed_out_count: 1000000,
                 },
             ],
             params: {
@@ -3290,12 +3399,13 @@ describe("CreditsClient", () => {
                 company_id: "company_id",
                 end_time: "end_time",
                 feature_id: "feature_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 period: "daily",
                 start_time: "start_time",
             },
         };
+
         server
             .mockEndpoint()
             .get("/billing/credits/ledger")
@@ -3311,13 +3421,13 @@ describe("CreditsClient", () => {
             period: "daily",
             startTime: "start_time",
             endTime: "end_time",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
                 {
-                    billingCreditAutoTopupGrantCount: 1,
+                    billingCreditAutoTopupGrantCount: 1000000,
                     billingCreditId: "billing_credit_id",
                     company: {
                         id: "id",
@@ -3328,26 +3438,26 @@ describe("CreditsClient", () => {
                         id: "id",
                         name: "name",
                     },
-                    expiredGrantCount: 1,
+                    expiredGrantCount: 1000000,
                     feature: {
                         id: "id",
                         name: "name",
                     },
                     featureId: "feature_id",
                     firstTransactionAt: new Date("2024-01-15T09:30:00.000Z"),
-                    freeGrantCount: 1,
-                    grantCount: 1,
+                    freeGrantCount: 1000000,
+                    grantCount: 1000000,
                     lastTransactionAt: new Date("2024-01-15T09:30:00.000Z"),
-                    manuallyZeroedCount: 1,
+                    manuallyZeroedCount: 1000000,
                     netChange: 1.1,
-                    planGrantCount: 1,
-                    purchasedGrantCount: 1,
+                    planGrantCount: 1000000,
+                    purchasedGrantCount: 1000000,
                     timeBucket: new Date("2024-01-15T09:30:00.000Z"),
                     totalConsumed: 1.1,
                     totalGranted: 1.1,
-                    transactionCount: 1,
-                    usageCount: 1,
-                    zeroedOutCount: 1,
+                    transactionCount: 1000000,
+                    usageCount: 1000000,
+                    zeroedOutCount: 1000000,
                 },
             ],
             params: {
@@ -3355,8 +3465,8 @@ describe("CreditsClient", () => {
                 companyId: "company_id",
                 endTime: "end_time",
                 featureId: "feature_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 period: "daily",
                 startTime: "start_time",
             },
@@ -3368,6 +3478,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/ledger")
@@ -3389,6 +3500,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/ledger")
@@ -3410,6 +3522,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/ledger")
@@ -3431,6 +3544,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/ledger")
@@ -3452,6 +3566,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/ledger")
@@ -3479,12 +3594,13 @@ describe("CreditsClient", () => {
                 company_id: "company_id",
                 end_time: "end_time",
                 feature_id: "feature_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 period: "daily",
                 start_time: "start_time",
             },
         };
+
         server
             .mockEndpoint()
             .get("/billing/credits/ledger/count")
@@ -3500,8 +3616,8 @@ describe("CreditsClient", () => {
             period: "daily",
             startTime: "start_time",
             endTime: "end_time",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -3512,8 +3628,8 @@ describe("CreditsClient", () => {
                 companyId: "company_id",
                 endTime: "end_time",
                 featureId: "feature_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 period: "daily",
                 startTime: "start_time",
             },
@@ -3525,6 +3641,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/ledger/count")
@@ -3546,6 +3663,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/ledger/count")
@@ -3567,6 +3685,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/ledger/count")
@@ -3588,6 +3707,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/ledger/count")
@@ -3609,6 +3729,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/ledger/count")
@@ -3632,13 +3753,13 @@ describe("CreditsClient", () => {
         const rawResponseBody = {
             data: [
                 {
-                    auto_topup_amount: 1,
+                    auto_topup_amount: 1000000,
                     auto_topup_amount_type: "auto_topup_amount_type",
                     auto_topup_enabled: true,
                     auto_topup_expiry_type: "duration",
                     auto_topup_expiry_unit: "billing_periods",
-                    auto_topup_expiry_unit_count: 1,
-                    auto_topup_threshold_percent: 1,
+                    auto_topup_expiry_unit_count: 1000000,
+                    auto_topup_threshold_percent: 1000000,
                     created_at: "2024-01-15T09:30:00Z",
                     credit: {
                         burn_strategy: "expiration_priority",
@@ -3651,12 +3772,12 @@ describe("CreditsClient", () => {
                         name: "name",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
-                    credit_amount: 1,
+                    credit_amount: 1000000,
                     credit_id: "credit_id",
                     credit_name: "credit_name",
                     expiry_type: "duration",
                     expiry_unit: "billing_periods",
-                    expiry_unit_count: 1,
+                    expiry_unit_count: 1000000,
                     id: "id",
                     plan: { id: "id", name: "name" },
                     plan_id: "plan_id",
@@ -3671,13 +3792,14 @@ describe("CreditsClient", () => {
             params: {
                 credit_id: "credit_id",
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 plan_id: "plan_id",
                 plan_ids: ["plan_ids"],
                 plan_version_id: "plan_version_id",
             },
         };
+
         server
             .mockEndpoint()
             .get("/billing/credits/plan-grants")
@@ -3690,19 +3812,19 @@ describe("CreditsClient", () => {
             creditId: "credit_id",
             planId: "plan_id",
             planVersionId: "plan_version_id",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
                 {
-                    autoTopupAmount: 1,
+                    autoTopupAmount: 1000000,
                     autoTopupAmountType: "auto_topup_amount_type",
                     autoTopupEnabled: true,
                     autoTopupExpiryType: "duration",
                     autoTopupExpiryUnit: "billing_periods",
-                    autoTopupExpiryUnitCount: 1,
-                    autoTopupThresholdPercent: 1,
+                    autoTopupExpiryUnitCount: 1000000,
+                    autoTopupThresholdPercent: 1000000,
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     credit: {
                         burnStrategy: "expiration_priority",
@@ -3715,12 +3837,12 @@ describe("CreditsClient", () => {
                         name: "name",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
-                    creditAmount: 1,
+                    creditAmount: 1000000,
                     creditId: "credit_id",
                     creditName: "credit_name",
                     expiryType: "duration",
                     expiryUnit: "billing_periods",
-                    expiryUnitCount: 1,
+                    expiryUnitCount: 1000000,
                     id: "id",
                     plan: {
                         id: "id",
@@ -3738,8 +3860,8 @@ describe("CreditsClient", () => {
             params: {
                 creditId: "credit_id",
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 planId: "plan_id",
                 planIds: ["plan_ids"],
                 planVersionId: "plan_version_id",
@@ -3752,6 +3874,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/plan-grants")
@@ -3770,6 +3893,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/plan-grants")
@@ -3788,6 +3912,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/plan-grants")
@@ -3806,6 +3931,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/plan-grants")
@@ -3824,6 +3950,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/plan-grants")
@@ -3841,7 +3968,7 @@ describe("CreditsClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            credit_amount: 1,
+            credit_amount: 1000000,
             credit_id: "credit_id",
             plan_id: "plan_id",
             reset_cadence: "daily",
@@ -3849,20 +3976,20 @@ describe("CreditsClient", () => {
         };
         const rawResponseBody = {
             data: {
-                auto_topup_amount: 1,
+                auto_topup_amount: 1000000,
                 auto_topup_amount_type: "auto_topup_amount_type",
                 auto_topup_enabled: true,
                 auto_topup_expiry_type: "duration",
                 auto_topup_expiry_unit: "billing_periods",
-                auto_topup_expiry_unit_count: 1,
-                auto_topup_threshold_percent: 1,
+                auto_topup_expiry_unit_count: 1000000,
+                auto_topup_threshold_percent: 1000000,
                 created_at: "2024-01-15T09:30:00Z",
                 credit: {
                     burn_strategy: "expiration_priority",
                     cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
                     default_expiry_unit: "billing_periods",
-                    default_expiry_unit_count: 1,
+                    default_expiry_unit_count: 1000000,
                     default_rollover_policy: "expire",
                     description: "description",
                     icon: "icon",
@@ -3874,7 +4001,7 @@ describe("CreditsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
@@ -3894,12 +4021,12 @@ describe("CreditsClient", () => {
                     singular_name: "singular_name",
                     updated_at: "2024-01-15T09:30:00Z",
                 },
-                credit_amount: 1,
+                credit_amount: 1000000,
                 credit_id: "credit_id",
                 credit_name: "credit_name",
                 expiry_type: "duration",
                 expiry_unit: "billing_periods",
-                expiry_unit_count: 1,
+                expiry_unit_count: 1000000,
                 id: "id",
                 plan: { description: "description", id: "id", image_url: "image_url", name: "name" },
                 plan_id: "plan_id",
@@ -3912,6 +4039,7 @@ describe("CreditsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/billing/credits/plan-grants")
@@ -3922,7 +4050,7 @@ describe("CreditsClient", () => {
             .build();
 
         const response = await client.credits.createBillingPlanCreditGrant({
-            creditAmount: 1,
+            creditAmount: 1000000,
             creditId: "credit_id",
             planId: "plan_id",
             resetCadence: "daily",
@@ -3930,20 +4058,20 @@ describe("CreditsClient", () => {
         });
         expect(response).toEqual({
             data: {
-                autoTopupAmount: 1,
+                autoTopupAmount: 1000000,
                 autoTopupAmountType: "auto_topup_amount_type",
                 autoTopupEnabled: true,
                 autoTopupExpiryType: "duration",
                 autoTopupExpiryUnit: "billing_periods",
-                autoTopupExpiryUnitCount: 1,
-                autoTopupThresholdPercent: 1,
+                autoTopupExpiryUnitCount: 1000000,
+                autoTopupThresholdPercent: 1000000,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 credit: {
                     burnStrategy: "expiration_priority",
                     costEditable: true,
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     defaultExpiryUnit: "billing_periods",
-                    defaultExpiryUnitCount: 1,
+                    defaultExpiryUnitCount: 1000000,
                     defaultRolloverPolicy: "expire",
                     description: "description",
                     icon: "icon",
@@ -3955,7 +4083,7 @@ describe("CreditsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
@@ -3975,12 +4103,12 @@ describe("CreditsClient", () => {
                     singularName: "singular_name",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
-                creditAmount: 1,
+                creditAmount: 1000000,
                 creditId: "credit_id",
                 creditName: "credit_name",
                 expiryType: "duration",
                 expiryUnit: "billing_periods",
-                expiryUnitCount: 1,
+                expiryUnitCount: 1000000,
                 id: "id",
                 plan: {
                     description: "description",
@@ -4006,13 +4134,14 @@ describe("CreditsClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            credit_amount: 1,
+            credit_amount: 1000000,
             credit_id: "credit_id",
             plan_id: "plan_id",
             reset_cadence: "daily",
             reset_start: "billing_period",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/credits/plan-grants")
@@ -4024,7 +4153,7 @@ describe("CreditsClient", () => {
 
         await expect(async () => {
             return await client.credits.createBillingPlanCreditGrant({
-                creditAmount: 1,
+                creditAmount: 1000000,
                 creditId: "credit_id",
                 planId: "plan_id",
                 resetCadence: "daily",
@@ -4037,13 +4166,14 @@ describe("CreditsClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            credit_amount: 1,
+            credit_amount: 1000000,
             credit_id: "credit_id",
             plan_id: "plan_id",
             reset_cadence: "daily",
             reset_start: "billing_period",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/credits/plan-grants")
@@ -4055,7 +4185,7 @@ describe("CreditsClient", () => {
 
         await expect(async () => {
             return await client.credits.createBillingPlanCreditGrant({
-                creditAmount: 1,
+                creditAmount: 1000000,
                 creditId: "credit_id",
                 planId: "plan_id",
                 resetCadence: "daily",
@@ -4068,13 +4198,14 @@ describe("CreditsClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            credit_amount: 1,
+            credit_amount: 1000000,
             credit_id: "credit_id",
             plan_id: "plan_id",
             reset_cadence: "daily",
             reset_start: "billing_period",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/credits/plan-grants")
@@ -4086,7 +4217,7 @@ describe("CreditsClient", () => {
 
         await expect(async () => {
             return await client.credits.createBillingPlanCreditGrant({
-                creditAmount: 1,
+                creditAmount: 1000000,
                 creditId: "credit_id",
                 planId: "plan_id",
                 resetCadence: "daily",
@@ -4099,13 +4230,14 @@ describe("CreditsClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            credit_amount: 1,
+            credit_amount: 1000000,
             credit_id: "credit_id",
             plan_id: "plan_id",
             reset_cadence: "daily",
             reset_start: "billing_period",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/credits/plan-grants")
@@ -4117,7 +4249,7 @@ describe("CreditsClient", () => {
 
         await expect(async () => {
             return await client.credits.createBillingPlanCreditGrant({
-                creditAmount: 1,
+                creditAmount: 1000000,
                 creditId: "credit_id",
                 planId: "plan_id",
                 resetCadence: "daily",
@@ -4130,13 +4262,14 @@ describe("CreditsClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            credit_amount: 1,
+            credit_amount: 1000000,
             credit_id: "credit_id",
             plan_id: "plan_id",
             reset_cadence: "daily",
             reset_start: "billing_period",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/credits/plan-grants")
@@ -4148,7 +4281,7 @@ describe("CreditsClient", () => {
 
         await expect(async () => {
             return await client.credits.createBillingPlanCreditGrant({
-                creditAmount: 1,
+                creditAmount: 1000000,
                 creditId: "credit_id",
                 planId: "plan_id",
                 resetCadence: "daily",
@@ -4163,20 +4296,20 @@ describe("CreditsClient", () => {
         const rawRequestBody = { reset_cadence: "daily", reset_start: "billing_period" };
         const rawResponseBody = {
             data: {
-                auto_topup_amount: 1,
+                auto_topup_amount: 1000000,
                 auto_topup_amount_type: "auto_topup_amount_type",
                 auto_topup_enabled: true,
                 auto_topup_expiry_type: "duration",
                 auto_topup_expiry_unit: "billing_periods",
-                auto_topup_expiry_unit_count: 1,
-                auto_topup_threshold_percent: 1,
+                auto_topup_expiry_unit_count: 1000000,
+                auto_topup_threshold_percent: 1000000,
                 created_at: "2024-01-15T09:30:00Z",
                 credit: {
                     burn_strategy: "expiration_priority",
                     cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
                     default_expiry_unit: "billing_periods",
-                    default_expiry_unit_count: 1,
+                    default_expiry_unit_count: 1000000,
                     default_rollover_policy: "expire",
                     description: "description",
                     icon: "icon",
@@ -4188,7 +4321,7 @@ describe("CreditsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
@@ -4208,12 +4341,12 @@ describe("CreditsClient", () => {
                     singular_name: "singular_name",
                     updated_at: "2024-01-15T09:30:00Z",
                 },
-                credit_amount: 1,
+                credit_amount: 1000000,
                 credit_id: "credit_id",
                 credit_name: "credit_name",
                 expiry_type: "duration",
                 expiry_unit: "billing_periods",
-                expiry_unit_count: 1,
+                expiry_unit_count: 1000000,
                 id: "id",
                 plan: { description: "description", id: "id", image_url: "image_url", name: "name" },
                 plan_id: "plan_id",
@@ -4226,6 +4359,7 @@ describe("CreditsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .put("/billing/credits/plan-grants/plan_grant_id")
@@ -4241,20 +4375,20 @@ describe("CreditsClient", () => {
         });
         expect(response).toEqual({
             data: {
-                autoTopupAmount: 1,
+                autoTopupAmount: 1000000,
                 autoTopupAmountType: "auto_topup_amount_type",
                 autoTopupEnabled: true,
                 autoTopupExpiryType: "duration",
                 autoTopupExpiryUnit: "billing_periods",
-                autoTopupExpiryUnitCount: 1,
-                autoTopupThresholdPercent: 1,
+                autoTopupExpiryUnitCount: 1000000,
+                autoTopupThresholdPercent: 1000000,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 credit: {
                     burnStrategy: "expiration_priority",
                     costEditable: true,
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     defaultExpiryUnit: "billing_periods",
-                    defaultExpiryUnitCount: 1,
+                    defaultExpiryUnitCount: 1000000,
                     defaultRolloverPolicy: "expire",
                     description: "description",
                     icon: "icon",
@@ -4266,7 +4400,7 @@ describe("CreditsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
@@ -4286,12 +4420,12 @@ describe("CreditsClient", () => {
                     singularName: "singular_name",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
-                creditAmount: 1,
+                creditAmount: 1000000,
                 creditId: "credit_id",
                 creditName: "credit_name",
                 expiryType: "duration",
                 expiryUnit: "billing_periods",
-                expiryUnitCount: 1,
+                expiryUnitCount: 1000000,
                 id: "id",
                 plan: {
                     description: "description",
@@ -4318,6 +4452,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { reset_cadence: "daily", reset_start: "billing_period" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/billing/credits/plan-grants/plan_grant_id")
@@ -4340,6 +4475,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { reset_cadence: "daily", reset_start: "billing_period" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/billing/credits/plan-grants/plan_grant_id")
@@ -4362,6 +4498,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { reset_cadence: "daily", reset_start: "billing_period" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/billing/credits/plan-grants/plan_grant_id")
@@ -4384,6 +4521,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { reset_cadence: "daily", reset_start: "billing_period" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/billing/credits/plan-grants/plan_grant_id")
@@ -4406,6 +4544,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { reset_cadence: "daily", reset_start: "billing_period" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/billing/credits/plan-grants/plan_grant_id")
@@ -4428,6 +4567,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { data: { deleted: true }, params: { apply_to_existing: true } };
+
         server
             .mockEndpoint()
             .delete("/billing/credits/plan-grants/plan_grant_id")
@@ -4454,6 +4594,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/billing/credits/plan-grants/plan_grant_id")
@@ -4472,6 +4613,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/billing/credits/plan-grants/plan_grant_id")
@@ -4490,6 +4632,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/billing/credits/plan-grants/plan_grant_id")
@@ -4508,6 +4651,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/billing/credits/plan-grants/plan_grant_id")
@@ -4526,6 +4670,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/billing/credits/plan-grants/plan_grant_id")
@@ -4548,13 +4693,14 @@ describe("CreditsClient", () => {
             params: {
                 credit_id: "credit_id",
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 plan_id: "plan_id",
                 plan_ids: ["plan_ids"],
                 plan_version_id: "plan_version_id",
             },
         };
+
         server
             .mockEndpoint()
             .get("/billing/credits/plan-grants/count")
@@ -4567,8 +4713,8 @@ describe("CreditsClient", () => {
             creditId: "credit_id",
             planId: "plan_id",
             planVersionId: "plan_version_id",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -4577,8 +4723,8 @@ describe("CreditsClient", () => {
             params: {
                 creditId: "credit_id",
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 planId: "plan_id",
                 planIds: ["plan_ids"],
                 planVersionId: "plan_version_id",
@@ -4591,6 +4737,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/plan-grants/count")
@@ -4609,6 +4756,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/plan-grants/count")
@@ -4627,6 +4775,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/plan-grants/count")
@@ -4645,6 +4794,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/plan-grants/count")
@@ -4663,6 +4813,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/credits/plan-grants/count")
@@ -4697,20 +4848,20 @@ describe("CreditsClient", () => {
                     event_type: "grant",
                     expiry_type: "duration",
                     expiry_unit: "billing_periods",
-                    expiry_unit_count: 1,
+                    expiry_unit_count: 1000000,
                     feature: { id: "id", name: "name" },
                     feature_id: "feature_id",
                     from_grant_id: "from_grant_id",
                     grant_expires_at: "2024-01-15T09:30:00Z",
                     grant_id: "grant_id",
-                    grant_quantity: 1,
+                    grant_quantity: 1000000,
                     grant_quantity_remaining: 1.1,
                     grant_reason: "billing_credit_auto_topup",
                     grant_valid_from: "2024-01-15T09:30:00Z",
                     plan_id: "plan_id",
                     quantity_consumed: 1.1,
                     quantity_remaining_at_zero_out: 1.1,
-                    source_id: 1,
+                    source_id: 1000000,
                     to_grant_id: "to_grant_id",
                     usage_event_id: "usage_event_id",
                     zeroed_out_reason: "expired",
@@ -4722,11 +4873,12 @@ describe("CreditsClient", () => {
                 end_time: "end_time",
                 event_type: "grant",
                 feature_id: "feature_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 start_time: "start_time",
             },
         };
+
         server
             .mockEndpoint()
             .get("/v2/billing/credits/ledger")
@@ -4742,8 +4894,8 @@ describe("CreditsClient", () => {
             eventType: "grant",
             featureId: "feature_id",
             startTime: "start_time",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -4768,7 +4920,7 @@ describe("CreditsClient", () => {
                     eventType: "grant",
                     expiryType: "duration",
                     expiryUnit: "billing_periods",
-                    expiryUnitCount: 1,
+                    expiryUnitCount: 1000000,
                     feature: {
                         id: "id",
                         name: "name",
@@ -4777,14 +4929,14 @@ describe("CreditsClient", () => {
                     fromGrantId: "from_grant_id",
                     grantExpiresAt: new Date("2024-01-15T09:30:00.000Z"),
                     grantId: "grant_id",
-                    grantQuantity: 1,
+                    grantQuantity: 1000000,
                     grantQuantityRemaining: 1.1,
                     grantReason: "billing_credit_auto_topup",
                     grantValidFrom: new Date("2024-01-15T09:30:00.000Z"),
                     planId: "plan_id",
                     quantityConsumed: 1.1,
                     quantityRemainingAtZeroOut: 1.1,
-                    sourceId: 1,
+                    sourceId: 1000000,
                     toGrantId: "to_grant_id",
                     usageEventId: "usage_event_id",
                     zeroedOutReason: "expired",
@@ -4796,8 +4948,8 @@ describe("CreditsClient", () => {
                 endTime: "end_time",
                 eventType: "grant",
                 featureId: "feature_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 startTime: "start_time",
             },
         });
@@ -4808,6 +4960,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/v2/billing/credits/ledger")
@@ -4828,6 +4981,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/v2/billing/credits/ledger")
@@ -4848,6 +5002,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/v2/billing/credits/ledger")
@@ -4868,6 +5023,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/v2/billing/credits/ledger")
@@ -4888,6 +5044,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/v2/billing/credits/ledger")
@@ -4915,11 +5072,12 @@ describe("CreditsClient", () => {
                 end_time: "end_time",
                 event_type: "grant",
                 feature_id: "feature_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 start_time: "start_time",
             },
         };
+
         server
             .mockEndpoint()
             .get("/v2/billing/credits/ledger/count")
@@ -4935,8 +5093,8 @@ describe("CreditsClient", () => {
             eventType: "grant",
             featureId: "feature_id",
             startTime: "start_time",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -4948,8 +5106,8 @@ describe("CreditsClient", () => {
                 endTime: "end_time",
                 eventType: "grant",
                 featureId: "feature_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 startTime: "start_time",
             },
         });
@@ -4960,6 +5118,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/v2/billing/credits/ledger/count")
@@ -4980,6 +5139,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/v2/billing/credits/ledger/count")
@@ -5000,6 +5160,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/v2/billing/credits/ledger/count")
@@ -5020,6 +5181,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/v2/billing/credits/ledger/count")
@@ -5040,6 +5202,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/v2/billing/credits/ledger/count")

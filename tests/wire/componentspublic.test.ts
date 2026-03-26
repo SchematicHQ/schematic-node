@@ -14,7 +14,7 @@ describe("ComponentspublicClient", () => {
                 active_add_ons: [
                     {
                         charge_type: "free",
-                        company_count: 1,
+                        company_count: 1000000,
                         compatible_plan_ids: ["compatible_plan_ids"],
                         controlled_by: "schematic",
                         created_at: "2024-01-15T09:30:00Z",
@@ -89,7 +89,7 @@ describe("ComponentspublicClient", () => {
                                                 environment_id: "environment_id",
                                                 id: "id",
                                                 name: "name",
-                                                priority: 1,
+                                                priority: 1000000,
                                                 rule_type: "rule_type",
                                                 updated_at: "2024-01-15T09:30:00Z",
                                                 value: true,
@@ -111,7 +111,7 @@ describe("ComponentspublicClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                credit_amount: 1,
+                                credit_amount: 1000000,
                                 credit_description: "credit_description",
                                 credit_id: "credit_id",
                                 credit_name: "credit_name",
@@ -139,7 +139,7 @@ describe("ComponentspublicClient", () => {
                                 plan_type: "plan",
                                 status: "published",
                                 updated_at: "2024-01-15T09:30:00Z",
-                                version: 1,
+                                version: 1000000,
                             },
                         ],
                     },
@@ -147,7 +147,7 @@ describe("ComponentspublicClient", () => {
                 active_plans: [
                     {
                         charge_type: "free",
-                        company_count: 1,
+                        company_count: 1000000,
                         compatible_plan_ids: ["compatible_plan_ids"],
                         controlled_by: "schematic",
                         created_at: "2024-01-15T09:30:00Z",
@@ -222,7 +222,7 @@ describe("ComponentspublicClient", () => {
                                                 environment_id: "environment_id",
                                                 id: "id",
                                                 name: "name",
-                                                priority: 1,
+                                                priority: 1000000,
                                                 rule_type: "rule_type",
                                                 updated_at: "2024-01-15T09:30:00Z",
                                                 value: true,
@@ -244,7 +244,7 @@ describe("ComponentspublicClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                credit_amount: 1,
+                                credit_amount: 1000000,
                                 credit_description: "credit_description",
                                 credit_id: "credit_id",
                                 credit_name: "credit_name",
@@ -272,7 +272,7 @@ describe("ComponentspublicClient", () => {
                                 plan_type: "plan",
                                 status: "published",
                                 updated_at: "2024-01-15T09:30:00Z",
-                                version: 1,
+                                version: 1000000,
                             },
                         ],
                     },
@@ -296,6 +296,7 @@ describe("ComponentspublicClient", () => {
             },
             params: { key: "value" },
         };
+
         server.mockEndpoint().get("/public/plans").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.componentspublic.getPublicPlans();
@@ -304,7 +305,7 @@ describe("ComponentspublicClient", () => {
                 activeAddOns: [
                     {
                         chargeType: "free",
-                        companyCount: 1,
+                        companyCount: 1000000,
                         compatiblePlanIds: ["compatible_plan_ids"],
                         controlledBy: "schematic",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -389,7 +390,7 @@ describe("ComponentspublicClient", () => {
                                                 environmentId: "environment_id",
                                                 id: "id",
                                                 name: "name",
-                                                priority: 1,
+                                                priority: 1000000,
                                                 ruleType: "rule_type",
                                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                                 value: true,
@@ -416,7 +417,7 @@ describe("ComponentspublicClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                creditAmount: 1,
+                                creditAmount: 1000000,
                                 creditDescription: "credit_description",
                                 creditId: "credit_id",
                                 creditName: "credit_name",
@@ -444,7 +445,7 @@ describe("ComponentspublicClient", () => {
                                 planType: "plan",
                                 status: "published",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                                version: 1,
+                                version: 1000000,
                             },
                         ],
                     },
@@ -452,7 +453,7 @@ describe("ComponentspublicClient", () => {
                 activePlans: [
                     {
                         chargeType: "free",
-                        companyCount: 1,
+                        companyCount: 1000000,
                         compatiblePlanIds: ["compatible_plan_ids"],
                         controlledBy: "schematic",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -537,7 +538,7 @@ describe("ComponentspublicClient", () => {
                                                 environmentId: "environment_id",
                                                 id: "id",
                                                 name: "name",
-                                                priority: 1,
+                                                priority: 1000000,
                                                 ruleType: "rule_type",
                                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                                 value: true,
@@ -564,7 +565,7 @@ describe("ComponentspublicClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                creditAmount: 1,
+                                creditAmount: 1000000,
                                 creditDescription: "credit_description",
                                 creditId: "credit_id",
                                 creditName: "credit_name",
@@ -592,7 +593,7 @@ describe("ComponentspublicClient", () => {
                                 planType: "plan",
                                 status: "published",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                                version: 1,
+                                version: 1000000,
                             },
                         ],
                     },
@@ -631,6 +632,7 @@ describe("ComponentspublicClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/public/plans").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -643,6 +645,7 @@ describe("ComponentspublicClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/public/plans").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -655,6 +658,7 @@ describe("ComponentspublicClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/public/plans").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -667,6 +671,7 @@ describe("ComponentspublicClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/public/plans").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {

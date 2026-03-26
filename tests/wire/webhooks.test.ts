@@ -16,7 +16,7 @@ describe("WebhooksClient", () => {
                     id: "id",
                     payload: "payload",
                     request_type: "subscription.trial.ended",
-                    response_code: 1,
+                    response_code: 1000000,
                     sent_at: "2024-01-15T09:30:00Z",
                     status: "failure",
                     updated_at: "2024-01-15T09:30:00Z",
@@ -33,15 +33,16 @@ describe("WebhooksClient", () => {
                     webhook_id: "webhook_id",
                 },
             ],
-            params: { ids: ["ids"], limit: 1, offset: 1, q: "q", webhook_id: "webhook_id" },
+            params: { ids: ["ids"], limit: 1000000, offset: 1000000, q: "q", webhook_id: "webhook_id" },
         };
+
         server.mockEndpoint().get("/webhook-events").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.webhooks.listWebhookEvents({
             q: "q",
             webhookId: "webhook_id",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -50,7 +51,7 @@ describe("WebhooksClient", () => {
                     id: "id",
                     payload: "payload",
                     requestType: "subscription.trial.ended",
-                    responseCode: 1,
+                    responseCode: 1000000,
                     sentAt: new Date("2024-01-15T09:30:00.000Z"),
                     status: "failure",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -69,8 +70,8 @@ describe("WebhooksClient", () => {
             ],
             params: {
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
                 webhookId: "webhook_id",
             },
@@ -82,6 +83,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/webhook-events").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -94,6 +96,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/webhook-events").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -106,6 +109,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/webhook-events").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -118,6 +122,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/webhook-events").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -130,6 +135,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/webhook-events").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -147,7 +153,7 @@ describe("WebhooksClient", () => {
                 id: "id",
                 payload: "payload",
                 request_type: "subscription.trial.ended",
-                response_code: 1,
+                response_code: 1000000,
                 sent_at: "2024-01-15T09:30:00Z",
                 status: "failure",
                 updated_at: "2024-01-15T09:30:00Z",
@@ -167,6 +173,7 @@ describe("WebhooksClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .get("/webhook-events/webhook_event_id")
@@ -182,7 +189,7 @@ describe("WebhooksClient", () => {
                 id: "id",
                 payload: "payload",
                 requestType: "subscription.trial.ended",
-                responseCode: 1,
+                responseCode: 1000000,
                 sentAt: new Date("2024-01-15T09:30:00.000Z"),
                 status: "failure",
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -219,6 +226,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/webhook-events/webhook_event_id")
@@ -237,6 +245,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/webhook-events/webhook_event_id")
@@ -255,6 +264,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/webhook-events/webhook_event_id")
@@ -273,6 +283,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/webhook-events/webhook_event_id")
@@ -292,8 +303,9 @@ describe("WebhooksClient", () => {
 
         const rawResponseBody = {
             data: { count: 1 },
-            params: { ids: ["ids"], limit: 1, offset: 1, q: "q", webhook_id: "webhook_id" },
+            params: { ids: ["ids"], limit: 1000000, offset: 1000000, q: "q", webhook_id: "webhook_id" },
         };
+
         server
             .mockEndpoint()
             .get("/webhook-events/count")
@@ -305,8 +317,8 @@ describe("WebhooksClient", () => {
         const response = await client.webhooks.countWebhookEvents({
             q: "q",
             webhookId: "webhook_id",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -314,8 +326,8 @@ describe("WebhooksClient", () => {
             },
             params: {
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
                 webhookId: "webhook_id",
             },
@@ -327,6 +339,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/webhook-events/count")
@@ -345,6 +358,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/webhook-events/count")
@@ -363,6 +377,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/webhook-events/count")
@@ -381,6 +396,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/webhook-events/count")
@@ -399,6 +415,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/webhook-events/count")
@@ -431,14 +448,15 @@ describe("WebhooksClient", () => {
                     url: "url",
                 },
             ],
-            params: { limit: 1, offset: 1, q: "q" },
+            params: { limit: 1000000, offset: 1000000, q: "q" },
         };
+
         server.mockEndpoint().get("/webhooks").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.webhooks.listWebhooks({
             q: "q",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -464,8 +482,8 @@ describe("WebhooksClient", () => {
                 },
             ],
             params: {
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
             },
         });
@@ -476,6 +494,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/webhooks").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -488,6 +507,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/webhooks").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -500,6 +520,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/webhooks").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -512,6 +533,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/webhooks").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -524,6 +546,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/webhooks").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -550,6 +573,7 @@ describe("WebhooksClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/webhooks")
@@ -600,6 +624,7 @@ describe("WebhooksClient", () => {
             url: "x",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/webhooks")
@@ -627,6 +652,7 @@ describe("WebhooksClient", () => {
             url: "x",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/webhooks")
@@ -654,6 +680,7 @@ describe("WebhooksClient", () => {
             url: "x",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/webhooks")
@@ -681,6 +708,7 @@ describe("WebhooksClient", () => {
             url: "x",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/webhooks")
@@ -708,6 +736,7 @@ describe("WebhooksClient", () => {
             url: "x",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/webhooks")
@@ -745,6 +774,7 @@ describe("WebhooksClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .get("/webhooks/webhook_id")
@@ -786,6 +816,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/webhooks/webhook_id")
@@ -804,6 +835,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/webhooks/webhook_id")
@@ -822,6 +854,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/webhooks/webhook_id")
@@ -840,6 +873,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/webhooks/webhook_id")
@@ -872,6 +906,7 @@ describe("WebhooksClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .put("/webhooks/webhook_id")
@@ -914,6 +949,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/webhooks/webhook_id")
@@ -933,6 +969,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/webhooks/webhook_id")
@@ -952,6 +989,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/webhooks/webhook_id")
@@ -971,6 +1009,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/webhooks/webhook_id")
@@ -990,6 +1029,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/webhooks/webhook_id")
@@ -1009,6 +1049,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
+
         server
             .mockEndpoint()
             .delete("/webhooks/webhook_id")
@@ -1033,6 +1074,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/webhooks/webhook_id")
@@ -1051,6 +1093,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/webhooks/webhook_id")
@@ -1069,6 +1112,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/webhooks/webhook_id")
@@ -1087,6 +1131,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/webhooks/webhook_id")
@@ -1105,6 +1150,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/webhooks/webhook_id")
@@ -1122,21 +1168,22 @@ describe("WebhooksClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { data: { count: 1 }, params: { limit: 1, offset: 1, q: "q" } };
+        const rawResponseBody = { data: { count: 1 }, params: { limit: 1000000, offset: 1000000, q: "q" } };
+
         server.mockEndpoint().get("/webhooks/count").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.webhooks.countWebhooks({
             q: "q",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
                 count: 1,
             },
             params: {
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
             },
         });
@@ -1147,6 +1194,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/webhooks/count").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1159,6 +1207,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/webhooks/count").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1171,6 +1220,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/webhooks/count").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1183,6 +1233,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/webhooks/count").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1195,6 +1246,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/webhooks/count").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {

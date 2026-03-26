@@ -20,7 +20,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         billing_credit_auto_topup_enabled: true,
                                         created_at: "2024-01-15T09:30:00Z",
-                                        credit_amount: 1,
+                                        credit_amount: 1000000,
                                         credit_description: "credit_description",
                                         credit_id: "credit_id",
                                         credit_name: "credit_name",
@@ -52,8 +52,8 @@ describe("EntitlementsClient", () => {
                                 ],
                                 id: "id",
                                 interval: "interval",
-                                period_end: 1,
-                                period_start: 1,
+                                period_end: 1000000,
+                                period_start: 1000000,
                                 products: [
                                     {
                                         billing_scheme: "per_unit",
@@ -64,8 +64,8 @@ describe("EntitlementsClient", () => {
                                         id: "id",
                                         interval: "interval",
                                         name: "name",
-                                        package_size: 1,
-                                        price: 1,
+                                        package_size: 1000000,
+                                        price: 1000000,
                                         price_external_id: "price_external_id",
                                         price_id: "price_id",
                                         price_tier: [{}],
@@ -79,7 +79,7 @@ describe("EntitlementsClient", () => {
                                 provider_type: "schematic",
                                 status: "status",
                                 subscription_external_id: "subscription_external_id",
-                                total_price: 1,
+                                total_price: 1000000,
                             },
                         ],
                         created_at: "2024-01-15T09:30:00Z",
@@ -120,7 +120,7 @@ describe("EntitlementsClient", () => {
                                 event_subtype: "event_subtype",
                                 month_reset: "month_reset",
                                 period: "period",
-                                value: 1,
+                                value: 1000000,
                             },
                         ],
                         name: "name",
@@ -169,13 +169,13 @@ describe("EntitlementsClient", () => {
                                 environment_id: "environment_id",
                                 id: "id",
                                 name: "name",
-                                priority: 1,
+                                priority: 1000000,
                                 rule_type: "default",
                                 value: true,
                             },
                         ],
                         updated_at: "2024-01-15T09:30:00Z",
-                        user_count: 1,
+                        user_count: 1000000,
                     },
                     company_id: "company_id",
                     consumption_rate: 1.1,
@@ -209,7 +209,7 @@ describe("EntitlementsClient", () => {
                     rule_id_usage_exceeded: "rule_id_usage_exceeded",
                     updated_at: "2024-01-15T09:30:00Z",
                     value_bool: true,
-                    value_numeric: 1,
+                    value_numeric: 1000000,
                     value_trait: {
                         created_at: "2024-01-15T09:30:00Z",
                         display_name: "display_name",
@@ -229,12 +229,13 @@ describe("EntitlementsClient", () => {
                 feature_id: "feature_id",
                 feature_ids: ["feature_ids"],
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
                 without_expired: true,
             },
         };
+
         server.mockEndpoint().get("/company-overrides").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.entitlements.listCompanyOverrides({
@@ -242,8 +243,8 @@ describe("EntitlementsClient", () => {
             featureId: "feature_id",
             withoutExpired: true,
             q: "q",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -256,7 +257,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         billingCreditAutoTopupEnabled: true,
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        creditAmount: 1,
+                                        creditAmount: 1000000,
                                         creditDescription: "credit_description",
                                         creditId: "credit_id",
                                         creditName: "credit_name",
@@ -288,8 +289,8 @@ describe("EntitlementsClient", () => {
                                 ],
                                 id: "id",
                                 interval: "interval",
-                                periodEnd: 1,
-                                periodStart: 1,
+                                periodEnd: 1000000,
+                                periodStart: 1000000,
                                 products: [
                                     {
                                         billingScheme: "per_unit",
@@ -300,8 +301,8 @@ describe("EntitlementsClient", () => {
                                         id: "id",
                                         interval: "interval",
                                         name: "name",
-                                        packageSize: 1,
-                                        price: 1,
+                                        packageSize: 1000000,
+                                        price: 1000000,
                                         priceExternalId: "price_external_id",
                                         priceId: "price_id",
                                         priceTier: [{}],
@@ -315,7 +316,7 @@ describe("EntitlementsClient", () => {
                                 providerType: "schematic",
                                 status: "status",
                                 subscriptionExternalId: "subscription_external_id",
-                                totalPrice: 1,
+                                totalPrice: 1000000,
                             },
                         ],
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -362,7 +363,7 @@ describe("EntitlementsClient", () => {
                                 eventSubtype: "event_subtype",
                                 monthReset: "month_reset",
                                 period: "period",
-                                value: 1,
+                                value: 1000000,
                             },
                         ],
                         name: "name",
@@ -416,13 +417,13 @@ describe("EntitlementsClient", () => {
                                 environmentId: "environment_id",
                                 id: "id",
                                 name: "name",
-                                priority: 1,
+                                priority: 1000000,
                                 ruleType: "default",
                                 value: true,
                             },
                         ],
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                        userCount: 1,
+                        userCount: 1000000,
                     },
                     companyId: "company_id",
                     consumptionRate: 1.1,
@@ -456,7 +457,7 @@ describe("EntitlementsClient", () => {
                     ruleIdUsageExceeded: "rule_id_usage_exceeded",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     valueBool: true,
-                    valueNumeric: 1,
+                    valueNumeric: 1000000,
                     valueTrait: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         displayName: "display_name",
@@ -476,8 +477,8 @@ describe("EntitlementsClient", () => {
                 featureId: "feature_id",
                 featureIds: ["feature_ids"],
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
                 withoutExpired: true,
             },
@@ -489,6 +490,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/company-overrides").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -501,6 +503,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/company-overrides").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -513,6 +516,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/company-overrides").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -525,6 +529,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/company-overrides").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -537,6 +542,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/company-overrides").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -558,7 +564,7 @@ describe("EntitlementsClient", () => {
                                 {
                                     billing_credit_auto_topup_enabled: true,
                                     created_at: "2024-01-15T09:30:00Z",
-                                    credit_amount: 1,
+                                    credit_amount: 1000000,
                                     credit_description: "credit_description",
                                     credit_id: "credit_id",
                                     credit_name: "credit_name",
@@ -590,8 +596,8 @@ describe("EntitlementsClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        period_end: 1,
-                        period_start: 1,
+                        period_end: 1000000,
+                        period_start: 1000000,
                         products: [
                             {
                                 billing_scheme: "per_unit",
@@ -602,8 +608,8 @@ describe("EntitlementsClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                package_size: 1,
-                                price: 1,
+                                package_size: 1000000,
+                                price: 1000000,
                                 price_external_id: "price_external_id",
                                 price_id: "price_id",
                                 price_tier: [{}],
@@ -617,7 +623,7 @@ describe("EntitlementsClient", () => {
                         provider_type: "schematic",
                         status: "status",
                         subscription_external_id: "subscription_external_id",
-                        total_price: 1,
+                        total_price: 1000000,
                     },
                     billing_subscriptions: [
                         {
@@ -638,8 +644,8 @@ describe("EntitlementsClient", () => {
                             ],
                             id: "id",
                             interval: "interval",
-                            period_end: 1,
-                            period_start: 1,
+                            period_end: 1000000,
+                            period_start: 1000000,
                             products: [
                                 {
                                     billing_scheme: "per_unit",
@@ -650,8 +656,8 @@ describe("EntitlementsClient", () => {
                                     id: "id",
                                     interval: "interval",
                                     name: "name",
-                                    package_size: 1,
-                                    price: 1,
+                                    package_size: 1000000,
+                                    price: 1000000,
                                     price_external_id: "price_external_id",
                                     price_id: "price_id",
                                     price_tier: [{}],
@@ -665,7 +671,7 @@ describe("EntitlementsClient", () => {
                             provider_type: "schematic",
                             status: "status",
                             subscription_external_id: "subscription_external_id",
-                            total_price: 1,
+                            total_price: 1000000,
                         },
                     ],
                     created_at: "2024-01-15T09:30:00Z",
@@ -718,7 +724,7 @@ describe("EntitlementsClient", () => {
                             event_subtype: "event_subtype",
                             month_reset: "month_reset",
                             period: "period",
-                            value: 1,
+                            value: 1000000,
                         },
                     ],
                     name: "name",
@@ -740,7 +746,7 @@ describe("EntitlementsClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                credit_amount: 1,
+                                credit_amount: 1000000,
                                 credit_description: "credit_description",
                                 credit_id: "credit_id",
                                 credit_name: "credit_name",
@@ -785,7 +791,7 @@ describe("EntitlementsClient", () => {
                             environment_id: "environment_id",
                             id: "id",
                             name: "name",
-                            priority: 1,
+                            priority: 1000000,
                             rule_type: "default",
                             value: true,
                         },
@@ -795,7 +801,7 @@ describe("EntitlementsClient", () => {
                         effective_after: "2024-01-15T09:30:00Z",
                         from_plan_id: "from_plan_id",
                         from_plan_name: "from_plan_name",
-                        from_subscription_price: 1,
+                        from_subscription_price: 1000000,
                         id: "id",
                         interval: "interval",
                         to_plan_id: "to_plan_id",
@@ -803,7 +809,7 @@ describe("EntitlementsClient", () => {
                     },
                     traits: { key: "value" },
                     updated_at: "2024-01-15T09:30:00Z",
-                    user_count: 1,
+                    user_count: 1000000,
                 },
                 company_id: "company_id",
                 consumption_rate: 1.1,
@@ -843,7 +849,7 @@ describe("EntitlementsClient", () => {
                 rule_id_usage_exceeded: "rule_id_usage_exceeded",
                 updated_at: "2024-01-15T09:30:00Z",
                 value_bool: true,
-                value_numeric: 1,
+                value_numeric: 1000000,
                 value_trait: {
                     created_at: "2024-01-15T09:30:00Z",
                     display_name: "display_name",
@@ -858,6 +864,7 @@ describe("EntitlementsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/company-overrides")
@@ -882,7 +889,7 @@ describe("EntitlementsClient", () => {
                                 {
                                     billingCreditAutoTopupEnabled: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    creditAmount: 1,
+                                    creditAmount: 1000000,
                                     creditDescription: "credit_description",
                                     creditId: "credit_id",
                                     creditName: "credit_name",
@@ -916,8 +923,8 @@ describe("EntitlementsClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        periodEnd: 1,
-                        periodStart: 1,
+                        periodEnd: 1000000,
+                        periodStart: 1000000,
                         products: [
                             {
                                 billingScheme: "per_unit",
@@ -928,8 +935,8 @@ describe("EntitlementsClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                packageSize: 1,
-                                price: 1,
+                                packageSize: 1000000,
+                                price: 1000000,
                                 priceExternalId: "price_external_id",
                                 priceId: "price_id",
                                 priceTier: [{}],
@@ -943,7 +950,7 @@ describe("EntitlementsClient", () => {
                         providerType: "schematic",
                         status: "status",
                         subscriptionExternalId: "subscription_external_id",
-                        totalPrice: 1,
+                        totalPrice: 1000000,
                     },
                     billingSubscriptions: [
                         {
@@ -964,8 +971,8 @@ describe("EntitlementsClient", () => {
                             ],
                             id: "id",
                             interval: "interval",
-                            periodEnd: 1,
-                            periodStart: 1,
+                            periodEnd: 1000000,
+                            periodStart: 1000000,
                             products: [
                                 {
                                     billingScheme: "per_unit",
@@ -976,8 +983,8 @@ describe("EntitlementsClient", () => {
                                     id: "id",
                                     interval: "interval",
                                     name: "name",
-                                    packageSize: 1,
-                                    price: 1,
+                                    packageSize: 1000000,
+                                    price: 1000000,
                                     priceExternalId: "price_external_id",
                                     priceId: "price_id",
                                     priceTier: [{}],
@@ -991,7 +998,7 @@ describe("EntitlementsClient", () => {
                             providerType: "schematic",
                             status: "status",
                             subscriptionExternalId: "subscription_external_id",
-                            totalPrice: 1,
+                            totalPrice: 1000000,
                         },
                     ],
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1050,7 +1057,7 @@ describe("EntitlementsClient", () => {
                             eventSubtype: "event_subtype",
                             monthReset: "month_reset",
                             period: "period",
-                            value: 1,
+                            value: 1000000,
                         },
                     ],
                     name: "name",
@@ -1072,7 +1079,7 @@ describe("EntitlementsClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                creditAmount: 1,
+                                creditAmount: 1000000,
                                 creditDescription: "credit_description",
                                 creditId: "credit_id",
                                 creditName: "credit_name",
@@ -1122,7 +1129,7 @@ describe("EntitlementsClient", () => {
                             environmentId: "environment_id",
                             id: "id",
                             name: "name",
-                            priority: 1,
+                            priority: 1000000,
                             ruleType: "default",
                             value: true,
                         },
@@ -1132,7 +1139,7 @@ describe("EntitlementsClient", () => {
                         effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                         fromPlanId: "from_plan_id",
                         fromPlanName: "from_plan_name",
-                        fromSubscriptionPrice: 1,
+                        fromSubscriptionPrice: 1000000,
                         id: "id",
                         interval: "interval",
                         toPlanId: "to_plan_id",
@@ -1142,7 +1149,7 @@ describe("EntitlementsClient", () => {
                         key: "value",
                     },
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    userCount: 1,
+                    userCount: 1000000,
                 },
                 companyId: "company_id",
                 consumptionRate: 1.1,
@@ -1182,7 +1189,7 @@ describe("EntitlementsClient", () => {
                 ruleIdUsageExceeded: "rule_id_usage_exceeded",
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 valueBool: true,
-                valueNumeric: 1,
+                valueNumeric: 1000000,
                 valueTrait: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     displayName: "display_name",
@@ -1206,6 +1213,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { company_id: "company_id", feature_id: "feature_id", value_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/company-overrides")
@@ -1229,6 +1237,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { company_id: "company_id", feature_id: "feature_id", value_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/company-overrides")
@@ -1252,6 +1261,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { company_id: "company_id", feature_id: "feature_id", value_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/company-overrides")
@@ -1275,6 +1285,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { company_id: "company_id", feature_id: "feature_id", value_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/company-overrides")
@@ -1298,6 +1309,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { company_id: "company_id", feature_id: "feature_id", value_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/company-overrides")
@@ -1330,7 +1342,7 @@ describe("EntitlementsClient", () => {
                                 {
                                     billing_credit_auto_topup_enabled: true,
                                     created_at: "2024-01-15T09:30:00Z",
-                                    credit_amount: 1,
+                                    credit_amount: 1000000,
                                     credit_description: "credit_description",
                                     credit_id: "credit_id",
                                     credit_name: "credit_name",
@@ -1362,8 +1374,8 @@ describe("EntitlementsClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        period_end: 1,
-                        period_start: 1,
+                        period_end: 1000000,
+                        period_start: 1000000,
                         products: [
                             {
                                 billing_scheme: "per_unit",
@@ -1374,8 +1386,8 @@ describe("EntitlementsClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                package_size: 1,
-                                price: 1,
+                                package_size: 1000000,
+                                price: 1000000,
                                 price_external_id: "price_external_id",
                                 price_id: "price_id",
                                 price_tier: [{}],
@@ -1389,7 +1401,7 @@ describe("EntitlementsClient", () => {
                         provider_type: "schematic",
                         status: "status",
                         subscription_external_id: "subscription_external_id",
-                        total_price: 1,
+                        total_price: 1000000,
                     },
                     billing_subscriptions: [
                         {
@@ -1410,8 +1422,8 @@ describe("EntitlementsClient", () => {
                             ],
                             id: "id",
                             interval: "interval",
-                            period_end: 1,
-                            period_start: 1,
+                            period_end: 1000000,
+                            period_start: 1000000,
                             products: [
                                 {
                                     billing_scheme: "per_unit",
@@ -1422,8 +1434,8 @@ describe("EntitlementsClient", () => {
                                     id: "id",
                                     interval: "interval",
                                     name: "name",
-                                    package_size: 1,
-                                    price: 1,
+                                    package_size: 1000000,
+                                    price: 1000000,
                                     price_external_id: "price_external_id",
                                     price_id: "price_id",
                                     price_tier: [{}],
@@ -1437,7 +1449,7 @@ describe("EntitlementsClient", () => {
                             provider_type: "schematic",
                             status: "status",
                             subscription_external_id: "subscription_external_id",
-                            total_price: 1,
+                            total_price: 1000000,
                         },
                     ],
                     created_at: "2024-01-15T09:30:00Z",
@@ -1490,7 +1502,7 @@ describe("EntitlementsClient", () => {
                             event_subtype: "event_subtype",
                             month_reset: "month_reset",
                             period: "period",
-                            value: 1,
+                            value: 1000000,
                         },
                     ],
                     name: "name",
@@ -1512,7 +1524,7 @@ describe("EntitlementsClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                credit_amount: 1,
+                                credit_amount: 1000000,
                                 credit_description: "credit_description",
                                 credit_id: "credit_id",
                                 credit_name: "credit_name",
@@ -1557,7 +1569,7 @@ describe("EntitlementsClient", () => {
                             environment_id: "environment_id",
                             id: "id",
                             name: "name",
-                            priority: 1,
+                            priority: 1000000,
                             rule_type: "default",
                             value: true,
                         },
@@ -1567,7 +1579,7 @@ describe("EntitlementsClient", () => {
                         effective_after: "2024-01-15T09:30:00Z",
                         from_plan_id: "from_plan_id",
                         from_plan_name: "from_plan_name",
-                        from_subscription_price: 1,
+                        from_subscription_price: 1000000,
                         id: "id",
                         interval: "interval",
                         to_plan_id: "to_plan_id",
@@ -1575,7 +1587,7 @@ describe("EntitlementsClient", () => {
                     },
                     traits: { key: "value" },
                     updated_at: "2024-01-15T09:30:00Z",
-                    user_count: 1,
+                    user_count: 1000000,
                 },
                 company_id: "company_id",
                 consumption_rate: 1.1,
@@ -1615,7 +1627,7 @@ describe("EntitlementsClient", () => {
                 rule_id_usage_exceeded: "rule_id_usage_exceeded",
                 updated_at: "2024-01-15T09:30:00Z",
                 value_bool: true,
-                value_numeric: 1,
+                value_numeric: 1000000,
                 value_trait: {
                     created_at: "2024-01-15T09:30:00Z",
                     display_name: "display_name",
@@ -1630,6 +1642,7 @@ describe("EntitlementsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .get("/company-overrides/company_override_id")
@@ -1649,7 +1662,7 @@ describe("EntitlementsClient", () => {
                                 {
                                     billingCreditAutoTopupEnabled: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    creditAmount: 1,
+                                    creditAmount: 1000000,
                                     creditDescription: "credit_description",
                                     creditId: "credit_id",
                                     creditName: "credit_name",
@@ -1683,8 +1696,8 @@ describe("EntitlementsClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        periodEnd: 1,
-                        periodStart: 1,
+                        periodEnd: 1000000,
+                        periodStart: 1000000,
                         products: [
                             {
                                 billingScheme: "per_unit",
@@ -1695,8 +1708,8 @@ describe("EntitlementsClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                packageSize: 1,
-                                price: 1,
+                                packageSize: 1000000,
+                                price: 1000000,
                                 priceExternalId: "price_external_id",
                                 priceId: "price_id",
                                 priceTier: [{}],
@@ -1710,7 +1723,7 @@ describe("EntitlementsClient", () => {
                         providerType: "schematic",
                         status: "status",
                         subscriptionExternalId: "subscription_external_id",
-                        totalPrice: 1,
+                        totalPrice: 1000000,
                     },
                     billingSubscriptions: [
                         {
@@ -1731,8 +1744,8 @@ describe("EntitlementsClient", () => {
                             ],
                             id: "id",
                             interval: "interval",
-                            periodEnd: 1,
-                            periodStart: 1,
+                            periodEnd: 1000000,
+                            periodStart: 1000000,
                             products: [
                                 {
                                     billingScheme: "per_unit",
@@ -1743,8 +1756,8 @@ describe("EntitlementsClient", () => {
                                     id: "id",
                                     interval: "interval",
                                     name: "name",
-                                    packageSize: 1,
-                                    price: 1,
+                                    packageSize: 1000000,
+                                    price: 1000000,
                                     priceExternalId: "price_external_id",
                                     priceId: "price_id",
                                     priceTier: [{}],
@@ -1758,7 +1771,7 @@ describe("EntitlementsClient", () => {
                             providerType: "schematic",
                             status: "status",
                             subscriptionExternalId: "subscription_external_id",
-                            totalPrice: 1,
+                            totalPrice: 1000000,
                         },
                     ],
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1817,7 +1830,7 @@ describe("EntitlementsClient", () => {
                             eventSubtype: "event_subtype",
                             monthReset: "month_reset",
                             period: "period",
-                            value: 1,
+                            value: 1000000,
                         },
                     ],
                     name: "name",
@@ -1839,7 +1852,7 @@ describe("EntitlementsClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                creditAmount: 1,
+                                creditAmount: 1000000,
                                 creditDescription: "credit_description",
                                 creditId: "credit_id",
                                 creditName: "credit_name",
@@ -1889,7 +1902,7 @@ describe("EntitlementsClient", () => {
                             environmentId: "environment_id",
                             id: "id",
                             name: "name",
-                            priority: 1,
+                            priority: 1000000,
                             ruleType: "default",
                             value: true,
                         },
@@ -1899,7 +1912,7 @@ describe("EntitlementsClient", () => {
                         effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                         fromPlanId: "from_plan_id",
                         fromPlanName: "from_plan_name",
-                        fromSubscriptionPrice: 1,
+                        fromSubscriptionPrice: 1000000,
                         id: "id",
                         interval: "interval",
                         toPlanId: "to_plan_id",
@@ -1909,7 +1922,7 @@ describe("EntitlementsClient", () => {
                         key: "value",
                     },
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    userCount: 1,
+                    userCount: 1000000,
                 },
                 companyId: "company_id",
                 consumptionRate: 1.1,
@@ -1949,7 +1962,7 @@ describe("EntitlementsClient", () => {
                 ruleIdUsageExceeded: "rule_id_usage_exceeded",
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 valueBool: true,
-                valueNumeric: 1,
+                valueNumeric: 1000000,
                 valueTrait: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     displayName: "display_name",
@@ -1973,6 +1986,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/company-overrides/company_override_id")
@@ -1991,6 +2005,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/company-overrides/company_override_id")
@@ -2009,6 +2024,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/company-overrides/company_override_id")
@@ -2027,6 +2043,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/company-overrides/company_override_id")
@@ -2054,7 +2071,7 @@ describe("EntitlementsClient", () => {
                                 {
                                     billing_credit_auto_topup_enabled: true,
                                     created_at: "2024-01-15T09:30:00Z",
-                                    credit_amount: 1,
+                                    credit_amount: 1000000,
                                     credit_description: "credit_description",
                                     credit_id: "credit_id",
                                     credit_name: "credit_name",
@@ -2086,8 +2103,8 @@ describe("EntitlementsClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        period_end: 1,
-                        period_start: 1,
+                        period_end: 1000000,
+                        period_start: 1000000,
                         products: [
                             {
                                 billing_scheme: "per_unit",
@@ -2098,8 +2115,8 @@ describe("EntitlementsClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                package_size: 1,
-                                price: 1,
+                                package_size: 1000000,
+                                price: 1000000,
                                 price_external_id: "price_external_id",
                                 price_id: "price_id",
                                 price_tier: [{}],
@@ -2113,7 +2130,7 @@ describe("EntitlementsClient", () => {
                         provider_type: "schematic",
                         status: "status",
                         subscription_external_id: "subscription_external_id",
-                        total_price: 1,
+                        total_price: 1000000,
                     },
                     billing_subscriptions: [
                         {
@@ -2134,8 +2151,8 @@ describe("EntitlementsClient", () => {
                             ],
                             id: "id",
                             interval: "interval",
-                            period_end: 1,
-                            period_start: 1,
+                            period_end: 1000000,
+                            period_start: 1000000,
                             products: [
                                 {
                                     billing_scheme: "per_unit",
@@ -2146,8 +2163,8 @@ describe("EntitlementsClient", () => {
                                     id: "id",
                                     interval: "interval",
                                     name: "name",
-                                    package_size: 1,
-                                    price: 1,
+                                    package_size: 1000000,
+                                    price: 1000000,
                                     price_external_id: "price_external_id",
                                     price_id: "price_id",
                                     price_tier: [{}],
@@ -2161,7 +2178,7 @@ describe("EntitlementsClient", () => {
                             provider_type: "schematic",
                             status: "status",
                             subscription_external_id: "subscription_external_id",
-                            total_price: 1,
+                            total_price: 1000000,
                         },
                     ],
                     created_at: "2024-01-15T09:30:00Z",
@@ -2214,7 +2231,7 @@ describe("EntitlementsClient", () => {
                             event_subtype: "event_subtype",
                             month_reset: "month_reset",
                             period: "period",
-                            value: 1,
+                            value: 1000000,
                         },
                     ],
                     name: "name",
@@ -2236,7 +2253,7 @@ describe("EntitlementsClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                credit_amount: 1,
+                                credit_amount: 1000000,
                                 credit_description: "credit_description",
                                 credit_id: "credit_id",
                                 credit_name: "credit_name",
@@ -2281,7 +2298,7 @@ describe("EntitlementsClient", () => {
                             environment_id: "environment_id",
                             id: "id",
                             name: "name",
-                            priority: 1,
+                            priority: 1000000,
                             rule_type: "default",
                             value: true,
                         },
@@ -2291,7 +2308,7 @@ describe("EntitlementsClient", () => {
                         effective_after: "2024-01-15T09:30:00Z",
                         from_plan_id: "from_plan_id",
                         from_plan_name: "from_plan_name",
-                        from_subscription_price: 1,
+                        from_subscription_price: 1000000,
                         id: "id",
                         interval: "interval",
                         to_plan_id: "to_plan_id",
@@ -2299,7 +2316,7 @@ describe("EntitlementsClient", () => {
                     },
                     traits: { key: "value" },
                     updated_at: "2024-01-15T09:30:00Z",
-                    user_count: 1,
+                    user_count: 1000000,
                 },
                 company_id: "company_id",
                 consumption_rate: 1.1,
@@ -2339,7 +2356,7 @@ describe("EntitlementsClient", () => {
                 rule_id_usage_exceeded: "rule_id_usage_exceeded",
                 updated_at: "2024-01-15T09:30:00Z",
                 value_bool: true,
-                value_numeric: 1,
+                value_numeric: 1000000,
                 value_trait: {
                     created_at: "2024-01-15T09:30:00Z",
                     display_name: "display_name",
@@ -2354,6 +2371,7 @@ describe("EntitlementsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .put("/company-overrides/company_override_id")
@@ -2376,7 +2394,7 @@ describe("EntitlementsClient", () => {
                                 {
                                     billingCreditAutoTopupEnabled: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    creditAmount: 1,
+                                    creditAmount: 1000000,
                                     creditDescription: "credit_description",
                                     creditId: "credit_id",
                                     creditName: "credit_name",
@@ -2410,8 +2428,8 @@ describe("EntitlementsClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        periodEnd: 1,
-                        periodStart: 1,
+                        periodEnd: 1000000,
+                        periodStart: 1000000,
                         products: [
                             {
                                 billingScheme: "per_unit",
@@ -2422,8 +2440,8 @@ describe("EntitlementsClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                packageSize: 1,
-                                price: 1,
+                                packageSize: 1000000,
+                                price: 1000000,
                                 priceExternalId: "price_external_id",
                                 priceId: "price_id",
                                 priceTier: [{}],
@@ -2437,7 +2455,7 @@ describe("EntitlementsClient", () => {
                         providerType: "schematic",
                         status: "status",
                         subscriptionExternalId: "subscription_external_id",
-                        totalPrice: 1,
+                        totalPrice: 1000000,
                     },
                     billingSubscriptions: [
                         {
@@ -2458,8 +2476,8 @@ describe("EntitlementsClient", () => {
                             ],
                             id: "id",
                             interval: "interval",
-                            periodEnd: 1,
-                            periodStart: 1,
+                            periodEnd: 1000000,
+                            periodStart: 1000000,
                             products: [
                                 {
                                     billingScheme: "per_unit",
@@ -2470,8 +2488,8 @@ describe("EntitlementsClient", () => {
                                     id: "id",
                                     interval: "interval",
                                     name: "name",
-                                    packageSize: 1,
-                                    price: 1,
+                                    packageSize: 1000000,
+                                    price: 1000000,
                                     priceExternalId: "price_external_id",
                                     priceId: "price_id",
                                     priceTier: [{}],
@@ -2485,7 +2503,7 @@ describe("EntitlementsClient", () => {
                             providerType: "schematic",
                             status: "status",
                             subscriptionExternalId: "subscription_external_id",
-                            totalPrice: 1,
+                            totalPrice: 1000000,
                         },
                     ],
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2544,7 +2562,7 @@ describe("EntitlementsClient", () => {
                             eventSubtype: "event_subtype",
                             monthReset: "month_reset",
                             period: "period",
-                            value: 1,
+                            value: 1000000,
                         },
                     ],
                     name: "name",
@@ -2566,7 +2584,7 @@ describe("EntitlementsClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                creditAmount: 1,
+                                creditAmount: 1000000,
                                 creditDescription: "credit_description",
                                 creditId: "credit_id",
                                 creditName: "credit_name",
@@ -2616,7 +2634,7 @@ describe("EntitlementsClient", () => {
                             environmentId: "environment_id",
                             id: "id",
                             name: "name",
-                            priority: 1,
+                            priority: 1000000,
                             ruleType: "default",
                             value: true,
                         },
@@ -2626,7 +2644,7 @@ describe("EntitlementsClient", () => {
                         effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                         fromPlanId: "from_plan_id",
                         fromPlanName: "from_plan_name",
-                        fromSubscriptionPrice: 1,
+                        fromSubscriptionPrice: 1000000,
                         id: "id",
                         interval: "interval",
                         toPlanId: "to_plan_id",
@@ -2636,7 +2654,7 @@ describe("EntitlementsClient", () => {
                         key: "value",
                     },
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    userCount: 1,
+                    userCount: 1000000,
                 },
                 companyId: "company_id",
                 consumptionRate: 1.1,
@@ -2676,7 +2694,7 @@ describe("EntitlementsClient", () => {
                 ruleIdUsageExceeded: "rule_id_usage_exceeded",
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 valueBool: true,
-                valueNumeric: 1,
+                valueNumeric: 1000000,
                 valueTrait: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     displayName: "display_name",
@@ -2700,6 +2718,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { value_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/company-overrides/company_override_id")
@@ -2721,6 +2740,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { value_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/company-overrides/company_override_id")
@@ -2742,6 +2762,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { value_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/company-overrides/company_override_id")
@@ -2763,6 +2784,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { value_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/company-overrides/company_override_id")
@@ -2784,6 +2806,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { value_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/company-overrides/company_override_id")
@@ -2805,6 +2828,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
+
         server
             .mockEndpoint()
             .delete("/company-overrides/company_override_id")
@@ -2829,6 +2853,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/company-overrides/company_override_id")
@@ -2847,6 +2872,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/company-overrides/company_override_id")
@@ -2865,6 +2891,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/company-overrides/company_override_id")
@@ -2883,6 +2910,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/company-overrides/company_override_id")
@@ -2901,6 +2929,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/company-overrides/company_override_id")
@@ -2926,12 +2955,13 @@ describe("EntitlementsClient", () => {
                 feature_id: "feature_id",
                 feature_ids: ["feature_ids"],
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
                 without_expired: true,
             },
         };
+
         server
             .mockEndpoint()
             .get("/company-overrides/count")
@@ -2945,8 +2975,8 @@ describe("EntitlementsClient", () => {
             featureId: "feature_id",
             withoutExpired: true,
             q: "q",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -2958,8 +2988,8 @@ describe("EntitlementsClient", () => {
                 featureId: "feature_id",
                 featureIds: ["feature_ids"],
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
                 withoutExpired: true,
             },
@@ -2971,6 +3001,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/company-overrides/count")
@@ -2989,6 +3020,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/company-overrides/count")
@@ -3007,6 +3039,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/company-overrides/count")
@@ -3025,6 +3058,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/company-overrides/count")
@@ -3043,6 +3077,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/company-overrides/count")
@@ -3064,7 +3099,7 @@ describe("EntitlementsClient", () => {
             data: [
                 {
                     access: true,
-                    allocation: 1,
+                    allocation: 1000000,
                     allocation_type: "boolean",
                     company: {
                         add_ons: [
@@ -3074,7 +3109,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         billing_credit_auto_topup_enabled: true,
                                         created_at: "2024-01-15T09:30:00Z",
-                                        credit_amount: 1,
+                                        credit_amount: 1000000,
                                         credit_description: "credit_description",
                                         credit_id: "credit_id",
                                         credit_name: "credit_name",
@@ -3106,8 +3141,8 @@ describe("EntitlementsClient", () => {
                                 ],
                                 id: "id",
                                 interval: "interval",
-                                period_end: 1,
-                                period_start: 1,
+                                period_end: 1000000,
+                                period_start: 1000000,
                                 products: [
                                     {
                                         billing_scheme: "per_unit",
@@ -3118,8 +3153,8 @@ describe("EntitlementsClient", () => {
                                         id: "id",
                                         interval: "interval",
                                         name: "name",
-                                        package_size: 1,
-                                        price: 1,
+                                        package_size: 1000000,
+                                        price: 1000000,
                                         price_external_id: "price_external_id",
                                         price_id: "price_id",
                                         price_tier: [{}],
@@ -3133,7 +3168,7 @@ describe("EntitlementsClient", () => {
                                 provider_type: "schematic",
                                 status: "status",
                                 subscription_external_id: "subscription_external_id",
-                                total_price: 1,
+                                total_price: 1000000,
                             },
                         ],
                         created_at: "2024-01-15T09:30:00Z",
@@ -3174,7 +3209,7 @@ describe("EntitlementsClient", () => {
                                 event_subtype: "event_subtype",
                                 month_reset: "month_reset",
                                 period: "period",
-                                value: 1,
+                                value: 1000000,
                             },
                         ],
                         name: "name",
@@ -3223,13 +3258,13 @@ describe("EntitlementsClient", () => {
                                 environment_id: "environment_id",
                                 id: "id",
                                 name: "name",
-                                priority: 1,
+                                priority: 1000000,
                                 rule_type: "default",
                                 value: true,
                             },
                         ],
                         updated_at: "2024-01-15T09:30:00Z",
-                        user_count: 1,
+                        user_count: 1000000,
                     },
                     company_override: {
                         company_id: "company_id",
@@ -3257,7 +3292,7 @@ describe("EntitlementsClient", () => {
                     credit_remaining: 1.1,
                     credit_type_icon: "credit_type_icon",
                     credit_used: 1.1,
-                    effective_limit: 1,
+                    effective_limit: 1000000,
                     effective_price: 1.1,
                     entitlement_expiration_date: "2024-01-15T09:30:00Z",
                     entitlement_id: "entitlement_id",
@@ -3319,7 +3354,7 @@ describe("EntitlementsClient", () => {
                                         environment_id: "environment_id",
                                         id: "id",
                                         name: "name",
-                                        priority: 1,
+                                        priority: 1000000,
                                         rule_type: "rule_type",
                                         updated_at: "2024-01-15T09:30:00Z",
                                         value: true,
@@ -3345,8 +3380,8 @@ describe("EntitlementsClient", () => {
                         id: "id",
                         interval: "day",
                         is_active: true,
-                        package_size: 1,
-                        price: 1,
+                        package_size: 1000000,
+                        price: 1000000,
                         price_external_id: "price_external_id",
                         price_id: "price_id",
                         price_tier: [{}],
@@ -3357,7 +3392,7 @@ describe("EntitlementsClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                         usage_type: "licensed",
                     },
-                    overuse: 1,
+                    overuse: 1000000,
                     percent_used: 1.1,
                     period: "period",
                     plan: {
@@ -3380,8 +3415,8 @@ describe("EntitlementsClient", () => {
                         value_type: "boolean",
                     },
                     price_behavior: "credit_burndown",
-                    soft_limit: 1,
-                    usage: 1,
+                    soft_limit: 1000000,
+                    usage: 1000000,
                     yearly_usage_based_price: {
                         billing_scheme: "per_unit",
                         created_at: "2024-01-15T09:30:00Z",
@@ -3389,8 +3424,8 @@ describe("EntitlementsClient", () => {
                         id: "id",
                         interval: "day",
                         is_active: true,
-                        package_size: 1,
-                        price: 1,
+                        package_size: 1000000,
+                        price: 1000000,
                         price_external_id: "price_external_id",
                         price_id: "price_id",
                         price_tier: [{}],
@@ -3403,21 +3438,22 @@ describe("EntitlementsClient", () => {
                     },
                 },
             ],
-            params: { feature_id: "feature_id", limit: 1, offset: 1, q: "q" },
+            params: { feature_id: "feature_id", limit: 1000000, offset: 1000000, q: "q" },
         };
+
         server.mockEndpoint().get("/feature-companies").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.entitlements.listFeatureCompanies({
             featureId: "feature_id",
             q: "q",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
                 {
                     access: true,
-                    allocation: 1,
+                    allocation: 1000000,
                     allocationType: "boolean",
                     company: {
                         addOns: [
@@ -3427,7 +3463,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         billingCreditAutoTopupEnabled: true,
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        creditAmount: 1,
+                                        creditAmount: 1000000,
                                         creditDescription: "credit_description",
                                         creditId: "credit_id",
                                         creditName: "credit_name",
@@ -3459,8 +3495,8 @@ describe("EntitlementsClient", () => {
                                 ],
                                 id: "id",
                                 interval: "interval",
-                                periodEnd: 1,
-                                periodStart: 1,
+                                periodEnd: 1000000,
+                                periodStart: 1000000,
                                 products: [
                                     {
                                         billingScheme: "per_unit",
@@ -3471,8 +3507,8 @@ describe("EntitlementsClient", () => {
                                         id: "id",
                                         interval: "interval",
                                         name: "name",
-                                        packageSize: 1,
-                                        price: 1,
+                                        packageSize: 1000000,
+                                        price: 1000000,
                                         priceExternalId: "price_external_id",
                                         priceId: "price_id",
                                         priceTier: [{}],
@@ -3486,7 +3522,7 @@ describe("EntitlementsClient", () => {
                                 providerType: "schematic",
                                 status: "status",
                                 subscriptionExternalId: "subscription_external_id",
-                                totalPrice: 1,
+                                totalPrice: 1000000,
                             },
                         ],
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -3533,7 +3569,7 @@ describe("EntitlementsClient", () => {
                                 eventSubtype: "event_subtype",
                                 monthReset: "month_reset",
                                 period: "period",
-                                value: 1,
+                                value: 1000000,
                             },
                         ],
                         name: "name",
@@ -3587,13 +3623,13 @@ describe("EntitlementsClient", () => {
                                 environmentId: "environment_id",
                                 id: "id",
                                 name: "name",
-                                priority: 1,
+                                priority: 1000000,
                                 ruleType: "default",
                                 value: true,
                             },
                         ],
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                        userCount: 1,
+                        userCount: 1000000,
                     },
                     companyOverride: {
                         companyId: "company_id",
@@ -3628,7 +3664,7 @@ describe("EntitlementsClient", () => {
                     creditRemaining: 1.1,
                     creditTypeIcon: "credit_type_icon",
                     creditUsed: 1.1,
-                    effectiveLimit: 1,
+                    effectiveLimit: 1000000,
                     effectivePrice: 1.1,
                     entitlementExpirationDate: new Date("2024-01-15T09:30:00.000Z"),
                     entitlementId: "entitlement_id",
@@ -3700,7 +3736,7 @@ describe("EntitlementsClient", () => {
                                         environmentId: "environment_id",
                                         id: "id",
                                         name: "name",
-                                        priority: 1,
+                                        priority: 1000000,
                                         ruleType: "rule_type",
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                         value: true,
@@ -3731,8 +3767,8 @@ describe("EntitlementsClient", () => {
                         id: "id",
                         interval: "day",
                         isActive: true,
-                        packageSize: 1,
-                        price: 1,
+                        packageSize: 1000000,
+                        price: 1000000,
                         priceExternalId: "price_external_id",
                         priceId: "price_id",
                         priceTier: [{}],
@@ -3743,7 +3779,7 @@ describe("EntitlementsClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         usageType: "licensed",
                     },
-                    overuse: 1,
+                    overuse: 1000000,
                     percentUsed: 1.1,
                     period: "period",
                     plan: {
@@ -3766,8 +3802,8 @@ describe("EntitlementsClient", () => {
                         valueType: "boolean",
                     },
                     priceBehavior: "credit_burndown",
-                    softLimit: 1,
-                    usage: 1,
+                    softLimit: 1000000,
+                    usage: 1000000,
                     yearlyUsageBasedPrice: {
                         billingScheme: "per_unit",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -3775,8 +3811,8 @@ describe("EntitlementsClient", () => {
                         id: "id",
                         interval: "day",
                         isActive: true,
-                        packageSize: 1,
-                        price: 1,
+                        packageSize: 1000000,
+                        price: 1000000,
                         priceExternalId: "price_external_id",
                         priceId: "price_id",
                         priceTier: [{}],
@@ -3791,8 +3827,8 @@ describe("EntitlementsClient", () => {
             ],
             params: {
                 featureId: "feature_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
             },
         });
@@ -3803,6 +3839,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/feature-companies").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -3817,6 +3854,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/feature-companies").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -3831,6 +3869,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/feature-companies").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -3845,6 +3884,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/feature-companies").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -3859,6 +3899,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/feature-companies").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -3874,8 +3915,9 @@ describe("EntitlementsClient", () => {
 
         const rawResponseBody = {
             data: { count: 1 },
-            params: { feature_id: "feature_id", limit: 1, offset: 1, q: "q" },
+            params: { feature_id: "feature_id", limit: 1000000, offset: 1000000, q: "q" },
         };
+
         server
             .mockEndpoint()
             .get("/feature-companies/count")
@@ -3887,8 +3929,8 @@ describe("EntitlementsClient", () => {
         const response = await client.entitlements.countFeatureCompanies({
             featureId: "feature_id",
             q: "q",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -3896,8 +3938,8 @@ describe("EntitlementsClient", () => {
             },
             params: {
                 featureId: "feature_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
             },
         });
@@ -3908,6 +3950,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/feature-companies/count")
@@ -3928,6 +3971,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/feature-companies/count")
@@ -3948,6 +3992,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/feature-companies/count")
@@ -3968,6 +4013,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/feature-companies/count")
@@ -3988,6 +4034,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/feature-companies/count")
@@ -4011,7 +4058,7 @@ describe("EntitlementsClient", () => {
             data: [
                 {
                     access: true,
-                    allocation: 1,
+                    allocation: 1000000,
                     allocation_type: "boolean",
                     company_override: {
                         company_id: "company_id",
@@ -4039,7 +4086,7 @@ describe("EntitlementsClient", () => {
                     credit_remaining: 1.1,
                     credit_type_icon: "credit_type_icon",
                     credit_used: 1.1,
-                    effective_limit: 1,
+                    effective_limit: 1000000,
                     effective_price: 1.1,
                     entitlement_expiration_date: "2024-01-15T09:30:00Z",
                     entitlement_id: "entitlement_id",
@@ -4101,7 +4148,7 @@ describe("EntitlementsClient", () => {
                                         environment_id: "environment_id",
                                         id: "id",
                                         name: "name",
-                                        priority: 1,
+                                        priority: 1000000,
                                         rule_type: "rule_type",
                                         updated_at: "2024-01-15T09:30:00Z",
                                         value: true,
@@ -4127,8 +4174,8 @@ describe("EntitlementsClient", () => {
                         id: "id",
                         interval: "day",
                         is_active: true,
-                        package_size: 1,
-                        price: 1,
+                        package_size: 1000000,
+                        price: 1000000,
                         price_external_id: "price_external_id",
                         price_id: "price_id",
                         price_tier: [{}],
@@ -4139,7 +4186,7 @@ describe("EntitlementsClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                         usage_type: "licensed",
                     },
-                    overuse: 1,
+                    overuse: 1000000,
                     percent_used: 1.1,
                     period: "period",
                     plan: {
@@ -4162,8 +4209,8 @@ describe("EntitlementsClient", () => {
                         value_type: "boolean",
                     },
                     price_behavior: "credit_burndown",
-                    soft_limit: 1,
-                    usage: 1,
+                    soft_limit: 1000000,
+                    usage: 1000000,
                     yearly_usage_based_price: {
                         billing_scheme: "per_unit",
                         created_at: "2024-01-15T09:30:00Z",
@@ -4171,8 +4218,8 @@ describe("EntitlementsClient", () => {
                         id: "id",
                         interval: "day",
                         is_active: true,
-                        package_size: 1,
-                        price: 1,
+                        package_size: 1000000,
+                        price: 1000000,
                         price_external_id: "price_external_id",
                         price_id: "price_id",
                         price_tier: [{}],
@@ -4190,12 +4237,13 @@ describe("EntitlementsClient", () => {
                 company_keys: { key: "value" },
                 feature_ids: ["feature_ids"],
                 include_usage_aggregation: true,
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
                 without_negative_entitlements: true,
             },
         };
+
         server.mockEndpoint().get("/feature-usage").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.entitlements.listFeatureUsage({
@@ -4203,14 +4251,14 @@ describe("EntitlementsClient", () => {
             includeUsageAggregation: true,
             q: "q",
             withoutNegativeEntitlements: true,
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
                 {
                     access: true,
-                    allocation: 1,
+                    allocation: 1000000,
                     allocationType: "boolean",
                     companyOverride: {
                         companyId: "company_id",
@@ -4245,7 +4293,7 @@ describe("EntitlementsClient", () => {
                     creditRemaining: 1.1,
                     creditTypeIcon: "credit_type_icon",
                     creditUsed: 1.1,
-                    effectiveLimit: 1,
+                    effectiveLimit: 1000000,
                     effectivePrice: 1.1,
                     entitlementExpirationDate: new Date("2024-01-15T09:30:00.000Z"),
                     entitlementId: "entitlement_id",
@@ -4317,7 +4365,7 @@ describe("EntitlementsClient", () => {
                                         environmentId: "environment_id",
                                         id: "id",
                                         name: "name",
-                                        priority: 1,
+                                        priority: 1000000,
                                         ruleType: "rule_type",
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                         value: true,
@@ -4348,8 +4396,8 @@ describe("EntitlementsClient", () => {
                         id: "id",
                         interval: "day",
                         isActive: true,
-                        packageSize: 1,
-                        price: 1,
+                        packageSize: 1000000,
+                        price: 1000000,
                         priceExternalId: "price_external_id",
                         priceId: "price_id",
                         priceTier: [{}],
@@ -4360,7 +4408,7 @@ describe("EntitlementsClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         usageType: "licensed",
                     },
-                    overuse: 1,
+                    overuse: 1000000,
                     percentUsed: 1.1,
                     period: "period",
                     plan: {
@@ -4383,8 +4431,8 @@ describe("EntitlementsClient", () => {
                         valueType: "boolean",
                     },
                     priceBehavior: "credit_burndown",
-                    softLimit: 1,
-                    usage: 1,
+                    softLimit: 1000000,
+                    usage: 1000000,
                     yearlyUsageBasedPrice: {
                         billingScheme: "per_unit",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -4392,8 +4440,8 @@ describe("EntitlementsClient", () => {
                         id: "id",
                         interval: "day",
                         isActive: true,
-                        packageSize: 1,
-                        price: 1,
+                        packageSize: 1000000,
+                        price: 1000000,
                         priceExternalId: "price_external_id",
                         priceId: "price_id",
                         priceTier: [{}],
@@ -4413,8 +4461,8 @@ describe("EntitlementsClient", () => {
                 },
                 featureIds: ["feature_ids"],
                 includeUsageAggregation: true,
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
                 withoutNegativeEntitlements: true,
             },
@@ -4426,6 +4474,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/feature-usage").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -4438,6 +4487,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/feature-usage").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -4450,6 +4500,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/feature-usage").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -4462,6 +4513,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/feature-usage").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -4474,6 +4526,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/feature-usage").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -4493,7 +4546,7 @@ describe("EntitlementsClient", () => {
                     { effective_at: "2024-01-15T09:30:00Z", is_soft_limit: true, limit_source: "company_override" },
                 ],
                 period_type: "period_type",
-                usage_points: [{ timestamp: "2024-01-15T09:30:00Z", usage: 1 }],
+                usage_points: [{ timestamp: "2024-01-15T09:30:00Z", usage: 1000000 }],
             },
             params: {
                 company_id: "company_id",
@@ -4503,6 +4556,7 @@ describe("EntitlementsClient", () => {
                 start_time: "2024-01-15T09:30:00Z",
             },
         };
+
         server
             .mockEndpoint()
             .get("/feature-usage-timeseries")
@@ -4533,7 +4587,7 @@ describe("EntitlementsClient", () => {
                 usagePoints: [
                     {
                         timestamp: new Date("2024-01-15T09:30:00.000Z"),
-                        usage: 1,
+                        usage: 1000000,
                     },
                 ],
             },
@@ -4552,6 +4606,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/feature-usage-timeseries")
@@ -4575,6 +4630,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/feature-usage-timeseries")
@@ -4598,6 +4654,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/feature-usage-timeseries")
@@ -4621,6 +4678,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/feature-usage-timeseries")
@@ -4650,12 +4708,13 @@ describe("EntitlementsClient", () => {
                 company_keys: { key: "value" },
                 feature_ids: ["feature_ids"],
                 include_usage_aggregation: true,
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
                 without_negative_entitlements: true,
             },
         };
+
         server
             .mockEndpoint()
             .get("/feature-usage/count")
@@ -4669,8 +4728,8 @@ describe("EntitlementsClient", () => {
             includeUsageAggregation: true,
             q: "q",
             withoutNegativeEntitlements: true,
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -4683,8 +4742,8 @@ describe("EntitlementsClient", () => {
                 },
                 featureIds: ["feature_ids"],
                 includeUsageAggregation: true,
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
                 withoutNegativeEntitlements: true,
             },
@@ -4696,6 +4755,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/feature-usage/count")
@@ -4714,6 +4774,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/feature-usage/count")
@@ -4732,6 +4793,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/feature-usage/count")
@@ -4750,6 +4812,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/feature-usage/count")
@@ -4768,6 +4831,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/feature-usage/count")
@@ -4789,7 +4853,7 @@ describe("EntitlementsClient", () => {
             data: [
                 {
                     access: true,
-                    allocation: 1,
+                    allocation: 1000000,
                     allocation_type: "boolean",
                     company: {
                         add_ons: [
@@ -4799,7 +4863,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         billing_credit_auto_topup_enabled: true,
                                         created_at: "2024-01-15T09:30:00Z",
-                                        credit_amount: 1,
+                                        credit_amount: 1000000,
                                         credit_description: "credit_description",
                                         credit_id: "credit_id",
                                         credit_name: "credit_name",
@@ -4831,8 +4895,8 @@ describe("EntitlementsClient", () => {
                                 ],
                                 id: "id",
                                 interval: "interval",
-                                period_end: 1,
-                                period_start: 1,
+                                period_end: 1000000,
+                                period_start: 1000000,
                                 products: [
                                     {
                                         billing_scheme: "per_unit",
@@ -4843,8 +4907,8 @@ describe("EntitlementsClient", () => {
                                         id: "id",
                                         interval: "interval",
                                         name: "name",
-                                        package_size: 1,
-                                        price: 1,
+                                        package_size: 1000000,
+                                        price: 1000000,
                                         price_external_id: "price_external_id",
                                         price_id: "price_id",
                                         price_tier: [{}],
@@ -4858,7 +4922,7 @@ describe("EntitlementsClient", () => {
                                 provider_type: "schematic",
                                 status: "status",
                                 subscription_external_id: "subscription_external_id",
-                                total_price: 1,
+                                total_price: 1000000,
                             },
                         ],
                         created_at: "2024-01-15T09:30:00Z",
@@ -4899,7 +4963,7 @@ describe("EntitlementsClient", () => {
                                 event_subtype: "event_subtype",
                                 month_reset: "month_reset",
                                 period: "period",
-                                value: 1,
+                                value: 1000000,
                             },
                         ],
                         name: "name",
@@ -4948,13 +5012,13 @@ describe("EntitlementsClient", () => {
                                 environment_id: "environment_id",
                                 id: "id",
                                 name: "name",
-                                priority: 1,
+                                priority: 1000000,
                                 rule_type: "default",
                                 value: true,
                             },
                         ],
                         updated_at: "2024-01-15T09:30:00Z",
-                        user_count: 1,
+                        user_count: 1000000,
                     },
                     entitlement_id: "entitlement_id",
                     entitlement_type: "company_override",
@@ -5014,7 +5078,7 @@ describe("EntitlementsClient", () => {
                                         environment_id: "environment_id",
                                         id: "id",
                                         name: "name",
-                                        priority: 1,
+                                        priority: 1000000,
                                         rule_type: "rule_type",
                                         updated_at: "2024-01-15T09:30:00Z",
                                         value: true,
@@ -5041,7 +5105,7 @@ describe("EntitlementsClient", () => {
                         plan_type: "plan",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
-                    usage: 1,
+                    usage: 1000000,
                     user: {
                         created_at: "2024-01-15T09:30:00Z",
                         environment_id: "environment_id",
@@ -5051,21 +5115,22 @@ describe("EntitlementsClient", () => {
                     },
                 },
             ],
-            params: { feature_id: "feature_id", limit: 1, offset: 1, q: "q" },
+            params: { feature_id: "feature_id", limit: 1000000, offset: 1000000, q: "q" },
         };
+
         server.mockEndpoint().get("/feature-users").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.entitlements.listFeatureUsers({
             featureId: "feature_id",
             q: "q",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
                 {
                     access: true,
-                    allocation: 1,
+                    allocation: 1000000,
                     allocationType: "boolean",
                     company: {
                         addOns: [
@@ -5075,7 +5140,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         billingCreditAutoTopupEnabled: true,
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        creditAmount: 1,
+                                        creditAmount: 1000000,
                                         creditDescription: "credit_description",
                                         creditId: "credit_id",
                                         creditName: "credit_name",
@@ -5107,8 +5172,8 @@ describe("EntitlementsClient", () => {
                                 ],
                                 id: "id",
                                 interval: "interval",
-                                periodEnd: 1,
-                                periodStart: 1,
+                                periodEnd: 1000000,
+                                periodStart: 1000000,
                                 products: [
                                     {
                                         billingScheme: "per_unit",
@@ -5119,8 +5184,8 @@ describe("EntitlementsClient", () => {
                                         id: "id",
                                         interval: "interval",
                                         name: "name",
-                                        packageSize: 1,
-                                        price: 1,
+                                        packageSize: 1000000,
+                                        price: 1000000,
                                         priceExternalId: "price_external_id",
                                         priceId: "price_id",
                                         priceTier: [{}],
@@ -5134,7 +5199,7 @@ describe("EntitlementsClient", () => {
                                 providerType: "schematic",
                                 status: "status",
                                 subscriptionExternalId: "subscription_external_id",
-                                totalPrice: 1,
+                                totalPrice: 1000000,
                             },
                         ],
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -5181,7 +5246,7 @@ describe("EntitlementsClient", () => {
                                 eventSubtype: "event_subtype",
                                 monthReset: "month_reset",
                                 period: "period",
-                                value: 1,
+                                value: 1000000,
                             },
                         ],
                         name: "name",
@@ -5235,13 +5300,13 @@ describe("EntitlementsClient", () => {
                                 environmentId: "environment_id",
                                 id: "id",
                                 name: "name",
-                                priority: 1,
+                                priority: 1000000,
                                 ruleType: "default",
                                 value: true,
                             },
                         ],
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                        userCount: 1,
+                        userCount: 1000000,
                     },
                     entitlementId: "entitlement_id",
                     entitlementType: "company_override",
@@ -5311,7 +5376,7 @@ describe("EntitlementsClient", () => {
                                         environmentId: "environment_id",
                                         id: "id",
                                         name: "name",
-                                        priority: 1,
+                                        priority: 1000000,
                                         ruleType: "rule_type",
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                         value: true,
@@ -5343,7 +5408,7 @@ describe("EntitlementsClient", () => {
                         planType: "plan",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
-                    usage: 1,
+                    usage: 1000000,
                     user: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         environmentId: "environment_id",
@@ -5355,8 +5420,8 @@ describe("EntitlementsClient", () => {
             ],
             params: {
                 featureId: "feature_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
             },
         });
@@ -5367,6 +5432,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/feature-users").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -5381,6 +5447,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/feature-users").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -5395,6 +5462,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/feature-users").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -5409,6 +5477,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/feature-users").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -5423,6 +5492,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/feature-users").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -5438,8 +5508,9 @@ describe("EntitlementsClient", () => {
 
         const rawResponseBody = {
             data: { count: 1 },
-            params: { feature_id: "feature_id", limit: 1, offset: 1, q: "q" },
+            params: { feature_id: "feature_id", limit: 1000000, offset: 1000000, q: "q" },
         };
+
         server
             .mockEndpoint()
             .get("/feature-users/count")
@@ -5451,8 +5522,8 @@ describe("EntitlementsClient", () => {
         const response = await client.entitlements.countFeatureUsers({
             featureId: "feature_id",
             q: "q",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -5460,8 +5531,8 @@ describe("EntitlementsClient", () => {
             },
             params: {
                 featureId: "feature_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
             },
         });
@@ -5472,6 +5543,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/feature-users/count")
@@ -5492,6 +5564,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/feature-users/count")
@@ -5512,6 +5585,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/feature-users/count")
@@ -5532,6 +5606,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/feature-users/count")
@@ -5552,6 +5627,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/feature-users/count")
@@ -5574,7 +5650,7 @@ describe("EntitlementsClient", () => {
         const rawResponseBody = {
             data: [
                 {
-                    billing_threshold: 1,
+                    billing_threshold: 1000000,
                     consumption_rate: 1.1,
                     created_at: "2024-01-15T09:30:00Z",
                     environment_id: "environment_id",
@@ -5596,8 +5672,8 @@ describe("EntitlementsClient", () => {
                         id: "id",
                         interval: "day",
                         is_active: true,
-                        package_size: 1,
-                        price: 1,
+                        package_size: 1000000,
+                        price: 1000000,
                         price_external_id: "price_external_id",
                         price_id: "price_id",
                         price_tier: [{}],
@@ -5615,8 +5691,8 @@ describe("EntitlementsClient", () => {
                         id: "id",
                         interval: "day",
                         is_active: true,
-                        package_size: 1,
-                        price: 1,
+                        package_size: 1000000,
+                        price: 1000000,
                         price_external_id: "price_external_id",
                         price_id: "price_id",
                         price_tier: [{}],
@@ -5642,7 +5718,7 @@ describe("EntitlementsClient", () => {
                     price_behavior: "credit_burndown",
                     rule_id: "rule_id",
                     rule_id_usage_exceeded: "rule_id_usage_exceeded",
-                    soft_limit: 1,
+                    soft_limit: 1000000,
                     updated_at: "2024-01-15T09:30:00Z",
                     usage_based_product: {
                         account_id: "account_id",
@@ -5669,7 +5745,7 @@ describe("EntitlementsClient", () => {
                         name: "name",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
-                    value_numeric: 1,
+                    value_numeric: 1000000,
                     value_trait: {
                         created_at: "2024-01-15T09:30:00Z",
                         display_name: "display_name",
@@ -5687,8 +5763,8 @@ describe("EntitlementsClient", () => {
                 feature_id: "feature_id",
                 feature_ids: ["feature_ids"],
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 plan_id: "plan_id",
                 plan_ids: ["plan_ids"],
                 plan_version_id: "plan_version_id",
@@ -5697,6 +5773,7 @@ describe("EntitlementsClient", () => {
                 with_metered_products: true,
             },
         };
+
         server.mockEndpoint().get("/plan-entitlements").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.entitlements.listPlanEntitlements({
@@ -5705,13 +5782,13 @@ describe("EntitlementsClient", () => {
             planVersionId: "plan_version_id",
             q: "q",
             withMeteredProducts: true,
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
                 {
-                    billingThreshold: 1,
+                    billingThreshold: 1000000,
                     consumptionRate: 1.1,
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     environmentId: "environment_id",
@@ -5733,8 +5810,8 @@ describe("EntitlementsClient", () => {
                         id: "id",
                         interval: "day",
                         isActive: true,
-                        packageSize: 1,
-                        price: 1,
+                        packageSize: 1000000,
+                        price: 1000000,
                         priceExternalId: "price_external_id",
                         priceId: "price_id",
                         priceTier: [{}],
@@ -5752,8 +5829,8 @@ describe("EntitlementsClient", () => {
                         id: "id",
                         interval: "day",
                         isActive: true,
-                        packageSize: 1,
-                        price: 1,
+                        packageSize: 1000000,
+                        price: 1000000,
                         priceExternalId: "price_external_id",
                         priceId: "price_id",
                         priceTier: [{}],
@@ -5779,7 +5856,7 @@ describe("EntitlementsClient", () => {
                     priceBehavior: "credit_burndown",
                     ruleId: "rule_id",
                     ruleIdUsageExceeded: "rule_id_usage_exceeded",
-                    softLimit: 1,
+                    softLimit: 1000000,
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     usageBasedProduct: {
                         accountId: "account_id",
@@ -5806,7 +5883,7 @@ describe("EntitlementsClient", () => {
                         name: "name",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
-                    valueNumeric: 1,
+                    valueNumeric: 1000000,
                     valueTrait: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         displayName: "display_name",
@@ -5824,8 +5901,8 @@ describe("EntitlementsClient", () => {
                 featureId: "feature_id",
                 featureIds: ["feature_ids"],
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 planId: "plan_id",
                 planIds: ["plan_ids"],
                 planVersionId: "plan_version_id",
@@ -5841,6 +5918,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plan-entitlements").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -5853,6 +5931,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plan-entitlements").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -5865,6 +5944,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plan-entitlements").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -5877,6 +5957,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plan-entitlements").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -5889,6 +5970,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plan-entitlements").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -5902,7 +5984,7 @@ describe("EntitlementsClient", () => {
         const rawRequestBody = { feature_id: "feature_id", plan_id: "plan_id", value_type: "boolean" };
         const rawResponseBody = {
             data: {
-                billing_threshold: 1,
+                billing_threshold: 1000000,
                 consumption_rate: 1.1,
                 created_at: "2024-01-15T09:30:00Z",
                 environment_id: "environment_id",
@@ -5933,8 +6015,8 @@ describe("EntitlementsClient", () => {
                     meter_event_name: "meter_event_name",
                     meter_event_payload_key: "meter_event_payload_key",
                     meter_id: "meter_id",
-                    package_size: 1,
-                    price: 1,
+                    package_size: 1000000,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     price_external_id: "price_external_id",
                     price_id: "price_id",
@@ -5957,8 +6039,8 @@ describe("EntitlementsClient", () => {
                     meter_event_name: "meter_event_name",
                     meter_event_payload_key: "meter_event_payload_key",
                     meter_id: "meter_id",
-                    package_size: 1,
-                    price: 1,
+                    package_size: 1000000,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     price_external_id: "price_external_id",
                     price_id: "price_id",
@@ -5986,7 +6068,7 @@ describe("EntitlementsClient", () => {
                 price_behavior: "credit_burndown",
                 rule_id: "rule_id",
                 rule_id_usage_exceeded: "rule_id_usage_exceeded",
-                soft_limit: 1,
+                soft_limit: 1000000,
                 updated_at: "2024-01-15T09:30:00Z",
                 usage_based_product: {
                     account_id: "account_id",
@@ -6008,7 +6090,7 @@ describe("EntitlementsClient", () => {
                     cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
                     default_expiry_unit: "billing_periods",
-                    default_expiry_unit_count: 1,
+                    default_expiry_unit_count: 1000000,
                     default_rollover_policy: "expire",
                     description: "description",
                     icon: "icon",
@@ -6020,7 +6102,7 @@ describe("EntitlementsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
@@ -6040,7 +6122,7 @@ describe("EntitlementsClient", () => {
                     singular_name: "singular_name",
                     updated_at: "2024-01-15T09:30:00Z",
                 },
-                value_numeric: 1,
+                value_numeric: 1000000,
                 value_trait: {
                     created_at: "2024-01-15T09:30:00Z",
                     display_name: "display_name",
@@ -6055,6 +6137,7 @@ describe("EntitlementsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/plan-entitlements")
@@ -6071,7 +6154,7 @@ describe("EntitlementsClient", () => {
         });
         expect(response).toEqual({
             data: {
-                billingThreshold: 1,
+                billingThreshold: 1000000,
                 consumptionRate: 1.1,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 environmentId: "environment_id",
@@ -6102,8 +6185,8 @@ describe("EntitlementsClient", () => {
                     meterEventName: "meter_event_name",
                     meterEventPayloadKey: "meter_event_payload_key",
                     meterId: "meter_id",
-                    packageSize: 1,
-                    price: 1,
+                    packageSize: 1000000,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     priceExternalId: "price_external_id",
                     priceId: "price_id",
@@ -6126,8 +6209,8 @@ describe("EntitlementsClient", () => {
                     meterEventName: "meter_event_name",
                     meterEventPayloadKey: "meter_event_payload_key",
                     meterId: "meter_id",
-                    packageSize: 1,
-                    price: 1,
+                    packageSize: 1000000,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     priceExternalId: "price_external_id",
                     priceId: "price_id",
@@ -6155,7 +6238,7 @@ describe("EntitlementsClient", () => {
                 priceBehavior: "credit_burndown",
                 ruleId: "rule_id",
                 ruleIdUsageExceeded: "rule_id_usage_exceeded",
-                softLimit: 1,
+                softLimit: 1000000,
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 usageBasedProduct: {
                     accountId: "account_id",
@@ -6177,7 +6260,7 @@ describe("EntitlementsClient", () => {
                     costEditable: true,
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     defaultExpiryUnit: "billing_periods",
-                    defaultExpiryUnitCount: 1,
+                    defaultExpiryUnitCount: 1000000,
                     defaultRolloverPolicy: "expire",
                     description: "description",
                     icon: "icon",
@@ -6189,7 +6272,7 @@ describe("EntitlementsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
@@ -6209,7 +6292,7 @@ describe("EntitlementsClient", () => {
                     singularName: "singular_name",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
-                valueNumeric: 1,
+                valueNumeric: 1000000,
                 valueTrait: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     displayName: "display_name",
@@ -6233,6 +6316,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { feature_id: "feature_id", plan_id: "plan_id", value_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-entitlements")
@@ -6256,6 +6340,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { feature_id: "feature_id", plan_id: "plan_id", value_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-entitlements")
@@ -6279,6 +6364,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { feature_id: "feature_id", plan_id: "plan_id", value_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-entitlements")
@@ -6302,6 +6388,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { feature_id: "feature_id", plan_id: "plan_id", value_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-entitlements")
@@ -6325,6 +6412,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { feature_id: "feature_id", plan_id: "plan_id", value_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-entitlements")
@@ -6349,7 +6437,7 @@ describe("EntitlementsClient", () => {
 
         const rawResponseBody = {
             data: {
-                billing_threshold: 1,
+                billing_threshold: 1000000,
                 consumption_rate: 1.1,
                 created_at: "2024-01-15T09:30:00Z",
                 environment_id: "environment_id",
@@ -6380,8 +6468,8 @@ describe("EntitlementsClient", () => {
                     meter_event_name: "meter_event_name",
                     meter_event_payload_key: "meter_event_payload_key",
                     meter_id: "meter_id",
-                    package_size: 1,
-                    price: 1,
+                    package_size: 1000000,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     price_external_id: "price_external_id",
                     price_id: "price_id",
@@ -6404,8 +6492,8 @@ describe("EntitlementsClient", () => {
                     meter_event_name: "meter_event_name",
                     meter_event_payload_key: "meter_event_payload_key",
                     meter_id: "meter_id",
-                    package_size: 1,
-                    price: 1,
+                    package_size: 1000000,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     price_external_id: "price_external_id",
                     price_id: "price_id",
@@ -6433,7 +6521,7 @@ describe("EntitlementsClient", () => {
                 price_behavior: "credit_burndown",
                 rule_id: "rule_id",
                 rule_id_usage_exceeded: "rule_id_usage_exceeded",
-                soft_limit: 1,
+                soft_limit: 1000000,
                 updated_at: "2024-01-15T09:30:00Z",
                 usage_based_product: {
                     account_id: "account_id",
@@ -6455,7 +6543,7 @@ describe("EntitlementsClient", () => {
                     cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
                     default_expiry_unit: "billing_periods",
-                    default_expiry_unit_count: 1,
+                    default_expiry_unit_count: 1000000,
                     default_rollover_policy: "expire",
                     description: "description",
                     icon: "icon",
@@ -6467,7 +6555,7 @@ describe("EntitlementsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
@@ -6487,7 +6575,7 @@ describe("EntitlementsClient", () => {
                     singular_name: "singular_name",
                     updated_at: "2024-01-15T09:30:00Z",
                 },
-                value_numeric: 1,
+                value_numeric: 1000000,
                 value_trait: {
                     created_at: "2024-01-15T09:30:00Z",
                     display_name: "display_name",
@@ -6502,6 +6590,7 @@ describe("EntitlementsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .get("/plan-entitlements/plan_entitlement_id")
@@ -6513,7 +6602,7 @@ describe("EntitlementsClient", () => {
         const response = await client.entitlements.getPlanEntitlement("plan_entitlement_id");
         expect(response).toEqual({
             data: {
-                billingThreshold: 1,
+                billingThreshold: 1000000,
                 consumptionRate: 1.1,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 environmentId: "environment_id",
@@ -6544,8 +6633,8 @@ describe("EntitlementsClient", () => {
                     meterEventName: "meter_event_name",
                     meterEventPayloadKey: "meter_event_payload_key",
                     meterId: "meter_id",
-                    packageSize: 1,
-                    price: 1,
+                    packageSize: 1000000,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     priceExternalId: "price_external_id",
                     priceId: "price_id",
@@ -6568,8 +6657,8 @@ describe("EntitlementsClient", () => {
                     meterEventName: "meter_event_name",
                     meterEventPayloadKey: "meter_event_payload_key",
                     meterId: "meter_id",
-                    packageSize: 1,
-                    price: 1,
+                    packageSize: 1000000,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     priceExternalId: "price_external_id",
                     priceId: "price_id",
@@ -6597,7 +6686,7 @@ describe("EntitlementsClient", () => {
                 priceBehavior: "credit_burndown",
                 ruleId: "rule_id",
                 ruleIdUsageExceeded: "rule_id_usage_exceeded",
-                softLimit: 1,
+                softLimit: 1000000,
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 usageBasedProduct: {
                     accountId: "account_id",
@@ -6619,7 +6708,7 @@ describe("EntitlementsClient", () => {
                     costEditable: true,
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     defaultExpiryUnit: "billing_periods",
-                    defaultExpiryUnitCount: 1,
+                    defaultExpiryUnitCount: 1000000,
                     defaultRolloverPolicy: "expire",
                     description: "description",
                     icon: "icon",
@@ -6631,7 +6720,7 @@ describe("EntitlementsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
@@ -6651,7 +6740,7 @@ describe("EntitlementsClient", () => {
                     singularName: "singular_name",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
-                valueNumeric: 1,
+                valueNumeric: 1000000,
                 valueTrait: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     displayName: "display_name",
@@ -6675,6 +6764,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-entitlements/plan_entitlement_id")
@@ -6693,6 +6783,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-entitlements/plan_entitlement_id")
@@ -6711,6 +6802,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-entitlements/plan_entitlement_id")
@@ -6729,6 +6821,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-entitlements/plan_entitlement_id")
@@ -6748,7 +6841,7 @@ describe("EntitlementsClient", () => {
         const rawRequestBody = { value_type: "boolean" };
         const rawResponseBody = {
             data: {
-                billing_threshold: 1,
+                billing_threshold: 1000000,
                 consumption_rate: 1.1,
                 created_at: "2024-01-15T09:30:00Z",
                 environment_id: "environment_id",
@@ -6779,8 +6872,8 @@ describe("EntitlementsClient", () => {
                     meter_event_name: "meter_event_name",
                     meter_event_payload_key: "meter_event_payload_key",
                     meter_id: "meter_id",
-                    package_size: 1,
-                    price: 1,
+                    package_size: 1000000,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     price_external_id: "price_external_id",
                     price_id: "price_id",
@@ -6803,8 +6896,8 @@ describe("EntitlementsClient", () => {
                     meter_event_name: "meter_event_name",
                     meter_event_payload_key: "meter_event_payload_key",
                     meter_id: "meter_id",
-                    package_size: 1,
-                    price: 1,
+                    package_size: 1000000,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     price_external_id: "price_external_id",
                     price_id: "price_id",
@@ -6832,7 +6925,7 @@ describe("EntitlementsClient", () => {
                 price_behavior: "credit_burndown",
                 rule_id: "rule_id",
                 rule_id_usage_exceeded: "rule_id_usage_exceeded",
-                soft_limit: 1,
+                soft_limit: 1000000,
                 updated_at: "2024-01-15T09:30:00Z",
                 usage_based_product: {
                     account_id: "account_id",
@@ -6854,7 +6947,7 @@ describe("EntitlementsClient", () => {
                     cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
                     default_expiry_unit: "billing_periods",
-                    default_expiry_unit_count: 1,
+                    default_expiry_unit_count: 1000000,
                     default_rollover_policy: "expire",
                     description: "description",
                     icon: "icon",
@@ -6866,7 +6959,7 @@ describe("EntitlementsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
@@ -6886,7 +6979,7 @@ describe("EntitlementsClient", () => {
                     singular_name: "singular_name",
                     updated_at: "2024-01-15T09:30:00Z",
                 },
-                value_numeric: 1,
+                value_numeric: 1000000,
                 value_trait: {
                     created_at: "2024-01-15T09:30:00Z",
                     display_name: "display_name",
@@ -6901,6 +6994,7 @@ describe("EntitlementsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .put("/plan-entitlements/plan_entitlement_id")
@@ -6915,7 +7009,7 @@ describe("EntitlementsClient", () => {
         });
         expect(response).toEqual({
             data: {
-                billingThreshold: 1,
+                billingThreshold: 1000000,
                 consumptionRate: 1.1,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 environmentId: "environment_id",
@@ -6946,8 +7040,8 @@ describe("EntitlementsClient", () => {
                     meterEventName: "meter_event_name",
                     meterEventPayloadKey: "meter_event_payload_key",
                     meterId: "meter_id",
-                    packageSize: 1,
-                    price: 1,
+                    packageSize: 1000000,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     priceExternalId: "price_external_id",
                     priceId: "price_id",
@@ -6970,8 +7064,8 @@ describe("EntitlementsClient", () => {
                     meterEventName: "meter_event_name",
                     meterEventPayloadKey: "meter_event_payload_key",
                     meterId: "meter_id",
-                    packageSize: 1,
-                    price: 1,
+                    packageSize: 1000000,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     priceExternalId: "price_external_id",
                     priceId: "price_id",
@@ -6999,7 +7093,7 @@ describe("EntitlementsClient", () => {
                 priceBehavior: "credit_burndown",
                 ruleId: "rule_id",
                 ruleIdUsageExceeded: "rule_id_usage_exceeded",
-                softLimit: 1,
+                softLimit: 1000000,
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 usageBasedProduct: {
                     accountId: "account_id",
@@ -7021,7 +7115,7 @@ describe("EntitlementsClient", () => {
                     costEditable: true,
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     defaultExpiryUnit: "billing_periods",
-                    defaultExpiryUnitCount: 1,
+                    defaultExpiryUnitCount: 1000000,
                     defaultRolloverPolicy: "expire",
                     description: "description",
                     icon: "icon",
@@ -7033,7 +7127,7 @@ describe("EntitlementsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
@@ -7053,7 +7147,7 @@ describe("EntitlementsClient", () => {
                     singularName: "singular_name",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
-                valueNumeric: 1,
+                valueNumeric: 1000000,
                 valueTrait: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     displayName: "display_name",
@@ -7077,6 +7171,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { value_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plan-entitlements/plan_entitlement_id")
@@ -7098,6 +7193,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { value_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plan-entitlements/plan_entitlement_id")
@@ -7119,6 +7215,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { value_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plan-entitlements/plan_entitlement_id")
@@ -7140,6 +7237,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { value_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plan-entitlements/plan_entitlement_id")
@@ -7161,6 +7259,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { value_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plan-entitlements/plan_entitlement_id")
@@ -7182,6 +7281,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
+
         server
             .mockEndpoint()
             .delete("/plan-entitlements/plan_entitlement_id")
@@ -7206,6 +7306,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/plan-entitlements/plan_entitlement_id")
@@ -7224,6 +7325,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/plan-entitlements/plan_entitlement_id")
@@ -7242,6 +7344,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/plan-entitlements/plan_entitlement_id")
@@ -7260,6 +7363,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/plan-entitlements/plan_entitlement_id")
@@ -7278,6 +7382,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/plan-entitlements/plan_entitlement_id")
@@ -7301,8 +7406,8 @@ describe("EntitlementsClient", () => {
                 feature_id: "feature_id",
                 feature_ids: ["feature_ids"],
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 plan_id: "plan_id",
                 plan_ids: ["plan_ids"],
                 plan_version_id: "plan_version_id",
@@ -7311,6 +7416,7 @@ describe("EntitlementsClient", () => {
                 with_metered_products: true,
             },
         };
+
         server
             .mockEndpoint()
             .get("/plan-entitlements/count")
@@ -7325,8 +7431,8 @@ describe("EntitlementsClient", () => {
             planVersionId: "plan_version_id",
             q: "q",
             withMeteredProducts: true,
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -7336,8 +7442,8 @@ describe("EntitlementsClient", () => {
                 featureId: "feature_id",
                 featureIds: ["feature_ids"],
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 planId: "plan_id",
                 planIds: ["plan_ids"],
                 planVersionId: "plan_version_id",
@@ -7353,6 +7459,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-entitlements/count")
@@ -7371,6 +7478,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-entitlements/count")
@@ -7389,6 +7497,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-entitlements/count")
@@ -7407,6 +7516,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-entitlements/count")
@@ -7425,6 +7535,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-entitlements/count")
@@ -7467,6 +7578,7 @@ describe("EntitlementsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/plan-entitlements/duplicate")
@@ -7518,6 +7630,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { source_plan_id: "source_plan_id", target_plan_id: "target_plan_id" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-entitlements/duplicate")
@@ -7540,6 +7653,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { source_plan_id: "source_plan_id", target_plan_id: "target_plan_id" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-entitlements/duplicate")
@@ -7562,6 +7676,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { source_plan_id: "source_plan_id", target_plan_id: "target_plan_id" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-entitlements/duplicate")
@@ -7584,6 +7699,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { source_plan_id: "source_plan_id", target_plan_id: "target_plan_id" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-entitlements/duplicate")
@@ -7606,6 +7722,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { source_plan_id: "source_plan_id", target_plan_id: "target_plan_id" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-entitlements/duplicate")
@@ -7632,7 +7749,7 @@ describe("EntitlementsClient", () => {
                 features: [
                     {
                         access: true,
-                        allocation: 1,
+                        allocation: 1000000,
                         allocation_type: "boolean",
                         company_override: {
                             company: {
@@ -7649,13 +7766,13 @@ describe("EntitlementsClient", () => {
                                     discounts: [],
                                     id: "id",
                                     interval: "interval",
-                                    period_end: 1,
-                                    period_start: 1,
+                                    period_end: 1000000,
+                                    period_start: 1000000,
                                     products: [],
                                     provider_type: "schematic",
                                     status: "status",
                                     subscription_external_id: "subscription_external_id",
-                                    total_price: 1,
+                                    total_price: 1000000,
                                 },
                                 billing_subscriptions: [
                                     {
@@ -7666,13 +7783,13 @@ describe("EntitlementsClient", () => {
                                         discounts: [],
                                         id: "id",
                                         interval: "interval",
-                                        period_end: 1,
-                                        period_start: 1,
+                                        period_end: 1000000,
+                                        period_start: 1000000,
                                         products: [],
                                         provider_type: "schematic",
                                         status: "status",
                                         subscription_external_id: "subscription_external_id",
-                                        total_price: 1,
+                                        total_price: 1000000,
                                     },
                                     {
                                         cancel_at_period_end: true,
@@ -7682,13 +7799,13 @@ describe("EntitlementsClient", () => {
                                         discounts: [],
                                         id: "id",
                                         interval: "interval",
-                                        period_end: 1,
-                                        period_start: 1,
+                                        period_end: 1000000,
+                                        period_start: 1000000,
                                         products: [],
                                         provider_type: "schematic",
                                         status: "status",
                                         subscription_external_id: "subscription_external_id",
-                                        total_price: 1,
+                                        total_price: 1000000,
                                     },
                                 ],
                                 created_at: "2024-01-15T09:30:00Z",
@@ -7763,7 +7880,7 @@ describe("EntitlementsClient", () => {
                                         event_subtype: "event_subtype",
                                         month_reset: "month_reset",
                                         period: "period",
-                                        value: 1,
+                                        value: 1000000,
                                     },
                                     {
                                         account_id: "account_id",
@@ -7775,7 +7892,7 @@ describe("EntitlementsClient", () => {
                                         event_subtype: "event_subtype",
                                         month_reset: "month_reset",
                                         period: "period",
-                                        value: 1,
+                                        value: 1000000,
                                     },
                                 ],
                                 name: "name",
@@ -7814,7 +7931,7 @@ describe("EntitlementsClient", () => {
                                         environment_id: "environment_id",
                                         id: "id",
                                         name: "name",
-                                        priority: 1,
+                                        priority: 1000000,
                                         rule_type: "default",
                                         value: true,
                                     },
@@ -7825,7 +7942,7 @@ describe("EntitlementsClient", () => {
                                         environment_id: "environment_id",
                                         id: "id",
                                         name: "name",
-                                        priority: 1,
+                                        priority: 1000000,
                                         rule_type: "default",
                                         value: true,
                                     },
@@ -7835,7 +7952,7 @@ describe("EntitlementsClient", () => {
                                     effective_after: "2024-01-15T09:30:00Z",
                                     from_plan_id: "from_plan_id",
                                     from_plan_name: "from_plan_name",
-                                    from_subscription_price: 1,
+                                    from_subscription_price: 1000000,
                                     id: "id",
                                     interval: "interval",
                                     to_plan_id: "to_plan_id",
@@ -7843,7 +7960,7 @@ describe("EntitlementsClient", () => {
                                 },
                                 traits: { traits: { key: "value" } },
                                 updated_at: "2024-01-15T09:30:00Z",
-                                user_count: 1,
+                                user_count: 1000000,
                             },
                             company_id: "company_id",
                             consumption_rate: 1.1,
@@ -7891,7 +8008,7 @@ describe("EntitlementsClient", () => {
                             rule_id_usage_exceeded: "rule_id_usage_exceeded",
                             updated_at: "2024-01-15T09:30:00Z",
                             value_bool: true,
-                            value_numeric: 1,
+                            value_numeric: 1000000,
                             value_trait: {
                                 created_at: "2024-01-15T09:30:00Z",
                                 display_name: "display_name",
@@ -7931,7 +8048,7 @@ describe("EntitlementsClient", () => {
                             usage_today: 1.1,
                         },
                         credit_used: 1.1,
-                        effective_limit: 1,
+                        effective_limit: 1000000,
                         effective_price: 1.1,
                         entitlement_expiration_date: "2024-01-15T09:30:00Z",
                         entitlement_id: "entitlement_id",
@@ -7942,12 +8059,12 @@ describe("EntitlementsClient", () => {
                             description: "description",
                             event_subtype: "event_subtype",
                             event_summary: {
-                                company_count: 1,
+                                company_count: 1000000,
                                 environment_id: "environment_id",
-                                event_count: 1,
+                                event_count: 1000000,
                                 event_subtype: "event_subtype",
                                 last_seen_at: "2024-01-15T09:30:00Z",
-                                user_count: 1,
+                                user_count: 1000000,
                             },
                             feature_type: "boolean",
                             flags: [
@@ -7979,7 +8096,7 @@ describe("EntitlementsClient", () => {
                                             environment_id: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             rule_type: "rule_type",
                                             updated_at: "2024-01-15T09:30:00Z",
                                             value: true,
@@ -7991,7 +8108,7 @@ describe("EntitlementsClient", () => {
                                             environment_id: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             rule_type: "rule_type",
                                             updated_at: "2024-01-15T09:30:00Z",
                                             value: true,
@@ -8027,7 +8144,7 @@ describe("EntitlementsClient", () => {
                                             environment_id: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             rule_type: "rule_type",
                                             updated_at: "2024-01-15T09:30:00Z",
                                             value: true,
@@ -8039,7 +8156,7 @@ describe("EntitlementsClient", () => {
                                             environment_id: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             rule_type: "rule_type",
                                             updated_at: "2024-01-15T09:30:00Z",
                                             value: true,
@@ -8085,23 +8202,23 @@ describe("EntitlementsClient", () => {
                             meter_event_name: "meter_event_name",
                             meter_event_payload_key: "meter_event_payload_key",
                             meter_id: "meter_id",
-                            package_size: 1,
-                            price: 1,
+                            package_size: 1000000,
+                            price: 1000000,
                             price_decimal: "price_decimal",
                             price_external_id: "price_external_id",
                             price_id: "price_id",
                             price_tier: [
                                 {
-                                    flat_amount: 1,
-                                    per_unit_price: 1,
+                                    flat_amount: 1000000,
+                                    per_unit_price: 1000000,
                                     per_unit_price_decimal: "per_unit_price_decimal",
-                                    up_to: 1,
+                                    up_to: 1000000,
                                 },
                                 {
-                                    flat_amount: 1,
-                                    per_unit_price: 1,
+                                    flat_amount: 1000000,
+                                    per_unit_price: 1000000,
                                     per_unit_price_decimal: "per_unit_price_decimal",
-                                    up_to: 1,
+                                    up_to: 1000000,
                                 },
                             ],
                             product_external_id: "product_external_id",
@@ -8112,7 +8229,7 @@ describe("EntitlementsClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                             usage_type: "licensed",
                         },
-                        overuse: 1,
+                        overuse: 1000000,
                         percent_used: 1.1,
                         period: "period",
                         plan: {
@@ -8126,7 +8243,7 @@ describe("EntitlementsClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                         plan_entitlement: {
-                            billing_threshold: 1,
+                            billing_threshold: 1000000,
                             consumption_rate: 1.1,
                             created_at: "2024-01-15T09:30:00Z",
                             environment_id: "environment_id",
@@ -8157,8 +8274,8 @@ describe("EntitlementsClient", () => {
                                 meter_event_name: "meter_event_name",
                                 meter_event_payload_key: "meter_event_payload_key",
                                 meter_id: "meter_id",
-                                package_size: 1,
-                                price: 1,
+                                package_size: 1000000,
+                                price: 1000000,
                                 price_decimal: "price_decimal",
                                 price_external_id: "price_external_id",
                                 price_id: "price_id",
@@ -8181,8 +8298,8 @@ describe("EntitlementsClient", () => {
                                 meter_event_name: "meter_event_name",
                                 meter_event_payload_key: "meter_event_payload_key",
                                 meter_id: "meter_id",
-                                package_size: 1,
-                                price: 1,
+                                package_size: 1000000,
+                                price: 1000000,
                                 price_decimal: "price_decimal",
                                 price_external_id: "price_external_id",
                                 price_id: "price_id",
@@ -8211,7 +8328,7 @@ describe("EntitlementsClient", () => {
                             price_behavior: "credit_burndown",
                             rule_id: "rule_id",
                             rule_id_usage_exceeded: "rule_id_usage_exceeded",
-                            soft_limit: 1,
+                            soft_limit: 1000000,
                             updated_at: "2024-01-15T09:30:00Z",
                             usage_based_product: {
                                 account_id: "account_id",
@@ -8234,7 +8351,7 @@ describe("EntitlementsClient", () => {
                                 cost_editable: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 default_expiry_unit: "billing_periods",
-                                default_expiry_unit_count: 1,
+                                default_expiry_unit_count: 1000000,
                                 default_rollover_policy: "expire",
                                 description: "description",
                                 icon: "icon",
@@ -8246,7 +8363,7 @@ describe("EntitlementsClient", () => {
                                     external_price_id: "external_price_id",
                                     id: "id",
                                     interval: "day",
-                                    price: 1,
+                                    price: 1000000,
                                     provider_type: "schematic",
                                     scheme: "per_unit",
                                 },
@@ -8266,7 +8383,7 @@ describe("EntitlementsClient", () => {
                                 singular_name: "singular_name",
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
-                            value_numeric: 1,
+                            value_numeric: 1000000,
                             value_trait: {
                                 created_at: "2024-01-15T09:30:00Z",
                                 display_name: "display_name",
@@ -8280,8 +8397,8 @@ describe("EntitlementsClient", () => {
                             value_type: "boolean",
                         },
                         price_behavior: "credit_burndown",
-                        soft_limit: 1,
-                        usage: 1,
+                        soft_limit: 1000000,
+                        usage: 1000000,
                         yearly_usage_based_price: {
                             billing_scheme: "per_unit",
                             created_at: "2024-01-15T09:30:00Z",
@@ -8292,23 +8409,23 @@ describe("EntitlementsClient", () => {
                             meter_event_name: "meter_event_name",
                             meter_event_payload_key: "meter_event_payload_key",
                             meter_id: "meter_id",
-                            package_size: 1,
-                            price: 1,
+                            package_size: 1000000,
+                            price: 1000000,
                             price_decimal: "price_decimal",
                             price_external_id: "price_external_id",
                             price_id: "price_id",
                             price_tier: [
                                 {
-                                    flat_amount: 1,
-                                    per_unit_price: 1,
+                                    flat_amount: 1000000,
+                                    per_unit_price: 1000000,
                                     per_unit_price_decimal: "per_unit_price_decimal",
-                                    up_to: 1,
+                                    up_to: 1000000,
                                 },
                                 {
-                                    flat_amount: 1,
-                                    per_unit_price: 1,
+                                    flat_amount: 1000000,
+                                    per_unit_price: 1000000,
                                     per_unit_price_decimal: "per_unit_price_decimal",
-                                    up_to: 1,
+                                    up_to: 1000000,
                                 },
                             ],
                             product_external_id: "product_external_id",
@@ -8322,7 +8439,7 @@ describe("EntitlementsClient", () => {
                     },
                     {
                         access: true,
-                        allocation: 1,
+                        allocation: 1000000,
                         allocation_type: "boolean",
                         company_override: {
                             company: {
@@ -8339,13 +8456,13 @@ describe("EntitlementsClient", () => {
                                     discounts: [],
                                     id: "id",
                                     interval: "interval",
-                                    period_end: 1,
-                                    period_start: 1,
+                                    period_end: 1000000,
+                                    period_start: 1000000,
                                     products: [],
                                     provider_type: "schematic",
                                     status: "status",
                                     subscription_external_id: "subscription_external_id",
-                                    total_price: 1,
+                                    total_price: 1000000,
                                 },
                                 billing_subscriptions: [
                                     {
@@ -8356,13 +8473,13 @@ describe("EntitlementsClient", () => {
                                         discounts: [],
                                         id: "id",
                                         interval: "interval",
-                                        period_end: 1,
-                                        period_start: 1,
+                                        period_end: 1000000,
+                                        period_start: 1000000,
                                         products: [],
                                         provider_type: "schematic",
                                         status: "status",
                                         subscription_external_id: "subscription_external_id",
-                                        total_price: 1,
+                                        total_price: 1000000,
                                     },
                                     {
                                         cancel_at_period_end: true,
@@ -8372,13 +8489,13 @@ describe("EntitlementsClient", () => {
                                         discounts: [],
                                         id: "id",
                                         interval: "interval",
-                                        period_end: 1,
-                                        period_start: 1,
+                                        period_end: 1000000,
+                                        period_start: 1000000,
                                         products: [],
                                         provider_type: "schematic",
                                         status: "status",
                                         subscription_external_id: "subscription_external_id",
-                                        total_price: 1,
+                                        total_price: 1000000,
                                     },
                                 ],
                                 created_at: "2024-01-15T09:30:00Z",
@@ -8453,7 +8570,7 @@ describe("EntitlementsClient", () => {
                                         event_subtype: "event_subtype",
                                         month_reset: "month_reset",
                                         period: "period",
-                                        value: 1,
+                                        value: 1000000,
                                     },
                                     {
                                         account_id: "account_id",
@@ -8465,7 +8582,7 @@ describe("EntitlementsClient", () => {
                                         event_subtype: "event_subtype",
                                         month_reset: "month_reset",
                                         period: "period",
-                                        value: 1,
+                                        value: 1000000,
                                     },
                                 ],
                                 name: "name",
@@ -8504,7 +8621,7 @@ describe("EntitlementsClient", () => {
                                         environment_id: "environment_id",
                                         id: "id",
                                         name: "name",
-                                        priority: 1,
+                                        priority: 1000000,
                                         rule_type: "default",
                                         value: true,
                                     },
@@ -8515,7 +8632,7 @@ describe("EntitlementsClient", () => {
                                         environment_id: "environment_id",
                                         id: "id",
                                         name: "name",
-                                        priority: 1,
+                                        priority: 1000000,
                                         rule_type: "default",
                                         value: true,
                                     },
@@ -8525,7 +8642,7 @@ describe("EntitlementsClient", () => {
                                     effective_after: "2024-01-15T09:30:00Z",
                                     from_plan_id: "from_plan_id",
                                     from_plan_name: "from_plan_name",
-                                    from_subscription_price: 1,
+                                    from_subscription_price: 1000000,
                                     id: "id",
                                     interval: "interval",
                                     to_plan_id: "to_plan_id",
@@ -8533,7 +8650,7 @@ describe("EntitlementsClient", () => {
                                 },
                                 traits: { traits: { key: "value" } },
                                 updated_at: "2024-01-15T09:30:00Z",
-                                user_count: 1,
+                                user_count: 1000000,
                             },
                             company_id: "company_id",
                             consumption_rate: 1.1,
@@ -8581,7 +8698,7 @@ describe("EntitlementsClient", () => {
                             rule_id_usage_exceeded: "rule_id_usage_exceeded",
                             updated_at: "2024-01-15T09:30:00Z",
                             value_bool: true,
-                            value_numeric: 1,
+                            value_numeric: 1000000,
                             value_trait: {
                                 created_at: "2024-01-15T09:30:00Z",
                                 display_name: "display_name",
@@ -8621,7 +8738,7 @@ describe("EntitlementsClient", () => {
                             usage_today: 1.1,
                         },
                         credit_used: 1.1,
-                        effective_limit: 1,
+                        effective_limit: 1000000,
                         effective_price: 1.1,
                         entitlement_expiration_date: "2024-01-15T09:30:00Z",
                         entitlement_id: "entitlement_id",
@@ -8632,12 +8749,12 @@ describe("EntitlementsClient", () => {
                             description: "description",
                             event_subtype: "event_subtype",
                             event_summary: {
-                                company_count: 1,
+                                company_count: 1000000,
                                 environment_id: "environment_id",
-                                event_count: 1,
+                                event_count: 1000000,
                                 event_subtype: "event_subtype",
                                 last_seen_at: "2024-01-15T09:30:00Z",
-                                user_count: 1,
+                                user_count: 1000000,
                             },
                             feature_type: "boolean",
                             flags: [
@@ -8669,7 +8786,7 @@ describe("EntitlementsClient", () => {
                                             environment_id: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             rule_type: "rule_type",
                                             updated_at: "2024-01-15T09:30:00Z",
                                             value: true,
@@ -8681,7 +8798,7 @@ describe("EntitlementsClient", () => {
                                             environment_id: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             rule_type: "rule_type",
                                             updated_at: "2024-01-15T09:30:00Z",
                                             value: true,
@@ -8717,7 +8834,7 @@ describe("EntitlementsClient", () => {
                                             environment_id: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             rule_type: "rule_type",
                                             updated_at: "2024-01-15T09:30:00Z",
                                             value: true,
@@ -8729,7 +8846,7 @@ describe("EntitlementsClient", () => {
                                             environment_id: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             rule_type: "rule_type",
                                             updated_at: "2024-01-15T09:30:00Z",
                                             value: true,
@@ -8775,23 +8892,23 @@ describe("EntitlementsClient", () => {
                             meter_event_name: "meter_event_name",
                             meter_event_payload_key: "meter_event_payload_key",
                             meter_id: "meter_id",
-                            package_size: 1,
-                            price: 1,
+                            package_size: 1000000,
+                            price: 1000000,
                             price_decimal: "price_decimal",
                             price_external_id: "price_external_id",
                             price_id: "price_id",
                             price_tier: [
                                 {
-                                    flat_amount: 1,
-                                    per_unit_price: 1,
+                                    flat_amount: 1000000,
+                                    per_unit_price: 1000000,
                                     per_unit_price_decimal: "per_unit_price_decimal",
-                                    up_to: 1,
+                                    up_to: 1000000,
                                 },
                                 {
-                                    flat_amount: 1,
-                                    per_unit_price: 1,
+                                    flat_amount: 1000000,
+                                    per_unit_price: 1000000,
                                     per_unit_price_decimal: "per_unit_price_decimal",
-                                    up_to: 1,
+                                    up_to: 1000000,
                                 },
                             ],
                             product_external_id: "product_external_id",
@@ -8802,7 +8919,7 @@ describe("EntitlementsClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                             usage_type: "licensed",
                         },
-                        overuse: 1,
+                        overuse: 1000000,
                         percent_used: 1.1,
                         period: "period",
                         plan: {
@@ -8816,7 +8933,7 @@ describe("EntitlementsClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                         plan_entitlement: {
-                            billing_threshold: 1,
+                            billing_threshold: 1000000,
                             consumption_rate: 1.1,
                             created_at: "2024-01-15T09:30:00Z",
                             environment_id: "environment_id",
@@ -8847,8 +8964,8 @@ describe("EntitlementsClient", () => {
                                 meter_event_name: "meter_event_name",
                                 meter_event_payload_key: "meter_event_payload_key",
                                 meter_id: "meter_id",
-                                package_size: 1,
-                                price: 1,
+                                package_size: 1000000,
+                                price: 1000000,
                                 price_decimal: "price_decimal",
                                 price_external_id: "price_external_id",
                                 price_id: "price_id",
@@ -8871,8 +8988,8 @@ describe("EntitlementsClient", () => {
                                 meter_event_name: "meter_event_name",
                                 meter_event_payload_key: "meter_event_payload_key",
                                 meter_id: "meter_id",
-                                package_size: 1,
-                                price: 1,
+                                package_size: 1000000,
+                                price: 1000000,
                                 price_decimal: "price_decimal",
                                 price_external_id: "price_external_id",
                                 price_id: "price_id",
@@ -8901,7 +9018,7 @@ describe("EntitlementsClient", () => {
                             price_behavior: "credit_burndown",
                             rule_id: "rule_id",
                             rule_id_usage_exceeded: "rule_id_usage_exceeded",
-                            soft_limit: 1,
+                            soft_limit: 1000000,
                             updated_at: "2024-01-15T09:30:00Z",
                             usage_based_product: {
                                 account_id: "account_id",
@@ -8924,7 +9041,7 @@ describe("EntitlementsClient", () => {
                                 cost_editable: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 default_expiry_unit: "billing_periods",
-                                default_expiry_unit_count: 1,
+                                default_expiry_unit_count: 1000000,
                                 default_rollover_policy: "expire",
                                 description: "description",
                                 icon: "icon",
@@ -8936,7 +9053,7 @@ describe("EntitlementsClient", () => {
                                     external_price_id: "external_price_id",
                                     id: "id",
                                     interval: "day",
-                                    price: 1,
+                                    price: 1000000,
                                     provider_type: "schematic",
                                     scheme: "per_unit",
                                 },
@@ -8956,7 +9073,7 @@ describe("EntitlementsClient", () => {
                                 singular_name: "singular_name",
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
-                            value_numeric: 1,
+                            value_numeric: 1000000,
                             value_trait: {
                                 created_at: "2024-01-15T09:30:00Z",
                                 display_name: "display_name",
@@ -8970,8 +9087,8 @@ describe("EntitlementsClient", () => {
                             value_type: "boolean",
                         },
                         price_behavior: "credit_burndown",
-                        soft_limit: 1,
-                        usage: 1,
+                        soft_limit: 1000000,
+                        usage: 1000000,
                         yearly_usage_based_price: {
                             billing_scheme: "per_unit",
                             created_at: "2024-01-15T09:30:00Z",
@@ -8982,23 +9099,23 @@ describe("EntitlementsClient", () => {
                             meter_event_name: "meter_event_name",
                             meter_event_payload_key: "meter_event_payload_key",
                             meter_id: "meter_id",
-                            package_size: 1,
-                            price: 1,
+                            package_size: 1000000,
+                            price: 1000000,
                             price_decimal: "price_decimal",
                             price_external_id: "price_external_id",
                             price_id: "price_id",
                             price_tier: [
                                 {
-                                    flat_amount: 1,
-                                    per_unit_price: 1,
+                                    flat_amount: 1000000,
+                                    per_unit_price: 1000000,
                                     per_unit_price_decimal: "per_unit_price_decimal",
-                                    up_to: 1,
+                                    up_to: 1000000,
                                 },
                                 {
-                                    flat_amount: 1,
-                                    per_unit_price: 1,
+                                    flat_amount: 1000000,
+                                    per_unit_price: 1000000,
                                     per_unit_price_decimal: "per_unit_price_decimal",
-                                    up_to: 1,
+                                    up_to: 1000000,
                                 },
                             ],
                             product_external_id: "product_external_id",
@@ -9014,6 +9131,7 @@ describe("EntitlementsClient", () => {
             },
             params: { keys: { keys: "keys" } },
         };
+
         server.mockEndpoint().get("/usage-by-company").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.entitlements.getFeatureUsageByCompany({
@@ -9026,7 +9144,7 @@ describe("EntitlementsClient", () => {
                 features: [
                     {
                         access: true,
-                        allocation: 1,
+                        allocation: 1000000,
                         allocationType: "boolean",
                         companyOverride: {
                             company: {
@@ -9053,13 +9171,13 @@ describe("EntitlementsClient", () => {
                                     discounts: [],
                                     id: "id",
                                     interval: "interval",
-                                    periodEnd: 1,
-                                    periodStart: 1,
+                                    periodEnd: 1000000,
+                                    periodStart: 1000000,
                                     products: [],
                                     providerType: "schematic",
                                     status: "status",
                                     subscriptionExternalId: "subscription_external_id",
-                                    totalPrice: 1,
+                                    totalPrice: 1000000,
                                 },
                                 billingSubscriptions: [
                                     {
@@ -9070,13 +9188,13 @@ describe("EntitlementsClient", () => {
                                         discounts: [],
                                         id: "id",
                                         interval: "interval",
-                                        periodEnd: 1,
-                                        periodStart: 1,
+                                        periodEnd: 1000000,
+                                        periodStart: 1000000,
                                         products: [],
                                         providerType: "schematic",
                                         status: "status",
                                         subscriptionExternalId: "subscription_external_id",
-                                        totalPrice: 1,
+                                        totalPrice: 1000000,
                                     },
                                     {
                                         cancelAtPeriodEnd: true,
@@ -9086,13 +9204,13 @@ describe("EntitlementsClient", () => {
                                         discounts: [],
                                         id: "id",
                                         interval: "interval",
-                                        periodEnd: 1,
-                                        periodStart: 1,
+                                        periodEnd: 1000000,
+                                        periodStart: 1000000,
                                         products: [],
                                         providerType: "schematic",
                                         status: "status",
                                         subscriptionExternalId: "subscription_external_id",
-                                        totalPrice: 1,
+                                        totalPrice: 1000000,
                                     },
                                 ],
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -9175,7 +9293,7 @@ describe("EntitlementsClient", () => {
                                         eventSubtype: "event_subtype",
                                         monthReset: "month_reset",
                                         period: "period",
-                                        value: 1,
+                                        value: 1000000,
                                     },
                                     {
                                         accountId: "account_id",
@@ -9187,7 +9305,7 @@ describe("EntitlementsClient", () => {
                                         eventSubtype: "event_subtype",
                                         monthReset: "month_reset",
                                         period: "period",
-                                        value: 1,
+                                        value: 1000000,
                                     },
                                 ],
                                 name: "name",
@@ -9236,7 +9354,7 @@ describe("EntitlementsClient", () => {
                                         environmentId: "environment_id",
                                         id: "id",
                                         name: "name",
-                                        priority: 1,
+                                        priority: 1000000,
                                         ruleType: "default",
                                         value: true,
                                     },
@@ -9247,7 +9365,7 @@ describe("EntitlementsClient", () => {
                                         environmentId: "environment_id",
                                         id: "id",
                                         name: "name",
-                                        priority: 1,
+                                        priority: 1000000,
                                         ruleType: "default",
                                         value: true,
                                     },
@@ -9257,7 +9375,7 @@ describe("EntitlementsClient", () => {
                                     effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                                     fromPlanId: "from_plan_id",
                                     fromPlanName: "from_plan_name",
-                                    fromSubscriptionPrice: 1,
+                                    fromSubscriptionPrice: 1000000,
                                     id: "id",
                                     interval: "interval",
                                     toPlanId: "to_plan_id",
@@ -9269,7 +9387,7 @@ describe("EntitlementsClient", () => {
                                     },
                                 },
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                                userCount: 1,
+                                userCount: 1000000,
                             },
                             companyId: "company_id",
                             consumptionRate: 1.1,
@@ -9317,7 +9435,7 @@ describe("EntitlementsClient", () => {
                             ruleIdUsageExceeded: "rule_id_usage_exceeded",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             valueBool: true,
-                            valueNumeric: 1,
+                            valueNumeric: 1000000,
                             valueTrait: {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 displayName: "display_name",
@@ -9359,7 +9477,7 @@ describe("EntitlementsClient", () => {
                             usageToday: 1.1,
                         },
                         creditUsed: 1.1,
-                        effectiveLimit: 1,
+                        effectiveLimit: 1000000,
                         effectivePrice: 1.1,
                         entitlementExpirationDate: new Date("2024-01-15T09:30:00.000Z"),
                         entitlementId: "entitlement_id",
@@ -9370,12 +9488,12 @@ describe("EntitlementsClient", () => {
                             description: "description",
                             eventSubtype: "event_subtype",
                             eventSummary: {
-                                companyCount: 1,
+                                companyCount: 1000000,
                                 environmentId: "environment_id",
-                                eventCount: 1,
+                                eventCount: 1000000,
                                 eventSubtype: "event_subtype",
                                 lastSeenAt: new Date("2024-01-15T09:30:00.000Z"),
-                                userCount: 1,
+                                userCount: 1000000,
                             },
                             featureType: "boolean",
                             flags: [
@@ -9407,7 +9525,7 @@ describe("EntitlementsClient", () => {
                                             environmentId: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             ruleType: "rule_type",
                                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                             value: true,
@@ -9419,7 +9537,7 @@ describe("EntitlementsClient", () => {
                                             environmentId: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             ruleType: "rule_type",
                                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                             value: true,
@@ -9455,7 +9573,7 @@ describe("EntitlementsClient", () => {
                                             environmentId: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             ruleType: "rule_type",
                                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                             value: true,
@@ -9467,7 +9585,7 @@ describe("EntitlementsClient", () => {
                                             environmentId: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             ruleType: "rule_type",
                                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                             value: true,
@@ -9523,23 +9641,23 @@ describe("EntitlementsClient", () => {
                             meterEventName: "meter_event_name",
                             meterEventPayloadKey: "meter_event_payload_key",
                             meterId: "meter_id",
-                            packageSize: 1,
-                            price: 1,
+                            packageSize: 1000000,
+                            price: 1000000,
                             priceDecimal: "price_decimal",
                             priceExternalId: "price_external_id",
                             priceId: "price_id",
                             priceTier: [
                                 {
-                                    flatAmount: 1,
-                                    perUnitPrice: 1,
+                                    flatAmount: 1000000,
+                                    perUnitPrice: 1000000,
                                     perUnitPriceDecimal: "per_unit_price_decimal",
-                                    upTo: 1,
+                                    upTo: 1000000,
                                 },
                                 {
-                                    flatAmount: 1,
-                                    perUnitPrice: 1,
+                                    flatAmount: 1000000,
+                                    perUnitPrice: 1000000,
                                     perUnitPriceDecimal: "per_unit_price_decimal",
-                                    upTo: 1,
+                                    upTo: 1000000,
                                 },
                             ],
                             productExternalId: "product_external_id",
@@ -9550,7 +9668,7 @@ describe("EntitlementsClient", () => {
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             usageType: "licensed",
                         },
-                        overuse: 1,
+                        overuse: 1000000,
                         percentUsed: 1.1,
                         period: "period",
                         plan: {
@@ -9564,7 +9682,7 @@ describe("EntitlementsClient", () => {
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                         planEntitlement: {
-                            billingThreshold: 1,
+                            billingThreshold: 1000000,
                             consumptionRate: 1.1,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             environmentId: "environment_id",
@@ -9595,8 +9713,8 @@ describe("EntitlementsClient", () => {
                                 meterEventName: "meter_event_name",
                                 meterEventPayloadKey: "meter_event_payload_key",
                                 meterId: "meter_id",
-                                packageSize: 1,
-                                price: 1,
+                                packageSize: 1000000,
+                                price: 1000000,
                                 priceDecimal: "price_decimal",
                                 priceExternalId: "price_external_id",
                                 priceId: "price_id",
@@ -9619,8 +9737,8 @@ describe("EntitlementsClient", () => {
                                 meterEventName: "meter_event_name",
                                 meterEventPayloadKey: "meter_event_payload_key",
                                 meterId: "meter_id",
-                                packageSize: 1,
-                                price: 1,
+                                packageSize: 1000000,
+                                price: 1000000,
                                 priceDecimal: "price_decimal",
                                 priceExternalId: "price_external_id",
                                 priceId: "price_id",
@@ -9649,7 +9767,7 @@ describe("EntitlementsClient", () => {
                             priceBehavior: "credit_burndown",
                             ruleId: "rule_id",
                             ruleIdUsageExceeded: "rule_id_usage_exceeded",
-                            softLimit: 1,
+                            softLimit: 1000000,
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             usageBasedProduct: {
                                 accountId: "account_id",
@@ -9672,7 +9790,7 @@ describe("EntitlementsClient", () => {
                                 costEditable: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 defaultExpiryUnit: "billing_periods",
-                                defaultExpiryUnitCount: 1,
+                                defaultExpiryUnitCount: 1000000,
                                 defaultRolloverPolicy: "expire",
                                 description: "description",
                                 icon: "icon",
@@ -9684,7 +9802,7 @@ describe("EntitlementsClient", () => {
                                     externalPriceId: "external_price_id",
                                     id: "id",
                                     interval: "day",
-                                    price: 1,
+                                    price: 1000000,
                                     providerType: "schematic",
                                     scheme: "per_unit",
                                 },
@@ -9704,7 +9822,7 @@ describe("EntitlementsClient", () => {
                                 singularName: "singular_name",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
-                            valueNumeric: 1,
+                            valueNumeric: 1000000,
                             valueTrait: {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 displayName: "display_name",
@@ -9718,8 +9836,8 @@ describe("EntitlementsClient", () => {
                             valueType: "boolean",
                         },
                         priceBehavior: "credit_burndown",
-                        softLimit: 1,
-                        usage: 1,
+                        softLimit: 1000000,
+                        usage: 1000000,
                         yearlyUsageBasedPrice: {
                             billingScheme: "per_unit",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -9730,23 +9848,23 @@ describe("EntitlementsClient", () => {
                             meterEventName: "meter_event_name",
                             meterEventPayloadKey: "meter_event_payload_key",
                             meterId: "meter_id",
-                            packageSize: 1,
-                            price: 1,
+                            packageSize: 1000000,
+                            price: 1000000,
                             priceDecimal: "price_decimal",
                             priceExternalId: "price_external_id",
                             priceId: "price_id",
                             priceTier: [
                                 {
-                                    flatAmount: 1,
-                                    perUnitPrice: 1,
+                                    flatAmount: 1000000,
+                                    perUnitPrice: 1000000,
                                     perUnitPriceDecimal: "per_unit_price_decimal",
-                                    upTo: 1,
+                                    upTo: 1000000,
                                 },
                                 {
-                                    flatAmount: 1,
-                                    perUnitPrice: 1,
+                                    flatAmount: 1000000,
+                                    perUnitPrice: 1000000,
                                     perUnitPriceDecimal: "per_unit_price_decimal",
-                                    upTo: 1,
+                                    upTo: 1000000,
                                 },
                             ],
                             productExternalId: "product_external_id",
@@ -9760,7 +9878,7 @@ describe("EntitlementsClient", () => {
                     },
                     {
                         access: true,
-                        allocation: 1,
+                        allocation: 1000000,
                         allocationType: "boolean",
                         companyOverride: {
                             company: {
@@ -9787,13 +9905,13 @@ describe("EntitlementsClient", () => {
                                     discounts: [],
                                     id: "id",
                                     interval: "interval",
-                                    periodEnd: 1,
-                                    periodStart: 1,
+                                    periodEnd: 1000000,
+                                    periodStart: 1000000,
                                     products: [],
                                     providerType: "schematic",
                                     status: "status",
                                     subscriptionExternalId: "subscription_external_id",
-                                    totalPrice: 1,
+                                    totalPrice: 1000000,
                                 },
                                 billingSubscriptions: [
                                     {
@@ -9804,13 +9922,13 @@ describe("EntitlementsClient", () => {
                                         discounts: [],
                                         id: "id",
                                         interval: "interval",
-                                        periodEnd: 1,
-                                        periodStart: 1,
+                                        periodEnd: 1000000,
+                                        periodStart: 1000000,
                                         products: [],
                                         providerType: "schematic",
                                         status: "status",
                                         subscriptionExternalId: "subscription_external_id",
-                                        totalPrice: 1,
+                                        totalPrice: 1000000,
                                     },
                                     {
                                         cancelAtPeriodEnd: true,
@@ -9820,13 +9938,13 @@ describe("EntitlementsClient", () => {
                                         discounts: [],
                                         id: "id",
                                         interval: "interval",
-                                        periodEnd: 1,
-                                        periodStart: 1,
+                                        periodEnd: 1000000,
+                                        periodStart: 1000000,
                                         products: [],
                                         providerType: "schematic",
                                         status: "status",
                                         subscriptionExternalId: "subscription_external_id",
-                                        totalPrice: 1,
+                                        totalPrice: 1000000,
                                     },
                                 ],
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -9909,7 +10027,7 @@ describe("EntitlementsClient", () => {
                                         eventSubtype: "event_subtype",
                                         monthReset: "month_reset",
                                         period: "period",
-                                        value: 1,
+                                        value: 1000000,
                                     },
                                     {
                                         accountId: "account_id",
@@ -9921,7 +10039,7 @@ describe("EntitlementsClient", () => {
                                         eventSubtype: "event_subtype",
                                         monthReset: "month_reset",
                                         period: "period",
-                                        value: 1,
+                                        value: 1000000,
                                     },
                                 ],
                                 name: "name",
@@ -9970,7 +10088,7 @@ describe("EntitlementsClient", () => {
                                         environmentId: "environment_id",
                                         id: "id",
                                         name: "name",
-                                        priority: 1,
+                                        priority: 1000000,
                                         ruleType: "default",
                                         value: true,
                                     },
@@ -9981,7 +10099,7 @@ describe("EntitlementsClient", () => {
                                         environmentId: "environment_id",
                                         id: "id",
                                         name: "name",
-                                        priority: 1,
+                                        priority: 1000000,
                                         ruleType: "default",
                                         value: true,
                                     },
@@ -9991,7 +10109,7 @@ describe("EntitlementsClient", () => {
                                     effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                                     fromPlanId: "from_plan_id",
                                     fromPlanName: "from_plan_name",
-                                    fromSubscriptionPrice: 1,
+                                    fromSubscriptionPrice: 1000000,
                                     id: "id",
                                     interval: "interval",
                                     toPlanId: "to_plan_id",
@@ -10003,7 +10121,7 @@ describe("EntitlementsClient", () => {
                                     },
                                 },
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                                userCount: 1,
+                                userCount: 1000000,
                             },
                             companyId: "company_id",
                             consumptionRate: 1.1,
@@ -10051,7 +10169,7 @@ describe("EntitlementsClient", () => {
                             ruleIdUsageExceeded: "rule_id_usage_exceeded",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             valueBool: true,
-                            valueNumeric: 1,
+                            valueNumeric: 1000000,
                             valueTrait: {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 displayName: "display_name",
@@ -10093,7 +10211,7 @@ describe("EntitlementsClient", () => {
                             usageToday: 1.1,
                         },
                         creditUsed: 1.1,
-                        effectiveLimit: 1,
+                        effectiveLimit: 1000000,
                         effectivePrice: 1.1,
                         entitlementExpirationDate: new Date("2024-01-15T09:30:00.000Z"),
                         entitlementId: "entitlement_id",
@@ -10104,12 +10222,12 @@ describe("EntitlementsClient", () => {
                             description: "description",
                             eventSubtype: "event_subtype",
                             eventSummary: {
-                                companyCount: 1,
+                                companyCount: 1000000,
                                 environmentId: "environment_id",
-                                eventCount: 1,
+                                eventCount: 1000000,
                                 eventSubtype: "event_subtype",
                                 lastSeenAt: new Date("2024-01-15T09:30:00.000Z"),
-                                userCount: 1,
+                                userCount: 1000000,
                             },
                             featureType: "boolean",
                             flags: [
@@ -10141,7 +10259,7 @@ describe("EntitlementsClient", () => {
                                             environmentId: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             ruleType: "rule_type",
                                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                             value: true,
@@ -10153,7 +10271,7 @@ describe("EntitlementsClient", () => {
                                             environmentId: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             ruleType: "rule_type",
                                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                             value: true,
@@ -10189,7 +10307,7 @@ describe("EntitlementsClient", () => {
                                             environmentId: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             ruleType: "rule_type",
                                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                             value: true,
@@ -10201,7 +10319,7 @@ describe("EntitlementsClient", () => {
                                             environmentId: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             ruleType: "rule_type",
                                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                             value: true,
@@ -10257,23 +10375,23 @@ describe("EntitlementsClient", () => {
                             meterEventName: "meter_event_name",
                             meterEventPayloadKey: "meter_event_payload_key",
                             meterId: "meter_id",
-                            packageSize: 1,
-                            price: 1,
+                            packageSize: 1000000,
+                            price: 1000000,
                             priceDecimal: "price_decimal",
                             priceExternalId: "price_external_id",
                             priceId: "price_id",
                             priceTier: [
                                 {
-                                    flatAmount: 1,
-                                    perUnitPrice: 1,
+                                    flatAmount: 1000000,
+                                    perUnitPrice: 1000000,
                                     perUnitPriceDecimal: "per_unit_price_decimal",
-                                    upTo: 1,
+                                    upTo: 1000000,
                                 },
                                 {
-                                    flatAmount: 1,
-                                    perUnitPrice: 1,
+                                    flatAmount: 1000000,
+                                    perUnitPrice: 1000000,
                                     perUnitPriceDecimal: "per_unit_price_decimal",
-                                    upTo: 1,
+                                    upTo: 1000000,
                                 },
                             ],
                             productExternalId: "product_external_id",
@@ -10284,7 +10402,7 @@ describe("EntitlementsClient", () => {
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             usageType: "licensed",
                         },
-                        overuse: 1,
+                        overuse: 1000000,
                         percentUsed: 1.1,
                         period: "period",
                         plan: {
@@ -10298,7 +10416,7 @@ describe("EntitlementsClient", () => {
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                         planEntitlement: {
-                            billingThreshold: 1,
+                            billingThreshold: 1000000,
                             consumptionRate: 1.1,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             environmentId: "environment_id",
@@ -10329,8 +10447,8 @@ describe("EntitlementsClient", () => {
                                 meterEventName: "meter_event_name",
                                 meterEventPayloadKey: "meter_event_payload_key",
                                 meterId: "meter_id",
-                                packageSize: 1,
-                                price: 1,
+                                packageSize: 1000000,
+                                price: 1000000,
                                 priceDecimal: "price_decimal",
                                 priceExternalId: "price_external_id",
                                 priceId: "price_id",
@@ -10353,8 +10471,8 @@ describe("EntitlementsClient", () => {
                                 meterEventName: "meter_event_name",
                                 meterEventPayloadKey: "meter_event_payload_key",
                                 meterId: "meter_id",
-                                packageSize: 1,
-                                price: 1,
+                                packageSize: 1000000,
+                                price: 1000000,
                                 priceDecimal: "price_decimal",
                                 priceExternalId: "price_external_id",
                                 priceId: "price_id",
@@ -10383,7 +10501,7 @@ describe("EntitlementsClient", () => {
                             priceBehavior: "credit_burndown",
                             ruleId: "rule_id",
                             ruleIdUsageExceeded: "rule_id_usage_exceeded",
-                            softLimit: 1,
+                            softLimit: 1000000,
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             usageBasedProduct: {
                                 accountId: "account_id",
@@ -10406,7 +10524,7 @@ describe("EntitlementsClient", () => {
                                 costEditable: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 defaultExpiryUnit: "billing_periods",
-                                defaultExpiryUnitCount: 1,
+                                defaultExpiryUnitCount: 1000000,
                                 defaultRolloverPolicy: "expire",
                                 description: "description",
                                 icon: "icon",
@@ -10418,7 +10536,7 @@ describe("EntitlementsClient", () => {
                                     externalPriceId: "external_price_id",
                                     id: "id",
                                     interval: "day",
-                                    price: 1,
+                                    price: 1000000,
                                     providerType: "schematic",
                                     scheme: "per_unit",
                                 },
@@ -10438,7 +10556,7 @@ describe("EntitlementsClient", () => {
                                 singularName: "singular_name",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
-                            valueNumeric: 1,
+                            valueNumeric: 1000000,
                             valueTrait: {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 displayName: "display_name",
@@ -10452,8 +10570,8 @@ describe("EntitlementsClient", () => {
                             valueType: "boolean",
                         },
                         priceBehavior: "credit_burndown",
-                        softLimit: 1,
-                        usage: 1,
+                        softLimit: 1000000,
+                        usage: 1000000,
                         yearlyUsageBasedPrice: {
                             billingScheme: "per_unit",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -10464,23 +10582,23 @@ describe("EntitlementsClient", () => {
                             meterEventName: "meter_event_name",
                             meterEventPayloadKey: "meter_event_payload_key",
                             meterId: "meter_id",
-                            packageSize: 1,
-                            price: 1,
+                            packageSize: 1000000,
+                            price: 1000000,
                             priceDecimal: "price_decimal",
                             priceExternalId: "price_external_id",
                             priceId: "price_id",
                             priceTier: [
                                 {
-                                    flatAmount: 1,
-                                    perUnitPrice: 1,
+                                    flatAmount: 1000000,
+                                    perUnitPrice: 1000000,
                                     perUnitPriceDecimal: "per_unit_price_decimal",
-                                    upTo: 1,
+                                    upTo: 1000000,
                                 },
                                 {
-                                    flatAmount: 1,
-                                    perUnitPrice: 1,
+                                    flatAmount: 1000000,
+                                    perUnitPrice: 1000000,
                                     perUnitPriceDecimal: "per_unit_price_decimal",
-                                    upTo: 1,
+                                    upTo: 1000000,
                                 },
                             ],
                             productExternalId: "product_external_id",
@@ -10507,6 +10625,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/usage-by-company").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -10523,6 +10642,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/usage-by-company").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -10539,6 +10659,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/usage-by-company").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -10555,6 +10676,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/usage-by-company").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {

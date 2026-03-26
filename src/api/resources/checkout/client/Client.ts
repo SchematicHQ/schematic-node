@@ -42,13 +42,13 @@ export class CheckoutClient {
      *         companyId: "company_id",
      *         creditBundles: [{
      *                 bundleId: "bundle_id",
-     *                 quantity: 1
+     *                 quantity: 1000000
      *             }],
      *         newPlanId: "new_plan_id",
      *         newPriceId: "new_price_id",
      *         payInAdvance: [{
      *                 priceId: "price_id",
-     *                 quantity: 1
+     *                 quantity: 1000000
      *             }],
      *         skipTrial: true
      *     })
@@ -325,13 +325,13 @@ export class CheckoutClient {
      *         companyId: "company_id",
      *         creditBundles: [{
      *                 bundleId: "bundle_id",
-     *                 quantity: 1
+     *                 quantity: 1000000
      *             }],
      *         newPlanId: "new_plan_id",
      *         newPriceId: "new_price_id",
      *         payInAdvance: [{
      *                 priceId: "price_id",
-     *                 quantity: 1
+     *                 quantity: 1000000
      *             }],
      *         skipTrial: true
      *     })
@@ -474,11 +474,11 @@ export class CheckoutClient {
      *         companyId: "company_id",
      *         creditBundles: [{
      *                 bundleId: "bundle_id",
-     *                 quantity: 1
+     *                 quantity: 1000000
      *             }],
      *         payInAdvanceEntitlements: [{
      *                 priceId: "price_id",
-     *                 quantity: 1
+     *                 quantity: 1000000
      *             }]
      *     })
      */
@@ -618,11 +618,11 @@ export class CheckoutClient {
      *         companyId: "company_id",
      *         creditBundles: [{
      *                 bundleId: "bundle_id",
-     *                 quantity: 1
+     *                 quantity: 1000000
      *             }],
      *         payInAdvanceEntitlements: [{
      *                 priceId: "price_id",
-     *                 quantity: 1
+     *                 quantity: 1000000
      *             }]
      *     })
      */

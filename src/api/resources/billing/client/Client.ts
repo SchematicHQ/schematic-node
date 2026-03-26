@@ -37,8 +37,8 @@ export class BillingClient {
      *     await client.billing.listCoupons({
      *         isActive: true,
      *         q: "q",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listCoupons(
@@ -53,23 +53,12 @@ export class BillingClient {
         requestOptions?: BillingClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListCouponsResponse>> {
         const { isActive, q, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (isActive != null) {
-            _queryParams.is_active = isActive.toString();
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            is_active: isActive,
+            q,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -186,14 +175,14 @@ export class BillingClient {
      *
      * @example
      *     await client.billing.upsertBillingCoupon({
-     *         amountOff: 1,
+     *         amountOff: 1000000,
      *         duration: "duration",
-     *         durationInMonths: 1,
+     *         durationInMonths: 1000000,
      *         externalId: "external_id",
-     *         maxRedemptions: 1,
+     *         maxRedemptions: 1000000,
      *         name: "name",
      *         percentOff: 1.1,
-     *         timesRedeemed: 1
+     *         timesRedeemed: 1000000
      *     })
      */
     public upsertBillingCoupon(
@@ -469,8 +458,8 @@ export class BillingClient {
      *         name: "name",
      *         providerType: "schematic",
      *         q: "q",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listCustomersWithSubscriptions(
@@ -485,37 +474,17 @@ export class BillingClient {
         requestOptions?: BillingClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListCustomersWithSubscriptionsResponse>> {
         const { companyIds, name, providerType, q, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (companyIds != null) {
-            if (Array.isArray(companyIds)) {
-                _queryParams.company_ids = companyIds.map((item) => item);
-            } else {
-                _queryParams.company_ids = companyIds;
-            }
-        }
-
-        if (name != null) {
-            _queryParams.name = name;
-        }
-
-        if (providerType != null) {
-            _queryParams.provider_type = serializers.BillingProviderType.jsonOrThrow(providerType, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            company_ids: companyIds,
+            name,
+            provider_type:
+                providerType != null
+                    ? serializers.BillingProviderType.jsonOrThrow(providerType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            q,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -635,8 +604,8 @@ export class BillingClient {
      *         name: "name",
      *         providerType: "schematic",
      *         q: "q",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countCustomers(
@@ -651,37 +620,17 @@ export class BillingClient {
         requestOptions?: BillingClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountCustomersResponse>> {
         const { companyIds, name, providerType, q, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (companyIds != null) {
-            if (Array.isArray(companyIds)) {
-                _queryParams.company_ids = companyIds.map((item) => item);
-            } else {
-                _queryParams.company_ids = companyIds;
-            }
-        }
-
-        if (name != null) {
-            _queryParams.name = name;
-        }
-
-        if (providerType != null) {
-            _queryParams.provider_type = serializers.BillingProviderType.jsonOrThrow(providerType, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            company_ids: companyIds,
+            name,
+            provider_type:
+                providerType != null
+                    ? serializers.BillingProviderType.jsonOrThrow(providerType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            q,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -801,8 +750,8 @@ export class BillingClient {
      *         companyId: "company_id",
      *         customerExternalId: "customer_external_id",
      *         subscriptionExternalId: "subscription_external_id",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listInvoices(
@@ -817,21 +766,13 @@ export class BillingClient {
         requestOptions?: BillingClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListInvoicesResponse>> {
         const { companyId, customerExternalId, subscriptionExternalId, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (companyId != null) {
-            _queryParams.company_id = companyId;
-        }
-
-        _queryParams.customer_external_id = customerExternalId;
-        _queryParams.subscription_external_id = subscriptionExternalId;
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            customer_external_id: customerExternalId,
+            subscription_external_id: subscriptionExternalId,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -948,13 +889,13 @@ export class BillingClient {
      *
      * @example
      *     await client.billing.upsertInvoice({
-     *         amountDue: 1,
-     *         amountPaid: 1,
-     *         amountRemaining: 1,
+     *         amountDue: 1000000,
+     *         amountPaid: 1000000,
+     *         amountRemaining: 1000000,
      *         collectionMethod: "collection_method",
      *         currency: "currency",
      *         customerExternalId: "customer_external_id",
-     *         subtotal: 1
+     *         subtotal: 1000000
      *     })
      */
     public upsertInvoice(
@@ -1088,8 +1029,8 @@ export class BillingClient {
      * @example
      *     await client.billing.listMeters({
      *         displayName: "display_name",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listMeters(
@@ -1104,19 +1045,11 @@ export class BillingClient {
         requestOptions?: BillingClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListMetersResponse>> {
         const { displayName, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (displayName != null) {
-            _queryParams.display_name = displayName;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            display_name: displayName,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1371,8 +1304,8 @@ export class BillingClient {
      *     await client.billing.listPaymentMethods({
      *         companyId: "company_id",
      *         customerExternalId: "customer_external_id",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listPaymentMethods(
@@ -1387,20 +1320,12 @@ export class BillingClient {
         requestOptions?: BillingClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListPaymentMethodsResponse>> {
         const { companyId, customerExternalId, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (companyId != null) {
-            _queryParams.company_id = companyId;
-        }
-
-        _queryParams.customer_external_id = customerExternalId;
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            customer_external_id: customerExternalId,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1656,15 +1581,15 @@ export class BillingClient {
      *         forTrialExpiryPlan: true,
      *         interval: "interval",
      *         isActive: true,
-     *         price: 1,
+     *         price: 1000000,
      *         productId: "product_id",
      *         providerType: "schematic",
      *         q: "q",
      *         tiersMode: "graduated",
      *         usageType: "licensed",
      *         withMeter: true,
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listBillingPrices(
@@ -1695,81 +1620,32 @@ export class BillingClient {
             limit,
             offset,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (forInitialPlan != null) {
-            _queryParams.for_initial_plan = forInitialPlan.toString();
-        }
-
-        if (forTrialExpiryPlan != null) {
-            _queryParams.for_trial_expiry_plan = forTrialExpiryPlan.toString();
-        }
-
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (interval != null) {
-            _queryParams.interval = interval;
-        }
-
-        if (isActive != null) {
-            _queryParams.is_active = isActive.toString();
-        }
-
-        if (price != null) {
-            _queryParams.price = price.toString();
-        }
-
-        if (productId != null) {
-            _queryParams.product_id = productId;
-        }
-
-        if (productIds != null) {
-            if (Array.isArray(productIds)) {
-                _queryParams.product_ids = productIds.map((item) => item);
-            } else {
-                _queryParams.product_ids = productIds;
-            }
-        }
-
-        if (providerType != null) {
-            _queryParams.provider_type = serializers.BillingProviderType.jsonOrThrow(providerType, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (tiersMode != null) {
-            _queryParams.tiers_mode = serializers.BillingTiersMode.jsonOrThrow(tiersMode, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (usageType != null) {
-            _queryParams.usage_type = serializers.BillingPriceUsageType.jsonOrThrow(usageType, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (withMeter != null) {
-            _queryParams.with_meter = withMeter.toString();
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            for_initial_plan: forInitialPlan,
+            for_trial_expiry_plan: forTrialExpiryPlan,
+            ids,
+            interval,
+            is_active: isActive,
+            price,
+            product_id: productId,
+            product_ids: productIds,
+            provider_type:
+                providerType != null
+                    ? serializers.BillingProviderType.jsonOrThrow(providerType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            q,
+            tiers_mode:
+                tiersMode != null
+                    ? serializers.BillingTiersMode.jsonOrThrow(tiersMode, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            usage_type:
+                usageType != null
+                    ? serializers.BillingPriceUsageType.jsonOrThrow(usageType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            with_meter: withMeter,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1891,7 +1767,7 @@ export class BillingClient {
      *         externalAccountId: "external_account_id",
      *         interval: "interval",
      *         isActive: true,
-     *         price: 1,
+     *         price: 1000000,
      *         priceExternalId: "price_external_id",
      *         priceTiers: [{
      *                 priceExternalId: "price_external_id"
@@ -2167,15 +2043,15 @@ export class BillingClient {
      *         forTrialExpiryPlan: true,
      *         interval: "interval",
      *         isActive: true,
-     *         price: 1,
+     *         price: 1000000,
      *         productId: "product_id",
      *         providerType: "schematic",
      *         q: "q",
      *         tiersMode: "graduated",
      *         usageType: "licensed",
      *         withMeter: true,
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listBillingProductPrices(
@@ -2206,81 +2082,32 @@ export class BillingClient {
             limit,
             offset,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (forInitialPlan != null) {
-            _queryParams.for_initial_plan = forInitialPlan.toString();
-        }
-
-        if (forTrialExpiryPlan != null) {
-            _queryParams.for_trial_expiry_plan = forTrialExpiryPlan.toString();
-        }
-
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (interval != null) {
-            _queryParams.interval = interval;
-        }
-
-        if (isActive != null) {
-            _queryParams.is_active = isActive.toString();
-        }
-
-        if (price != null) {
-            _queryParams.price = price.toString();
-        }
-
-        if (productId != null) {
-            _queryParams.product_id = productId;
-        }
-
-        if (productIds != null) {
-            if (Array.isArray(productIds)) {
-                _queryParams.product_ids = productIds.map((item) => item);
-            } else {
-                _queryParams.product_ids = productIds;
-            }
-        }
-
-        if (providerType != null) {
-            _queryParams.provider_type = serializers.BillingProviderType.jsonOrThrow(providerType, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (tiersMode != null) {
-            _queryParams.tiers_mode = serializers.BillingTiersMode.jsonOrThrow(tiersMode, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (usageType != null) {
-            _queryParams.usage_type = serializers.BillingPriceUsageType.jsonOrThrow(usageType, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (withMeter != null) {
-            _queryParams.with_meter = withMeter.toString();
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            for_initial_plan: forInitialPlan,
+            for_trial_expiry_plan: forTrialExpiryPlan,
+            ids,
+            interval,
+            is_active: isActive,
+            price,
+            product_id: productId,
+            product_ids: productIds,
+            provider_type:
+                providerType != null
+                    ? serializers.BillingProviderType.jsonOrThrow(providerType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            q,
+            tiers_mode:
+                tiersMode != null
+                    ? serializers.BillingTiersMode.jsonOrThrow(tiersMode, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            usage_type:
+                usageType != null
+                    ? serializers.BillingPriceUsageType.jsonOrThrow(usageType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            with_meter: withMeter,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -2673,8 +2500,8 @@ export class BillingClient {
      *         withPricesOnly: true,
      *         withZeroPrice: true,
      *         withoutLinkedToPlan: true,
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listBillingProducts(
@@ -2702,63 +2529,26 @@ export class BillingClient {
             limit,
             offset,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (isActive != null) {
-            _queryParams.is_active = isActive.toString();
-        }
-
-        if (name != null) {
-            _queryParams.name = name;
-        }
-
-        if (priceUsageType != null) {
-            _queryParams.price_usage_type = serializers.BillingPriceUsageType.jsonOrThrow(priceUsageType, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (providerType != null) {
-            _queryParams.provider_type = serializers.BillingProviderType.jsonOrThrow(providerType, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (withOneTimeCharges != null) {
-            _queryParams.with_one_time_charges = withOneTimeCharges.toString();
-        }
-
-        if (withPricesOnly != null) {
-            _queryParams.with_prices_only = withPricesOnly.toString();
-        }
-
-        if (withZeroPrice != null) {
-            _queryParams.with_zero_price = withZeroPrice.toString();
-        }
-
-        if (withoutLinkedToPlan != null) {
-            _queryParams.without_linked_to_plan = withoutLinkedToPlan.toString();
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            ids,
+            is_active: isActive,
+            name,
+            price_usage_type:
+                priceUsageType != null
+                    ? serializers.BillingPriceUsageType.jsonOrThrow(priceUsageType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            provider_type:
+                providerType != null
+                    ? serializers.BillingProviderType.jsonOrThrow(providerType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            q,
+            with_one_time_charges: withOneTimeCharges,
+            with_prices_only: withPricesOnly,
+            with_zero_price: withZeroPrice,
+            without_linked_to_plan: withoutLinkedToPlan,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -2884,8 +2674,8 @@ export class BillingClient {
      *         withPricesOnly: true,
      *         withZeroPrice: true,
      *         withoutLinkedToPlan: true,
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countBillingProducts(
@@ -2913,63 +2703,26 @@ export class BillingClient {
             limit,
             offset,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (isActive != null) {
-            _queryParams.is_active = isActive.toString();
-        }
-
-        if (name != null) {
-            _queryParams.name = name;
-        }
-
-        if (priceUsageType != null) {
-            _queryParams.price_usage_type = serializers.BillingPriceUsageType.jsonOrThrow(priceUsageType, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (providerType != null) {
-            _queryParams.provider_type = serializers.BillingProviderType.jsonOrThrow(providerType, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (withOneTimeCharges != null) {
-            _queryParams.with_one_time_charges = withOneTimeCharges.toString();
-        }
-
-        if (withPricesOnly != null) {
-            _queryParams.with_prices_only = withPricesOnly.toString();
-        }
-
-        if (withZeroPrice != null) {
-            _queryParams.with_zero_price = withZeroPrice.toString();
-        }
-
-        if (withoutLinkedToPlan != null) {
-            _queryParams.without_linked_to_plan = withoutLinkedToPlan.toString();
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            ids,
+            is_active: isActive,
+            name,
+            price_usage_type:
+                priceUsageType != null
+                    ? serializers.BillingPriceUsageType.jsonOrThrow(priceUsageType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            provider_type:
+                providerType != null
+                    ? serializers.BillingProviderType.jsonOrThrow(providerType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            q,
+            with_one_time_charges: withOneTimeCharges,
+            with_prices_only: withPricesOnly,
+            with_zero_price: withZeroPrice,
+            without_linked_to_plan: withoutLinkedToPlan,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -3099,14 +2852,14 @@ export class BillingClient {
      *         productExternalIds: [{
      *                 currency: "currency",
      *                 interval: "interval",
-     *                 price: 1,
+     *                 price: 1000000,
      *                 priceExternalId: "price_external_id",
      *                 productExternalId: "product_external_id",
-     *                 quantity: 1,
+     *                 quantity: 1000000,
      *                 usageType: "licensed"
      *             }],
      *         subscriptionExternalId: "subscription_external_id",
-     *         totalPrice: 1
+     *         totalPrice: 1000000
      *     })
      */
     public upsertBillingSubscription(

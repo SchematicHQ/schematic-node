@@ -1,7 +1,7 @@
 {
-    "cliVersion": "3.24.4",
+    "cliVersion": "4.43.1",
     "generatorName": "fernapi/fern-typescript-node-sdk",
-    "generatorVersion": "3.42.7",
+    "generatorVersion": "3.59.4",
     "generatorConfig": {
         "allowCustomFetcher": true,
         "includeApiReference": true,
@@ -46,5 +46,6 @@
             "files": ["dist/**/*.js", "dist/**/*.d.ts", "!dist/**/*.js.map", "!dist/**/*.test.*", "README.md"]
         }
     },
-    "sdkVersion": "1.4.4"
+    "originGitCommit": "f6da3f47e1ccc938dd397950a59c4d166cd228b4",
+    "sdkVersion": "1.4.5"
 }

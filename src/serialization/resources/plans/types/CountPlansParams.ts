@@ -15,6 +15,10 @@ export const CountPlansParams: core.serialization.ObjectSchema<
     forTrialExpiryPlan: core.serialization.property("for_trial_expiry_plan", core.serialization.boolean().optional()),
     hasProductId: core.serialization.property("has_product_id", core.serialization.boolean().optional()),
     ids: core.serialization.list(core.serialization.string()).optional(),
+    includeDraftVersions: core.serialization.property(
+        "include_draft_versions",
+        core.serialization.boolean().optional(),
+    ),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
     planType: core.serialization.property("plan_type", PlanType.optional()),
@@ -37,6 +41,7 @@ export declare namespace CountPlansParams {
         for_trial_expiry_plan?: boolean | null;
         has_product_id?: boolean | null;
         ids?: string[] | null;
+        include_draft_versions?: boolean | null;
         limit?: number | null;
         offset?: number | null;
         plan_type?: PlanType.Raw | null;

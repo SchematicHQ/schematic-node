@@ -13,62 +13,63 @@ describe("BillingClient", () => {
             data: [
                 {
                     account_id: "account_id",
-                    amount_off: 1,
+                    amount_off: 1000000,
                     currency: "currency",
                     duration: "duration",
-                    duration_in_months: 1,
+                    duration_in_months: 1000000,
                     environment_id: "environment_id",
                     external_id: "external_id",
                     id: "id",
                     is_active: true,
-                    max_redemptions: 1,
+                    max_redemptions: 1000000,
                     metadata: { key: "value" },
                     name: "name",
                     percent_off: 1.1,
                     provider_type: "schematic",
-                    times_redeemed: 1,
+                    times_redeemed: 1000000,
                     valid_from: "2024-01-15T09:30:00Z",
                     valid_until: "2024-01-15T09:30:00Z",
                 },
             ],
-            params: { is_active: true, limit: 1, offset: 1, q: "q" },
+            params: { is_active: true, limit: 1000000, offset: 1000000, q: "q" },
         };
+
         server.mockEndpoint().get("/billing/coupons").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.billing.listCoupons({
             isActive: true,
             q: "q",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
                 {
                     accountId: "account_id",
-                    amountOff: 1,
+                    amountOff: 1000000,
                     currency: "currency",
                     duration: "duration",
-                    durationInMonths: 1,
+                    durationInMonths: 1000000,
                     environmentId: "environment_id",
                     externalId: "external_id",
                     id: "id",
                     isActive: true,
-                    maxRedemptions: 1,
+                    maxRedemptions: 1000000,
                     metadata: {
                         key: "value",
                     },
                     name: "name",
                     percentOff: 1.1,
                     providerType: "schematic",
-                    timesRedeemed: 1,
+                    timesRedeemed: 1000000,
                     validFrom: new Date("2024-01-15T09:30:00.000Z"),
                     validUntil: new Date("2024-01-15T09:30:00.000Z"),
                 },
             ],
             params: {
                 isActive: true,
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
             },
         });
@@ -79,6 +80,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/coupons").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -91,6 +93,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/coupons").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -103,6 +106,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/coupons").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -115,6 +119,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/coupons").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -127,6 +132,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/coupons").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -138,37 +144,38 @@ describe("BillingClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            amount_off: 1,
+            amount_off: 1000000,
             duration: "duration",
-            duration_in_months: 1,
+            duration_in_months: 1000000,
             external_id: "external_id",
-            max_redemptions: 1,
+            max_redemptions: 1000000,
             name: "name",
             percent_off: 1.1,
-            times_redeemed: 1,
+            times_redeemed: 1000000,
         };
         const rawResponseBody = {
             data: {
                 account_id: "account_id",
-                amount_off: 1,
+                amount_off: 1000000,
                 currency: "currency",
                 duration: "duration",
-                duration_in_months: 1,
+                duration_in_months: 1000000,
                 environment_id: "environment_id",
                 external_id: "external_id",
                 id: "id",
                 is_active: true,
-                max_redemptions: 1,
+                max_redemptions: 1000000,
                 metadata: { key: "value" },
                 name: "name",
                 percent_off: 1.1,
                 provider_type: "schematic",
-                times_redeemed: 1,
+                times_redeemed: 1000000,
                 valid_from: "2024-01-15T09:30:00Z",
                 valid_until: "2024-01-15T09:30:00Z",
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/billing/coupons")
@@ -179,34 +186,34 @@ describe("BillingClient", () => {
             .build();
 
         const response = await client.billing.upsertBillingCoupon({
-            amountOff: 1,
+            amountOff: 1000000,
             duration: "duration",
-            durationInMonths: 1,
+            durationInMonths: 1000000,
             externalId: "external_id",
-            maxRedemptions: 1,
+            maxRedemptions: 1000000,
             name: "name",
             percentOff: 1.1,
-            timesRedeemed: 1,
+            timesRedeemed: 1000000,
         });
         expect(response).toEqual({
             data: {
                 accountId: "account_id",
-                amountOff: 1,
+                amountOff: 1000000,
                 currency: "currency",
                 duration: "duration",
-                durationInMonths: 1,
+                durationInMonths: 1000000,
                 environmentId: "environment_id",
                 externalId: "external_id",
                 id: "id",
                 isActive: true,
-                maxRedemptions: 1,
+                maxRedemptions: 1000000,
                 metadata: {
                     key: "value",
                 },
                 name: "name",
                 percentOff: 1.1,
                 providerType: "schematic",
-                timesRedeemed: 1,
+                timesRedeemed: 1000000,
                 validFrom: new Date("2024-01-15T09:30:00.000Z"),
                 validUntil: new Date("2024-01-15T09:30:00.000Z"),
             },
@@ -220,16 +227,17 @@ describe("BillingClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            amount_off: 1,
+            amount_off: 1000000,
             duration: "duration",
-            duration_in_months: 1,
+            duration_in_months: 1000000,
             external_id: "external_id",
-            max_redemptions: 1,
+            max_redemptions: 1000000,
             name: "name",
             percent_off: 1.1,
-            times_redeemed: 1,
+            times_redeemed: 1000000,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/coupons")
@@ -241,14 +249,14 @@ describe("BillingClient", () => {
 
         await expect(async () => {
             return await client.billing.upsertBillingCoupon({
-                amountOff: 1,
+                amountOff: 1000000,
                 duration: "duration",
-                durationInMonths: 1,
+                durationInMonths: 1000000,
                 externalId: "external_id",
-                maxRedemptions: 1,
+                maxRedemptions: 1000000,
                 name: "name",
                 percentOff: 1.1,
-                timesRedeemed: 1,
+                timesRedeemed: 1000000,
             });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
@@ -257,16 +265,17 @@ describe("BillingClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            amount_off: 1,
+            amount_off: 1000000,
             duration: "duration",
-            duration_in_months: 1,
+            duration_in_months: 1000000,
             external_id: "external_id",
-            max_redemptions: 1,
+            max_redemptions: 1000000,
             name: "name",
             percent_off: 1.1,
-            times_redeemed: 1,
+            times_redeemed: 1000000,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/coupons")
@@ -278,14 +287,14 @@ describe("BillingClient", () => {
 
         await expect(async () => {
             return await client.billing.upsertBillingCoupon({
-                amountOff: 1,
+                amountOff: 1000000,
                 duration: "duration",
-                durationInMonths: 1,
+                durationInMonths: 1000000,
                 externalId: "external_id",
-                maxRedemptions: 1,
+                maxRedemptions: 1000000,
                 name: "name",
                 percentOff: 1.1,
-                timesRedeemed: 1,
+                timesRedeemed: 1000000,
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
@@ -294,16 +303,17 @@ describe("BillingClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            amount_off: 1,
+            amount_off: 1000000,
             duration: "duration",
-            duration_in_months: 1,
+            duration_in_months: 1000000,
             external_id: "external_id",
-            max_redemptions: 1,
+            max_redemptions: 1000000,
             name: "name",
             percent_off: 1.1,
-            times_redeemed: 1,
+            times_redeemed: 1000000,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/coupons")
@@ -315,14 +325,14 @@ describe("BillingClient", () => {
 
         await expect(async () => {
             return await client.billing.upsertBillingCoupon({
-                amountOff: 1,
+                amountOff: 1000000,
                 duration: "duration",
-                durationInMonths: 1,
+                durationInMonths: 1000000,
                 externalId: "external_id",
-                maxRedemptions: 1,
+                maxRedemptions: 1000000,
                 name: "name",
                 percentOff: 1.1,
-                timesRedeemed: 1,
+                timesRedeemed: 1000000,
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
@@ -331,16 +341,17 @@ describe("BillingClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            amount_off: 1,
+            amount_off: 1000000,
             duration: "duration",
-            duration_in_months: 1,
+            duration_in_months: 1000000,
             external_id: "external_id",
-            max_redemptions: 1,
+            max_redemptions: 1000000,
             name: "name",
             percent_off: 1.1,
-            times_redeemed: 1,
+            times_redeemed: 1000000,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/coupons")
@@ -352,14 +363,14 @@ describe("BillingClient", () => {
 
         await expect(async () => {
             return await client.billing.upsertBillingCoupon({
-                amountOff: 1,
+                amountOff: 1000000,
                 duration: "duration",
-                durationInMonths: 1,
+                durationInMonths: 1000000,
                 externalId: "external_id",
-                maxRedemptions: 1,
+                maxRedemptions: 1000000,
                 name: "name",
                 percentOff: 1.1,
-                timesRedeemed: 1,
+                timesRedeemed: 1000000,
             });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
@@ -368,16 +379,17 @@ describe("BillingClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            amount_off: 1,
+            amount_off: 1000000,
             duration: "duration",
-            duration_in_months: 1,
+            duration_in_months: 1000000,
             external_id: "external_id",
-            max_redemptions: 1,
+            max_redemptions: 1000000,
             name: "name",
             percent_off: 1.1,
-            times_redeemed: 1,
+            times_redeemed: 1000000,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/coupons")
@@ -389,14 +401,14 @@ describe("BillingClient", () => {
 
         await expect(async () => {
             return await client.billing.upsertBillingCoupon({
-                amountOff: 1,
+                amountOff: 1000000,
                 duration: "duration",
-                durationInMonths: 1,
+                durationInMonths: 1000000,
                 externalId: "external_id",
-                maxRedemptions: 1,
+                maxRedemptions: 1000000,
                 name: "name",
                 percentOff: 1.1,
-                timesRedeemed: 1,
+                timesRedeemed: 1000000,
             });
         }).rejects.toThrow(Schematic.InternalServerError);
     });
@@ -418,6 +430,7 @@ describe("BillingClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/billing/customer/upsert")
@@ -457,6 +470,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email", external_id: "external_id", meta: { meta: "meta" }, name: "name" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/customer/upsert")
@@ -483,6 +497,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email", external_id: "external_id", meta: { meta: "meta" }, name: "name" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/customer/upsert")
@@ -509,6 +524,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email", external_id: "external_id", meta: { meta: "meta" }, name: "name" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/customer/upsert")
@@ -535,6 +551,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email", external_id: "external_id", meta: { meta: "meta" }, name: "name" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/customer/upsert")
@@ -561,6 +578,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email", external_id: "external_id", meta: { meta: "meta" }, name: "name" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/customer/upsert")
@@ -601,8 +619,8 @@ describe("BillingClient", () => {
                             currency: "currency",
                             interval: "interval",
                             metered_usage: true,
-                            per_unit_price: 1,
-                            total_price: 1,
+                            per_unit_price: 1000000,
+                            total_price: 1000000,
                         },
                     ],
                     updated_at: "2024-01-15T09:30:00Z",
@@ -610,21 +628,22 @@ describe("BillingClient", () => {
             ],
             params: {
                 company_ids: ["company_ids"],
-                limit: 1,
+                limit: 1000000,
                 name: "name",
-                offset: 1,
+                offset: 1000000,
                 provider_type: "schematic",
                 q: "q",
             },
         };
+
         server.mockEndpoint().get("/billing/customers").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.billing.listCustomersWithSubscriptions({
             name: "name",
             providerType: "schematic",
             q: "q",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -641,8 +660,8 @@ describe("BillingClient", () => {
                             currency: "currency",
                             interval: "interval",
                             meteredUsage: true,
-                            perUnitPrice: 1,
-                            totalPrice: 1,
+                            perUnitPrice: 1000000,
+                            totalPrice: 1000000,
                         },
                     ],
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -650,9 +669,9 @@ describe("BillingClient", () => {
             ],
             params: {
                 companyIds: ["company_ids"],
-                limit: 1,
+                limit: 1000000,
                 name: "name",
-                offset: 1,
+                offset: 1000000,
                 providerType: "schematic",
                 q: "q",
             },
@@ -664,6 +683,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/customers").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -676,6 +696,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/customers").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -688,6 +709,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/customers").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -700,6 +722,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/customers").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -712,6 +735,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/customers").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -727,13 +751,14 @@ describe("BillingClient", () => {
             data: { count: 1 },
             params: {
                 company_ids: ["company_ids"],
-                limit: 1,
+                limit: 1000000,
                 name: "name",
-                offset: 1,
+                offset: 1000000,
                 provider_type: "schematic",
                 q: "q",
             },
         };
+
         server
             .mockEndpoint()
             .get("/billing/customers/count")
@@ -746,8 +771,8 @@ describe("BillingClient", () => {
             name: "name",
             providerType: "schematic",
             q: "q",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -755,9 +780,9 @@ describe("BillingClient", () => {
             },
             params: {
                 companyIds: ["company_ids"],
-                limit: 1,
+                limit: 1000000,
                 name: "name",
-                offset: 1,
+                offset: 1000000,
                 providerType: "schematic",
                 q: "q",
             },
@@ -769,6 +794,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/customers/count")
@@ -787,6 +813,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/customers/count")
@@ -805,6 +832,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/customers/count")
@@ -823,6 +851,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/customers/count")
@@ -841,6 +870,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/customers/count")
@@ -861,9 +891,9 @@ describe("BillingClient", () => {
         const rawResponseBody = {
             data: [
                 {
-                    amount_due: 1,
-                    amount_paid: 1,
-                    amount_remaining: 1,
+                    amount_due: 1000000,
+                    amount_paid: 1000000,
+                    amount_remaining: 1000000,
                     collection_method: "collection_method",
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
@@ -877,7 +907,7 @@ describe("BillingClient", () => {
                     provider_type: "schematic",
                     status: "draft",
                     subscription_external_id: "subscription_external_id",
-                    subtotal: 1,
+                    subtotal: 1000000,
                     updated_at: "2024-01-15T09:30:00Z",
                     url: "url",
                 },
@@ -885,26 +915,27 @@ describe("BillingClient", () => {
             params: {
                 company_id: "company_id",
                 customer_external_id: "customer_external_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 subscription_external_id: "subscription_external_id",
             },
         };
+
         server.mockEndpoint().get("/billing/invoices").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.billing.listInvoices({
             companyId: "company_id",
             customerExternalId: "customer_external_id",
             subscriptionExternalId: "subscription_external_id",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
                 {
-                    amountDue: 1,
-                    amountPaid: 1,
-                    amountRemaining: 1,
+                    amountDue: 1000000,
+                    amountPaid: 1000000,
+                    amountRemaining: 1000000,
                     collectionMethod: "collection_method",
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -918,7 +949,7 @@ describe("BillingClient", () => {
                     providerType: "schematic",
                     status: "draft",
                     subscriptionExternalId: "subscription_external_id",
-                    subtotal: 1,
+                    subtotal: 1000000,
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     url: "url",
                 },
@@ -926,8 +957,8 @@ describe("BillingClient", () => {
             params: {
                 companyId: "company_id",
                 customerExternalId: "customer_external_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 subscriptionExternalId: "subscription_external_id",
             },
         });
@@ -938,6 +969,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/invoices").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -953,6 +985,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/invoices").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -968,6 +1001,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/invoices").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -983,6 +1017,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/invoices").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -998,6 +1033,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/invoices").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1012,19 +1048,19 @@ describe("BillingClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            amount_due: 1,
-            amount_paid: 1,
-            amount_remaining: 1,
+            amount_due: 1000000,
+            amount_paid: 1000000,
+            amount_remaining: 1000000,
             collection_method: "collection_method",
             currency: "currency",
             customer_external_id: "customer_external_id",
-            subtotal: 1,
+            subtotal: 1000000,
         };
         const rawResponseBody = {
             data: {
-                amount_due: 1,
-                amount_paid: 1,
-                amount_remaining: 1,
+                amount_due: 1000000,
+                amount_paid: 1000000,
+                amount_remaining: 1000000,
                 collection_method: "collection_method",
                 company_id: "company_id",
                 created_at: "2024-01-15T09:30:00Z",
@@ -1038,12 +1074,13 @@ describe("BillingClient", () => {
                 provider_type: "schematic",
                 status: "draft",
                 subscription_external_id: "subscription_external_id",
-                subtotal: 1,
+                subtotal: 1000000,
                 updated_at: "2024-01-15T09:30:00Z",
                 url: "url",
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/billing/invoices")
@@ -1054,19 +1091,19 @@ describe("BillingClient", () => {
             .build();
 
         const response = await client.billing.upsertInvoice({
-            amountDue: 1,
-            amountPaid: 1,
-            amountRemaining: 1,
+            amountDue: 1000000,
+            amountPaid: 1000000,
+            amountRemaining: 1000000,
             collectionMethod: "collection_method",
             currency: "currency",
             customerExternalId: "customer_external_id",
-            subtotal: 1,
+            subtotal: 1000000,
         });
         expect(response).toEqual({
             data: {
-                amountDue: 1,
-                amountPaid: 1,
-                amountRemaining: 1,
+                amountDue: 1000000,
+                amountPaid: 1000000,
+                amountRemaining: 1000000,
                 collectionMethod: "collection_method",
                 companyId: "company_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1080,7 +1117,7 @@ describe("BillingClient", () => {
                 providerType: "schematic",
                 status: "draft",
                 subscriptionExternalId: "subscription_external_id",
-                subtotal: 1,
+                subtotal: 1000000,
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 url: "url",
             },
@@ -1094,15 +1131,16 @@ describe("BillingClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            amount_due: 1,
-            amount_paid: 1,
-            amount_remaining: 1,
+            amount_due: 1000000,
+            amount_paid: 1000000,
+            amount_remaining: 1000000,
             collection_method: "collection_method",
             currency: "currency",
             customer_external_id: "customer_external_id",
-            subtotal: 1,
+            subtotal: 1000000,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/invoices")
@@ -1114,13 +1152,13 @@ describe("BillingClient", () => {
 
         await expect(async () => {
             return await client.billing.upsertInvoice({
-                amountDue: 1,
-                amountPaid: 1,
-                amountRemaining: 1,
+                amountDue: 1000000,
+                amountPaid: 1000000,
+                amountRemaining: 1000000,
                 collectionMethod: "collection_method",
                 currency: "currency",
                 customerExternalId: "customer_external_id",
-                subtotal: 1,
+                subtotal: 1000000,
             });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
@@ -1129,15 +1167,16 @@ describe("BillingClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            amount_due: 1,
-            amount_paid: 1,
-            amount_remaining: 1,
+            amount_due: 1000000,
+            amount_paid: 1000000,
+            amount_remaining: 1000000,
             collection_method: "collection_method",
             currency: "currency",
             customer_external_id: "customer_external_id",
-            subtotal: 1,
+            subtotal: 1000000,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/invoices")
@@ -1149,13 +1188,13 @@ describe("BillingClient", () => {
 
         await expect(async () => {
             return await client.billing.upsertInvoice({
-                amountDue: 1,
-                amountPaid: 1,
-                amountRemaining: 1,
+                amountDue: 1000000,
+                amountPaid: 1000000,
+                amountRemaining: 1000000,
                 collectionMethod: "collection_method",
                 currency: "currency",
                 customerExternalId: "customer_external_id",
-                subtotal: 1,
+                subtotal: 1000000,
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
@@ -1164,15 +1203,16 @@ describe("BillingClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            amount_due: 1,
-            amount_paid: 1,
-            amount_remaining: 1,
+            amount_due: 1000000,
+            amount_paid: 1000000,
+            amount_remaining: 1000000,
             collection_method: "collection_method",
             currency: "currency",
             customer_external_id: "customer_external_id",
-            subtotal: 1,
+            subtotal: 1000000,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/invoices")
@@ -1184,13 +1224,13 @@ describe("BillingClient", () => {
 
         await expect(async () => {
             return await client.billing.upsertInvoice({
-                amountDue: 1,
-                amountPaid: 1,
-                amountRemaining: 1,
+                amountDue: 1000000,
+                amountPaid: 1000000,
+                amountRemaining: 1000000,
                 collectionMethod: "collection_method",
                 currency: "currency",
                 customerExternalId: "customer_external_id",
-                subtotal: 1,
+                subtotal: 1000000,
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
@@ -1199,15 +1239,16 @@ describe("BillingClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            amount_due: 1,
-            amount_paid: 1,
-            amount_remaining: 1,
+            amount_due: 1000000,
+            amount_paid: 1000000,
+            amount_remaining: 1000000,
             collection_method: "collection_method",
             currency: "currency",
             customer_external_id: "customer_external_id",
-            subtotal: 1,
+            subtotal: 1000000,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/invoices")
@@ -1219,13 +1260,13 @@ describe("BillingClient", () => {
 
         await expect(async () => {
             return await client.billing.upsertInvoice({
-                amountDue: 1,
-                amountPaid: 1,
-                amountRemaining: 1,
+                amountDue: 1000000,
+                amountPaid: 1000000,
+                amountRemaining: 1000000,
                 collectionMethod: "collection_method",
                 currency: "currency",
                 customerExternalId: "customer_external_id",
-                subtotal: 1,
+                subtotal: 1000000,
             });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
@@ -1234,15 +1275,16 @@ describe("BillingClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            amount_due: 1,
-            amount_paid: 1,
-            amount_remaining: 1,
+            amount_due: 1000000,
+            amount_paid: 1000000,
+            amount_remaining: 1000000,
             collection_method: "collection_method",
             currency: "currency",
             customer_external_id: "customer_external_id",
-            subtotal: 1,
+            subtotal: 1000000,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/invoices")
@@ -1254,13 +1296,13 @@ describe("BillingClient", () => {
 
         await expect(async () => {
             return await client.billing.upsertInvoice({
-                amountDue: 1,
-                amountPaid: 1,
-                amountRemaining: 1,
+                amountDue: 1000000,
+                amountPaid: 1000000,
+                amountRemaining: 1000000,
                 collectionMethod: "collection_method",
                 currency: "currency",
                 customerExternalId: "customer_external_id",
-                subtotal: 1,
+                subtotal: 1000000,
             });
         }).rejects.toThrow(Schematic.InternalServerError);
     });
@@ -1280,14 +1322,15 @@ describe("BillingClient", () => {
                     provider_type: "schematic",
                 },
             ],
-            params: { display_name: "display_name", limit: 1, offset: 1 },
+            params: { display_name: "display_name", limit: 1000000, offset: 1000000 },
         };
+
         server.mockEndpoint().get("/billing/meter").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.billing.listMeters({
             displayName: "display_name",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -1302,8 +1345,8 @@ describe("BillingClient", () => {
             ],
             params: {
                 displayName: "display_name",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
             },
         });
     });
@@ -1313,6 +1356,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/meter").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1325,6 +1369,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/meter").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1337,6 +1382,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/meter").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1349,6 +1395,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/meter").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1361,6 +1408,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/meter").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1388,6 +1436,7 @@ describe("BillingClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/billing/meter/upsert")
@@ -1428,6 +1477,7 @@ describe("BillingClient", () => {
             external_id: "external_id",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/meter/upsert")
@@ -1457,6 +1507,7 @@ describe("BillingClient", () => {
             external_id: "external_id",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/meter/upsert")
@@ -1486,6 +1537,7 @@ describe("BillingClient", () => {
             external_id: "external_id",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/meter/upsert")
@@ -1515,6 +1567,7 @@ describe("BillingClient", () => {
             external_id: "external_id",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/meter/upsert")
@@ -1544,6 +1597,7 @@ describe("BillingClient", () => {
             external_id: "external_id",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/meter/upsert")
@@ -1576,8 +1630,8 @@ describe("BillingClient", () => {
                     billing_email: "billing_email",
                     billing_name: "billing_name",
                     card_brand: "card_brand",
-                    card_exp_month: 1,
-                    card_exp_year: 1,
+                    card_exp_month: 1000000,
+                    card_exp_year: 1000000,
                     card_last4: "card_last4",
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
@@ -1590,8 +1644,14 @@ describe("BillingClient", () => {
                     updated_at: "2024-01-15T09:30:00Z",
                 },
             ],
-            params: { company_id: "company_id", customer_external_id: "customer_external_id", limit: 1, offset: 1 },
+            params: {
+                company_id: "company_id",
+                customer_external_id: "customer_external_id",
+                limit: 1000000,
+                offset: 1000000,
+            },
         };
+
         server
             .mockEndpoint()
             .get("/billing/payment-methods")
@@ -1603,8 +1663,8 @@ describe("BillingClient", () => {
         const response = await client.billing.listPaymentMethods({
             companyId: "company_id",
             customerExternalId: "customer_external_id",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -1615,8 +1675,8 @@ describe("BillingClient", () => {
                     billingEmail: "billing_email",
                     billingName: "billing_name",
                     cardBrand: "card_brand",
-                    cardExpMonth: 1,
-                    cardExpYear: 1,
+                    cardExpMonth: 1000000,
+                    cardExpYear: 1000000,
                     cardLast4: "card_last4",
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1632,8 +1692,8 @@ describe("BillingClient", () => {
             params: {
                 companyId: "company_id",
                 customerExternalId: "customer_external_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
             },
         });
     });
@@ -1643,6 +1703,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/payment-methods")
@@ -1663,6 +1724,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/payment-methods")
@@ -1683,6 +1745,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/payment-methods")
@@ -1703,6 +1766,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/payment-methods")
@@ -1723,6 +1787,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/payment-methods")
@@ -1754,8 +1819,8 @@ describe("BillingClient", () => {
                 billing_email: "billing_email",
                 billing_name: "billing_name",
                 card_brand: "card_brand",
-                card_exp_month: 1,
-                card_exp_year: 1,
+                card_exp_month: 1000000,
+                card_exp_year: 1000000,
                 card_last4: "card_last4",
                 company_id: "company_id",
                 created_at: "2024-01-15T09:30:00Z",
@@ -1769,6 +1834,7 @@ describe("BillingClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/billing/payment-methods")
@@ -1791,8 +1857,8 @@ describe("BillingClient", () => {
                 billingEmail: "billing_email",
                 billingName: "billing_name",
                 cardBrand: "card_brand",
-                cardExpMonth: 1,
-                cardExpYear: 1,
+                cardExpMonth: 1000000,
+                cardExpYear: 1000000,
                 cardLast4: "card_last4",
                 companyId: "company_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1819,6 +1885,7 @@ describe("BillingClient", () => {
             payment_method_type: "payment_method_type",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/payment-methods")
@@ -1846,6 +1913,7 @@ describe("BillingClient", () => {
             payment_method_type: "payment_method_type",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/payment-methods")
@@ -1873,6 +1941,7 @@ describe("BillingClient", () => {
             payment_method_type: "payment_method_type",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/payment-methods")
@@ -1900,6 +1969,7 @@ describe("BillingClient", () => {
             payment_method_type: "payment_method_type",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/payment-methods")
@@ -1927,6 +1997,7 @@ describe("BillingClient", () => {
             payment_method_type: "payment_method_type",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/payment-methods")
@@ -1961,8 +2032,8 @@ describe("BillingClient", () => {
                     meter_event_name: "meter_event_name",
                     meter_event_payload_key: "meter_event_payload_key",
                     meter_id: "meter_id",
-                    package_size: 1,
-                    price: 1,
+                    package_size: 1000000,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     price_external_id: "price_external_id",
                     price_id: "price_id",
@@ -1982,9 +2053,9 @@ describe("BillingClient", () => {
                 ids: ["ids"],
                 interval: "interval",
                 is_active: true,
-                limit: 1,
-                offset: 1,
-                price: 1,
+                limit: 1000000,
+                offset: 1000000,
+                price: 1000000,
                 product_id: "product_id",
                 product_ids: ["product_ids"],
                 provider_type: "schematic",
@@ -1994,6 +2065,7 @@ describe("BillingClient", () => {
                 with_meter: true,
             },
         };
+
         server.mockEndpoint().get("/billing/price").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.billing.listBillingPrices({
@@ -2001,15 +2073,15 @@ describe("BillingClient", () => {
             forTrialExpiryPlan: true,
             interval: "interval",
             isActive: true,
-            price: 1,
+            price: 1000000,
             productId: "product_id",
             providerType: "schematic",
             q: "q",
             tiersMode: "graduated",
             usageType: "licensed",
             withMeter: true,
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -2023,8 +2095,8 @@ describe("BillingClient", () => {
                     meterEventName: "meter_event_name",
                     meterEventPayloadKey: "meter_event_payload_key",
                     meterId: "meter_id",
-                    packageSize: 1,
-                    price: 1,
+                    packageSize: 1000000,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     priceExternalId: "price_external_id",
                     priceId: "price_id",
@@ -2044,9 +2116,9 @@ describe("BillingClient", () => {
                 ids: ["ids"],
                 interval: "interval",
                 isActive: true,
-                limit: 1,
-                offset: 1,
-                price: 1,
+                limit: 1000000,
+                offset: 1000000,
+                price: 1000000,
                 productId: "product_id",
                 productIds: ["product_ids"],
                 providerType: "schematic",
@@ -2063,6 +2135,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/price").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2075,6 +2148,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/price").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2087,6 +2161,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/price").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2099,6 +2174,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/price").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2111,6 +2187,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/price").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2127,7 +2204,7 @@ describe("BillingClient", () => {
             external_account_id: "external_account_id",
             interval: "interval",
             is_active: true,
-            price: 1,
+            price: 1000000,
             price_external_id: "price_external_id",
             price_tiers: [{ price_external_id: "price_external_id" }],
             product_external_id: "product_external_id",
@@ -2139,13 +2216,14 @@ describe("BillingClient", () => {
                 external_price_id: "external_price_id",
                 id: "id",
                 interval: "day",
-                price: 1,
+                price: 1000000,
                 price_decimal: "price_decimal",
                 provider_type: "schematic",
                 scheme: "per_unit",
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/billing/price/upsert")
@@ -2161,7 +2239,7 @@ describe("BillingClient", () => {
             externalAccountId: "external_account_id",
             interval: "interval",
             isActive: true,
-            price: 1,
+            price: 1000000,
             priceExternalId: "price_external_id",
             priceTiers: [
                 {
@@ -2177,7 +2255,7 @@ describe("BillingClient", () => {
                 externalPriceId: "external_price_id",
                 id: "id",
                 interval: "day",
-                price: 1,
+                price: 1000000,
                 priceDecimal: "price_decimal",
                 providerType: "schematic",
                 scheme: "per_unit",
@@ -2197,13 +2275,14 @@ describe("BillingClient", () => {
             external_account_id: "external_account_id",
             interval: "interval",
             is_active: true,
-            price: 1,
+            price: 1000000,
             price_external_id: "price_external_id",
             price_tiers: [{ price_external_id: "price_external_id" }, { price_external_id: "price_external_id" }],
             product_external_id: "product_external_id",
             usage_type: "licensed",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/price/upsert")
@@ -2220,7 +2299,7 @@ describe("BillingClient", () => {
                 externalAccountId: "external_account_id",
                 interval: "interval",
                 isActive: true,
-                price: 1,
+                price: 1000000,
                 priceExternalId: "price_external_id",
                 priceTiers: [
                     {
@@ -2245,13 +2324,14 @@ describe("BillingClient", () => {
             external_account_id: "external_account_id",
             interval: "interval",
             is_active: true,
-            price: 1,
+            price: 1000000,
             price_external_id: "price_external_id",
             price_tiers: [{ price_external_id: "price_external_id" }, { price_external_id: "price_external_id" }],
             product_external_id: "product_external_id",
             usage_type: "licensed",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/price/upsert")
@@ -2268,7 +2348,7 @@ describe("BillingClient", () => {
                 externalAccountId: "external_account_id",
                 interval: "interval",
                 isActive: true,
-                price: 1,
+                price: 1000000,
                 priceExternalId: "price_external_id",
                 priceTiers: [
                     {
@@ -2293,13 +2373,14 @@ describe("BillingClient", () => {
             external_account_id: "external_account_id",
             interval: "interval",
             is_active: true,
-            price: 1,
+            price: 1000000,
             price_external_id: "price_external_id",
             price_tiers: [{ price_external_id: "price_external_id" }, { price_external_id: "price_external_id" }],
             product_external_id: "product_external_id",
             usage_type: "licensed",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/price/upsert")
@@ -2316,7 +2397,7 @@ describe("BillingClient", () => {
                 externalAccountId: "external_account_id",
                 interval: "interval",
                 isActive: true,
-                price: 1,
+                price: 1000000,
                 priceExternalId: "price_external_id",
                 priceTiers: [
                     {
@@ -2341,13 +2422,14 @@ describe("BillingClient", () => {
             external_account_id: "external_account_id",
             interval: "interval",
             is_active: true,
-            price: 1,
+            price: 1000000,
             price_external_id: "price_external_id",
             price_tiers: [{ price_external_id: "price_external_id" }, { price_external_id: "price_external_id" }],
             product_external_id: "product_external_id",
             usage_type: "licensed",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/price/upsert")
@@ -2364,7 +2446,7 @@ describe("BillingClient", () => {
                 externalAccountId: "external_account_id",
                 interval: "interval",
                 isActive: true,
-                price: 1,
+                price: 1000000,
                 priceExternalId: "price_external_id",
                 priceTiers: [
                     {
@@ -2389,13 +2471,14 @@ describe("BillingClient", () => {
             external_account_id: "external_account_id",
             interval: "interval",
             is_active: true,
-            price: 1,
+            price: 1000000,
             price_external_id: "price_external_id",
             price_tiers: [{ price_external_id: "price_external_id" }, { price_external_id: "price_external_id" }],
             product_external_id: "product_external_id",
             usage_type: "licensed",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/price/upsert")
@@ -2412,7 +2495,7 @@ describe("BillingClient", () => {
                 externalAccountId: "external_account_id",
                 interval: "interval",
                 isActive: true,
-                price: 1,
+                price: 1000000,
                 priceExternalId: "price_external_id",
                 priceTiers: [
                     {
@@ -2433,6 +2516,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
+
         server
             .mockEndpoint()
             .delete("/billing/product/billing_id")
@@ -2457,6 +2541,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/billing/product/billing_id")
@@ -2475,6 +2560,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/billing/product/billing_id")
@@ -2493,6 +2579,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/billing/product/billing_id")
@@ -2511,6 +2598,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/billing/product/billing_id")
@@ -2529,6 +2617,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/billing/product/billing_id")
@@ -2558,8 +2647,8 @@ describe("BillingClient", () => {
                     meter_event_name: "meter_event_name",
                     meter_event_payload_key: "meter_event_payload_key",
                     meter_id: "meter_id",
-                    package_size: 1,
-                    price: 1,
+                    package_size: 1000000,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     price_external_id: "price_external_id",
                     price_id: "price_id",
@@ -2579,9 +2668,9 @@ describe("BillingClient", () => {
                 ids: ["ids"],
                 interval: "interval",
                 is_active: true,
-                limit: 1,
-                offset: 1,
-                price: 1,
+                limit: 1000000,
+                offset: 1000000,
+                price: 1000000,
                 product_id: "product_id",
                 product_ids: ["product_ids"],
                 provider_type: "schematic",
@@ -2591,6 +2680,7 @@ describe("BillingClient", () => {
                 with_meter: true,
             },
         };
+
         server
             .mockEndpoint()
             .get("/billing/product/prices")
@@ -2604,15 +2694,15 @@ describe("BillingClient", () => {
             forTrialExpiryPlan: true,
             interval: "interval",
             isActive: true,
-            price: 1,
+            price: 1000000,
             productId: "product_id",
             providerType: "schematic",
             q: "q",
             tiersMode: "graduated",
             usageType: "licensed",
             withMeter: true,
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -2626,8 +2716,8 @@ describe("BillingClient", () => {
                     meterEventName: "meter_event_name",
                     meterEventPayloadKey: "meter_event_payload_key",
                     meterId: "meter_id",
-                    packageSize: 1,
-                    price: 1,
+                    packageSize: 1000000,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     priceExternalId: "price_external_id",
                     priceId: "price_id",
@@ -2647,9 +2737,9 @@ describe("BillingClient", () => {
                 ids: ["ids"],
                 interval: "interval",
                 isActive: true,
-                limit: 1,
-                offset: 1,
-                price: 1,
+                limit: 1000000,
+                offset: 1000000,
+                price: 1000000,
                 productId: "product_id",
                 productIds: ["product_ids"],
                 providerType: "schematic",
@@ -2666,6 +2756,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/product/prices")
@@ -2684,6 +2775,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/product/prices")
@@ -2702,6 +2794,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/product/prices")
@@ -2720,6 +2813,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/product/prices")
@@ -2738,6 +2832,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/product/prices")
@@ -2756,6 +2851,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
+
         server
             .mockEndpoint()
             .delete("/billing/product/prices/billing_id")
@@ -2780,6 +2876,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/billing/product/prices/billing_id")
@@ -2798,6 +2895,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/billing/product/prices/billing_id")
@@ -2816,6 +2914,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/billing/product/prices/billing_id")
@@ -2834,6 +2933,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/billing/product/prices/billing_id")
@@ -2852,6 +2952,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/billing/product/prices/billing_id")
@@ -2886,6 +2987,7 @@ describe("BillingClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/billing/product/upsert")
@@ -2925,6 +3027,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { external_id: "external_id", price: 1.1 };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/product/upsert")
@@ -2947,6 +3050,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { external_id: "external_id", price: 1.1 };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/product/upsert")
@@ -2969,6 +3073,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { external_id: "external_id", price: 1.1 };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/product/upsert")
@@ -2991,6 +3096,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { external_id: "external_id", price: 1.1 };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/product/upsert")
@@ -3013,6 +3119,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { external_id: "external_id", price: 1.1 };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/product/upsert")
@@ -3051,7 +3158,7 @@ describe("BillingClient", () => {
                             external_price_id: "external_price_id",
                             id: "id",
                             interval: "day",
-                            price: 1,
+                            price: 1000000,
                             provider_type: "schematic",
                             scheme: "per_unit",
                         },
@@ -3059,16 +3166,16 @@ describe("BillingClient", () => {
                     product_id: "product_id",
                     provider_type: "schematic",
                     quantity: 1.1,
-                    subscription_count: 1,
+                    subscription_count: 1000000,
                     updated_at: "2024-01-15T09:30:00Z",
                 },
             ],
             params: {
                 ids: ["ids"],
                 is_active: true,
-                limit: 1,
+                limit: 1000000,
                 name: "name",
-                offset: 1,
+                offset: 1000000,
                 price_usage_type: "licensed",
                 provider_type: "schematic",
                 q: "q",
@@ -3078,6 +3185,7 @@ describe("BillingClient", () => {
                 without_linked_to_plan: true,
             },
         };
+
         server.mockEndpoint().get("/billing/products").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.billing.listBillingProducts({
@@ -3090,8 +3198,8 @@ describe("BillingClient", () => {
             withPricesOnly: true,
             withZeroPrice: true,
             withoutLinkedToPlan: true,
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -3110,7 +3218,7 @@ describe("BillingClient", () => {
                             externalPriceId: "external_price_id",
                             id: "id",
                             interval: "day",
-                            price: 1,
+                            price: 1000000,
                             providerType: "schematic",
                             scheme: "per_unit",
                         },
@@ -3118,16 +3226,16 @@ describe("BillingClient", () => {
                     productId: "product_id",
                     providerType: "schematic",
                     quantity: 1.1,
-                    subscriptionCount: 1,
+                    subscriptionCount: 1000000,
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
             ],
             params: {
                 ids: ["ids"],
                 isActive: true,
-                limit: 1,
+                limit: 1000000,
                 name: "name",
-                offset: 1,
+                offset: 1000000,
                 priceUsageType: "licensed",
                 providerType: "schematic",
                 q: "q",
@@ -3144,6 +3252,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/products").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -3156,6 +3265,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/products").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -3168,6 +3278,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/products").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -3180,6 +3291,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/products").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -3192,6 +3304,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/billing/products").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -3208,9 +3321,9 @@ describe("BillingClient", () => {
             params: {
                 ids: ["ids"],
                 is_active: true,
-                limit: 1,
+                limit: 1000000,
                 name: "name",
-                offset: 1,
+                offset: 1000000,
                 price_usage_type: "licensed",
                 provider_type: "schematic",
                 q: "q",
@@ -3220,6 +3333,7 @@ describe("BillingClient", () => {
                 without_linked_to_plan: true,
             },
         };
+
         server
             .mockEndpoint()
             .get("/billing/products/count")
@@ -3238,8 +3352,8 @@ describe("BillingClient", () => {
             withPricesOnly: true,
             withZeroPrice: true,
             withoutLinkedToPlan: true,
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -3248,9 +3362,9 @@ describe("BillingClient", () => {
             params: {
                 ids: ["ids"],
                 isActive: true,
-                limit: 1,
+                limit: 1000000,
                 name: "name",
-                offset: 1,
+                offset: 1000000,
                 priceUsageType: "licensed",
                 providerType: "schematic",
                 q: "q",
@@ -3267,6 +3381,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/products/count")
@@ -3285,6 +3400,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/products/count")
@@ -3303,6 +3419,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/products/count")
@@ -3321,6 +3438,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/products/count")
@@ -3339,6 +3457,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/billing/products/count")
@@ -3372,20 +3491,20 @@ describe("BillingClient", () => {
                 {
                     currency: "currency",
                     interval: "interval",
-                    price: 1,
+                    price: 1000000,
                     price_external_id: "price_external_id",
                     product_external_id: "product_external_id",
-                    quantity: 1,
+                    quantity: 1000000,
                     usage_type: "licensed",
                 },
             ],
             subscription_external_id: "subscription_external_id",
-            total_price: 1,
+            total_price: 1000000,
         };
         const rawResponseBody = {
             data: {
                 application_id: "application_id",
-                cancel_at: 1,
+                cancel_at: 1000000,
                 cancel_at_period_end: true,
                 company_id: "company_id",
                 created_at: "2024-01-15T09:30:00Z",
@@ -3396,17 +3515,18 @@ describe("BillingClient", () => {
                 id: "id",
                 interval: "interval",
                 metadata: { key: "value" },
-                period_end: 1,
-                period_start: 1,
+                period_end: 1000000,
+                period_start: 1000000,
                 provider_type: "schematic",
                 status: "status",
                 subscription_external_id: "subscription_external_id",
-                total_price: 1,
-                trial_end: 1,
+                total_price: 1000000,
+                trial_end: 1000000,
                 trial_end_setting: "cancel",
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/billing/subscription/upsert")
@@ -3433,20 +3553,20 @@ describe("BillingClient", () => {
                 {
                     currency: "currency",
                     interval: "interval",
-                    price: 1,
+                    price: 1000000,
                     priceExternalId: "price_external_id",
                     productExternalId: "product_external_id",
-                    quantity: 1,
+                    quantity: 1000000,
                     usageType: "licensed",
                 },
             ],
             subscriptionExternalId: "subscription_external_id",
-            totalPrice: 1,
+            totalPrice: 1000000,
         });
         expect(response).toEqual({
             data: {
                 applicationId: "application_id",
-                cancelAt: 1,
+                cancelAt: 1000000,
                 cancelAtPeriodEnd: true,
                 companyId: "company_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -3459,13 +3579,13 @@ describe("BillingClient", () => {
                 metadata: {
                     key: "value",
                 },
-                periodEnd: 1,
-                periodStart: 1,
+                periodEnd: 1000000,
+                periodStart: 1000000,
                 providerType: "schematic",
                 status: "status",
                 subscriptionExternalId: "subscription_external_id",
-                totalPrice: 1,
-                trialEnd: 1,
+                totalPrice: 1000000,
+                trialEnd: 1000000,
                 trialEndSetting: "cancel",
             },
             params: {
@@ -3500,26 +3620,27 @@ describe("BillingClient", () => {
                 {
                     currency: "foo",
                     interval: "interval",
-                    price: 1,
+                    price: 1000000,
                     price_external_id: "price_external_id",
                     product_external_id: "product_external_id",
-                    quantity: 1,
+                    quantity: 1000000,
                     usage_type: "licensed",
                 },
                 {
                     currency: "foo",
                     interval: "interval",
-                    price: 1,
+                    price: 1000000,
                     price_external_id: "price_external_id",
                     product_external_id: "product_external_id",
-                    quantity: 1,
+                    quantity: 1000000,
                     usage_type: "licensed",
                 },
             ],
             subscription_external_id: "subscription_external_id",
-            total_price: 1,
+            total_price: 1000000,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/subscription/upsert")
@@ -3553,24 +3674,24 @@ describe("BillingClient", () => {
                     {
                         currency: "foo",
                         interval: "interval",
-                        price: 1,
+                        price: 1000000,
                         priceExternalId: "price_external_id",
                         productExternalId: "product_external_id",
-                        quantity: 1,
+                        quantity: 1000000,
                         usageType: "licensed",
                     },
                     {
                         currency: "foo",
                         interval: "interval",
-                        price: 1,
+                        price: 1000000,
                         priceExternalId: "price_external_id",
                         productExternalId: "product_external_id",
-                        quantity: 1,
+                        quantity: 1000000,
                         usageType: "licensed",
                     },
                 ],
                 subscriptionExternalId: "subscription_external_id",
-                totalPrice: 1,
+                totalPrice: 1000000,
             });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
@@ -3601,26 +3722,27 @@ describe("BillingClient", () => {
                 {
                     currency: "foo",
                     interval: "interval",
-                    price: 1,
+                    price: 1000000,
                     price_external_id: "price_external_id",
                     product_external_id: "product_external_id",
-                    quantity: 1,
+                    quantity: 1000000,
                     usage_type: "licensed",
                 },
                 {
                     currency: "foo",
                     interval: "interval",
-                    price: 1,
+                    price: 1000000,
                     price_external_id: "price_external_id",
                     product_external_id: "product_external_id",
-                    quantity: 1,
+                    quantity: 1000000,
                     usage_type: "licensed",
                 },
             ],
             subscription_external_id: "subscription_external_id",
-            total_price: 1,
+            total_price: 1000000,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/subscription/upsert")
@@ -3654,24 +3776,24 @@ describe("BillingClient", () => {
                     {
                         currency: "foo",
                         interval: "interval",
-                        price: 1,
+                        price: 1000000,
                         priceExternalId: "price_external_id",
                         productExternalId: "product_external_id",
-                        quantity: 1,
+                        quantity: 1000000,
                         usageType: "licensed",
                     },
                     {
                         currency: "foo",
                         interval: "interval",
-                        price: 1,
+                        price: 1000000,
                         priceExternalId: "price_external_id",
                         productExternalId: "product_external_id",
-                        quantity: 1,
+                        quantity: 1000000,
                         usageType: "licensed",
                     },
                 ],
                 subscriptionExternalId: "subscription_external_id",
-                totalPrice: 1,
+                totalPrice: 1000000,
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
@@ -3702,26 +3824,27 @@ describe("BillingClient", () => {
                 {
                     currency: "foo",
                     interval: "interval",
-                    price: 1,
+                    price: 1000000,
                     price_external_id: "price_external_id",
                     product_external_id: "product_external_id",
-                    quantity: 1,
+                    quantity: 1000000,
                     usage_type: "licensed",
                 },
                 {
                     currency: "foo",
                     interval: "interval",
-                    price: 1,
+                    price: 1000000,
                     price_external_id: "price_external_id",
                     product_external_id: "product_external_id",
-                    quantity: 1,
+                    quantity: 1000000,
                     usage_type: "licensed",
                 },
             ],
             subscription_external_id: "subscription_external_id",
-            total_price: 1,
+            total_price: 1000000,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/subscription/upsert")
@@ -3755,24 +3878,24 @@ describe("BillingClient", () => {
                     {
                         currency: "foo",
                         interval: "interval",
-                        price: 1,
+                        price: 1000000,
                         priceExternalId: "price_external_id",
                         productExternalId: "product_external_id",
-                        quantity: 1,
+                        quantity: 1000000,
                         usageType: "licensed",
                     },
                     {
                         currency: "foo",
                         interval: "interval",
-                        price: 1,
+                        price: 1000000,
                         priceExternalId: "price_external_id",
                         productExternalId: "product_external_id",
-                        quantity: 1,
+                        quantity: 1000000,
                         usageType: "licensed",
                     },
                 ],
                 subscriptionExternalId: "subscription_external_id",
-                totalPrice: 1,
+                totalPrice: 1000000,
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
@@ -3803,26 +3926,27 @@ describe("BillingClient", () => {
                 {
                     currency: "foo",
                     interval: "interval",
-                    price: 1,
+                    price: 1000000,
                     price_external_id: "price_external_id",
                     product_external_id: "product_external_id",
-                    quantity: 1,
+                    quantity: 1000000,
                     usage_type: "licensed",
                 },
                 {
                     currency: "foo",
                     interval: "interval",
-                    price: 1,
+                    price: 1000000,
                     price_external_id: "price_external_id",
                     product_external_id: "product_external_id",
-                    quantity: 1,
+                    quantity: 1000000,
                     usage_type: "licensed",
                 },
             ],
             subscription_external_id: "subscription_external_id",
-            total_price: 1,
+            total_price: 1000000,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/subscription/upsert")
@@ -3856,24 +3980,24 @@ describe("BillingClient", () => {
                     {
                         currency: "foo",
                         interval: "interval",
-                        price: 1,
+                        price: 1000000,
                         priceExternalId: "price_external_id",
                         productExternalId: "product_external_id",
-                        quantity: 1,
+                        quantity: 1000000,
                         usageType: "licensed",
                     },
                     {
                         currency: "foo",
                         interval: "interval",
-                        price: 1,
+                        price: 1000000,
                         priceExternalId: "price_external_id",
                         productExternalId: "product_external_id",
-                        quantity: 1,
+                        quantity: 1000000,
                         usageType: "licensed",
                     },
                 ],
                 subscriptionExternalId: "subscription_external_id",
-                totalPrice: 1,
+                totalPrice: 1000000,
             });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
@@ -3904,26 +4028,27 @@ describe("BillingClient", () => {
                 {
                     currency: "foo",
                     interval: "interval",
-                    price: 1,
+                    price: 1000000,
                     price_external_id: "price_external_id",
                     product_external_id: "product_external_id",
-                    quantity: 1,
+                    quantity: 1000000,
                     usage_type: "licensed",
                 },
                 {
                     currency: "foo",
                     interval: "interval",
-                    price: 1,
+                    price: 1000000,
                     price_external_id: "price_external_id",
                     product_external_id: "product_external_id",
-                    quantity: 1,
+                    quantity: 1000000,
                     usage_type: "licensed",
                 },
             ],
             subscription_external_id: "subscription_external_id",
-            total_price: 1,
+            total_price: 1000000,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/billing/subscription/upsert")
@@ -3957,24 +4082,24 @@ describe("BillingClient", () => {
                     {
                         currency: "foo",
                         interval: "interval",
-                        price: 1,
+                        price: 1000000,
                         priceExternalId: "price_external_id",
                         productExternalId: "product_external_id",
-                        quantity: 1,
+                        quantity: 1000000,
                         usageType: "licensed",
                     },
                     {
                         currency: "foo",
                         interval: "interval",
-                        price: 1,
+                        price: 1000000,
                         priceExternalId: "price_external_id",
                         productExternalId: "product_external_id",
-                        quantity: 1,
+                        quantity: 1000000,
                         usageType: "licensed",
                     },
                 ],
                 subscriptionExternalId: "subscription_external_id",
-                totalPrice: 1,
+                totalPrice: 1000000,
             });
         }).rejects.toThrow(Schematic.InternalServerError);
     });

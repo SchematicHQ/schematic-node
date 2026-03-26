@@ -171,8 +171,8 @@ export class EventsClient {
      * @example
      *     await client.events.getEventSummaries({
      *         q: "q",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public getEventSummaries(
@@ -187,27 +187,12 @@ export class EventsClient {
         requestOptions?: EventsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.GetEventSummariesResponse>> {
         const { q, eventSubtypes, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (eventSubtypes != null) {
-            if (Array.isArray(eventSubtypes)) {
-                _queryParams.event_subtypes = eventSubtypes.map((item) => item);
-            } else {
-                _queryParams.event_subtypes = eventSubtypes;
-            }
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            q,
+            event_subtypes: eventSubtypes,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -328,8 +313,8 @@ export class EventsClient {
      *         eventSubtype: "event_subtype",
      *         flagId: "flag_id",
      *         userId: "user_id",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listEvents(
@@ -344,43 +329,19 @@ export class EventsClient {
         requestOptions?: EventsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListEventsResponse>> {
         const { companyId, eventSubtype, eventTypes, flagId, userId, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (companyId != null) {
-            _queryParams.company_id = companyId;
-        }
-
-        if (eventSubtype != null) {
-            _queryParams.event_subtype = eventSubtype;
-        }
-
-        if (eventTypes != null) {
-            if (Array.isArray(eventTypes)) {
-                _queryParams.event_types = eventTypes.map((item) =>
-                    serializers.EventType.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
-                );
-            } else {
-                _queryParams.event_types = serializers.EventType.jsonOrThrow(eventTypes, {
-                    unrecognizedObjectKeys: "strip",
-                });
-            }
-        }
-
-        if (flagId != null) {
-            _queryParams.flag_id = flagId;
-        }
-
-        if (userId != null) {
-            _queryParams.user_id = userId;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            event_subtype: eventSubtype,
+            event_types: Array.isArray(eventTypes)
+                ? eventTypes.map((item) => serializers.EventType.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }))
+                : eventTypes != null
+                  ? serializers.EventType.jsonOrThrow(eventTypes, { unrecognizedObjectKeys: "strip" })
+                  : undefined,
+            flag_id: flagId,
+            user_id: userId,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

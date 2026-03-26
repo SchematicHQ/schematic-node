@@ -40,8 +40,8 @@ export class EntitlementsClient {
      *         featureId: "feature_id",
      *         withoutExpired: true,
      *         q: "q",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listCompanyOverrides(
@@ -56,55 +56,17 @@ export class EntitlementsClient {
         requestOptions?: EntitlementsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListCompanyOverridesResponse>> {
         const { companyId, companyIds, featureId, featureIds, ids, withoutExpired, q, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (companyId != null) {
-            _queryParams.company_id = companyId;
-        }
-
-        if (companyIds != null) {
-            if (Array.isArray(companyIds)) {
-                _queryParams.company_ids = companyIds.map((item) => item);
-            } else {
-                _queryParams.company_ids = companyIds;
-            }
-        }
-
-        if (featureId != null) {
-            _queryParams.feature_id = featureId;
-        }
-
-        if (featureIds != null) {
-            if (Array.isArray(featureIds)) {
-                _queryParams.feature_ids = featureIds.map((item) => item);
-            } else {
-                _queryParams.feature_ids = featureIds;
-            }
-        }
-
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (withoutExpired != null) {
-            _queryParams.without_expired = withoutExpired.toString();
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            company_ids: companyIds,
+            feature_id: featureId,
+            feature_ids: featureIds,
+            ids,
+            without_expired: withoutExpired,
+            q,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -761,8 +723,8 @@ export class EntitlementsClient {
      *         featureId: "feature_id",
      *         withoutExpired: true,
      *         q: "q",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countCompanyOverrides(
@@ -777,55 +739,17 @@ export class EntitlementsClient {
         requestOptions?: EntitlementsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountCompanyOverridesResponse>> {
         const { companyId, companyIds, featureId, featureIds, ids, withoutExpired, q, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (companyId != null) {
-            _queryParams.company_id = companyId;
-        }
-
-        if (companyIds != null) {
-            if (Array.isArray(companyIds)) {
-                _queryParams.company_ids = companyIds.map((item) => item);
-            } else {
-                _queryParams.company_ids = companyIds;
-            }
-        }
-
-        if (featureId != null) {
-            _queryParams.feature_id = featureId;
-        }
-
-        if (featureIds != null) {
-            if (Array.isArray(featureIds)) {
-                _queryParams.feature_ids = featureIds.map((item) => item);
-            } else {
-                _queryParams.feature_ids = featureIds;
-            }
-        }
-
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (withoutExpired != null) {
-            _queryParams.without_expired = withoutExpired.toString();
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            company_ids: companyIds,
+            feature_id: featureId,
+            feature_ids: featureIds,
+            ids,
+            without_expired: withoutExpired,
+            q,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -944,8 +868,8 @@ export class EntitlementsClient {
      *     await client.entitlements.listFeatureCompanies({
      *         featureId: "feature_id",
      *         q: "q",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listFeatureCompanies(
@@ -960,20 +884,12 @@ export class EntitlementsClient {
         requestOptions?: EntitlementsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListFeatureCompaniesResponse>> {
         const { featureId, q, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        _queryParams.feature_id = featureId;
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            feature_id: featureId,
+            q,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1092,8 +1008,8 @@ export class EntitlementsClient {
      *     await client.entitlements.countFeatureCompanies({
      *         featureId: "feature_id",
      *         q: "q",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countFeatureCompanies(
@@ -1108,20 +1024,12 @@ export class EntitlementsClient {
         requestOptions?: EntitlementsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountFeatureCompaniesResponse>> {
         const { featureId, q, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        _queryParams.feature_id = featureId;
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            feature_id: featureId,
+            q,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1242,8 +1150,8 @@ export class EntitlementsClient {
      *         includeUsageAggregation: true,
      *         q: "q",
      *         withoutNegativeEntitlements: true,
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listFeatureUsage(
@@ -1267,43 +1175,16 @@ export class EntitlementsClient {
             limit,
             offset,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (companyId != null) {
-            _queryParams.company_id = companyId;
-        }
-
-        if (companyKeys != null) {
-            _queryParams.company_keys = toJson(companyKeys);
-        }
-
-        if (featureIds != null) {
-            if (Array.isArray(featureIds)) {
-                _queryParams.feature_ids = featureIds.map((item) => item);
-            } else {
-                _queryParams.feature_ids = featureIds;
-            }
-        }
-
-        if (includeUsageAggregation != null) {
-            _queryParams.include_usage_aggregation = includeUsageAggregation.toString();
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (withoutNegativeEntitlements != null) {
-            _queryParams.without_negative_entitlements = withoutNegativeEntitlements.toString();
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            company_keys: companyKeys != null ? toJson(companyKeys) : undefined,
+            feature_ids: featureIds,
+            include_usage_aggregation: includeUsageAggregation,
+            q,
+            without_negative_entitlements: withoutNegativeEntitlements,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1438,17 +1319,16 @@ export class EntitlementsClient {
         requestOptions?: EntitlementsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.GetFeatureUsageTimeSeriesResponse>> {
         const { companyId, endTime, featureId, granularity, startTime } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        _queryParams.company_id = companyId;
-        _queryParams.end_time = endTime.toISOString();
-        _queryParams.feature_id = featureId;
-        if (granularity != null) {
-            _queryParams.granularity = serializers.TimeSeriesGranularity.jsonOrThrow(granularity, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        _queryParams.start_time = startTime.toISOString();
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            end_time: endTime.toISOString(),
+            feature_id: featureId,
+            granularity:
+                granularity != null
+                    ? serializers.TimeSeriesGranularity.jsonOrThrow(granularity, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            start_time: startTime.toISOString(),
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1558,8 +1438,8 @@ export class EntitlementsClient {
      *         includeUsageAggregation: true,
      *         q: "q",
      *         withoutNegativeEntitlements: true,
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countFeatureUsage(
@@ -1583,43 +1463,16 @@ export class EntitlementsClient {
             limit,
             offset,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (companyId != null) {
-            _queryParams.company_id = companyId;
-        }
-
-        if (companyKeys != null) {
-            _queryParams.company_keys = toJson(companyKeys);
-        }
-
-        if (featureIds != null) {
-            if (Array.isArray(featureIds)) {
-                _queryParams.feature_ids = featureIds.map((item) => item);
-            } else {
-                _queryParams.feature_ids = featureIds;
-            }
-        }
-
-        if (includeUsageAggregation != null) {
-            _queryParams.include_usage_aggregation = includeUsageAggregation.toString();
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (withoutNegativeEntitlements != null) {
-            _queryParams.without_negative_entitlements = withoutNegativeEntitlements.toString();
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            company_keys: companyKeys != null ? toJson(companyKeys) : undefined,
+            feature_ids: featureIds,
+            include_usage_aggregation: includeUsageAggregation,
+            q,
+            without_negative_entitlements: withoutNegativeEntitlements,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1738,8 +1591,8 @@ export class EntitlementsClient {
      *     await client.entitlements.listFeatureUsers({
      *         featureId: "feature_id",
      *         q: "q",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listFeatureUsers(
@@ -1754,20 +1607,12 @@ export class EntitlementsClient {
         requestOptions?: EntitlementsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListFeatureUsersResponse>> {
         const { featureId, q, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        _queryParams.feature_id = featureId;
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            feature_id: featureId,
+            q,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1886,8 +1731,8 @@ export class EntitlementsClient {
      *     await client.entitlements.countFeatureUsers({
      *         featureId: "feature_id",
      *         q: "q",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countFeatureUsers(
@@ -1902,20 +1747,12 @@ export class EntitlementsClient {
         requestOptions?: EntitlementsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountFeatureUsersResponse>> {
         const { featureId, q, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        _queryParams.feature_id = featureId;
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            feature_id: featureId,
+            q,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -2037,8 +1874,8 @@ export class EntitlementsClient {
      *         planVersionId: "plan_version_id",
      *         q: "q",
      *         withMeteredProducts: true,
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listPlanEntitlements(
@@ -2065,67 +1902,19 @@ export class EntitlementsClient {
             limit,
             offset,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (featureId != null) {
-            _queryParams.feature_id = featureId;
-        }
-
-        if (featureIds != null) {
-            if (Array.isArray(featureIds)) {
-                _queryParams.feature_ids = featureIds.map((item) => item);
-            } else {
-                _queryParams.feature_ids = featureIds;
-            }
-        }
-
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (planId != null) {
-            _queryParams.plan_id = planId;
-        }
-
-        if (planIds != null) {
-            if (Array.isArray(planIds)) {
-                _queryParams.plan_ids = planIds.map((item) => item);
-            } else {
-                _queryParams.plan_ids = planIds;
-            }
-        }
-
-        if (planVersionId != null) {
-            _queryParams.plan_version_id = planVersionId;
-        }
-
-        if (planVersionIds != null) {
-            if (Array.isArray(planVersionIds)) {
-                _queryParams.plan_version_ids = planVersionIds.map((item) => item);
-            } else {
-                _queryParams.plan_version_ids = planVersionIds;
-            }
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (withMeteredProducts != null) {
-            _queryParams.with_metered_products = withMeteredProducts.toString();
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            feature_id: featureId,
+            feature_ids: featureIds,
+            ids,
+            plan_id: planId,
+            plan_ids: planIds,
+            plan_version_id: planVersionId,
+            plan_version_ids: planVersionIds,
+            q,
+            with_metered_products: withMeteredProducts,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -2783,8 +2572,8 @@ export class EntitlementsClient {
      *         planVersionId: "plan_version_id",
      *         q: "q",
      *         withMeteredProducts: true,
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countPlanEntitlements(
@@ -2811,67 +2600,19 @@ export class EntitlementsClient {
             limit,
             offset,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (featureId != null) {
-            _queryParams.feature_id = featureId;
-        }
-
-        if (featureIds != null) {
-            if (Array.isArray(featureIds)) {
-                _queryParams.feature_ids = featureIds.map((item) => item);
-            } else {
-                _queryParams.feature_ids = featureIds;
-            }
-        }
-
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (planId != null) {
-            _queryParams.plan_id = planId;
-        }
-
-        if (planIds != null) {
-            if (Array.isArray(planIds)) {
-                _queryParams.plan_ids = planIds.map((item) => item);
-            } else {
-                _queryParams.plan_ids = planIds;
-            }
-        }
-
-        if (planVersionId != null) {
-            _queryParams.plan_version_id = planVersionId;
-        }
-
-        if (planVersionIds != null) {
-            if (Array.isArray(planVersionIds)) {
-                _queryParams.plan_version_ids = planVersionIds.map((item) => item);
-            } else {
-                _queryParams.plan_version_ids = planVersionIds;
-            }
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (withMeteredProducts != null) {
-            _queryParams.with_metered_products = withMeteredProducts.toString();
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            feature_id: featureId,
+            feature_ids: featureIds,
+            ids,
+            plan_id: planId,
+            plan_ids: planIds,
+            plan_version_id: planVersionId,
+            plan_version_ids: planVersionIds,
+            q,
+            with_metered_products: withMeteredProducts,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -3140,8 +2881,9 @@ export class EntitlementsClient {
         requestOptions?: EntitlementsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.GetFeatureUsageByCompanyResponse>> {
         const { keys } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        _queryParams.keys = toJson(keys);
+        const _queryParams: Record<string, unknown> = {
+            keys: toJson(keys),
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

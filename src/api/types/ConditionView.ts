@@ -21,7 +21,6 @@ export interface ConditionView {
     metricPeriodMonthReset?: string;
     metricValue?: number;
     operator: string;
-    planVersionId?: string;
     planVersions: Schematic.GenericPreviewObject[];
     plans: Schematic.GenericPreviewObject[];
     resourceUnspecifiedIds: string[];

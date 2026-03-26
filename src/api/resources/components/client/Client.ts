@@ -36,8 +36,8 @@ export class ComponentsClient {
      * @example
      *     await client.components.listComponents({
      *         q: "q",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listComponents(
@@ -52,19 +52,11 @@ export class ComponentsClient {
         requestOptions?: ComponentsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListComponentsResponse>> {
         const { q, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            q,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -694,8 +686,8 @@ export class ComponentsClient {
      * @example
      *     await client.components.countComponents({
      *         q: "q",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countComponents(
@@ -710,19 +702,11 @@ export class ComponentsClient {
         requestOptions?: ComponentsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountComponentsResponse>> {
         const { q, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            q,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -854,15 +838,10 @@ export class ComponentsClient {
         requestOptions?: ComponentsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.PreviewComponentDataResponse>> {
         const { companyId, componentId } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (companyId != null) {
-            _queryParams.company_id = companyId;
-        }
-
-        if (componentId != null) {
-            _queryParams.component_id = componentId;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            component_id: componentId,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

@@ -3,4 +3,5 @@
 export interface PlanSelection {
     planId: string;
     priceId?: string;
+    versionId?: string;
 }

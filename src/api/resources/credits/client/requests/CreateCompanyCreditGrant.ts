@@ -7,7 +7,7 @@ import type * as Schematic from "../../../../index";
  *     {
  *         companyId: "company_id",
  *         creditId: "credit_id",
- *         quantity: 1,
+ *         quantity: 1000000,
  *         reason: "billing_credit_auto_topup"
  *     }
  */

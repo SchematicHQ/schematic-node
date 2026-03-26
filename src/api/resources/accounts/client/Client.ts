@@ -37,8 +37,8 @@ export class AccountsClient {
      *     await client.accounts.listApiKeys({
      *         environmentId: "environment_id",
      *         requireEnvironment: true,
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listApiKeys(
@@ -53,20 +53,12 @@ export class AccountsClient {
         requestOptions?: AccountsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListApiKeysResponse>> {
         const { environmentId, requireEnvironment, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (environmentId != null) {
-            _queryParams.environment_id = environmentId;
-        }
-
-        _queryParams.require_environment = requireEnvironment.toString();
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            environment_id: environmentId,
+            require_environment: requireEnvironment,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -696,8 +688,8 @@ export class AccountsClient {
      *     await client.accounts.countApiKeys({
      *         environmentId: "environment_id",
      *         requireEnvironment: true,
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countApiKeys(
@@ -712,20 +704,12 @@ export class AccountsClient {
         requestOptions?: AccountsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountApiKeysResponse>> {
         const { environmentId, requireEnvironment, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (environmentId != null) {
-            _queryParams.environment_id = environmentId;
-        }
-
-        _queryParams.require_environment = requireEnvironment.toString();
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            environment_id: environmentId,
+            require_environment: requireEnvironment,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -847,8 +831,8 @@ export class AccountsClient {
      *         environmentId: "environment_id",
      *         q: "q",
      *         startTime: new Date("2024-01-15T09:30:00.000Z"),
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listAuditLogs(
@@ -863,35 +847,18 @@ export class AccountsClient {
         requestOptions?: AccountsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListAuditLogsResponse>> {
         const { actorType, endTime, environmentId, q, startTime, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (actorType != null) {
-            _queryParams.actor_type = serializers.ActorType.jsonOrThrow(actorType, { unrecognizedObjectKeys: "strip" });
-        }
-
-        if (endTime != null) {
-            _queryParams.end_time = endTime.toISOString();
-        }
-
-        if (environmentId != null) {
-            _queryParams.environment_id = environmentId;
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (startTime != null) {
-            _queryParams.start_time = startTime.toISOString();
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            actor_type:
+                actorType != null
+                    ? serializers.ActorType.jsonOrThrow(actorType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            end_time: endTime != null ? endTime?.toISOString() : undefined,
+            environment_id: environmentId,
+            q,
+            start_time: startTime != null ? startTime?.toISOString() : undefined,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1129,8 +1096,8 @@ export class AccountsClient {
      *         environmentId: "environment_id",
      *         q: "q",
      *         startTime: new Date("2024-01-15T09:30:00.000Z"),
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countAuditLogs(
@@ -1145,35 +1112,18 @@ export class AccountsClient {
         requestOptions?: AccountsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountAuditLogsResponse>> {
         const { actorType, endTime, environmentId, q, startTime, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (actorType != null) {
-            _queryParams.actor_type = serializers.ActorType.jsonOrThrow(actorType, { unrecognizedObjectKeys: "strip" });
-        }
-
-        if (endTime != null) {
-            _queryParams.end_time = endTime.toISOString();
-        }
-
-        if (environmentId != null) {
-            _queryParams.environment_id = environmentId;
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (startTime != null) {
-            _queryParams.start_time = startTime.toISOString();
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            actor_type:
+                actorType != null
+                    ? serializers.ActorType.jsonOrThrow(actorType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            end_time: endTime != null ? endTime?.toISOString() : undefined,
+            environment_id: environmentId,
+            q,
+            start_time: startTime != null ? startTime?.toISOString() : undefined,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1290,8 +1240,8 @@ export class AccountsClient {
      *
      * @example
      *     await client.accounts.listEnvironments({
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listEnvironments(
@@ -1306,23 +1256,11 @@ export class AccountsClient {
         requestOptions?: AccountsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListEnvironmentsResponse>> {
         const { ids, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            ids,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

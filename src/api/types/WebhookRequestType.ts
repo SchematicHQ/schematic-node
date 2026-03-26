@@ -9,6 +9,7 @@ export const WebhookRequestType = {
     CompanyOverrideExpired: "company.override.expired",
     CompanyOverrideUpdated: "company.override.updated",
     CompanyPlanChanged: "company.plan_changed",
+    CompanyScheduledDowngrade: "company.scheduled_downgrade",
     CompanyUpdated: "company.updated",
     CreditLimitReached: "credit.limit.reached",
     CreditLimitWarning: "credit.limit.warning",

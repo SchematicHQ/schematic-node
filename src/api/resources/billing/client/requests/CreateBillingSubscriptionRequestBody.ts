@@ -18,14 +18,14 @@ import type * as Schematic from "../../../../index";
  *         productExternalIds: [{
  *                 currency: "currency",
  *                 interval: "interval",
- *                 price: 1,
+ *                 price: 1000000,
  *                 priceExternalId: "price_external_id",
  *                 productExternalId: "product_external_id",
- *                 quantity: 1,
+ *                 quantity: 1000000,
  *                 usageType: "licensed"
  *             }],
  *         subscriptionExternalId: "subscription_external_id",
- *         totalPrice: 1
+ *         totalPrice: 1000000
  *     }
  */
 export interface CreateBillingSubscriptionRequestBody {

@@ -21,15 +21,16 @@ describe("ScheduledcheckoutClient", () => {
                     from_plan_id: "from_plan_id",
                     id: "id",
                     scheduled_interval: "scheduled_interval",
-                    scheduled_price: 1,
+                    scheduled_price: 1000000,
                     started_at: "2024-01-15T09:30:00Z",
                     status: "cancelled",
                     to_plan_id: "to_plan_id",
                     updated_at: "2024-01-15T09:30:00Z",
                 },
             ],
-            params: { company_id: "company_id", limit: 1, offset: 1, status: "cancelled" },
+            params: { company_id: "company_id", limit: 1000000, offset: 1000000, status: "cancelled" },
         };
+
         server
             .mockEndpoint()
             .get("/scheduled-checkout")
@@ -41,8 +42,8 @@ describe("ScheduledcheckoutClient", () => {
         const response = await client.scheduledcheckout.listScheduledCheckouts({
             companyId: "company_id",
             status: "cancelled",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -56,7 +57,7 @@ describe("ScheduledcheckoutClient", () => {
                     fromPlanId: "from_plan_id",
                     id: "id",
                     scheduledInterval: "scheduled_interval",
-                    scheduledPrice: 1,
+                    scheduledPrice: 1000000,
                     startedAt: new Date("2024-01-15T09:30:00.000Z"),
                     status: "cancelled",
                     toPlanId: "to_plan_id",
@@ -65,8 +66,8 @@ describe("ScheduledcheckoutClient", () => {
             ],
             params: {
                 companyId: "company_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 status: "cancelled",
             },
         });
@@ -77,6 +78,7 @@ describe("ScheduledcheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/scheduled-checkout")
@@ -95,6 +97,7 @@ describe("ScheduledcheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/scheduled-checkout")
@@ -113,6 +116,7 @@ describe("ScheduledcheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/scheduled-checkout")
@@ -131,6 +135,7 @@ describe("ScheduledcheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/scheduled-checkout")
@@ -149,6 +154,7 @@ describe("ScheduledcheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/scheduled-checkout")
@@ -182,7 +188,7 @@ describe("ScheduledcheckoutClient", () => {
                 from_plan_id: "from_plan_id",
                 id: "id",
                 scheduled_interval: "scheduled_interval",
-                scheduled_price: 1,
+                scheduled_price: 1000000,
                 started_at: "2024-01-15T09:30:00Z",
                 status: "cancelled",
                 to_plan_id: "to_plan_id",
@@ -190,6 +196,7 @@ describe("ScheduledcheckoutClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/scheduled-checkout")
@@ -216,7 +223,7 @@ describe("ScheduledcheckoutClient", () => {
                 fromPlanId: "from_plan_id",
                 id: "id",
                 scheduledInterval: "scheduled_interval",
-                scheduledPrice: 1,
+                scheduledPrice: 1000000,
                 startedAt: new Date("2024-01-15T09:30:00.000Z"),
                 status: "cancelled",
                 toPlanId: "to_plan_id",
@@ -238,6 +245,7 @@ describe("ScheduledcheckoutClient", () => {
             to_plan_id: "to_plan_id",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/scheduled-checkout")
@@ -267,6 +275,7 @@ describe("ScheduledcheckoutClient", () => {
             to_plan_id: "to_plan_id",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/scheduled-checkout")
@@ -296,6 +305,7 @@ describe("ScheduledcheckoutClient", () => {
             to_plan_id: "to_plan_id",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/scheduled-checkout")
@@ -325,6 +335,7 @@ describe("ScheduledcheckoutClient", () => {
             to_plan_id: "to_plan_id",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/scheduled-checkout")
@@ -354,6 +365,7 @@ describe("ScheduledcheckoutClient", () => {
             to_plan_id: "to_plan_id",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/scheduled-checkout")
@@ -388,7 +400,7 @@ describe("ScheduledcheckoutClient", () => {
                 from_plan_id: "from_plan_id",
                 id: "id",
                 scheduled_interval: "scheduled_interval",
-                scheduled_price: 1,
+                scheduled_price: 1000000,
                 started_at: "2024-01-15T09:30:00Z",
                 status: "cancelled",
                 to_plan_id: "to_plan_id",
@@ -396,6 +408,7 @@ describe("ScheduledcheckoutClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .get("/scheduled-checkout/scheduled_checkout_id")
@@ -416,7 +429,7 @@ describe("ScheduledcheckoutClient", () => {
                 fromPlanId: "from_plan_id",
                 id: "id",
                 scheduledInterval: "scheduled_interval",
-                scheduledPrice: 1,
+                scheduledPrice: 1000000,
                 startedAt: new Date("2024-01-15T09:30:00.000Z"),
                 status: "cancelled",
                 toPlanId: "to_plan_id",
@@ -433,6 +446,7 @@ describe("ScheduledcheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/scheduled-checkout/scheduled_checkout_id")
@@ -451,6 +465,7 @@ describe("ScheduledcheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/scheduled-checkout/scheduled_checkout_id")
@@ -469,6 +484,7 @@ describe("ScheduledcheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/scheduled-checkout/scheduled_checkout_id")
@@ -487,6 +503,7 @@ describe("ScheduledcheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/scheduled-checkout/scheduled_checkout_id")
@@ -515,7 +532,7 @@ describe("ScheduledcheckoutClient", () => {
                 from_plan_id: "from_plan_id",
                 id: "id",
                 scheduled_interval: "scheduled_interval",
-                scheduled_price: 1,
+                scheduled_price: 1000000,
                 started_at: "2024-01-15T09:30:00Z",
                 status: "cancelled",
                 to_plan_id: "to_plan_id",
@@ -523,6 +540,7 @@ describe("ScheduledcheckoutClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .put("/scheduled-checkout/scheduled_checkout_id")
@@ -544,7 +562,7 @@ describe("ScheduledcheckoutClient", () => {
                 fromPlanId: "from_plan_id",
                 id: "id",
                 scheduledInterval: "scheduled_interval",
-                scheduledPrice: 1,
+                scheduledPrice: 1000000,
                 startedAt: new Date("2024-01-15T09:30:00.000Z"),
                 status: "cancelled",
                 toPlanId: "to_plan_id",
@@ -561,6 +579,7 @@ describe("ScheduledcheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/scheduled-checkout/scheduled_checkout_id")
@@ -580,6 +599,7 @@ describe("ScheduledcheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/scheduled-checkout/scheduled_checkout_id")
@@ -599,6 +619,7 @@ describe("ScheduledcheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/scheduled-checkout/scheduled_checkout_id")
@@ -618,6 +639,7 @@ describe("ScheduledcheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/scheduled-checkout/scheduled_checkout_id")
@@ -637,6 +659,7 @@ describe("ScheduledcheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/scheduled-checkout/scheduled_checkout_id")

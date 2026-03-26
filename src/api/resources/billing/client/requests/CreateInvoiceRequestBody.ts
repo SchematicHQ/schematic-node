@@ -5,13 +5,13 @@ import type * as Schematic from "../../../../index";
 /**
  * @example
  *     {
- *         amountDue: 1,
- *         amountPaid: 1,
- *         amountRemaining: 1,
+ *         amountDue: 1000000,
+ *         amountPaid: 1000000,
+ *         amountRemaining: 1000000,
  *         collectionMethod: "collection_method",
  *         currency: "currency",
  *         customerExternalId: "customer_external_id",
- *         subtotal: 1
+ *         subtotal: 1000000
  *     }
  */
 export interface CreateInvoiceRequestBody {

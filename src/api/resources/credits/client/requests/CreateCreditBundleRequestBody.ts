@@ -8,7 +8,7 @@ import type * as Schematic from "../../../../index";
  *         bundleName: "bundle_name",
  *         creditId: "credit_id",
  *         currency: "currency",
- *         pricePerUnit: 1
+ *         pricePerUnit: 1000000
  *     }
  */
 export interface CreateCreditBundleRequestBody {

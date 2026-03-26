@@ -21,14 +21,15 @@ describe("ComponentsClient", () => {
                     updated_at: "2024-01-15T09:30:00Z",
                 },
             ],
-            params: { limit: 1, offset: 1, q: "q" },
+            params: { limit: 1000000, offset: 1000000, q: "q" },
         };
+
         server.mockEndpoint().get("/components").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.components.listComponents({
             q: "q",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -45,8 +46,8 @@ describe("ComponentsClient", () => {
                 },
             ],
             params: {
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
             },
         });
@@ -57,6 +58,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/components").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -69,6 +71,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/components").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -81,6 +84,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/components").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -93,6 +97,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/components").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -105,6 +110,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/components").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -128,6 +134,7 @@ describe("ComponentsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/components")
@@ -164,6 +171,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entity_type: "billing", name: "x" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/components")
@@ -186,6 +194,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entity_type: "billing", name: "x" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/components")
@@ -208,6 +217,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entity_type: "billing", name: "x" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/components")
@@ -230,6 +240,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entity_type: "billing", name: "x" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/components")
@@ -252,6 +263,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entity_type: "billing", name: "x" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/components")
@@ -285,6 +297,7 @@ describe("ComponentsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .get("/components/component_id")
@@ -317,6 +330,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/components/component_id")
@@ -335,6 +349,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/components/component_id")
@@ -353,6 +368,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/components/component_id")
@@ -371,6 +387,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/components/component_id")
@@ -400,6 +417,7 @@ describe("ComponentsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .put("/components/component_id")
@@ -433,6 +451,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/components/component_id")
@@ -452,6 +471,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/components/component_id")
@@ -471,6 +491,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/components/component_id")
@@ -490,6 +511,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/components/component_id")
@@ -509,6 +531,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/components/component_id")
@@ -528,6 +551,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
+
         server
             .mockEndpoint()
             .delete("/components/component_id")
@@ -552,6 +576,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/components/component_id")
@@ -570,6 +595,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/components/component_id")
@@ -588,6 +614,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/components/component_id")
@@ -606,6 +633,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/components/component_id")
@@ -624,6 +652,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/components/component_id")
@@ -641,21 +670,22 @@ describe("ComponentsClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { data: { count: 1 }, params: { limit: 1, offset: 1, q: "q" } };
+        const rawResponseBody = { data: { count: 1 }, params: { limit: 1000000, offset: 1000000, q: "q" } };
+
         server.mockEndpoint().get("/components/count").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.components.countComponents({
             q: "q",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
                 count: 1,
             },
             params: {
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
             },
         });
@@ -666,6 +696,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/components/count").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -678,6 +709,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/components/count").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -690,6 +722,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/components/count").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -702,6 +735,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/components/count").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -714,6 +748,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/components/count").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -731,7 +766,7 @@ describe("ComponentsClient", () => {
                     {
                         charge_type: "free",
                         company_can_trial: true,
-                        company_count: 1,
+                        company_count: 1000000,
                         compatible_plan_ids: ["compatible_plan_ids"],
                         controlled_by: "schematic",
                         created_at: "2024-01-15T09:30:00Z",
@@ -807,7 +842,7 @@ describe("ComponentsClient", () => {
                                                 environment_id: "environment_id",
                                                 id: "id",
                                                 name: "name",
-                                                priority: 1,
+                                                priority: 1000000,
                                                 rule_type: "rule_type",
                                                 updated_at: "2024-01-15T09:30:00Z",
                                                 value: true,
@@ -829,7 +864,7 @@ describe("ComponentsClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                credit_amount: 1,
+                                credit_amount: 1000000,
                                 credit_description: "credit_description",
                                 credit_id: "credit_id",
                                 credit_name: "credit_name",
@@ -866,7 +901,7 @@ describe("ComponentsClient", () => {
                                 plan_type: "plan",
                                 status: "published",
                                 updated_at: "2024-01-15T09:30:00Z",
-                                version: 1,
+                                version: 1000000,
                             },
                         ],
                     },
@@ -875,7 +910,7 @@ describe("ComponentsClient", () => {
                     {
                         charge_type: "free",
                         company_can_trial: true,
-                        company_count: 1,
+                        company_count: 1000000,
                         compatible_plan_ids: ["compatible_plan_ids"],
                         controlled_by: "schematic",
                         created_at: "2024-01-15T09:30:00Z",
@@ -951,7 +986,7 @@ describe("ComponentsClient", () => {
                                                 environment_id: "environment_id",
                                                 id: "id",
                                                 name: "name",
-                                                priority: 1,
+                                                priority: 1000000,
                                                 rule_type: "rule_type",
                                                 updated_at: "2024-01-15T09:30:00Z",
                                                 value: true,
@@ -973,7 +1008,7 @@ describe("ComponentsClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                credit_amount: 1,
+                                credit_amount: 1000000,
                                 credit_description: "credit_description",
                                 credit_id: "credit_id",
                                 credit_name: "credit_name",
@@ -1010,7 +1045,7 @@ describe("ComponentsClient", () => {
                                 plan_type: "plan",
                                 status: "published",
                                 updated_at: "2024-01-15T09:30:00Z",
-                                version: 1,
+                                version: 1000000,
                             },
                         ],
                     },
@@ -1034,7 +1069,7 @@ describe("ComponentsClient", () => {
                                 {
                                     billing_credit_auto_topup_enabled: true,
                                     created_at: "2024-01-15T09:30:00Z",
-                                    credit_amount: 1,
+                                    credit_amount: 1000000,
                                     credit_description: "credit_description",
                                     credit_id: "credit_id",
                                     credit_name: "credit_name",
@@ -1066,8 +1101,8 @@ describe("ComponentsClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        period_end: 1,
-                        period_start: 1,
+                        period_end: 1000000,
+                        period_start: 1000000,
                         products: [
                             {
                                 billing_scheme: "per_unit",
@@ -1078,8 +1113,8 @@ describe("ComponentsClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                package_size: 1,
-                                price: 1,
+                                package_size: 1000000,
+                                price: 1000000,
                                 price_external_id: "price_external_id",
                                 price_id: "price_id",
                                 price_tier: [{}],
@@ -1093,7 +1128,7 @@ describe("ComponentsClient", () => {
                         provider_type: "schematic",
                         status: "status",
                         subscription_external_id: "subscription_external_id",
-                        total_price: 1,
+                        total_price: 1000000,
                     },
                     billing_subscriptions: [
                         {
@@ -1114,8 +1149,8 @@ describe("ComponentsClient", () => {
                             ],
                             id: "id",
                             interval: "interval",
-                            period_end: 1,
-                            period_start: 1,
+                            period_end: 1000000,
+                            period_start: 1000000,
                             products: [
                                 {
                                     billing_scheme: "per_unit",
@@ -1126,8 +1161,8 @@ describe("ComponentsClient", () => {
                                     id: "id",
                                     interval: "interval",
                                     name: "name",
-                                    package_size: 1,
-                                    price: 1,
+                                    package_size: 1000000,
+                                    price: 1000000,
                                     price_external_id: "price_external_id",
                                     price_id: "price_id",
                                     price_tier: [{}],
@@ -1141,7 +1176,7 @@ describe("ComponentsClient", () => {
                             provider_type: "schematic",
                             status: "status",
                             subscription_external_id: "subscription_external_id",
-                            total_price: 1,
+                            total_price: 1000000,
                         },
                     ],
                     created_at: "2024-01-15T09:30:00Z",
@@ -1194,7 +1229,7 @@ describe("ComponentsClient", () => {
                             event_subtype: "event_subtype",
                             month_reset: "month_reset",
                             period: "period",
-                            value: 1,
+                            value: 1000000,
                         },
                     ],
                     name: "name",
@@ -1216,7 +1251,7 @@ describe("ComponentsClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                credit_amount: 1,
+                                credit_amount: 1000000,
                                 credit_description: "credit_description",
                                 credit_id: "credit_id",
                                 credit_name: "credit_name",
@@ -1261,7 +1296,7 @@ describe("ComponentsClient", () => {
                             environment_id: "environment_id",
                             id: "id",
                             name: "name",
-                            priority: 1,
+                            priority: 1000000,
                             rule_type: "default",
                             value: true,
                         },
@@ -1271,7 +1306,7 @@ describe("ComponentsClient", () => {
                         effective_after: "2024-01-15T09:30:00Z",
                         from_plan_id: "from_plan_id",
                         from_plan_name: "from_plan_name",
-                        from_subscription_price: 1,
+                        from_subscription_price: 1000000,
                         id: "id",
                         interval: "interval",
                         to_plan_id: "to_plan_id",
@@ -1279,7 +1314,7 @@ describe("ComponentsClient", () => {
                     },
                     traits: { key: "value" },
                     updated_at: "2024-01-15T09:30:00Z",
-                    user_count: 1,
+                    user_count: 1000000,
                 },
                 component: {
                     ast: { key: 1.1 },
@@ -1315,7 +1350,7 @@ describe("ComponentsClient", () => {
                         credit_name: "credit_name",
                         grant_reason: "billing_credit_auto_topup",
                         id: "id",
-                        quantity: 1,
+                        quantity: 1000000,
                         quantity_remaining: 1.1,
                         quantity_used: 1.1,
                         renewal_enabled: true,
@@ -1334,7 +1369,7 @@ describe("ComponentsClient", () => {
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
-                        version: 1,
+                        version: 1000000,
                     },
                     billing_product: {
                         account_id: "account_id",
@@ -1350,7 +1385,7 @@ describe("ComponentsClient", () => {
                                 external_price_id: "external_price_id",
                                 id: "id",
                                 interval: "day",
-                                price: 1,
+                                price: 1000000,
                                 provider_type: "schematic",
                                 scheme: "per_unit",
                             },
@@ -1358,11 +1393,11 @@ describe("ComponentsClient", () => {
                         product_id: "product_id",
                         provider_type: "schematic",
                         quantity: 1.1,
-                        subscription_count: 1,
+                        subscription_count: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     charge_type: "free",
-                    company_count: 1,
+                    company_count: 1000000,
                     controlled_by: "schematic",
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
@@ -1376,7 +1411,7 @@ describe("ComponentsClient", () => {
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
-                        version: 1,
+                        version: 1000000,
                     },
                     features: [
                         {
@@ -1435,7 +1470,7 @@ describe("ComponentsClient", () => {
                                             environment_id: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             rule_type: "rule_type",
                                             updated_at: "2024-01-15T09:30:00Z",
                                             value: true,
@@ -1457,7 +1492,7 @@ describe("ComponentsClient", () => {
                         {
                             auto_topup_enabled: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            credit_amount: 1,
+                            credit_amount: 1000000,
                             credit_id: "credit_id",
                             credit_name: "credit_name",
                             id: "id",
@@ -1474,7 +1509,7 @@ describe("ComponentsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
@@ -1484,12 +1519,12 @@ describe("ComponentsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
                     plan_type: "plan",
-                    trial_days: 1,
+                    trial_days: 1000000,
                     updated_at: "2024-01-15T09:30:00Z",
                     versions: [
                         {
@@ -1502,7 +1537,7 @@ describe("ComponentsClient", () => {
                             plan_type: "plan",
                             status: "published",
                             updated_at: "2024-01-15T09:30:00Z",
-                            version: 1,
+                            version: 1000000,
                         },
                     ],
                     yearly_price: {
@@ -1510,7 +1545,7 @@ describe("ComponentsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
@@ -1535,9 +1570,9 @@ describe("ComponentsClient", () => {
                 },
                 invoices: [
                     {
-                        amount_due: 1,
-                        amount_paid: 1,
-                        amount_remaining: 1,
+                        amount_due: 1000000,
+                        amount_paid: 1000000,
+                        amount_remaining: 1000000,
                         collection_method: "collection_method",
                         created_at: "2024-01-15T09:30:00Z",
                         currency: "currency",
@@ -1545,7 +1580,7 @@ describe("ComponentsClient", () => {
                         environment_id: "environment_id",
                         id: "id",
                         provider_type: "schematic",
-                        subtotal: 1,
+                        subtotal: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                 ],
@@ -1560,7 +1595,7 @@ describe("ComponentsClient", () => {
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
-                        version: 1,
+                        version: 1000000,
                     },
                     billing_product: {
                         account_id: "account_id",
@@ -1576,7 +1611,7 @@ describe("ComponentsClient", () => {
                                 external_price_id: "external_price_id",
                                 id: "id",
                                 interval: "day",
-                                price: 1,
+                                price: 1000000,
                                 provider_type: "schematic",
                                 scheme: "per_unit",
                             },
@@ -1584,11 +1619,11 @@ describe("ComponentsClient", () => {
                         product_id: "product_id",
                         provider_type: "schematic",
                         quantity: 1.1,
-                        subscription_count: 1,
+                        subscription_count: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     charge_type: "free",
-                    company_count: 1,
+                    company_count: 1000000,
                     controlled_by: "schematic",
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
@@ -1602,7 +1637,7 @@ describe("ComponentsClient", () => {
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
-                        version: 1,
+                        version: 1000000,
                     },
                     features: [
                         {
@@ -1661,7 +1696,7 @@ describe("ComponentsClient", () => {
                                             environment_id: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             rule_type: "rule_type",
                                             updated_at: "2024-01-15T09:30:00Z",
                                             value: true,
@@ -1683,7 +1718,7 @@ describe("ComponentsClient", () => {
                         {
                             auto_topup_enabled: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            credit_amount: 1,
+                            credit_amount: 1000000,
                             credit_id: "credit_id",
                             credit_name: "credit_name",
                             id: "id",
@@ -1700,7 +1735,7 @@ describe("ComponentsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
@@ -1710,12 +1745,12 @@ describe("ComponentsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
                     plan_type: "plan",
-                    trial_days: 1,
+                    trial_days: 1000000,
                     updated_at: "2024-01-15T09:30:00Z",
                     versions: [
                         {
@@ -1728,7 +1763,7 @@ describe("ComponentsClient", () => {
                             plan_type: "plan",
                             status: "published",
                             updated_at: "2024-01-15T09:30:00Z",
-                            version: 1,
+                            version: 1000000,
                         },
                     ],
                     yearly_price: {
@@ -1736,7 +1771,7 @@ describe("ComponentsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
@@ -1749,11 +1784,11 @@ describe("ComponentsClient", () => {
                     effective_after: "2024-01-15T09:30:00Z",
                     from_plan_id: "from_plan_id",
                     from_plan_name: "from_plan_name",
-                    from_subscription_price: 1,
+                    from_subscription_price: 1000000,
                     id: "id",
                     interval: "interval",
                     scheduled_interval: "scheduled_interval",
-                    scheduled_price: 1,
+                    scheduled_price: 1000000,
                     to_plan_id: "to_plan_id",
                     to_plan_name: "to_plan_name",
                 },
@@ -1786,9 +1821,9 @@ describe("ComponentsClient", () => {
                     expired_at: "2024-01-15T09:30:00Z",
                     interval: "interval",
                     latest_invoice: {
-                        amount_due: 1,
-                        amount_paid: 1,
-                        amount_remaining: 1,
+                        amount_due: 1000000,
+                        amount_paid: 1000000,
+                        amount_remaining: 1000000,
                         collection_method: "collection_method",
                         created_at: "2024-01-15T09:30:00Z",
                         currency: "currency",
@@ -1796,7 +1831,7 @@ describe("ComponentsClient", () => {
                         environment_id: "environment_id",
                         id: "id",
                         provider_type: "schematic",
-                        subtotal: 1,
+                        subtotal: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     payment_method: {
@@ -1819,8 +1854,8 @@ describe("ComponentsClient", () => {
                             id: "id",
                             interval: "interval",
                             name: "name",
-                            package_size: 1,
-                            price: 1,
+                            package_size: 1000000,
+                            price: 1000000,
                             price_external_id: "price_external_id",
                             price_id: "price_id",
                             price_tier: [{}],
@@ -1833,14 +1868,14 @@ describe("ComponentsClient", () => {
                     ],
                     status: "status",
                     subscription_external_id: "subscription_external_id",
-                    total_price: 1,
+                    total_price: 1000000,
                     trial_end: "2024-01-15T09:30:00Z",
                 },
                 trial_payment_method_required: true,
                 upcoming_invoice: {
-                    amount_due: 1,
-                    amount_paid: 1,
-                    amount_remaining: 1,
+                    amount_due: 1000000,
+                    amount_paid: 1000000,
+                    amount_remaining: 1000000,
                     collection_method: "collection_method",
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
@@ -1854,13 +1889,14 @@ describe("ComponentsClient", () => {
                     provider_type: "schematic",
                     status: "draft",
                     subscription_external_id: "subscription_external_id",
-                    subtotal: 1,
+                    subtotal: 1000000,
                     updated_at: "2024-01-15T09:30:00Z",
                     url: "url",
                 },
             },
             params: { company_id: "company_id", component_id: "component_id" },
         };
+
         server
             .mockEndpoint()
             .get("/components/preview-data")
@@ -1879,7 +1915,7 @@ describe("ComponentsClient", () => {
                     {
                         chargeType: "free",
                         companyCanTrial: true,
-                        companyCount: 1,
+                        companyCount: 1000000,
                         compatiblePlanIds: ["compatible_plan_ids"],
                         controlledBy: "schematic",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1965,7 +2001,7 @@ describe("ComponentsClient", () => {
                                                 environmentId: "environment_id",
                                                 id: "id",
                                                 name: "name",
-                                                priority: 1,
+                                                priority: 1000000,
                                                 ruleType: "rule_type",
                                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                                 value: true,
@@ -1992,7 +2028,7 @@ describe("ComponentsClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                creditAmount: 1,
+                                creditAmount: 1000000,
                                 creditDescription: "credit_description",
                                 creditId: "credit_id",
                                 creditName: "credit_name",
@@ -2029,7 +2065,7 @@ describe("ComponentsClient", () => {
                                 planType: "plan",
                                 status: "published",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                                version: 1,
+                                version: 1000000,
                             },
                         ],
                     },
@@ -2038,7 +2074,7 @@ describe("ComponentsClient", () => {
                     {
                         chargeType: "free",
                         companyCanTrial: true,
-                        companyCount: 1,
+                        companyCount: 1000000,
                         compatiblePlanIds: ["compatible_plan_ids"],
                         controlledBy: "schematic",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2124,7 +2160,7 @@ describe("ComponentsClient", () => {
                                                 environmentId: "environment_id",
                                                 id: "id",
                                                 name: "name",
-                                                priority: 1,
+                                                priority: 1000000,
                                                 ruleType: "rule_type",
                                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                                 value: true,
@@ -2151,7 +2187,7 @@ describe("ComponentsClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                creditAmount: 1,
+                                creditAmount: 1000000,
                                 creditDescription: "credit_description",
                                 creditId: "credit_id",
                                 creditName: "credit_name",
@@ -2188,7 +2224,7 @@ describe("ComponentsClient", () => {
                                 planType: "plan",
                                 status: "published",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                                version: 1,
+                                version: 1000000,
                             },
                         ],
                     },
@@ -2223,7 +2259,7 @@ describe("ComponentsClient", () => {
                                 {
                                     billingCreditAutoTopupEnabled: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    creditAmount: 1,
+                                    creditAmount: 1000000,
                                     creditDescription: "credit_description",
                                     creditId: "credit_id",
                                     creditName: "credit_name",
@@ -2257,8 +2293,8 @@ describe("ComponentsClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        periodEnd: 1,
-                        periodStart: 1,
+                        periodEnd: 1000000,
+                        periodStart: 1000000,
                         products: [
                             {
                                 billingScheme: "per_unit",
@@ -2269,8 +2305,8 @@ describe("ComponentsClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                packageSize: 1,
-                                price: 1,
+                                packageSize: 1000000,
+                                price: 1000000,
                                 priceExternalId: "price_external_id",
                                 priceId: "price_id",
                                 priceTier: [{}],
@@ -2284,7 +2320,7 @@ describe("ComponentsClient", () => {
                         providerType: "schematic",
                         status: "status",
                         subscriptionExternalId: "subscription_external_id",
-                        totalPrice: 1,
+                        totalPrice: 1000000,
                     },
                     billingSubscriptions: [
                         {
@@ -2305,8 +2341,8 @@ describe("ComponentsClient", () => {
                             ],
                             id: "id",
                             interval: "interval",
-                            periodEnd: 1,
-                            periodStart: 1,
+                            periodEnd: 1000000,
+                            periodStart: 1000000,
                             products: [
                                 {
                                     billingScheme: "per_unit",
@@ -2317,8 +2353,8 @@ describe("ComponentsClient", () => {
                                     id: "id",
                                     interval: "interval",
                                     name: "name",
-                                    packageSize: 1,
-                                    price: 1,
+                                    packageSize: 1000000,
+                                    price: 1000000,
                                     priceExternalId: "price_external_id",
                                     priceId: "price_id",
                                     priceTier: [{}],
@@ -2332,7 +2368,7 @@ describe("ComponentsClient", () => {
                             providerType: "schematic",
                             status: "status",
                             subscriptionExternalId: "subscription_external_id",
-                            totalPrice: 1,
+                            totalPrice: 1000000,
                         },
                     ],
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2391,7 +2427,7 @@ describe("ComponentsClient", () => {
                             eventSubtype: "event_subtype",
                             monthReset: "month_reset",
                             period: "period",
-                            value: 1,
+                            value: 1000000,
                         },
                     ],
                     name: "name",
@@ -2413,7 +2449,7 @@ describe("ComponentsClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                creditAmount: 1,
+                                creditAmount: 1000000,
                                 creditDescription: "credit_description",
                                 creditId: "credit_id",
                                 creditName: "credit_name",
@@ -2463,7 +2499,7 @@ describe("ComponentsClient", () => {
                             environmentId: "environment_id",
                             id: "id",
                             name: "name",
-                            priority: 1,
+                            priority: 1000000,
                             ruleType: "default",
                             value: true,
                         },
@@ -2473,7 +2509,7 @@ describe("ComponentsClient", () => {
                         effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                         fromPlanId: "from_plan_id",
                         fromPlanName: "from_plan_name",
-                        fromSubscriptionPrice: 1,
+                        fromSubscriptionPrice: 1000000,
                         id: "id",
                         interval: "interval",
                         toPlanId: "to_plan_id",
@@ -2483,7 +2519,7 @@ describe("ComponentsClient", () => {
                         key: "value",
                     },
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    userCount: 1,
+                    userCount: 1000000,
                 },
                 component: {
                     ast: {
@@ -2521,7 +2557,7 @@ describe("ComponentsClient", () => {
                         creditName: "credit_name",
                         grantReason: "billing_credit_auto_topup",
                         id: "id",
-                        quantity: 1,
+                        quantity: 1000000,
                         quantityRemaining: 1.1,
                         quantityUsed: 1.1,
                         renewalEnabled: true,
@@ -2540,7 +2576,7 @@ describe("ComponentsClient", () => {
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                        version: 1,
+                        version: 1000000,
                     },
                     billingProduct: {
                         accountId: "account_id",
@@ -2556,7 +2592,7 @@ describe("ComponentsClient", () => {
                                 externalPriceId: "external_price_id",
                                 id: "id",
                                 interval: "day",
-                                price: 1,
+                                price: 1000000,
                                 providerType: "schematic",
                                 scheme: "per_unit",
                             },
@@ -2564,11 +2600,11 @@ describe("ComponentsClient", () => {
                         productId: "product_id",
                         providerType: "schematic",
                         quantity: 1.1,
-                        subscriptionCount: 1,
+                        subscriptionCount: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     chargeType: "free",
-                    companyCount: 1,
+                    companyCount: 1000000,
                     controlledBy: "schematic",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
@@ -2582,7 +2618,7 @@ describe("ComponentsClient", () => {
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                        version: 1,
+                        version: 1000000,
                     },
                     features: [
                         {
@@ -2651,7 +2687,7 @@ describe("ComponentsClient", () => {
                                             environmentId: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             ruleType: "rule_type",
                                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                             value: true,
@@ -2678,7 +2714,7 @@ describe("ComponentsClient", () => {
                         {
                             autoTopupEnabled: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            creditAmount: 1,
+                            creditAmount: 1000000,
                             creditId: "credit_id",
                             creditName: "credit_name",
                             id: "id",
@@ -2695,7 +2731,7 @@ describe("ComponentsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
@@ -2705,12 +2741,12 @@ describe("ComponentsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
                     planType: "plan",
-                    trialDays: 1,
+                    trialDays: 1000000,
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     versions: [
                         {
@@ -2723,7 +2759,7 @@ describe("ComponentsClient", () => {
                             planType: "plan",
                             status: "published",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                            version: 1,
+                            version: 1000000,
                         },
                     ],
                     yearlyPrice: {
@@ -2731,7 +2767,7 @@ describe("ComponentsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
@@ -2756,9 +2792,9 @@ describe("ComponentsClient", () => {
                 },
                 invoices: [
                     {
-                        amountDue: 1,
-                        amountPaid: 1,
-                        amountRemaining: 1,
+                        amountDue: 1000000,
+                        amountPaid: 1000000,
+                        amountRemaining: 1000000,
                         collectionMethod: "collection_method",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currency: "currency",
@@ -2766,7 +2802,7 @@ describe("ComponentsClient", () => {
                         environmentId: "environment_id",
                         id: "id",
                         providerType: "schematic",
-                        subtotal: 1,
+                        subtotal: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                 ],
@@ -2781,7 +2817,7 @@ describe("ComponentsClient", () => {
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                        version: 1,
+                        version: 1000000,
                     },
                     billingProduct: {
                         accountId: "account_id",
@@ -2797,7 +2833,7 @@ describe("ComponentsClient", () => {
                                 externalPriceId: "external_price_id",
                                 id: "id",
                                 interval: "day",
-                                price: 1,
+                                price: 1000000,
                                 providerType: "schematic",
                                 scheme: "per_unit",
                             },
@@ -2805,11 +2841,11 @@ describe("ComponentsClient", () => {
                         productId: "product_id",
                         providerType: "schematic",
                         quantity: 1.1,
-                        subscriptionCount: 1,
+                        subscriptionCount: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     chargeType: "free",
-                    companyCount: 1,
+                    companyCount: 1000000,
                     controlledBy: "schematic",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
@@ -2823,7 +2859,7 @@ describe("ComponentsClient", () => {
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                        version: 1,
+                        version: 1000000,
                     },
                     features: [
                         {
@@ -2892,7 +2928,7 @@ describe("ComponentsClient", () => {
                                             environmentId: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             ruleType: "rule_type",
                                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                             value: true,
@@ -2919,7 +2955,7 @@ describe("ComponentsClient", () => {
                         {
                             autoTopupEnabled: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            creditAmount: 1,
+                            creditAmount: 1000000,
                             creditId: "credit_id",
                             creditName: "credit_name",
                             id: "id",
@@ -2936,7 +2972,7 @@ describe("ComponentsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
@@ -2946,12 +2982,12 @@ describe("ComponentsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
                     planType: "plan",
-                    trialDays: 1,
+                    trialDays: 1000000,
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     versions: [
                         {
@@ -2964,7 +3000,7 @@ describe("ComponentsClient", () => {
                             planType: "plan",
                             status: "published",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                            version: 1,
+                            version: 1000000,
                         },
                     ],
                     yearlyPrice: {
@@ -2972,7 +3008,7 @@ describe("ComponentsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
@@ -2985,11 +3021,11 @@ describe("ComponentsClient", () => {
                     effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                     fromPlanId: "from_plan_id",
                     fromPlanName: "from_plan_name",
-                    fromSubscriptionPrice: 1,
+                    fromSubscriptionPrice: 1000000,
                     id: "id",
                     interval: "interval",
                     scheduledInterval: "scheduled_interval",
-                    scheduledPrice: 1,
+                    scheduledPrice: 1000000,
                     toPlanId: "to_plan_id",
                     toPlanName: "to_plan_name",
                 },
@@ -3022,9 +3058,9 @@ describe("ComponentsClient", () => {
                     expiredAt: new Date("2024-01-15T09:30:00.000Z"),
                     interval: "interval",
                     latestInvoice: {
-                        amountDue: 1,
-                        amountPaid: 1,
-                        amountRemaining: 1,
+                        amountDue: 1000000,
+                        amountPaid: 1000000,
+                        amountRemaining: 1000000,
                         collectionMethod: "collection_method",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currency: "currency",
@@ -3032,7 +3068,7 @@ describe("ComponentsClient", () => {
                         environmentId: "environment_id",
                         id: "id",
                         providerType: "schematic",
-                        subtotal: 1,
+                        subtotal: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     paymentMethod: {
@@ -3055,8 +3091,8 @@ describe("ComponentsClient", () => {
                             id: "id",
                             interval: "interval",
                             name: "name",
-                            packageSize: 1,
-                            price: 1,
+                            packageSize: 1000000,
+                            price: 1000000,
                             priceExternalId: "price_external_id",
                             priceId: "price_id",
                             priceTier: [{}],
@@ -3069,14 +3105,14 @@ describe("ComponentsClient", () => {
                     ],
                     status: "status",
                     subscriptionExternalId: "subscription_external_id",
-                    totalPrice: 1,
+                    totalPrice: 1000000,
                     trialEnd: new Date("2024-01-15T09:30:00.000Z"),
                 },
                 trialPaymentMethodRequired: true,
                 upcomingInvoice: {
-                    amountDue: 1,
-                    amountPaid: 1,
-                    amountRemaining: 1,
+                    amountDue: 1000000,
+                    amountPaid: 1000000,
+                    amountRemaining: 1000000,
                     collectionMethod: "collection_method",
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -3090,7 +3126,7 @@ describe("ComponentsClient", () => {
                     providerType: "schematic",
                     status: "draft",
                     subscriptionExternalId: "subscription_external_id",
-                    subtotal: 1,
+                    subtotal: 1000000,
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     url: "url",
                 },
@@ -3107,6 +3143,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/components/preview-data")
@@ -3125,6 +3162,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/components/preview-data")
@@ -3143,6 +3181,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/components/preview-data")
@@ -3161,6 +3200,7 @@ describe("ComponentsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/components/preview-data")

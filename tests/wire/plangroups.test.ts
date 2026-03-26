@@ -14,7 +14,7 @@ describe("PlangroupsClient", () => {
                 add_ons: [
                     {
                         charge_type: "free",
-                        company_count: 1,
+                        company_count: 1000000,
                         compatible_plan_ids: ["compatible_plan_ids"],
                         controlled_by: "schematic",
                         created_at: "2024-01-15T09:30:00Z",
@@ -88,7 +88,7 @@ describe("PlangroupsClient", () => {
                                                 environment_id: "environment_id",
                                                 id: "id",
                                                 name: "name",
-                                                priority: 1,
+                                                priority: 1000000,
                                                 rule_type: "rule_type",
                                                 updated_at: "2024-01-15T09:30:00Z",
                                                 value: true,
@@ -124,7 +124,7 @@ describe("PlangroupsClient", () => {
                                 plan_type: "plan",
                                 status: "published",
                                 updated_at: "2024-01-15T09:30:00Z",
-                                version: 1,
+                                version: 1000000,
                             },
                         ],
                     },
@@ -151,7 +151,7 @@ describe("PlangroupsClient", () => {
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
-                        version: 1,
+                        version: 1000000,
                     },
                     billing_product: {
                         account_id: "account_id",
@@ -167,7 +167,7 @@ describe("PlangroupsClient", () => {
                                 external_price_id: "external_price_id",
                                 id: "id",
                                 interval: "day",
-                                price: 1,
+                                price: 1000000,
                                 provider_type: "schematic",
                                 scheme: "per_unit",
                             },
@@ -175,11 +175,11 @@ describe("PlangroupsClient", () => {
                         product_id: "product_id",
                         provider_type: "schematic",
                         quantity: 1.1,
-                        subscription_count: 1,
+                        subscription_count: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     charge_type: "free",
-                    company_count: 1,
+                    company_count: 1000000,
                     compatible_plan_ids: ["compatible_plan_ids"],
                     controlled_by: "schematic",
                     created_at: "2024-01-15T09:30:00Z",
@@ -199,7 +199,7 @@ describe("PlangroupsClient", () => {
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
-                        version: 1,
+                        version: 1000000,
                     },
                     entitlements: [
                         {
@@ -270,7 +270,7 @@ describe("PlangroupsClient", () => {
                                             environment_id: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             rule_type: "rule_type",
                                             updated_at: "2024-01-15T09:30:00Z",
                                             value: true,
@@ -292,7 +292,7 @@ describe("PlangroupsClient", () => {
                         {
                             auto_topup_enabled: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            credit_amount: 1,
+                            credit_amount: 1000000,
                             credit_id: "credit_id",
                             credit_name: "credit_name",
                             id: "id",
@@ -310,7 +310,7 @@ describe("PlangroupsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
@@ -320,12 +320,12 @@ describe("PlangroupsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
                     plan_type: "plan",
-                    trial_days: 1,
+                    trial_days: 1000000,
                     updated_at: "2024-01-15T09:30:00Z",
                     versions: [
                         {
@@ -338,7 +338,7 @@ describe("PlangroupsClient", () => {
                             plan_type: "plan",
                             status: "published",
                             updated_at: "2024-01-15T09:30:00Z",
-                            version: 1,
+                            version: 1000000,
                         },
                     ],
                     yearly_price: {
@@ -346,7 +346,7 @@ describe("PlangroupsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
@@ -362,7 +362,7 @@ describe("PlangroupsClient", () => {
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
-                        version: 1,
+                        version: 1000000,
                     },
                     billing_product: {
                         account_id: "account_id",
@@ -378,7 +378,7 @@ describe("PlangroupsClient", () => {
                                 external_price_id: "external_price_id",
                                 id: "id",
                                 interval: "day",
-                                price: 1,
+                                price: 1000000,
                                 provider_type: "schematic",
                                 scheme: "per_unit",
                             },
@@ -386,11 +386,11 @@ describe("PlangroupsClient", () => {
                         product_id: "product_id",
                         provider_type: "schematic",
                         quantity: 1.1,
-                        subscription_count: 1,
+                        subscription_count: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     charge_type: "free",
-                    company_count: 1,
+                    company_count: 1000000,
                     compatible_plan_ids: ["compatible_plan_ids"],
                     controlled_by: "schematic",
                     created_at: "2024-01-15T09:30:00Z",
@@ -410,7 +410,7 @@ describe("PlangroupsClient", () => {
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
-                        version: 1,
+                        version: 1000000,
                     },
                     entitlements: [
                         {
@@ -481,7 +481,7 @@ describe("PlangroupsClient", () => {
                                             environment_id: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             rule_type: "rule_type",
                                             updated_at: "2024-01-15T09:30:00Z",
                                             value: true,
@@ -503,7 +503,7 @@ describe("PlangroupsClient", () => {
                         {
                             auto_topup_enabled: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            credit_amount: 1,
+                            credit_amount: 1000000,
                             credit_id: "credit_id",
                             credit_name: "credit_name",
                             id: "id",
@@ -521,7 +521,7 @@ describe("PlangroupsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
@@ -531,12 +531,12 @@ describe("PlangroupsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
                     plan_type: "plan",
-                    trial_days: 1,
+                    trial_days: 1000000,
                     updated_at: "2024-01-15T09:30:00Z",
                     versions: [
                         {
@@ -549,7 +549,7 @@ describe("PlangroupsClient", () => {
                             plan_type: "plan",
                             status: "published",
                             updated_at: "2024-01-15T09:30:00Z",
-                            version: 1,
+                            version: 1000000,
                         },
                     ],
                     yearly_price: {
@@ -557,7 +557,7 @@ describe("PlangroupsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
@@ -575,7 +575,7 @@ describe("PlangroupsClient", () => {
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
-                        version: 1,
+                        version: 1000000,
                     },
                     billing_product: {
                         account_id: "account_id",
@@ -591,7 +591,7 @@ describe("PlangroupsClient", () => {
                                 external_price_id: "external_price_id",
                                 id: "id",
                                 interval: "day",
-                                price: 1,
+                                price: 1000000,
                                 provider_type: "schematic",
                                 scheme: "per_unit",
                             },
@@ -599,11 +599,11 @@ describe("PlangroupsClient", () => {
                         product_id: "product_id",
                         provider_type: "schematic",
                         quantity: 1.1,
-                        subscription_count: 1,
+                        subscription_count: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     charge_type: "free",
-                    company_count: 1,
+                    company_count: 1000000,
                     compatible_plan_ids: ["compatible_plan_ids"],
                     controlled_by: "schematic",
                     created_at: "2024-01-15T09:30:00Z",
@@ -623,7 +623,7 @@ describe("PlangroupsClient", () => {
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
-                        version: 1,
+                        version: 1000000,
                     },
                     entitlements: [
                         {
@@ -694,7 +694,7 @@ describe("PlangroupsClient", () => {
                                             environment_id: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             rule_type: "rule_type",
                                             updated_at: "2024-01-15T09:30:00Z",
                                             value: true,
@@ -716,7 +716,7 @@ describe("PlangroupsClient", () => {
                         {
                             auto_topup_enabled: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            credit_amount: 1,
+                            credit_amount: 1000000,
                             credit_id: "credit_id",
                             credit_name: "credit_name",
                             id: "id",
@@ -734,7 +734,7 @@ describe("PlangroupsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
@@ -744,12 +744,12 @@ describe("PlangroupsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
                     plan_type: "plan",
-                    trial_days: 1,
+                    trial_days: 1000000,
                     updated_at: "2024-01-15T09:30:00Z",
                     versions: [
                         {
@@ -762,7 +762,7 @@ describe("PlangroupsClient", () => {
                             plan_type: "plan",
                             status: "published",
                             updated_at: "2024-01-15T09:30:00Z",
-                            version: 1,
+                            version: 1000000,
                         },
                     ],
                     yearly_price: {
@@ -770,7 +770,7 @@ describe("PlangroupsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
@@ -786,8 +786,8 @@ describe("PlangroupsClient", () => {
                     meter_event_name: "meter_event_name",
                     meter_event_payload_key: "meter_event_payload_key",
                     meter_id: "meter_id",
-                    package_size: 1,
-                    price: 1,
+                    package_size: 1000000,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     price_external_id: "price_external_id",
                     price_id: "price_id",
@@ -807,7 +807,7 @@ describe("PlangroupsClient", () => {
                 plans: [
                     {
                         charge_type: "free",
-                        company_count: 1,
+                        company_count: 1000000,
                         compatible_plan_ids: ["compatible_plan_ids"],
                         controlled_by: "schematic",
                         created_at: "2024-01-15T09:30:00Z",
@@ -881,7 +881,7 @@ describe("PlangroupsClient", () => {
                                                 environment_id: "environment_id",
                                                 id: "id",
                                                 name: "name",
-                                                priority: 1,
+                                                priority: 1000000,
                                                 rule_type: "rule_type",
                                                 updated_at: "2024-01-15T09:30:00Z",
                                                 value: true,
@@ -917,7 +917,7 @@ describe("PlangroupsClient", () => {
                                 plan_type: "plan",
                                 status: "published",
                                 updated_at: "2024-01-15T09:30:00Z",
-                                version: 1,
+                                version: 1000000,
                             },
                         ],
                     },
@@ -935,7 +935,7 @@ describe("PlangroupsClient", () => {
                 show_zero_price_as_free: true,
                 sync_customer_billing_details: true,
                 tax_collection_enabled: true,
-                trial_days: 1,
+                trial_days: 1000000,
                 trial_expiry_plan: {
                     active_version: {
                         created_at: "2024-01-15T09:30:00Z",
@@ -947,7 +947,7 @@ describe("PlangroupsClient", () => {
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
-                        version: 1,
+                        version: 1000000,
                     },
                     billing_product: {
                         account_id: "account_id",
@@ -963,7 +963,7 @@ describe("PlangroupsClient", () => {
                                 external_price_id: "external_price_id",
                                 id: "id",
                                 interval: "day",
-                                price: 1,
+                                price: 1000000,
                                 provider_type: "schematic",
                                 scheme: "per_unit",
                             },
@@ -971,11 +971,11 @@ describe("PlangroupsClient", () => {
                         product_id: "product_id",
                         provider_type: "schematic",
                         quantity: 1.1,
-                        subscription_count: 1,
+                        subscription_count: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     charge_type: "free",
-                    company_count: 1,
+                    company_count: 1000000,
                     compatible_plan_ids: ["compatible_plan_ids"],
                     controlled_by: "schematic",
                     created_at: "2024-01-15T09:30:00Z",
@@ -995,7 +995,7 @@ describe("PlangroupsClient", () => {
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
-                        version: 1,
+                        version: 1000000,
                     },
                     entitlements: [
                         {
@@ -1066,7 +1066,7 @@ describe("PlangroupsClient", () => {
                                             environment_id: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             rule_type: "rule_type",
                                             updated_at: "2024-01-15T09:30:00Z",
                                             value: true,
@@ -1088,7 +1088,7 @@ describe("PlangroupsClient", () => {
                         {
                             auto_topup_enabled: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            credit_amount: 1,
+                            credit_amount: 1000000,
                             credit_id: "credit_id",
                             credit_name: "credit_name",
                             id: "id",
@@ -1106,7 +1106,7 @@ describe("PlangroupsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
@@ -1116,12 +1116,12 @@ describe("PlangroupsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
                     plan_type: "plan",
-                    trial_days: 1,
+                    trial_days: 1000000,
                     updated_at: "2024-01-15T09:30:00Z",
                     versions: [
                         {
@@ -1134,7 +1134,7 @@ describe("PlangroupsClient", () => {
                             plan_type: "plan",
                             status: "published",
                             updated_at: "2024-01-15T09:30:00Z",
-                            version: 1,
+                            version: 1000000,
                         },
                     ],
                     yearly_price: {
@@ -1142,7 +1142,7 @@ describe("PlangroupsClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
@@ -1158,8 +1158,8 @@ describe("PlangroupsClient", () => {
                     meter_event_name: "meter_event_name",
                     meter_event_payload_key: "meter_event_payload_key",
                     meter_id: "meter_id",
-                    package_size: 1,
-                    price: 1,
+                    package_size: 1000000,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     price_external_id: "price_external_id",
                     price_id: "price_id",
@@ -1177,6 +1177,7 @@ describe("PlangroupsClient", () => {
             },
             params: { include_company_counts: true },
         };
+
         server.mockEndpoint().get("/plan-groups").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.plangroups.getPlanGroup({
@@ -1187,7 +1188,7 @@ describe("PlangroupsClient", () => {
                 addOns: [
                     {
                         chargeType: "free",
-                        companyCount: 1,
+                        companyCount: 1000000,
                         compatiblePlanIds: ["compatible_plan_ids"],
                         controlledBy: "schematic",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1271,7 +1272,7 @@ describe("PlangroupsClient", () => {
                                                 environmentId: "environment_id",
                                                 id: "id",
                                                 name: "name",
-                                                priority: 1,
+                                                priority: 1000000,
                                                 ruleType: "rule_type",
                                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                                 value: true,
@@ -1312,7 +1313,7 @@ describe("PlangroupsClient", () => {
                                 planType: "plan",
                                 status: "published",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                                version: 1,
+                                version: 1000000,
                             },
                         ],
                     },
@@ -1347,7 +1348,7 @@ describe("PlangroupsClient", () => {
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                        version: 1,
+                        version: 1000000,
                     },
                     billingProduct: {
                         accountId: "account_id",
@@ -1363,7 +1364,7 @@ describe("PlangroupsClient", () => {
                                 externalPriceId: "external_price_id",
                                 id: "id",
                                 interval: "day",
-                                price: 1,
+                                price: 1000000,
                                 providerType: "schematic",
                                 scheme: "per_unit",
                             },
@@ -1371,11 +1372,11 @@ describe("PlangroupsClient", () => {
                         productId: "product_id",
                         providerType: "schematic",
                         quantity: 1.1,
-                        subscriptionCount: 1,
+                        subscriptionCount: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     chargeType: "free",
-                    companyCount: 1,
+                    companyCount: 1000000,
                     compatiblePlanIds: ["compatible_plan_ids"],
                     controlledBy: "schematic",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1395,7 +1396,7 @@ describe("PlangroupsClient", () => {
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                        version: 1,
+                        version: 1000000,
                     },
                     entitlements: [
                         {
@@ -1476,7 +1477,7 @@ describe("PlangroupsClient", () => {
                                             environmentId: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             ruleType: "rule_type",
                                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                             value: true,
@@ -1503,7 +1504,7 @@ describe("PlangroupsClient", () => {
                         {
                             autoTopupEnabled: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            creditAmount: 1,
+                            creditAmount: 1000000,
                             creditId: "credit_id",
                             creditName: "credit_name",
                             id: "id",
@@ -1521,7 +1522,7 @@ describe("PlangroupsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
@@ -1531,12 +1532,12 @@ describe("PlangroupsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
                     planType: "plan",
-                    trialDays: 1,
+                    trialDays: 1000000,
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     versions: [
                         {
@@ -1549,7 +1550,7 @@ describe("PlangroupsClient", () => {
                             planType: "plan",
                             status: "published",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                            version: 1,
+                            version: 1000000,
                         },
                     ],
                     yearlyPrice: {
@@ -1557,7 +1558,7 @@ describe("PlangroupsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
@@ -1573,7 +1574,7 @@ describe("PlangroupsClient", () => {
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                        version: 1,
+                        version: 1000000,
                     },
                     billingProduct: {
                         accountId: "account_id",
@@ -1589,7 +1590,7 @@ describe("PlangroupsClient", () => {
                                 externalPriceId: "external_price_id",
                                 id: "id",
                                 interval: "day",
-                                price: 1,
+                                price: 1000000,
                                 providerType: "schematic",
                                 scheme: "per_unit",
                             },
@@ -1597,11 +1598,11 @@ describe("PlangroupsClient", () => {
                         productId: "product_id",
                         providerType: "schematic",
                         quantity: 1.1,
-                        subscriptionCount: 1,
+                        subscriptionCount: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     chargeType: "free",
-                    companyCount: 1,
+                    companyCount: 1000000,
                     compatiblePlanIds: ["compatible_plan_ids"],
                     controlledBy: "schematic",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1621,7 +1622,7 @@ describe("PlangroupsClient", () => {
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                        version: 1,
+                        version: 1000000,
                     },
                     entitlements: [
                         {
@@ -1702,7 +1703,7 @@ describe("PlangroupsClient", () => {
                                             environmentId: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             ruleType: "rule_type",
                                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                             value: true,
@@ -1729,7 +1730,7 @@ describe("PlangroupsClient", () => {
                         {
                             autoTopupEnabled: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            creditAmount: 1,
+                            creditAmount: 1000000,
                             creditId: "credit_id",
                             creditName: "credit_name",
                             id: "id",
@@ -1747,7 +1748,7 @@ describe("PlangroupsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
@@ -1757,12 +1758,12 @@ describe("PlangroupsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
                     planType: "plan",
-                    trialDays: 1,
+                    trialDays: 1000000,
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     versions: [
                         {
@@ -1775,7 +1776,7 @@ describe("PlangroupsClient", () => {
                             planType: "plan",
                             status: "published",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                            version: 1,
+                            version: 1000000,
                         },
                     ],
                     yearlyPrice: {
@@ -1783,7 +1784,7 @@ describe("PlangroupsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
@@ -1801,7 +1802,7 @@ describe("PlangroupsClient", () => {
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                        version: 1,
+                        version: 1000000,
                     },
                     billingProduct: {
                         accountId: "account_id",
@@ -1817,7 +1818,7 @@ describe("PlangroupsClient", () => {
                                 externalPriceId: "external_price_id",
                                 id: "id",
                                 interval: "day",
-                                price: 1,
+                                price: 1000000,
                                 providerType: "schematic",
                                 scheme: "per_unit",
                             },
@@ -1825,11 +1826,11 @@ describe("PlangroupsClient", () => {
                         productId: "product_id",
                         providerType: "schematic",
                         quantity: 1.1,
-                        subscriptionCount: 1,
+                        subscriptionCount: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     chargeType: "free",
-                    companyCount: 1,
+                    companyCount: 1000000,
                     compatiblePlanIds: ["compatible_plan_ids"],
                     controlledBy: "schematic",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1849,7 +1850,7 @@ describe("PlangroupsClient", () => {
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                        version: 1,
+                        version: 1000000,
                     },
                     entitlements: [
                         {
@@ -1930,7 +1931,7 @@ describe("PlangroupsClient", () => {
                                             environmentId: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             ruleType: "rule_type",
                                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                             value: true,
@@ -1957,7 +1958,7 @@ describe("PlangroupsClient", () => {
                         {
                             autoTopupEnabled: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            creditAmount: 1,
+                            creditAmount: 1000000,
                             creditId: "credit_id",
                             creditName: "credit_name",
                             id: "id",
@@ -1975,7 +1976,7 @@ describe("PlangroupsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
@@ -1985,12 +1986,12 @@ describe("PlangroupsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
                     planType: "plan",
-                    trialDays: 1,
+                    trialDays: 1000000,
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     versions: [
                         {
@@ -2003,7 +2004,7 @@ describe("PlangroupsClient", () => {
                             planType: "plan",
                             status: "published",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                            version: 1,
+                            version: 1000000,
                         },
                     ],
                     yearlyPrice: {
@@ -2011,7 +2012,7 @@ describe("PlangroupsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
@@ -2027,8 +2028,8 @@ describe("PlangroupsClient", () => {
                     meterEventName: "meter_event_name",
                     meterEventPayloadKey: "meter_event_payload_key",
                     meterId: "meter_id",
-                    packageSize: 1,
-                    price: 1,
+                    packageSize: 1000000,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     priceExternalId: "price_external_id",
                     priceId: "price_id",
@@ -2060,7 +2061,7 @@ describe("PlangroupsClient", () => {
                 plans: [
                     {
                         chargeType: "free",
-                        companyCount: 1,
+                        companyCount: 1000000,
                         compatiblePlanIds: ["compatible_plan_ids"],
                         controlledBy: "schematic",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2144,7 +2145,7 @@ describe("PlangroupsClient", () => {
                                                 environmentId: "environment_id",
                                                 id: "id",
                                                 name: "name",
-                                                priority: 1,
+                                                priority: 1000000,
                                                 ruleType: "rule_type",
                                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                                 value: true,
@@ -2185,7 +2186,7 @@ describe("PlangroupsClient", () => {
                                 planType: "plan",
                                 status: "published",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                                version: 1,
+                                version: 1000000,
                             },
                         ],
                     },
@@ -2203,7 +2204,7 @@ describe("PlangroupsClient", () => {
                 showZeroPriceAsFree: true,
                 syncCustomerBillingDetails: true,
                 taxCollectionEnabled: true,
-                trialDays: 1,
+                trialDays: 1000000,
                 trialExpiryPlan: {
                     activeVersion: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2215,7 +2216,7 @@ describe("PlangroupsClient", () => {
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                        version: 1,
+                        version: 1000000,
                     },
                     billingProduct: {
                         accountId: "account_id",
@@ -2231,7 +2232,7 @@ describe("PlangroupsClient", () => {
                                 externalPriceId: "external_price_id",
                                 id: "id",
                                 interval: "day",
-                                price: 1,
+                                price: 1000000,
                                 providerType: "schematic",
                                 scheme: "per_unit",
                             },
@@ -2239,11 +2240,11 @@ describe("PlangroupsClient", () => {
                         productId: "product_id",
                         providerType: "schematic",
                         quantity: 1.1,
-                        subscriptionCount: 1,
+                        subscriptionCount: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     chargeType: "free",
-                    companyCount: 1,
+                    companyCount: 1000000,
                     compatiblePlanIds: ["compatible_plan_ids"],
                     controlledBy: "schematic",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2263,7 +2264,7 @@ describe("PlangroupsClient", () => {
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                        version: 1,
+                        version: 1000000,
                     },
                     entitlements: [
                         {
@@ -2344,7 +2345,7 @@ describe("PlangroupsClient", () => {
                                             environmentId: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             ruleType: "rule_type",
                                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                             value: true,
@@ -2371,7 +2372,7 @@ describe("PlangroupsClient", () => {
                         {
                             autoTopupEnabled: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            creditAmount: 1,
+                            creditAmount: 1000000,
                             creditId: "credit_id",
                             creditName: "credit_name",
                             id: "id",
@@ -2389,7 +2390,7 @@ describe("PlangroupsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
@@ -2399,12 +2400,12 @@ describe("PlangroupsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
                     planType: "plan",
-                    trialDays: 1,
+                    trialDays: 1000000,
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     versions: [
                         {
@@ -2417,7 +2418,7 @@ describe("PlangroupsClient", () => {
                             planType: "plan",
                             status: "published",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                            version: 1,
+                            version: 1000000,
                         },
                     ],
                     yearlyPrice: {
@@ -2425,7 +2426,7 @@ describe("PlangroupsClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
@@ -2441,8 +2442,8 @@ describe("PlangroupsClient", () => {
                     meterEventName: "meter_event_name",
                     meterEventPayloadKey: "meter_event_payload_key",
                     meterId: "meter_id",
-                    packageSize: 1,
-                    price: 1,
+                    packageSize: 1000000,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     priceExternalId: "price_external_id",
                     priceId: "price_id",
@@ -2469,6 +2470,7 @@ describe("PlangroupsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plan-groups").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2481,6 +2483,7 @@ describe("PlangroupsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plan-groups").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2493,6 +2496,7 @@ describe("PlangroupsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plan-groups").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2505,6 +2509,7 @@ describe("PlangroupsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plan-groups").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2569,13 +2574,14 @@ describe("PlangroupsClient", () => {
                 show_zero_price_as_free: true,
                 sync_customer_billing_details: true,
                 tax_collection_enabled: true,
-                trial_days: 1,
+                trial_days: 1000000,
                 trial_expiry_plan_id: "trial_expiry_plan_id",
                 trial_expiry_plan_price_id: "trial_expiry_plan_price_id",
                 trial_payment_method_required: true,
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/plan-groups")
@@ -2666,7 +2672,7 @@ describe("PlangroupsClient", () => {
                 showZeroPriceAsFree: true,
                 syncCustomerBillingDetails: true,
                 taxCollectionEnabled: true,
-                trialDays: 1,
+                trialDays: 1000000,
                 trialExpiryPlanId: "trial_expiry_plan_id",
                 trialExpiryPlanPriceId: "trial_expiry_plan_price_id",
                 trialPaymentMethodRequired: true,
@@ -2701,6 +2707,7 @@ describe("PlangroupsClient", () => {
             sync_customer_billing_details: true,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-groups")
@@ -2779,6 +2786,7 @@ describe("PlangroupsClient", () => {
             sync_customer_billing_details: true,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-groups")
@@ -2857,6 +2865,7 @@ describe("PlangroupsClient", () => {
             sync_customer_billing_details: true,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-groups")
@@ -2935,6 +2944,7 @@ describe("PlangroupsClient", () => {
             sync_customer_billing_details: true,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-groups")
@@ -3013,6 +3023,7 @@ describe("PlangroupsClient", () => {
             sync_customer_billing_details: true,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-groups")
@@ -3124,13 +3135,14 @@ describe("PlangroupsClient", () => {
                 show_zero_price_as_free: true,
                 sync_customer_billing_details: true,
                 tax_collection_enabled: true,
-                trial_days: 1,
+                trial_days: 1000000,
                 trial_expiry_plan_id: "trial_expiry_plan_id",
                 trial_expiry_plan_price_id: "trial_expiry_plan_price_id",
                 trial_payment_method_required: true,
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .put("/plan-groups/plan_group_id")
@@ -3221,7 +3233,7 @@ describe("PlangroupsClient", () => {
                 showZeroPriceAsFree: true,
                 syncCustomerBillingDetails: true,
                 taxCollectionEnabled: true,
-                trialDays: 1,
+                trialDays: 1000000,
                 trialExpiryPlanId: "trial_expiry_plan_id",
                 trialExpiryPlanPriceId: "trial_expiry_plan_price_id",
                 trialPaymentMethodRequired: true,
@@ -3256,6 +3268,7 @@ describe("PlangroupsClient", () => {
             sync_customer_billing_details: true,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plan-groups/plan_group_id")
@@ -3334,6 +3347,7 @@ describe("PlangroupsClient", () => {
             sync_customer_billing_details: true,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plan-groups/plan_group_id")
@@ -3412,6 +3426,7 @@ describe("PlangroupsClient", () => {
             sync_customer_billing_details: true,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plan-groups/plan_group_id")
@@ -3490,6 +3505,7 @@ describe("PlangroupsClient", () => {
             sync_customer_billing_details: true,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plan-groups/plan_group_id")
@@ -3568,6 +3584,7 @@ describe("PlangroupsClient", () => {
             sync_customer_billing_details: true,
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plan-groups/plan_group_id")

@@ -13,7 +13,6 @@ export const ConditionGroupResponseData: core.serialization.ObjectSchema<
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     flagId: core.serialization.property("flag_id", core.serialization.string().optional()),
     id: core.serialization.string(),
-    planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
     ruleId: core.serialization.property("rule_id", core.serialization.string()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
@@ -25,7 +24,6 @@ export declare namespace ConditionGroupResponseData {
         environment_id: string;
         flag_id?: string | null;
         id: string;
-        plan_version_id?: string | null;
         rule_id: string;
         updated_at: string;
     }

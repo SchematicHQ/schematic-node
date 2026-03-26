@@ -23,15 +23,16 @@ describe("AccountsClient", () => {
                     updated_at: "2024-01-15T09:30:00Z",
                 },
             ],
-            params: { environment_id: "environment_id", limit: 1, offset: 1, require_environment: true },
+            params: { environment_id: "environment_id", limit: 1000000, offset: 1000000, require_environment: true },
         };
+
         server.mockEndpoint().get("/api-keys").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.accounts.listApiKeys({
             environmentId: "environment_id",
             requireEnvironment: true,
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -49,8 +50,8 @@ describe("AccountsClient", () => {
             ],
             params: {
                 environmentId: "environment_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 requireEnvironment: true,
             },
         });
@@ -61,6 +62,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/api-keys").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -75,6 +77,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/api-keys").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -89,6 +92,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/api-keys").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -103,6 +107,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/api-keys").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -117,6 +122,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/api-keys").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -145,6 +151,7 @@ describe("AccountsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/api-keys")
@@ -181,6 +188,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { name: "x" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/api-keys")
@@ -202,6 +210,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { name: "x" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/api-keys")
@@ -223,6 +232,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { name: "x" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/api-keys")
@@ -244,6 +254,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { name: "x" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/api-keys")
@@ -265,6 +276,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { name: "x" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/api-keys")
@@ -299,6 +311,7 @@ describe("AccountsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .get("/api-keys/api_key_id")
@@ -331,6 +344,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/api-keys/api_key_id")
@@ -349,6 +363,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/api-keys/api_key_id")
@@ -367,6 +382,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/api-keys/api_key_id")
@@ -385,6 +401,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/api-keys/api_key_id")
@@ -416,6 +433,7 @@ describe("AccountsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .put("/api-keys/api_key_id")
@@ -449,6 +467,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/api-keys/api_key_id")
@@ -468,6 +487,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/api-keys/api_key_id")
@@ -487,6 +507,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/api-keys/api_key_id")
@@ -506,6 +527,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/api-keys/api_key_id")
@@ -525,6 +547,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/api-keys/api_key_id")
@@ -544,6 +567,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
+
         server
             .mockEndpoint()
             .delete("/api-keys/api_key_id")
@@ -568,6 +592,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/api-keys/api_key_id")
@@ -586,6 +611,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/api-keys/api_key_id")
@@ -604,6 +630,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/api-keys/api_key_id")
@@ -622,6 +649,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/api-keys/api_key_id")
@@ -640,6 +668,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/api-keys/api_key_id")
@@ -659,15 +688,16 @@ describe("AccountsClient", () => {
 
         const rawResponseBody = {
             data: { count: 1 },
-            params: { environment_id: "environment_id", limit: 1, offset: 1, require_environment: true },
+            params: { environment_id: "environment_id", limit: 1000000, offset: 1000000, require_environment: true },
         };
+
         server.mockEndpoint().get("/api-keys/count").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.accounts.countApiKeys({
             environmentId: "environment_id",
             requireEnvironment: true,
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -675,8 +705,8 @@ describe("AccountsClient", () => {
             },
             params: {
                 environmentId: "environment_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 requireEnvironment: true,
             },
         });
@@ -687,6 +717,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/api-keys/count").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -701,6 +732,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/api-keys/count").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -715,6 +747,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/api-keys/count").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -729,6 +762,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/api-keys/count").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -743,6 +777,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/api-keys/count").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -765,11 +800,11 @@ describe("AccountsClient", () => {
                     environment_id: "environment_id",
                     id: "id",
                     method: "method",
-                    resource_id: 1,
+                    resource_id: 1000000,
                     resource_id_string: "resource_id_string",
                     resource_name: "resource_name",
                     resource_type: "resource_type",
-                    resp_code: 1,
+                    resp_code: 1000000,
                     secondary_resource: "secondary_resource",
                     started_at: "2024-01-15T09:30:00Z",
                     url: "url",
@@ -780,12 +815,13 @@ describe("AccountsClient", () => {
                 actor_type: "api_key",
                 end_time: "2024-01-15T09:30:00Z",
                 environment_id: "environment_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
                 start_time: "2024-01-15T09:30:00Z",
             },
         };
+
         server.mockEndpoint().get("/audit-log").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.accounts.listAuditLogs({
@@ -794,8 +830,8 @@ describe("AccountsClient", () => {
             environmentId: "environment_id",
             q: "q",
             startTime: new Date("2024-01-15T09:30:00.000Z"),
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -806,11 +842,11 @@ describe("AccountsClient", () => {
                     environmentId: "environment_id",
                     id: "id",
                     method: "method",
-                    resourceId: 1,
+                    resourceId: 1000000,
                     resourceIdString: "resource_id_string",
                     resourceName: "resource_name",
                     resourceType: "resource_type",
-                    respCode: 1,
+                    respCode: 1000000,
                     secondaryResource: "secondary_resource",
                     startedAt: new Date("2024-01-15T09:30:00.000Z"),
                     url: "url",
@@ -821,8 +857,8 @@ describe("AccountsClient", () => {
                 actorType: "api_key",
                 endTime: new Date("2024-01-15T09:30:00.000Z"),
                 environmentId: "environment_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
                 startTime: new Date("2024-01-15T09:30:00.000Z"),
             },
@@ -834,6 +870,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/audit-log").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -846,6 +883,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/audit-log").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -858,6 +896,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/audit-log").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -870,6 +909,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/audit-log").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -882,6 +922,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/audit-log").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -902,12 +943,12 @@ describe("AccountsClient", () => {
                 id: "id",
                 method: "method",
                 req_body: "req_body",
-                resource_id: 1,
+                resource_id: 1000000,
                 resource_id_string: "resource_id_string",
                 resource_name: "resource_name",
                 resource_type: "resource_type",
                 resp_body: "resp_body",
-                resp_code: 1,
+                resp_code: 1000000,
                 secondary_resource: "secondary_resource",
                 started_at: "2024-01-15T09:30:00Z",
                 url: "url",
@@ -916,6 +957,7 @@ describe("AccountsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .get("/audit-log/audit_log_id")
@@ -934,12 +976,12 @@ describe("AccountsClient", () => {
                 id: "id",
                 method: "method",
                 reqBody: "req_body",
-                resourceId: 1,
+                resourceId: 1000000,
                 resourceIdString: "resource_id_string",
                 resourceName: "resource_name",
                 resourceType: "resource_type",
                 respBody: "resp_body",
-                respCode: 1,
+                respCode: 1000000,
                 secondaryResource: "secondary_resource",
                 startedAt: new Date("2024-01-15T09:30:00.000Z"),
                 url: "url",
@@ -957,6 +999,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/audit-log/audit_log_id")
@@ -975,6 +1018,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/audit-log/audit_log_id")
@@ -993,6 +1037,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/audit-log/audit_log_id")
@@ -1011,6 +1056,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/audit-log/audit_log_id")
@@ -1034,12 +1080,13 @@ describe("AccountsClient", () => {
                 actor_type: "api_key",
                 end_time: "2024-01-15T09:30:00Z",
                 environment_id: "environment_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
                 start_time: "2024-01-15T09:30:00Z",
             },
         };
+
         server.mockEndpoint().get("/audit-log/count").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.accounts.countAuditLogs({
@@ -1048,8 +1095,8 @@ describe("AccountsClient", () => {
             environmentId: "environment_id",
             q: "q",
             startTime: new Date("2024-01-15T09:30:00.000Z"),
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -1059,8 +1106,8 @@ describe("AccountsClient", () => {
                 actorType: "api_key",
                 endTime: new Date("2024-01-15T09:30:00.000Z"),
                 environmentId: "environment_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
                 startTime: new Date("2024-01-15T09:30:00.000Z"),
             },
@@ -1072,6 +1119,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/audit-log/count").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1084,6 +1132,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/audit-log/count").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1096,6 +1145,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/audit-log/count").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1108,6 +1158,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/audit-log/count").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1120,6 +1171,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/audit-log/count").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1141,13 +1193,14 @@ describe("AccountsClient", () => {
                     updated_at: "2024-01-15T09:30:00Z",
                 },
             ],
-            params: { ids: ["ids"], limit: 1, offset: 1 },
+            params: { ids: ["ids"], limit: 1000000, offset: 1000000 },
         };
+
         server.mockEndpoint().get("/environments").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.accounts.listEnvironments({
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -1161,8 +1214,8 @@ describe("AccountsClient", () => {
             ],
             params: {
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
             },
         });
     });
@@ -1172,6 +1225,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/environments").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1184,6 +1238,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/environments").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1196,6 +1251,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/environments").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1208,6 +1264,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/environments").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1220,6 +1277,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/environments").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1251,6 +1309,7 @@ describe("AccountsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/environments")
@@ -1293,6 +1352,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { environment_type: "development", name: "x" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/environments")
@@ -1315,6 +1375,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { environment_type: "development", name: "x" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/environments")
@@ -1337,6 +1398,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { environment_type: "development", name: "x" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/environments")
@@ -1359,6 +1421,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { environment_type: "development", name: "x" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/environments")
@@ -1381,6 +1444,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { environment_type: "development", name: "x" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/environments")
@@ -1412,6 +1476,7 @@ describe("AccountsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .get("/environments/environment_id")
@@ -1440,6 +1505,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/environments/environment_id")
@@ -1458,6 +1524,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/environments/environment_id")
@@ -1476,6 +1543,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/environments/environment_id")
@@ -1494,6 +1562,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/environments/environment_id")
@@ -1521,6 +1590,7 @@ describe("AccountsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .put("/environments/environment_id")
@@ -1550,6 +1620,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/environments/environment_id")
@@ -1569,6 +1640,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/environments/environment_id")
@@ -1588,6 +1660,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/environments/environment_id")
@@ -1607,6 +1680,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/environments/environment_id")
@@ -1626,6 +1700,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/environments/environment_id")
@@ -1645,6 +1720,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
+
         server
             .mockEndpoint()
             .delete("/environments/environment_id")
@@ -1669,6 +1745,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/environments/environment_id")
@@ -1687,6 +1764,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/environments/environment_id")
@@ -1705,6 +1783,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/environments/environment_id")
@@ -1723,6 +1802,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/environments/environment_id")
@@ -1741,6 +1821,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/environments/environment_id")
@@ -1759,6 +1840,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { data: { ok: true }, params: { key: "value" } };
+
         server.mockEndpoint().post("/quickstart").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.accounts.quickstart();
@@ -1777,6 +1859,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().post("/quickstart").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1789,6 +1872,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().post("/quickstart").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1801,6 +1885,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().post("/quickstart").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1813,6 +1898,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().post("/quickstart").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1825,6 +1911,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().post("/quickstart").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1858,6 +1945,7 @@ describe("AccountsClient", () => {
             },
             params: { key: "value" },
         };
+
         server.mockEndpoint().get("/whoami").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.accounts.getWhoAmI();
@@ -1892,6 +1980,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/whoami").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1904,6 +1993,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/whoami").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1916,6 +2006,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/whoami").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1928,6 +2019,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/whoami").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {

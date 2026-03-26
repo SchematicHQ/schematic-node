@@ -10,8 +10,8 @@ import type * as Schematic from "../../../../index";
  *         environmentId: "environment_id",
  *         q: "q",
  *         startTime: new Date("2024-01-15T09:30:00.000Z"),
- *         limit: 1,
- *         offset: 1
+ *         limit: 1000000,
+ *         offset: 1000000
  *     }
  */
 export interface CountAuditLogsRequest {

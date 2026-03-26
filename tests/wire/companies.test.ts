@@ -19,7 +19,7 @@ describe("CompaniesClient", () => {
                                 {
                                     billing_credit_auto_topup_enabled: true,
                                     created_at: "2024-01-15T09:30:00Z",
-                                    credit_amount: 1,
+                                    credit_amount: 1000000,
                                     credit_description: "credit_description",
                                     credit_id: "credit_id",
                                     credit_name: "credit_name",
@@ -51,8 +51,8 @@ describe("CompaniesClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        period_end: 1,
-                        period_start: 1,
+                        period_end: 1000000,
+                        period_start: 1000000,
                         products: [
                             {
                                 billing_scheme: "per_unit",
@@ -63,8 +63,8 @@ describe("CompaniesClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                package_size: 1,
-                                price: 1,
+                                package_size: 1000000,
+                                price: 1000000,
                                 price_external_id: "price_external_id",
                                 price_id: "price_id",
                                 price_tier: [{}],
@@ -78,7 +78,7 @@ describe("CompaniesClient", () => {
                         provider_type: "schematic",
                         status: "status",
                         subscription_external_id: "subscription_external_id",
-                        total_price: 1,
+                        total_price: 1000000,
                     },
                     billing_subscriptions: [
                         {
@@ -99,8 +99,8 @@ describe("CompaniesClient", () => {
                             ],
                             id: "id",
                             interval: "interval",
-                            period_end: 1,
-                            period_start: 1,
+                            period_end: 1000000,
+                            period_start: 1000000,
                             products: [
                                 {
                                     billing_scheme: "per_unit",
@@ -111,8 +111,8 @@ describe("CompaniesClient", () => {
                                     id: "id",
                                     interval: "interval",
                                     name: "name",
-                                    package_size: 1,
-                                    price: 1,
+                                    package_size: 1000000,
+                                    price: 1000000,
                                     price_external_id: "price_external_id",
                                     price_id: "price_id",
                                     price_tier: [{}],
@@ -126,7 +126,7 @@ describe("CompaniesClient", () => {
                             provider_type: "schematic",
                             status: "status",
                             subscription_external_id: "subscription_external_id",
-                            total_price: 1,
+                            total_price: 1000000,
                         },
                     ],
                     created_at: "2024-01-15T09:30:00Z",
@@ -179,7 +179,7 @@ describe("CompaniesClient", () => {
                             event_subtype: "event_subtype",
                             month_reset: "month_reset",
                             period: "period",
-                            value: 1,
+                            value: 1000000,
                         },
                     ],
                     name: "name",
@@ -201,7 +201,7 @@ describe("CompaniesClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                credit_amount: 1,
+                                credit_amount: 1000000,
                                 credit_description: "credit_description",
                                 credit_id: "credit_id",
                                 credit_name: "credit_name",
@@ -246,7 +246,7 @@ describe("CompaniesClient", () => {
                             environment_id: "environment_id",
                             id: "id",
                             name: "name",
-                            priority: 1,
+                            priority: 1000000,
                             rule_type: "default",
                             value: true,
                         },
@@ -256,7 +256,7 @@ describe("CompaniesClient", () => {
                         effective_after: "2024-01-15T09:30:00Z",
                         from_plan_id: "from_plan_id",
                         from_plan_name: "from_plan_name",
-                        from_subscription_price: 1,
+                        from_subscription_price: 1000000,
                         id: "id",
                         interval: "interval",
                         to_plan_id: "to_plan_id",
@@ -264,15 +264,15 @@ describe("CompaniesClient", () => {
                     },
                     traits: { key: "value" },
                     updated_at: "2024-01-15T09:30:00Z",
-                    user_count: 1,
+                    user_count: 1000000,
                 },
             ],
             params: {
                 credit_type_ids: ["credit_type_ids"],
                 ids: ["ids"],
-                limit: 1,
+                limit: 1000000,
                 monetized_subscriptions: true,
-                offset: 1,
+                offset: 1000000,
                 plan_id: "plan_id",
                 plan_ids: ["plan_ids"],
                 plan_version_id: "plan_version_id",
@@ -288,6 +288,7 @@ describe("CompaniesClient", () => {
                 without_subscription: true,
             },
         };
+
         server.mockEndpoint().get("/companies").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.companies.listCompanies({
@@ -302,8 +303,8 @@ describe("CompaniesClient", () => {
             withoutPlan: true,
             withoutSubscription: true,
             withSubscription: true,
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -315,7 +316,7 @@ describe("CompaniesClient", () => {
                                 {
                                     billingCreditAutoTopupEnabled: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    creditAmount: 1,
+                                    creditAmount: 1000000,
                                     creditDescription: "credit_description",
                                     creditId: "credit_id",
                                     creditName: "credit_name",
@@ -349,8 +350,8 @@ describe("CompaniesClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        periodEnd: 1,
-                        periodStart: 1,
+                        periodEnd: 1000000,
+                        periodStart: 1000000,
                         products: [
                             {
                                 billingScheme: "per_unit",
@@ -361,8 +362,8 @@ describe("CompaniesClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                packageSize: 1,
-                                price: 1,
+                                packageSize: 1000000,
+                                price: 1000000,
                                 priceExternalId: "price_external_id",
                                 priceId: "price_id",
                                 priceTier: [{}],
@@ -376,7 +377,7 @@ describe("CompaniesClient", () => {
                         providerType: "schematic",
                         status: "status",
                         subscriptionExternalId: "subscription_external_id",
-                        totalPrice: 1,
+                        totalPrice: 1000000,
                     },
                     billingSubscriptions: [
                         {
@@ -397,8 +398,8 @@ describe("CompaniesClient", () => {
                             ],
                             id: "id",
                             interval: "interval",
-                            periodEnd: 1,
-                            periodStart: 1,
+                            periodEnd: 1000000,
+                            periodStart: 1000000,
                             products: [
                                 {
                                     billingScheme: "per_unit",
@@ -409,8 +410,8 @@ describe("CompaniesClient", () => {
                                     id: "id",
                                     interval: "interval",
                                     name: "name",
-                                    packageSize: 1,
-                                    price: 1,
+                                    packageSize: 1000000,
+                                    price: 1000000,
                                     priceExternalId: "price_external_id",
                                     priceId: "price_id",
                                     priceTier: [{}],
@@ -424,7 +425,7 @@ describe("CompaniesClient", () => {
                             providerType: "schematic",
                             status: "status",
                             subscriptionExternalId: "subscription_external_id",
-                            totalPrice: 1,
+                            totalPrice: 1000000,
                         },
                     ],
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -483,7 +484,7 @@ describe("CompaniesClient", () => {
                             eventSubtype: "event_subtype",
                             monthReset: "month_reset",
                             period: "period",
-                            value: 1,
+                            value: 1000000,
                         },
                     ],
                     name: "name",
@@ -505,7 +506,7 @@ describe("CompaniesClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                creditAmount: 1,
+                                creditAmount: 1000000,
                                 creditDescription: "credit_description",
                                 creditId: "credit_id",
                                 creditName: "credit_name",
@@ -555,7 +556,7 @@ describe("CompaniesClient", () => {
                             environmentId: "environment_id",
                             id: "id",
                             name: "name",
-                            priority: 1,
+                            priority: 1000000,
                             ruleType: "default",
                             value: true,
                         },
@@ -565,7 +566,7 @@ describe("CompaniesClient", () => {
                         effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                         fromPlanId: "from_plan_id",
                         fromPlanName: "from_plan_name",
-                        fromSubscriptionPrice: 1,
+                        fromSubscriptionPrice: 1000000,
                         id: "id",
                         interval: "interval",
                         toPlanId: "to_plan_id",
@@ -575,15 +576,15 @@ describe("CompaniesClient", () => {
                         key: "value",
                     },
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    userCount: 1,
+                    userCount: 1000000,
                 },
             ],
             params: {
                 creditTypeIds: ["credit_type_ids"],
                 ids: ["ids"],
-                limit: 1,
+                limit: 1000000,
                 monetizedSubscriptions: true,
-                offset: 1,
+                offset: 1000000,
                 planId: "plan_id",
                 planIds: ["plan_ids"],
                 planVersionId: "plan_version_id",
@@ -606,6 +607,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/companies").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -618,6 +620,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/companies").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -630,6 +633,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/companies").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -642,6 +646,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/companies").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -654,6 +659,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/companies").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -674,7 +680,7 @@ describe("CompaniesClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                credit_amount: 1,
+                                credit_amount: 1000000,
                                 credit_description: "credit_description",
                                 credit_id: "credit_id",
                                 credit_name: "credit_name",
@@ -690,7 +696,7 @@ describe("CompaniesClient", () => {
                 billing_credit_balances: { key: 1.1 },
                 billing_subscription: {
                     application_id: "application_id",
-                    cancel_at: 1,
+                    cancel_at: 1000000,
                     cancel_at_period_end: true,
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
@@ -712,9 +718,9 @@ describe("CompaniesClient", () => {
                     id: "id",
                     interval: "interval",
                     latest_invoice: {
-                        amount_due: 1,
-                        amount_paid: 1,
-                        amount_remaining: 1,
+                        amount_due: 1000000,
+                        amount_paid: 1000000,
+                        amount_remaining: 1000000,
                         collection_method: "collection_method",
                         created_at: "2024-01-15T09:30:00Z",
                         currency: "currency",
@@ -722,7 +728,7 @@ describe("CompaniesClient", () => {
                         environment_id: "environment_id",
                         id: "id",
                         provider_type: "schematic",
-                        subtotal: 1,
+                        subtotal: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     metadata: { key: "value" },
@@ -736,8 +742,8 @@ describe("CompaniesClient", () => {
                         provider_type: "schematic",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
-                    period_end: 1,
-                    period_start: 1,
+                    period_end: 1000000,
+                    period_start: 1000000,
                     products: [
                         {
                             billing_scheme: "per_unit",
@@ -748,8 +754,8 @@ describe("CompaniesClient", () => {
                             id: "id",
                             interval: "interval",
                             name: "name",
-                            package_size: 1,
-                            price: 1,
+                            package_size: 1000000,
+                            price: 1000000,
                             price_external_id: "price_external_id",
                             price_id: "price_id",
                             price_tier: [{}],
@@ -763,8 +769,8 @@ describe("CompaniesClient", () => {
                     provider_type: "schematic",
                     status: "status",
                     subscription_external_id: "subscription_external_id",
-                    total_price: 1,
-                    trial_end: 1,
+                    total_price: 1000000,
+                    trial_end: 1000000,
                     trial_end_setting: "cancel",
                 },
                 billing_subscriptions: [
@@ -786,8 +792,8 @@ describe("CompaniesClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        period_end: 1,
-                        period_start: 1,
+                        period_end: 1000000,
+                        period_start: 1000000,
                         products: [
                             {
                                 billing_scheme: "per_unit",
@@ -798,8 +804,8 @@ describe("CompaniesClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                package_size: 1,
-                                price: 1,
+                                package_size: 1000000,
+                                price: 1000000,
                                 price_external_id: "price_external_id",
                                 price_id: "price_id",
                                 price_tier: [{}],
@@ -813,7 +819,7 @@ describe("CompaniesClient", () => {
                         provider_type: "schematic",
                         status: "status",
                         subscription_external_id: "subscription_external_id",
-                        total_price: 1,
+                        total_price: 1000000,
                     },
                 ],
                 created_at: "2024-01-15T09:30:00Z",
@@ -824,8 +830,8 @@ describe("CompaniesClient", () => {
                     billing_email: "billing_email",
                     billing_name: "billing_name",
                     card_brand: "card_brand",
-                    card_exp_month: 1,
-                    card_exp_year: 1,
+                    card_exp_month: 1000000,
+                    card_exp_year: 1000000,
                     card_last4: "card_last4",
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
@@ -876,7 +882,7 @@ describe("CompaniesClient", () => {
                         event_subtype: "event_subtype",
                         month_reset: "month_reset",
                         period: "period",
-                        value: 1,
+                        value: 1000000,
                     },
                 ],
                 name: "name",
@@ -903,7 +909,7 @@ describe("CompaniesClient", () => {
                         {
                             billing_credit_auto_topup_enabled: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            credit_amount: 1,
+                            credit_amount: 1000000,
                             credit_description: "credit_description",
                             credit_id: "credit_id",
                             credit_name: "credit_name",
@@ -915,7 +921,7 @@ describe("CompaniesClient", () => {
                     ],
                     name: "name",
                     plan_period: "plan_period",
-                    plan_price: 1,
+                    plan_price: 1000000,
                     plan_version_id: "plan_version_id",
                 },
                 plans: [{ id: "id", name: "name" }],
@@ -951,7 +957,7 @@ describe("CompaniesClient", () => {
                         environment_id: "environment_id",
                         id: "id",
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         rule_type: "default",
                         value: true,
                     },
@@ -961,20 +967,21 @@ describe("CompaniesClient", () => {
                     effective_after: "2024-01-15T09:30:00Z",
                     from_plan_id: "from_plan_id",
                     from_plan_name: "from_plan_name",
-                    from_subscription_price: 1,
+                    from_subscription_price: 1000000,
                     id: "id",
                     interval: "interval",
                     scheduled_interval: "scheduled_interval",
-                    scheduled_price: 1,
+                    scheduled_price: 1000000,
                     to_plan_id: "to_plan_id",
                     to_plan_name: "to_plan_name",
                 },
                 traits: { key: "value" },
                 updated_at: "2024-01-15T09:30:00Z",
-                user_count: 1,
+                user_count: 1000000,
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/companies")
@@ -998,7 +1005,7 @@ describe("CompaniesClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                creditAmount: 1,
+                                creditAmount: 1000000,
                                 creditDescription: "credit_description",
                                 creditId: "credit_id",
                                 creditName: "credit_name",
@@ -1016,7 +1023,7 @@ describe("CompaniesClient", () => {
                 },
                 billingSubscription: {
                     applicationId: "application_id",
-                    cancelAt: 1,
+                    cancelAt: 1000000,
                     cancelAtPeriodEnd: true,
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1038,9 +1045,9 @@ describe("CompaniesClient", () => {
                     id: "id",
                     interval: "interval",
                     latestInvoice: {
-                        amountDue: 1,
-                        amountPaid: 1,
-                        amountRemaining: 1,
+                        amountDue: 1000000,
+                        amountPaid: 1000000,
+                        amountRemaining: 1000000,
                         collectionMethod: "collection_method",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currency: "currency",
@@ -1048,7 +1055,7 @@ describe("CompaniesClient", () => {
                         environmentId: "environment_id",
                         id: "id",
                         providerType: "schematic",
-                        subtotal: 1,
+                        subtotal: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     metadata: {
@@ -1064,8 +1071,8 @@ describe("CompaniesClient", () => {
                         providerType: "schematic",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
-                    periodEnd: 1,
-                    periodStart: 1,
+                    periodEnd: 1000000,
+                    periodStart: 1000000,
                     products: [
                         {
                             billingScheme: "per_unit",
@@ -1076,8 +1083,8 @@ describe("CompaniesClient", () => {
                             id: "id",
                             interval: "interval",
                             name: "name",
-                            packageSize: 1,
-                            price: 1,
+                            packageSize: 1000000,
+                            price: 1000000,
                             priceExternalId: "price_external_id",
                             priceId: "price_id",
                             priceTier: [{}],
@@ -1091,8 +1098,8 @@ describe("CompaniesClient", () => {
                     providerType: "schematic",
                     status: "status",
                     subscriptionExternalId: "subscription_external_id",
-                    totalPrice: 1,
-                    trialEnd: 1,
+                    totalPrice: 1000000,
+                    trialEnd: 1000000,
                     trialEndSetting: "cancel",
                 },
                 billingSubscriptions: [
@@ -1114,8 +1121,8 @@ describe("CompaniesClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        periodEnd: 1,
-                        periodStart: 1,
+                        periodEnd: 1000000,
+                        periodStart: 1000000,
                         products: [
                             {
                                 billingScheme: "per_unit",
@@ -1126,8 +1133,8 @@ describe("CompaniesClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                packageSize: 1,
-                                price: 1,
+                                packageSize: 1000000,
+                                price: 1000000,
                                 priceExternalId: "price_external_id",
                                 priceId: "price_id",
                                 priceTier: [{}],
@@ -1141,7 +1148,7 @@ describe("CompaniesClient", () => {
                         providerType: "schematic",
                         status: "status",
                         subscriptionExternalId: "subscription_external_id",
-                        totalPrice: 1,
+                        totalPrice: 1000000,
                     },
                 ],
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1152,8 +1159,8 @@ describe("CompaniesClient", () => {
                     billingEmail: "billing_email",
                     billingName: "billing_name",
                     cardBrand: "card_brand",
-                    cardExpMonth: 1,
-                    cardExpYear: 1,
+                    cardExpMonth: 1000000,
+                    cardExpYear: 1000000,
                     cardLast4: "card_last4",
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1210,7 +1217,7 @@ describe("CompaniesClient", () => {
                         eventSubtype: "event_subtype",
                         monthReset: "month_reset",
                         period: "period",
-                        value: 1,
+                        value: 1000000,
                     },
                 ],
                 name: "name",
@@ -1237,7 +1244,7 @@ describe("CompaniesClient", () => {
                         {
                             billingCreditAutoTopupEnabled: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            creditAmount: 1,
+                            creditAmount: 1000000,
                             creditDescription: "credit_description",
                             creditId: "credit_id",
                             creditName: "credit_name",
@@ -1249,7 +1256,7 @@ describe("CompaniesClient", () => {
                     ],
                     name: "name",
                     planPeriod: "plan_period",
-                    planPrice: 1,
+                    planPrice: 1000000,
                     planVersionId: "plan_version_id",
                 },
                 plans: [
@@ -1290,7 +1297,7 @@ describe("CompaniesClient", () => {
                         environmentId: "environment_id",
                         id: "id",
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         ruleType: "default",
                         value: true,
                     },
@@ -1300,11 +1307,11 @@ describe("CompaniesClient", () => {
                     effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                     fromPlanId: "from_plan_id",
                     fromPlanName: "from_plan_name",
-                    fromSubscriptionPrice: 1,
+                    fromSubscriptionPrice: 1000000,
                     id: "id",
                     interval: "interval",
                     scheduledInterval: "scheduled_interval",
-                    scheduledPrice: 1,
+                    scheduledPrice: 1000000,
                     toPlanId: "to_plan_id",
                     toPlanName: "to_plan_name",
                 },
@@ -1312,7 +1319,7 @@ describe("CompaniesClient", () => {
                     key: "value",
                 },
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                userCount: 1,
+                userCount: 1000000,
             },
             params: {
                 key: "value",
@@ -1325,6 +1332,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/companies")
@@ -1348,6 +1356,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/companies")
@@ -1371,6 +1380,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/companies")
@@ -1394,6 +1404,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/companies")
@@ -1417,6 +1428,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/companies")
@@ -1448,7 +1460,7 @@ describe("CompaniesClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                credit_amount: 1,
+                                credit_amount: 1000000,
                                 credit_description: "credit_description",
                                 credit_id: "credit_id",
                                 credit_name: "credit_name",
@@ -1464,7 +1476,7 @@ describe("CompaniesClient", () => {
                 billing_credit_balances: { key: 1.1 },
                 billing_subscription: {
                     application_id: "application_id",
-                    cancel_at: 1,
+                    cancel_at: 1000000,
                     cancel_at_period_end: true,
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
@@ -1486,9 +1498,9 @@ describe("CompaniesClient", () => {
                     id: "id",
                     interval: "interval",
                     latest_invoice: {
-                        amount_due: 1,
-                        amount_paid: 1,
-                        amount_remaining: 1,
+                        amount_due: 1000000,
+                        amount_paid: 1000000,
+                        amount_remaining: 1000000,
                         collection_method: "collection_method",
                         created_at: "2024-01-15T09:30:00Z",
                         currency: "currency",
@@ -1496,7 +1508,7 @@ describe("CompaniesClient", () => {
                         environment_id: "environment_id",
                         id: "id",
                         provider_type: "schematic",
-                        subtotal: 1,
+                        subtotal: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     metadata: { key: "value" },
@@ -1510,8 +1522,8 @@ describe("CompaniesClient", () => {
                         provider_type: "schematic",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
-                    period_end: 1,
-                    period_start: 1,
+                    period_end: 1000000,
+                    period_start: 1000000,
                     products: [
                         {
                             billing_scheme: "per_unit",
@@ -1522,8 +1534,8 @@ describe("CompaniesClient", () => {
                             id: "id",
                             interval: "interval",
                             name: "name",
-                            package_size: 1,
-                            price: 1,
+                            package_size: 1000000,
+                            price: 1000000,
                             price_external_id: "price_external_id",
                             price_id: "price_id",
                             price_tier: [{}],
@@ -1537,8 +1549,8 @@ describe("CompaniesClient", () => {
                     provider_type: "schematic",
                     status: "status",
                     subscription_external_id: "subscription_external_id",
-                    total_price: 1,
-                    trial_end: 1,
+                    total_price: 1000000,
+                    trial_end: 1000000,
                     trial_end_setting: "cancel",
                 },
                 billing_subscriptions: [
@@ -1560,8 +1572,8 @@ describe("CompaniesClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        period_end: 1,
-                        period_start: 1,
+                        period_end: 1000000,
+                        period_start: 1000000,
                         products: [
                             {
                                 billing_scheme: "per_unit",
@@ -1572,8 +1584,8 @@ describe("CompaniesClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                package_size: 1,
-                                price: 1,
+                                package_size: 1000000,
+                                price: 1000000,
                                 price_external_id: "price_external_id",
                                 price_id: "price_id",
                                 price_tier: [{}],
@@ -1587,7 +1599,7 @@ describe("CompaniesClient", () => {
                         provider_type: "schematic",
                         status: "status",
                         subscription_external_id: "subscription_external_id",
-                        total_price: 1,
+                        total_price: 1000000,
                     },
                 ],
                 created_at: "2024-01-15T09:30:00Z",
@@ -1598,8 +1610,8 @@ describe("CompaniesClient", () => {
                     billing_email: "billing_email",
                     billing_name: "billing_name",
                     card_brand: "card_brand",
-                    card_exp_month: 1,
-                    card_exp_year: 1,
+                    card_exp_month: 1000000,
+                    card_exp_year: 1000000,
                     card_last4: "card_last4",
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
@@ -1650,7 +1662,7 @@ describe("CompaniesClient", () => {
                         event_subtype: "event_subtype",
                         month_reset: "month_reset",
                         period: "period",
-                        value: 1,
+                        value: 1000000,
                     },
                 ],
                 name: "name",
@@ -1677,7 +1689,7 @@ describe("CompaniesClient", () => {
                         {
                             billing_credit_auto_topup_enabled: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            credit_amount: 1,
+                            credit_amount: 1000000,
                             credit_description: "credit_description",
                             credit_id: "credit_id",
                             credit_name: "credit_name",
@@ -1689,7 +1701,7 @@ describe("CompaniesClient", () => {
                     ],
                     name: "name",
                     plan_period: "plan_period",
-                    plan_price: 1,
+                    plan_price: 1000000,
                     plan_version_id: "plan_version_id",
                 },
                 plans: [{ id: "id", name: "name" }],
@@ -1725,7 +1737,7 @@ describe("CompaniesClient", () => {
                         environment_id: "environment_id",
                         id: "id",
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         rule_type: "default",
                         value: true,
                     },
@@ -1735,20 +1747,21 @@ describe("CompaniesClient", () => {
                     effective_after: "2024-01-15T09:30:00Z",
                     from_plan_id: "from_plan_id",
                     from_plan_name: "from_plan_name",
-                    from_subscription_price: 1,
+                    from_subscription_price: 1000000,
                     id: "id",
                     interval: "interval",
                     scheduled_interval: "scheduled_interval",
-                    scheduled_price: 1,
+                    scheduled_price: 1000000,
                     to_plan_id: "to_plan_id",
                     to_plan_name: "to_plan_name",
                 },
                 traits: { key: "value" },
                 updated_at: "2024-01-15T09:30:00Z",
-                user_count: 1,
+                user_count: 1000000,
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .get("/companies/company_id")
@@ -1767,7 +1780,7 @@ describe("CompaniesClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                creditAmount: 1,
+                                creditAmount: 1000000,
                                 creditDescription: "credit_description",
                                 creditId: "credit_id",
                                 creditName: "credit_name",
@@ -1785,7 +1798,7 @@ describe("CompaniesClient", () => {
                 },
                 billingSubscription: {
                     applicationId: "application_id",
-                    cancelAt: 1,
+                    cancelAt: 1000000,
                     cancelAtPeriodEnd: true,
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1807,9 +1820,9 @@ describe("CompaniesClient", () => {
                     id: "id",
                     interval: "interval",
                     latestInvoice: {
-                        amountDue: 1,
-                        amountPaid: 1,
-                        amountRemaining: 1,
+                        amountDue: 1000000,
+                        amountPaid: 1000000,
+                        amountRemaining: 1000000,
                         collectionMethod: "collection_method",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currency: "currency",
@@ -1817,7 +1830,7 @@ describe("CompaniesClient", () => {
                         environmentId: "environment_id",
                         id: "id",
                         providerType: "schematic",
-                        subtotal: 1,
+                        subtotal: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     metadata: {
@@ -1833,8 +1846,8 @@ describe("CompaniesClient", () => {
                         providerType: "schematic",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
-                    periodEnd: 1,
-                    periodStart: 1,
+                    periodEnd: 1000000,
+                    periodStart: 1000000,
                     products: [
                         {
                             billingScheme: "per_unit",
@@ -1845,8 +1858,8 @@ describe("CompaniesClient", () => {
                             id: "id",
                             interval: "interval",
                             name: "name",
-                            packageSize: 1,
-                            price: 1,
+                            packageSize: 1000000,
+                            price: 1000000,
                             priceExternalId: "price_external_id",
                             priceId: "price_id",
                             priceTier: [{}],
@@ -1860,8 +1873,8 @@ describe("CompaniesClient", () => {
                     providerType: "schematic",
                     status: "status",
                     subscriptionExternalId: "subscription_external_id",
-                    totalPrice: 1,
-                    trialEnd: 1,
+                    totalPrice: 1000000,
+                    trialEnd: 1000000,
                     trialEndSetting: "cancel",
                 },
                 billingSubscriptions: [
@@ -1883,8 +1896,8 @@ describe("CompaniesClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        periodEnd: 1,
-                        periodStart: 1,
+                        periodEnd: 1000000,
+                        periodStart: 1000000,
                         products: [
                             {
                                 billingScheme: "per_unit",
@@ -1895,8 +1908,8 @@ describe("CompaniesClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                packageSize: 1,
-                                price: 1,
+                                packageSize: 1000000,
+                                price: 1000000,
                                 priceExternalId: "price_external_id",
                                 priceId: "price_id",
                                 priceTier: [{}],
@@ -1910,7 +1923,7 @@ describe("CompaniesClient", () => {
                         providerType: "schematic",
                         status: "status",
                         subscriptionExternalId: "subscription_external_id",
-                        totalPrice: 1,
+                        totalPrice: 1000000,
                     },
                 ],
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1921,8 +1934,8 @@ describe("CompaniesClient", () => {
                     billingEmail: "billing_email",
                     billingName: "billing_name",
                     cardBrand: "card_brand",
-                    cardExpMonth: 1,
-                    cardExpYear: 1,
+                    cardExpMonth: 1000000,
+                    cardExpYear: 1000000,
                     cardLast4: "card_last4",
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1979,7 +1992,7 @@ describe("CompaniesClient", () => {
                         eventSubtype: "event_subtype",
                         monthReset: "month_reset",
                         period: "period",
-                        value: 1,
+                        value: 1000000,
                     },
                 ],
                 name: "name",
@@ -2006,7 +2019,7 @@ describe("CompaniesClient", () => {
                         {
                             billingCreditAutoTopupEnabled: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            creditAmount: 1,
+                            creditAmount: 1000000,
                             creditDescription: "credit_description",
                             creditId: "credit_id",
                             creditName: "credit_name",
@@ -2018,7 +2031,7 @@ describe("CompaniesClient", () => {
                     ],
                     name: "name",
                     planPeriod: "plan_period",
-                    planPrice: 1,
+                    planPrice: 1000000,
                     planVersionId: "plan_version_id",
                 },
                 plans: [
@@ -2059,7 +2072,7 @@ describe("CompaniesClient", () => {
                         environmentId: "environment_id",
                         id: "id",
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         ruleType: "default",
                         value: true,
                     },
@@ -2069,11 +2082,11 @@ describe("CompaniesClient", () => {
                     effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                     fromPlanId: "from_plan_id",
                     fromPlanName: "from_plan_name",
-                    fromSubscriptionPrice: 1,
+                    fromSubscriptionPrice: 1000000,
                     id: "id",
                     interval: "interval",
                     scheduledInterval: "scheduled_interval",
-                    scheduledPrice: 1,
+                    scheduledPrice: 1000000,
                     toPlanId: "to_plan_id",
                     toPlanName: "to_plan_name",
                 },
@@ -2081,7 +2094,7 @@ describe("CompaniesClient", () => {
                     key: "value",
                 },
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                userCount: 1,
+                userCount: 1000000,
             },
             params: {
                 key: "value",
@@ -2094,6 +2107,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/companies/company_id")
@@ -2112,6 +2126,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/companies/company_id")
@@ -2130,6 +2145,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/companies/company_id")
@@ -2148,6 +2164,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/companies/company_id")
@@ -2166,6 +2183,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { data: { deleted: true }, params: { cancel_subscription: true, prorate: true } };
+
         server
             .mockEndpoint()
             .delete("/companies/company_id")
@@ -2194,6 +2212,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/companies/company_id")
@@ -2212,6 +2231,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/companies/company_id")
@@ -2230,6 +2250,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/companies/company_id")
@@ -2248,6 +2269,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/companies/company_id")
@@ -2266,6 +2288,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/companies/company_id")
@@ -2288,9 +2311,9 @@ describe("CompaniesClient", () => {
             params: {
                 credit_type_ids: ["credit_type_ids"],
                 ids: ["ids"],
-                limit: 1,
+                limit: 1000000,
                 monetized_subscriptions: true,
-                offset: 1,
+                offset: 1000000,
                 plan_id: "plan_id",
                 plan_ids: ["plan_ids"],
                 plan_version_id: "plan_version_id",
@@ -2306,6 +2329,7 @@ describe("CompaniesClient", () => {
                 without_subscription: true,
             },
         };
+
         server.mockEndpoint().get("/companies/count").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.companies.countCompanies({
@@ -2320,8 +2344,8 @@ describe("CompaniesClient", () => {
             withoutPlan: true,
             withoutSubscription: true,
             withSubscription: true,
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -2330,9 +2354,9 @@ describe("CompaniesClient", () => {
             params: {
                 creditTypeIds: ["credit_type_ids"],
                 ids: ["ids"],
-                limit: 1,
+                limit: 1000000,
                 monetizedSubscriptions: true,
-                offset: 1,
+                offset: 1000000,
                 planId: "plan_id",
                 planIds: ["plan_ids"],
                 planVersionId: "plan_version_id",
@@ -2355,6 +2379,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/companies/count").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2367,6 +2392,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/companies/count").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2379,6 +2405,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/companies/count").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2391,6 +2418,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/companies/count").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2403,6 +2431,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/companies/count").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2423,7 +2452,7 @@ describe("CompaniesClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                credit_amount: 1,
+                                credit_amount: 1000000,
                                 credit_description: "credit_description",
                                 credit_id: "credit_id",
                                 credit_name: "credit_name",
@@ -2439,7 +2468,7 @@ describe("CompaniesClient", () => {
                 billing_credit_balances: { key: 1.1 },
                 billing_subscription: {
                     application_id: "application_id",
-                    cancel_at: 1,
+                    cancel_at: 1000000,
                     cancel_at_period_end: true,
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
@@ -2461,9 +2490,9 @@ describe("CompaniesClient", () => {
                     id: "id",
                     interval: "interval",
                     latest_invoice: {
-                        amount_due: 1,
-                        amount_paid: 1,
-                        amount_remaining: 1,
+                        amount_due: 1000000,
+                        amount_paid: 1000000,
+                        amount_remaining: 1000000,
                         collection_method: "collection_method",
                         created_at: "2024-01-15T09:30:00Z",
                         currency: "currency",
@@ -2471,7 +2500,7 @@ describe("CompaniesClient", () => {
                         environment_id: "environment_id",
                         id: "id",
                         provider_type: "schematic",
-                        subtotal: 1,
+                        subtotal: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     metadata: { key: "value" },
@@ -2485,8 +2514,8 @@ describe("CompaniesClient", () => {
                         provider_type: "schematic",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
-                    period_end: 1,
-                    period_start: 1,
+                    period_end: 1000000,
+                    period_start: 1000000,
                     products: [
                         {
                             billing_scheme: "per_unit",
@@ -2497,8 +2526,8 @@ describe("CompaniesClient", () => {
                             id: "id",
                             interval: "interval",
                             name: "name",
-                            package_size: 1,
-                            price: 1,
+                            package_size: 1000000,
+                            price: 1000000,
                             price_external_id: "price_external_id",
                             price_id: "price_id",
                             price_tier: [{}],
@@ -2512,8 +2541,8 @@ describe("CompaniesClient", () => {
                     provider_type: "schematic",
                     status: "status",
                     subscription_external_id: "subscription_external_id",
-                    total_price: 1,
-                    trial_end: 1,
+                    total_price: 1000000,
+                    trial_end: 1000000,
                     trial_end_setting: "cancel",
                 },
                 billing_subscriptions: [
@@ -2535,8 +2564,8 @@ describe("CompaniesClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        period_end: 1,
-                        period_start: 1,
+                        period_end: 1000000,
+                        period_start: 1000000,
                         products: [
                             {
                                 billing_scheme: "per_unit",
@@ -2547,8 +2576,8 @@ describe("CompaniesClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                package_size: 1,
-                                price: 1,
+                                package_size: 1000000,
+                                price: 1000000,
                                 price_external_id: "price_external_id",
                                 price_id: "price_id",
                                 price_tier: [{}],
@@ -2562,7 +2591,7 @@ describe("CompaniesClient", () => {
                         provider_type: "schematic",
                         status: "status",
                         subscription_external_id: "subscription_external_id",
-                        total_price: 1,
+                        total_price: 1000000,
                     },
                 ],
                 created_at: "2024-01-15T09:30:00Z",
@@ -2573,8 +2602,8 @@ describe("CompaniesClient", () => {
                     billing_email: "billing_email",
                     billing_name: "billing_name",
                     card_brand: "card_brand",
-                    card_exp_month: 1,
-                    card_exp_year: 1,
+                    card_exp_month: 1000000,
+                    card_exp_year: 1000000,
                     card_last4: "card_last4",
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
@@ -2625,7 +2654,7 @@ describe("CompaniesClient", () => {
                         event_subtype: "event_subtype",
                         month_reset: "month_reset",
                         period: "period",
-                        value: 1,
+                        value: 1000000,
                     },
                 ],
                 name: "name",
@@ -2652,7 +2681,7 @@ describe("CompaniesClient", () => {
                         {
                             billing_credit_auto_topup_enabled: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            credit_amount: 1,
+                            credit_amount: 1000000,
                             credit_description: "credit_description",
                             credit_id: "credit_id",
                             credit_name: "credit_name",
@@ -2664,7 +2693,7 @@ describe("CompaniesClient", () => {
                     ],
                     name: "name",
                     plan_period: "plan_period",
-                    plan_price: 1,
+                    plan_price: 1000000,
                     plan_version_id: "plan_version_id",
                 },
                 plans: [{ id: "id", name: "name" }],
@@ -2700,7 +2729,7 @@ describe("CompaniesClient", () => {
                         environment_id: "environment_id",
                         id: "id",
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         rule_type: "default",
                         value: true,
                     },
@@ -2710,20 +2739,21 @@ describe("CompaniesClient", () => {
                     effective_after: "2024-01-15T09:30:00Z",
                     from_plan_id: "from_plan_id",
                     from_plan_name: "from_plan_name",
-                    from_subscription_price: 1,
+                    from_subscription_price: 1000000,
                     id: "id",
                     interval: "interval",
                     scheduled_interval: "scheduled_interval",
-                    scheduled_price: 1,
+                    scheduled_price: 1000000,
                     to_plan_id: "to_plan_id",
                     to_plan_name: "to_plan_name",
                 },
                 traits: { key: "value" },
                 updated_at: "2024-01-15T09:30:00Z",
-                user_count: 1,
+                user_count: 1000000,
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/companies/create")
@@ -2747,7 +2777,7 @@ describe("CompaniesClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                creditAmount: 1,
+                                creditAmount: 1000000,
                                 creditDescription: "credit_description",
                                 creditId: "credit_id",
                                 creditName: "credit_name",
@@ -2765,7 +2795,7 @@ describe("CompaniesClient", () => {
                 },
                 billingSubscription: {
                     applicationId: "application_id",
-                    cancelAt: 1,
+                    cancelAt: 1000000,
                     cancelAtPeriodEnd: true,
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2787,9 +2817,9 @@ describe("CompaniesClient", () => {
                     id: "id",
                     interval: "interval",
                     latestInvoice: {
-                        amountDue: 1,
-                        amountPaid: 1,
-                        amountRemaining: 1,
+                        amountDue: 1000000,
+                        amountPaid: 1000000,
+                        amountRemaining: 1000000,
                         collectionMethod: "collection_method",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currency: "currency",
@@ -2797,7 +2827,7 @@ describe("CompaniesClient", () => {
                         environmentId: "environment_id",
                         id: "id",
                         providerType: "schematic",
-                        subtotal: 1,
+                        subtotal: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     metadata: {
@@ -2813,8 +2843,8 @@ describe("CompaniesClient", () => {
                         providerType: "schematic",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
-                    periodEnd: 1,
-                    periodStart: 1,
+                    periodEnd: 1000000,
+                    periodStart: 1000000,
                     products: [
                         {
                             billingScheme: "per_unit",
@@ -2825,8 +2855,8 @@ describe("CompaniesClient", () => {
                             id: "id",
                             interval: "interval",
                             name: "name",
-                            packageSize: 1,
-                            price: 1,
+                            packageSize: 1000000,
+                            price: 1000000,
                             priceExternalId: "price_external_id",
                             priceId: "price_id",
                             priceTier: [{}],
@@ -2840,8 +2870,8 @@ describe("CompaniesClient", () => {
                     providerType: "schematic",
                     status: "status",
                     subscriptionExternalId: "subscription_external_id",
-                    totalPrice: 1,
-                    trialEnd: 1,
+                    totalPrice: 1000000,
+                    trialEnd: 1000000,
                     trialEndSetting: "cancel",
                 },
                 billingSubscriptions: [
@@ -2863,8 +2893,8 @@ describe("CompaniesClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        periodEnd: 1,
-                        periodStart: 1,
+                        periodEnd: 1000000,
+                        periodStart: 1000000,
                         products: [
                             {
                                 billingScheme: "per_unit",
@@ -2875,8 +2905,8 @@ describe("CompaniesClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                packageSize: 1,
-                                price: 1,
+                                packageSize: 1000000,
+                                price: 1000000,
                                 priceExternalId: "price_external_id",
                                 priceId: "price_id",
                                 priceTier: [{}],
@@ -2890,7 +2920,7 @@ describe("CompaniesClient", () => {
                         providerType: "schematic",
                         status: "status",
                         subscriptionExternalId: "subscription_external_id",
-                        totalPrice: 1,
+                        totalPrice: 1000000,
                     },
                 ],
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2901,8 +2931,8 @@ describe("CompaniesClient", () => {
                     billingEmail: "billing_email",
                     billingName: "billing_name",
                     cardBrand: "card_brand",
-                    cardExpMonth: 1,
-                    cardExpYear: 1,
+                    cardExpMonth: 1000000,
+                    cardExpYear: 1000000,
                     cardLast4: "card_last4",
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2959,7 +2989,7 @@ describe("CompaniesClient", () => {
                         eventSubtype: "event_subtype",
                         monthReset: "month_reset",
                         period: "period",
-                        value: 1,
+                        value: 1000000,
                     },
                 ],
                 name: "name",
@@ -2986,7 +3016,7 @@ describe("CompaniesClient", () => {
                         {
                             billingCreditAutoTopupEnabled: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            creditAmount: 1,
+                            creditAmount: 1000000,
                             creditDescription: "credit_description",
                             creditId: "credit_id",
                             creditName: "credit_name",
@@ -2998,7 +3028,7 @@ describe("CompaniesClient", () => {
                     ],
                     name: "name",
                     planPeriod: "plan_period",
-                    planPrice: 1,
+                    planPrice: 1000000,
                     planVersionId: "plan_version_id",
                 },
                 plans: [
@@ -3039,7 +3069,7 @@ describe("CompaniesClient", () => {
                         environmentId: "environment_id",
                         id: "id",
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         ruleType: "default",
                         value: true,
                     },
@@ -3049,11 +3079,11 @@ describe("CompaniesClient", () => {
                     effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                     fromPlanId: "from_plan_id",
                     fromPlanName: "from_plan_name",
-                    fromSubscriptionPrice: 1,
+                    fromSubscriptionPrice: 1000000,
                     id: "id",
                     interval: "interval",
                     scheduledInterval: "scheduled_interval",
-                    scheduledPrice: 1,
+                    scheduledPrice: 1000000,
                     toPlanId: "to_plan_id",
                     toPlanName: "to_plan_name",
                 },
@@ -3061,7 +3091,7 @@ describe("CompaniesClient", () => {
                     key: "value",
                 },
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                userCount: 1,
+                userCount: 1000000,
             },
             params: {
                 key: "value",
@@ -3074,6 +3104,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/companies/create")
@@ -3097,6 +3128,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/companies/create")
@@ -3120,6 +3152,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/companies/create")
@@ -3143,6 +3176,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/companies/create")
@@ -3166,6 +3200,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/companies/create")
@@ -3200,6 +3235,7 @@ describe("CompaniesClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/companies/delete")
@@ -3235,6 +3271,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/companies/delete")
@@ -3258,6 +3295,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/companies/delete")
@@ -3281,6 +3319,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/companies/delete")
@@ -3304,6 +3343,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/companies/delete")
@@ -3327,6 +3367,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/companies/delete")
@@ -3361,13 +3402,13 @@ describe("CompaniesClient", () => {
                         image_url: "image_url",
                         included_credit_grants: [
                             {
-                                billing_credit_auto_topup_amount: 1,
+                                billing_credit_auto_topup_amount: 1000000,
                                 billing_credit_auto_topup_amount_type: "billing_credit_auto_topup_amount_type",
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_expiry_type: "duration",
                                 billing_credit_auto_topup_expiry_unit: "billing_periods",
-                                billing_credit_auto_topup_expiry_unit_count: 1,
-                                billing_credit_auto_topup_threshold_percent: 1,
+                                billing_credit_auto_topup_expiry_unit_count: 1000000,
+                                billing_credit_auto_topup_threshold_percent: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit: {
                                     account_id: "account_id",
@@ -3375,7 +3416,7 @@ describe("CompaniesClient", () => {
                                     cost_editable: true,
                                     created_at: "2024-01-15T09:30:00Z",
                                     default_expiry_unit: "billing_periods",
-                                    default_expiry_unit_count: 1,
+                                    default_expiry_unit_count: 1000000,
                                     default_rollover_policy: "expire",
                                     description: "description",
                                     environment_id: "environment_id",
@@ -3390,8 +3431,8 @@ describe("CompaniesClient", () => {
                                         id: "id",
                                         interval: "day",
                                         is_active: true,
-                                        package_size: 1,
-                                        price: 1,
+                                        package_size: 1000000,
+                                        price: 1000000,
                                         price_external_id: "price_external_id",
                                         price_id: "price_id",
                                         price_tier: [],
@@ -3402,7 +3443,7 @@ describe("CompaniesClient", () => {
                                         updated_at: "2024-01-15T09:30:00Z",
                                         usage_type: "licensed",
                                     },
-                                    price_per_unit: 1,
+                                    price_per_unit: 1000000,
                                     price_per_unit_decimal: "price_per_unit_decimal",
                                     product: {
                                         account_id: "account_id",
@@ -3420,14 +3461,14 @@ describe("CompaniesClient", () => {
                                     singular_name: "singular_name",
                                     updated_at: "2024-01-15T09:30:00Z",
                                 },
-                                credit_amount: 1,
+                                credit_amount: 1000000,
                                 credit_description: "credit_description",
                                 credit_icon: "credit_icon",
                                 credit_id: "credit_id",
                                 credit_name: "credit_name",
                                 expiry_type: "duration",
                                 expiry_unit: "billing_periods",
-                                expiry_unit_count: 1,
+                                expiry_unit_count: 1000000,
                                 id: "id",
                                 plan: { description: "description", id: "id", image_url: "image_url", name: "name" },
                                 plan_id: "plan_id",
@@ -3440,13 +3481,13 @@ describe("CompaniesClient", () => {
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
                             {
-                                billing_credit_auto_topup_amount: 1,
+                                billing_credit_auto_topup_amount: 1000000,
                                 billing_credit_auto_topup_amount_type: "billing_credit_auto_topup_amount_type",
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_expiry_type: "duration",
                                 billing_credit_auto_topup_expiry_unit: "billing_periods",
-                                billing_credit_auto_topup_expiry_unit_count: 1,
-                                billing_credit_auto_topup_threshold_percent: 1,
+                                billing_credit_auto_topup_expiry_unit_count: 1000000,
+                                billing_credit_auto_topup_threshold_percent: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit: {
                                     account_id: "account_id",
@@ -3454,7 +3495,7 @@ describe("CompaniesClient", () => {
                                     cost_editable: true,
                                     created_at: "2024-01-15T09:30:00Z",
                                     default_expiry_unit: "billing_periods",
-                                    default_expiry_unit_count: 1,
+                                    default_expiry_unit_count: 1000000,
                                     default_rollover_policy: "expire",
                                     description: "description",
                                     environment_id: "environment_id",
@@ -3469,8 +3510,8 @@ describe("CompaniesClient", () => {
                                         id: "id",
                                         interval: "day",
                                         is_active: true,
-                                        package_size: 1,
-                                        price: 1,
+                                        package_size: 1000000,
+                                        price: 1000000,
                                         price_external_id: "price_external_id",
                                         price_id: "price_id",
                                         price_tier: [],
@@ -3481,7 +3522,7 @@ describe("CompaniesClient", () => {
                                         updated_at: "2024-01-15T09:30:00Z",
                                         usage_type: "licensed",
                                     },
-                                    price_per_unit: 1,
+                                    price_per_unit: 1000000,
                                     price_per_unit_decimal: "price_per_unit_decimal",
                                     product: {
                                         account_id: "account_id",
@@ -3499,14 +3540,14 @@ describe("CompaniesClient", () => {
                                     singular_name: "singular_name",
                                     updated_at: "2024-01-15T09:30:00Z",
                                 },
-                                credit_amount: 1,
+                                credit_amount: 1000000,
                                 credit_description: "credit_description",
                                 credit_icon: "credit_icon",
                                 credit_id: "credit_id",
                                 credit_name: "credit_name",
                                 expiry_type: "duration",
                                 expiry_unit: "billing_periods",
-                                expiry_unit_count: 1,
+                                expiry_unit_count: 1000000,
                                 id: "id",
                                 plan: { description: "description", id: "id", image_url: "image_url", name: "name" },
                                 plan_id: "plan_id",
@@ -3521,7 +3562,7 @@ describe("CompaniesClient", () => {
                         ],
                         name: "name",
                         plan_period: "plan_period",
-                        plan_price: 1,
+                        plan_price: 1000000,
                         plan_version_id: "plan_version_id",
                     },
                     {
@@ -3533,13 +3574,13 @@ describe("CompaniesClient", () => {
                         image_url: "image_url",
                         included_credit_grants: [
                             {
-                                billing_credit_auto_topup_amount: 1,
+                                billing_credit_auto_topup_amount: 1000000,
                                 billing_credit_auto_topup_amount_type: "billing_credit_auto_topup_amount_type",
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_expiry_type: "duration",
                                 billing_credit_auto_topup_expiry_unit: "billing_periods",
-                                billing_credit_auto_topup_expiry_unit_count: 1,
-                                billing_credit_auto_topup_threshold_percent: 1,
+                                billing_credit_auto_topup_expiry_unit_count: 1000000,
+                                billing_credit_auto_topup_threshold_percent: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit: {
                                     account_id: "account_id",
@@ -3547,7 +3588,7 @@ describe("CompaniesClient", () => {
                                     cost_editable: true,
                                     created_at: "2024-01-15T09:30:00Z",
                                     default_expiry_unit: "billing_periods",
-                                    default_expiry_unit_count: 1,
+                                    default_expiry_unit_count: 1000000,
                                     default_rollover_policy: "expire",
                                     description: "description",
                                     environment_id: "environment_id",
@@ -3562,8 +3603,8 @@ describe("CompaniesClient", () => {
                                         id: "id",
                                         interval: "day",
                                         is_active: true,
-                                        package_size: 1,
-                                        price: 1,
+                                        package_size: 1000000,
+                                        price: 1000000,
                                         price_external_id: "price_external_id",
                                         price_id: "price_id",
                                         price_tier: [],
@@ -3574,7 +3615,7 @@ describe("CompaniesClient", () => {
                                         updated_at: "2024-01-15T09:30:00Z",
                                         usage_type: "licensed",
                                     },
-                                    price_per_unit: 1,
+                                    price_per_unit: 1000000,
                                     price_per_unit_decimal: "price_per_unit_decimal",
                                     product: {
                                         account_id: "account_id",
@@ -3592,14 +3633,14 @@ describe("CompaniesClient", () => {
                                     singular_name: "singular_name",
                                     updated_at: "2024-01-15T09:30:00Z",
                                 },
-                                credit_amount: 1,
+                                credit_amount: 1000000,
                                 credit_description: "credit_description",
                                 credit_icon: "credit_icon",
                                 credit_id: "credit_id",
                                 credit_name: "credit_name",
                                 expiry_type: "duration",
                                 expiry_unit: "billing_periods",
-                                expiry_unit_count: 1,
+                                expiry_unit_count: 1000000,
                                 id: "id",
                                 plan: { description: "description", id: "id", image_url: "image_url", name: "name" },
                                 plan_id: "plan_id",
@@ -3612,13 +3653,13 @@ describe("CompaniesClient", () => {
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
                             {
-                                billing_credit_auto_topup_amount: 1,
+                                billing_credit_auto_topup_amount: 1000000,
                                 billing_credit_auto_topup_amount_type: "billing_credit_auto_topup_amount_type",
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_expiry_type: "duration",
                                 billing_credit_auto_topup_expiry_unit: "billing_periods",
-                                billing_credit_auto_topup_expiry_unit_count: 1,
-                                billing_credit_auto_topup_threshold_percent: 1,
+                                billing_credit_auto_topup_expiry_unit_count: 1000000,
+                                billing_credit_auto_topup_threshold_percent: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit: {
                                     account_id: "account_id",
@@ -3626,7 +3667,7 @@ describe("CompaniesClient", () => {
                                     cost_editable: true,
                                     created_at: "2024-01-15T09:30:00Z",
                                     default_expiry_unit: "billing_periods",
-                                    default_expiry_unit_count: 1,
+                                    default_expiry_unit_count: 1000000,
                                     default_rollover_policy: "expire",
                                     description: "description",
                                     environment_id: "environment_id",
@@ -3641,8 +3682,8 @@ describe("CompaniesClient", () => {
                                         id: "id",
                                         interval: "day",
                                         is_active: true,
-                                        package_size: 1,
-                                        price: 1,
+                                        package_size: 1000000,
+                                        price: 1000000,
                                         price_external_id: "price_external_id",
                                         price_id: "price_id",
                                         price_tier: [],
@@ -3653,7 +3694,7 @@ describe("CompaniesClient", () => {
                                         updated_at: "2024-01-15T09:30:00Z",
                                         usage_type: "licensed",
                                     },
-                                    price_per_unit: 1,
+                                    price_per_unit: 1000000,
                                     price_per_unit_decimal: "price_per_unit_decimal",
                                     product: {
                                         account_id: "account_id",
@@ -3671,14 +3712,14 @@ describe("CompaniesClient", () => {
                                     singular_name: "singular_name",
                                     updated_at: "2024-01-15T09:30:00Z",
                                 },
-                                credit_amount: 1,
+                                credit_amount: 1000000,
                                 credit_description: "credit_description",
                                 credit_icon: "credit_icon",
                                 credit_id: "credit_id",
                                 credit_name: "credit_name",
                                 expiry_type: "duration",
                                 expiry_unit: "billing_periods",
-                                expiry_unit_count: 1,
+                                expiry_unit_count: 1000000,
                                 id: "id",
                                 plan: { description: "description", id: "id", image_url: "image_url", name: "name" },
                                 plan_id: "plan_id",
@@ -3693,14 +3734,14 @@ describe("CompaniesClient", () => {
                         ],
                         name: "name",
                         plan_period: "plan_period",
-                        plan_price: 1,
+                        plan_price: 1000000,
                         plan_version_id: "plan_version_id",
                     },
                 ],
                 billing_credit_balances: { billing_credit_balances: 1.1 },
                 billing_subscription: {
                     application_id: "application_id",
-                    cancel_at: 1,
+                    cancel_at: 1000000,
                     cancel_at_period_end: true,
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
@@ -3709,14 +3750,14 @@ describe("CompaniesClient", () => {
                     default_payment_method_id: "default_payment_method_id",
                     discounts: [
                         {
-                            amount_off: 1,
+                            amount_off: 1000000,
                             coupon_id: "coupon_id",
                             coupon_name: "coupon_name",
                             currency: "currency",
                             customer_facing_code: "customer_facing_code",
                             discount_external_id: "discount_external_id",
                             duration: "duration",
-                            duration_in_months: 1,
+                            duration_in_months: 1000000,
                             ended_at: "2024-01-15T09:30:00Z",
                             is_active: true,
                             percent_off: 1.1,
@@ -3725,14 +3766,14 @@ describe("CompaniesClient", () => {
                             subscription_external_id: "subscription_external_id",
                         },
                         {
-                            amount_off: 1,
+                            amount_off: 1000000,
                             coupon_id: "coupon_id",
                             coupon_name: "coupon_name",
                             currency: "currency",
                             customer_facing_code: "customer_facing_code",
                             discount_external_id: "discount_external_id",
                             duration: "duration",
-                            duration_in_months: 1,
+                            duration_in_months: 1000000,
                             ended_at: "2024-01-15T09:30:00Z",
                             is_active: true,
                             percent_off: 1.1,
@@ -3745,9 +3786,9 @@ describe("CompaniesClient", () => {
                     id: "id",
                     interval: "interval",
                     latest_invoice: {
-                        amount_due: 1,
-                        amount_paid: 1,
-                        amount_remaining: 1,
+                        amount_due: 1000000,
+                        amount_paid: 1000000,
+                        amount_remaining: 1000000,
                         collection_method: "collection_method",
                         company_id: "company_id",
                         created_at: "2024-01-15T09:30:00Z",
@@ -3761,7 +3802,7 @@ describe("CompaniesClient", () => {
                         provider_type: "schematic",
                         status: "draft",
                         subscription_external_id: "subscription_external_id",
-                        subtotal: 1,
+                        subtotal: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                         url: "url",
                     },
@@ -3773,8 +3814,8 @@ describe("CompaniesClient", () => {
                         billing_email: "billing_email",
                         billing_name: "billing_name",
                         card_brand: "card_brand",
-                        card_exp_month: 1,
-                        card_exp_year: 1,
+                        card_exp_month: 1000000,
+                        card_exp_year: 1000000,
                         card_last4: "card_last4",
                         company_id: "company_id",
                         created_at: "2024-01-15T09:30:00Z",
@@ -3786,12 +3827,12 @@ describe("CompaniesClient", () => {
                         provider_type: "schematic",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
-                    period_end: 1,
-                    period_start: 1,
+                    period_end: 1000000,
+                    period_start: 1000000,
                     products: [
                         {
                             billing_scheme: "per_unit",
-                            billing_threshold: 1,
+                            billing_threshold: 1000000,
                             created_at: "2024-01-15T09:30:00Z",
                             currency: "currency",
                             environment_id: "environment_id",
@@ -3800,23 +3841,23 @@ describe("CompaniesClient", () => {
                             interval: "interval",
                             meter_id: "meter_id",
                             name: "name",
-                            package_size: 1,
-                            price: 1,
+                            package_size: 1000000,
+                            price: 1000000,
                             price_decimal: "price_decimal",
                             price_external_id: "price_external_id",
                             price_id: "price_id",
                             price_tier: [
                                 {
-                                    flat_amount: 1,
-                                    per_unit_price: 1,
+                                    flat_amount: 1000000,
+                                    per_unit_price: 1000000,
                                     per_unit_price_decimal: "per_unit_price_decimal",
-                                    up_to: 1,
+                                    up_to: 1000000,
                                 },
                                 {
-                                    flat_amount: 1,
-                                    per_unit_price: 1,
+                                    flat_amount: 1000000,
+                                    per_unit_price: 1000000,
                                     per_unit_price_decimal: "per_unit_price_decimal",
-                                    up_to: 1,
+                                    up_to: 1000000,
                                 },
                             ],
                             provider_type: "schematic",
@@ -3828,7 +3869,7 @@ describe("CompaniesClient", () => {
                         },
                         {
                             billing_scheme: "per_unit",
-                            billing_threshold: 1,
+                            billing_threshold: 1000000,
                             created_at: "2024-01-15T09:30:00Z",
                             currency: "currency",
                             environment_id: "environment_id",
@@ -3837,23 +3878,23 @@ describe("CompaniesClient", () => {
                             interval: "interval",
                             meter_id: "meter_id",
                             name: "name",
-                            package_size: 1,
-                            price: 1,
+                            package_size: 1000000,
+                            price: 1000000,
                             price_decimal: "price_decimal",
                             price_external_id: "price_external_id",
                             price_id: "price_id",
                             price_tier: [
                                 {
-                                    flat_amount: 1,
-                                    per_unit_price: 1,
+                                    flat_amount: 1000000,
+                                    per_unit_price: 1000000,
                                     per_unit_price_decimal: "per_unit_price_decimal",
-                                    up_to: 1,
+                                    up_to: 1000000,
                                 },
                                 {
-                                    flat_amount: 1,
-                                    per_unit_price: 1,
+                                    flat_amount: 1000000,
+                                    per_unit_price: 1000000,
                                     per_unit_price_decimal: "per_unit_price_decimal",
-                                    up_to: 1,
+                                    up_to: 1000000,
                                 },
                             ],
                             provider_type: "schematic",
@@ -3867,14 +3908,14 @@ describe("CompaniesClient", () => {
                     provider_type: "schematic",
                     status: "status",
                     subscription_external_id: "subscription_external_id",
-                    total_price: 1,
-                    trial_end: 1,
+                    total_price: 1000000,
+                    trial_end: 1000000,
                     trial_end_setting: "cancel",
                 },
                 billing_subscriptions: [
                     {
                         application_id: "application_id",
-                        cancel_at: 1,
+                        cancel_at: 1000000,
                         cancel_at_period_end: true,
                         company_id: "company_id",
                         created_at: "2024-01-15T09:30:00Z",
@@ -3883,14 +3924,14 @@ describe("CompaniesClient", () => {
                         default_payment_method_id: "default_payment_method_id",
                         discounts: [
                             {
-                                amount_off: 1,
+                                amount_off: 1000000,
                                 coupon_id: "coupon_id",
                                 coupon_name: "coupon_name",
                                 currency: "currency",
                                 customer_facing_code: "customer_facing_code",
                                 discount_external_id: "discount_external_id",
                                 duration: "duration",
-                                duration_in_months: 1,
+                                duration_in_months: 1000000,
                                 ended_at: "2024-01-15T09:30:00Z",
                                 is_active: true,
                                 percent_off: 1.1,
@@ -3899,14 +3940,14 @@ describe("CompaniesClient", () => {
                                 subscription_external_id: "subscription_external_id",
                             },
                             {
-                                amount_off: 1,
+                                amount_off: 1000000,
                                 coupon_id: "coupon_id",
                                 coupon_name: "coupon_name",
                                 currency: "currency",
                                 customer_facing_code: "customer_facing_code",
                                 discount_external_id: "discount_external_id",
                                 duration: "duration",
-                                duration_in_months: 1,
+                                duration_in_months: 1000000,
                                 ended_at: "2024-01-15T09:30:00Z",
                                 is_active: true,
                                 percent_off: 1.1,
@@ -3919,9 +3960,9 @@ describe("CompaniesClient", () => {
                         id: "id",
                         interval: "interval",
                         latest_invoice: {
-                            amount_due: 1,
-                            amount_paid: 1,
-                            amount_remaining: 1,
+                            amount_due: 1000000,
+                            amount_paid: 1000000,
+                            amount_remaining: 1000000,
                             collection_method: "collection_method",
                             company_id: "company_id",
                             created_at: "2024-01-15T09:30:00Z",
@@ -3935,7 +3976,7 @@ describe("CompaniesClient", () => {
                             provider_type: "schematic",
                             status: "draft",
                             subscription_external_id: "subscription_external_id",
-                            subtotal: 1,
+                            subtotal: 1000000,
                             updated_at: "2024-01-15T09:30:00Z",
                             url: "url",
                         },
@@ -3947,8 +3988,8 @@ describe("CompaniesClient", () => {
                             billing_email: "billing_email",
                             billing_name: "billing_name",
                             card_brand: "card_brand",
-                            card_exp_month: 1,
-                            card_exp_year: 1,
+                            card_exp_month: 1000000,
+                            card_exp_year: 1000000,
                             card_last4: "card_last4",
                             company_id: "company_id",
                             created_at: "2024-01-15T09:30:00Z",
@@ -3960,12 +4001,12 @@ describe("CompaniesClient", () => {
                             provider_type: "schematic",
                             updated_at: "2024-01-15T09:30:00Z",
                         },
-                        period_end: 1,
-                        period_start: 1,
+                        period_end: 1000000,
+                        period_start: 1000000,
                         products: [
                             {
                                 billing_scheme: "per_unit",
-                                billing_threshold: 1,
+                                billing_threshold: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 currency: "currency",
                                 environment_id: "environment_id",
@@ -3974,23 +4015,23 @@ describe("CompaniesClient", () => {
                                 interval: "interval",
                                 meter_id: "meter_id",
                                 name: "name",
-                                package_size: 1,
-                                price: 1,
+                                package_size: 1000000,
+                                price: 1000000,
                                 price_decimal: "price_decimal",
                                 price_external_id: "price_external_id",
                                 price_id: "price_id",
                                 price_tier: [
                                     {
-                                        flat_amount: 1,
-                                        per_unit_price: 1,
+                                        flat_amount: 1000000,
+                                        per_unit_price: 1000000,
                                         per_unit_price_decimal: "per_unit_price_decimal",
-                                        up_to: 1,
+                                        up_to: 1000000,
                                     },
                                     {
-                                        flat_amount: 1,
-                                        per_unit_price: 1,
+                                        flat_amount: 1000000,
+                                        per_unit_price: 1000000,
                                         per_unit_price_decimal: "per_unit_price_decimal",
-                                        up_to: 1,
+                                        up_to: 1000000,
                                     },
                                 ],
                                 provider_type: "schematic",
@@ -4002,7 +4043,7 @@ describe("CompaniesClient", () => {
                             },
                             {
                                 billing_scheme: "per_unit",
-                                billing_threshold: 1,
+                                billing_threshold: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 currency: "currency",
                                 environment_id: "environment_id",
@@ -4011,23 +4052,23 @@ describe("CompaniesClient", () => {
                                 interval: "interval",
                                 meter_id: "meter_id",
                                 name: "name",
-                                package_size: 1,
-                                price: 1,
+                                package_size: 1000000,
+                                price: 1000000,
                                 price_decimal: "price_decimal",
                                 price_external_id: "price_external_id",
                                 price_id: "price_id",
                                 price_tier: [
                                     {
-                                        flat_amount: 1,
-                                        per_unit_price: 1,
+                                        flat_amount: 1000000,
+                                        per_unit_price: 1000000,
                                         per_unit_price_decimal: "per_unit_price_decimal",
-                                        up_to: 1,
+                                        up_to: 1000000,
                                     },
                                     {
-                                        flat_amount: 1,
-                                        per_unit_price: 1,
+                                        flat_amount: 1000000,
+                                        per_unit_price: 1000000,
                                         per_unit_price_decimal: "per_unit_price_decimal",
-                                        up_to: 1,
+                                        up_to: 1000000,
                                     },
                                 ],
                                 provider_type: "schematic",
@@ -4041,13 +4082,13 @@ describe("CompaniesClient", () => {
                         provider_type: "schematic",
                         status: "status",
                         subscription_external_id: "subscription_external_id",
-                        total_price: 1,
-                        trial_end: 1,
+                        total_price: 1000000,
+                        trial_end: 1000000,
                         trial_end_setting: "cancel",
                     },
                     {
                         application_id: "application_id",
-                        cancel_at: 1,
+                        cancel_at: 1000000,
                         cancel_at_period_end: true,
                         company_id: "company_id",
                         created_at: "2024-01-15T09:30:00Z",
@@ -4056,14 +4097,14 @@ describe("CompaniesClient", () => {
                         default_payment_method_id: "default_payment_method_id",
                         discounts: [
                             {
-                                amount_off: 1,
+                                amount_off: 1000000,
                                 coupon_id: "coupon_id",
                                 coupon_name: "coupon_name",
                                 currency: "currency",
                                 customer_facing_code: "customer_facing_code",
                                 discount_external_id: "discount_external_id",
                                 duration: "duration",
-                                duration_in_months: 1,
+                                duration_in_months: 1000000,
                                 ended_at: "2024-01-15T09:30:00Z",
                                 is_active: true,
                                 percent_off: 1.1,
@@ -4072,14 +4113,14 @@ describe("CompaniesClient", () => {
                                 subscription_external_id: "subscription_external_id",
                             },
                             {
-                                amount_off: 1,
+                                amount_off: 1000000,
                                 coupon_id: "coupon_id",
                                 coupon_name: "coupon_name",
                                 currency: "currency",
                                 customer_facing_code: "customer_facing_code",
                                 discount_external_id: "discount_external_id",
                                 duration: "duration",
-                                duration_in_months: 1,
+                                duration_in_months: 1000000,
                                 ended_at: "2024-01-15T09:30:00Z",
                                 is_active: true,
                                 percent_off: 1.1,
@@ -4092,9 +4133,9 @@ describe("CompaniesClient", () => {
                         id: "id",
                         interval: "interval",
                         latest_invoice: {
-                            amount_due: 1,
-                            amount_paid: 1,
-                            amount_remaining: 1,
+                            amount_due: 1000000,
+                            amount_paid: 1000000,
+                            amount_remaining: 1000000,
                             collection_method: "collection_method",
                             company_id: "company_id",
                             created_at: "2024-01-15T09:30:00Z",
@@ -4108,7 +4149,7 @@ describe("CompaniesClient", () => {
                             provider_type: "schematic",
                             status: "draft",
                             subscription_external_id: "subscription_external_id",
-                            subtotal: 1,
+                            subtotal: 1000000,
                             updated_at: "2024-01-15T09:30:00Z",
                             url: "url",
                         },
@@ -4120,8 +4161,8 @@ describe("CompaniesClient", () => {
                             billing_email: "billing_email",
                             billing_name: "billing_name",
                             card_brand: "card_brand",
-                            card_exp_month: 1,
-                            card_exp_year: 1,
+                            card_exp_month: 1000000,
+                            card_exp_year: 1000000,
                             card_last4: "card_last4",
                             company_id: "company_id",
                             created_at: "2024-01-15T09:30:00Z",
@@ -4133,12 +4174,12 @@ describe("CompaniesClient", () => {
                             provider_type: "schematic",
                             updated_at: "2024-01-15T09:30:00Z",
                         },
-                        period_end: 1,
-                        period_start: 1,
+                        period_end: 1000000,
+                        period_start: 1000000,
                         products: [
                             {
                                 billing_scheme: "per_unit",
-                                billing_threshold: 1,
+                                billing_threshold: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 currency: "currency",
                                 environment_id: "environment_id",
@@ -4147,23 +4188,23 @@ describe("CompaniesClient", () => {
                                 interval: "interval",
                                 meter_id: "meter_id",
                                 name: "name",
-                                package_size: 1,
-                                price: 1,
+                                package_size: 1000000,
+                                price: 1000000,
                                 price_decimal: "price_decimal",
                                 price_external_id: "price_external_id",
                                 price_id: "price_id",
                                 price_tier: [
                                     {
-                                        flat_amount: 1,
-                                        per_unit_price: 1,
+                                        flat_amount: 1000000,
+                                        per_unit_price: 1000000,
                                         per_unit_price_decimal: "per_unit_price_decimal",
-                                        up_to: 1,
+                                        up_to: 1000000,
                                     },
                                     {
-                                        flat_amount: 1,
-                                        per_unit_price: 1,
+                                        flat_amount: 1000000,
+                                        per_unit_price: 1000000,
                                         per_unit_price_decimal: "per_unit_price_decimal",
-                                        up_to: 1,
+                                        up_to: 1000000,
                                     },
                                 ],
                                 provider_type: "schematic",
@@ -4175,7 +4216,7 @@ describe("CompaniesClient", () => {
                             },
                             {
                                 billing_scheme: "per_unit",
-                                billing_threshold: 1,
+                                billing_threshold: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 currency: "currency",
                                 environment_id: "environment_id",
@@ -4184,23 +4225,23 @@ describe("CompaniesClient", () => {
                                 interval: "interval",
                                 meter_id: "meter_id",
                                 name: "name",
-                                package_size: 1,
-                                price: 1,
+                                package_size: 1000000,
+                                price: 1000000,
                                 price_decimal: "price_decimal",
                                 price_external_id: "price_external_id",
                                 price_id: "price_id",
                                 price_tier: [
                                     {
-                                        flat_amount: 1,
-                                        per_unit_price: 1,
+                                        flat_amount: 1000000,
+                                        per_unit_price: 1000000,
                                         per_unit_price_decimal: "per_unit_price_decimal",
-                                        up_to: 1,
+                                        up_to: 1000000,
                                     },
                                     {
-                                        flat_amount: 1,
-                                        per_unit_price: 1,
+                                        flat_amount: 1000000,
+                                        per_unit_price: 1000000,
                                         per_unit_price_decimal: "per_unit_price_decimal",
-                                        up_to: 1,
+                                        up_to: 1000000,
                                     },
                                 ],
                                 provider_type: "schematic",
@@ -4214,8 +4255,8 @@ describe("CompaniesClient", () => {
                         provider_type: "schematic",
                         status: "status",
                         subscription_external_id: "subscription_external_id",
-                        total_price: 1,
-                        trial_end: 1,
+                        total_price: 1000000,
+                        trial_end: 1000000,
                         trial_end_setting: "cancel",
                     },
                 ],
@@ -4227,8 +4268,8 @@ describe("CompaniesClient", () => {
                     billing_email: "billing_email",
                     billing_name: "billing_name",
                     card_brand: "card_brand",
-                    card_exp_month: 1,
-                    card_exp_year: 1,
+                    card_exp_month: 1000000,
+                    card_exp_year: 1000000,
                     card_last4: "card_last4",
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
@@ -4242,7 +4283,7 @@ describe("CompaniesClient", () => {
                 },
                 entitlements: [
                     {
-                        allocation: 1,
+                        allocation: 1000000,
                         credit_id: "credit_id",
                         credit_remaining: 1.1,
                         credit_total: 1.1,
@@ -4253,12 +4294,12 @@ describe("CompaniesClient", () => {
                         metric_period: "all_time",
                         metric_reset_at: "2024-01-15T09:30:00Z",
                         month_reset: "first_of_month",
-                        soft_limit: 1,
-                        usage: 1,
+                        soft_limit: 1000000,
+                        usage: 1000000,
                         value_type: "boolean",
                     },
                     {
-                        allocation: 1,
+                        allocation: 1000000,
                         credit_id: "credit_id",
                         credit_remaining: 1.1,
                         credit_total: 1.1,
@@ -4269,8 +4310,8 @@ describe("CompaniesClient", () => {
                         metric_period: "all_time",
                         metric_reset_at: "2024-01-15T09:30:00Z",
                         month_reset: "first_of_month",
-                        soft_limit: 1,
-                        usage: 1,
+                        soft_limit: 1000000,
+                        usage: 1000000,
                         value_type: "boolean",
                     },
                 ],
@@ -4364,7 +4405,7 @@ describe("CompaniesClient", () => {
                         month_reset: "month_reset",
                         period: "period",
                         valid_until: "2024-01-15T09:30:00Z",
-                        value: 1,
+                        value: 1000000,
                     },
                     {
                         account_id: "account_id",
@@ -4377,7 +4418,7 @@ describe("CompaniesClient", () => {
                         month_reset: "month_reset",
                         period: "period",
                         valid_until: "2024-01-15T09:30:00Z",
-                        value: 1,
+                        value: 1000000,
                     },
                 ],
                 name: "name",
@@ -4389,8 +4430,8 @@ describe("CompaniesClient", () => {
                         billing_email: "billing_email",
                         billing_name: "billing_name",
                         card_brand: "card_brand",
-                        card_exp_month: 1,
-                        card_exp_year: 1,
+                        card_exp_month: 1000000,
+                        card_exp_year: 1000000,
                         card_last4: "card_last4",
                         company_id: "company_id",
                         created_at: "2024-01-15T09:30:00Z",
@@ -4409,8 +4450,8 @@ describe("CompaniesClient", () => {
                         billing_email: "billing_email",
                         billing_name: "billing_name",
                         card_brand: "card_brand",
-                        card_exp_month: 1,
-                        card_exp_year: 1,
+                        card_exp_month: 1000000,
+                        card_exp_year: 1000000,
                         card_last4: "card_last4",
                         company_id: "company_id",
                         created_at: "2024-01-15T09:30:00Z",
@@ -4432,13 +4473,13 @@ describe("CompaniesClient", () => {
                     image_url: "image_url",
                     included_credit_grants: [
                         {
-                            billing_credit_auto_topup_amount: 1,
+                            billing_credit_auto_topup_amount: 1000000,
                             billing_credit_auto_topup_amount_type: "billing_credit_auto_topup_amount_type",
                             billing_credit_auto_topup_enabled: true,
                             billing_credit_auto_topup_expiry_type: "duration",
                             billing_credit_auto_topup_expiry_unit: "billing_periods",
-                            billing_credit_auto_topup_expiry_unit_count: 1,
-                            billing_credit_auto_topup_threshold_percent: 1,
+                            billing_credit_auto_topup_expiry_unit_count: 1000000,
+                            billing_credit_auto_topup_threshold_percent: 1000000,
                             created_at: "2024-01-15T09:30:00Z",
                             credit: {
                                 account_id: "account_id",
@@ -4446,7 +4487,7 @@ describe("CompaniesClient", () => {
                                 cost_editable: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 default_expiry_unit: "billing_periods",
-                                default_expiry_unit_count: 1,
+                                default_expiry_unit_count: 1000000,
                                 default_rollover_policy: "expire",
                                 description: "description",
                                 environment_id: "environment_id",
@@ -4461,8 +4502,8 @@ describe("CompaniesClient", () => {
                                     id: "id",
                                     interval: "day",
                                     is_active: true,
-                                    package_size: 1,
-                                    price: 1,
+                                    package_size: 1000000,
+                                    price: 1000000,
                                     price_external_id: "price_external_id",
                                     price_id: "price_id",
                                     price_tier: [],
@@ -4473,7 +4514,7 @@ describe("CompaniesClient", () => {
                                     updated_at: "2024-01-15T09:30:00Z",
                                     usage_type: "licensed",
                                 },
-                                price_per_unit: 1,
+                                price_per_unit: 1000000,
                                 price_per_unit_decimal: "price_per_unit_decimal",
                                 product: {
                                     account_id: "account_id",
@@ -4491,14 +4532,14 @@ describe("CompaniesClient", () => {
                                 singular_name: "singular_name",
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
-                            credit_amount: 1,
+                            credit_amount: 1000000,
                             credit_description: "credit_description",
                             credit_icon: "credit_icon",
                             credit_id: "credit_id",
                             credit_name: "credit_name",
                             expiry_type: "duration",
                             expiry_unit: "billing_periods",
-                            expiry_unit_count: 1,
+                            expiry_unit_count: 1000000,
                             id: "id",
                             plan: { description: "description", id: "id", image_url: "image_url", name: "name" },
                             plan_id: "plan_id",
@@ -4511,13 +4552,13 @@ describe("CompaniesClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                         {
-                            billing_credit_auto_topup_amount: 1,
+                            billing_credit_auto_topup_amount: 1000000,
                             billing_credit_auto_topup_amount_type: "billing_credit_auto_topup_amount_type",
                             billing_credit_auto_topup_enabled: true,
                             billing_credit_auto_topup_expiry_type: "duration",
                             billing_credit_auto_topup_expiry_unit: "billing_periods",
-                            billing_credit_auto_topup_expiry_unit_count: 1,
-                            billing_credit_auto_topup_threshold_percent: 1,
+                            billing_credit_auto_topup_expiry_unit_count: 1000000,
+                            billing_credit_auto_topup_threshold_percent: 1000000,
                             created_at: "2024-01-15T09:30:00Z",
                             credit: {
                                 account_id: "account_id",
@@ -4525,7 +4566,7 @@ describe("CompaniesClient", () => {
                                 cost_editable: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 default_expiry_unit: "billing_periods",
-                                default_expiry_unit_count: 1,
+                                default_expiry_unit_count: 1000000,
                                 default_rollover_policy: "expire",
                                 description: "description",
                                 environment_id: "environment_id",
@@ -4540,8 +4581,8 @@ describe("CompaniesClient", () => {
                                     id: "id",
                                     interval: "day",
                                     is_active: true,
-                                    package_size: 1,
-                                    price: 1,
+                                    package_size: 1000000,
+                                    price: 1000000,
                                     price_external_id: "price_external_id",
                                     price_id: "price_id",
                                     price_tier: [],
@@ -4552,7 +4593,7 @@ describe("CompaniesClient", () => {
                                     updated_at: "2024-01-15T09:30:00Z",
                                     usage_type: "licensed",
                                 },
-                                price_per_unit: 1,
+                                price_per_unit: 1000000,
                                 price_per_unit_decimal: "price_per_unit_decimal",
                                 product: {
                                     account_id: "account_id",
@@ -4570,14 +4611,14 @@ describe("CompaniesClient", () => {
                                 singular_name: "singular_name",
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
-                            credit_amount: 1,
+                            credit_amount: 1000000,
                             credit_description: "credit_description",
                             credit_icon: "credit_icon",
                             credit_id: "credit_id",
                             credit_name: "credit_name",
                             expiry_type: "duration",
                             expiry_unit: "billing_periods",
-                            expiry_unit_count: 1,
+                            expiry_unit_count: 1000000,
                             id: "id",
                             plan: { description: "description", id: "id", image_url: "image_url", name: "name" },
                             plan_id: "plan_id",
@@ -4592,7 +4633,7 @@ describe("CompaniesClient", () => {
                     ],
                     name: "name",
                     plan_period: "plan_period",
-                    plan_price: 1,
+                    plan_price: 1000000,
                     plan_version_id: "plan_version_id",
                 },
                 plans: [
@@ -4620,7 +4661,7 @@ describe("CompaniesClient", () => {
                                         id: "id",
                                         metric_period: "all_time",
                                         metric_period_month_reset: "first_of_month",
-                                        metric_value: 1,
+                                        metric_value: 1000000,
                                         operator: "eq",
                                         resource_ids: ["resource_ids", "resource_ids"],
                                         trait_definition: { comparable_type: "bool", entity_type: "company", id: "id" },
@@ -4641,7 +4682,7 @@ describe("CompaniesClient", () => {
                                         id: "id",
                                         metric_period: "all_time",
                                         metric_period_month_reset: "first_of_month",
-                                        metric_value: 1,
+                                        metric_value: 1000000,
                                         operator: "eq",
                                         resource_ids: ["resource_ids", "resource_ids"],
                                         trait_definition: { comparable_type: "bool", entity_type: "company", id: "id" },
@@ -4666,7 +4707,7 @@ describe("CompaniesClient", () => {
                                         id: "id",
                                         metric_period: "all_time",
                                         metric_period_month_reset: "first_of_month",
-                                        metric_value: 1,
+                                        metric_value: 1000000,
                                         operator: "eq",
                                         resource_ids: ["resource_ids", "resource_ids"],
                                         trait_definition: { comparable_type: "bool", entity_type: "company", id: "id" },
@@ -4687,7 +4728,7 @@ describe("CompaniesClient", () => {
                                         id: "id",
                                         metric_period: "all_time",
                                         metric_period_month_reset: "first_of_month",
-                                        metric_value: 1,
+                                        metric_value: 1000000,
                                         operator: "eq",
                                         resource_ids: ["resource_ids", "resource_ids"],
                                         trait_definition: { comparable_type: "bool", entity_type: "company", id: "id" },
@@ -4712,7 +4753,7 @@ describe("CompaniesClient", () => {
                                 id: "id",
                                 metric_period: "all_time",
                                 metric_period_month_reset: "first_of_month",
-                                metric_value: 1,
+                                metric_value: 1000000,
                                 operator: "eq",
                                 resource_ids: ["resource_ids", "resource_ids"],
                                 trait_definition: { comparable_type: "bool", entity_type: "company", id: "id" },
@@ -4733,7 +4774,7 @@ describe("CompaniesClient", () => {
                                 id: "id",
                                 metric_period: "all_time",
                                 metric_period_month_reset: "first_of_month",
-                                metric_value: 1,
+                                metric_value: 1000000,
                                 operator: "eq",
                                 resource_ids: ["resource_ids", "resource_ids"],
                                 trait_definition: { comparable_type: "bool", entity_type: "company", id: "id" },
@@ -4744,7 +4785,7 @@ describe("CompaniesClient", () => {
                         flag_id: "flag_id",
                         id: "id",
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         rule_type: "default",
                         value: true,
                     },
@@ -4768,7 +4809,7 @@ describe("CompaniesClient", () => {
                                         id: "id",
                                         metric_period: "all_time",
                                         metric_period_month_reset: "first_of_month",
-                                        metric_value: 1,
+                                        metric_value: 1000000,
                                         operator: "eq",
                                         resource_ids: ["resource_ids", "resource_ids"],
                                         trait_definition: { comparable_type: "bool", entity_type: "company", id: "id" },
@@ -4789,7 +4830,7 @@ describe("CompaniesClient", () => {
                                         id: "id",
                                         metric_period: "all_time",
                                         metric_period_month_reset: "first_of_month",
-                                        metric_value: 1,
+                                        metric_value: 1000000,
                                         operator: "eq",
                                         resource_ids: ["resource_ids", "resource_ids"],
                                         trait_definition: { comparable_type: "bool", entity_type: "company", id: "id" },
@@ -4814,7 +4855,7 @@ describe("CompaniesClient", () => {
                                         id: "id",
                                         metric_period: "all_time",
                                         metric_period_month_reset: "first_of_month",
-                                        metric_value: 1,
+                                        metric_value: 1000000,
                                         operator: "eq",
                                         resource_ids: ["resource_ids", "resource_ids"],
                                         trait_definition: { comparable_type: "bool", entity_type: "company", id: "id" },
@@ -4835,7 +4876,7 @@ describe("CompaniesClient", () => {
                                         id: "id",
                                         metric_period: "all_time",
                                         metric_period_month_reset: "first_of_month",
-                                        metric_value: 1,
+                                        metric_value: 1000000,
                                         operator: "eq",
                                         resource_ids: ["resource_ids", "resource_ids"],
                                         trait_definition: { comparable_type: "bool", entity_type: "company", id: "id" },
@@ -4860,7 +4901,7 @@ describe("CompaniesClient", () => {
                                 id: "id",
                                 metric_period: "all_time",
                                 metric_period_month_reset: "first_of_month",
-                                metric_value: 1,
+                                metric_value: 1000000,
                                 operator: "eq",
                                 resource_ids: ["resource_ids", "resource_ids"],
                                 trait_definition: { comparable_type: "bool", entity_type: "company", id: "id" },
@@ -4881,7 +4922,7 @@ describe("CompaniesClient", () => {
                                 id: "id",
                                 metric_period: "all_time",
                                 metric_period_month_reset: "first_of_month",
-                                metric_value: 1,
+                                metric_value: 1000000,
                                 operator: "eq",
                                 resource_ids: ["resource_ids", "resource_ids"],
                                 trait_definition: { comparable_type: "bool", entity_type: "company", id: "id" },
@@ -4892,7 +4933,7 @@ describe("CompaniesClient", () => {
                         flag_id: "flag_id",
                         id: "id",
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         rule_type: "default",
                         value: true,
                     },
@@ -4902,20 +4943,21 @@ describe("CompaniesClient", () => {
                     effective_after: "2024-01-15T09:30:00Z",
                     from_plan_id: "from_plan_id",
                     from_plan_name: "from_plan_name",
-                    from_subscription_price: 1,
+                    from_subscription_price: 1000000,
                     id: "id",
                     interval: "interval",
                     scheduled_interval: "scheduled_interval",
-                    scheduled_price: 1,
+                    scheduled_price: 1000000,
                     to_plan_id: "to_plan_id",
                     to_plan_name: "to_plan_name",
                 },
                 traits: { traits: { key: "value" } },
                 updated_at: "2024-01-15T09:30:00Z",
-                user_count: 1,
+                user_count: 1000000,
             },
             params: { keys: { keys: "keys" } },
         };
+
         server.mockEndpoint().get("/companies/lookup").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.companies.lookupCompany({
@@ -4935,13 +4977,13 @@ describe("CompaniesClient", () => {
                         imageUrl: "image_url",
                         includedCreditGrants: [
                             {
-                                billingCreditAutoTopupAmount: 1,
+                                billingCreditAutoTopupAmount: 1000000,
                                 billingCreditAutoTopupAmountType: "billing_credit_auto_topup_amount_type",
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupExpiryType: "duration",
                                 billingCreditAutoTopupExpiryUnit: "billing_periods",
-                                billingCreditAutoTopupExpiryUnitCount: 1,
-                                billingCreditAutoTopupThresholdPercent: 1,
+                                billingCreditAutoTopupExpiryUnitCount: 1000000,
+                                billingCreditAutoTopupThresholdPercent: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 credit: {
                                     accountId: "account_id",
@@ -4949,7 +4991,7 @@ describe("CompaniesClient", () => {
                                     costEditable: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     defaultExpiryUnit: "billing_periods",
-                                    defaultExpiryUnitCount: 1,
+                                    defaultExpiryUnitCount: 1000000,
                                     defaultRolloverPolicy: "expire",
                                     description: "description",
                                     environmentId: "environment_id",
@@ -4964,8 +5006,8 @@ describe("CompaniesClient", () => {
                                         id: "id",
                                         interval: "day",
                                         isActive: true,
-                                        packageSize: 1,
-                                        price: 1,
+                                        packageSize: 1000000,
+                                        price: 1000000,
                                         priceExternalId: "price_external_id",
                                         priceId: "price_id",
                                         priceTier: [],
@@ -4976,7 +5018,7 @@ describe("CompaniesClient", () => {
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                         usageType: "licensed",
                                     },
-                                    pricePerUnit: 1,
+                                    pricePerUnit: 1000000,
                                     pricePerUnitDecimal: "price_per_unit_decimal",
                                     product: {
                                         accountId: "account_id",
@@ -4994,14 +5036,14 @@ describe("CompaniesClient", () => {
                                     singularName: "singular_name",
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 },
-                                creditAmount: 1,
+                                creditAmount: 1000000,
                                 creditDescription: "credit_description",
                                 creditIcon: "credit_icon",
                                 creditId: "credit_id",
                                 creditName: "credit_name",
                                 expiryType: "duration",
                                 expiryUnit: "billing_periods",
-                                expiryUnitCount: 1,
+                                expiryUnitCount: 1000000,
                                 id: "id",
                                 plan: {
                                     description: "description",
@@ -5019,13 +5061,13 @@ describe("CompaniesClient", () => {
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
                             {
-                                billingCreditAutoTopupAmount: 1,
+                                billingCreditAutoTopupAmount: 1000000,
                                 billingCreditAutoTopupAmountType: "billing_credit_auto_topup_amount_type",
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupExpiryType: "duration",
                                 billingCreditAutoTopupExpiryUnit: "billing_periods",
-                                billingCreditAutoTopupExpiryUnitCount: 1,
-                                billingCreditAutoTopupThresholdPercent: 1,
+                                billingCreditAutoTopupExpiryUnitCount: 1000000,
+                                billingCreditAutoTopupThresholdPercent: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 credit: {
                                     accountId: "account_id",
@@ -5033,7 +5075,7 @@ describe("CompaniesClient", () => {
                                     costEditable: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     defaultExpiryUnit: "billing_periods",
-                                    defaultExpiryUnitCount: 1,
+                                    defaultExpiryUnitCount: 1000000,
                                     defaultRolloverPolicy: "expire",
                                     description: "description",
                                     environmentId: "environment_id",
@@ -5048,8 +5090,8 @@ describe("CompaniesClient", () => {
                                         id: "id",
                                         interval: "day",
                                         isActive: true,
-                                        packageSize: 1,
-                                        price: 1,
+                                        packageSize: 1000000,
+                                        price: 1000000,
                                         priceExternalId: "price_external_id",
                                         priceId: "price_id",
                                         priceTier: [],
@@ -5060,7 +5102,7 @@ describe("CompaniesClient", () => {
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                         usageType: "licensed",
                                     },
-                                    pricePerUnit: 1,
+                                    pricePerUnit: 1000000,
                                     pricePerUnitDecimal: "price_per_unit_decimal",
                                     product: {
                                         accountId: "account_id",
@@ -5078,14 +5120,14 @@ describe("CompaniesClient", () => {
                                     singularName: "singular_name",
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 },
-                                creditAmount: 1,
+                                creditAmount: 1000000,
                                 creditDescription: "credit_description",
                                 creditIcon: "credit_icon",
                                 creditId: "credit_id",
                                 creditName: "credit_name",
                                 expiryType: "duration",
                                 expiryUnit: "billing_periods",
-                                expiryUnitCount: 1,
+                                expiryUnitCount: 1000000,
                                 id: "id",
                                 plan: {
                                     description: "description",
@@ -5105,7 +5147,7 @@ describe("CompaniesClient", () => {
                         ],
                         name: "name",
                         planPeriod: "plan_period",
-                        planPrice: 1,
+                        planPrice: 1000000,
                         planVersionId: "plan_version_id",
                     },
                     {
@@ -5117,13 +5159,13 @@ describe("CompaniesClient", () => {
                         imageUrl: "image_url",
                         includedCreditGrants: [
                             {
-                                billingCreditAutoTopupAmount: 1,
+                                billingCreditAutoTopupAmount: 1000000,
                                 billingCreditAutoTopupAmountType: "billing_credit_auto_topup_amount_type",
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupExpiryType: "duration",
                                 billingCreditAutoTopupExpiryUnit: "billing_periods",
-                                billingCreditAutoTopupExpiryUnitCount: 1,
-                                billingCreditAutoTopupThresholdPercent: 1,
+                                billingCreditAutoTopupExpiryUnitCount: 1000000,
+                                billingCreditAutoTopupThresholdPercent: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 credit: {
                                     accountId: "account_id",
@@ -5131,7 +5173,7 @@ describe("CompaniesClient", () => {
                                     costEditable: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     defaultExpiryUnit: "billing_periods",
-                                    defaultExpiryUnitCount: 1,
+                                    defaultExpiryUnitCount: 1000000,
                                     defaultRolloverPolicy: "expire",
                                     description: "description",
                                     environmentId: "environment_id",
@@ -5146,8 +5188,8 @@ describe("CompaniesClient", () => {
                                         id: "id",
                                         interval: "day",
                                         isActive: true,
-                                        packageSize: 1,
-                                        price: 1,
+                                        packageSize: 1000000,
+                                        price: 1000000,
                                         priceExternalId: "price_external_id",
                                         priceId: "price_id",
                                         priceTier: [],
@@ -5158,7 +5200,7 @@ describe("CompaniesClient", () => {
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                         usageType: "licensed",
                                     },
-                                    pricePerUnit: 1,
+                                    pricePerUnit: 1000000,
                                     pricePerUnitDecimal: "price_per_unit_decimal",
                                     product: {
                                         accountId: "account_id",
@@ -5176,14 +5218,14 @@ describe("CompaniesClient", () => {
                                     singularName: "singular_name",
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 },
-                                creditAmount: 1,
+                                creditAmount: 1000000,
                                 creditDescription: "credit_description",
                                 creditIcon: "credit_icon",
                                 creditId: "credit_id",
                                 creditName: "credit_name",
                                 expiryType: "duration",
                                 expiryUnit: "billing_periods",
-                                expiryUnitCount: 1,
+                                expiryUnitCount: 1000000,
                                 id: "id",
                                 plan: {
                                     description: "description",
@@ -5201,13 +5243,13 @@ describe("CompaniesClient", () => {
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
                             {
-                                billingCreditAutoTopupAmount: 1,
+                                billingCreditAutoTopupAmount: 1000000,
                                 billingCreditAutoTopupAmountType: "billing_credit_auto_topup_amount_type",
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupExpiryType: "duration",
                                 billingCreditAutoTopupExpiryUnit: "billing_periods",
-                                billingCreditAutoTopupExpiryUnitCount: 1,
-                                billingCreditAutoTopupThresholdPercent: 1,
+                                billingCreditAutoTopupExpiryUnitCount: 1000000,
+                                billingCreditAutoTopupThresholdPercent: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 credit: {
                                     accountId: "account_id",
@@ -5215,7 +5257,7 @@ describe("CompaniesClient", () => {
                                     costEditable: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     defaultExpiryUnit: "billing_periods",
-                                    defaultExpiryUnitCount: 1,
+                                    defaultExpiryUnitCount: 1000000,
                                     defaultRolloverPolicy: "expire",
                                     description: "description",
                                     environmentId: "environment_id",
@@ -5230,8 +5272,8 @@ describe("CompaniesClient", () => {
                                         id: "id",
                                         interval: "day",
                                         isActive: true,
-                                        packageSize: 1,
-                                        price: 1,
+                                        packageSize: 1000000,
+                                        price: 1000000,
                                         priceExternalId: "price_external_id",
                                         priceId: "price_id",
                                         priceTier: [],
@@ -5242,7 +5284,7 @@ describe("CompaniesClient", () => {
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                         usageType: "licensed",
                                     },
-                                    pricePerUnit: 1,
+                                    pricePerUnit: 1000000,
                                     pricePerUnitDecimal: "price_per_unit_decimal",
                                     product: {
                                         accountId: "account_id",
@@ -5260,14 +5302,14 @@ describe("CompaniesClient", () => {
                                     singularName: "singular_name",
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 },
-                                creditAmount: 1,
+                                creditAmount: 1000000,
                                 creditDescription: "credit_description",
                                 creditIcon: "credit_icon",
                                 creditId: "credit_id",
                                 creditName: "credit_name",
                                 expiryType: "duration",
                                 expiryUnit: "billing_periods",
-                                expiryUnitCount: 1,
+                                expiryUnitCount: 1000000,
                                 id: "id",
                                 plan: {
                                     description: "description",
@@ -5287,7 +5329,7 @@ describe("CompaniesClient", () => {
                         ],
                         name: "name",
                         planPeriod: "plan_period",
-                        planPrice: 1,
+                        planPrice: 1000000,
                         planVersionId: "plan_version_id",
                     },
                 ],
@@ -5296,7 +5338,7 @@ describe("CompaniesClient", () => {
                 },
                 billingSubscription: {
                     applicationId: "application_id",
-                    cancelAt: 1,
+                    cancelAt: 1000000,
                     cancelAtPeriodEnd: true,
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -5305,14 +5347,14 @@ describe("CompaniesClient", () => {
                     defaultPaymentMethodId: "default_payment_method_id",
                     discounts: [
                         {
-                            amountOff: 1,
+                            amountOff: 1000000,
                             couponId: "coupon_id",
                             couponName: "coupon_name",
                             currency: "currency",
                             customerFacingCode: "customer_facing_code",
                             discountExternalId: "discount_external_id",
                             duration: "duration",
-                            durationInMonths: 1,
+                            durationInMonths: 1000000,
                             endedAt: new Date("2024-01-15T09:30:00.000Z"),
                             isActive: true,
                             percentOff: 1.1,
@@ -5321,14 +5363,14 @@ describe("CompaniesClient", () => {
                             subscriptionExternalId: "subscription_external_id",
                         },
                         {
-                            amountOff: 1,
+                            amountOff: 1000000,
                             couponId: "coupon_id",
                             couponName: "coupon_name",
                             currency: "currency",
                             customerFacingCode: "customer_facing_code",
                             discountExternalId: "discount_external_id",
                             duration: "duration",
-                            durationInMonths: 1,
+                            durationInMonths: 1000000,
                             endedAt: new Date("2024-01-15T09:30:00.000Z"),
                             isActive: true,
                             percentOff: 1.1,
@@ -5341,9 +5383,9 @@ describe("CompaniesClient", () => {
                     id: "id",
                     interval: "interval",
                     latestInvoice: {
-                        amountDue: 1,
-                        amountPaid: 1,
-                        amountRemaining: 1,
+                        amountDue: 1000000,
+                        amountPaid: 1000000,
+                        amountRemaining: 1000000,
                         collectionMethod: "collection_method",
                         companyId: "company_id",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -5357,7 +5399,7 @@ describe("CompaniesClient", () => {
                         providerType: "schematic",
                         status: "draft",
                         subscriptionExternalId: "subscription_external_id",
-                        subtotal: 1,
+                        subtotal: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         url: "url",
                     },
@@ -5373,8 +5415,8 @@ describe("CompaniesClient", () => {
                         billingEmail: "billing_email",
                         billingName: "billing_name",
                         cardBrand: "card_brand",
-                        cardExpMonth: 1,
-                        cardExpYear: 1,
+                        cardExpMonth: 1000000,
+                        cardExpYear: 1000000,
                         cardLast4: "card_last4",
                         companyId: "company_id",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -5386,12 +5428,12 @@ describe("CompaniesClient", () => {
                         providerType: "schematic",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
-                    periodEnd: 1,
-                    periodStart: 1,
+                    periodEnd: 1000000,
+                    periodStart: 1000000,
                     products: [
                         {
                             billingScheme: "per_unit",
-                            billingThreshold: 1,
+                            billingThreshold: 1000000,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             currency: "currency",
                             environmentId: "environment_id",
@@ -5400,23 +5442,23 @@ describe("CompaniesClient", () => {
                             interval: "interval",
                             meterId: "meter_id",
                             name: "name",
-                            packageSize: 1,
-                            price: 1,
+                            packageSize: 1000000,
+                            price: 1000000,
                             priceDecimal: "price_decimal",
                             priceExternalId: "price_external_id",
                             priceId: "price_id",
                             priceTier: [
                                 {
-                                    flatAmount: 1,
-                                    perUnitPrice: 1,
+                                    flatAmount: 1000000,
+                                    perUnitPrice: 1000000,
                                     perUnitPriceDecimal: "per_unit_price_decimal",
-                                    upTo: 1,
+                                    upTo: 1000000,
                                 },
                                 {
-                                    flatAmount: 1,
-                                    perUnitPrice: 1,
+                                    flatAmount: 1000000,
+                                    perUnitPrice: 1000000,
                                     perUnitPriceDecimal: "per_unit_price_decimal",
-                                    upTo: 1,
+                                    upTo: 1000000,
                                 },
                             ],
                             providerType: "schematic",
@@ -5428,7 +5470,7 @@ describe("CompaniesClient", () => {
                         },
                         {
                             billingScheme: "per_unit",
-                            billingThreshold: 1,
+                            billingThreshold: 1000000,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             currency: "currency",
                             environmentId: "environment_id",
@@ -5437,23 +5479,23 @@ describe("CompaniesClient", () => {
                             interval: "interval",
                             meterId: "meter_id",
                             name: "name",
-                            packageSize: 1,
-                            price: 1,
+                            packageSize: 1000000,
+                            price: 1000000,
                             priceDecimal: "price_decimal",
                             priceExternalId: "price_external_id",
                             priceId: "price_id",
                             priceTier: [
                                 {
-                                    flatAmount: 1,
-                                    perUnitPrice: 1,
+                                    flatAmount: 1000000,
+                                    perUnitPrice: 1000000,
                                     perUnitPriceDecimal: "per_unit_price_decimal",
-                                    upTo: 1,
+                                    upTo: 1000000,
                                 },
                                 {
-                                    flatAmount: 1,
-                                    perUnitPrice: 1,
+                                    flatAmount: 1000000,
+                                    perUnitPrice: 1000000,
                                     perUnitPriceDecimal: "per_unit_price_decimal",
-                                    upTo: 1,
+                                    upTo: 1000000,
                                 },
                             ],
                             providerType: "schematic",
@@ -5467,14 +5509,14 @@ describe("CompaniesClient", () => {
                     providerType: "schematic",
                     status: "status",
                     subscriptionExternalId: "subscription_external_id",
-                    totalPrice: 1,
-                    trialEnd: 1,
+                    totalPrice: 1000000,
+                    trialEnd: 1000000,
                     trialEndSetting: "cancel",
                 },
                 billingSubscriptions: [
                     {
                         applicationId: "application_id",
-                        cancelAt: 1,
+                        cancelAt: 1000000,
                         cancelAtPeriodEnd: true,
                         companyId: "company_id",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -5483,14 +5525,14 @@ describe("CompaniesClient", () => {
                         defaultPaymentMethodId: "default_payment_method_id",
                         discounts: [
                             {
-                                amountOff: 1,
+                                amountOff: 1000000,
                                 couponId: "coupon_id",
                                 couponName: "coupon_name",
                                 currency: "currency",
                                 customerFacingCode: "customer_facing_code",
                                 discountExternalId: "discount_external_id",
                                 duration: "duration",
-                                durationInMonths: 1,
+                                durationInMonths: 1000000,
                                 endedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 isActive: true,
                                 percentOff: 1.1,
@@ -5499,14 +5541,14 @@ describe("CompaniesClient", () => {
                                 subscriptionExternalId: "subscription_external_id",
                             },
                             {
-                                amountOff: 1,
+                                amountOff: 1000000,
                                 couponId: "coupon_id",
                                 couponName: "coupon_name",
                                 currency: "currency",
                                 customerFacingCode: "customer_facing_code",
                                 discountExternalId: "discount_external_id",
                                 duration: "duration",
-                                durationInMonths: 1,
+                                durationInMonths: 1000000,
                                 endedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 isActive: true,
                                 percentOff: 1.1,
@@ -5519,9 +5561,9 @@ describe("CompaniesClient", () => {
                         id: "id",
                         interval: "interval",
                         latestInvoice: {
-                            amountDue: 1,
-                            amountPaid: 1,
-                            amountRemaining: 1,
+                            amountDue: 1000000,
+                            amountPaid: 1000000,
+                            amountRemaining: 1000000,
                             collectionMethod: "collection_method",
                             companyId: "company_id",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -5535,7 +5577,7 @@ describe("CompaniesClient", () => {
                             providerType: "schematic",
                             status: "draft",
                             subscriptionExternalId: "subscription_external_id",
-                            subtotal: 1,
+                            subtotal: 1000000,
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             url: "url",
                         },
@@ -5551,8 +5593,8 @@ describe("CompaniesClient", () => {
                             billingEmail: "billing_email",
                             billingName: "billing_name",
                             cardBrand: "card_brand",
-                            cardExpMonth: 1,
-                            cardExpYear: 1,
+                            cardExpMonth: 1000000,
+                            cardExpYear: 1000000,
                             cardLast4: "card_last4",
                             companyId: "company_id",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -5564,12 +5606,12 @@ describe("CompaniesClient", () => {
                             providerType: "schematic",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
-                        periodEnd: 1,
-                        periodStart: 1,
+                        periodEnd: 1000000,
+                        periodStart: 1000000,
                         products: [
                             {
                                 billingScheme: "per_unit",
-                                billingThreshold: 1,
+                                billingThreshold: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 currency: "currency",
                                 environmentId: "environment_id",
@@ -5578,23 +5620,23 @@ describe("CompaniesClient", () => {
                                 interval: "interval",
                                 meterId: "meter_id",
                                 name: "name",
-                                packageSize: 1,
-                                price: 1,
+                                packageSize: 1000000,
+                                price: 1000000,
                                 priceDecimal: "price_decimal",
                                 priceExternalId: "price_external_id",
                                 priceId: "price_id",
                                 priceTier: [
                                     {
-                                        flatAmount: 1,
-                                        perUnitPrice: 1,
+                                        flatAmount: 1000000,
+                                        perUnitPrice: 1000000,
                                         perUnitPriceDecimal: "per_unit_price_decimal",
-                                        upTo: 1,
+                                        upTo: 1000000,
                                     },
                                     {
-                                        flatAmount: 1,
-                                        perUnitPrice: 1,
+                                        flatAmount: 1000000,
+                                        perUnitPrice: 1000000,
                                         perUnitPriceDecimal: "per_unit_price_decimal",
-                                        upTo: 1,
+                                        upTo: 1000000,
                                     },
                                 ],
                                 providerType: "schematic",
@@ -5606,7 +5648,7 @@ describe("CompaniesClient", () => {
                             },
                             {
                                 billingScheme: "per_unit",
-                                billingThreshold: 1,
+                                billingThreshold: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 currency: "currency",
                                 environmentId: "environment_id",
@@ -5615,23 +5657,23 @@ describe("CompaniesClient", () => {
                                 interval: "interval",
                                 meterId: "meter_id",
                                 name: "name",
-                                packageSize: 1,
-                                price: 1,
+                                packageSize: 1000000,
+                                price: 1000000,
                                 priceDecimal: "price_decimal",
                                 priceExternalId: "price_external_id",
                                 priceId: "price_id",
                                 priceTier: [
                                     {
-                                        flatAmount: 1,
-                                        perUnitPrice: 1,
+                                        flatAmount: 1000000,
+                                        perUnitPrice: 1000000,
                                         perUnitPriceDecimal: "per_unit_price_decimal",
-                                        upTo: 1,
+                                        upTo: 1000000,
                                     },
                                     {
-                                        flatAmount: 1,
-                                        perUnitPrice: 1,
+                                        flatAmount: 1000000,
+                                        perUnitPrice: 1000000,
                                         perUnitPriceDecimal: "per_unit_price_decimal",
-                                        upTo: 1,
+                                        upTo: 1000000,
                                     },
                                 ],
                                 providerType: "schematic",
@@ -5645,13 +5687,13 @@ describe("CompaniesClient", () => {
                         providerType: "schematic",
                         status: "status",
                         subscriptionExternalId: "subscription_external_id",
-                        totalPrice: 1,
-                        trialEnd: 1,
+                        totalPrice: 1000000,
+                        trialEnd: 1000000,
                         trialEndSetting: "cancel",
                     },
                     {
                         applicationId: "application_id",
-                        cancelAt: 1,
+                        cancelAt: 1000000,
                         cancelAtPeriodEnd: true,
                         companyId: "company_id",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -5660,14 +5702,14 @@ describe("CompaniesClient", () => {
                         defaultPaymentMethodId: "default_payment_method_id",
                         discounts: [
                             {
-                                amountOff: 1,
+                                amountOff: 1000000,
                                 couponId: "coupon_id",
                                 couponName: "coupon_name",
                                 currency: "currency",
                                 customerFacingCode: "customer_facing_code",
                                 discountExternalId: "discount_external_id",
                                 duration: "duration",
-                                durationInMonths: 1,
+                                durationInMonths: 1000000,
                                 endedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 isActive: true,
                                 percentOff: 1.1,
@@ -5676,14 +5718,14 @@ describe("CompaniesClient", () => {
                                 subscriptionExternalId: "subscription_external_id",
                             },
                             {
-                                amountOff: 1,
+                                amountOff: 1000000,
                                 couponId: "coupon_id",
                                 couponName: "coupon_name",
                                 currency: "currency",
                                 customerFacingCode: "customer_facing_code",
                                 discountExternalId: "discount_external_id",
                                 duration: "duration",
-                                durationInMonths: 1,
+                                durationInMonths: 1000000,
                                 endedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 isActive: true,
                                 percentOff: 1.1,
@@ -5696,9 +5738,9 @@ describe("CompaniesClient", () => {
                         id: "id",
                         interval: "interval",
                         latestInvoice: {
-                            amountDue: 1,
-                            amountPaid: 1,
-                            amountRemaining: 1,
+                            amountDue: 1000000,
+                            amountPaid: 1000000,
+                            amountRemaining: 1000000,
                             collectionMethod: "collection_method",
                             companyId: "company_id",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -5712,7 +5754,7 @@ describe("CompaniesClient", () => {
                             providerType: "schematic",
                             status: "draft",
                             subscriptionExternalId: "subscription_external_id",
-                            subtotal: 1,
+                            subtotal: 1000000,
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             url: "url",
                         },
@@ -5728,8 +5770,8 @@ describe("CompaniesClient", () => {
                             billingEmail: "billing_email",
                             billingName: "billing_name",
                             cardBrand: "card_brand",
-                            cardExpMonth: 1,
-                            cardExpYear: 1,
+                            cardExpMonth: 1000000,
+                            cardExpYear: 1000000,
                             cardLast4: "card_last4",
                             companyId: "company_id",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -5741,12 +5783,12 @@ describe("CompaniesClient", () => {
                             providerType: "schematic",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
-                        periodEnd: 1,
-                        periodStart: 1,
+                        periodEnd: 1000000,
+                        periodStart: 1000000,
                         products: [
                             {
                                 billingScheme: "per_unit",
-                                billingThreshold: 1,
+                                billingThreshold: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 currency: "currency",
                                 environmentId: "environment_id",
@@ -5755,23 +5797,23 @@ describe("CompaniesClient", () => {
                                 interval: "interval",
                                 meterId: "meter_id",
                                 name: "name",
-                                packageSize: 1,
-                                price: 1,
+                                packageSize: 1000000,
+                                price: 1000000,
                                 priceDecimal: "price_decimal",
                                 priceExternalId: "price_external_id",
                                 priceId: "price_id",
                                 priceTier: [
                                     {
-                                        flatAmount: 1,
-                                        perUnitPrice: 1,
+                                        flatAmount: 1000000,
+                                        perUnitPrice: 1000000,
                                         perUnitPriceDecimal: "per_unit_price_decimal",
-                                        upTo: 1,
+                                        upTo: 1000000,
                                     },
                                     {
-                                        flatAmount: 1,
-                                        perUnitPrice: 1,
+                                        flatAmount: 1000000,
+                                        perUnitPrice: 1000000,
                                         perUnitPriceDecimal: "per_unit_price_decimal",
-                                        upTo: 1,
+                                        upTo: 1000000,
                                     },
                                 ],
                                 providerType: "schematic",
@@ -5783,7 +5825,7 @@ describe("CompaniesClient", () => {
                             },
                             {
                                 billingScheme: "per_unit",
-                                billingThreshold: 1,
+                                billingThreshold: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 currency: "currency",
                                 environmentId: "environment_id",
@@ -5792,23 +5834,23 @@ describe("CompaniesClient", () => {
                                 interval: "interval",
                                 meterId: "meter_id",
                                 name: "name",
-                                packageSize: 1,
-                                price: 1,
+                                packageSize: 1000000,
+                                price: 1000000,
                                 priceDecimal: "price_decimal",
                                 priceExternalId: "price_external_id",
                                 priceId: "price_id",
                                 priceTier: [
                                     {
-                                        flatAmount: 1,
-                                        perUnitPrice: 1,
+                                        flatAmount: 1000000,
+                                        perUnitPrice: 1000000,
                                         perUnitPriceDecimal: "per_unit_price_decimal",
-                                        upTo: 1,
+                                        upTo: 1000000,
                                     },
                                     {
-                                        flatAmount: 1,
-                                        perUnitPrice: 1,
+                                        flatAmount: 1000000,
+                                        perUnitPrice: 1000000,
                                         perUnitPriceDecimal: "per_unit_price_decimal",
-                                        upTo: 1,
+                                        upTo: 1000000,
                                     },
                                 ],
                                 providerType: "schematic",
@@ -5822,8 +5864,8 @@ describe("CompaniesClient", () => {
                         providerType: "schematic",
                         status: "status",
                         subscriptionExternalId: "subscription_external_id",
-                        totalPrice: 1,
-                        trialEnd: 1,
+                        totalPrice: 1000000,
+                        trialEnd: 1000000,
                         trialEndSetting: "cancel",
                     },
                 ],
@@ -5835,8 +5877,8 @@ describe("CompaniesClient", () => {
                     billingEmail: "billing_email",
                     billingName: "billing_name",
                     cardBrand: "card_brand",
-                    cardExpMonth: 1,
-                    cardExpYear: 1,
+                    cardExpMonth: 1000000,
+                    cardExpYear: 1000000,
                     cardLast4: "card_last4",
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -5850,7 +5892,7 @@ describe("CompaniesClient", () => {
                 },
                 entitlements: [
                     {
-                        allocation: 1,
+                        allocation: 1000000,
                         creditId: "credit_id",
                         creditRemaining: 1.1,
                         creditTotal: 1.1,
@@ -5861,12 +5903,12 @@ describe("CompaniesClient", () => {
                         metricPeriod: "all_time",
                         metricResetAt: new Date("2024-01-15T09:30:00.000Z"),
                         monthReset: "first_of_month",
-                        softLimit: 1,
-                        usage: 1,
+                        softLimit: 1000000,
+                        usage: 1000000,
                         valueType: "boolean",
                     },
                     {
-                        allocation: 1,
+                        allocation: 1000000,
                         creditId: "credit_id",
                         creditRemaining: 1.1,
                         creditTotal: 1.1,
@@ -5877,8 +5919,8 @@ describe("CompaniesClient", () => {
                         metricPeriod: "all_time",
                         metricResetAt: new Date("2024-01-15T09:30:00.000Z"),
                         monthReset: "first_of_month",
-                        softLimit: 1,
-                        usage: 1,
+                        softLimit: 1000000,
+                        usage: 1000000,
                         valueType: "boolean",
                     },
                 ],
@@ -5972,7 +6014,7 @@ describe("CompaniesClient", () => {
                         monthReset: "month_reset",
                         period: "period",
                         validUntil: new Date("2024-01-15T09:30:00.000Z"),
-                        value: 1,
+                        value: 1000000,
                     },
                     {
                         accountId: "account_id",
@@ -5985,7 +6027,7 @@ describe("CompaniesClient", () => {
                         monthReset: "month_reset",
                         period: "period",
                         validUntil: new Date("2024-01-15T09:30:00.000Z"),
-                        value: 1,
+                        value: 1000000,
                     },
                 ],
                 name: "name",
@@ -5997,8 +6039,8 @@ describe("CompaniesClient", () => {
                         billingEmail: "billing_email",
                         billingName: "billing_name",
                         cardBrand: "card_brand",
-                        cardExpMonth: 1,
-                        cardExpYear: 1,
+                        cardExpMonth: 1000000,
+                        cardExpYear: 1000000,
                         cardLast4: "card_last4",
                         companyId: "company_id",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -6017,8 +6059,8 @@ describe("CompaniesClient", () => {
                         billingEmail: "billing_email",
                         billingName: "billing_name",
                         cardBrand: "card_brand",
-                        cardExpMonth: 1,
-                        cardExpYear: 1,
+                        cardExpMonth: 1000000,
+                        cardExpYear: 1000000,
                         cardLast4: "card_last4",
                         companyId: "company_id",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -6040,13 +6082,13 @@ describe("CompaniesClient", () => {
                     imageUrl: "image_url",
                     includedCreditGrants: [
                         {
-                            billingCreditAutoTopupAmount: 1,
+                            billingCreditAutoTopupAmount: 1000000,
                             billingCreditAutoTopupAmountType: "billing_credit_auto_topup_amount_type",
                             billingCreditAutoTopupEnabled: true,
                             billingCreditAutoTopupExpiryType: "duration",
                             billingCreditAutoTopupExpiryUnit: "billing_periods",
-                            billingCreditAutoTopupExpiryUnitCount: 1,
-                            billingCreditAutoTopupThresholdPercent: 1,
+                            billingCreditAutoTopupExpiryUnitCount: 1000000,
+                            billingCreditAutoTopupThresholdPercent: 1000000,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             credit: {
                                 accountId: "account_id",
@@ -6054,7 +6096,7 @@ describe("CompaniesClient", () => {
                                 costEditable: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 defaultExpiryUnit: "billing_periods",
-                                defaultExpiryUnitCount: 1,
+                                defaultExpiryUnitCount: 1000000,
                                 defaultRolloverPolicy: "expire",
                                 description: "description",
                                 environmentId: "environment_id",
@@ -6069,8 +6111,8 @@ describe("CompaniesClient", () => {
                                     id: "id",
                                     interval: "day",
                                     isActive: true,
-                                    packageSize: 1,
-                                    price: 1,
+                                    packageSize: 1000000,
+                                    price: 1000000,
                                     priceExternalId: "price_external_id",
                                     priceId: "price_id",
                                     priceTier: [],
@@ -6081,7 +6123,7 @@ describe("CompaniesClient", () => {
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                     usageType: "licensed",
                                 },
-                                pricePerUnit: 1,
+                                pricePerUnit: 1000000,
                                 pricePerUnitDecimal: "price_per_unit_decimal",
                                 product: {
                                     accountId: "account_id",
@@ -6099,14 +6141,14 @@ describe("CompaniesClient", () => {
                                 singularName: "singular_name",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
-                            creditAmount: 1,
+                            creditAmount: 1000000,
                             creditDescription: "credit_description",
                             creditIcon: "credit_icon",
                             creditId: "credit_id",
                             creditName: "credit_name",
                             expiryType: "duration",
                             expiryUnit: "billing_periods",
-                            expiryUnitCount: 1,
+                            expiryUnitCount: 1000000,
                             id: "id",
                             plan: {
                                 description: "description",
@@ -6124,13 +6166,13 @@ describe("CompaniesClient", () => {
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                         {
-                            billingCreditAutoTopupAmount: 1,
+                            billingCreditAutoTopupAmount: 1000000,
                             billingCreditAutoTopupAmountType: "billing_credit_auto_topup_amount_type",
                             billingCreditAutoTopupEnabled: true,
                             billingCreditAutoTopupExpiryType: "duration",
                             billingCreditAutoTopupExpiryUnit: "billing_periods",
-                            billingCreditAutoTopupExpiryUnitCount: 1,
-                            billingCreditAutoTopupThresholdPercent: 1,
+                            billingCreditAutoTopupExpiryUnitCount: 1000000,
+                            billingCreditAutoTopupThresholdPercent: 1000000,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             credit: {
                                 accountId: "account_id",
@@ -6138,7 +6180,7 @@ describe("CompaniesClient", () => {
                                 costEditable: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 defaultExpiryUnit: "billing_periods",
-                                defaultExpiryUnitCount: 1,
+                                defaultExpiryUnitCount: 1000000,
                                 defaultRolloverPolicy: "expire",
                                 description: "description",
                                 environmentId: "environment_id",
@@ -6153,8 +6195,8 @@ describe("CompaniesClient", () => {
                                     id: "id",
                                     interval: "day",
                                     isActive: true,
-                                    packageSize: 1,
-                                    price: 1,
+                                    packageSize: 1000000,
+                                    price: 1000000,
                                     priceExternalId: "price_external_id",
                                     priceId: "price_id",
                                     priceTier: [],
@@ -6165,7 +6207,7 @@ describe("CompaniesClient", () => {
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                     usageType: "licensed",
                                 },
-                                pricePerUnit: 1,
+                                pricePerUnit: 1000000,
                                 pricePerUnitDecimal: "price_per_unit_decimal",
                                 product: {
                                     accountId: "account_id",
@@ -6183,14 +6225,14 @@ describe("CompaniesClient", () => {
                                 singularName: "singular_name",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
-                            creditAmount: 1,
+                            creditAmount: 1000000,
                             creditDescription: "credit_description",
                             creditIcon: "credit_icon",
                             creditId: "credit_id",
                             creditName: "credit_name",
                             expiryType: "duration",
                             expiryUnit: "billing_periods",
-                            expiryUnitCount: 1,
+                            expiryUnitCount: 1000000,
                             id: "id",
                             plan: {
                                 description: "description",
@@ -6210,7 +6252,7 @@ describe("CompaniesClient", () => {
                     ],
                     name: "name",
                     planPeriod: "plan_period",
-                    planPrice: 1,
+                    planPrice: 1000000,
                     planVersionId: "plan_version_id",
                 },
                 plans: [
@@ -6248,7 +6290,7 @@ describe("CompaniesClient", () => {
                                         id: "id",
                                         metricPeriod: "all_time",
                                         metricPeriodMonthReset: "first_of_month",
-                                        metricValue: 1,
+                                        metricValue: 1000000,
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                         traitDefinition: {
@@ -6273,7 +6315,7 @@ describe("CompaniesClient", () => {
                                         id: "id",
                                         metricPeriod: "all_time",
                                         metricPeriodMonthReset: "first_of_month",
-                                        metricValue: 1,
+                                        metricValue: 1000000,
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                         traitDefinition: {
@@ -6302,7 +6344,7 @@ describe("CompaniesClient", () => {
                                         id: "id",
                                         metricPeriod: "all_time",
                                         metricPeriodMonthReset: "first_of_month",
-                                        metricValue: 1,
+                                        metricValue: 1000000,
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                         traitDefinition: {
@@ -6327,7 +6369,7 @@ describe("CompaniesClient", () => {
                                         id: "id",
                                         metricPeriod: "all_time",
                                         metricPeriodMonthReset: "first_of_month",
-                                        metricValue: 1,
+                                        metricValue: 1000000,
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                         traitDefinition: {
@@ -6356,7 +6398,7 @@ describe("CompaniesClient", () => {
                                 id: "id",
                                 metricPeriod: "all_time",
                                 metricPeriodMonthReset: "first_of_month",
-                                metricValue: 1,
+                                metricValue: 1000000,
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
                                 traitDefinition: {
@@ -6381,7 +6423,7 @@ describe("CompaniesClient", () => {
                                 id: "id",
                                 metricPeriod: "all_time",
                                 metricPeriodMonthReset: "first_of_month",
-                                metricValue: 1,
+                                metricValue: 1000000,
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
                                 traitDefinition: {
@@ -6396,7 +6438,7 @@ describe("CompaniesClient", () => {
                         flagId: "flag_id",
                         id: "id",
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         ruleType: "default",
                         value: true,
                     },
@@ -6420,7 +6462,7 @@ describe("CompaniesClient", () => {
                                         id: "id",
                                         metricPeriod: "all_time",
                                         metricPeriodMonthReset: "first_of_month",
-                                        metricValue: 1,
+                                        metricValue: 1000000,
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                         traitDefinition: {
@@ -6445,7 +6487,7 @@ describe("CompaniesClient", () => {
                                         id: "id",
                                         metricPeriod: "all_time",
                                         metricPeriodMonthReset: "first_of_month",
-                                        metricValue: 1,
+                                        metricValue: 1000000,
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                         traitDefinition: {
@@ -6474,7 +6516,7 @@ describe("CompaniesClient", () => {
                                         id: "id",
                                         metricPeriod: "all_time",
                                         metricPeriodMonthReset: "first_of_month",
-                                        metricValue: 1,
+                                        metricValue: 1000000,
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                         traitDefinition: {
@@ -6499,7 +6541,7 @@ describe("CompaniesClient", () => {
                                         id: "id",
                                         metricPeriod: "all_time",
                                         metricPeriodMonthReset: "first_of_month",
-                                        metricValue: 1,
+                                        metricValue: 1000000,
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                         traitDefinition: {
@@ -6528,7 +6570,7 @@ describe("CompaniesClient", () => {
                                 id: "id",
                                 metricPeriod: "all_time",
                                 metricPeriodMonthReset: "first_of_month",
-                                metricValue: 1,
+                                metricValue: 1000000,
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
                                 traitDefinition: {
@@ -6553,7 +6595,7 @@ describe("CompaniesClient", () => {
                                 id: "id",
                                 metricPeriod: "all_time",
                                 metricPeriodMonthReset: "first_of_month",
-                                metricValue: 1,
+                                metricValue: 1000000,
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
                                 traitDefinition: {
@@ -6568,7 +6610,7 @@ describe("CompaniesClient", () => {
                         flagId: "flag_id",
                         id: "id",
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         ruleType: "default",
                         value: true,
                     },
@@ -6578,11 +6620,11 @@ describe("CompaniesClient", () => {
                     effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                     fromPlanId: "from_plan_id",
                     fromPlanName: "from_plan_name",
-                    fromSubscriptionPrice: 1,
+                    fromSubscriptionPrice: 1000000,
                     id: "id",
                     interval: "interval",
                     scheduledInterval: "scheduled_interval",
-                    scheduledPrice: 1,
+                    scheduledPrice: 1000000,
                     toPlanId: "to_plan_id",
                     toPlanName: "to_plan_name",
                 },
@@ -6592,7 +6634,7 @@ describe("CompaniesClient", () => {
                     },
                 },
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                userCount: 1,
+                userCount: 1000000,
             },
             params: {
                 keys: {
@@ -6607,6 +6649,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/companies/lookup").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -6623,6 +6666,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/companies/lookup").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -6639,6 +6683,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/companies/lookup").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -6655,6 +6700,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/companies/lookup").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -6687,8 +6733,9 @@ describe("CompaniesClient", () => {
                     user_id: "user_id",
                 },
             ],
-            params: { company_id: "company_id", limit: 1, offset: 1, user_id: "user_id" },
+            params: { company_id: "company_id", limit: 1000000, offset: 1000000, user_id: "user_id" },
         };
+
         server
             .mockEndpoint()
             .get("/company-memberships")
@@ -6700,8 +6747,8 @@ describe("CompaniesClient", () => {
         const response = await client.companies.listCompanyMemberships({
             companyId: "company_id",
             userId: "user_id",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -6722,8 +6769,8 @@ describe("CompaniesClient", () => {
             ],
             params: {
                 companyId: "company_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 userId: "user_id",
             },
         });
@@ -6734,6 +6781,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/company-memberships")
@@ -6752,6 +6800,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/company-memberships")
@@ -6770,6 +6819,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/company-memberships")
@@ -6788,6 +6838,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/company-memberships")
@@ -6806,6 +6857,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/company-memberships")
@@ -6842,6 +6894,7 @@ describe("CompaniesClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/company-memberships")
@@ -6883,6 +6936,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { company_id: "company_id", user_id: "user_id" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/company-memberships")
@@ -6905,6 +6959,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { company_id: "company_id", user_id: "user_id" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/company-memberships")
@@ -6927,6 +6982,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { company_id: "company_id", user_id: "user_id" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/company-memberships")
@@ -6949,6 +7005,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { company_id: "company_id", user_id: "user_id" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/company-memberships")
@@ -6971,6 +7028,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { company_id: "company_id", user_id: "user_id" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/company-memberships")
@@ -6993,6 +7051,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
+
         server
             .mockEndpoint()
             .delete("/company-memberships/company_membership_id")
@@ -7017,6 +7076,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/company-memberships/company_membership_id")
@@ -7035,6 +7095,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/company-memberships/company_membership_id")
@@ -7053,6 +7114,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/company-memberships/company_membership_id")
@@ -7071,6 +7133,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/company-memberships/company_membership_id")
@@ -7089,6 +7152,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/company-memberships/company_membership_id")
@@ -7127,9 +7191,9 @@ describe("CompaniesClient", () => {
                     expired_at: "2024-01-15T09:30:00Z",
                     interval: "interval",
                     latest_invoice: {
-                        amount_due: 1,
-                        amount_paid: 1,
-                        amount_remaining: 1,
+                        amount_due: 1000000,
+                        amount_paid: 1000000,
+                        amount_remaining: 1000000,
                         collection_method: "collection_method",
                         created_at: "2024-01-15T09:30:00Z",
                         currency: "currency",
@@ -7137,7 +7201,7 @@ describe("CompaniesClient", () => {
                         environment_id: "environment_id",
                         id: "id",
                         provider_type: "schematic",
-                        subtotal: 1,
+                        subtotal: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     payment_method: {
@@ -7160,8 +7224,8 @@ describe("CompaniesClient", () => {
                             id: "id",
                             interval: "interval",
                             name: "name",
-                            package_size: 1,
-                            price: 1,
+                            package_size: 1000000,
+                            price: 1000000,
                             price_external_id: "price_external_id",
                             price_id: "price_id",
                             price_tier: [{}],
@@ -7174,12 +7238,13 @@ describe("CompaniesClient", () => {
                     ],
                     status: "status",
                     subscription_external_id: "subscription_external_id",
-                    total_price: 1,
+                    total_price: 1000000,
                     trial_end: "2024-01-15T09:30:00Z",
                 },
             ],
-            params: { company_id: "company_id", company_ids: ["company_ids"], limit: 1, offset: 1 },
+            params: { company_id: "company_id", company_ids: ["company_ids"], limit: 1000000, offset: 1000000 },
         };
+
         server
             .mockEndpoint()
             .get("/company-subscriptions")
@@ -7190,8 +7255,8 @@ describe("CompaniesClient", () => {
 
         const response = await client.companies.getActiveCompanySubscription({
             companyId: "company_id",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -7214,9 +7279,9 @@ describe("CompaniesClient", () => {
                     expiredAt: new Date("2024-01-15T09:30:00.000Z"),
                     interval: "interval",
                     latestInvoice: {
-                        amountDue: 1,
-                        amountPaid: 1,
-                        amountRemaining: 1,
+                        amountDue: 1000000,
+                        amountPaid: 1000000,
+                        amountRemaining: 1000000,
                         collectionMethod: "collection_method",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currency: "currency",
@@ -7224,7 +7289,7 @@ describe("CompaniesClient", () => {
                         environmentId: "environment_id",
                         id: "id",
                         providerType: "schematic",
-                        subtotal: 1,
+                        subtotal: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     paymentMethod: {
@@ -7247,8 +7312,8 @@ describe("CompaniesClient", () => {
                             id: "id",
                             interval: "interval",
                             name: "name",
-                            packageSize: 1,
-                            price: 1,
+                            packageSize: 1000000,
+                            price: 1000000,
                             priceExternalId: "price_external_id",
                             priceId: "price_id",
                             priceTier: [{}],
@@ -7261,15 +7326,15 @@ describe("CompaniesClient", () => {
                     ],
                     status: "status",
                     subscriptionExternalId: "subscription_external_id",
-                    totalPrice: 1,
+                    totalPrice: 1000000,
                     trialEnd: new Date("2024-01-15T09:30:00.000Z"),
                 },
             ],
             params: {
                 companyId: "company_id",
                 companyIds: ["company_ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
             },
         });
     });
@@ -7279,6 +7344,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/company-subscriptions")
@@ -7297,6 +7363,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/company-subscriptions")
@@ -7315,6 +7382,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/company-subscriptions")
@@ -7333,6 +7401,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/company-subscriptions")
@@ -7351,6 +7420,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/company-subscriptions")
@@ -7377,7 +7447,7 @@ describe("CompaniesClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                credit_amount: 1,
+                                credit_amount: 1000000,
                                 credit_description: "credit_description",
                                 credit_id: "credit_id",
                                 credit_name: "credit_name",
@@ -7393,7 +7463,7 @@ describe("CompaniesClient", () => {
                 billing_credit_balances: { key: 1.1 },
                 billing_subscription: {
                     application_id: "application_id",
-                    cancel_at: 1,
+                    cancel_at: 1000000,
                     cancel_at_period_end: true,
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
@@ -7415,9 +7485,9 @@ describe("CompaniesClient", () => {
                     id: "id",
                     interval: "interval",
                     latest_invoice: {
-                        amount_due: 1,
-                        amount_paid: 1,
-                        amount_remaining: 1,
+                        amount_due: 1000000,
+                        amount_paid: 1000000,
+                        amount_remaining: 1000000,
                         collection_method: "collection_method",
                         created_at: "2024-01-15T09:30:00Z",
                         currency: "currency",
@@ -7425,7 +7495,7 @@ describe("CompaniesClient", () => {
                         environment_id: "environment_id",
                         id: "id",
                         provider_type: "schematic",
-                        subtotal: 1,
+                        subtotal: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     metadata: { key: "value" },
@@ -7439,8 +7509,8 @@ describe("CompaniesClient", () => {
                         provider_type: "schematic",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
-                    period_end: 1,
-                    period_start: 1,
+                    period_end: 1000000,
+                    period_start: 1000000,
                     products: [
                         {
                             billing_scheme: "per_unit",
@@ -7451,8 +7521,8 @@ describe("CompaniesClient", () => {
                             id: "id",
                             interval: "interval",
                             name: "name",
-                            package_size: 1,
-                            price: 1,
+                            package_size: 1000000,
+                            price: 1000000,
                             price_external_id: "price_external_id",
                             price_id: "price_id",
                             price_tier: [{}],
@@ -7466,8 +7536,8 @@ describe("CompaniesClient", () => {
                     provider_type: "schematic",
                     status: "status",
                     subscription_external_id: "subscription_external_id",
-                    total_price: 1,
-                    trial_end: 1,
+                    total_price: 1000000,
+                    trial_end: 1000000,
                     trial_end_setting: "cancel",
                 },
                 billing_subscriptions: [
@@ -7489,8 +7559,8 @@ describe("CompaniesClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        period_end: 1,
-                        period_start: 1,
+                        period_end: 1000000,
+                        period_start: 1000000,
                         products: [
                             {
                                 billing_scheme: "per_unit",
@@ -7501,8 +7571,8 @@ describe("CompaniesClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                package_size: 1,
-                                price: 1,
+                                package_size: 1000000,
+                                price: 1000000,
                                 price_external_id: "price_external_id",
                                 price_id: "price_id",
                                 price_tier: [{}],
@@ -7516,7 +7586,7 @@ describe("CompaniesClient", () => {
                         provider_type: "schematic",
                         status: "status",
                         subscription_external_id: "subscription_external_id",
-                        total_price: 1,
+                        total_price: 1000000,
                     },
                 ],
                 created_at: "2024-01-15T09:30:00Z",
@@ -7527,8 +7597,8 @@ describe("CompaniesClient", () => {
                     billing_email: "billing_email",
                     billing_name: "billing_name",
                     card_brand: "card_brand",
-                    card_exp_month: 1,
-                    card_exp_year: 1,
+                    card_exp_month: 1000000,
+                    card_exp_year: 1000000,
                     card_last4: "card_last4",
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
@@ -7579,7 +7649,7 @@ describe("CompaniesClient", () => {
                         event_subtype: "event_subtype",
                         month_reset: "month_reset",
                         period: "period",
-                        value: 1,
+                        value: 1000000,
                     },
                 ],
                 name: "name",
@@ -7606,7 +7676,7 @@ describe("CompaniesClient", () => {
                         {
                             billing_credit_auto_topup_enabled: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            credit_amount: 1,
+                            credit_amount: 1000000,
                             credit_description: "credit_description",
                             credit_id: "credit_id",
                             credit_name: "credit_name",
@@ -7618,7 +7688,7 @@ describe("CompaniesClient", () => {
                     ],
                     name: "name",
                     plan_period: "plan_period",
-                    plan_price: 1,
+                    plan_price: 1000000,
                     plan_version_id: "plan_version_id",
                 },
                 plans: [{ id: "id", name: "name" }],
@@ -7654,7 +7724,7 @@ describe("CompaniesClient", () => {
                         environment_id: "environment_id",
                         id: "id",
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         rule_type: "default",
                         value: true,
                     },
@@ -7664,20 +7734,21 @@ describe("CompaniesClient", () => {
                     effective_after: "2024-01-15T09:30:00Z",
                     from_plan_id: "from_plan_id",
                     from_plan_name: "from_plan_name",
-                    from_subscription_price: 1,
+                    from_subscription_price: 1000000,
                     id: "id",
                     interval: "interval",
                     scheduled_interval: "scheduled_interval",
-                    scheduled_price: 1,
+                    scheduled_price: 1000000,
                     to_plan_id: "to_plan_id",
                     to_plan_name: "to_plan_name",
                 },
                 traits: { key: "value" },
                 updated_at: "2024-01-15T09:30:00Z",
-                user_count: 1,
+                user_count: 1000000,
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/company-traits")
@@ -7702,7 +7773,7 @@ describe("CompaniesClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                creditAmount: 1,
+                                creditAmount: 1000000,
                                 creditDescription: "credit_description",
                                 creditId: "credit_id",
                                 creditName: "credit_name",
@@ -7720,7 +7791,7 @@ describe("CompaniesClient", () => {
                 },
                 billingSubscription: {
                     applicationId: "application_id",
-                    cancelAt: 1,
+                    cancelAt: 1000000,
                     cancelAtPeriodEnd: true,
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -7742,9 +7813,9 @@ describe("CompaniesClient", () => {
                     id: "id",
                     interval: "interval",
                     latestInvoice: {
-                        amountDue: 1,
-                        amountPaid: 1,
-                        amountRemaining: 1,
+                        amountDue: 1000000,
+                        amountPaid: 1000000,
+                        amountRemaining: 1000000,
                         collectionMethod: "collection_method",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currency: "currency",
@@ -7752,7 +7823,7 @@ describe("CompaniesClient", () => {
                         environmentId: "environment_id",
                         id: "id",
                         providerType: "schematic",
-                        subtotal: 1,
+                        subtotal: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     metadata: {
@@ -7768,8 +7839,8 @@ describe("CompaniesClient", () => {
                         providerType: "schematic",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
-                    periodEnd: 1,
-                    periodStart: 1,
+                    periodEnd: 1000000,
+                    periodStart: 1000000,
                     products: [
                         {
                             billingScheme: "per_unit",
@@ -7780,8 +7851,8 @@ describe("CompaniesClient", () => {
                             id: "id",
                             interval: "interval",
                             name: "name",
-                            packageSize: 1,
-                            price: 1,
+                            packageSize: 1000000,
+                            price: 1000000,
                             priceExternalId: "price_external_id",
                             priceId: "price_id",
                             priceTier: [{}],
@@ -7795,8 +7866,8 @@ describe("CompaniesClient", () => {
                     providerType: "schematic",
                     status: "status",
                     subscriptionExternalId: "subscription_external_id",
-                    totalPrice: 1,
-                    trialEnd: 1,
+                    totalPrice: 1000000,
+                    trialEnd: 1000000,
                     trialEndSetting: "cancel",
                 },
                 billingSubscriptions: [
@@ -7818,8 +7889,8 @@ describe("CompaniesClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        periodEnd: 1,
-                        periodStart: 1,
+                        periodEnd: 1000000,
+                        periodStart: 1000000,
                         products: [
                             {
                                 billingScheme: "per_unit",
@@ -7830,8 +7901,8 @@ describe("CompaniesClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                packageSize: 1,
-                                price: 1,
+                                packageSize: 1000000,
+                                price: 1000000,
                                 priceExternalId: "price_external_id",
                                 priceId: "price_id",
                                 priceTier: [{}],
@@ -7845,7 +7916,7 @@ describe("CompaniesClient", () => {
                         providerType: "schematic",
                         status: "status",
                         subscriptionExternalId: "subscription_external_id",
-                        totalPrice: 1,
+                        totalPrice: 1000000,
                     },
                 ],
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -7856,8 +7927,8 @@ describe("CompaniesClient", () => {
                     billingEmail: "billing_email",
                     billingName: "billing_name",
                     cardBrand: "card_brand",
-                    cardExpMonth: 1,
-                    cardExpYear: 1,
+                    cardExpMonth: 1000000,
+                    cardExpYear: 1000000,
                     cardLast4: "card_last4",
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -7914,7 +7985,7 @@ describe("CompaniesClient", () => {
                         eventSubtype: "event_subtype",
                         monthReset: "month_reset",
                         period: "period",
-                        value: 1,
+                        value: 1000000,
                     },
                 ],
                 name: "name",
@@ -7941,7 +8012,7 @@ describe("CompaniesClient", () => {
                         {
                             billingCreditAutoTopupEnabled: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            creditAmount: 1,
+                            creditAmount: 1000000,
                             creditDescription: "credit_description",
                             creditId: "credit_id",
                             creditName: "credit_name",
@@ -7953,7 +8024,7 @@ describe("CompaniesClient", () => {
                     ],
                     name: "name",
                     planPeriod: "plan_period",
-                    planPrice: 1,
+                    planPrice: 1000000,
                     planVersionId: "plan_version_id",
                 },
                 plans: [
@@ -7994,7 +8065,7 @@ describe("CompaniesClient", () => {
                         environmentId: "environment_id",
                         id: "id",
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         ruleType: "default",
                         value: true,
                     },
@@ -8004,11 +8075,11 @@ describe("CompaniesClient", () => {
                     effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                     fromPlanId: "from_plan_id",
                     fromPlanName: "from_plan_name",
-                    fromSubscriptionPrice: 1,
+                    fromSubscriptionPrice: 1000000,
                     id: "id",
                     interval: "interval",
                     scheduledInterval: "scheduled_interval",
-                    scheduledPrice: 1,
+                    scheduledPrice: 1000000,
                     toPlanId: "to_plan_id",
                     toPlanName: "to_plan_name",
                 },
@@ -8016,7 +8087,7 @@ describe("CompaniesClient", () => {
                     key: "value",
                 },
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                userCount: 1,
+                userCount: 1000000,
             },
             params: {
                 key: "value",
@@ -8029,6 +8100,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" }, trait: "trait" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/company-traits")
@@ -8053,6 +8125,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" }, trait: "trait" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/company-traits")
@@ -8077,6 +8150,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" }, trait: "trait" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/company-traits")
@@ -8101,6 +8175,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" }, trait: "trait" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/company-traits")
@@ -8125,6 +8200,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" }, trait: "trait" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/company-traits")
@@ -8158,8 +8234,9 @@ describe("CompaniesClient", () => {
                     updated_at: "2024-01-15T09:30:00Z",
                 },
             ],
-            params: { entity_type: "company", ids: ["ids"], limit: 1, offset: 1, q: "q" },
+            params: { entity_type: "company", ids: ["ids"], limit: 1000000, offset: 1000000, q: "q" },
         };
+
         server
             .mockEndpoint()
             .get("/entity-key-definitions")
@@ -8171,8 +8248,8 @@ describe("CompaniesClient", () => {
         const response = await client.companies.listEntityKeyDefinitions({
             entityType: "company",
             q: "q",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -8187,8 +8264,8 @@ describe("CompaniesClient", () => {
             params: {
                 entityType: "company",
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
             },
         });
@@ -8199,6 +8276,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-key-definitions")
@@ -8217,6 +8295,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-key-definitions")
@@ -8235,6 +8314,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-key-definitions")
@@ -8253,6 +8333,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-key-definitions")
@@ -8271,6 +8352,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-key-definitions")
@@ -8290,8 +8372,9 @@ describe("CompaniesClient", () => {
 
         const rawResponseBody = {
             data: { count: 1 },
-            params: { entity_type: "company", ids: ["ids"], limit: 1, offset: 1, q: "q" },
+            params: { entity_type: "company", ids: ["ids"], limit: 1000000, offset: 1000000, q: "q" },
         };
+
         server
             .mockEndpoint()
             .get("/entity-key-definitions/count")
@@ -8303,8 +8386,8 @@ describe("CompaniesClient", () => {
         const response = await client.companies.countEntityKeyDefinitions({
             entityType: "company",
             q: "q",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -8313,8 +8396,8 @@ describe("CompaniesClient", () => {
             params: {
                 entityType: "company",
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
             },
         });
@@ -8325,6 +8408,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-key-definitions/count")
@@ -8343,6 +8427,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-key-definitions/count")
@@ -8361,6 +8446,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-key-definitions/count")
@@ -8379,6 +8465,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-key-definitions/count")
@@ -8397,6 +8484,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-key-definitions/count")
@@ -8429,13 +8517,14 @@ describe("CompaniesClient", () => {
             params: {
                 entity_type: "company",
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
                 trait_type: "boolean",
                 trait_types: ["boolean"],
             },
         };
+
         server
             .mockEndpoint()
             .get("/entity-trait-definitions")
@@ -8448,8 +8537,8 @@ describe("CompaniesClient", () => {
             entityType: "company",
             q: "q",
             traitType: "boolean",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -8466,8 +8555,8 @@ describe("CompaniesClient", () => {
             params: {
                 entityType: "company",
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
                 traitType: "boolean",
                 traitTypes: ["boolean"],
@@ -8480,6 +8569,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-trait-definitions")
@@ -8498,6 +8588,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-trait-definitions")
@@ -8516,6 +8607,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-trait-definitions")
@@ -8534,6 +8626,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-trait-definitions")
@@ -8552,6 +8645,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-trait-definitions")
@@ -8581,6 +8675,7 @@ describe("CompaniesClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/entity-trait-definitions")
@@ -8616,6 +8711,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entity_type: "company", hierarchy: ["hierarchy", "hierarchy"], trait_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/entity-trait-definitions")
@@ -8639,6 +8735,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entity_type: "company", hierarchy: ["hierarchy", "hierarchy"], trait_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/entity-trait-definitions")
@@ -8662,6 +8759,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entity_type: "company", hierarchy: ["hierarchy", "hierarchy"], trait_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/entity-trait-definitions")
@@ -8685,6 +8783,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entity_type: "company", hierarchy: ["hierarchy", "hierarchy"], trait_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/entity-trait-definitions")
@@ -8708,6 +8807,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entity_type: "company", hierarchy: ["hierarchy", "hierarchy"], trait_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/entity-trait-definitions")
@@ -8742,6 +8842,7 @@ describe("CompaniesClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .get("/entity-trait-definitions/entity_trait_definition_id")
@@ -8772,6 +8873,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-trait-definitions/entity_trait_definition_id")
@@ -8790,6 +8892,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-trait-definitions/entity_trait_definition_id")
@@ -8808,6 +8911,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-trait-definitions/entity_trait_definition_id")
@@ -8826,6 +8930,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-trait-definitions/entity_trait_definition_id")
@@ -8855,6 +8960,7 @@ describe("CompaniesClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .put("/entity-trait-definitions/entity_trait_definition_id")
@@ -8888,6 +8994,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { trait_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/entity-trait-definitions/entity_trait_definition_id")
@@ -8909,6 +9016,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { trait_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/entity-trait-definitions/entity_trait_definition_id")
@@ -8930,6 +9038,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { trait_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/entity-trait-definitions/entity_trait_definition_id")
@@ -8951,6 +9060,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { trait_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/entity-trait-definitions/entity_trait_definition_id")
@@ -8972,6 +9082,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { trait_type: "boolean" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/entity-trait-definitions/entity_trait_definition_id")
@@ -8997,13 +9108,14 @@ describe("CompaniesClient", () => {
             params: {
                 entity_type: "company",
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
                 trait_type: "boolean",
                 trait_types: ["boolean"],
             },
         };
+
         server
             .mockEndpoint()
             .get("/entity-trait-definitions/count")
@@ -9016,8 +9128,8 @@ describe("CompaniesClient", () => {
             entityType: "company",
             q: "q",
             traitType: "boolean",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -9026,8 +9138,8 @@ describe("CompaniesClient", () => {
             params: {
                 entityType: "company",
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
                 traitType: "boolean",
                 traitTypes: ["boolean"],
@@ -9040,6 +9152,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-trait-definitions/count")
@@ -9058,6 +9171,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-trait-definitions/count")
@@ -9076,6 +9190,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-trait-definitions/count")
@@ -9094,6 +9209,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-trait-definitions/count")
@@ -9112,6 +9228,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-trait-definitions/count")
@@ -9131,8 +9248,9 @@ describe("CompaniesClient", () => {
 
         const rawResponseBody = {
             data: [{ definition_id: "definition_id", value: "value" }],
-            params: { definition_id: "definition_id", limit: 1, offset: 1, q: "q" },
+            params: { definition_id: "definition_id", limit: 1000000, offset: 1000000, q: "q" },
         };
+
         server
             .mockEndpoint()
             .get("/entity-trait-values")
@@ -9144,8 +9262,8 @@ describe("CompaniesClient", () => {
         const response = await client.companies.getEntityTraitValues({
             definitionId: "definition_id",
             q: "q",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -9156,8 +9274,8 @@ describe("CompaniesClient", () => {
             ],
             params: {
                 definitionId: "definition_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
             },
         });
@@ -9168,6 +9286,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-trait-values")
@@ -9188,6 +9307,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-trait-values")
@@ -9208,6 +9328,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-trait-values")
@@ -9228,6 +9349,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-trait-values")
@@ -9248,6 +9370,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/entity-trait-values")
@@ -9295,7 +9418,7 @@ describe("CompaniesClient", () => {
                     },
                     base_plan: { deleted: true, description: "description", icon: "icon", id: "id", name: "name" },
                     base_plan_action: "fallback",
-                    base_plan_version: { id: "id", name: "name", version: 1 },
+                    base_plan_version: { id: "id", name: "name", version: 1000000 },
                     company: {
                         created_at: "2024-01-15T09:30:00Z",
                         environment_id: "environment_id",
@@ -9314,7 +9437,7 @@ describe("CompaniesClient", () => {
                         id: "id",
                         name: "name",
                     },
-                    previous_base_plan_version: { id: "id", name: "name", version: 1 },
+                    previous_base_plan_version: { id: "id", name: "name", version: 1000000 },
                     request_id: "request_id",
                     subscription_change_action: "adjustment",
                     traits_updated: [
@@ -9338,19 +9461,20 @@ describe("CompaniesClient", () => {
                 base_plan_action: "base_plan_action",
                 company_id: "company_id",
                 company_ids: ["company_ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 plan_ids: ["plan_ids"],
             },
         };
+
         server.mockEndpoint().get("/plan-changes").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.companies.listPlanChanges({
             action: "action",
             basePlanAction: "base_plan_action",
             companyId: "company_id",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -9401,7 +9525,7 @@ describe("CompaniesClient", () => {
                     basePlanVersion: {
                         id: "id",
                         name: "name",
-                        version: 1,
+                        version: 1000000,
                     },
                     company: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -9424,7 +9548,7 @@ describe("CompaniesClient", () => {
                     previousBasePlanVersion: {
                         id: "id",
                         name: "name",
-                        version: 1,
+                        version: 1000000,
                     },
                     requestId: "request_id",
                     subscriptionChangeAction: "adjustment",
@@ -9449,8 +9573,8 @@ describe("CompaniesClient", () => {
                 basePlanAction: "base_plan_action",
                 companyId: "company_id",
                 companyIds: ["company_ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 planIds: ["plan_ids"],
             },
         });
@@ -9461,6 +9585,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plan-changes").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -9473,6 +9598,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plan-changes").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -9485,6 +9611,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plan-changes").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -9497,6 +9624,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plan-changes").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -9509,6 +9637,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plan-changes").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -9544,11 +9673,11 @@ describe("CompaniesClient", () => {
                     environment_id: "environment_id",
                     id: "id",
                     method: "method",
-                    resource_id: 1,
+                    resource_id: 1000000,
                     resource_id_string: "resource_id_string",
                     resource_name: "resource_name",
                     resource_type: "resource_type",
-                    resp_code: 1,
+                    resp_code: 1000000,
                     secondary_resource: "secondary_resource",
                     started_at: "2024-01-15T09:30:00Z",
                     url: "url",
@@ -9556,7 +9685,7 @@ describe("CompaniesClient", () => {
                 },
                 base_plan: { deleted: true, description: "description", icon: "icon", id: "id", name: "name" },
                 base_plan_action: "fallback",
-                base_plan_version: { id: "id", name: "name", version: 1 },
+                base_plan_version: { id: "id", name: "name", version: 1000000 },
                 company: {
                     created_at: "2024-01-15T09:30:00Z",
                     environment_id: "environment_id",
@@ -9571,7 +9700,7 @@ describe("CompaniesClient", () => {
                 environment_id: "environment_id",
                 id: "id",
                 previous_base_plan: { deleted: true, description: "description", icon: "icon", id: "id", name: "name" },
-                previous_base_plan_version: { id: "id", name: "name", version: 1 },
+                previous_base_plan_version: { id: "id", name: "name", version: 1000000 },
                 request_id: "request_id",
                 subscription_change_action: "adjustment",
                 traits_updated: [
@@ -9591,6 +9720,7 @@ describe("CompaniesClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .get("/plan-changes/plan_change_id")
@@ -9640,11 +9770,11 @@ describe("CompaniesClient", () => {
                     environmentId: "environment_id",
                     id: "id",
                     method: "method",
-                    resourceId: 1,
+                    resourceId: 1000000,
                     resourceIdString: "resource_id_string",
                     resourceName: "resource_name",
                     resourceType: "resource_type",
-                    respCode: 1,
+                    respCode: 1000000,
                     secondaryResource: "secondary_resource",
                     startedAt: new Date("2024-01-15T09:30:00.000Z"),
                     url: "url",
@@ -9661,7 +9791,7 @@ describe("CompaniesClient", () => {
                 basePlanVersion: {
                     id: "id",
                     name: "name",
-                    version: 1,
+                    version: 1000000,
                 },
                 company: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -9686,7 +9816,7 @@ describe("CompaniesClient", () => {
                 previousBasePlanVersion: {
                     id: "id",
                     name: "name",
-                    version: 1,
+                    version: 1000000,
                 },
                 requestId: "request_id",
                 subscriptionChangeAction: "adjustment",
@@ -9716,6 +9846,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-changes/plan_change_id")
@@ -9734,6 +9865,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-changes/plan_change_id")
@@ -9752,6 +9884,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-changes/plan_change_id")
@@ -9770,6 +9903,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-changes/plan_change_id")
@@ -9803,20 +9937,21 @@ describe("CompaniesClient", () => {
             ],
             params: {
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 plan_id: "plan_id",
                 trait_id: "trait_id",
                 trait_ids: ["trait_ids"],
             },
         };
+
         server.mockEndpoint().get("/plan-traits").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.companies.listPlanTraits({
             planId: "plan_id",
             traitId: "trait_id",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -9834,8 +9969,8 @@ describe("CompaniesClient", () => {
             ],
             params: {
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 planId: "plan_id",
                 traitId: "trait_id",
                 traitIds: ["trait_ids"],
@@ -9848,6 +9983,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plan-traits").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -9860,6 +9996,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plan-traits").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -9872,6 +10009,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plan-traits").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -9884,6 +10022,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plan-traits").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -9896,6 +10035,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plan-traits").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -9921,6 +10061,7 @@ describe("CompaniesClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/plan-traits")
@@ -9958,6 +10099,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { plan_id: "plan_id", trait_id: "trait_id", trait_value: "trait_value" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-traits")
@@ -9981,6 +10123,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { plan_id: "plan_id", trait_id: "trait_id", trait_value: "trait_value" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-traits")
@@ -10004,6 +10147,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { plan_id: "plan_id", trait_id: "trait_id", trait_value: "trait_value" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-traits")
@@ -10027,6 +10171,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { plan_id: "plan_id", trait_id: "trait_id", trait_value: "trait_value" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-traits")
@@ -10050,6 +10195,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { plan_id: "plan_id", trait_id: "trait_id", trait_value: "trait_value" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-traits")
@@ -10086,6 +10232,7 @@ describe("CompaniesClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .get("/plan-traits/plan_trait_id")
@@ -10118,6 +10265,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-traits/plan_trait_id")
@@ -10136,6 +10284,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-traits/plan_trait_id")
@@ -10154,6 +10303,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-traits/plan_trait_id")
@@ -10172,6 +10322,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-traits/plan_trait_id")
@@ -10203,6 +10354,7 @@ describe("CompaniesClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .put("/plan-traits/plan_trait_id")
@@ -10239,6 +10391,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { plan_id: "plan_id", trait_value: "trait_value" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plan-traits/plan_trait_id")
@@ -10261,6 +10414,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { plan_id: "plan_id", trait_value: "trait_value" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plan-traits/plan_trait_id")
@@ -10283,6 +10437,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { plan_id: "plan_id", trait_value: "trait_value" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plan-traits/plan_trait_id")
@@ -10305,6 +10460,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { plan_id: "plan_id", trait_value: "trait_value" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plan-traits/plan_trait_id")
@@ -10327,6 +10483,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { plan_id: "plan_id", trait_value: "trait_value" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plan-traits/plan_trait_id")
@@ -10349,6 +10506,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
+
         server
             .mockEndpoint()
             .delete("/plan-traits/plan_trait_id")
@@ -10373,6 +10531,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/plan-traits/plan_trait_id")
@@ -10391,6 +10550,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/plan-traits/plan_trait_id")
@@ -10409,6 +10569,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/plan-traits/plan_trait_id")
@@ -10427,6 +10588,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/plan-traits/plan_trait_id")
@@ -10445,6 +10607,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/plan-traits/plan_trait_id")
@@ -10482,6 +10645,7 @@ describe("CompaniesClient", () => {
             ],
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/plan-traits/bulk")
@@ -10533,6 +10697,7 @@ describe("CompaniesClient", () => {
             ],
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-traits/bulk")
@@ -10572,6 +10737,7 @@ describe("CompaniesClient", () => {
             ],
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-traits/bulk")
@@ -10611,6 +10777,7 @@ describe("CompaniesClient", () => {
             ],
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-traits/bulk")
@@ -10650,6 +10817,7 @@ describe("CompaniesClient", () => {
             ],
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-traits/bulk")
@@ -10689,6 +10857,7 @@ describe("CompaniesClient", () => {
             ],
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-traits/bulk")
@@ -10724,20 +10893,21 @@ describe("CompaniesClient", () => {
             data: { count: 1 },
             params: {
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 plan_id: "plan_id",
                 trait_id: "trait_id",
                 trait_ids: ["trait_ids"],
             },
         };
+
         server.mockEndpoint().get("/plan-traits/count").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.companies.countPlanTraits({
             planId: "plan_id",
             traitId: "trait_id",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -10745,8 +10915,8 @@ describe("CompaniesClient", () => {
             },
             params: {
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 planId: "plan_id",
                 traitId: "trait_id",
                 traitIds: ["trait_ids"],
@@ -10759,6 +10929,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plan-traits/count").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -10771,6 +10942,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plan-traits/count").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -10783,6 +10955,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plan-traits/count").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -10795,6 +10968,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plan-traits/count").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -10807,6 +10981,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plan-traits/count").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -10862,6 +11037,7 @@ describe("CompaniesClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/user-traits")
@@ -10932,6 +11108,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" }, trait: "trait" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/user-traits")
@@ -10956,6 +11133,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" }, trait: "trait" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/user-traits")
@@ -10980,6 +11158,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" }, trait: "trait" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/user-traits")
@@ -11004,6 +11183,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" }, trait: "trait" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/user-traits")
@@ -11028,6 +11208,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" }, trait: "trait" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/user-traits")
@@ -11095,16 +11276,24 @@ describe("CompaniesClient", () => {
                     updated_at: "2024-01-15T09:30:00Z",
                 },
             ],
-            params: { company_id: "company_id", ids: ["ids"], limit: 1, offset: 1, plan_id: "plan_id", q: "q" },
+            params: {
+                company_id: "company_id",
+                ids: ["ids"],
+                limit: 1000000,
+                offset: 1000000,
+                plan_id: "plan_id",
+                q: "q",
+            },
         };
+
         server.mockEndpoint().get("/users").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.companies.listUsers({
             companyId: "company_id",
             planId: "plan_id",
             q: "q",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -11155,8 +11344,8 @@ describe("CompaniesClient", () => {
             params: {
                 companyId: "company_id",
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 planId: "plan_id",
                 q: "q",
             },
@@ -11168,6 +11357,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/users").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -11180,6 +11370,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/users").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -11192,6 +11383,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/users").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -11204,6 +11396,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/users").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -11216,6 +11409,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/users").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -11271,6 +11465,7 @@ describe("CompaniesClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/users")
@@ -11340,6 +11535,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/users")
@@ -11363,6 +11559,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/users")
@@ -11386,6 +11583,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/users")
@@ -11409,6 +11607,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/users")
@@ -11432,6 +11631,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/users")
@@ -11498,6 +11698,7 @@ describe("CompaniesClient", () => {
             },
             params: { key: "value" },
         };
+
         server.mockEndpoint().get("/users/user_id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.companies.getUser("user_id");
@@ -11556,6 +11757,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/users/user_id").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -11568,6 +11770,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/users/user_id").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -11580,6 +11783,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/users/user_id").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -11592,6 +11796,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/users/user_id").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -11604,6 +11809,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
+
         server.mockEndpoint().delete("/users/user_id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.companies.deleteUser("user_id");
@@ -11622,6 +11828,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().delete("/users/user_id").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -11634,6 +11841,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().delete("/users/user_id").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -11646,6 +11854,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().delete("/users/user_id").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -11658,6 +11867,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().delete("/users/user_id").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -11670,6 +11880,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().delete("/users/user_id").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -11683,16 +11894,24 @@ describe("CompaniesClient", () => {
 
         const rawResponseBody = {
             data: { count: 1 },
-            params: { company_id: "company_id", ids: ["ids"], limit: 1, offset: 1, plan_id: "plan_id", q: "q" },
+            params: {
+                company_id: "company_id",
+                ids: ["ids"],
+                limit: 1000000,
+                offset: 1000000,
+                plan_id: "plan_id",
+                q: "q",
+            },
         };
+
         server.mockEndpoint().get("/users/count").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.companies.countUsers({
             companyId: "company_id",
             planId: "plan_id",
             q: "q",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -11701,8 +11920,8 @@ describe("CompaniesClient", () => {
             params: {
                 companyId: "company_id",
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 planId: "plan_id",
                 q: "q",
             },
@@ -11714,6 +11933,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/users/count").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -11726,6 +11946,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/users/count").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -11738,6 +11959,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/users/count").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -11750,6 +11972,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/users/count").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -11762,6 +11985,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/users/count").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -11817,6 +12041,7 @@ describe("CompaniesClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/users/create")
@@ -11886,6 +12111,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/users/create")
@@ -11909,6 +12135,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/users/create")
@@ -11932,6 +12159,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/users/create")
@@ -11955,6 +12183,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/users/create")
@@ -11978,6 +12207,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/users/create")
@@ -12011,6 +12241,7 @@ describe("CompaniesClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/users/delete")
@@ -12045,6 +12276,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/users/delete")
@@ -12068,6 +12300,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/users/delete")
@@ -12091,6 +12324,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/users/delete")
@@ -12114,6 +12348,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/users/delete")
@@ -12137,6 +12372,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { keys: { keys: "keys" } };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/users/delete")
@@ -12279,6 +12515,7 @@ describe("CompaniesClient", () => {
             },
             params: { keys: { keys: "keys" } },
         };
+
         server.mockEndpoint().get("/users/lookup").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.companies.lookupUser({
@@ -12421,6 +12658,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/users/lookup").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -12437,6 +12675,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/users/lookup").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -12453,6 +12692,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/users/lookup").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -12469,6 +12709,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/users/lookup").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {

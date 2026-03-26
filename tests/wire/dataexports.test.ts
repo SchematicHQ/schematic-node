@@ -23,6 +23,7 @@ describe("DataexportsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/data-exports")
@@ -58,6 +59,7 @@ describe("DataexportsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { export_type: "company-feature-usage", metadata: "metadata", output_file_type: "csv" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/data-exports")
@@ -79,6 +81,7 @@ describe("DataexportsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { export_type: "company-feature-usage", metadata: "metadata", output_file_type: "csv" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/data-exports")
@@ -100,6 +103,7 @@ describe("DataexportsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { export_type: "company-feature-usage", metadata: "metadata", output_file_type: "csv" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/data-exports")
@@ -121,6 +125,7 @@ describe("DataexportsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { export_type: "company-feature-usage", metadata: "metadata", output_file_type: "csv" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/data-exports")
@@ -142,6 +147,7 @@ describe("DataexportsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { export_type: "company-feature-usage", metadata: "metadata", output_file_type: "csv" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/data-exports")

@@ -16,6 +16,8 @@ export interface CountPlansParams {
     /** Filter out plans that do not have a billing product ID */
     hasProductId?: boolean;
     ids?: string[];
+    /** Include billing settings from draft versions for plans which have draft version */
+    includeDraftVersions?: boolean;
     /** Page limit (default 100) */
     limit?: number;
     /** Page offset (default 0) */

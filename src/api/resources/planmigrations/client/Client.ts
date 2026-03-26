@@ -38,8 +38,8 @@ export class PlanmigrationsClient {
      *         migrationId: "migration_id",
      *         q: "q",
      *         status: "completed",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listCompanyMigrations(
@@ -54,29 +54,18 @@ export class PlanmigrationsClient {
         requestOptions?: PlanmigrationsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListCompanyMigrationsResponse>> {
         const { migrationId, q, status, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (migrationId != null) {
-            _queryParams.migration_id = migrationId;
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (status != null) {
-            _queryParams.status = serializers.PlanVersionCompanyMigrationStatus.jsonOrThrow(status, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            migration_id: migrationId,
+            q,
+            status:
+                status != null
+                    ? serializers.PlanVersionCompanyMigrationStatus.jsonOrThrow(status, {
+                          unrecognizedObjectKeys: "strip",
+                      })
+                    : undefined,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -201,8 +190,8 @@ export class PlanmigrationsClient {
      *         migrationId: "migration_id",
      *         q: "q",
      *         status: "completed",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countCompanyMigrations(
@@ -217,29 +206,18 @@ export class PlanmigrationsClient {
         requestOptions?: PlanmigrationsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountCompanyMigrationsResponse>> {
         const { migrationId, q, status, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (migrationId != null) {
-            _queryParams.migration_id = migrationId;
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (status != null) {
-            _queryParams.status = serializers.PlanVersionCompanyMigrationStatus.jsonOrThrow(status, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            migration_id: migrationId,
+            q,
+            status:
+                status != null
+                    ? serializers.PlanVersionCompanyMigrationStatus.jsonOrThrow(status, {
+                          unrecognizedObjectKeys: "strip",
+                      })
+                    : undefined,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -363,8 +341,8 @@ export class PlanmigrationsClient {
      *     await client.planmigrations.listMigrations({
      *         planVersionId: "plan_version_id",
      *         status: "completed",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listMigrations(
@@ -379,25 +357,15 @@ export class PlanmigrationsClient {
         requestOptions?: PlanmigrationsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListMigrationsResponse>> {
         const { planVersionId, status, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (planVersionId != null) {
-            _queryParams.plan_version_id = planVersionId;
-        }
-
-        if (status != null) {
-            _queryParams.status = serializers.PlanVersionMigrationStatus.jsonOrThrow(status, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            plan_version_id: planVersionId,
+            status:
+                status != null
+                    ? serializers.PlanVersionMigrationStatus.jsonOrThrow(status, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -637,8 +605,8 @@ export class PlanmigrationsClient {
      *     await client.planmigrations.countMigrations({
      *         planVersionId: "plan_version_id",
      *         status: "completed",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countMigrations(
@@ -653,25 +621,15 @@ export class PlanmigrationsClient {
         requestOptions?: PlanmigrationsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountMigrationsResponse>> {
         const { planVersionId, status, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (planVersionId != null) {
-            _queryParams.plan_version_id = planVersionId;
-        }
-
-        if (status != null) {
-            _queryParams.status = serializers.PlanVersionMigrationStatus.jsonOrThrow(status, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            plan_version_id: planVersionId,
+            status:
+                status != null
+                    ? serializers.PlanVersionMigrationStatus.jsonOrThrow(status, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

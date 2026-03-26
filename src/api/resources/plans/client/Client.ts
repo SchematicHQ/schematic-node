@@ -183,12 +183,13 @@ export class PlansClient {
      *         forInitialPlan: true,
      *         forTrialExpiryPlan: true,
      *         hasProductId: true,
+     *         includeDraftVersions: true,
      *         planType: "plan",
      *         q: "q",
      *         withoutEntitlementFor: "without_entitlement_for",
      *         withoutPaidProductId: true,
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listPlans(
@@ -209,6 +210,7 @@ export class PlansClient {
             forTrialExpiryPlan,
             hasProductId,
             ids,
+            includeDraftVersions,
             planType,
             q,
             withoutEntitlementFor,
@@ -216,59 +218,24 @@ export class PlansClient {
             limit,
             offset,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (companyId != null) {
-            _queryParams.company_id = companyId;
-        }
-
-        if (forFallbackPlan != null) {
-            _queryParams.for_fallback_plan = forFallbackPlan.toString();
-        }
-
-        if (forInitialPlan != null) {
-            _queryParams.for_initial_plan = forInitialPlan.toString();
-        }
-
-        if (forTrialExpiryPlan != null) {
-            _queryParams.for_trial_expiry_plan = forTrialExpiryPlan.toString();
-        }
-
-        if (hasProductId != null) {
-            _queryParams.has_product_id = hasProductId.toString();
-        }
-
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (planType != null) {
-            _queryParams.plan_type = serializers.PlanType.jsonOrThrow(planType, { unrecognizedObjectKeys: "strip" });
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (withoutEntitlementFor != null) {
-            _queryParams.without_entitlement_for = withoutEntitlementFor;
-        }
-
-        if (withoutPaidProductId != null) {
-            _queryParams.without_paid_product_id = withoutPaidProductId.toString();
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            for_fallback_plan: forFallbackPlan,
+            for_initial_plan: forInitialPlan,
+            for_trial_expiry_plan: forTrialExpiryPlan,
+            has_product_id: hasProductId,
+            ids,
+            include_draft_versions: includeDraftVersions,
+            plan_type:
+                planType != null
+                    ? serializers.PlanType.jsonOrThrow(planType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            q,
+            without_entitlement_for: withoutEntitlementFor,
+            without_paid_product_id: withoutPaidProductId,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -537,11 +504,9 @@ export class PlansClient {
         requestOptions?: PlansClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.GetPlanResponse>> {
         const { planVersionId } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (planVersionId != null) {
-            _queryParams.plan_version_id = planVersionId;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            plan_version_id: planVersionId,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1058,12 +1023,13 @@ export class PlansClient {
      *         forInitialPlan: true,
      *         forTrialExpiryPlan: true,
      *         hasProductId: true,
+     *         includeDraftVersions: true,
      *         planType: "plan",
      *         q: "q",
      *         withoutEntitlementFor: "without_entitlement_for",
      *         withoutPaidProductId: true,
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countPlans(
@@ -1084,6 +1050,7 @@ export class PlansClient {
             forTrialExpiryPlan,
             hasProductId,
             ids,
+            includeDraftVersions,
             planType,
             q,
             withoutEntitlementFor,
@@ -1091,59 +1058,24 @@ export class PlansClient {
             limit,
             offset,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (companyId != null) {
-            _queryParams.company_id = companyId;
-        }
-
-        if (forFallbackPlan != null) {
-            _queryParams.for_fallback_plan = forFallbackPlan.toString();
-        }
-
-        if (forInitialPlan != null) {
-            _queryParams.for_initial_plan = forInitialPlan.toString();
-        }
-
-        if (forTrialExpiryPlan != null) {
-            _queryParams.for_trial_expiry_plan = forTrialExpiryPlan.toString();
-        }
-
-        if (hasProductId != null) {
-            _queryParams.has_product_id = hasProductId.toString();
-        }
-
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (planType != null) {
-            _queryParams.plan_type = serializers.PlanType.jsonOrThrow(planType, { unrecognizedObjectKeys: "strip" });
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (withoutEntitlementFor != null) {
-            _queryParams.without_entitlement_for = withoutEntitlementFor;
-        }
-
-        if (withoutPaidProductId != null) {
-            _queryParams.without_paid_product_id = withoutPaidProductId.toString();
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            for_fallback_plan: forFallbackPlan,
+            for_initial_plan: forInitialPlan,
+            for_trial_expiry_plan: forTrialExpiryPlan,
+            has_product_id: hasProductId,
+            ids,
+            include_draft_versions: includeDraftVersions,
+            plan_type:
+                planType != null
+                    ? serializers.PlanType.jsonOrThrow(planType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            q,
+            without_entitlement_for: withoutEntitlementFor,
+            without_paid_product_id: withoutPaidProductId,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1276,12 +1208,10 @@ export class PlansClient {
         requestOptions?: PlansClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListPlanIssuesResponse>> {
         const { planId, planVersionId } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        _queryParams.plan_id = planId;
-        if (planVersionId != null) {
-            _queryParams.plan_version_id = planVersionId;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            plan_id: planId,
+            plan_version_id: planVersionId,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

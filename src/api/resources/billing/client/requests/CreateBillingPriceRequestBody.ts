@@ -10,7 +10,7 @@ import type * as Schematic from "../../../../index";
  *         externalAccountId: "external_account_id",
  *         interval: "interval",
  *         isActive: true,
- *         price: 1,
+ *         price: 1000000,
  *         priceExternalId: "price_external_id",
  *         priceTiers: [{
  *                 priceExternalId: "price_external_id"

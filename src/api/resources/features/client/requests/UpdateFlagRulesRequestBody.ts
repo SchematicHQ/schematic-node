@@ -19,7 +19,7 @@ import type * as Schematic from "../../../../index";
  *                         resourceIds: ["resource_ids"]
  *                     }],
  *                 name: "name",
- *                 priority: 1,
+ *                 priority: 1000000,
  *                 value: true
  *             }]
  *     }

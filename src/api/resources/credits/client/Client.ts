@@ -36,8 +36,8 @@ export class CreditsClient {
      * @example
      *     await client.credits.listBillingCredits({
      *         name: "name",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listBillingCredits(
@@ -52,27 +52,12 @@ export class CreditsClient {
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListBillingCreditsResponse>> {
         const { ids, name, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (name != null) {
-            _queryParams.name = name;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            ids,
+            name,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -713,8 +698,8 @@ export class CreditsClient {
      *         creditId: "credit_id",
      *         status: "active",
      *         bundleType: "fixed",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listCreditBundles(
@@ -729,39 +714,20 @@ export class CreditsClient {
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListCreditBundlesResponse>> {
         const { ids, creditId, status, bundleType, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (creditId != null) {
-            _queryParams.credit_id = creditId;
-        }
-
-        if (status != null) {
-            _queryParams.status = serializers.BillingCreditBundleStatus.jsonOrThrow(status, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (bundleType != null) {
-            _queryParams.bundle_type = serializers.BillingCreditBundleType.jsonOrThrow(bundleType, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            ids,
+            credit_id: creditId,
+            status:
+                status != null
+                    ? serializers.BillingCreditBundleStatus.jsonOrThrow(status, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            bundle_type:
+                bundleType != null
+                    ? serializers.BillingCreditBundleType.jsonOrThrow(bundleType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -881,7 +847,7 @@ export class CreditsClient {
      *         bundleName: "bundle_name",
      *         creditId: "credit_id",
      *         currency: "currency",
-     *         pricePerUnit: 1
+     *         pricePerUnit: 1000000
      *     })
      */
     public createCreditBundle(
@@ -1137,7 +1103,7 @@ export class CreditsClient {
      * @example
      *     await client.credits.updateCreditBundleDetails("bundle_id", {
      *         bundleName: "bundle_name",
-     *         pricePerUnit: 1
+     *         pricePerUnit: 1000000
      *     })
      */
     public updateCreditBundleDetails(
@@ -1417,8 +1383,8 @@ export class CreditsClient {
      *         creditId: "credit_id",
      *         status: "active",
      *         bundleType: "fixed",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countCreditBundles(
@@ -1433,39 +1399,20 @@ export class CreditsClient {
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountCreditBundlesResponse>> {
         const { ids, creditId, status, bundleType, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (creditId != null) {
-            _queryParams.credit_id = creditId;
-        }
-
-        if (status != null) {
-            _queryParams.status = serializers.BillingCreditBundleStatus.jsonOrThrow(status, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (bundleType != null) {
-            _queryParams.bundle_type = serializers.BillingCreditBundleType.jsonOrThrow(bundleType, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            ids,
+            credit_id: creditId,
+            status:
+                status != null
+                    ? serializers.BillingCreditBundleStatus.jsonOrThrow(status, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            bundle_type:
+                bundleType != null
+                    ? serializers.BillingCreditBundleType.jsonOrThrow(bundleType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1588,8 +1535,8 @@ export class CreditsClient {
      * @example
      *     await client.credits.countBillingCredits({
      *         name: "name",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countBillingCredits(
@@ -1604,27 +1551,12 @@ export class CreditsClient {
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountBillingCreditsResponse>> {
         const { ids, name, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (name != null) {
-            _queryParams.name = name;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            ids,
+            name,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1882,7 +1814,7 @@ export class CreditsClient {
      *     await client.credits.grantBillingCreditsToCompany({
      *         companyId: "company_id",
      *         creditId: "credit_id",
-     *         quantity: 1,
+     *         quantity: 1000000,
      *         reason: "billing_credit_auto_topup"
      *     })
      */
@@ -2024,8 +1956,8 @@ export class CreditsClient {
      *         companyId: "company_id",
      *         order: "created_at",
      *         dir: "asc",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countCompanyGrants(
@@ -2040,29 +1972,19 @@ export class CreditsClient {
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountCompanyGrantsResponse>> {
         const { companyId, order, dir, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (companyId != null) {
-            _queryParams.company_id = companyId;
-        }
-
-        if (order != null) {
-            _queryParams.order = serializers.CreditGrantSortOrder.jsonOrThrow(order, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (dir != null) {
-            _queryParams.dir = serializers.SortDirection.jsonOrThrow(dir, { unrecognizedObjectKeys: "strip" });
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            order:
+                order != null
+                    ? serializers.CreditGrantSortOrder.jsonOrThrow(order, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            dir:
+                dir != null
+                    ? serializers.SortDirection.jsonOrThrow(dir, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -2187,8 +2109,8 @@ export class CreditsClient {
      *         companyId: "company_id",
      *         order: "created_at",
      *         dir: "asc",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listCompanyGrants(
@@ -2203,29 +2125,19 @@ export class CreditsClient {
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListCompanyGrantsResponse>> {
         const { companyId, order, dir, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (companyId != null) {
-            _queryParams.company_id = companyId;
-        }
-
-        if (order != null) {
-            _queryParams.order = serializers.CreditGrantSortOrder.jsonOrThrow(order, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (dir != null) {
-            _queryParams.dir = serializers.SortDirection.jsonOrThrow(dir, { unrecognizedObjectKeys: "strip" });
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            order:
+                order != null
+                    ? serializers.CreditGrantSortOrder.jsonOrThrow(order, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            dir:
+                dir != null
+                    ? serializers.SortDirection.jsonOrThrow(dir, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -2348,8 +2260,8 @@ export class CreditsClient {
      * @example
      *     await client.credits.countBillingCreditsGrants({
      *         creditId: "credit_id",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countBillingCreditsGrants(
@@ -2364,27 +2276,12 @@ export class CreditsClient {
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountBillingCreditsGrantsResponse>> {
         const { creditId, ids, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (creditId != null) {
-            _queryParams.credit_id = creditId;
-        }
-
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            credit_id: creditId,
+            ids,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -2502,8 +2399,8 @@ export class CreditsClient {
      * @example
      *     await client.credits.listGrantsForCredit({
      *         creditId: "credit_id",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listGrantsForCredit(
@@ -2518,27 +2415,12 @@ export class CreditsClient {
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListGrantsForCreditResponse>> {
         const { creditId, ids, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (creditId != null) {
-            _queryParams.credit_id = creditId;
-        }
-
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            credit_id: creditId,
+            ids,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -2661,8 +2543,8 @@ export class CreditsClient {
      *         period: "daily",
      *         startTime: "start_time",
      *         endTime: "end_time",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public getEnrichedCreditLedger(
@@ -2677,33 +2559,16 @@ export class CreditsClient {
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.GetEnrichedCreditLedgerResponse>> {
         const { companyId, billingCreditId, featureId, period, startTime, endTime, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        _queryParams.company_id = companyId;
-        if (billingCreditId != null) {
-            _queryParams.billing_credit_id = billingCreditId;
-        }
-
-        if (featureId != null) {
-            _queryParams.feature_id = featureId;
-        }
-
-        _queryParams.period = serializers.CreditLedgerPeriod.jsonOrThrow(period, { unrecognizedObjectKeys: "strip" });
-        if (startTime != null) {
-            _queryParams.start_time = startTime;
-        }
-
-        if (endTime != null) {
-            _queryParams.end_time = endTime;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            billing_credit_id: billingCreditId,
+            feature_id: featureId,
+            period: serializers.CreditLedgerPeriod.jsonOrThrow(period, { unrecognizedObjectKeys: "strip" }),
+            start_time: startTime,
+            end_time: endTime,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -2826,8 +2691,8 @@ export class CreditsClient {
      *         period: "daily",
      *         startTime: "start_time",
      *         endTime: "end_time",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countCreditLedger(
@@ -2842,33 +2707,16 @@ export class CreditsClient {
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountCreditLedgerResponse>> {
         const { companyId, billingCreditId, featureId, period, startTime, endTime, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        _queryParams.company_id = companyId;
-        if (billingCreditId != null) {
-            _queryParams.billing_credit_id = billingCreditId;
-        }
-
-        if (featureId != null) {
-            _queryParams.feature_id = featureId;
-        }
-
-        _queryParams.period = serializers.CreditLedgerPeriod.jsonOrThrow(period, { unrecognizedObjectKeys: "strip" });
-        if (startTime != null) {
-            _queryParams.start_time = startTime;
-        }
-
-        if (endTime != null) {
-            _queryParams.end_time = endTime;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            billing_credit_id: billingCreditId,
+            feature_id: featureId,
+            period: serializers.CreditLedgerPeriod.jsonOrThrow(period, { unrecognizedObjectKeys: "strip" }),
+            start_time: startTime,
+            end_time: endTime,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -2988,8 +2836,8 @@ export class CreditsClient {
      *         creditId: "credit_id",
      *         planId: "plan_id",
      *         planVersionId: "plan_version_id",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listBillingPlanCreditGrants(
@@ -3004,43 +2852,15 @@ export class CreditsClient {
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListBillingPlanCreditGrantsResponse>> {
         const { creditId, ids, planId, planIds, planVersionId, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (creditId != null) {
-            _queryParams.credit_id = creditId;
-        }
-
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (planId != null) {
-            _queryParams.plan_id = planId;
-        }
-
-        if (planIds != null) {
-            if (Array.isArray(planIds)) {
-                _queryParams.plan_ids = planIds.map((item) => item);
-            } else {
-                _queryParams.plan_ids = planIds;
-            }
-        }
-
-        if (planVersionId != null) {
-            _queryParams.plan_version_id = planVersionId;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            credit_id: creditId,
+            ids,
+            plan_id: planId,
+            plan_ids: planIds,
+            plan_version_id: planVersionId,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -3157,7 +2977,7 @@ export class CreditsClient {
      *
      * @example
      *     await client.credits.createBillingPlanCreditGrant({
-     *         creditAmount: 1,
+     *         creditAmount: 1000000,
      *         creditId: "credit_id",
      *         planId: "plan_id",
      *         resetCadence: "daily",
@@ -3462,11 +3282,9 @@ export class CreditsClient {
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.DeleteBillingPlanCreditGrantResponse>> {
         const { applyToExisting } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (applyToExisting != null) {
-            _queryParams.apply_to_existing = applyToExisting.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            apply_to_existing: applyToExisting,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -3591,8 +3409,8 @@ export class CreditsClient {
      *         creditId: "credit_id",
      *         planId: "plan_id",
      *         planVersionId: "plan_version_id",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countBillingPlanCreditGrants(
@@ -3607,43 +3425,15 @@ export class CreditsClient {
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountBillingPlanCreditGrantsResponse>> {
         const { creditId, ids, planId, planIds, planVersionId, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (creditId != null) {
-            _queryParams.credit_id = creditId;
-        }
-
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (planId != null) {
-            _queryParams.plan_id = planId;
-        }
-
-        if (planIds != null) {
-            if (Array.isArray(planIds)) {
-                _queryParams.plan_ids = planIds.map((item) => item);
-            } else {
-                _queryParams.plan_ids = planIds;
-            }
-        }
-
-        if (planVersionId != null) {
-            _queryParams.plan_version_id = planVersionId;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            credit_id: creditId,
+            ids,
+            plan_id: planId,
+            plan_ids: planIds,
+            plan_version_id: planVersionId,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -3771,8 +3561,8 @@ export class CreditsClient {
      *         eventType: "grant",
      *         featureId: "feature_id",
      *         startTime: "start_time",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listCreditEventLedger(
@@ -3787,38 +3577,19 @@ export class CreditsClient {
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListCreditEventLedgerResponse>> {
         const { billingCreditId, companyId, endTime, eventType, featureId, startTime, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (billingCreditId != null) {
-            _queryParams.billing_credit_id = billingCreditId;
-        }
-
-        _queryParams.company_id = companyId;
-        if (endTime != null) {
-            _queryParams.end_time = endTime;
-        }
-
-        if (eventType != null) {
-            _queryParams.event_type = serializers.CreditEventType.jsonOrThrow(eventType, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (featureId != null) {
-            _queryParams.feature_id = featureId;
-        }
-
-        if (startTime != null) {
-            _queryParams.start_time = startTime;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            billing_credit_id: billingCreditId,
+            company_id: companyId,
+            end_time: endTime,
+            event_type:
+                eventType != null
+                    ? serializers.CreditEventType.jsonOrThrow(eventType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            feature_id: featureId,
+            start_time: startTime,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -3941,8 +3712,8 @@ export class CreditsClient {
      *         eventType: "grant",
      *         featureId: "feature_id",
      *         startTime: "start_time",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countCreditEventLedger(
@@ -3957,38 +3728,19 @@ export class CreditsClient {
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountCreditEventLedgerResponse>> {
         const { billingCreditId, companyId, endTime, eventType, featureId, startTime, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (billingCreditId != null) {
-            _queryParams.billing_credit_id = billingCreditId;
-        }
-
-        _queryParams.company_id = companyId;
-        if (endTime != null) {
-            _queryParams.end_time = endTime;
-        }
-
-        if (eventType != null) {
-            _queryParams.event_type = serializers.CreditEventType.jsonOrThrow(eventType, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (featureId != null) {
-            _queryParams.feature_id = featureId;
-        }
-
-        if (startTime != null) {
-            _queryParams.start_time = startTime;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            billing_credit_id: billingCreditId,
+            company_id: companyId,
+            end_time: endTime,
+            event_type:
+                eventType != null
+                    ? serializers.CreditEventType.jsonOrThrow(eventType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            feature_id: featureId,
+            start_time: startTime,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
