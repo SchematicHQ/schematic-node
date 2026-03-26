@@ -17,6 +17,11 @@ jobs:
       - name: Set up node
         uses: actions/setup-node@v6
 
+      - name: Download WASM binary
+        run: ./scripts/download-wasm.sh
+        env:
+          GH_TOKEN: ${{ github.token }}
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
@@ -33,14 +38,53 @@ jobs:
       - name: Set up node
         uses: actions/setup-node@v6
 
+      - name: Download WASM binary
+        run: ./scripts/download-wasm.sh
+        env:
+          GH_TOKEN: ${{ github.token }}
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
       - name: Test
         run: yarn test
 
+  verify-package:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6
+
+      - name: Set up node
+        uses: actions/setup-node@v6
+
+      - name: Download WASM binary
+        run: ./scripts/download-wasm.sh
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build
+        run: yarn build
+
+      - name: Verify WASM embedded in bundle
+        run: |
+          if [ ! -f dist/index.js ]; then
+            echo "ERROR: dist/index.js not found"
+            exit 1
+          fi
+          if ! grep -q 'AGFzbQ' dist/index.js; then
+            echo "ERROR: WASM binary (base64) not found in dist/index.js"
+            echo "The build may have failed to embed the WASM module"
+            exit 1
+          fi
+          echo "Verified: WASM binary is embedded (base64) in dist/index.js"
+
   publish:
-    needs: [ compile, test ]
+    needs: [ compile, test, verify-package ]
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     steps:
@@ -49,6 +93,11 @@ jobs:
 
       - name: Set up node
         uses: actions/setup-node@v6
+
+      - name: Download WASM binary
+        run: ./scripts/download-wasm.sh
+        env:
+          GH_TOKEN: ${{ github.token }}
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
