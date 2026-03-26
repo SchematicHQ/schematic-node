@@ -357,6 +357,62 @@ describe('DataStreamClient', () => {
     expect((cachedAfterPartial as any).billing_product_ids).toEqual([]);
   }, 10000);
 
+  test('should skip partial company message when entity is not in cache', async () => {
+    await client.start();
+
+    const DatastreamWSClientMock = DatastreamWSClient as jest.MockedClass<typeof DatastreamWSClient>;
+    const messageHandler = DatastreamWSClientMock.mock.calls[0][0].messageHandler;
+
+    // Send a PARTIAL for a company that was never cached via FULL
+    await messageHandler({
+      entity_type: EntityType.COMPANY,
+      message_type: MessageType.PARTIAL,
+      data: {
+        id: 'company-unknown',
+        keys: { name: 'Ghost Corp' },
+        traits: [{ key: 'tier', value: 'enterprise' }],
+      },
+    });
+
+    // Warn should be logged about the cache miss
+    expect(mockLogger.warn).toHaveBeenCalledWith(
+      expect.stringContaining("Cache miss for partial company 'company-unknown'")
+    );
+
+    // No company should have been cached (no cacheCompanyForKeys call for this entity)
+    expect(mockLogger.debug).not.toHaveBeenCalledWith(
+      expect.stringContaining('Ghost Corp')
+    );
+  }, 10000);
+
+  test('should skip partial user message when entity is not in cache', async () => {
+    await client.start();
+
+    const DatastreamWSClientMock = DatastreamWSClient as jest.MockedClass<typeof DatastreamWSClient>;
+    const messageHandler = DatastreamWSClientMock.mock.calls[0][0].messageHandler;
+
+    // Send a PARTIAL for a user that was never cached via FULL
+    await messageHandler({
+      entity_type: EntityType.USER,
+      message_type: MessageType.PARTIAL,
+      data: {
+        id: 'user-unknown',
+        keys: { email: 'ghost@example.com' },
+        traits: [{ key: 'tier', value: 'enterprise' }],
+      },
+    });
+
+    // Warn should be logged about the cache miss
+    expect(mockLogger.warn).toHaveBeenCalledWith(
+      expect.stringContaining("Cache miss for partial user 'user-unknown'")
+    );
+
+    // No user should have been cached
+    expect(mockLogger.debug).not.toHaveBeenCalledWith(
+      expect.stringContaining('ghost@example.com')
+    );
+  }, 10000);
+
   test('should request data from datastream when not in cache', async () => {
     // Set up connected state
     mockDatastreamWSClientInstance.isConnected.mockReturnValue(true);
