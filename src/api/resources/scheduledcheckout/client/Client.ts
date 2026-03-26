@@ -37,8 +37,8 @@ export class ScheduledcheckoutClient {
      *     await client.scheduledcheckout.listScheduledCheckouts({
      *         companyId: "company_id",
      *         status: "cancelled",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listScheduledCheckouts(
@@ -53,25 +53,15 @@ export class ScheduledcheckoutClient {
         requestOptions?: ScheduledcheckoutClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListScheduledCheckoutsResponse>> {
         const { companyId, status, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (companyId != null) {
-            _queryParams.company_id = companyId;
-        }
-
-        if (status != null) {
-            _queryParams.status = serializers.ScheduledCheckoutStatus.jsonOrThrow(status, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            status:
+                status != null
+                    ? serializers.ScheduledCheckoutStatus.jsonOrThrow(status, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

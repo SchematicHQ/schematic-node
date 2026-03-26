@@ -21,14 +21,14 @@ describe("PlanbundleClient", () => {
                     monthly_price_id: "monthly_price_id",
                     one_time_price_id: "one_time_price_id",
                     plan_id: "plan_id",
-                    trial_days: 1,
+                    trial_days: 1000000,
                     yearly_price_id: "yearly_price_id",
                 },
                 credit_grants: [
                     {
                         auto_topup_enabled: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        credit_amount: 1,
+                        credit_amount: 1000000,
                         credit_id: "credit_id",
                         credit_name: "credit_name",
                         id: "id",
@@ -74,6 +74,7 @@ describe("PlanbundleClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/plan-bundles")
@@ -102,14 +103,14 @@ describe("PlanbundleClient", () => {
                     monthlyPriceId: "monthly_price_id",
                     oneTimePriceId: "one_time_price_id",
                     planId: "plan_id",
-                    trialDays: 1,
+                    trialDays: 1000000,
                     yearlyPriceId: "yearly_price_id",
                 },
                 creditGrants: [
                     {
                         autoTopupEnabled: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        creditAmount: 1,
+                        creditAmount: 1000000,
                         creditId: "credit_id",
                         creditName: "credit_name",
                         id: "id",
@@ -164,6 +165,7 @@ describe("PlanbundleClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }] };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-bundles")
@@ -192,6 +194,7 @@ describe("PlanbundleClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }] };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-bundles")
@@ -220,6 +223,7 @@ describe("PlanbundleClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }] };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-bundles")
@@ -248,6 +252,7 @@ describe("PlanbundleClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }] };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-bundles")
@@ -276,6 +281,7 @@ describe("PlanbundleClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }] };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plan-bundles")
@@ -315,14 +321,14 @@ describe("PlanbundleClient", () => {
                     monthly_price_id: "monthly_price_id",
                     one_time_price_id: "one_time_price_id",
                     plan_id: "plan_id",
-                    trial_days: 1,
+                    trial_days: 1000000,
                     yearly_price_id: "yearly_price_id",
                 },
                 credit_grants: [
                     {
                         auto_topup_enabled: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        credit_amount: 1,
+                        credit_amount: 1000000,
                         credit_id: "credit_id",
                         credit_name: "credit_name",
                         id: "id",
@@ -368,6 +374,7 @@ describe("PlanbundleClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .put("/plan-bundles/plan_bundle_id")
@@ -396,14 +403,14 @@ describe("PlanbundleClient", () => {
                     monthlyPriceId: "monthly_price_id",
                     oneTimePriceId: "one_time_price_id",
                     planId: "plan_id",
-                    trialDays: 1,
+                    trialDays: 1000000,
                     yearlyPriceId: "yearly_price_id",
                 },
                 creditGrants: [
                     {
                         autoTopupEnabled: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        creditAmount: 1,
+                        creditAmount: 1000000,
                         creditId: "credit_id",
                         creditName: "credit_name",
                         id: "id",
@@ -458,6 +465,7 @@ describe("PlanbundleClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }] };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plan-bundles/plan_bundle_id")
@@ -486,6 +494,7 @@ describe("PlanbundleClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }] };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plan-bundles/plan_bundle_id")
@@ -514,6 +523,7 @@ describe("PlanbundleClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }] };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plan-bundles/plan_bundle_id")
@@ -542,6 +552,7 @@ describe("PlanbundleClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }] };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plan-bundles/plan_bundle_id")
@@ -570,6 +581,7 @@ describe("PlanbundleClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }] };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plan-bundles/plan_bundle_id")

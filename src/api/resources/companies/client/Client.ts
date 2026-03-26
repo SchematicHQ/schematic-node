@@ -47,8 +47,8 @@ export class CompaniesClient {
      *         withoutPlan: true,
      *         withoutSubscription: true,
      *         withSubscription: true,
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listCompanies(
@@ -82,109 +82,43 @@ export class CompaniesClient {
             limit,
             offset,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (creditTypeIds != null) {
-            if (Array.isArray(creditTypeIds)) {
-                _queryParams.credit_type_ids = creditTypeIds.map((item) => item);
-            } else {
-                _queryParams.credit_type_ids = creditTypeIds;
-            }
-        }
-
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (monetizedSubscriptions != null) {
-            _queryParams.monetized_subscriptions = monetizedSubscriptions.toString();
-        }
-
-        if (planId != null) {
-            _queryParams.plan_id = planId;
-        }
-
-        if (planIds != null) {
-            if (Array.isArray(planIds)) {
-                _queryParams.plan_ids = planIds.map((item) => item);
-            } else {
-                _queryParams.plan_ids = planIds;
-            }
-        }
-
-        if (planVersionId != null) {
-            _queryParams.plan_version_id = planVersionId;
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (sortOrderColumn != null) {
-            _queryParams.sort_order_column = sortOrderColumn;
-        }
-
-        if (sortOrderDirection != null) {
-            _queryParams.sort_order_direction = serializers.SortDirection.jsonOrThrow(sortOrderDirection, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (subscriptionStatuses != null) {
-            if (Array.isArray(subscriptionStatuses)) {
-                _queryParams.subscription_statuses = subscriptionStatuses.map((item) =>
-                    serializers.SubscriptionStatus.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
-                );
-            } else {
-                _queryParams.subscription_statuses = serializers.SubscriptionStatus.jsonOrThrow(subscriptionStatuses, {
-                    unrecognizedObjectKeys: "strip",
-                });
-            }
-        }
-
-        if (subscriptionTypes != null) {
-            if (Array.isArray(subscriptionTypes)) {
-                _queryParams.subscription_types = subscriptionTypes.map((item) =>
-                    serializers.SubscriptionType.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
-                );
-            } else {
-                _queryParams.subscription_types = serializers.SubscriptionType.jsonOrThrow(subscriptionTypes, {
-                    unrecognizedObjectKeys: "strip",
-                });
-            }
-        }
-
-        if (withEntitlementFor != null) {
-            _queryParams.with_entitlement_for = withEntitlementFor;
-        }
-
-        if (withoutFeatureOverrideFor != null) {
-            _queryParams.without_feature_override_for = withoutFeatureOverrideFor;
-        }
-
-        if (withoutPlan != null) {
-            _queryParams.without_plan = withoutPlan.toString();
-        }
-
-        if (withoutSubscription != null) {
-            _queryParams.without_subscription = withoutSubscription.toString();
-        }
-
-        if (withSubscription != null) {
-            _queryParams.with_subscription = withSubscription.toString();
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            credit_type_ids: creditTypeIds,
+            ids,
+            monetized_subscriptions: monetizedSubscriptions,
+            plan_id: planId,
+            plan_ids: planIds,
+            plan_version_id: planVersionId,
+            q,
+            sort_order_column: sortOrderColumn,
+            sort_order_direction:
+                sortOrderDirection != null
+                    ? serializers.SortDirection.jsonOrThrow(sortOrderDirection, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            subscription_statuses: Array.isArray(subscriptionStatuses)
+                ? subscriptionStatuses.map((item) =>
+                      serializers.SubscriptionStatus.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
+                  )
+                : subscriptionStatuses != null
+                  ? serializers.SubscriptionStatus.jsonOrThrow(subscriptionStatuses, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
+            subscription_types: Array.isArray(subscriptionTypes)
+                ? subscriptionTypes.map((item) =>
+                      serializers.SubscriptionType.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
+                  )
+                : subscriptionTypes != null
+                  ? serializers.SubscriptionType.jsonOrThrow(subscriptionTypes, { unrecognizedObjectKeys: "strip" })
+                  : undefined,
+            with_entitlement_for: withEntitlementFor,
+            without_feature_override_for: withoutFeatureOverrideFor,
+            without_plan: withoutPlan,
+            without_subscription: withoutSubscription,
+            with_subscription: withSubscription,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -571,15 +505,10 @@ export class CompaniesClient {
         requestOptions?: CompaniesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.DeleteCompanyResponse>> {
         const { cancelSubscription, prorate } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (cancelSubscription != null) {
-            _queryParams.cancel_subscription = cancelSubscription.toString();
-        }
-
-        if (prorate != null) {
-            _queryParams.prorate = prorate.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            cancel_subscription: cancelSubscription,
+            prorate,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -707,8 +636,8 @@ export class CompaniesClient {
      *         withoutPlan: true,
      *         withoutSubscription: true,
      *         withSubscription: true,
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countCompanies(
@@ -742,109 +671,43 @@ export class CompaniesClient {
             limit,
             offset,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (creditTypeIds != null) {
-            if (Array.isArray(creditTypeIds)) {
-                _queryParams.credit_type_ids = creditTypeIds.map((item) => item);
-            } else {
-                _queryParams.credit_type_ids = creditTypeIds;
-            }
-        }
-
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (monetizedSubscriptions != null) {
-            _queryParams.monetized_subscriptions = monetizedSubscriptions.toString();
-        }
-
-        if (planId != null) {
-            _queryParams.plan_id = planId;
-        }
-
-        if (planIds != null) {
-            if (Array.isArray(planIds)) {
-                _queryParams.plan_ids = planIds.map((item) => item);
-            } else {
-                _queryParams.plan_ids = planIds;
-            }
-        }
-
-        if (planVersionId != null) {
-            _queryParams.plan_version_id = planVersionId;
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (sortOrderColumn != null) {
-            _queryParams.sort_order_column = sortOrderColumn;
-        }
-
-        if (sortOrderDirection != null) {
-            _queryParams.sort_order_direction = serializers.SortDirection.jsonOrThrow(sortOrderDirection, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (subscriptionStatuses != null) {
-            if (Array.isArray(subscriptionStatuses)) {
-                _queryParams.subscription_statuses = subscriptionStatuses.map((item) =>
-                    serializers.SubscriptionStatus.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
-                );
-            } else {
-                _queryParams.subscription_statuses = serializers.SubscriptionStatus.jsonOrThrow(subscriptionStatuses, {
-                    unrecognizedObjectKeys: "strip",
-                });
-            }
-        }
-
-        if (subscriptionTypes != null) {
-            if (Array.isArray(subscriptionTypes)) {
-                _queryParams.subscription_types = subscriptionTypes.map((item) =>
-                    serializers.SubscriptionType.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
-                );
-            } else {
-                _queryParams.subscription_types = serializers.SubscriptionType.jsonOrThrow(subscriptionTypes, {
-                    unrecognizedObjectKeys: "strip",
-                });
-            }
-        }
-
-        if (withEntitlementFor != null) {
-            _queryParams.with_entitlement_for = withEntitlementFor;
-        }
-
-        if (withoutFeatureOverrideFor != null) {
-            _queryParams.without_feature_override_for = withoutFeatureOverrideFor;
-        }
-
-        if (withoutPlan != null) {
-            _queryParams.without_plan = withoutPlan.toString();
-        }
-
-        if (withoutSubscription != null) {
-            _queryParams.without_subscription = withoutSubscription.toString();
-        }
-
-        if (withSubscription != null) {
-            _queryParams.with_subscription = withSubscription.toString();
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            credit_type_ids: creditTypeIds,
+            ids,
+            monetized_subscriptions: monetizedSubscriptions,
+            plan_id: planId,
+            plan_ids: planIds,
+            plan_version_id: planVersionId,
+            q,
+            sort_order_column: sortOrderColumn,
+            sort_order_direction:
+                sortOrderDirection != null
+                    ? serializers.SortDirection.jsonOrThrow(sortOrderDirection, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            subscription_statuses: Array.isArray(subscriptionStatuses)
+                ? subscriptionStatuses.map((item) =>
+                      serializers.SubscriptionStatus.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
+                  )
+                : subscriptionStatuses != null
+                  ? serializers.SubscriptionStatus.jsonOrThrow(subscriptionStatuses, {
+                        unrecognizedObjectKeys: "strip",
+                    })
+                  : undefined,
+            subscription_types: Array.isArray(subscriptionTypes)
+                ? subscriptionTypes.map((item) =>
+                      serializers.SubscriptionType.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
+                  )
+                : subscriptionTypes != null
+                  ? serializers.SubscriptionType.jsonOrThrow(subscriptionTypes, { unrecognizedObjectKeys: "strip" })
+                  : undefined,
+            with_entitlement_for: withEntitlementFor,
+            without_feature_override_for: withoutFeatureOverrideFor,
+            without_plan: withoutPlan,
+            without_subscription: withoutSubscription,
+            with_subscription: withSubscription,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1220,6 +1083,12 @@ export class CompaniesClient {
     }
 
     /**
+     * Company lookup is determined to resolve a company from its keys, similar to how many of our other apis work.
+     * The following approaches will all work to resolve a company and any of them are appropriate:
+     * 1. `/companies/lookup?keys={"foo": "bar", "fizz": "buzz"}`
+     * 2. `/companies/lookup?keys[foo]=bar&keys[fizz]=buzz`
+     * 2. `/companies/lookup?foo=bar&fizz=buzz`
+     *
      * @param {Schematic.LookupCompanyRequest} request
      * @param {CompaniesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -1247,8 +1116,9 @@ export class CompaniesClient {
         requestOptions?: CompaniesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.LookupCompanyResponse>> {
         const { keys } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        _queryParams.keys = toJson(keys);
+        const _queryParams: Record<string, unknown> = {
+            keys: toJson(keys),
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1356,8 +1226,8 @@ export class CompaniesClient {
      *     await client.companies.listCompanyMemberships({
      *         companyId: "company_id",
      *         userId: "user_id",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listCompanyMemberships(
@@ -1372,23 +1242,12 @@ export class CompaniesClient {
         requestOptions?: CompaniesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListCompanyMembershipsResponse>> {
         const { companyId, userId, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (companyId != null) {
-            _queryParams.company_id = companyId;
-        }
-
-        if (userId != null) {
-            _queryParams.user_id = userId;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            user_id: userId,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1777,8 +1636,8 @@ export class CompaniesClient {
      * @example
      *     await client.companies.getActiveCompanySubscription({
      *         companyId: "company_id",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public getActiveCompanySubscription(
@@ -1793,27 +1652,12 @@ export class CompaniesClient {
         requestOptions?: CompaniesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.GetActiveCompanySubscriptionResponse>> {
         const { companyId, companyIds, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (companyId != null) {
-            _queryParams.company_id = companyId;
-        }
-
-        if (companyIds != null) {
-            if (Array.isArray(companyIds)) {
-                _queryParams.company_ids = companyIds.map((item) => item);
-            } else {
-                _queryParams.company_ids = companyIds;
-            }
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            company_ids: companyIds,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -2068,8 +1912,8 @@ export class CompaniesClient {
      *     await client.companies.listEntityKeyDefinitions({
      *         entityType: "company",
      *         q: "q",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listEntityKeyDefinitions(
@@ -2084,33 +1928,16 @@ export class CompaniesClient {
         requestOptions?: CompaniesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListEntityKeyDefinitionsResponse>> {
         const { entityType, ids, q, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (entityType != null) {
-            _queryParams.entity_type = serializers.EntityType.jsonOrThrow(entityType, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            entity_type:
+                entityType != null
+                    ? serializers.EntityType.jsonOrThrow(entityType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            ids,
+            q,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -2229,8 +2056,8 @@ export class CompaniesClient {
      *     await client.companies.countEntityKeyDefinitions({
      *         entityType: "company",
      *         q: "q",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countEntityKeyDefinitions(
@@ -2245,33 +2072,16 @@ export class CompaniesClient {
         requestOptions?: CompaniesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountEntityKeyDefinitionsResponse>> {
         const { entityType, ids, q, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (entityType != null) {
-            _queryParams.entity_type = serializers.EntityType.jsonOrThrow(entityType, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            entity_type:
+                entityType != null
+                    ? serializers.EntityType.jsonOrThrow(entityType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            ids,
+            q,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -2391,8 +2201,8 @@ export class CompaniesClient {
      *         entityType: "company",
      *         q: "q",
      *         traitType: "boolean",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listEntityTraitDefinitions(
@@ -2407,49 +2217,25 @@ export class CompaniesClient {
         requestOptions?: CompaniesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListEntityTraitDefinitionsResponse>> {
         const { entityType, ids, q, traitType, traitTypes, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (entityType != null) {
-            _queryParams.entity_type = serializers.EntityType.jsonOrThrow(entityType, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (traitType != null) {
-            _queryParams.trait_type = serializers.TraitType.jsonOrThrow(traitType, { unrecognizedObjectKeys: "strip" });
-        }
-
-        if (traitTypes != null) {
-            if (Array.isArray(traitTypes)) {
-                _queryParams.trait_types = traitTypes.map((item) =>
-                    serializers.TraitType.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
-                );
-            } else {
-                _queryParams.trait_types = serializers.TraitType.jsonOrThrow(traitTypes, {
-                    unrecognizedObjectKeys: "strip",
-                });
-            }
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            entity_type:
+                entityType != null
+                    ? serializers.EntityType.jsonOrThrow(entityType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            ids,
+            q,
+            trait_type:
+                traitType != null
+                    ? serializers.TraitType.jsonOrThrow(traitType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            trait_types: Array.isArray(traitTypes)
+                ? traitTypes.map((item) => serializers.TraitType.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }))
+                : traitTypes != null
+                  ? serializers.TraitType.jsonOrThrow(traitTypes, { unrecognizedObjectKeys: "strip" })
+                  : undefined,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -2974,8 +2760,8 @@ export class CompaniesClient {
      *         entityType: "company",
      *         q: "q",
      *         traitType: "boolean",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countEntityTraitDefinitions(
@@ -2990,49 +2776,25 @@ export class CompaniesClient {
         requestOptions?: CompaniesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountEntityTraitDefinitionsResponse>> {
         const { entityType, ids, q, traitType, traitTypes, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (entityType != null) {
-            _queryParams.entity_type = serializers.EntityType.jsonOrThrow(entityType, {
-                unrecognizedObjectKeys: "strip",
-            });
-        }
-
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (traitType != null) {
-            _queryParams.trait_type = serializers.TraitType.jsonOrThrow(traitType, { unrecognizedObjectKeys: "strip" });
-        }
-
-        if (traitTypes != null) {
-            if (Array.isArray(traitTypes)) {
-                _queryParams.trait_types = traitTypes.map((item) =>
-                    serializers.TraitType.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
-                );
-            } else {
-                _queryParams.trait_types = serializers.TraitType.jsonOrThrow(traitTypes, {
-                    unrecognizedObjectKeys: "strip",
-                });
-            }
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            entity_type:
+                entityType != null
+                    ? serializers.EntityType.jsonOrThrow(entityType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            ids,
+            q,
+            trait_type:
+                traitType != null
+                    ? serializers.TraitType.jsonOrThrow(traitType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            trait_types: Array.isArray(traitTypes)
+                ? traitTypes.map((item) => serializers.TraitType.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }))
+                : traitTypes != null
+                  ? serializers.TraitType.jsonOrThrow(traitTypes, { unrecognizedObjectKeys: "strip" })
+                  : undefined,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -3156,8 +2918,8 @@ export class CompaniesClient {
      *     await client.companies.getEntityTraitValues({
      *         definitionId: "definition_id",
      *         q: "q",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public getEntityTraitValues(
@@ -3172,20 +2934,12 @@ export class CompaniesClient {
         requestOptions?: CompaniesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.GetEntityTraitValuesResponse>> {
         const { definitionId, q, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        _queryParams.definition_id = definitionId;
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            definition_id: definitionId,
+            q,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -3305,8 +3059,8 @@ export class CompaniesClient {
      *         action: "action",
      *         basePlanAction: "base_plan_action",
      *         companyId: "company_id",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listPlanChanges(
@@ -3321,43 +3075,15 @@ export class CompaniesClient {
         requestOptions?: CompaniesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListPlanChangesResponse>> {
         const { action, basePlanAction, companyId, companyIds, planIds, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (action != null) {
-            _queryParams.action = action;
-        }
-
-        if (basePlanAction != null) {
-            _queryParams.base_plan_action = basePlanAction;
-        }
-
-        if (companyId != null) {
-            _queryParams.company_id = companyId;
-        }
-
-        if (companyIds != null) {
-            if (Array.isArray(companyIds)) {
-                _queryParams.company_ids = companyIds.map((item) => item);
-            } else {
-                _queryParams.company_ids = companyIds;
-            }
-        }
-
-        if (planIds != null) {
-            if (Array.isArray(planIds)) {
-                _queryParams.plan_ids = planIds.map((item) => item);
-            } else {
-                _queryParams.plan_ids = planIds;
-            }
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            action,
+            base_plan_action: basePlanAction,
+            company_id: companyId,
+            company_ids: companyIds,
+            plan_ids: planIds,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -3597,8 +3323,8 @@ export class CompaniesClient {
      *     await client.companies.listPlanTraits({
      *         planId: "plan_id",
      *         traitId: "trait_id",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listPlanTraits(
@@ -3613,39 +3339,14 @@ export class CompaniesClient {
         requestOptions?: CompaniesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListPlanTraitsResponse>> {
         const { ids, planId, traitId, traitIds, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (planId != null) {
-            _queryParams.plan_id = planId;
-        }
-
-        if (traitId != null) {
-            _queryParams.trait_id = traitId;
-        }
-
-        if (traitIds != null) {
-            if (Array.isArray(traitIds)) {
-                _queryParams.trait_ids = traitIds.map((item) => item);
-            } else {
-                _queryParams.trait_ids = traitIds;
-            }
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            ids,
+            plan_id: planId,
+            trait_id: traitId,
+            trait_ids: traitIds,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -4423,8 +4124,8 @@ export class CompaniesClient {
      *     await client.companies.countPlanTraits({
      *         planId: "plan_id",
      *         traitId: "trait_id",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countPlanTraits(
@@ -4439,39 +4140,14 @@ export class CompaniesClient {
         requestOptions?: CompaniesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountPlanTraitsResponse>> {
         const { ids, planId, traitId, traitIds, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (planId != null) {
-            _queryParams.plan_id = planId;
-        }
-
-        if (traitId != null) {
-            _queryParams.trait_id = traitId;
-        }
-
-        if (traitIds != null) {
-            if (Array.isArray(traitIds)) {
-                _queryParams.trait_ids = traitIds.map((item) => item);
-            } else {
-                _queryParams.trait_ids = traitIds;
-            }
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            ids,
+            plan_id: planId,
+            trait_id: traitId,
+            trait_ids: traitIds,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -4727,8 +4403,8 @@ export class CompaniesClient {
      *         companyId: "company_id",
      *         planId: "plan_id",
      *         q: "q",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listUsers(
@@ -4743,35 +4419,14 @@ export class CompaniesClient {
         requestOptions?: CompaniesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListUsersResponse>> {
         const { companyId, ids, planId, q, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (companyId != null) {
-            _queryParams.company_id = companyId;
-        }
-
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (planId != null) {
-            _queryParams.plan_id = planId;
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            ids,
+            plan_id: planId,
+            q,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -5270,8 +4925,8 @@ export class CompaniesClient {
      *         companyId: "company_id",
      *         planId: "plan_id",
      *         q: "q",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countUsers(
@@ -5286,35 +4941,14 @@ export class CompaniesClient {
         requestOptions?: CompaniesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountUsersResponse>> {
         const { companyId, ids, planId, q, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (companyId != null) {
-            _queryParams.company_id = companyId;
-        }
-
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (planId != null) {
-            _queryParams.plan_id = planId;
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            ids,
+            plan_id: planId,
+            q,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -5717,8 +5351,9 @@ export class CompaniesClient {
         requestOptions?: CompaniesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.LookupUserResponse>> {
         const { keys } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        _queryParams.keys = toJson(keys);
+        const _queryParams: Record<string, unknown> = {
+            keys: toJson(keys),
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

@@ -40,8 +40,8 @@ export class FeaturesClient {
      *         planVersionId: "plan_version_id",
      *         withoutPlanEntitlementFor: "without_plan_entitlement_for",
      *         booleanRequireEvent: true,
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listFeatures(
@@ -66,55 +66,23 @@ export class FeaturesClient {
             limit,
             offset,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (withoutCompanyOverrideFor != null) {
-            _queryParams.without_company_override_for = withoutCompanyOverrideFor;
-        }
-
-        if (planVersionId != null) {
-            _queryParams.plan_version_id = planVersionId;
-        }
-
-        if (withoutPlanEntitlementFor != null) {
-            _queryParams.without_plan_entitlement_for = withoutPlanEntitlementFor;
-        }
-
-        if (featureType != null) {
-            if (Array.isArray(featureType)) {
-                _queryParams.feature_type = featureType.map((item) =>
-                    serializers.FeatureType.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
-                );
-            } else {
-                _queryParams.feature_type = serializers.FeatureType.jsonOrThrow(featureType, {
-                    unrecognizedObjectKeys: "strip",
-                });
-            }
-        }
-
-        if (booleanRequireEvent != null) {
-            _queryParams.boolean_require_event = booleanRequireEvent.toString();
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            ids,
+            q,
+            without_company_override_for: withoutCompanyOverrideFor,
+            plan_version_id: planVersionId,
+            without_plan_entitlement_for: withoutPlanEntitlementFor,
+            feature_type: Array.isArray(featureType)
+                ? featureType.map((item) =>
+                      serializers.FeatureType.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
+                  )
+                : featureType != null
+                  ? serializers.FeatureType.jsonOrThrow(featureType, { unrecognizedObjectKeys: "strip" })
+                  : undefined,
+            boolean_require_event: booleanRequireEvent,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -749,8 +717,8 @@ export class FeaturesClient {
      *         planVersionId: "plan_version_id",
      *         withoutPlanEntitlementFor: "without_plan_entitlement_for",
      *         booleanRequireEvent: true,
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countFeatures(
@@ -775,55 +743,23 @@ export class FeaturesClient {
             limit,
             offset,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (withoutCompanyOverrideFor != null) {
-            _queryParams.without_company_override_for = withoutCompanyOverrideFor;
-        }
-
-        if (planVersionId != null) {
-            _queryParams.plan_version_id = planVersionId;
-        }
-
-        if (withoutPlanEntitlementFor != null) {
-            _queryParams.without_plan_entitlement_for = withoutPlanEntitlementFor;
-        }
-
-        if (featureType != null) {
-            if (Array.isArray(featureType)) {
-                _queryParams.feature_type = featureType.map((item) =>
-                    serializers.FeatureType.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
-                );
-            } else {
-                _queryParams.feature_type = serializers.FeatureType.jsonOrThrow(featureType, {
-                    unrecognizedObjectKeys: "strip",
-                });
-            }
-        }
-
-        if (booleanRequireEvent != null) {
-            _queryParams.boolean_require_event = booleanRequireEvent.toString();
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            ids,
+            q,
+            without_company_override_for: withoutCompanyOverrideFor,
+            plan_version_id: planVersionId,
+            without_plan_entitlement_for: withoutPlanEntitlementFor,
+            feature_type: Array.isArray(featureType)
+                ? featureType.map((item) =>
+                      serializers.FeatureType.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
+                  )
+                : featureType != null
+                  ? serializers.FeatureType.jsonOrThrow(featureType, { unrecognizedObjectKeys: "strip" })
+                  : undefined,
+            boolean_require_event: booleanRequireEvent,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -942,8 +878,8 @@ export class FeaturesClient {
      *     await client.features.listFlags({
      *         featureId: "feature_id",
      *         q: "q",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listFlags(
@@ -958,31 +894,13 @@ export class FeaturesClient {
         requestOptions?: FeaturesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListFlagsResponse>> {
         const { featureId, ids, q, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (featureId != null) {
-            _queryParams.feature_id = featureId;
-        }
-
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            feature_id: featureId,
+            ids,
+            q,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1635,7 +1553,7 @@ export class FeaturesClient {
      *                         resourceIds: ["resource_ids"]
      *                     }],
      *                 name: "name",
-     *                 priority: 1,
+     *                 priority: 1000000,
      *                 value: true
      *             }]
      *     })
@@ -2172,8 +2090,8 @@ export class FeaturesClient {
      *     await client.features.countFlags({
      *         featureId: "feature_id",
      *         q: "q",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countFlags(
@@ -2188,31 +2106,13 @@ export class FeaturesClient {
         requestOptions?: FeaturesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountFlagsResponse>> {
         const { featureId, ids, q, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (featureId != null) {
-            _queryParams.feature_id = featureId;
-        }
-
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            feature_id: featureId,
+            ids,
+            q,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

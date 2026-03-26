@@ -18,7 +18,7 @@ describe("PlansClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                credit_amount: 1,
+                                credit_amount: 1000000,
                                 credit_description: "credit_description",
                                 credit_id: "credit_id",
                                 credit_name: "credit_name",
@@ -34,7 +34,7 @@ describe("PlansClient", () => {
                 billing_credit_balances: { key: 1.1 },
                 billing_subscription: {
                     application_id: "application_id",
-                    cancel_at: 1,
+                    cancel_at: 1000000,
                     cancel_at_period_end: true,
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
@@ -56,9 +56,9 @@ describe("PlansClient", () => {
                     id: "id",
                     interval: "interval",
                     latest_invoice: {
-                        amount_due: 1,
-                        amount_paid: 1,
-                        amount_remaining: 1,
+                        amount_due: 1000000,
+                        amount_paid: 1000000,
+                        amount_remaining: 1000000,
                         collection_method: "collection_method",
                         created_at: "2024-01-15T09:30:00Z",
                         currency: "currency",
@@ -66,7 +66,7 @@ describe("PlansClient", () => {
                         environment_id: "environment_id",
                         id: "id",
                         provider_type: "schematic",
-                        subtotal: 1,
+                        subtotal: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     metadata: { key: "value" },
@@ -80,8 +80,8 @@ describe("PlansClient", () => {
                         provider_type: "schematic",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
-                    period_end: 1,
-                    period_start: 1,
+                    period_end: 1000000,
+                    period_start: 1000000,
                     products: [
                         {
                             billing_scheme: "per_unit",
@@ -92,8 +92,8 @@ describe("PlansClient", () => {
                             id: "id",
                             interval: "interval",
                             name: "name",
-                            package_size: 1,
-                            price: 1,
+                            package_size: 1000000,
+                            price: 1000000,
                             price_external_id: "price_external_id",
                             price_id: "price_id",
                             price_tier: [{}],
@@ -107,8 +107,8 @@ describe("PlansClient", () => {
                     provider_type: "schematic",
                     status: "status",
                     subscription_external_id: "subscription_external_id",
-                    total_price: 1,
-                    trial_end: 1,
+                    total_price: 1000000,
+                    trial_end: 1000000,
                     trial_end_setting: "cancel",
                 },
                 billing_subscriptions: [
@@ -130,8 +130,8 @@ describe("PlansClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        period_end: 1,
-                        period_start: 1,
+                        period_end: 1000000,
+                        period_start: 1000000,
                         products: [
                             {
                                 billing_scheme: "per_unit",
@@ -142,8 +142,8 @@ describe("PlansClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                package_size: 1,
-                                price: 1,
+                                package_size: 1000000,
+                                price: 1000000,
                                 price_external_id: "price_external_id",
                                 price_id: "price_id",
                                 price_tier: [{}],
@@ -157,7 +157,7 @@ describe("PlansClient", () => {
                         provider_type: "schematic",
                         status: "status",
                         subscription_external_id: "subscription_external_id",
-                        total_price: 1,
+                        total_price: 1000000,
                     },
                 ],
                 created_at: "2024-01-15T09:30:00Z",
@@ -168,8 +168,8 @@ describe("PlansClient", () => {
                     billing_email: "billing_email",
                     billing_name: "billing_name",
                     card_brand: "card_brand",
-                    card_exp_month: 1,
-                    card_exp_year: 1,
+                    card_exp_month: 1000000,
+                    card_exp_year: 1000000,
                     card_last4: "card_last4",
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
@@ -220,7 +220,7 @@ describe("PlansClient", () => {
                         event_subtype: "event_subtype",
                         month_reset: "month_reset",
                         period: "period",
-                        value: 1,
+                        value: 1000000,
                     },
                 ],
                 name: "name",
@@ -247,7 +247,7 @@ describe("PlansClient", () => {
                         {
                             billing_credit_auto_topup_enabled: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            credit_amount: 1,
+                            credit_amount: 1000000,
                             credit_description: "credit_description",
                             credit_id: "credit_id",
                             credit_name: "credit_name",
@@ -259,7 +259,7 @@ describe("PlansClient", () => {
                     ],
                     name: "name",
                     plan_period: "plan_period",
-                    plan_price: 1,
+                    plan_price: 1000000,
                     plan_version_id: "plan_version_id",
                 },
                 plans: [{ id: "id", name: "name" }],
@@ -295,7 +295,7 @@ describe("PlansClient", () => {
                         environment_id: "environment_id",
                         id: "id",
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         rule_type: "default",
                         value: true,
                     },
@@ -305,20 +305,21 @@ describe("PlansClient", () => {
                     effective_after: "2024-01-15T09:30:00Z",
                     from_plan_id: "from_plan_id",
                     from_plan_name: "from_plan_name",
-                    from_subscription_price: 1,
+                    from_subscription_price: 1000000,
                     id: "id",
                     interval: "interval",
                     scheduled_interval: "scheduled_interval",
-                    scheduled_price: 1,
+                    scheduled_price: 1000000,
                     to_plan_id: "to_plan_id",
                     to_plan_name: "to_plan_name",
                 },
                 traits: { key: "value" },
                 updated_at: "2024-01-15T09:30:00Z",
-                user_count: 1,
+                user_count: 1000000,
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .put("/company-plans/company_plan_id")
@@ -340,7 +341,7 @@ describe("PlansClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                creditAmount: 1,
+                                creditAmount: 1000000,
                                 creditDescription: "credit_description",
                                 creditId: "credit_id",
                                 creditName: "credit_name",
@@ -358,7 +359,7 @@ describe("PlansClient", () => {
                 },
                 billingSubscription: {
                     applicationId: "application_id",
-                    cancelAt: 1,
+                    cancelAt: 1000000,
                     cancelAtPeriodEnd: true,
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -380,9 +381,9 @@ describe("PlansClient", () => {
                     id: "id",
                     interval: "interval",
                     latestInvoice: {
-                        amountDue: 1,
-                        amountPaid: 1,
-                        amountRemaining: 1,
+                        amountDue: 1000000,
+                        amountPaid: 1000000,
+                        amountRemaining: 1000000,
                         collectionMethod: "collection_method",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currency: "currency",
@@ -390,7 +391,7 @@ describe("PlansClient", () => {
                         environmentId: "environment_id",
                         id: "id",
                         providerType: "schematic",
-                        subtotal: 1,
+                        subtotal: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     metadata: {
@@ -406,8 +407,8 @@ describe("PlansClient", () => {
                         providerType: "schematic",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
-                    periodEnd: 1,
-                    periodStart: 1,
+                    periodEnd: 1000000,
+                    periodStart: 1000000,
                     products: [
                         {
                             billingScheme: "per_unit",
@@ -418,8 +419,8 @@ describe("PlansClient", () => {
                             id: "id",
                             interval: "interval",
                             name: "name",
-                            packageSize: 1,
-                            price: 1,
+                            packageSize: 1000000,
+                            price: 1000000,
                             priceExternalId: "price_external_id",
                             priceId: "price_id",
                             priceTier: [{}],
@@ -433,8 +434,8 @@ describe("PlansClient", () => {
                     providerType: "schematic",
                     status: "status",
                     subscriptionExternalId: "subscription_external_id",
-                    totalPrice: 1,
-                    trialEnd: 1,
+                    totalPrice: 1000000,
+                    trialEnd: 1000000,
                     trialEndSetting: "cancel",
                 },
                 billingSubscriptions: [
@@ -456,8 +457,8 @@ describe("PlansClient", () => {
                         ],
                         id: "id",
                         interval: "interval",
-                        periodEnd: 1,
-                        periodStart: 1,
+                        periodEnd: 1000000,
+                        periodStart: 1000000,
                         products: [
                             {
                                 billingScheme: "per_unit",
@@ -468,8 +469,8 @@ describe("PlansClient", () => {
                                 id: "id",
                                 interval: "interval",
                                 name: "name",
-                                packageSize: 1,
-                                price: 1,
+                                packageSize: 1000000,
+                                price: 1000000,
                                 priceExternalId: "price_external_id",
                                 priceId: "price_id",
                                 priceTier: [{}],
@@ -483,7 +484,7 @@ describe("PlansClient", () => {
                         providerType: "schematic",
                         status: "status",
                         subscriptionExternalId: "subscription_external_id",
-                        totalPrice: 1,
+                        totalPrice: 1000000,
                     },
                 ],
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -494,8 +495,8 @@ describe("PlansClient", () => {
                     billingEmail: "billing_email",
                     billingName: "billing_name",
                     cardBrand: "card_brand",
-                    cardExpMonth: 1,
-                    cardExpYear: 1,
+                    cardExpMonth: 1000000,
+                    cardExpYear: 1000000,
                     cardLast4: "card_last4",
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -552,7 +553,7 @@ describe("PlansClient", () => {
                         eventSubtype: "event_subtype",
                         monthReset: "month_reset",
                         period: "period",
-                        value: 1,
+                        value: 1000000,
                     },
                 ],
                 name: "name",
@@ -579,7 +580,7 @@ describe("PlansClient", () => {
                         {
                             billingCreditAutoTopupEnabled: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            creditAmount: 1,
+                            creditAmount: 1000000,
                             creditDescription: "credit_description",
                             creditId: "credit_id",
                             creditName: "credit_name",
@@ -591,7 +592,7 @@ describe("PlansClient", () => {
                     ],
                     name: "name",
                     planPeriod: "plan_period",
-                    planPrice: 1,
+                    planPrice: 1000000,
                     planVersionId: "plan_version_id",
                 },
                 plans: [
@@ -632,7 +633,7 @@ describe("PlansClient", () => {
                         environmentId: "environment_id",
                         id: "id",
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         ruleType: "default",
                         value: true,
                     },
@@ -642,11 +643,11 @@ describe("PlansClient", () => {
                     effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                     fromPlanId: "from_plan_id",
                     fromPlanName: "from_plan_name",
-                    fromSubscriptionPrice: 1,
+                    fromSubscriptionPrice: 1000000,
                     id: "id",
                     interval: "interval",
                     scheduledInterval: "scheduled_interval",
-                    scheduledPrice: 1,
+                    scheduledPrice: 1000000,
                     toPlanId: "to_plan_id",
                     toPlanName: "to_plan_name",
                 },
@@ -654,7 +655,7 @@ describe("PlansClient", () => {
                     key: "value",
                 },
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                userCount: 1,
+                userCount: 1000000,
             },
             params: {
                 key: "value",
@@ -667,6 +668,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { add_on_ids: ["add_on_ids", "add_on_ids"] };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/company-plans/company_plan_id")
@@ -688,6 +690,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { add_on_ids: ["add_on_ids", "add_on_ids"] };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/company-plans/company_plan_id")
@@ -709,6 +712,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { add_on_ids: ["add_on_ids", "add_on_ids"] };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/company-plans/company_plan_id")
@@ -730,6 +734,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { add_on_ids: ["add_on_ids", "add_on_ids"] };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/company-plans/company_plan_id")
@@ -751,6 +756,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { add_on_ids: ["add_on_ids", "add_on_ids"] };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/company-plans/company_plan_id")
@@ -784,7 +790,7 @@ describe("PlansClient", () => {
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
-                        version: 1,
+                        version: 1000000,
                     },
                     billing_product: {
                         account_id: "account_id",
@@ -800,7 +806,7 @@ describe("PlansClient", () => {
                                 external_price_id: "external_price_id",
                                 id: "id",
                                 interval: "day",
-                                price: 1,
+                                price: 1000000,
                                 provider_type: "schematic",
                                 scheme: "per_unit",
                             },
@@ -808,11 +814,11 @@ describe("PlansClient", () => {
                         product_id: "product_id",
                         provider_type: "schematic",
                         quantity: 1.1,
-                        subscription_count: 1,
+                        subscription_count: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     charge_type: "free",
-                    company_count: 1,
+                    company_count: 1000000,
                     controlled_by: "schematic",
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
@@ -826,7 +832,7 @@ describe("PlansClient", () => {
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
-                        version: 1,
+                        version: 1000000,
                     },
                     features: [
                         {
@@ -885,7 +891,7 @@ describe("PlansClient", () => {
                                             environment_id: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             rule_type: "rule_type",
                                             updated_at: "2024-01-15T09:30:00Z",
                                             value: true,
@@ -907,7 +913,7 @@ describe("PlansClient", () => {
                         {
                             auto_topup_enabled: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            credit_amount: 1,
+                            credit_amount: 1000000,
                             credit_id: "credit_id",
                             credit_name: "credit_name",
                             id: "id",
@@ -924,7 +930,7 @@ describe("PlansClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
@@ -934,12 +940,12 @@ describe("PlansClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
                     plan_type: "plan",
-                    trial_days: 1,
+                    trial_days: 1000000,
                     updated_at: "2024-01-15T09:30:00Z",
                     versions: [
                         {
@@ -952,7 +958,7 @@ describe("PlansClient", () => {
                             plan_type: "plan",
                             status: "published",
                             updated_at: "2024-01-15T09:30:00Z",
-                            version: 1,
+                            version: 1000000,
                         },
                     ],
                     yearly_price: {
@@ -960,7 +966,7 @@ describe("PlansClient", () => {
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         provider_type: "schematic",
                         scheme: "per_unit",
                     },
@@ -973,14 +979,16 @@ describe("PlansClient", () => {
                 for_trial_expiry_plan: true,
                 has_product_id: true,
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                include_draft_versions: true,
+                limit: 1000000,
+                offset: 1000000,
                 plan_type: "plan",
                 q: "q",
                 without_entitlement_for: "without_entitlement_for",
                 without_paid_product_id: true,
             },
         };
+
         server.mockEndpoint().get("/plans").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.plans.listPlans({
@@ -989,12 +997,13 @@ describe("PlansClient", () => {
             forInitialPlan: true,
             forTrialExpiryPlan: true,
             hasProductId: true,
+            includeDraftVersions: true,
             planType: "plan",
             q: "q",
             withoutEntitlementFor: "without_entitlement_for",
             withoutPaidProductId: true,
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -1009,7 +1018,7 @@ describe("PlansClient", () => {
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                        version: 1,
+                        version: 1000000,
                     },
                     billingProduct: {
                         accountId: "account_id",
@@ -1025,7 +1034,7 @@ describe("PlansClient", () => {
                                 externalPriceId: "external_price_id",
                                 id: "id",
                                 interval: "day",
-                                price: 1,
+                                price: 1000000,
                                 providerType: "schematic",
                                 scheme: "per_unit",
                             },
@@ -1033,11 +1042,11 @@ describe("PlansClient", () => {
                         productId: "product_id",
                         providerType: "schematic",
                         quantity: 1.1,
-                        subscriptionCount: 1,
+                        subscriptionCount: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     chargeType: "free",
-                    companyCount: 1,
+                    companyCount: 1000000,
                     controlledBy: "schematic",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
@@ -1051,7 +1060,7 @@ describe("PlansClient", () => {
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                        version: 1,
+                        version: 1000000,
                     },
                     features: [
                         {
@@ -1120,7 +1129,7 @@ describe("PlansClient", () => {
                                             environmentId: "environment_id",
                                             id: "id",
                                             name: "name",
-                                            priority: 1,
+                                            priority: 1000000,
                                             ruleType: "rule_type",
                                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                             value: true,
@@ -1147,7 +1156,7 @@ describe("PlansClient", () => {
                         {
                             autoTopupEnabled: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            creditAmount: 1,
+                            creditAmount: 1000000,
                             creditId: "credit_id",
                             creditName: "credit_name",
                             id: "id",
@@ -1164,7 +1173,7 @@ describe("PlansClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
@@ -1174,12 +1183,12 @@ describe("PlansClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
                     planType: "plan",
-                    trialDays: 1,
+                    trialDays: 1000000,
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     versions: [
                         {
@@ -1192,7 +1201,7 @@ describe("PlansClient", () => {
                             planType: "plan",
                             status: "published",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                            version: 1,
+                            version: 1000000,
                         },
                     ],
                     yearlyPrice: {
@@ -1200,7 +1209,7 @@ describe("PlansClient", () => {
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
-                        price: 1,
+                        price: 1000000,
                         providerType: "schematic",
                         scheme: "per_unit",
                     },
@@ -1213,8 +1222,9 @@ describe("PlansClient", () => {
                 forTrialExpiryPlan: true,
                 hasProductId: true,
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                includeDraftVersions: true,
+                limit: 1000000,
+                offset: 1000000,
                 planType: "plan",
                 q: "q",
                 withoutEntitlementFor: "without_entitlement_for",
@@ -1228,6 +1238,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plans").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1240,6 +1251,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plans").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1252,6 +1264,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plans").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1264,6 +1277,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plans").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1276,6 +1290,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plans").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1300,7 +1315,7 @@ describe("PlansClient", () => {
                     plan_type: "plan",
                     status: "published",
                     updated_at: "2024-01-15T09:30:00Z",
-                    version: 1,
+                    version: 1000000,
                 },
                 billing_product: {
                     account_id: "account_id",
@@ -1317,7 +1332,7 @@ describe("PlansClient", () => {
                             external_price_id: "external_price_id",
                             id: "id",
                             interval: "day",
-                            price: 1,
+                            price: 1000000,
                             provider_type: "schematic",
                             scheme: "per_unit",
                         },
@@ -1325,11 +1340,11 @@ describe("PlansClient", () => {
                     product_id: "product_id",
                     provider_type: "schematic",
                     quantity: 1.1,
-                    subscription_count: 1,
+                    subscription_count: 1000000,
                     updated_at: "2024-01-15T09:30:00Z",
                 },
                 charge_type: "free",
-                company_count: 1,
+                company_count: 1000000,
                 controlled_by: "schematic",
                 created_at: "2024-01-15T09:30:00Z",
                 description: "description",
@@ -1344,7 +1359,7 @@ describe("PlansClient", () => {
                     plan_type: "plan",
                     status: "published",
                     updated_at: "2024-01-15T09:30:00Z",
-                    version: 1,
+                    version: 1000000,
                 },
                 features: [
                     {
@@ -1403,7 +1418,7 @@ describe("PlansClient", () => {
                                         environment_id: "environment_id",
                                         id: "id",
                                         name: "name",
-                                        priority: 1,
+                                        priority: 1000000,
                                         rule_type: "rule_type",
                                         updated_at: "2024-01-15T09:30:00Z",
                                         value: true,
@@ -1425,7 +1440,7 @@ describe("PlansClient", () => {
                     {
                         auto_topup_enabled: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        credit_amount: 1,
+                        credit_amount: 1000000,
                         credit_id: "credit_id",
                         credit_name: "credit_name",
                         id: "id",
@@ -1442,7 +1457,7 @@ describe("PlansClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "schematic",
                     scheme: "per_unit",
@@ -1453,13 +1468,13 @@ describe("PlansClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "schematic",
                     scheme: "per_unit",
                 },
                 plan_type: "plan",
-                trial_days: 1,
+                trial_days: 1000000,
                 updated_at: "2024-01-15T09:30:00Z",
                 versions: [
                     {
@@ -1472,7 +1487,7 @@ describe("PlansClient", () => {
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
-                        version: 1,
+                        version: 1000000,
                     },
                 ],
                 yearly_price: {
@@ -1480,7 +1495,7 @@ describe("PlansClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "schematic",
                     scheme: "per_unit",
@@ -1488,6 +1503,7 @@ describe("PlansClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/plans")
@@ -1515,7 +1531,7 @@ describe("PlansClient", () => {
                     planType: "plan",
                     status: "published",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    version: 1,
+                    version: 1000000,
                 },
                 billingProduct: {
                     accountId: "account_id",
@@ -1532,7 +1548,7 @@ describe("PlansClient", () => {
                             externalPriceId: "external_price_id",
                             id: "id",
                             interval: "day",
-                            price: 1,
+                            price: 1000000,
                             providerType: "schematic",
                             scheme: "per_unit",
                         },
@@ -1540,11 +1556,11 @@ describe("PlansClient", () => {
                     productId: "product_id",
                     providerType: "schematic",
                     quantity: 1.1,
-                    subscriptionCount: 1,
+                    subscriptionCount: 1000000,
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
                 chargeType: "free",
-                companyCount: 1,
+                companyCount: 1000000,
                 controlledBy: "schematic",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 description: "description",
@@ -1559,7 +1575,7 @@ describe("PlansClient", () => {
                     planType: "plan",
                     status: "published",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    version: 1,
+                    version: 1000000,
                 },
                 features: [
                     {
@@ -1628,7 +1644,7 @@ describe("PlansClient", () => {
                                         environmentId: "environment_id",
                                         id: "id",
                                         name: "name",
-                                        priority: 1,
+                                        priority: 1000000,
                                         ruleType: "rule_type",
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                         value: true,
@@ -1655,7 +1671,7 @@ describe("PlansClient", () => {
                     {
                         autoTopupEnabled: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        creditAmount: 1,
+                        creditAmount: 1000000,
                         creditId: "credit_id",
                         creditName: "credit_name",
                         id: "id",
@@ -1672,7 +1688,7 @@ describe("PlansClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "schematic",
                     scheme: "per_unit",
@@ -1683,13 +1699,13 @@ describe("PlansClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "schematic",
                     scheme: "per_unit",
                 },
                 planType: "plan",
-                trialDays: 1,
+                trialDays: 1000000,
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 versions: [
                     {
@@ -1702,7 +1718,7 @@ describe("PlansClient", () => {
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                        version: 1,
+                        version: 1000000,
                     },
                 ],
                 yearlyPrice: {
@@ -1710,7 +1726,7 @@ describe("PlansClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "schematic",
                     scheme: "per_unit",
@@ -1727,6 +1743,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { description: "description", name: "x", plan_type: "plan" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plans")
@@ -1750,6 +1767,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { description: "description", name: "x", plan_type: "plan" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plans")
@@ -1773,6 +1791,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { description: "description", name: "x", plan_type: "plan" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plans")
@@ -1796,6 +1815,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { description: "description", name: "x", plan_type: "plan" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plans")
@@ -1819,6 +1839,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { description: "description", name: "x", plan_type: "plan" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/plans")
@@ -1854,7 +1875,7 @@ describe("PlansClient", () => {
                     plan_type: "plan",
                     status: "published",
                     updated_at: "2024-01-15T09:30:00Z",
-                    version: 1,
+                    version: 1000000,
                 },
                 billing_product: {
                     account_id: "account_id",
@@ -1871,7 +1892,7 @@ describe("PlansClient", () => {
                             external_price_id: "external_price_id",
                             id: "id",
                             interval: "day",
-                            price: 1,
+                            price: 1000000,
                             provider_type: "schematic",
                             scheme: "per_unit",
                         },
@@ -1879,11 +1900,11 @@ describe("PlansClient", () => {
                     product_id: "product_id",
                     provider_type: "schematic",
                     quantity: 1.1,
-                    subscription_count: 1,
+                    subscription_count: 1000000,
                     updated_at: "2024-01-15T09:30:00Z",
                 },
                 charge_type: "free",
-                company_count: 1,
+                company_count: 1000000,
                 controlled_by: "schematic",
                 created_at: "2024-01-15T09:30:00Z",
                 description: "description",
@@ -1898,7 +1919,7 @@ describe("PlansClient", () => {
                     plan_type: "plan",
                     status: "published",
                     updated_at: "2024-01-15T09:30:00Z",
-                    version: 1,
+                    version: 1000000,
                 },
                 features: [
                     {
@@ -1957,7 +1978,7 @@ describe("PlansClient", () => {
                                         environment_id: "environment_id",
                                         id: "id",
                                         name: "name",
-                                        priority: 1,
+                                        priority: 1000000,
                                         rule_type: "rule_type",
                                         updated_at: "2024-01-15T09:30:00Z",
                                         value: true,
@@ -1979,7 +2000,7 @@ describe("PlansClient", () => {
                     {
                         auto_topup_enabled: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        credit_amount: 1,
+                        credit_amount: 1000000,
                         credit_id: "credit_id",
                         credit_name: "credit_name",
                         id: "id",
@@ -1996,7 +2017,7 @@ describe("PlansClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "schematic",
                     scheme: "per_unit",
@@ -2007,13 +2028,13 @@ describe("PlansClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "schematic",
                     scheme: "per_unit",
                 },
                 plan_type: "plan",
-                trial_days: 1,
+                trial_days: 1000000,
                 updated_at: "2024-01-15T09:30:00Z",
                 versions: [
                     {
@@ -2026,7 +2047,7 @@ describe("PlansClient", () => {
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
-                        version: 1,
+                        version: 1000000,
                     },
                 ],
                 yearly_price: {
@@ -2034,7 +2055,7 @@ describe("PlansClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "schematic",
                     scheme: "per_unit",
@@ -2042,6 +2063,7 @@ describe("PlansClient", () => {
             },
             params: { plan_version_id: "plan_version_id" },
         };
+
         server.mockEndpoint().get("/plans/plan_id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.plans.getPlan("plan_id", {
@@ -2060,7 +2082,7 @@ describe("PlansClient", () => {
                     planType: "plan",
                     status: "published",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    version: 1,
+                    version: 1000000,
                 },
                 billingProduct: {
                     accountId: "account_id",
@@ -2077,7 +2099,7 @@ describe("PlansClient", () => {
                             externalPriceId: "external_price_id",
                             id: "id",
                             interval: "day",
-                            price: 1,
+                            price: 1000000,
                             providerType: "schematic",
                             scheme: "per_unit",
                         },
@@ -2085,11 +2107,11 @@ describe("PlansClient", () => {
                     productId: "product_id",
                     providerType: "schematic",
                     quantity: 1.1,
-                    subscriptionCount: 1,
+                    subscriptionCount: 1000000,
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
                 chargeType: "free",
-                companyCount: 1,
+                companyCount: 1000000,
                 controlledBy: "schematic",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 description: "description",
@@ -2104,7 +2126,7 @@ describe("PlansClient", () => {
                     planType: "plan",
                     status: "published",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    version: 1,
+                    version: 1000000,
                 },
                 features: [
                     {
@@ -2173,7 +2195,7 @@ describe("PlansClient", () => {
                                         environmentId: "environment_id",
                                         id: "id",
                                         name: "name",
-                                        priority: 1,
+                                        priority: 1000000,
                                         ruleType: "rule_type",
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                         value: true,
@@ -2200,7 +2222,7 @@ describe("PlansClient", () => {
                     {
                         autoTopupEnabled: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        creditAmount: 1,
+                        creditAmount: 1000000,
                         creditId: "credit_id",
                         creditName: "credit_name",
                         id: "id",
@@ -2217,7 +2239,7 @@ describe("PlansClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "schematic",
                     scheme: "per_unit",
@@ -2228,13 +2250,13 @@ describe("PlansClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "schematic",
                     scheme: "per_unit",
                 },
                 planType: "plan",
-                trialDays: 1,
+                trialDays: 1000000,
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 versions: [
                     {
@@ -2247,7 +2269,7 @@ describe("PlansClient", () => {
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                        version: 1,
+                        version: 1000000,
                     },
                 ],
                 yearlyPrice: {
@@ -2255,7 +2277,7 @@ describe("PlansClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "schematic",
                     scheme: "per_unit",
@@ -2272,6 +2294,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plans/plan_id").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2284,6 +2307,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plans/plan_id").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2296,6 +2320,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plans/plan_id").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2308,6 +2333,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plans/plan_id").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2332,7 +2358,7 @@ describe("PlansClient", () => {
                     plan_type: "plan",
                     status: "published",
                     updated_at: "2024-01-15T09:30:00Z",
-                    version: 1,
+                    version: 1000000,
                 },
                 billing_product: {
                     account_id: "account_id",
@@ -2349,7 +2375,7 @@ describe("PlansClient", () => {
                             external_price_id: "external_price_id",
                             id: "id",
                             interval: "day",
-                            price: 1,
+                            price: 1000000,
                             provider_type: "schematic",
                             scheme: "per_unit",
                         },
@@ -2357,11 +2383,11 @@ describe("PlansClient", () => {
                     product_id: "product_id",
                     provider_type: "schematic",
                     quantity: 1.1,
-                    subscription_count: 1,
+                    subscription_count: 1000000,
                     updated_at: "2024-01-15T09:30:00Z",
                 },
                 charge_type: "free",
-                company_count: 1,
+                company_count: 1000000,
                 controlled_by: "schematic",
                 created_at: "2024-01-15T09:30:00Z",
                 description: "description",
@@ -2376,7 +2402,7 @@ describe("PlansClient", () => {
                     plan_type: "plan",
                     status: "published",
                     updated_at: "2024-01-15T09:30:00Z",
-                    version: 1,
+                    version: 1000000,
                 },
                 features: [
                     {
@@ -2435,7 +2461,7 @@ describe("PlansClient", () => {
                                         environment_id: "environment_id",
                                         id: "id",
                                         name: "name",
-                                        priority: 1,
+                                        priority: 1000000,
                                         rule_type: "rule_type",
                                         updated_at: "2024-01-15T09:30:00Z",
                                         value: true,
@@ -2457,7 +2483,7 @@ describe("PlansClient", () => {
                     {
                         auto_topup_enabled: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        credit_amount: 1,
+                        credit_amount: 1000000,
                         credit_id: "credit_id",
                         credit_name: "credit_name",
                         id: "id",
@@ -2474,7 +2500,7 @@ describe("PlansClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "schematic",
                     scheme: "per_unit",
@@ -2485,13 +2511,13 @@ describe("PlansClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "schematic",
                     scheme: "per_unit",
                 },
                 plan_type: "plan",
-                trial_days: 1,
+                trial_days: 1000000,
                 updated_at: "2024-01-15T09:30:00Z",
                 versions: [
                     {
@@ -2504,7 +2530,7 @@ describe("PlansClient", () => {
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
-                        version: 1,
+                        version: 1000000,
                     },
                 ],
                 yearly_price: {
@@ -2512,7 +2538,7 @@ describe("PlansClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "schematic",
                     scheme: "per_unit",
@@ -2520,6 +2546,7 @@ describe("PlansClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .put("/plans/plan_id")
@@ -2545,7 +2572,7 @@ describe("PlansClient", () => {
                     planType: "plan",
                     status: "published",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    version: 1,
+                    version: 1000000,
                 },
                 billingProduct: {
                     accountId: "account_id",
@@ -2562,7 +2589,7 @@ describe("PlansClient", () => {
                             externalPriceId: "external_price_id",
                             id: "id",
                             interval: "day",
-                            price: 1,
+                            price: 1000000,
                             providerType: "schematic",
                             scheme: "per_unit",
                         },
@@ -2570,11 +2597,11 @@ describe("PlansClient", () => {
                     productId: "product_id",
                     providerType: "schematic",
                     quantity: 1.1,
-                    subscriptionCount: 1,
+                    subscriptionCount: 1000000,
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
                 chargeType: "free",
-                companyCount: 1,
+                companyCount: 1000000,
                 controlledBy: "schematic",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 description: "description",
@@ -2589,7 +2616,7 @@ describe("PlansClient", () => {
                     planType: "plan",
                     status: "published",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    version: 1,
+                    version: 1000000,
                 },
                 features: [
                     {
@@ -2658,7 +2685,7 @@ describe("PlansClient", () => {
                                         environmentId: "environment_id",
                                         id: "id",
                                         name: "name",
-                                        priority: 1,
+                                        priority: 1000000,
                                         ruleType: "rule_type",
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                         value: true,
@@ -2685,7 +2712,7 @@ describe("PlansClient", () => {
                     {
                         autoTopupEnabled: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        creditAmount: 1,
+                        creditAmount: 1000000,
                         creditId: "credit_id",
                         creditName: "credit_name",
                         id: "id",
@@ -2702,7 +2729,7 @@ describe("PlansClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "schematic",
                     scheme: "per_unit",
@@ -2713,13 +2740,13 @@ describe("PlansClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "schematic",
                     scheme: "per_unit",
                 },
                 planType: "plan",
-                trialDays: 1,
+                trialDays: 1000000,
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 versions: [
                     {
@@ -2732,7 +2759,7 @@ describe("PlansClient", () => {
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                        version: 1,
+                        version: 1000000,
                     },
                 ],
                 yearlyPrice: {
@@ -2740,7 +2767,7 @@ describe("PlansClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
-                    price: 1,
+                    price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "schematic",
                     scheme: "per_unit",
@@ -2757,6 +2784,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { name: "x" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plans/plan_id")
@@ -2778,6 +2806,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { name: "x" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plans/plan_id")
@@ -2799,6 +2828,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { name: "x" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plans/plan_id")
@@ -2820,6 +2850,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { name: "x" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plans/plan_id")
@@ -2841,6 +2872,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { name: "x" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plans/plan_id")
@@ -2862,6 +2894,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
+
         server.mockEndpoint().delete("/plans/plan_id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.plans.deletePlan("plan_id");
@@ -2880,6 +2913,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().delete("/plans/plan_id").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2892,6 +2926,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().delete("/plans/plan_id").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2904,6 +2939,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().delete("/plans/plan_id").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2916,6 +2952,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().delete("/plans/plan_id").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2928,6 +2965,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().delete("/plans/plan_id").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2950,11 +2988,12 @@ describe("PlansClient", () => {
                 monthly_price_id: "monthly_price_id",
                 one_time_price_id: "one_time_price_id",
                 plan_id: "plan_id",
-                trial_days: 1,
+                trial_days: 1000000,
                 yearly_price_id: "yearly_price_id",
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .put("/plans/plan_id/billing_products")
@@ -2979,7 +3018,7 @@ describe("PlansClient", () => {
                 monthlyPriceId: "monthly_price_id",
                 oneTimePriceId: "one_time_price_id",
                 planId: "plan_id",
-                trialDays: 1,
+                trialDays: 1000000,
                 yearlyPriceId: "yearly_price_id",
             },
             params: {
@@ -2993,6 +3032,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { charge_type: "free", is_trialable: true };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plans/plan_id/billing_products")
@@ -3015,6 +3055,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { charge_type: "free", is_trialable: true };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plans/plan_id/billing_products")
@@ -3037,6 +3078,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { charge_type: "free", is_trialable: true };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plans/plan_id/billing_products")
@@ -3059,6 +3101,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { charge_type: "free", is_trialable: true };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plans/plan_id/billing_products")
@@ -3081,6 +3124,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { charge_type: "free", is_trialable: true };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plans/plan_id/billing_products")
@@ -3111,14 +3155,16 @@ describe("PlansClient", () => {
                 for_trial_expiry_plan: true,
                 has_product_id: true,
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                include_draft_versions: true,
+                limit: 1000000,
+                offset: 1000000,
                 plan_type: "plan",
                 q: "q",
                 without_entitlement_for: "without_entitlement_for",
                 without_paid_product_id: true,
             },
         };
+
         server.mockEndpoint().get("/plans/count").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.plans.countPlans({
@@ -3127,12 +3173,13 @@ describe("PlansClient", () => {
             forInitialPlan: true,
             forTrialExpiryPlan: true,
             hasProductId: true,
+            includeDraftVersions: true,
             planType: "plan",
             q: "q",
             withoutEntitlementFor: "without_entitlement_for",
             withoutPaidProductId: true,
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -3145,8 +3192,9 @@ describe("PlansClient", () => {
                 forTrialExpiryPlan: true,
                 hasProductId: true,
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                includeDraftVersions: true,
+                limit: 1000000,
+                offset: 1000000,
                 planType: "plan",
                 q: "q",
                 withoutEntitlementFor: "without_entitlement_for",
@@ -3160,6 +3208,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plans/count").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -3172,6 +3221,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plans/count").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -3184,6 +3234,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plans/count").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -3196,6 +3247,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plans/count").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -3208,6 +3260,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plans/count").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -3223,6 +3276,7 @@ describe("PlansClient", () => {
             data: [{ code: "code", description: "description", detail: "detail", id: "id" }],
             params: { plan_id: "plan_id", plan_version_id: "plan_version_id" },
         };
+
         server.mockEndpoint().get("/plans/issues").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.plans.listPlanIssues({
@@ -3250,6 +3304,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plans/issues").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -3264,6 +3319,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plans/issues").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -3278,6 +3334,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plans/issues").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -3292,6 +3349,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plans/issues").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -3306,6 +3364,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/plans/issues").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -3320,6 +3379,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
+
         server
             .mockEndpoint()
             .delete("/plans/version/plan_id")
@@ -3344,6 +3404,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/plans/version/plan_id")
@@ -3362,6 +3423,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/plans/version/plan_id")
@@ -3380,6 +3442,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/plans/version/plan_id")
@@ -3398,6 +3461,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/plans/version/plan_id")
@@ -3416,6 +3480,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/plans/version/plan_id")
@@ -3445,10 +3510,11 @@ describe("PlansClient", () => {
                 plan_type: "plan",
                 status: "published",
                 updated_at: "2024-01-15T09:30:00Z",
-                version: 1,
+                version: 1000000,
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .put("/plans/version/plan_id/publish")
@@ -3474,7 +3540,7 @@ describe("PlansClient", () => {
                 planType: "plan",
                 status: "published",
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                version: 1,
+                version: 1000000,
             },
             params: {
                 key: "value",
@@ -3490,6 +3556,7 @@ describe("PlansClient", () => {
             migration_strategy: "immediate",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plans/version/plan_id/publish")
@@ -3515,6 +3582,7 @@ describe("PlansClient", () => {
             migration_strategy: "immediate",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plans/version/plan_id/publish")
@@ -3540,6 +3608,7 @@ describe("PlansClient", () => {
             migration_strategy: "immediate",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plans/version/plan_id/publish")
@@ -3565,6 +3634,7 @@ describe("PlansClient", () => {
             migration_strategy: "immediate",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plans/version/plan_id/publish")
@@ -3590,6 +3660,7 @@ describe("PlansClient", () => {
             migration_strategy: "immediate",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/plans/version/plan_id/publish")

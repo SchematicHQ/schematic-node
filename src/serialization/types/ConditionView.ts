@@ -30,7 +30,6 @@ export const ConditionView: core.serialization.ObjectSchema<serializers.Conditio
         ),
         metricValue: core.serialization.property("metric_value", core.serialization.number().optional()),
         operator: core.serialization.string(),
-        planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
         planVersions: core.serialization.property("plan_versions", core.serialization.list(GenericPreviewObject)),
         plans: core.serialization.list(GenericPreviewObject),
         resourceUnspecifiedIds: core.serialization.property(
@@ -69,7 +68,6 @@ export declare namespace ConditionView {
         metric_period_month_reset?: string | null;
         metric_value?: number | null;
         operator: string;
-        plan_version_id?: string | null;
         plan_versions: GenericPreviewObject.Raw[];
         plans: GenericPreviewObject.Raw[];
         resource_unspecified_ids: string[];

@@ -11,7 +11,6 @@ export interface RuleView {
     flagId?: string;
     id: string;
     name: string;
-    planVersionId?: string;
     priority: number;
     ruleType: string;
     updatedAt: Date;

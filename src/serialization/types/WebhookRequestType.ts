@@ -16,6 +16,7 @@ export const WebhookRequestType: core.serialization.Schema<
     "company.override.expired",
     "company.override.updated",
     "company.plan_changed",
+    "company.scheduled_downgrade",
     "company.updated",
     "credit.limit.reached",
     "credit.limit.warning",
@@ -58,6 +59,7 @@ export declare namespace WebhookRequestType {
         | "company.override.expired"
         | "company.override.updated"
         | "company.plan_changed"
+        | "company.scheduled_downgrade"
         | "company.updated"
         | "credit.limit.reached"
         | "credit.limit.warning"

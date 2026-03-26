@@ -8,11 +8,13 @@ export const PlanSelection: core.serialization.ObjectSchema<serializers.PlanSele
     core.serialization.object({
         planId: core.serialization.property("plan_id", core.serialization.string()),
         priceId: core.serialization.property("price_id", core.serialization.string().optional()),
+        versionId: core.serialization.property("version_id", core.serialization.string().optional()),
     });
 
 export declare namespace PlanSelection {
     export interface Raw {
         plan_id: string;
         price_id?: string | null;
+        version_id?: string | null;
     }
 }

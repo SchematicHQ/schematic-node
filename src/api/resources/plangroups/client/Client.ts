@@ -49,11 +49,9 @@ export class PlangroupsClient {
         requestOptions?: PlangroupsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.GetPlanGroupResponse>> {
         const { includeCompanyCounts } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (includeCompanyCounts != null) {
-            _queryParams.include_company_counts = includeCompanyCounts.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            include_company_counts: includeCompanyCounts,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

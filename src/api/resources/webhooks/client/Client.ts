@@ -37,8 +37,8 @@ export class WebhooksClient {
      *     await client.webhooks.listWebhookEvents({
      *         q: "q",
      *         webhookId: "webhook_id",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listWebhookEvents(
@@ -53,31 +53,13 @@ export class WebhooksClient {
         requestOptions?: WebhooksClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListWebhookEventsResponse>> {
         const { ids, q, webhookId, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (webhookId != null) {
-            _queryParams.webhook_id = webhookId;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            ids,
+            q,
+            webhook_id: webhookId,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -317,8 +299,8 @@ export class WebhooksClient {
      *     await client.webhooks.countWebhookEvents({
      *         q: "q",
      *         webhookId: "webhook_id",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countWebhookEvents(
@@ -333,31 +315,13 @@ export class WebhooksClient {
         requestOptions?: WebhooksClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountWebhookEventsResponse>> {
         const { ids, q, webhookId, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (ids != null) {
-            if (Array.isArray(ids)) {
-                _queryParams.ids = ids.map((item) => item);
-            } else {
-                _queryParams.ids = ids;
-            }
-        }
-
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (webhookId != null) {
-            _queryParams.webhook_id = webhookId;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            ids,
+            q,
+            webhook_id: webhookId,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -475,8 +439,8 @@ export class WebhooksClient {
      * @example
      *     await client.webhooks.listWebhooks({
      *         q: "q",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public listWebhooks(
@@ -491,19 +455,11 @@ export class WebhooksClient {
         requestOptions?: WebhooksClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListWebhooksResponse>> {
         const { q, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            q,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -1134,8 +1090,8 @@ export class WebhooksClient {
      * @example
      *     await client.webhooks.countWebhooks({
      *         q: "q",
-     *         limit: 1,
-     *         offset: 1
+     *         limit: 1000000,
+     *         offset: 1000000
      *     })
      */
     public countWebhooks(
@@ -1150,19 +1106,11 @@ export class WebhooksClient {
         requestOptions?: WebhooksClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountWebhooksResponse>> {
         const { q, limit, offset } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (q != null) {
-            _queryParams.q = q;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams.offset = offset.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            q,
+            limit,
+            offset,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

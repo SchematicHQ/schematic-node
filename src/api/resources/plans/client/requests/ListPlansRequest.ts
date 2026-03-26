@@ -10,12 +10,13 @@ import type * as Schematic from "../../../../index";
  *         forInitialPlan: true,
  *         forTrialExpiryPlan: true,
  *         hasProductId: true,
+ *         includeDraftVersions: true,
  *         planType: "plan",
  *         q: "q",
  *         withoutEntitlementFor: "without_entitlement_for",
  *         withoutPaidProductId: true,
- *         limit: 1,
- *         offset: 1
+ *         limit: 1000000,
+ *         offset: 1000000
  *     }
  */
 export interface ListPlansRequest {
@@ -29,6 +30,8 @@ export interface ListPlansRequest {
     /** Filter out plans that do not have a billing product ID */
     hasProductId?: boolean;
     ids?: string | string[];
+    /** Include billing settings from draft versions for plans which have draft version */
+    includeDraftVersions?: boolean;
     /** Filter by plan type */
     planType?: Schematic.PlanType;
     q?: string;

@@ -18,7 +18,6 @@ export interface ConditionResponseData {
     metricPeriodMonthReset?: string;
     metricValue?: number;
     operator: string;
-    planVersionId?: string;
     resourceUnspecifiedIds: string[];
     ruleId: string;
     traitEntityType?: Schematic.EntityType;

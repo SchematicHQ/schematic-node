@@ -5,8 +5,8 @@
  *     {
  *         q: "q",
  *         webhookId: "webhook_id",
- *         limit: 1,
- *         offset: 1
+ *         limit: 1000000,
+ *         offset: 1000000
  *     }
  */
 export interface CountWebhookEventsRequest {

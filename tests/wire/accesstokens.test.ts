@@ -22,6 +22,7 @@ describe("AccesstokensClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/temporary-access-tokens")
@@ -58,6 +59,7 @@ describe("AccesstokensClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { lookup: { lookup: "lookup" }, resource_type: "company" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/temporary-access-tokens")
@@ -81,6 +83,7 @@ describe("AccesstokensClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { lookup: { lookup: "lookup" }, resource_type: "company" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/temporary-access-tokens")
@@ -104,6 +107,7 @@ describe("AccesstokensClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { lookup: { lookup: "lookup" }, resource_type: "company" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/temporary-access-tokens")
@@ -127,6 +131,7 @@ describe("AccesstokensClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { lookup: { lookup: "lookup" }, resource_type: "company" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/temporary-access-tokens")
@@ -150,6 +155,7 @@ describe("AccesstokensClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { lookup: { lookup: "lookup" }, resource_type: "company" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/temporary-access-tokens")

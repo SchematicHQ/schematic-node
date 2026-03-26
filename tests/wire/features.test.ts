@@ -16,11 +16,11 @@ describe("FeaturesClient", () => {
                     description: "description",
                     event_subtype: "event_subtype",
                     event_summary: {
-                        company_count: 1,
+                        company_count: 1000000,
                         environment_id: "environment_id",
-                        event_count: 1,
+                        event_count: 1000000,
                         event_subtype: "event_subtype",
-                        user_count: 1,
+                        user_count: 1000000,
                     },
                     feature_type: "boolean",
                     flags: [
@@ -75,7 +75,7 @@ describe("FeaturesClient", () => {
                                     environment_id: "environment_id",
                                     id: "id",
                                     name: "name",
-                                    priority: 1,
+                                    priority: 1000000,
                                     rule_type: "rule_type",
                                     updated_at: "2024-01-15T09:30:00Z",
                                     value: true,
@@ -109,14 +109,15 @@ describe("FeaturesClient", () => {
                 boolean_require_event: true,
                 feature_type: ["boolean"],
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 plan_version_id: "plan_version_id",
                 q: "q",
                 without_company_override_for: "without_company_override_for",
                 without_plan_entitlement_for: "without_plan_entitlement_for",
             },
         };
+
         server.mockEndpoint().get("/features").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.features.listFeatures({
@@ -125,8 +126,8 @@ describe("FeaturesClient", () => {
             planVersionId: "plan_version_id",
             withoutPlanEntitlementFor: "without_plan_entitlement_for",
             booleanRequireEvent: true,
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -135,11 +136,11 @@ describe("FeaturesClient", () => {
                     description: "description",
                     eventSubtype: "event_subtype",
                     eventSummary: {
-                        companyCount: 1,
+                        companyCount: 1000000,
                         environmentId: "environment_id",
-                        eventCount: 1,
+                        eventCount: 1000000,
                         eventSubtype: "event_subtype",
-                        userCount: 1,
+                        userCount: 1000000,
                     },
                     featureType: "boolean",
                     flags: [
@@ -204,7 +205,7 @@ describe("FeaturesClient", () => {
                                     environmentId: "environment_id",
                                     id: "id",
                                     name: "name",
-                                    priority: 1,
+                                    priority: 1000000,
                                     ruleType: "rule_type",
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                     value: true,
@@ -243,8 +244,8 @@ describe("FeaturesClient", () => {
                 booleanRequireEvent: true,
                 featureType: ["boolean"],
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 planVersionId: "plan_version_id",
                 q: "q",
                 withoutCompanyOverrideFor: "without_company_override_for",
@@ -258,6 +259,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/features").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -270,6 +272,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/features").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -282,6 +285,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/features").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -294,6 +298,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/features").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -306,6 +311,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/features").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -323,12 +329,12 @@ describe("FeaturesClient", () => {
                 description: "description",
                 event_subtype: "event_subtype",
                 event_summary: {
-                    company_count: 1,
+                    company_count: 1000000,
                     environment_id: "environment_id",
-                    event_count: 1,
+                    event_count: 1000000,
                     event_subtype: "event_subtype",
                     last_seen_at: "2024-01-15T09:30:00Z",
-                    user_count: 1,
+                    user_count: 1000000,
                 },
                 feature_type: "boolean",
                 flags: [
@@ -383,7 +389,7 @@ describe("FeaturesClient", () => {
                                 environment_id: "environment_id",
                                 id: "id",
                                 name: "name",
-                                priority: 1,
+                                priority: 1000000,
                                 rule_type: "rule_type",
                                 updated_at: "2024-01-15T09:30:00Z",
                                 value: true,
@@ -414,6 +420,7 @@ describe("FeaturesClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/features")
@@ -434,12 +441,12 @@ describe("FeaturesClient", () => {
                 description: "description",
                 eventSubtype: "event_subtype",
                 eventSummary: {
-                    companyCount: 1,
+                    companyCount: 1000000,
                     environmentId: "environment_id",
-                    eventCount: 1,
+                    eventCount: 1000000,
                     eventSubtype: "event_subtype",
                     lastSeenAt: new Date("2024-01-15T09:30:00.000Z"),
-                    userCount: 1,
+                    userCount: 1000000,
                 },
                 featureType: "boolean",
                 flags: [
@@ -504,7 +511,7 @@ describe("FeaturesClient", () => {
                                 environmentId: "environment_id",
                                 id: "id",
                                 name: "name",
-                                priority: 1,
+                                priority: 1000000,
                                 ruleType: "rule_type",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 value: true,
@@ -549,6 +556,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { description: "description", feature_type: "boolean", name: "name" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/features")
@@ -572,6 +580,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { description: "description", feature_type: "boolean", name: "name" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/features")
@@ -595,6 +604,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { description: "description", feature_type: "boolean", name: "name" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/features")
@@ -618,6 +628,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { description: "description", feature_type: "boolean", name: "name" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/features")
@@ -641,6 +652,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { description: "description", feature_type: "boolean", name: "name" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/features")
@@ -669,12 +681,12 @@ describe("FeaturesClient", () => {
                 description: "description",
                 event_subtype: "event_subtype",
                 event_summary: {
-                    company_count: 1,
+                    company_count: 1000000,
                     environment_id: "environment_id",
-                    event_count: 1,
+                    event_count: 1000000,
                     event_subtype: "event_subtype",
                     last_seen_at: "2024-01-15T09:30:00Z",
-                    user_count: 1,
+                    user_count: 1000000,
                 },
                 feature_type: "boolean",
                 flags: [
@@ -729,7 +741,7 @@ describe("FeaturesClient", () => {
                                 environment_id: "environment_id",
                                 id: "id",
                                 name: "name",
-                                priority: 1,
+                                priority: 1000000,
                                 rule_type: "rule_type",
                                 updated_at: "2024-01-15T09:30:00Z",
                                 value: true,
@@ -760,6 +772,7 @@ describe("FeaturesClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .get("/features/feature_id")
@@ -775,12 +788,12 @@ describe("FeaturesClient", () => {
                 description: "description",
                 eventSubtype: "event_subtype",
                 eventSummary: {
-                    companyCount: 1,
+                    companyCount: 1000000,
                     environmentId: "environment_id",
-                    eventCount: 1,
+                    eventCount: 1000000,
                     eventSubtype: "event_subtype",
                     lastSeenAt: new Date("2024-01-15T09:30:00.000Z"),
-                    userCount: 1,
+                    userCount: 1000000,
                 },
                 featureType: "boolean",
                 flags: [
@@ -845,7 +858,7 @@ describe("FeaturesClient", () => {
                                 environmentId: "environment_id",
                                 id: "id",
                                 name: "name",
-                                priority: 1,
+                                priority: 1000000,
                                 ruleType: "rule_type",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 value: true,
@@ -890,6 +903,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/features/feature_id")
@@ -908,6 +922,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/features/feature_id")
@@ -926,6 +941,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/features/feature_id")
@@ -944,6 +960,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/features/feature_id")
@@ -967,12 +984,12 @@ describe("FeaturesClient", () => {
                 description: "description",
                 event_subtype: "event_subtype",
                 event_summary: {
-                    company_count: 1,
+                    company_count: 1000000,
                     environment_id: "environment_id",
-                    event_count: 1,
+                    event_count: 1000000,
                     event_subtype: "event_subtype",
                     last_seen_at: "2024-01-15T09:30:00Z",
-                    user_count: 1,
+                    user_count: 1000000,
                 },
                 feature_type: "boolean",
                 flags: [
@@ -1027,7 +1044,7 @@ describe("FeaturesClient", () => {
                                 environment_id: "environment_id",
                                 id: "id",
                                 name: "name",
-                                priority: 1,
+                                priority: 1000000,
                                 rule_type: "rule_type",
                                 updated_at: "2024-01-15T09:30:00Z",
                                 value: true,
@@ -1058,6 +1075,7 @@ describe("FeaturesClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .put("/features/feature_id")
@@ -1074,12 +1092,12 @@ describe("FeaturesClient", () => {
                 description: "description",
                 eventSubtype: "event_subtype",
                 eventSummary: {
-                    companyCount: 1,
+                    companyCount: 1000000,
                     environmentId: "environment_id",
-                    eventCount: 1,
+                    eventCount: 1000000,
                     eventSubtype: "event_subtype",
                     lastSeenAt: new Date("2024-01-15T09:30:00.000Z"),
-                    userCount: 1,
+                    userCount: 1000000,
                 },
                 featureType: "boolean",
                 flags: [
@@ -1144,7 +1162,7 @@ describe("FeaturesClient", () => {
                                 environmentId: "environment_id",
                                 id: "id",
                                 name: "name",
-                                priority: 1,
+                                priority: 1000000,
                                 ruleType: "rule_type",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 value: true,
@@ -1189,6 +1207,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/features/feature_id")
@@ -1208,6 +1227,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/features/feature_id")
@@ -1227,6 +1247,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/features/feature_id")
@@ -1246,6 +1267,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/features/feature_id")
@@ -1265,6 +1287,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/features/feature_id")
@@ -1284,6 +1307,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
+
         server
             .mockEndpoint()
             .delete("/features/feature_id")
@@ -1308,6 +1332,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/features/feature_id")
@@ -1326,6 +1351,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/features/feature_id")
@@ -1344,6 +1370,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/features/feature_id")
@@ -1362,6 +1389,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/features/feature_id")
@@ -1380,6 +1408,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .delete("/features/feature_id")
@@ -1403,14 +1432,15 @@ describe("FeaturesClient", () => {
                 boolean_require_event: true,
                 feature_type: ["boolean"],
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 plan_version_id: "plan_version_id",
                 q: "q",
                 without_company_override_for: "without_company_override_for",
                 without_plan_entitlement_for: "without_plan_entitlement_for",
             },
         };
+
         server.mockEndpoint().get("/features/count").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.features.countFeatures({
@@ -1419,8 +1449,8 @@ describe("FeaturesClient", () => {
             planVersionId: "plan_version_id",
             withoutPlanEntitlementFor: "without_plan_entitlement_for",
             booleanRequireEvent: true,
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -1430,8 +1460,8 @@ describe("FeaturesClient", () => {
                 booleanRequireEvent: true,
                 featureType: ["boolean"],
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 planVersionId: "plan_version_id",
                 q: "q",
                 withoutCompanyOverrideFor: "without_company_override_for",
@@ -1445,6 +1475,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/features/count").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1457,6 +1488,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/features/count").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1469,6 +1501,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/features/count").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1481,6 +1514,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/features/count").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1493,6 +1527,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/features/count").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1569,7 +1604,7 @@ describe("FeaturesClient", () => {
                             environment_id: "environment_id",
                             id: "id",
                             name: "name",
-                            priority: 1,
+                            priority: 1000000,
                             rule_type: "rule_type",
                             updated_at: "2024-01-15T09:30:00Z",
                             value: true,
@@ -1578,15 +1613,16 @@ describe("FeaturesClient", () => {
                     updated_at: "2024-01-15T09:30:00Z",
                 },
             ],
-            params: { feature_id: "feature_id", ids: ["ids"], limit: 1, offset: 1, q: "q" },
+            params: { feature_id: "feature_id", ids: ["ids"], limit: 1000000, offset: 1000000, q: "q" },
         };
+
         server.mockEndpoint().get("/flags").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.features.listFlags({
             featureId: "feature_id",
             q: "q",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -1663,7 +1699,7 @@ describe("FeaturesClient", () => {
                             environmentId: "environment_id",
                             id: "id",
                             name: "name",
-                            priority: 1,
+                            priority: 1000000,
                             ruleType: "rule_type",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             value: true,
@@ -1675,8 +1711,8 @@ describe("FeaturesClient", () => {
             params: {
                 featureId: "feature_id",
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
             },
         });
@@ -1687,6 +1723,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/flags").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1699,6 +1736,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/flags").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1711,6 +1749,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/flags").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1723,6 +1762,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/flags").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1735,6 +1775,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/flags").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -1822,7 +1863,7 @@ describe("FeaturesClient", () => {
                         environment_id: "environment_id",
                         id: "id",
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         rule_type: "rule_type",
                         updated_at: "2024-01-15T09:30:00Z",
                         value: true,
@@ -1832,6 +1873,7 @@ describe("FeaturesClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/flags")
@@ -1928,7 +1970,7 @@ describe("FeaturesClient", () => {
                         environmentId: "environment_id",
                         id: "id",
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         ruleType: "rule_type",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         value: true,
@@ -1953,6 +1995,7 @@ describe("FeaturesClient", () => {
             name: "name",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/flags")
@@ -1984,6 +2027,7 @@ describe("FeaturesClient", () => {
             name: "name",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/flags")
@@ -2015,6 +2059,7 @@ describe("FeaturesClient", () => {
             name: "name",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/flags")
@@ -2046,6 +2091,7 @@ describe("FeaturesClient", () => {
             name: "name",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/flags")
@@ -2077,6 +2123,7 @@ describe("FeaturesClient", () => {
             name: "name",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/flags")
@@ -2171,7 +2218,7 @@ describe("FeaturesClient", () => {
                         environment_id: "environment_id",
                         id: "id",
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         rule_type: "rule_type",
                         updated_at: "2024-01-15T09:30:00Z",
                         value: true,
@@ -2181,6 +2228,7 @@ describe("FeaturesClient", () => {
             },
             params: { key: "value" },
         };
+
         server.mockEndpoint().get("/flags/flag_id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.features.getFlag("flag_id");
@@ -2264,7 +2312,7 @@ describe("FeaturesClient", () => {
                         environmentId: "environment_id",
                         id: "id",
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         ruleType: "rule_type",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         value: true,
@@ -2283,6 +2331,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/flags/flag_id").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2295,6 +2344,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/flags/flag_id").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2307,6 +2357,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/flags/flag_id").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2319,6 +2370,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/flags/flag_id").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2406,7 +2458,7 @@ describe("FeaturesClient", () => {
                         environment_id: "environment_id",
                         id: "id",
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         rule_type: "rule_type",
                         updated_at: "2024-01-15T09:30:00Z",
                         value: true,
@@ -2416,6 +2468,7 @@ describe("FeaturesClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .put("/flags/flag_id")
@@ -2512,7 +2565,7 @@ describe("FeaturesClient", () => {
                         environmentId: "environment_id",
                         id: "id",
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         ruleType: "rule_type",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         value: true,
@@ -2537,6 +2590,7 @@ describe("FeaturesClient", () => {
             name: "name",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/flags/flag_id")
@@ -2568,6 +2622,7 @@ describe("FeaturesClient", () => {
             name: "name",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/flags/flag_id")
@@ -2599,6 +2654,7 @@ describe("FeaturesClient", () => {
             name: "name",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/flags/flag_id")
@@ -2630,6 +2686,7 @@ describe("FeaturesClient", () => {
             name: "name",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/flags/flag_id")
@@ -2661,6 +2718,7 @@ describe("FeaturesClient", () => {
             name: "name",
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/flags/flag_id")
@@ -2686,6 +2744,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
+
         server.mockEndpoint().delete("/flags/flag_id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.features.deleteFlag("flag_id");
@@ -2704,6 +2763,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().delete("/flags/flag_id").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2716,6 +2776,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().delete("/flags/flag_id").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2728,6 +2789,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().delete("/flags/flag_id").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2740,6 +2802,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().delete("/flags/flag_id").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2752,6 +2815,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().delete("/flags/flag_id").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -2770,7 +2834,7 @@ describe("FeaturesClient", () => {
                     ],
                     conditions: [{ condition_type: "company", operator: "eq", resource_ids: ["resource_ids"] }],
                     name: "name",
-                    priority: 1,
+                    priority: 1000000,
                     value: true,
                 },
             ],
@@ -2832,7 +2896,7 @@ describe("FeaturesClient", () => {
                         environment_id: "environment_id",
                         id: "id",
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         rule_type: "rule_type",
                         updated_at: "2024-01-15T09:30:00Z",
                         value: true,
@@ -2841,6 +2905,7 @@ describe("FeaturesClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .put("/flags/flag_id/rules")
@@ -2872,7 +2937,7 @@ describe("FeaturesClient", () => {
                         },
                     ],
                     name: "name",
-                    priority: 1,
+                    priority: 1000000,
                     value: true,
                 },
             ],
@@ -2944,7 +3009,7 @@ describe("FeaturesClient", () => {
                         environmentId: "environment_id",
                         id: "id",
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         ruleType: "rule_type",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         value: true,
@@ -2998,7 +3063,7 @@ describe("FeaturesClient", () => {
                         { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
                     ],
                     name: "name",
-                    priority: 1,
+                    priority: 1000000,
                     value: true,
                 },
                 {
@@ -3037,12 +3102,13 @@ describe("FeaturesClient", () => {
                         { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
                     ],
                     name: "name",
-                    priority: 1,
+                    priority: 1000000,
                     value: true,
                 },
             ],
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/flags/flag_id/rules")
@@ -3099,7 +3165,7 @@ describe("FeaturesClient", () => {
                             },
                         ],
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         value: true,
                     },
                     {
@@ -3146,7 +3212,7 @@ describe("FeaturesClient", () => {
                             },
                         ],
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         value: true,
                     },
                 ],
@@ -3195,7 +3261,7 @@ describe("FeaturesClient", () => {
                         { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
                     ],
                     name: "name",
-                    priority: 1,
+                    priority: 1000000,
                     value: true,
                 },
                 {
@@ -3234,12 +3300,13 @@ describe("FeaturesClient", () => {
                         { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
                     ],
                     name: "name",
-                    priority: 1,
+                    priority: 1000000,
                     value: true,
                 },
             ],
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/flags/flag_id/rules")
@@ -3296,7 +3363,7 @@ describe("FeaturesClient", () => {
                             },
                         ],
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         value: true,
                     },
                     {
@@ -3343,7 +3410,7 @@ describe("FeaturesClient", () => {
                             },
                         ],
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         value: true,
                     },
                 ],
@@ -3392,7 +3459,7 @@ describe("FeaturesClient", () => {
                         { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
                     ],
                     name: "name",
-                    priority: 1,
+                    priority: 1000000,
                     value: true,
                 },
                 {
@@ -3431,12 +3498,13 @@ describe("FeaturesClient", () => {
                         { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
                     ],
                     name: "name",
-                    priority: 1,
+                    priority: 1000000,
                     value: true,
                 },
             ],
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/flags/flag_id/rules")
@@ -3493,7 +3561,7 @@ describe("FeaturesClient", () => {
                             },
                         ],
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         value: true,
                     },
                     {
@@ -3540,7 +3608,7 @@ describe("FeaturesClient", () => {
                             },
                         ],
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         value: true,
                     },
                 ],
@@ -3589,7 +3657,7 @@ describe("FeaturesClient", () => {
                         { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
                     ],
                     name: "name",
-                    priority: 1,
+                    priority: 1000000,
                     value: true,
                 },
                 {
@@ -3628,12 +3696,13 @@ describe("FeaturesClient", () => {
                         { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
                     ],
                     name: "name",
-                    priority: 1,
+                    priority: 1000000,
                     value: true,
                 },
             ],
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/flags/flag_id/rules")
@@ -3690,7 +3759,7 @@ describe("FeaturesClient", () => {
                             },
                         ],
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         value: true,
                     },
                     {
@@ -3737,7 +3806,7 @@ describe("FeaturesClient", () => {
                             },
                         ],
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         value: true,
                     },
                 ],
@@ -3786,7 +3855,7 @@ describe("FeaturesClient", () => {
                         { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
                     ],
                     name: "name",
-                    priority: 1,
+                    priority: 1000000,
                     value: true,
                 },
                 {
@@ -3825,12 +3894,13 @@ describe("FeaturesClient", () => {
                         { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
                     ],
                     name: "name",
-                    priority: 1,
+                    priority: 1000000,
                     value: true,
                 },
             ],
         };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .put("/flags/flag_id/rules")
@@ -3887,7 +3957,7 @@ describe("FeaturesClient", () => {
                             },
                         ],
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         value: true,
                     },
                     {
@@ -3934,7 +4004,7 @@ describe("FeaturesClient", () => {
                             },
                         ],
                         name: "name",
-                        priority: 1,
+                        priority: 1000000,
                         value: true,
                     },
                 ],
@@ -3950,7 +4020,7 @@ describe("FeaturesClient", () => {
             data: {
                 company_id: "company_id",
                 entitlement: {
-                    allocation: 1,
+                    allocation: 1000000,
                     credit_id: "credit_id",
                     credit_remaining: 1.1,
                     credit_total: 1.1,
@@ -3961,8 +4031,8 @@ describe("FeaturesClient", () => {
                     metric_period: "all_time",
                     metric_reset_at: "2024-01-15T09:30:00Z",
                     month_reset: "first_of_month",
-                    soft_limit: 1,
-                    usage: 1,
+                    soft_limit: 1000000,
+                    usage: 1000000,
                     value_type: "boolean",
                 },
                 error: "error",
@@ -3976,6 +4046,7 @@ describe("FeaturesClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/flags/key/check")
@@ -3990,7 +4061,7 @@ describe("FeaturesClient", () => {
             data: {
                 companyId: "company_id",
                 entitlement: {
-                    allocation: 1,
+                    allocation: 1000000,
                     creditId: "credit_id",
                     creditRemaining: 1.1,
                     creditTotal: 1.1,
@@ -4001,8 +4072,8 @@ describe("FeaturesClient", () => {
                     metricPeriod: "all_time",
                     metricResetAt: new Date("2024-01-15T09:30:00.000Z"),
                     monthReset: "first_of_month",
-                    softLimit: 1,
-                    usage: 1,
+                    softLimit: 1000000,
+                    usage: 1000000,
                     valueType: "boolean",
                 },
                 error: "error",
@@ -4025,6 +4096,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/flags/key/check")
@@ -4044,6 +4116,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/flags/key/check")
@@ -4063,6 +4136,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/flags/key/check")
@@ -4082,6 +4156,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/flags/key/check")
@@ -4101,6 +4176,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/flags/key/check")
@@ -4126,6 +4202,7 @@ describe("FeaturesClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/flags/check")
@@ -4162,6 +4239,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/flags/check")
@@ -4181,6 +4259,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/flags/check")
@@ -4200,6 +4279,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/flags/check")
@@ -4219,6 +4299,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/flags/check")
@@ -4238,6 +4319,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/flags/check")
@@ -4260,6 +4342,7 @@ describe("FeaturesClient", () => {
             data: { data: [{ flags: [{ flag: "flag", reason: "reason", value: true }] }] },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/flags/check-bulk")
@@ -4297,6 +4380,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { contexts: [{}, {}] };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/flags/check-bulk")
@@ -4318,6 +4402,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { contexts: [{}, {}] };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/flags/check-bulk")
@@ -4339,6 +4424,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { contexts: [{}, {}] };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/flags/check-bulk")
@@ -4360,6 +4446,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { contexts: [{}, {}] };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/flags/check-bulk")
@@ -4381,6 +4468,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { contexts: [{}, {}] };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/flags/check-bulk")
@@ -4403,15 +4491,16 @@ describe("FeaturesClient", () => {
 
         const rawResponseBody = {
             data: { count: 1 },
-            params: { feature_id: "feature_id", ids: ["ids"], limit: 1, offset: 1, q: "q" },
+            params: { feature_id: "feature_id", ids: ["ids"], limit: 1000000, offset: 1000000, q: "q" },
         };
+
         server.mockEndpoint().get("/flags/count").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.features.countFlags({
             featureId: "feature_id",
             q: "q",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
@@ -4420,8 +4509,8 @@ describe("FeaturesClient", () => {
             params: {
                 featureId: "feature_id",
                 ids: ["ids"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
             },
         });
@@ -4432,6 +4521,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/flags/count").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -4444,6 +4534,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/flags/count").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -4456,6 +4547,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/flags/count").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -4468,6 +4560,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/flags/count").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -4480,6 +4573,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/flags/count").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {

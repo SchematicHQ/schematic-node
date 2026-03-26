@@ -114,8 +114,8 @@ await client.deletePlanAudiencesPlanAudienceId("plan_audience_id");
 await client.accounts.listApiKeys({
     environmentId: "environment_id",
     requireEnvironment: true,
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -374,8 +374,8 @@ await client.accounts.deleteApiKey("api_key_id");
 await client.accounts.countApiKeys({
     environmentId: "environment_id",
     requireEnvironment: true,
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -431,8 +431,8 @@ await client.accounts.listAuditLogs({
     environmentId: "environment_id",
     q: "q",
     startTime: new Date("2024-01-15T09:30:00.000Z"),
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -537,8 +537,8 @@ await client.accounts.countAuditLogs({
     environmentId: "environment_id",
     q: "q",
     startTime: new Date("2024-01-15T09:30:00.000Z"),
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -589,8 +589,8 @@ await client.accounts.countAuditLogs({
 
 ```typescript
 await client.accounts.listEnvironments({
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -933,8 +933,8 @@ await client.accounts.getWhoAmI();
 await client.billing.listCoupons({
     isActive: true,
     q: "q",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -985,14 +985,14 @@ await client.billing.listCoupons({
 
 ```typescript
 await client.billing.upsertBillingCoupon({
-    amountOff: 1,
+    amountOff: 1000000,
     duration: "duration",
-    durationInMonths: 1,
+    durationInMonths: 1000000,
     externalId: "external_id",
-    maxRedemptions: 1,
+    maxRedemptions: 1000000,
     name: "name",
     percentOff: 1.1,
-    timesRedeemed: 1
+    timesRedeemed: 1000000
 });
 
 ```
@@ -1102,8 +1102,8 @@ await client.billing.listCustomersWithSubscriptions({
     name: "name",
     providerType: "schematic",
     q: "q",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -1157,8 +1157,8 @@ await client.billing.countCustomers({
     name: "name",
     providerType: "schematic",
     q: "q",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -1212,8 +1212,8 @@ await client.billing.listInvoices({
     companyId: "company_id",
     customerExternalId: "customer_external_id",
     subscriptionExternalId: "subscription_external_id",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -1264,13 +1264,13 @@ await client.billing.listInvoices({
 
 ```typescript
 await client.billing.upsertInvoice({
-    amountDue: 1,
-    amountPaid: 1,
-    amountRemaining: 1,
+    amountDue: 1000000,
+    amountPaid: 1000000,
+    amountRemaining: 1000000,
     collectionMethod: "collection_method",
     currency: "currency",
     customerExternalId: "customer_external_id",
-    subtotal: 1
+    subtotal: 1000000
 });
 
 ```
@@ -1322,8 +1322,8 @@ await client.billing.upsertInvoice({
 ```typescript
 await client.billing.listMeters({
     displayName: "display_name",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -1430,8 +1430,8 @@ await client.billing.upsertBillingMeter({
 await client.billing.listPaymentMethods({
     companyId: "company_id",
     customerExternalId: "customer_external_id",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -1539,15 +1539,15 @@ await client.billing.listBillingPrices({
     forTrialExpiryPlan: true,
     interval: "interval",
     isActive: true,
-    price: 1,
+    price: 1000000,
     productId: "product_id",
     providerType: "schematic",
     q: "q",
     tiersMode: "graduated",
     usageType: "licensed",
     withMeter: true,
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -1603,7 +1603,7 @@ await client.billing.upsertBillingPrice({
     externalAccountId: "external_account_id",
     interval: "interval",
     isActive: true,
-    price: 1,
+    price: 1000000,
     priceExternalId: "price_external_id",
     priceTiers: [{
             priceExternalId: "price_external_id"
@@ -1713,15 +1713,15 @@ await client.billing.listBillingProductPrices({
     forTrialExpiryPlan: true,
     interval: "interval",
     isActive: true,
-    price: 1,
+    price: 1000000,
     productId: "product_id",
     providerType: "schematic",
     q: "q",
     tiersMode: "graduated",
     usageType: "licensed",
     withMeter: true,
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -1882,8 +1882,8 @@ await client.billing.listBillingProducts({
     withPricesOnly: true,
     withZeroPrice: true,
     withoutLinkedToPlan: true,
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -1943,8 +1943,8 @@ await client.billing.countBillingProducts({
     withPricesOnly: true,
     withZeroPrice: true,
     withoutLinkedToPlan: true,
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -2008,14 +2008,14 @@ await client.billing.upsertBillingSubscription({
     productExternalIds: [{
             currency: "currency",
             interval: "interval",
-            price: 1,
+            price: 1000000,
             priceExternalId: "price_external_id",
             productExternalId: "product_external_id",
-            quantity: 1,
+            quantity: 1000000,
             usageType: "licensed"
         }],
     subscriptionExternalId: "subscription_external_id",
-    totalPrice: 1
+    totalPrice: 1000000
 });
 
 ```
@@ -2068,8 +2068,8 @@ await client.billing.upsertBillingSubscription({
 ```typescript
 await client.credits.listBillingCredits({
     name: "name",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -2334,8 +2334,8 @@ await client.credits.listCreditBundles({
     creditId: "credit_id",
     status: "active",
     bundleType: "fixed",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -2389,7 +2389,7 @@ await client.credits.createCreditBundle({
     bundleName: "bundle_name",
     creditId: "credit_id",
     currency: "currency",
-    pricePerUnit: 1
+    pricePerUnit: 1000000
 });
 
 ```
@@ -2490,7 +2490,7 @@ await client.credits.getCreditBundle("bundle_id");
 ```typescript
 await client.credits.updateCreditBundleDetails("bundle_id", {
     bundleName: "bundle_name",
-    pricePerUnit: 1
+    pricePerUnit: 1000000
 });
 
 ```
@@ -2601,8 +2601,8 @@ await client.credits.countCreditBundles({
     creditId: "credit_id",
     status: "active",
     bundleType: "fixed",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -2654,8 +2654,8 @@ await client.credits.countCreditBundles({
 ```typescript
 await client.credits.countBillingCredits({
     name: "name",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -2765,7 +2765,7 @@ await client.credits.zeroOutGrant("grant_id");
 await client.credits.grantBillingCreditsToCompany({
     companyId: "company_id",
     creditId: "credit_id",
-    quantity: 1,
+    quantity: 1000000,
     reason: "billing_credit_auto_topup"
 });
 
@@ -2820,8 +2820,8 @@ await client.credits.countCompanyGrants({
     companyId: "company_id",
     order: "created_at",
     dir: "asc",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -2875,8 +2875,8 @@ await client.credits.listCompanyGrants({
     companyId: "company_id",
     order: "created_at",
     dir: "asc",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -2928,8 +2928,8 @@ await client.credits.listCompanyGrants({
 ```typescript
 await client.credits.countBillingCreditsGrants({
     creditId: "credit_id",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -2981,8 +2981,8 @@ await client.credits.countBillingCreditsGrants({
 ```typescript
 await client.credits.listGrantsForCredit({
     creditId: "credit_id",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -3039,8 +3039,8 @@ await client.credits.getEnrichedCreditLedger({
     period: "daily",
     startTime: "start_time",
     endTime: "end_time",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -3097,8 +3097,8 @@ await client.credits.countCreditLedger({
     period: "daily",
     startTime: "start_time",
     endTime: "end_time",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -3152,8 +3152,8 @@ await client.credits.listBillingPlanCreditGrants({
     creditId: "credit_id",
     planId: "plan_id",
     planVersionId: "plan_version_id",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -3204,7 +3204,7 @@ await client.credits.listBillingPlanCreditGrants({
 
 ```typescript
 await client.credits.createBillingPlanCreditGrant({
-    creditAmount: 1,
+    creditAmount: 1000000,
     creditId: "credit_id",
     planId: "plan_id",
     resetCadence: "daily",
@@ -3381,8 +3381,8 @@ await client.credits.countBillingPlanCreditGrants({
     creditId: "credit_id",
     planId: "plan_id",
     planVersionId: "plan_version_id",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -3439,8 +3439,8 @@ await client.credits.listCreditEventLedger({
     eventType: "grant",
     featureId: "feature_id",
     startTime: "start_time",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -3497,8 +3497,8 @@ await client.credits.countCreditEventLedger({
     eventType: "grant",
     featureId: "feature_id",
     startTime: "start_time",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -3557,13 +3557,13 @@ await client.checkout.internal({
     companyId: "company_id",
     creditBundles: [{
             bundleId: "bundle_id",
-            quantity: 1
+            quantity: 1000000
         }],
     newPlanId: "new_plan_id",
     newPriceId: "new_price_id",
     payInAdvance: [{
             priceId: "price_id",
-            quantity: 1
+            quantity: 1000000
         }],
     skipTrial: true
 });
@@ -3674,13 +3674,13 @@ await client.checkout.previewCheckoutInternal({
     companyId: "company_id",
     creditBundles: [{
             bundleId: "bundle_id",
-            quantity: 1
+            quantity: 1000000
         }],
     newPlanId: "new_plan_id",
     newPriceId: "new_price_id",
     payInAdvance: [{
             priceId: "price_id",
-            quantity: 1
+            quantity: 1000000
         }],
     skipTrial: true
 });
@@ -3739,11 +3739,11 @@ await client.checkout.managePlan({
     companyId: "company_id",
     creditBundles: [{
             bundleId: "bundle_id",
-            quantity: 1
+            quantity: 1000000
         }],
     payInAdvanceEntitlements: [{
             priceId: "price_id",
-            quantity: 1
+            quantity: 1000000
         }]
 });
 
@@ -3801,11 +3801,11 @@ await client.checkout.previewManagePlan({
     companyId: "company_id",
     creditBundles: [{
             bundleId: "bundle_id",
-            quantity: 1
+            quantity: 1000000
         }],
     payInAdvanceEntitlements: [{
             priceId: "price_id",
-            quantity: 1
+            quantity: 1000000
         }]
 });
 
@@ -3977,8 +3977,8 @@ await client.companies.listCompanies({
     withoutPlan: true,
     withoutSubscription: true,
     withSubscription: true,
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -4202,8 +4202,8 @@ await client.companies.countCompanies({
     withoutPlan: true,
     withoutSubscription: true,
     withSubscription: true,
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -4350,6 +4350,24 @@ await client.companies.deleteCompanyByKeys({
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Company lookup is determined to resolve a company from its keys, similar to how many of our other apis work. 
+The following approaches will all work to resolve a company and any of them are appropriate:
+1. `/companies/lookup?keys={"foo": "bar", "fizz": "buzz"}`
+2. `/companies/lookup?keys[foo]=bar&keys[fizz]=buzz`
+2. `/companies/lookup?foo=bar&fizz=buzz`
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -4415,8 +4433,8 @@ await client.companies.lookupCompany({
 await client.companies.listCompanyMemberships({
     companyId: "company_id",
     userId: "user_id",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -4569,8 +4587,8 @@ await client.companies.deleteCompanyMembership("company_membership_id");
 ```typescript
 await client.companies.getActiveCompanySubscription({
     companyId: "company_id",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -4677,8 +4695,8 @@ await client.companies.upsertCompanyTrait({
 await client.companies.listEntityKeyDefinitions({
     entityType: "company",
     q: "q",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -4731,8 +4749,8 @@ await client.companies.listEntityKeyDefinitions({
 await client.companies.countEntityKeyDefinitions({
     entityType: "company",
     q: "q",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -4786,8 +4804,8 @@ await client.companies.listEntityTraitDefinitions({
     entityType: "company",
     q: "q",
     traitType: "boolean",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -5002,8 +5020,8 @@ await client.companies.countEntityTraitDefinitions({
     entityType: "company",
     q: "q",
     traitType: "boolean",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -5056,8 +5074,8 @@ await client.companies.countEntityTraitDefinitions({
 await client.companies.getEntityTraitValues({
     definitionId: "definition_id",
     q: "q",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -5111,8 +5129,8 @@ await client.companies.listPlanChanges({
     action: "action",
     basePlanAction: "base_plan_action",
     companyId: "company_id",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -5214,8 +5232,8 @@ await client.companies.getPlanChange("plan_change_id");
 await client.companies.listPlanTraits({
     planId: "plan_id",
     traitId: "trait_id",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -5535,8 +5553,8 @@ await client.companies.updatePlanTraitsBulk({
 await client.companies.countPlanTraits({
     planId: "plan_id",
     traitId: "trait_id",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -5644,8 +5662,8 @@ await client.companies.listUsers({
     companyId: "company_id",
     planId: "plan_id",
     q: "q",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -5850,8 +5868,8 @@ await client.companies.countUsers({
     companyId: "company_id",
     planId: "plan_id",
     q: "q",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -6066,8 +6084,8 @@ await client.entitlements.listCompanyOverrides({
     featureId: "feature_id",
     withoutExpired: true,
     q: "q",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -6332,8 +6350,8 @@ await client.entitlements.countCompanyOverrides({
     featureId: "feature_id",
     withoutExpired: true,
     q: "q",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -6386,8 +6404,8 @@ await client.entitlements.countCompanyOverrides({
 await client.entitlements.listFeatureCompanies({
     featureId: "feature_id",
     q: "q",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -6440,8 +6458,8 @@ await client.entitlements.listFeatureCompanies({
 await client.entitlements.countFeatureCompanies({
     featureId: "feature_id",
     q: "q",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -6496,8 +6514,8 @@ await client.entitlements.listFeatureUsage({
     includeUsageAggregation: true,
     q: "q",
     withoutNegativeEntitlements: true,
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -6607,8 +6625,8 @@ await client.entitlements.countFeatureUsage({
     includeUsageAggregation: true,
     q: "q",
     withoutNegativeEntitlements: true,
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -6661,8 +6679,8 @@ await client.entitlements.countFeatureUsage({
 await client.entitlements.listFeatureUsers({
     featureId: "feature_id",
     q: "q",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -6715,8 +6733,8 @@ await client.entitlements.listFeatureUsers({
 await client.entitlements.countFeatureUsers({
     featureId: "feature_id",
     q: "q",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -6772,8 +6790,8 @@ await client.entitlements.listPlanEntitlements({
     planVersionId: "plan_version_id",
     q: "q",
     withMeteredProducts: true,
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -7039,8 +7057,8 @@ await client.entitlements.countPlanEntitlements({
     planVersionId: "plan_version_id",
     q: "q",
     withMeteredProducts: true,
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -7261,12 +7279,13 @@ await client.plans.listPlans({
     forInitialPlan: true,
     forTrialExpiryPlan: true,
     hasProductId: true,
+    includeDraftVersions: true,
     planType: "plan",
     q: "q",
     withoutEntitlementFor: "without_entitlement_for",
     withoutPaidProductId: true,
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -7602,12 +7621,13 @@ await client.plans.countPlans({
     forInitialPlan: true,
     forTrialExpiryPlan: true,
     hasProductId: true,
+    includeDraftVersions: true,
     planType: "plan",
     q: "q",
     withoutEntitlementFor: "without_entitlement_for",
     withoutPaidProductId: true,
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -7821,8 +7841,8 @@ await client.plans.publishPlanVersion("plan_id", {
 ```typescript
 await client.components.listComponents({
     q: "q",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -8081,8 +8101,8 @@ await client.components.deleteComponent("component_id");
 ```typescript
 await client.components.countComponents({
     q: "q",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -8341,8 +8361,8 @@ await client.events.createEventBatch({
 ```typescript
 await client.events.getEventSummaries({
     q: "q",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -8397,8 +8417,8 @@ await client.events.listEvents({
     eventSubtype: "event_subtype",
     flagId: "flag_id",
     userId: "user_id",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -8596,8 +8616,8 @@ await client.features.listFeatures({
     planVersionId: "plan_version_id",
     withoutPlanEntitlementFor: "without_plan_entitlement_for",
     booleanRequireEvent: true,
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -8861,8 +8881,8 @@ await client.features.countFeatures({
     planVersionId: "plan_version_id",
     withoutPlanEntitlementFor: "without_plan_entitlement_for",
     booleanRequireEvent: true,
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -8915,8 +8935,8 @@ await client.features.countFeatures({
 await client.features.listFlags({
     featureId: "feature_id",
     q: "q",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -9197,7 +9217,7 @@ await client.features.updateFlagRules("flag_id", {
                     resourceIds: ["resource_ids"]
                 }],
             name: "name",
-            priority: 1,
+            priority: 1000000,
             value: true
         }]
 });
@@ -9417,8 +9437,8 @@ await client.features.checkFlagsBulk({
 await client.features.countFlags({
     featureId: "feature_id",
     q: "q",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -9796,8 +9816,8 @@ await client.planmigrations.listCompanyMigrations({
     migrationId: "migration_id",
     q: "q",
     status: "completed",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -9851,8 +9871,8 @@ await client.planmigrations.countCompanyMigrations({
     migrationId: "migration_id",
     q: "q",
     status: "completed",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -9905,8 +9925,8 @@ await client.planmigrations.countCompanyMigrations({
 await client.planmigrations.listMigrations({
     planVersionId: "plan_version_id",
     status: "completed",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -10008,8 +10028,8 @@ await client.planmigrations.getMigration("plan_version_migration_id");
 await client.planmigrations.countMigrations({
     planVersionId: "plan_version_id",
     status: "completed",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -10105,8 +10125,8 @@ await client.componentspublic.getPublicPlans();
 await client.scheduledcheckout.listScheduledCheckouts({
     companyId: "company_id",
     status: "cancelled",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -10374,8 +10394,8 @@ await client.accesstokens.issueTemporaryAccessToken({
 await client.webhooks.listWebhookEvents({
     q: "q",
     webhookId: "webhook_id",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -10477,8 +10497,8 @@ await client.webhooks.getWebhookEvent("webhook_event_id");
 await client.webhooks.countWebhookEvents({
     q: "q",
     webhookId: "webhook_id",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -10530,8 +10550,8 @@ await client.webhooks.countWebhookEvents({
 ```typescript
 await client.webhooks.listWebhooks({
     q: "q",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -10791,8 +10811,8 @@ await client.webhooks.deleteWebhook("webhook_id");
 ```typescript
 await client.webhooks.countWebhooks({
     q: "q",
-    limit: 1,
-    offset: 1
+    limit: 1000000,
+    offset: 1000000
 });
 
 ```
@@ -10828,3 +10848,4 @@ await client.webhooks.countWebhooks({
 </dd>
 </dl>
 </details>
+

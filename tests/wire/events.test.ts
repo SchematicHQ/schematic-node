@@ -15,6 +15,7 @@ describe("EventsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/event-batch")
@@ -52,6 +53,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { events: [{ event_type: "flag_check" }, { event_type: "flag_check" }] };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/event-batch")
@@ -80,6 +82,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { events: [{ event_type: "flag_check" }, { event_type: "flag_check" }] };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/event-batch")
@@ -108,6 +111,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { events: [{ event_type: "flag_check" }, { event_type: "flag_check" }] };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/event-batch")
@@ -136,6 +140,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { events: [{ event_type: "flag_check" }, { event_type: "flag_check" }] };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/event-batch")
@@ -164,6 +169,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { events: [{ event_type: "flag_check" }, { event_type: "flag_check" }] };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/event-batch")
@@ -194,38 +200,39 @@ describe("EventsClient", () => {
         const rawResponseBody = {
             data: [
                 {
-                    company_count: 1,
+                    company_count: 1000000,
                     environment_id: "environment_id",
-                    event_count: 1,
+                    event_count: 1000000,
                     event_subtype: "event_subtype",
                     last_seen_at: "2024-01-15T09:30:00Z",
-                    user_count: 1,
+                    user_count: 1000000,
                 },
             ],
-            params: { event_subtypes: ["event_subtypes"], limit: 1, offset: 1, q: "q" },
+            params: { event_subtypes: ["event_subtypes"], limit: 1000000, offset: 1000000, q: "q" },
         };
+
         server.mockEndpoint().get("/event-types").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.events.getEventSummaries({
             q: "q",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
                 {
-                    companyCount: 1,
+                    companyCount: 1000000,
                     environmentId: "environment_id",
-                    eventCount: 1,
+                    eventCount: 1000000,
                     eventSubtype: "event_subtype",
                     lastSeenAt: new Date("2024-01-15T09:30:00.000Z"),
-                    userCount: 1,
+                    userCount: 1000000,
                 },
             ],
             params: {
                 eventSubtypes: ["event_subtypes"],
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 q: "q",
             },
         });
@@ -236,6 +243,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/event-types").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -248,6 +256,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/event-types").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -260,6 +269,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/event-types").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -272,6 +282,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/event-types").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -284,6 +295,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/event-types").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -310,7 +322,7 @@ describe("EventsClient", () => {
                     features: [{ id: "id", name: "name" }],
                     id: "id",
                     loaded_at: "2024-01-15T09:30:00Z",
-                    quantity: 1,
+                    quantity: 1000000,
                     sent_at: "2024-01-15T09:30:00Z",
                     status: "enriched",
                     subtype: "subtype",
@@ -324,11 +336,12 @@ describe("EventsClient", () => {
                 event_subtype: "event_subtype",
                 event_types: ["flag_check"],
                 flag_id: "flag_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 user_id: "user_id",
             },
         };
+
         server.mockEndpoint().get("/events").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.events.listEvents({
@@ -336,8 +349,8 @@ describe("EventsClient", () => {
             eventSubtype: "event_subtype",
             flagId: "flag_id",
             userId: "user_id",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -364,7 +377,7 @@ describe("EventsClient", () => {
                     ],
                     id: "id",
                     loadedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    quantity: 1,
+                    quantity: 1000000,
                     sentAt: new Date("2024-01-15T09:30:00.000Z"),
                     status: "enriched",
                     subtype: "subtype",
@@ -381,8 +394,8 @@ describe("EventsClient", () => {
                 eventSubtype: "event_subtype",
                 eventTypes: ["flag_check"],
                 flagId: "flag_id",
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 userId: "user_id",
             },
         });
@@ -393,6 +406,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/events").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -405,6 +419,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/events").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -417,6 +432,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/events").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -429,6 +445,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/events").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -441,6 +458,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/events").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -462,6 +480,7 @@ describe("EventsClient", () => {
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .post("/events")
@@ -493,6 +512,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { event_type: "flag_check" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/events")
@@ -514,6 +534,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { event_type: "flag_check" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/events")
@@ -535,6 +556,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { event_type: "flag_check" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/events")
@@ -556,6 +578,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { event_type: "flag_check" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/events")
@@ -577,6 +600,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { event_type: "flag_check" };
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .post("/events")
@@ -611,7 +635,7 @@ describe("EventsClient", () => {
                 features: [{ id: "id", name: "name" }],
                 id: "id",
                 loaded_at: "2024-01-15T09:30:00Z",
-                quantity: 1,
+                quantity: 1000000,
                 sent_at: "2024-01-15T09:30:00Z",
                 status: "enriched",
                 subtype: "subtype",
@@ -621,6 +645,7 @@ describe("EventsClient", () => {
             },
             params: { key: "value" },
         };
+
         server.mockEndpoint().get("/events/event_id").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.events.getEvent("event_id");
@@ -650,7 +675,7 @@ describe("EventsClient", () => {
                 ],
                 id: "id",
                 loadedAt: new Date("2024-01-15T09:30:00.000Z"),
-                quantity: 1,
+                quantity: 1000000,
                 sentAt: new Date("2024-01-15T09:30:00.000Z"),
                 status: "enriched",
                 subtype: "subtype",
@@ -674,6 +699,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/events/event_id").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -686,6 +712,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/events/event_id").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -698,6 +725,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/events/event_id").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -710,6 +738,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server.mockEndpoint().get("/events/event_id").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -725,6 +754,7 @@ describe("EventsClient", () => {
             data: { connected: true, environment_id: "environment_id", last_event_at: "2024-01-15T09:30:00Z" },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .get("/segment-integration")
@@ -751,6 +781,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/segment-integration")
@@ -769,6 +800,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/segment-integration")
@@ -787,6 +819,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/segment-integration")
@@ -805,6 +838,7 @@ describe("EventsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/segment-integration")

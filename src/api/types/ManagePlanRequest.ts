@@ -6,6 +6,7 @@ export interface ManagePlanRequest {
     addOnSelections: Schematic.PlanSelection[];
     basePlanId?: string;
     basePlanPriceId?: string;
+    basePlanVersionId?: string;
     /** If false, subscription cancels at period end. Only applies when removing all plans. Defaults to true. */
     cancelImmediately?: boolean;
     companyId: string;

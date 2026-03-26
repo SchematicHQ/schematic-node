@@ -27,7 +27,6 @@ export const ConditionResponseData: core.serialization.ObjectSchema<
     ),
     metricValue: core.serialization.property("metric_value", core.serialization.number().optional()),
     operator: core.serialization.string(),
-    planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
     resourceUnspecifiedIds: core.serialization.property(
         "resource_unspecified_ids",
         core.serialization.list(core.serialization.string()),
@@ -59,7 +58,6 @@ export declare namespace ConditionResponseData {
         metric_period_month_reset?: string | null;
         metric_value?: number | null;
         operator: string;
-        plan_version_id?: string | null;
         resource_unspecified_ids: string[];
         rule_id: string;
         trait_entity_type?: EntityType.Raw | null;

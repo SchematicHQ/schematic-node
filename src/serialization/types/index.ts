@@ -329,4 +329,5 @@ export * from "./WebhookEventStatus";
 export * from "./WebhookRequestType";
 export * from "./WebhookResponseData";
 export * from "./WebhookStatus";
+export * from "./WebScheduledDowngradeWebhookOutput";
 export * from "./WhoAmIResponseData";

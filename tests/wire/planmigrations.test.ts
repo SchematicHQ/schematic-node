@@ -25,8 +25,9 @@ describe("PlanmigrationsClient", () => {
                     updated_at: "2024-01-15T09:30:00Z",
                 },
             ],
-            params: { limit: 1, migration_id: "migration_id", offset: 1, q: "q", status: "completed" },
+            params: { limit: 1000000, migration_id: "migration_id", offset: 1000000, q: "q", status: "completed" },
         };
+
         server
             .mockEndpoint()
             .get("/plan-version-company-migrations")
@@ -39,8 +40,8 @@ describe("PlanmigrationsClient", () => {
             migrationId: "migration_id",
             q: "q",
             status: "completed",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
@@ -59,9 +60,9 @@ describe("PlanmigrationsClient", () => {
                 },
             ],
             params: {
-                limit: 1,
+                limit: 1000000,
                 migrationId: "migration_id",
-                offset: 1,
+                offset: 1000000,
                 q: "q",
                 status: "completed",
             },
@@ -73,6 +74,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-version-company-migrations")
@@ -91,6 +93,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-version-company-migrations")
@@ -109,6 +112,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-version-company-migrations")
@@ -127,6 +131,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-version-company-migrations")
@@ -145,6 +150,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-version-company-migrations")
@@ -164,8 +170,9 @@ describe("PlanmigrationsClient", () => {
 
         const rawResponseBody = {
             data: { count: 1 },
-            params: { limit: 1, migration_id: "migration_id", offset: 1, q: "q", status: "completed" },
+            params: { limit: 1000000, migration_id: "migration_id", offset: 1000000, q: "q", status: "completed" },
         };
+
         server
             .mockEndpoint()
             .get("/plan-version-company-migrations/count")
@@ -178,17 +185,17 @@ describe("PlanmigrationsClient", () => {
             migrationId: "migration_id",
             q: "q",
             status: "completed",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
                 count: 1,
             },
             params: {
-                limit: 1,
+                limit: 1000000,
                 migrationId: "migration_id",
-                offset: 1,
+                offset: 1000000,
                 q: "q",
                 status: "completed",
             },
@@ -200,6 +207,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-version-company-migrations/count")
@@ -218,6 +226,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-version-company-migrations/count")
@@ -236,6 +245,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-version-company-migrations/count")
@@ -254,6 +264,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-version-company-migrations/count")
@@ -272,6 +283,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-version-company-migrations/count")
@@ -293,24 +305,25 @@ describe("PlanmigrationsClient", () => {
             data: [
                 {
                     completed_at: "2024-01-15T09:30:00Z",
-                    completed_companies: 1,
+                    completed_companies: 1000000,
                     created_at: "2024-01-15T09:30:00Z",
                     error: "error",
-                    failed_companies: 1,
+                    failed_companies: 1000000,
                     id: "id",
                     plan_id: "plan_id",
                     plan_version_id_from: "plan_version_id_from",
                     plan_version_id_to: "plan_version_id_to",
-                    skipped_companies: 1,
+                    skipped_companies: 1000000,
                     started_at: "2024-01-15T09:30:00Z",
                     status: "completed",
                     strategy: "immediate",
-                    total_companies: 1,
+                    total_companies: 1000000,
                     updated_at: "2024-01-15T09:30:00Z",
                 },
             ],
-            params: { limit: 1, offset: 1, plan_version_id: "plan_version_id", status: "completed" },
+            params: { limit: 1000000, offset: 1000000, plan_version_id: "plan_version_id", status: "completed" },
         };
+
         server
             .mockEndpoint()
             .get("/plan-version-migrations")
@@ -322,32 +335,32 @@ describe("PlanmigrationsClient", () => {
         const response = await client.planmigrations.listMigrations({
             planVersionId: "plan_version_id",
             status: "completed",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: [
                 {
                     completedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    completedCompanies: 1,
+                    completedCompanies: 1000000,
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     error: "error",
-                    failedCompanies: 1,
+                    failedCompanies: 1000000,
                     id: "id",
                     planId: "plan_id",
                     planVersionIdFrom: "plan_version_id_from",
                     planVersionIdTo: "plan_version_id_to",
-                    skippedCompanies: 1,
+                    skippedCompanies: 1000000,
                     startedAt: new Date("2024-01-15T09:30:00.000Z"),
                     status: "completed",
                     strategy: "immediate",
-                    totalCompanies: 1,
+                    totalCompanies: 1000000,
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
             ],
             params: {
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 planVersionId: "plan_version_id",
                 status: "completed",
             },
@@ -359,6 +372,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-version-migrations")
@@ -377,6 +391,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-version-migrations")
@@ -395,6 +410,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-version-migrations")
@@ -413,6 +429,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-version-migrations")
@@ -431,6 +448,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-version-migrations")
@@ -451,23 +469,24 @@ describe("PlanmigrationsClient", () => {
         const rawResponseBody = {
             data: {
                 completed_at: "2024-01-15T09:30:00Z",
-                completed_companies: 1,
+                completed_companies: 1000000,
                 created_at: "2024-01-15T09:30:00Z",
                 error: "error",
-                failed_companies: 1,
+                failed_companies: 1000000,
                 id: "id",
                 plan_id: "plan_id",
                 plan_version_id_from: "plan_version_id_from",
                 plan_version_id_to: "plan_version_id_to",
-                skipped_companies: 1,
+                skipped_companies: 1000000,
                 started_at: "2024-01-15T09:30:00Z",
                 status: "completed",
                 strategy: "immediate",
-                total_companies: 1,
+                total_companies: 1000000,
                 updated_at: "2024-01-15T09:30:00Z",
             },
             params: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .get("/plan-version-migrations/plan_version_migration_id")
@@ -480,19 +499,19 @@ describe("PlanmigrationsClient", () => {
         expect(response).toEqual({
             data: {
                 completedAt: new Date("2024-01-15T09:30:00.000Z"),
-                completedCompanies: 1,
+                completedCompanies: 1000000,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 error: "error",
-                failedCompanies: 1,
+                failedCompanies: 1000000,
                 id: "id",
                 planId: "plan_id",
                 planVersionIdFrom: "plan_version_id_from",
                 planVersionIdTo: "plan_version_id_to",
-                skippedCompanies: 1,
+                skippedCompanies: 1000000,
                 startedAt: new Date("2024-01-15T09:30:00.000Z"),
                 status: "completed",
                 strategy: "immediate",
-                totalCompanies: 1,
+                totalCompanies: 1000000,
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
             },
             params: {
@@ -506,6 +525,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-version-migrations/plan_version_migration_id")
@@ -524,6 +544,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-version-migrations/plan_version_migration_id")
@@ -542,6 +563,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-version-migrations/plan_version_migration_id")
@@ -560,6 +582,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-version-migrations/plan_version_migration_id")
@@ -579,8 +602,9 @@ describe("PlanmigrationsClient", () => {
 
         const rawResponseBody = {
             data: { count: 1 },
-            params: { limit: 1, offset: 1, plan_version_id: "plan_version_id", status: "completed" },
+            params: { limit: 1000000, offset: 1000000, plan_version_id: "plan_version_id", status: "completed" },
         };
+
         server
             .mockEndpoint()
             .get("/plan-version-migrations/count")
@@ -592,16 +616,16 @@ describe("PlanmigrationsClient", () => {
         const response = await client.planmigrations.countMigrations({
             planVersionId: "plan_version_id",
             status: "completed",
-            limit: 1,
-            offset: 1,
+            limit: 1000000,
+            offset: 1000000,
         });
         expect(response).toEqual({
             data: {
                 count: 1,
             },
             params: {
-                limit: 1,
-                offset: 1,
+                limit: 1000000,
+                offset: 1000000,
                 planVersionId: "plan_version_id",
                 status: "completed",
             },
@@ -613,6 +637,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-version-migrations/count")
@@ -631,6 +656,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-version-migrations/count")
@@ -649,6 +675,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-version-migrations/count")
@@ -667,6 +694,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-version-migrations/count")
@@ -685,6 +713,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { error: "error" };
+
         server
             .mockEndpoint()
             .get("/plan-version-migrations/count")

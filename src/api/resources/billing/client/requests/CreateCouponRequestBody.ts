@@ -3,14 +3,14 @@
 /**
  * @example
  *     {
- *         amountOff: 1,
+ *         amountOff: 1000000,
  *         duration: "duration",
- *         durationInMonths: 1,
+ *         durationInMonths: 1000000,
  *         externalId: "external_id",
- *         maxRedemptions: 1,
+ *         maxRedemptions: 1000000,
  *         name: "name",
  *         percentOff: 1.1,
- *         timesRedeemed: 1
+ *         timesRedeemed: 1000000
  *     }
  */
 export interface CreateCouponRequestBody {

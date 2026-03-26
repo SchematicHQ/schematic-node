@@ -6,7 +6,7 @@ import type * as Schematic from "../../../../index";
  * @example
  *     {
  *         bundleName: "bundle_name",
- *         pricePerUnit: 1
+ *         pricePerUnit: 1000000
  *     }
  */
 export interface UpdateCreditBundleDetailsRequestBody {

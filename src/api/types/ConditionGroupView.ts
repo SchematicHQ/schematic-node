@@ -9,7 +9,6 @@ export interface ConditionGroupView {
     environmentId: string;
     flagId?: string;
     id: string;
-    planVersionId?: string;
     ruleId: string;
     updatedAt: Date;
 }
