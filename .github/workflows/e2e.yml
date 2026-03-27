@@ -1,0 +1,60 @@
+name: e2e
+
+on:
+  workflow_dispatch:
+    inputs:
+      api-base-url:
+        description: "Schematic API base URL (e.g. https://api.staging.schematichq.dev)"
+        required: false
+        default: ""
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    services:
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+        options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - "{}"
+          - '{"redisUrl": "redis://localhost:6379"}'
+          - '{"useDataStream": true}'
+          - '{"useDataStream": true, "redisUrl": "redis://localhost:6379"}'
+          - '{"offline": true, "flagDefaults": {"test-flag": true}}'
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6
+
+      - name: Set up node
+        uses: actions/setup-node@v6
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build SDK
+        run: yarn build
+
+      - name: Install test app dependencies
+        run: cd testapp && npm install
+
+      - name: Start test app
+        run: |
+          node testapp/index.js &
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:8080/health && break
+            sleep 1
+          done
+          echo "Test app is ready"
+
+      - name: Run E2E tests
+        uses: SchematicHQ/actions/sdk-e2e@main
+        with:
+          test-app-url: http://localhost:8080
+          api-key: ${{ secrets.SCHEMATIC_E2E_API_KEY }}
+          api-base-url: ${{ inputs.api-base-url || 'https://api.schematichq.dev' }}
+          config: ${{ matrix.config }}

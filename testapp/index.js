@@ -1,0 +1,284 @@
+/**
+ * SDK E2E Test App for schematic-node.
+ *
+ * A lightweight HTTP server implementing the standard test app contract
+ * defined in the SDK spec. The E2E harness (SchematicHQ/actions/sdk-e2e)
+ * calls POST /configure after startup to pass an env-scoped API key,
+ * then runs assertions against the other endpoints.
+ *
+ * Usage:
+ *   yarn build && node testapp/index.js
+ *
+ * The server starts immediately and listens for a POST /configure call
+ * to initialize the SchematicClient.
+ */
+
+const http = require("http");
+const { SchematicClient, LocalCache, RedisCacheProvider } = require("../dist");
+
+const PORT = parseInt(process.env.PORT || "8080", 10);
+
+// --- Clearable cache wrapper ---
+
+class ClearableCache {
+  constructor(maxItems, ttl) {
+    this.maxItems = maxItems;
+    this.ttl = ttl;
+    this.inner = new LocalCache({ maxItems, ttl });
+  }
+  get(key) {
+    return this.inner.get(key);
+  }
+  set(key, value, ttl) {
+    return this.inner.set(key, value, ttl);
+  }
+  delete(key) {
+    return this.inner.delete(key);
+  }
+  clear() {
+    this.inner = new LocalCache({
+      maxItems: this.maxItems,
+      ttl: this.ttl,
+    });
+  }
+}
+
+// --- State ---
+
+let client = null;
+let cache = null;
+let currentConfig = {};
+
+// --- Helpers ---
+
+function readBody(req) {
+  return new Promise((resolve, reject) => {
+    let data = "";
+    req.on("data", (chunk) => (data += chunk));
+    req.on("end", () => resolve(data));
+    req.on("error", reject);
+  });
+}
+
+async function parseJSON(req) {
+  const raw = await readBody(req);
+  if (!raw) return {};
+  return JSON.parse(raw);
+}
+
+function jsonResponse(res, statusCode, body) {
+  res.writeHead(statusCode, { "Content-Type": "application/json" });
+  res.end(JSON.stringify(body));
+}
+
+// --- Route handlers ---
+
+async function handleConfigure(req, res) {
+  const body = await parseJSON(req);
+
+  // Close existing client if any
+  if (client) {
+    try {
+      await client.close();
+    } catch (_) {
+      // ignore
+    }
+  }
+
+  cache = new ClearableCache(1000, 5000);
+
+  const opts = {
+    apiKey: body.apiKey,
+    cacheProviders: { flagChecks: [cache] },
+  };
+
+  if (body.baseUrl) {
+    opts.basePath = body.baseUrl;
+  }
+  if (body.flagDefaults) {
+    opts.flagDefaults = body.flagDefaults;
+  }
+  if (body.offline) {
+    opts.offline = true;
+  }
+  if (body.useDataStream) {
+    opts.useDataStream = true;
+  }
+
+  // Set up Redis cache if redisUrl is provided
+  if (body.redisUrl) {
+    const redis = require("redis");
+    const redisClient = redis.createClient({ url: body.redisUrl });
+    await redisClient.connect();
+    const redisCache = new RedisCacheProvider({ client: redisClient });
+    opts.cacheProviders = { flagChecks: [redisCache] };
+    // Replace the clearable cache with one backed by a new local cache
+    // (Redis doesn't need a clearable wrapper — we still use local for /clear-cache)
+    cache = new ClearableCache(1000, 5000);
+  }
+
+  client = new SchematicClient(opts);
+  currentConfig = body;
+
+  jsonResponse(res, 200, { success: true });
+}
+
+function handleHealth(_req, res) {
+  jsonResponse(res, 200, {
+    status: client ? "configured" : "waiting",
+    config: {
+      offline: currentConfig.offline || false,
+      useDataStream: currentConfig.useDataStream || false,
+      hasFlagDefaults: !!(
+        currentConfig.flagDefaults &&
+        Object.keys(currentConfig.flagDefaults).length > 0
+      ),
+    },
+  });
+}
+
+async function handleCheckFlag(req, res) {
+  if (!client) {
+    jsonResponse(res, 503, { error: "not configured" });
+    return;
+  }
+
+  const body = await parseJSON(req);
+  const evalCtx = {};
+  if (body.company) evalCtx.company = body.company;
+  if (body.user) evalCtx.user = body.user;
+
+  try {
+    const value = await client.checkFlag(evalCtx, body.flagKey);
+    jsonResponse(res, 200, { value });
+  } catch (err) {
+    jsonResponse(res, 200, { value: false, error: err.message });
+  }
+}
+
+async function handleIdentify(req, res) {
+  if (!client) {
+    jsonResponse(res, 503, { error: "not configured" });
+    return;
+  }
+
+  const body = await parseJSON(req);
+
+  // Translate E2E contract to Node SDK's EventBodyIdentify:
+  //   E2E:  { company: {k:v}, user: {k:v}, keys: {k:v} }
+  //   SDK:  { keys: {k:v}, company?: { keys: {k:v} } }
+  const identifyBody = {
+    keys: body.keys || body.user || {},
+  };
+  if (body.company) {
+    identifyBody.company = { keys: body.company };
+  }
+
+  try {
+    await client.identify(identifyBody);
+    jsonResponse(res, 200, { success: true });
+  } catch (err) {
+    jsonResponse(res, 200, { success: false, error: err.message });
+  }
+}
+
+async function handleTrack(req, res) {
+  if (!client) {
+    jsonResponse(res, 503, { error: "not configured" });
+    return;
+  }
+
+  const body = await parseJSON(req);
+
+  const trackBody = {
+    event: body.event,
+  };
+  if (body.company) trackBody.company = body.company;
+  if (body.user) trackBody.user = body.user;
+  if (body.traits) trackBody.traits = body.traits;
+  if (body.quantity !== undefined) trackBody.quantity = body.quantity;
+
+  try {
+    await client.track(trackBody);
+    jsonResponse(res, 200, { success: true });
+  } catch (err) {
+    jsonResponse(res, 200, { success: false, error: err.message });
+  }
+}
+
+async function handleSetFlagDefault(req, res) {
+  if (!client) {
+    jsonResponse(res, 503, { error: "not configured" });
+    return;
+  }
+
+  const body = await parseJSON(req);
+  try {
+    client.setFlagDefault(body.flagKey, body.value);
+    jsonResponse(res, 200, { success: true });
+  } catch (err) {
+    jsonResponse(res, 200, { success: false, error: err.message });
+  }
+}
+
+function handleClearCache(_req, res) {
+  if (!cache) {
+    jsonResponse(res, 503, { error: "not configured" });
+    return;
+  }
+
+  cache.clear();
+  jsonResponse(res, 200, { success: true });
+}
+
+// --- Server ---
+
+const server = http.createServer(async (req, res) => {
+  const url = new URL(req.url, `http://${req.headers.host}`);
+  const method = req.method;
+  const path = url.pathname;
+
+  try {
+    if (method === "GET" && path === "/health") {
+      return handleHealth(req, res);
+    }
+    if (method === "POST" && path === "/configure") {
+      return await handleConfigure(req, res);
+    }
+    if (method === "POST" && path === "/check-flag") {
+      return await handleCheckFlag(req, res);
+    }
+    if (method === "POST" && path === "/identify") {
+      return await handleIdentify(req, res);
+    }
+    if (method === "POST" && path === "/track") {
+      return await handleTrack(req, res);
+    }
+    if (method === "POST" && path === "/set-flag-default") {
+      return await handleSetFlagDefault(req, res);
+    }
+    if (method === "POST" && path === "/clear-cache") {
+      return handleClearCache(req, res);
+    }
+
+    jsonResponse(res, 404, { error: "not found" });
+  } catch (err) {
+    console.error(`Error handling ${method} ${path}:`, err);
+    jsonResponse(res, 500, { error: err.message });
+  }
+});
+
+server.listen(PORT, () => {
+  console.log(`SDK E2E test app listening on http://localhost:${PORT}`);
+  console.log("Waiting for POST /configure to initialize SchematicClient...");
+});
+
+// Graceful shutdown
+process.on("SIGTERM", async () => {
+  if (client) await client.close();
+  server.close();
+});
+process.on("SIGINT", async () => {
+  if (client) await client.close();
+  server.close();
+});
