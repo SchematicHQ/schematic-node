@@ -63,6 +63,44 @@ cp "$TMPDIR"/rulesengine_bg.wasm "$WASM_DIR/"
 cp "$TMPDIR"/rulesengine.js "$WASM_DIR/" 2>/dev/null || true
 cp "$TMPDIR"/rulesengine.d.ts "$WASM_DIR/" 2>/dev/null || true
 cp "$TMPDIR"/rulesengine_bg.wasm.d.ts "$WASM_DIR/" 2>/dev/null || true
+
+# Patch wasm-pack output for bundler compatibility:
+# - Remove require('util') fallback — all target runtimes have global TextDecoder/TextEncoder
+# - Replace fs.readFileSync WASM loading with a deferred initWasm() function that
+#   loads from a base64-embedded module (generated at build time by build.js).
+#   This enables the bundle to work on edge platforms like Cloudflare Workers.
+if [ -f "$WASM_DIR/rulesengine.js" ]; then
+    sed -i.bak \
+        -e "s/const { TextDecoder, TextEncoder } = require(\`util\`);//" \
+        "$WASM_DIR/rulesengine.js"
+    rm -f "$WASM_DIR/rulesengine.js.bak"
+
+    # Replace sync fs init with deferred initWasm
+    python3 -c "
+import re, sys
+with open('$WASM_DIR/rulesengine.js', 'r') as f:
+    content = f.read()
+replacement = '''module.exports.initWasm = async function() {
+    if (wasm) return;
+    var wasmBase64 = require('./rulesengine_bg_wasm_base64.js');
+    var wasmBytes = Uint8Array.from(atob(wasmBase64), function(c) { return c.charCodeAt(0); });
+    var wasmModule = new WebAssembly.Module(wasmBytes);
+    var wasmInstance = new WebAssembly.Instance(wasmModule, imports);
+    wasm = wasmInstance.exports;
+    module.exports.__wasm = wasm;
+    wasm.__wbindgen_start();
+};'''
+content = re.sub(
+    r\"const path = require\('path'\).*?wasm\.__wbindgen_start\(\);\",
+    replacement,
+    content,
+    flags=re.DOTALL
+)
+with open('$WASM_DIR/rulesengine.js', 'w') as f:
+    f.write(content)
+"
+fi
+
 echo "$VERSION" > "$WASM_DIR/.wasm_version"
 
 echo "Downloaded rules engine WASM v${VERSION} to $WASM_DIR/"

@@ -33,6 +33,7 @@ async function build() {
     console.log('✅ Base64 WASM module generated');
 
     // Build CommonJS version with esbuild
+    // rulesengine.js is already patched by the download script with initWasm()
     await esbuild.build({
       ...sharedConfig,
       outfile: 'dist/index.js',
