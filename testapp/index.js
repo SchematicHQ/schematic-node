@@ -17,36 +17,11 @@ const http = require("http");
 const { SchematicClient, LocalCache, RedisCacheProvider } = require("../dist");
 
 const PORT = parseInt(process.env.PORT || "8080", 10);
-
-// --- Clearable cache wrapper ---
-
-class ClearableCache {
-  constructor(maxItems, ttl) {
-    this.maxItems = maxItems;
-    this.ttl = ttl;
-    this.inner = new LocalCache({ maxItems, ttl });
-  }
-  get(key) {
-    return this.inner.get(key);
-  }
-  set(key, value, ttl) {
-    return this.inner.set(key, value, ttl);
-  }
-  delete(key) {
-    return this.inner.delete(key);
-  }
-  clear() {
-    this.inner = new LocalCache({
-      maxItems: this.maxItems,
-      ttl: this.ttl,
-    });
-  }
-}
+const CACHE_TTL_MS = 2000; // Short TTL for E2E — tests sleep past this to verify cache expiration
 
 // --- State ---
 
 let client = null;
-let cache = null;
 let currentConfig = {};
 
 // --- Helpers ---
@@ -85,11 +60,20 @@ async function handleConfigure(req, res) {
     }
   }
 
-  cache = new ClearableCache(1000, 5000);
+  // Build the cache provider
+  let cacheProvider;
+  if (body.redisUrl) {
+    const redis = require("redis");
+    const redisClient = redis.createClient({ url: body.redisUrl });
+    await redisClient.connect();
+    cacheProvider = new RedisCacheProvider({ client: redisClient, ttl: CACHE_TTL_MS });
+  } else {
+    cacheProvider = new LocalCache({ maxItems: 1000, ttl: CACHE_TTL_MS });
+  }
 
   const opts = {
     apiKey: body.apiKey,
-    cacheProviders: { flagChecks: [cache] },
+    cacheProviders: { flagChecks: [cacheProvider] },
   };
 
   if (body.baseUrl) {
@@ -105,22 +89,10 @@ async function handleConfigure(req, res) {
     opts.useDataStream = true;
   }
 
-  // Set up Redis cache if redisUrl is provided
-  if (body.redisUrl) {
-    const redis = require("redis");
-    const redisClient = redis.createClient({ url: body.redisUrl });
-    await redisClient.connect();
-    const redisCache = new RedisCacheProvider({ client: redisClient });
-    opts.cacheProviders = { flagChecks: [redisCache] };
-    // Replace the clearable cache with one backed by a new local cache
-    // (Redis doesn't need a clearable wrapper — we still use local for /clear-cache)
-    cache = new ClearableCache(1000, 5000);
-  }
-
   client = new SchematicClient(opts);
   currentConfig = body;
 
-  jsonResponse(res, 200, { success: true });
+  jsonResponse(res, 200, { success: true, cacheTtlMs: CACHE_TTL_MS });
 }
 
 function handleHealth(_req, res) {
@@ -133,6 +105,7 @@ function handleHealth(_req, res) {
         currentConfig.flagDefaults &&
         Object.keys(currentConfig.flagDefaults).length > 0
       ),
+      cacheTtlMs: CACHE_TTL_MS,
     },
   });
 }
@@ -221,16 +194,6 @@ async function handleSetFlagDefault(req, res) {
   }
 }
 
-function handleClearCache(_req, res) {
-  if (!cache) {
-    jsonResponse(res, 503, { error: "not configured" });
-    return;
-  }
-
-  cache.clear();
-  jsonResponse(res, 200, { success: true });
-}
-
 // --- Server ---
 
 const server = http.createServer(async (req, res) => {
@@ -256,9 +219,6 @@ const server = http.createServer(async (req, res) => {
     }
     if (method === "POST" && path === "/set-flag-default") {
       return await handleSetFlagDefault(req, res);
-    }
-    if (method === "POST" && path === "/clear-cache") {
-      return handleClearCache(req, res);
     }
 
     jsonResponse(res, 404, { error: "not found" });
