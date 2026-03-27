@@ -2,6 +2,9 @@ name: ci
 
 on: [push]
 
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
@@ -19,8 +22,6 @@ jobs:
 
       - name: Download WASM binary
         run: ./scripts/download-wasm.sh
-        env:
-          GH_TOKEN: ${{ github.token }}
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -40,8 +41,6 @@ jobs:
 
       - name: Download WASM binary
         run: ./scripts/download-wasm.sh
-        env:
-          GH_TOKEN: ${{ github.token }}
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -61,8 +60,6 @@ jobs:
 
       - name: Download WASM binary
         run: ./scripts/download-wasm.sh
-        env:
-          GH_TOKEN: ${{ github.token }}
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -96,8 +93,6 @@ jobs:
 
       - name: Download WASM binary
         run: ./scripts/download-wasm.sh
-        env:
-          GH_TOKEN: ${{ github.token }}
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
