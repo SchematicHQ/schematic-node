@@ -47,6 +47,4 @@ jobs:
       api-base-url: ${{ inputs.api-base-url || 'https://api.schematichq.dev' }}
       sdk-source: ${{ inputs.sdk-source || 'local' }}
       sdk-version: ${{ inputs.sdk-version || '' }}
-    secrets:
-      SCHEMATIC_E2E_API_KEY: ${{ secrets.SCHEMATIC_E2E_API_KEY }}
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+    secrets: inherit
