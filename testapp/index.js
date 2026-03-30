@@ -67,7 +67,7 @@ function jsonResponse(res, statusCode, body) {
 // --- Route handlers ---
 
 async function handleConfigure(req, res) {
-  const body = await parseJSON(req);
+  const config = await parseJSON(req);
 
   // Close existing client if any
   if (client) {
@@ -78,37 +78,57 @@ async function handleConfigure(req, res) {
     }
   }
 
-  // Build the cache provider
-  let cacheProvider;
-  if (body.redisUrl) {
+  // Build Redis client if needed (shared between cache and DataStream/replicator)
+  let redisClient;
+  if (config.redisUrl) {
     const redis = require("redis");
-    const redisClient = redis.createClient({ url: body.redisUrl });
+    redisClient = redis.createClient({ url: config.redisUrl });
     await redisClient.connect();
-    cacheProvider = new RedisCacheProvider({ client: redisClient, ttl: CACHE_TTL_MS });
-  } else {
-    cacheProvider = new LocalCache({ maxItems: 1000, ttl: CACHE_TTL_MS });
   }
 
   const opts = {
-    apiKey: body.apiKey,
-    cacheProviders: { flagChecks: [cacheProvider] },
+    apiKey: config.apiKey,
   };
 
-  if (body.baseUrl) {
-    opts.basePath = body.baseUrl;
+  // Cache provider: explicit Redis, disabled, or SDK defaults
+  if (redisClient) {
+    opts.cacheProviders = {
+      flagChecks: [new RedisCacheProvider({ client: redisClient, ttl: CACHE_TTL_MS })],
+    };
+  } else if (config.noCache) {
+    opts.cacheProviders = { flagChecks: [] };
   }
-  if (body.flagDefaults) {
-    opts.flagDefaults = body.flagDefaults;
+  // else: no cacheProviders — SDK uses its built-in defaults (LocalCache)
+
+  if (config.baseUrl) {
+    opts.basePath = config.baseUrl;
   }
-  if (body.offline) {
+  if (config.flagDefaults) {
+    opts.flagDefaults = config.flagDefaults;
+  }
+  if (config.offline) {
     opts.offline = true;
   }
-  if (body.useDataStream) {
+  if (config.useDataStream) {
     opts.useDataStream = true;
+
+    // Replicator mode: external replicator process manages the WebSocket + Redis cache
+    if (config.replicatorUrl) {
+      opts.dataStream = {
+        replicatorMode: true,
+        replicatorHealthURL: config.replicatorUrl + "/ready",
+        redisClient: redisClient,
+      };
+    } else if (redisClient) {
+      // DataStream with Redis cache (no replicator)
+      opts.dataStream = {
+        redisClient: redisClient,
+      };
+    }
   }
 
   client = new SchematicClient(opts);
-  currentConfig = body;
+  currentConfig = config;
 
   jsonResponse(res, 200, { success: true, cacheTtlMs: CACHE_TTL_MS });
 }
