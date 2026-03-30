@@ -6,15 +6,33 @@
  * calls POST /configure after startup to pass an env-scoped API key,
  * then runs assertions against the other endpoints.
  *
+ * SDK source is controlled by SDK_SOURCE env var:
+ *   - "local" (default): imports from ../dist (requires yarn build)
+ *   - "published": imports from @schematichq/schematic-typescript-node (npm install first)
+ *   - "pack": same import as published, but installed from npm pack tarball
+ *
  * Usage:
+ *   # Local build (default)
  *   yarn build && node testapp/index.js
  *
- * The server starts immediately and listens for a POST /configure call
- * to initialize the SchematicClient.
+ *   # Published version
+ *   cd testapp && npm install @schematichq/schematic-typescript-node@1.4.4
+ *   SDK_SOURCE=published node testapp/index.js
+ *
+ *   # Pack (pre-release smoke test)
+ *   yarn build && npm pack
+ *   cd testapp && npm install ../schematichq-schematic-typescript-node-*.tgz
+ *   SDK_SOURCE=pack node testapp/index.js
  */
 
 const http = require("http");
-const { SchematicClient, LocalCache, RedisCacheProvider } = require("../dist");
+
+const SDK_SOURCE = process.env.SDK_SOURCE || "local";
+const sdk =
+  SDK_SOURCE === "local"
+    ? require("../dist")
+    : require("@schematichq/schematic-typescript-node");
+const { SchematicClient, LocalCache, RedisCacheProvider } = sdk;
 
 const PORT = parseInt(process.env.PORT || "8080", 10);
 const CACHE_TTL_MS = 2000; // Short TTL for E2E — tests sleep past this to verify cache expiration
