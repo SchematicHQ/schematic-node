@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       api-base-url:
-        description: "Schematic API base URL (e.g. https://api.schematichq.dev)"
+        description: "Schematic API base URL"
         required: false
         default: "https://api.schematichq.dev"
       sdk-source:
@@ -23,69 +23,29 @@ on:
 
 jobs:
   e2e:
-    runs-on: ubuntu-latest
-    services:
-      redis:
-        image: redis
-        ports:
-          - 6379:6379
-        options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
-    strategy:
-      fail-fast: false
-      matrix:
-        config:
-          - "{}"
-          - '{"redisUrl": "redis://localhost:6379"}'
-          - '{"useDataStream": true}'
-          - '{"useDataStream": true, "redisUrl": "redis://localhost:6379"}'
-          - '{"offline": true, "flagDefaults": {"test-flag": true}}'
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v6
-
-      - name: Set up node
-        uses: actions/setup-node@v6
-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Build SDK
-        if: inputs.sdk-source != 'published'
-        run: yarn build
-
-      - name: Install test app dependencies
-        run: cd testapp && npm install
-
-      - name: Install SDK (pack)
-        if: inputs.sdk-source == 'pack'
-        run: |
-          npm pack
-          cd testapp && npm install ../schematichq-schematic-typescript-node-*.tgz
-
-      - name: Install SDK (published)
-        if: inputs.sdk-source == 'published'
-        run: |
-          VERSION="${{ inputs.sdk-version }}"
-          if [ -n "$VERSION" ]; then
-            cd testapp && npm install "@schematichq/schematic-typescript-node@${VERSION}"
+    uses: SchematicHQ/actions/.github/workflows/sdk-e2e.yml@main
+    with:
+      setup: |
+        yarn install --frozen-lockfile
+        if [ "$SDK_SOURCE" = "published" ]; then
+          cd testapp && npm install
+          if [ -n "$SDK_VERSION" ]; then
+            npm install "@schematichq/schematic-typescript-node@${SDK_VERSION}"
           else
-            cd testapp && npm install @schematichq/schematic-typescript-node
+            npm install @schematichq/schematic-typescript-node
           fi
-
-      - name: Start test app
-        run: |
-          SDK_SOURCE=${{ inputs.sdk-source || 'local' }} node testapp/index.js &
-          for i in $(seq 1 30); do
-            curl -sf http://localhost:8080/health && break
-            sleep 1
-          done
-          curl -sf http://localhost:8080/health || { echo "Test app failed to start"; exit 1; }
-          echo "Test app is ready (sdk-source=${{ inputs.sdk-source || 'local' }})"
-
-      - name: Run E2E tests
-        uses: SchematicHQ/actions/sdk-e2e@main
-        with:
-          test-app-url: http://localhost:8080
-          api-key: ${{ secrets.SCHEMATIC_E2E_API_KEY }}
-          api-base-url: ${{ inputs.api-base-url }}
-          config: ${{ matrix.config }}
+        else
+          yarn build
+          cd testapp && npm install
+          if [ "$SDK_SOURCE" = "pack" ]; then
+            cd .. && npm pack
+            cd testapp && npm install ../schematichq-schematic-typescript-node-*.tgz
+          fi
+        fi
+      start: node testapp/index.js
+      node-version: "20"
+      api-base-url: ${{ inputs.api-base-url || 'https://api.schematichq.dev' }}
+      sdk-source: ${{ inputs.sdk-source || 'local' }}
+      sdk-version: ${{ inputs.sdk-version || '' }}
+    secrets:
+      SCHEMATIC_E2E_API_KEY: ${{ secrets.SCHEMATIC_E2E_API_KEY }}
