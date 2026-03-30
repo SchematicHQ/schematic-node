@@ -4,7 +4,20 @@ on:
   workflow_dispatch:
     inputs:
       api-base-url:
-        description: "Schematic API base URL (e.g. https://api.staging.schematichq.dev)"
+        description: "Schematic API base URL (e.g. https://api.schematichq.dev)"
+        required: false
+        default: "https://api.schematichq.dev"
+      sdk-source:
+        description: "SDK source: local (build from source), pack (npm pack tarball), published (npm registry)"
+        required: false
+        type: choice
+        options:
+          - local
+          - pack
+          - published
+        default: "local"
+      sdk-version:
+        description: "SDK version to install (only used when sdk-source=published)"
         required: false
         default: ""
 
@@ -37,24 +50,42 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Build SDK
+        if: inputs.sdk-source != 'published'
         run: yarn build
 
       - name: Install test app dependencies
         run: cd testapp && npm install
 
+      - name: Install SDK (pack)
+        if: inputs.sdk-source == 'pack'
+        run: |
+          npm pack
+          cd testapp && npm install ../schematichq-schematic-typescript-node-*.tgz
+
+      - name: Install SDK (published)
+        if: inputs.sdk-source == 'published'
+        run: |
+          VERSION="${{ inputs.sdk-version }}"
+          if [ -n "$VERSION" ]; then
+            cd testapp && npm install "@schematichq/schematic-typescript-node@${VERSION}"
+          else
+            cd testapp && npm install @schematichq/schematic-typescript-node
+          fi
+
       - name: Start test app
         run: |
-          node testapp/index.js &
+          SDK_SOURCE=${{ inputs.sdk-source || 'local' }} node testapp/index.js &
           for i in $(seq 1 30); do
             curl -sf http://localhost:8080/health && break
             sleep 1
           done
-          echo "Test app is ready"
+          curl -sf http://localhost:8080/health || { echo "Test app failed to start"; exit 1; }
+          echo "Test app is ready (sdk-source=${{ inputs.sdk-source || 'local' }})"
 
       - name: Run E2E tests
         uses: SchematicHQ/actions/sdk-e2e@main
         with:
           test-app-url: http://localhost:8080
           api-key: ${{ secrets.SCHEMATIC_E2E_API_KEY }}
-          api-base-url: ${{ inputs.api-base-url || 'https://api.schematichq.dev' }}
+          api-base-url: ${{ inputs.api-base-url }}
           config: ${{ matrix.config }}
