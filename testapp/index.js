@@ -266,17 +266,37 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(PORT, () => {
-  console.log(`SDK E2E test app listening on http://localhost:${PORT}`);
-  console.log("Waiting for POST /configure to initialize SchematicClient...");
+const net = require("net");
+
+function findPort(startPort) {
+  return new Promise((resolve) => {
+    const tester = net.createServer();
+    tester.once("error", () => {
+      console.log(`Port ${startPort} in use, trying ${startPort + 1}...`);
+      resolve(findPort(startPort + 1));
+    });
+    tester.listen(startPort, () => {
+      tester.close(() => resolve(startPort));
+    });
+  });
+}
+
+findPort(PORT).then((port) => {
+  server.listen(port, () => {
+    console.log(`SDK E2E test app listening on http://localhost:${port}`);
+    console.log("Waiting for POST /configure to initialize SchematicClient...");
+  });
 });
 
 // Graceful shutdown
-process.on("SIGTERM", async () => {
-  if (client) await client.close();
+async function shutdown() {
+  try {
+    if (client) await client.close();
+  } catch (_) {
+    // ignore close errors
+  }
   server.close();
-});
-process.on("SIGINT", async () => {
-  if (client) await client.close();
-  server.close();
-});
+  process.exit(0);
+}
+process.on("SIGTERM", shutdown);
+process.on("SIGINT", shutdown);
