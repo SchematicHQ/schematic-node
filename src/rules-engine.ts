@@ -1,6 +1,4 @@
 import * as Schematic from './api/types';
-import * as wasmModule from './wasm/rulesengine.js';
-import { RulesEngineJS } from './wasm/rulesengine.js';
 
 /** Entitlement details returned by the WASM rules engine  */
 export interface WasmFeatureEntitlement {
@@ -40,7 +38,8 @@ export interface WasmCheckFlagResult {
 }
 
 export class RulesEngineClient {
-    private wasmInstance: RulesEngineJS | null = null;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    private wasmInstance: any = null;
     private initialized = false;
 
     constructor() {}
@@ -51,11 +50,13 @@ export class RulesEngineClient {
         }
 
         try {
-            const initWasm = (wasmModule as unknown as { initWasm?: () => Promise<void> }).initWasm;
-            if (initWasm) {
-                await initWasm();
-            }
-            this.wasmInstance = new RulesEngineJS();
+            // Dynamic require so the WASM module (which uses fs/path) is never
+            // pulled into edge/webpack bundles — it only loads in Node.js at runtime.
+            // The variable indirection prevents webpack from resolving the path statically.
+            const wasmPath = './wasm/rulesengine.js';
+            // eslint-disable-next-line @typescript-eslint/no-require-imports
+            const wasm = require(wasmPath);
+            this.wasmInstance = new wasm.RulesEngineJS();
             this.initialized = true;
         } catch (error) {
             throw new Error(`Failed to initialize WASM rules engine: ${error}`);

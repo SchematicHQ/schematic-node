@@ -1,9 +1,7 @@
 node_modules
 .DS_Store
 /dist
-src/wasm/rulesengine_bg_wasm_base64.js
-
-# WASM artifacts (downloaded from rulesengine-rust GitHub Releases)
+# WASM artifacts (downloaded from schematic-api GitHub Releases)
 src/wasm/rulesengine_bg.wasm
 src/wasm/rulesengine.js
 src/wasm/rulesengine.d.ts
