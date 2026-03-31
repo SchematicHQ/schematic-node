@@ -1185,6 +1185,7 @@ export class DataStreamClient extends LazyEmitter {
     this.replicatorHealthInterval = setInterval(() => {
       this.checkReplicatorHealth();
     }, this.replicatorHealthCheck);
+    this.replicatorHealthInterval.unref();
   }
 
   /**

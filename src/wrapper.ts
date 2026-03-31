@@ -165,6 +165,7 @@ export class SchematicClient extends BaseClient {
                     logger.error(`Failed to start DataStream client: ${error}`);
                     this.datastreamClient = undefined;
                 });
+
             }
         }
     }

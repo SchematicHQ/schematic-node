@@ -318,6 +318,7 @@ export class DatastreamWSClient extends LazyEmitter {
 
           await new Promise(resolve => {
             this.reconnectTimeout = setTimeout(resolve, delay);
+            this.reconnectTimeout.unref();
           });
         }
       }
@@ -441,6 +442,7 @@ export class DatastreamWSClient extends LazyEmitter {
     this.pingInterval = setInterval(() => {
       this.sendPing();
     }, PING_PERIOD);
+    this.pingInterval.unref();
   }
 
   /**
@@ -465,6 +467,7 @@ export class DatastreamWSClient extends LazyEmitter {
         this.ws.close();
       }
     }, PONG_WAIT);
+    this.pongTimeout.unref();
 
     try {
       this.ws.ping();
