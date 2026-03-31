@@ -66,6 +66,7 @@
     "files": [
         "dist/**/*.js",
         "dist/**/*.d.ts",
+        "dist/**/*.wasm",
         "!dist/**/*.js.map",
         "!dist/**/*.test.*",
         "README.md"
