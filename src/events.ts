@@ -145,6 +145,7 @@ class EventBuffer {
             if (this.shutdown) return;
             await this.flush();
         }, this.interval);
+        if (this.intervalId.unref) this.intervalId.unref();
     }
 }
 

@@ -2,6 +2,9 @@ name: ci
 
 on: [push]
 
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
@@ -16,6 +19,9 @@ jobs:
 
       - name: Set up node
         uses: actions/setup-node@v6
+
+      - name: Download WASM binary
+        run: ./scripts/download-wasm.sh
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -33,14 +39,53 @@ jobs:
       - name: Set up node
         uses: actions/setup-node@v6
 
+      - name: Download WASM binary
+        run: ./scripts/download-wasm.sh
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
       - name: Test
         run: yarn test
 
+  verify-package:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6
+
+      - name: Set up node
+        uses: actions/setup-node@v6
+
+      - name: Download WASM binary
+        run: ./scripts/download-wasm.sh
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build
+        run: yarn build
+
+      - name: Verify WASM ships with package
+        run: |
+          if [ ! -f dist/index.js ]; then
+            echo "ERROR: dist/index.js not found"
+            exit 1
+          fi
+          if [ ! -f dist/wasm/rulesengine_bg.wasm ]; then
+            echo "ERROR: dist/wasm/rulesengine_bg.wasm not found"
+            echo "The build may have failed to copy WASM artifacts"
+            exit 1
+          fi
+          if [ ! -f dist/wasm/rulesengine.js ]; then
+            echo "ERROR: dist/wasm/rulesengine.js not found"
+            exit 1
+          fi
+          echo "Verified: WASM artifacts present in dist/wasm/"
+
   publish:
-    needs: [ compile, test ]
+    needs: [ compile, test, verify-package ]
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     steps:
@@ -49,6 +94,9 @@ jobs:
 
       - name: Set up node
         uses: actions/setup-node@v6
+
+      - name: Download WASM binary
+        run: ./scripts/download-wasm.sh
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
