@@ -997,8 +997,23 @@ export class DataStreamClient extends LazyEmitter {
       throw new Error('No keys provided for company lookup');
     }
 
-    // Cache ID → full resource (single entry)
+    // Remove stale key→ID mappings for keys that no longer exist
     const resourceKey = this.resourceIdCacheKey(CACHE_KEY_PREFIX_COMPANY, company.id);
+    const existing = await this.companyCacheProvider.get(resourceKey);
+    if (existing?.keys) {
+      for (const [key, value] of Object.entries(existing.keys)) {
+        if (company.keys[key] === undefined || company.keys[key] !== value) {
+          const staleCacheKey = this.resourceKeyToCacheKey(CACHE_KEY_PREFIX_COMPANY, key, value);
+          try {
+            await this.companyKeyCacheProvider.delete(staleCacheKey);
+          } catch (error) {
+            this.logger.warn(`Failed to delete stale company key mapping '${staleCacheKey}': ${error}`);
+          }
+        }
+      }
+    }
+
+    // Cache ID → full resource (single entry)
     await this.companyCacheProvider.set(resourceKey, company, this.cacheTTL);
 
     // Cache each key → ID
@@ -1020,8 +1035,23 @@ export class DataStreamClient extends LazyEmitter {
       throw new Error('No keys provided for user lookup');
     }
 
-    // Cache ID → full resource (single entry)
+    // Remove stale key→ID mappings for keys that no longer exist
     const resourceKey = this.resourceIdCacheKey(CACHE_KEY_PREFIX_USER, user.id);
+    const existing = await this.userCacheProvider.get(resourceKey);
+    if (existing?.keys) {
+      for (const [key, value] of Object.entries(existing.keys)) {
+        if (user.keys[key] === undefined || user.keys[key] !== value) {
+          const staleCacheKey = this.resourceKeyToCacheKey(CACHE_KEY_PREFIX_USER, key, value);
+          try {
+            await this.userKeyCacheProvider.delete(staleCacheKey);
+          } catch (error) {
+            this.logger.warn(`Failed to delete stale user key mapping '${staleCacheKey}': ${error}`);
+          }
+        }
+      }
+    }
+
+    // Cache ID → full resource (single entry)
     await this.userCacheProvider.set(resourceKey, user, this.cacheTTL);
 
     // Cache each key → ID
