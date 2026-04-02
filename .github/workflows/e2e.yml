@@ -35,6 +35,7 @@ jobs:
             npm install @schematichq/schematic-typescript-node
           fi
         else
+          ./scripts/download-wasm.sh
           yarn build
           cd testapp && npm install
           if [ "$SDK_SOURCE" = "pack" ]; then
