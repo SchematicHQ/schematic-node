@@ -989,6 +989,138 @@ describe('DataStreamClient', () => {
       expect((secondRetrieval as any).traits).toEqual([{ key: 'mutated', value: 'yes' }]);
     });
 
+    test('should remove stale company key mappings when a key is deleted', async () => {
+      mockDatastreamWSClientInstance.isConnected.mockReturnValue(true);
+
+      // Cache company with three keys: name, slug, external_id
+      await messageHandler({
+        entity_type: EntityType.COMPANY,
+        message_type: MessageType.FULL,
+        data: multiKeyCompany,
+      });
+
+      // Verify all three keys resolve from cache
+      expect(await client.getCompany({ name: 'acme' })).toEqual(multiKeyCompany);
+      expect(await client.getCompany({ slug: 'acme-corp' })).toEqual(multiKeyCompany);
+      expect(await client.getCompany({ external_id: 'ext-1' })).toEqual(multiKeyCompany);
+
+      // Update with only two keys — external_id has been removed
+      const updatedCompany = {
+        ...multiKeyCompany,
+        keys: { name: 'acme', slug: 'acme-corp' },
+      } as unknown as Schematic.RulesengineCompany;
+
+      await messageHandler({
+        entity_type: EntityType.COMPANY,
+        message_type: MessageType.FULL,
+        data: updatedCompany,
+      });
+
+      // Remaining keys should still resolve from cache
+      expect(await client.getCompany({ name: 'acme' })).toEqual(updatedCompany);
+      expect(await client.getCompany({ slug: 'acme-corp' })).toEqual(updatedCompany);
+
+      // Removed key should miss cache and trigger a WS request
+      mockDatastreamWSClientInstance.sendMessage.mockClear();
+      const pending = client.getCompany({ external_id: 'ext-1' });
+      await new Promise(resolve => process.nextTick(resolve));
+      expect(mockDatastreamWSClientInstance.sendMessage).toHaveBeenCalledTimes(1);
+
+      // Resolve pending request to avoid leak
+      await messageHandler({
+        entity_type: EntityType.COMPANY,
+        message_type: MessageType.FULL,
+        data: { ...updatedCompany, keys: { external_id: 'ext-1' } },
+      });
+      await pending;
+    });
+
+    test('should remove stale user key mappings when a key is deleted', async () => {
+      mockDatastreamWSClientInstance.isConnected.mockReturnValue(true);
+
+      // Cache user with two keys: email, user_id
+      await messageHandler({
+        entity_type: EntityType.USER,
+        message_type: MessageType.FULL,
+        data: multiKeyUser,
+      });
+
+      // Verify both keys resolve from cache
+      expect(await client.getUser({ email: 'alice@example.com' })).toEqual(multiKeyUser);
+      expect(await client.getUser({ user_id: 'u-1' })).toEqual(multiKeyUser);
+
+      // Update with only email — user_id has been removed
+      const updatedUser = {
+        ...multiKeyUser,
+        keys: { email: 'alice@example.com' },
+      } as unknown as Schematic.RulesengineUser;
+
+      await messageHandler({
+        entity_type: EntityType.USER,
+        message_type: MessageType.FULL,
+        data: updatedUser,
+      });
+
+      // Remaining key should still resolve from cache
+      expect(await client.getUser({ email: 'alice@example.com' })).toEqual(updatedUser);
+
+      // Removed key should miss cache and trigger a WS request
+      mockDatastreamWSClientInstance.sendMessage.mockClear();
+      const pending = client.getUser({ user_id: 'u-1' });
+      await new Promise(resolve => process.nextTick(resolve));
+      expect(mockDatastreamWSClientInstance.sendMessage).toHaveBeenCalledTimes(1);
+
+      // Resolve pending request to avoid leak
+      await messageHandler({
+        entity_type: EntityType.USER,
+        message_type: MessageType.FULL,
+        data: { ...updatedUser, keys: { user_id: 'u-1' } },
+      });
+      await pending;
+    });
+
+    test('should remove stale company key mappings when a key value changes', async () => {
+      mockDatastreamWSClientInstance.isConnected.mockReturnValue(true);
+
+      // Cache company with slug 'acme-corp'
+      await messageHandler({
+        entity_type: EntityType.COMPANY,
+        message_type: MessageType.FULL,
+        data: multiKeyCompany,
+      });
+
+      expect(await client.getCompany({ slug: 'acme-corp' })).toEqual(multiKeyCompany);
+
+      // Update: slug value changed from 'acme-corp' to 'acme-inc'
+      const updatedCompany = {
+        ...multiKeyCompany,
+        keys: { name: 'acme', slug: 'acme-inc', external_id: 'ext-1' },
+      } as unknown as Schematic.RulesengineCompany;
+
+      await messageHandler({
+        entity_type: EntityType.COMPANY,
+        message_type: MessageType.FULL,
+        data: updatedCompany,
+      });
+
+      // New slug should resolve from cache
+      expect(await client.getCompany({ slug: 'acme-inc' })).toEqual(updatedCompany);
+
+      // Old slug value should miss cache and trigger a WS request
+      mockDatastreamWSClientInstance.sendMessage.mockClear();
+      const pending = client.getCompany({ slug: 'acme-corp' });
+      await new Promise(resolve => process.nextTick(resolve));
+      expect(mockDatastreamWSClientInstance.sendMessage).toHaveBeenCalledTimes(1);
+
+      // Resolve pending request to avoid leak
+      await messageHandler({
+        entity_type: EntityType.COMPANY,
+        message_type: MessageType.FULL,
+        data: { ...updatedCompany, keys: { slug: 'acme-corp' } },
+      });
+      await pending;
+    });
+
     test('should update company metrics and reflect via all keys', async () => {
       const companyWithMetrics = {
         ...multiKeyCompany,
