@@ -21,7 +21,6 @@
         "test:unit": "jest --selectProjects unit",
         "test:wire": "jest --selectProjects wire",
         "build:legacy": "tsc",
-        "pretest": "node scripts/generate-wasm-base64.js",
         "test:cloudflare": "node scripts/test-cloudflare.mjs"
     },
     "dependencies": {
@@ -66,6 +65,7 @@
     "files": [
         "dist/**/*.js",
         "dist/**/*.d.ts",
+        "dist/**/*.wasm",
         "!dist/**/*.js.map",
         "!dist/**/*.test.*",
         "README.md"

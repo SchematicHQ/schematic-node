@@ -1,0 +1,51 @@
+name: e2e
+
+on:
+  workflow_dispatch:
+    inputs:
+      api-base-url:
+        description: "Schematic API base URL"
+        required: false
+        default: "https://api.schematichq.dev"
+      sdk-source:
+        description: "SDK source: local (build from source), pack (npm pack tarball), published (npm registry)"
+        required: false
+        type: choice
+        options:
+          - local
+          - pack
+          - published
+        default: "local"
+      sdk-version:
+        description: "SDK version to install (only used when sdk-source=published)"
+        required: false
+        default: ""
+
+jobs:
+  e2e:
+    uses: SchematicHQ/actions/.github/workflows/sdk-e2e.yml@main
+    with:
+      setup: |
+        yarn install --frozen-lockfile
+        if [ "$SDK_SOURCE" = "published" ]; then
+          cd testapp && npm install
+          if [ -n "$SDK_VERSION" ]; then
+            npm install "@schematichq/schematic-typescript-node@${SDK_VERSION}"
+          else
+            npm install @schematichq/schematic-typescript-node
+          fi
+        else
+          ./scripts/download-wasm.sh
+          yarn build
+          cd testapp && npm install
+          if [ "$SDK_SOURCE" = "pack" ]; then
+            cd .. && npm pack
+            cd testapp && npm install ../schematichq-schematic-typescript-node-*.tgz
+          fi
+        fi
+      start: node testapp/index.js
+      node-version: "20"
+      api-base-url: ${{ inputs.api-base-url || 'https://api.schematichq.dev' }}
+      sdk-source: ${{ inputs.sdk-source || 'local' }}
+      sdk-version: ${{ inputs.sdk-version || '' }}
+    secrets: inherit
