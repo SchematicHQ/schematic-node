@@ -3,13 +3,15 @@
 import type * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { PlanChangeAction } from "../../../types/PlanChangeAction";
+import { PlanChangeBasePlanAction } from "../../../types/PlanChangeBasePlanAction";
 
 export const ListPlanChangesParams: core.serialization.ObjectSchema<
     serializers.ListPlanChangesParams.Raw,
     Schematic.ListPlanChangesParams
 > = core.serialization.object({
-    action: core.serialization.string().optional(),
-    basePlanAction: core.serialization.property("base_plan_action", core.serialization.string().optional()),
+    action: PlanChangeAction.optional(),
+    basePlanAction: core.serialization.property("base_plan_action", PlanChangeBasePlanAction.optional()),
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
     companyIds: core.serialization.property(
         "company_ids",
@@ -22,8 +24,8 @@ export const ListPlanChangesParams: core.serialization.ObjectSchema<
 
 export declare namespace ListPlanChangesParams {
     export interface Raw {
-        action?: string | null;
-        base_plan_action?: string | null;
+        action?: PlanChangeAction.Raw | null;
+        base_plan_action?: PlanChangeBasePlanAction.Raw | null;
         company_id?: string | null;
         company_ids?: string[] | null;
         limit?: number | null;

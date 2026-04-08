@@ -13,6 +13,7 @@ import type * as Schematic from "../../../../index";
 export interface CreateBillingCreditRequestBody {
     burnStrategy?: Schematic.BillingCreditBurnStrategy;
     currency: string;
+    currencyPrices?: Schematic.CreditCurrencyPriceRequestBody[];
     defaultExpiryUnit?: Schematic.BillingCreditExpiryUnit;
     defaultExpiryUnitCount?: number;
     defaultRolloverPolicy?: Schematic.BillingCreditRolloverPolicy;

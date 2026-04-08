@@ -6,6 +6,7 @@ import type * as serializers from "../../../../index";
 import { BillingCreditBurnStrategy } from "../../../../types/BillingCreditBurnStrategy";
 import { BillingCreditExpiryUnit } from "../../../../types/BillingCreditExpiryUnit";
 import { BillingCreditRolloverPolicy } from "../../../../types/BillingCreditRolloverPolicy";
+import { CreditCurrencyPriceRequestBody } from "../../../../types/CreditCurrencyPriceRequestBody";
 
 export const CreateBillingCreditRequestBody: core.serialization.Schema<
     serializers.CreateBillingCreditRequestBody.Raw,
@@ -13,6 +14,10 @@ export const CreateBillingCreditRequestBody: core.serialization.Schema<
 > = core.serialization.object({
     burnStrategy: core.serialization.property("burn_strategy", BillingCreditBurnStrategy.optional()),
     currency: core.serialization.string(),
+    currencyPrices: core.serialization.property(
+        "currency_prices",
+        core.serialization.list(CreditCurrencyPriceRequestBody).optional(),
+    ),
     defaultExpiryUnit: core.serialization.property("default_expiry_unit", BillingCreditExpiryUnit.optional()),
     defaultExpiryUnitCount: core.serialization.property(
         "default_expiry_unit_count",
@@ -35,6 +40,7 @@ export declare namespace CreateBillingCreditRequestBody {
     export interface Raw {
         burn_strategy?: BillingCreditBurnStrategy.Raw | null;
         currency: string;
+        currency_prices?: CreditCurrencyPriceRequestBody.Raw[] | null;
         default_expiry_unit?: BillingCreditExpiryUnit.Raw | null;
         default_expiry_unit_count?: number | null;
         default_rollover_policy?: BillingCreditRolloverPolicy.Raw | null;

@@ -3,9 +3,11 @@
 import type * as Schematic from "../index";
 
 export interface PlanEntitlementResponseData {
+    billingLinkedResource?: Schematic.BillingLinkedResourceResponseData;
     billingThreshold?: number;
     consumptionRate?: number;
     createdAt: Date;
+    currencyPrices: Schematic.EntitlementCurrencyPricesResponseData[];
     environmentId: string;
     feature?: Schematic.FeatureResponseData;
     featureId: string;

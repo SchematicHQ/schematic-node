@@ -1577,6 +1577,7 @@ export class BillingClient {
      *
      * @example
      *     await client.billing.listBillingPrices({
+     *         currency: "currency",
      *         forInitialPlan: true,
      *         forTrialExpiryPlan: true,
      *         interval: "interval",
@@ -1604,6 +1605,7 @@ export class BillingClient {
         requestOptions?: BillingClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListBillingPricesResponse>> {
         const {
+            currency,
             forInitialPlan,
             forTrialExpiryPlan,
             ids,
@@ -1621,6 +1623,7 @@ export class BillingClient {
             offset,
         } = request;
         const _queryParams: Record<string, unknown> = {
+            currency,
             for_initial_plan: forInitialPlan,
             for_trial_expiry_plan: forTrialExpiryPlan,
             ids,
@@ -2039,6 +2042,7 @@ export class BillingClient {
      *
      * @example
      *     await client.billing.listBillingProductPrices({
+     *         currency: "currency",
      *         forInitialPlan: true,
      *         forTrialExpiryPlan: true,
      *         interval: "interval",
@@ -2066,6 +2070,7 @@ export class BillingClient {
         requestOptions?: BillingClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListBillingProductPricesResponse>> {
         const {
+            currency,
             forInitialPlan,
             forTrialExpiryPlan,
             ids,
@@ -2083,6 +2088,7 @@ export class BillingClient {
             offset,
         } = request;
         const _queryParams: Record<string, unknown> = {
+            currency,
             for_initial_plan: forInitialPlan,
             for_trial_expiry_plan: forTrialExpiryPlan,
             ids,

@@ -3056,8 +3056,8 @@ export class CompaniesClient {
      *
      * @example
      *     await client.companies.listPlanChanges({
-     *         action: "action",
-     *         basePlanAction: "base_plan_action",
+     *         action: "checkout",
+     *         basePlanAction: "fallback",
      *         companyId: "company_id",
      *         limit: 1000000,
      *         offset: 1000000
@@ -3076,8 +3076,16 @@ export class CompaniesClient {
     ): Promise<core.WithRawResponse<Schematic.ListPlanChangesResponse>> {
         const { action, basePlanAction, companyId, companyIds, planIds, limit, offset } = request;
         const _queryParams: Record<string, unknown> = {
-            action,
-            base_plan_action: basePlanAction,
+            action:
+                action != null
+                    ? serializers.PlanChangeAction.jsonOrThrow(action, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            base_plan_action:
+                basePlanAction != null
+                    ? serializers.PlanChangeBasePlanAction.jsonOrThrow(basePlanAction, {
+                          unrecognizedObjectKeys: "strip",
+                      })
+                    : undefined,
             company_id: companyId,
             company_ids: companyIds,
             plan_ids: planIds,

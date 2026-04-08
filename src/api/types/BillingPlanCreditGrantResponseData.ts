@@ -9,6 +9,7 @@ export interface BillingPlanCreditGrantResponseData {
     autoTopupExpiryType?: Schematic.BillingCreditExpiryType;
     autoTopupExpiryUnit?: Schematic.BillingCreditExpiryUnit;
     autoTopupExpiryUnitCount?: number;
+    autoTopupThresholdCredits?: number;
     autoTopupThresholdPercent?: number;
     createdAt: Date;
     credit?: Schematic.BillingCreditResponseData;

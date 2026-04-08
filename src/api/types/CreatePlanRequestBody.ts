@@ -4,7 +4,7 @@ import type * as Schematic from "../index";
 
 export interface CreatePlanRequestBody {
     description: string;
-    icon?: string;
+    icon?: Schematic.PlanIcon;
     name: string;
     planType: Schematic.PlanType;
 }

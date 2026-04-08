@@ -26,6 +26,7 @@ export const CreditCompanyGrantView: core.serialization.ObjectSchema<
     creditDescription: core.serialization.property("credit_description", core.serialization.string()),
     creditIcon: core.serialization.property("credit_icon", core.serialization.string().optional()),
     creditName: core.serialization.property("credit_name", core.serialization.string()),
+    currency: core.serialization.string().optional(),
     exhaustedAt: core.serialization.property("exhausted_at", core.serialization.date().optional()),
     expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
     expiryType: core.serialization.property("expiry_type", BillingCreditExpiryType.optional()),
@@ -61,6 +62,7 @@ export declare namespace CreditCompanyGrantView {
         credit_description: string;
         credit_icon?: string | null;
         credit_name: string;
+        currency?: string | null;
         exhausted_at?: string | null;
         expires_at?: string | null;
         expiry_type?: BillingCreditExpiryType.Raw | null;

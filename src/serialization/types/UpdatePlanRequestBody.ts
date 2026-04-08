@@ -3,20 +3,21 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { PlanIcon } from "./PlanIcon";
 
 export const UpdatePlanRequestBody: core.serialization.ObjectSchema<
     serializers.UpdatePlanRequestBody.Raw,
     Schematic.UpdatePlanRequestBody
 > = core.serialization.object({
     description: core.serialization.string().optional(),
-    icon: core.serialization.string().optional(),
+    icon: PlanIcon.optional(),
     name: core.serialization.string(),
 });
 
 export declare namespace UpdatePlanRequestBody {
     export interface Raw {
         description?: string | null;
-        icon?: string | null;
+        icon?: PlanIcon.Raw | null;
         name: string;
     }
 }

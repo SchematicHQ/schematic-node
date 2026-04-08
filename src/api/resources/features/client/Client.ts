@@ -35,11 +35,11 @@ export class FeaturesClient {
      *
      * @example
      *     await client.features.listFeatures({
+     *         booleanRequireEvent: true,
+     *         planVersionId: "plan_version_id",
      *         q: "q",
      *         withoutCompanyOverrideFor: "without_company_override_for",
-     *         planVersionId: "plan_version_id",
      *         withoutPlanEntitlementFor: "without_plan_entitlement_for",
-     *         booleanRequireEvent: true,
      *         limit: 1000000,
      *         offset: 1000000
      *     })
@@ -56,22 +56,18 @@ export class FeaturesClient {
         requestOptions?: FeaturesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListFeaturesResponse>> {
         const {
+            booleanRequireEvent,
+            featureType,
             ids,
+            planVersionId,
             q,
             withoutCompanyOverrideFor,
-            planVersionId,
             withoutPlanEntitlementFor,
-            featureType,
-            booleanRequireEvent,
             limit,
             offset,
         } = request;
         const _queryParams: Record<string, unknown> = {
-            ids,
-            q,
-            without_company_override_for: withoutCompanyOverrideFor,
-            plan_version_id: planVersionId,
-            without_plan_entitlement_for: withoutPlanEntitlementFor,
+            boolean_require_event: booleanRequireEvent,
             feature_type: Array.isArray(featureType)
                 ? featureType.map((item) =>
                       serializers.FeatureType.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
@@ -79,7 +75,11 @@ export class FeaturesClient {
                 : featureType != null
                   ? serializers.FeatureType.jsonOrThrow(featureType, { unrecognizedObjectKeys: "strip" })
                   : undefined,
-            boolean_require_event: booleanRequireEvent,
+            ids,
+            plan_version_id: planVersionId,
+            q,
+            without_company_override_for: withoutCompanyOverrideFor,
+            without_plan_entitlement_for: withoutPlanEntitlementFor,
             limit,
             offset,
         };
@@ -701,6 +701,145 @@ export class FeaturesClient {
     }
 
     /**
+     * @param {Schematic.CreateBillingLinkedFeatureRequestBody} request
+     * @param {FeaturesClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.BadRequestError}
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
+     * @throws {@link Schematic.InternalServerError}
+     *
+     * @example
+     *     await client.features.upsertFeatureForBillingProduct({
+     *         billingProvider: "schematic",
+     *         description: "description",
+     *         externalResourceId: "external_resource_id",
+     *         featureType: "boolean",
+     *         name: "name"
+     *     })
+     */
+    public upsertFeatureForBillingProduct(
+        request: Schematic.CreateBillingLinkedFeatureRequestBody,
+        requestOptions?: FeaturesClient.RequestOptions,
+    ): core.HttpResponsePromise<Schematic.UpsertFeatureForBillingProductResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__upsertFeatureForBillingProduct(request, requestOptions));
+    }
+
+    private async __upsertFeatureForBillingProduct(
+        request: Schematic.CreateBillingLinkedFeatureRequestBody,
+        requestOptions?: FeaturesClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.UpsertFeatureForBillingProductResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "features/billing-linked",
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
+            requestType: "json",
+            body: serializers.CreateBillingLinkedFeatureRequestBody.jsonOrThrow(request, {
+                unrecognizedObjectKeys: "strip",
+            }),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.UpsertFeatureForBillingProductResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Schematic.BadRequestError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/features/billing-linked");
+    }
+
+    /**
      * @param {Schematic.CountFeaturesRequest} request
      * @param {FeaturesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -712,11 +851,11 @@ export class FeaturesClient {
      *
      * @example
      *     await client.features.countFeatures({
+     *         booleanRequireEvent: true,
+     *         planVersionId: "plan_version_id",
      *         q: "q",
      *         withoutCompanyOverrideFor: "without_company_override_for",
-     *         planVersionId: "plan_version_id",
      *         withoutPlanEntitlementFor: "without_plan_entitlement_for",
-     *         booleanRequireEvent: true,
      *         limit: 1000000,
      *         offset: 1000000
      *     })
@@ -733,22 +872,18 @@ export class FeaturesClient {
         requestOptions?: FeaturesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountFeaturesResponse>> {
         const {
+            booleanRequireEvent,
+            featureType,
             ids,
+            planVersionId,
             q,
             withoutCompanyOverrideFor,
-            planVersionId,
             withoutPlanEntitlementFor,
-            featureType,
-            booleanRequireEvent,
             limit,
             offset,
         } = request;
         const _queryParams: Record<string, unknown> = {
-            ids,
-            q,
-            without_company_override_for: withoutCompanyOverrideFor,
-            plan_version_id: planVersionId,
-            without_plan_entitlement_for: withoutPlanEntitlementFor,
+            boolean_require_event: booleanRequireEvent,
             feature_type: Array.isArray(featureType)
                 ? featureType.map((item) =>
                       serializers.FeatureType.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
@@ -756,7 +891,11 @@ export class FeaturesClient {
                 : featureType != null
                   ? serializers.FeatureType.jsonOrThrow(featureType, { unrecognizedObjectKeys: "strip" })
                   : undefined,
-            boolean_require_event: booleanRequireEvent,
+            ids,
+            plan_version_id: planVersionId,
+            q,
+            without_company_override_for: withoutCompanyOverrideFor,
+            without_plan_entitlement_for: withoutPlanEntitlementFor,
             limit,
             offset,
         };

@@ -5,29 +5,29 @@ import type * as Schematic from "../../../../index";
 /**
  * @example
  *     {
+ *         booleanRequireEvent: true,
+ *         planVersionId: "plan_version_id",
  *         q: "q",
  *         withoutCompanyOverrideFor: "without_company_override_for",
- *         planVersionId: "plan_version_id",
  *         withoutPlanEntitlementFor: "without_plan_entitlement_for",
- *         booleanRequireEvent: true,
  *         limit: 1000000,
  *         offset: 1000000
  *     }
  */
 export interface ListFeaturesRequest {
+    /** Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. */
+    booleanRequireEvent?: boolean;
+    /** Filter by one or more feature types (boolean, event, trait) */
+    featureType?: Schematic.FeatureType | Schematic.FeatureType[];
     ids?: string | string[];
+    /** Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used */
+    planVersionId?: string;
     /** Search by feature name or ID */
     q?: string;
     /** Filter out features that already have a company override for the specified company ID */
     withoutCompanyOverrideFor?: string;
-    /** Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used */
-    planVersionId?: string;
     /** Filter out features that already have a plan entitlement for the specified plan ID */
     withoutPlanEntitlementFor?: string;
-    /** Filter by one or more feature types (boolean, event, trait) */
-    featureType?: Schematic.FeatureType | Schematic.FeatureType[];
-    /** Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. */
-    booleanRequireEvent?: boolean;
     /** Page limit (default 100) */
     limit?: number;
     /** Page offset (default 0) */

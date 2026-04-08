@@ -770,12 +770,14 @@ describe("ComponentsClient", () => {
                         compatible_plan_ids: ["compatible_plan_ids"],
                         controlled_by: "schematic",
                         created_at: "2024-01-15T09:30:00Z",
+                        currency_prices: [{ currency: "currency" }],
                         current: true,
                         custom: true,
                         description: "description",
                         entitlements: [
                             {
                                 created_at: "2024-01-15T09:30:00Z",
+                                currency_prices: [{ currency: "currency" }],
                                 environment_id: "environment_id",
                                 feature_id: "feature_id",
                                 id: "id",
@@ -858,7 +860,7 @@ describe("ComponentsClient", () => {
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
                         ],
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         included_credit_grants: [
                             {
@@ -895,7 +897,7 @@ describe("ComponentsClient", () => {
                                 created_at: "2024-01-15T09:30:00Z",
                                 description: "description",
                                 environment_id: "environment_id",
-                                icon: "icon",
+                                icon: "amber",
                                 id: "id",
                                 name: "name",
                                 plan_type: "plan",
@@ -914,12 +916,14 @@ describe("ComponentsClient", () => {
                         compatible_plan_ids: ["compatible_plan_ids"],
                         controlled_by: "schematic",
                         created_at: "2024-01-15T09:30:00Z",
+                        currency_prices: [{ currency: "currency" }],
                         current: true,
                         custom: true,
                         description: "description",
                         entitlements: [
                             {
                                 created_at: "2024-01-15T09:30:00Z",
+                                currency_prices: [{ currency: "currency" }],
                                 environment_id: "environment_id",
                                 feature_id: "feature_id",
                                 id: "id",
@@ -1002,7 +1006,7 @@ describe("ComponentsClient", () => {
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
                         ],
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         included_credit_grants: [
                             {
@@ -1039,7 +1043,7 @@ describe("ComponentsClient", () => {
                                 created_at: "2024-01-15T09:30:00Z",
                                 description: "description",
                                 environment_id: "environment_id",
-                                icon: "icon",
+                                icon: "amber",
                                 id: "id",
                                 name: "name",
                                 plan_type: "plan",
@@ -1348,7 +1352,7 @@ describe("ComponentsClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         credit_description: "credit_description",
                         credit_name: "credit_name",
-                        grant_reason: "billing_credit_auto_topup",
+                        grant_reason: "adjustment",
                         id: "id",
                         quantity: 1000000,
                         quantity_remaining: 1.1,
@@ -1363,13 +1367,18 @@ describe("ComponentsClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
                         environment_id: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
                         version: 1000000,
+                    },
+                    billing_linked_resource: {
+                        billing_provider: "schematic",
+                        external_resource_id: "external_resource_id",
+                        originator: "schematic",
                     },
                     billing_product: {
                         account_id: "account_id",
@@ -1400,12 +1409,13 @@ describe("ComponentsClient", () => {
                     company_count: 1000000,
                     controlled_by: "schematic",
                     created_at: "2024-01-15T09:30:00Z",
+                    currency_prices: [{ currency: "currency" }],
                     description: "description",
                     draft_version: {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
                         environment_id: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         plan_type: "plan",
@@ -1486,7 +1496,7 @@ describe("ComponentsClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     included_credit_grants: [
                         {
@@ -1531,7 +1541,7 @@ describe("ComponentsClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             description: "description",
                             environment_id: "environment_id",
-                            icon: "icon",
+                            icon: "amber",
                             id: "id",
                             name: "name",
                             plan_type: "plan",
@@ -1589,13 +1599,18 @@ describe("ComponentsClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
                         environment_id: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
                         version: 1000000,
+                    },
+                    billing_linked_resource: {
+                        billing_provider: "schematic",
+                        external_resource_id: "external_resource_id",
+                        originator: "schematic",
                     },
                     billing_product: {
                         account_id: "account_id",
@@ -1626,12 +1641,13 @@ describe("ComponentsClient", () => {
                     company_count: 1000000,
                     controlled_by: "schematic",
                     created_at: "2024-01-15T09:30:00Z",
+                    currency_prices: [{ currency: "currency" }],
                     description: "description",
                     draft_version: {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
                         environment_id: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         plan_type: "plan",
@@ -1712,7 +1728,7 @@ describe("ComponentsClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     included_credit_grants: [
                         {
@@ -1757,7 +1773,7 @@ describe("ComponentsClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             description: "description",
                             environment_id: "environment_id",
-                            icon: "icon",
+                            icon: "amber",
                             id: "id",
                             name: "name",
                             plan_type: "plan",
@@ -1919,12 +1935,22 @@ describe("ComponentsClient", () => {
                         compatiblePlanIds: ["compatible_plan_ids"],
                         controlledBy: "schematic",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        currencyPrices: [
+                            {
+                                currency: "currency",
+                            },
+                        ],
                         current: true,
                         custom: true,
                         description: "description",
                         entitlements: [
                             {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                currencyPrices: [
+                                    {
+                                        currency: "currency",
+                                    },
+                                ],
                                 environmentId: "environment_id",
                                 featureId: "feature_id",
                                 id: "id",
@@ -2022,7 +2048,7 @@ describe("ComponentsClient", () => {
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
                         ],
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         includedCreditGrants: [
                             {
@@ -2059,7 +2085,7 @@ describe("ComponentsClient", () => {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 description: "description",
                                 environmentId: "environment_id",
-                                icon: "icon",
+                                icon: "amber",
                                 id: "id",
                                 name: "name",
                                 planType: "plan",
@@ -2078,12 +2104,22 @@ describe("ComponentsClient", () => {
                         compatiblePlanIds: ["compatible_plan_ids"],
                         controlledBy: "schematic",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        currencyPrices: [
+                            {
+                                currency: "currency",
+                            },
+                        ],
                         current: true,
                         custom: true,
                         description: "description",
                         entitlements: [
                             {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                currencyPrices: [
+                                    {
+                                        currency: "currency",
+                                    },
+                                ],
                                 environmentId: "environment_id",
                                 featureId: "feature_id",
                                 id: "id",
@@ -2181,7 +2217,7 @@ describe("ComponentsClient", () => {
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
                         ],
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         includedCreditGrants: [
                             {
@@ -2218,7 +2254,7 @@ describe("ComponentsClient", () => {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 description: "description",
                                 environmentId: "environment_id",
-                                icon: "icon",
+                                icon: "amber",
                                 id: "id",
                                 name: "name",
                                 planType: "plan",
@@ -2555,7 +2591,7 @@ describe("ComponentsClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         creditDescription: "credit_description",
                         creditName: "credit_name",
-                        grantReason: "billing_credit_auto_topup",
+                        grantReason: "adjustment",
                         id: "id",
                         quantity: 1000000,
                         quantityRemaining: 1.1,
@@ -2570,13 +2606,18 @@ describe("ComponentsClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
                         environmentId: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         version: 1000000,
+                    },
+                    billingLinkedResource: {
+                        billingProvider: "schematic",
+                        externalResourceId: "external_resource_id",
+                        originator: "schematic",
                     },
                     billingProduct: {
                         accountId: "account_id",
@@ -2607,12 +2648,17 @@ describe("ComponentsClient", () => {
                     companyCount: 1000000,
                     controlledBy: "schematic",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    currencyPrices: [
+                        {
+                            currency: "currency",
+                        },
+                    ],
                     description: "description",
                     draftVersion: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
                         environmentId: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         planType: "plan",
@@ -2708,7 +2754,7 @@ describe("ComponentsClient", () => {
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                     ],
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     includedCreditGrants: [
                         {
@@ -2753,7 +2799,7 @@ describe("ComponentsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             description: "description",
                             environmentId: "environment_id",
-                            icon: "icon",
+                            icon: "amber",
                             id: "id",
                             name: "name",
                             planType: "plan",
@@ -2811,13 +2857,18 @@ describe("ComponentsClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
                         environmentId: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         version: 1000000,
+                    },
+                    billingLinkedResource: {
+                        billingProvider: "schematic",
+                        externalResourceId: "external_resource_id",
+                        originator: "schematic",
                     },
                     billingProduct: {
                         accountId: "account_id",
@@ -2848,12 +2899,17 @@ describe("ComponentsClient", () => {
                     companyCount: 1000000,
                     controlledBy: "schematic",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    currencyPrices: [
+                        {
+                            currency: "currency",
+                        },
+                    ],
                     description: "description",
                     draftVersion: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
                         environmentId: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         planType: "plan",
@@ -2949,7 +3005,7 @@ describe("ComponentsClient", () => {
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                     ],
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     includedCreditGrants: [
                         {
@@ -2994,7 +3050,7 @@ describe("ComponentsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             description: "description",
                             environmentId: "environment_id",
-                            icon: "icon",
+                            icon: "amber",
                             id: "id",
                             name: "name",
                             planType: "plan",

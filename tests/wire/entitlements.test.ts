@@ -3287,8 +3287,8 @@ describe("EntitlementsClient", () => {
                     },
                     credit_consumption_rate: 1.1,
                     credit_grant_counts: { key: 1.1 },
-                    credit_grant_details: [{ grant_reason: "billing_credit_auto_topup", quantity: 1.1 }],
-                    credit_grant_reason: "billing_credit_auto_topup",
+                    credit_grant_details: [{ grant_reason: "adjustment", quantity: 1.1 }],
+                    credit_grant_reason: "adjustment",
                     credit_remaining: 1.1,
                     credit_type_icon: "credit_type_icon",
                     credit_used: 1.1,
@@ -3398,7 +3398,7 @@ describe("EntitlementsClient", () => {
                     plan: {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         plan_type: "plan",
@@ -3406,6 +3406,7 @@ describe("EntitlementsClient", () => {
                     },
                     plan_entitlement: {
                         created_at: "2024-01-15T09:30:00Z",
+                        currency_prices: [{ currency: "currency" }],
                         environment_id: "environment_id",
                         feature_id: "feature_id",
                         id: "id",
@@ -3656,11 +3657,11 @@ describe("EntitlementsClient", () => {
                     },
                     creditGrantDetails: [
                         {
-                            grantReason: "billing_credit_auto_topup",
+                            grantReason: "adjustment",
                             quantity: 1.1,
                         },
                     ],
-                    creditGrantReason: "billing_credit_auto_topup",
+                    creditGrantReason: "adjustment",
                     creditRemaining: 1.1,
                     creditTypeIcon: "credit_type_icon",
                     creditUsed: 1.1,
@@ -3785,7 +3786,7 @@ describe("EntitlementsClient", () => {
                     plan: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         planType: "plan",
@@ -3793,6 +3794,11 @@ describe("EntitlementsClient", () => {
                     },
                     planEntitlement: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        currencyPrices: [
+                            {
+                                currency: "currency",
+                            },
+                        ],
                         environmentId: "environment_id",
                         featureId: "feature_id",
                         id: "id",
@@ -4081,8 +4087,8 @@ describe("EntitlementsClient", () => {
                     },
                     credit_consumption_rate: 1.1,
                     credit_grant_counts: { key: 1.1 },
-                    credit_grant_details: [{ grant_reason: "billing_credit_auto_topup", quantity: 1.1 }],
-                    credit_grant_reason: "billing_credit_auto_topup",
+                    credit_grant_details: [{ grant_reason: "adjustment", quantity: 1.1 }],
+                    credit_grant_reason: "adjustment",
                     credit_remaining: 1.1,
                     credit_type_icon: "credit_type_icon",
                     credit_used: 1.1,
@@ -4192,7 +4198,7 @@ describe("EntitlementsClient", () => {
                     plan: {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         plan_type: "plan",
@@ -4200,6 +4206,7 @@ describe("EntitlementsClient", () => {
                     },
                     plan_entitlement: {
                         created_at: "2024-01-15T09:30:00Z",
+                        currency_prices: [{ currency: "currency" }],
                         environment_id: "environment_id",
                         feature_id: "feature_id",
                         id: "id",
@@ -4285,11 +4292,11 @@ describe("EntitlementsClient", () => {
                     },
                     creditGrantDetails: [
                         {
-                            grantReason: "billing_credit_auto_topup",
+                            grantReason: "adjustment",
                             quantity: 1.1,
                         },
                     ],
-                    creditGrantReason: "billing_credit_auto_topup",
+                    creditGrantReason: "adjustment",
                     creditRemaining: 1.1,
                     creditTypeIcon: "credit_type_icon",
                     creditUsed: 1.1,
@@ -4414,7 +4421,7 @@ describe("EntitlementsClient", () => {
                     plan: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         planType: "plan",
@@ -4422,6 +4429,11 @@ describe("EntitlementsClient", () => {
                     },
                     planEntitlement: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        currencyPrices: [
+                            {
+                                currency: "currency",
+                            },
+                        ],
                         environmentId: "environment_id",
                         featureId: "feature_id",
                         id: "id",
@@ -5099,7 +5111,7 @@ describe("EntitlementsClient", () => {
                     plan: {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         plan_type: "plan",
@@ -5402,7 +5414,7 @@ describe("EntitlementsClient", () => {
                     plan: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         planType: "plan",
@@ -5650,9 +5662,15 @@ describe("EntitlementsClient", () => {
         const rawResponseBody = {
             data: [
                 {
+                    billing_linked_resource: {
+                        billing_provider: "schematic",
+                        external_resource_id: "external_resource_id",
+                        originator: "schematic",
+                    },
                     billing_threshold: 1000000,
                     consumption_rate: 1.1,
                     created_at: "2024-01-15T09:30:00Z",
+                    currency_prices: [{ currency: "currency" }],
                     environment_id: "environment_id",
                     feature: {
                         created_at: "2024-01-15T09:30:00Z",
@@ -5708,7 +5726,7 @@ describe("EntitlementsClient", () => {
                     plan: {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         plan_type: "plan",
@@ -5738,6 +5756,7 @@ describe("EntitlementsClient", () => {
                         burn_strategy: "expiration_priority",
                         cost_editable: true,
                         created_at: "2024-01-15T09:30:00Z",
+                        currency_prices: [{ currency: "currency" }],
                         default_expiry_unit: "billing_periods",
                         default_rollover_policy: "expire",
                         description: "description",
@@ -5788,9 +5807,19 @@ describe("EntitlementsClient", () => {
         expect(response).toEqual({
             data: [
                 {
+                    billingLinkedResource: {
+                        billingProvider: "schematic",
+                        externalResourceId: "external_resource_id",
+                        originator: "schematic",
+                    },
                     billingThreshold: 1000000,
                     consumptionRate: 1.1,
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    currencyPrices: [
+                        {
+                            currency: "currency",
+                        },
+                    ],
                     environmentId: "environment_id",
                     feature: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -5846,7 +5875,7 @@ describe("EntitlementsClient", () => {
                     plan: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         planType: "plan",
@@ -5876,6 +5905,11 @@ describe("EntitlementsClient", () => {
                         burnStrategy: "expiration_priority",
                         costEditable: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        currencyPrices: [
+                            {
+                                currency: "currency",
+                            },
+                        ],
                         defaultExpiryUnit: "billing_periods",
                         defaultRolloverPolicy: "expire",
                         description: "description",
@@ -5984,9 +6018,15 @@ describe("EntitlementsClient", () => {
         const rawRequestBody = { feature_id: "feature_id", plan_id: "plan_id", value_type: "boolean" };
         const rawResponseBody = {
             data: {
+                billing_linked_resource: {
+                    billing_provider: "schematic",
+                    external_resource_id: "external_resource_id",
+                    originator: "schematic",
+                },
                 billing_threshold: 1000000,
                 consumption_rate: 1.1,
                 created_at: "2024-01-15T09:30:00Z",
+                currency_prices: [{ currency: "currency" }],
                 environment_id: "environment_id",
                 feature: {
                     created_at: "2024-01-15T09:30:00Z",
@@ -6058,7 +6098,7 @@ describe("EntitlementsClient", () => {
                 plan: {
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     name: "name",
                     plan_type: "plan",
@@ -6089,6 +6129,7 @@ describe("EntitlementsClient", () => {
                     burn_strategy: "expiration_priority",
                     cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
+                    currency_prices: [{ currency: "currency" }],
                     default_expiry_unit: "billing_periods",
                     default_expiry_unit_count: 1000000,
                     default_rollover_policy: "expire",
@@ -6154,9 +6195,19 @@ describe("EntitlementsClient", () => {
         });
         expect(response).toEqual({
             data: {
+                billingLinkedResource: {
+                    billingProvider: "schematic",
+                    externalResourceId: "external_resource_id",
+                    originator: "schematic",
+                },
                 billingThreshold: 1000000,
                 consumptionRate: 1.1,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                currencyPrices: [
+                    {
+                        currency: "currency",
+                    },
+                ],
                 environmentId: "environment_id",
                 feature: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -6228,7 +6279,7 @@ describe("EntitlementsClient", () => {
                 plan: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     name: "name",
                     planType: "plan",
@@ -6259,6 +6310,11 @@ describe("EntitlementsClient", () => {
                     burnStrategy: "expiration_priority",
                     costEditable: true,
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    currencyPrices: [
+                        {
+                            currency: "currency",
+                        },
+                    ],
                     defaultExpiryUnit: "billing_periods",
                     defaultExpiryUnitCount: 1000000,
                     defaultRolloverPolicy: "expire",
@@ -6437,9 +6493,15 @@ describe("EntitlementsClient", () => {
 
         const rawResponseBody = {
             data: {
+                billing_linked_resource: {
+                    billing_provider: "schematic",
+                    external_resource_id: "external_resource_id",
+                    originator: "schematic",
+                },
                 billing_threshold: 1000000,
                 consumption_rate: 1.1,
                 created_at: "2024-01-15T09:30:00Z",
+                currency_prices: [{ currency: "currency" }],
                 environment_id: "environment_id",
                 feature: {
                     created_at: "2024-01-15T09:30:00Z",
@@ -6511,7 +6573,7 @@ describe("EntitlementsClient", () => {
                 plan: {
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     name: "name",
                     plan_type: "plan",
@@ -6542,6 +6604,7 @@ describe("EntitlementsClient", () => {
                     burn_strategy: "expiration_priority",
                     cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
+                    currency_prices: [{ currency: "currency" }],
                     default_expiry_unit: "billing_periods",
                     default_expiry_unit_count: 1000000,
                     default_rollover_policy: "expire",
@@ -6602,9 +6665,19 @@ describe("EntitlementsClient", () => {
         const response = await client.entitlements.getPlanEntitlement("plan_entitlement_id");
         expect(response).toEqual({
             data: {
+                billingLinkedResource: {
+                    billingProvider: "schematic",
+                    externalResourceId: "external_resource_id",
+                    originator: "schematic",
+                },
                 billingThreshold: 1000000,
                 consumptionRate: 1.1,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                currencyPrices: [
+                    {
+                        currency: "currency",
+                    },
+                ],
                 environmentId: "environment_id",
                 feature: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -6676,7 +6749,7 @@ describe("EntitlementsClient", () => {
                 plan: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     name: "name",
                     planType: "plan",
@@ -6707,6 +6780,11 @@ describe("EntitlementsClient", () => {
                     burnStrategy: "expiration_priority",
                     costEditable: true,
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    currencyPrices: [
+                        {
+                            currency: "currency",
+                        },
+                    ],
                     defaultExpiryUnit: "billing_periods",
                     defaultExpiryUnitCount: 1000000,
                     defaultRolloverPolicy: "expire",
@@ -6841,9 +6919,15 @@ describe("EntitlementsClient", () => {
         const rawRequestBody = { value_type: "boolean" };
         const rawResponseBody = {
             data: {
+                billing_linked_resource: {
+                    billing_provider: "schematic",
+                    external_resource_id: "external_resource_id",
+                    originator: "schematic",
+                },
                 billing_threshold: 1000000,
                 consumption_rate: 1.1,
                 created_at: "2024-01-15T09:30:00Z",
+                currency_prices: [{ currency: "currency" }],
                 environment_id: "environment_id",
                 feature: {
                     created_at: "2024-01-15T09:30:00Z",
@@ -6915,7 +6999,7 @@ describe("EntitlementsClient", () => {
                 plan: {
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     name: "name",
                     plan_type: "plan",
@@ -6946,6 +7030,7 @@ describe("EntitlementsClient", () => {
                     burn_strategy: "expiration_priority",
                     cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
+                    currency_prices: [{ currency: "currency" }],
                     default_expiry_unit: "billing_periods",
                     default_expiry_unit_count: 1000000,
                     default_rollover_policy: "expire",
@@ -7009,9 +7094,19 @@ describe("EntitlementsClient", () => {
         });
         expect(response).toEqual({
             data: {
+                billingLinkedResource: {
+                    billingProvider: "schematic",
+                    externalResourceId: "external_resource_id",
+                    originator: "schematic",
+                },
                 billingThreshold: 1000000,
                 consumptionRate: 1.1,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                currencyPrices: [
+                    {
+                        currency: "currency",
+                    },
+                ],
                 environmentId: "environment_id",
                 feature: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -7083,7 +7178,7 @@ describe("EntitlementsClient", () => {
                 plan: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     name: "name",
                     planType: "plan",
@@ -7114,6 +7209,11 @@ describe("EntitlementsClient", () => {
                     burnStrategy: "expiration_priority",
                     costEditable: true,
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    currencyPrices: [
+                        {
+                            currency: "currency",
+                        },
+                    ],
                     defaultExpiryUnit: "billing_periods",
                     defaultExpiryUnitCount: 1000000,
                     defaultRolloverPolicy: "expire",
@@ -7396,6 +7496,529 @@ describe("EntitlementsClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("upsertPlanEntitlementForBillingProduct (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            billing_provider: "schematic",
+            external_resource_id: "external_resource_id",
+            feature_id: "feature_id",
+            plan_id: "plan_id",
+            value_type: "boolean",
+        };
+        const rawResponseBody = {
+            data: {
+                billing_linked_resource: {
+                    billing_provider: "schematic",
+                    external_resource_id: "external_resource_id",
+                    originator: "schematic",
+                },
+                billing_threshold: 1000000,
+                consumption_rate: 1.1,
+                created_at: "2024-01-15T09:30:00Z",
+                currency_prices: [{ currency: "currency" }],
+                environment_id: "environment_id",
+                feature: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    description: "description",
+                    event_subtype: "event_subtype",
+                    feature_type: "boolean",
+                    icon: "icon",
+                    id: "id",
+                    lifecycle_phase: "add_on",
+                    maintainer_id: "maintainer_id",
+                    name: "name",
+                    plural_name: "plural_name",
+                    singular_name: "singular_name",
+                    trait_id: "trait_id",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+                feature_id: "feature_id",
+                id: "id",
+                metered_monthly_price: {
+                    billing_scheme: "per_unit",
+                    created_at: "2024-01-15T09:30:00Z",
+                    currency: "currency",
+                    id: "id",
+                    interval: "day",
+                    is_active: true,
+                    meter_event_name: "meter_event_name",
+                    meter_event_payload_key: "meter_event_payload_key",
+                    meter_id: "meter_id",
+                    package_size: 1000000,
+                    price: 1000000,
+                    price_decimal: "price_decimal",
+                    price_external_id: "price_external_id",
+                    price_id: "price_id",
+                    price_tier: [{}],
+                    product_external_id: "product_external_id",
+                    product_id: "product_id",
+                    product_name: "product_name",
+                    provider_type: "schematic",
+                    tiers_mode: "graduated",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    usage_type: "licensed",
+                },
+                metered_yearly_price: {
+                    billing_scheme: "per_unit",
+                    created_at: "2024-01-15T09:30:00Z",
+                    currency: "currency",
+                    id: "id",
+                    interval: "day",
+                    is_active: true,
+                    meter_event_name: "meter_event_name",
+                    meter_event_payload_key: "meter_event_payload_key",
+                    meter_id: "meter_id",
+                    package_size: 1000000,
+                    price: 1000000,
+                    price_decimal: "price_decimal",
+                    price_external_id: "price_external_id",
+                    price_id: "price_id",
+                    price_tier: [{}],
+                    product_external_id: "product_external_id",
+                    product_id: "product_id",
+                    product_name: "product_name",
+                    provider_type: "schematic",
+                    tiers_mode: "graduated",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    usage_type: "licensed",
+                },
+                metric_period: "metric_period",
+                metric_period_month_reset: "metric_period_month_reset",
+                plan: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    description: "description",
+                    icon: "amber",
+                    id: "id",
+                    name: "name",
+                    plan_type: "plan",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+                plan_id: "plan_id",
+                price_behavior: "credit_burndown",
+                rule_id: "rule_id",
+                rule_id_usage_exceeded: "rule_id_usage_exceeded",
+                soft_limit: 1000000,
+                updated_at: "2024-01-15T09:30:00Z",
+                usage_based_product: {
+                    account_id: "account_id",
+                    created_at: "2024-01-15T09:30:00Z",
+                    environment_id: "environment_id",
+                    external_id: "external_id",
+                    is_active: true,
+                    name: "name",
+                    price: 1.1,
+                    price_decimal: "price_decimal",
+                    product_id: "product_id",
+                    provider_type: "schematic",
+                    quantity: 1.1,
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+                value_bool: true,
+                value_credit: {
+                    burn_strategy: "expiration_priority",
+                    cost_editable: true,
+                    created_at: "2024-01-15T09:30:00Z",
+                    currency_prices: [{ currency: "currency" }],
+                    default_expiry_unit: "billing_periods",
+                    default_expiry_unit_count: 1000000,
+                    default_rollover_policy: "expire",
+                    description: "description",
+                    icon: "icon",
+                    id: "id",
+                    name: "name",
+                    plural_name: "plural_name",
+                    price: {
+                        currency: "currency",
+                        external_price_id: "external_price_id",
+                        id: "id",
+                        interval: "day",
+                        price: 1000000,
+                        provider_type: "schematic",
+                        scheme: "per_unit",
+                    },
+                    product: {
+                        account_id: "account_id",
+                        created_at: "2024-01-15T09:30:00Z",
+                        environment_id: "environment_id",
+                        external_id: "external_id",
+                        is_active: true,
+                        name: "name",
+                        price: 1.1,
+                        product_id: "product_id",
+                        provider_type: "schematic",
+                        quantity: 1.1,
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
+                    singular_name: "singular_name",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+                value_numeric: 1000000,
+                value_trait: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    display_name: "display_name",
+                    entity_type: "company",
+                    hierarchy: ["hierarchy"],
+                    id: "id",
+                    trait_type: "boolean",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+                value_trait_id: "value_trait_id",
+                value_type: "boolean",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/plan-entitlements/billing-linked")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.entitlements.upsertPlanEntitlementForBillingProduct({
+            billingProvider: "schematic",
+            externalResourceId: "external_resource_id",
+            featureId: "feature_id",
+            planId: "plan_id",
+            valueType: "boolean",
+        });
+        expect(response).toEqual({
+            data: {
+                billingLinkedResource: {
+                    billingProvider: "schematic",
+                    externalResourceId: "external_resource_id",
+                    originator: "schematic",
+                },
+                billingThreshold: 1000000,
+                consumptionRate: 1.1,
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                currencyPrices: [
+                    {
+                        currency: "currency",
+                    },
+                ],
+                environmentId: "environment_id",
+                feature: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    description: "description",
+                    eventSubtype: "event_subtype",
+                    featureType: "boolean",
+                    icon: "icon",
+                    id: "id",
+                    lifecyclePhase: "add_on",
+                    maintainerId: "maintainer_id",
+                    name: "name",
+                    pluralName: "plural_name",
+                    singularName: "singular_name",
+                    traitId: "trait_id",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+                featureId: "feature_id",
+                id: "id",
+                meteredMonthlyPrice: {
+                    billingScheme: "per_unit",
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    currency: "currency",
+                    id: "id",
+                    interval: "day",
+                    isActive: true,
+                    meterEventName: "meter_event_name",
+                    meterEventPayloadKey: "meter_event_payload_key",
+                    meterId: "meter_id",
+                    packageSize: 1000000,
+                    price: 1000000,
+                    priceDecimal: "price_decimal",
+                    priceExternalId: "price_external_id",
+                    priceId: "price_id",
+                    priceTier: [{}],
+                    productExternalId: "product_external_id",
+                    productId: "product_id",
+                    productName: "product_name",
+                    providerType: "schematic",
+                    tiersMode: "graduated",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    usageType: "licensed",
+                },
+                meteredYearlyPrice: {
+                    billingScheme: "per_unit",
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    currency: "currency",
+                    id: "id",
+                    interval: "day",
+                    isActive: true,
+                    meterEventName: "meter_event_name",
+                    meterEventPayloadKey: "meter_event_payload_key",
+                    meterId: "meter_id",
+                    packageSize: 1000000,
+                    price: 1000000,
+                    priceDecimal: "price_decimal",
+                    priceExternalId: "price_external_id",
+                    priceId: "price_id",
+                    priceTier: [{}],
+                    productExternalId: "product_external_id",
+                    productId: "product_id",
+                    productName: "product_name",
+                    providerType: "schematic",
+                    tiersMode: "graduated",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    usageType: "licensed",
+                },
+                metricPeriod: "metric_period",
+                metricPeriodMonthReset: "metric_period_month_reset",
+                plan: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    description: "description",
+                    icon: "amber",
+                    id: "id",
+                    name: "name",
+                    planType: "plan",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+                planId: "plan_id",
+                priceBehavior: "credit_burndown",
+                ruleId: "rule_id",
+                ruleIdUsageExceeded: "rule_id_usage_exceeded",
+                softLimit: 1000000,
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                usageBasedProduct: {
+                    accountId: "account_id",
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    environmentId: "environment_id",
+                    externalId: "external_id",
+                    isActive: true,
+                    name: "name",
+                    price: 1.1,
+                    priceDecimal: "price_decimal",
+                    productId: "product_id",
+                    providerType: "schematic",
+                    quantity: 1.1,
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+                valueBool: true,
+                valueCredit: {
+                    burnStrategy: "expiration_priority",
+                    costEditable: true,
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    currencyPrices: [
+                        {
+                            currency: "currency",
+                        },
+                    ],
+                    defaultExpiryUnit: "billing_periods",
+                    defaultExpiryUnitCount: 1000000,
+                    defaultRolloverPolicy: "expire",
+                    description: "description",
+                    icon: "icon",
+                    id: "id",
+                    name: "name",
+                    pluralName: "plural_name",
+                    price: {
+                        currency: "currency",
+                        externalPriceId: "external_price_id",
+                        id: "id",
+                        interval: "day",
+                        price: 1000000,
+                        providerType: "schematic",
+                        scheme: "per_unit",
+                    },
+                    product: {
+                        accountId: "account_id",
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        environmentId: "environment_id",
+                        externalId: "external_id",
+                        isActive: true,
+                        name: "name",
+                        price: 1.1,
+                        productId: "product_id",
+                        providerType: "schematic",
+                        quantity: 1.1,
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                    singularName: "singular_name",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+                valueNumeric: 1000000,
+                valueTrait: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    displayName: "display_name",
+                    entityType: "company",
+                    hierarchy: ["hierarchy"],
+                    id: "id",
+                    traitType: "boolean",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+                valueTraitId: "value_trait_id",
+                valueType: "boolean",
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("upsertPlanEntitlementForBillingProduct (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            billing_provider: "schematic",
+            external_resource_id: "external_resource_id",
+            feature_id: "feature_id",
+            plan_id: "plan_id",
+            value_type: "boolean",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-entitlements/billing-linked")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.upsertPlanEntitlementForBillingProduct({
+                billingProvider: "schematic",
+                externalResourceId: "external_resource_id",
+                featureId: "feature_id",
+                planId: "plan_id",
+                valueType: "boolean",
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("upsertPlanEntitlementForBillingProduct (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            billing_provider: "schematic",
+            external_resource_id: "external_resource_id",
+            feature_id: "feature_id",
+            plan_id: "plan_id",
+            value_type: "boolean",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-entitlements/billing-linked")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.upsertPlanEntitlementForBillingProduct({
+                billingProvider: "schematic",
+                externalResourceId: "external_resource_id",
+                featureId: "feature_id",
+                planId: "plan_id",
+                valueType: "boolean",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("upsertPlanEntitlementForBillingProduct (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            billing_provider: "schematic",
+            external_resource_id: "external_resource_id",
+            feature_id: "feature_id",
+            plan_id: "plan_id",
+            value_type: "boolean",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-entitlements/billing-linked")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.upsertPlanEntitlementForBillingProduct({
+                billingProvider: "schematic",
+                externalResourceId: "external_resource_id",
+                featureId: "feature_id",
+                planId: "plan_id",
+                valueType: "boolean",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("upsertPlanEntitlementForBillingProduct (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            billing_provider: "schematic",
+            external_resource_id: "external_resource_id",
+            feature_id: "feature_id",
+            plan_id: "plan_id",
+            value_type: "boolean",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-entitlements/billing-linked")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.upsertPlanEntitlementForBillingProduct({
+                billingProvider: "schematic",
+                externalResourceId: "external_resource_id",
+                featureId: "feature_id",
+                planId: "plan_id",
+                valueType: "boolean",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("upsertPlanEntitlementForBillingProduct (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            billing_provider: "schematic",
+            external_resource_id: "external_resource_id",
+            feature_id: "feature_id",
+            plan_id: "plan_id",
+            value_type: "boolean",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-entitlements/billing-linked")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.upsertPlanEntitlementForBillingProduct({
+                billingProvider: "schematic",
+                externalResourceId: "external_resource_id",
+                featureId: "feature_id",
+                planId: "plan_id",
+                valueType: "boolean",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("countPlanEntitlements (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -7558,6 +8181,7 @@ describe("EntitlementsClient", () => {
                 data: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
+                        currency_prices: [{ currency: "currency" }],
                         environment_id: "environment_id",
                         feature_id: "feature_id",
                         id: "id",
@@ -7597,6 +8221,11 @@ describe("EntitlementsClient", () => {
                 data: [
                     {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        currencyPrices: [
+                            {
+                                currency: "currency",
+                            },
+                        ],
                         environmentId: "environment_id",
                         featureId: "feature_id",
                         id: "id",
@@ -8027,17 +8656,17 @@ describe("EntitlementsClient", () => {
                             {
                                 credit_type_icon: "credit_type_icon",
                                 expires_at: "2024-01-15T09:30:00Z",
-                                grant_reason: "billing_credit_auto_topup",
+                                grant_reason: "adjustment",
                                 quantity: 1.1,
                             },
                             {
                                 credit_type_icon: "credit_type_icon",
                                 expires_at: "2024-01-15T09:30:00Z",
-                                grant_reason: "billing_credit_auto_topup",
+                                grant_reason: "adjustment",
                                 quantity: 1.1,
                             },
                         ],
-                        credit_grant_reason: "billing_credit_auto_topup",
+                        credit_grant_reason: "adjustment",
                         credit_remaining: 1.1,
                         credit_total: 1.1,
                         credit_type_icon: "credit_type_icon",
@@ -8055,6 +8684,11 @@ describe("EntitlementsClient", () => {
                         entitlement_source: "entitlement_source",
                         entitlement_type: "company_override",
                         feature: {
+                            billing_linked_resource: {
+                                billing_provider: "schematic",
+                                external_resource_id: "external_resource_id",
+                                originator: "schematic",
+                            },
                             created_at: "2024-01-15T09:30:00Z",
                             description: "description",
                             event_subtype: "event_subtype",
@@ -8236,16 +8870,105 @@ describe("EntitlementsClient", () => {
                             audience_type: "audience_type",
                             created_at: "2024-01-15T09:30:00Z",
                             description: "description",
-                            icon: "icon",
+                            icon: "amber",
                             id: "id",
                             name: "name",
                             plan_type: "plan",
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                         plan_entitlement: {
+                            billing_linked_resource: {
+                                billing_provider: "schematic",
+                                external_resource_id: "external_resource_id",
+                                originator: "schematic",
+                            },
                             billing_threshold: 1000000,
                             consumption_rate: 1.1,
                             created_at: "2024-01-15T09:30:00Z",
+                            currency_prices: [
+                                {
+                                    currency: "currency",
+                                    monthly_price: {
+                                        billing_scheme: "per_unit",
+                                        created_at: "2024-01-15T09:30:00Z",
+                                        currency: "currency",
+                                        id: "id",
+                                        interval: "day",
+                                        is_active: true,
+                                        package_size: 1000000,
+                                        price: 1000000,
+                                        price_external_id: "price_external_id",
+                                        price_id: "price_id",
+                                        price_tier: [],
+                                        product_external_id: "product_external_id",
+                                        product_id: "product_id",
+                                        product_name: "product_name",
+                                        provider_type: "schematic",
+                                        updated_at: "2024-01-15T09:30:00Z",
+                                        usage_type: "licensed",
+                                    },
+                                    yearly_price: {
+                                        billing_scheme: "per_unit",
+                                        created_at: "2024-01-15T09:30:00Z",
+                                        currency: "currency",
+                                        id: "id",
+                                        interval: "day",
+                                        is_active: true,
+                                        package_size: 1000000,
+                                        price: 1000000,
+                                        price_external_id: "price_external_id",
+                                        price_id: "price_id",
+                                        price_tier: [],
+                                        product_external_id: "product_external_id",
+                                        product_id: "product_id",
+                                        product_name: "product_name",
+                                        provider_type: "schematic",
+                                        updated_at: "2024-01-15T09:30:00Z",
+                                        usage_type: "licensed",
+                                    },
+                                },
+                                {
+                                    currency: "currency",
+                                    monthly_price: {
+                                        billing_scheme: "per_unit",
+                                        created_at: "2024-01-15T09:30:00Z",
+                                        currency: "currency",
+                                        id: "id",
+                                        interval: "day",
+                                        is_active: true,
+                                        package_size: 1000000,
+                                        price: 1000000,
+                                        price_external_id: "price_external_id",
+                                        price_id: "price_id",
+                                        price_tier: [],
+                                        product_external_id: "product_external_id",
+                                        product_id: "product_id",
+                                        product_name: "product_name",
+                                        provider_type: "schematic",
+                                        updated_at: "2024-01-15T09:30:00Z",
+                                        usage_type: "licensed",
+                                    },
+                                    yearly_price: {
+                                        billing_scheme: "per_unit",
+                                        created_at: "2024-01-15T09:30:00Z",
+                                        currency: "currency",
+                                        id: "id",
+                                        interval: "day",
+                                        is_active: true,
+                                        package_size: 1000000,
+                                        price: 1000000,
+                                        price_external_id: "price_external_id",
+                                        price_id: "price_id",
+                                        price_tier: [],
+                                        product_external_id: "product_external_id",
+                                        product_id: "product_id",
+                                        product_name: "product_name",
+                                        provider_type: "schematic",
+                                        updated_at: "2024-01-15T09:30:00Z",
+                                        usage_type: "licensed",
+                                    },
+                                },
+                            ],
                             environment_id: "environment_id",
                             feature: {
                                 created_at: "2024-01-15T09:30:00Z",
@@ -8318,7 +9041,7 @@ describe("EntitlementsClient", () => {
                                 audience_type: "audience_type",
                                 created_at: "2024-01-15T09:30:00Z",
                                 description: "description",
-                                icon: "icon",
+                                icon: "amber",
                                 id: "id",
                                 name: "name",
                                 plan_type: "plan",
@@ -8350,6 +9073,7 @@ describe("EntitlementsClient", () => {
                                 burn_strategy: "expiration_priority",
                                 cost_editable: true,
                                 created_at: "2024-01-15T09:30:00Z",
+                                currency_prices: [{ currency: "currency" }, { currency: "currency" }],
                                 default_expiry_unit: "billing_periods",
                                 default_expiry_unit_count: 1000000,
                                 default_rollover_policy: "expire",
@@ -8717,17 +9441,17 @@ describe("EntitlementsClient", () => {
                             {
                                 credit_type_icon: "credit_type_icon",
                                 expires_at: "2024-01-15T09:30:00Z",
-                                grant_reason: "billing_credit_auto_topup",
+                                grant_reason: "adjustment",
                                 quantity: 1.1,
                             },
                             {
                                 credit_type_icon: "credit_type_icon",
                                 expires_at: "2024-01-15T09:30:00Z",
-                                grant_reason: "billing_credit_auto_topup",
+                                grant_reason: "adjustment",
                                 quantity: 1.1,
                             },
                         ],
-                        credit_grant_reason: "billing_credit_auto_topup",
+                        credit_grant_reason: "adjustment",
                         credit_remaining: 1.1,
                         credit_total: 1.1,
                         credit_type_icon: "credit_type_icon",
@@ -8745,6 +9469,11 @@ describe("EntitlementsClient", () => {
                         entitlement_source: "entitlement_source",
                         entitlement_type: "company_override",
                         feature: {
+                            billing_linked_resource: {
+                                billing_provider: "schematic",
+                                external_resource_id: "external_resource_id",
+                                originator: "schematic",
+                            },
                             created_at: "2024-01-15T09:30:00Z",
                             description: "description",
                             event_subtype: "event_subtype",
@@ -8926,16 +9655,105 @@ describe("EntitlementsClient", () => {
                             audience_type: "audience_type",
                             created_at: "2024-01-15T09:30:00Z",
                             description: "description",
-                            icon: "icon",
+                            icon: "amber",
                             id: "id",
                             name: "name",
                             plan_type: "plan",
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                         plan_entitlement: {
+                            billing_linked_resource: {
+                                billing_provider: "schematic",
+                                external_resource_id: "external_resource_id",
+                                originator: "schematic",
+                            },
                             billing_threshold: 1000000,
                             consumption_rate: 1.1,
                             created_at: "2024-01-15T09:30:00Z",
+                            currency_prices: [
+                                {
+                                    currency: "currency",
+                                    monthly_price: {
+                                        billing_scheme: "per_unit",
+                                        created_at: "2024-01-15T09:30:00Z",
+                                        currency: "currency",
+                                        id: "id",
+                                        interval: "day",
+                                        is_active: true,
+                                        package_size: 1000000,
+                                        price: 1000000,
+                                        price_external_id: "price_external_id",
+                                        price_id: "price_id",
+                                        price_tier: [],
+                                        product_external_id: "product_external_id",
+                                        product_id: "product_id",
+                                        product_name: "product_name",
+                                        provider_type: "schematic",
+                                        updated_at: "2024-01-15T09:30:00Z",
+                                        usage_type: "licensed",
+                                    },
+                                    yearly_price: {
+                                        billing_scheme: "per_unit",
+                                        created_at: "2024-01-15T09:30:00Z",
+                                        currency: "currency",
+                                        id: "id",
+                                        interval: "day",
+                                        is_active: true,
+                                        package_size: 1000000,
+                                        price: 1000000,
+                                        price_external_id: "price_external_id",
+                                        price_id: "price_id",
+                                        price_tier: [],
+                                        product_external_id: "product_external_id",
+                                        product_id: "product_id",
+                                        product_name: "product_name",
+                                        provider_type: "schematic",
+                                        updated_at: "2024-01-15T09:30:00Z",
+                                        usage_type: "licensed",
+                                    },
+                                },
+                                {
+                                    currency: "currency",
+                                    monthly_price: {
+                                        billing_scheme: "per_unit",
+                                        created_at: "2024-01-15T09:30:00Z",
+                                        currency: "currency",
+                                        id: "id",
+                                        interval: "day",
+                                        is_active: true,
+                                        package_size: 1000000,
+                                        price: 1000000,
+                                        price_external_id: "price_external_id",
+                                        price_id: "price_id",
+                                        price_tier: [],
+                                        product_external_id: "product_external_id",
+                                        product_id: "product_id",
+                                        product_name: "product_name",
+                                        provider_type: "schematic",
+                                        updated_at: "2024-01-15T09:30:00Z",
+                                        usage_type: "licensed",
+                                    },
+                                    yearly_price: {
+                                        billing_scheme: "per_unit",
+                                        created_at: "2024-01-15T09:30:00Z",
+                                        currency: "currency",
+                                        id: "id",
+                                        interval: "day",
+                                        is_active: true,
+                                        package_size: 1000000,
+                                        price: 1000000,
+                                        price_external_id: "price_external_id",
+                                        price_id: "price_id",
+                                        price_tier: [],
+                                        product_external_id: "product_external_id",
+                                        product_id: "product_id",
+                                        product_name: "product_name",
+                                        provider_type: "schematic",
+                                        updated_at: "2024-01-15T09:30:00Z",
+                                        usage_type: "licensed",
+                                    },
+                                },
+                            ],
                             environment_id: "environment_id",
                             feature: {
                                 created_at: "2024-01-15T09:30:00Z",
@@ -9008,7 +9826,7 @@ describe("EntitlementsClient", () => {
                                 audience_type: "audience_type",
                                 created_at: "2024-01-15T09:30:00Z",
                                 description: "description",
-                                icon: "icon",
+                                icon: "amber",
                                 id: "id",
                                 name: "name",
                                 plan_type: "plan",
@@ -9040,6 +9858,7 @@ describe("EntitlementsClient", () => {
                                 burn_strategy: "expiration_priority",
                                 cost_editable: true,
                                 created_at: "2024-01-15T09:30:00Z",
+                                currency_prices: [{ currency: "currency" }, { currency: "currency" }],
                                 default_expiry_unit: "billing_periods",
                                 default_expiry_unit_count: 1000000,
                                 default_rollover_policy: "expire",
@@ -9456,17 +10275,17 @@ describe("EntitlementsClient", () => {
                             {
                                 creditTypeIcon: "credit_type_icon",
                                 expiresAt: new Date("2024-01-15T09:30:00.000Z"),
-                                grantReason: "billing_credit_auto_topup",
+                                grantReason: "adjustment",
                                 quantity: 1.1,
                             },
                             {
                                 creditTypeIcon: "credit_type_icon",
                                 expiresAt: new Date("2024-01-15T09:30:00.000Z"),
-                                grantReason: "billing_credit_auto_topup",
+                                grantReason: "adjustment",
                                 quantity: 1.1,
                             },
                         ],
-                        creditGrantReason: "billing_credit_auto_topup",
+                        creditGrantReason: "adjustment",
                         creditRemaining: 1.1,
                         creditTotal: 1.1,
                         creditTypeIcon: "credit_type_icon",
@@ -9484,6 +10303,11 @@ describe("EntitlementsClient", () => {
                         entitlementSource: "entitlement_source",
                         entitlementType: "company_override",
                         feature: {
+                            billingLinkedResource: {
+                                billingProvider: "schematic",
+                                externalResourceId: "external_resource_id",
+                                originator: "schematic",
+                            },
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             description: "description",
                             eventSubtype: "event_subtype",
@@ -9675,16 +10499,105 @@ describe("EntitlementsClient", () => {
                             audienceType: "audience_type",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             description: "description",
-                            icon: "icon",
+                            icon: "amber",
                             id: "id",
                             name: "name",
                             planType: "plan",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                         planEntitlement: {
+                            billingLinkedResource: {
+                                billingProvider: "schematic",
+                                externalResourceId: "external_resource_id",
+                                originator: "schematic",
+                            },
                             billingThreshold: 1000000,
                             consumptionRate: 1.1,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            currencyPrices: [
+                                {
+                                    currency: "currency",
+                                    monthlyPrice: {
+                                        billingScheme: "per_unit",
+                                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                        currency: "currency",
+                                        id: "id",
+                                        interval: "day",
+                                        isActive: true,
+                                        packageSize: 1000000,
+                                        price: 1000000,
+                                        priceExternalId: "price_external_id",
+                                        priceId: "price_id",
+                                        priceTier: [],
+                                        productExternalId: "product_external_id",
+                                        productId: "product_id",
+                                        productName: "product_name",
+                                        providerType: "schematic",
+                                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                        usageType: "licensed",
+                                    },
+                                    yearlyPrice: {
+                                        billingScheme: "per_unit",
+                                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                        currency: "currency",
+                                        id: "id",
+                                        interval: "day",
+                                        isActive: true,
+                                        packageSize: 1000000,
+                                        price: 1000000,
+                                        priceExternalId: "price_external_id",
+                                        priceId: "price_id",
+                                        priceTier: [],
+                                        productExternalId: "product_external_id",
+                                        productId: "product_id",
+                                        productName: "product_name",
+                                        providerType: "schematic",
+                                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                        usageType: "licensed",
+                                    },
+                                },
+                                {
+                                    currency: "currency",
+                                    monthlyPrice: {
+                                        billingScheme: "per_unit",
+                                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                        currency: "currency",
+                                        id: "id",
+                                        interval: "day",
+                                        isActive: true,
+                                        packageSize: 1000000,
+                                        price: 1000000,
+                                        priceExternalId: "price_external_id",
+                                        priceId: "price_id",
+                                        priceTier: [],
+                                        productExternalId: "product_external_id",
+                                        productId: "product_id",
+                                        productName: "product_name",
+                                        providerType: "schematic",
+                                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                        usageType: "licensed",
+                                    },
+                                    yearlyPrice: {
+                                        billingScheme: "per_unit",
+                                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                        currency: "currency",
+                                        id: "id",
+                                        interval: "day",
+                                        isActive: true,
+                                        packageSize: 1000000,
+                                        price: 1000000,
+                                        priceExternalId: "price_external_id",
+                                        priceId: "price_id",
+                                        priceTier: [],
+                                        productExternalId: "product_external_id",
+                                        productId: "product_id",
+                                        productName: "product_name",
+                                        providerType: "schematic",
+                                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                        usageType: "licensed",
+                                    },
+                                },
+                            ],
                             environmentId: "environment_id",
                             feature: {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -9757,7 +10670,7 @@ describe("EntitlementsClient", () => {
                                 audienceType: "audience_type",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 description: "description",
-                                icon: "icon",
+                                icon: "amber",
                                 id: "id",
                                 name: "name",
                                 planType: "plan",
@@ -9789,6 +10702,14 @@ describe("EntitlementsClient", () => {
                                 burnStrategy: "expiration_priority",
                                 costEditable: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                currencyPrices: [
+                                    {
+                                        currency: "currency",
+                                    },
+                                    {
+                                        currency: "currency",
+                                    },
+                                ],
                                 defaultExpiryUnit: "billing_periods",
                                 defaultExpiryUnitCount: 1000000,
                                 defaultRolloverPolicy: "expire",
@@ -10190,17 +11111,17 @@ describe("EntitlementsClient", () => {
                             {
                                 creditTypeIcon: "credit_type_icon",
                                 expiresAt: new Date("2024-01-15T09:30:00.000Z"),
-                                grantReason: "billing_credit_auto_topup",
+                                grantReason: "adjustment",
                                 quantity: 1.1,
                             },
                             {
                                 creditTypeIcon: "credit_type_icon",
                                 expiresAt: new Date("2024-01-15T09:30:00.000Z"),
-                                grantReason: "billing_credit_auto_topup",
+                                grantReason: "adjustment",
                                 quantity: 1.1,
                             },
                         ],
-                        creditGrantReason: "billing_credit_auto_topup",
+                        creditGrantReason: "adjustment",
                         creditRemaining: 1.1,
                         creditTotal: 1.1,
                         creditTypeIcon: "credit_type_icon",
@@ -10218,6 +11139,11 @@ describe("EntitlementsClient", () => {
                         entitlementSource: "entitlement_source",
                         entitlementType: "company_override",
                         feature: {
+                            billingLinkedResource: {
+                                billingProvider: "schematic",
+                                externalResourceId: "external_resource_id",
+                                originator: "schematic",
+                            },
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             description: "description",
                             eventSubtype: "event_subtype",
@@ -10409,16 +11335,105 @@ describe("EntitlementsClient", () => {
                             audienceType: "audience_type",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             description: "description",
-                            icon: "icon",
+                            icon: "amber",
                             id: "id",
                             name: "name",
                             planType: "plan",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                         planEntitlement: {
+                            billingLinkedResource: {
+                                billingProvider: "schematic",
+                                externalResourceId: "external_resource_id",
+                                originator: "schematic",
+                            },
                             billingThreshold: 1000000,
                             consumptionRate: 1.1,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            currencyPrices: [
+                                {
+                                    currency: "currency",
+                                    monthlyPrice: {
+                                        billingScheme: "per_unit",
+                                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                        currency: "currency",
+                                        id: "id",
+                                        interval: "day",
+                                        isActive: true,
+                                        packageSize: 1000000,
+                                        price: 1000000,
+                                        priceExternalId: "price_external_id",
+                                        priceId: "price_id",
+                                        priceTier: [],
+                                        productExternalId: "product_external_id",
+                                        productId: "product_id",
+                                        productName: "product_name",
+                                        providerType: "schematic",
+                                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                        usageType: "licensed",
+                                    },
+                                    yearlyPrice: {
+                                        billingScheme: "per_unit",
+                                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                        currency: "currency",
+                                        id: "id",
+                                        interval: "day",
+                                        isActive: true,
+                                        packageSize: 1000000,
+                                        price: 1000000,
+                                        priceExternalId: "price_external_id",
+                                        priceId: "price_id",
+                                        priceTier: [],
+                                        productExternalId: "product_external_id",
+                                        productId: "product_id",
+                                        productName: "product_name",
+                                        providerType: "schematic",
+                                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                        usageType: "licensed",
+                                    },
+                                },
+                                {
+                                    currency: "currency",
+                                    monthlyPrice: {
+                                        billingScheme: "per_unit",
+                                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                        currency: "currency",
+                                        id: "id",
+                                        interval: "day",
+                                        isActive: true,
+                                        packageSize: 1000000,
+                                        price: 1000000,
+                                        priceExternalId: "price_external_id",
+                                        priceId: "price_id",
+                                        priceTier: [],
+                                        productExternalId: "product_external_id",
+                                        productId: "product_id",
+                                        productName: "product_name",
+                                        providerType: "schematic",
+                                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                        usageType: "licensed",
+                                    },
+                                    yearlyPrice: {
+                                        billingScheme: "per_unit",
+                                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                        currency: "currency",
+                                        id: "id",
+                                        interval: "day",
+                                        isActive: true,
+                                        packageSize: 1000000,
+                                        price: 1000000,
+                                        priceExternalId: "price_external_id",
+                                        priceId: "price_id",
+                                        priceTier: [],
+                                        productExternalId: "product_external_id",
+                                        productId: "product_id",
+                                        productName: "product_name",
+                                        providerType: "schematic",
+                                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                        usageType: "licensed",
+                                    },
+                                },
+                            ],
                             environmentId: "environment_id",
                             feature: {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -10491,7 +11506,7 @@ describe("EntitlementsClient", () => {
                                 audienceType: "audience_type",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 description: "description",
-                                icon: "icon",
+                                icon: "amber",
                                 id: "id",
                                 name: "name",
                                 planType: "plan",
@@ -10523,6 +11538,14 @@ describe("EntitlementsClient", () => {
                                 burnStrategy: "expiration_priority",
                                 costEditable: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                currencyPrices: [
+                                    {
+                                        currency: "currency",
+                                    },
+                                    {
+                                        currency: "currency",
+                                    },
+                                ],
                                 defaultExpiryUnit: "billing_periods",
                                 defaultExpiryUnitCount: 1000000,
                                 defaultRolloverPolicy: "expire",

@@ -9,6 +9,7 @@ export interface PlanCreditGrantView {
     billingCreditAutoTopupExpiryType?: Schematic.BillingCreditExpiryType;
     billingCreditAutoTopupExpiryUnit?: Schematic.BillingCreditExpiryUnit;
     billingCreditAutoTopupExpiryUnitCount?: number;
+    billingCreditAutoTopupThresholdCredits?: number;
     billingCreditAutoTopupThresholdPercent?: number;
     createdAt: Date;
     credit?: Schematic.BillingCreditView;

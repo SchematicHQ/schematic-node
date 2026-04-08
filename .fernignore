@@ -2,12 +2,17 @@
 
 .claude/
 .github/CODEOWNERS
+.github/workflows/ci.yml
 .github/workflows/cloudflare.yml
+.github/workflows/e2e.yml
+.gitignore
 CLAUDE.md
 LICENSE
 README.md
+WASM_VERSION
 build.js
 scripts/
+testapp/
 src/cache/
 src/core/fetcher/custom.ts
 src/datastream/
@@ -23,6 +28,7 @@ src/wrapper.ts
 tests/cloudflare/
 tests/unit/cache/local.test.ts
 tests/unit/datastream/datastream-client.test.ts
+tests/unit/datastream/merge.test.ts
 tests/unit/datastream/websocket-client.test.ts
 tests/unit/events.test.ts
 tests/unit/rules-engine.test.ts

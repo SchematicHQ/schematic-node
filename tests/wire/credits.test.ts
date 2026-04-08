@@ -15,6 +15,7 @@ describe("CreditsClient", () => {
                     burn_strategy: "expiration_priority",
                     cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
+                    currency_prices: [{ currency: "currency" }],
                     default_expiry_unit: "billing_periods",
                     default_expiry_unit_count: 1000000,
                     default_rollover_policy: "expire",
@@ -65,6 +66,11 @@ describe("CreditsClient", () => {
                     burnStrategy: "expiration_priority",
                     costEditable: true,
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    currencyPrices: [
+                        {
+                            currency: "currency",
+                        },
+                    ],
                     defaultExpiryUnit: "billing_periods",
                     defaultExpiryUnitCount: 1000000,
                     defaultRolloverPolicy: "expire",
@@ -182,6 +188,7 @@ describe("CreditsClient", () => {
                 burn_strategy: "expiration_priority",
                 cost_editable: true,
                 created_at: "2024-01-15T09:30:00Z",
+                currency_prices: [{ currency: "currency" }],
                 default_expiry_unit: "billing_periods",
                 default_expiry_unit_count: 1000000,
                 default_rollover_policy: "expire",
@@ -239,6 +246,11 @@ describe("CreditsClient", () => {
                 burnStrategy: "expiration_priority",
                 costEditable: true,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                currencyPrices: [
+                    {
+                        currency: "currency",
+                    },
+                ],
                 defaultExpiryUnit: "billing_periods",
                 defaultExpiryUnitCount: 1000000,
                 defaultRolloverPolicy: "expire",
@@ -409,6 +421,7 @@ describe("CreditsClient", () => {
                 burn_strategy: "expiration_priority",
                 cost_editable: true,
                 created_at: "2024-01-15T09:30:00Z",
+                currency_prices: [{ currency: "currency" }],
                 default_expiry_unit: "billing_periods",
                 default_expiry_unit_count: 1000000,
                 default_rollover_policy: "expire",
@@ -461,6 +474,11 @@ describe("CreditsClient", () => {
                 burnStrategy: "expiration_priority",
                 costEditable: true,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                currencyPrices: [
+                    {
+                        currency: "currency",
+                    },
+                ],
                 defaultExpiryUnit: "billing_periods",
                 defaultExpiryUnitCount: 1000000,
                 defaultRolloverPolicy: "expire",
@@ -587,6 +605,7 @@ describe("CreditsClient", () => {
                 burn_strategy: "expiration_priority",
                 cost_editable: true,
                 created_at: "2024-01-15T09:30:00Z",
+                currency_prices: [{ currency: "currency" }],
                 default_expiry_unit: "billing_periods",
                 default_expiry_unit_count: 1000000,
                 default_rollover_policy: "expire",
@@ -643,6 +662,11 @@ describe("CreditsClient", () => {
                 burnStrategy: "expiration_priority",
                 costEditable: true,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                currencyPrices: [
+                    {
+                        currency: "currency",
+                    },
+                ],
                 defaultExpiryUnit: "billing_periods",
                 defaultExpiryUnitCount: 1000000,
                 defaultRolloverPolicy: "expire",
@@ -926,12 +950,14 @@ describe("CreditsClient", () => {
         const rawResponseBody = {
             data: [
                 {
+                    billing_invoice_id: "billing_invoice_id",
                     bundle_type: "fixed",
                     created_at: "2024-01-15T09:30:00Z",
                     credit_description: "credit_description",
                     credit_icon: "credit_icon",
                     credit_id: "credit_id",
                     credit_name: "credit_name",
+                    currency_prices: [{ currency: "currency" }],
                     expiry_type: "duration",
                     expiry_unit: "billing_periods",
                     expiry_unit_count: 1000000,
@@ -991,12 +1017,18 @@ describe("CreditsClient", () => {
         expect(response).toEqual({
             data: [
                 {
+                    billingInvoiceId: "billing_invoice_id",
                     bundleType: "fixed",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     creditDescription: "credit_description",
                     creditIcon: "credit_icon",
                     creditId: "credit_id",
                     creditName: "credit_name",
+                    currencyPrices: [
+                        {
+                            currency: "currency",
+                        },
+                    ],
                     expiryType: "duration",
                     expiryUnit: "billing_periods",
                     expiryUnitCount: 1000000,
@@ -1145,12 +1177,14 @@ describe("CreditsClient", () => {
         };
         const rawResponseBody = {
             data: {
+                billing_invoice_id: "billing_invoice_id",
                 bundle_type: "fixed",
                 created_at: "2024-01-15T09:30:00Z",
                 credit_description: "credit_description",
                 credit_icon: "credit_icon",
                 credit_id: "credit_id",
                 credit_name: "credit_name",
+                currency_prices: [{ currency: "currency" }],
                 expiry_type: "duration",
                 expiry_unit: "billing_periods",
                 expiry_unit_count: 1000000,
@@ -1203,12 +1237,18 @@ describe("CreditsClient", () => {
         });
         expect(response).toEqual({
             data: {
+                billingInvoiceId: "billing_invoice_id",
                 bundleType: "fixed",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 creditDescription: "credit_description",
                 creditIcon: "credit_icon",
                 creditId: "credit_id",
                 creditName: "credit_name",
+                currencyPrices: [
+                    {
+                        currency: "currency",
+                    },
+                ],
                 expiryType: "duration",
                 expiryUnit: "billing_periods",
                 expiryUnitCount: 1000000,
@@ -1403,12 +1443,14 @@ describe("CreditsClient", () => {
 
         const rawResponseBody = {
             data: {
+                billing_invoice_id: "billing_invoice_id",
                 bundle_type: "fixed",
                 created_at: "2024-01-15T09:30:00Z",
                 credit_description: "credit_description",
                 credit_icon: "credit_icon",
                 credit_id: "credit_id",
                 credit_name: "credit_name",
+                currency_prices: [{ currency: "currency" }],
                 expiry_type: "duration",
                 expiry_unit: "billing_periods",
                 expiry_unit_count: 1000000,
@@ -1455,12 +1497,18 @@ describe("CreditsClient", () => {
         const response = await client.credits.getCreditBundle("bundle_id");
         expect(response).toEqual({
             data: {
+                billingInvoiceId: "billing_invoice_id",
                 bundleType: "fixed",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 creditDescription: "credit_description",
                 creditIcon: "credit_icon",
                 creditId: "credit_id",
                 creditName: "credit_name",
+                currencyPrices: [
+                    {
+                        currency: "currency",
+                    },
+                ],
                 expiryType: "duration",
                 expiryUnit: "billing_periods",
                 expiryUnitCount: 1000000,
@@ -1581,12 +1629,14 @@ describe("CreditsClient", () => {
         const rawRequestBody = { bundle_name: "bundle_name", price_per_unit: 1000000 };
         const rawResponseBody = {
             data: {
+                billing_invoice_id: "billing_invoice_id",
                 bundle_type: "fixed",
                 created_at: "2024-01-15T09:30:00Z",
                 credit_description: "credit_description",
                 credit_icon: "credit_icon",
                 credit_id: "credit_id",
                 credit_name: "credit_name",
+                currency_prices: [{ currency: "currency" }],
                 expiry_type: "duration",
                 expiry_unit: "billing_periods",
                 expiry_unit_count: 1000000,
@@ -1637,12 +1687,18 @@ describe("CreditsClient", () => {
         });
         expect(response).toEqual({
             data: {
+                billingInvoiceId: "billing_invoice_id",
                 bundleType: "fixed",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 creditDescription: "credit_description",
                 creditIcon: "credit_icon",
                 creditId: "credit_id",
                 creditName: "credit_name",
+                currencyPrices: [
+                    {
+                        currency: "currency",
+                    },
+                ],
                 expiryType: "duration",
                 expiryUnit: "billing_periods",
                 expiryUnitCount: 1000000,
@@ -2199,8 +2255,9 @@ describe("CreditsClient", () => {
                 credit_icon: "credit_icon",
                 credit_id: "credit_id",
                 credit_name: "credit_name",
+                currency: "currency",
                 expires_at: "2024-01-15T09:30:00Z",
-                grant_reason: "billing_credit_auto_topup",
+                grant_reason: "adjustment",
                 id: "id",
                 plan_id: "plan_id",
                 plan_name: "plan_name",
@@ -2256,8 +2313,9 @@ describe("CreditsClient", () => {
                 creditIcon: "credit_icon",
                 creditId: "credit_id",
                 creditName: "credit_name",
+                currency: "currency",
                 expiresAt: new Date("2024-01-15T09:30:00.000Z"),
-                grantReason: "billing_credit_auto_topup",
+                grantReason: "adjustment",
                 id: "id",
                 planId: "plan_id",
                 planName: "plan_name",
@@ -2405,7 +2463,7 @@ describe("CreditsClient", () => {
             company_id: "company_id",
             credit_id: "credit_id",
             quantity: 1000000,
-            reason: "billing_credit_auto_topup",
+            reason: "adjustment",
         };
         const rawResponseBody = {
             data: {
@@ -2415,8 +2473,9 @@ describe("CreditsClient", () => {
                 credit_icon: "credit_icon",
                 credit_id: "credit_id",
                 credit_name: "credit_name",
+                currency: "currency",
                 expires_at: "2024-01-15T09:30:00Z",
-                grant_reason: "billing_credit_auto_topup",
+                grant_reason: "adjustment",
                 id: "id",
                 plan_id: "plan_id",
                 plan_name: "plan_name",
@@ -2467,7 +2526,7 @@ describe("CreditsClient", () => {
             companyId: "company_id",
             creditId: "credit_id",
             quantity: 1000000,
-            reason: "billing_credit_auto_topup",
+            reason: "adjustment",
         });
         expect(response).toEqual({
             data: {
@@ -2477,8 +2536,9 @@ describe("CreditsClient", () => {
                 creditIcon: "credit_icon",
                 creditId: "credit_id",
                 creditName: "credit_name",
+                currency: "currency",
                 expiresAt: new Date("2024-01-15T09:30:00.000Z"),
-                grantReason: "billing_credit_auto_topup",
+                grantReason: "adjustment",
                 id: "id",
                 planId: "plan_id",
                 planName: "plan_name",
@@ -2526,7 +2586,7 @@ describe("CreditsClient", () => {
             company_id: "company_id",
             credit_id: "credit_id",
             quantity: 1000000,
-            reason: "billing_credit_auto_topup",
+            reason: "adjustment",
         };
         const rawResponseBody = { error: "error" };
 
@@ -2544,7 +2604,7 @@ describe("CreditsClient", () => {
                 companyId: "company_id",
                 creditId: "credit_id",
                 quantity: 1000000,
-                reason: "billing_credit_auto_topup",
+                reason: "adjustment",
             });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
@@ -2556,7 +2616,7 @@ describe("CreditsClient", () => {
             company_id: "company_id",
             credit_id: "credit_id",
             quantity: 1000000,
-            reason: "billing_credit_auto_topup",
+            reason: "adjustment",
         };
         const rawResponseBody = { error: "error" };
 
@@ -2574,7 +2634,7 @@ describe("CreditsClient", () => {
                 companyId: "company_id",
                 creditId: "credit_id",
                 quantity: 1000000,
-                reason: "billing_credit_auto_topup",
+                reason: "adjustment",
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
@@ -2586,7 +2646,7 @@ describe("CreditsClient", () => {
             company_id: "company_id",
             credit_id: "credit_id",
             quantity: 1000000,
-            reason: "billing_credit_auto_topup",
+            reason: "adjustment",
         };
         const rawResponseBody = { error: "error" };
 
@@ -2604,7 +2664,7 @@ describe("CreditsClient", () => {
                 companyId: "company_id",
                 creditId: "credit_id",
                 quantity: 1000000,
-                reason: "billing_credit_auto_topup",
+                reason: "adjustment",
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
@@ -2616,7 +2676,7 @@ describe("CreditsClient", () => {
             company_id: "company_id",
             credit_id: "credit_id",
             quantity: 1000000,
-            reason: "billing_credit_auto_topup",
+            reason: "adjustment",
         };
         const rawResponseBody = { error: "error" };
 
@@ -2634,7 +2694,7 @@ describe("CreditsClient", () => {
                 companyId: "company_id",
                 creditId: "credit_id",
                 quantity: 1000000,
-                reason: "billing_credit_auto_topup",
+                reason: "adjustment",
             });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
@@ -2646,7 +2706,7 @@ describe("CreditsClient", () => {
             company_id: "company_id",
             credit_id: "credit_id",
             quantity: 1000000,
-            reason: "billing_credit_auto_topup",
+            reason: "adjustment",
         };
         const rawResponseBody = { error: "error" };
 
@@ -2664,7 +2724,7 @@ describe("CreditsClient", () => {
                 companyId: "company_id",
                 creditId: "credit_id",
                 quantity: 1000000,
-                reason: "billing_credit_auto_topup",
+                reason: "adjustment",
             });
         }).rejects.toThrow(Schematic.InternalServerError);
     });
@@ -2815,8 +2875,9 @@ describe("CreditsClient", () => {
                     credit_icon: "credit_icon",
                     credit_id: "credit_id",
                     credit_name: "credit_name",
+                    currency: "currency",
                     expires_at: "2024-01-15T09:30:00Z",
-                    grant_reason: "billing_credit_auto_topup",
+                    grant_reason: "adjustment",
                     id: "id",
                     plan_id: "plan_id",
                     plan_name: "plan_name",
@@ -2878,8 +2939,9 @@ describe("CreditsClient", () => {
                     creditIcon: "credit_icon",
                     creditId: "credit_id",
                     creditName: "credit_name",
+                    currency: "currency",
                     expiresAt: new Date("2024-01-15T09:30:00.000Z"),
-                    grantReason: "billing_credit_auto_topup",
+                    grantReason: "adjustment",
                     id: "id",
                     planId: "plan_id",
                     planName: "plan_name",
@@ -3162,8 +3224,9 @@ describe("CreditsClient", () => {
                     credit_icon: "credit_icon",
                     credit_id: "credit_id",
                     credit_name: "credit_name",
+                    currency: "currency",
                     expires_at: "2024-01-15T09:30:00Z",
-                    grant_reason: "billing_credit_auto_topup",
+                    grant_reason: "adjustment",
                     id: "id",
                     plan_id: "plan_id",
                     plan_name: "plan_name",
@@ -3223,8 +3286,9 @@ describe("CreditsClient", () => {
                     creditIcon: "credit_icon",
                     creditId: "credit_id",
                     creditName: "credit_name",
+                    currency: "currency",
                     expiresAt: new Date("2024-01-15T09:30:00.000Z"),
-                    grantReason: "billing_credit_auto_topup",
+                    grantReason: "adjustment",
                     id: "id",
                     planId: "plan_id",
                     planName: "plan_name",
@@ -3759,12 +3823,14 @@ describe("CreditsClient", () => {
                     auto_topup_expiry_type: "duration",
                     auto_topup_expiry_unit: "billing_periods",
                     auto_topup_expiry_unit_count: 1000000,
+                    auto_topup_threshold_credits: 1000000,
                     auto_topup_threshold_percent: 1000000,
                     created_at: "2024-01-15T09:30:00Z",
                     credit: {
                         burn_strategy: "expiration_priority",
                         cost_editable: true,
                         created_at: "2024-01-15T09:30:00Z",
+                        currency_prices: [{ currency: "currency" }],
                         default_expiry_unit: "billing_periods",
                         default_rollover_policy: "expire",
                         description: "description",
@@ -3824,12 +3890,18 @@ describe("CreditsClient", () => {
                     autoTopupExpiryType: "duration",
                     autoTopupExpiryUnit: "billing_periods",
                     autoTopupExpiryUnitCount: 1000000,
+                    autoTopupThresholdCredits: 1000000,
                     autoTopupThresholdPercent: 1000000,
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     credit: {
                         burnStrategy: "expiration_priority",
                         costEditable: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        currencyPrices: [
+                            {
+                                currency: "currency",
+                            },
+                        ],
                         defaultExpiryUnit: "billing_periods",
                         defaultRolloverPolicy: "expire",
                         description: "description",
@@ -3982,12 +4054,14 @@ describe("CreditsClient", () => {
                 auto_topup_expiry_type: "duration",
                 auto_topup_expiry_unit: "billing_periods",
                 auto_topup_expiry_unit_count: 1000000,
+                auto_topup_threshold_credits: 1000000,
                 auto_topup_threshold_percent: 1000000,
                 created_at: "2024-01-15T09:30:00Z",
                 credit: {
                     burn_strategy: "expiration_priority",
                     cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
+                    currency_prices: [{ currency: "currency" }],
                     default_expiry_unit: "billing_periods",
                     default_expiry_unit_count: 1000000,
                     default_rollover_policy: "expire",
@@ -4064,12 +4138,18 @@ describe("CreditsClient", () => {
                 autoTopupExpiryType: "duration",
                 autoTopupExpiryUnit: "billing_periods",
                 autoTopupExpiryUnitCount: 1000000,
+                autoTopupThresholdCredits: 1000000,
                 autoTopupThresholdPercent: 1000000,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 credit: {
                     burnStrategy: "expiration_priority",
                     costEditable: true,
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    currencyPrices: [
+                        {
+                            currency: "currency",
+                        },
+                    ],
                     defaultExpiryUnit: "billing_periods",
                     defaultExpiryUnitCount: 1000000,
                     defaultRolloverPolicy: "expire",
@@ -4290,6 +4370,243 @@ describe("CreditsClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("getSingleBillingPlanCreditGrant (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                auto_topup_amount: 1000000,
+                auto_topup_amount_type: "auto_topup_amount_type",
+                auto_topup_enabled: true,
+                auto_topup_expiry_type: "duration",
+                auto_topup_expiry_unit: "billing_periods",
+                auto_topup_expiry_unit_count: 1000000,
+                auto_topup_threshold_credits: 1000000,
+                auto_topup_threshold_percent: 1000000,
+                created_at: "2024-01-15T09:30:00Z",
+                credit: {
+                    burn_strategy: "expiration_priority",
+                    cost_editable: true,
+                    created_at: "2024-01-15T09:30:00Z",
+                    currency_prices: [{ currency: "currency" }],
+                    default_expiry_unit: "billing_periods",
+                    default_expiry_unit_count: 1000000,
+                    default_rollover_policy: "expire",
+                    description: "description",
+                    icon: "icon",
+                    id: "id",
+                    name: "name",
+                    plural_name: "plural_name",
+                    price: {
+                        currency: "currency",
+                        external_price_id: "external_price_id",
+                        id: "id",
+                        interval: "day",
+                        price: 1000000,
+                        provider_type: "schematic",
+                        scheme: "per_unit",
+                    },
+                    product: {
+                        account_id: "account_id",
+                        created_at: "2024-01-15T09:30:00Z",
+                        environment_id: "environment_id",
+                        external_id: "external_id",
+                        is_active: true,
+                        name: "name",
+                        price: 1.1,
+                        product_id: "product_id",
+                        provider_type: "schematic",
+                        quantity: 1.1,
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
+                    singular_name: "singular_name",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+                credit_amount: 1000000,
+                credit_id: "credit_id",
+                credit_name: "credit_name",
+                expiry_type: "duration",
+                expiry_unit: "billing_periods",
+                expiry_unit_count: 1000000,
+                id: "id",
+                plan: { description: "description", id: "id", image_url: "image_url", name: "name" },
+                plan_id: "plan_id",
+                plan_name: "plan_name",
+                plan_version_id: "plan_version_id",
+                reset_cadence: "daily",
+                reset_start: "billing_period",
+                reset_type: "no_reset",
+                updated_at: "2024-01-15T09:30:00Z",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/plan-grants/plan_grant_id")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.credits.getSingleBillingPlanCreditGrant("plan_grant_id");
+        expect(response).toEqual({
+            data: {
+                autoTopupAmount: 1000000,
+                autoTopupAmountType: "auto_topup_amount_type",
+                autoTopupEnabled: true,
+                autoTopupExpiryType: "duration",
+                autoTopupExpiryUnit: "billing_periods",
+                autoTopupExpiryUnitCount: 1000000,
+                autoTopupThresholdCredits: 1000000,
+                autoTopupThresholdPercent: 1000000,
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                credit: {
+                    burnStrategy: "expiration_priority",
+                    costEditable: true,
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    currencyPrices: [
+                        {
+                            currency: "currency",
+                        },
+                    ],
+                    defaultExpiryUnit: "billing_periods",
+                    defaultExpiryUnitCount: 1000000,
+                    defaultRolloverPolicy: "expire",
+                    description: "description",
+                    icon: "icon",
+                    id: "id",
+                    name: "name",
+                    pluralName: "plural_name",
+                    price: {
+                        currency: "currency",
+                        externalPriceId: "external_price_id",
+                        id: "id",
+                        interval: "day",
+                        price: 1000000,
+                        providerType: "schematic",
+                        scheme: "per_unit",
+                    },
+                    product: {
+                        accountId: "account_id",
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        environmentId: "environment_id",
+                        externalId: "external_id",
+                        isActive: true,
+                        name: "name",
+                        price: 1.1,
+                        productId: "product_id",
+                        providerType: "schematic",
+                        quantity: 1.1,
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                    singularName: "singular_name",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+                creditAmount: 1000000,
+                creditId: "credit_id",
+                creditName: "credit_name",
+                expiryType: "duration",
+                expiryUnit: "billing_periods",
+                expiryUnitCount: 1000000,
+                id: "id",
+                plan: {
+                    description: "description",
+                    id: "id",
+                    imageUrl: "image_url",
+                    name: "name",
+                },
+                planId: "plan_id",
+                planName: "plan_name",
+                planVersionId: "plan_version_id",
+                resetCadence: "daily",
+                resetStart: "billing_period",
+                resetType: "no_reset",
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("getSingleBillingPlanCreditGrant (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/plan-grants/plan_grant_id")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.getSingleBillingPlanCreditGrant("plan_grant_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getSingleBillingPlanCreditGrant (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/plan-grants/plan_grant_id")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.getSingleBillingPlanCreditGrant("plan_grant_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getSingleBillingPlanCreditGrant (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/plan-grants/plan_grant_id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.getSingleBillingPlanCreditGrant("plan_grant_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getSingleBillingPlanCreditGrant (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/plan-grants/plan_grant_id")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.getSingleBillingPlanCreditGrant("plan_grant_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("updateBillingPlanCreditGrant (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -4302,12 +4619,14 @@ describe("CreditsClient", () => {
                 auto_topup_expiry_type: "duration",
                 auto_topup_expiry_unit: "billing_periods",
                 auto_topup_expiry_unit_count: 1000000,
+                auto_topup_threshold_credits: 1000000,
                 auto_topup_threshold_percent: 1000000,
                 created_at: "2024-01-15T09:30:00Z",
                 credit: {
                     burn_strategy: "expiration_priority",
                     cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
+                    currency_prices: [{ currency: "currency" }],
                     default_expiry_unit: "billing_periods",
                     default_expiry_unit_count: 1000000,
                     default_rollover_policy: "expire",
@@ -4381,12 +4700,18 @@ describe("CreditsClient", () => {
                 autoTopupExpiryType: "duration",
                 autoTopupExpiryUnit: "billing_periods",
                 autoTopupExpiryUnitCount: 1000000,
+                autoTopupThresholdCredits: 1000000,
                 autoTopupThresholdPercent: 1000000,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 credit: {
                     burnStrategy: "expiration_priority",
                     costEditable: true,
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    currencyPrices: [
+                        {
+                            currency: "currency",
+                        },
+                    ],
                     defaultExpiryUnit: "billing_periods",
                     defaultExpiryUnitCount: 1000000,
                     defaultRolloverPolicy: "expire",
@@ -4856,7 +5181,7 @@ describe("CreditsClient", () => {
                     grant_id: "grant_id",
                     grant_quantity: 1000000,
                     grant_quantity_remaining: 1.1,
-                    grant_reason: "billing_credit_auto_topup",
+                    grant_reason: "adjustment",
                     grant_valid_from: "2024-01-15T09:30:00Z",
                     plan_id: "plan_id",
                     quantity_consumed: 1.1,
@@ -4931,7 +5256,7 @@ describe("CreditsClient", () => {
                     grantId: "grant_id",
                     grantQuantity: 1000000,
                     grantQuantityRemaining: 1.1,
-                    grantReason: "billing_credit_auto_topup",
+                    grantReason: "adjustment",
                     grantValidFrom: new Date("2024-01-15T09:30:00.000Z"),
                     planId: "plan_id",
                     quantityConsumed: 1.1,

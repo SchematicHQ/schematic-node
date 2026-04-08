@@ -4,8 +4,10 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingCreditResponseData } from "./BillingCreditResponseData";
+import { BillingLinkedResourceResponseData } from "./BillingLinkedResourceResponseData";
 import { BillingPriceView } from "./BillingPriceView";
 import { BillingProductResponseData } from "./BillingProductResponseData";
+import { EntitlementCurrencyPricesResponseData } from "./EntitlementCurrencyPricesResponseData";
 import { EntitlementPriceBehavior } from "./EntitlementPriceBehavior";
 import { EntitlementValueType } from "./EntitlementValueType";
 import { EntityTraitDefinitionResponseData } from "./EntityTraitDefinitionResponseData";
@@ -16,9 +18,17 @@ export const PlanEntitlementResponseData: core.serialization.ObjectSchema<
     serializers.PlanEntitlementResponseData.Raw,
     Schematic.PlanEntitlementResponseData
 > = core.serialization.object({
+    billingLinkedResource: core.serialization.property(
+        "billing_linked_resource",
+        BillingLinkedResourceResponseData.optional(),
+    ),
     billingThreshold: core.serialization.property("billing_threshold", core.serialization.number().optional()),
     consumptionRate: core.serialization.property("consumption_rate", core.serialization.number().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
+    currencyPrices: core.serialization.property(
+        "currency_prices",
+        core.serialization.list(EntitlementCurrencyPricesResponseData),
+    ),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     feature: FeatureResponseData.optional(),
     featureId: core.serialization.property("feature_id", core.serialization.string()),
@@ -48,9 +58,11 @@ export const PlanEntitlementResponseData: core.serialization.ObjectSchema<
 
 export declare namespace PlanEntitlementResponseData {
     export interface Raw {
+        billing_linked_resource?: BillingLinkedResourceResponseData.Raw | null;
         billing_threshold?: number | null;
         consumption_rate?: number | null;
         created_at: string;
+        currency_prices: EntitlementCurrencyPricesResponseData.Raw[];
         environment_id: string;
         feature?: FeatureResponseData.Raw | null;
         feature_id: string;

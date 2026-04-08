@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { BillingLinkedResourceResponseData } from "./BillingLinkedResourceResponseData";
 import { BillingPlanCreditGrantResponseData } from "./BillingPlanCreditGrantResponseData";
 import { BillingPriceResponseData } from "./BillingPriceResponseData";
 import { BillingProductDetailResponseData } from "./BillingProductDetailResponseData";
@@ -10,7 +11,9 @@ import { ChargeType } from "./ChargeType";
 import { CustomPlanViewConfigResponseData } from "./CustomPlanViewConfigResponseData";
 import { FeatureDetailResponseData } from "./FeatureDetailResponseData";
 import { PlanControlledByType } from "./PlanControlledByType";
+import { PlanCurrencyPricesResponseData } from "./PlanCurrencyPricesResponseData";
 import { PlanEntitlementResponseData } from "./PlanEntitlementResponseData";
+import { PlanIcon } from "./PlanIcon";
 import { PlanType } from "./PlanType";
 import { PlanVersionResponseData } from "./PlanVersionResponseData";
 
@@ -20,6 +23,10 @@ export const PlanGroupPlanDetailResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     activeVersion: core.serialization.property("active_version", PlanVersionResponseData.optional()),
     audienceType: core.serialization.property("audience_type", core.serialization.string().optional()),
+    billingLinkedResource: core.serialization.property(
+        "billing_linked_resource",
+        BillingLinkedResourceResponseData.optional(),
+    ),
     billingProduct: core.serialization.property("billing_product", BillingProductDetailResponseData.optional()),
     chargeType: core.serialization.property("charge_type", ChargeType),
     companyCount: core.serialization.property("company_count", core.serialization.number()),
@@ -29,12 +36,16 @@ export const PlanGroupPlanDetailResponseData: core.serialization.ObjectSchema<
     ),
     controlledBy: core.serialization.property("controlled_by", PlanControlledByType),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
+    currencyPrices: core.serialization.property(
+        "currency_prices",
+        core.serialization.list(PlanCurrencyPricesResponseData),
+    ),
     customPlanConfig: core.serialization.property("custom_plan_config", CustomPlanViewConfigResponseData.optional()),
     description: core.serialization.string(),
     draftVersion: core.serialization.property("draft_version", PlanVersionResponseData.optional()),
     entitlements: core.serialization.list(PlanEntitlementResponseData),
     features: core.serialization.list(FeatureDetailResponseData),
-    icon: core.serialization.string(),
+    icon: PlanIcon,
     id: core.serialization.string(),
     includedCreditGrants: core.serialization.property(
         "included_credit_grants",
@@ -58,18 +69,20 @@ export declare namespace PlanGroupPlanDetailResponseData {
     export interface Raw {
         active_version?: PlanVersionResponseData.Raw | null;
         audience_type?: string | null;
+        billing_linked_resource?: BillingLinkedResourceResponseData.Raw | null;
         billing_product?: BillingProductDetailResponseData.Raw | null;
         charge_type: ChargeType.Raw;
         company_count: number;
         compatible_plan_ids: string[];
         controlled_by: PlanControlledByType.Raw;
         created_at: string;
+        currency_prices: PlanCurrencyPricesResponseData.Raw[];
         custom_plan_config?: CustomPlanViewConfigResponseData.Raw | null;
         description: string;
         draft_version?: PlanVersionResponseData.Raw | null;
         entitlements: PlanEntitlementResponseData.Raw[];
         features: FeatureDetailResponseData.Raw[];
-        icon: string;
+        icon: PlanIcon.Raw;
         id: string;
         included_credit_grants?: BillingPlanCreditGrantResponseData.Raw[] | null;
         is_custom: boolean;

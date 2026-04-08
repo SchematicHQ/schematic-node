@@ -1,3 +1,4 @@
+export { CreateBillingLinkedPlanEntitlementRequestBody } from "./CreateBillingLinkedPlanEntitlementRequestBody";
 export { CreateCompanyOverrideRequestBody } from "./CreateCompanyOverrideRequestBody";
 export { CreatePlanEntitlementRequestBody } from "./CreatePlanEntitlementRequestBody";
 export { DuplicatePlanEntitlementsRequestBody } from "./DuplicatePlanEntitlementsRequestBody";

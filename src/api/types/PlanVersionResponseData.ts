@@ -6,7 +6,7 @@ export interface PlanVersionResponseData {
     createdAt: Date;
     description: string;
     environmentId: string;
-    icon: string;
+    icon: Schematic.PlanIcon;
     id: string;
     name: string;
     originalPlanId?: string;

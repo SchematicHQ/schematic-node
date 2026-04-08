@@ -3,12 +3,14 @@
 import type * as Schematic from "../index";
 
 export interface BillingCreditBundleResponseData {
+    billingInvoiceId?: string;
     bundleType: Schematic.BillingCreditBundleType;
     createdAt: Date;
     creditDescription?: string;
     creditIcon?: string;
     creditId: string;
     creditName: string;
+    currencyPrices: Schematic.CreditBundleCurrencyPriceResponseData[];
     expiryType: Schematic.BillingCreditExpiryType;
     expiryUnit: Schematic.BillingCreditExpiryUnit;
     expiryUnitCount?: number;

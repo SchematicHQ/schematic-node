@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { TrialStatus } from "./TrialStatus";
 
 export const DatastreamCompanyPlan: core.serialization.ObjectSchema<
     serializers.DatastreamCompanyPlan.Raw,
@@ -11,6 +12,7 @@ export const DatastreamCompanyPlan: core.serialization.ObjectSchema<
     id: core.serialization.string(),
     name: core.serialization.string(),
     trialEndDate: core.serialization.property("trial_end_date", core.serialization.date().optional()),
+    trialStatus: core.serialization.property("trial_status", TrialStatus.optional()),
 });
 
 export declare namespace DatastreamCompanyPlan {
@@ -18,5 +20,6 @@ export declare namespace DatastreamCompanyPlan {
         id: string;
         name: string;
         trial_end_date?: string | null;
+        trial_status?: TrialStatus.Raw | null;
     }
 }

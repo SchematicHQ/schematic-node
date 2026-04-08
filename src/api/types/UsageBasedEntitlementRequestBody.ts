@@ -6,6 +6,7 @@ export interface UsageBasedEntitlementRequestBody {
     billingProductId?: string;
     billingThreshold?: number;
     currency?: string;
+    currencyPrices?: Schematic.CurrencyPriceRequestBody[];
     monthlyMeteredPriceId?: string;
     monthlyPriceTiers?: Schematic.CreatePriceTierRequestBody[];
     monthlyUnitPrice?: number;

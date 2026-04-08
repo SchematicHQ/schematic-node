@@ -5,6 +5,7 @@ import type * as Schematic from "../index";
 export interface CompanyPlanDetailResponseData {
     activeVersion?: Schematic.PlanVersionResponseData;
     audienceType?: string;
+    billingLinkedResource?: Schematic.BillingLinkedResourceResponseData;
     billingProduct?: Schematic.BillingProductDetailResponseData;
     chargeType: Schematic.ChargeType;
     companyCanTrial: boolean;
@@ -12,6 +13,7 @@ export interface CompanyPlanDetailResponseData {
     compatiblePlanIds: string[];
     controlledBy: Schematic.PlanControlledByType;
     createdAt: Date;
+    currencyPrices: Schematic.PlanCurrencyPricesResponseData[];
     current: boolean;
     custom: boolean;
     customPlanConfig?: Schematic.CustomPlanConfig;
@@ -19,7 +21,7 @@ export interface CompanyPlanDetailResponseData {
     draftVersion?: Schematic.PlanVersionResponseData;
     entitlements: Schematic.PlanEntitlementResponseData[];
     features: Schematic.FeatureDetailResponseData[];
-    icon: string;
+    icon: Schematic.PlanIcon;
     id: string;
     includedCreditGrants: Schematic.PlanCreditGrantView[];
     invalidReason?: Schematic.CompanyPlanInvalidReason;

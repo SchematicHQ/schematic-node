@@ -5,6 +5,7 @@ import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
 import { BillingTiersMode } from "../../../../types/BillingTiersMode";
 import { CreatePriceTierRequestBody } from "../../../../types/CreatePriceTierRequestBody";
+import { CurrencyPriceRequestBody } from "../../../../types/CurrencyPriceRequestBody";
 import { EntitlementPriceBehavior } from "../../../../types/EntitlementPriceBehavior";
 import { EntitlementValueType } from "../../../../types/EntitlementValueType";
 import { CreatePlanEntitlementRequestBodyMetricPeriod } from "../../types/CreatePlanEntitlementRequestBodyMetricPeriod";
@@ -21,6 +22,10 @@ export const CreatePlanEntitlementRequestBody: core.serialization.Schema<
         core.serialization.number().optional(),
     ),
     currency: core.serialization.string().optional(),
+    currencyPrices: core.serialization.property(
+        "currency_prices",
+        core.serialization.list(CurrencyPriceRequestBody).optional(),
+    ),
     featureId: core.serialization.property("feature_id", core.serialization.string()),
     metricPeriod: core.serialization.property("metric_period", CreatePlanEntitlementRequestBodyMetricPeriod.optional()),
     metricPeriodMonthReset: core.serialization.property(
@@ -79,6 +84,7 @@ export declare namespace CreatePlanEntitlementRequestBody {
         billing_threshold?: number | null;
         credit_consumption_rate?: number | null;
         currency?: string | null;
+        currency_prices?: CurrencyPriceRequestBody.Raw[] | null;
         feature_id: string;
         metric_period?: CreatePlanEntitlementRequestBodyMetricPeriod.Raw | null;
         metric_period_month_reset?: CreatePlanEntitlementRequestBodyMetricPeriodMonthReset.Raw | null;
