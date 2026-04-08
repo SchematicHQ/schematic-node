@@ -15,6 +15,7 @@ export interface CreatePlanEntitlementRequestBody {
     billingThreshold?: number;
     creditConsumptionRate?: number;
     currency?: string;
+    currencyPrices?: Schematic.CurrencyPriceRequestBody[];
     featureId: string;
     metricPeriod?: Schematic.CreatePlanEntitlementRequestBodyMetricPeriod;
     metricPeriodMonthReset?: Schematic.CreatePlanEntitlementRequestBodyMetricPeriodMonthReset;

@@ -13,6 +13,7 @@ export interface UpdatePlanEntitlementRequestBody {
     billingThreshold?: number;
     creditConsumptionRate?: number;
     currency?: string;
+    currencyPrices?: Schematic.CurrencyPriceRequestBody[];
     metricPeriod?: Schematic.UpdatePlanEntitlementRequestBodyMetricPeriod;
     metricPeriodMonthReset?: Schematic.UpdatePlanEntitlementRequestBodyMetricPeriodMonthReset;
     monthlyMeteredPriceId?: string;

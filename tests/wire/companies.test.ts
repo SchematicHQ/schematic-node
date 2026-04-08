@@ -3408,6 +3408,7 @@ describe("CompaniesClient", () => {
                                 billing_credit_auto_topup_expiry_type: "duration",
                                 billing_credit_auto_topup_expiry_unit: "billing_periods",
                                 billing_credit_auto_topup_expiry_unit_count: 1000000,
+                                billing_credit_auto_topup_threshold_credits: 1000000,
                                 billing_credit_auto_topup_threshold_percent: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit: {
@@ -3487,6 +3488,7 @@ describe("CompaniesClient", () => {
                                 billing_credit_auto_topup_expiry_type: "duration",
                                 billing_credit_auto_topup_expiry_unit: "billing_periods",
                                 billing_credit_auto_topup_expiry_unit_count: 1000000,
+                                billing_credit_auto_topup_threshold_credits: 1000000,
                                 billing_credit_auto_topup_threshold_percent: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit: {
@@ -3580,6 +3582,7 @@ describe("CompaniesClient", () => {
                                 billing_credit_auto_topup_expiry_type: "duration",
                                 billing_credit_auto_topup_expiry_unit: "billing_periods",
                                 billing_credit_auto_topup_expiry_unit_count: 1000000,
+                                billing_credit_auto_topup_threshold_credits: 1000000,
                                 billing_credit_auto_topup_threshold_percent: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit: {
@@ -3659,6 +3662,7 @@ describe("CompaniesClient", () => {
                                 billing_credit_auto_topup_expiry_type: "duration",
                                 billing_credit_auto_topup_expiry_unit: "billing_periods",
                                 billing_credit_auto_topup_expiry_unit_count: 1000000,
+                                billing_credit_auto_topup_threshold_credits: 1000000,
                                 billing_credit_auto_topup_threshold_percent: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit: {
@@ -4479,6 +4483,7 @@ describe("CompaniesClient", () => {
                             billing_credit_auto_topup_expiry_type: "duration",
                             billing_credit_auto_topup_expiry_unit: "billing_periods",
                             billing_credit_auto_topup_expiry_unit_count: 1000000,
+                            billing_credit_auto_topup_threshold_credits: 1000000,
                             billing_credit_auto_topup_threshold_percent: 1000000,
                             created_at: "2024-01-15T09:30:00Z",
                             credit: {
@@ -4558,6 +4563,7 @@ describe("CompaniesClient", () => {
                             billing_credit_auto_topup_expiry_type: "duration",
                             billing_credit_auto_topup_expiry_unit: "billing_periods",
                             billing_credit_auto_topup_expiry_unit_count: 1000000,
+                            billing_credit_auto_topup_threshold_credits: 1000000,
                             billing_credit_auto_topup_threshold_percent: 1000000,
                             created_at: "2024-01-15T09:30:00Z",
                             credit: {
@@ -4983,6 +4989,7 @@ describe("CompaniesClient", () => {
                                 billingCreditAutoTopupExpiryType: "duration",
                                 billingCreditAutoTopupExpiryUnit: "billing_periods",
                                 billingCreditAutoTopupExpiryUnitCount: 1000000,
+                                billingCreditAutoTopupThresholdCredits: 1000000,
                                 billingCreditAutoTopupThresholdPercent: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 credit: {
@@ -5067,6 +5074,7 @@ describe("CompaniesClient", () => {
                                 billingCreditAutoTopupExpiryType: "duration",
                                 billingCreditAutoTopupExpiryUnit: "billing_periods",
                                 billingCreditAutoTopupExpiryUnitCount: 1000000,
+                                billingCreditAutoTopupThresholdCredits: 1000000,
                                 billingCreditAutoTopupThresholdPercent: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 credit: {
@@ -5165,6 +5173,7 @@ describe("CompaniesClient", () => {
                                 billingCreditAutoTopupExpiryType: "duration",
                                 billingCreditAutoTopupExpiryUnit: "billing_periods",
                                 billingCreditAutoTopupExpiryUnitCount: 1000000,
+                                billingCreditAutoTopupThresholdCredits: 1000000,
                                 billingCreditAutoTopupThresholdPercent: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 credit: {
@@ -5249,6 +5258,7 @@ describe("CompaniesClient", () => {
                                 billingCreditAutoTopupExpiryType: "duration",
                                 billingCreditAutoTopupExpiryUnit: "billing_periods",
                                 billingCreditAutoTopupExpiryUnitCount: 1000000,
+                                billingCreditAutoTopupThresholdCredits: 1000000,
                                 billingCreditAutoTopupThresholdPercent: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 credit: {
@@ -6088,6 +6098,7 @@ describe("CompaniesClient", () => {
                             billingCreditAutoTopupExpiryType: "duration",
                             billingCreditAutoTopupExpiryUnit: "billing_periods",
                             billingCreditAutoTopupExpiryUnitCount: 1000000,
+                            billingCreditAutoTopupThresholdCredits: 1000000,
                             billingCreditAutoTopupThresholdPercent: 1000000,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             credit: {
@@ -6172,6 +6183,7 @@ describe("CompaniesClient", () => {
                             billingCreditAutoTopupExpiryType: "duration",
                             billingCreditAutoTopupExpiryUnit: "billing_periods",
                             billingCreditAutoTopupExpiryUnitCount: 1000000,
+                            billingCreditAutoTopupThresholdCredits: 1000000,
                             billingCreditAutoTopupThresholdPercent: 1000000,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             credit: {
@@ -9457,8 +9469,8 @@ describe("CompaniesClient", () => {
                 },
             ],
             params: {
-                action: "action",
-                base_plan_action: "base_plan_action",
+                action: "checkout",
+                base_plan_action: "fallback",
                 company_id: "company_id",
                 company_ids: ["company_ids"],
                 limit: 1000000,
@@ -9470,8 +9482,8 @@ describe("CompaniesClient", () => {
         server.mockEndpoint().get("/plan-changes").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.companies.listPlanChanges({
-            action: "action",
-            basePlanAction: "base_plan_action",
+            action: "checkout",
+            basePlanAction: "fallback",
             companyId: "company_id",
             limit: 1000000,
             offset: 1000000,
@@ -9569,8 +9581,8 @@ describe("CompaniesClient", () => {
                 },
             ],
             params: {
-                action: "action",
-                basePlanAction: "base_plan_action",
+                action: "checkout",
+                basePlanAction: "fallback",
                 companyId: "company_id",
                 companyIds: ["company_ids"],
                 limit: 1000000,

@@ -5,5 +5,5 @@ import type * as Schematic from "../../../index";
 export interface DeletePlanVersionResponse {
     data: Schematic.DeleteResponse;
     /** Input parameters */
-    params: Record<string, unknown>;
+    params: Schematic.DeletePlanVersionParams;
 }

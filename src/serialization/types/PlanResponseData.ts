@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { PlanIcon } from "./PlanIcon";
 import { PlanType } from "./PlanType";
 
 export const PlanResponseData: core.serialization.ObjectSchema<
@@ -12,7 +13,7 @@ export const PlanResponseData: core.serialization.ObjectSchema<
     audienceType: core.serialization.property("audience_type", core.serialization.string().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     description: core.serialization.string(),
-    icon: core.serialization.string(),
+    icon: PlanIcon,
     id: core.serialization.string(),
     name: core.serialization.string(),
     planType: core.serialization.property("plan_type", PlanType),
@@ -24,7 +25,7 @@ export declare namespace PlanResponseData {
         audience_type?: string | null;
         created_at: string;
         description: string;
-        icon: string;
+        icon: PlanIcon.Raw;
         id: string;
         name: string;
         plan_type: PlanType.Raw;

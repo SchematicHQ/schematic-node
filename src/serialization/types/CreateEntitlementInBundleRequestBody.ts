@@ -7,6 +7,7 @@ import { BillingTiersMode } from "./BillingTiersMode";
 import { CreateEntitlementInBundleRequestBodyMetricPeriod } from "./CreateEntitlementInBundleRequestBodyMetricPeriod";
 import { CreateEntitlementInBundleRequestBodyMetricPeriodMonthReset } from "./CreateEntitlementInBundleRequestBodyMetricPeriodMonthReset";
 import { CreatePriceTierRequestBody } from "./CreatePriceTierRequestBody";
+import { CurrencyPriceRequestBody } from "./CurrencyPriceRequestBody";
 import { EntitlementPriceBehavior } from "./EntitlementPriceBehavior";
 import { EntitlementValueType } from "./EntitlementValueType";
 
@@ -21,6 +22,10 @@ export const CreateEntitlementInBundleRequestBody: core.serialization.ObjectSche
         core.serialization.number().optional(),
     ),
     currency: core.serialization.string().optional(),
+    currencyPrices: core.serialization.property(
+        "currency_prices",
+        core.serialization.list(CurrencyPriceRequestBody).optional(),
+    ),
     featureId: core.serialization.property("feature_id", core.serialization.string()),
     metricPeriod: core.serialization.property(
         "metric_period",
@@ -82,6 +87,7 @@ export declare namespace CreateEntitlementInBundleRequestBody {
         billing_threshold?: number | null;
         credit_consumption_rate?: number | null;
         currency?: string | null;
+        currency_prices?: CurrencyPriceRequestBody.Raw[] | null;
         feature_id: string;
         metric_period?: CreateEntitlementInBundleRequestBodyMetricPeriod.Raw | null;
         metric_period_month_reset?: CreateEntitlementInBundleRequestBodyMetricPeriodMonthReset.Raw | null;

@@ -4,18 +4,19 @@ import type * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { DeleteResponse } from "../../../types/DeleteResponse";
+import { DeletePlanVersionParams } from "./DeletePlanVersionParams";
 
 export const DeletePlanVersionResponse: core.serialization.ObjectSchema<
     serializers.DeletePlanVersionResponse.Raw,
     Schematic.DeletePlanVersionResponse
 > = core.serialization.object({
     data: DeleteResponse,
-    params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
+    params: DeletePlanVersionParams,
 });
 
 export declare namespace DeletePlanVersionResponse {
     export interface Raw {
         data: DeleteResponse.Raw;
-        params: Record<string, unknown>;
+        params: DeletePlanVersionParams.Raw;
     }
 }

@@ -784,13 +784,18 @@ describe("PlansClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
                         environment_id: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
                         version: 1000000,
+                    },
+                    billing_linked_resource: {
+                        billing_provider: "schematic",
+                        external_resource_id: "external_resource_id",
+                        originator: "schematic",
                     },
                     billing_product: {
                         account_id: "account_id",
@@ -821,12 +826,13 @@ describe("PlansClient", () => {
                     company_count: 1000000,
                     controlled_by: "schematic",
                     created_at: "2024-01-15T09:30:00Z",
+                    currency_prices: [{ currency: "currency" }],
                     description: "description",
                     draft_version: {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
                         environment_id: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         plan_type: "plan",
@@ -907,7 +913,7 @@ describe("PlansClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     included_credit_grants: [
                         {
@@ -952,7 +958,7 @@ describe("PlansClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             description: "description",
                             environment_id: "environment_id",
-                            icon: "icon",
+                            icon: "amber",
                             id: "id",
                             name: "name",
                             plan_type: "plan",
@@ -1012,13 +1018,18 @@ describe("PlansClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
                         environmentId: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         version: 1000000,
+                    },
+                    billingLinkedResource: {
+                        billingProvider: "schematic",
+                        externalResourceId: "external_resource_id",
+                        originator: "schematic",
                     },
                     billingProduct: {
                         accountId: "account_id",
@@ -1049,12 +1060,17 @@ describe("PlansClient", () => {
                     companyCount: 1000000,
                     controlledBy: "schematic",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    currencyPrices: [
+                        {
+                            currency: "currency",
+                        },
+                    ],
                     description: "description",
                     draftVersion: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
                         environmentId: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         planType: "plan",
@@ -1150,7 +1166,7 @@ describe("PlansClient", () => {
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                     ],
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     includedCreditGrants: [
                         {
@@ -1195,7 +1211,7 @@ describe("PlansClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             description: "description",
                             environmentId: "environment_id",
-                            icon: "icon",
+                            icon: "amber",
                             id: "id",
                             name: "name",
                             planType: "plan",
@@ -1308,7 +1324,7 @@ describe("PlansClient", () => {
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
                     environment_id: "environment_id",
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     name: "name",
                     original_plan_id: "original_plan_id",
@@ -1316,6 +1332,11 @@ describe("PlansClient", () => {
                     status: "published",
                     updated_at: "2024-01-15T09:30:00Z",
                     version: 1000000,
+                },
+                billing_linked_resource: {
+                    billing_provider: "schematic",
+                    external_resource_id: "external_resource_id",
+                    originator: "schematic",
                 },
                 billing_product: {
                     account_id: "account_id",
@@ -1347,12 +1368,13 @@ describe("PlansClient", () => {
                 company_count: 1000000,
                 controlled_by: "schematic",
                 created_at: "2024-01-15T09:30:00Z",
+                currency_prices: [{ currency: "currency" }],
                 description: "description",
                 draft_version: {
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
                     environment_id: "environment_id",
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     name: "name",
                     original_plan_id: "original_plan_id",
@@ -1434,7 +1456,7 @@ describe("PlansClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                 ],
-                icon: "icon",
+                icon: "amber",
                 id: "id",
                 included_credit_grants: [
                     {
@@ -1481,7 +1503,7 @@ describe("PlansClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
                         environment_id: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         plan_type: "plan",
@@ -1524,7 +1546,7 @@ describe("PlansClient", () => {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
                     environmentId: "environment_id",
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     name: "name",
                     originalPlanId: "original_plan_id",
@@ -1532,6 +1554,11 @@ describe("PlansClient", () => {
                     status: "published",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     version: 1000000,
+                },
+                billingLinkedResource: {
+                    billingProvider: "schematic",
+                    externalResourceId: "external_resource_id",
+                    originator: "schematic",
                 },
                 billingProduct: {
                     accountId: "account_id",
@@ -1563,12 +1590,17 @@ describe("PlansClient", () => {
                 companyCount: 1000000,
                 controlledBy: "schematic",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                currencyPrices: [
+                    {
+                        currency: "currency",
+                    },
+                ],
                 description: "description",
                 draftVersion: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
                     environmentId: "environment_id",
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     name: "name",
                     originalPlanId: "original_plan_id",
@@ -1665,7 +1697,7 @@ describe("PlansClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                 ],
-                icon: "icon",
+                icon: "amber",
                 id: "id",
                 includedCreditGrants: [
                     {
@@ -1712,7 +1744,7 @@ describe("PlansClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
                         environmentId: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         planType: "plan",
@@ -1868,7 +1900,7 @@ describe("PlansClient", () => {
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
                     environment_id: "environment_id",
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     name: "name",
                     original_plan_id: "original_plan_id",
@@ -1876,6 +1908,11 @@ describe("PlansClient", () => {
                     status: "published",
                     updated_at: "2024-01-15T09:30:00Z",
                     version: 1000000,
+                },
+                billing_linked_resource: {
+                    billing_provider: "schematic",
+                    external_resource_id: "external_resource_id",
+                    originator: "schematic",
                 },
                 billing_product: {
                     account_id: "account_id",
@@ -1907,12 +1944,13 @@ describe("PlansClient", () => {
                 company_count: 1000000,
                 controlled_by: "schematic",
                 created_at: "2024-01-15T09:30:00Z",
+                currency_prices: [{ currency: "currency" }],
                 description: "description",
                 draft_version: {
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
                     environment_id: "environment_id",
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     name: "name",
                     original_plan_id: "original_plan_id",
@@ -1994,7 +2032,7 @@ describe("PlansClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                 ],
-                icon: "icon",
+                icon: "amber",
                 id: "id",
                 included_credit_grants: [
                     {
@@ -2041,7 +2079,7 @@ describe("PlansClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
                         environment_id: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         plan_type: "plan",
@@ -2075,7 +2113,7 @@ describe("PlansClient", () => {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
                     environmentId: "environment_id",
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     name: "name",
                     originalPlanId: "original_plan_id",
@@ -2083,6 +2121,11 @@ describe("PlansClient", () => {
                     status: "published",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     version: 1000000,
+                },
+                billingLinkedResource: {
+                    billingProvider: "schematic",
+                    externalResourceId: "external_resource_id",
+                    originator: "schematic",
                 },
                 billingProduct: {
                     accountId: "account_id",
@@ -2114,12 +2157,17 @@ describe("PlansClient", () => {
                 companyCount: 1000000,
                 controlledBy: "schematic",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                currencyPrices: [
+                    {
+                        currency: "currency",
+                    },
+                ],
                 description: "description",
                 draftVersion: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
                     environmentId: "environment_id",
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     name: "name",
                     originalPlanId: "original_plan_id",
@@ -2216,7 +2264,7 @@ describe("PlansClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                 ],
-                icon: "icon",
+                icon: "amber",
                 id: "id",
                 includedCreditGrants: [
                     {
@@ -2263,7 +2311,7 @@ describe("PlansClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
                         environmentId: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         planType: "plan",
@@ -2351,7 +2399,7 @@ describe("PlansClient", () => {
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
                     environment_id: "environment_id",
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     name: "name",
                     original_plan_id: "original_plan_id",
@@ -2359,6 +2407,11 @@ describe("PlansClient", () => {
                     status: "published",
                     updated_at: "2024-01-15T09:30:00Z",
                     version: 1000000,
+                },
+                billing_linked_resource: {
+                    billing_provider: "schematic",
+                    external_resource_id: "external_resource_id",
+                    originator: "schematic",
                 },
                 billing_product: {
                     account_id: "account_id",
@@ -2390,12 +2443,13 @@ describe("PlansClient", () => {
                 company_count: 1000000,
                 controlled_by: "schematic",
                 created_at: "2024-01-15T09:30:00Z",
+                currency_prices: [{ currency: "currency" }],
                 description: "description",
                 draft_version: {
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
                     environment_id: "environment_id",
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     name: "name",
                     original_plan_id: "original_plan_id",
@@ -2477,7 +2531,7 @@ describe("PlansClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                 ],
-                icon: "icon",
+                icon: "amber",
                 id: "id",
                 included_credit_grants: [
                     {
@@ -2524,7 +2578,7 @@ describe("PlansClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
                         environment_id: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         plan_type: "plan",
@@ -2565,7 +2619,7 @@ describe("PlansClient", () => {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
                     environmentId: "environment_id",
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     name: "name",
                     originalPlanId: "original_plan_id",
@@ -2573,6 +2627,11 @@ describe("PlansClient", () => {
                     status: "published",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     version: 1000000,
+                },
+                billingLinkedResource: {
+                    billingProvider: "schematic",
+                    externalResourceId: "external_resource_id",
+                    originator: "schematic",
                 },
                 billingProduct: {
                     accountId: "account_id",
@@ -2604,12 +2663,17 @@ describe("PlansClient", () => {
                 companyCount: 1000000,
                 controlledBy: "schematic",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                currencyPrices: [
+                    {
+                        currency: "currency",
+                    },
+                ],
                 description: "description",
                 draftVersion: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
                     environmentId: "environment_id",
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     name: "name",
                     originalPlanId: "original_plan_id",
@@ -2706,7 +2770,7 @@ describe("PlansClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                 ],
-                icon: "icon",
+                icon: "amber",
                 id: "id",
                 includedCreditGrants: [
                     {
@@ -2753,7 +2817,7 @@ describe("PlansClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
                         environmentId: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         planType: "plan",
@@ -3142,6 +3206,1437 @@ describe("PlansClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("upsertPlanForBillingProduct (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            billing_provider: "schematic",
+            description: "description",
+            external_resource_id: "external_resource_id",
+            name: "name",
+            plan_type: "plan",
+        };
+        const rawResponseBody = {
+            data: {
+                active_version: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    description: "description",
+                    environment_id: "environment_id",
+                    icon: "amber",
+                    id: "id",
+                    name: "name",
+                    original_plan_id: "original_plan_id",
+                    plan_type: "plan",
+                    status: "published",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    version: 1000000,
+                },
+                billing_linked_resource: {
+                    billing_provider: "schematic",
+                    external_resource_id: "external_resource_id",
+                    originator: "schematic",
+                },
+                billing_product: {
+                    account_id: "account_id",
+                    created_at: "2024-01-15T09:30:00Z",
+                    environment_id: "environment_id",
+                    external_id: "external_id",
+                    is_active: true,
+                    name: "name",
+                    price: 1.1,
+                    price_decimal: "price_decimal",
+                    prices: [
+                        {
+                            currency: "currency",
+                            external_price_id: "external_price_id",
+                            id: "id",
+                            interval: "day",
+                            price: 1000000,
+                            provider_type: "schematic",
+                            scheme: "per_unit",
+                        },
+                    ],
+                    product_id: "product_id",
+                    provider_type: "schematic",
+                    quantity: 1.1,
+                    subscription_count: 1000000,
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+                charge_type: "free",
+                company_count: 1000000,
+                controlled_by: "schematic",
+                created_at: "2024-01-15T09:30:00Z",
+                currency_prices: [{ currency: "currency" }],
+                description: "description",
+                draft_version: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    description: "description",
+                    environment_id: "environment_id",
+                    icon: "amber",
+                    id: "id",
+                    name: "name",
+                    original_plan_id: "original_plan_id",
+                    plan_type: "plan",
+                    status: "published",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    version: 1000000,
+                },
+                features: [
+                    {
+                        created_at: "2024-01-15T09:30:00Z",
+                        description: "description",
+                        feature_type: "boolean",
+                        flags: [
+                            {
+                                created_at: "2024-01-15T09:30:00Z",
+                                default_value: true,
+                                description: "description",
+                                flag_type: "boolean",
+                                id: "id",
+                                key: "key",
+                                name: "name",
+                                rules: [
+                                    {
+                                        condition_groups: [
+                                            {
+                                                conditions: [
+                                                    {
+                                                        condition_type: "condition_type",
+                                                        created_at: "2024-01-15T09:30:00Z",
+                                                        environment_id: "environment_id",
+                                                        id: "id",
+                                                        operator: "operator",
+                                                        resource_ids: ["resource_ids"],
+                                                        resources: [{ id: "id", name: "name" }],
+                                                        rule_id: "rule_id",
+                                                        trait_value: "trait_value",
+                                                        updated_at: "2024-01-15T09:30:00Z",
+                                                    },
+                                                ],
+                                                created_at: "2024-01-15T09:30:00Z",
+                                                environment_id: "environment_id",
+                                                id: "id",
+                                                rule_id: "rule_id",
+                                                updated_at: "2024-01-15T09:30:00Z",
+                                            },
+                                        ],
+                                        conditions: [
+                                            {
+                                                condition_type: "condition_type",
+                                                created_at: "2024-01-15T09:30:00Z",
+                                                environment_id: "environment_id",
+                                                id: "id",
+                                                operator: "operator",
+                                                resource_ids: ["resource_ids"],
+                                                resources: [{ id: "id", name: "name" }],
+                                                rule_id: "rule_id",
+                                                trait_value: "trait_value",
+                                                updated_at: "2024-01-15T09:30:00Z",
+                                            },
+                                        ],
+                                        created_at: "2024-01-15T09:30:00Z",
+                                        environment_id: "environment_id",
+                                        id: "id",
+                                        name: "name",
+                                        priority: 1000000,
+                                        rule_type: "rule_type",
+                                        updated_at: "2024-01-15T09:30:00Z",
+                                        value: true,
+                                    },
+                                ],
+                                updated_at: "2024-01-15T09:30:00Z",
+                            },
+                        ],
+                        icon: "icon",
+                        id: "id",
+                        name: "name",
+                        plans: [{ id: "id", name: "name" }],
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
+                ],
+                icon: "amber",
+                id: "id",
+                included_credit_grants: [
+                    {
+                        auto_topup_enabled: true,
+                        created_at: "2024-01-15T09:30:00Z",
+                        credit_amount: 1000000,
+                        credit_id: "credit_id",
+                        credit_name: "credit_name",
+                        id: "id",
+                        plan_id: "plan_id",
+                        plan_name: "plan_name",
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
+                ],
+                is_default: true,
+                is_free: true,
+                is_trialable: true,
+                monthly_price: {
+                    currency: "currency",
+                    external_price_id: "external_price_id",
+                    id: "id",
+                    interval: "day",
+                    price: 1000000,
+                    price_decimal: "price_decimal",
+                    provider_type: "schematic",
+                    scheme: "per_unit",
+                },
+                name: "name",
+                one_time_price: {
+                    currency: "currency",
+                    external_price_id: "external_price_id",
+                    id: "id",
+                    interval: "day",
+                    price: 1000000,
+                    price_decimal: "price_decimal",
+                    provider_type: "schematic",
+                    scheme: "per_unit",
+                },
+                plan_type: "plan",
+                trial_days: 1000000,
+                updated_at: "2024-01-15T09:30:00Z",
+                versions: [
+                    {
+                        created_at: "2024-01-15T09:30:00Z",
+                        description: "description",
+                        environment_id: "environment_id",
+                        icon: "amber",
+                        id: "id",
+                        name: "name",
+                        plan_type: "plan",
+                        status: "published",
+                        updated_at: "2024-01-15T09:30:00Z",
+                        version: 1000000,
+                    },
+                ],
+                yearly_price: {
+                    currency: "currency",
+                    external_price_id: "external_price_id",
+                    id: "id",
+                    interval: "day",
+                    price: 1000000,
+                    price_decimal: "price_decimal",
+                    provider_type: "schematic",
+                    scheme: "per_unit",
+                },
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/plans/billing-linked")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.plans.upsertPlanForBillingProduct({
+            billingProvider: "schematic",
+            description: "description",
+            externalResourceId: "external_resource_id",
+            name: "name",
+            planType: "plan",
+        });
+        expect(response).toEqual({
+            data: {
+                activeVersion: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    description: "description",
+                    environmentId: "environment_id",
+                    icon: "amber",
+                    id: "id",
+                    name: "name",
+                    originalPlanId: "original_plan_id",
+                    planType: "plan",
+                    status: "published",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    version: 1000000,
+                },
+                billingLinkedResource: {
+                    billingProvider: "schematic",
+                    externalResourceId: "external_resource_id",
+                    originator: "schematic",
+                },
+                billingProduct: {
+                    accountId: "account_id",
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    environmentId: "environment_id",
+                    externalId: "external_id",
+                    isActive: true,
+                    name: "name",
+                    price: 1.1,
+                    priceDecimal: "price_decimal",
+                    prices: [
+                        {
+                            currency: "currency",
+                            externalPriceId: "external_price_id",
+                            id: "id",
+                            interval: "day",
+                            price: 1000000,
+                            providerType: "schematic",
+                            scheme: "per_unit",
+                        },
+                    ],
+                    productId: "product_id",
+                    providerType: "schematic",
+                    quantity: 1.1,
+                    subscriptionCount: 1000000,
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+                chargeType: "free",
+                companyCount: 1000000,
+                controlledBy: "schematic",
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                currencyPrices: [
+                    {
+                        currency: "currency",
+                    },
+                ],
+                description: "description",
+                draftVersion: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    description: "description",
+                    environmentId: "environment_id",
+                    icon: "amber",
+                    id: "id",
+                    name: "name",
+                    originalPlanId: "original_plan_id",
+                    planType: "plan",
+                    status: "published",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    version: 1000000,
+                },
+                features: [
+                    {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        description: "description",
+                        featureType: "boolean",
+                        flags: [
+                            {
+                                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                defaultValue: true,
+                                description: "description",
+                                flagType: "boolean",
+                                id: "id",
+                                key: "key",
+                                name: "name",
+                                rules: [
+                                    {
+                                        conditionGroups: [
+                                            {
+                                                conditions: [
+                                                    {
+                                                        conditionType: "condition_type",
+                                                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                                        environmentId: "environment_id",
+                                                        id: "id",
+                                                        operator: "operator",
+                                                        resourceIds: ["resource_ids"],
+                                                        resources: [
+                                                            {
+                                                                id: "id",
+                                                                name: "name",
+                                                            },
+                                                        ],
+                                                        ruleId: "rule_id",
+                                                        traitValue: "trait_value",
+                                                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                                    },
+                                                ],
+                                                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                                environmentId: "environment_id",
+                                                id: "id",
+                                                ruleId: "rule_id",
+                                                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                            },
+                                        ],
+                                        conditions: [
+                                            {
+                                                conditionType: "condition_type",
+                                                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                                environmentId: "environment_id",
+                                                id: "id",
+                                                operator: "operator",
+                                                resourceIds: ["resource_ids"],
+                                                resources: [
+                                                    {
+                                                        id: "id",
+                                                        name: "name",
+                                                    },
+                                                ],
+                                                ruleId: "rule_id",
+                                                traitValue: "trait_value",
+                                                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                            },
+                                        ],
+                                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                        environmentId: "environment_id",
+                                        id: "id",
+                                        name: "name",
+                                        priority: 1000000,
+                                        ruleType: "rule_type",
+                                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                        value: true,
+                                    },
+                                ],
+                                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                            },
+                        ],
+                        icon: "icon",
+                        id: "id",
+                        name: "name",
+                        plans: [
+                            {
+                                id: "id",
+                                name: "name",
+                            },
+                        ],
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                ],
+                icon: "amber",
+                id: "id",
+                includedCreditGrants: [
+                    {
+                        autoTopupEnabled: true,
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        creditAmount: 1000000,
+                        creditId: "credit_id",
+                        creditName: "credit_name",
+                        id: "id",
+                        planId: "plan_id",
+                        planName: "plan_name",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                ],
+                isDefault: true,
+                isFree: true,
+                isTrialable: true,
+                monthlyPrice: {
+                    currency: "currency",
+                    externalPriceId: "external_price_id",
+                    id: "id",
+                    interval: "day",
+                    price: 1000000,
+                    priceDecimal: "price_decimal",
+                    providerType: "schematic",
+                    scheme: "per_unit",
+                },
+                name: "name",
+                oneTimePrice: {
+                    currency: "currency",
+                    externalPriceId: "external_price_id",
+                    id: "id",
+                    interval: "day",
+                    price: 1000000,
+                    priceDecimal: "price_decimal",
+                    providerType: "schematic",
+                    scheme: "per_unit",
+                },
+                planType: "plan",
+                trialDays: 1000000,
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                versions: [
+                    {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        description: "description",
+                        environmentId: "environment_id",
+                        icon: "amber",
+                        id: "id",
+                        name: "name",
+                        planType: "plan",
+                        status: "published",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        version: 1000000,
+                    },
+                ],
+                yearlyPrice: {
+                    currency: "currency",
+                    externalPriceId: "external_price_id",
+                    id: "id",
+                    interval: "day",
+                    price: 1000000,
+                    priceDecimal: "price_decimal",
+                    providerType: "schematic",
+                    scheme: "per_unit",
+                },
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("upsertPlanForBillingProduct (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            billing_provider: "schematic",
+            description: "description",
+            external_resource_id: "external_resource_id",
+            name: "x",
+            plan_type: "plan",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plans/billing-linked")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.upsertPlanForBillingProduct({
+                billingProvider: "schematic",
+                description: "description",
+                externalResourceId: "external_resource_id",
+                name: "x",
+                planType: "plan",
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("upsertPlanForBillingProduct (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            billing_provider: "schematic",
+            description: "description",
+            external_resource_id: "external_resource_id",
+            name: "x",
+            plan_type: "plan",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plans/billing-linked")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.upsertPlanForBillingProduct({
+                billingProvider: "schematic",
+                description: "description",
+                externalResourceId: "external_resource_id",
+                name: "x",
+                planType: "plan",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("upsertPlanForBillingProduct (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            billing_provider: "schematic",
+            description: "description",
+            external_resource_id: "external_resource_id",
+            name: "x",
+            plan_type: "plan",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plans/billing-linked")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.upsertPlanForBillingProduct({
+                billingProvider: "schematic",
+                description: "description",
+                externalResourceId: "external_resource_id",
+                name: "x",
+                planType: "plan",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("upsertPlanForBillingProduct (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            billing_provider: "schematic",
+            description: "description",
+            external_resource_id: "external_resource_id",
+            name: "x",
+            plan_type: "plan",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plans/billing-linked")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.upsertPlanForBillingProduct({
+                billingProvider: "schematic",
+                description: "description",
+                externalResourceId: "external_resource_id",
+                name: "x",
+                planType: "plan",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("upsertPlanForBillingProduct (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            billing_provider: "schematic",
+            description: "description",
+            external_resource_id: "external_resource_id",
+            name: "x",
+            plan_type: "plan",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plans/billing-linked")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.upsertPlanForBillingProduct({
+                billingProvider: "schematic",
+                description: "description",
+                externalResourceId: "external_resource_id",
+                name: "x",
+                planType: "plan",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("listBillingProductMatchCompanies (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    add_ons: [
+                        {
+                            id: "id",
+                            included_credit_grants: [
+                                {
+                                    billing_credit_auto_topup_enabled: true,
+                                    created_at: "2024-01-15T09:30:00Z",
+                                    credit_amount: 1000000,
+                                    credit_description: "credit_description",
+                                    credit_id: "credit_id",
+                                    credit_name: "credit_name",
+                                    id: "id",
+                                    plan_id: "plan_id",
+                                    reset_type: "no_reset",
+                                    updated_at: "2024-01-15T09:30:00Z",
+                                },
+                            ],
+                            name: "name",
+                        },
+                    ],
+                    billing_credit_balances: { key: 1.1 },
+                    billing_subscription: {
+                        cancel_at_period_end: true,
+                        created_at: "2024-01-15T09:30:00Z",
+                        currency: "currency",
+                        customer_external_id: "customer_external_id",
+                        discounts: [
+                            {
+                                coupon_id: "coupon_id",
+                                coupon_name: "coupon_name",
+                                discount_external_id: "discount_external_id",
+                                duration: "duration",
+                                is_active: true,
+                                started_at: "2024-01-15T09:30:00Z",
+                                subscription_external_id: "subscription_external_id",
+                            },
+                        ],
+                        id: "id",
+                        interval: "interval",
+                        period_end: 1000000,
+                        period_start: 1000000,
+                        products: [
+                            {
+                                billing_scheme: "per_unit",
+                                created_at: "2024-01-15T09:30:00Z",
+                                currency: "currency",
+                                environment_id: "environment_id",
+                                external_id: "external_id",
+                                id: "id",
+                                interval: "interval",
+                                name: "name",
+                                package_size: 1000000,
+                                price: 1000000,
+                                price_external_id: "price_external_id",
+                                price_id: "price_id",
+                                price_tier: [{}],
+                                provider_type: "schematic",
+                                quantity: 1.1,
+                                subscription_id: "subscription_id",
+                                updated_at: "2024-01-15T09:30:00Z",
+                                usage_type: "licensed",
+                            },
+                        ],
+                        provider_type: "schematic",
+                        status: "status",
+                        subscription_external_id: "subscription_external_id",
+                        total_price: 1000000,
+                    },
+                    billing_subscriptions: [
+                        {
+                            cancel_at_period_end: true,
+                            created_at: "2024-01-15T09:30:00Z",
+                            currency: "currency",
+                            customer_external_id: "customer_external_id",
+                            discounts: [
+                                {
+                                    coupon_id: "coupon_id",
+                                    coupon_name: "coupon_name",
+                                    discount_external_id: "discount_external_id",
+                                    duration: "duration",
+                                    is_active: true,
+                                    started_at: "2024-01-15T09:30:00Z",
+                                    subscription_external_id: "subscription_external_id",
+                                },
+                            ],
+                            id: "id",
+                            interval: "interval",
+                            period_end: 1000000,
+                            period_start: 1000000,
+                            products: [
+                                {
+                                    billing_scheme: "per_unit",
+                                    created_at: "2024-01-15T09:30:00Z",
+                                    currency: "currency",
+                                    environment_id: "environment_id",
+                                    external_id: "external_id",
+                                    id: "id",
+                                    interval: "interval",
+                                    name: "name",
+                                    package_size: 1000000,
+                                    price: 1000000,
+                                    price_external_id: "price_external_id",
+                                    price_id: "price_id",
+                                    price_tier: [{}],
+                                    provider_type: "schematic",
+                                    quantity: 1.1,
+                                    subscription_id: "subscription_id",
+                                    updated_at: "2024-01-15T09:30:00Z",
+                                    usage_type: "licensed",
+                                },
+                            ],
+                            provider_type: "schematic",
+                            status: "status",
+                            subscription_external_id: "subscription_external_id",
+                            total_price: 1000000,
+                        },
+                    ],
+                    created_at: "2024-01-15T09:30:00Z",
+                    default_payment_method: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        customer_external_id: "customer_external_id",
+                        environment_id: "environment_id",
+                        external_id: "external_id",
+                        id: "id",
+                        payment_method_type: "payment_method_type",
+                        provider_type: "schematic",
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
+                    entitlements: [{ feature_id: "feature_id", feature_key: "feature_key", value_type: "boolean" }],
+                    entity_traits: [
+                        {
+                            created_at: "2024-01-15T09:30:00Z",
+                            definition_id: "definition_id",
+                            environment_id: "environment_id",
+                            id: "id",
+                            updated_at: "2024-01-15T09:30:00Z",
+                            value: "value",
+                        },
+                    ],
+                    environment_id: "environment_id",
+                    id: "id",
+                    keys: [
+                        {
+                            created_at: "2024-01-15T09:30:00Z",
+                            definition_id: "definition_id",
+                            entity_id: "entity_id",
+                            entity_type: "company",
+                            environment_id: "environment_id",
+                            id: "id",
+                            key: "key",
+                            updated_at: "2024-01-15T09:30:00Z",
+                            value: "value",
+                        },
+                    ],
+                    last_seen_at: "2024-01-15T09:30:00Z",
+                    logo_url: "logo_url",
+                    metrics: [
+                        {
+                            account_id: "account_id",
+                            captured_at_max: "2024-01-15T09:30:00Z",
+                            captured_at_min: "2024-01-15T09:30:00Z",
+                            company_id: "company_id",
+                            created_at: "2024-01-15T09:30:00Z",
+                            environment_id: "environment_id",
+                            event_subtype: "event_subtype",
+                            month_reset: "month_reset",
+                            period: "period",
+                            value: 1000000,
+                        },
+                    ],
+                    name: "name",
+                    payment_methods: [
+                        {
+                            created_at: "2024-01-15T09:30:00Z",
+                            customer_external_id: "customer_external_id",
+                            environment_id: "environment_id",
+                            external_id: "external_id",
+                            id: "id",
+                            payment_method_type: "payment_method_type",
+                            provider_type: "schematic",
+                            updated_at: "2024-01-15T09:30:00Z",
+                        },
+                    ],
+                    plan: {
+                        id: "id",
+                        included_credit_grants: [
+                            {
+                                billing_credit_auto_topup_enabled: true,
+                                created_at: "2024-01-15T09:30:00Z",
+                                credit_amount: 1000000,
+                                credit_description: "credit_description",
+                                credit_id: "credit_id",
+                                credit_name: "credit_name",
+                                id: "id",
+                                plan_id: "plan_id",
+                                reset_type: "no_reset",
+                                updated_at: "2024-01-15T09:30:00Z",
+                            },
+                        ],
+                        name: "name",
+                    },
+                    plans: [{ id: "id", name: "name" }],
+                    rules: [
+                        {
+                            account_id: "account_id",
+                            condition_groups: [
+                                {
+                                    conditions: [
+                                        {
+                                            account_id: "account_id",
+                                            condition_type: "base_plan",
+                                            environment_id: "environment_id",
+                                            id: "id",
+                                            operator: "eq",
+                                            resource_ids: ["resource_ids"],
+                                            trait_value: "trait_value",
+                                        },
+                                    ],
+                                },
+                            ],
+                            conditions: [
+                                {
+                                    account_id: "account_id",
+                                    condition_type: "base_plan",
+                                    environment_id: "environment_id",
+                                    id: "id",
+                                    operator: "eq",
+                                    resource_ids: ["resource_ids"],
+                                    trait_value: "trait_value",
+                                },
+                            ],
+                            environment_id: "environment_id",
+                            id: "id",
+                            name: "name",
+                            priority: 1000000,
+                            rule_type: "default",
+                            value: true,
+                        },
+                    ],
+                    scheduled_downgrade: {
+                        currency: "currency",
+                        effective_after: "2024-01-15T09:30:00Z",
+                        from_plan_id: "from_plan_id",
+                        from_plan_name: "from_plan_name",
+                        from_subscription_price: 1000000,
+                        id: "id",
+                        interval: "interval",
+                        to_plan_id: "to_plan_id",
+                        to_plan_name: "to_plan_name",
+                    },
+                    traits: { key: "value" },
+                    updated_at: "2024-01-15T09:30:00Z",
+                    user_count: 1000000,
+                },
+            ],
+            params: { limit: 1000000, offset: 1000000, plan_id: "plan_id", q: "q" },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/plans/billing-product-match-companies")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.plans.listBillingProductMatchCompanies({
+            planId: "plan_id",
+            q: "q",
+            limit: 1000000,
+            offset: 1000000,
+        });
+        expect(response).toEqual({
+            data: [
+                {
+                    addOns: [
+                        {
+                            id: "id",
+                            includedCreditGrants: [
+                                {
+                                    billingCreditAutoTopupEnabled: true,
+                                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                    creditAmount: 1000000,
+                                    creditDescription: "credit_description",
+                                    creditId: "credit_id",
+                                    creditName: "credit_name",
+                                    id: "id",
+                                    planId: "plan_id",
+                                    resetType: "no_reset",
+                                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                },
+                            ],
+                            name: "name",
+                        },
+                    ],
+                    billingCreditBalances: {
+                        key: 1.1,
+                    },
+                    billingSubscription: {
+                        cancelAtPeriodEnd: true,
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        currency: "currency",
+                        customerExternalId: "customer_external_id",
+                        discounts: [
+                            {
+                                couponId: "coupon_id",
+                                couponName: "coupon_name",
+                                discountExternalId: "discount_external_id",
+                                duration: "duration",
+                                isActive: true,
+                                startedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                subscriptionExternalId: "subscription_external_id",
+                            },
+                        ],
+                        id: "id",
+                        interval: "interval",
+                        periodEnd: 1000000,
+                        periodStart: 1000000,
+                        products: [
+                            {
+                                billingScheme: "per_unit",
+                                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                currency: "currency",
+                                environmentId: "environment_id",
+                                externalId: "external_id",
+                                id: "id",
+                                interval: "interval",
+                                name: "name",
+                                packageSize: 1000000,
+                                price: 1000000,
+                                priceExternalId: "price_external_id",
+                                priceId: "price_id",
+                                priceTier: [{}],
+                                providerType: "schematic",
+                                quantity: 1.1,
+                                subscriptionId: "subscription_id",
+                                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                usageType: "licensed",
+                            },
+                        ],
+                        providerType: "schematic",
+                        status: "status",
+                        subscriptionExternalId: "subscription_external_id",
+                        totalPrice: 1000000,
+                    },
+                    billingSubscriptions: [
+                        {
+                            cancelAtPeriodEnd: true,
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            currency: "currency",
+                            customerExternalId: "customer_external_id",
+                            discounts: [
+                                {
+                                    couponId: "coupon_id",
+                                    couponName: "coupon_name",
+                                    discountExternalId: "discount_external_id",
+                                    duration: "duration",
+                                    isActive: true,
+                                    startedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                    subscriptionExternalId: "subscription_external_id",
+                                },
+                            ],
+                            id: "id",
+                            interval: "interval",
+                            periodEnd: 1000000,
+                            periodStart: 1000000,
+                            products: [
+                                {
+                                    billingScheme: "per_unit",
+                                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                    currency: "currency",
+                                    environmentId: "environment_id",
+                                    externalId: "external_id",
+                                    id: "id",
+                                    interval: "interval",
+                                    name: "name",
+                                    packageSize: 1000000,
+                                    price: 1000000,
+                                    priceExternalId: "price_external_id",
+                                    priceId: "price_id",
+                                    priceTier: [{}],
+                                    providerType: "schematic",
+                                    quantity: 1.1,
+                                    subscriptionId: "subscription_id",
+                                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                    usageType: "licensed",
+                                },
+                            ],
+                            providerType: "schematic",
+                            status: "status",
+                            subscriptionExternalId: "subscription_external_id",
+                            totalPrice: 1000000,
+                        },
+                    ],
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    defaultPaymentMethod: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        customerExternalId: "customer_external_id",
+                        environmentId: "environment_id",
+                        externalId: "external_id",
+                        id: "id",
+                        paymentMethodType: "payment_method_type",
+                        providerType: "schematic",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                    entitlements: [
+                        {
+                            featureId: "feature_id",
+                            featureKey: "feature_key",
+                            valueType: "boolean",
+                        },
+                    ],
+                    entityTraits: [
+                        {
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            definitionId: "definition_id",
+                            environmentId: "environment_id",
+                            id: "id",
+                            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                            value: "value",
+                        },
+                    ],
+                    environmentId: "environment_id",
+                    id: "id",
+                    keys: [
+                        {
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            definitionId: "definition_id",
+                            entityId: "entity_id",
+                            entityType: "company",
+                            environmentId: "environment_id",
+                            id: "id",
+                            key: "key",
+                            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                            value: "value",
+                        },
+                    ],
+                    lastSeenAt: new Date("2024-01-15T09:30:00.000Z"),
+                    logoUrl: "logo_url",
+                    metrics: [
+                        {
+                            accountId: "account_id",
+                            capturedAtMax: new Date("2024-01-15T09:30:00.000Z"),
+                            capturedAtMin: new Date("2024-01-15T09:30:00.000Z"),
+                            companyId: "company_id",
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            environmentId: "environment_id",
+                            eventSubtype: "event_subtype",
+                            monthReset: "month_reset",
+                            period: "period",
+                            value: 1000000,
+                        },
+                    ],
+                    name: "name",
+                    paymentMethods: [
+                        {
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            customerExternalId: "customer_external_id",
+                            environmentId: "environment_id",
+                            externalId: "external_id",
+                            id: "id",
+                            paymentMethodType: "payment_method_type",
+                            providerType: "schematic",
+                            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        },
+                    ],
+                    plan: {
+                        id: "id",
+                        includedCreditGrants: [
+                            {
+                                billingCreditAutoTopupEnabled: true,
+                                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                creditAmount: 1000000,
+                                creditDescription: "credit_description",
+                                creditId: "credit_id",
+                                creditName: "credit_name",
+                                id: "id",
+                                planId: "plan_id",
+                                resetType: "no_reset",
+                                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                            },
+                        ],
+                        name: "name",
+                    },
+                    plans: [
+                        {
+                            id: "id",
+                            name: "name",
+                        },
+                    ],
+                    rules: [
+                        {
+                            accountId: "account_id",
+                            conditionGroups: [
+                                {
+                                    conditions: [
+                                        {
+                                            accountId: "account_id",
+                                            conditionType: "base_plan",
+                                            environmentId: "environment_id",
+                                            id: "id",
+                                            operator: "eq",
+                                            resourceIds: ["resource_ids"],
+                                            traitValue: "trait_value",
+                                        },
+                                    ],
+                                },
+                            ],
+                            conditions: [
+                                {
+                                    accountId: "account_id",
+                                    conditionType: "base_plan",
+                                    environmentId: "environment_id",
+                                    id: "id",
+                                    operator: "eq",
+                                    resourceIds: ["resource_ids"],
+                                    traitValue: "trait_value",
+                                },
+                            ],
+                            environmentId: "environment_id",
+                            id: "id",
+                            name: "name",
+                            priority: 1000000,
+                            ruleType: "default",
+                            value: true,
+                        },
+                    ],
+                    scheduledDowngrade: {
+                        currency: "currency",
+                        effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
+                        fromPlanId: "from_plan_id",
+                        fromPlanName: "from_plan_name",
+                        fromSubscriptionPrice: 1000000,
+                        id: "id",
+                        interval: "interval",
+                        toPlanId: "to_plan_id",
+                        toPlanName: "to_plan_name",
+                    },
+                    traits: {
+                        key: "value",
+                    },
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    userCount: 1000000,
+                },
+            ],
+            params: {
+                limit: 1000000,
+                offset: 1000000,
+                planId: "plan_id",
+                q: "q",
+            },
+        });
+    });
+
+    test("listBillingProductMatchCompanies (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/plans/billing-product-match-companies")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.listBillingProductMatchCompanies({
+                planId: "plan_id",
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("listBillingProductMatchCompanies (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/plans/billing-product-match-companies")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.listBillingProductMatchCompanies({
+                planId: "plan_id",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("listBillingProductMatchCompanies (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/plans/billing-product-match-companies")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.listBillingProductMatchCompanies({
+                planId: "plan_id",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("listBillingProductMatchCompanies (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/plans/billing-product-match-companies")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.listBillingProductMatchCompanies({
+                planId: "plan_id",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("listBillingProductMatchCompanies (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/plans/billing-product-match-companies")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.listBillingProductMatchCompanies({
+                planId: "plan_id",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("countBillingProductMatchCompanies (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: { count: 1 },
+            params: { limit: 1000000, offset: 1000000, plan_id: "plan_id", q: "q" },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/plans/billing-product-match-companies/count")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.plans.countBillingProductMatchCompanies({
+            planId: "plan_id",
+            q: "q",
+            limit: 1000000,
+            offset: 1000000,
+        });
+        expect(response).toEqual({
+            data: {
+                count: 1,
+            },
+            params: {
+                limit: 1000000,
+                offset: 1000000,
+                planId: "plan_id",
+                q: "q",
+            },
+        });
+    });
+
+    test("countBillingProductMatchCompanies (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/plans/billing-product-match-companies/count")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.countBillingProductMatchCompanies({
+                planId: "plan_id",
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("countBillingProductMatchCompanies (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/plans/billing-product-match-companies/count")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.countBillingProductMatchCompanies({
+                planId: "plan_id",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("countBillingProductMatchCompanies (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/plans/billing-product-match-companies/count")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.countBillingProductMatchCompanies({
+                planId: "plan_id",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("countBillingProductMatchCompanies (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/plans/billing-product-match-companies/count")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.countBillingProductMatchCompanies({
+                planId: "plan_id",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("countBillingProductMatchCompanies (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/plans/billing-product-match-companies/count")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.countBillingProductMatchCompanies({
+                planId: "plan_id",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("countPlans (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -3378,7 +4873,7 @@ describe("PlansClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
+        const rawResponseBody = { data: { deleted: true }, params: { promote_archived_version: true } };
 
         server
             .mockEndpoint()
@@ -3388,13 +4883,15 @@ describe("PlansClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.plans.deletePlanVersion("plan_id");
+        const response = await client.plans.deletePlanVersion("plan_id", {
+            promoteArchivedVersion: true,
+        });
         expect(response).toEqual({
             data: {
                 deleted: true,
             },
             params: {
-                key: "value",
+                promoteArchivedVersion: true,
             },
         });
     });
@@ -3503,7 +5000,7 @@ describe("PlansClient", () => {
                 created_at: "2024-01-15T09:30:00Z",
                 description: "description",
                 environment_id: "environment_id",
-                icon: "icon",
+                icon: "amber",
                 id: "id",
                 name: "name",
                 original_plan_id: "original_plan_id",
@@ -3533,7 +5030,7 @@ describe("PlansClient", () => {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 description: "description",
                 environmentId: "environment_id",
-                icon: "icon",
+                icon: "amber",
                 id: "id",
                 name: "name",
                 originalPlanId: "original_plan_id",

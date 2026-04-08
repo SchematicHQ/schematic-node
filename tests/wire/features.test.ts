@@ -12,6 +12,11 @@ describe("FeaturesClient", () => {
         const rawResponseBody = {
             data: [
                 {
+                    billing_linked_resource: {
+                        billing_provider: "schematic",
+                        external_resource_id: "external_resource_id",
+                        originator: "schematic",
+                    },
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
                     event_subtype: "event_subtype",
@@ -121,17 +126,22 @@ describe("FeaturesClient", () => {
         server.mockEndpoint().get("/features").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.features.listFeatures({
+            booleanRequireEvent: true,
+            planVersionId: "plan_version_id",
             q: "q",
             withoutCompanyOverrideFor: "without_company_override_for",
-            planVersionId: "plan_version_id",
             withoutPlanEntitlementFor: "without_plan_entitlement_for",
-            booleanRequireEvent: true,
             limit: 1000000,
             offset: 1000000,
         });
         expect(response).toEqual({
             data: [
                 {
+                    billingLinkedResource: {
+                        billingProvider: "schematic",
+                        externalResourceId: "external_resource_id",
+                        originator: "schematic",
+                    },
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
                     eventSubtype: "event_subtype",
@@ -325,6 +335,11 @@ describe("FeaturesClient", () => {
         const rawRequestBody = { description: "description", feature_type: "boolean", name: "name" };
         const rawResponseBody = {
             data: {
+                billing_linked_resource: {
+                    billing_provider: "schematic",
+                    external_resource_id: "external_resource_id",
+                    originator: "schematic",
+                },
                 created_at: "2024-01-15T09:30:00Z",
                 description: "description",
                 event_subtype: "event_subtype",
@@ -437,6 +452,11 @@ describe("FeaturesClient", () => {
         });
         expect(response).toEqual({
             data: {
+                billingLinkedResource: {
+                    billingProvider: "schematic",
+                    externalResourceId: "external_resource_id",
+                    originator: "schematic",
+                },
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 description: "description",
                 eventSubtype: "event_subtype",
@@ -677,6 +697,11 @@ describe("FeaturesClient", () => {
 
         const rawResponseBody = {
             data: {
+                billing_linked_resource: {
+                    billing_provider: "schematic",
+                    external_resource_id: "external_resource_id",
+                    originator: "schematic",
+                },
                 created_at: "2024-01-15T09:30:00Z",
                 description: "description",
                 event_subtype: "event_subtype",
@@ -784,6 +809,11 @@ describe("FeaturesClient", () => {
         const response = await client.features.getFeature("feature_id");
         expect(response).toEqual({
             data: {
+                billingLinkedResource: {
+                    billingProvider: "schematic",
+                    externalResourceId: "external_resource_id",
+                    originator: "schematic",
+                },
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 description: "description",
                 eventSubtype: "event_subtype",
@@ -980,6 +1010,11 @@ describe("FeaturesClient", () => {
         const rawRequestBody = {};
         const rawResponseBody = {
             data: {
+                billing_linked_resource: {
+                    billing_provider: "schematic",
+                    external_resource_id: "external_resource_id",
+                    originator: "schematic",
+                },
                 created_at: "2024-01-15T09:30:00Z",
                 description: "description",
                 event_subtype: "event_subtype",
@@ -1088,6 +1123,11 @@ describe("FeaturesClient", () => {
         const response = await client.features.updateFeature("feature_id");
         expect(response).toEqual({
             data: {
+                billingLinkedResource: {
+                    billingProvider: "schematic",
+                    externalResourceId: "external_resource_id",
+                    originator: "schematic",
+                },
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 description: "description",
                 eventSubtype: "event_subtype",
@@ -1422,6 +1462,416 @@ describe("FeaturesClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("upsertFeatureForBillingProduct (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            billing_provider: "schematic",
+            description: "description",
+            external_resource_id: "external_resource_id",
+            feature_type: "boolean",
+            name: "name",
+        };
+        const rawResponseBody = {
+            data: {
+                billing_linked_resource: {
+                    billing_provider: "schematic",
+                    external_resource_id: "external_resource_id",
+                    originator: "schematic",
+                },
+                created_at: "2024-01-15T09:30:00Z",
+                description: "description",
+                event_subtype: "event_subtype",
+                event_summary: {
+                    company_count: 1000000,
+                    environment_id: "environment_id",
+                    event_count: 1000000,
+                    event_subtype: "event_subtype",
+                    last_seen_at: "2024-01-15T09:30:00Z",
+                    user_count: 1000000,
+                },
+                feature_type: "boolean",
+                flags: [
+                    {
+                        created_at: "2024-01-15T09:30:00Z",
+                        default_value: true,
+                        description: "description",
+                        flag_type: "boolean",
+                        id: "id",
+                        key: "key",
+                        name: "name",
+                        rules: [
+                            {
+                                condition_groups: [
+                                    {
+                                        conditions: [
+                                            {
+                                                condition_type: "condition_type",
+                                                created_at: "2024-01-15T09:30:00Z",
+                                                environment_id: "environment_id",
+                                                id: "id",
+                                                operator: "operator",
+                                                resource_ids: ["resource_ids"],
+                                                resources: [{ id: "id", name: "name" }],
+                                                rule_id: "rule_id",
+                                                trait_value: "trait_value",
+                                                updated_at: "2024-01-15T09:30:00Z",
+                                            },
+                                        ],
+                                        created_at: "2024-01-15T09:30:00Z",
+                                        environment_id: "environment_id",
+                                        id: "id",
+                                        rule_id: "rule_id",
+                                        updated_at: "2024-01-15T09:30:00Z",
+                                    },
+                                ],
+                                conditions: [
+                                    {
+                                        condition_type: "condition_type",
+                                        created_at: "2024-01-15T09:30:00Z",
+                                        environment_id: "environment_id",
+                                        id: "id",
+                                        operator: "operator",
+                                        resource_ids: ["resource_ids"],
+                                        resources: [{ id: "id", name: "name" }],
+                                        rule_id: "rule_id",
+                                        trait_value: "trait_value",
+                                        updated_at: "2024-01-15T09:30:00Z",
+                                    },
+                                ],
+                                created_at: "2024-01-15T09:30:00Z",
+                                environment_id: "environment_id",
+                                id: "id",
+                                name: "name",
+                                priority: 1000000,
+                                rule_type: "rule_type",
+                                updated_at: "2024-01-15T09:30:00Z",
+                                value: true,
+                            },
+                        ],
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
+                ],
+                icon: "icon",
+                id: "id",
+                lifecycle_phase: "add_on",
+                maintainer_id: "maintainer_id",
+                name: "name",
+                plans: [{ id: "id", name: "name" }],
+                plural_name: "plural_name",
+                singular_name: "singular_name",
+                trait: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    display_name: "display_name",
+                    entity_type: "company",
+                    hierarchy: ["hierarchy"],
+                    id: "id",
+                    trait_type: "boolean",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+                trait_id: "trait_id",
+                updated_at: "2024-01-15T09:30:00Z",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/features/billing-linked")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.features.upsertFeatureForBillingProduct({
+            billingProvider: "schematic",
+            description: "description",
+            externalResourceId: "external_resource_id",
+            featureType: "boolean",
+            name: "name",
+        });
+        expect(response).toEqual({
+            data: {
+                billingLinkedResource: {
+                    billingProvider: "schematic",
+                    externalResourceId: "external_resource_id",
+                    originator: "schematic",
+                },
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                description: "description",
+                eventSubtype: "event_subtype",
+                eventSummary: {
+                    companyCount: 1000000,
+                    environmentId: "environment_id",
+                    eventCount: 1000000,
+                    eventSubtype: "event_subtype",
+                    lastSeenAt: new Date("2024-01-15T09:30:00.000Z"),
+                    userCount: 1000000,
+                },
+                featureType: "boolean",
+                flags: [
+                    {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        defaultValue: true,
+                        description: "description",
+                        flagType: "boolean",
+                        id: "id",
+                        key: "key",
+                        name: "name",
+                        rules: [
+                            {
+                                conditionGroups: [
+                                    {
+                                        conditions: [
+                                            {
+                                                conditionType: "condition_type",
+                                                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                                environmentId: "environment_id",
+                                                id: "id",
+                                                operator: "operator",
+                                                resourceIds: ["resource_ids"],
+                                                resources: [
+                                                    {
+                                                        id: "id",
+                                                        name: "name",
+                                                    },
+                                                ],
+                                                ruleId: "rule_id",
+                                                traitValue: "trait_value",
+                                                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                            },
+                                        ],
+                                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                        environmentId: "environment_id",
+                                        id: "id",
+                                        ruleId: "rule_id",
+                                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                    },
+                                ],
+                                conditions: [
+                                    {
+                                        conditionType: "condition_type",
+                                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                        environmentId: "environment_id",
+                                        id: "id",
+                                        operator: "operator",
+                                        resourceIds: ["resource_ids"],
+                                        resources: [
+                                            {
+                                                id: "id",
+                                                name: "name",
+                                            },
+                                        ],
+                                        ruleId: "rule_id",
+                                        traitValue: "trait_value",
+                                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                    },
+                                ],
+                                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                environmentId: "environment_id",
+                                id: "id",
+                                name: "name",
+                                priority: 1000000,
+                                ruleType: "rule_type",
+                                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                value: true,
+                            },
+                        ],
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                ],
+                icon: "icon",
+                id: "id",
+                lifecyclePhase: "add_on",
+                maintainerId: "maintainer_id",
+                name: "name",
+                plans: [
+                    {
+                        id: "id",
+                        name: "name",
+                    },
+                ],
+                pluralName: "plural_name",
+                singularName: "singular_name",
+                trait: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    displayName: "display_name",
+                    entityType: "company",
+                    hierarchy: ["hierarchy"],
+                    id: "id",
+                    traitType: "boolean",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+                traitId: "trait_id",
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("upsertFeatureForBillingProduct (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            billing_provider: "schematic",
+            description: "description",
+            external_resource_id: "external_resource_id",
+            feature_type: "boolean",
+            name: "name",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/features/billing-linked")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.features.upsertFeatureForBillingProduct({
+                billingProvider: "schematic",
+                description: "description",
+                externalResourceId: "external_resource_id",
+                featureType: "boolean",
+                name: "name",
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("upsertFeatureForBillingProduct (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            billing_provider: "schematic",
+            description: "description",
+            external_resource_id: "external_resource_id",
+            feature_type: "boolean",
+            name: "name",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/features/billing-linked")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.features.upsertFeatureForBillingProduct({
+                billingProvider: "schematic",
+                description: "description",
+                externalResourceId: "external_resource_id",
+                featureType: "boolean",
+                name: "name",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("upsertFeatureForBillingProduct (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            billing_provider: "schematic",
+            description: "description",
+            external_resource_id: "external_resource_id",
+            feature_type: "boolean",
+            name: "name",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/features/billing-linked")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.features.upsertFeatureForBillingProduct({
+                billingProvider: "schematic",
+                description: "description",
+                externalResourceId: "external_resource_id",
+                featureType: "boolean",
+                name: "name",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("upsertFeatureForBillingProduct (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            billing_provider: "schematic",
+            description: "description",
+            external_resource_id: "external_resource_id",
+            feature_type: "boolean",
+            name: "name",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/features/billing-linked")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.features.upsertFeatureForBillingProduct({
+                billingProvider: "schematic",
+                description: "description",
+                externalResourceId: "external_resource_id",
+                featureType: "boolean",
+                name: "name",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("upsertFeatureForBillingProduct (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            billing_provider: "schematic",
+            description: "description",
+            external_resource_id: "external_resource_id",
+            feature_type: "boolean",
+            name: "name",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/features/billing-linked")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.features.upsertFeatureForBillingProduct({
+                billingProvider: "schematic",
+                description: "description",
+                externalResourceId: "external_resource_id",
+                featureType: "boolean",
+                name: "name",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("countFeatures (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -1444,11 +1894,11 @@ describe("FeaturesClient", () => {
         server.mockEndpoint().get("/features/count").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.features.countFeatures({
+            booleanRequireEvent: true,
+            planVersionId: "plan_version_id",
             q: "q",
             withoutCompanyOverrideFor: "without_company_override_for",
-            planVersionId: "plan_version_id",
             withoutPlanEntitlementFor: "without_plan_entitlement_for",
-            booleanRequireEvent: true,
             limit: 1000000,
             offset: 1000000,
         });
@@ -4198,7 +4648,7 @@ describe("FeaturesClient", () => {
         const rawResponseBody = {
             data: {
                 flags: [{ flag: "flag", reason: "reason", value: true }],
-                plan: { id: "id", name: "name", trial_end_date: "2024-01-15T09:30:00Z" },
+                plan: { id: "id", name: "name", trial_end_date: "2024-01-15T09:30:00Z", trial_status: "active" },
             },
             params: { key: "value" },
         };
@@ -4226,6 +4676,7 @@ describe("FeaturesClient", () => {
                     id: "id",
                     name: "name",
                     trialEndDate: new Date("2024-01-15T09:30:00.000Z"),
+                    trialStatus: "active",
                 },
             },
             params: {

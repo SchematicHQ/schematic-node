@@ -2048,6 +2048,7 @@ describe("BillingClient", () => {
                 },
             ],
             params: {
+                currency: "currency",
                 for_initial_plan: true,
                 for_trial_expiry_plan: true,
                 ids: ["ids"],
@@ -2069,6 +2070,7 @@ describe("BillingClient", () => {
         server.mockEndpoint().get("/billing/price").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.billing.listBillingPrices({
+            currency: "currency",
             forInitialPlan: true,
             forTrialExpiryPlan: true,
             interval: "interval",
@@ -2111,6 +2113,7 @@ describe("BillingClient", () => {
                 },
             ],
             params: {
+                currency: "currency",
                 forInitialPlan: true,
                 forTrialExpiryPlan: true,
                 ids: ["ids"],
@@ -2663,6 +2666,7 @@ describe("BillingClient", () => {
                 },
             ],
             params: {
+                currency: "currency",
                 for_initial_plan: true,
                 for_trial_expiry_plan: true,
                 ids: ["ids"],
@@ -2690,6 +2694,7 @@ describe("BillingClient", () => {
             .build();
 
         const response = await client.billing.listBillingProductPrices({
+            currency: "currency",
             forInitialPlan: true,
             forTrialExpiryPlan: true,
             interval: "interval",
@@ -2732,6 +2737,7 @@ describe("BillingClient", () => {
                 },
             ],
             params: {
+                currency: "currency",
                 forInitialPlan: true,
                 forTrialExpiryPlan: true,
                 ids: ["ids"],

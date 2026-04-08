@@ -11,6 +11,7 @@ import type * as Schematic from "../../../../index";
  */
 export interface UpdateCreditBundleDetailsRequestBody {
     bundleName: string;
+    currencyPrices?: Schematic.CreditBundleCurrencyPriceRequestBody[];
     expiryType?: Schematic.BillingCreditExpiryType;
     expiryUnit?: Schematic.BillingCreditExpiryUnit;
     expiryUnitCount?: number;

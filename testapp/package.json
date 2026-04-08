@@ -1,8 +1,0 @@
-{
-  "name": "schematic-node-testapp",
-  "version": "0.0.0",
-  "private": true,
-  "dependencies": {
-    "redis": "^4.7.0"
-  }
-}

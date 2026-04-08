@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { BillingLinkedResourceResponseData } from "./BillingLinkedResourceResponseData";
 import { EntityTraitDefinitionResponseData } from "./EntityTraitDefinitionResponseData";
 import { EventSummaryResponseData } from "./EventSummaryResponseData";
 import { FeatureLifecyclePhase } from "./FeatureLifecyclePhase";
@@ -13,6 +14,10 @@ import { PreviewObject } from "./PreviewObject";
 export const FeatureView: core.serialization.ObjectSchema<serializers.FeatureView.Raw, Schematic.FeatureView> =
     core.serialization.object({
         accountId: core.serialization.property("account_id", core.serialization.string()),
+        billingLinkedResource: core.serialization.property(
+            "billing_linked_resource",
+            BillingLinkedResourceResponseData.optional(),
+        ),
         createdAt: core.serialization.property("created_at", core.serialization.date()),
         description: core.serialization.string(),
         eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
@@ -35,6 +40,7 @@ export const FeatureView: core.serialization.ObjectSchema<serializers.FeatureVie
 export declare namespace FeatureView {
     export interface Raw {
         account_id: string;
+        billing_linked_resource?: BillingLinkedResourceResponseData.Raw | null;
         created_at: string;
         description: string;
         event_subtype?: string | null;

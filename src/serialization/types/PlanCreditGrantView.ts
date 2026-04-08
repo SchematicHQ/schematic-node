@@ -39,6 +39,10 @@ export const PlanCreditGrantView: core.serialization.ObjectSchema<
         "billing_credit_auto_topup_expiry_unit_count",
         core.serialization.number().optional(),
     ),
+    billingCreditAutoTopupThresholdCredits: core.serialization.property(
+        "billing_credit_auto_topup_threshold_credits",
+        core.serialization.number().optional(),
+    ),
     billingCreditAutoTopupThresholdPercent: core.serialization.property(
         "billing_credit_auto_topup_threshold_percent",
         core.serialization.number().optional(),
@@ -73,6 +77,7 @@ export declare namespace PlanCreditGrantView {
         billing_credit_auto_topup_expiry_type?: BillingCreditExpiryType.Raw | null;
         billing_credit_auto_topup_expiry_unit?: BillingCreditExpiryUnit.Raw | null;
         billing_credit_auto_topup_expiry_unit_count?: number | null;
+        billing_credit_auto_topup_threshold_credits?: number | null;
         billing_credit_auto_topup_threshold_percent?: number | null;
         created_at: string;
         credit?: BillingCreditView.Raw | null;

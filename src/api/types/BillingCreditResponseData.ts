@@ -6,6 +6,7 @@ export interface BillingCreditResponseData {
     burnStrategy: Schematic.BillingCreditBurnStrategy;
     costEditable: boolean;
     createdAt: Date;
+    currencyPrices: Schematic.CreditCurrencyPriceResponseData[];
     defaultExpiryUnit: Schematic.BillingCreditExpiryUnit;
     defaultExpiryUnitCount?: number;
     defaultRolloverPolicy: Schematic.BillingCreditRolloverPolicy;

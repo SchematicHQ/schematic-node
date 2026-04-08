@@ -7,6 +7,7 @@ import { BillingCreditBundleStatus } from "../../../../types/BillingCreditBundle
 import { BillingCreditBundleType } from "../../../../types/BillingCreditBundleType";
 import { BillingCreditExpiryType } from "../../../../types/BillingCreditExpiryType";
 import { BillingCreditExpiryUnit } from "../../../../types/BillingCreditExpiryUnit";
+import { CreditBundleCurrencyPriceRequestBody } from "../../../../types/CreditBundleCurrencyPriceRequestBody";
 
 export const CreateCreditBundleRequestBody: core.serialization.Schema<
     serializers.CreateCreditBundleRequestBody.Raw,
@@ -16,6 +17,10 @@ export const CreateCreditBundleRequestBody: core.serialization.Schema<
     bundleType: core.serialization.property("bundle_type", BillingCreditBundleType.optional()),
     creditId: core.serialization.property("credit_id", core.serialization.string()),
     currency: core.serialization.string(),
+    currencyPrices: core.serialization.property(
+        "currency_prices",
+        core.serialization.list(CreditBundleCurrencyPriceRequestBody).optional(),
+    ),
     expiryType: core.serialization.property("expiry_type", BillingCreditExpiryType.optional()),
     expiryUnit: core.serialization.property("expiry_unit", BillingCreditExpiryUnit.optional()),
     expiryUnitCount: core.serialization.property("expiry_unit_count", core.serialization.number().optional()),
@@ -31,6 +36,7 @@ export declare namespace CreateCreditBundleRequestBody {
         bundle_type?: BillingCreditBundleType.Raw | null;
         credit_id: string;
         currency: string;
+        currency_prices?: CreditBundleCurrencyPriceRequestBody.Raw[] | null;
         expiry_type?: BillingCreditExpiryType.Raw | null;
         expiry_unit?: BillingCreditExpiryUnit.Raw | null;
         expiry_unit_count?: number | null;

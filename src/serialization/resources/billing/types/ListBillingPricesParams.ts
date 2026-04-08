@@ -11,6 +11,7 @@ export const ListBillingPricesParams: core.serialization.ObjectSchema<
     serializers.ListBillingPricesParams.Raw,
     Schematic.ListBillingPricesParams
 > = core.serialization.object({
+    currency: core.serialization.string().optional(),
     forInitialPlan: core.serialization.property("for_initial_plan", core.serialization.boolean().optional()),
     forTrialExpiryPlan: core.serialization.property("for_trial_expiry_plan", core.serialization.boolean().optional()),
     ids: core.serialization.list(core.serialization.string()).optional(),
@@ -33,6 +34,7 @@ export const ListBillingPricesParams: core.serialization.ObjectSchema<
 
 export declare namespace ListBillingPricesParams {
     export interface Raw {
+        currency?: string | null;
         for_initial_plan?: boolean | null;
         for_trial_expiry_plan?: boolean | null;
         ids?: string[] | null;

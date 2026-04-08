@@ -8,13 +8,14 @@ import type * as Schematic from "../../../../index";
  *         companyId: "company_id",
  *         creditId: "credit_id",
  *         quantity: 1000000,
- *         reason: "billing_credit_auto_topup"
+ *         reason: "adjustment"
  *     }
  */
 export interface CreateCompanyCreditGrant {
     billingPeriodsCount?: number;
     companyId: string;
     creditId: string;
+    currency?: string;
     expiresAt?: Date;
     expiryType?: Schematic.BillingCreditExpiryType;
     expiryUnit?: Schematic.BillingCreditExpiryUnit;

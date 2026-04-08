@@ -5,6 +5,7 @@ import type * as Schematic from "../../../../index";
 /**
  * @example
  *     {
+ *         currency: "currency",
  *         forInitialPlan: true,
  *         forTrialExpiryPlan: true,
  *         interval: "interval",
@@ -21,6 +22,8 @@ import type * as Schematic from "../../../../index";
  *     }
  */
 export interface ListBillingPricesRequest {
+    /** Filter for prices in a specific currency (e.g. usd, eur) */
+    currency?: string;
     /** Filter for prices valid for initial plans (free prices only) */
     forInitialPlan?: boolean;
     /** Filter for prices valid for trial expiry plans (free prices only) */

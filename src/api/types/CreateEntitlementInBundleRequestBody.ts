@@ -7,6 +7,7 @@ export interface CreateEntitlementInBundleRequestBody {
     billingThreshold?: number;
     creditConsumptionRate?: number;
     currency?: string;
+    currencyPrices?: Schematic.CurrencyPriceRequestBody[];
     featureId: string;
     metricPeriod?: Schematic.CreateEntitlementInBundleRequestBodyMetricPeriod;
     metricPeriodMonthReset?: Schematic.CreateEntitlementInBundleRequestBodyMetricPeriodMonthReset;

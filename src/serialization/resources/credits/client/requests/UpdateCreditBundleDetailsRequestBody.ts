@@ -6,12 +6,17 @@ import type * as serializers from "../../../../index";
 import { BillingCreditBundleStatus } from "../../../../types/BillingCreditBundleStatus";
 import { BillingCreditExpiryType } from "../../../../types/BillingCreditExpiryType";
 import { BillingCreditExpiryUnit } from "../../../../types/BillingCreditExpiryUnit";
+import { CreditBundleCurrencyPriceRequestBody } from "../../../../types/CreditBundleCurrencyPriceRequestBody";
 
 export const UpdateCreditBundleDetailsRequestBody: core.serialization.Schema<
     serializers.UpdateCreditBundleDetailsRequestBody.Raw,
     Schematic.UpdateCreditBundleDetailsRequestBody
 > = core.serialization.object({
     bundleName: core.serialization.property("bundle_name", core.serialization.string()),
+    currencyPrices: core.serialization.property(
+        "currency_prices",
+        core.serialization.list(CreditBundleCurrencyPriceRequestBody).optional(),
+    ),
     expiryType: core.serialization.property("expiry_type", BillingCreditExpiryType.optional()),
     expiryUnit: core.serialization.property("expiry_unit", BillingCreditExpiryUnit.optional()),
     expiryUnitCount: core.serialization.property("expiry_unit_count", core.serialization.number().optional()),
@@ -24,6 +29,7 @@ export const UpdateCreditBundleDetailsRequestBody: core.serialization.Schema<
 export declare namespace UpdateCreditBundleDetailsRequestBody {
     export interface Raw {
         bundle_name: string;
+        currency_prices?: CreditBundleCurrencyPriceRequestBody.Raw[] | null;
         expiry_type?: BillingCreditExpiryType.Raw | null;
         expiry_unit?: BillingCreditExpiryUnit.Raw | null;
         expiry_unit_count?: number | null;

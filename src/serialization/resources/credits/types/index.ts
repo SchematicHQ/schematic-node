@@ -22,6 +22,7 @@ export * from "./GetCreditBundleResponse";
 export * from "./GetEnrichedCreditLedgerParams";
 export * from "./GetEnrichedCreditLedgerResponse";
 export * from "./GetSingleBillingCreditResponse";
+export * from "./GetSingleBillingPlanCreditGrantResponse";
 export * from "./GrantBillingCreditsToCompanyResponse";
 export * from "./ListBillingCreditsParams";
 export * from "./ListBillingCreditsResponse";

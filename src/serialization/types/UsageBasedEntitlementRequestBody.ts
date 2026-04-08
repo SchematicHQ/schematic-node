@@ -5,6 +5,7 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingTiersMode } from "./BillingTiersMode";
 import { CreatePriceTierRequestBody } from "./CreatePriceTierRequestBody";
+import { CurrencyPriceRequestBody } from "./CurrencyPriceRequestBody";
 import { EntitlementPriceBehavior } from "./EntitlementPriceBehavior";
 
 export const UsageBasedEntitlementRequestBody: core.serialization.ObjectSchema<
@@ -14,6 +15,10 @@ export const UsageBasedEntitlementRequestBody: core.serialization.ObjectSchema<
     billingProductId: core.serialization.property("billing_product_id", core.serialization.string().optional()),
     billingThreshold: core.serialization.property("billing_threshold", core.serialization.number().optional()),
     currency: core.serialization.string().optional(),
+    currencyPrices: core.serialization.property(
+        "currency_prices",
+        core.serialization.list(CurrencyPriceRequestBody).optional(),
+    ),
     monthlyMeteredPriceId: core.serialization.property(
         "monthly_metered_price_id",
         core.serialization.string().optional(),
@@ -58,6 +63,7 @@ export declare namespace UsageBasedEntitlementRequestBody {
         billing_product_id?: string | null;
         billing_threshold?: number | null;
         currency?: string | null;
+        currency_prices?: CurrencyPriceRequestBody.Raw[] | null;
         monthly_metered_price_id?: string | null;
         monthly_price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
         monthly_unit_price?: number | null;

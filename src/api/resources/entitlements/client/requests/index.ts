@@ -3,6 +3,7 @@ export type { CountFeatureCompaniesRequest } from "./CountFeatureCompaniesReques
 export type { CountFeatureUsageRequest } from "./CountFeatureUsageRequest";
 export type { CountFeatureUsersRequest } from "./CountFeatureUsersRequest";
 export type { CountPlanEntitlementsRequest } from "./CountPlanEntitlementsRequest";
+export type { CreateBillingLinkedPlanEntitlementRequestBody } from "./CreateBillingLinkedPlanEntitlementRequestBody";
 export type { CreateCompanyOverrideRequestBody } from "./CreateCompanyOverrideRequestBody";
 export type { CreatePlanEntitlementRequestBody } from "./CreatePlanEntitlementRequestBody";
 export type { DuplicatePlanEntitlementsRequestBody } from "./DuplicatePlanEntitlementsRequestBody";

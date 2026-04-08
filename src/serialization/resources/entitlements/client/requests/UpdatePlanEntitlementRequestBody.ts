@@ -5,6 +5,7 @@ import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
 import { BillingTiersMode } from "../../../../types/BillingTiersMode";
 import { CreatePriceTierRequestBody } from "../../../../types/CreatePriceTierRequestBody";
+import { CurrencyPriceRequestBody } from "../../../../types/CurrencyPriceRequestBody";
 import { EntitlementPriceBehavior } from "../../../../types/EntitlementPriceBehavior";
 import { EntitlementValueType } from "../../../../types/EntitlementValueType";
 import { UpdatePlanEntitlementRequestBodyMetricPeriod } from "../../types/UpdatePlanEntitlementRequestBodyMetricPeriod";
@@ -21,6 +22,10 @@ export const UpdatePlanEntitlementRequestBody: core.serialization.Schema<
         core.serialization.number().optional(),
     ),
     currency: core.serialization.string().optional(),
+    currencyPrices: core.serialization.property(
+        "currency_prices",
+        core.serialization.list(CurrencyPriceRequestBody).optional(),
+    ),
     metricPeriod: core.serialization.property("metric_period", UpdatePlanEntitlementRequestBodyMetricPeriod.optional()),
     metricPeriodMonthReset: core.serialization.property(
         "metric_period_month_reset",
@@ -76,6 +81,7 @@ export declare namespace UpdatePlanEntitlementRequestBody {
         billing_threshold?: number | null;
         credit_consumption_rate?: number | null;
         currency?: string | null;
+        currency_prices?: CurrencyPriceRequestBody.Raw[] | null;
         metric_period?: UpdatePlanEntitlementRequestBodyMetricPeriod.Raw | null;
         metric_period_month_reset?: UpdatePlanEntitlementRequestBodyMetricPeriodMonthReset.Raw | null;
         monthly_metered_price_id?: string | null;

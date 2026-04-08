@@ -98,6 +98,108 @@ await client.deletePlanAudiencesPlanAudienceId("plan_audience_id");
 </details>
 
 ## accounts
+<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">listAccountMembers</a>({ ...params }) -> Schematic.ListAccountMembersResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounts.listAccountMembers({
+    q: "q",
+    limit: 1000000,
+    offset: 1000000
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListAccountMembersRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">getAccountMember</a>(account_member_id) -> Schematic.GetAccountMemberResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounts.getAccountMember("account_member_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**account_member_id:** `string` — account_member_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">listApiKeys</a>({ ...params }) -> Schematic.ListApiKeysResponse</code></summary>
 <dl>
 <dd>
@@ -1535,6 +1637,7 @@ await client.billing.upsertPaymentMethod({
 
 ```typescript
 await client.billing.listBillingPrices({
+    currency: "currency",
     forInitialPlan: true,
     forTrialExpiryPlan: true,
     interval: "interval",
@@ -1709,6 +1812,7 @@ await client.billing.deleteBillingProduct("billing_id");
 
 ```typescript
 await client.billing.listBillingProductPrices({
+    currency: "currency",
     forInitialPlan: true,
     forTrialExpiryPlan: true,
     interval: "interval",
@@ -2766,7 +2870,7 @@ await client.credits.grantBillingCreditsToCompany({
     companyId: "company_id",
     creditId: "credit_id",
     quantity: 1000000,
-    reason: "billing_credit_auto_topup"
+    reason: "adjustment"
 });
 
 ```
@@ -3226,6 +3330,55 @@ await client.credits.createBillingPlanCreditGrant({
 <dd>
 
 **request:** `Schematic.CreateBillingPlanCreditGrantRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">getSingleBillingPlanCreditGrant</a>(plan_grant_id) -> Schematic.GetSingleBillingPlanCreditGrantResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.credits.getSingleBillingPlanCreditGrant("plan_grant_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**plan_grant_id:** `string` — plan_grant_id
     
 </dd>
 </dl>
@@ -5126,8 +5279,8 @@ await client.companies.getEntityTraitValues({
 
 ```typescript
 await client.companies.listPlanChanges({
-    action: "action",
-    basePlanAction: "base_plan_action",
+    action: "checkout",
+    basePlanAction: "fallback",
     companyId: "company_id",
     limit: 1000000,
     offset: 1000000
@@ -7038,6 +7191,61 @@ await client.entitlements.deletePlanEntitlement("plan_entitlement_id");
 </dl>
 </details>
 
+<details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">upsertPlanEntitlementForBillingProduct</a>({ ...params }) -> Schematic.UpsertPlanEntitlementForBillingProductResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.entitlements.upsertPlanEntitlementForBillingProduct({
+    billingProvider: "schematic",
+    externalResourceId: "external_resource_id",
+    featureId: "feature_id",
+    planId: "plan_id",
+    valueType: "boolean"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CreateBillingLinkedPlanEntitlementRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">countPlanEntitlements</a>({ ...params }) -> Schematic.CountPlanEntitlementsResponse</code></summary>
 <dl>
 <dd>
@@ -7602,6 +7810,169 @@ await client.plans.upsertBillingProductPlan("plan_id", {
 </dl>
 </details>
 
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">upsertPlanForBillingProduct</a>({ ...params }) -> Schematic.UpsertPlanForBillingProductResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.upsertPlanForBillingProduct({
+    billingProvider: "schematic",
+    description: "description",
+    externalResourceId: "external_resource_id",
+    name: "name",
+    planType: "plan"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CreateBillingLinkedPlanRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PlansClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">listBillingProductMatchCompanies</a>({ ...params }) -> Schematic.ListBillingProductMatchCompaniesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.listBillingProductMatchCompanies({
+    planId: "plan_id",
+    q: "q",
+    limit: 1000000,
+    offset: 1000000
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListBillingProductMatchCompaniesRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PlansClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">countBillingProductMatchCompanies</a>({ ...params }) -> Schematic.CountBillingProductMatchCompaniesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.countBillingProductMatchCompanies({
+    planId: "plan_id",
+    q: "q",
+    limit: 1000000,
+    offset: 1000000
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CountBillingProductMatchCompaniesRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PlansClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">countPlans</a>({ ...params }) -> Schematic.CountPlansResponse</code></summary>
 <dl>
 <dd>
@@ -7716,7 +8087,7 @@ await client.plans.listPlanIssues({
 </dl>
 </details>
 
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">deletePlanVersion</a>(plan_id) -> Schematic.DeletePlanVersionResponse</code></summary>
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">deletePlanVersion</a>(plan_id, { ...params }) -> Schematic.DeletePlanVersionResponse</code></summary>
 <dl>
 <dd>
 
@@ -7729,7 +8100,9 @@ await client.plans.listPlanIssues({
 <dd>
 
 ```typescript
-await client.plans.deletePlanVersion("plan_id");
+await client.plans.deletePlanVersion("plan_id", {
+    promoteArchivedVersion: true
+});
 
 ```
 </dd>
@@ -7746,6 +8119,14 @@ await client.plans.deletePlanVersion("plan_id");
 <dd>
 
 **plan_id:** `string` — plan_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.DeletePlanVersionRequest` 
     
 </dd>
 </dl>
@@ -8611,11 +8992,11 @@ await client.events.getSegmentIntegrationStatus();
 
 ```typescript
 await client.features.listFeatures({
+    booleanRequireEvent: true,
+    planVersionId: "plan_version_id",
     q: "q",
     withoutCompanyOverrideFor: "without_company_override_for",
-    planVersionId: "plan_version_id",
     withoutPlanEntitlementFor: "without_plan_entitlement_for",
-    booleanRequireEvent: true,
     limit: 1000000,
     offset: 1000000
 });
@@ -8862,6 +9243,61 @@ await client.features.deleteFeature("feature_id");
 </dl>
 </details>
 
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">upsertFeatureForBillingProduct</a>({ ...params }) -> Schematic.UpsertFeatureForBillingProductResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.features.upsertFeatureForBillingProduct({
+    billingProvider: "schematic",
+    description: "description",
+    externalResourceId: "external_resource_id",
+    featureType: "boolean",
+    name: "name"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CreateBillingLinkedFeatureRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FeaturesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">countFeatures</a>({ ...params }) -> Schematic.CountFeaturesResponse</code></summary>
 <dl>
 <dd>
@@ -8876,11 +9312,11 @@ await client.features.deleteFeature("feature_id");
 
 ```typescript
 await client.features.countFeatures({
+    booleanRequireEvent: true,
+    planVersionId: "plan_version_id",
     q: "q",
     withoutCompanyOverrideFor: "without_company_override_for",
-    planVersionId: "plan_version_id",
     withoutPlanEntitlementFor: "without_plan_entitlement_for",
-    booleanRequireEvent: true,
     limit: 1000000,
     offset: 1000000
 });

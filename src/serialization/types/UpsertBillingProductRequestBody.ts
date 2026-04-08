@@ -4,6 +4,7 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { ChargeType } from "./ChargeType";
+import { PlanCurrencyPriceRequestBody } from "./PlanCurrencyPriceRequestBody";
 
 export const UpsertBillingProductRequestBody: core.serialization.ObjectSchema<
     serializers.UpsertBillingProductRequestBody.Raw,
@@ -12,6 +13,10 @@ export const UpsertBillingProductRequestBody: core.serialization.ObjectSchema<
     billingProductId: core.serialization.property("billing_product_id", core.serialization.string().optional()),
     chargeType: core.serialization.property("charge_type", ChargeType),
     currency: core.serialization.string().optional(),
+    currencyPrices: core.serialization.property(
+        "currency_prices",
+        core.serialization.list(PlanCurrencyPriceRequestBody).optional(),
+    ),
     isTrialable: core.serialization.property("is_trialable", core.serialization.boolean()),
     monthlyPrice: core.serialization.property("monthly_price", core.serialization.number().optional()),
     monthlyPriceId: core.serialization.property("monthly_price_id", core.serialization.string().optional()),
@@ -27,6 +32,7 @@ export declare namespace UpsertBillingProductRequestBody {
         billing_product_id?: string | null;
         charge_type: ChargeType.Raw;
         currency?: string | null;
+        currency_prices?: PlanCurrencyPriceRequestBody.Raw[] | null;
         is_trialable: boolean;
         monthly_price?: number | null;
         monthly_price_id?: string | null;

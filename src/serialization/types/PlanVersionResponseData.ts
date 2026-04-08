@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { PlanIcon } from "./PlanIcon";
 import { PlanType } from "./PlanType";
 import { PlanVersionStatus } from "./PlanVersionStatus";
 
@@ -13,7 +14,7 @@ export const PlanVersionResponseData: core.serialization.ObjectSchema<
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     description: core.serialization.string(),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
-    icon: core.serialization.string(),
+    icon: PlanIcon,
     id: core.serialization.string(),
     name: core.serialization.string(),
     originalPlanId: core.serialization.property("original_plan_id", core.serialization.string().optional()),
@@ -28,7 +29,7 @@ export declare namespace PlanVersionResponseData {
         created_at: string;
         description: string;
         environment_id: string;
-        icon: string;
+        icon: PlanIcon.Raw;
         id: string;
         name: string;
         original_plan_id?: string | null;

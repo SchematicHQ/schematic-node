@@ -18,10 +18,12 @@ describe("PlangroupsClient", () => {
                         compatible_plan_ids: ["compatible_plan_ids"],
                         controlled_by: "schematic",
                         created_at: "2024-01-15T09:30:00Z",
+                        currency_prices: [{ currency: "currency" }],
                         description: "description",
                         entitlements: [
                             {
                                 created_at: "2024-01-15T09:30:00Z",
+                                currency_prices: [{ currency: "currency" }],
                                 environment_id: "environment_id",
                                 feature_id: "feature_id",
                                 id: "id",
@@ -104,7 +106,7 @@ describe("PlangroupsClient", () => {
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
                         ],
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         is_custom: true,
                         is_default: true,
@@ -118,7 +120,7 @@ describe("PlangroupsClient", () => {
                                 created_at: "2024-01-15T09:30:00Z",
                                 description: "description",
                                 environment_id: "environment_id",
-                                icon: "icon",
+                                icon: "amber",
                                 id: "id",
                                 name: "name",
                                 plan_type: "plan",
@@ -145,13 +147,18 @@ describe("PlangroupsClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
                         environment_id: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
                         version: 1000000,
+                    },
+                    billing_linked_resource: {
+                        billing_provider: "schematic",
+                        external_resource_id: "external_resource_id",
+                        originator: "schematic",
                     },
                     billing_product: {
                         account_id: "account_id",
@@ -183,6 +190,7 @@ describe("PlangroupsClient", () => {
                     compatible_plan_ids: ["compatible_plan_ids"],
                     controlled_by: "schematic",
                     created_at: "2024-01-15T09:30:00Z",
+                    currency_prices: [{ currency: "currency" }],
                     custom_plan_config: {
                         cta_text: "cta_text",
                         cta_web_site: "cta_web_site",
@@ -193,7 +201,7 @@ describe("PlangroupsClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
                         environment_id: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         plan_type: "plan",
@@ -204,6 +212,7 @@ describe("PlangroupsClient", () => {
                     entitlements: [
                         {
                             created_at: "2024-01-15T09:30:00Z",
+                            currency_prices: [{ currency: "currency" }],
                             environment_id: "environment_id",
                             feature_id: "feature_id",
                             id: "id",
@@ -286,7 +295,7 @@ describe("PlangroupsClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     included_credit_grants: [
                         {
@@ -332,7 +341,7 @@ describe("PlangroupsClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             description: "description",
                             environment_id: "environment_id",
-                            icon: "icon",
+                            icon: "amber",
                             id: "id",
                             name: "name",
                             plan_type: "plan",
@@ -356,13 +365,18 @@ describe("PlangroupsClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
                         environment_id: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
                         version: 1000000,
+                    },
+                    billing_linked_resource: {
+                        billing_provider: "schematic",
+                        external_resource_id: "external_resource_id",
+                        originator: "schematic",
                     },
                     billing_product: {
                         account_id: "account_id",
@@ -394,6 +408,7 @@ describe("PlangroupsClient", () => {
                     compatible_plan_ids: ["compatible_plan_ids"],
                     controlled_by: "schematic",
                     created_at: "2024-01-15T09:30:00Z",
+                    currency_prices: [{ currency: "currency" }],
                     custom_plan_config: {
                         cta_text: "cta_text",
                         cta_web_site: "cta_web_site",
@@ -404,7 +419,7 @@ describe("PlangroupsClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
                         environment_id: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         plan_type: "plan",
@@ -415,6 +430,7 @@ describe("PlangroupsClient", () => {
                     entitlements: [
                         {
                             created_at: "2024-01-15T09:30:00Z",
+                            currency_prices: [{ currency: "currency" }],
                             environment_id: "environment_id",
                             feature_id: "feature_id",
                             id: "id",
@@ -497,7 +513,7 @@ describe("PlangroupsClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     included_credit_grants: [
                         {
@@ -543,7 +559,7 @@ describe("PlangroupsClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             description: "description",
                             environment_id: "environment_id",
-                            icon: "icon",
+                            icon: "amber",
                             id: "id",
                             name: "name",
                             plan_type: "plan",
@@ -569,13 +585,18 @@ describe("PlangroupsClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
                         environment_id: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
                         version: 1000000,
+                    },
+                    billing_linked_resource: {
+                        billing_provider: "schematic",
+                        external_resource_id: "external_resource_id",
+                        originator: "schematic",
                     },
                     billing_product: {
                         account_id: "account_id",
@@ -607,6 +628,7 @@ describe("PlangroupsClient", () => {
                     compatible_plan_ids: ["compatible_plan_ids"],
                     controlled_by: "schematic",
                     created_at: "2024-01-15T09:30:00Z",
+                    currency_prices: [{ currency: "currency" }],
                     custom_plan_config: {
                         cta_text: "cta_text",
                         cta_web_site: "cta_web_site",
@@ -617,7 +639,7 @@ describe("PlangroupsClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
                         environment_id: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         plan_type: "plan",
@@ -628,6 +650,7 @@ describe("PlangroupsClient", () => {
                     entitlements: [
                         {
                             created_at: "2024-01-15T09:30:00Z",
+                            currency_prices: [{ currency: "currency" }],
                             environment_id: "environment_id",
                             feature_id: "feature_id",
                             id: "id",
@@ -710,7 +733,7 @@ describe("PlangroupsClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     included_credit_grants: [
                         {
@@ -756,7 +779,7 @@ describe("PlangroupsClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             description: "description",
                             environment_id: "environment_id",
-                            icon: "icon",
+                            icon: "amber",
                             id: "id",
                             name: "name",
                             plan_type: "plan",
@@ -811,10 +834,12 @@ describe("PlangroupsClient", () => {
                         compatible_plan_ids: ["compatible_plan_ids"],
                         controlled_by: "schematic",
                         created_at: "2024-01-15T09:30:00Z",
+                        currency_prices: [{ currency: "currency" }],
                         description: "description",
                         entitlements: [
                             {
                                 created_at: "2024-01-15T09:30:00Z",
+                                currency_prices: [{ currency: "currency" }],
                                 environment_id: "environment_id",
                                 feature_id: "feature_id",
                                 id: "id",
@@ -897,7 +922,7 @@ describe("PlangroupsClient", () => {
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
                         ],
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         is_custom: true,
                         is_default: true,
@@ -911,7 +936,7 @@ describe("PlangroupsClient", () => {
                                 created_at: "2024-01-15T09:30:00Z",
                                 description: "description",
                                 environment_id: "environment_id",
-                                icon: "icon",
+                                icon: "amber",
                                 id: "id",
                                 name: "name",
                                 plan_type: "plan",
@@ -941,13 +966,18 @@ describe("PlangroupsClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
                         environment_id: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         plan_type: "plan",
                         status: "published",
                         updated_at: "2024-01-15T09:30:00Z",
                         version: 1000000,
+                    },
+                    billing_linked_resource: {
+                        billing_provider: "schematic",
+                        external_resource_id: "external_resource_id",
+                        originator: "schematic",
                     },
                     billing_product: {
                         account_id: "account_id",
@@ -979,6 +1009,7 @@ describe("PlangroupsClient", () => {
                     compatible_plan_ids: ["compatible_plan_ids"],
                     controlled_by: "schematic",
                     created_at: "2024-01-15T09:30:00Z",
+                    currency_prices: [{ currency: "currency" }],
                     custom_plan_config: {
                         cta_text: "cta_text",
                         cta_web_site: "cta_web_site",
@@ -989,7 +1020,7 @@ describe("PlangroupsClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
                         environment_id: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         plan_type: "plan",
@@ -1000,6 +1031,7 @@ describe("PlangroupsClient", () => {
                     entitlements: [
                         {
                             created_at: "2024-01-15T09:30:00Z",
+                            currency_prices: [{ currency: "currency" }],
                             environment_id: "environment_id",
                             feature_id: "feature_id",
                             id: "id",
@@ -1082,7 +1114,7 @@ describe("PlangroupsClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     included_credit_grants: [
                         {
@@ -1128,7 +1160,7 @@ describe("PlangroupsClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             description: "description",
                             environment_id: "environment_id",
-                            icon: "icon",
+                            icon: "amber",
                             id: "id",
                             name: "name",
                             plan_type: "plan",
@@ -1192,10 +1224,20 @@ describe("PlangroupsClient", () => {
                         compatiblePlanIds: ["compatible_plan_ids"],
                         controlledBy: "schematic",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        currencyPrices: [
+                            {
+                                currency: "currency",
+                            },
+                        ],
                         description: "description",
                         entitlements: [
                             {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                currencyPrices: [
+                                    {
+                                        currency: "currency",
+                                    },
+                                ],
                                 environmentId: "environment_id",
                                 featureId: "feature_id",
                                 id: "id",
@@ -1293,7 +1335,7 @@ describe("PlangroupsClient", () => {
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
                         ],
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         isCustom: true,
                         isDefault: true,
@@ -1307,7 +1349,7 @@ describe("PlangroupsClient", () => {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 description: "description",
                                 environmentId: "environment_id",
-                                icon: "icon",
+                                icon: "amber",
                                 id: "id",
                                 name: "name",
                                 planType: "plan",
@@ -1342,13 +1384,18 @@ describe("PlangroupsClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
                         environmentId: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         version: 1000000,
+                    },
+                    billingLinkedResource: {
+                        billingProvider: "schematic",
+                        externalResourceId: "external_resource_id",
+                        originator: "schematic",
                     },
                     billingProduct: {
                         accountId: "account_id",
@@ -1380,6 +1427,11 @@ describe("PlangroupsClient", () => {
                     compatiblePlanIds: ["compatible_plan_ids"],
                     controlledBy: "schematic",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    currencyPrices: [
+                        {
+                            currency: "currency",
+                        },
+                    ],
                     customPlanConfig: {
                         ctaText: "cta_text",
                         ctaWebSite: "cta_web_site",
@@ -1390,7 +1442,7 @@ describe("PlangroupsClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
                         environmentId: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         planType: "plan",
@@ -1401,6 +1453,11 @@ describe("PlangroupsClient", () => {
                     entitlements: [
                         {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            currencyPrices: [
+                                {
+                                    currency: "currency",
+                                },
+                            ],
                             environmentId: "environment_id",
                             featureId: "feature_id",
                             id: "id",
@@ -1498,7 +1555,7 @@ describe("PlangroupsClient", () => {
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                     ],
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     includedCreditGrants: [
                         {
@@ -1544,7 +1601,7 @@ describe("PlangroupsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             description: "description",
                             environmentId: "environment_id",
-                            icon: "icon",
+                            icon: "amber",
                             id: "id",
                             name: "name",
                             planType: "plan",
@@ -1568,13 +1625,18 @@ describe("PlangroupsClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
                         environmentId: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         version: 1000000,
+                    },
+                    billingLinkedResource: {
+                        billingProvider: "schematic",
+                        externalResourceId: "external_resource_id",
+                        originator: "schematic",
                     },
                     billingProduct: {
                         accountId: "account_id",
@@ -1606,6 +1668,11 @@ describe("PlangroupsClient", () => {
                     compatiblePlanIds: ["compatible_plan_ids"],
                     controlledBy: "schematic",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    currencyPrices: [
+                        {
+                            currency: "currency",
+                        },
+                    ],
                     customPlanConfig: {
                         ctaText: "cta_text",
                         ctaWebSite: "cta_web_site",
@@ -1616,7 +1683,7 @@ describe("PlangroupsClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
                         environmentId: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         planType: "plan",
@@ -1627,6 +1694,11 @@ describe("PlangroupsClient", () => {
                     entitlements: [
                         {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            currencyPrices: [
+                                {
+                                    currency: "currency",
+                                },
+                            ],
                             environmentId: "environment_id",
                             featureId: "feature_id",
                             id: "id",
@@ -1724,7 +1796,7 @@ describe("PlangroupsClient", () => {
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                     ],
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     includedCreditGrants: [
                         {
@@ -1770,7 +1842,7 @@ describe("PlangroupsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             description: "description",
                             environmentId: "environment_id",
-                            icon: "icon",
+                            icon: "amber",
                             id: "id",
                             name: "name",
                             planType: "plan",
@@ -1796,13 +1868,18 @@ describe("PlangroupsClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
                         environmentId: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         version: 1000000,
+                    },
+                    billingLinkedResource: {
+                        billingProvider: "schematic",
+                        externalResourceId: "external_resource_id",
+                        originator: "schematic",
                     },
                     billingProduct: {
                         accountId: "account_id",
@@ -1834,6 +1911,11 @@ describe("PlangroupsClient", () => {
                     compatiblePlanIds: ["compatible_plan_ids"],
                     controlledBy: "schematic",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    currencyPrices: [
+                        {
+                            currency: "currency",
+                        },
+                    ],
                     customPlanConfig: {
                         ctaText: "cta_text",
                         ctaWebSite: "cta_web_site",
@@ -1844,7 +1926,7 @@ describe("PlangroupsClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
                         environmentId: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         planType: "plan",
@@ -1855,6 +1937,11 @@ describe("PlangroupsClient", () => {
                     entitlements: [
                         {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            currencyPrices: [
+                                {
+                                    currency: "currency",
+                                },
+                            ],
                             environmentId: "environment_id",
                             featureId: "feature_id",
                             id: "id",
@@ -1952,7 +2039,7 @@ describe("PlangroupsClient", () => {
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                     ],
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     includedCreditGrants: [
                         {
@@ -1998,7 +2085,7 @@ describe("PlangroupsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             description: "description",
                             environmentId: "environment_id",
-                            icon: "icon",
+                            icon: "amber",
                             id: "id",
                             name: "name",
                             planType: "plan",
@@ -2065,10 +2152,20 @@ describe("PlangroupsClient", () => {
                         compatiblePlanIds: ["compatible_plan_ids"],
                         controlledBy: "schematic",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        currencyPrices: [
+                            {
+                                currency: "currency",
+                            },
+                        ],
                         description: "description",
                         entitlements: [
                             {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                currencyPrices: [
+                                    {
+                                        currency: "currency",
+                                    },
+                                ],
                                 environmentId: "environment_id",
                                 featureId: "feature_id",
                                 id: "id",
@@ -2166,7 +2263,7 @@ describe("PlangroupsClient", () => {
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
                         ],
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         isCustom: true,
                         isDefault: true,
@@ -2180,7 +2277,7 @@ describe("PlangroupsClient", () => {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 description: "description",
                                 environmentId: "environment_id",
-                                icon: "icon",
+                                icon: "amber",
                                 id: "id",
                                 name: "name",
                                 planType: "plan",
@@ -2210,13 +2307,18 @@ describe("PlangroupsClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
                         environmentId: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         planType: "plan",
                         status: "published",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         version: 1000000,
+                    },
+                    billingLinkedResource: {
+                        billingProvider: "schematic",
+                        externalResourceId: "external_resource_id",
+                        originator: "schematic",
                     },
                     billingProduct: {
                         accountId: "account_id",
@@ -2248,6 +2350,11 @@ describe("PlangroupsClient", () => {
                     compatiblePlanIds: ["compatible_plan_ids"],
                     controlledBy: "schematic",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    currencyPrices: [
+                        {
+                            currency: "currency",
+                        },
+                    ],
                     customPlanConfig: {
                         ctaText: "cta_text",
                         ctaWebSite: "cta_web_site",
@@ -2258,7 +2365,7 @@ describe("PlangroupsClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
                         environmentId: "environment_id",
-                        icon: "icon",
+                        icon: "amber",
                         id: "id",
                         name: "name",
                         planType: "plan",
@@ -2269,6 +2376,11 @@ describe("PlangroupsClient", () => {
                     entitlements: [
                         {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            currencyPrices: [
+                                {
+                                    currency: "currency",
+                                },
+                            ],
                             environmentId: "environment_id",
                             featureId: "feature_id",
                             id: "id",
@@ -2366,7 +2478,7 @@ describe("PlangroupsClient", () => {
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                     ],
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     includedCreditGrants: [
                         {
@@ -2412,7 +2524,7 @@ describe("PlangroupsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             description: "description",
                             environmentId: "environment_id",
-                            icon: "icon",
+                            icon: "amber",
                             id: "id",
                             name: "name",
                             planType: "plan",

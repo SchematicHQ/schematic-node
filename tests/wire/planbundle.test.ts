@@ -40,6 +40,7 @@ describe("PlanbundleClient", () => {
                 entitlements: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
+                        currency_prices: [{ currency: "currency" }],
                         environment_id: "environment_id",
                         feature_id: "feature_id",
                         id: "id",
@@ -52,7 +53,7 @@ describe("PlanbundleClient", () => {
                 plan: {
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     name: "name",
                     plan_type: "plan",
@@ -122,6 +123,11 @@ describe("PlanbundleClient", () => {
                 entitlements: [
                     {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        currencyPrices: [
+                            {
+                                currency: "currency",
+                            },
+                        ],
                         environmentId: "environment_id",
                         featureId: "feature_id",
                         id: "id",
@@ -134,7 +140,7 @@ describe("PlanbundleClient", () => {
                 plan: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     name: "name",
                     planType: "plan",
@@ -340,6 +346,7 @@ describe("PlanbundleClient", () => {
                 entitlements: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
+                        currency_prices: [{ currency: "currency" }],
                         environment_id: "environment_id",
                         feature_id: "feature_id",
                         id: "id",
@@ -352,7 +359,7 @@ describe("PlanbundleClient", () => {
                 plan: {
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     name: "name",
                     plan_type: "plan",
@@ -422,6 +429,11 @@ describe("PlanbundleClient", () => {
                 entitlements: [
                     {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        currencyPrices: [
+                            {
+                                currency: "currency",
+                            },
+                        ],
                         environmentId: "environment_id",
                         featureId: "feature_id",
                         id: "id",
@@ -434,7 +446,7 @@ describe("PlanbundleClient", () => {
                 plan: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
-                    icon: "icon",
+                    icon: "amber",
                     id: "id",
                     name: "name",
                     planType: "plan",

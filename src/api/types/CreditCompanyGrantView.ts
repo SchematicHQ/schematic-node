@@ -11,6 +11,7 @@ export interface CreditCompanyGrantView {
     creditDescription: string;
     creditIcon?: string;
     creditName: string;
+    currency?: string;
     exhaustedAt?: Date;
     expiresAt?: Date;
     expiryType?: Schematic.BillingCreditExpiryType;

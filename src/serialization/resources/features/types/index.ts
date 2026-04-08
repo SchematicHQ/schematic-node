@@ -18,3 +18,4 @@ export * from "./ListFlagsResponse";
 export * from "./UpdateFeatureResponse";
 export * from "./UpdateFlagResponse";
 export * from "./UpdateFlagRulesResponse";
+export * from "./UpsertFeatureForBillingProductResponse";

@@ -16,6 +16,7 @@ export interface CreateCreditBundleRequestBody {
     bundleType?: Schematic.BillingCreditBundleType;
     creditId: string;
     currency: string;
+    currencyPrices?: Schematic.CreditBundleCurrencyPriceRequestBody[];
     expiryType?: Schematic.BillingCreditExpiryType;
     expiryUnit?: Schematic.BillingCreditExpiryUnit;
     expiryUnitCount?: number;

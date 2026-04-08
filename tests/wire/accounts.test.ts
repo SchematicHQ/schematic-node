@@ -5,6 +5,244 @@ import { SchematicClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
 describe("AccountsClient", () => {
+    test("listAccountMembers (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    created_at: "2024-01-15T09:30:00Z",
+                    email: "email",
+                    id: "id",
+                    image_url: "image_url",
+                    name: "name",
+                    permissions: { key: ["billing_credits_edit"] },
+                    role: "admin",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+            ],
+            params: { ids: ["ids"], limit: 1000000, offset: 1000000, q: "q" },
+        };
+
+        server.mockEndpoint().get("/account-members").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.accounts.listAccountMembers({
+            q: "q",
+            limit: 1000000,
+            offset: 1000000,
+        });
+        expect(response).toEqual({
+            data: [
+                {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    email: "email",
+                    id: "id",
+                    imageUrl: "image_url",
+                    name: "name",
+                    permissions: {
+                        key: ["billing_credits_edit"],
+                    },
+                    role: "admin",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+            ],
+            params: {
+                ids: ["ids"],
+                limit: 1000000,
+                offset: 1000000,
+                q: "q",
+            },
+        });
+    });
+
+    test("listAccountMembers (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/account-members").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.accounts.listAccountMembers();
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("listAccountMembers (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/account-members").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.accounts.listAccountMembers();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("listAccountMembers (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/account-members").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.accounts.listAccountMembers();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("listAccountMembers (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/account-members").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.accounts.listAccountMembers();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("listAccountMembers (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/account-members").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.accounts.listAccountMembers();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("getAccountMember (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                created_at: "2024-01-15T09:30:00Z",
+                email: "email",
+                id: "id",
+                image_url: "image_url",
+                name: "name",
+                permissions: { key: ["billing_credits_edit"] },
+                role: "admin",
+                updated_at: "2024-01-15T09:30:00Z",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/account-members/account_member_id")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.accounts.getAccountMember("account_member_id");
+        expect(response).toEqual({
+            data: {
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                email: "email",
+                id: "id",
+                imageUrl: "image_url",
+                name: "name",
+                permissions: {
+                    key: ["billing_credits_edit"],
+                },
+                role: "admin",
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("getAccountMember (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/account-members/account_member_id")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.accounts.getAccountMember("account_member_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getAccountMember (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/account-members/account_member_id")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.accounts.getAccountMember("account_member_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getAccountMember (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/account-members/account_member_id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.accounts.getAccountMember("account_member_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getAccountMember (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/account-members/account_member_id")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.accounts.getAccountMember("account_member_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("listApiKeys (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });

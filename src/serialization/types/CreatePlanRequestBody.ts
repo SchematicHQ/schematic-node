@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { PlanIcon } from "./PlanIcon";
 import { PlanType } from "./PlanType";
 
 export const CreatePlanRequestBody: core.serialization.ObjectSchema<
@@ -10,7 +11,7 @@ export const CreatePlanRequestBody: core.serialization.ObjectSchema<
     Schematic.CreatePlanRequestBody
 > = core.serialization.object({
     description: core.serialization.string(),
-    icon: core.serialization.string().optional(),
+    icon: PlanIcon.optional(),
     name: core.serialization.string(),
     planType: core.serialization.property("plan_type", PlanType),
 });
@@ -18,7 +19,7 @@ export const CreatePlanRequestBody: core.serialization.ObjectSchema<
 export declare namespace CreatePlanRequestBody {
     export interface Raw {
         description: string;
-        icon?: string | null;
+        icon?: PlanIcon.Raw | null;
         name: string;
         plan_type: PlanType.Raw;
     }

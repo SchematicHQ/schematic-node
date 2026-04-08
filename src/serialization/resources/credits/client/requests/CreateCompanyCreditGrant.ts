@@ -15,6 +15,7 @@ export const CreateCompanyCreditGrant: core.serialization.Schema<
     billingPeriodsCount: core.serialization.property("billing_periods_count", core.serialization.number().optional()),
     companyId: core.serialization.property("company_id", core.serialization.string()),
     creditId: core.serialization.property("credit_id", core.serialization.string()),
+    currency: core.serialization.string().optional(),
     expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
     expiryType: core.serialization.property("expiry_type", BillingCreditExpiryType.optional()),
     expiryUnit: core.serialization.property("expiry_unit", BillingCreditExpiryUnit.optional()),
@@ -30,6 +31,7 @@ export declare namespace CreateCompanyCreditGrant {
         billing_periods_count?: number | null;
         company_id: string;
         credit_id: string;
+        currency?: string | null;
         expires_at?: string | null;
         expiry_type?: BillingCreditExpiryType.Raw | null;
         expiry_unit?: BillingCreditExpiryUnit.Raw | null;

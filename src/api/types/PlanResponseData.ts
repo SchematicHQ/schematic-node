@@ -6,7 +6,7 @@ export interface PlanResponseData {
     audienceType?: string;
     createdAt: Date;
     description: string;
-    icon: string;
+    icon: Schematic.PlanIcon;
     id: string;
     name: string;
     planType: Schematic.PlanType;

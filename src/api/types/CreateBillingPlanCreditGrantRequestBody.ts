@@ -10,6 +10,7 @@ export interface CreateBillingPlanCreditGrantRequestBody {
     autoTopupExpiryType?: Schematic.BillingCreditExpiryType;
     autoTopupExpiryUnit?: Schematic.BillingCreditExpiryUnit;
     autoTopupExpiryUnitCount?: number;
+    autoTopupThresholdCredits?: number;
     autoTopupThresholdPercent?: number;
     creditAmount: number;
     creditId: string;

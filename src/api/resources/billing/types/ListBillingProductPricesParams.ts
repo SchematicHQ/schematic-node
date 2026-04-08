@@ -6,6 +6,8 @@ import type * as Schematic from "../../../index";
  * Input parameters
  */
 export interface ListBillingProductPricesParams {
+    /** Filter for prices in a specific currency (e.g. usd, eur) */
+    currency?: string;
     /** Filter for prices valid for initial plans (free prices only) */
     forInitialPlan?: boolean;
     /** Filter for prices valid for trial expiry plans (free prices only) */

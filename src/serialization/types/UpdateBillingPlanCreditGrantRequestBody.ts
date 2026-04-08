@@ -24,6 +24,10 @@ export const UpdateBillingPlanCreditGrantRequestBody: core.serialization.ObjectS
         "auto_topup_expiry_unit_count",
         core.serialization.number().optional(),
     ),
+    autoTopupThresholdCredits: core.serialization.property(
+        "auto_topup_threshold_credits",
+        core.serialization.number().optional(),
+    ),
     autoTopupThresholdPercent: core.serialization.property(
         "auto_topup_threshold_percent",
         core.serialization.number().optional(),
@@ -46,6 +50,7 @@ export declare namespace UpdateBillingPlanCreditGrantRequestBody {
         auto_topup_expiry_type?: BillingCreditExpiryType.Raw | null;
         auto_topup_expiry_unit?: BillingCreditExpiryUnit.Raw | null;
         auto_topup_expiry_unit_count?: number | null;
+        auto_topup_threshold_credits?: number | null;
         auto_topup_threshold_percent?: number | null;
         credit_amount?: number | null;
         expiry_type?: BillingCreditExpiryType.Raw | null;

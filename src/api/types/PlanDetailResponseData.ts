@@ -5,15 +5,17 @@ import type * as Schematic from "../index";
 export interface PlanDetailResponseData {
     activeVersion?: Schematic.PlanVersionResponseData;
     audienceType?: string;
+    billingLinkedResource?: Schematic.BillingLinkedResourceResponseData;
     billingProduct?: Schematic.BillingProductDetailResponseData;
     chargeType: Schematic.ChargeType;
     companyCount: number;
     controlledBy: Schematic.PlanControlledByType;
     createdAt: Date;
+    currencyPrices: Schematic.PlanCurrencyPricesResponseData[];
     description: string;
     draftVersion?: Schematic.PlanVersionResponseData;
     features: Schematic.FeatureDetailResponseData[];
-    icon: string;
+    icon: Schematic.PlanIcon;
     id: string;
     includedCreditGrants?: Schematic.BillingPlanCreditGrantResponseData[];
     isDefault: boolean;

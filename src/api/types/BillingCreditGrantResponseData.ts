@@ -9,6 +9,7 @@ export interface BillingCreditGrantResponseData {
     creditIcon?: string;
     creditId: string;
     creditName: string;
+    currency?: string;
     expiresAt?: Date;
     grantReason: Schematic.BillingCreditGrantReason;
     id: string;
