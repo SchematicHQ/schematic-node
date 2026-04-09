@@ -4,7 +4,7 @@ import { DataStreamResp, DataStreamReq, DataStreamError, EntityType, MessageType
 import { RulesEngineClient } from '../rules-engine';
 import { Logger } from '../logger';
 import { LazyEmitter } from './emitter';
-import { partialCompany, partialUser, extractIdFromData, deepCopyCompany as deepCopyCompanyFn } from './merge';
+import { partialCompany, partialUser, deepCopyCompany as deepCopyCompanyFn } from './merge';
 
 // Import cache providers from the cache module
 import type { CacheProvider } from '../cache/types';
@@ -685,12 +685,9 @@ export class DataStreamClient extends LazyEmitter {
     let company: Schematic.RulesengineCompany;
 
     if (message.message_type === MessageType.PARTIAL) {
-      const data = message.data as Record<string, unknown>;
-      let id: string;
-      try {
-        id = extractIdFromData(data);
-      } catch (error) {
-        this.logger.error(`Failed to extract company ID from partial message: ${error}`);
+      const id = message.entity_id;
+      if (!id) {
+        this.logger.error("Partial company message missing entity_id");
         return;
       }
 
@@ -702,7 +699,7 @@ export class DataStreamClient extends LazyEmitter {
       }
 
       try {
-        company = partialCompany(existing, data);
+        company = partialCompany(existing, message.data as Record<string, unknown>);
       } catch (error) {
         this.logger.error(`Failed to merge partial company: ${error}`);
         return;
@@ -751,12 +748,9 @@ export class DataStreamClient extends LazyEmitter {
     let user: Schematic.RulesengineUser;
 
     if (message.message_type === MessageType.PARTIAL) {
-      const data = message.data as Record<string, unknown>;
-      let id: string;
-      try {
-        id = extractIdFromData(data);
-      } catch (error) {
-        this.logger.error(`Failed to extract user ID from partial message: ${error}`);
+      const id = message.entity_id;
+      if (!id) {
+        this.logger.error("Partial user message missing entity_id");
         return;
       }
 
@@ -768,7 +762,7 @@ export class DataStreamClient extends LazyEmitter {
       }
 
       try {
-        user = partialUser(existing, data);
+        user = partialUser(existing, message.data as Record<string, unknown>);
       } catch (error) {
         this.logger.error(`Failed to merge partial user: ${error}`);
         return;

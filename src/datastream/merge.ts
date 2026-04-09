@@ -23,21 +23,9 @@ export function deepCopyUser(u: Schematic.RulesengineUser): Schematic.Rulesengin
 }
 
 /**
- * Extracts the "id" field from a parsed datastream message data object.
- * Throws if the id field is missing or empty.
- */
-export function extractIdFromData(data: Record<string, unknown>): string {
-    const id = data.id as string | undefined;
-    if (!id) {
-        throw new Error("partial message missing required field: id");
-    }
-    return id;
-}
-
-/**
  * Merges a partial update into an existing Company.
  * Deep-copies the existing company, then applies only the fields
- * present in the partial object. The "id" field must be present.
+ * present in the partial object.
  *
  * Wire format uses snake_case keys. The existing company from cache
  * may have either camelCase or snake_case keys depending on how it
@@ -47,10 +35,6 @@ export function partialCompany(
     existing: Schematic.RulesengineCompany,
     partial: Record<string, unknown>,
 ): Schematic.RulesengineCompany {
-    if (!("id" in partial)) {
-        throw new Error("partial company message missing required field: id");
-    }
-
     const merged = deepCopyCompany(existing) as unknown as Record<string, unknown>;
 
     for (const key of Object.keys(partial)) {
@@ -104,16 +88,12 @@ export function partialCompany(
 /**
  * Merges a partial update into an existing User.
  * Deep-copies the existing user, then applies only the fields
- * present in the partial object. The "id" field must be present.
+ * present in the partial object.
  */
 export function partialUser(
     existing: Schematic.RulesengineUser,
     partial: Record<string, unknown>,
 ): Schematic.RulesengineUser {
-    if (!("id" in partial)) {
-        throw new Error("partial user message missing required field: id");
-    }
-
     const merged = deepCopyUser(existing) as unknown as Record<string, unknown>;
 
     for (const key of Object.keys(partial)) {

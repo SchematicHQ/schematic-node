@@ -330,18 +330,17 @@ describe('DataStreamClient', () => {
     const cachedFull = await client.getCompany({ name: 'Partial Corp' });
     expect(cachedFull).toEqual(fullCompany);
 
-    // Send a PARTIAL company message that updates only some fields
-    const partialCompany = {
-      id: 'company-partial',
-      keys: { name: 'Partial Corp' },
-      traits: [{ key: 'tier', value: 'enterprise' }],
-      plan_ids: ['plan-2'],
-    } as unknown as Schematic.RulesengineCompany;
-
+    // Send a PARTIAL company message. Wire shape: data is the partial fields,
+    // entity_id at the top level identifies the cached company to merge into.
     await messageHandler({
       entity_type: EntityType.COMPANY,
+      entity_id: 'company-partial',
       message_type: MessageType.PARTIAL,
-      data: partialCompany,
+      data: {
+        keys: { name: 'Partial Corp' },
+        traits: [{ key: 'tier', value: 'enterprise' }],
+        plan_ids: ['plan-2'],
+      },
     });
 
     // Partial messages are now properly merged: fields in the partial update
@@ -366,9 +365,9 @@ describe('DataStreamClient', () => {
     // Send a PARTIAL for a company that was never cached via FULL
     await messageHandler({
       entity_type: EntityType.COMPANY,
+      entity_id: 'company-unknown',
       message_type: MessageType.PARTIAL,
       data: {
-        id: 'company-unknown',
         keys: { name: 'Ghost Corp' },
         traits: [{ key: 'tier', value: 'enterprise' }],
       },
@@ -394,9 +393,9 @@ describe('DataStreamClient', () => {
     // Send a PARTIAL for a user that was never cached via FULL
     await messageHandler({
       entity_type: EntityType.USER,
+      entity_id: 'user-unknown',
       message_type: MessageType.PARTIAL,
       data: {
-        id: 'user-unknown',
         keys: { email: 'ghost@example.com' },
         traits: [{ key: 'tier', value: 'enterprise' }],
       },
