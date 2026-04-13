@@ -40,6 +40,7 @@ export interface DataStreamBaseReq {
  */
 export interface DataStreamResp {
   data: unknown;
+  entity_id?: string;
   entity_type: string;
   message_type: string;
 }

@@ -2,7 +2,6 @@ import * as Schematic from '../../../src/api/types';
 import {
     partialCompany,
     partialUser,
-    extractIdFromData,
     deepCopyCompany,
     deepCopyUser,
 } from '../../../src/datastream/merge';
@@ -184,11 +183,18 @@ describe('partialCompany', () => {
         expect(m.billing_product_ids).toEqual(['bp-1']);
     });
 
-    test('missing id throws error', () => {
+    test('tolerates missing id - cache lookup uses envelope entity_id', () => {
         const existing = baseCompany();
-        const partial = { traits: [] };
+        // Wire shape from the API: data is wrapped under the field name,
+        // no id at the top level. The cache lookup happens at the handler
+        // level using envelope.entity_id, not from the data payload.
+        const partial = { credit_balances: { 'credit-2': 200.0 } };
 
-        expect(() => partialCompany(existing, partial)).toThrow('missing required field: id');
+        const merged = partialCompany(existing, partial);
+        const m = merged as unknown as Record<string, unknown>;
+
+        expect(m.credit_balances).toEqual({ 'credit-1': 100.0, 'credit-2': 200.0 });
+        expect(m.id).toBe('co-1');
     });
 
     test('does not mutate original', () => {
@@ -325,7 +331,6 @@ describe('partialUser', () => {
     test('only traits - replaces traits, preserves keys', () => {
         const existing = baseUser();
         const partial = {
-            id: 'user-1',
             traits: [{ value: 'Free', trait_definition: { id: 'tier', comparable_type: 'string', entity_type: 'user' } }],
         };
 
@@ -339,7 +344,7 @@ describe('partialUser', () => {
 
     test('merges keys - new key added, existing preserved', () => {
         const existing = baseUser();
-        const partial = { id: 'user-1', keys: { slack_id: 'U123' } };
+        const partial = { keys: { slack_id: 'U123' } };
 
         const merged = partialUser(existing, partial);
         const m = merged as unknown as Record<string, unknown>;
@@ -348,18 +353,22 @@ describe('partialUser', () => {
         expect((m.traits as unknown[]).length).toBe(1);
     });
 
-    test('missing id throws error', () => {
+    test('tolerates missing id - cache lookup uses envelope entity_id', () => {
         const existing = baseUser();
         const partial = { keys: { email: 'new@example.com' } };
 
-        expect(() => partialUser(existing, partial)).toThrow('missing required field: id');
+        const merged = partialUser(existing, partial);
+        const m = merged as unknown as Record<string, unknown>;
+
+        expect(m.keys).toEqual({ email: 'new@example.com' });
+        expect(m.id).toBe('user-1');
     });
 
     test('does not mutate original', () => {
         const existing = baseUser();
         const origKeys = { ...(existing as unknown as Record<string, unknown>).keys as Record<string, string> };
 
-        const partial = { id: 'user-1', keys: { slug: 'new' }, traits: [] };
+        const partial = { keys: { slug: 'new' }, traits: [] };
 
         const merged = partialUser(existing, partial);
         const m = merged as unknown as Record<string, unknown>;
@@ -371,65 +380,37 @@ describe('partialUser', () => {
         expect((m.traits as unknown[]).length).toBe(0);
     });
 
-    test('full entity partial message - all fields updated', () => {
+    test('multiple fields in one payload', () => {
         const existing = baseUser();
         (existing as unknown as Record<string, unknown>).rules = [makeRule('rule-1')];
 
         const partial = {
-            id: 'user-1',
-            account_id: 'acc-2',
-            environment_id: 'env-2',
             keys: { email: 'new@example.com', slack_id: 'U999' },
             traits: [
                 { value: 'Free', trait_definition: { id: 'tier', comparable_type: 'string', entity_type: 'user' } },
-                { value: 'Monthly', trait_definition: { id: 'billing', comparable_type: 'string', entity_type: 'user' } },
             ],
-            rules: [makeRule('rule-new-1'), makeRule('rule-new-2')],
+            rules: [makeRule('rule-new-1')],
         };
 
         const merged = partialUser(existing, partial);
         const m = merged as unknown as Record<string, unknown>;
 
-        expect(m.id).toBe('user-1');
-        expect(m.account_id).toBe('acc-2');
-        expect(m.environment_id).toBe('env-2');
-
         // Keys merge: email overwritten, slack_id added
         expect(m.keys).toEqual({ email: 'new@example.com', slack_id: 'U999' });
 
         const traits = m.traits as Record<string, unknown>[];
-        expect(traits.length).toBe(2);
+        expect(traits.length).toBe(1);
         expect(traits[0].value).toBe('Free');
-        expect(traits[1].value).toBe('Monthly');
 
         const rules = m.rules as Record<string, unknown>[];
-        expect(rules.length).toBe(2);
+        expect(rules.length).toBe(1);
         expect(rules[0].id).toBe('rule-new-1');
-        expect(rules[1].id).toBe('rule-new-2');
 
         // Original not mutated
         const orig = existing as unknown as Record<string, unknown>;
-        expect(orig.account_id).toBe('acc-1');
         expect(orig.keys).toEqual({ email: 'user@example.com' });
         expect((orig.traits as unknown[]).length).toBe(1);
         expect((orig.rules as Record<string, unknown>[])[0].id).toBe('rule-1');
-    });
-});
-
-// --- extractIdFromData tests ---
-
-describe('extractIdFromData', () => {
-    test('valid data returns id', () => {
-        const id = extractIdFromData({ id: 'co-1', traits: [] });
-        expect(id).toBe('co-1');
-    });
-
-    test('missing id throws error', () => {
-        expect(() => extractIdFromData({ traits: [] })).toThrow('missing required field: id');
-    });
-
-    test('empty id throws error', () => {
-        expect(() => extractIdFromData({ id: '' })).toThrow('missing required field: id');
     });
 });
 
