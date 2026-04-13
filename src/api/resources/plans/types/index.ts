@@ -2,6 +2,7 @@ export * from "./CountBillingProductMatchCompaniesParams";
 export * from "./CountBillingProductMatchCompaniesResponse";
 export * from "./CountPlansParams";
 export * from "./CountPlansResponse";
+export * from "./CreateCustomPlanResponse";
 export * from "./CreatePlanResponse";
 export * from "./DeletePlanResponse";
 export * from "./DeletePlanVersionParams";

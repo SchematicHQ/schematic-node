@@ -6,7 +6,7 @@ import type * as Schematic from "../../../../index";
  * @example
  *     {
  *         name: "name",
- *         providerType: "schematic",
+ *         providerType: "orb",
  *         q: "q",
  *         limit: 1000000,
  *         offset: 1000000

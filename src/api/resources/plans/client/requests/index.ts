@@ -1,6 +1,7 @@
 export type { CountBillingProductMatchCompaniesRequest } from "./CountBillingProductMatchCompaniesRequest";
 export type { CountPlansRequest } from "./CountPlansRequest";
 export type { CreateBillingLinkedPlanRequestBody } from "./CreateBillingLinkedPlanRequestBody";
+export type { CreateCustomPlanRequestBody } from "./CreateCustomPlanRequestBody";
 export type { DeletePlanVersionRequest } from "./DeletePlanVersionRequest";
 export type { GetPlanRequest } from "./GetPlanRequest";
 export type { ListBillingProductMatchCompaniesRequest } from "./ListBillingProductMatchCompaniesRequest";

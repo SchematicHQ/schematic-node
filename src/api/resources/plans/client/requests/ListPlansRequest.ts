@@ -13,6 +13,7 @@ import type * as Schematic from "../../../../index";
  *         includeDraftVersions: true,
  *         planType: "plan",
  *         q: "q",
+ *         scopedToCompanyId: "scoped_to_company_id",
  *         withoutEntitlementFor: "without_entitlement_for",
  *         withoutPaidProductId: true,
  *         limit: 1000000,
@@ -35,6 +36,8 @@ export interface ListPlansRequest {
     /** Filter by plan type */
     planType?: Schematic.PlanType;
     q?: string;
+    /** Filter plans scoped to a specific company (custom plans) */
+    scopedToCompanyId?: string;
     /** Filter out plans that already have a plan entitlement for the specified feature ID */
     withoutEntitlementFor?: string;
     /** Filter out plans that have a paid billing product ID */

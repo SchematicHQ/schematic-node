@@ -3,6 +3,7 @@
 import type * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
+import { BillingProviderType } from "../../../../types/BillingProviderType";
 
 export const CreateMeterRequestBody: core.serialization.Schema<
     serializers.CreateMeterRequestBody.Raw,
@@ -12,6 +13,7 @@ export const CreateMeterRequestBody: core.serialization.Schema<
     eventName: core.serialization.property("event_name", core.serialization.string()),
     eventPayloadKey: core.serialization.property("event_payload_key", core.serialization.string()),
     externalId: core.serialization.property("external_id", core.serialization.string()),
+    providerType: core.serialization.property("provider_type", BillingProviderType.optional()),
 });
 
 export declare namespace CreateMeterRequestBody {
@@ -20,5 +22,6 @@ export declare namespace CreateMeterRequestBody {
         event_name: string;
         event_payload_key: string;
         external_id: string;
+        provider_type?: BillingProviderType.Raw | null;
     }
 }

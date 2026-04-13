@@ -1202,7 +1202,7 @@ await client.billing.upsertBillingCustomer({
 ```typescript
 await client.billing.listCustomersWithSubscriptions({
     name: "name",
-    providerType: "schematic",
+    providerType: "orb",
     q: "q",
     limit: 1000000,
     offset: 1000000
@@ -1257,7 +1257,7 @@ await client.billing.listCustomersWithSubscriptions({
 ```typescript
 await client.billing.countCustomers({
     name: "name",
-    providerType: "schematic",
+    providerType: "orb",
     q: "q",
     limit: 1000000,
     offset: 1000000
@@ -1644,7 +1644,7 @@ await client.billing.listBillingPrices({
     isActive: true,
     price: 1000000,
     productId: "product_id",
-    providerType: "schematic",
+    providerType: "orb",
     q: "q",
     tiersMode: "graduated",
     usageType: "licensed",
@@ -1819,7 +1819,7 @@ await client.billing.listBillingProductPrices({
     isActive: true,
     price: 1000000,
     productId: "product_id",
-    providerType: "schematic",
+    providerType: "orb",
     q: "q",
     tiersMode: "graduated",
     usageType: "licensed",
@@ -1980,7 +1980,7 @@ await client.billing.listBillingProducts({
     isActive: true,
     name: "name",
     priceUsageType: "licensed",
-    providerType: "schematic",
+    providerType: "orb",
     q: "q",
     withOneTimeCharges: true,
     withPricesOnly: true,
@@ -2041,7 +2041,7 @@ await client.billing.countBillingProducts({
     isActive: true,
     name: "name",
     priceUsageType: "licensed",
-    providerType: "schematic",
+    providerType: "orb",
     q: "q",
     withOneTimeCharges: true,
     withPricesOnly: true,
@@ -4119,6 +4119,7 @@ await client.checkout.updateCustomerSubscriptionTrialEnd("subscription_id");
 
 ```typescript
 await client.companies.listCompanies({
+    hasScheduledDowngrade: true,
     monetizedSubscriptions: true,
     planId: "plan_id",
     planVersionId: "plan_version_id",
@@ -4344,6 +4345,7 @@ await client.companies.deleteCompany("company_id", {
 
 ```typescript
 await client.companies.countCompanies({
+    hasScheduledDowngrade: true,
     monetizedSubscriptions: true,
     planId: "plan_id",
     planVersionId: "plan_version_id",
@@ -7205,7 +7207,7 @@ await client.entitlements.deletePlanEntitlement("plan_entitlement_id");
 
 ```typescript
 await client.entitlements.upsertPlanEntitlementForBillingProduct({
-    billingProvider: "schematic",
+    billingProvider: "orb",
     externalResourceId: "external_resource_id",
     featureId: "feature_id",
     planId: "plan_id",
@@ -7468,6 +7470,59 @@ await client.plans.updateCompanyPlans("company_plan_id", {
 </dl>
 </details>
 
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">createCustomPlan</a>({ ...params }) -> Schematic.CreateCustomPlanResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.createCustomPlan({
+    companyId: "company_id",
+    description: "description",
+    name: "name"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CreateCustomPlanRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PlansClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">listPlans</a>({ ...params }) -> Schematic.ListPlansResponse</code></summary>
 <dl>
 <dd>
@@ -7490,6 +7545,7 @@ await client.plans.listPlans({
     includeDraftVersions: true,
     planType: "plan",
     q: "q",
+    scopedToCompanyId: "scoped_to_company_id",
     withoutEntitlementFor: "without_entitlement_for",
     withoutPaidProductId: true,
     limit: 1000000,
@@ -7824,7 +7880,7 @@ await client.plans.upsertBillingProductPlan("plan_id", {
 
 ```typescript
 await client.plans.upsertPlanForBillingProduct({
-    billingProvider: "schematic",
+    billingProvider: "orb",
     description: "description",
     externalResourceId: "external_resource_id",
     name: "name",
@@ -7995,6 +8051,7 @@ await client.plans.countPlans({
     includeDraftVersions: true,
     planType: "plan",
     q: "q",
+    scopedToCompanyId: "scoped_to_company_id",
     withoutEntitlementFor: "without_entitlement_for",
     withoutPaidProductId: true,
     limit: 1000000,
@@ -8161,7 +8218,11 @@ await client.plans.deletePlanVersion("plan_id", {
 ```typescript
 await client.plans.publishPlanVersion("plan_id", {
     excludedCompanyIds: ["excluded_company_ids"],
-    migrationStrategy: "immediate"
+    migrationStrategy: "immediate",
+    payInAdvance: [{
+            priceId: "price_id",
+            quantity: 1000000
+        }]
 });
 
 ```
@@ -9257,7 +9318,7 @@ await client.features.deleteFeature("feature_id");
 
 ```typescript
 await client.features.upsertFeatureForBillingProduct({
-    billingProvider: "schematic",
+    billingProvider: "orb",
     description: "description",
     externalResourceId: "external_resource_id",
     featureType: "boolean",
@@ -9900,6 +9961,56 @@ await client.features.countFlags({
 <dd>
 
 **requestOptions:** `FeaturesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## integrationsapi
+<details><summary><code>client.integrationsapi.<a href="/src/api/resources/integrationsapi/client/Client.ts">getIntegrationWebhookUrl</a>(type) -> Schematic.GetIntegrationWebhookUrlResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.integrationsapi.getIntegrationWebhookUrl("type");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**type:** `string` — type
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `IntegrationsapiClient.RequestOptions` 
     
 </dd>
 </dl>

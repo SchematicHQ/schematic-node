@@ -8,6 +8,8 @@ import type * as Schematic from "../../../index";
 export interface ListCompaniesParams {
     /** Filter companies by one or more credit type IDs (each ID starts with bcrd_) */
     creditTypeIds?: string[];
+    /** Filter companies that have a pending scheduled downgrade */
+    hasScheduledDowngrade?: boolean;
     /** Filter companies by multiple company IDs (starts with comp_) */
     ids?: string[];
     /** Page limit (default 100) */

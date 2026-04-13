@@ -12,7 +12,7 @@ import type * as Schematic from "../../../../index";
  *         isActive: true,
  *         price: 1000000,
  *         productId: "product_id",
- *         providerType: "schematic",
+ *         providerType: "orb",
  *         q: "q",
  *         tiersMode: "graduated",
  *         usageType: "licensed",

@@ -25,6 +25,8 @@ export interface CountPlansParams {
     /** Filter by plan type */
     planType?: Schematic.PlanType;
     q?: string;
+    /** Filter plans scoped to a specific company (custom plans) */
+    scopedToCompanyId?: string;
     /** Filter out plans that already have a plan entitlement for the specified feature ID */
     withoutEntitlementFor?: string;
     /** Filter out plans that have a paid billing product ID */

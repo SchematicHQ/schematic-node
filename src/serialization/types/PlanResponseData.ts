@@ -11,6 +11,8 @@ export const PlanResponseData: core.serialization.ObjectSchema<
     Schematic.PlanResponseData
 > = core.serialization.object({
     audienceType: core.serialization.property("audience_type", core.serialization.string().optional()),
+    companyId: core.serialization.property("company_id", core.serialization.string().optional()),
+    copiedFromPlanId: core.serialization.property("copied_from_plan_id", core.serialization.string().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     description: core.serialization.string(),
     icon: PlanIcon,
@@ -23,6 +25,8 @@ export const PlanResponseData: core.serialization.ObjectSchema<
 export declare namespace PlanResponseData {
     export interface Raw {
         audience_type?: string | null;
+        company_id?: string | null;
+        copied_from_plan_id?: string | null;
         created_at: string;
         description: string;
         icon: PlanIcon.Raw;

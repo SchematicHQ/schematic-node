@@ -13,9 +13,9 @@ describe("FeaturesClient", () => {
             data: [
                 {
                     billing_linked_resource: {
-                        billing_provider: "schematic",
+                        billing_provider: "orb",
                         external_resource_id: "external_resource_id",
-                        originator: "schematic",
+                        originator: "orb",
                     },
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
@@ -138,9 +138,9 @@ describe("FeaturesClient", () => {
             data: [
                 {
                     billingLinkedResource: {
-                        billingProvider: "schematic",
+                        billingProvider: "orb",
                         externalResourceId: "external_resource_id",
-                        originator: "schematic",
+                        originator: "orb",
                     },
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
@@ -336,9 +336,9 @@ describe("FeaturesClient", () => {
         const rawResponseBody = {
             data: {
                 billing_linked_resource: {
-                    billing_provider: "schematic",
+                    billing_provider: "orb",
                     external_resource_id: "external_resource_id",
-                    originator: "schematic",
+                    originator: "orb",
                 },
                 created_at: "2024-01-15T09:30:00Z",
                 description: "description",
@@ -453,9 +453,9 @@ describe("FeaturesClient", () => {
         expect(response).toEqual({
             data: {
                 billingLinkedResource: {
-                    billingProvider: "schematic",
+                    billingProvider: "orb",
                     externalResourceId: "external_resource_id",
-                    originator: "schematic",
+                    originator: "orb",
                 },
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 description: "description",
@@ -698,9 +698,9 @@ describe("FeaturesClient", () => {
         const rawResponseBody = {
             data: {
                 billing_linked_resource: {
-                    billing_provider: "schematic",
+                    billing_provider: "orb",
                     external_resource_id: "external_resource_id",
-                    originator: "schematic",
+                    originator: "orb",
                 },
                 created_at: "2024-01-15T09:30:00Z",
                 description: "description",
@@ -810,9 +810,9 @@ describe("FeaturesClient", () => {
         expect(response).toEqual({
             data: {
                 billingLinkedResource: {
-                    billingProvider: "schematic",
+                    billingProvider: "orb",
                     externalResourceId: "external_resource_id",
-                    originator: "schematic",
+                    originator: "orb",
                 },
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 description: "description",
@@ -1011,9 +1011,9 @@ describe("FeaturesClient", () => {
         const rawResponseBody = {
             data: {
                 billing_linked_resource: {
-                    billing_provider: "schematic",
+                    billing_provider: "orb",
                     external_resource_id: "external_resource_id",
-                    originator: "schematic",
+                    originator: "orb",
                 },
                 created_at: "2024-01-15T09:30:00Z",
                 description: "description",
@@ -1124,9 +1124,9 @@ describe("FeaturesClient", () => {
         expect(response).toEqual({
             data: {
                 billingLinkedResource: {
-                    billingProvider: "schematic",
+                    billingProvider: "orb",
                     externalResourceId: "external_resource_id",
-                    originator: "schematic",
+                    originator: "orb",
                 },
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 description: "description",
@@ -1466,7 +1466,7 @@ describe("FeaturesClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            billing_provider: "schematic",
+            billing_provider: "orb",
             description: "description",
             external_resource_id: "external_resource_id",
             feature_type: "boolean",
@@ -1475,9 +1475,9 @@ describe("FeaturesClient", () => {
         const rawResponseBody = {
             data: {
                 billing_linked_resource: {
-                    billing_provider: "schematic",
+                    billing_provider: "orb",
                     external_resource_id: "external_resource_id",
-                    originator: "schematic",
+                    originator: "orb",
                 },
                 created_at: "2024-01-15T09:30:00Z",
                 description: "description",
@@ -1585,7 +1585,7 @@ describe("FeaturesClient", () => {
             .build();
 
         const response = await client.features.upsertFeatureForBillingProduct({
-            billingProvider: "schematic",
+            billingProvider: "orb",
             description: "description",
             externalResourceId: "external_resource_id",
             featureType: "boolean",
@@ -1594,9 +1594,9 @@ describe("FeaturesClient", () => {
         expect(response).toEqual({
             data: {
                 billingLinkedResource: {
-                    billingProvider: "schematic",
+                    billingProvider: "orb",
                     externalResourceId: "external_resource_id",
-                    originator: "schematic",
+                    originator: "orb",
                 },
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 description: "description",
@@ -1716,7 +1716,7 @@ describe("FeaturesClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            billing_provider: "schematic",
+            billing_provider: "orb",
             description: "description",
             external_resource_id: "external_resource_id",
             feature_type: "boolean",
@@ -1735,7 +1735,7 @@ describe("FeaturesClient", () => {
 
         await expect(async () => {
             return await client.features.upsertFeatureForBillingProduct({
-                billingProvider: "schematic",
+                billingProvider: "orb",
                 description: "description",
                 externalResourceId: "external_resource_id",
                 featureType: "boolean",
@@ -1748,7 +1748,7 @@ describe("FeaturesClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            billing_provider: "schematic",
+            billing_provider: "orb",
             description: "description",
             external_resource_id: "external_resource_id",
             feature_type: "boolean",
@@ -1767,7 +1767,7 @@ describe("FeaturesClient", () => {
 
         await expect(async () => {
             return await client.features.upsertFeatureForBillingProduct({
-                billingProvider: "schematic",
+                billingProvider: "orb",
                 description: "description",
                 externalResourceId: "external_resource_id",
                 featureType: "boolean",
@@ -1780,7 +1780,7 @@ describe("FeaturesClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            billing_provider: "schematic",
+            billing_provider: "orb",
             description: "description",
             external_resource_id: "external_resource_id",
             feature_type: "boolean",
@@ -1799,7 +1799,7 @@ describe("FeaturesClient", () => {
 
         await expect(async () => {
             return await client.features.upsertFeatureForBillingProduct({
-                billingProvider: "schematic",
+                billingProvider: "orb",
                 description: "description",
                 externalResourceId: "external_resource_id",
                 featureType: "boolean",
@@ -1812,7 +1812,7 @@ describe("FeaturesClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            billing_provider: "schematic",
+            billing_provider: "orb",
             description: "description",
             external_resource_id: "external_resource_id",
             feature_type: "boolean",
@@ -1831,7 +1831,7 @@ describe("FeaturesClient", () => {
 
         await expect(async () => {
             return await client.features.upsertFeatureForBillingProduct({
-                billingProvider: "schematic",
+                billingProvider: "orb",
                 description: "description",
                 externalResourceId: "external_resource_id",
                 featureType: "boolean",
@@ -1844,7 +1844,7 @@ describe("FeaturesClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            billing_provider: "schematic",
+            billing_provider: "orb",
             description: "description",
             external_resource_id: "external_resource_id",
             feature_type: "boolean",
@@ -1863,7 +1863,7 @@ describe("FeaturesClient", () => {
 
         await expect(async () => {
             return await client.features.upsertFeatureForBillingProduct({
-                billingProvider: "schematic",
+                billingProvider: "orb",
                 description: "description",
                 externalResourceId: "external_resource_id",
                 featureType: "boolean",

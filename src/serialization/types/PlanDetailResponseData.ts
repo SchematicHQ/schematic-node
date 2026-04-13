@@ -9,7 +9,6 @@ import { BillingPriceResponseData } from "./BillingPriceResponseData";
 import { BillingProductDetailResponseData } from "./BillingProductDetailResponseData";
 import { ChargeType } from "./ChargeType";
 import { FeatureDetailResponseData } from "./FeatureDetailResponseData";
-import { PlanControlledByType } from "./PlanControlledByType";
 import { PlanCurrencyPricesResponseData } from "./PlanCurrencyPricesResponseData";
 import { PlanIcon } from "./PlanIcon";
 import { PlanType } from "./PlanType";
@@ -28,7 +27,10 @@ export const PlanDetailResponseData: core.serialization.ObjectSchema<
     billingProduct: core.serialization.property("billing_product", BillingProductDetailResponseData.optional()),
     chargeType: core.serialization.property("charge_type", ChargeType),
     companyCount: core.serialization.property("company_count", core.serialization.number()),
-    controlledBy: core.serialization.property("controlled_by", PlanControlledByType),
+    companyId: core.serialization.property("company_id", core.serialization.string().optional()),
+    companyName: core.serialization.property("company_name", core.serialization.string().optional()),
+    controlledBy: core.serialization.property("controlled_by", core.serialization.string()),
+    copiedFromPlanId: core.serialization.property("copied_from_plan_id", core.serialization.string().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     currencyPrices: core.serialization.property(
         "currency_prices",
@@ -64,7 +66,10 @@ export declare namespace PlanDetailResponseData {
         billing_product?: BillingProductDetailResponseData.Raw | null;
         charge_type: ChargeType.Raw;
         company_count: number;
-        controlled_by: PlanControlledByType.Raw;
+        company_id?: string | null;
+        company_name?: string | null;
+        controlled_by: string;
+        copied_from_plan_id?: string | null;
         created_at: string;
         currency_prices: PlanCurrencyPricesResponseData.Raw[];
         description: string;

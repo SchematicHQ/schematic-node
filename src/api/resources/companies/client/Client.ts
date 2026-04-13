@@ -36,6 +36,7 @@ export class CompaniesClient {
      *
      * @example
      *     await client.companies.listCompanies({
+     *         hasScheduledDowngrade: true,
      *         monetizedSubscriptions: true,
      *         planId: "plan_id",
      *         planVersionId: "plan_version_id",
@@ -64,6 +65,7 @@ export class CompaniesClient {
     ): Promise<core.WithRawResponse<Schematic.ListCompaniesResponse>> {
         const {
             creditTypeIds,
+            hasScheduledDowngrade,
             ids,
             monetizedSubscriptions,
             planId,
@@ -84,6 +86,7 @@ export class CompaniesClient {
         } = request;
         const _queryParams: Record<string, unknown> = {
             credit_type_ids: creditTypeIds,
+            has_scheduled_downgrade: hasScheduledDowngrade,
             ids,
             monetized_subscriptions: monetizedSubscriptions,
             plan_id: planId,
@@ -625,6 +628,7 @@ export class CompaniesClient {
      *
      * @example
      *     await client.companies.countCompanies({
+     *         hasScheduledDowngrade: true,
      *         monetizedSubscriptions: true,
      *         planId: "plan_id",
      *         planVersionId: "plan_version_id",
@@ -653,6 +657,7 @@ export class CompaniesClient {
     ): Promise<core.WithRawResponse<Schematic.CountCompaniesResponse>> {
         const {
             creditTypeIds,
+            hasScheduledDowngrade,
             ids,
             monetizedSubscriptions,
             planId,
@@ -673,6 +678,7 @@ export class CompaniesClient {
         } = request;
         const _queryParams: Record<string, unknown> = {
             credit_type_ids: creditTypeIds,
+            has_scheduled_downgrade: hasScheduledDowngrade,
             ids,
             monetized_subscriptions: monetizedSubscriptions,
             plan_id: planId,

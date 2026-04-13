@@ -16,6 +16,7 @@ export interface CheckoutSubscription {
     expiredAt?: Date;
     id: string;
     interval: string;
+    invoiceUrl?: string;
     metadata?: Record<string, unknown>;
     periodEnd: number;
     periodStart: number;

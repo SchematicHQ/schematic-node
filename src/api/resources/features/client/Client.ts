@@ -712,7 +712,7 @@ export class FeaturesClient {
      *
      * @example
      *     await client.features.upsertFeatureForBillingProduct({
-     *         billingProvider: "schematic",
+     *         billingProvider: "orb",
      *         description: "description",
      *         externalResourceId: "external_resource_id",
      *         featureType: "boolean",

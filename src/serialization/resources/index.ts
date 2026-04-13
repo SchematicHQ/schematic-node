@@ -33,6 +33,8 @@ export * from "./events/types";
 export * as features from "./features";
 export * from "./features/client/requests";
 export * from "./features/types";
+export * as integrationsapi from "./integrationsapi";
+export * from "./integrationsapi/types";
 export * as planbundle from "./planbundle";
 export * from "./planbundle/client/requests";
 export * from "./planbundle/types";

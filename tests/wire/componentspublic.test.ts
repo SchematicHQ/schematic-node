@@ -16,7 +16,7 @@ describe("ComponentspublicClient", () => {
                         charge_type: "free",
                         company_count: 1000000,
                         compatible_plan_ids: ["compatible_plan_ids"],
-                        controlled_by: "schematic",
+                        controlled_by: "controlled_by",
                         created_at: "2024-01-15T09:30:00Z",
                         currency_prices: [{ currency: "currency" }],
                         custom: true,
@@ -151,7 +151,7 @@ describe("ComponentspublicClient", () => {
                         charge_type: "free",
                         company_count: 1000000,
                         compatible_plan_ids: ["compatible_plan_ids"],
-                        controlled_by: "schematic",
+                        controlled_by: "controlled_by",
                         created_at: "2024-01-15T09:30:00Z",
                         currency_prices: [{ currency: "currency" }],
                         custom: true,
@@ -311,7 +311,7 @@ describe("ComponentspublicClient", () => {
                         chargeType: "free",
                         companyCount: 1000000,
                         compatiblePlanIds: ["compatible_plan_ids"],
-                        controlledBy: "schematic",
+                        controlledBy: "controlled_by",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {
@@ -469,7 +469,7 @@ describe("ComponentspublicClient", () => {
                         chargeType: "free",
                         companyCount: 1000000,
                         compatiblePlanIds: ["compatible_plan_ids"],
-                        controlledBy: "schematic",
+                        controlledBy: "controlled_by",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {

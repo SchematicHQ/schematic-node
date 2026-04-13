@@ -10,8 +10,11 @@ export interface CompanyPlanDetailResponseData {
     chargeType: Schematic.ChargeType;
     companyCanTrial: boolean;
     companyCount: number;
+    companyId?: string;
+    companyName?: string;
     compatiblePlanIds: string[];
-    controlledBy: Schematic.PlanControlledByType;
+    controlledBy: string;
+    copiedFromPlanId?: string;
     createdAt: Date;
     currencyPrices: Schematic.PlanCurrencyPricesResponseData[];
     current: boolean;

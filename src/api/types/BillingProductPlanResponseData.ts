@@ -6,7 +6,7 @@ export interface BillingProductPlanResponseData {
     accountId: string;
     billingProductId: string;
     chargeType: Schematic.ChargeType;
-    controlledBy: Schematic.PlanControlledByType;
+    controlledBy: Schematic.BillingProviderType;
     environmentId: string;
     isTrialable: boolean;
     monthlyPriceId?: string;

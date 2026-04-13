@@ -6,6 +6,7 @@ import type * as serializers from "../index";
 import { BillingSubscriptionView } from "./BillingSubscriptionView";
 import { CompanyEventPeriodMetricsResponseData } from "./CompanyEventPeriodMetricsResponseData";
 import { CompanyPlanWithBillingSubView } from "./CompanyPlanWithBillingSubView";
+import { CustomPlanBillingResponseData } from "./CustomPlanBillingResponseData";
 import { EntityKeyDetailResponseData } from "./EntityKeyDetailResponseData";
 import { EntityTraitDetailResponseData } from "./EntityTraitDetailResponseData";
 import { FeatureEntitlement } from "./FeatureEntitlement";
@@ -29,6 +30,10 @@ export const CompanyDetailResponseData: core.serialization.ObjectSchema<
         core.serialization.list(BillingSubscriptionView),
     ),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
+    customPlanBillings: core.serialization.property(
+        "custom_plan_billings",
+        core.serialization.list(CustomPlanBillingResponseData),
+    ),
     defaultPaymentMethod: core.serialization.property("default_payment_method", PaymentMethodResponseData.optional()),
     entitlements: core.serialization.list(FeatureEntitlement),
     entityTraits: core.serialization.property("entity_traits", core.serialization.list(EntityTraitDetailResponseData)),
@@ -56,6 +61,7 @@ export declare namespace CompanyDetailResponseData {
         billing_subscription?: BillingSubscriptionView.Raw | null;
         billing_subscriptions: BillingSubscriptionView.Raw[];
         created_at: string;
+        custom_plan_billings: CustomPlanBillingResponseData.Raw[];
         default_payment_method?: PaymentMethodResponseData.Raw | null;
         entitlements: FeatureEntitlement.Raw[];
         entity_traits: EntityTraitDetailResponseData.Raw[];

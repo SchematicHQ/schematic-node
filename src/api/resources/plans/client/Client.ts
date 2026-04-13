@@ -167,6 +167,141 @@ export class PlansClient {
     }
 
     /**
+     * @param {Schematic.CreateCustomPlanRequestBody} request
+     * @param {PlansClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.BadRequestError}
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
+     * @throws {@link Schematic.InternalServerError}
+     *
+     * @example
+     *     await client.plans.createCustomPlan({
+     *         companyId: "company_id",
+     *         description: "description",
+     *         name: "name"
+     *     })
+     */
+    public createCustomPlan(
+        request: Schematic.CreateCustomPlanRequestBody,
+        requestOptions?: PlansClient.RequestOptions,
+    ): core.HttpResponsePromise<Schematic.CreateCustomPlanResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__createCustomPlan(request, requestOptions));
+    }
+
+    private async __createCustomPlan(
+        request: Schematic.CreateCustomPlanRequestBody,
+        requestOptions?: PlansClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.CreateCustomPlanResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "custom-plans",
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
+            requestType: "json",
+            body: serializers.CreateCustomPlanRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.CreateCustomPlanResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Schematic.BadRequestError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/custom-plans");
+    }
+
+    /**
      * @param {Schematic.ListPlansRequest} request
      * @param {PlansClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -186,6 +321,7 @@ export class PlansClient {
      *         includeDraftVersions: true,
      *         planType: "plan",
      *         q: "q",
+     *         scopedToCompanyId: "scoped_to_company_id",
      *         withoutEntitlementFor: "without_entitlement_for",
      *         withoutPaidProductId: true,
      *         limit: 1000000,
@@ -213,6 +349,7 @@ export class PlansClient {
             includeDraftVersions,
             planType,
             q,
+            scopedToCompanyId,
             withoutEntitlementFor,
             withoutPaidProductId,
             limit,
@@ -231,6 +368,7 @@ export class PlansClient {
                     ? serializers.PlanType.jsonOrThrow(planType, { unrecognizedObjectKeys: "strip" })
                     : undefined,
             q,
+            scoped_to_company_id: scopedToCompanyId,
             without_entitlement_for: withoutEntitlementFor,
             without_paid_product_id: withoutPaidProductId,
             limit,
@@ -1018,7 +1156,7 @@ export class PlansClient {
      *
      * @example
      *     await client.plans.upsertPlanForBillingProduct({
-     *         billingProvider: "schematic",
+     *         billingProvider: "orb",
      *         description: "description",
      *         externalResourceId: "external_resource_id",
      *         name: "name",
@@ -1455,6 +1593,7 @@ export class PlansClient {
      *         includeDraftVersions: true,
      *         planType: "plan",
      *         q: "q",
+     *         scopedToCompanyId: "scoped_to_company_id",
      *         withoutEntitlementFor: "without_entitlement_for",
      *         withoutPaidProductId: true,
      *         limit: 1000000,
@@ -1482,6 +1621,7 @@ export class PlansClient {
             includeDraftVersions,
             planType,
             q,
+            scopedToCompanyId,
             withoutEntitlementFor,
             withoutPaidProductId,
             limit,
@@ -1500,6 +1640,7 @@ export class PlansClient {
                     ? serializers.PlanType.jsonOrThrow(planType, { unrecognizedObjectKeys: "strip" })
                     : undefined,
             q,
+            scoped_to_company_id: scopedToCompanyId,
             without_entitlement_for: withoutEntitlementFor,
             without_paid_product_id: withoutPaidProductId,
             limit,
@@ -1896,7 +2037,11 @@ export class PlansClient {
      * @example
      *     await client.plans.publishPlanVersion("plan_id", {
      *         excludedCompanyIds: ["excluded_company_ids"],
-     *         migrationStrategy: "immediate"
+     *         migrationStrategy: "immediate",
+     *         payInAdvance: [{
+     *                 priceId: "price_id",
+     *                 quantity: 1000000
+     *             }]
      *     })
      */
     public publishPlanVersion(
