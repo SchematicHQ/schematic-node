@@ -10,7 +10,6 @@ import { BillingProductDetailResponseData } from "./BillingProductDetailResponse
 import { ChargeType } from "./ChargeType";
 import { CustomPlanViewConfigResponseData } from "./CustomPlanViewConfigResponseData";
 import { FeatureDetailResponseData } from "./FeatureDetailResponseData";
-import { PlanControlledByType } from "./PlanControlledByType";
 import { PlanCurrencyPricesResponseData } from "./PlanCurrencyPricesResponseData";
 import { PlanEntitlementResponseData } from "./PlanEntitlementResponseData";
 import { PlanIcon } from "./PlanIcon";
@@ -30,11 +29,14 @@ export const PlanGroupPlanDetailResponseData: core.serialization.ObjectSchema<
     billingProduct: core.serialization.property("billing_product", BillingProductDetailResponseData.optional()),
     chargeType: core.serialization.property("charge_type", ChargeType),
     companyCount: core.serialization.property("company_count", core.serialization.number()),
+    companyId: core.serialization.property("company_id", core.serialization.string().optional()),
+    companyName: core.serialization.property("company_name", core.serialization.string().optional()),
     compatiblePlanIds: core.serialization.property(
         "compatible_plan_ids",
         core.serialization.list(core.serialization.string()),
     ),
-    controlledBy: core.serialization.property("controlled_by", PlanControlledByType),
+    controlledBy: core.serialization.property("controlled_by", core.serialization.string()),
+    copiedFromPlanId: core.serialization.property("copied_from_plan_id", core.serialization.string().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     currencyPrices: core.serialization.property(
         "currency_prices",
@@ -73,8 +75,11 @@ export declare namespace PlanGroupPlanDetailResponseData {
         billing_product?: BillingProductDetailResponseData.Raw | null;
         charge_type: ChargeType.Raw;
         company_count: number;
+        company_id?: string | null;
+        company_name?: string | null;
         compatible_plan_ids: string[];
-        controlled_by: PlanControlledByType.Raw;
+        controlled_by: string;
+        copied_from_plan_id?: string | null;
         created_at: string;
         currency_prices: PlanCurrencyPricesResponseData.Raw[];
         custom_plan_config?: CustomPlanViewConfigResponseData.Raw | null;

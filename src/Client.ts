@@ -12,6 +12,7 @@ import { DataexportsClient } from "./api/resources/dataexports/client/Client";
 import { EntitlementsClient } from "./api/resources/entitlements/client/Client";
 import { EventsClient } from "./api/resources/events/client/Client";
 import { FeaturesClient } from "./api/resources/features/client/Client";
+import { IntegrationsapiClient } from "./api/resources/integrationsapi/client/Client";
 import { PlanbundleClient } from "./api/resources/planbundle/client/Client";
 import { PlangroupsClient } from "./api/resources/plangroups/client/Client";
 import { PlanmigrationsClient } from "./api/resources/planmigrations/client/Client";
@@ -45,6 +46,7 @@ export class SchematicClient {
     protected _dataexports: DataexportsClient | undefined;
     protected _events: EventsClient | undefined;
     protected _features: FeaturesClient | undefined;
+    protected _integrationsapi: IntegrationsapiClient | undefined;
     protected _planbundle: PlanbundleClient | undefined;
     protected _plangroups: PlangroupsClient | undefined;
     protected _planmigrations: PlanmigrationsClient | undefined;
@@ -99,6 +101,10 @@ export class SchematicClient {
 
     public get features(): FeaturesClient {
         return (this._features ??= new FeaturesClient(this._options));
+    }
+
+    public get integrationsapi(): IntegrationsapiClient {
+        return (this._integrationsapi ??= new IntegrationsapiClient(this._options));
     }
 
     public get planbundle(): PlanbundleClient {

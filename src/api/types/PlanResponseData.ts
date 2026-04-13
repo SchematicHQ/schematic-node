@@ -4,6 +4,8 @@ import type * as Schematic from "../index";
 
 export interface PlanResponseData {
     audienceType?: string;
+    companyId?: string;
+    copiedFromPlanId?: string;
     createdAt: Date;
     description: string;
     icon: Schematic.PlanIcon;

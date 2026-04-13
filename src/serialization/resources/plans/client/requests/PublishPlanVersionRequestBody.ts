@@ -3,22 +3,32 @@
 import type * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
+import { CustomPlanActivationStrategy } from "../../../../types/CustomPlanActivationStrategy";
 import { PlanVersionMigrationStrategy } from "../../../../types/PlanVersionMigrationStrategy";
+import { UpdatePayInAdvanceRequestBody } from "../../../../types/UpdatePayInAdvanceRequestBody";
 
 export const PublishPlanVersionRequestBody: core.serialization.Schema<
     serializers.PublishPlanVersionRequestBody.Raw,
     Schematic.PublishPlanVersionRequestBody
 > = core.serialization.object({
+    activationStrategy: core.serialization.property("activation_strategy", CustomPlanActivationStrategy.optional()),
+    customerEmail: core.serialization.property("customer_email", core.serialization.string().optional()),
+    daysUntilDue: core.serialization.property("days_until_due", core.serialization.number().optional()),
     excludedCompanyIds: core.serialization.property(
         "excluded_company_ids",
         core.serialization.list(core.serialization.string()),
     ),
     migrationStrategy: core.serialization.property("migration_strategy", PlanVersionMigrationStrategy),
+    payInAdvance: core.serialization.property("pay_in_advance", core.serialization.list(UpdatePayInAdvanceRequestBody)),
 });
 
 export declare namespace PublishPlanVersionRequestBody {
     export interface Raw {
+        activation_strategy?: CustomPlanActivationStrategy.Raw | null;
+        customer_email?: string | null;
+        days_until_due?: number | null;
         excluded_company_ids: string[];
         migration_strategy: PlanVersionMigrationStrategy.Raw;
+        pay_in_advance: UpdatePayInAdvanceRequestBody.Raw[];
     }
 }

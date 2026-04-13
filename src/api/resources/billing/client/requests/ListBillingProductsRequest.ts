@@ -8,7 +8,7 @@ import type * as Schematic from "../../../../index";
  *         isActive: true,
  *         name: "name",
  *         priceUsageType: "licensed",
- *         providerType: "schematic",
+ *         providerType: "orb",
  *         q: "q",
  *         withOneTimeCharges: true,
  *         withPricesOnly: true,

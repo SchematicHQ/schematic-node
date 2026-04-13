@@ -8,6 +8,7 @@ export interface CompanyDetailResponseData {
     billingSubscription?: Schematic.BillingSubscriptionView;
     billingSubscriptions: Schematic.BillingSubscriptionView[];
     createdAt: Date;
+    customPlanBillings: Schematic.CustomPlanBillingResponseData[];
     defaultPaymentMethod?: Schematic.PaymentMethodResponseData;
     entitlements: Schematic.FeatureEntitlement[];
     entityTraits: Schematic.EntityTraitDetailResponseData[];

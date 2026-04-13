@@ -15,6 +15,10 @@ export const ListCompaniesParams: core.serialization.ObjectSchema<
         "credit_type_ids",
         core.serialization.list(core.serialization.string()).optional(),
     ),
+    hasScheduledDowngrade: core.serialization.property(
+        "has_scheduled_downgrade",
+        core.serialization.boolean().optional(),
+    ),
     ids: core.serialization.list(core.serialization.string()).optional(),
     limit: core.serialization.number().optional(),
     monetizedSubscriptions: core.serialization.property(
@@ -49,6 +53,7 @@ export const ListCompaniesParams: core.serialization.ObjectSchema<
 export declare namespace ListCompaniesParams {
     export interface Raw {
         credit_type_ids?: string[] | null;
+        has_scheduled_downgrade?: boolean | null;
         ids?: string[] | null;
         limit?: number | null;
         monetized_subscriptions?: boolean | null;

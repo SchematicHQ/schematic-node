@@ -456,7 +456,7 @@ export class BillingClient {
      * @example
      *     await client.billing.listCustomersWithSubscriptions({
      *         name: "name",
-     *         providerType: "schematic",
+     *         providerType: "orb",
      *         q: "q",
      *         limit: 1000000,
      *         offset: 1000000
@@ -602,7 +602,7 @@ export class BillingClient {
      * @example
      *     await client.billing.countCustomers({
      *         name: "name",
-     *         providerType: "schematic",
+     *         providerType: "orb",
      *         q: "q",
      *         limit: 1000000,
      *         offset: 1000000
@@ -1584,7 +1584,7 @@ export class BillingClient {
      *         isActive: true,
      *         price: 1000000,
      *         productId: "product_id",
-     *         providerType: "schematic",
+     *         providerType: "orb",
      *         q: "q",
      *         tiersMode: "graduated",
      *         usageType: "licensed",
@@ -2049,7 +2049,7 @@ export class BillingClient {
      *         isActive: true,
      *         price: 1000000,
      *         productId: "product_id",
-     *         providerType: "schematic",
+     *         providerType: "orb",
      *         q: "q",
      *         tiersMode: "graduated",
      *         usageType: "licensed",
@@ -2500,7 +2500,7 @@ export class BillingClient {
      *         isActive: true,
      *         name: "name",
      *         priceUsageType: "licensed",
-     *         providerType: "schematic",
+     *         providerType: "orb",
      *         q: "q",
      *         withOneTimeCharges: true,
      *         withPricesOnly: true,
@@ -2674,7 +2674,7 @@ export class BillingClient {
      *         isActive: true,
      *         name: "name",
      *         priceUsageType: "licensed",
-     *         providerType: "schematic",
+     *         providerType: "orb",
      *         q: "q",
      *         withOneTimeCharges: true,
      *         withPricesOnly: true,

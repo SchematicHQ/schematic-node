@@ -9,8 +9,11 @@ export interface PlanViewPublicResponseData {
     billingProduct?: Schematic.BillingProductDetailResponseData;
     chargeType: Schematic.ChargeType;
     companyCount: number;
+    companyId?: string;
+    companyName?: string;
     compatiblePlanIds: string[];
-    controlledBy: Schematic.PlanControlledByType;
+    controlledBy: string;
+    copiedFromPlanId?: string;
     createdAt: Date;
     currencyPrices: Schematic.PlanCurrencyPricesResponseData[];
     custom: boolean;

@@ -5,7 +5,7 @@ import type * as Schematic from "../../../../index";
 /**
  * @example
  *     {
- *         billingProvider: "schematic",
+ *         billingProvider: "orb",
  *         description: "description",
  *         externalResourceId: "external_resource_id",
  *         name: "name",

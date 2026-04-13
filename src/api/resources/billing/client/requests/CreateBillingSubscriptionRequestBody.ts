@@ -43,6 +43,7 @@ export interface CreateBillingSubscriptionRequestBody {
     periodEnd?: number;
     periodStart?: number;
     productExternalIds: Schematic.BillingProductPricing[];
+    providerType?: Schematic.BillingProviderType;
     status?: string;
     subscriptionExternalId: string;
     totalPrice: number;

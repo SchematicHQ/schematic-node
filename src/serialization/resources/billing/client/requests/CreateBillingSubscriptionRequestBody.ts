@@ -4,6 +4,7 @@ import type * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
 import { BillingProductPricing } from "../../../../types/BillingProductPricing";
+import { BillingProviderType } from "../../../../types/BillingProviderType";
 import { BillingSubscriptionDiscount } from "../../../../types/BillingSubscriptionDiscount";
 import { BillingSubscriptionTrialEndSetting } from "../../../../types/BillingSubscriptionTrialEndSetting";
 
@@ -34,6 +35,7 @@ export const CreateBillingSubscriptionRequestBody: core.serialization.Schema<
         "product_external_ids",
         core.serialization.list(BillingProductPricing),
     ),
+    providerType: core.serialization.property("provider_type", BillingProviderType.optional()),
     status: core.serialization.string().optional(),
     subscriptionExternalId: core.serialization.property("subscription_external_id", core.serialization.string()),
     totalPrice: core.serialization.property("total_price", core.serialization.number()),
@@ -57,6 +59,7 @@ export declare namespace CreateBillingSubscriptionRequestBody {
         period_end?: number | null;
         period_start?: number | null;
         product_external_ids: BillingProductPricing.Raw[];
+        provider_type?: BillingProviderType.Raw | null;
         status?: string | null;
         subscription_external_id: string;
         total_price: number;

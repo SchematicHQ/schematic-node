@@ -23,6 +23,7 @@ export const ListPlansParams: core.serialization.ObjectSchema<
     offset: core.serialization.number().optional(),
     planType: core.serialization.property("plan_type", PlanType.optional()),
     q: core.serialization.string().optional(),
+    scopedToCompanyId: core.serialization.property("scoped_to_company_id", core.serialization.string().optional()),
     withoutEntitlementFor: core.serialization.property(
         "without_entitlement_for",
         core.serialization.string().optional(),
@@ -46,6 +47,7 @@ export declare namespace ListPlansParams {
         offset?: number | null;
         plan_type?: PlanType.Raw | null;
         q?: string | null;
+        scoped_to_company_id?: string | null;
         without_entitlement_for?: string | null;
         without_paid_product_id?: boolean | null;
     }

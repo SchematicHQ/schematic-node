@@ -2567,7 +2567,7 @@ export class EntitlementsClient {
      *
      * @example
      *     await client.entitlements.upsertPlanEntitlementForBillingProduct({
-     *         billingProvider: "schematic",
+     *         billingProvider: "orb",
      *         externalResourceId: "external_resource_id",
      *         featureId: "feature_id",
      *         planId: "plan_id",
