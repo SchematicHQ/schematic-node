@@ -344,6 +344,15 @@ export class SchematicClient extends BaseClient {
         }
 
         try {
+            // DataStream path: evaluate all requested keys locally when available.
+            // No flag_check events are enqueued for the bulk checkFlags codepath.
+            if (this.useDataStream() && this.datastreamClient!.isConnected() && keys && keys.length > 0) {
+                const dsResults = await this.checkFlagsViaDataStream(evalCtx, keys);
+                if (dsResults) {
+                    return dsResults;
+                }
+            }
+
             // If no keys provided or empty array, call standard checkFlags
             if (!keys || keys.length === 0) {
                 this.logger.debug('No specific flag keys provided, calling standard checkFlags API');
@@ -455,6 +464,43 @@ export class SchematicClient extends BaseClient {
                 return [];
             }
         }
+    }
+
+    /**
+     * Evaluate all requested keys via the DataStream client. Returns an array of
+     * results on full success, or null if any key can't be evaluated (caller should
+     * fall back to the API path). No flag_check events are enqueued here — bulk
+     * checks intentionally do not emit per-flag events.
+     */
+    private async checkFlagsViaDataStream(
+        evalCtx: api.CheckFlagRequestBody,
+        keys: string[],
+    ): Promise<api.CheckFlagResponseData[] | null> {
+        const results: api.CheckFlagResponseData[] = [];
+
+        for (const key of keys) {
+            try {
+                const resp = await this.datastreamClient!.checkFlag(evalCtx, key);
+                results.push({
+                    flag: resp.flagKey ?? key,
+                    value: resp.value ?? this.getFlagDefault(key),
+                    reason: resp.reason,
+                    flagId: resp.flagId,
+                    ruleId: resp.ruleId,
+                    ruleType: resp.ruleType,
+                    companyId: resp.companyId,
+                    userId: resp.userId,
+                    entitlement: resp.entitlement,
+                    error: resp.err,
+                });
+            } catch (err) {
+                this.logger.debug(`Datastream checkFlags falling back to API (${err})`);
+                return null;
+            }
+        }
+
+        this.logger.debug(`All ${keys.length} flags evaluated via DataStream`);
+        return results;
     }
 
     /**
