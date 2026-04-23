@@ -3,6 +3,8 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { MetricPeriod } from "./MetricPeriod";
+import { MetricPeriodMonthReset } from "./MetricPeriodMonthReset";
 
 export const CompanyEventPeriodMetricsResponseData: core.serialization.ObjectSchema<
     serializers.CompanyEventPeriodMetricsResponseData.Raw,
@@ -15,8 +17,8 @@ export const CompanyEventPeriodMetricsResponseData: core.serialization.ObjectSch
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     eventSubtype: core.serialization.property("event_subtype", core.serialization.string()),
-    monthReset: core.serialization.property("month_reset", core.serialization.string()),
-    period: core.serialization.string(),
+    monthReset: core.serialization.property("month_reset", MetricPeriodMonthReset),
+    period: MetricPeriod,
     validUntil: core.serialization.property("valid_until", core.serialization.date().optional()),
     value: core.serialization.number(),
 });
@@ -30,8 +32,8 @@ export declare namespace CompanyEventPeriodMetricsResponseData {
         created_at: string;
         environment_id: string;
         event_subtype: string;
-        month_reset: string;
-        period: string;
+        month_reset: MetricPeriodMonthReset.Raw;
+        period: MetricPeriod.Raw;
         valid_until?: string | null;
         value: number;
     }

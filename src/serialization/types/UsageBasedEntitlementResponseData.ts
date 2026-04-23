@@ -6,6 +6,8 @@ import type * as serializers from "../index";
 import { BillingPriceView } from "./BillingPriceView";
 import { EntitlementPriceBehavior } from "./EntitlementPriceBehavior";
 import { EntitlementValueType } from "./EntitlementValueType";
+import { MetricPeriod } from "./MetricPeriod";
+import { MetricPeriodMonthReset } from "./MetricPeriodMonthReset";
 
 export const UsageBasedEntitlementResponseData: core.serialization.ObjectSchema<
     serializers.UsageBasedEntitlementResponseData.Raw,
@@ -15,11 +17,8 @@ export const UsageBasedEntitlementResponseData: core.serialization.ObjectSchema<
     consumptionRate: core.serialization.property("consumption_rate", core.serialization.number().optional()),
     featureId: core.serialization.property("feature_id", core.serialization.string()),
     meteredPrice: core.serialization.property("metered_price", BillingPriceView.optional()),
-    metricPeriod: core.serialization.property("metric_period", core.serialization.string().optional()),
-    metricPeriodMonthReset: core.serialization.property(
-        "metric_period_month_reset",
-        core.serialization.string().optional(),
-    ),
+    metricPeriod: core.serialization.property("metric_period", MetricPeriod.optional()),
+    metricPeriodMonthReset: core.serialization.property("metric_period_month_reset", MetricPeriodMonthReset.optional()),
     monthlyUsageBasedPrice: core.serialization.property("monthly_usage_based_price", BillingPriceView.optional()),
     priceBehavior: core.serialization.property("price_behavior", EntitlementPriceBehavior.optional()),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
@@ -34,8 +33,8 @@ export declare namespace UsageBasedEntitlementResponseData {
         consumption_rate?: number | null;
         feature_id: string;
         metered_price?: BillingPriceView.Raw | null;
-        metric_period?: string | null;
-        metric_period_month_reset?: string | null;
+        metric_period?: MetricPeriod.Raw | null;
+        metric_period_month_reset?: MetricPeriodMonthReset.Raw | null;
         monthly_usage_based_price?: BillingPriceView.Raw | null;
         price_behavior?: EntitlementPriceBehavior.Raw | null;
         value_bool?: boolean | null;

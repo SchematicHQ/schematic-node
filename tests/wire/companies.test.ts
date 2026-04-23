@@ -189,8 +189,8 @@ describe("CompaniesClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             environment_id: "environment_id",
                             event_subtype: "event_subtype",
-                            month_reset: "month_reset",
-                            period: "period",
+                            month_reset: "billing_cycle",
+                            period: "all_time",
                             value: 1000000,
                         },
                     ],
@@ -259,7 +259,7 @@ describe("CompaniesClient", () => {
                             id: "id",
                             name: "name",
                             priority: 1000000,
-                            rule_type: "default",
+                            rule_type: "company_override",
                             value: true,
                         },
                     ],
@@ -305,13 +305,18 @@ describe("CompaniesClient", () => {
         server.mockEndpoint().get("/companies").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.companies.listCompanies({
+            creditTypeIds: ["credit_type_ids"],
             hasScheduledDowngrade: true,
+            ids: ["ids"],
             monetizedSubscriptions: true,
             planId: "plan_id",
+            planIds: ["plan_ids"],
             planVersionId: "plan_version_id",
             q: "q",
             sortOrderColumn: "sort_order_column",
             sortOrderDirection: "asc",
+            subscriptionStatuses: ["active"],
+            subscriptionTypes: ["free"],
             withEntitlementFor: "with_entitlement_for",
             withoutFeatureOverrideFor: "without_feature_override_for",
             withoutPlan: true,
@@ -508,8 +513,8 @@ describe("CompaniesClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             environmentId: "environment_id",
                             eventSubtype: "event_subtype",
-                            monthReset: "month_reset",
-                            period: "period",
+                            monthReset: "billing_cycle",
+                            period: "all_time",
                             value: 1000000,
                         },
                     ],
@@ -583,7 +588,7 @@ describe("CompaniesClient", () => {
                             id: "id",
                             name: "name",
                             priority: 1000000,
-                            ruleType: "default",
+                            ruleType: "company_override",
                             value: true,
                         },
                     ],
@@ -919,8 +924,8 @@ describe("CompaniesClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         environment_id: "environment_id",
                         event_subtype: "event_subtype",
-                        month_reset: "month_reset",
-                        period: "period",
+                        month_reset: "billing_cycle",
+                        period: "all_time",
                         value: 1000000,
                     },
                 ],
@@ -997,7 +1002,7 @@ describe("CompaniesClient", () => {
                         id: "id",
                         name: "name",
                         priority: 1000000,
-                        rule_type: "default",
+                        rule_type: "company_override",
                         value: true,
                     },
                 ],
@@ -1266,8 +1271,8 @@ describe("CompaniesClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         environmentId: "environment_id",
                         eventSubtype: "event_subtype",
-                        monthReset: "month_reset",
-                        period: "period",
+                        monthReset: "billing_cycle",
+                        period: "all_time",
                         value: 1000000,
                     },
                 ],
@@ -1349,7 +1354,7 @@ describe("CompaniesClient", () => {
                         id: "id",
                         name: "name",
                         priority: 1000000,
-                        ruleType: "default",
+                        ruleType: "company_override",
                         value: true,
                     },
                 ],
@@ -1723,8 +1728,8 @@ describe("CompaniesClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         environment_id: "environment_id",
                         event_subtype: "event_subtype",
-                        month_reset: "month_reset",
-                        period: "period",
+                        month_reset: "billing_cycle",
+                        period: "all_time",
                         value: 1000000,
                     },
                 ],
@@ -1801,7 +1806,7 @@ describe("CompaniesClient", () => {
                         id: "id",
                         name: "name",
                         priority: 1000000,
-                        rule_type: "default",
+                        rule_type: "company_override",
                         value: true,
                     },
                 ],
@@ -2065,8 +2070,8 @@ describe("CompaniesClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         environmentId: "environment_id",
                         eventSubtype: "event_subtype",
-                        monthReset: "month_reset",
-                        period: "period",
+                        monthReset: "billing_cycle",
+                        period: "all_time",
                         value: 1000000,
                     },
                 ],
@@ -2148,7 +2153,7 @@ describe("CompaniesClient", () => {
                         id: "id",
                         name: "name",
                         priority: 1000000,
-                        ruleType: "default",
+                        ruleType: "company_override",
                         value: true,
                     },
                 ],
@@ -2409,13 +2414,18 @@ describe("CompaniesClient", () => {
         server.mockEndpoint().get("/companies/count").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.companies.countCompanies({
+            creditTypeIds: ["credit_type_ids"],
             hasScheduledDowngrade: true,
+            ids: ["ids"],
             monetizedSubscriptions: true,
             planId: "plan_id",
+            planIds: ["plan_ids"],
             planVersionId: "plan_version_id",
             q: "q",
             sortOrderColumn: "sort_order_column",
             sortOrderDirection: "asc",
+            subscriptionStatuses: ["active"],
+            subscriptionTypes: ["free"],
             withEntitlementFor: "with_entitlement_for",
             withoutFeatureOverrideFor: "without_feature_override_for",
             withoutPlan: true,
@@ -2742,8 +2752,8 @@ describe("CompaniesClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         environment_id: "environment_id",
                         event_subtype: "event_subtype",
-                        month_reset: "month_reset",
-                        period: "period",
+                        month_reset: "billing_cycle",
+                        period: "all_time",
                         value: 1000000,
                     },
                 ],
@@ -2820,7 +2830,7 @@ describe("CompaniesClient", () => {
                         id: "id",
                         name: "name",
                         priority: 1000000,
-                        rule_type: "default",
+                        rule_type: "company_override",
                         value: true,
                     },
                 ],
@@ -3089,8 +3099,8 @@ describe("CompaniesClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         environmentId: "environment_id",
                         eventSubtype: "event_subtype",
-                        monthReset: "month_reset",
-                        period: "period",
+                        monthReset: "billing_cycle",
+                        period: "all_time",
                         value: 1000000,
                     },
                 ],
@@ -3172,7 +3182,7 @@ describe("CompaniesClient", () => {
                         id: "id",
                         name: "name",
                         priority: 1000000,
-                        ruleType: "default",
+                        ruleType: "company_override",
                         value: true,
                     },
                 ],
@@ -4427,7 +4437,7 @@ describe("CompaniesClient", () => {
                         feature_key: "feature_key",
                         metric_period: "all_time",
                         metric_reset_at: "2024-01-15T09:30:00Z",
-                        month_reset: "first_of_month",
+                        month_reset: "billing_cycle",
                         soft_limit: 1000000,
                         usage: 1000000,
                         value_type: "boolean",
@@ -4443,7 +4453,7 @@ describe("CompaniesClient", () => {
                         feature_key: "feature_key",
                         metric_period: "all_time",
                         metric_reset_at: "2024-01-15T09:30:00Z",
-                        month_reset: "first_of_month",
+                        month_reset: "billing_cycle",
                         soft_limit: 1000000,
                         usage: 1000000,
                         value_type: "boolean",
@@ -4536,8 +4546,8 @@ describe("CompaniesClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         environment_id: "environment_id",
                         event_subtype: "event_subtype",
-                        month_reset: "month_reset",
-                        period: "period",
+                        month_reset: "billing_cycle",
+                        period: "all_time",
                         valid_until: "2024-01-15T09:30:00Z",
                         value: 1000000,
                     },
@@ -4549,8 +4559,8 @@ describe("CompaniesClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         environment_id: "environment_id",
                         event_subtype: "event_subtype",
-                        month_reset: "month_reset",
-                        period: "period",
+                        month_reset: "billing_cycle",
+                        period: "all_time",
                         valid_until: "2024-01-15T09:30:00Z",
                         value: 1000000,
                     },
@@ -4796,7 +4806,7 @@ describe("CompaniesClient", () => {
                                         event_subtype: "event_subtype",
                                         id: "id",
                                         metric_period: "all_time",
-                                        metric_period_month_reset: "first_of_month",
+                                        metric_period_month_reset: "billing_cycle",
                                         metric_value: 1000000,
                                         operator: "eq",
                                         resource_ids: ["resource_ids", "resource_ids"],
@@ -4817,7 +4827,7 @@ describe("CompaniesClient", () => {
                                         event_subtype: "event_subtype",
                                         id: "id",
                                         metric_period: "all_time",
-                                        metric_period_month_reset: "first_of_month",
+                                        metric_period_month_reset: "billing_cycle",
                                         metric_value: 1000000,
                                         operator: "eq",
                                         resource_ids: ["resource_ids", "resource_ids"],
@@ -4842,7 +4852,7 @@ describe("CompaniesClient", () => {
                                         event_subtype: "event_subtype",
                                         id: "id",
                                         metric_period: "all_time",
-                                        metric_period_month_reset: "first_of_month",
+                                        metric_period_month_reset: "billing_cycle",
                                         metric_value: 1000000,
                                         operator: "eq",
                                         resource_ids: ["resource_ids", "resource_ids"],
@@ -4863,7 +4873,7 @@ describe("CompaniesClient", () => {
                                         event_subtype: "event_subtype",
                                         id: "id",
                                         metric_period: "all_time",
-                                        metric_period_month_reset: "first_of_month",
+                                        metric_period_month_reset: "billing_cycle",
                                         metric_value: 1000000,
                                         operator: "eq",
                                         resource_ids: ["resource_ids", "resource_ids"],
@@ -4888,7 +4898,7 @@ describe("CompaniesClient", () => {
                                 event_subtype: "event_subtype",
                                 id: "id",
                                 metric_period: "all_time",
-                                metric_period_month_reset: "first_of_month",
+                                metric_period_month_reset: "billing_cycle",
                                 metric_value: 1000000,
                                 operator: "eq",
                                 resource_ids: ["resource_ids", "resource_ids"],
@@ -4909,7 +4919,7 @@ describe("CompaniesClient", () => {
                                 event_subtype: "event_subtype",
                                 id: "id",
                                 metric_period: "all_time",
-                                metric_period_month_reset: "first_of_month",
+                                metric_period_month_reset: "billing_cycle",
                                 metric_value: 1000000,
                                 operator: "eq",
                                 resource_ids: ["resource_ids", "resource_ids"],
@@ -4922,7 +4932,7 @@ describe("CompaniesClient", () => {
                         id: "id",
                         name: "name",
                         priority: 1000000,
-                        rule_type: "default",
+                        rule_type: "company_override",
                         value: true,
                     },
                     {
@@ -4944,7 +4954,7 @@ describe("CompaniesClient", () => {
                                         event_subtype: "event_subtype",
                                         id: "id",
                                         metric_period: "all_time",
-                                        metric_period_month_reset: "first_of_month",
+                                        metric_period_month_reset: "billing_cycle",
                                         metric_value: 1000000,
                                         operator: "eq",
                                         resource_ids: ["resource_ids", "resource_ids"],
@@ -4965,7 +4975,7 @@ describe("CompaniesClient", () => {
                                         event_subtype: "event_subtype",
                                         id: "id",
                                         metric_period: "all_time",
-                                        metric_period_month_reset: "first_of_month",
+                                        metric_period_month_reset: "billing_cycle",
                                         metric_value: 1000000,
                                         operator: "eq",
                                         resource_ids: ["resource_ids", "resource_ids"],
@@ -4990,7 +5000,7 @@ describe("CompaniesClient", () => {
                                         event_subtype: "event_subtype",
                                         id: "id",
                                         metric_period: "all_time",
-                                        metric_period_month_reset: "first_of_month",
+                                        metric_period_month_reset: "billing_cycle",
                                         metric_value: 1000000,
                                         operator: "eq",
                                         resource_ids: ["resource_ids", "resource_ids"],
@@ -5011,7 +5021,7 @@ describe("CompaniesClient", () => {
                                         event_subtype: "event_subtype",
                                         id: "id",
                                         metric_period: "all_time",
-                                        metric_period_month_reset: "first_of_month",
+                                        metric_period_month_reset: "billing_cycle",
                                         metric_value: 1000000,
                                         operator: "eq",
                                         resource_ids: ["resource_ids", "resource_ids"],
@@ -5036,7 +5046,7 @@ describe("CompaniesClient", () => {
                                 event_subtype: "event_subtype",
                                 id: "id",
                                 metric_period: "all_time",
-                                metric_period_month_reset: "first_of_month",
+                                metric_period_month_reset: "billing_cycle",
                                 metric_value: 1000000,
                                 operator: "eq",
                                 resource_ids: ["resource_ids", "resource_ids"],
@@ -5057,7 +5067,7 @@ describe("CompaniesClient", () => {
                                 event_subtype: "event_subtype",
                                 id: "id",
                                 metric_period: "all_time",
-                                metric_period_month_reset: "first_of_month",
+                                metric_period_month_reset: "billing_cycle",
                                 metric_value: 1000000,
                                 operator: "eq",
                                 resource_ids: ["resource_ids", "resource_ids"],
@@ -5070,7 +5080,7 @@ describe("CompaniesClient", () => {
                         id: "id",
                         name: "name",
                         priority: 1000000,
-                        rule_type: "default",
+                        rule_type: "company_override",
                         value: true,
                     },
                 ],
@@ -6070,7 +6080,7 @@ describe("CompaniesClient", () => {
                         featureKey: "feature_key",
                         metricPeriod: "all_time",
                         metricResetAt: new Date("2024-01-15T09:30:00.000Z"),
-                        monthReset: "first_of_month",
+                        monthReset: "billing_cycle",
                         softLimit: 1000000,
                         usage: 1000000,
                         valueType: "boolean",
@@ -6086,7 +6096,7 @@ describe("CompaniesClient", () => {
                         featureKey: "feature_key",
                         metricPeriod: "all_time",
                         metricResetAt: new Date("2024-01-15T09:30:00.000Z"),
-                        monthReset: "first_of_month",
+                        monthReset: "billing_cycle",
                         softLimit: 1000000,
                         usage: 1000000,
                         valueType: "boolean",
@@ -6179,8 +6189,8 @@ describe("CompaniesClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         environmentId: "environment_id",
                         eventSubtype: "event_subtype",
-                        monthReset: "month_reset",
-                        period: "period",
+                        monthReset: "billing_cycle",
+                        period: "all_time",
                         validUntil: new Date("2024-01-15T09:30:00.000Z"),
                         value: 1000000,
                     },
@@ -6192,8 +6202,8 @@ describe("CompaniesClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         environmentId: "environment_id",
                         eventSubtype: "event_subtype",
-                        monthReset: "month_reset",
-                        period: "period",
+                        monthReset: "billing_cycle",
+                        period: "all_time",
                         validUntil: new Date("2024-01-15T09:30:00.000Z"),
                         value: 1000000,
                     },
@@ -6459,7 +6469,7 @@ describe("CompaniesClient", () => {
                                         eventSubtype: "event_subtype",
                                         id: "id",
                                         metricPeriod: "all_time",
-                                        metricPeriodMonthReset: "first_of_month",
+                                        metricPeriodMonthReset: "billing_cycle",
                                         metricValue: 1000000,
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
@@ -6484,7 +6494,7 @@ describe("CompaniesClient", () => {
                                         eventSubtype: "event_subtype",
                                         id: "id",
                                         metricPeriod: "all_time",
-                                        metricPeriodMonthReset: "first_of_month",
+                                        metricPeriodMonthReset: "billing_cycle",
                                         metricValue: 1000000,
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
@@ -6513,7 +6523,7 @@ describe("CompaniesClient", () => {
                                         eventSubtype: "event_subtype",
                                         id: "id",
                                         metricPeriod: "all_time",
-                                        metricPeriodMonthReset: "first_of_month",
+                                        metricPeriodMonthReset: "billing_cycle",
                                         metricValue: 1000000,
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
@@ -6538,7 +6548,7 @@ describe("CompaniesClient", () => {
                                         eventSubtype: "event_subtype",
                                         id: "id",
                                         metricPeriod: "all_time",
-                                        metricPeriodMonthReset: "first_of_month",
+                                        metricPeriodMonthReset: "billing_cycle",
                                         metricValue: 1000000,
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
@@ -6567,7 +6577,7 @@ describe("CompaniesClient", () => {
                                 eventSubtype: "event_subtype",
                                 id: "id",
                                 metricPeriod: "all_time",
-                                metricPeriodMonthReset: "first_of_month",
+                                metricPeriodMonthReset: "billing_cycle",
                                 metricValue: 1000000,
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
@@ -6592,7 +6602,7 @@ describe("CompaniesClient", () => {
                                 eventSubtype: "event_subtype",
                                 id: "id",
                                 metricPeriod: "all_time",
-                                metricPeriodMonthReset: "first_of_month",
+                                metricPeriodMonthReset: "billing_cycle",
                                 metricValue: 1000000,
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
@@ -6609,7 +6619,7 @@ describe("CompaniesClient", () => {
                         id: "id",
                         name: "name",
                         priority: 1000000,
-                        ruleType: "default",
+                        ruleType: "company_override",
                         value: true,
                     },
                     {
@@ -6631,7 +6641,7 @@ describe("CompaniesClient", () => {
                                         eventSubtype: "event_subtype",
                                         id: "id",
                                         metricPeriod: "all_time",
-                                        metricPeriodMonthReset: "first_of_month",
+                                        metricPeriodMonthReset: "billing_cycle",
                                         metricValue: 1000000,
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
@@ -6656,7 +6666,7 @@ describe("CompaniesClient", () => {
                                         eventSubtype: "event_subtype",
                                         id: "id",
                                         metricPeriod: "all_time",
-                                        metricPeriodMonthReset: "first_of_month",
+                                        metricPeriodMonthReset: "billing_cycle",
                                         metricValue: 1000000,
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
@@ -6685,7 +6695,7 @@ describe("CompaniesClient", () => {
                                         eventSubtype: "event_subtype",
                                         id: "id",
                                         metricPeriod: "all_time",
-                                        metricPeriodMonthReset: "first_of_month",
+                                        metricPeriodMonthReset: "billing_cycle",
                                         metricValue: 1000000,
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
@@ -6710,7 +6720,7 @@ describe("CompaniesClient", () => {
                                         eventSubtype: "event_subtype",
                                         id: "id",
                                         metricPeriod: "all_time",
-                                        metricPeriodMonthReset: "first_of_month",
+                                        metricPeriodMonthReset: "billing_cycle",
                                         metricValue: 1000000,
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
@@ -6739,7 +6749,7 @@ describe("CompaniesClient", () => {
                                 eventSubtype: "event_subtype",
                                 id: "id",
                                 metricPeriod: "all_time",
-                                metricPeriodMonthReset: "first_of_month",
+                                metricPeriodMonthReset: "billing_cycle",
                                 metricValue: 1000000,
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
@@ -6764,7 +6774,7 @@ describe("CompaniesClient", () => {
                                 eventSubtype: "event_subtype",
                                 id: "id",
                                 metricPeriod: "all_time",
-                                metricPeriodMonthReset: "first_of_month",
+                                metricPeriodMonthReset: "billing_cycle",
                                 metricValue: 1000000,
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
@@ -6781,7 +6791,7 @@ describe("CompaniesClient", () => {
                         id: "id",
                         name: "name",
                         priority: 1000000,
-                        ruleType: "default",
+                        ruleType: "company_override",
                         value: true,
                     },
                 ],
@@ -7406,6 +7416,7 @@ describe("CompaniesClient", () => {
                             usage_type: "licensed",
                         },
                     ],
+                    provider_type: "orb",
                     status: "status",
                     subscription_external_id: "subscription_external_id",
                     total_price: 1000000,
@@ -7425,6 +7436,7 @@ describe("CompaniesClient", () => {
 
         const response = await client.companies.getActiveCompanySubscription({
             companyId: "company_id",
+            companyIds: ["company_ids"],
             limit: 1000000,
             offset: 1000000,
         });
@@ -7494,6 +7506,7 @@ describe("CompaniesClient", () => {
                             usageType: "licensed",
                         },
                     ],
+                    providerType: "orb",
                     status: "status",
                     subscriptionExternalId: "subscription_external_id",
                     totalPrice: 1000000,
@@ -7829,8 +7842,8 @@ describe("CompaniesClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         environment_id: "environment_id",
                         event_subtype: "event_subtype",
-                        month_reset: "month_reset",
-                        period: "period",
+                        month_reset: "billing_cycle",
+                        period: "all_time",
                         value: 1000000,
                     },
                 ],
@@ -7907,7 +7920,7 @@ describe("CompaniesClient", () => {
                         id: "id",
                         name: "name",
                         priority: 1000000,
-                        rule_type: "default",
+                        rule_type: "company_override",
                         value: true,
                     },
                 ],
@@ -8177,8 +8190,8 @@ describe("CompaniesClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         environmentId: "environment_id",
                         eventSubtype: "event_subtype",
-                        monthReset: "month_reset",
-                        period: "period",
+                        monthReset: "billing_cycle",
+                        period: "all_time",
                         value: 1000000,
                     },
                 ],
@@ -8260,7 +8273,7 @@ describe("CompaniesClient", () => {
                         id: "id",
                         name: "name",
                         priority: 1000000,
-                        ruleType: "default",
+                        ruleType: "company_override",
                         value: true,
                     },
                 ],
@@ -8441,6 +8454,7 @@ describe("CompaniesClient", () => {
 
         const response = await client.companies.listEntityKeyDefinitions({
             entityType: "company",
+            ids: ["ids"],
             q: "q",
             limit: 1000000,
             offset: 1000000,
@@ -8579,6 +8593,7 @@ describe("CompaniesClient", () => {
 
         const response = await client.companies.countEntityKeyDefinitions({
             entityType: "company",
+            ids: ["ids"],
             q: "q",
             limit: 1000000,
             offset: 1000000,
@@ -8729,8 +8744,10 @@ describe("CompaniesClient", () => {
 
         const response = await client.companies.listEntityTraitDefinitions({
             entityType: "company",
+            ids: ["ids"],
             q: "q",
             traitType: "boolean",
+            traitTypes: ["boolean"],
             limit: 1000000,
             offset: 1000000,
         });
@@ -9320,8 +9337,10 @@ describe("CompaniesClient", () => {
 
         const response = await client.companies.countEntityTraitDefinitions({
             entityType: "company",
+            ids: ["ids"],
             q: "q",
             traitType: "boolean",
+            traitTypes: ["boolean"],
             limit: 1000000,
             offset: 1000000,
         });
@@ -9667,6 +9686,8 @@ describe("CompaniesClient", () => {
             action: "checkout",
             basePlanAction: "fallback",
             companyId: "company_id",
+            companyIds: ["company_ids"],
+            planIds: ["plan_ids"],
             limit: 1000000,
             offset: 1000000,
         });
@@ -9852,6 +9873,13 @@ describe("CompaniesClient", () => {
                 api_key: {
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
+                    environment: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        environment_type: "development",
+                        id: "id",
+                        name: "name",
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
                     environment_id: "environment_id",
                     id: "id",
                     last_used_at: "2024-01-15T09:30:00Z",
@@ -9864,6 +9892,13 @@ describe("CompaniesClient", () => {
                     actor_type: "api_key",
                     api_key_id: "api_key_id",
                     ended_at: "2024-01-15T09:30:00Z",
+                    environment: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        environment_type: "development",
+                        id: "id",
+                        name: "name",
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
                     environment_id: "environment_id",
                     id: "id",
                     method: "method",
@@ -9949,6 +9984,13 @@ describe("CompaniesClient", () => {
                 apiKey: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
+                    environment: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        environmentType: "development",
+                        id: "id",
+                        name: "name",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
                     environmentId: "environment_id",
                     id: "id",
                     lastUsedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -9961,6 +10003,13 @@ describe("CompaniesClient", () => {
                     actorType: "api_key",
                     apiKeyId: "api_key_id",
                     endedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    environment: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        environmentType: "development",
+                        id: "id",
+                        name: "name",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
                     environmentId: "environment_id",
                     id: "id",
                     method: "method",
@@ -10142,8 +10191,10 @@ describe("CompaniesClient", () => {
         server.mockEndpoint().get("/plan-traits").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.companies.listPlanTraits({
+            ids: ["ids"],
             planId: "plan_id",
             traitId: "trait_id",
+            traitIds: ["trait_ids"],
             limit: 1000000,
             offset: 1000000,
         });
@@ -10234,177 +10285,6 @@ describe("CompaniesClient", () => {
 
         await expect(async () => {
             return await client.companies.listPlanTraits();
-        }).rejects.toThrow(Schematic.InternalServerError);
-    });
-
-    test("createPlanTrait (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { plan_id: "plan_id", trait_id: "trait_id", trait_value: "trait_value" };
-        const rawResponseBody = {
-            data: {
-                account_id: "account_id",
-                created_at: "2024-01-15T09:30:00Z",
-                environment_id: "environment_id",
-                id: "id",
-                plan_id: "plan_id",
-                plan_type: "plan_type",
-                trait_id: "trait_id",
-                trait_value: "trait_value",
-                updated_at: "2024-01-15T09:30:00Z",
-            },
-            params: { key: "value" },
-        };
-
-        server
-            .mockEndpoint()
-            .post("/plan-traits")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.companies.createPlanTrait({
-            planId: "plan_id",
-            traitId: "trait_id",
-            traitValue: "trait_value",
-        });
-        expect(response).toEqual({
-            data: {
-                accountId: "account_id",
-                createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                environmentId: "environment_id",
-                id: "id",
-                planId: "plan_id",
-                planType: "plan_type",
-                traitId: "trait_id",
-                traitValue: "trait_value",
-                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-            },
-            params: {
-                key: "value",
-            },
-        });
-    });
-
-    test("createPlanTrait (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { plan_id: "plan_id", trait_id: "trait_id", trait_value: "trait_value" };
-        const rawResponseBody = { error: "error" };
-
-        server
-            .mockEndpoint()
-            .post("/plan-traits")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.companies.createPlanTrait({
-                planId: "plan_id",
-                traitId: "trait_id",
-                traitValue: "trait_value",
-            });
-        }).rejects.toThrow(Schematic.BadRequestError);
-    });
-
-    test("createPlanTrait (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { plan_id: "plan_id", trait_id: "trait_id", trait_value: "trait_value" };
-        const rawResponseBody = { error: "error" };
-
-        server
-            .mockEndpoint()
-            .post("/plan-traits")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.companies.createPlanTrait({
-                planId: "plan_id",
-                traitId: "trait_id",
-                traitValue: "trait_value",
-            });
-        }).rejects.toThrow(Schematic.UnauthorizedError);
-    });
-
-    test("createPlanTrait (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { plan_id: "plan_id", trait_id: "trait_id", trait_value: "trait_value" };
-        const rawResponseBody = { error: "error" };
-
-        server
-            .mockEndpoint()
-            .post("/plan-traits")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(403)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.companies.createPlanTrait({
-                planId: "plan_id",
-                traitId: "trait_id",
-                traitValue: "trait_value",
-            });
-        }).rejects.toThrow(Schematic.ForbiddenError);
-    });
-
-    test("createPlanTrait (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { plan_id: "plan_id", trait_id: "trait_id", trait_value: "trait_value" };
-        const rawResponseBody = { error: "error" };
-
-        server
-            .mockEndpoint()
-            .post("/plan-traits")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.companies.createPlanTrait({
-                planId: "plan_id",
-                traitId: "trait_id",
-                traitValue: "trait_value",
-            });
-        }).rejects.toThrow(Schematic.NotFoundError);
-    });
-
-    test("createPlanTrait (6)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { plan_id: "plan_id", trait_id: "trait_id", trait_value: "trait_value" };
-        const rawResponseBody = { error: "error" };
-
-        server
-            .mockEndpoint()
-            .post("/plan-traits")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.companies.createPlanTrait({
-                planId: "plan_id",
-                traitId: "trait_id",
-                traitValue: "trait_value",
-            });
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
@@ -10527,291 +10407,6 @@ describe("CompaniesClient", () => {
 
         await expect(async () => {
             return await client.companies.getPlanTrait("plan_trait_id");
-        }).rejects.toThrow(Schematic.InternalServerError);
-    });
-
-    test("updatePlanTrait (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { plan_id: "plan_id", trait_value: "trait_value" };
-        const rawResponseBody = {
-            data: {
-                account_id: "account_id",
-                created_at: "2024-01-15T09:30:00Z",
-                environment_id: "environment_id",
-                id: "id",
-                plan_id: "plan_id",
-                plan_type: "plan_type",
-                trait_id: "trait_id",
-                trait_value: "trait_value",
-                updated_at: "2024-01-15T09:30:00Z",
-            },
-            params: { key: "value" },
-        };
-
-        server
-            .mockEndpoint()
-            .put("/plan-traits/plan_trait_id")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.companies.updatePlanTrait("plan_trait_id", {
-            planId: "plan_id",
-            traitValue: "trait_value",
-        });
-        expect(response).toEqual({
-            data: {
-                accountId: "account_id",
-                createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                environmentId: "environment_id",
-                id: "id",
-                planId: "plan_id",
-                planType: "plan_type",
-                traitId: "trait_id",
-                traitValue: "trait_value",
-                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-            },
-            params: {
-                key: "value",
-            },
-        });
-    });
-
-    test("updatePlanTrait (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { plan_id: "plan_id", trait_value: "trait_value" };
-        const rawResponseBody = { error: "error" };
-
-        server
-            .mockEndpoint()
-            .put("/plan-traits/plan_trait_id")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.companies.updatePlanTrait("plan_trait_id", {
-                planId: "plan_id",
-                traitValue: "trait_value",
-            });
-        }).rejects.toThrow(Schematic.BadRequestError);
-    });
-
-    test("updatePlanTrait (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { plan_id: "plan_id", trait_value: "trait_value" };
-        const rawResponseBody = { error: "error" };
-
-        server
-            .mockEndpoint()
-            .put("/plan-traits/plan_trait_id")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.companies.updatePlanTrait("plan_trait_id", {
-                planId: "plan_id",
-                traitValue: "trait_value",
-            });
-        }).rejects.toThrow(Schematic.UnauthorizedError);
-    });
-
-    test("updatePlanTrait (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { plan_id: "plan_id", trait_value: "trait_value" };
-        const rawResponseBody = { error: "error" };
-
-        server
-            .mockEndpoint()
-            .put("/plan-traits/plan_trait_id")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(403)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.companies.updatePlanTrait("plan_trait_id", {
-                planId: "plan_id",
-                traitValue: "trait_value",
-            });
-        }).rejects.toThrow(Schematic.ForbiddenError);
-    });
-
-    test("updatePlanTrait (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { plan_id: "plan_id", trait_value: "trait_value" };
-        const rawResponseBody = { error: "error" };
-
-        server
-            .mockEndpoint()
-            .put("/plan-traits/plan_trait_id")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.companies.updatePlanTrait("plan_trait_id", {
-                planId: "plan_id",
-                traitValue: "trait_value",
-            });
-        }).rejects.toThrow(Schematic.NotFoundError);
-    });
-
-    test("updatePlanTrait (6)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { plan_id: "plan_id", trait_value: "trait_value" };
-        const rawResponseBody = { error: "error" };
-
-        server
-            .mockEndpoint()
-            .put("/plan-traits/plan_trait_id")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.companies.updatePlanTrait("plan_trait_id", {
-                planId: "plan_id",
-                traitValue: "trait_value",
-            });
-        }).rejects.toThrow(Schematic.InternalServerError);
-    });
-
-    test("deletePlanTrait (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
-
-        server
-            .mockEndpoint()
-            .delete("/plan-traits/plan_trait_id")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.companies.deletePlanTrait("plan_trait_id");
-        expect(response).toEqual({
-            data: {
-                deleted: true,
-            },
-            params: {
-                key: "value",
-            },
-        });
-    });
-
-    test("deletePlanTrait (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { error: "error" };
-
-        server
-            .mockEndpoint()
-            .delete("/plan-traits/plan_trait_id")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.companies.deletePlanTrait("plan_trait_id");
-        }).rejects.toThrow(Schematic.BadRequestError);
-    });
-
-    test("deletePlanTrait (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { error: "error" };
-
-        server
-            .mockEndpoint()
-            .delete("/plan-traits/plan_trait_id")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.companies.deletePlanTrait("plan_trait_id");
-        }).rejects.toThrow(Schematic.UnauthorizedError);
-    });
-
-    test("deletePlanTrait (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { error: "error" };
-
-        server
-            .mockEndpoint()
-            .delete("/plan-traits/plan_trait_id")
-            .respondWith()
-            .statusCode(403)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.companies.deletePlanTrait("plan_trait_id");
-        }).rejects.toThrow(Schematic.ForbiddenError);
-    });
-
-    test("deletePlanTrait (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { error: "error" };
-
-        server
-            .mockEndpoint()
-            .delete("/plan-traits/plan_trait_id")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.companies.deletePlanTrait("plan_trait_id");
-        }).rejects.toThrow(Schematic.NotFoundError);
-    });
-
-    test("deletePlanTrait (6)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { error: "error" };
-
-        server
-            .mockEndpoint()
-            .delete("/plan-traits/plan_trait_id")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.companies.deletePlanTrait("plan_trait_id");
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
@@ -11098,8 +10693,10 @@ describe("CompaniesClient", () => {
         server.mockEndpoint().get("/plan-traits/count").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.companies.countPlanTraits({
+            ids: ["ids"],
             planId: "plan_id",
             traitId: "trait_id",
+            traitIds: ["trait_ids"],
             limit: 1000000,
             offset: 1000000,
         });
@@ -11484,6 +11081,7 @@ describe("CompaniesClient", () => {
 
         const response = await client.companies.listUsers({
             companyId: "company_id",
+            ids: ["ids"],
             planId: "plan_id",
             q: "q",
             limit: 1000000,
@@ -12102,6 +11700,7 @@ describe("CompaniesClient", () => {
 
         const response = await client.companies.countUsers({
             companyId: "company_id",
+            ids: ["ids"],
             planId: "plan_id",
             q: "q",
             limit: 1000000,

@@ -9,8 +9,8 @@ import { CreatePriceTierRequestBody } from "../../../../types/CreatePriceTierReq
 import { CurrencyPriceRequestBody } from "../../../../types/CurrencyPriceRequestBody";
 import { EntitlementPriceBehavior } from "../../../../types/EntitlementPriceBehavior";
 import { EntitlementValueType } from "../../../../types/EntitlementValueType";
-import { CreateBillingLinkedPlanEntitlementRequestBodyMetricPeriod } from "../../types/CreateBillingLinkedPlanEntitlementRequestBodyMetricPeriod";
-import { CreateBillingLinkedPlanEntitlementRequestBodyMetricPeriodMonthReset } from "../../types/CreateBillingLinkedPlanEntitlementRequestBodyMetricPeriodMonthReset";
+import { MetricPeriod } from "../../../../types/MetricPeriod";
+import { MetricPeriodMonthReset } from "../../../../types/MetricPeriodMonthReset";
 
 export const CreateBillingLinkedPlanEntitlementRequestBody: core.serialization.Schema<
     serializers.CreateBillingLinkedPlanEntitlementRequestBody.Raw,
@@ -30,14 +30,8 @@ export const CreateBillingLinkedPlanEntitlementRequestBody: core.serialization.S
     ),
     externalResourceId: core.serialization.property("external_resource_id", core.serialization.string()),
     featureId: core.serialization.property("feature_id", core.serialization.string()),
-    metricPeriod: core.serialization.property(
-        "metric_period",
-        CreateBillingLinkedPlanEntitlementRequestBodyMetricPeriod.optional(),
-    ),
-    metricPeriodMonthReset: core.serialization.property(
-        "metric_period_month_reset",
-        CreateBillingLinkedPlanEntitlementRequestBodyMetricPeriodMonthReset.optional(),
-    ),
+    metricPeriod: core.serialization.property("metric_period", MetricPeriod.optional()),
+    metricPeriodMonthReset: core.serialization.property("metric_period_month_reset", MetricPeriodMonthReset.optional()),
     monthlyMeteredPriceId: core.serialization.property(
         "monthly_metered_price_id",
         core.serialization.string().optional(),
@@ -94,8 +88,8 @@ export declare namespace CreateBillingLinkedPlanEntitlementRequestBody {
         currency_prices?: CurrencyPriceRequestBody.Raw[] | null;
         external_resource_id: string;
         feature_id: string;
-        metric_period?: CreateBillingLinkedPlanEntitlementRequestBodyMetricPeriod.Raw | null;
-        metric_period_month_reset?: CreateBillingLinkedPlanEntitlementRequestBodyMetricPeriodMonthReset.Raw | null;
+        metric_period?: MetricPeriod.Raw | null;
+        metric_period_month_reset?: MetricPeriodMonthReset.Raw | null;
         monthly_metered_price_id?: string | null;
         monthly_price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
         monthly_unit_price?: number | null;

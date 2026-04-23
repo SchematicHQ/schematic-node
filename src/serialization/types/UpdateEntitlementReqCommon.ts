@@ -4,8 +4,8 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { EntitlementValueType } from "./EntitlementValueType";
-import { UpdateEntitlementReqCommonMetricPeriod } from "./UpdateEntitlementReqCommonMetricPeriod";
-import { UpdateEntitlementReqCommonMetricPeriodMonthReset } from "./UpdateEntitlementReqCommonMetricPeriodMonthReset";
+import { MetricPeriod } from "./MetricPeriod";
+import { MetricPeriodMonthReset } from "./MetricPeriodMonthReset";
 
 export const UpdateEntitlementReqCommon: core.serialization.ObjectSchema<
     serializers.UpdateEntitlementReqCommon.Raw,
@@ -15,11 +15,8 @@ export const UpdateEntitlementReqCommon: core.serialization.ObjectSchema<
         "credit_consumption_rate",
         core.serialization.number().optional(),
     ),
-    metricPeriod: core.serialization.property("metric_period", UpdateEntitlementReqCommonMetricPeriod.optional()),
-    metricPeriodMonthReset: core.serialization.property(
-        "metric_period_month_reset",
-        UpdateEntitlementReqCommonMetricPeriodMonthReset.optional(),
-    ),
+    metricPeriod: core.serialization.property("metric_period", MetricPeriod.optional()),
+    metricPeriodMonthReset: core.serialization.property("metric_period_month_reset", MetricPeriodMonthReset.optional()),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
     valueCreditId: core.serialization.property("value_credit_id", core.serialization.string().optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
@@ -30,8 +27,8 @@ export const UpdateEntitlementReqCommon: core.serialization.ObjectSchema<
 export declare namespace UpdateEntitlementReqCommon {
     export interface Raw {
         credit_consumption_rate?: number | null;
-        metric_period?: UpdateEntitlementReqCommonMetricPeriod.Raw | null;
-        metric_period_month_reset?: UpdateEntitlementReqCommonMetricPeriodMonthReset.Raw | null;
+        metric_period?: MetricPeriod.Raw | null;
+        metric_period_month_reset?: MetricPeriodMonthReset.Raw | null;
         value_bool?: boolean | null;
         value_credit_id?: string | null;
         value_numeric?: number | null;

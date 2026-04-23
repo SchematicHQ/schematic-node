@@ -4,8 +4,8 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { RulesengineEntitlementValueType } from "./RulesengineEntitlementValueType";
-import { RulesengineFeatureEntitlementMetricPeriod } from "./RulesengineFeatureEntitlementMetricPeriod";
-import { RulesengineFeatureEntitlementMonthReset } from "./RulesengineFeatureEntitlementMonthReset";
+import { RulesengineMetricPeriod } from "./RulesengineMetricPeriod";
+import { RulesengineMetricPeriodMonthReset } from "./RulesengineMetricPeriodMonthReset";
 
 export const RulesengineFeatureEntitlement: core.serialization.ObjectSchema<
     serializers.RulesengineFeatureEntitlement.Raw,
@@ -19,9 +19,9 @@ export const RulesengineFeatureEntitlement: core.serialization.ObjectSchema<
     eventName: core.serialization.property("event_name", core.serialization.string().optional()),
     featureId: core.serialization.property("feature_id", core.serialization.string()),
     featureKey: core.serialization.property("feature_key", core.serialization.string()),
-    metricPeriod: core.serialization.property("metric_period", RulesengineFeatureEntitlementMetricPeriod.optional()),
+    metricPeriod: core.serialization.property("metric_period", RulesengineMetricPeriod.optional()),
     metricResetAt: core.serialization.property("metric_reset_at", core.serialization.date().optional()),
-    monthReset: core.serialization.property("month_reset", RulesengineFeatureEntitlementMonthReset.optional()),
+    monthReset: core.serialization.property("month_reset", RulesengineMetricPeriodMonthReset.optional()),
     softLimit: core.serialization.property("soft_limit", core.serialization.number().optional()),
     usage: core.serialization.number().optional(),
     valueType: core.serialization.property("value_type", RulesengineEntitlementValueType),
@@ -37,9 +37,9 @@ export declare namespace RulesengineFeatureEntitlement {
         event_name?: string | null;
         feature_id: string;
         feature_key: string;
-        metric_period?: RulesengineFeatureEntitlementMetricPeriod.Raw | null;
+        metric_period?: RulesengineMetricPeriod.Raw | null;
         metric_reset_at?: string | null;
-        month_reset?: RulesengineFeatureEntitlementMonthReset.Raw | null;
+        month_reset?: RulesengineMetricPeriodMonthReset.Raw | null;
         soft_limit?: number | null;
         usage?: number | null;
         value_type: RulesengineEntitlementValueType.Raw;

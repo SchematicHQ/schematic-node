@@ -7,6 +7,7 @@ import type * as Schematic from "../../../../index";
  *     {
  *         companyId: "company_id",
  *         eventSubtype: "event_subtype",
+ *         eventTypes: ["flag_check"],
  *         flagId: "flag_id",
  *         userId: "user_id",
  *         limit: 1000000,

@@ -11,13 +11,13 @@ export interface PlanDetailResponseData {
     companyCount: number;
     companyId?: string;
     companyName?: string;
-    controlledBy: string;
+    controlledBy: Schematic.BillingProviderType;
     copiedFromPlanId?: string;
     createdAt: Date;
     currencyPrices: Schematic.PlanCurrencyPricesResponseData[];
     description: string;
     draftVersion?: Schematic.PlanVersionResponseData;
-    features: Schematic.FeatureDetailResponseData[];
+    features: Schematic.FeatureInPlanResponseData[];
     icon: Schematic.PlanIcon;
     id: string;
     includedCreditGrants?: Schematic.BillingPlanCreditGrantResponseData[];

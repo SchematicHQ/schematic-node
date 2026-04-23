@@ -9,13 +9,13 @@ export interface RulesengineCheckFlagResult {
     featureAllocation?: number;
     featureUsage?: number;
     featureUsageEvent?: string;
-    featureUsagePeriod?: Schematic.RulesengineCheckFlagResultFeatureUsagePeriod;
+    featureUsagePeriod?: Schematic.RulesengineMetricPeriod;
     featureUsageResetAt?: Date;
     flagId?: string;
     flagKey: string;
     reason: string;
     ruleId?: string;
-    ruleType?: Schematic.RulesengineCheckFlagResultRuleType;
+    ruleType?: Schematic.RulesengineRuleType;
     userId?: string;
     value: boolean;
 }

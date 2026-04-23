@@ -6,7 +6,7 @@ export interface ConditionResponseData {
     accountId: string;
     comparisonTraitId?: string;
     conditionGroupId?: string;
-    conditionType: string;
+    conditionType: Schematic.ConditionType;
     consumptionRate?: number;
     createdAt: Date;
     creditId?: string;
@@ -14,10 +14,10 @@ export interface ConditionResponseData {
     eventSubtype?: string;
     flagId?: string;
     id: string;
-    metricPeriod?: string;
-    metricPeriodMonthReset?: string;
+    metricPeriod?: Schematic.MetricPeriod;
+    metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;
     metricValue?: number;
-    operator: string;
+    operator: Schematic.ComparableOperator;
     resourceUnspecifiedIds: string[];
     ruleId: string;
     traitEntityType?: Schematic.EntityType;

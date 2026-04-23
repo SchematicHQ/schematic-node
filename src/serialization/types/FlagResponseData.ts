@@ -16,7 +16,10 @@ export const FlagResponseData: core.serialization.ObjectSchema<
     flagType: core.serialization.property("flag_type", FlagType),
     id: core.serialization.string(),
     key: core.serialization.string(),
-    maintainerId: core.serialization.property("maintainer_id", core.serialization.string().optional()),
+    maintainerAccountMemberId: core.serialization.property(
+        "maintainer_account_member_id",
+        core.serialization.string().optional(),
+    ),
     name: core.serialization.string(),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
@@ -30,7 +33,7 @@ export declare namespace FlagResponseData {
         flag_type: FlagType.Raw;
         id: string;
         key: string;
-        maintainer_id?: string | null;
+        maintainer_account_member_id?: string | null;
         name: string;
         updated_at: string;
     }

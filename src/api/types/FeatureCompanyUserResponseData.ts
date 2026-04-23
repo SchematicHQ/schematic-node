@@ -16,9 +16,9 @@ export interface FeatureCompanyUserResponseData {
     /** The time at which the metric will resets. */
     metricResetAt?: Date;
     /** If the period is current_month, when the month resets. */
-    monthReset?: string;
+    monthReset?: Schematic.MetricPeriodMonthReset;
     /** The period over which usage is measured. */
-    period?: string;
+    period?: Schematic.MetricPeriod;
     plan?: Schematic.PlanResponseData;
     /** The amount of usage that has been consumed; a null value indicates that usage is not being measured. */
     usage?: number;

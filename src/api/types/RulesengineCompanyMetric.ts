@@ -8,8 +8,8 @@ export interface RulesengineCompanyMetric {
     createdAt: Date;
     environmentId: string;
     eventSubtype: string;
-    monthReset: Schematic.RulesengineCompanyMetricMonthReset;
-    period: Schematic.RulesengineCompanyMetricPeriod;
+    monthReset: Schematic.RulesengineMetricPeriodMonthReset;
+    period: Schematic.RulesengineMetricPeriod;
     validUntil?: Date;
     value: number;
 }

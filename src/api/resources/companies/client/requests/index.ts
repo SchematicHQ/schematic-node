@@ -4,7 +4,6 @@ export type { CountEntityTraitDefinitionsRequest } from "./CountEntityTraitDefin
 export type { CountPlanTraitsRequest } from "./CountPlanTraitsRequest";
 export type { CountUsersRequest } from "./CountUsersRequest";
 export type { CreateEntityTraitDefinitionRequestBody } from "./CreateEntityTraitDefinitionRequestBody";
-export type { CreatePlanTraitRequestBody } from "./CreatePlanTraitRequestBody";
 export type { DeleteCompanyRequest } from "./DeleteCompanyRequest";
 export type { GetActiveCompanySubscriptionRequest } from "./GetActiveCompanySubscriptionRequest";
 export type { GetEntityTraitValuesRequest } from "./GetEntityTraitValuesRequest";
@@ -20,4 +19,3 @@ export type { LookupCompanyRequest } from "./LookupCompanyRequest";
 export type { LookupUserRequest } from "./LookupUserRequest";
 export type { UpdateEntityTraitDefinitionRequestBody } from "./UpdateEntityTraitDefinitionRequestBody";
 export type { UpdatePlanTraitBulkRequestBody } from "./UpdatePlanTraitBulkRequestBody";
-export type { UpdatePlanTraitRequestBody } from "./UpdatePlanTraitRequestBody";

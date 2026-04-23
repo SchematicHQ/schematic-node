@@ -43,11 +43,11 @@ describe("FeaturesClient", () => {
                                         {
                                             conditions: [
                                                 {
-                                                    condition_type: "condition_type",
+                                                    condition_type: "base_plan",
                                                     created_at: "2024-01-15T09:30:00Z",
                                                     environment_id: "environment_id",
                                                     id: "id",
-                                                    operator: "operator",
+                                                    operator: "eq",
                                                     resource_ids: ["resource_ids"],
                                                     resources: [{ id: "id", name: "name" }],
                                                     rule_id: "rule_id",
@@ -64,11 +64,11 @@ describe("FeaturesClient", () => {
                                     ],
                                     conditions: [
                                         {
-                                            condition_type: "condition_type",
+                                            condition_type: "base_plan",
                                             created_at: "2024-01-15T09:30:00Z",
                                             environment_id: "environment_id",
                                             id: "id",
-                                            operator: "operator",
+                                            operator: "eq",
                                             resource_ids: ["resource_ids"],
                                             resources: [{ id: "id", name: "name" }],
                                             rule_id: "rule_id",
@@ -81,7 +81,7 @@ describe("FeaturesClient", () => {
                                     id: "id",
                                     name: "name",
                                     priority: 1000000,
-                                    rule_type: "rule_type",
+                                    rule_type: "company_override",
                                     updated_at: "2024-01-15T09:30:00Z",
                                     value: true,
                                 },
@@ -92,7 +92,13 @@ describe("FeaturesClient", () => {
                     icon: "icon",
                     id: "id",
                     lifecycle_phase: "add_on",
-                    maintainer_id: "maintainer_id",
+                    maintainer: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        id: "id",
+                        permissions: { key: ["billing_credits_edit"] },
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
+                    maintainer_account_member_id: "maintainer_account_member_id",
                     name: "name",
                     plans: [{ id: "id", name: "name" }],
                     plural_name: "plural_name",
@@ -127,6 +133,8 @@ describe("FeaturesClient", () => {
 
         const response = await client.features.listFeatures({
             booleanRequireEvent: true,
+            featureType: ["boolean"],
+            ids: ["ids"],
             planVersionId: "plan_version_id",
             q: "q",
             withoutCompanyOverrideFor: "without_company_override_for",
@@ -168,11 +176,11 @@ describe("FeaturesClient", () => {
                                         {
                                             conditions: [
                                                 {
-                                                    conditionType: "condition_type",
+                                                    conditionType: "base_plan",
                                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                     environmentId: "environment_id",
                                                     id: "id",
-                                                    operator: "operator",
+                                                    operator: "eq",
                                                     resourceIds: ["resource_ids"],
                                                     resources: [
                                                         {
@@ -194,11 +202,11 @@ describe("FeaturesClient", () => {
                                     ],
                                     conditions: [
                                         {
-                                            conditionType: "condition_type",
+                                            conditionType: "base_plan",
                                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                             environmentId: "environment_id",
                                             id: "id",
-                                            operator: "operator",
+                                            operator: "eq",
                                             resourceIds: ["resource_ids"],
                                             resources: [
                                                 {
@@ -216,7 +224,7 @@ describe("FeaturesClient", () => {
                                     id: "id",
                                     name: "name",
                                     priority: 1000000,
-                                    ruleType: "rule_type",
+                                    ruleType: "company_override",
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                     value: true,
                                 },
@@ -227,7 +235,15 @@ describe("FeaturesClient", () => {
                     icon: "icon",
                     id: "id",
                     lifecyclePhase: "add_on",
-                    maintainerId: "maintainer_id",
+                    maintainer: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        id: "id",
+                        permissions: {
+                            key: ["billing_credits_edit"],
+                        },
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                    maintainerAccountMemberId: "maintainer_account_member_id",
                     name: "name",
                     plans: [
                         {
@@ -367,11 +383,11 @@ describe("FeaturesClient", () => {
                                     {
                                         conditions: [
                                             {
-                                                condition_type: "condition_type",
+                                                condition_type: "base_plan",
                                                 created_at: "2024-01-15T09:30:00Z",
                                                 environment_id: "environment_id",
                                                 id: "id",
-                                                operator: "operator",
+                                                operator: "eq",
                                                 resource_ids: ["resource_ids"],
                                                 resources: [{ id: "id", name: "name" }],
                                                 rule_id: "rule_id",
@@ -388,11 +404,11 @@ describe("FeaturesClient", () => {
                                 ],
                                 conditions: [
                                     {
-                                        condition_type: "condition_type",
+                                        condition_type: "base_plan",
                                         created_at: "2024-01-15T09:30:00Z",
                                         environment_id: "environment_id",
                                         id: "id",
-                                        operator: "operator",
+                                        operator: "eq",
                                         resource_ids: ["resource_ids"],
                                         resources: [{ id: "id", name: "name" }],
                                         rule_id: "rule_id",
@@ -405,7 +421,7 @@ describe("FeaturesClient", () => {
                                 id: "id",
                                 name: "name",
                                 priority: 1000000,
-                                rule_type: "rule_type",
+                                rule_type: "company_override",
                                 updated_at: "2024-01-15T09:30:00Z",
                                 value: true,
                             },
@@ -416,7 +432,17 @@ describe("FeaturesClient", () => {
                 icon: "icon",
                 id: "id",
                 lifecycle_phase: "add_on",
-                maintainer_id: "maintainer_id",
+                maintainer: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    email: "email",
+                    id: "id",
+                    image_url: "image_url",
+                    name: "name",
+                    permissions: { key: ["billing_credits_edit"] },
+                    role: "admin",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+                maintainer_account_member_id: "maintainer_account_member_id",
                 name: "name",
                 plans: [{ id: "id", name: "name" }],
                 plural_name: "plural_name",
@@ -484,11 +510,11 @@ describe("FeaturesClient", () => {
                                     {
                                         conditions: [
                                             {
-                                                conditionType: "condition_type",
+                                                conditionType: "base_plan",
                                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                 environmentId: "environment_id",
                                                 id: "id",
-                                                operator: "operator",
+                                                operator: "eq",
                                                 resourceIds: ["resource_ids"],
                                                 resources: [
                                                     {
@@ -510,11 +536,11 @@ describe("FeaturesClient", () => {
                                 ],
                                 conditions: [
                                     {
-                                        conditionType: "condition_type",
+                                        conditionType: "base_plan",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         environmentId: "environment_id",
                                         id: "id",
-                                        operator: "operator",
+                                        operator: "eq",
                                         resourceIds: ["resource_ids"],
                                         resources: [
                                             {
@@ -532,7 +558,7 @@ describe("FeaturesClient", () => {
                                 id: "id",
                                 name: "name",
                                 priority: 1000000,
-                                ruleType: "rule_type",
+                                ruleType: "company_override",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 value: true,
                             },
@@ -543,7 +569,19 @@ describe("FeaturesClient", () => {
                 icon: "icon",
                 id: "id",
                 lifecyclePhase: "add_on",
-                maintainerId: "maintainer_id",
+                maintainer: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    email: "email",
+                    id: "id",
+                    imageUrl: "image_url",
+                    name: "name",
+                    permissions: {
+                        key: ["billing_credits_edit"],
+                    },
+                    role: "admin",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+                maintainerAccountMemberId: "maintainer_account_member_id",
                 name: "name",
                 plans: [
                     {
@@ -729,11 +767,11 @@ describe("FeaturesClient", () => {
                                     {
                                         conditions: [
                                             {
-                                                condition_type: "condition_type",
+                                                condition_type: "base_plan",
                                                 created_at: "2024-01-15T09:30:00Z",
                                                 environment_id: "environment_id",
                                                 id: "id",
-                                                operator: "operator",
+                                                operator: "eq",
                                                 resource_ids: ["resource_ids"],
                                                 resources: [{ id: "id", name: "name" }],
                                                 rule_id: "rule_id",
@@ -750,11 +788,11 @@ describe("FeaturesClient", () => {
                                 ],
                                 conditions: [
                                     {
-                                        condition_type: "condition_type",
+                                        condition_type: "base_plan",
                                         created_at: "2024-01-15T09:30:00Z",
                                         environment_id: "environment_id",
                                         id: "id",
-                                        operator: "operator",
+                                        operator: "eq",
                                         resource_ids: ["resource_ids"],
                                         resources: [{ id: "id", name: "name" }],
                                         rule_id: "rule_id",
@@ -767,7 +805,7 @@ describe("FeaturesClient", () => {
                                 id: "id",
                                 name: "name",
                                 priority: 1000000,
-                                rule_type: "rule_type",
+                                rule_type: "company_override",
                                 updated_at: "2024-01-15T09:30:00Z",
                                 value: true,
                             },
@@ -778,7 +816,17 @@ describe("FeaturesClient", () => {
                 icon: "icon",
                 id: "id",
                 lifecycle_phase: "add_on",
-                maintainer_id: "maintainer_id",
+                maintainer: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    email: "email",
+                    id: "id",
+                    image_url: "image_url",
+                    name: "name",
+                    permissions: { key: ["billing_credits_edit"] },
+                    role: "admin",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+                maintainer_account_member_id: "maintainer_account_member_id",
                 name: "name",
                 plans: [{ id: "id", name: "name" }],
                 plural_name: "plural_name",
@@ -841,11 +889,11 @@ describe("FeaturesClient", () => {
                                     {
                                         conditions: [
                                             {
-                                                conditionType: "condition_type",
+                                                conditionType: "base_plan",
                                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                 environmentId: "environment_id",
                                                 id: "id",
-                                                operator: "operator",
+                                                operator: "eq",
                                                 resourceIds: ["resource_ids"],
                                                 resources: [
                                                     {
@@ -867,11 +915,11 @@ describe("FeaturesClient", () => {
                                 ],
                                 conditions: [
                                     {
-                                        conditionType: "condition_type",
+                                        conditionType: "base_plan",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         environmentId: "environment_id",
                                         id: "id",
-                                        operator: "operator",
+                                        operator: "eq",
                                         resourceIds: ["resource_ids"],
                                         resources: [
                                             {
@@ -889,7 +937,7 @@ describe("FeaturesClient", () => {
                                 id: "id",
                                 name: "name",
                                 priority: 1000000,
-                                ruleType: "rule_type",
+                                ruleType: "company_override",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 value: true,
                             },
@@ -900,7 +948,19 @@ describe("FeaturesClient", () => {
                 icon: "icon",
                 id: "id",
                 lifecyclePhase: "add_on",
-                maintainerId: "maintainer_id",
+                maintainer: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    email: "email",
+                    id: "id",
+                    imageUrl: "image_url",
+                    name: "name",
+                    permissions: {
+                        key: ["billing_credits_edit"],
+                    },
+                    role: "admin",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+                maintainerAccountMemberId: "maintainer_account_member_id",
                 name: "name",
                 plans: [
                     {
@@ -1042,11 +1102,11 @@ describe("FeaturesClient", () => {
                                     {
                                         conditions: [
                                             {
-                                                condition_type: "condition_type",
+                                                condition_type: "base_plan",
                                                 created_at: "2024-01-15T09:30:00Z",
                                                 environment_id: "environment_id",
                                                 id: "id",
-                                                operator: "operator",
+                                                operator: "eq",
                                                 resource_ids: ["resource_ids"],
                                                 resources: [{ id: "id", name: "name" }],
                                                 rule_id: "rule_id",
@@ -1063,11 +1123,11 @@ describe("FeaturesClient", () => {
                                 ],
                                 conditions: [
                                     {
-                                        condition_type: "condition_type",
+                                        condition_type: "base_plan",
                                         created_at: "2024-01-15T09:30:00Z",
                                         environment_id: "environment_id",
                                         id: "id",
-                                        operator: "operator",
+                                        operator: "eq",
                                         resource_ids: ["resource_ids"],
                                         resources: [{ id: "id", name: "name" }],
                                         rule_id: "rule_id",
@@ -1080,7 +1140,7 @@ describe("FeaturesClient", () => {
                                 id: "id",
                                 name: "name",
                                 priority: 1000000,
-                                rule_type: "rule_type",
+                                rule_type: "company_override",
                                 updated_at: "2024-01-15T09:30:00Z",
                                 value: true,
                             },
@@ -1091,7 +1151,17 @@ describe("FeaturesClient", () => {
                 icon: "icon",
                 id: "id",
                 lifecycle_phase: "add_on",
-                maintainer_id: "maintainer_id",
+                maintainer: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    email: "email",
+                    id: "id",
+                    image_url: "image_url",
+                    name: "name",
+                    permissions: { key: ["billing_credits_edit"] },
+                    role: "admin",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+                maintainer_account_member_id: "maintainer_account_member_id",
                 name: "name",
                 plans: [{ id: "id", name: "name" }],
                 plural_name: "plural_name",
@@ -1155,11 +1225,11 @@ describe("FeaturesClient", () => {
                                     {
                                         conditions: [
                                             {
-                                                conditionType: "condition_type",
+                                                conditionType: "base_plan",
                                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                 environmentId: "environment_id",
                                                 id: "id",
-                                                operator: "operator",
+                                                operator: "eq",
                                                 resourceIds: ["resource_ids"],
                                                 resources: [
                                                     {
@@ -1181,11 +1251,11 @@ describe("FeaturesClient", () => {
                                 ],
                                 conditions: [
                                     {
-                                        conditionType: "condition_type",
+                                        conditionType: "base_plan",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         environmentId: "environment_id",
                                         id: "id",
-                                        operator: "operator",
+                                        operator: "eq",
                                         resourceIds: ["resource_ids"],
                                         resources: [
                                             {
@@ -1203,7 +1273,7 @@ describe("FeaturesClient", () => {
                                 id: "id",
                                 name: "name",
                                 priority: 1000000,
-                                ruleType: "rule_type",
+                                ruleType: "company_override",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 value: true,
                             },
@@ -1214,7 +1284,19 @@ describe("FeaturesClient", () => {
                 icon: "icon",
                 id: "id",
                 lifecyclePhase: "add_on",
-                maintainerId: "maintainer_id",
+                maintainer: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    email: "email",
+                    id: "id",
+                    imageUrl: "image_url",
+                    name: "name",
+                    permissions: {
+                        key: ["billing_credits_edit"],
+                    },
+                    role: "admin",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+                maintainerAccountMemberId: "maintainer_account_member_id",
                 name: "name",
                 plans: [
                     {
@@ -1506,11 +1588,11 @@ describe("FeaturesClient", () => {
                                     {
                                         conditions: [
                                             {
-                                                condition_type: "condition_type",
+                                                condition_type: "base_plan",
                                                 created_at: "2024-01-15T09:30:00Z",
                                                 environment_id: "environment_id",
                                                 id: "id",
-                                                operator: "operator",
+                                                operator: "eq",
                                                 resource_ids: ["resource_ids"],
                                                 resources: [{ id: "id", name: "name" }],
                                                 rule_id: "rule_id",
@@ -1527,11 +1609,11 @@ describe("FeaturesClient", () => {
                                 ],
                                 conditions: [
                                     {
-                                        condition_type: "condition_type",
+                                        condition_type: "base_plan",
                                         created_at: "2024-01-15T09:30:00Z",
                                         environment_id: "environment_id",
                                         id: "id",
-                                        operator: "operator",
+                                        operator: "eq",
                                         resource_ids: ["resource_ids"],
                                         resources: [{ id: "id", name: "name" }],
                                         rule_id: "rule_id",
@@ -1544,7 +1626,7 @@ describe("FeaturesClient", () => {
                                 id: "id",
                                 name: "name",
                                 priority: 1000000,
-                                rule_type: "rule_type",
+                                rule_type: "company_override",
                                 updated_at: "2024-01-15T09:30:00Z",
                                 value: true,
                             },
@@ -1555,7 +1637,17 @@ describe("FeaturesClient", () => {
                 icon: "icon",
                 id: "id",
                 lifecycle_phase: "add_on",
-                maintainer_id: "maintainer_id",
+                maintainer: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    email: "email",
+                    id: "id",
+                    image_url: "image_url",
+                    name: "name",
+                    permissions: { key: ["billing_credits_edit"] },
+                    role: "admin",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+                maintainer_account_member_id: "maintainer_account_member_id",
                 name: "name",
                 plans: [{ id: "id", name: "name" }],
                 plural_name: "plural_name",
@@ -1625,11 +1717,11 @@ describe("FeaturesClient", () => {
                                     {
                                         conditions: [
                                             {
-                                                conditionType: "condition_type",
+                                                conditionType: "base_plan",
                                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                 environmentId: "environment_id",
                                                 id: "id",
-                                                operator: "operator",
+                                                operator: "eq",
                                                 resourceIds: ["resource_ids"],
                                                 resources: [
                                                     {
@@ -1651,11 +1743,11 @@ describe("FeaturesClient", () => {
                                 ],
                                 conditions: [
                                     {
-                                        conditionType: "condition_type",
+                                        conditionType: "base_plan",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         environmentId: "environment_id",
                                         id: "id",
-                                        operator: "operator",
+                                        operator: "eq",
                                         resourceIds: ["resource_ids"],
                                         resources: [
                                             {
@@ -1673,7 +1765,7 @@ describe("FeaturesClient", () => {
                                 id: "id",
                                 name: "name",
                                 priority: 1000000,
-                                ruleType: "rule_type",
+                                ruleType: "company_override",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 value: true,
                             },
@@ -1684,7 +1776,19 @@ describe("FeaturesClient", () => {
                 icon: "icon",
                 id: "id",
                 lifecyclePhase: "add_on",
-                maintainerId: "maintainer_id",
+                maintainer: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    email: "email",
+                    id: "id",
+                    imageUrl: "image_url",
+                    name: "name",
+                    permissions: {
+                        key: ["billing_credits_edit"],
+                    },
+                    role: "admin",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+                maintainerAccountMemberId: "maintainer_account_member_id",
                 name: "name",
                 plans: [
                     {
@@ -1895,6 +1999,8 @@ describe("FeaturesClient", () => {
 
         const response = await client.features.countFeatures({
             booleanRequireEvent: true,
+            featureType: ["boolean"],
+            ids: ["ids"],
             planVersionId: "plan_version_id",
             q: "q",
             withoutCompanyOverrideFor: "without_company_override_for",
@@ -2009,7 +2115,13 @@ describe("FeaturesClient", () => {
                     id: "id",
                     key: "key",
                     last_checked_at: "2024-01-15T09:30:00Z",
-                    maintainer_id: "maintainer_id",
+                    maintainer: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        id: "id",
+                        permissions: { key: ["billing_credits_edit"] },
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
+                    maintainer_account_member_id: "maintainer_account_member_id",
                     name: "name",
                     rules: [
                         {
@@ -2017,11 +2129,11 @@ describe("FeaturesClient", () => {
                                 {
                                     conditions: [
                                         {
-                                            condition_type: "condition_type",
+                                            condition_type: "base_plan",
                                             created_at: "2024-01-15T09:30:00Z",
                                             environment_id: "environment_id",
                                             id: "id",
-                                            operator: "operator",
+                                            operator: "eq",
                                             resource_ids: ["resource_ids"],
                                             resources: [{ id: "id", name: "name" }],
                                             rule_id: "rule_id",
@@ -2038,11 +2150,11 @@ describe("FeaturesClient", () => {
                             ],
                             conditions: [
                                 {
-                                    condition_type: "condition_type",
+                                    condition_type: "base_plan",
                                     created_at: "2024-01-15T09:30:00Z",
                                     environment_id: "environment_id",
                                     id: "id",
-                                    operator: "operator",
+                                    operator: "eq",
                                     resource_ids: ["resource_ids"],
                                     resources: [{ id: "id", name: "name" }],
                                     rule_id: "rule_id",
@@ -2055,7 +2167,7 @@ describe("FeaturesClient", () => {
                             id: "id",
                             name: "name",
                             priority: 1000000,
-                            rule_type: "rule_type",
+                            rule_type: "company_override",
                             updated_at: "2024-01-15T09:30:00Z",
                             value: true,
                         },
@@ -2070,6 +2182,7 @@ describe("FeaturesClient", () => {
 
         const response = await client.features.listFlags({
             featureId: "feature_id",
+            ids: ["ids"],
             q: "q",
             limit: 1000000,
             offset: 1000000,
@@ -2094,7 +2207,15 @@ describe("FeaturesClient", () => {
                     id: "id",
                     key: "key",
                     lastCheckedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    maintainerId: "maintainer_id",
+                    maintainer: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        id: "id",
+                        permissions: {
+                            key: ["billing_credits_edit"],
+                        },
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                    maintainerAccountMemberId: "maintainer_account_member_id",
                     name: "name",
                     rules: [
                         {
@@ -2102,11 +2223,11 @@ describe("FeaturesClient", () => {
                                 {
                                     conditions: [
                                         {
-                                            conditionType: "condition_type",
+                                            conditionType: "base_plan",
                                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                             environmentId: "environment_id",
                                             id: "id",
-                                            operator: "operator",
+                                            operator: "eq",
                                             resourceIds: ["resource_ids"],
                                             resources: [
                                                 {
@@ -2128,11 +2249,11 @@ describe("FeaturesClient", () => {
                             ],
                             conditions: [
                                 {
-                                    conditionType: "condition_type",
+                                    conditionType: "base_plan",
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     environmentId: "environment_id",
                                     id: "id",
-                                    operator: "operator",
+                                    operator: "eq",
                                     resourceIds: ["resource_ids"],
                                     resources: [
                                         {
@@ -2150,7 +2271,7 @@ describe("FeaturesClient", () => {
                             id: "id",
                             name: "name",
                             priority: 1000000,
-                            ruleType: "rule_type",
+                            ruleType: "company_override",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             value: true,
                         },
@@ -2256,7 +2377,7 @@ describe("FeaturesClient", () => {
                     icon: "icon",
                     id: "id",
                     lifecycle_phase: "add_on",
-                    maintainer_id: "maintainer_id",
+                    maintainer_account_member_id: "maintainer_account_member_id",
                     name: "name",
                     plural_name: "plural_name",
                     singular_name: "singular_name",
@@ -2268,7 +2389,17 @@ describe("FeaturesClient", () => {
                 id: "id",
                 key: "key",
                 last_checked_at: "2024-01-15T09:30:00Z",
-                maintainer_id: "maintainer_id",
+                maintainer: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    email: "email",
+                    id: "id",
+                    image_url: "image_url",
+                    name: "name",
+                    permissions: { key: ["billing_credits_edit"] },
+                    role: "admin",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+                maintainer_account_member_id: "maintainer_account_member_id",
                 name: "name",
                 rules: [
                     {
@@ -2276,11 +2407,11 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        condition_type: "condition_type",
+                                        condition_type: "base_plan",
                                         created_at: "2024-01-15T09:30:00Z",
                                         environment_id: "environment_id",
                                         id: "id",
-                                        operator: "operator",
+                                        operator: "eq",
                                         resource_ids: ["resource_ids"],
                                         resources: [{ id: "id", name: "name" }],
                                         rule_id: "rule_id",
@@ -2297,11 +2428,11 @@ describe("FeaturesClient", () => {
                         ],
                         conditions: [
                             {
-                                condition_type: "condition_type",
+                                condition_type: "base_plan",
                                 created_at: "2024-01-15T09:30:00Z",
                                 environment_id: "environment_id",
                                 id: "id",
-                                operator: "operator",
+                                operator: "eq",
                                 resource_ids: ["resource_ids"],
                                 resources: [{ id: "id", name: "name" }],
                                 rule_id: "rule_id",
@@ -2314,7 +2445,7 @@ describe("FeaturesClient", () => {
                         id: "id",
                         name: "name",
                         priority: 1000000,
-                        rule_type: "rule_type",
+                        rule_type: "company_override",
                         updated_at: "2024-01-15T09:30:00Z",
                         value: true,
                     },
@@ -2353,7 +2484,7 @@ describe("FeaturesClient", () => {
                     icon: "icon",
                     id: "id",
                     lifecyclePhase: "add_on",
-                    maintainerId: "maintainer_id",
+                    maintainerAccountMemberId: "maintainer_account_member_id",
                     name: "name",
                     pluralName: "plural_name",
                     singularName: "singular_name",
@@ -2365,7 +2496,19 @@ describe("FeaturesClient", () => {
                 id: "id",
                 key: "key",
                 lastCheckedAt: new Date("2024-01-15T09:30:00.000Z"),
-                maintainerId: "maintainer_id",
+                maintainer: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    email: "email",
+                    id: "id",
+                    imageUrl: "image_url",
+                    name: "name",
+                    permissions: {
+                        key: ["billing_credits_edit"],
+                    },
+                    role: "admin",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+                maintainerAccountMemberId: "maintainer_account_member_id",
                 name: "name",
                 rules: [
                     {
@@ -2373,11 +2516,11 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        conditionType: "condition_type",
+                                        conditionType: "base_plan",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         environmentId: "environment_id",
                                         id: "id",
-                                        operator: "operator",
+                                        operator: "eq",
                                         resourceIds: ["resource_ids"],
                                         resources: [
                                             {
@@ -2399,11 +2542,11 @@ describe("FeaturesClient", () => {
                         ],
                         conditions: [
                             {
-                                conditionType: "condition_type",
+                                conditionType: "base_plan",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 environmentId: "environment_id",
                                 id: "id",
-                                operator: "operator",
+                                operator: "eq",
                                 resourceIds: ["resource_ids"],
                                 resources: [
                                     {
@@ -2421,7 +2564,7 @@ describe("FeaturesClient", () => {
                         id: "id",
                         name: "name",
                         priority: 1000000,
-                        ruleType: "rule_type",
+                        ruleType: "company_override",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         value: true,
                     },
@@ -2611,7 +2754,7 @@ describe("FeaturesClient", () => {
                     icon: "icon",
                     id: "id",
                     lifecycle_phase: "add_on",
-                    maintainer_id: "maintainer_id",
+                    maintainer_account_member_id: "maintainer_account_member_id",
                     name: "name",
                     plural_name: "plural_name",
                     singular_name: "singular_name",
@@ -2623,7 +2766,17 @@ describe("FeaturesClient", () => {
                 id: "id",
                 key: "key",
                 last_checked_at: "2024-01-15T09:30:00Z",
-                maintainer_id: "maintainer_id",
+                maintainer: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    email: "email",
+                    id: "id",
+                    image_url: "image_url",
+                    name: "name",
+                    permissions: { key: ["billing_credits_edit"] },
+                    role: "admin",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+                maintainer_account_member_id: "maintainer_account_member_id",
                 name: "name",
                 rules: [
                     {
@@ -2631,11 +2784,11 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        condition_type: "condition_type",
+                                        condition_type: "base_plan",
                                         created_at: "2024-01-15T09:30:00Z",
                                         environment_id: "environment_id",
                                         id: "id",
-                                        operator: "operator",
+                                        operator: "eq",
                                         resource_ids: ["resource_ids"],
                                         resources: [{ id: "id", name: "name" }],
                                         rule_id: "rule_id",
@@ -2652,11 +2805,11 @@ describe("FeaturesClient", () => {
                         ],
                         conditions: [
                             {
-                                condition_type: "condition_type",
+                                condition_type: "base_plan",
                                 created_at: "2024-01-15T09:30:00Z",
                                 environment_id: "environment_id",
                                 id: "id",
-                                operator: "operator",
+                                operator: "eq",
                                 resource_ids: ["resource_ids"],
                                 resources: [{ id: "id", name: "name" }],
                                 rule_id: "rule_id",
@@ -2669,7 +2822,7 @@ describe("FeaturesClient", () => {
                         id: "id",
                         name: "name",
                         priority: 1000000,
-                        rule_type: "rule_type",
+                        rule_type: "company_override",
                         updated_at: "2024-01-15T09:30:00Z",
                         value: true,
                     },
@@ -2695,7 +2848,7 @@ describe("FeaturesClient", () => {
                     icon: "icon",
                     id: "id",
                     lifecyclePhase: "add_on",
-                    maintainerId: "maintainer_id",
+                    maintainerAccountMemberId: "maintainer_account_member_id",
                     name: "name",
                     pluralName: "plural_name",
                     singularName: "singular_name",
@@ -2707,7 +2860,19 @@ describe("FeaturesClient", () => {
                 id: "id",
                 key: "key",
                 lastCheckedAt: new Date("2024-01-15T09:30:00.000Z"),
-                maintainerId: "maintainer_id",
+                maintainer: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    email: "email",
+                    id: "id",
+                    imageUrl: "image_url",
+                    name: "name",
+                    permissions: {
+                        key: ["billing_credits_edit"],
+                    },
+                    role: "admin",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+                maintainerAccountMemberId: "maintainer_account_member_id",
                 name: "name",
                 rules: [
                     {
@@ -2715,11 +2880,11 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        conditionType: "condition_type",
+                                        conditionType: "base_plan",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         environmentId: "environment_id",
                                         id: "id",
-                                        operator: "operator",
+                                        operator: "eq",
                                         resourceIds: ["resource_ids"],
                                         resources: [
                                             {
@@ -2741,11 +2906,11 @@ describe("FeaturesClient", () => {
                         ],
                         conditions: [
                             {
-                                conditionType: "condition_type",
+                                conditionType: "base_plan",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 environmentId: "environment_id",
                                 id: "id",
-                                operator: "operator",
+                                operator: "eq",
                                 resourceIds: ["resource_ids"],
                                 resources: [
                                     {
@@ -2763,7 +2928,7 @@ describe("FeaturesClient", () => {
                         id: "id",
                         name: "name",
                         priority: 1000000,
-                        ruleType: "rule_type",
+                        ruleType: "company_override",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         value: true,
                     },
@@ -2851,7 +3016,7 @@ describe("FeaturesClient", () => {
                     icon: "icon",
                     id: "id",
                     lifecycle_phase: "add_on",
-                    maintainer_id: "maintainer_id",
+                    maintainer_account_member_id: "maintainer_account_member_id",
                     name: "name",
                     plural_name: "plural_name",
                     singular_name: "singular_name",
@@ -2863,7 +3028,17 @@ describe("FeaturesClient", () => {
                 id: "id",
                 key: "key",
                 last_checked_at: "2024-01-15T09:30:00Z",
-                maintainer_id: "maintainer_id",
+                maintainer: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    email: "email",
+                    id: "id",
+                    image_url: "image_url",
+                    name: "name",
+                    permissions: { key: ["billing_credits_edit"] },
+                    role: "admin",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+                maintainer_account_member_id: "maintainer_account_member_id",
                 name: "name",
                 rules: [
                     {
@@ -2871,11 +3046,11 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        condition_type: "condition_type",
+                                        condition_type: "base_plan",
                                         created_at: "2024-01-15T09:30:00Z",
                                         environment_id: "environment_id",
                                         id: "id",
-                                        operator: "operator",
+                                        operator: "eq",
                                         resource_ids: ["resource_ids"],
                                         resources: [{ id: "id", name: "name" }],
                                         rule_id: "rule_id",
@@ -2892,11 +3067,11 @@ describe("FeaturesClient", () => {
                         ],
                         conditions: [
                             {
-                                condition_type: "condition_type",
+                                condition_type: "base_plan",
                                 created_at: "2024-01-15T09:30:00Z",
                                 environment_id: "environment_id",
                                 id: "id",
-                                operator: "operator",
+                                operator: "eq",
                                 resource_ids: ["resource_ids"],
                                 resources: [{ id: "id", name: "name" }],
                                 rule_id: "rule_id",
@@ -2909,7 +3084,7 @@ describe("FeaturesClient", () => {
                         id: "id",
                         name: "name",
                         priority: 1000000,
-                        rule_type: "rule_type",
+                        rule_type: "company_override",
                         updated_at: "2024-01-15T09:30:00Z",
                         value: true,
                     },
@@ -2948,7 +3123,7 @@ describe("FeaturesClient", () => {
                     icon: "icon",
                     id: "id",
                     lifecyclePhase: "add_on",
-                    maintainerId: "maintainer_id",
+                    maintainerAccountMemberId: "maintainer_account_member_id",
                     name: "name",
                     pluralName: "plural_name",
                     singularName: "singular_name",
@@ -2960,7 +3135,19 @@ describe("FeaturesClient", () => {
                 id: "id",
                 key: "key",
                 lastCheckedAt: new Date("2024-01-15T09:30:00.000Z"),
-                maintainerId: "maintainer_id",
+                maintainer: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    email: "email",
+                    id: "id",
+                    imageUrl: "image_url",
+                    name: "name",
+                    permissions: {
+                        key: ["billing_credits_edit"],
+                    },
+                    role: "admin",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+                maintainerAccountMemberId: "maintainer_account_member_id",
                 name: "name",
                 rules: [
                     {
@@ -2968,11 +3155,11 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        conditionType: "condition_type",
+                                        conditionType: "base_plan",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         environmentId: "environment_id",
                                         id: "id",
-                                        operator: "operator",
+                                        operator: "eq",
                                         resourceIds: ["resource_ids"],
                                         resources: [
                                             {
@@ -2994,11 +3181,11 @@ describe("FeaturesClient", () => {
                         ],
                         conditions: [
                             {
-                                conditionType: "condition_type",
+                                conditionType: "base_plan",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 environmentId: "environment_id",
                                 id: "id",
-                                operator: "operator",
+                                operator: "eq",
                                 resourceIds: ["resource_ids"],
                                 resources: [
                                     {
@@ -3016,7 +3203,7 @@ describe("FeaturesClient", () => {
                         id: "id",
                         name: "name",
                         priority: 1000000,
-                        ruleType: "rule_type",
+                        ruleType: "company_override",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         value: true,
                     },
@@ -3280,9 +3467,13 @@ describe("FeaturesClient", () => {
             rules: [
                 {
                     condition_groups: [
-                        { conditions: [{ condition_type: "company", operator: "eq", resource_ids: ["resource_ids"] }] },
+                        {
+                            conditions: [
+                                { condition_type: "base_plan", operator: "eq", resource_ids: ["resource_ids"] },
+                            ],
+                        },
                     ],
-                    conditions: [{ condition_type: "company", operator: "eq", resource_ids: ["resource_ids"] }],
+                    conditions: [{ condition_type: "base_plan", operator: "eq", resource_ids: ["resource_ids"] }],
                     name: "name",
                     priority: 1000000,
                     value: true,
@@ -3299,7 +3490,7 @@ describe("FeaturesClient", () => {
                     flag_type: "boolean",
                     id: "id",
                     key: "key",
-                    maintainer_id: "maintainer_id",
+                    maintainer_account_member_id: "maintainer_account_member_id",
                     name: "name",
                     updated_at: "2024-01-15T09:30:00Z",
                 },
@@ -3309,11 +3500,11 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        condition_type: "condition_type",
+                                        condition_type: "base_plan",
                                         created_at: "2024-01-15T09:30:00Z",
                                         environment_id: "environment_id",
                                         id: "id",
-                                        operator: "operator",
+                                        operator: "eq",
                                         resource_ids: ["resource_ids"],
                                         resources: [{ id: "id", name: "name" }],
                                         rule_id: "rule_id",
@@ -3330,11 +3521,11 @@ describe("FeaturesClient", () => {
                         ],
                         conditions: [
                             {
-                                condition_type: "condition_type",
+                                condition_type: "base_plan",
                                 created_at: "2024-01-15T09:30:00Z",
                                 environment_id: "environment_id",
                                 id: "id",
-                                operator: "operator",
+                                operator: "eq",
                                 resource_ids: ["resource_ids"],
                                 resources: [{ id: "id", name: "name" }],
                                 rule_id: "rule_id",
@@ -3347,7 +3538,7 @@ describe("FeaturesClient", () => {
                         id: "id",
                         name: "name",
                         priority: 1000000,
-                        rule_type: "rule_type",
+                        rule_type: "company_override",
                         updated_at: "2024-01-15T09:30:00Z",
                         value: true,
                     },
@@ -3372,7 +3563,7 @@ describe("FeaturesClient", () => {
                         {
                             conditions: [
                                 {
-                                    conditionType: "company",
+                                    conditionType: "base_plan",
                                     operator: "eq",
                                     resourceIds: ["resource_ids"],
                                 },
@@ -3381,7 +3572,7 @@ describe("FeaturesClient", () => {
                     ],
                     conditions: [
                         {
-                            conditionType: "company",
+                            conditionType: "base_plan",
                             operator: "eq",
                             resourceIds: ["resource_ids"],
                         },
@@ -3402,7 +3593,7 @@ describe("FeaturesClient", () => {
                     flagType: "boolean",
                     id: "id",
                     key: "key",
-                    maintainerId: "maintainer_id",
+                    maintainerAccountMemberId: "maintainer_account_member_id",
                     name: "name",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
@@ -3412,11 +3603,11 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        conditionType: "condition_type",
+                                        conditionType: "base_plan",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         environmentId: "environment_id",
                                         id: "id",
-                                        operator: "operator",
+                                        operator: "eq",
                                         resourceIds: ["resource_ids"],
                                         resources: [
                                             {
@@ -3438,11 +3629,11 @@ describe("FeaturesClient", () => {
                         ],
                         conditions: [
                             {
-                                conditionType: "condition_type",
+                                conditionType: "base_plan",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 environmentId: "environment_id",
                                 id: "id",
-                                operator: "operator",
+                                operator: "eq",
                                 resourceIds: ["resource_ids"],
                                 resources: [
                                     {
@@ -3460,7 +3651,7 @@ describe("FeaturesClient", () => {
                         id: "id",
                         name: "name",
                         priority: 1000000,
-                        ruleType: "rule_type",
+                        ruleType: "company_override",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         value: true,
                     },
@@ -3482,12 +3673,12 @@ describe("FeaturesClient", () => {
                         {
                             conditions: [
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
@@ -3496,12 +3687,12 @@ describe("FeaturesClient", () => {
                         {
                             conditions: [
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
@@ -3509,8 +3700,8 @@ describe("FeaturesClient", () => {
                         },
                     ],
                     conditions: [
-                        { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
-                        { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
+                        { condition_type: "base_plan", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
+                        { condition_type: "base_plan", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
                     ],
                     name: "name",
                     priority: 1000000,
@@ -3521,12 +3712,12 @@ describe("FeaturesClient", () => {
                         {
                             conditions: [
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
@@ -3535,12 +3726,12 @@ describe("FeaturesClient", () => {
                         {
                             conditions: [
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
@@ -3548,8 +3739,8 @@ describe("FeaturesClient", () => {
                         },
                     ],
                     conditions: [
-                        { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
-                        { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
+                        { condition_type: "base_plan", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
+                        { condition_type: "base_plan", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
                     ],
                     name: "name",
                     priority: 1000000,
@@ -3576,12 +3767,12 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
@@ -3590,12 +3781,12 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
@@ -3604,12 +3795,12 @@ describe("FeaturesClient", () => {
                         ],
                         conditions: [
                             {
-                                conditionType: "company",
+                                conditionType: "base_plan",
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
                             },
                             {
-                                conditionType: "company",
+                                conditionType: "base_plan",
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
                             },
@@ -3623,12 +3814,12 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
@@ -3637,12 +3828,12 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
@@ -3651,12 +3842,12 @@ describe("FeaturesClient", () => {
                         ],
                         conditions: [
                             {
-                                conditionType: "company",
+                                conditionType: "base_plan",
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
                             },
                             {
-                                conditionType: "company",
+                                conditionType: "base_plan",
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
                             },
@@ -3680,12 +3871,12 @@ describe("FeaturesClient", () => {
                         {
                             conditions: [
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
@@ -3694,12 +3885,12 @@ describe("FeaturesClient", () => {
                         {
                             conditions: [
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
@@ -3707,8 +3898,8 @@ describe("FeaturesClient", () => {
                         },
                     ],
                     conditions: [
-                        { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
-                        { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
+                        { condition_type: "base_plan", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
+                        { condition_type: "base_plan", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
                     ],
                     name: "name",
                     priority: 1000000,
@@ -3719,12 +3910,12 @@ describe("FeaturesClient", () => {
                         {
                             conditions: [
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
@@ -3733,12 +3924,12 @@ describe("FeaturesClient", () => {
                         {
                             conditions: [
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
@@ -3746,8 +3937,8 @@ describe("FeaturesClient", () => {
                         },
                     ],
                     conditions: [
-                        { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
-                        { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
+                        { condition_type: "base_plan", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
+                        { condition_type: "base_plan", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
                     ],
                     name: "name",
                     priority: 1000000,
@@ -3774,12 +3965,12 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
@@ -3788,12 +3979,12 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
@@ -3802,12 +3993,12 @@ describe("FeaturesClient", () => {
                         ],
                         conditions: [
                             {
-                                conditionType: "company",
+                                conditionType: "base_plan",
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
                             },
                             {
-                                conditionType: "company",
+                                conditionType: "base_plan",
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
                             },
@@ -3821,12 +4012,12 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
@@ -3835,12 +4026,12 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
@@ -3849,12 +4040,12 @@ describe("FeaturesClient", () => {
                         ],
                         conditions: [
                             {
-                                conditionType: "company",
+                                conditionType: "base_plan",
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
                             },
                             {
-                                conditionType: "company",
+                                conditionType: "base_plan",
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
                             },
@@ -3878,12 +4069,12 @@ describe("FeaturesClient", () => {
                         {
                             conditions: [
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
@@ -3892,12 +4083,12 @@ describe("FeaturesClient", () => {
                         {
                             conditions: [
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
@@ -3905,8 +4096,8 @@ describe("FeaturesClient", () => {
                         },
                     ],
                     conditions: [
-                        { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
-                        { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
+                        { condition_type: "base_plan", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
+                        { condition_type: "base_plan", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
                     ],
                     name: "name",
                     priority: 1000000,
@@ -3917,12 +4108,12 @@ describe("FeaturesClient", () => {
                         {
                             conditions: [
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
@@ -3931,12 +4122,12 @@ describe("FeaturesClient", () => {
                         {
                             conditions: [
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
@@ -3944,8 +4135,8 @@ describe("FeaturesClient", () => {
                         },
                     ],
                     conditions: [
-                        { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
-                        { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
+                        { condition_type: "base_plan", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
+                        { condition_type: "base_plan", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
                     ],
                     name: "name",
                     priority: 1000000,
@@ -3972,12 +4163,12 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
@@ -3986,12 +4177,12 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
@@ -4000,12 +4191,12 @@ describe("FeaturesClient", () => {
                         ],
                         conditions: [
                             {
-                                conditionType: "company",
+                                conditionType: "base_plan",
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
                             },
                             {
-                                conditionType: "company",
+                                conditionType: "base_plan",
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
                             },
@@ -4019,12 +4210,12 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
@@ -4033,12 +4224,12 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
@@ -4047,12 +4238,12 @@ describe("FeaturesClient", () => {
                         ],
                         conditions: [
                             {
-                                conditionType: "company",
+                                conditionType: "base_plan",
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
                             },
                             {
-                                conditionType: "company",
+                                conditionType: "base_plan",
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
                             },
@@ -4076,12 +4267,12 @@ describe("FeaturesClient", () => {
                         {
                             conditions: [
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
@@ -4090,12 +4281,12 @@ describe("FeaturesClient", () => {
                         {
                             conditions: [
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
@@ -4103,8 +4294,8 @@ describe("FeaturesClient", () => {
                         },
                     ],
                     conditions: [
-                        { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
-                        { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
+                        { condition_type: "base_plan", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
+                        { condition_type: "base_plan", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
                     ],
                     name: "name",
                     priority: 1000000,
@@ -4115,12 +4306,12 @@ describe("FeaturesClient", () => {
                         {
                             conditions: [
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
@@ -4129,12 +4320,12 @@ describe("FeaturesClient", () => {
                         {
                             conditions: [
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
@@ -4142,8 +4333,8 @@ describe("FeaturesClient", () => {
                         },
                     ],
                     conditions: [
-                        { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
-                        { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
+                        { condition_type: "base_plan", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
+                        { condition_type: "base_plan", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
                     ],
                     name: "name",
                     priority: 1000000,
@@ -4170,12 +4361,12 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
@@ -4184,12 +4375,12 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
@@ -4198,12 +4389,12 @@ describe("FeaturesClient", () => {
                         ],
                         conditions: [
                             {
-                                conditionType: "company",
+                                conditionType: "base_plan",
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
                             },
                             {
-                                conditionType: "company",
+                                conditionType: "base_plan",
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
                             },
@@ -4217,12 +4408,12 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
@@ -4231,12 +4422,12 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
@@ -4245,12 +4436,12 @@ describe("FeaturesClient", () => {
                         ],
                         conditions: [
                             {
-                                conditionType: "company",
+                                conditionType: "base_plan",
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
                             },
                             {
-                                conditionType: "company",
+                                conditionType: "base_plan",
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
                             },
@@ -4274,12 +4465,12 @@ describe("FeaturesClient", () => {
                         {
                             conditions: [
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
@@ -4288,12 +4479,12 @@ describe("FeaturesClient", () => {
                         {
                             conditions: [
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
@@ -4301,8 +4492,8 @@ describe("FeaturesClient", () => {
                         },
                     ],
                     conditions: [
-                        { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
-                        { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
+                        { condition_type: "base_plan", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
+                        { condition_type: "base_plan", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
                     ],
                     name: "name",
                     priority: 1000000,
@@ -4313,12 +4504,12 @@ describe("FeaturesClient", () => {
                         {
                             conditions: [
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
@@ -4327,12 +4518,12 @@ describe("FeaturesClient", () => {
                         {
                             conditions: [
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
                                 {
-                                    condition_type: "company",
+                                    condition_type: "base_plan",
                                     operator: "eq",
                                     resource_ids: ["resource_ids", "resource_ids"],
                                 },
@@ -4340,8 +4531,8 @@ describe("FeaturesClient", () => {
                         },
                     ],
                     conditions: [
-                        { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
-                        { condition_type: "company", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
+                        { condition_type: "base_plan", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
+                        { condition_type: "base_plan", operator: "eq", resource_ids: ["resource_ids", "resource_ids"] },
                     ],
                     name: "name",
                     priority: 1000000,
@@ -4368,12 +4559,12 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
@@ -4382,12 +4573,12 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
@@ -4396,12 +4587,12 @@ describe("FeaturesClient", () => {
                         ],
                         conditions: [
                             {
-                                conditionType: "company",
+                                conditionType: "base_plan",
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
                             },
                             {
-                                conditionType: "company",
+                                conditionType: "base_plan",
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
                             },
@@ -4415,12 +4606,12 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
@@ -4429,12 +4620,12 @@ describe("FeaturesClient", () => {
                             {
                                 conditions: [
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
                                     {
-                                        conditionType: "company",
+                                        conditionType: "base_plan",
                                         operator: "eq",
                                         resourceIds: ["resource_ids", "resource_ids"],
                                     },
@@ -4443,12 +4634,12 @@ describe("FeaturesClient", () => {
                         ],
                         conditions: [
                             {
-                                conditionType: "company",
+                                conditionType: "base_plan",
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
                             },
                             {
-                                conditionType: "company",
+                                conditionType: "base_plan",
                                 operator: "eq",
                                 resourceIds: ["resource_ids", "resource_ids"],
                             },
@@ -4480,17 +4671,18 @@ describe("FeaturesClient", () => {
                     feature_key: "feature_key",
                     metric_period: "all_time",
                     metric_reset_at: "2024-01-15T09:30:00Z",
-                    month_reset: "first_of_month",
+                    month_reset: "billing_cycle",
                     soft_limit: 1000000,
                     usage: 1000000,
                     value_type: "boolean",
                 },
                 error: "error",
+                feature_usage_period: "all_time",
                 flag: "flag",
                 flag_id: "flag_id",
                 reason: "reason",
                 rule_id: "rule_id",
-                rule_type: "rule_type",
+                rule_type: "company_override",
                 user_id: "user_id",
                 value: true,
             },
@@ -4521,17 +4713,18 @@ describe("FeaturesClient", () => {
                     featureKey: "feature_key",
                     metricPeriod: "all_time",
                     metricResetAt: new Date("2024-01-15T09:30:00.000Z"),
-                    monthReset: "first_of_month",
+                    monthReset: "billing_cycle",
                     softLimit: 1000000,
                     usage: 1000000,
                     valueType: "boolean",
                 },
                 error: "error",
+                featureUsagePeriod: "all_time",
                 flag: "flag",
                 flagId: "flag_id",
                 reason: "reason",
                 ruleId: "rule_id",
-                ruleType: "rule_type",
+                ruleType: "company_override",
                 userId: "user_id",
                 value: true,
             },
@@ -4949,6 +5142,7 @@ describe("FeaturesClient", () => {
 
         const response = await client.features.countFlags({
             featureId: "feature_id",
+            ids: ["ids"],
             q: "q",
             limit: 1000000,
             offset: 1000000,

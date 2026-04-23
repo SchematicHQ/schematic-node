@@ -8,6 +8,6 @@ export interface CreateFlagRequestBody {
     featureId?: string;
     flagType: Schematic.FlagType;
     key: string;
-    maintainerId?: string;
+    maintainerAccountMemberId?: string;
     name: string;
 }

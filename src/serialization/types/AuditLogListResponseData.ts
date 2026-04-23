@@ -4,6 +4,7 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { ActorType } from "./ActorType";
+import { EnvironmentResponseData } from "./EnvironmentResponseData";
 
 export const AuditLogListResponseData: core.serialization.ObjectSchema<
     serializers.AuditLogListResponseData.Raw,
@@ -12,6 +13,7 @@ export const AuditLogListResponseData: core.serialization.ObjectSchema<
     actorType: core.serialization.property("actor_type", ActorType),
     apiKeyId: core.serialization.property("api_key_id", core.serialization.string().optional()),
     endedAt: core.serialization.property("ended_at", core.serialization.date().optional()),
+    environment: EnvironmentResponseData.optional(),
     environmentId: core.serialization.property("environment_id", core.serialization.string().optional()),
     id: core.serialization.string(),
     method: core.serialization.string(),
@@ -31,6 +33,7 @@ export declare namespace AuditLogListResponseData {
         actor_type: ActorType.Raw;
         api_key_id?: string | null;
         ended_at?: string | null;
+        environment?: EnvironmentResponseData.Raw | null;
         environment_id?: string | null;
         id: string;
         method: string;

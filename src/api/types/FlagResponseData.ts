@@ -10,7 +10,7 @@ export interface FlagResponseData {
     flagType: Schematic.FlagType;
     id: string;
     key: string;
-    maintainerId?: string;
+    maintainerAccountMemberId?: string;
     name: string;
     updatedAt: Date;
 }

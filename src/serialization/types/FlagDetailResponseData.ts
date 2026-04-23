@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { AccountMemberResponseData } from "./AccountMemberResponseData";
 import { FeatureResponseData } from "./FeatureResponseData";
 import { FlagType } from "./FlagType";
 import { RuleDetailResponseData } from "./RuleDetailResponseData";
@@ -20,7 +21,11 @@ export const FlagDetailResponseData: core.serialization.ObjectSchema<
     id: core.serialization.string(),
     key: core.serialization.string(),
     lastCheckedAt: core.serialization.property("last_checked_at", core.serialization.date().optional()),
-    maintainerId: core.serialization.property("maintainer_id", core.serialization.string().optional()),
+    maintainer: AccountMemberResponseData.optional(),
+    maintainerAccountMemberId: core.serialization.property(
+        "maintainer_account_member_id",
+        core.serialization.string().optional(),
+    ),
     name: core.serialization.string(),
     rules: core.serialization.list(RuleDetailResponseData),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -37,7 +42,8 @@ export declare namespace FlagDetailResponseData {
         id: string;
         key: string;
         last_checked_at?: string | null;
-        maintainer_id?: string | null;
+        maintainer?: AccountMemberResponseData.Raw | null;
+        maintainer_account_member_id?: string | null;
         name: string;
         rules: RuleDetailResponseData.Raw[];
         updated_at: string;

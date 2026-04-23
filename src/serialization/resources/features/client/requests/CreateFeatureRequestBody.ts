@@ -17,7 +17,10 @@ export const CreateFeatureRequestBody: core.serialization.Schema<
     flag: CreateOrUpdateFlagRequestBody.optional(),
     icon: core.serialization.string().optional(),
     lifecyclePhase: core.serialization.property("lifecycle_phase", FeatureLifecyclePhase.optional()),
-    maintainerId: core.serialization.property("maintainer_id", core.serialization.string().optional()),
+    maintainerAccountMemberId: core.serialization.property(
+        "maintainer_account_member_id",
+        core.serialization.string().optional(),
+    ),
     name: core.serialization.string(),
     pluralName: core.serialization.property("plural_name", core.serialization.string().optional()),
     singularName: core.serialization.property("singular_name", core.serialization.string().optional()),
@@ -32,7 +35,7 @@ export declare namespace CreateFeatureRequestBody {
         flag?: CreateOrUpdateFlagRequestBody.Raw | null;
         icon?: string | null;
         lifecycle_phase?: FeatureLifecyclePhase.Raw | null;
-        maintainer_id?: string | null;
+        maintainer_account_member_id?: string | null;
         name: string;
         plural_name?: string | null;
         singular_name?: string | null;

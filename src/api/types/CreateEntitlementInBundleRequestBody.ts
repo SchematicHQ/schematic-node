@@ -9,8 +9,8 @@ export interface CreateEntitlementInBundleRequestBody {
     currency?: string;
     currencyPrices?: Schematic.CurrencyPriceRequestBody[];
     featureId: string;
-    metricPeriod?: Schematic.CreateEntitlementInBundleRequestBodyMetricPeriod;
-    metricPeriodMonthReset?: Schematic.CreateEntitlementInBundleRequestBodyMetricPeriodMonthReset;
+    metricPeriod?: Schematic.MetricPeriod;
+    metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;
     monthlyMeteredPriceId?: string;
     monthlyPriceTiers?: Schematic.CreatePriceTierRequestBody[];
     monthlyUnitPrice?: number;

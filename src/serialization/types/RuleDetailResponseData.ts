@@ -5,6 +5,7 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 import { RuleConditionDetailResponseData } from "./RuleConditionDetailResponseData";
 import { RuleConditionGroupDetailResponseData } from "./RuleConditionGroupDetailResponseData";
+import { RuleType } from "./RuleType";
 
 export const RuleDetailResponseData: core.serialization.ObjectSchema<
     serializers.RuleDetailResponseData.Raw,
@@ -21,7 +22,7 @@ export const RuleDetailResponseData: core.serialization.ObjectSchema<
     id: core.serialization.string(),
     name: core.serialization.string(),
     priority: core.serialization.number(),
-    ruleType: core.serialization.property("rule_type", core.serialization.string()),
+    ruleType: core.serialization.property("rule_type", RuleType),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     value: core.serialization.boolean(),
 });
@@ -36,7 +37,7 @@ export declare namespace RuleDetailResponseData {
         id: string;
         name: string;
         priority: number;
-        rule_type: string;
+        rule_type: RuleType.Raw;
         updated_at: string;
         value: boolean;
     }

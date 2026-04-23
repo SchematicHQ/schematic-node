@@ -20,11 +20,11 @@ export interface RulesengineFeatureEntitlement {
     /** The key of the flag associated with the feature */
     featureKey: string;
     /** For event-based feature entitlements, the period over which usage is tracked */
-    metricPeriod?: Schematic.RulesengineFeatureEntitlementMetricPeriod;
+    metricPeriod?: Schematic.RulesengineMetricPeriod;
     /** For event-based feature entitlements, when the usage period will reset */
     metricResetAt?: Date;
     /** For event-based feature entitlements that have a monthly period, whether that monthly reset is based on the calendar month or a billing cycle */
-    monthReset?: Schematic.RulesengineFeatureEntitlementMonthReset;
+    monthReset?: Schematic.RulesengineMetricPeriodMonthReset;
     /** For usage-based pricing, the soft limit for overage charges or the next tier boundary */
     softLimit?: number;
     /** If the company has a numeric entitlement for this feature, the current usage amount */

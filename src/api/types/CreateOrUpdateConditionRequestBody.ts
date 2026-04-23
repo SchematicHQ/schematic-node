@@ -5,7 +5,7 @@ import type * as Schematic from "../index";
 export interface CreateOrUpdateConditionRequestBody {
     /** Optionally provide a trait ID to compare a metric or trait value against instead of a value */
     comparisonTraitId?: string;
-    conditionType: Schematic.CreateOrUpdateConditionRequestBodyConditionType;
+    conditionType: Schematic.ConditionType;
     /** Cost of credit to use to measure this condition */
     creditCost?: number;
     /** ID of credit to use to measure this condition */
@@ -14,12 +14,12 @@ export interface CreateOrUpdateConditionRequestBody {
     eventSubtype?: string;
     id?: string;
     /** Period of time over which to measure the track event metric */
-    metricPeriod?: Schematic.CreateOrUpdateConditionRequestBodyMetricPeriod;
+    metricPeriod?: Schematic.MetricPeriod;
     /** When metric_period=current_month, specify whether the month restarts based on the calendar month or the billing period */
-    metricPeriodMonthReset?: Schematic.CreateOrUpdateConditionRequestBodyMetricPeriodMonthReset;
+    metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;
     /** Value to compare the track event metric against */
     metricValue?: number;
-    operator: Schematic.CreateOrUpdateConditionRequestBodyOperator;
+    operator: Schematic.ComparableOperator;
     /** List of resource IDs (companies, users, or plans) targeted by this condition */
     resourceIds: string[];
     /** ID of trait to use to measure this condition */

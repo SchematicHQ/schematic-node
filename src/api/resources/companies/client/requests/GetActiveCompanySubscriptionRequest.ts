@@ -4,6 +4,7 @@
  * @example
  *     {
  *         companyId: "company_id",
+ *         companyIds: ["company_ids"],
  *         limit: 1000000,
  *         offset: 1000000
  *     }

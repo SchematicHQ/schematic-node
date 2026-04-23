@@ -8,8 +8,8 @@ import { CreatePriceTierRequestBody } from "../../../../types/CreatePriceTierReq
 import { CurrencyPriceRequestBody } from "../../../../types/CurrencyPriceRequestBody";
 import { EntitlementPriceBehavior } from "../../../../types/EntitlementPriceBehavior";
 import { EntitlementValueType } from "../../../../types/EntitlementValueType";
-import { CreatePlanEntitlementRequestBodyMetricPeriod } from "../../types/CreatePlanEntitlementRequestBodyMetricPeriod";
-import { CreatePlanEntitlementRequestBodyMetricPeriodMonthReset } from "../../types/CreatePlanEntitlementRequestBodyMetricPeriodMonthReset";
+import { MetricPeriod } from "../../../../types/MetricPeriod";
+import { MetricPeriodMonthReset } from "../../../../types/MetricPeriodMonthReset";
 
 export const CreatePlanEntitlementRequestBody: core.serialization.Schema<
     serializers.CreatePlanEntitlementRequestBody.Raw,
@@ -27,11 +27,8 @@ export const CreatePlanEntitlementRequestBody: core.serialization.Schema<
         core.serialization.list(CurrencyPriceRequestBody).optional(),
     ),
     featureId: core.serialization.property("feature_id", core.serialization.string()),
-    metricPeriod: core.serialization.property("metric_period", CreatePlanEntitlementRequestBodyMetricPeriod.optional()),
-    metricPeriodMonthReset: core.serialization.property(
-        "metric_period_month_reset",
-        CreatePlanEntitlementRequestBodyMetricPeriodMonthReset.optional(),
-    ),
+    metricPeriod: core.serialization.property("metric_period", MetricPeriod.optional()),
+    metricPeriodMonthReset: core.serialization.property("metric_period_month_reset", MetricPeriodMonthReset.optional()),
     monthlyMeteredPriceId: core.serialization.property(
         "monthly_metered_price_id",
         core.serialization.string().optional(),
@@ -86,8 +83,8 @@ export declare namespace CreatePlanEntitlementRequestBody {
         currency?: string | null;
         currency_prices?: CurrencyPriceRequestBody.Raw[] | null;
         feature_id: string;
-        metric_period?: CreatePlanEntitlementRequestBodyMetricPeriod.Raw | null;
-        metric_period_month_reset?: CreatePlanEntitlementRequestBodyMetricPeriodMonthReset.Raw | null;
+        metric_period?: MetricPeriod.Raw | null;
+        metric_period_month_reset?: MetricPeriodMonthReset.Raw | null;
         monthly_metered_price_id?: string | null;
         monthly_price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
         monthly_unit_price?: number | null;

@@ -3,8 +3,10 @@
 /**
  * @example
  *     {
+ *         ids: ["ids"],
  *         planId: "plan_id",
  *         traitId: "trait_id",
+ *         traitIds: ["trait_ids"],
  *         limit: 1000000,
  *         offset: 1000000
  *     }

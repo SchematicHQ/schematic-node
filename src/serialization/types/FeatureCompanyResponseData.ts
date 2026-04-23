@@ -13,7 +13,9 @@ import { CreditUsageAggregation } from "./CreditUsageAggregation";
 import { EntitlementPriceBehavior } from "./EntitlementPriceBehavior";
 import { EntitlementType } from "./EntitlementType";
 import { EntitlementValueType } from "./EntitlementValueType";
-import { FeatureDetailResponseData } from "./FeatureDetailResponseData";
+import { FeatureInPlanResponseData } from "./FeatureInPlanResponseData";
+import { MetricPeriod } from "./MetricPeriod";
+import { MetricPeriodMonthReset } from "./MetricPeriodMonthReset";
 import { PlanEntitlementResponseData } from "./PlanEntitlementResponseData";
 import { PlanResponseData } from "./PlanResponseData";
 
@@ -54,15 +56,15 @@ export const FeatureCompanyResponseData: core.serialization.ObjectSchema<
     entitlementId: core.serialization.property("entitlement_id", core.serialization.string()),
     entitlementSource: core.serialization.property("entitlement_source", core.serialization.string().optional()),
     entitlementType: core.serialization.property("entitlement_type", EntitlementType),
-    feature: FeatureDetailResponseData.optional(),
+    feature: FeatureInPlanResponseData.optional(),
     hasValidAllocation: core.serialization.property("has_valid_allocation", core.serialization.boolean().optional()),
     isUnlimited: core.serialization.property("is_unlimited", core.serialization.boolean().optional()),
     metricResetAt: core.serialization.property("metric_reset_at", core.serialization.date().optional()),
-    monthReset: core.serialization.property("month_reset", core.serialization.string().optional()),
+    monthReset: core.serialization.property("month_reset", MetricPeriodMonthReset.optional()),
     monthlyUsageBasedPrice: core.serialization.property("monthly_usage_based_price", BillingPriceView.optional()),
     overuse: core.serialization.number().optional(),
     percentUsed: core.serialization.property("percent_used", core.serialization.number().optional()),
-    period: core.serialization.string().optional(),
+    period: MetricPeriod.optional(),
     plan: PlanResponseData.optional(),
     planEntitlement: core.serialization.property("plan_entitlement", PlanEntitlementResponseData.optional()),
     priceBehavior: core.serialization.property("price_behavior", EntitlementPriceBehavior.optional()),
@@ -94,15 +96,15 @@ export declare namespace FeatureCompanyResponseData {
         entitlement_id: string;
         entitlement_source?: string | null;
         entitlement_type: EntitlementType.Raw;
-        feature?: FeatureDetailResponseData.Raw | null;
+        feature?: FeatureInPlanResponseData.Raw | null;
         has_valid_allocation?: boolean | null;
         is_unlimited?: boolean | null;
         metric_reset_at?: string | null;
-        month_reset?: string | null;
+        month_reset?: MetricPeriodMonthReset.Raw | null;
         monthly_usage_based_price?: BillingPriceView.Raw | null;
         overuse?: number | null;
         percent_used?: number | null;
-        period?: string | null;
+        period?: MetricPeriod.Raw | null;
         plan?: PlanResponseData.Raw | null;
         plan_entitlement?: PlanEntitlementResponseData.Raw | null;
         price_behavior?: EntitlementPriceBehavior.Raw | null;

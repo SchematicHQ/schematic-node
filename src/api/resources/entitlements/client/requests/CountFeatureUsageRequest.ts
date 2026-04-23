@@ -4,6 +4,7 @@
  * @example
  *     {
  *         companyId: "company_id",
+ *         featureIds: ["feature_ids"],
  *         includeUsageAggregation: true,
  *         q: "q",
  *         withoutNegativeEntitlements: true,

@@ -3,10 +3,10 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
-import { RulesengineConditionConditionType } from "./RulesengineConditionConditionType";
-import { RulesengineConditionMetricPeriod } from "./RulesengineConditionMetricPeriod";
-import { RulesengineConditionMetricPeriodMonthReset } from "./RulesengineConditionMetricPeriodMonthReset";
-import { RulesengineConditionOperator } from "./RulesengineConditionOperator";
+import { ComparableOperator } from "./ComparableOperator";
+import { RulesengineConditionType } from "./RulesengineConditionType";
+import { RulesengineMetricPeriod } from "./RulesengineMetricPeriod";
+import { RulesengineMetricPeriodMonthReset } from "./RulesengineMetricPeriodMonthReset";
 import { RulesengineTraitDefinition } from "./RulesengineTraitDefinition";
 
 export const RulesengineCondition: core.serialization.ObjectSchema<
@@ -18,19 +18,19 @@ export const RulesengineCondition: core.serialization.ObjectSchema<
         "comparison_trait_definition",
         RulesengineTraitDefinition.optional(),
     ),
-    conditionType: core.serialization.property("condition_type", RulesengineConditionConditionType),
+    conditionType: core.serialization.property("condition_type", RulesengineConditionType),
     consumptionRate: core.serialization.property("consumption_rate", core.serialization.number().optional()),
     creditId: core.serialization.property("credit_id", core.serialization.string().optional()),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
     id: core.serialization.string(),
-    metricPeriod: core.serialization.property("metric_period", RulesengineConditionMetricPeriod.optional()),
+    metricPeriod: core.serialization.property("metric_period", RulesengineMetricPeriod.optional()),
     metricPeriodMonthReset: core.serialization.property(
         "metric_period_month_reset",
-        RulesengineConditionMetricPeriodMonthReset.optional(),
+        RulesengineMetricPeriodMonthReset.optional(),
     ),
     metricValue: core.serialization.property("metric_value", core.serialization.number().optional()),
-    operator: RulesengineConditionOperator,
+    operator: ComparableOperator,
     resourceIds: core.serialization.property("resource_ids", core.serialization.list(core.serialization.string())),
     traitDefinition: core.serialization.property("trait_definition", RulesengineTraitDefinition.optional()),
     traitValue: core.serialization.property("trait_value", core.serialization.string()),
@@ -40,16 +40,16 @@ export declare namespace RulesengineCondition {
     export interface Raw {
         account_id: string;
         comparison_trait_definition?: RulesengineTraitDefinition.Raw | null;
-        condition_type: RulesengineConditionConditionType.Raw;
+        condition_type: RulesengineConditionType.Raw;
         consumption_rate?: number | null;
         credit_id?: string | null;
         environment_id: string;
         event_subtype?: string | null;
         id: string;
-        metric_period?: RulesengineConditionMetricPeriod.Raw | null;
-        metric_period_month_reset?: RulesengineConditionMetricPeriodMonthReset.Raw | null;
+        metric_period?: RulesengineMetricPeriod.Raw | null;
+        metric_period_month_reset?: RulesengineMetricPeriodMonthReset.Raw | null;
         metric_value?: number | null;
-        operator: RulesengineConditionOperator.Raw;
+        operator: ComparableOperator.Raw;
         resource_ids: string[];
         trait_definition?: RulesengineTraitDefinition.Raw | null;
         trait_value: string;

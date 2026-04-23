@@ -167,6 +167,313 @@ export class PlansClient {
     }
 
     /**
+     * @param {Schematic.ListCustomPlanBillingsRequest} request
+     * @param {PlansClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.BadRequestError}
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
+     * @throws {@link Schematic.InternalServerError}
+     *
+     * @example
+     *     await client.plans.listCustomPlanBillings({
+     *         companyId: "company_id",
+     *         planId: "plan_id",
+     *         status: "active",
+     *         statuses: ["active"],
+     *         limit: 1000000,
+     *         offset: 1000000
+     *     })
+     */
+    public listCustomPlanBillings(
+        request: Schematic.ListCustomPlanBillingsRequest = {},
+        requestOptions?: PlansClient.RequestOptions,
+    ): core.HttpResponsePromise<Schematic.ListCustomPlanBillingsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__listCustomPlanBillings(request, requestOptions));
+    }
+
+    private async __listCustomPlanBillings(
+        request: Schematic.ListCustomPlanBillingsRequest = {},
+        requestOptions?: PlansClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.ListCustomPlanBillingsResponse>> {
+        const { companyId, planId, status, statuses, limit, offset } = request;
+        const _queryParams: Record<string, unknown> = {
+            company_id: companyId,
+            plan_id: planId,
+            status:
+                status != null
+                    ? serializers.CustomPlanBillingStatus.jsonOrThrow(status, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            statuses: Array.isArray(statuses)
+                ? statuses.map((item) =>
+                      serializers.CustomPlanBillingStatus.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
+                  )
+                : statuses != null
+                  ? serializers.CustomPlanBillingStatus.jsonOrThrow(statuses, { unrecognizedObjectKeys: "strip" })
+                  : undefined,
+            limit,
+            offset,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "custom-plan-billings",
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.ListCustomPlanBillingsResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Schematic.BadRequestError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/custom-plan-billings");
+    }
+
+    /**
+     * @param {string} custom_plan_billing_id - custom_plan_billing_id
+     * @param {Schematic.RetryCustomPlanBillingRequestBody} request
+     * @param {PlansClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.BadRequestError}
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
+     * @throws {@link Schematic.InternalServerError}
+     *
+     * @example
+     *     await client.plans.retryCustomPlanBilling("custom_plan_billing_id", {
+     *         customerEmail: "customer_email",
+     *         payInAdvance: [{
+     *                 priceId: "price_id",
+     *                 quantity: 1000000
+     *             }]
+     *     })
+     */
+    public retryCustomPlanBilling(
+        custom_plan_billing_id: string,
+        request: Schematic.RetryCustomPlanBillingRequestBody,
+        requestOptions?: PlansClient.RequestOptions,
+    ): core.HttpResponsePromise<Schematic.RetryCustomPlanBillingResponse> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__retryCustomPlanBilling(custom_plan_billing_id, request, requestOptions),
+        );
+    }
+
+    private async __retryCustomPlanBilling(
+        custom_plan_billing_id: string,
+        request: Schematic.RetryCustomPlanBillingRequestBody,
+        requestOptions?: PlansClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.RetryCustomPlanBillingResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                `custom-plan-billings/${core.url.encodePathParam(custom_plan_billing_id)}/retry`,
+            ),
+            method: "PUT",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
+            requestType: "json",
+            body: serializers.RetryCustomPlanBillingRequestBody.jsonOrThrow(request, {
+                unrecognizedObjectKeys: "strip",
+            }),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.RetryCustomPlanBillingResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Schematic.BadRequestError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "PUT",
+            "/custom-plan-billings/{custom_plan_billing_id}/retry",
+        );
+    }
+
+    /**
      * @param {Schematic.CreateCustomPlanRequestBody} request
      * @param {PlansClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -314,10 +621,12 @@ export class PlansClient {
      * @example
      *     await client.plans.listPlans({
      *         companyId: "company_id",
+     *         excludeCompanyScoped: true,
      *         forFallbackPlan: true,
      *         forInitialPlan: true,
      *         forTrialExpiryPlan: true,
      *         hasProductId: true,
+     *         ids: ["ids"],
      *         includeDraftVersions: true,
      *         planType: "plan",
      *         q: "q",
@@ -341,6 +650,7 @@ export class PlansClient {
     ): Promise<core.WithRawResponse<Schematic.ListPlansResponse>> {
         const {
             companyId,
+            excludeCompanyScoped,
             forFallbackPlan,
             forInitialPlan,
             forTrialExpiryPlan,
@@ -357,6 +667,7 @@ export class PlansClient {
         } = request;
         const _queryParams: Record<string, unknown> = {
             company_id: companyId,
+            exclude_company_scoped: excludeCompanyScoped,
             for_fallback_plan: forFallbackPlan,
             for_initial_plan: forInitialPlan,
             for_trial_expiry_plan: forTrialExpiryPlan,
@@ -390,6 +701,11 @@ export class PlansClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -661,6 +977,11 @@ export class PlansClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -1335,6 +1656,11 @@ export class PlansClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -1480,6 +1806,11 @@ export class PlansClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -1586,10 +1917,12 @@ export class PlansClient {
      * @example
      *     await client.plans.countPlans({
      *         companyId: "company_id",
+     *         excludeCompanyScoped: true,
      *         forFallbackPlan: true,
      *         forInitialPlan: true,
      *         forTrialExpiryPlan: true,
      *         hasProductId: true,
+     *         ids: ["ids"],
      *         includeDraftVersions: true,
      *         planType: "plan",
      *         q: "q",
@@ -1613,6 +1946,7 @@ export class PlansClient {
     ): Promise<core.WithRawResponse<Schematic.CountPlansResponse>> {
         const {
             companyId,
+            excludeCompanyScoped,
             forFallbackPlan,
             forInitialPlan,
             forTrialExpiryPlan,
@@ -1629,6 +1963,7 @@ export class PlansClient {
         } = request;
         const _queryParams: Record<string, unknown> = {
             company_id: companyId,
+            exclude_company_scoped: excludeCompanyScoped,
             for_fallback_plan: forFallbackPlan,
             for_initial_plan: forInitialPlan,
             for_trial_expiry_plan: forTrialExpiryPlan,
@@ -1662,6 +1997,11 @@ export class PlansClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -1798,6 +2138,11 @@ export class PlansClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -1935,6 +2280,11 @@ export class PlansClient {
             method: "DELETE",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

@@ -12,7 +12,7 @@ export interface PlanViewPublicResponseData {
     companyId?: string;
     companyName?: string;
     compatiblePlanIds: string[];
-    controlledBy: string;
+    controlledBy: Schematic.BillingProviderType;
     copiedFromPlanId?: string;
     createdAt: Date;
     currencyPrices: Schematic.PlanCurrencyPricesResponseData[];
@@ -21,7 +21,7 @@ export interface PlanViewPublicResponseData {
     description: string;
     draftVersion?: Schematic.PlanVersionResponseData;
     entitlements: Schematic.PlanEntitlementResponseData[];
-    features: Schematic.FeatureDetailResponseData[];
+    features: Schematic.FeatureInPlanResponseData[];
     icon: Schematic.PlanIcon;
     id: string;
     includedCreditGrants: Schematic.PlanCreditGrantView[];

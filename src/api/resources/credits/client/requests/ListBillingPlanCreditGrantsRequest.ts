@@ -4,7 +4,9 @@
  * @example
  *     {
  *         creditId: "credit_id",
+ *         ids: ["ids"],
  *         planId: "plan_id",
+ *         planIds: ["plan_ids"],
  *         planVersionId: "plan_version_id",
  *         limit: 1000000,
  *         offset: 1000000

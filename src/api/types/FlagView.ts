@@ -13,7 +13,6 @@ export interface FlagView {
     id: string;
     key: string;
     lastCheckedAt?: Date;
-    maintainerId?: string;
     name: string;
     rules: Schematic.RuleView[];
     updatedAt: Date;

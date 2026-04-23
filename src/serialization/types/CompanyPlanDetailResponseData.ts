@@ -6,10 +6,11 @@ import type * as serializers from "../index";
 import { BillingLinkedResourceResponseData } from "./BillingLinkedResourceResponseData";
 import { BillingPriceResponseData } from "./BillingPriceResponseData";
 import { BillingProductDetailResponseData } from "./BillingProductDetailResponseData";
+import { BillingProviderType } from "./BillingProviderType";
 import { ChargeType } from "./ChargeType";
 import { CompanyPlanInvalidReason } from "./CompanyPlanInvalidReason";
 import { CustomPlanConfig } from "./CustomPlanConfig";
-import { FeatureDetailResponseData } from "./FeatureDetailResponseData";
+import { FeatureInPlanResponseData } from "./FeatureInPlanResponseData";
 import { FeatureUsageResponseData } from "./FeatureUsageResponseData";
 import { PlanCreditGrantView } from "./PlanCreditGrantView";
 import { PlanCurrencyPricesResponseData } from "./PlanCurrencyPricesResponseData";
@@ -38,7 +39,7 @@ export const CompanyPlanDetailResponseData: core.serialization.ObjectSchema<
         "compatible_plan_ids",
         core.serialization.list(core.serialization.string()),
     ),
-    controlledBy: core.serialization.property("controlled_by", core.serialization.string()),
+    controlledBy: core.serialization.property("controlled_by", BillingProviderType),
     copiedFromPlanId: core.serialization.property("copied_from_plan_id", core.serialization.string().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     currencyPrices: core.serialization.property(
@@ -51,7 +52,7 @@ export const CompanyPlanDetailResponseData: core.serialization.ObjectSchema<
     description: core.serialization.string(),
     draftVersion: core.serialization.property("draft_version", PlanVersionResponseData.optional()),
     entitlements: core.serialization.list(PlanEntitlementResponseData),
-    features: core.serialization.list(FeatureDetailResponseData),
+    features: core.serialization.list(FeatureInPlanResponseData),
     icon: PlanIcon,
     id: core.serialization.string(),
     includedCreditGrants: core.serialization.property(
@@ -87,7 +88,7 @@ export declare namespace CompanyPlanDetailResponseData {
         company_id?: string | null;
         company_name?: string | null;
         compatible_plan_ids: string[];
-        controlled_by: string;
+        controlled_by: BillingProviderType.Raw;
         copied_from_plan_id?: string | null;
         created_at: string;
         currency_prices: PlanCurrencyPricesResponseData.Raw[];
@@ -97,7 +98,7 @@ export declare namespace CompanyPlanDetailResponseData {
         description: string;
         draft_version?: PlanVersionResponseData.Raw | null;
         entitlements: PlanEntitlementResponseData.Raw[];
-        features: FeatureDetailResponseData.Raw[];
+        features: FeatureInPlanResponseData.Raw[];
         icon: PlanIcon.Raw;
         id: string;
         included_credit_grants: PlanCreditGrantView.Raw[];

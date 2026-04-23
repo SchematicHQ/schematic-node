@@ -7,8 +7,8 @@ import type * as serializers from "../index";
 export const CustomPlanBillingStatus: core.serialization.Schema<
     serializers.CustomPlanBillingStatus.Raw,
     Schematic.CustomPlanBillingStatus
-> = core.serialization.enum_(["active", "paid", "pending"]);
+> = core.serialization.enum_(["active", "expired", "paid", "pending"]);
 
 export declare namespace CustomPlanBillingStatus {
-    export type Raw = "active" | "paid" | "pending";
+    export type Raw = "active" | "expired" | "paid" | "pending";
 }

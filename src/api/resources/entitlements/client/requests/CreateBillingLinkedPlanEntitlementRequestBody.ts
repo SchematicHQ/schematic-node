@@ -21,8 +21,8 @@ export interface CreateBillingLinkedPlanEntitlementRequestBody {
     currencyPrices?: Schematic.CurrencyPriceRequestBody[];
     externalResourceId: string;
     featureId: string;
-    metricPeriod?: Schematic.CreateBillingLinkedPlanEntitlementRequestBodyMetricPeriod;
-    metricPeriodMonthReset?: Schematic.CreateBillingLinkedPlanEntitlementRequestBodyMetricPeriodMonthReset;
+    metricPeriod?: Schematic.MetricPeriod;
+    metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;
     monthlyMeteredPriceId?: string;
     monthlyPriceTiers?: Schematic.CreatePriceTierRequestBody[];
     monthlyUnitPrice?: number;

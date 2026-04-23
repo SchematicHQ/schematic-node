@@ -10,6 +10,7 @@ export interface BillingProductPriceResponseData {
     interval: Schematic.BillingProductPriceInterval;
     isActive: boolean;
     meterId?: string;
+    nickname?: string;
     packageSize: number;
     price: number;
     priceDecimal?: string;

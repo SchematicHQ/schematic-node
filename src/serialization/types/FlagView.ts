@@ -19,7 +19,6 @@ export const FlagView: core.serialization.ObjectSchema<serializers.FlagView.Raw,
         id: core.serialization.string(),
         key: core.serialization.string(),
         lastCheckedAt: core.serialization.property("last_checked_at", core.serialization.date().optional()),
-        maintainerId: core.serialization.property("maintainer_id", core.serialization.string().optional()),
         name: core.serialization.string(),
         rules: core.serialization.list(RuleView),
         updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -37,7 +36,6 @@ export declare namespace FlagView {
         id: string;
         key: string;
         last_checked_at?: string | null;
-        maintainer_id?: string | null;
         name: string;
         rules: RuleView.Raw[];
         updated_at: string;

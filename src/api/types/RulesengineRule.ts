@@ -11,6 +11,6 @@ export interface RulesengineRule {
     id: string;
     name: string;
     priority: number;
-    ruleType: Schematic.RulesengineRuleRuleType;
+    ruleType: Schematic.RulesengineRuleType;
     value: boolean;
 }

@@ -5,6 +5,7 @@ import type * as Schematic from "../../../../index";
 /**
  * @example
  *     {
+ *         ids: ["ids"],
  *         isActive: true,
  *         name: "name",
  *         priceUsageType: "licensed",

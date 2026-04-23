@@ -7,8 +7,8 @@ export interface UsageBasedEntitlementResponseData {
     consumptionRate?: number;
     featureId: string;
     meteredPrice?: Schematic.BillingPriceView;
-    metricPeriod?: string;
-    metricPeriodMonthReset?: string;
+    metricPeriod?: Schematic.MetricPeriod;
+    metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;
     monthlyUsageBasedPrice?: Schematic.BillingPriceView;
     priceBehavior?: Schematic.EntitlementPriceBehavior;
     valueBool?: boolean;

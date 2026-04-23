@@ -5,7 +5,7 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 import { RulesengineCondition } from "./RulesengineCondition";
 import { RulesengineConditionGroup } from "./RulesengineConditionGroup";
-import { RulesengineRuleRuleType } from "./RulesengineRuleRuleType";
+import { RulesengineRuleType } from "./RulesengineRuleType";
 
 export const RulesengineRule: core.serialization.ObjectSchema<
     serializers.RulesengineRule.Raw,
@@ -22,7 +22,7 @@ export const RulesengineRule: core.serialization.ObjectSchema<
     id: core.serialization.string(),
     name: core.serialization.string(),
     priority: core.serialization.number(),
-    ruleType: core.serialization.property("rule_type", RulesengineRuleRuleType),
+    ruleType: core.serialization.property("rule_type", RulesengineRuleType),
     value: core.serialization.boolean(),
 });
 
@@ -36,7 +36,7 @@ export declare namespace RulesengineRule {
         id: string;
         name: string;
         priority: number;
-        rule_type: RulesengineRuleRuleType.Raw;
+        rule_type: RulesengineRuleType.Raw;
         value: boolean;
     }
 }

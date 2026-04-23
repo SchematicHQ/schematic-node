@@ -5,6 +5,7 @@ import type * as Schematic from "../../../../index";
 /**
  * @example
  *     {
+ *         ids: ["ids"],
  *         creditId: "credit_id",
  *         status: "active",
  *         bundleType: "fixed",

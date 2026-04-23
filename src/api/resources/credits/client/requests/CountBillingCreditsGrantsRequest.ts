@@ -4,6 +4,7 @@
  * @example
  *     {
  *         creditId: "credit_id",
+ *         ids: ["ids"],
  *         limit: 1000000,
  *         offset: 1000000
  *     }

@@ -10,7 +10,7 @@ export interface FeatureResponseData {
     icon: string;
     id: string;
     lifecyclePhase?: Schematic.FeatureLifecyclePhase;
-    maintainerId?: string;
+    maintainerAccountMemberId?: string;
     name: string;
     pluralName?: string;
     singularName?: string;

@@ -5,6 +5,7 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 import { ConditionGroupView } from "./ConditionGroupView";
 import { ConditionView } from "./ConditionView";
+import { RuleType } from "./RuleType";
 
 export const RuleView: core.serialization.ObjectSchema<serializers.RuleView.Raw, Schematic.RuleView> =
     core.serialization.object({
@@ -17,7 +18,7 @@ export const RuleView: core.serialization.ObjectSchema<serializers.RuleView.Raw,
         id: core.serialization.string(),
         name: core.serialization.string(),
         priority: core.serialization.number(),
-        ruleType: core.serialization.property("rule_type", core.serialization.string()),
+        ruleType: core.serialization.property("rule_type", RuleType),
         updatedAt: core.serialization.property("updated_at", core.serialization.date()),
         value: core.serialization.boolean(),
     });
@@ -33,7 +34,7 @@ export declare namespace RuleView {
         id: string;
         name: string;
         priority: number;
-        rule_type: string;
+        rule_type: RuleType.Raw;
         updated_at: string;
         value: boolean;
     }

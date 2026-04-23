@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { RuleType } from "./RuleType";
 
 export const RuleResponseData: core.serialization.ObjectSchema<
     serializers.RuleResponseData.Raw,
@@ -14,7 +15,7 @@ export const RuleResponseData: core.serialization.ObjectSchema<
     id: core.serialization.string(),
     name: core.serialization.string(),
     priority: core.serialization.number(),
-    ruleType: core.serialization.property("rule_type", core.serialization.string()),
+    ruleType: core.serialization.property("rule_type", RuleType),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     value: core.serialization.boolean(),
 });
@@ -27,7 +28,7 @@ export declare namespace RuleResponseData {
         id: string;
         name: string;
         priority: number;
-        rule_type: string;
+        rule_type: RuleType.Raw;
         updated_at: string;
         value: boolean;
     }

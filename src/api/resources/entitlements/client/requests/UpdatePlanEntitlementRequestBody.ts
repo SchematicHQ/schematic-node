@@ -14,8 +14,8 @@ export interface UpdatePlanEntitlementRequestBody {
     creditConsumptionRate?: number;
     currency?: string;
     currencyPrices?: Schematic.CurrencyPriceRequestBody[];
-    metricPeriod?: Schematic.UpdatePlanEntitlementRequestBodyMetricPeriod;
-    metricPeriodMonthReset?: Schematic.UpdatePlanEntitlementRequestBodyMetricPeriodMonthReset;
+    metricPeriod?: Schematic.MetricPeriod;
+    metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;
     monthlyMeteredPriceId?: string;
     monthlyPriceTiers?: Schematic.CreatePriceTierRequestBody[];
     monthlyUnitPrice?: number;

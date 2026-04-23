@@ -16,7 +16,7 @@ describe("PlangroupsClient", () => {
                         charge_type: "free",
                         company_count: 1000000,
                         compatible_plan_ids: ["compatible_plan_ids"],
-                        controlled_by: "controlled_by",
+                        controlled_by: "orb",
                         created_at: "2024-01-15T09:30:00Z",
                         currency_prices: [{ currency: "currency" }],
                         description: "description",
@@ -53,11 +53,11 @@ describe("PlangroupsClient", () => {
                                                     {
                                                         conditions: [
                                                             {
-                                                                condition_type: "condition_type",
+                                                                condition_type: "base_plan",
                                                                 created_at: "2024-01-15T09:30:00Z",
                                                                 environment_id: "environment_id",
                                                                 id: "id",
-                                                                operator: "operator",
+                                                                operator: "eq",
                                                                 resource_ids: ["resource_ids"],
                                                                 resources: [{ id: "id", name: "name" }],
                                                                 rule_id: "rule_id",
@@ -74,11 +74,11 @@ describe("PlangroupsClient", () => {
                                                 ],
                                                 conditions: [
                                                     {
-                                                        condition_type: "condition_type",
+                                                        condition_type: "base_plan",
                                                         created_at: "2024-01-15T09:30:00Z",
                                                         environment_id: "environment_id",
                                                         id: "id",
-                                                        operator: "operator",
+                                                        operator: "eq",
                                                         resource_ids: ["resource_ids"],
                                                         resources: [{ id: "id", name: "name" }],
                                                         rule_id: "rule_id",
@@ -91,7 +91,7 @@ describe("PlangroupsClient", () => {
                                                 id: "id",
                                                 name: "name",
                                                 priority: 1000000,
-                                                rule_type: "rule_type",
+                                                rule_type: "company_override",
                                                 updated_at: "2024-01-15T09:30:00Z",
                                                 value: true,
                                             },
@@ -190,7 +190,7 @@ describe("PlangroupsClient", () => {
                     company_id: "company_id",
                     company_name: "company_name",
                     compatible_plan_ids: ["compatible_plan_ids"],
-                    controlled_by: "controlled_by",
+                    controlled_by: "orb",
                     copied_from_plan_id: "copied_from_plan_id",
                     created_at: "2024-01-15T09:30:00Z",
                     currency_prices: [{ currency: "currency" }],
@@ -245,11 +245,11 @@ describe("PlangroupsClient", () => {
                                                 {
                                                     conditions: [
                                                         {
-                                                            condition_type: "condition_type",
+                                                            condition_type: "base_plan",
                                                             created_at: "2024-01-15T09:30:00Z",
                                                             environment_id: "environment_id",
                                                             id: "id",
-                                                            operator: "operator",
+                                                            operator: "eq",
                                                             resource_ids: ["resource_ids"],
                                                             resources: [{ id: "id", name: "name" }],
                                                             rule_id: "rule_id",
@@ -266,11 +266,11 @@ describe("PlangroupsClient", () => {
                                             ],
                                             conditions: [
                                                 {
-                                                    condition_type: "condition_type",
+                                                    condition_type: "base_plan",
                                                     created_at: "2024-01-15T09:30:00Z",
                                                     environment_id: "environment_id",
                                                     id: "id",
-                                                    operator: "operator",
+                                                    operator: "eq",
                                                     resource_ids: ["resource_ids"],
                                                     resources: [{ id: "id", name: "name" }],
                                                     rule_id: "rule_id",
@@ -283,7 +283,7 @@ describe("PlangroupsClient", () => {
                                             id: "id",
                                             name: "name",
                                             priority: 1000000,
-                                            rule_type: "rule_type",
+                                            rule_type: "company_override",
                                             updated_at: "2024-01-15T09:30:00Z",
                                             value: true,
                                         },
@@ -411,7 +411,7 @@ describe("PlangroupsClient", () => {
                     company_id: "company_id",
                     company_name: "company_name",
                     compatible_plan_ids: ["compatible_plan_ids"],
-                    controlled_by: "controlled_by",
+                    controlled_by: "orb",
                     copied_from_plan_id: "copied_from_plan_id",
                     created_at: "2024-01-15T09:30:00Z",
                     currency_prices: [{ currency: "currency" }],
@@ -466,11 +466,11 @@ describe("PlangroupsClient", () => {
                                                 {
                                                     conditions: [
                                                         {
-                                                            condition_type: "condition_type",
+                                                            condition_type: "base_plan",
                                                             created_at: "2024-01-15T09:30:00Z",
                                                             environment_id: "environment_id",
                                                             id: "id",
-                                                            operator: "operator",
+                                                            operator: "eq",
                                                             resource_ids: ["resource_ids"],
                                                             resources: [{ id: "id", name: "name" }],
                                                             rule_id: "rule_id",
@@ -487,11 +487,11 @@ describe("PlangroupsClient", () => {
                                             ],
                                             conditions: [
                                                 {
-                                                    condition_type: "condition_type",
+                                                    condition_type: "base_plan",
                                                     created_at: "2024-01-15T09:30:00Z",
                                                     environment_id: "environment_id",
                                                     id: "id",
-                                                    operator: "operator",
+                                                    operator: "eq",
                                                     resource_ids: ["resource_ids"],
                                                     resources: [{ id: "id", name: "name" }],
                                                     rule_id: "rule_id",
@@ -504,7 +504,7 @@ describe("PlangroupsClient", () => {
                                             id: "id",
                                             name: "name",
                                             priority: 1000000,
-                                            rule_type: "rule_type",
+                                            rule_type: "company_override",
                                             updated_at: "2024-01-15T09:30:00Z",
                                             value: true,
                                         },
@@ -634,7 +634,7 @@ describe("PlangroupsClient", () => {
                     company_id: "company_id",
                     company_name: "company_name",
                     compatible_plan_ids: ["compatible_plan_ids"],
-                    controlled_by: "controlled_by",
+                    controlled_by: "orb",
                     copied_from_plan_id: "copied_from_plan_id",
                     created_at: "2024-01-15T09:30:00Z",
                     currency_prices: [{ currency: "currency" }],
@@ -689,11 +689,11 @@ describe("PlangroupsClient", () => {
                                                 {
                                                     conditions: [
                                                         {
-                                                            condition_type: "condition_type",
+                                                            condition_type: "base_plan",
                                                             created_at: "2024-01-15T09:30:00Z",
                                                             environment_id: "environment_id",
                                                             id: "id",
-                                                            operator: "operator",
+                                                            operator: "eq",
                                                             resource_ids: ["resource_ids"],
                                                             resources: [{ id: "id", name: "name" }],
                                                             rule_id: "rule_id",
@@ -710,11 +710,11 @@ describe("PlangroupsClient", () => {
                                             ],
                                             conditions: [
                                                 {
-                                                    condition_type: "condition_type",
+                                                    condition_type: "base_plan",
                                                     created_at: "2024-01-15T09:30:00Z",
                                                     environment_id: "environment_id",
                                                     id: "id",
-                                                    operator: "operator",
+                                                    operator: "eq",
                                                     resource_ids: ["resource_ids"],
                                                     resources: [{ id: "id", name: "name" }],
                                                     rule_id: "rule_id",
@@ -727,7 +727,7 @@ describe("PlangroupsClient", () => {
                                             id: "id",
                                             name: "name",
                                             priority: 1000000,
-                                            rule_type: "rule_type",
+                                            rule_type: "company_override",
                                             updated_at: "2024-01-15T09:30:00Z",
                                             value: true,
                                         },
@@ -818,6 +818,7 @@ describe("PlangroupsClient", () => {
                     meter_event_name: "meter_event_name",
                     meter_event_payload_key: "meter_event_payload_key",
                     meter_id: "meter_id",
+                    nickname: "nickname",
                     package_size: 1000000,
                     price: 1000000,
                     price_decimal: "price_decimal",
@@ -841,7 +842,7 @@ describe("PlangroupsClient", () => {
                         charge_type: "free",
                         company_count: 1000000,
                         compatible_plan_ids: ["compatible_plan_ids"],
-                        controlled_by: "controlled_by",
+                        controlled_by: "orb",
                         created_at: "2024-01-15T09:30:00Z",
                         currency_prices: [{ currency: "currency" }],
                         description: "description",
@@ -878,11 +879,11 @@ describe("PlangroupsClient", () => {
                                                     {
                                                         conditions: [
                                                             {
-                                                                condition_type: "condition_type",
+                                                                condition_type: "base_plan",
                                                                 created_at: "2024-01-15T09:30:00Z",
                                                                 environment_id: "environment_id",
                                                                 id: "id",
-                                                                operator: "operator",
+                                                                operator: "eq",
                                                                 resource_ids: ["resource_ids"],
                                                                 resources: [{ id: "id", name: "name" }],
                                                                 rule_id: "rule_id",
@@ -899,11 +900,11 @@ describe("PlangroupsClient", () => {
                                                 ],
                                                 conditions: [
                                                     {
-                                                        condition_type: "condition_type",
+                                                        condition_type: "base_plan",
                                                         created_at: "2024-01-15T09:30:00Z",
                                                         environment_id: "environment_id",
                                                         id: "id",
-                                                        operator: "operator",
+                                                        operator: "eq",
                                                         resource_ids: ["resource_ids"],
                                                         resources: [{ id: "id", name: "name" }],
                                                         rule_id: "rule_id",
@@ -916,7 +917,7 @@ describe("PlangroupsClient", () => {
                                                 id: "id",
                                                 name: "name",
                                                 priority: 1000000,
-                                                rule_type: "rule_type",
+                                                rule_type: "company_override",
                                                 updated_at: "2024-01-15T09:30:00Z",
                                                 value: true,
                                             },
@@ -1018,7 +1019,7 @@ describe("PlangroupsClient", () => {
                     company_id: "company_id",
                     company_name: "company_name",
                     compatible_plan_ids: ["compatible_plan_ids"],
-                    controlled_by: "controlled_by",
+                    controlled_by: "orb",
                     copied_from_plan_id: "copied_from_plan_id",
                     created_at: "2024-01-15T09:30:00Z",
                     currency_prices: [{ currency: "currency" }],
@@ -1073,11 +1074,11 @@ describe("PlangroupsClient", () => {
                                                 {
                                                     conditions: [
                                                         {
-                                                            condition_type: "condition_type",
+                                                            condition_type: "base_plan",
                                                             created_at: "2024-01-15T09:30:00Z",
                                                             environment_id: "environment_id",
                                                             id: "id",
-                                                            operator: "operator",
+                                                            operator: "eq",
                                                             resource_ids: ["resource_ids"],
                                                             resources: [{ id: "id", name: "name" }],
                                                             rule_id: "rule_id",
@@ -1094,11 +1095,11 @@ describe("PlangroupsClient", () => {
                                             ],
                                             conditions: [
                                                 {
-                                                    condition_type: "condition_type",
+                                                    condition_type: "base_plan",
                                                     created_at: "2024-01-15T09:30:00Z",
                                                     environment_id: "environment_id",
                                                     id: "id",
-                                                    operator: "operator",
+                                                    operator: "eq",
                                                     resource_ids: ["resource_ids"],
                                                     resources: [{ id: "id", name: "name" }],
                                                     rule_id: "rule_id",
@@ -1111,7 +1112,7 @@ describe("PlangroupsClient", () => {
                                             id: "id",
                                             name: "name",
                                             priority: 1000000,
-                                            rule_type: "rule_type",
+                                            rule_type: "company_override",
                                             updated_at: "2024-01-15T09:30:00Z",
                                             value: true,
                                         },
@@ -1202,6 +1203,7 @@ describe("PlangroupsClient", () => {
                     meter_event_name: "meter_event_name",
                     meter_event_payload_key: "meter_event_payload_key",
                     meter_id: "meter_id",
+                    nickname: "nickname",
                     package_size: 1000000,
                     price: 1000000,
                     price_decimal: "price_decimal",
@@ -1234,7 +1236,7 @@ describe("PlangroupsClient", () => {
                         chargeType: "free",
                         companyCount: 1000000,
                         compatiblePlanIds: ["compatible_plan_ids"],
-                        controlledBy: "controlled_by",
+                        controlledBy: "orb",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {
@@ -1279,11 +1281,11 @@ describe("PlangroupsClient", () => {
                                                     {
                                                         conditions: [
                                                             {
-                                                                conditionType: "condition_type",
+                                                                conditionType: "base_plan",
                                                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                                 environmentId: "environment_id",
                                                                 id: "id",
-                                                                operator: "operator",
+                                                                operator: "eq",
                                                                 resourceIds: ["resource_ids"],
                                                                 resources: [
                                                                     {
@@ -1305,11 +1307,11 @@ describe("PlangroupsClient", () => {
                                                 ],
                                                 conditions: [
                                                     {
-                                                        conditionType: "condition_type",
+                                                        conditionType: "base_plan",
                                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                         environmentId: "environment_id",
                                                         id: "id",
-                                                        operator: "operator",
+                                                        operator: "eq",
                                                         resourceIds: ["resource_ids"],
                                                         resources: [
                                                             {
@@ -1327,7 +1329,7 @@ describe("PlangroupsClient", () => {
                                                 id: "id",
                                                 name: "name",
                                                 priority: 1000000,
-                                                ruleType: "rule_type",
+                                                ruleType: "company_override",
                                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                                 value: true,
                                             },
@@ -1439,7 +1441,7 @@ describe("PlangroupsClient", () => {
                     companyId: "company_id",
                     companyName: "company_name",
                     compatiblePlanIds: ["compatible_plan_ids"],
-                    controlledBy: "controlled_by",
+                    controlledBy: "orb",
                     copiedFromPlanId: "copied_from_plan_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     currencyPrices: [
@@ -1502,11 +1504,11 @@ describe("PlangroupsClient", () => {
                                                 {
                                                     conditions: [
                                                         {
-                                                            conditionType: "condition_type",
+                                                            conditionType: "base_plan",
                                                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                             environmentId: "environment_id",
                                                             id: "id",
-                                                            operator: "operator",
+                                                            operator: "eq",
                                                             resourceIds: ["resource_ids"],
                                                             resources: [
                                                                 {
@@ -1528,11 +1530,11 @@ describe("PlangroupsClient", () => {
                                             ],
                                             conditions: [
                                                 {
-                                                    conditionType: "condition_type",
+                                                    conditionType: "base_plan",
                                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                     environmentId: "environment_id",
                                                     id: "id",
-                                                    operator: "operator",
+                                                    operator: "eq",
                                                     resourceIds: ["resource_ids"],
                                                     resources: [
                                                         {
@@ -1550,7 +1552,7 @@ describe("PlangroupsClient", () => {
                                             id: "id",
                                             name: "name",
                                             priority: 1000000,
-                                            ruleType: "rule_type",
+                                            ruleType: "company_override",
                                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                             value: true,
                                         },
@@ -1683,7 +1685,7 @@ describe("PlangroupsClient", () => {
                     companyId: "company_id",
                     companyName: "company_name",
                     compatiblePlanIds: ["compatible_plan_ids"],
-                    controlledBy: "controlled_by",
+                    controlledBy: "orb",
                     copiedFromPlanId: "copied_from_plan_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     currencyPrices: [
@@ -1746,11 +1748,11 @@ describe("PlangroupsClient", () => {
                                                 {
                                                     conditions: [
                                                         {
-                                                            conditionType: "condition_type",
+                                                            conditionType: "base_plan",
                                                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                             environmentId: "environment_id",
                                                             id: "id",
-                                                            operator: "operator",
+                                                            operator: "eq",
                                                             resourceIds: ["resource_ids"],
                                                             resources: [
                                                                 {
@@ -1772,11 +1774,11 @@ describe("PlangroupsClient", () => {
                                             ],
                                             conditions: [
                                                 {
-                                                    conditionType: "condition_type",
+                                                    conditionType: "base_plan",
                                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                     environmentId: "environment_id",
                                                     id: "id",
-                                                    operator: "operator",
+                                                    operator: "eq",
                                                     resourceIds: ["resource_ids"],
                                                     resources: [
                                                         {
@@ -1794,7 +1796,7 @@ describe("PlangroupsClient", () => {
                                             id: "id",
                                             name: "name",
                                             priority: 1000000,
-                                            ruleType: "rule_type",
+                                            ruleType: "company_override",
                                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                             value: true,
                                         },
@@ -1929,7 +1931,7 @@ describe("PlangroupsClient", () => {
                     companyId: "company_id",
                     companyName: "company_name",
                     compatiblePlanIds: ["compatible_plan_ids"],
-                    controlledBy: "controlled_by",
+                    controlledBy: "orb",
                     copiedFromPlanId: "copied_from_plan_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     currencyPrices: [
@@ -1992,11 +1994,11 @@ describe("PlangroupsClient", () => {
                                                 {
                                                     conditions: [
                                                         {
-                                                            conditionType: "condition_type",
+                                                            conditionType: "base_plan",
                                                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                             environmentId: "environment_id",
                                                             id: "id",
-                                                            operator: "operator",
+                                                            operator: "eq",
                                                             resourceIds: ["resource_ids"],
                                                             resources: [
                                                                 {
@@ -2018,11 +2020,11 @@ describe("PlangroupsClient", () => {
                                             ],
                                             conditions: [
                                                 {
-                                                    conditionType: "condition_type",
+                                                    conditionType: "base_plan",
                                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                     environmentId: "environment_id",
                                                     id: "id",
-                                                    operator: "operator",
+                                                    operator: "eq",
                                                     resourceIds: ["resource_ids"],
                                                     resources: [
                                                         {
@@ -2040,7 +2042,7 @@ describe("PlangroupsClient", () => {
                                             id: "id",
                                             name: "name",
                                             priority: 1000000,
-                                            ruleType: "rule_type",
+                                            ruleType: "company_override",
                                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                             value: true,
                                         },
@@ -2136,6 +2138,7 @@ describe("PlangroupsClient", () => {
                     meterEventName: "meter_event_name",
                     meterEventPayloadKey: "meter_event_payload_key",
                     meterId: "meter_id",
+                    nickname: "nickname",
                     packageSize: 1000000,
                     price: 1000000,
                     priceDecimal: "price_decimal",
@@ -2171,7 +2174,7 @@ describe("PlangroupsClient", () => {
                         chargeType: "free",
                         companyCount: 1000000,
                         compatiblePlanIds: ["compatible_plan_ids"],
-                        controlledBy: "controlled_by",
+                        controlledBy: "orb",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {
@@ -2216,11 +2219,11 @@ describe("PlangroupsClient", () => {
                                                     {
                                                         conditions: [
                                                             {
-                                                                conditionType: "condition_type",
+                                                                conditionType: "base_plan",
                                                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                                 environmentId: "environment_id",
                                                                 id: "id",
-                                                                operator: "operator",
+                                                                operator: "eq",
                                                                 resourceIds: ["resource_ids"],
                                                                 resources: [
                                                                     {
@@ -2242,11 +2245,11 @@ describe("PlangroupsClient", () => {
                                                 ],
                                                 conditions: [
                                                     {
-                                                        conditionType: "condition_type",
+                                                        conditionType: "base_plan",
                                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                         environmentId: "environment_id",
                                                         id: "id",
-                                                        operator: "operator",
+                                                        operator: "eq",
                                                         resourceIds: ["resource_ids"],
                                                         resources: [
                                                             {
@@ -2264,7 +2267,7 @@ describe("PlangroupsClient", () => {
                                                 id: "id",
                                                 name: "name",
                                                 priority: 1000000,
-                                                ruleType: "rule_type",
+                                                ruleType: "company_override",
                                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                                 value: true,
                                             },
@@ -2371,7 +2374,7 @@ describe("PlangroupsClient", () => {
                     companyId: "company_id",
                     companyName: "company_name",
                     compatiblePlanIds: ["compatible_plan_ids"],
-                    controlledBy: "controlled_by",
+                    controlledBy: "orb",
                     copiedFromPlanId: "copied_from_plan_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     currencyPrices: [
@@ -2434,11 +2437,11 @@ describe("PlangroupsClient", () => {
                                                 {
                                                     conditions: [
                                                         {
-                                                            conditionType: "condition_type",
+                                                            conditionType: "base_plan",
                                                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                             environmentId: "environment_id",
                                                             id: "id",
-                                                            operator: "operator",
+                                                            operator: "eq",
                                                             resourceIds: ["resource_ids"],
                                                             resources: [
                                                                 {
@@ -2460,11 +2463,11 @@ describe("PlangroupsClient", () => {
                                             ],
                                             conditions: [
                                                 {
-                                                    conditionType: "condition_type",
+                                                    conditionType: "base_plan",
                                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                     environmentId: "environment_id",
                                                     id: "id",
-                                                    operator: "operator",
+                                                    operator: "eq",
                                                     resourceIds: ["resource_ids"],
                                                     resources: [
                                                         {
@@ -2482,7 +2485,7 @@ describe("PlangroupsClient", () => {
                                             id: "id",
                                             name: "name",
                                             priority: 1000000,
-                                            ruleType: "rule_type",
+                                            ruleType: "company_override",
                                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                             value: true,
                                         },
@@ -2578,6 +2581,7 @@ describe("PlangroupsClient", () => {
                     meterEventName: "meter_event_name",
                     meterEventPayloadKey: "meter_event_payload_key",
                     meterId: "meter_id",
+                    nickname: "nickname",
                     packageSize: 1000000,
                     price: 1000000,
                     priceDecimal: "price_decimal",

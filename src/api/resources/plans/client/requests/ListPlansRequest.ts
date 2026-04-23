@@ -6,10 +6,12 @@ import type * as Schematic from "../../../../index";
  * @example
  *     {
  *         companyId: "company_id",
+ *         excludeCompanyScoped: true,
  *         forFallbackPlan: true,
  *         forInitialPlan: true,
  *         forTrialExpiryPlan: true,
  *         hasProductId: true,
+ *         ids: ["ids"],
  *         includeDraftVersions: true,
  *         planType: "plan",
  *         q: "q",
@@ -22,6 +24,8 @@ import type * as Schematic from "../../../../index";
  */
 export interface ListPlansRequest {
     companyId?: string;
+    /** Exclude plans that are scoped to a company (custom plans assigned to a company) */
+    excludeCompanyScoped?: boolean;
     /** Filter for plans valid as fallback plans (not linked to billing) */
     forFallbackPlan?: boolean;
     /** Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) */

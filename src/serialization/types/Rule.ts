@@ -5,7 +5,7 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 import { Condition } from "./Condition";
 import { ConditionGroup } from "./ConditionGroup";
-import { RuleRuleType } from "./RuleRuleType";
+import { RuleType } from "./RuleType";
 
 export const Rule: core.serialization.ObjectSchema<serializers.Rule.Raw, Schematic.Rule> = core.serialization.object({
     accountId: core.serialization.property("account_id", core.serialization.string()),
@@ -16,7 +16,7 @@ export const Rule: core.serialization.ObjectSchema<serializers.Rule.Raw, Schemat
     id: core.serialization.string(),
     name: core.serialization.string(),
     priority: core.serialization.number(),
-    ruleType: core.serialization.property("rule_type", RuleRuleType),
+    ruleType: core.serialization.property("rule_type", RuleType),
     value: core.serialization.boolean(),
 });
 
@@ -30,7 +30,7 @@ export declare namespace Rule {
         id: string;
         name: string;
         priority: number;
-        rule_type: RuleRuleType.Raw;
+        rule_type: RuleType.Raw;
         value: boolean;
     }
 }

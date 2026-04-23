@@ -639,6 +639,7 @@ describe("BillingClient", () => {
         server.mockEndpoint().get("/billing/customers").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.billing.listCustomersWithSubscriptions({
+            companyIds: ["company_ids"],
             name: "name",
             providerType: "orb",
             q: "q",
@@ -768,6 +769,7 @@ describe("BillingClient", () => {
             .build();
 
         const response = await client.billing.countCustomers({
+            companyIds: ["company_ids"],
             name: "name",
             providerType: "orb",
             q: "q",
@@ -2032,6 +2034,7 @@ describe("BillingClient", () => {
                     meter_event_name: "meter_event_name",
                     meter_event_payload_key: "meter_event_payload_key",
                     meter_id: "meter_id",
+                    nickname: "nickname",
                     package_size: 1000000,
                     price: 1000000,
                     price_decimal: "price_decimal",
@@ -2073,10 +2076,12 @@ describe("BillingClient", () => {
             currency: "currency",
             forInitialPlan: true,
             forTrialExpiryPlan: true,
+            ids: ["ids"],
             interval: "interval",
             isActive: true,
             price: 1000000,
             productId: "product_id",
+            productIds: ["product_ids"],
             providerType: "orb",
             q: "q",
             tiersMode: "graduated",
@@ -2097,6 +2102,7 @@ describe("BillingClient", () => {
                     meterEventName: "meter_event_name",
                     meterEventPayloadKey: "meter_event_payload_key",
                     meterId: "meter_id",
+                    nickname: "nickname",
                     packageSize: 1000000,
                     price: 1000000,
                     priceDecimal: "price_decimal",
@@ -2219,6 +2225,7 @@ describe("BillingClient", () => {
                 external_price_id: "external_price_id",
                 id: "id",
                 interval: "day",
+                nickname: "nickname",
                 price: 1000000,
                 price_decimal: "price_decimal",
                 provider_type: "orb",
@@ -2258,6 +2265,7 @@ describe("BillingClient", () => {
                 externalPriceId: "external_price_id",
                 id: "id",
                 interval: "day",
+                nickname: "nickname",
                 price: 1000000,
                 priceDecimal: "price_decimal",
                 providerType: "orb",
@@ -2650,6 +2658,7 @@ describe("BillingClient", () => {
                     meter_event_name: "meter_event_name",
                     meter_event_payload_key: "meter_event_payload_key",
                     meter_id: "meter_id",
+                    nickname: "nickname",
                     package_size: 1000000,
                     price: 1000000,
                     price_decimal: "price_decimal",
@@ -2697,10 +2706,12 @@ describe("BillingClient", () => {
             currency: "currency",
             forInitialPlan: true,
             forTrialExpiryPlan: true,
+            ids: ["ids"],
             interval: "interval",
             isActive: true,
             price: 1000000,
             productId: "product_id",
+            productIds: ["product_ids"],
             providerType: "orb",
             q: "q",
             tiersMode: "graduated",
@@ -2721,6 +2732,7 @@ describe("BillingClient", () => {
                     meterEventName: "meter_event_name",
                     meterEventPayloadKey: "meter_event_payload_key",
                     meterId: "meter_id",
+                    nickname: "nickname",
                     packageSize: 1000000,
                     price: 1000000,
                     priceDecimal: "price_decimal",
@@ -3195,6 +3207,7 @@ describe("BillingClient", () => {
         server.mockEndpoint().get("/billing/products").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.billing.listBillingProducts({
+            ids: ["ids"],
             isActive: true,
             name: "name",
             priceUsageType: "licensed",
@@ -3349,6 +3362,7 @@ describe("BillingClient", () => {
             .build();
 
         const response = await client.billing.countBillingProducts({
+            ids: ["ids"],
             isActive: true,
             name: "name",
             priceUsageType: "licensed",
