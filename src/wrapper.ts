@@ -70,7 +70,7 @@ export interface CheckFlagWithEntitlementResponse {
     flagId?: string;
     reason: string;
     ruleId?: string;
-    ruleType?: api.RulesengineCheckFlagResultRuleType;
+    ruleType?: api.RulesengineRuleType;
     userId?: string;
     value: boolean;
 }
@@ -296,7 +296,7 @@ export class SchematicClient extends BaseClient {
                 flagId: response.data.flagId,
                 reason: response.data.reason,
                 ruleId: response.data.ruleId,
-                ruleType: response.data.ruleType as api.RulesengineCheckFlagResultRuleType | undefined,
+                ruleType: response.data.ruleType as api.RulesengineRuleType | undefined,
                 userId: response.data.userId,
                 value: response.data.value,
             };
@@ -407,7 +407,7 @@ export class SchematicClient extends BaseClient {
                         flagId: apiResult.flagId,
                         reason: apiResult.reason,
                         ruleId: apiResult.ruleId,
-                        ruleType: apiResult.ruleType as api.RulesengineCheckFlagResultRuleType | undefined,
+                        ruleType: apiResult.ruleType as api.RulesengineRuleType | undefined,
                         userId: apiResult.userId,
                         value: apiResult.value,
                     };
