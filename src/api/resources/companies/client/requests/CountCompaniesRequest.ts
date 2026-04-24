@@ -5,13 +5,18 @@ import type * as Schematic from "../../../../index";
 /**
  * @example
  *     {
+ *         creditTypeIds: ["credit_type_ids"],
  *         hasScheduledDowngrade: true,
+ *         ids: ["ids"],
  *         monetizedSubscriptions: true,
  *         planId: "plan_id",
+ *         planIds: ["plan_ids"],
  *         planVersionId: "plan_version_id",
  *         q: "q",
  *         sortOrderColumn: "sort_order_column",
  *         sortOrderDirection: "asc",
+ *         subscriptionStatuses: ["active"],
+ *         subscriptionTypes: ["free"],
  *         withEntitlementFor: "with_entitlement_for",
  *         withoutFeatureOverrideFor: "without_feature_override_for",
  *         withoutPlan: true,

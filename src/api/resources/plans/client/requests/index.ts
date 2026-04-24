@@ -5,7 +5,9 @@ export type { CreateCustomPlanRequestBody } from "./CreateCustomPlanRequestBody"
 export type { DeletePlanVersionRequest } from "./DeletePlanVersionRequest";
 export type { GetPlanRequest } from "./GetPlanRequest";
 export type { ListBillingProductMatchCompaniesRequest } from "./ListBillingProductMatchCompaniesRequest";
+export type { ListCustomPlanBillingsRequest } from "./ListCustomPlanBillingsRequest";
 export type { ListPlanIssuesRequest } from "./ListPlanIssuesRequest";
 export type { ListPlansRequest } from "./ListPlansRequest";
 export type { PublishPlanVersionRequestBody } from "./PublishPlanVersionRequestBody";
+export type { RetryCustomPlanBillingRequestBody } from "./RetryCustomPlanBillingRequestBody";
 export type { UpdateCompanyPlansRequestBody } from "./UpdateCompanyPlansRequestBody";

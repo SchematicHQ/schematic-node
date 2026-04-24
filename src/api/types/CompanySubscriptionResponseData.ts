@@ -13,6 +13,7 @@ export interface CompanySubscriptionResponseData {
     latestInvoice?: Schematic.InvoiceResponseData;
     paymentMethod?: Schematic.PaymentMethodResponseData;
     products: Schematic.BillingProductForSubscriptionResponseData[];
+    providerType: Schematic.BillingProviderType;
     status: string;
     subscriptionExternalId: string;
     totalPrice: number;

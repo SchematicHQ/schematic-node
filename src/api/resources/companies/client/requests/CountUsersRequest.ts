@@ -4,6 +4,7 @@
  * @example
  *     {
  *         companyId: "company_id",
+ *         ids: ["ids"],
  *         planId: "plan_id",
  *         q: "q",
  *         limit: 1000000,

@@ -16,7 +16,7 @@ export interface CheckFlagResponseData {
     /** Deprecated: Use Entitlement.EventName instead. */
     featureUsageEvent?: string;
     /** Deprecated: Use Entitlement.MetricPeriod instead. */
-    featureUsagePeriod?: string;
+    featureUsagePeriod?: Schematic.MetricPeriod;
     /** Deprecated: Use Entitlement.MetricResetAt instead. */
     featureUsageResetAt?: Date;
     /** The key used to check the flag */
@@ -28,7 +28,7 @@ export interface CheckFlagResponseData {
     /** If a rule was found, its ID */
     ruleId?: string;
     /** If a rule was found, its type */
-    ruleType?: string;
+    ruleType?: Schematic.RuleType;
     /** If user keys were provided and matched a user, its ID */
     userId?: string;
     /** A boolean flag check result; for feature entitlements, this represents whether further consumption of the feature is permitted */

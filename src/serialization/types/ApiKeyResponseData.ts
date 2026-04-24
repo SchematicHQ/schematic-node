@@ -4,6 +4,7 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { ApiKeyScope } from "./ApiKeyScope";
+import { EnvironmentResponseData } from "./EnvironmentResponseData";
 
 export const ApiKeyResponseData: core.serialization.ObjectSchema<
     serializers.ApiKeyResponseData.Raw,
@@ -11,6 +12,7 @@ export const ApiKeyResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     description: core.serialization.string().optional(),
+    environment: EnvironmentResponseData.optional(),
     environmentId: core.serialization.property("environment_id", core.serialization.string().optional()),
     id: core.serialization.string(),
     lastUsedAt: core.serialization.property("last_used_at", core.serialization.date().optional()),
@@ -24,6 +26,7 @@ export declare namespace ApiKeyResponseData {
     export interface Raw {
         created_at: string;
         description?: string | null;
+        environment?: EnvironmentResponseData.Raw | null;
         environment_id?: string | null;
         id: string;
         last_used_at?: string | null;

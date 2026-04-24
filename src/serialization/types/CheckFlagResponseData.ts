@@ -4,6 +4,8 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { FeatureEntitlement } from "./FeatureEntitlement";
+import { MetricPeriod } from "./MetricPeriod";
+import { RuleType } from "./RuleType";
 
 export const CheckFlagResponseData: core.serialization.ObjectSchema<
     serializers.CheckFlagResponseData.Raw,
@@ -15,13 +17,13 @@ export const CheckFlagResponseData: core.serialization.ObjectSchema<
     featureAllocation: core.serialization.property("feature_allocation", core.serialization.number().optional()),
     featureUsage: core.serialization.property("feature_usage", core.serialization.number().optional()),
     featureUsageEvent: core.serialization.property("feature_usage_event", core.serialization.string().optional()),
-    featureUsagePeriod: core.serialization.property("feature_usage_period", core.serialization.string().optional()),
+    featureUsagePeriod: core.serialization.property("feature_usage_period", MetricPeriod.optional()),
     featureUsageResetAt: core.serialization.property("feature_usage_reset_at", core.serialization.date().optional()),
     flag: core.serialization.string(),
     flagId: core.serialization.property("flag_id", core.serialization.string().optional()),
     reason: core.serialization.string(),
     ruleId: core.serialization.property("rule_id", core.serialization.string().optional()),
-    ruleType: core.serialization.property("rule_type", core.serialization.string().optional()),
+    ruleType: core.serialization.property("rule_type", RuleType.optional()),
     userId: core.serialization.property("user_id", core.serialization.string().optional()),
     value: core.serialization.boolean(),
 });
@@ -34,13 +36,13 @@ export declare namespace CheckFlagResponseData {
         feature_allocation?: number | null;
         feature_usage?: number | null;
         feature_usage_event?: string | null;
-        feature_usage_period?: string | null;
+        feature_usage_period?: MetricPeriod.Raw | null;
         feature_usage_reset_at?: string | null;
         flag: string;
         flag_id?: string | null;
         reason: string;
         rule_id?: string | null;
-        rule_type?: string | null;
+        rule_type?: RuleType.Raw | null;
         user_id?: string | null;
         value: boolean;
     }

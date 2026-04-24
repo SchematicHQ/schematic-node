@@ -21,7 +21,7 @@ export interface CreateBillingLinkedFeatureRequestBody {
     flag?: Schematic.CreateOrUpdateFlagRequestBody;
     icon?: string;
     lifecyclePhase?: Schematic.FeatureLifecyclePhase;
-    maintainerId?: string;
+    maintainerAccountMemberId?: string;
     name: string;
     pluralName?: string;
     singularName?: string;

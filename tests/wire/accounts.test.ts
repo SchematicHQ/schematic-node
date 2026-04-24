@@ -28,6 +28,7 @@ describe("AccountsClient", () => {
         server.mockEndpoint().get("/account-members").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.accounts.listAccountMembers({
+            ids: ["ids"],
             q: "q",
             limit: 1000000,
             offset: 1000000,
@@ -252,6 +253,13 @@ describe("AccountsClient", () => {
                 {
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
+                    environment: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        environment_type: "development",
+                        id: "id",
+                        name: "name",
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
                     environment_id: "environment_id",
                     id: "id",
                     last_used_at: "2024-01-15T09:30:00Z",
@@ -277,6 +285,13 @@ describe("AccountsClient", () => {
                 {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
+                    environment: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        environmentType: "development",
+                        id: "id",
+                        name: "name",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
                     environmentId: "environment_id",
                     id: "id",
                     lastUsedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -378,6 +393,13 @@ describe("AccountsClient", () => {
             data: {
                 created_at: "2024-01-15T09:30:00Z",
                 description: "description",
+                environment: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    environment_type: "development",
+                    id: "id",
+                    name: "name",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
                 environment_id: "environment_id",
                 id: "id",
                 last_used_at: "2024-01-15T09:30:00Z",
@@ -406,6 +428,13 @@ describe("AccountsClient", () => {
             data: {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 description: "description",
+                environment: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    environmentType: "development",
+                    id: "id",
+                    name: "name",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
                 environmentId: "environment_id",
                 id: "id",
                 lastUsedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -539,6 +568,13 @@ describe("AccountsClient", () => {
             data: {
                 created_at: "2024-01-15T09:30:00Z",
                 description: "description",
+                environment: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    environment_type: "development",
+                    id: "id",
+                    name: "name",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
                 environment_id: "environment_id",
                 id: "id",
                 last_used_at: "2024-01-15T09:30:00Z",
@@ -563,6 +599,13 @@ describe("AccountsClient", () => {
             data: {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 description: "description",
+                environment: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    environmentType: "development",
+                    id: "id",
+                    name: "name",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
                 environmentId: "environment_id",
                 id: "id",
                 lastUsedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -661,6 +704,13 @@ describe("AccountsClient", () => {
             data: {
                 created_at: "2024-01-15T09:30:00Z",
                 description: "description",
+                environment: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    environment_type: "development",
+                    id: "id",
+                    name: "name",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
                 environment_id: "environment_id",
                 id: "id",
                 last_used_at: "2024-01-15T09:30:00Z",
@@ -686,6 +736,13 @@ describe("AccountsClient", () => {
             data: {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 description: "description",
+                environment: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    environmentType: "development",
+                    id: "id",
+                    name: "name",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
                 environmentId: "environment_id",
                 id: "id",
                 lastUsedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1035,6 +1092,13 @@ describe("AccountsClient", () => {
                     actor_type: "api_key",
                     api_key_id: "api_key_id",
                     ended_at: "2024-01-15T09:30:00Z",
+                    environment: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        environment_type: "development",
+                        id: "id",
+                        name: "name",
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
                     environment_id: "environment_id",
                     id: "id",
                     method: "method",
@@ -1077,6 +1141,13 @@ describe("AccountsClient", () => {
                     actorType: "api_key",
                     apiKeyId: "api_key_id",
                     endedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    environment: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        environmentType: "development",
+                        id: "id",
+                        name: "name",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
                     environmentId: "environment_id",
                     id: "id",
                     method: "method",
@@ -1177,6 +1248,13 @@ describe("AccountsClient", () => {
                 actor_type: "api_key",
                 api_key_id: "api_key_id",
                 ended_at: "2024-01-15T09:30:00Z",
+                environment: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    environment_type: "development",
+                    id: "id",
+                    name: "name",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
                 environment_id: "environment_id",
                 id: "id",
                 method: "method",
@@ -1210,6 +1288,13 @@ describe("AccountsClient", () => {
                 actorType: "api_key",
                 apiKeyId: "api_key_id",
                 endedAt: new Date("2024-01-15T09:30:00.000Z"),
+                environment: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    environmentType: "development",
+                    id: "id",
+                    name: "name",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
                 environmentId: "environment_id",
                 id: "id",
                 method: "method",
@@ -1437,6 +1522,7 @@ describe("AccountsClient", () => {
         server.mockEndpoint().get("/environments").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.accounts.listEnvironments({
+            ids: ["ids"],
             limit: 1000000,
             offset: 1000000,
         });

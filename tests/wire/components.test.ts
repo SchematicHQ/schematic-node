@@ -768,7 +768,7 @@ describe("ComponentsClient", () => {
                         company_can_trial: true,
                         company_count: 1000000,
                         compatible_plan_ids: ["compatible_plan_ids"],
-                        controlled_by: "controlled_by",
+                        controlled_by: "orb",
                         created_at: "2024-01-15T09:30:00Z",
                         currency_prices: [{ currency: "currency" }],
                         current: true,
@@ -807,11 +807,11 @@ describe("ComponentsClient", () => {
                                                     {
                                                         conditions: [
                                                             {
-                                                                condition_type: "condition_type",
+                                                                condition_type: "base_plan",
                                                                 created_at: "2024-01-15T09:30:00Z",
                                                                 environment_id: "environment_id",
                                                                 id: "id",
-                                                                operator: "operator",
+                                                                operator: "eq",
                                                                 resource_ids: ["resource_ids"],
                                                                 resources: [{ id: "id", name: "name" }],
                                                                 rule_id: "rule_id",
@@ -828,11 +828,11 @@ describe("ComponentsClient", () => {
                                                 ],
                                                 conditions: [
                                                     {
-                                                        condition_type: "condition_type",
+                                                        condition_type: "base_plan",
                                                         created_at: "2024-01-15T09:30:00Z",
                                                         environment_id: "environment_id",
                                                         id: "id",
-                                                        operator: "operator",
+                                                        operator: "eq",
                                                         resource_ids: ["resource_ids"],
                                                         resources: [{ id: "id", name: "name" }],
                                                         rule_id: "rule_id",
@@ -845,7 +845,7 @@ describe("ComponentsClient", () => {
                                                 id: "id",
                                                 name: "name",
                                                 priority: 1000000,
-                                                rule_type: "rule_type",
+                                                rule_type: "company_override",
                                                 updated_at: "2024-01-15T09:30:00Z",
                                                 value: true,
                                             },
@@ -914,7 +914,7 @@ describe("ComponentsClient", () => {
                         company_can_trial: true,
                         company_count: 1000000,
                         compatible_plan_ids: ["compatible_plan_ids"],
-                        controlled_by: "controlled_by",
+                        controlled_by: "orb",
                         created_at: "2024-01-15T09:30:00Z",
                         currency_prices: [{ currency: "currency" }],
                         current: true,
@@ -953,11 +953,11 @@ describe("ComponentsClient", () => {
                                                     {
                                                         conditions: [
                                                             {
-                                                                condition_type: "condition_type",
+                                                                condition_type: "base_plan",
                                                                 created_at: "2024-01-15T09:30:00Z",
                                                                 environment_id: "environment_id",
                                                                 id: "id",
-                                                                operator: "operator",
+                                                                operator: "eq",
                                                                 resource_ids: ["resource_ids"],
                                                                 resources: [{ id: "id", name: "name" }],
                                                                 rule_id: "rule_id",
@@ -974,11 +974,11 @@ describe("ComponentsClient", () => {
                                                 ],
                                                 conditions: [
                                                     {
-                                                        condition_type: "condition_type",
+                                                        condition_type: "base_plan",
                                                         created_at: "2024-01-15T09:30:00Z",
                                                         environment_id: "environment_id",
                                                         id: "id",
-                                                        operator: "operator",
+                                                        operator: "eq",
                                                         resource_ids: ["resource_ids"],
                                                         resources: [{ id: "id", name: "name" }],
                                                         rule_id: "rule_id",
@@ -991,7 +991,7 @@ describe("ComponentsClient", () => {
                                                 id: "id",
                                                 name: "name",
                                                 priority: 1000000,
-                                                rule_type: "rule_type",
+                                                rule_type: "company_override",
                                                 updated_at: "2024-01-15T09:30:00Z",
                                                 value: true,
                                             },
@@ -1243,8 +1243,8 @@ describe("ComponentsClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             environment_id: "environment_id",
                             event_subtype: "event_subtype",
-                            month_reset: "month_reset",
-                            period: "period",
+                            month_reset: "billing_cycle",
+                            period: "all_time",
                             value: 1000000,
                         },
                     ],
@@ -1313,7 +1313,7 @@ describe("ComponentsClient", () => {
                             id: "id",
                             name: "name",
                             priority: 1000000,
-                            rule_type: "default",
+                            rule_type: "company_override",
                             value: true,
                         },
                     ],
@@ -1421,7 +1421,7 @@ describe("ComponentsClient", () => {
                     company_count: 1000000,
                     company_id: "company_id",
                     company_name: "company_name",
-                    controlled_by: "controlled_by",
+                    controlled_by: "orb",
                     copied_from_plan_id: "copied_from_plan_id",
                     created_at: "2024-01-15T09:30:00Z",
                     currency_prices: [{ currency: "currency" }],
@@ -1458,11 +1458,11 @@ describe("ComponentsClient", () => {
                                                 {
                                                     conditions: [
                                                         {
-                                                            condition_type: "condition_type",
+                                                            condition_type: "base_plan",
                                                             created_at: "2024-01-15T09:30:00Z",
                                                             environment_id: "environment_id",
                                                             id: "id",
-                                                            operator: "operator",
+                                                            operator: "eq",
                                                             resource_ids: ["resource_ids"],
                                                             resources: [{ id: "id", name: "name" }],
                                                             rule_id: "rule_id",
@@ -1479,11 +1479,11 @@ describe("ComponentsClient", () => {
                                             ],
                                             conditions: [
                                                 {
-                                                    condition_type: "condition_type",
+                                                    condition_type: "base_plan",
                                                     created_at: "2024-01-15T09:30:00Z",
                                                     environment_id: "environment_id",
                                                     id: "id",
-                                                    operator: "operator",
+                                                    operator: "eq",
                                                     resource_ids: ["resource_ids"],
                                                     resources: [{ id: "id", name: "name" }],
                                                     rule_id: "rule_id",
@@ -1496,7 +1496,7 @@ describe("ComponentsClient", () => {
                                             id: "id",
                                             name: "name",
                                             priority: 1000000,
-                                            rule_type: "rule_type",
+                                            rule_type: "company_override",
                                             updated_at: "2024-01-15T09:30:00Z",
                                             value: true,
                                         },
@@ -1656,7 +1656,7 @@ describe("ComponentsClient", () => {
                     company_count: 1000000,
                     company_id: "company_id",
                     company_name: "company_name",
-                    controlled_by: "controlled_by",
+                    controlled_by: "orb",
                     copied_from_plan_id: "copied_from_plan_id",
                     created_at: "2024-01-15T09:30:00Z",
                     currency_prices: [{ currency: "currency" }],
@@ -1693,11 +1693,11 @@ describe("ComponentsClient", () => {
                                                 {
                                                     conditions: [
                                                         {
-                                                            condition_type: "condition_type",
+                                                            condition_type: "base_plan",
                                                             created_at: "2024-01-15T09:30:00Z",
                                                             environment_id: "environment_id",
                                                             id: "id",
-                                                            operator: "operator",
+                                                            operator: "eq",
                                                             resource_ids: ["resource_ids"],
                                                             resources: [{ id: "id", name: "name" }],
                                                             rule_id: "rule_id",
@@ -1714,11 +1714,11 @@ describe("ComponentsClient", () => {
                                             ],
                                             conditions: [
                                                 {
-                                                    condition_type: "condition_type",
+                                                    condition_type: "base_plan",
                                                     created_at: "2024-01-15T09:30:00Z",
                                                     environment_id: "environment_id",
                                                     id: "id",
-                                                    operator: "operator",
+                                                    operator: "eq",
                                                     resource_ids: ["resource_ids"],
                                                     resources: [{ id: "id", name: "name" }],
                                                     rule_id: "rule_id",
@@ -1731,7 +1731,7 @@ describe("ComponentsClient", () => {
                                             id: "id",
                                             name: "name",
                                             priority: 1000000,
-                                            rule_type: "rule_type",
+                                            rule_type: "company_override",
                                             updated_at: "2024-01-15T09:30:00Z",
                                             value: true,
                                         },
@@ -1900,6 +1900,7 @@ describe("ComponentsClient", () => {
                             usage_type: "licensed",
                         },
                     ],
+                    provider_type: "orb",
                     status: "status",
                     subscription_external_id: "subscription_external_id",
                     total_price: 1000000,
@@ -1951,7 +1952,7 @@ describe("ComponentsClient", () => {
                         companyCanTrial: true,
                         companyCount: 1000000,
                         compatiblePlanIds: ["compatible_plan_ids"],
-                        controlledBy: "controlled_by",
+                        controlledBy: "orb",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {
@@ -1998,11 +1999,11 @@ describe("ComponentsClient", () => {
                                                     {
                                                         conditions: [
                                                             {
-                                                                conditionType: "condition_type",
+                                                                conditionType: "base_plan",
                                                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                                 environmentId: "environment_id",
                                                                 id: "id",
-                                                                operator: "operator",
+                                                                operator: "eq",
                                                                 resourceIds: ["resource_ids"],
                                                                 resources: [
                                                                     {
@@ -2024,11 +2025,11 @@ describe("ComponentsClient", () => {
                                                 ],
                                                 conditions: [
                                                     {
-                                                        conditionType: "condition_type",
+                                                        conditionType: "base_plan",
                                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                         environmentId: "environment_id",
                                                         id: "id",
-                                                        operator: "operator",
+                                                        operator: "eq",
                                                         resourceIds: ["resource_ids"],
                                                         resources: [
                                                             {
@@ -2046,7 +2047,7 @@ describe("ComponentsClient", () => {
                                                 id: "id",
                                                 name: "name",
                                                 priority: 1000000,
-                                                ruleType: "rule_type",
+                                                ruleType: "company_override",
                                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                                 value: true,
                                             },
@@ -2120,7 +2121,7 @@ describe("ComponentsClient", () => {
                         companyCanTrial: true,
                         companyCount: 1000000,
                         compatiblePlanIds: ["compatible_plan_ids"],
-                        controlledBy: "controlled_by",
+                        controlledBy: "orb",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {
@@ -2167,11 +2168,11 @@ describe("ComponentsClient", () => {
                                                     {
                                                         conditions: [
                                                             {
-                                                                conditionType: "condition_type",
+                                                                conditionType: "base_plan",
                                                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                                 environmentId: "environment_id",
                                                                 id: "id",
-                                                                operator: "operator",
+                                                                operator: "eq",
                                                                 resourceIds: ["resource_ids"],
                                                                 resources: [
                                                                     {
@@ -2193,11 +2194,11 @@ describe("ComponentsClient", () => {
                                                 ],
                                                 conditions: [
                                                     {
-                                                        conditionType: "condition_type",
+                                                        conditionType: "base_plan",
                                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                         environmentId: "environment_id",
                                                         id: "id",
-                                                        operator: "operator",
+                                                        operator: "eq",
                                                         resourceIds: ["resource_ids"],
                                                         resources: [
                                                             {
@@ -2215,7 +2216,7 @@ describe("ComponentsClient", () => {
                                                 id: "id",
                                                 name: "name",
                                                 priority: 1000000,
-                                                ruleType: "rule_type",
+                                                ruleType: "company_override",
                                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                                 value: true,
                                             },
@@ -2491,8 +2492,8 @@ describe("ComponentsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             environmentId: "environment_id",
                             eventSubtype: "event_subtype",
-                            monthReset: "month_reset",
-                            period: "period",
+                            monthReset: "billing_cycle",
+                            period: "all_time",
                             value: 1000000,
                         },
                     ],
@@ -2566,7 +2567,7 @@ describe("ComponentsClient", () => {
                             id: "id",
                             name: "name",
                             priority: 1000000,
-                            ruleType: "default",
+                            ruleType: "company_override",
                             value: true,
                         },
                     ],
@@ -2678,7 +2679,7 @@ describe("ComponentsClient", () => {
                     companyCount: 1000000,
                     companyId: "company_id",
                     companyName: "company_name",
-                    controlledBy: "controlled_by",
+                    controlledBy: "orb",
                     copiedFromPlanId: "copied_from_plan_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     currencyPrices: [
@@ -2719,11 +2720,11 @@ describe("ComponentsClient", () => {
                                                 {
                                                     conditions: [
                                                         {
-                                                            conditionType: "condition_type",
+                                                            conditionType: "base_plan",
                                                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                             environmentId: "environment_id",
                                                             id: "id",
-                                                            operator: "operator",
+                                                            operator: "eq",
                                                             resourceIds: ["resource_ids"],
                                                             resources: [
                                                                 {
@@ -2745,11 +2746,11 @@ describe("ComponentsClient", () => {
                                             ],
                                             conditions: [
                                                 {
-                                                    conditionType: "condition_type",
+                                                    conditionType: "base_plan",
                                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                     environmentId: "environment_id",
                                                     id: "id",
-                                                    operator: "operator",
+                                                    operator: "eq",
                                                     resourceIds: ["resource_ids"],
                                                     resources: [
                                                         {
@@ -2767,7 +2768,7 @@ describe("ComponentsClient", () => {
                                             id: "id",
                                             name: "name",
                                             priority: 1000000,
-                                            ruleType: "rule_type",
+                                            ruleType: "company_override",
                                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                             value: true,
                                         },
@@ -2932,7 +2933,7 @@ describe("ComponentsClient", () => {
                     companyCount: 1000000,
                     companyId: "company_id",
                     companyName: "company_name",
-                    controlledBy: "controlled_by",
+                    controlledBy: "orb",
                     copiedFromPlanId: "copied_from_plan_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     currencyPrices: [
@@ -2973,11 +2974,11 @@ describe("ComponentsClient", () => {
                                                 {
                                                     conditions: [
                                                         {
-                                                            conditionType: "condition_type",
+                                                            conditionType: "base_plan",
                                                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                             environmentId: "environment_id",
                                                             id: "id",
-                                                            operator: "operator",
+                                                            operator: "eq",
                                                             resourceIds: ["resource_ids"],
                                                             resources: [
                                                                 {
@@ -2999,11 +3000,11 @@ describe("ComponentsClient", () => {
                                             ],
                                             conditions: [
                                                 {
-                                                    conditionType: "condition_type",
+                                                    conditionType: "base_plan",
                                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                     environmentId: "environment_id",
                                                     id: "id",
-                                                    operator: "operator",
+                                                    operator: "eq",
                                                     resourceIds: ["resource_ids"],
                                                     resources: [
                                                         {
@@ -3021,7 +3022,7 @@ describe("ComponentsClient", () => {
                                             id: "id",
                                             name: "name",
                                             priority: 1000000,
-                                            ruleType: "rule_type",
+                                            ruleType: "company_override",
                                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                             value: true,
                                         },
@@ -3195,6 +3196,7 @@ describe("ComponentsClient", () => {
                             usageType: "licensed",
                         },
                     ],
+                    providerType: "orb",
                     status: "status",
                     subscriptionExternalId: "subscription_external_id",
                     totalPrice: 1000000,

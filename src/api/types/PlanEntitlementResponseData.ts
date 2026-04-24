@@ -14,8 +14,8 @@ export interface PlanEntitlementResponseData {
     id: string;
     meteredMonthlyPrice?: Schematic.BillingPriceView;
     meteredYearlyPrice?: Schematic.BillingPriceView;
-    metricPeriod?: string;
-    metricPeriodMonthReset?: string;
+    metricPeriod?: Schematic.MetricPeriod;
+    metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;
     plan?: Schematic.PlanResponseData;
     planId: string;
     priceBehavior?: Schematic.EntitlementPriceBehavior;

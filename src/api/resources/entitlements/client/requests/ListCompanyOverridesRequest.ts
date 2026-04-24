@@ -4,7 +4,10 @@
  * @example
  *     {
  *         companyId: "company_id",
+ *         companyIds: ["company_ids"],
  *         featureId: "feature_id",
+ *         featureIds: ["feature_ids"],
+ *         ids: ["ids"],
  *         withoutExpired: true,
  *         q: "q",
  *         limit: 1000000,

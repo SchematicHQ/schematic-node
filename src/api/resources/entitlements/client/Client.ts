@@ -37,7 +37,10 @@ export class EntitlementsClient {
      * @example
      *     await client.entitlements.listCompanyOverrides({
      *         companyId: "company_id",
+     *         companyIds: ["company_ids"],
      *         featureId: "feature_id",
+     *         featureIds: ["feature_ids"],
+     *         ids: ["ids"],
      *         withoutExpired: true,
      *         q: "q",
      *         limit: 1000000,
@@ -83,6 +86,11 @@ export class EntitlementsClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -720,7 +728,10 @@ export class EntitlementsClient {
      * @example
      *     await client.entitlements.countCompanyOverrides({
      *         companyId: "company_id",
+     *         companyIds: ["company_ids"],
      *         featureId: "feature_id",
+     *         featureIds: ["feature_ids"],
+     *         ids: ["ids"],
      *         withoutExpired: true,
      *         q: "q",
      *         limit: 1000000,
@@ -766,6 +777,11 @@ export class EntitlementsClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -906,6 +922,11 @@ export class EntitlementsClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -1046,6 +1067,11 @@ export class EntitlementsClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -1147,6 +1173,7 @@ export class EntitlementsClient {
      * @example
      *     await client.entitlements.listFeatureUsage({
      *         companyId: "company_id",
+     *         featureIds: ["feature_ids"],
      *         includeUsageAggregation: true,
      *         q: "q",
      *         withoutNegativeEntitlements: true,
@@ -1201,6 +1228,11 @@ export class EntitlementsClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -1345,6 +1377,11 @@ export class EntitlementsClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -1435,6 +1472,7 @@ export class EntitlementsClient {
      * @example
      *     await client.entitlements.countFeatureUsage({
      *         companyId: "company_id",
+     *         featureIds: ["feature_ids"],
      *         includeUsageAggregation: true,
      *         q: "q",
      *         withoutNegativeEntitlements: true,
@@ -1489,6 +1527,11 @@ export class EntitlementsClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -1629,6 +1672,11 @@ export class EntitlementsClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -1769,6 +1817,11 @@ export class EntitlementsClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -1870,8 +1923,12 @@ export class EntitlementsClient {
      * @example
      *     await client.entitlements.listPlanEntitlements({
      *         featureId: "feature_id",
+     *         featureIds: ["feature_ids"],
+     *         ids: ["ids"],
      *         planId: "plan_id",
+     *         planIds: ["plan_ids"],
      *         planVersionId: "plan_version_id",
+     *         planVersionIds: ["plan_version_ids"],
      *         q: "q",
      *         withMeteredProducts: true,
      *         limit: 1000000,
@@ -1931,6 +1988,11 @@ export class EntitlementsClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -2714,8 +2776,12 @@ export class EntitlementsClient {
      * @example
      *     await client.entitlements.countPlanEntitlements({
      *         featureId: "feature_id",
+     *         featureIds: ["feature_ids"],
+     *         ids: ["ids"],
      *         planId: "plan_id",
+     *         planIds: ["plan_ids"],
      *         planVersionId: "plan_version_id",
+     *         planVersionIds: ["plan_version_ids"],
      *         q: "q",
      *         withMeteredProducts: true,
      *         limit: 1000000,
@@ -2775,6 +2841,11 @@ export class EntitlementsClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -3046,6 +3117,11 @@ export class EntitlementsClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

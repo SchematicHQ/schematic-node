@@ -17,8 +17,8 @@ export interface CreatePlanEntitlementRequestBody {
     currency?: string;
     currencyPrices?: Schematic.CurrencyPriceRequestBody[];
     featureId: string;
-    metricPeriod?: Schematic.CreatePlanEntitlementRequestBodyMetricPeriod;
-    metricPeriodMonthReset?: Schematic.CreatePlanEntitlementRequestBodyMetricPeriodMonthReset;
+    metricPeriod?: Schematic.MetricPeriod;
+    metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;
     monthlyMeteredPriceId?: string;
     monthlyPriceTiers?: Schematic.CreatePriceTierRequestBody[];
     monthlyUnitPrice?: number;

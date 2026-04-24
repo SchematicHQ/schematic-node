@@ -39,6 +39,7 @@ describe("WebhooksClient", () => {
         server.mockEndpoint().get("/webhook-events").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.webhooks.listWebhookEvents({
+            ids: ["ids"],
             q: "q",
             webhookId: "webhook_id",
             limit: 1000000,
@@ -315,6 +316,7 @@ describe("WebhooksClient", () => {
             .build();
 
         const response = await client.webhooks.countWebhookEvents({
+            ids: ["ids"],
             q: "q",
             webhookId: "webhook_id",
             limit: 1000000,

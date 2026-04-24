@@ -171,6 +171,7 @@ export class EventsClient {
      * @example
      *     await client.events.getEventSummaries({
      *         q: "q",
+     *         eventSubtypes: ["event_subtypes"],
      *         limit: 1000000,
      *         offset: 1000000
      *     })
@@ -209,6 +210,11 @@ export class EventsClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -311,6 +317,7 @@ export class EventsClient {
      *     await client.events.listEvents({
      *         companyId: "company_id",
      *         eventSubtype: "event_subtype",
+     *         eventTypes: ["flag_check"],
      *         flagId: "flag_id",
      *         userId: "user_id",
      *         limit: 1000000,
@@ -358,6 +365,11 @@ export class EventsClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

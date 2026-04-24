@@ -26,6 +26,7 @@ export const BillingPriceView: core.serialization.ObjectSchema<
         core.serialization.string().optional(),
     ),
     meterId: core.serialization.property("meter_id", core.serialization.string().optional()),
+    nickname: core.serialization.string().optional(),
     packageSize: core.serialization.property("package_size", core.serialization.number()),
     price: core.serialization.number(),
     priceDecimal: core.serialization.property("price_decimal", core.serialization.string().optional()),
@@ -52,6 +53,7 @@ export declare namespace BillingPriceView {
         meter_event_name?: string | null;
         meter_event_payload_key?: string | null;
         meter_id?: string | null;
+        nickname?: string | null;
         package_size: number;
         price: number;
         price_decimal?: string | null;

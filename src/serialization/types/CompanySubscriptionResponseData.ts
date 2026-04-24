@@ -4,6 +4,7 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingProductForSubscriptionResponseData } from "./BillingProductForSubscriptionResponseData";
+import { BillingProviderType } from "./BillingProviderType";
 import { BillingSubscriptionDiscountView } from "./BillingSubscriptionDiscountView";
 import { InvoiceResponseData } from "./InvoiceResponseData";
 import { PaymentMethodResponseData } from "./PaymentMethodResponseData";
@@ -22,6 +23,7 @@ export const CompanySubscriptionResponseData: core.serialization.ObjectSchema<
     latestInvoice: core.serialization.property("latest_invoice", InvoiceResponseData.optional()),
     paymentMethod: core.serialization.property("payment_method", PaymentMethodResponseData.optional()),
     products: core.serialization.list(BillingProductForSubscriptionResponseData),
+    providerType: core.serialization.property("provider_type", BillingProviderType),
     status: core.serialization.string(),
     subscriptionExternalId: core.serialization.property("subscription_external_id", core.serialization.string()),
     totalPrice: core.serialization.property("total_price", core.serialization.number()),
@@ -40,6 +42,7 @@ export declare namespace CompanySubscriptionResponseData {
         latest_invoice?: InvoiceResponseData.Raw | null;
         payment_method?: PaymentMethodResponseData.Raw | null;
         products: BillingProductForSubscriptionResponseData.Raw[];
+        provider_type: BillingProviderType.Raw;
         status: string;
         subscription_external_id: string;
         total_price: number;

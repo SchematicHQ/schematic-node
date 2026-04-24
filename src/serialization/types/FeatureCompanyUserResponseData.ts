@@ -7,6 +7,8 @@ import { CompanyDetailResponseData } from "./CompanyDetailResponseData";
 import { EntitlementType } from "./EntitlementType";
 import { EntitlementValueType } from "./EntitlementValueType";
 import { FeatureDetailResponseData } from "./FeatureDetailResponseData";
+import { MetricPeriod } from "./MetricPeriod";
+import { MetricPeriodMonthReset } from "./MetricPeriodMonthReset";
 import { PlanResponseData } from "./PlanResponseData";
 import { UserResponseData } from "./UserResponseData";
 
@@ -22,8 +24,8 @@ export const FeatureCompanyUserResponseData: core.serialization.ObjectSchema<
     entitlementType: core.serialization.property("entitlement_type", EntitlementType),
     feature: FeatureDetailResponseData.optional(),
     metricResetAt: core.serialization.property("metric_reset_at", core.serialization.date().optional()),
-    monthReset: core.serialization.property("month_reset", core.serialization.string().optional()),
-    period: core.serialization.string().optional(),
+    monthReset: core.serialization.property("month_reset", MetricPeriodMonthReset.optional()),
+    period: MetricPeriod.optional(),
     plan: PlanResponseData.optional(),
     usage: core.serialization.number().optional(),
     user: UserResponseData.optional(),
@@ -39,8 +41,8 @@ export declare namespace FeatureCompanyUserResponseData {
         entitlement_type: EntitlementType.Raw;
         feature?: FeatureDetailResponseData.Raw | null;
         metric_reset_at?: string | null;
-        month_reset?: string | null;
-        period?: string | null;
+        month_reset?: MetricPeriodMonthReset.Raw | null;
+        period?: MetricPeriod.Raw | null;
         plan?: PlanResponseData.Raw | null;
         usage?: number | null;
         user?: UserResponseData.Raw | null;

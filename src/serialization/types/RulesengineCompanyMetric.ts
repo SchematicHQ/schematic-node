@@ -3,8 +3,8 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
-import { RulesengineCompanyMetricMonthReset } from "./RulesengineCompanyMetricMonthReset";
-import { RulesengineCompanyMetricPeriod } from "./RulesengineCompanyMetricPeriod";
+import { RulesengineMetricPeriod } from "./RulesengineMetricPeriod";
+import { RulesengineMetricPeriodMonthReset } from "./RulesengineMetricPeriodMonthReset";
 
 export const RulesengineCompanyMetric: core.serialization.ObjectSchema<
     serializers.RulesengineCompanyMetric.Raw,
@@ -15,8 +15,8 @@ export const RulesengineCompanyMetric: core.serialization.ObjectSchema<
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     eventSubtype: core.serialization.property("event_subtype", core.serialization.string()),
-    monthReset: core.serialization.property("month_reset", RulesengineCompanyMetricMonthReset),
-    period: RulesengineCompanyMetricPeriod,
+    monthReset: core.serialization.property("month_reset", RulesengineMetricPeriodMonthReset),
+    period: RulesengineMetricPeriod,
     validUntil: core.serialization.property("valid_until", core.serialization.date().optional()),
     value: core.serialization.number(),
 });
@@ -28,8 +28,8 @@ export declare namespace RulesengineCompanyMetric {
         created_at: string;
         environment_id: string;
         event_subtype: string;
-        month_reset: RulesengineCompanyMetricMonthReset.Raw;
-        period: RulesengineCompanyMetricPeriod.Raw;
+        month_reset: RulesengineMetricPeriodMonthReset.Raw;
+        period: RulesengineMetricPeriod.Raw;
         valid_until?: string | null;
         value: number;
     }

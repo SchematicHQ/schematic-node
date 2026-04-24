@@ -8,13 +8,13 @@ import type * as Schematic from "../../../../index";
  *         rules: [{
  *                 conditionGroups: [{
  *                         conditions: [{
- *                                 conditionType: "company",
+ *                                 conditionType: "base_plan",
  *                                 operator: "eq",
  *                                 resourceIds: ["resource_ids"]
  *                             }]
  *                     }],
  *                 conditions: [{
- *                         conditionType: "company",
+ *                         conditionType: "base_plan",
  *                         operator: "eq",
  *                         resourceIds: ["resource_ids"]
  *                     }],

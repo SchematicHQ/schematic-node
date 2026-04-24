@@ -230,8 +230,8 @@ describe("PlansClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         environment_id: "environment_id",
                         event_subtype: "event_subtype",
-                        month_reset: "month_reset",
-                        period: "period",
+                        month_reset: "billing_cycle",
+                        period: "all_time",
                         value: 1000000,
                     },
                 ],
@@ -308,7 +308,7 @@ describe("PlansClient", () => {
                         id: "id",
                         name: "name",
                         priority: 1000000,
-                        rule_type: "default",
+                        rule_type: "company_override",
                         value: true,
                     },
                 ],
@@ -575,8 +575,8 @@ describe("PlansClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         environmentId: "environment_id",
                         eventSubtype: "event_subtype",
-                        monthReset: "month_reset",
-                        period: "period",
+                        monthReset: "billing_cycle",
+                        period: "all_time",
                         value: 1000000,
                     },
                 ],
@@ -658,7 +658,7 @@ describe("PlansClient", () => {
                         id: "id",
                         name: "name",
                         priority: 1000000,
-                        ruleType: "default",
+                        ruleType: "company_override",
                         value: true,
                     },
                 ],
@@ -797,6 +797,426 @@ describe("PlansClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("listCustomPlanBillings (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    activation_strategy: "on_payment",
+                    company_id: "company_id",
+                    created_at: "2024-01-15T09:30:00Z",
+                    days_until_due: 1000000,
+                    id: "id",
+                    paid_at: "2024-01-15T09:30:00Z",
+                    plan_id: "plan_id",
+                    published_at: "2024-01-15T09:30:00Z",
+                    status: "active",
+                    stripe_invoice_url: "stripe_invoice_url",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+            ],
+            params: {
+                company_id: "company_id",
+                limit: 1000000,
+                offset: 1000000,
+                plan_id: "plan_id",
+                status: "active",
+                statuses: ["active"],
+            },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/custom-plan-billings")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.plans.listCustomPlanBillings({
+            companyId: "company_id",
+            planId: "plan_id",
+            status: "active",
+            statuses: ["active"],
+            limit: 1000000,
+            offset: 1000000,
+        });
+        expect(response).toEqual({
+            data: [
+                {
+                    activationStrategy: "on_payment",
+                    companyId: "company_id",
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    daysUntilDue: 1000000,
+                    id: "id",
+                    paidAt: new Date("2024-01-15T09:30:00.000Z"),
+                    planId: "plan_id",
+                    publishedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    status: "active",
+                    stripeInvoiceUrl: "stripe_invoice_url",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+            ],
+            params: {
+                companyId: "company_id",
+                limit: 1000000,
+                offset: 1000000,
+                planId: "plan_id",
+                status: "active",
+                statuses: ["active"],
+            },
+        });
+    });
+
+    test("listCustomPlanBillings (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/custom-plan-billings")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.listCustomPlanBillings();
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("listCustomPlanBillings (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/custom-plan-billings")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.listCustomPlanBillings();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("listCustomPlanBillings (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/custom-plan-billings")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.listCustomPlanBillings();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("listCustomPlanBillings (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/custom-plan-billings")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.listCustomPlanBillings();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("listCustomPlanBillings (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/custom-plan-billings")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.listCustomPlanBillings();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("retryCustomPlanBilling (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            customer_email: "customer_email",
+            pay_in_advance: [{ price_id: "price_id", quantity: 1000000 }],
+        };
+        const rawResponseBody = {
+            data: {
+                activation_strategy: "on_payment",
+                company_id: "company_id",
+                created_at: "2024-01-15T09:30:00Z",
+                days_until_due: 1000000,
+                id: "id",
+                paid_at: "2024-01-15T09:30:00Z",
+                plan_id: "plan_id",
+                published_at: "2024-01-15T09:30:00Z",
+                status: "active",
+                stripe_invoice_url: "stripe_invoice_url",
+                updated_at: "2024-01-15T09:30:00Z",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .put("/custom-plan-billings/custom_plan_billing_id/retry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.plans.retryCustomPlanBilling("custom_plan_billing_id", {
+            customerEmail: "customer_email",
+            payInAdvance: [
+                {
+                    priceId: "price_id",
+                    quantity: 1000000,
+                },
+            ],
+        });
+        expect(response).toEqual({
+            data: {
+                activationStrategy: "on_payment",
+                companyId: "company_id",
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                daysUntilDue: 1000000,
+                id: "id",
+                paidAt: new Date("2024-01-15T09:30:00.000Z"),
+                planId: "plan_id",
+                publishedAt: new Date("2024-01-15T09:30:00.000Z"),
+                status: "active",
+                stripeInvoiceUrl: "stripe_invoice_url",
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("retryCustomPlanBilling (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            customer_email: "customer_email",
+            pay_in_advance: [
+                { price_id: "price_id", quantity: 1000000 },
+                { price_id: "price_id", quantity: 1000000 },
+            ],
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/custom-plan-billings/custom_plan_billing_id/retry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.retryCustomPlanBilling("custom_plan_billing_id", {
+                customerEmail: "customer_email",
+                payInAdvance: [
+                    {
+                        priceId: "price_id",
+                        quantity: 1000000,
+                    },
+                    {
+                        priceId: "price_id",
+                        quantity: 1000000,
+                    },
+                ],
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("retryCustomPlanBilling (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            customer_email: "customer_email",
+            pay_in_advance: [
+                { price_id: "price_id", quantity: 1000000 },
+                { price_id: "price_id", quantity: 1000000 },
+            ],
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/custom-plan-billings/custom_plan_billing_id/retry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.retryCustomPlanBilling("custom_plan_billing_id", {
+                customerEmail: "customer_email",
+                payInAdvance: [
+                    {
+                        priceId: "price_id",
+                        quantity: 1000000,
+                    },
+                    {
+                        priceId: "price_id",
+                        quantity: 1000000,
+                    },
+                ],
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("retryCustomPlanBilling (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            customer_email: "customer_email",
+            pay_in_advance: [
+                { price_id: "price_id", quantity: 1000000 },
+                { price_id: "price_id", quantity: 1000000 },
+            ],
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/custom-plan-billings/custom_plan_billing_id/retry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.retryCustomPlanBilling("custom_plan_billing_id", {
+                customerEmail: "customer_email",
+                payInAdvance: [
+                    {
+                        priceId: "price_id",
+                        quantity: 1000000,
+                    },
+                    {
+                        priceId: "price_id",
+                        quantity: 1000000,
+                    },
+                ],
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("retryCustomPlanBilling (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            customer_email: "customer_email",
+            pay_in_advance: [
+                { price_id: "price_id", quantity: 1000000 },
+                { price_id: "price_id", quantity: 1000000 },
+            ],
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/custom-plan-billings/custom_plan_billing_id/retry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.retryCustomPlanBilling("custom_plan_billing_id", {
+                customerEmail: "customer_email",
+                payInAdvance: [
+                    {
+                        priceId: "price_id",
+                        quantity: 1000000,
+                    },
+                    {
+                        priceId: "price_id",
+                        quantity: 1000000,
+                    },
+                ],
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("retryCustomPlanBilling (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            customer_email: "customer_email",
+            pay_in_advance: [
+                { price_id: "price_id", quantity: 1000000 },
+                { price_id: "price_id", quantity: 1000000 },
+            ],
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/custom-plan-billings/custom_plan_billing_id/retry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.retryCustomPlanBilling("custom_plan_billing_id", {
+                customerEmail: "customer_email",
+                payInAdvance: [
+                    {
+                        priceId: "price_id",
+                        quantity: 1000000,
+                    },
+                    {
+                        priceId: "price_id",
+                        quantity: 1000000,
+                    },
+                ],
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("createCustomPlan (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -851,7 +1271,7 @@ describe("PlansClient", () => {
                 company_count: 1000000,
                 company_id: "company_id",
                 company_name: "company_name",
-                controlled_by: "controlled_by",
+                controlled_by: "orb",
                 copied_from_plan_id: "copied_from_plan_id",
                 created_at: "2024-01-15T09:30:00Z",
                 currency_prices: [{ currency: "currency" }],
@@ -889,11 +1309,11 @@ describe("PlansClient", () => {
                                             {
                                                 conditions: [
                                                     {
-                                                        condition_type: "condition_type",
+                                                        condition_type: "base_plan",
                                                         created_at: "2024-01-15T09:30:00Z",
                                                         environment_id: "environment_id",
                                                         id: "id",
-                                                        operator: "operator",
+                                                        operator: "eq",
                                                         resource_ids: ["resource_ids"],
                                                         resources: [{ id: "id", name: "name" }],
                                                         rule_id: "rule_id",
@@ -910,11 +1330,11 @@ describe("PlansClient", () => {
                                         ],
                                         conditions: [
                                             {
-                                                condition_type: "condition_type",
+                                                condition_type: "base_plan",
                                                 created_at: "2024-01-15T09:30:00Z",
                                                 environment_id: "environment_id",
                                                 id: "id",
-                                                operator: "operator",
+                                                operator: "eq",
                                                 resource_ids: ["resource_ids"],
                                                 resources: [{ id: "id", name: "name" }],
                                                 rule_id: "rule_id",
@@ -927,7 +1347,7 @@ describe("PlansClient", () => {
                                         id: "id",
                                         name: "name",
                                         priority: 1000000,
-                                        rule_type: "rule_type",
+                                        rule_type: "company_override",
                                         updated_at: "2024-01-15T09:30:00Z",
                                         value: true,
                                     },
@@ -965,6 +1385,7 @@ describe("PlansClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -976,6 +1397,7 @@ describe("PlansClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -1003,6 +1425,7 @@ describe("PlansClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -1076,7 +1499,7 @@ describe("PlansClient", () => {
                 companyCount: 1000000,
                 companyId: "company_id",
                 companyName: "company_name",
-                controlledBy: "controlled_by",
+                controlledBy: "orb",
                 copiedFromPlanId: "copied_from_plan_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 currencyPrices: [
@@ -1118,11 +1541,11 @@ describe("PlansClient", () => {
                                             {
                                                 conditions: [
                                                     {
-                                                        conditionType: "condition_type",
+                                                        conditionType: "base_plan",
                                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                         environmentId: "environment_id",
                                                         id: "id",
-                                                        operator: "operator",
+                                                        operator: "eq",
                                                         resourceIds: ["resource_ids"],
                                                         resources: [
                                                             {
@@ -1144,11 +1567,11 @@ describe("PlansClient", () => {
                                         ],
                                         conditions: [
                                             {
-                                                conditionType: "condition_type",
+                                                conditionType: "base_plan",
                                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                 environmentId: "environment_id",
                                                 id: "id",
-                                                operator: "operator",
+                                                operator: "eq",
                                                 resourceIds: ["resource_ids"],
                                                 resources: [
                                                     {
@@ -1166,7 +1589,7 @@ describe("PlansClient", () => {
                                         id: "id",
                                         name: "name",
                                         priority: 1000000,
-                                        ruleType: "rule_type",
+                                        ruleType: "company_override",
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                         value: true,
                                     },
@@ -1209,6 +1632,7 @@ describe("PlansClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -1220,6 +1644,7 @@ describe("PlansClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -1247,6 +1672,7 @@ describe("PlansClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -1432,7 +1858,7 @@ describe("PlansClient", () => {
                     company_count: 1000000,
                     company_id: "company_id",
                     company_name: "company_name",
-                    controlled_by: "controlled_by",
+                    controlled_by: "orb",
                     copied_from_plan_id: "copied_from_plan_id",
                     created_at: "2024-01-15T09:30:00Z",
                     currency_prices: [{ currency: "currency" }],
@@ -1469,11 +1895,11 @@ describe("PlansClient", () => {
                                                 {
                                                     conditions: [
                                                         {
-                                                            condition_type: "condition_type",
+                                                            condition_type: "base_plan",
                                                             created_at: "2024-01-15T09:30:00Z",
                                                             environment_id: "environment_id",
                                                             id: "id",
-                                                            operator: "operator",
+                                                            operator: "eq",
                                                             resource_ids: ["resource_ids"],
                                                             resources: [{ id: "id", name: "name" }],
                                                             rule_id: "rule_id",
@@ -1490,11 +1916,11 @@ describe("PlansClient", () => {
                                             ],
                                             conditions: [
                                                 {
-                                                    condition_type: "condition_type",
+                                                    condition_type: "base_plan",
                                                     created_at: "2024-01-15T09:30:00Z",
                                                     environment_id: "environment_id",
                                                     id: "id",
-                                                    operator: "operator",
+                                                    operator: "eq",
                                                     resource_ids: ["resource_ids"],
                                                     resources: [{ id: "id", name: "name" }],
                                                     rule_id: "rule_id",
@@ -1507,7 +1933,7 @@ describe("PlansClient", () => {
                                             id: "id",
                                             name: "name",
                                             priority: 1000000,
-                                            rule_type: "rule_type",
+                                            rule_type: "company_override",
                                             updated_at: "2024-01-15T09:30:00Z",
                                             value: true,
                                         },
@@ -1589,6 +2015,7 @@ describe("PlansClient", () => {
             ],
             params: {
                 company_id: "company_id",
+                exclude_company_scoped: true,
                 for_fallback_plan: true,
                 for_initial_plan: true,
                 for_trial_expiry_plan: true,
@@ -1609,10 +2036,12 @@ describe("PlansClient", () => {
 
         const response = await client.plans.listPlans({
             companyId: "company_id",
+            excludeCompanyScoped: true,
             forFallbackPlan: true,
             forInitialPlan: true,
             forTrialExpiryPlan: true,
             hasProductId: true,
+            ids: ["ids"],
             includeDraftVersions: true,
             planType: "plan",
             q: "q",
@@ -1671,7 +2100,7 @@ describe("PlansClient", () => {
                     companyCount: 1000000,
                     companyId: "company_id",
                     companyName: "company_name",
-                    controlledBy: "controlled_by",
+                    controlledBy: "orb",
                     copiedFromPlanId: "copied_from_plan_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     currencyPrices: [
@@ -1712,11 +2141,11 @@ describe("PlansClient", () => {
                                                 {
                                                     conditions: [
                                                         {
-                                                            conditionType: "condition_type",
+                                                            conditionType: "base_plan",
                                                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                             environmentId: "environment_id",
                                                             id: "id",
-                                                            operator: "operator",
+                                                            operator: "eq",
                                                             resourceIds: ["resource_ids"],
                                                             resources: [
                                                                 {
@@ -1738,11 +2167,11 @@ describe("PlansClient", () => {
                                             ],
                                             conditions: [
                                                 {
-                                                    conditionType: "condition_type",
+                                                    conditionType: "base_plan",
                                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                     environmentId: "environment_id",
                                                     id: "id",
-                                                    operator: "operator",
+                                                    operator: "eq",
                                                     resourceIds: ["resource_ids"],
                                                     resources: [
                                                         {
@@ -1760,7 +2189,7 @@ describe("PlansClient", () => {
                                             id: "id",
                                             name: "name",
                                             priority: 1000000,
-                                            ruleType: "rule_type",
+                                            ruleType: "company_override",
                                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                             value: true,
                                         },
@@ -1847,6 +2276,7 @@ describe("PlansClient", () => {
             ],
             params: {
                 companyId: "company_id",
+                excludeCompanyScoped: true,
                 forFallbackPlan: true,
                 forInitialPlan: true,
                 forTrialExpiryPlan: true,
@@ -1983,7 +2413,7 @@ describe("PlansClient", () => {
                 company_count: 1000000,
                 company_id: "company_id",
                 company_name: "company_name",
-                controlled_by: "controlled_by",
+                controlled_by: "orb",
                 copied_from_plan_id: "copied_from_plan_id",
                 created_at: "2024-01-15T09:30:00Z",
                 currency_prices: [{ currency: "currency" }],
@@ -2021,11 +2451,11 @@ describe("PlansClient", () => {
                                             {
                                                 conditions: [
                                                     {
-                                                        condition_type: "condition_type",
+                                                        condition_type: "base_plan",
                                                         created_at: "2024-01-15T09:30:00Z",
                                                         environment_id: "environment_id",
                                                         id: "id",
-                                                        operator: "operator",
+                                                        operator: "eq",
                                                         resource_ids: ["resource_ids"],
                                                         resources: [{ id: "id", name: "name" }],
                                                         rule_id: "rule_id",
@@ -2042,11 +2472,11 @@ describe("PlansClient", () => {
                                         ],
                                         conditions: [
                                             {
-                                                condition_type: "condition_type",
+                                                condition_type: "base_plan",
                                                 created_at: "2024-01-15T09:30:00Z",
                                                 environment_id: "environment_id",
                                                 id: "id",
-                                                operator: "operator",
+                                                operator: "eq",
                                                 resource_ids: ["resource_ids"],
                                                 resources: [{ id: "id", name: "name" }],
                                                 rule_id: "rule_id",
@@ -2059,7 +2489,7 @@ describe("PlansClient", () => {
                                         id: "id",
                                         name: "name",
                                         priority: 1000000,
-                                        rule_type: "rule_type",
+                                        rule_type: "company_override",
                                         updated_at: "2024-01-15T09:30:00Z",
                                         value: true,
                                     },
@@ -2097,6 +2527,7 @@ describe("PlansClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -2108,6 +2539,7 @@ describe("PlansClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -2135,6 +2567,7 @@ describe("PlansClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -2208,7 +2641,7 @@ describe("PlansClient", () => {
                 companyCount: 1000000,
                 companyId: "company_id",
                 companyName: "company_name",
-                controlledBy: "controlled_by",
+                controlledBy: "orb",
                 copiedFromPlanId: "copied_from_plan_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 currencyPrices: [
@@ -2250,11 +2683,11 @@ describe("PlansClient", () => {
                                             {
                                                 conditions: [
                                                     {
-                                                        conditionType: "condition_type",
+                                                        conditionType: "base_plan",
                                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                         environmentId: "environment_id",
                                                         id: "id",
-                                                        operator: "operator",
+                                                        operator: "eq",
                                                         resourceIds: ["resource_ids"],
                                                         resources: [
                                                             {
@@ -2276,11 +2709,11 @@ describe("PlansClient", () => {
                                         ],
                                         conditions: [
                                             {
-                                                conditionType: "condition_type",
+                                                conditionType: "base_plan",
                                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                 environmentId: "environment_id",
                                                 id: "id",
-                                                operator: "operator",
+                                                operator: "eq",
                                                 resourceIds: ["resource_ids"],
                                                 resources: [
                                                     {
@@ -2298,7 +2731,7 @@ describe("PlansClient", () => {
                                         id: "id",
                                         name: "name",
                                         priority: 1000000,
-                                        ruleType: "rule_type",
+                                        ruleType: "company_override",
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                         value: true,
                                     },
@@ -2341,6 +2774,7 @@ describe("PlansClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -2352,6 +2786,7 @@ describe("PlansClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -2379,6 +2814,7 @@ describe("PlansClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -2565,7 +3001,7 @@ describe("PlansClient", () => {
                 company_count: 1000000,
                 company_id: "company_id",
                 company_name: "company_name",
-                controlled_by: "controlled_by",
+                controlled_by: "orb",
                 copied_from_plan_id: "copied_from_plan_id",
                 created_at: "2024-01-15T09:30:00Z",
                 currency_prices: [{ currency: "currency" }],
@@ -2603,11 +3039,11 @@ describe("PlansClient", () => {
                                             {
                                                 conditions: [
                                                     {
-                                                        condition_type: "condition_type",
+                                                        condition_type: "base_plan",
                                                         created_at: "2024-01-15T09:30:00Z",
                                                         environment_id: "environment_id",
                                                         id: "id",
-                                                        operator: "operator",
+                                                        operator: "eq",
                                                         resource_ids: ["resource_ids"],
                                                         resources: [{ id: "id", name: "name" }],
                                                         rule_id: "rule_id",
@@ -2624,11 +3060,11 @@ describe("PlansClient", () => {
                                         ],
                                         conditions: [
                                             {
-                                                condition_type: "condition_type",
+                                                condition_type: "base_plan",
                                                 created_at: "2024-01-15T09:30:00Z",
                                                 environment_id: "environment_id",
                                                 id: "id",
-                                                operator: "operator",
+                                                operator: "eq",
                                                 resource_ids: ["resource_ids"],
                                                 resources: [{ id: "id", name: "name" }],
                                                 rule_id: "rule_id",
@@ -2641,7 +3077,7 @@ describe("PlansClient", () => {
                                         id: "id",
                                         name: "name",
                                         priority: 1000000,
-                                        rule_type: "rule_type",
+                                        rule_type: "company_override",
                                         updated_at: "2024-01-15T09:30:00Z",
                                         value: true,
                                     },
@@ -2679,6 +3115,7 @@ describe("PlansClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -2690,6 +3127,7 @@ describe("PlansClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -2717,6 +3155,7 @@ describe("PlansClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -2781,7 +3220,7 @@ describe("PlansClient", () => {
                 companyCount: 1000000,
                 companyId: "company_id",
                 companyName: "company_name",
-                controlledBy: "controlled_by",
+                controlledBy: "orb",
                 copiedFromPlanId: "copied_from_plan_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 currencyPrices: [
@@ -2823,11 +3262,11 @@ describe("PlansClient", () => {
                                             {
                                                 conditions: [
                                                     {
-                                                        conditionType: "condition_type",
+                                                        conditionType: "base_plan",
                                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                         environmentId: "environment_id",
                                                         id: "id",
-                                                        operator: "operator",
+                                                        operator: "eq",
                                                         resourceIds: ["resource_ids"],
                                                         resources: [
                                                             {
@@ -2849,11 +3288,11 @@ describe("PlansClient", () => {
                                         ],
                                         conditions: [
                                             {
-                                                conditionType: "condition_type",
+                                                conditionType: "base_plan",
                                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                 environmentId: "environment_id",
                                                 id: "id",
-                                                operator: "operator",
+                                                operator: "eq",
                                                 resourceIds: ["resource_ids"],
                                                 resources: [
                                                     {
@@ -2871,7 +3310,7 @@ describe("PlansClient", () => {
                                         id: "id",
                                         name: "name",
                                         priority: 1000000,
-                                        ruleType: "rule_type",
+                                        ruleType: "company_override",
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                         value: true,
                                     },
@@ -2914,6 +3353,7 @@ describe("PlansClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -2925,6 +3365,7 @@ describe("PlansClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -2952,6 +3393,7 @@ describe("PlansClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -3070,7 +3512,7 @@ describe("PlansClient", () => {
                 company_count: 1000000,
                 company_id: "company_id",
                 company_name: "company_name",
-                controlled_by: "controlled_by",
+                controlled_by: "orb",
                 copied_from_plan_id: "copied_from_plan_id",
                 created_at: "2024-01-15T09:30:00Z",
                 currency_prices: [{ currency: "currency" }],
@@ -3108,11 +3550,11 @@ describe("PlansClient", () => {
                                             {
                                                 conditions: [
                                                     {
-                                                        condition_type: "condition_type",
+                                                        condition_type: "base_plan",
                                                         created_at: "2024-01-15T09:30:00Z",
                                                         environment_id: "environment_id",
                                                         id: "id",
-                                                        operator: "operator",
+                                                        operator: "eq",
                                                         resource_ids: ["resource_ids"],
                                                         resources: [{ id: "id", name: "name" }],
                                                         rule_id: "rule_id",
@@ -3129,11 +3571,11 @@ describe("PlansClient", () => {
                                         ],
                                         conditions: [
                                             {
-                                                condition_type: "condition_type",
+                                                condition_type: "base_plan",
                                                 created_at: "2024-01-15T09:30:00Z",
                                                 environment_id: "environment_id",
                                                 id: "id",
-                                                operator: "operator",
+                                                operator: "eq",
                                                 resource_ids: ["resource_ids"],
                                                 resources: [{ id: "id", name: "name" }],
                                                 rule_id: "rule_id",
@@ -3146,7 +3588,7 @@ describe("PlansClient", () => {
                                         id: "id",
                                         name: "name",
                                         priority: 1000000,
-                                        rule_type: "rule_type",
+                                        rule_type: "company_override",
                                         updated_at: "2024-01-15T09:30:00Z",
                                         value: true,
                                     },
@@ -3184,6 +3626,7 @@ describe("PlansClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -3195,6 +3638,7 @@ describe("PlansClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -3222,6 +3666,7 @@ describe("PlansClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -3293,7 +3738,7 @@ describe("PlansClient", () => {
                 companyCount: 1000000,
                 companyId: "company_id",
                 companyName: "company_name",
-                controlledBy: "controlled_by",
+                controlledBy: "orb",
                 copiedFromPlanId: "copied_from_plan_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 currencyPrices: [
@@ -3335,11 +3780,11 @@ describe("PlansClient", () => {
                                             {
                                                 conditions: [
                                                     {
-                                                        conditionType: "condition_type",
+                                                        conditionType: "base_plan",
                                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                         environmentId: "environment_id",
                                                         id: "id",
-                                                        operator: "operator",
+                                                        operator: "eq",
                                                         resourceIds: ["resource_ids"],
                                                         resources: [
                                                             {
@@ -3361,11 +3806,11 @@ describe("PlansClient", () => {
                                         ],
                                         conditions: [
                                             {
-                                                conditionType: "condition_type",
+                                                conditionType: "base_plan",
                                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                 environmentId: "environment_id",
                                                 id: "id",
-                                                operator: "operator",
+                                                operator: "eq",
                                                 resourceIds: ["resource_ids"],
                                                 resources: [
                                                     {
@@ -3383,7 +3828,7 @@ describe("PlansClient", () => {
                                         id: "id",
                                         name: "name",
                                         priority: 1000000,
-                                        ruleType: "rule_type",
+                                        ruleType: "company_override",
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                         value: true,
                                     },
@@ -3426,6 +3871,7 @@ describe("PlansClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -3437,6 +3883,7 @@ describe("PlansClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -3464,6 +3911,7 @@ describe("PlansClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -3899,7 +4347,7 @@ describe("PlansClient", () => {
                 company_count: 1000000,
                 company_id: "company_id",
                 company_name: "company_name",
-                controlled_by: "controlled_by",
+                controlled_by: "orb",
                 copied_from_plan_id: "copied_from_plan_id",
                 created_at: "2024-01-15T09:30:00Z",
                 currency_prices: [{ currency: "currency" }],
@@ -3937,11 +4385,11 @@ describe("PlansClient", () => {
                                             {
                                                 conditions: [
                                                     {
-                                                        condition_type: "condition_type",
+                                                        condition_type: "base_plan",
                                                         created_at: "2024-01-15T09:30:00Z",
                                                         environment_id: "environment_id",
                                                         id: "id",
-                                                        operator: "operator",
+                                                        operator: "eq",
                                                         resource_ids: ["resource_ids"],
                                                         resources: [{ id: "id", name: "name" }],
                                                         rule_id: "rule_id",
@@ -3958,11 +4406,11 @@ describe("PlansClient", () => {
                                         ],
                                         conditions: [
                                             {
-                                                condition_type: "condition_type",
+                                                condition_type: "base_plan",
                                                 created_at: "2024-01-15T09:30:00Z",
                                                 environment_id: "environment_id",
                                                 id: "id",
-                                                operator: "operator",
+                                                operator: "eq",
                                                 resource_ids: ["resource_ids"],
                                                 resources: [{ id: "id", name: "name" }],
                                                 rule_id: "rule_id",
@@ -3975,7 +4423,7 @@ describe("PlansClient", () => {
                                         id: "id",
                                         name: "name",
                                         priority: 1000000,
-                                        rule_type: "rule_type",
+                                        rule_type: "company_override",
                                         updated_at: "2024-01-15T09:30:00Z",
                                         value: true,
                                     },
@@ -4013,6 +4461,7 @@ describe("PlansClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -4024,6 +4473,7 @@ describe("PlansClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -4051,6 +4501,7 @@ describe("PlansClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -4126,7 +4577,7 @@ describe("PlansClient", () => {
                 companyCount: 1000000,
                 companyId: "company_id",
                 companyName: "company_name",
-                controlledBy: "controlled_by",
+                controlledBy: "orb",
                 copiedFromPlanId: "copied_from_plan_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 currencyPrices: [
@@ -4168,11 +4619,11 @@ describe("PlansClient", () => {
                                             {
                                                 conditions: [
                                                     {
-                                                        conditionType: "condition_type",
+                                                        conditionType: "base_plan",
                                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                         environmentId: "environment_id",
                                                         id: "id",
-                                                        operator: "operator",
+                                                        operator: "eq",
                                                         resourceIds: ["resource_ids"],
                                                         resources: [
                                                             {
@@ -4194,11 +4645,11 @@ describe("PlansClient", () => {
                                         ],
                                         conditions: [
                                             {
-                                                conditionType: "condition_type",
+                                                conditionType: "base_plan",
                                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                                 environmentId: "environment_id",
                                                 id: "id",
-                                                operator: "operator",
+                                                operator: "eq",
                                                 resourceIds: ["resource_ids"],
                                                 resources: [
                                                     {
@@ -4216,7 +4667,7 @@ describe("PlansClient", () => {
                                         id: "id",
                                         name: "name",
                                         priority: 1000000,
-                                        ruleType: "rule_type",
+                                        ruleType: "company_override",
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                         value: true,
                                     },
@@ -4259,6 +4710,7 @@ describe("PlansClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -4270,6 +4722,7 @@ describe("PlansClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -4297,6 +4750,7 @@ describe("PlansClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -4653,8 +5107,8 @@ describe("PlansClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             environment_id: "environment_id",
                             event_subtype: "event_subtype",
-                            month_reset: "month_reset",
-                            period: "period",
+                            month_reset: "billing_cycle",
+                            period: "all_time",
                             value: 1000000,
                         },
                     ],
@@ -4723,7 +5177,7 @@ describe("PlansClient", () => {
                             id: "id",
                             name: "name",
                             priority: 1000000,
-                            rule_type: "default",
+                            rule_type: "company_override",
                             value: true,
                         },
                     ],
@@ -4948,8 +5402,8 @@ describe("PlansClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             environmentId: "environment_id",
                             eventSubtype: "event_subtype",
-                            monthReset: "month_reset",
-                            period: "period",
+                            monthReset: "billing_cycle",
+                            period: "all_time",
                             value: 1000000,
                         },
                     ],
@@ -5023,7 +5477,7 @@ describe("PlansClient", () => {
                             id: "id",
                             name: "name",
                             priority: 1000000,
-                            ruleType: "default",
+                            ruleType: "company_override",
                             value: true,
                         },
                     ],
@@ -5308,6 +5762,7 @@ describe("PlansClient", () => {
             data: { count: 1 },
             params: {
                 company_id: "company_id",
+                exclude_company_scoped: true,
                 for_fallback_plan: true,
                 for_initial_plan: true,
                 for_trial_expiry_plan: true,
@@ -5328,10 +5783,12 @@ describe("PlansClient", () => {
 
         const response = await client.plans.countPlans({
             companyId: "company_id",
+            excludeCompanyScoped: true,
             forFallbackPlan: true,
             forInitialPlan: true,
             forTrialExpiryPlan: true,
             hasProductId: true,
+            ids: ["ids"],
             includeDraftVersions: true,
             planType: "plan",
             q: "q",
@@ -5347,6 +5804,7 @@ describe("PlansClient", () => {
             },
             params: {
                 companyId: "company_id",
+                excludeCompanyScoped: true,
                 forFallbackPlan: true,
                 forInitialPlan: true,
                 forTrialExpiryPlan: true,

@@ -4,12 +4,12 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingTiersMode } from "./BillingTiersMode";
-import { CreateEntitlementInBundleRequestBodyMetricPeriod } from "./CreateEntitlementInBundleRequestBodyMetricPeriod";
-import { CreateEntitlementInBundleRequestBodyMetricPeriodMonthReset } from "./CreateEntitlementInBundleRequestBodyMetricPeriodMonthReset";
 import { CreatePriceTierRequestBody } from "./CreatePriceTierRequestBody";
 import { CurrencyPriceRequestBody } from "./CurrencyPriceRequestBody";
 import { EntitlementPriceBehavior } from "./EntitlementPriceBehavior";
 import { EntitlementValueType } from "./EntitlementValueType";
+import { MetricPeriod } from "./MetricPeriod";
+import { MetricPeriodMonthReset } from "./MetricPeriodMonthReset";
 
 export const CreateEntitlementInBundleRequestBody: core.serialization.ObjectSchema<
     serializers.CreateEntitlementInBundleRequestBody.Raw,
@@ -27,14 +27,8 @@ export const CreateEntitlementInBundleRequestBody: core.serialization.ObjectSche
         core.serialization.list(CurrencyPriceRequestBody).optional(),
     ),
     featureId: core.serialization.property("feature_id", core.serialization.string()),
-    metricPeriod: core.serialization.property(
-        "metric_period",
-        CreateEntitlementInBundleRequestBodyMetricPeriod.optional(),
-    ),
-    metricPeriodMonthReset: core.serialization.property(
-        "metric_period_month_reset",
-        CreateEntitlementInBundleRequestBodyMetricPeriodMonthReset.optional(),
-    ),
+    metricPeriod: core.serialization.property("metric_period", MetricPeriod.optional()),
+    metricPeriodMonthReset: core.serialization.property("metric_period_month_reset", MetricPeriodMonthReset.optional()),
     monthlyMeteredPriceId: core.serialization.property(
         "monthly_metered_price_id",
         core.serialization.string().optional(),
@@ -89,8 +83,8 @@ export declare namespace CreateEntitlementInBundleRequestBody {
         currency?: string | null;
         currency_prices?: CurrencyPriceRequestBody.Raw[] | null;
         feature_id: string;
-        metric_period?: CreateEntitlementInBundleRequestBodyMetricPeriod.Raw | null;
-        metric_period_month_reset?: CreateEntitlementInBundleRequestBodyMetricPeriodMonthReset.Raw | null;
+        metric_period?: MetricPeriod.Raw | null;
+        metric_period_month_reset?: MetricPeriodMonthReset.Raw | null;
         monthly_metered_price_id?: string | null;
         monthly_price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
         monthly_unit_price?: number | null;

@@ -11,6 +11,6 @@ export interface Rule {
     id: string;
     name: string;
     priority: number;
-    ruleType: Schematic.RuleRuleType;
+    ruleType: Schematic.RuleType;
     value: boolean;
 }

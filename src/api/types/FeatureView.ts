@@ -14,7 +14,6 @@ export interface FeatureView {
     icon: string;
     id: string;
     lifecyclePhase?: Schematic.FeatureLifecyclePhase;
-    maintainerId?: string;
     name: string;
     plans: Schematic.PreviewObject[];
     pluralName?: string;

@@ -5,8 +5,8 @@ import type * as Schematic from "../index";
 export interface CreateEntitlementReqCommon {
     creditConsumptionRate?: number;
     featureId: string;
-    metricPeriod?: Schematic.CreateEntitlementReqCommonMetricPeriod;
-    metricPeriodMonthReset?: Schematic.CreateEntitlementReqCommonMetricPeriodMonthReset;
+    metricPeriod?: Schematic.MetricPeriod;
+    metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;
     valueBool?: boolean;
     valueCreditId?: string;
     valueNumeric?: number;

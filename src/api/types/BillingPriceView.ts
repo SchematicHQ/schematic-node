@@ -12,6 +12,7 @@ export interface BillingPriceView {
     meterEventName?: string;
     meterEventPayloadKey?: string;
     meterId?: string;
+    nickname?: string;
     packageSize: number;
     price: number;
     priceDecimal?: string;

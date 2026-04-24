@@ -4,6 +4,7 @@
  * @example
  *     {
  *         q: "q",
+ *         eventSubtypes: ["event_subtypes"],
  *         limit: 1000000,
  *         offset: 1000000
  *     }

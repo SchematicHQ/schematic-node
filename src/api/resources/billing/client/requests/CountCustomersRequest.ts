@@ -5,6 +5,7 @@ import type * as Schematic from "../../../../index";
 /**
  * @example
  *     {
+ *         companyIds: ["company_ids"],
  *         name: "name",
  *         providerType: "orb",
  *         q: "q",

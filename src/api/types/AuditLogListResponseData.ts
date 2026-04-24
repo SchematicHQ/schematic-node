@@ -6,6 +6,7 @@ export interface AuditLogListResponseData {
     actorType: Schematic.ActorType;
     apiKeyId?: string;
     endedAt?: Date;
+    environment?: Schematic.EnvironmentResponseData;
     environmentId?: string;
     id: string;
     method: string;

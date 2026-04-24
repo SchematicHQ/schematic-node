@@ -11,8 +11,8 @@ import type * as Schematic from "../../../../index";
 export interface UpdateCompanyOverrideRequestBody {
     creditConsumptionRate?: number;
     expirationDate?: Date;
-    metricPeriod?: Schematic.UpdateCompanyOverrideRequestBodyMetricPeriod;
-    metricPeriodMonthReset?: Schematic.UpdateCompanyOverrideRequestBodyMetricPeriodMonthReset;
+    metricPeriod?: Schematic.MetricPeriod;
+    metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;
     note?: string;
     valueBool?: boolean;
     valueCreditId?: string;

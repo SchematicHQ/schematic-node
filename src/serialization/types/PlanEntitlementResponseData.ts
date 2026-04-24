@@ -12,6 +12,8 @@ import { EntitlementPriceBehavior } from "./EntitlementPriceBehavior";
 import { EntitlementValueType } from "./EntitlementValueType";
 import { EntityTraitDefinitionResponseData } from "./EntityTraitDefinitionResponseData";
 import { FeatureResponseData } from "./FeatureResponseData";
+import { MetricPeriod } from "./MetricPeriod";
+import { MetricPeriodMonthReset } from "./MetricPeriodMonthReset";
 import { PlanResponseData } from "./PlanResponseData";
 
 export const PlanEntitlementResponseData: core.serialization.ObjectSchema<
@@ -35,11 +37,8 @@ export const PlanEntitlementResponseData: core.serialization.ObjectSchema<
     id: core.serialization.string(),
     meteredMonthlyPrice: core.serialization.property("metered_monthly_price", BillingPriceView.optional()),
     meteredYearlyPrice: core.serialization.property("metered_yearly_price", BillingPriceView.optional()),
-    metricPeriod: core.serialization.property("metric_period", core.serialization.string().optional()),
-    metricPeriodMonthReset: core.serialization.property(
-        "metric_period_month_reset",
-        core.serialization.string().optional(),
-    ),
+    metricPeriod: core.serialization.property("metric_period", MetricPeriod.optional()),
+    metricPeriodMonthReset: core.serialization.property("metric_period_month_reset", MetricPeriodMonthReset.optional()),
     plan: PlanResponseData.optional(),
     planId: core.serialization.property("plan_id", core.serialization.string()),
     priceBehavior: core.serialization.property("price_behavior", EntitlementPriceBehavior.optional()),
@@ -69,8 +68,8 @@ export declare namespace PlanEntitlementResponseData {
         id: string;
         metered_monthly_price?: BillingPriceView.Raw | null;
         metered_yearly_price?: BillingPriceView.Raw | null;
-        metric_period?: string | null;
-        metric_period_month_reset?: string | null;
+        metric_period?: MetricPeriod.Raw | null;
+        metric_period_month_reset?: MetricPeriodMonthReset.Raw | null;
         plan?: PlanResponseData.Raw | null;
         plan_id: string;
         price_behavior?: EntitlementPriceBehavior.Raw | null;

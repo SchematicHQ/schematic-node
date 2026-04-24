@@ -5,6 +5,7 @@ import type * as Schematic from "../index";
 export interface ApiKeyResponseData {
     createdAt: Date;
     description?: string;
+    environment?: Schematic.EnvironmentResponseData;
     environmentId?: string;
     id: string;
     lastUsedAt?: Date;

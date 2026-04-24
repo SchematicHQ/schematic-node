@@ -36,6 +36,8 @@ export class FeaturesClient {
      * @example
      *     await client.features.listFeatures({
      *         booleanRequireEvent: true,
+     *         featureType: ["boolean"],
+     *         ids: ["ids"],
      *         planVersionId: "plan_version_id",
      *         q: "q",
      *         withoutCompanyOverrideFor: "without_company_override_for",
@@ -99,6 +101,11 @@ export class FeaturesClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -852,6 +859,8 @@ export class FeaturesClient {
      * @example
      *     await client.features.countFeatures({
      *         booleanRequireEvent: true,
+     *         featureType: ["boolean"],
+     *         ids: ["ids"],
      *         planVersionId: "plan_version_id",
      *         q: "q",
      *         withoutCompanyOverrideFor: "without_company_override_for",
@@ -915,6 +924,11 @@ export class FeaturesClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -1016,6 +1030,7 @@ export class FeaturesClient {
      * @example
      *     await client.features.listFlags({
      *         featureId: "feature_id",
+     *         ids: ["ids"],
      *         q: "q",
      *         limit: 1000000,
      *         offset: 1000000
@@ -1056,6 +1071,11 @@ export class FeaturesClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -1681,13 +1701,13 @@ export class FeaturesClient {
      *         rules: [{
      *                 conditionGroups: [{
      *                         conditions: [{
-     *                                 conditionType: "company",
+     *                                 conditionType: "base_plan",
      *                                 operator: "eq",
      *                                 resourceIds: ["resource_ids"]
      *                             }]
      *                     }],
      *                 conditions: [{
-     *                         conditionType: "company",
+     *                         conditionType: "base_plan",
      *                         operator: "eq",
      *                         resourceIds: ["resource_ids"]
      *                     }],
@@ -2228,6 +2248,7 @@ export class FeaturesClient {
      * @example
      *     await client.features.countFlags({
      *         featureId: "feature_id",
+     *         ids: ["ids"],
      *         q: "q",
      *         limit: 1000000,
      *         offset: 1000000
@@ -2268,6 +2289,11 @@ export class FeaturesClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

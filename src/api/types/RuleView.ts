@@ -12,7 +12,7 @@ export interface RuleView {
     id: string;
     name: string;
     priority: number;
-    ruleType: string;
+    ruleType: Schematic.RuleType;
     updatedAt: Date;
     value: boolean;
 }

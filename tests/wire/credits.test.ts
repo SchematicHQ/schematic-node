@@ -56,6 +56,7 @@ describe("CreditsClient", () => {
         server.mockEndpoint().get("/billing/credits").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.credits.listBillingCredits({
+            ids: ["ids"],
             name: "name",
             limit: 1000000,
             offset: 1000000,
@@ -202,6 +203,7 @@ describe("CreditsClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -264,6 +266,7 @@ describe("CreditsClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -435,6 +438,7 @@ describe("CreditsClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -492,6 +496,7 @@ describe("CreditsClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -619,6 +624,7 @@ describe("CreditsClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -680,6 +686,7 @@ describe("CreditsClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -1008,6 +1015,7 @@ describe("CreditsClient", () => {
             .build();
 
         const response = await client.credits.listCreditBundles({
+            ids: ["ids"],
             creditId: "credit_id",
             status: "active",
             bundleType: "fixed",
@@ -1197,6 +1205,7 @@ describe("CreditsClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -1210,6 +1219,7 @@ describe("CreditsClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -1261,6 +1271,7 @@ describe("CreditsClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -1274,6 +1285,7 @@ describe("CreditsClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -1463,6 +1475,7 @@ describe("CreditsClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -1476,6 +1489,7 @@ describe("CreditsClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -1521,6 +1535,7 @@ describe("CreditsClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -1534,6 +1549,7 @@ describe("CreditsClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -1649,6 +1665,7 @@ describe("CreditsClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -1662,6 +1679,7 @@ describe("CreditsClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -1711,6 +1729,7 @@ describe("CreditsClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -1724,6 +1743,7 @@ describe("CreditsClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -1997,6 +2017,7 @@ describe("CreditsClient", () => {
             .build();
 
         const response = await client.credits.countCreditBundles({
+            ids: ["ids"],
             creditId: "credit_id",
             status: "active",
             bundleType: "fixed",
@@ -2131,6 +2152,7 @@ describe("CreditsClient", () => {
             .build();
 
         const response = await client.credits.countBillingCredits({
+            ids: ["ids"],
             name: "name",
             limit: 1000000,
             offset: 1000000,
@@ -2266,6 +2288,7 @@ describe("CreditsClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -2324,6 +2347,7 @@ describe("CreditsClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -2484,6 +2508,7 @@ describe("CreditsClient", () => {
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     price_decimal: "price_decimal",
                     provider_type: "orb",
@@ -2547,6 +2572,7 @@ describe("CreditsClient", () => {
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
+                    nickname: "nickname",
                     price: 1000000,
                     priceDecimal: "price_decimal",
                     providerType: "orb",
@@ -3100,6 +3126,7 @@ describe("CreditsClient", () => {
 
         const response = await client.credits.countBillingCreditsGrants({
             creditId: "credit_id",
+            ids: ["ids"],
             limit: 1000000,
             offset: 1000000,
         });
@@ -3274,6 +3301,7 @@ describe("CreditsClient", () => {
 
         const response = await client.credits.listGrantsForCredit({
             creditId: "credit_id",
+            ids: ["ids"],
             limit: 1000000,
             offset: 1000000,
         });
@@ -3876,7 +3904,9 @@ describe("CreditsClient", () => {
 
         const response = await client.credits.listBillingPlanCreditGrants({
             creditId: "credit_id",
+            ids: ["ids"],
             planId: "plan_id",
+            planIds: ["plan_ids"],
             planVersionId: "plan_version_id",
             limit: 1000000,
             offset: 1000000,
@@ -5036,7 +5066,9 @@ describe("CreditsClient", () => {
 
         const response = await client.credits.countBillingPlanCreditGrants({
             creditId: "credit_id",
+            ids: ["ids"],
             planId: "plan_id",
+            planIds: ["plan_ids"],
             planVersionId: "plan_version_id",
             limit: 1000000,
             offset: 1000000,

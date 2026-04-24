@@ -3,6 +3,7 @@
 /**
  * @example
  *     {
+ *         ids: ["ids"],
  *         q: "q",
  *         webhookId: "webhook_id",
  *         limit: 1000000,

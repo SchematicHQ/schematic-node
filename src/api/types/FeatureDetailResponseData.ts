@@ -13,7 +13,8 @@ export interface FeatureDetailResponseData {
     icon: string;
     id: string;
     lifecyclePhase?: Schematic.FeatureLifecyclePhase;
-    maintainerId?: string;
+    maintainer?: Schematic.AccountMemberResponseData;
+    maintainerAccountMemberId?: string;
     name: string;
     plans: Schematic.PreviewObject[];
     pluralName?: string;

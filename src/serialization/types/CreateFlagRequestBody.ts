@@ -14,7 +14,10 @@ export const CreateFlagRequestBody: core.serialization.ObjectSchema<
     featureId: core.serialization.property("feature_id", core.serialization.string().optional()),
     flagType: core.serialization.property("flag_type", FlagType),
     key: core.serialization.string(),
-    maintainerId: core.serialization.property("maintainer_id", core.serialization.string().optional()),
+    maintainerAccountMemberId: core.serialization.property(
+        "maintainer_account_member_id",
+        core.serialization.string().optional(),
+    ),
     name: core.serialization.string(),
 });
 
@@ -25,7 +28,7 @@ export declare namespace CreateFlagRequestBody {
         feature_id?: string | null;
         flag_type: FlagType.Raw;
         key: string;
-        maintainer_id?: string | null;
+        maintainer_account_member_id?: string | null;
         name: string;
     }
 }

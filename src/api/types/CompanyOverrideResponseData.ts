@@ -12,8 +12,8 @@ export interface CompanyOverrideResponseData {
     feature?: Schematic.FeatureResponseData;
     featureId: string;
     id: string;
-    metricPeriod?: string;
-    metricPeriodMonthReset?: string;
+    metricPeriod?: Schematic.MetricPeriod;
+    metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;
     notes: Schematic.CompanyOverrideNoteResponseData[];
     ruleId?: string;
     ruleIdUsageExceeded?: string;

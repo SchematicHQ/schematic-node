@@ -12,7 +12,8 @@ export interface FlagDetailResponseData {
     id: string;
     key: string;
     lastCheckedAt?: Date;
-    maintainerId?: string;
+    maintainer?: Schematic.AccountMemberResponseData;
+    maintainerAccountMemberId?: string;
     name: string;
     rules: Schematic.RuleDetailResponseData[];
     updatedAt: Date;

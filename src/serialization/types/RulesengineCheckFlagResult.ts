@@ -3,9 +3,9 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
-import { RulesengineCheckFlagResultFeatureUsagePeriod } from "./RulesengineCheckFlagResultFeatureUsagePeriod";
-import { RulesengineCheckFlagResultRuleType } from "./RulesengineCheckFlagResultRuleType";
 import { RulesengineFeatureEntitlement } from "./RulesengineFeatureEntitlement";
+import { RulesengineMetricPeriod } from "./RulesengineMetricPeriod";
+import { RulesengineRuleType } from "./RulesengineRuleType";
 
 export const RulesengineCheckFlagResult: core.serialization.ObjectSchema<
     serializers.RulesengineCheckFlagResult.Raw,
@@ -17,16 +17,13 @@ export const RulesengineCheckFlagResult: core.serialization.ObjectSchema<
     featureAllocation: core.serialization.property("feature_allocation", core.serialization.number().optional()),
     featureUsage: core.serialization.property("feature_usage", core.serialization.number().optional()),
     featureUsageEvent: core.serialization.property("feature_usage_event", core.serialization.string().optional()),
-    featureUsagePeriod: core.serialization.property(
-        "feature_usage_period",
-        RulesengineCheckFlagResultFeatureUsagePeriod.optional(),
-    ),
+    featureUsagePeriod: core.serialization.property("feature_usage_period", RulesengineMetricPeriod.optional()),
     featureUsageResetAt: core.serialization.property("feature_usage_reset_at", core.serialization.date().optional()),
     flagId: core.serialization.property("flag_id", core.serialization.string().optional()),
     flagKey: core.serialization.property("flag_key", core.serialization.string()),
     reason: core.serialization.string(),
     ruleId: core.serialization.property("rule_id", core.serialization.string().optional()),
-    ruleType: core.serialization.property("rule_type", RulesengineCheckFlagResultRuleType.optional()),
+    ruleType: core.serialization.property("rule_type", RulesengineRuleType.optional()),
     userId: core.serialization.property("user_id", core.serialization.string().optional()),
     value: core.serialization.boolean(),
 });
@@ -39,13 +36,13 @@ export declare namespace RulesengineCheckFlagResult {
         feature_allocation?: number | null;
         feature_usage?: number | null;
         feature_usage_event?: string | null;
-        feature_usage_period?: RulesengineCheckFlagResultFeatureUsagePeriod.Raw | null;
+        feature_usage_period?: RulesengineMetricPeriod.Raw | null;
         feature_usage_reset_at?: string | null;
         flag_id?: string | null;
         flag_key: string;
         reason: string;
         rule_id?: string | null;
-        rule_type?: RulesengineCheckFlagResultRuleType.Raw | null;
+        rule_type?: RulesengineRuleType.Raw | null;
         user_id?: string | null;
         value: boolean;
     }

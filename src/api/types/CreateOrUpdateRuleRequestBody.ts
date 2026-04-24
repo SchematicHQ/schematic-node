@@ -8,6 +8,6 @@ export interface CreateOrUpdateRuleRequestBody {
     id?: string;
     name: string;
     priority: number;
-    ruleType?: Schematic.CreateOrUpdateRuleRequestBodyRuleType;
+    ruleType?: Schematic.RuleType;
     value: boolean;
 }

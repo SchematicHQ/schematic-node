@@ -4,8 +4,8 @@ import type * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
 import { EntitlementValueType } from "../../../../types/EntitlementValueType";
-import { UpdateCompanyOverrideRequestBodyMetricPeriod } from "../../types/UpdateCompanyOverrideRequestBodyMetricPeriod";
-import { UpdateCompanyOverrideRequestBodyMetricPeriodMonthReset } from "../../types/UpdateCompanyOverrideRequestBodyMetricPeriodMonthReset";
+import { MetricPeriod } from "../../../../types/MetricPeriod";
+import { MetricPeriodMonthReset } from "../../../../types/MetricPeriodMonthReset";
 
 export const UpdateCompanyOverrideRequestBody: core.serialization.Schema<
     serializers.UpdateCompanyOverrideRequestBody.Raw,
@@ -16,11 +16,8 @@ export const UpdateCompanyOverrideRequestBody: core.serialization.Schema<
         core.serialization.number().optional(),
     ),
     expirationDate: core.serialization.property("expiration_date", core.serialization.date().optional()),
-    metricPeriod: core.serialization.property("metric_period", UpdateCompanyOverrideRequestBodyMetricPeriod.optional()),
-    metricPeriodMonthReset: core.serialization.property(
-        "metric_period_month_reset",
-        UpdateCompanyOverrideRequestBodyMetricPeriodMonthReset.optional(),
-    ),
+    metricPeriod: core.serialization.property("metric_period", MetricPeriod.optional()),
+    metricPeriodMonthReset: core.serialization.property("metric_period_month_reset", MetricPeriodMonthReset.optional()),
     note: core.serialization.string().optional(),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
     valueCreditId: core.serialization.property("value_credit_id", core.serialization.string().optional()),
@@ -33,8 +30,8 @@ export declare namespace UpdateCompanyOverrideRequestBody {
     export interface Raw {
         credit_consumption_rate?: number | null;
         expiration_date?: string | null;
-        metric_period?: UpdateCompanyOverrideRequestBodyMetricPeriod.Raw | null;
-        metric_period_month_reset?: UpdateCompanyOverrideRequestBodyMetricPeriodMonthReset.Raw | null;
+        metric_period?: MetricPeriod.Raw | null;
+        metric_period_month_reset?: MetricPeriodMonthReset.Raw | null;
         note?: string | null;
         value_bool?: boolean | null;
         value_credit_id?: string | null;

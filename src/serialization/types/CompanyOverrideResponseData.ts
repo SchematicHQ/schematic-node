@@ -8,6 +8,8 @@ import { CompanyOverrideNoteResponseData } from "./CompanyOverrideNoteResponseDa
 import { EntitlementValueType } from "./EntitlementValueType";
 import { EntityTraitDefinitionResponseData } from "./EntityTraitDefinitionResponseData";
 import { FeatureResponseData } from "./FeatureResponseData";
+import { MetricPeriod } from "./MetricPeriod";
+import { MetricPeriodMonthReset } from "./MetricPeriodMonthReset";
 
 export const CompanyOverrideResponseData: core.serialization.ObjectSchema<
     serializers.CompanyOverrideResponseData.Raw,
@@ -22,11 +24,8 @@ export const CompanyOverrideResponseData: core.serialization.ObjectSchema<
     feature: FeatureResponseData.optional(),
     featureId: core.serialization.property("feature_id", core.serialization.string()),
     id: core.serialization.string(),
-    metricPeriod: core.serialization.property("metric_period", core.serialization.string().optional()),
-    metricPeriodMonthReset: core.serialization.property(
-        "metric_period_month_reset",
-        core.serialization.string().optional(),
-    ),
+    metricPeriod: core.serialization.property("metric_period", MetricPeriod.optional()),
+    metricPeriodMonthReset: core.serialization.property("metric_period_month_reset", MetricPeriodMonthReset.optional()),
     notes: core.serialization.list(CompanyOverrideNoteResponseData),
     ruleId: core.serialization.property("rule_id", core.serialization.string().optional()),
     ruleIdUsageExceeded: core.serialization.property("rule_id_usage_exceeded", core.serialization.string().optional()),
@@ -49,8 +48,8 @@ export declare namespace CompanyOverrideResponseData {
         feature?: FeatureResponseData.Raw | null;
         feature_id: string;
         id: string;
-        metric_period?: string | null;
-        metric_period_month_reset?: string | null;
+        metric_period?: MetricPeriod.Raw | null;
+        metric_period_month_reset?: MetricPeriodMonthReset.Raw | null;
         notes: CompanyOverrideNoteResponseData.Raw[];
         rule_id?: string | null;
         rule_id_usage_exceeded?: string | null;

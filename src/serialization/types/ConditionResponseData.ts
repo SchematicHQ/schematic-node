@@ -3,7 +3,11 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { ComparableOperator } from "./ComparableOperator";
+import { ConditionType } from "./ConditionType";
 import { EntityType } from "./EntityType";
+import { MetricPeriod } from "./MetricPeriod";
+import { MetricPeriodMonthReset } from "./MetricPeriodMonthReset";
 
 export const ConditionResponseData: core.serialization.ObjectSchema<
     serializers.ConditionResponseData.Raw,
@@ -12,7 +16,7 @@ export const ConditionResponseData: core.serialization.ObjectSchema<
     accountId: core.serialization.property("account_id", core.serialization.string()),
     comparisonTraitId: core.serialization.property("comparison_trait_id", core.serialization.string().optional()),
     conditionGroupId: core.serialization.property("condition_group_id", core.serialization.string().optional()),
-    conditionType: core.serialization.property("condition_type", core.serialization.string()),
+    conditionType: core.serialization.property("condition_type", ConditionType),
     consumptionRate: core.serialization.property("consumption_rate", core.serialization.number().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     creditId: core.serialization.property("credit_id", core.serialization.string().optional()),
@@ -20,13 +24,10 @@ export const ConditionResponseData: core.serialization.ObjectSchema<
     eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
     flagId: core.serialization.property("flag_id", core.serialization.string().optional()),
     id: core.serialization.string(),
-    metricPeriod: core.serialization.property("metric_period", core.serialization.string().optional()),
-    metricPeriodMonthReset: core.serialization.property(
-        "metric_period_month_reset",
-        core.serialization.string().optional(),
-    ),
+    metricPeriod: core.serialization.property("metric_period", MetricPeriod.optional()),
+    metricPeriodMonthReset: core.serialization.property("metric_period_month_reset", MetricPeriodMonthReset.optional()),
     metricValue: core.serialization.property("metric_value", core.serialization.number().optional()),
-    operator: core.serialization.string(),
+    operator: ComparableOperator,
     resourceUnspecifiedIds: core.serialization.property(
         "resource_unspecified_ids",
         core.serialization.list(core.serialization.string()),
@@ -46,7 +47,7 @@ export declare namespace ConditionResponseData {
         account_id: string;
         comparison_trait_id?: string | null;
         condition_group_id?: string | null;
-        condition_type: string;
+        condition_type: ConditionType.Raw;
         consumption_rate?: number | null;
         created_at: string;
         credit_id?: string | null;
@@ -54,10 +55,10 @@ export declare namespace ConditionResponseData {
         event_subtype?: string | null;
         flag_id?: string | null;
         id: string;
-        metric_period?: string | null;
-        metric_period_month_reset?: string | null;
+        metric_period?: MetricPeriod.Raw | null;
+        metric_period_month_reset?: MetricPeriodMonthReset.Raw | null;
         metric_value?: number | null;
-        operator: string;
+        operator: ComparableOperator.Raw;
         resource_unspecified_ids: string[];
         rule_id: string;
         trait_entity_type?: EntityType.Raw | null;

@@ -7,8 +7,9 @@ import { BillingLinkedResourceResponseData } from "./BillingLinkedResourceRespon
 import { BillingPlanCreditGrantResponseData } from "./BillingPlanCreditGrantResponseData";
 import { BillingPriceResponseData } from "./BillingPriceResponseData";
 import { BillingProductDetailResponseData } from "./BillingProductDetailResponseData";
+import { BillingProviderType } from "./BillingProviderType";
 import { ChargeType } from "./ChargeType";
-import { FeatureDetailResponseData } from "./FeatureDetailResponseData";
+import { FeatureInPlanResponseData } from "./FeatureInPlanResponseData";
 import { PlanCurrencyPricesResponseData } from "./PlanCurrencyPricesResponseData";
 import { PlanIcon } from "./PlanIcon";
 import { PlanType } from "./PlanType";
@@ -29,7 +30,7 @@ export const PlanDetailResponseData: core.serialization.ObjectSchema<
     companyCount: core.serialization.property("company_count", core.serialization.number()),
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
     companyName: core.serialization.property("company_name", core.serialization.string().optional()),
-    controlledBy: core.serialization.property("controlled_by", core.serialization.string()),
+    controlledBy: core.serialization.property("controlled_by", BillingProviderType),
     copiedFromPlanId: core.serialization.property("copied_from_plan_id", core.serialization.string().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     currencyPrices: core.serialization.property(
@@ -38,7 +39,7 @@ export const PlanDetailResponseData: core.serialization.ObjectSchema<
     ),
     description: core.serialization.string(),
     draftVersion: core.serialization.property("draft_version", PlanVersionResponseData.optional()),
-    features: core.serialization.list(FeatureDetailResponseData),
+    features: core.serialization.list(FeatureInPlanResponseData),
     icon: PlanIcon,
     id: core.serialization.string(),
     includedCreditGrants: core.serialization.property(
@@ -68,13 +69,13 @@ export declare namespace PlanDetailResponseData {
         company_count: number;
         company_id?: string | null;
         company_name?: string | null;
-        controlled_by: string;
+        controlled_by: BillingProviderType.Raw;
         copied_from_plan_id?: string | null;
         created_at: string;
         currency_prices: PlanCurrencyPricesResponseData.Raw[];
         description: string;
         draft_version?: PlanVersionResponseData.Raw | null;
-        features: FeatureDetailResponseData.Raw[];
+        features: FeatureInPlanResponseData.Raw[];
         icon: PlanIcon.Raw;
         id: string;
         included_credit_grants?: BillingPlanCreditGrantResponseData.Raw[] | null;

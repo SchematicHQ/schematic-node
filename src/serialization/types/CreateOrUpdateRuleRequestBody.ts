@@ -5,7 +5,7 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 import { CreateOrUpdateConditionGroupRequestBody } from "./CreateOrUpdateConditionGroupRequestBody";
 import { CreateOrUpdateConditionRequestBody } from "./CreateOrUpdateConditionRequestBody";
-import { CreateOrUpdateRuleRequestBodyRuleType } from "./CreateOrUpdateRuleRequestBodyRuleType";
+import { RuleType } from "./RuleType";
 
 export const CreateOrUpdateRuleRequestBody: core.serialization.ObjectSchema<
     serializers.CreateOrUpdateRuleRequestBody.Raw,
@@ -19,7 +19,7 @@ export const CreateOrUpdateRuleRequestBody: core.serialization.ObjectSchema<
     id: core.serialization.string().optional(),
     name: core.serialization.string(),
     priority: core.serialization.number(),
-    ruleType: core.serialization.property("rule_type", CreateOrUpdateRuleRequestBodyRuleType.optional()),
+    ruleType: core.serialization.property("rule_type", RuleType.optional()),
     value: core.serialization.boolean(),
 });
 
@@ -30,7 +30,7 @@ export declare namespace CreateOrUpdateRuleRequestBody {
         id?: string | null;
         name: string;
         priority: number;
-        rule_type?: CreateOrUpdateRuleRequestBodyRuleType.Raw | null;
+        rule_type?: RuleType.Raw | null;
         value: boolean;
     }
 }

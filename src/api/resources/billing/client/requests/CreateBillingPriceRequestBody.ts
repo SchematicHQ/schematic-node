@@ -26,6 +26,7 @@ export interface CreateBillingPriceRequestBody {
     interval: string;
     isActive: boolean;
     meterId?: string;
+    nickname?: string;
     packageSize?: number;
     price: number;
     priceDecimal?: string;

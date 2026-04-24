@@ -9,8 +9,8 @@ export interface WasmFeatureEntitlement {
     softLimit?: number;
     usage?: number;
     eventName?: string;
-    metricPeriod?: Schematic.RulesengineFeatureEntitlementMetricPeriod;
-    monthReset?: Schematic.RulesengineFeatureEntitlementMonthReset;
+    metricPeriod?: Schematic.RulesengineMetricPeriod;
+    monthReset?: Schematic.RulesengineMetricPeriodMonthReset;
     metricResetAt?: string;
     creditId?: string;
     creditTotal?: number;
@@ -27,7 +27,7 @@ export interface WasmCheckFlagResult {
     flagKey?: string;
     companyId?: string;
     userId?: string;
-    ruleType?: Schematic.RulesengineCheckFlagResultRuleType;
+    ruleType?: Schematic.RulesengineRuleType;
     err?: string;
     entitlement?: WasmFeatureEntitlement;
     featureAllocation?: number;

@@ -215,6 +215,7 @@ describe("EventsClient", () => {
 
         const response = await client.events.getEventSummaries({
             q: "q",
+            eventSubtypes: ["event_subtypes"],
             limit: 1000000,
             offset: 1000000,
         });
@@ -347,6 +348,7 @@ describe("EventsClient", () => {
         const response = await client.events.listEvents({
             companyId: "company_id",
             eventSubtype: "event_subtype",
+            eventTypes: ["flag_check"],
             flagId: "flag_id",
             userId: "user_id",
             limit: 1000000,

@@ -4,6 +4,7 @@
  * @example
  *     {
  *         featureId: "feature_id",
+ *         ids: ["ids"],
  *         q: "q",
  *         limit: 1000000,
  *         offset: 1000000

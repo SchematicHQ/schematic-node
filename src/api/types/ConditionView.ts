@@ -9,7 +9,7 @@ export interface ConditionView {
     comparisonTrait?: Schematic.EntityTraitDefinitionResponseData;
     comparisonTraitId?: string;
     conditionGroupId?: string;
-    conditionType: string;
+    conditionType: Schematic.ConditionType;
     consumptionRate?: number;
     createdAt: Date;
     creditId?: string;
@@ -17,10 +17,10 @@ export interface ConditionView {
     eventSubtype?: string;
     flagId?: string;
     id: string;
-    metricPeriod?: string;
-    metricPeriodMonthReset?: string;
+    metricPeriod?: Schematic.MetricPeriod;
+    metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;
     metricValue?: number;
-    operator: string;
+    operator: Schematic.ComparableOperator;
     planVersions: Schematic.GenericPreviewObject[];
     plans: Schematic.GenericPreviewObject[];
     resourceUnspecifiedIds: string[];

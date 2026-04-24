@@ -27,7 +27,6 @@ export const FeatureView: core.serialization.ObjectSchema<serializers.FeatureVie
         icon: core.serialization.string(),
         id: core.serialization.string(),
         lifecyclePhase: core.serialization.property("lifecycle_phase", FeatureLifecyclePhase.optional()),
-        maintainerId: core.serialization.property("maintainer_id", core.serialization.string().optional()),
         name: core.serialization.string(),
         plans: core.serialization.list(PreviewObject),
         pluralName: core.serialization.property("plural_name", core.serialization.string().optional()),
@@ -50,7 +49,6 @@ export declare namespace FeatureView {
         icon: string;
         id: string;
         lifecycle_phase?: FeatureLifecyclePhase.Raw | null;
-        maintainer_id?: string | null;
         name: string;
         plans: PreviewObject.Raw[];
         plural_name?: string | null;

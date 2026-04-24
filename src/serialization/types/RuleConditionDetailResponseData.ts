@@ -3,8 +3,12 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { ComparableOperator } from "./ComparableOperator";
+import { ConditionType } from "./ConditionType";
 import { EntityTraitDefinitionResponseData } from "./EntityTraitDefinitionResponseData";
 import { EntityType } from "./EntityType";
+import { MetricPeriod } from "./MetricPeriod";
+import { MetricPeriodMonthReset } from "./MetricPeriodMonthReset";
 import { PreviewObjectResponseData } from "./PreviewObjectResponseData";
 
 export const RuleConditionDetailResponseData: core.serialization.ObjectSchema<
@@ -14,19 +18,16 @@ export const RuleConditionDetailResponseData: core.serialization.ObjectSchema<
     comparisonTrait: core.serialization.property("comparison_trait", EntityTraitDefinitionResponseData.optional()),
     comparisonTraitId: core.serialization.property("comparison_trait_id", core.serialization.string().optional()),
     conditionGroupId: core.serialization.property("condition_group_id", core.serialization.string().optional()),
-    conditionType: core.serialization.property("condition_type", core.serialization.string()),
+    conditionType: core.serialization.property("condition_type", ConditionType),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
     flagId: core.serialization.property("flag_id", core.serialization.string().optional()),
     id: core.serialization.string(),
-    metricPeriod: core.serialization.property("metric_period", core.serialization.string().optional()),
-    metricPeriodMonthReset: core.serialization.property(
-        "metric_period_month_reset",
-        core.serialization.string().optional(),
-    ),
+    metricPeriod: core.serialization.property("metric_period", MetricPeriod.optional()),
+    metricPeriodMonthReset: core.serialization.property("metric_period_month_reset", MetricPeriodMonthReset.optional()),
     metricValue: core.serialization.property("metric_value", core.serialization.number().optional()),
-    operator: core.serialization.string(),
+    operator: ComparableOperator,
     resourceIds: core.serialization.property("resource_ids", core.serialization.list(core.serialization.string())),
     resources: core.serialization.list(PreviewObjectResponseData),
     ruleId: core.serialization.property("rule_id", core.serialization.string()),
@@ -42,16 +43,16 @@ export declare namespace RuleConditionDetailResponseData {
         comparison_trait?: EntityTraitDefinitionResponseData.Raw | null;
         comparison_trait_id?: string | null;
         condition_group_id?: string | null;
-        condition_type: string;
+        condition_type: ConditionType.Raw;
         created_at: string;
         environment_id: string;
         event_subtype?: string | null;
         flag_id?: string | null;
         id: string;
-        metric_period?: string | null;
-        metric_period_month_reset?: string | null;
+        metric_period?: MetricPeriod.Raw | null;
+        metric_period_month_reset?: MetricPeriodMonthReset.Raw | null;
         metric_value?: number | null;
-        operator: string;
+        operator: ComparableOperator.Raw;
         resource_ids: string[];
         resources: PreviewObjectResponseData.Raw[];
         rule_id: string;

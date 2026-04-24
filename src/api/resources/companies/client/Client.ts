@@ -36,13 +36,18 @@ export class CompaniesClient {
      *
      * @example
      *     await client.companies.listCompanies({
+     *         creditTypeIds: ["credit_type_ids"],
      *         hasScheduledDowngrade: true,
+     *         ids: ["ids"],
      *         monetizedSubscriptions: true,
      *         planId: "plan_id",
+     *         planIds: ["plan_ids"],
      *         planVersionId: "plan_version_id",
      *         q: "q",
      *         sortOrderColumn: "sort_order_column",
      *         sortOrderDirection: "asc",
+     *         subscriptionStatuses: ["active"],
+     *         subscriptionTypes: ["free"],
      *         withEntitlementFor: "with_entitlement_for",
      *         withoutFeatureOverrideFor: "without_feature_override_for",
      *         withoutPlan: true,
@@ -138,6 +143,11 @@ export class CompaniesClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -528,6 +538,11 @@ export class CompaniesClient {
             method: "DELETE",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -628,13 +643,18 @@ export class CompaniesClient {
      *
      * @example
      *     await client.companies.countCompanies({
+     *         creditTypeIds: ["credit_type_ids"],
      *         hasScheduledDowngrade: true,
+     *         ids: ["ids"],
      *         monetizedSubscriptions: true,
      *         planId: "plan_id",
+     *         planIds: ["plan_ids"],
      *         planVersionId: "plan_version_id",
      *         q: "q",
      *         sortOrderColumn: "sort_order_column",
      *         sortOrderDirection: "asc",
+     *         subscriptionStatuses: ["active"],
+     *         subscriptionTypes: ["free"],
      *         withEntitlementFor: "with_entitlement_for",
      *         withoutFeatureOverrideFor: "without_feature_override_for",
      *         withoutPlan: true,
@@ -730,6 +750,11 @@ export class CompaniesClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -1141,6 +1166,11 @@ export class CompaniesClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -1270,6 +1300,11 @@ export class CompaniesClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -1642,6 +1677,7 @@ export class CompaniesClient {
      * @example
      *     await client.companies.getActiveCompanySubscription({
      *         companyId: "company_id",
+     *         companyIds: ["company_ids"],
      *         limit: 1000000,
      *         offset: 1000000
      *     })
@@ -1680,6 +1716,11 @@ export class CompaniesClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -1917,6 +1958,7 @@ export class CompaniesClient {
      * @example
      *     await client.companies.listEntityKeyDefinitions({
      *         entityType: "company",
+     *         ids: ["ids"],
      *         q: "q",
      *         limit: 1000000,
      *         offset: 1000000
@@ -1960,6 +2002,11 @@ export class CompaniesClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -2061,6 +2108,7 @@ export class CompaniesClient {
      * @example
      *     await client.companies.countEntityKeyDefinitions({
      *         entityType: "company",
+     *         ids: ["ids"],
      *         q: "q",
      *         limit: 1000000,
      *         offset: 1000000
@@ -2104,6 +2152,11 @@ export class CompaniesClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -2205,8 +2258,10 @@ export class CompaniesClient {
      * @example
      *     await client.companies.listEntityTraitDefinitions({
      *         entityType: "company",
+     *         ids: ["ids"],
      *         q: "q",
      *         traitType: "boolean",
+     *         traitTypes: ["boolean"],
      *         limit: 1000000,
      *         offset: 1000000
      *     })
@@ -2258,6 +2313,11 @@ export class CompaniesClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -2764,8 +2824,10 @@ export class CompaniesClient {
      * @example
      *     await client.companies.countEntityTraitDefinitions({
      *         entityType: "company",
+     *         ids: ["ids"],
      *         q: "q",
      *         traitType: "boolean",
+     *         traitTypes: ["boolean"],
      *         limit: 1000000,
      *         offset: 1000000
      *     })
@@ -2817,6 +2879,11 @@ export class CompaniesClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -2962,6 +3029,11 @@ export class CompaniesClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -3065,6 +3137,8 @@ export class CompaniesClient {
      *         action: "checkout",
      *         basePlanAction: "fallback",
      *         companyId: "company_id",
+     *         companyIds: ["company_ids"],
+     *         planIds: ["plan_ids"],
      *         limit: 1000000,
      *         offset: 1000000
      *     })
@@ -3114,6 +3188,11 @@ export class CompaniesClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -3335,8 +3414,10 @@ export class CompaniesClient {
      *
      * @example
      *     await client.companies.listPlanTraits({
+     *         ids: ["ids"],
      *         planId: "plan_id",
      *         traitId: "trait_id",
+     *         traitIds: ["trait_ids"],
      *         limit: 1000000,
      *         offset: 1000000
      *     })
@@ -3377,6 +3458,11 @@ export class CompaniesClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -3463,141 +3549,6 @@ export class CompaniesClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/plan-traits");
-    }
-
-    /**
-     * @param {Schematic.CreatePlanTraitRequestBody} request
-     * @param {CompaniesClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Schematic.BadRequestError}
-     * @throws {@link Schematic.UnauthorizedError}
-     * @throws {@link Schematic.ForbiddenError}
-     * @throws {@link Schematic.NotFoundError}
-     * @throws {@link Schematic.InternalServerError}
-     *
-     * @example
-     *     await client.companies.createPlanTrait({
-     *         planId: "plan_id",
-     *         traitId: "trait_id",
-     *         traitValue: "trait_value"
-     *     })
-     */
-    public createPlanTrait(
-        request: Schematic.CreatePlanTraitRequestBody,
-        requestOptions?: CompaniesClient.RequestOptions,
-    ): core.HttpResponsePromise<Schematic.CreatePlanTraitResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__createPlanTrait(request, requestOptions));
-    }
-
-    private async __createPlanTrait(
-        request: Schematic.CreatePlanTraitRequestBody,
-        requestOptions?: CompaniesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Schematic.CreatePlanTraitResponse>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.SchematicEnvironment.Default,
-                "plan-traits",
-            ),
-            method: "POST",
-            headers: _headers,
-            contentType: "application/json",
-            queryParameters: requestOptions?.queryParams,
-            requestType: "json",
-            body: serializers.CreatePlanTraitRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return {
-                data: serializers.CreatePlanTraitResponse.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Schematic.BadRequestError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                case 401:
-                    throw new Schematic.UnauthorizedError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                case 403:
-                    throw new Schematic.ForbiddenError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                case 404:
-                    throw new Schematic.NotFoundError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                case 500:
-                    throw new Schematic.InternalServerError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.SchematicError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/plan-traits");
     }
 
     /**
@@ -3714,276 +3665,6 @@ export class CompaniesClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/plan-traits/{plan_trait_id}");
-    }
-
-    /**
-     * @param {string} plan_trait_id - plan_trait_id
-     * @param {Schematic.UpdatePlanTraitRequestBody} request
-     * @param {CompaniesClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Schematic.BadRequestError}
-     * @throws {@link Schematic.UnauthorizedError}
-     * @throws {@link Schematic.ForbiddenError}
-     * @throws {@link Schematic.NotFoundError}
-     * @throws {@link Schematic.InternalServerError}
-     *
-     * @example
-     *     await client.companies.updatePlanTrait("plan_trait_id", {
-     *         planId: "plan_id",
-     *         traitValue: "trait_value"
-     *     })
-     */
-    public updatePlanTrait(
-        plan_trait_id: string,
-        request: Schematic.UpdatePlanTraitRequestBody,
-        requestOptions?: CompaniesClient.RequestOptions,
-    ): core.HttpResponsePromise<Schematic.UpdatePlanTraitResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__updatePlanTrait(plan_trait_id, request, requestOptions));
-    }
-
-    private async __updatePlanTrait(
-        plan_trait_id: string,
-        request: Schematic.UpdatePlanTraitRequestBody,
-        requestOptions?: CompaniesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Schematic.UpdatePlanTraitResponse>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.SchematicEnvironment.Default,
-                `plan-traits/${core.url.encodePathParam(plan_trait_id)}`,
-            ),
-            method: "PUT",
-            headers: _headers,
-            contentType: "application/json",
-            queryParameters: requestOptions?.queryParams,
-            requestType: "json",
-            body: serializers.UpdatePlanTraitRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return {
-                data: serializers.UpdatePlanTraitResponse.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Schematic.BadRequestError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                case 401:
-                    throw new Schematic.UnauthorizedError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                case 403:
-                    throw new Schematic.ForbiddenError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                case 404:
-                    throw new Schematic.NotFoundError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                case 500:
-                    throw new Schematic.InternalServerError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.SchematicError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/plan-traits/{plan_trait_id}");
-    }
-
-    /**
-     * @param {string} plan_trait_id - plan_trait_id
-     * @param {CompaniesClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link Schematic.BadRequestError}
-     * @throws {@link Schematic.UnauthorizedError}
-     * @throws {@link Schematic.ForbiddenError}
-     * @throws {@link Schematic.NotFoundError}
-     * @throws {@link Schematic.InternalServerError}
-     *
-     * @example
-     *     await client.companies.deletePlanTrait("plan_trait_id")
-     */
-    public deletePlanTrait(
-        plan_trait_id: string,
-        requestOptions?: CompaniesClient.RequestOptions,
-    ): core.HttpResponsePromise<Schematic.DeletePlanTraitResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__deletePlanTrait(plan_trait_id, requestOptions));
-    }
-
-    private async __deletePlanTrait(
-        plan_trait_id: string,
-        requestOptions?: CompaniesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Schematic.DeletePlanTraitResponse>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.SchematicEnvironment.Default,
-                `plan-traits/${core.url.encodePathParam(plan_trait_id)}`,
-            ),
-            method: "DELETE",
-            headers: _headers,
-            queryParameters: requestOptions?.queryParams,
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return {
-                data: serializers.DeletePlanTraitResponse.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new Schematic.BadRequestError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                case 401:
-                    throw new Schematic.UnauthorizedError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                case 403:
-                    throw new Schematic.ForbiddenError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                case 404:
-                    throw new Schematic.NotFoundError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                case 500:
-                    throw new Schematic.InternalServerError(
-                        serializers.ApiError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.SchematicError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "DELETE",
-            "/plan-traits/{plan_trait_id}",
-        );
     }
 
     /**
@@ -4136,8 +3817,10 @@ export class CompaniesClient {
      *
      * @example
      *     await client.companies.countPlanTraits({
+     *         ids: ["ids"],
      *         planId: "plan_id",
      *         traitId: "trait_id",
+     *         traitIds: ["trait_ids"],
      *         limit: 1000000,
      *         offset: 1000000
      *     })
@@ -4178,6 +3861,11 @@ export class CompaniesClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -4415,6 +4103,7 @@ export class CompaniesClient {
      * @example
      *     await client.companies.listUsers({
      *         companyId: "company_id",
+     *         ids: ["ids"],
      *         planId: "plan_id",
      *         q: "q",
      *         limit: 1000000,
@@ -4457,6 +4146,11 @@ export class CompaniesClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -4937,6 +4631,7 @@ export class CompaniesClient {
      * @example
      *     await client.companies.countUsers({
      *         companyId: "company_id",
+     *         ids: ["ids"],
      *         planId: "plan_id",
      *         q: "q",
      *         limit: 1000000,
@@ -4979,6 +4674,11 @@ export class CompaniesClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -5384,6 +5084,11 @@ export class CompaniesClient {
             method: "GET",
             headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

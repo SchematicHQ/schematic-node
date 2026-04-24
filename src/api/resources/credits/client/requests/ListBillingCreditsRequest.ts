@@ -3,6 +3,7 @@
 /**
  * @example
  *     {
+ *         ids: ["ids"],
  *         name: "name",
  *         limit: 1000000,
  *         offset: 1000000

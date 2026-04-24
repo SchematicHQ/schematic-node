@@ -15,8 +15,8 @@ export interface CreateCompanyOverrideRequestBody {
     creditConsumptionRate?: number;
     expirationDate?: Date;
     featureId: string;
-    metricPeriod?: Schematic.CreateCompanyOverrideRequestBodyMetricPeriod;
-    metricPeriodMonthReset?: Schematic.CreateCompanyOverrideRequestBodyMetricPeriodMonthReset;
+    metricPeriod?: Schematic.MetricPeriod;
+    metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;
     note?: string;
     valueBool?: boolean;
     valueCreditId?: string;

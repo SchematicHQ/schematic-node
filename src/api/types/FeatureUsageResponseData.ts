@@ -33,7 +33,7 @@ export interface FeatureUsageResponseData {
     /** Source of the entitlement (plan or company_override) */
     entitlementSource?: string;
     entitlementType: Schematic.EntitlementType;
-    feature?: Schematic.FeatureDetailResponseData;
+    feature?: Schematic.FeatureInPlanResponseData;
     /** Whether a valid allocation exists */
     hasValidAllocation?: boolean;
     /** Whether this is an unlimited allocation */
@@ -41,14 +41,14 @@ export interface FeatureUsageResponseData {
     /** The time at which the metric will reset. */
     metricResetAt?: Date;
     /** If the period is current_month, when the month resets. */
-    monthReset?: string;
+    monthReset?: Schematic.MetricPeriodMonthReset;
     monthlyUsageBasedPrice?: Schematic.BillingPriceView;
     /** Amount of usage exceeding soft limit (overage pricing only) */
     overuse?: number;
     /** Percentage of allocation consumed (0-100+) */
     percentUsed?: number;
     /** The period over which usage is measured. */
-    period?: string;
+    period?: Schematic.MetricPeriod;
     plan?: Schematic.PlanResponseData;
     planEntitlement?: Schematic.PlanEntitlementResponseData;
     priceBehavior?: Schematic.EntitlementPriceBehavior;

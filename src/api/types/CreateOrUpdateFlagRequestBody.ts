@@ -9,6 +9,6 @@ export interface CreateOrUpdateFlagRequestBody {
     flagType: Schematic.FlagType;
     id?: string;
     key: string;
-    maintainerId?: string;
+    maintainerAccountMemberId?: string;
     name: string;
 }

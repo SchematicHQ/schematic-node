@@ -4,8 +4,12 @@
  * @example
  *     {
  *         featureId: "feature_id",
+ *         featureIds: ["feature_ids"],
+ *         ids: ["ids"],
  *         planId: "plan_id",
+ *         planIds: ["plan_ids"],
  *         planVersionId: "plan_version_id",
+ *         planVersionIds: ["plan_version_ids"],
  *         q: "q",
  *         withMeteredProducts: true,
  *         limit: 1000000,

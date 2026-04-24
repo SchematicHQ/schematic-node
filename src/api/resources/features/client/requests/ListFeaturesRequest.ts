@@ -6,6 +6,8 @@ import type * as Schematic from "../../../../index";
  * @example
  *     {
  *         booleanRequireEvent: true,
+ *         featureType: ["boolean"],
+ *         ids: ["ids"],
  *         planVersionId: "plan_version_id",
  *         q: "q",
  *         withoutCompanyOverrideFor: "without_company_override_for",
