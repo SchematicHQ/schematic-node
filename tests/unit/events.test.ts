@@ -1,7 +1,7 @@
 /* eslint @typescript-eslint/no-explicit-any: 0 */
 
 import { EventBuffer } from "../../src/events";
-import { EventsClient } from "../../src/api/resources/events/client/Client";
+import { EventCaptureClient } from "../../src/event-capture";
 import { CreateEventRequestBody } from "../../src/api";
 import { Logger } from "../../src/logger";
 
@@ -10,19 +10,12 @@ process.env.NODE_ENV = "test";
 jest.useFakeTimers();
 
 describe("EventBuffer", () => {
-    let mockEventsApi: jest.Mocked<EventsClient>;
+    let mockCaptureClient: jest.Mocked<EventCaptureClient>;
     let mockLogger: jest.Mocked<Logger>;
 
     beforeEach(() => {
-        const mockResponse = {
-            data: {
-                events: [],
-            },
-            params: {},
-        };
-
-        mockEventsApi = {
-            createEventBatch: jest.fn().mockResolvedValue(mockResponse),
+        mockCaptureClient = {
+            sendBatch: jest.fn().mockResolvedValue(undefined),
         } as any;
 
         mockLogger = {
@@ -53,7 +46,7 @@ describe("EventBuffer", () => {
             eventType: "track",
             sentAt: new Date(),
         };
-        const buffer = new EventBuffer(mockEventsApi, {
+        const buffer = new EventBuffer(mockCaptureClient, {
             logger: mockLogger,
             maxSize: 1, // Set max size to 1 item
             interval: 1000,
@@ -61,29 +54,25 @@ describe("EventBuffer", () => {
 
         await buffer.push(event1);
 
-        expect(mockEventsApi.createEventBatch).not.toHaveBeenCalled();
+        expect(mockCaptureClient.sendBatch).not.toHaveBeenCalled();
 
         // Force first flush by exceeding max size
         await buffer.push(event2);
 
-        expect(mockEventsApi.createEventBatch).toHaveBeenCalledTimes(1);
-        expect(mockEventsApi.createEventBatch).toHaveBeenCalledWith({
-            events: [event1],
-        });
+        expect(mockCaptureClient.sendBatch).toHaveBeenCalledTimes(1);
+        expect(mockCaptureClient.sendBatch).toHaveBeenCalledWith([event1]);
 
         // Wait for the next periodic flush
         jest.advanceTimersByTime(1001);
-        expect(mockEventsApi.createEventBatch).toHaveBeenCalledTimes(2);
-        expect(mockEventsApi.createEventBatch).toHaveBeenCalledWith({
-            events: [event2],
-        });
+        expect(mockCaptureClient.sendBatch).toHaveBeenCalledTimes(2);
+        expect(mockCaptureClient.sendBatch).toHaveBeenCalledWith([event2]);
     });
 
     // The rest of the tests remain unchanged as they don't directly test the maxSize behavior
     it("should log error if flushing fails", async () => {
-        mockEventsApi.createEventBatch.mockRejectedValue(new Error("Flush error"));
+        mockCaptureClient.sendBatch.mockRejectedValue(new Error("Flush error"));
 
-        const buffer = new EventBuffer(mockEventsApi, {
+        const buffer = new EventBuffer(mockCaptureClient, {
             logger: mockLogger,
             interval: 1000,
             maxRetries: 1,
@@ -113,7 +102,7 @@ describe("EventBuffer", () => {
     });
 
     it("should stop accepting events after stop is called", async () => {
-        const buffer = new EventBuffer(mockEventsApi, {
+        const buffer = new EventBuffer(mockCaptureClient, {
             interval: 1000,
             logger: mockLogger,
         });
@@ -134,11 +123,11 @@ describe("EventBuffer", () => {
         await buffer.push(event);
 
         expect(mockLogger.error).toHaveBeenCalledWith("Event buffer is stopped, not accepting new events");
-        expect(mockEventsApi.createEventBatch).toHaveBeenCalledTimes(1);
+        expect(mockCaptureClient.sendBatch).toHaveBeenCalledTimes(1);
     });
 
     it("should periodically flush events", async () => {
-        const buffer = new EventBuffer(mockEventsApi, {
+        const buffer = new EventBuffer(mockCaptureClient, {
             interval: 1000,
             logger: mockLogger,
         });
@@ -156,14 +145,12 @@ describe("EventBuffer", () => {
 
         jest.advanceTimersByTime(1000);
 
-        expect(mockEventsApi.createEventBatch).toHaveBeenCalledTimes(1);
-        expect(mockEventsApi.createEventBatch).toHaveBeenCalledWith({
-            events: [event],
-        });
+        expect(mockCaptureClient.sendBatch).toHaveBeenCalledTimes(1);
+        expect(mockCaptureClient.sendBatch).toHaveBeenCalledWith([event]);
     });
 
     it("should not flush events if shutdown", async () => {
-        const buffer = new EventBuffer(mockEventsApi, {
+        const buffer = new EventBuffer(mockCaptureClient, {
             interval: 1000,
             logger: mockLogger,
         });
@@ -183,7 +170,7 @@ describe("EventBuffer", () => {
 
         jest.advanceTimersByTime(1000);
 
-        expect(mockEventsApi.createEventBatch).not.toHaveBeenCalled();
+        expect(mockCaptureClient.sendBatch).not.toHaveBeenCalled();
     });
 
     it("should handle track events with quantity", async () => {
@@ -197,7 +184,7 @@ describe("EventBuffer", () => {
             eventType: "track",
             sentAt: new Date(),
         };
-        const buffer = new EventBuffer(mockEventsApi, {
+        const buffer = new EventBuffer(mockCaptureClient, {
             logger: mockLogger,
             interval: 1000,
         });
@@ -206,17 +193,15 @@ describe("EventBuffer", () => {
 
         jest.advanceTimersByTime(1000);
 
-        expect(mockEventsApi.createEventBatch).toHaveBeenCalledTimes(1);
-        expect(mockEventsApi.createEventBatch).toHaveBeenCalledWith({
-            events: [event],
-        });
+        expect(mockCaptureClient.sendBatch).toHaveBeenCalledTimes(1);
+        expect(mockCaptureClient.sendBatch).toHaveBeenCalledWith([event]);
 
-        const sentEvents = mockEventsApi.createEventBatch.mock.calls[0][0].events;
+        const sentEvents = mockCaptureClient.sendBatch.mock.calls[0][0];
         expect(sentEvents[0].body).toHaveProperty("quantity", 5);
     });
 
     it("should drop events silently in offline mode", async () => {
-        const buffer = new EventBuffer(mockEventsApi, {
+        const buffer = new EventBuffer(mockCaptureClient, {
             logger: mockLogger,
             interval: 1000,
             offline: true,
@@ -238,23 +223,16 @@ describe("EventBuffer", () => {
         jest.advanceTimersByTime(1000);
 
         // Events should never be sent in offline mode
-        expect(mockEventsApi.createEventBatch).not.toHaveBeenCalled();
+        expect(mockCaptureClient.sendBatch).not.toHaveBeenCalled();
     });
 
     it("should retry and succeed after a failure", async () => {
-        const mockResponse = {
-            data: {
-                events: [],
-            },
-            params: {},
-        };
-
         // First call fails, second succeeds
-        mockEventsApi.createEventBatch
+        mockCaptureClient.sendBatch
             .mockRejectedValueOnce(new Error("Temporary failure"))
-            .mockResolvedValueOnce(mockResponse);
+            .mockResolvedValueOnce(undefined);
 
-        const buffer = new EventBuffer(mockEventsApi, {
+        const buffer = new EventBuffer(mockCaptureClient, {
             logger: mockLogger,
             interval: 1000,
             maxRetries: 3,
@@ -276,8 +254,8 @@ describe("EventBuffer", () => {
         // we can just call flush directly
         await buffer.flush();
 
-        // Verify that the createEventBatch was called twice (once failed, once succeeded)
-        expect(mockEventsApi.createEventBatch).toHaveBeenCalledTimes(2);
+        // Verify that sendBatch was called twice (once failed, once succeeded)
+        expect(mockCaptureClient.sendBatch).toHaveBeenCalledTimes(2);
 
         expect(mockLogger.info).toHaveBeenCalledWith("Event batch submission succeeded after 1 retries");
     });

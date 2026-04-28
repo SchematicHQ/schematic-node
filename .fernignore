@@ -16,6 +16,7 @@ testapp/
 src/cache/
 src/core/fetcher/custom.ts
 src/datastream/
+src/event-capture.ts
 src/events.test.ts
 src/events.ts
 src/index.ts
@@ -30,6 +31,7 @@ tests/unit/cache/local.test.ts
 tests/unit/datastream/datastream-client.test.ts
 tests/unit/datastream/merge.test.ts
 tests/unit/datastream/websocket-client.test.ts
+tests/unit/event-capture.test.ts
 tests/unit/events.test.ts
 tests/unit/rules-engine.test.ts
 tests/unit/wasm-integration.test.ts
