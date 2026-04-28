@@ -1,5 +1,5 @@
 import { CreateEventRequestBody } from "./api";
-import { EventsClient } from "./api/resources/events/client/Client";
+import { EventCaptureClient } from "./event-capture";
 import { ConsoleLogger, Logger } from "./logger";
 
 const DEFAULT_FLUSH_INTERVAL = 1000; // 1 second
@@ -18,7 +18,7 @@ interface EventBufferOptions {
 
 class EventBuffer {
     private events: CreateEventRequestBody[] = [];
-    private eventsApi: EventsClient;
+    private captureClient: EventCaptureClient;
     private interval: number;
     private intervalId: NodeJS.Timeout | null = null;
     private logger: Logger;
@@ -30,7 +30,7 @@ class EventBuffer {
     private stopped: boolean = false;
     private flushing: boolean = false;  // Add flush state tracking
 
-    constructor(eventsApi: EventsClient, opts?: EventBufferOptions) {
+    constructor(captureClient: EventCaptureClient, opts?: EventBufferOptions) {
         const {
             logger = new ConsoleLogger(),
             maxSize = DEFAULT_MAX_SIZE,
@@ -39,7 +39,7 @@ class EventBuffer {
             maxRetries = DEFAULT_MAX_RETRIES,
             initialRetryDelay = DEFAULT_INITIAL_RETRY_DELAY,
         } = opts || {};
-        this.eventsApi = eventsApi;
+        this.captureClient = captureClient;
         this.interval = interval;
         this.logger = logger;
         this.maxSize = maxSize;
@@ -74,7 +74,7 @@ class EventBuffer {
                     }
 
                     // Attempt to send events
-                    await this.eventsApi.createEventBatch({ events });
+                    await this.captureClient.sendBatch(events);
                     success = true;
                 } catch (err) {
                     lastError = err;
