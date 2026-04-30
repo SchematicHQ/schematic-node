@@ -115,6 +115,41 @@ describe("EventCaptureClient", () => {
         });
     });
 
+    it("should forward SDK identifying headers alongside the auth header", async () => {
+        const fetcher = makeFetcher();
+        const sdkHeaders = {
+            "X-Fern-Language": "JavaScript",
+            "X-Fern-SDK-Name": "test-sdk-name",
+            "X-Fern-SDK-Version": "test-sdk-version",
+            "User-Agent": "test-user-agent",
+        };
+        const client = new EventCaptureClient({ apiKey, fetcher, headers: sdkHeaders });
+
+        await client.sendBatch([buildEvent()]);
+
+        const headers = fetcher.mock.calls[0][0].headers as Record<string, string>;
+        for (const key of Object.keys(sdkHeaders)) {
+            expect(headers[key]).toBeDefined();
+            expect(headers[key]).not.toBeNull();
+            expect(headers[key]).not.toBe("");
+        }
+        expect(headers["X-Schematic-Api-Key"]).toBe(apiKey);
+    });
+
+    it("should let the auth header override any caller-provided X-Schematic-Api-Key", async () => {
+        const fetcher = makeFetcher();
+        const client = new EventCaptureClient({
+            apiKey,
+            fetcher,
+            headers: { "X-Schematic-Api-Key": "wrong-key" },
+        });
+
+        await client.sendBatch([buildEvent()]);
+
+        const args = fetcher.mock.calls[0][0];
+        expect((args.headers as Record<string, string>)["X-Schematic-Api-Key"]).toBe(apiKey);
+    });
+
     it("should respect a custom base URL and strip trailing slashes", async () => {
         const fetcher = makeFetcher();
         const client = new EventCaptureClient({

@@ -135,9 +135,25 @@ export class SchematicClient extends BaseClient {
         });
 
         this.logger = logger;
+
+        // Forward the same SDK identifying headers (X-Fern-Language,
+        // X-Fern-SDK-Name, X-Fern-SDK-Version, etc.) that BaseClient added to
+        // this._options.headers so that capture-service requests are
+        // attributable to the same SDK build as REST requests.
+        const sdkHeaders: Record<string, string> = {};
+        const baseClientHeaders = this._options?.headers;
+        if (baseClientHeaders) {
+            for (const [key, value] of Object.entries(baseClientHeaders)) {
+                if (typeof value === "string") {
+                    sdkHeaders[key] = value;
+                }
+            }
+        }
+
         const captureClient = new EventCaptureClient({
             apiKey,
             fetcher,
+            headers: sdkHeaders,
             baseUrl: eventCaptureBaseURL,
             timeoutMs,
         });

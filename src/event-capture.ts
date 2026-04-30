@@ -10,6 +10,10 @@ export interface EventCaptureClientOptions {
     /** Fetcher created by the SchematicClient — reused so that offline mode,
      *  default headers, and retry/logging behavior stay consistent. */
     fetcher: FetchFunction;
+    /** Static headers to include on every request (e.g. X-Fern-SDK-Name,
+     *  X-Fern-SDK-Version) so the capture service receives the same SDK
+     *  identifying headers as the REST API. */
+    headers?: Record<string, string>;
     baseUrl?: string;
     timeoutMs?: number;
 }
@@ -84,12 +88,14 @@ export class EventCaptureClient {
     private readonly baseUrl: string;
     private readonly timeoutMs: number;
     private readonly fetcher: FetchFunction;
+    private readonly headers: Record<string, string>;
 
     constructor(options: EventCaptureClientOptions) {
         this.apiKey = options.apiKey;
         this.baseUrl = options.baseUrl ?? DEFAULT_EVENT_CAPTURE_BASE_URL;
         this.timeoutMs = options.timeoutMs ?? DEFAULT_TIMEOUT_MS;
         this.fetcher = options.fetcher;
+        this.headers = options.headers ?? {};
     }
 
     public async sendBatch(events: CreateEventRequestBody[]): Promise<void> {
@@ -103,6 +109,7 @@ export class EventCaptureClient {
             contentType: "application/json",
             requestType: "json",
             headers: {
+                ...this.headers,
                 "X-Schematic-Api-Key": this.apiKey,
             },
             body: buildBatch(events, this.apiKey),
