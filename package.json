@@ -46,7 +46,7 @@
         "typescript": "~5.9.3",
         "@biomejs/biome": "2.4.10",
         "esbuild": "^0.25.9",
-        "miniflare": "^4.20260305.0"
+        "miniflare": "4.20260305.0"
     },
     "browser": {
         "fs": false,
