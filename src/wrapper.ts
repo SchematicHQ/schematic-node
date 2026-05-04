@@ -4,6 +4,7 @@ import { SchematicClient as BaseClient } from "./Client";
 import { type CacheProvider, LocalCache } from "./cache";
 import { ConsoleLogger, Logger } from "./logger";
 import { EventBuffer } from "./events";
+import { EventCaptureClient } from "./event-capture";
 import { offlineFetcher, provideFetcher } from "./core/fetcher/custom";
 import { RUNTIME } from "./core/runtime";
 import { DataStreamClient, type DataStreamClientOptions } from "./datastream";
@@ -41,6 +42,8 @@ export interface SchematicOptions {
     };
     /** If using an API key that is not environment-specific, use this option to specify the environment */
     environmentId?: string;
+    /** Custom base URL for the event capture service (default: https://c.schematichq.com) */
+    eventCaptureBaseURL?: string;
     /** Interval in milliseconds for flushing event buffer */
     eventBufferInterval?: number;
     /** Default values for feature flags */
@@ -92,6 +95,7 @@ export class SchematicClient extends BaseClient {
             apiKey = "",
             basePath,
             eventBufferInterval,
+            eventCaptureBaseURL,
             flagDefaults = {},
             logger = new ConsoleLogger(),
             timeoutMs,
@@ -117,16 +121,43 @@ export class SchematicClient extends BaseClient {
             offline = true;
         }
 
+        // Build the fetcher once and share it with the event capture client so
+        // that offline mode, default headers, and retry/logging behavior stay
+        // consistent across API calls and event capture submissions.
+        const fetcher = offline ? offlineFetcher : provideFetcher(headers);
+
         // Initialize wrapped client
         super({
             apiKey,
             environment: basePath,
-            fetcher: offline ? offlineFetcher : provideFetcher(headers),
+            fetcher,
             timeoutInSeconds: timeoutMs !== undefined ? timeoutMs / 1000 : undefined,
         });
 
         this.logger = logger;
-        this.eventBuffer = new EventBuffer(this.events, {
+
+        // Forward the same SDK identifying headers (X-Fern-Language,
+        // X-Fern-SDK-Name, X-Fern-SDK-Version, etc.) that BaseClient added to
+        // this._options.headers so that capture-service requests are
+        // attributable to the same SDK build as REST requests.
+        const sdkHeaders: Record<string, string> = {};
+        const baseClientHeaders = this._options?.headers;
+        if (baseClientHeaders) {
+            for (const [key, value] of Object.entries(baseClientHeaders)) {
+                if (typeof value === "string") {
+                    sdkHeaders[key] = value;
+                }
+            }
+        }
+
+        const captureClient = new EventCaptureClient({
+            apiKey,
+            fetcher,
+            headers: sdkHeaders,
+            baseUrl: eventCaptureBaseURL,
+            timeoutMs,
+        });
+        this.eventBuffer = new EventBuffer(captureClient, {
             interval: eventBufferInterval,
             logger,
             offline,
