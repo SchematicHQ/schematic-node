@@ -5,6 +5,7 @@ import type * as Schematic from "../index";
 export interface DataEventPayload {
     apiKey: string;
     body?: Record<string, unknown>;
+    idempotencyKey?: string;
     sentAt?: Date;
     type: Schematic.EventType;
 }

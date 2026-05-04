@@ -20,10 +20,7 @@ export const BillingCreditBundleView: core.serialization.ObjectSchema<
     creditIcon: core.serialization.property("credit_icon", core.serialization.string().optional()),
     creditId: core.serialization.property("credit_id", core.serialization.string()),
     creditName: core.serialization.property("credit_name", core.serialization.string()),
-    currencyPrices: core.serialization.property(
-        "currency_prices",
-        core.serialization.list(CreditBundleCurrencyPrice).optional(),
-    ),
+    currencyPrices: core.serialization.property("currency_prices", core.serialization.list(CreditBundleCurrencyPrice)),
     expiryType: core.serialization.property("expiry_type", BillingCreditExpiryType),
     expiryUnit: core.serialization.property("expiry_unit", BillingCreditExpiryUnit),
     expiryUnitCount: core.serialization.property("expiry_unit_count", core.serialization.number().optional()),
@@ -47,7 +44,7 @@ export declare namespace BillingCreditBundleView {
         credit_icon?: string | null;
         credit_id: string;
         credit_name: string;
-        currency_prices?: CreditBundleCurrencyPrice.Raw[] | null;
+        currency_prices: CreditBundleCurrencyPrice.Raw[];
         expiry_type: BillingCreditExpiryType.Raw;
         expiry_unit: BillingCreditExpiryUnit.Raw;
         expiry_unit_count?: number | null;

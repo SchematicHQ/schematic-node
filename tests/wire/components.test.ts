@@ -1347,6 +1347,7 @@ describe("ComponentsClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         credit_id: "credit_id",
                         credit_name: "credit_name",
+                        currency_prices: [{ currency: "currency" }],
                         expiry_type: "duration",
                         expiry_unit: "billing_periods",
                         has_grants: true,
@@ -2605,6 +2606,11 @@ describe("ComponentsClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         creditId: "credit_id",
                         creditName: "credit_name",
+                        currencyPrices: [
+                            {
+                                currency: "currency",
+                            },
+                        ],
                         expiryType: "duration",
                         expiryUnit: "billing_periods",
                         hasGrants: true,

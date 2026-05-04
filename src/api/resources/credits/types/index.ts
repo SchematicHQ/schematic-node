@@ -28,6 +28,8 @@ export * from "./ListBillingCreditsParams";
 export * from "./ListBillingCreditsResponse";
 export * from "./ListBillingPlanCreditGrantsParams";
 export * from "./ListBillingPlanCreditGrantsResponse";
+export * from "./ListCompanyCreditBalancesParams";
+export * from "./ListCompanyCreditBalancesResponse";
 export * from "./ListCompanyGrantsParams";
 export * from "./ListCompanyGrantsResponse";
 export * from "./ListCreditBundlesParams";

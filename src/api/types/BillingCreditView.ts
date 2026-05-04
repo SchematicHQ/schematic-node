@@ -7,6 +7,7 @@ export interface BillingCreditView {
     burnStrategy: Schematic.BillingCreditBurnStrategy;
     costEditable: boolean;
     createdAt: Date;
+    currencyPrices: Schematic.CreditCurrencyPrice[];
     defaultExpiryUnit: Schematic.BillingCreditExpiryUnit;
     defaultExpiryUnitCount?: number;
     defaultRolloverPolicy: Schematic.BillingCreditRolloverPolicy;

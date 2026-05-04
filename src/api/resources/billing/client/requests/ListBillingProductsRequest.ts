@@ -11,6 +11,7 @@ import type * as Schematic from "../../../../index";
  *         priceUsageType: "licensed",
  *         providerType: "orb",
  *         q: "q",
+ *         recurringChargesOnly: true,
  *         withOneTimeCharges: true,
  *         withPricesOnly: true,
  *         withZeroPrice: true,
@@ -27,6 +28,8 @@ export interface ListBillingProductsRequest {
     priceUsageType?: Schematic.BillingPriceUsageType;
     providerType?: Schematic.BillingProviderType;
     q?: string;
+    /** Filter to products that have at least one recurring price */
+    recurringChargesOnly?: boolean;
     /** Filter products that are one time charges */
     withOneTimeCharges?: boolean;
     /** Filter products that have prices */

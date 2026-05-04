@@ -12,6 +12,7 @@ export type { DeleteBillingPlanCreditGrantRequest } from "./DeleteBillingPlanCre
 export type { GetEnrichedCreditLedgerRequest } from "./GetEnrichedCreditLedgerRequest";
 export type { ListBillingCreditsRequest } from "./ListBillingCreditsRequest";
 export type { ListBillingPlanCreditGrantsRequest } from "./ListBillingPlanCreditGrantsRequest";
+export type { ListCompanyCreditBalancesRequest } from "./ListCompanyCreditBalancesRequest";
 export type { ListCompanyGrantsRequest } from "./ListCompanyGrantsRequest";
 export type { ListCreditBundlesRequest } from "./ListCreditBundlesRequest";
 export type { ListCreditEventLedgerRequest } from "./ListCreditEventLedgerRequest";

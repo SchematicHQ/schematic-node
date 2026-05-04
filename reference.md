@@ -1893,6 +1893,7 @@ await client.billing.listBillingProducts({
     priceUsageType: "licensed",
     providerType: "orb",
     q: "q",
+    recurringChargesOnly: true,
     withOneTimeCharges: true,
     withPricesOnly: true,
     withZeroPrice: true,
@@ -1955,6 +1956,7 @@ await client.billing.countBillingProducts({
     priceUsageType: "licensed",
     providerType: "orb",
     q: "q",
+    recurringChargesOnly: true,
     withOneTimeCharges: true,
     withPricesOnly: true,
     withZeroPrice: true,
@@ -2315,6 +2317,57 @@ await client.credits.softDeleteBillingCredit("credit_id");
 <dd>
 
 **credit_id:** `string` — credit_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">listCompanyCreditBalances</a>({ ...params }) -> Schematic.ListCompanyCreditBalancesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.credits.listCompanyCreditBalances({
+    companyId: "company_id"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListCompanyCreditBalancesRequest` 
     
 </dd>
 </dl>
@@ -8784,6 +8837,7 @@ await client.events.listEvents({
     eventSubtype: "event_subtype",
     eventTypes: ["flag_check"],
     flagId: "flag_id",
+    idempotencyKey: "idempotency_key",
     userId: "user_id",
     limit: 1000000,
     offset: 1000000
@@ -9904,7 +9958,418 @@ await client.features.countFlags({
 </dl>
 </details>
 
+## insights
+<details><summary><code>client.insights.<a href="/src/api/resources/insights/client/Client.ts">getActivity</a>({ ...params }) -> Schematic.GetActivityResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.insights.getActivity({
+    limit: 1000000
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.GetActivityRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `InsightsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.insights.<a href="/src/api/resources/insights/client/Client.ts">getEnvironmentFeatureUsageTimeSeries</a>({ ...params }) -> Schematic.GetEnvironmentFeatureUsageTimeSeriesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.insights.getEnvironmentFeatureUsageTimeSeries({
+    endTime: new Date("2024-01-15T09:30:00.000Z"),
+    featureId: "feature_id",
+    granularity: "daily",
+    startTime: new Date("2024-01-15T09:30:00.000Z")
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.GetEnvironmentFeatureUsageTimeSeriesRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `InsightsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.insights.<a href="/src/api/resources/insights/client/Client.ts">getPlanGrowth</a>({ ...params }) -> Schematic.GetPlanGrowthResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.insights.getPlanGrowth({
+    months: 1000000
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.GetPlanGrowthRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `InsightsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.insights.<a href="/src/api/resources/insights/client/Client.ts">getSummary</a>() -> Schematic.GetSummaryResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.insights.getSummary();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `InsightsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.insights.<a href="/src/api/resources/insights/client/Client.ts">getTopFeaturesByUsage</a>({ ...params }) -> Schematic.GetTopFeaturesByUsageResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.insights.getTopFeaturesByUsage({
+    endTime: new Date("2024-01-15T09:30:00.000Z"),
+    limit: 1000000,
+    startTime: new Date("2024-01-15T09:30:00.000Z")
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.GetTopFeaturesByUsageRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `InsightsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.insights.<a href="/src/api/resources/insights/client/Client.ts">getEnvironmentTraitUsageTimeSeries</a>({ ...params }) -> Schematic.GetEnvironmentTraitUsageTimeSeriesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.insights.getEnvironmentTraitUsageTimeSeries({
+    endTime: new Date("2024-01-15T09:30:00.000Z"),
+    featureId: "feature_id",
+    granularity: "daily",
+    startTime: new Date("2024-01-15T09:30:00.000Z")
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.GetEnvironmentTraitUsageTimeSeriesRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `InsightsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## integrationsapi
+<details><summary><code>client.integrationsapi.<a href="/src/api/resources/integrationsapi/client/Client.ts">runIntegration</a>(integration_id) -> Schematic.RunIntegrationResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.integrationsapi.runIntegration("integration_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**integration_id:** `string` — integration_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `IntegrationsapiClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.integrationsapi.<a href="/src/api/resources/integrationsapi/client/Client.ts">listIntegrations</a>({ ...params }) -> Schematic.ListIntegrationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.integrationsapi.listIntegrations({
+    billingOnly: true,
+    excludeIds: ["exclude_ids"],
+    id: "id",
+    state: "active",
+    type: "clerk",
+    limit: 1000000,
+    offset: 1000000
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListIntegrationsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `IntegrationsapiClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.integrationsapi.<a href="/src/api/resources/integrationsapi/client/Client.ts">getIntegrationWebhookUrl</a>(type) -> Schematic.GetIntegrationWebhookUrlResponse</code></summary>
 <dl>
 <dd>
@@ -9935,6 +10400,147 @@ await client.integrationsapi.getIntegrationWebhookUrl("type");
 <dd>
 
 **type:** `string` — type
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `IntegrationsapiClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.integrationsapi.<a href="/src/api/resources/integrationsapi/client/Client.ts">startDataImport</a>({ ...params }) -> Schematic.StartDataImportResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.integrationsapi.startDataImport({
+    integrationId: "integration_id"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.StartDataImportRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `IntegrationsapiClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.integrationsapi.<a href="/src/api/resources/integrationsapi/client/Client.ts">loadSampleDataSetV2</a>() -> Schematic.LoadSampleDataSetV2Response</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.integrationsapi.loadSampleDataSetV2();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `IntegrationsapiClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.integrationsapi.<a href="/src/api/resources/integrationsapi/client/Client.ts">uninstallIntegration</a>(integration_id) -> Schematic.UninstallIntegrationResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.integrationsapi.uninstallIntegration("integration_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**integration_id:** `string` — integration_id
     
 </dd>
 </dl>

@@ -74,7 +74,6 @@ export class BillingClient {
             ),
             method: "GET",
             headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             queryString: core.url
                 .queryBuilder()
                 .addMany(_queryParams)
@@ -217,7 +216,7 @@ export class BillingClient {
             method: "POST",
             headers: _headers,
             contentType: "application/json",
-            queryParameters: requestOptions?.queryParams,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
             body: serializers.CreateCouponRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
@@ -355,7 +354,7 @@ export class BillingClient {
             method: "POST",
             headers: _headers,
             contentType: "application/json",
-            queryParameters: requestOptions?.queryParams,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
             body: serializers.CreateBillingCustomerRequestBody.jsonOrThrow(request, {
                 unrecognizedObjectKeys: "strip",
@@ -506,7 +505,6 @@ export class BillingClient {
             ),
             method: "GET",
             headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             queryString: core.url
                 .queryBuilder()
                 .addMany(_queryParams)
@@ -658,7 +656,6 @@ export class BillingClient {
             ),
             method: "GET",
             headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             queryString: core.url
                 .queryBuilder()
                 .addMany(_queryParams)
@@ -805,7 +802,6 @@ export class BillingClient {
             ),
             method: "GET",
             headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             queryString: core.url
                 .queryBuilder()
                 .addMany(_queryParams)
@@ -947,7 +943,7 @@ export class BillingClient {
             method: "POST",
             headers: _headers,
             contentType: "application/json",
-            queryParameters: requestOptions?.queryParams,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
             body: serializers.CreateInvoiceRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
@@ -1087,7 +1083,6 @@ export class BillingClient {
             ),
             method: "GET",
             headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             queryString: core.url
                 .queryBuilder()
                 .addMany(_queryParams)
@@ -1226,7 +1221,7 @@ export class BillingClient {
             method: "POST",
             headers: _headers,
             contentType: "application/json",
-            queryParameters: requestOptions?.queryParams,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
             body: serializers.CreateMeterRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
@@ -1368,7 +1363,6 @@ export class BillingClient {
             ),
             method: "GET",
             headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             queryString: core.url
                 .queryBuilder()
                 .addMany(_queryParams)
@@ -1506,7 +1500,7 @@ export class BillingClient {
             method: "POST",
             headers: _headers,
             contentType: "application/json",
-            queryParameters: requestOptions?.queryParams,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
             body: serializers.CreatePaymentMethodRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
@@ -1698,7 +1692,6 @@ export class BillingClient {
             ),
             method: "GET",
             headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             queryString: core.url
                 .queryBuilder()
                 .addMany(_queryParams)
@@ -1845,7 +1838,7 @@ export class BillingClient {
             method: "POST",
             headers: _headers,
             contentType: "application/json",
-            queryParameters: requestOptions?.queryParams,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
             body: serializers.CreateBillingPriceRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
@@ -1975,7 +1968,7 @@ export class BillingClient {
             ),
             method: "DELETE",
             headers: _headers,
-            queryParameters: requestOptions?.queryParams,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -2170,7 +2163,6 @@ export class BillingClient {
             ),
             method: "GET",
             headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             queryString: core.url
                 .queryBuilder()
                 .addMany(_queryParams)
@@ -2303,7 +2295,7 @@ export class BillingClient {
             ),
             method: "DELETE",
             headers: _headers,
-            queryParameters: requestOptions?.queryParams,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -2440,7 +2432,7 @@ export class BillingClient {
             method: "POST",
             headers: _headers,
             contentType: "application/json",
-            queryParameters: requestOptions?.queryParams,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
             body: serializers.CreateBillingProductRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
@@ -2549,6 +2541,7 @@ export class BillingClient {
      *         priceUsageType: "licensed",
      *         providerType: "orb",
      *         q: "q",
+     *         recurringChargesOnly: true,
      *         withOneTimeCharges: true,
      *         withPricesOnly: true,
      *         withZeroPrice: true,
@@ -2575,6 +2568,7 @@ export class BillingClient {
             priceUsageType,
             providerType,
             q,
+            recurringChargesOnly,
             withOneTimeCharges,
             withPricesOnly,
             withZeroPrice,
@@ -2595,6 +2589,7 @@ export class BillingClient {
                     ? serializers.BillingProviderType.jsonOrThrow(providerType, { unrecognizedObjectKeys: "strip" })
                     : undefined,
             q,
+            recurring_charges_only: recurringChargesOnly,
             with_one_time_charges: withOneTimeCharges,
             with_prices_only: withPricesOnly,
             with_zero_price: withZeroPrice,
@@ -2617,7 +2612,6 @@ export class BillingClient {
             ),
             method: "GET",
             headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             queryString: core.url
                 .queryBuilder()
                 .addMany(_queryParams)
@@ -2729,6 +2723,7 @@ export class BillingClient {
      *         priceUsageType: "licensed",
      *         providerType: "orb",
      *         q: "q",
+     *         recurringChargesOnly: true,
      *         withOneTimeCharges: true,
      *         withPricesOnly: true,
      *         withZeroPrice: true,
@@ -2755,6 +2750,7 @@ export class BillingClient {
             priceUsageType,
             providerType,
             q,
+            recurringChargesOnly,
             withOneTimeCharges,
             withPricesOnly,
             withZeroPrice,
@@ -2775,6 +2771,7 @@ export class BillingClient {
                     ? serializers.BillingProviderType.jsonOrThrow(providerType, { unrecognizedObjectKeys: "strip" })
                     : undefined,
             q,
+            recurring_charges_only: recurringChargesOnly,
             with_one_time_charges: withOneTimeCharges,
             with_prices_only: withPricesOnly,
             with_zero_price: withZeroPrice,
@@ -2797,7 +2794,6 @@ export class BillingClient {
             ),
             method: "GET",
             headers: _headers,
-            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             queryString: core.url
                 .queryBuilder()
                 .addMany(_queryParams)
@@ -2953,7 +2949,7 @@ export class BillingClient {
             method: "POST",
             headers: _headers,
             contentType: "application/json",
-            queryParameters: requestOptions?.queryParams,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
             body: serializers.CreateBillingSubscriptionRequestBody.jsonOrThrow(request, {
                 unrecognizedObjectKeys: "strip",

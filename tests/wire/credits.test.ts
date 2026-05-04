@@ -950,6 +950,146 @@ describe("CreditsClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("listCompanyCreditBalances (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [{ credit_id: "credit_id", remaining: 1.1, source: "orb", total: 1.1 }],
+            params: { company_id: "company_id" },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/balance")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.credits.listCompanyCreditBalances({
+            companyId: "company_id",
+        });
+        expect(response).toEqual({
+            data: [
+                {
+                    creditId: "credit_id",
+                    remaining: 1.1,
+                    source: "orb",
+                    total: 1.1,
+                },
+            ],
+            params: {
+                companyId: "company_id",
+            },
+        });
+    });
+
+    test("listCompanyCreditBalances (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/balance")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.listCompanyCreditBalances({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("listCompanyCreditBalances (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/balance")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.listCompanyCreditBalances({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("listCompanyCreditBalances (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/balance")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.listCompanyCreditBalances({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("listCompanyCreditBalances (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/balance")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.listCompanyCreditBalances({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("listCompanyCreditBalances (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/balance")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.listCompanyCreditBalances({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("listCreditBundles (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });

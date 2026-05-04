@@ -9,6 +9,7 @@ import type * as Schematic from "../../../../index";
  *         eventSubtype: "event_subtype",
  *         eventTypes: ["flag_check"],
  *         flagId: "flag_id",
+ *         idempotencyKey: "idempotency_key",
  *         userId: "user_id",
  *         limit: 1000000,
  *         offset: 1000000
@@ -19,6 +20,7 @@ export interface ListEventsRequest {
     eventSubtype?: string;
     eventTypes?: Schematic.EventType | Schematic.EventType[];
     flagId?: string;
+    idempotencyKey?: string;
     userId?: string;
     /** Page limit (default 100) */
     limit?: number;
