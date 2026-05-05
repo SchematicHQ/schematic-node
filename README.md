@@ -1,4 +1,4 @@
-# schematic-typescript-node
+# Schematic Typescript Node
 
 ## Installation and Setup
 
