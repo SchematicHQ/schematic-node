@@ -1,4 +1,4 @@
-# Schematic Typescript Node
+# Schematic Typescript Node SDK
 
 ## Installation and Setup
 
