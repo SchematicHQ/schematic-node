@@ -6,6 +6,8 @@ export interface CreateEventRequestBody {
     body?: Schematic.EventBody;
     /** Either 'identify' or 'track' */
     eventType: Schematic.EventType;
+    /** Optional client-supplied key. Duplicate events with the same key (scoped to the environment) are dropped for 24h. */
+    idempotencyKey?: string;
     /** Optionally provide a timestamp at which the event was sent to Schematic */
     sentAt?: Date;
 }

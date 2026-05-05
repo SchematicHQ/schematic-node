@@ -17,6 +17,8 @@ export interface CountBillingProductsParams {
     priceUsageType?: Schematic.BillingPriceUsageType;
     providerType?: Schematic.BillingProviderType;
     q?: string;
+    /** Filter to products that have at least one recurring price */
+    recurringChargesOnly?: boolean;
     /** Filter products that are one time charges */
     withOneTimeCharges?: boolean;
     /** Filter products that have prices */

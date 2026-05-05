@@ -13,6 +13,7 @@ export const ListEventsParams: core.serialization.ObjectSchema<
     eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
     eventTypes: core.serialization.property("event_types", core.serialization.list(EventType).optional()),
     flagId: core.serialization.property("flag_id", core.serialization.string().optional()),
+    idempotencyKey: core.serialization.property("idempotency_key", core.serialization.string().optional()),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
     userId: core.serialization.property("user_id", core.serialization.string().optional()),
@@ -24,6 +25,7 @@ export declare namespace ListEventsParams {
         event_subtype?: string | null;
         event_types?: EventType.Raw[] | null;
         flag_id?: string | null;
+        idempotency_key?: string | null;
         limit?: number | null;
         offset?: number | null;
         user_id?: string | null;

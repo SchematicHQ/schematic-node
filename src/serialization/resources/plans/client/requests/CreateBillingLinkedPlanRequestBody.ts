@@ -14,6 +14,10 @@ export const CreateBillingLinkedPlanRequestBody: core.serialization.Schema<
     billingProvider: core.serialization.property("billing_provider", BillingProviderType),
     description: core.serialization.string(),
     externalResourceId: core.serialization.property("external_resource_id", core.serialization.string()),
+    externalResourceVersion: core.serialization.property(
+        "external_resource_version",
+        core.serialization.string().optional(),
+    ),
     icon: PlanIcon.optional(),
     name: core.serialization.string(),
     planType: core.serialization.property("plan_type", PlanType),
@@ -24,6 +28,7 @@ export declare namespace CreateBillingLinkedPlanRequestBody {
         billing_provider: BillingProviderType.Raw;
         description: string;
         external_resource_id: string;
+        external_resource_version?: string | null;
         icon?: PlanIcon.Raw | null;
         name: string;
         plan_type: PlanType.Raw;

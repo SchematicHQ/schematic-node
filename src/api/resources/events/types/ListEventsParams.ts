@@ -10,6 +10,7 @@ export interface ListEventsParams {
     eventSubtype?: string;
     eventTypes?: Schematic.EventType[];
     flagId?: string;
+    idempotencyKey?: string;
     /** Page limit (default 100) */
     limit?: number;
     /** Page offset (default 0) */

@@ -9,7 +9,7 @@ export interface BillingCreditBundleView {
     creditIcon?: string;
     creditId: string;
     creditName: string;
-    currencyPrices?: Schematic.CreditBundleCurrencyPrice[];
+    currencyPrices: Schematic.CreditBundleCurrencyPrice[];
     expiryType: Schematic.BillingCreditExpiryType;
     expiryUnit: Schematic.BillingCreditExpiryUnit;
     expiryUnitCount?: number;

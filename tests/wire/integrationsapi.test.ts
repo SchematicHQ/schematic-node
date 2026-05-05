@@ -5,6 +5,253 @@ import { SchematicClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
 describe("IntegrationsapiClient", () => {
+    test("runIntegration (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                created_at: "2024-01-15T09:30:00Z",
+                id: "id",
+                state: "active",
+                type: "clerk",
+                updated_at: "2024-01-15T09:30:00Z",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/integration/start/integration_id")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.integrationsapi.runIntegration("integration_id");
+        expect(response).toEqual({
+            data: {
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                id: "id",
+                state: "active",
+                type: "clerk",
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("runIntegration (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/integration/start/integration_id")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.runIntegration("integration_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("runIntegration (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/integration/start/integration_id")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.runIntegration("integration_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("runIntegration (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/integration/start/integration_id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.runIntegration("integration_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("runIntegration (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/integration/start/integration_id")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.runIntegration("integration_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("listIntegrations (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    capabilities: { author_plans: true, checkout: true, edit_billing: true },
+                    config: { type: "clerk" },
+                    id: "id",
+                    is_app_install: true,
+                    is_connect_install: true,
+                    state: "active",
+                    type: "clerk",
+                },
+            ],
+            params: {
+                billing_only: true,
+                exclude_ids: ["exclude_ids"],
+                id: "id",
+                limit: 1000000,
+                offset: 1000000,
+                state: "active",
+                type: "clerk",
+            },
+        };
+
+        server.mockEndpoint().get("/integrations").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.integrationsapi.listIntegrations({
+            billingOnly: true,
+            excludeIds: ["exclude_ids"],
+            id: "id",
+            state: "active",
+            type: "clerk",
+            limit: 1000000,
+            offset: 1000000,
+        });
+        expect(response).toEqual({
+            data: [
+                {
+                    capabilities: {
+                        authorPlans: true,
+                        checkout: true,
+                        editBilling: true,
+                    },
+                    config: {
+                        type: "clerk",
+                    },
+                    id: "id",
+                    isAppInstall: true,
+                    isConnectInstall: true,
+                    state: "active",
+                    type: "clerk",
+                },
+            ],
+            params: {
+                billingOnly: true,
+                excludeIds: ["exclude_ids"],
+                id: "id",
+                limit: 1000000,
+                offset: 1000000,
+                state: "active",
+                type: "clerk",
+            },
+        });
+    });
+
+    test("listIntegrations (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/integrations").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.integrationsapi.listIntegrations();
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("listIntegrations (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/integrations").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.integrationsapi.listIntegrations();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("listIntegrations (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/integrations").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.integrationsapi.listIntegrations();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("listIntegrations (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/integrations").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.integrationsapi.listIntegrations();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("listIntegrations (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/integrations").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.integrationsapi.listIntegrations();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("getIntegrationWebhookUrl (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -104,6 +351,378 @@ describe("IntegrationsapiClient", () => {
 
         await expect(async () => {
             return await client.integrationsapi.getIntegrationWebhookUrl("type");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("startDataImport (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { integration_id: "integration_id" };
+        const rawResponseBody = {
+            data: {
+                created_at: "2024-01-15T09:30:00Z",
+                id: "id",
+                state: "active",
+                type: "clerk",
+                updated_at: "2024-01-15T09:30:00Z",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/start-data-import")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.integrationsapi.startDataImport({
+            integrationId: "integration_id",
+        });
+        expect(response).toEqual({
+            data: {
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                id: "id",
+                state: "active",
+                type: "clerk",
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("startDataImport (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { integration_id: "integration_id" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/start-data-import")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.startDataImport({
+                integrationId: "integration_id",
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("startDataImport (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { integration_id: "integration_id" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/start-data-import")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.startDataImport({
+                integrationId: "integration_id",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("startDataImport (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { integration_id: "integration_id" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/start-data-import")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.startDataImport({
+                integrationId: "integration_id",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("startDataImport (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { integration_id: "integration_id" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/start-data-import")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.startDataImport({
+                integrationId: "integration_id",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("startDataImport (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { integration_id: "integration_id" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/start-data-import")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.startDataImport({
+                integrationId: "integration_id",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("loadSampleDataSetV2 (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { data: { keys: ["keys"] }, params: { key: "value" } };
+
+        server
+            .mockEndpoint()
+            .get("/integrations/stripe/dataset-sample-v2")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.integrationsapi.loadSampleDataSetV2();
+        expect(response).toEqual({
+            data: {
+                keys: ["keys"],
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("loadSampleDataSetV2 (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/integrations/stripe/dataset-sample-v2")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.loadSampleDataSetV2();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("loadSampleDataSetV2 (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/integrations/stripe/dataset-sample-v2")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.loadSampleDataSetV2();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("loadSampleDataSetV2 (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/integrations/stripe/dataset-sample-v2")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.loadSampleDataSetV2();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("loadSampleDataSetV2 (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/integrations/stripe/dataset-sample-v2")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.loadSampleDataSetV2();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("uninstallIntegration (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
+
+        server
+            .mockEndpoint()
+            .delete("/integrations/uninstall/integration_id")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.integrationsapi.uninstallIntegration("integration_id");
+        expect(response).toEqual({
+            data: {
+                deleted: true,
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("uninstallIntegration (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .delete("/integrations/uninstall/integration_id")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.uninstallIntegration("integration_id");
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("uninstallIntegration (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .delete("/integrations/uninstall/integration_id")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.uninstallIntegration("integration_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("uninstallIntegration (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .delete("/integrations/uninstall/integration_id")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.uninstallIntegration("integration_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("uninstallIntegration (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .delete("/integrations/uninstall/integration_id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.uninstallIntegration("integration_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("uninstallIntegration (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .delete("/integrations/uninstall/integration_id")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.uninstallIntegration("integration_id");
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 });

@@ -3528,6 +3528,7 @@ describe("CompaniesClient", () => {
                                     burn_strategy: "expiration_priority",
                                     cost_editable: true,
                                     created_at: "2024-01-15T09:30:00Z",
+                                    currency_prices: [{ currency: "currency" }, { currency: "currency" }],
                                     default_expiry_unit: "billing_periods",
                                     default_expiry_unit_count: 1000000,
                                     default_rollover_policy: "expire",
@@ -3608,6 +3609,7 @@ describe("CompaniesClient", () => {
                                     burn_strategy: "expiration_priority",
                                     cost_editable: true,
                                     created_at: "2024-01-15T09:30:00Z",
+                                    currency_prices: [{ currency: "currency" }, { currency: "currency" }],
                                     default_expiry_unit: "billing_periods",
                                     default_expiry_unit_count: 1000000,
                                     default_rollover_policy: "expire",
@@ -3702,6 +3704,7 @@ describe("CompaniesClient", () => {
                                     burn_strategy: "expiration_priority",
                                     cost_editable: true,
                                     created_at: "2024-01-15T09:30:00Z",
+                                    currency_prices: [{ currency: "currency" }, { currency: "currency" }],
                                     default_expiry_unit: "billing_periods",
                                     default_expiry_unit_count: 1000000,
                                     default_rollover_policy: "expire",
@@ -3782,6 +3785,7 @@ describe("CompaniesClient", () => {
                                     burn_strategy: "expiration_priority",
                                     cost_editable: true,
                                     created_at: "2024-01-15T09:30:00Z",
+                                    currency_prices: [{ currency: "currency" }, { currency: "currency" }],
                                     default_expiry_unit: "billing_periods",
                                     default_expiry_unit_count: 1000000,
                                     default_rollover_policy: "expire",
@@ -4631,6 +4635,7 @@ describe("CompaniesClient", () => {
                                 burn_strategy: "expiration_priority",
                                 cost_editable: true,
                                 created_at: "2024-01-15T09:30:00Z",
+                                currency_prices: [{ currency: "currency" }, { currency: "currency" }],
                                 default_expiry_unit: "billing_periods",
                                 default_expiry_unit_count: 1000000,
                                 default_rollover_policy: "expire",
@@ -4711,6 +4716,7 @@ describe("CompaniesClient", () => {
                                 burn_strategy: "expiration_priority",
                                 cost_editable: true,
                                 created_at: "2024-01-15T09:30:00Z",
+                                currency_prices: [{ currency: "currency" }, { currency: "currency" }],
                                 default_expiry_unit: "billing_periods",
                                 default_expiry_unit_count: 1000000,
                                 default_rollover_policy: "expire",
@@ -5137,6 +5143,14 @@ describe("CompaniesClient", () => {
                                     burnStrategy: "expiration_priority",
                                     costEditable: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                    currencyPrices: [
+                                        {
+                                            currency: "currency",
+                                        },
+                                        {
+                                            currency: "currency",
+                                        },
+                                    ],
                                     defaultExpiryUnit: "billing_periods",
                                     defaultExpiryUnitCount: 1000000,
                                     defaultRolloverPolicy: "expire",
@@ -5222,6 +5236,14 @@ describe("CompaniesClient", () => {
                                     burnStrategy: "expiration_priority",
                                     costEditable: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                    currencyPrices: [
+                                        {
+                                            currency: "currency",
+                                        },
+                                        {
+                                            currency: "currency",
+                                        },
+                                    ],
                                     defaultExpiryUnit: "billing_periods",
                                     defaultExpiryUnitCount: 1000000,
                                     defaultRolloverPolicy: "expire",
@@ -5321,6 +5343,14 @@ describe("CompaniesClient", () => {
                                     burnStrategy: "expiration_priority",
                                     costEditable: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                    currencyPrices: [
+                                        {
+                                            currency: "currency",
+                                        },
+                                        {
+                                            currency: "currency",
+                                        },
+                                    ],
                                     defaultExpiryUnit: "billing_periods",
                                     defaultExpiryUnitCount: 1000000,
                                     defaultRolloverPolicy: "expire",
@@ -5406,6 +5436,14 @@ describe("CompaniesClient", () => {
                                     burnStrategy: "expiration_priority",
                                     costEditable: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                    currencyPrices: [
+                                        {
+                                            currency: "currency",
+                                        },
+                                        {
+                                            currency: "currency",
+                                        },
+                                    ],
                                     defaultExpiryUnit: "billing_periods",
                                     defaultExpiryUnitCount: 1000000,
                                     defaultRolloverPolicy: "expire",
@@ -6274,6 +6312,14 @@ describe("CompaniesClient", () => {
                                 burnStrategy: "expiration_priority",
                                 costEditable: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                currencyPrices: [
+                                    {
+                                        currency: "currency",
+                                    },
+                                    {
+                                        currency: "currency",
+                                    },
+                                ],
                                 defaultExpiryUnit: "billing_periods",
                                 defaultExpiryUnitCount: 1000000,
                                 defaultRolloverPolicy: "expire",
@@ -6359,6 +6405,14 @@ describe("CompaniesClient", () => {
                                 burnStrategy: "expiration_priority",
                                 costEditable: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                currencyPrices: [
+                                    {
+                                        currency: "currency",
+                                    },
+                                    {
+                                        currency: "currency",
+                                    },
+                                ],
                                 defaultExpiryUnit: "billing_periods",
                                 defaultExpiryUnitCount: 1000000,
                                 defaultRolloverPolicy: "expire",

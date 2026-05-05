@@ -13,6 +13,7 @@ export interface EventResponseData {
     errorMessage?: string;
     featureIds: string[];
     id: string;
+    idempotencyKey?: string;
     loadedAt?: Date;
     processedAt?: Date;
     quantity: number;

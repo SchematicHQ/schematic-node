@@ -18,6 +18,10 @@ export const CountBillingProductsParams: core.serialization.ObjectSchema<
     priceUsageType: core.serialization.property("price_usage_type", BillingPriceUsageType.optional()),
     providerType: core.serialization.property("provider_type", BillingProviderType.optional()),
     q: core.serialization.string().optional(),
+    recurringChargesOnly: core.serialization.property(
+        "recurring_charges_only",
+        core.serialization.boolean().optional(),
+    ),
     withOneTimeCharges: core.serialization.property("with_one_time_charges", core.serialization.boolean().optional()),
     withPricesOnly: core.serialization.property("with_prices_only", core.serialization.boolean().optional()),
     withZeroPrice: core.serialization.property("with_zero_price", core.serialization.boolean().optional()),
@@ -34,6 +38,7 @@ export declare namespace CountBillingProductsParams {
         price_usage_type?: BillingPriceUsageType.Raw | null;
         provider_type?: BillingProviderType.Raw | null;
         q?: string | null;
+        recurring_charges_only?: boolean | null;
         with_one_time_charges?: boolean | null;
         with_prices_only?: boolean | null;
         with_zero_price?: boolean | null;

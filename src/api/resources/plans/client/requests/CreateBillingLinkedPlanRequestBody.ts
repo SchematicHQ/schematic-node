@@ -16,6 +16,7 @@ export interface CreateBillingLinkedPlanRequestBody {
     billingProvider: Schematic.BillingProviderType;
     description: string;
     externalResourceId: string;
+    externalResourceVersion?: string;
     icon?: Schematic.PlanIcon;
     name: string;
     planType: Schematic.PlanType;

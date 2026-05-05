@@ -12,6 +12,7 @@ export const CreateEventRequestBody: core.serialization.ObjectSchema<
 > = core.serialization.object({
     body: EventBody.optional(),
     eventType: core.serialization.property("event_type", EventType),
+    idempotencyKey: core.serialization.property("idempotency_key", core.serialization.string().optional()),
     sentAt: core.serialization.property("sent_at", core.serialization.date().optional()),
 });
 
@@ -19,6 +20,7 @@ export declare namespace CreateEventRequestBody {
     export interface Raw {
         body?: EventBody.Raw | null;
         event_type: EventType.Raw;
+        idempotency_key?: string | null;
         sent_at?: string | null;
     }
 }

@@ -20,6 +20,7 @@ export const EventResponseData: core.serialization.ObjectSchema<
     errorMessage: core.serialization.property("error_message", core.serialization.string().optional()),
     featureIds: core.serialization.property("feature_ids", core.serialization.list(core.serialization.string())),
     id: core.serialization.string(),
+    idempotencyKey: core.serialization.property("idempotency_key", core.serialization.string().optional()),
     loadedAt: core.serialization.property("loaded_at", core.serialization.date().optional()),
     processedAt: core.serialization.property("processed_at", core.serialization.date().optional()),
     quantity: core.serialization.number(),
@@ -43,6 +44,7 @@ export declare namespace EventResponseData {
         error_message?: string | null;
         feature_ids: string[];
         id: string;
+        idempotency_key?: string | null;
         loaded_at?: string | null;
         processed_at?: string | null;
         quantity: number;

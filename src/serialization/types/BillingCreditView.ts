@@ -8,6 +8,7 @@ import { BillingCreditExpiryUnit } from "./BillingCreditExpiryUnit";
 import { BillingCreditRolloverPolicy } from "./BillingCreditRolloverPolicy";
 import { BillingPriceView } from "./BillingPriceView";
 import { BillingProductResponseData } from "./BillingProductResponseData";
+import { CreditCurrencyPrice } from "./CreditCurrencyPrice";
 
 export const BillingCreditView: core.serialization.ObjectSchema<
     serializers.BillingCreditView.Raw,
@@ -17,6 +18,7 @@ export const BillingCreditView: core.serialization.ObjectSchema<
     burnStrategy: core.serialization.property("burn_strategy", BillingCreditBurnStrategy),
     costEditable: core.serialization.property("cost_editable", core.serialization.boolean()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
+    currencyPrices: core.serialization.property("currency_prices", core.serialization.list(CreditCurrencyPrice)),
     defaultExpiryUnit: core.serialization.property("default_expiry_unit", BillingCreditExpiryUnit),
     defaultExpiryUnitCount: core.serialization.property(
         "default_expiry_unit_count",
@@ -43,6 +45,7 @@ export declare namespace BillingCreditView {
         burn_strategy: BillingCreditBurnStrategy.Raw;
         cost_editable: boolean;
         created_at: string;
+        currency_prices: CreditCurrencyPrice.Raw[];
         default_expiry_unit: BillingCreditExpiryUnit.Raw;
         default_expiry_unit_count?: number | null;
         default_rollover_policy: BillingCreditRolloverPolicy.Raw;
