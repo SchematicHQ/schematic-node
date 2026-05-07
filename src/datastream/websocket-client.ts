@@ -3,6 +3,7 @@
 import WebSocketClass, { type WebSocket } from 'ws';
 import { DataStreamResp, DataStreamBaseReq } from './types';
 import { Logger } from '../logger';
+import { SDK_NAME, SDK_VERSION } from '../version';
 import { LazyEmitter } from './emitter';
 
 /**
@@ -92,7 +93,7 @@ function convertAPIURLToWebSocketURL(apiURL: string): string {
 export class DatastreamWSClient extends LazyEmitter {
   // Configuration
   private readonly url: string;
-  private readonly headers: Record<string, string>;
+  readonly headers: Record<string, string>;
   private readonly logger: Logger;
   private readonly messageHandler: MessageHandlerFunc;
   private readonly connectionReadyHandler?: ConnectionReadyHandlerFunc;
@@ -134,9 +135,12 @@ export class DatastreamWSClient extends LazyEmitter {
       this.url = options.url;
     }
 
-    // Create headers with API key
+    // Create headers with API key and datastream metadata
     this.headers = {
       'X-Schematic-Api-Key': options.apiKey,
+      'X-Schematic-Client': SDK_NAME,
+      'X-Schematic-Client-Version': SDK_VERSION,
+      'X-Schematic-Datastream-Mode': 'datastream',
     };
 
     this.logger = options.logger;
