@@ -1314,57 +1314,41 @@ export class DataStreamClient extends LazyEmitter {
     company: Schematic.RulesengineCompany | null,
     user: Schematic.RulesengineUser | null
   ): Promise<Schematic.RulesengineCheckFlagResult> {
+    if (!this.rulesEngine.isInitialized()) {
+      // Throw so that the wrapper falls back to API-based flag evaluation
+      throw new Error('Rules engine not initialized');
+    }
+
     const defaultValue = flag.defaultValue ?? false;
 
     try {
-      // Use rules engine if initialized
-      if (this.rulesEngine.isInitialized()) {
-        this.logger.debug(`Evaluating flag with rules engine: ${JSON.stringify({ flagId: flag.id, flagRules: flag.rules?.length || 0, companyId: company?.id, userId: user?.id })}`);
+      this.logger.debug(`Evaluating flag with rules engine: ${JSON.stringify({ flagId: flag.id, flagRules: flag.rules?.length || 0, companyId: company?.id, userId: user?.id })}`);
 
-        const result = await this.rulesEngine.checkFlag(flag, company, user);
-        this.logger.debug(`Rules engine evaluation result: ${JSON.stringify(result)}`);
+      const result = await this.rulesEngine.checkFlag(flag, company, user);
+      this.logger.debug(`Rules engine evaluation result: ${JSON.stringify(result)}`);
 
-        return {
-          flagKey: flag.key,
-          value: result.value ?? defaultValue,
-          reason: result.reason || 'RULES_ENGINE_EVALUATION',
-          companyId: company?.id,
-          userId: user?.id,
-          flagId: flag.id,
-          ruleId: result.ruleId,
-          ruleType: result.ruleType,
-          entitlement: result.entitlement
-            ? {
-                ...result.entitlement,
-                metricResetAt: result.entitlement.metricResetAt
-                  ? new Date(result.entitlement.metricResetAt)
-                  : undefined,
-              }
-            : undefined,
-        };
-      } else {
-        // Fallback to default value if rules engine not available
-        this.logger.warn('Rules engine not initialized, using default flag value');
-        return {
-          flagKey: flag.key,
-          value: defaultValue,
-          reason: 'RULES_ENGINE_UNAVAILABLE',
-          companyId: company?.id,
-          userId: user?.id,
-          flagId: flag.id,
-        };
-      }
-    } catch (error) {
-      this.logger.error(`Rules engine evaluation failed: ${error}`);
-      // Fallback to default value on error
       return {
         flagKey: flag.key,
-        value: defaultValue,
-        reason: 'RULES_ENGINE_ERROR',
+        value: result.value ?? defaultValue,
+        reason: result.reason || 'RULES_ENGINE_EVALUATION',
         companyId: company?.id,
         userId: user?.id,
         flagId: flag.id,
+        ruleId: result.ruleId,
+        ruleType: result.ruleType,
+        entitlement: result.entitlement
+          ? {
+              ...result.entitlement,
+              metricResetAt: result.entitlement.metricResetAt
+                ? new Date(result.entitlement.metricResetAt)
+                : undefined,
+            }
+          : undefined,
       };
+    } catch (error) {
+      this.logger.error(`Rules engine evaluation failed: ${error}`);
+      // Re-throw so the wrapper can fall back to API
+      throw error;
     }
   }
 
