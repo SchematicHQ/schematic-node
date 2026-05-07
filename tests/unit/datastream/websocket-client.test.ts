@@ -86,6 +86,20 @@ describe('DatastreamWSClient', () => {
     }).toThrow('MessageHandler is required');
   });
 
+  test('should set datastream metadata headers on the connection', () => {
+    client = new DatastreamWSClient({
+      url: 'wss://example.com',
+      apiKey: 'test-api-key',
+      messageHandler: mockMessageHandler,
+      logger: mockLogger,
+    });
+
+    expect(client.headers['X-Schematic-Api-Key']).toBe('test-api-key');
+    expect(client.headers['X-Schematic-Client']).toBe('@schematichq/schematic-typescript-node');
+    expect(client.headers['X-Schematic-Client-Version']).toMatch(/^\d+\.\d+\.\d+/);
+    expect(client.headers['X-Schematic-Datastream-Mode']).toBe('datastream');
+  });
+
   test('should convert HTTP URL to WebSocket URL', () => {
     client = new DatastreamWSClient({
       url: 'https://api.schematichq.com',
