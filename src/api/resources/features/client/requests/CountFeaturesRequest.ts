@@ -8,6 +8,7 @@ import type * as Schematic from "../../../../index";
  *         booleanRequireEvent: true,
  *         featureType: ["boolean"],
  *         ids: ["ids"],
+ *         managedBy: "orb",
  *         planVersionId: "plan_version_id",
  *         q: "q",
  *         withoutCompanyOverrideFor: "without_company_override_for",
@@ -22,6 +23,8 @@ export interface CountFeaturesRequest {
     /** Filter by one or more feature types (boolean, event, trait) */
     featureType?: Schematic.FeatureType | Schematic.FeatureType[];
     ids?: string | string[];
+    /** Filter for features managed by a billing provider, or by Schematic (no billing provider) */
+    managedBy?: Schematic.BillingProviderType;
     /** Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used */
     planVersionId?: string;
     /** Search by feature name or ID */

@@ -10,6 +10,7 @@ describe("CheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             add_on_ids: [{ add_on_id: "add_on_id", price_id: "price_id" }],
+            auto_topup_overrides: [{ plan_credit_grant_id: "plan_credit_grant_id" }],
             company_id: "company_id",
             credit_bundles: [{ bundle_id: "bundle_id", quantity: 1000000 }],
             new_plan_id: "new_plan_id",
@@ -60,6 +61,11 @@ describe("CheckoutClient", () => {
                 {
                     addOnId: "add_on_id",
                     priceId: "price_id",
+                },
+            ],
+            autoTopupOverrides: [
+                {
+                    planCreditGrantId: "plan_credit_grant_id",
                 },
             ],
             companyId: "company_id",
@@ -121,6 +127,10 @@ describe("CheckoutClient", () => {
                 { add_on_id: "add_on_id", price_id: "price_id" },
                 { add_on_id: "add_on_id", price_id: "price_id" },
             ],
+            auto_topup_overrides: [
+                { plan_credit_grant_id: "plan_credit_grant_id" },
+                { plan_credit_grant_id: "plan_credit_grant_id" },
+            ],
             company_id: "company_id",
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
@@ -155,6 +165,14 @@ describe("CheckoutClient", () => {
                     {
                         addOnId: "add_on_id",
                         priceId: "price_id",
+                    },
+                ],
+                autoTopupOverrides: [
+                    {
+                        planCreditGrantId: "plan_credit_grant_id",
+                    },
+                    {
+                        planCreditGrantId: "plan_credit_grant_id",
                     },
                 ],
                 companyId: "company_id",
@@ -193,6 +211,10 @@ describe("CheckoutClient", () => {
                 { add_on_id: "add_on_id", price_id: "price_id" },
                 { add_on_id: "add_on_id", price_id: "price_id" },
             ],
+            auto_topup_overrides: [
+                { plan_credit_grant_id: "plan_credit_grant_id" },
+                { plan_credit_grant_id: "plan_credit_grant_id" },
+            ],
             company_id: "company_id",
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
@@ -227,6 +249,14 @@ describe("CheckoutClient", () => {
                     {
                         addOnId: "add_on_id",
                         priceId: "price_id",
+                    },
+                ],
+                autoTopupOverrides: [
+                    {
+                        planCreditGrantId: "plan_credit_grant_id",
+                    },
+                    {
+                        planCreditGrantId: "plan_credit_grant_id",
                     },
                 ],
                 companyId: "company_id",
@@ -265,6 +295,10 @@ describe("CheckoutClient", () => {
                 { add_on_id: "add_on_id", price_id: "price_id" },
                 { add_on_id: "add_on_id", price_id: "price_id" },
             ],
+            auto_topup_overrides: [
+                { plan_credit_grant_id: "plan_credit_grant_id" },
+                { plan_credit_grant_id: "plan_credit_grant_id" },
+            ],
             company_id: "company_id",
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
@@ -299,6 +333,14 @@ describe("CheckoutClient", () => {
                     {
                         addOnId: "add_on_id",
                         priceId: "price_id",
+                    },
+                ],
+                autoTopupOverrides: [
+                    {
+                        planCreditGrantId: "plan_credit_grant_id",
+                    },
+                    {
+                        planCreditGrantId: "plan_credit_grant_id",
                     },
                 ],
                 companyId: "company_id",
@@ -337,6 +379,10 @@ describe("CheckoutClient", () => {
                 { add_on_id: "add_on_id", price_id: "price_id" },
                 { add_on_id: "add_on_id", price_id: "price_id" },
             ],
+            auto_topup_overrides: [
+                { plan_credit_grant_id: "plan_credit_grant_id" },
+                { plan_credit_grant_id: "plan_credit_grant_id" },
+            ],
             company_id: "company_id",
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
@@ -371,6 +417,14 @@ describe("CheckoutClient", () => {
                     {
                         addOnId: "add_on_id",
                         priceId: "price_id",
+                    },
+                ],
+                autoTopupOverrides: [
+                    {
+                        planCreditGrantId: "plan_credit_grant_id",
+                    },
+                    {
+                        planCreditGrantId: "plan_credit_grant_id",
                     },
                 ],
                 companyId: "company_id",
@@ -409,6 +463,10 @@ describe("CheckoutClient", () => {
                 { add_on_id: "add_on_id", price_id: "price_id" },
                 { add_on_id: "add_on_id", price_id: "price_id" },
             ],
+            auto_topup_overrides: [
+                { plan_credit_grant_id: "plan_credit_grant_id" },
+                { plan_credit_grant_id: "plan_credit_grant_id" },
+            ],
             company_id: "company_id",
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
@@ -443,6 +501,14 @@ describe("CheckoutClient", () => {
                     {
                         addOnId: "add_on_id",
                         priceId: "price_id",
+                    },
+                ],
+                autoTopupOverrides: [
+                    {
+                        planCreditGrantId: "plan_credit_grant_id",
+                    },
+                    {
+                        planCreditGrantId: "plan_credit_grant_id",
                     },
                 ],
                 companyId: "company_id",
@@ -726,6 +792,7 @@ describe("CheckoutClient", () => {
                     included_credit_grants: [
                         {
                             auto_topup_enabled: true,
+                            auto_topup_self_service: true,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_id: "credit_id",
@@ -809,6 +876,7 @@ describe("CheckoutClient", () => {
                             included_credit_grants: [
                                 {
                                     billing_credit_auto_topup_enabled: true,
+                                    billing_credit_auto_topup_self_service: true,
                                     created_at: "2024-01-15T09:30:00Z",
                                     credit_amount: 1000000,
                                     credit_description: "credit_description",
@@ -1003,6 +1071,7 @@ describe("CheckoutClient", () => {
                         included_credit_grants: [
                             {
                                 billing_credit_auto_topup_enabled: true,
+                                billing_credit_auto_topup_self_service: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -1222,6 +1291,7 @@ describe("CheckoutClient", () => {
                     included_credit_grants: [
                         {
                             auto_topup_enabled: true,
+                            auto_topup_self_service: true,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_id: "credit_id",
@@ -1655,6 +1725,7 @@ describe("CheckoutClient", () => {
                     includedCreditGrants: [
                         {
                             autoTopupEnabled: true,
+                            autoTopupSelfService: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditId: "credit_id",
@@ -1747,6 +1818,7 @@ describe("CheckoutClient", () => {
                             includedCreditGrants: [
                                 {
                                     billingCreditAutoTopupEnabled: true,
+                                    billingCreditAutoTopupSelfService: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     creditAmount: 1000000,
                                     creditDescription: "credit_description",
@@ -1949,6 +2021,7 @@ describe("CheckoutClient", () => {
                         includedCreditGrants: [
                             {
                                 billingCreditAutoTopupEnabled: true,
+                                billingCreditAutoTopupSelfService: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -2199,6 +2272,7 @@ describe("CheckoutClient", () => {
                     includedCreditGrants: [
                         {
                             autoTopupEnabled: true,
+                            autoTopupSelfService: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditId: "credit_id",
@@ -2456,6 +2530,7 @@ describe("CheckoutClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             add_on_ids: [{ add_on_id: "add_on_id", price_id: "price_id" }],
+            auto_topup_overrides: [{ plan_credit_grant_id: "plan_credit_grant_id" }],
             company_id: "company_id",
             credit_bundles: [{ bundle_id: "bundle_id", quantity: 1000000 }],
             new_plan_id: "new_plan_id",
@@ -2524,6 +2599,11 @@ describe("CheckoutClient", () => {
                 {
                     addOnId: "add_on_id",
                     priceId: "price_id",
+                },
+            ],
+            autoTopupOverrides: [
+                {
+                    planCreditGrantId: "plan_credit_grant_id",
                 },
             ],
             companyId: "company_id",
@@ -2601,6 +2681,10 @@ describe("CheckoutClient", () => {
                 { add_on_id: "add_on_id", price_id: "price_id" },
                 { add_on_id: "add_on_id", price_id: "price_id" },
             ],
+            auto_topup_overrides: [
+                { plan_credit_grant_id: "plan_credit_grant_id" },
+                { plan_credit_grant_id: "plan_credit_grant_id" },
+            ],
             company_id: "company_id",
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
@@ -2635,6 +2719,14 @@ describe("CheckoutClient", () => {
                     {
                         addOnId: "add_on_id",
                         priceId: "price_id",
+                    },
+                ],
+                autoTopupOverrides: [
+                    {
+                        planCreditGrantId: "plan_credit_grant_id",
+                    },
+                    {
+                        planCreditGrantId: "plan_credit_grant_id",
                     },
                 ],
                 companyId: "company_id",
@@ -2673,6 +2765,10 @@ describe("CheckoutClient", () => {
                 { add_on_id: "add_on_id", price_id: "price_id" },
                 { add_on_id: "add_on_id", price_id: "price_id" },
             ],
+            auto_topup_overrides: [
+                { plan_credit_grant_id: "plan_credit_grant_id" },
+                { plan_credit_grant_id: "plan_credit_grant_id" },
+            ],
             company_id: "company_id",
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
@@ -2707,6 +2803,14 @@ describe("CheckoutClient", () => {
                     {
                         addOnId: "add_on_id",
                         priceId: "price_id",
+                    },
+                ],
+                autoTopupOverrides: [
+                    {
+                        planCreditGrantId: "plan_credit_grant_id",
+                    },
+                    {
+                        planCreditGrantId: "plan_credit_grant_id",
                     },
                 ],
                 companyId: "company_id",
@@ -2745,6 +2849,10 @@ describe("CheckoutClient", () => {
                 { add_on_id: "add_on_id", price_id: "price_id" },
                 { add_on_id: "add_on_id", price_id: "price_id" },
             ],
+            auto_topup_overrides: [
+                { plan_credit_grant_id: "plan_credit_grant_id" },
+                { plan_credit_grant_id: "plan_credit_grant_id" },
+            ],
             company_id: "company_id",
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
@@ -2779,6 +2887,14 @@ describe("CheckoutClient", () => {
                     {
                         addOnId: "add_on_id",
                         priceId: "price_id",
+                    },
+                ],
+                autoTopupOverrides: [
+                    {
+                        planCreditGrantId: "plan_credit_grant_id",
+                    },
+                    {
+                        planCreditGrantId: "plan_credit_grant_id",
                     },
                 ],
                 companyId: "company_id",
@@ -2817,6 +2933,10 @@ describe("CheckoutClient", () => {
                 { add_on_id: "add_on_id", price_id: "price_id" },
                 { add_on_id: "add_on_id", price_id: "price_id" },
             ],
+            auto_topup_overrides: [
+                { plan_credit_grant_id: "plan_credit_grant_id" },
+                { plan_credit_grant_id: "plan_credit_grant_id" },
+            ],
             company_id: "company_id",
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
@@ -2851,6 +2971,14 @@ describe("CheckoutClient", () => {
                     {
                         addOnId: "add_on_id",
                         priceId: "price_id",
+                    },
+                ],
+                autoTopupOverrides: [
+                    {
+                        planCreditGrantId: "plan_credit_grant_id",
+                    },
+                    {
+                        planCreditGrantId: "plan_credit_grant_id",
                     },
                 ],
                 companyId: "company_id",
@@ -2889,6 +3017,10 @@ describe("CheckoutClient", () => {
                 { add_on_id: "add_on_id", price_id: "price_id" },
                 { add_on_id: "add_on_id", price_id: "price_id" },
             ],
+            auto_topup_overrides: [
+                { plan_credit_grant_id: "plan_credit_grant_id" },
+                { plan_credit_grant_id: "plan_credit_grant_id" },
+            ],
             company_id: "company_id",
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
@@ -2923,6 +3055,14 @@ describe("CheckoutClient", () => {
                     {
                         addOnId: "add_on_id",
                         priceId: "price_id",
+                    },
+                ],
+                autoTopupOverrides: [
+                    {
+                        planCreditGrantId: "plan_credit_grant_id",
+                    },
+                    {
+                        planCreditGrantId: "plan_credit_grant_id",
                     },
                 ],
                 companyId: "company_id",
@@ -2971,6 +3111,7 @@ describe("CheckoutClient", () => {
                             included_credit_grants: [
                                 {
                                     billing_credit_auto_topup_enabled: true,
+                                    billing_credit_auto_topup_self_service: true,
                                     created_at: "2024-01-15T09:30:00Z",
                                     credit_amount: 1000000,
                                     credit_description: "credit_description",
@@ -3165,6 +3306,7 @@ describe("CheckoutClient", () => {
                         included_credit_grants: [
                             {
                                 billing_credit_auto_topup_enabled: true,
+                                billing_credit_auto_topup_self_service: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -3274,6 +3416,7 @@ describe("CheckoutClient", () => {
                             includedCreditGrants: [
                                 {
                                     billingCreditAutoTopupEnabled: true,
+                                    billingCreditAutoTopupSelfService: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     creditAmount: 1000000,
                                     creditDescription: "credit_description",
@@ -3476,6 +3619,7 @@ describe("CheckoutClient", () => {
                         includedCreditGrants: [
                             {
                                 billingCreditAutoTopupEnabled: true,
+                                billingCreditAutoTopupSelfService: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -4313,6 +4457,7 @@ describe("CheckoutClient", () => {
                             included_credit_grants: [
                                 {
                                     billing_credit_auto_topup_enabled: true,
+                                    billing_credit_auto_topup_self_service: true,
                                     created_at: "2024-01-15T09:30:00Z",
                                     credit_amount: 1000000,
                                     credit_description: "credit_description",
@@ -4507,6 +4652,7 @@ describe("CheckoutClient", () => {
                         included_credit_grants: [
                             {
                                 billing_credit_auto_topup_enabled: true,
+                                billing_credit_auto_topup_self_service: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -4599,6 +4745,7 @@ describe("CheckoutClient", () => {
                             includedCreditGrants: [
                                 {
                                     billingCreditAutoTopupEnabled: true,
+                                    billingCreditAutoTopupSelfService: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     creditAmount: 1000000,
                                     creditDescription: "credit_description",
@@ -4801,6 +4948,7 @@ describe("CheckoutClient", () => {
                         includedCreditGrants: [
                             {
                                 billingCreditAutoTopupEnabled: true,
+                                billingCreditAutoTopupSelfService: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",

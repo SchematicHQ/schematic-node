@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { ApiKeyIntegrationResponseData } from "./ApiKeyIntegrationResponseData";
 import { ApiKeyScope } from "./ApiKeyScope";
 import { EnvironmentResponseData } from "./EnvironmentResponseData";
 
@@ -15,6 +16,7 @@ export const ApiKeyCreateResponseData: core.serialization.ObjectSchema<
     environment: EnvironmentResponseData.optional(),
     environmentId: core.serialization.property("environment_id", core.serialization.string().optional()),
     id: core.serialization.string(),
+    integration: ApiKeyIntegrationResponseData.optional(),
     lastUsedAt: core.serialization.property("last_used_at", core.serialization.date().optional()),
     name: core.serialization.string(),
     readonly: core.serialization.boolean(),
@@ -30,6 +32,7 @@ export declare namespace ApiKeyCreateResponseData {
         environment?: EnvironmentResponseData.Raw | null;
         environment_id?: string | null;
         id: string;
+        integration?: ApiKeyIntegrationResponseData.Raw | null;
         last_used_at?: string | null;
         name: string;
         readonly: boolean;

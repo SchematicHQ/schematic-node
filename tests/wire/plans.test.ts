@@ -17,6 +17,7 @@ describe("PlansClient", () => {
                         included_credit_grants: [
                             {
                                 billing_credit_auto_topup_enabled: true,
+                                billing_credit_auto_topup_self_service: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -258,6 +259,7 @@ describe("PlansClient", () => {
                     included_credit_grants: [
                         {
                             billing_credit_auto_topup_enabled: true,
+                            billing_credit_auto_topup_self_service: true,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_description: "credit_description",
@@ -352,6 +354,7 @@ describe("PlansClient", () => {
                         includedCreditGrants: [
                             {
                                 billingCreditAutoTopupEnabled: true,
+                                billingCreditAutoTopupSelfService: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -603,6 +606,7 @@ describe("PlansClient", () => {
                     includedCreditGrants: [
                         {
                             billingCreditAutoTopupEnabled: true,
+                            billingCreditAutoTopupSelfService: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditDescription: "credit_description",
@@ -1367,6 +1371,7 @@ describe("PlansClient", () => {
                 included_credit_grants: [
                     {
                         auto_topup_enabled: true,
+                        auto_topup_self_service: true,
                         created_at: "2024-01-15T09:30:00Z",
                         credit_amount: 1000000,
                         credit_id: "credit_id",
@@ -1614,6 +1619,7 @@ describe("PlansClient", () => {
                 includedCreditGrants: [
                     {
                         autoTopupEnabled: true,
+                        autoTopupSelfService: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         creditAmount: 1000000,
                         creditId: "credit_id",
@@ -1953,6 +1959,7 @@ describe("PlansClient", () => {
                     included_credit_grants: [
                         {
                             auto_topup_enabled: true,
+                            auto_topup_self_service: true,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_id: "credit_id",
@@ -2015,6 +2022,7 @@ describe("PlansClient", () => {
             ],
             params: {
                 company_id: "company_id",
+                company_scoped_only: true,
                 exclude_company_scoped: true,
                 for_fallback_plan: true,
                 for_initial_plan: true,
@@ -2036,6 +2044,7 @@ describe("PlansClient", () => {
 
         const response = await client.plans.listPlans({
             companyId: "company_id",
+            companyScopedOnly: true,
             excludeCompanyScoped: true,
             forFallbackPlan: true,
             forInitialPlan: true,
@@ -2214,6 +2223,7 @@ describe("PlansClient", () => {
                     includedCreditGrants: [
                         {
                             autoTopupEnabled: true,
+                            autoTopupSelfService: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditId: "credit_id",
@@ -2276,6 +2286,7 @@ describe("PlansClient", () => {
             ],
             params: {
                 companyId: "company_id",
+                companyScopedOnly: true,
                 excludeCompanyScoped: true,
                 forFallbackPlan: true,
                 forInitialPlan: true,
@@ -2509,6 +2520,7 @@ describe("PlansClient", () => {
                 included_credit_grants: [
                     {
                         auto_topup_enabled: true,
+                        auto_topup_self_service: true,
                         created_at: "2024-01-15T09:30:00Z",
                         credit_amount: 1000000,
                         credit_id: "credit_id",
@@ -2756,6 +2768,7 @@ describe("PlansClient", () => {
                 includedCreditGrants: [
                     {
                         autoTopupEnabled: true,
+                        autoTopupSelfService: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         creditAmount: 1000000,
                         creditId: "credit_id",
@@ -3097,6 +3110,7 @@ describe("PlansClient", () => {
                 included_credit_grants: [
                     {
                         auto_topup_enabled: true,
+                        auto_topup_self_service: true,
                         created_at: "2024-01-15T09:30:00Z",
                         credit_amount: 1000000,
                         credit_id: "credit_id",
@@ -3335,6 +3349,7 @@ describe("PlansClient", () => {
                 includedCreditGrants: [
                     {
                         autoTopupEnabled: true,
+                        autoTopupSelfService: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         creditAmount: 1000000,
                         creditId: "credit_id",
@@ -3608,6 +3623,7 @@ describe("PlansClient", () => {
                 included_credit_grants: [
                     {
                         auto_topup_enabled: true,
+                        auto_topup_self_service: true,
                         created_at: "2024-01-15T09:30:00Z",
                         credit_amount: 1000000,
                         credit_id: "credit_id",
@@ -3853,6 +3869,7 @@ describe("PlansClient", () => {
                 includedCreditGrants: [
                     {
                         autoTopupEnabled: true,
+                        autoTopupSelfService: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         creditAmount: 1000000,
                         creditId: "credit_id",
@@ -4443,6 +4460,7 @@ describe("PlansClient", () => {
                 included_credit_grants: [
                     {
                         auto_topup_enabled: true,
+                        auto_topup_self_service: true,
                         created_at: "2024-01-15T09:30:00Z",
                         credit_amount: 1000000,
                         credit_id: "credit_id",
@@ -4692,6 +4710,7 @@ describe("PlansClient", () => {
                 includedCreditGrants: [
                     {
                         autoTopupEnabled: true,
+                        autoTopupSelfService: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         creditAmount: 1000000,
                         creditId: "credit_id",
@@ -4936,6 +4955,7 @@ describe("PlansClient", () => {
                             included_credit_grants: [
                                 {
                                     billing_credit_auto_topup_enabled: true,
+                                    billing_credit_auto_topup_self_service: true,
                                     created_at: "2024-01-15T09:30:00Z",
                                     credit_amount: 1000000,
                                     credit_description: "credit_description",
@@ -5130,6 +5150,7 @@ describe("PlansClient", () => {
                         included_credit_grants: [
                             {
                                 billing_credit_auto_topup_enabled: true,
+                                billing_credit_auto_topup_self_service: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -5223,6 +5244,7 @@ describe("PlansClient", () => {
                             includedCreditGrants: [
                                 {
                                     billingCreditAutoTopupEnabled: true,
+                                    billingCreditAutoTopupSelfService: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     creditAmount: 1000000,
                                     creditDescription: "credit_description",
@@ -5425,6 +5447,7 @@ describe("PlansClient", () => {
                         includedCreditGrants: [
                             {
                                 billingCreditAutoTopupEnabled: true,
+                                billingCreditAutoTopupSelfService: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -5762,6 +5785,7 @@ describe("PlansClient", () => {
             data: { count: 1 },
             params: {
                 company_id: "company_id",
+                company_scoped_only: true,
                 exclude_company_scoped: true,
                 for_fallback_plan: true,
                 for_initial_plan: true,
@@ -5783,6 +5807,7 @@ describe("PlansClient", () => {
 
         const response = await client.plans.countPlans({
             companyId: "company_id",
+            companyScopedOnly: true,
             excludeCompanyScoped: true,
             forFallbackPlan: true,
             forInitialPlan: true,
@@ -5804,6 +5829,7 @@ describe("PlansClient", () => {
             },
             params: {
                 companyId: "company_id",
+                companyScopedOnly: true,
                 excludeCompanyScoped: true,
                 forFallbackPlan: true,
                 forInitialPlan: true,

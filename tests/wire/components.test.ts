@@ -865,6 +865,7 @@ describe("ComponentsClient", () => {
                         included_credit_grants: [
                             {
                                 billing_credit_auto_topup_enabled: true,
+                                billing_credit_auto_topup_self_service: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -1011,6 +1012,7 @@ describe("ComponentsClient", () => {
                         included_credit_grants: [
                             {
                                 billing_credit_auto_topup_enabled: true,
+                                billing_credit_auto_topup_self_service: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -1072,6 +1074,7 @@ describe("ComponentsClient", () => {
                             included_credit_grants: [
                                 {
                                     billing_credit_auto_topup_enabled: true,
+                                    billing_credit_auto_topup_self_service: true,
                                     created_at: "2024-01-15T09:30:00Z",
                                     credit_amount: 1000000,
                                     credit_description: "credit_description",
@@ -1266,6 +1269,7 @@ describe("ComponentsClient", () => {
                         included_credit_grants: [
                             {
                                 billing_credit_auto_topup_enabled: true,
+                                billing_credit_auto_topup_self_service: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -1517,6 +1521,7 @@ describe("ComponentsClient", () => {
                     included_credit_grants: [
                         {
                             auto_topup_enabled: true,
+                            auto_topup_self_service: true,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_id: "credit_id",
@@ -1752,6 +1757,7 @@ describe("ComponentsClient", () => {
                     included_credit_grants: [
                         {
                             auto_topup_enabled: true,
+                            auto_topup_self_service: true,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_id: "credit_id",
@@ -2073,6 +2079,7 @@ describe("ComponentsClient", () => {
                         includedCreditGrants: [
                             {
                                 billingCreditAutoTopupEnabled: true,
+                                billingCreditAutoTopupSelfService: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -2242,6 +2249,7 @@ describe("ComponentsClient", () => {
                         includedCreditGrants: [
                             {
                                 billingCreditAutoTopupEnabled: true,
+                                billingCreditAutoTopupSelfService: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -2314,6 +2322,7 @@ describe("ComponentsClient", () => {
                             includedCreditGrants: [
                                 {
                                     billingCreditAutoTopupEnabled: true,
+                                    billingCreditAutoTopupSelfService: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     creditAmount: 1000000,
                                     creditDescription: "credit_description",
@@ -2516,6 +2525,7 @@ describe("ComponentsClient", () => {
                         includedCreditGrants: [
                             {
                                 billingCreditAutoTopupEnabled: true,
+                                billingCreditAutoTopupSelfService: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -2799,6 +2809,7 @@ describe("ComponentsClient", () => {
                     includedCreditGrants: [
                         {
                             autoTopupEnabled: true,
+                            autoTopupSelfService: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditId: "credit_id",
@@ -3053,6 +3064,7 @@ describe("ComponentsClient", () => {
                     includedCreditGrants: [
                         {
                             autoTopupEnabled: true,
+                            autoTopupSelfService: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditId: "credit_id",

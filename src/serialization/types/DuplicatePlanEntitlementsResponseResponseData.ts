@@ -4,6 +4,7 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { PlanEntitlementResponseData } from "./PlanEntitlementResponseData";
+import { PlanIssueResponseData } from "./PlanIssueResponseData";
 import { SkippedEntitlementResponseData } from "./SkippedEntitlementResponseData";
 
 export const DuplicatePlanEntitlementsResponseResponseData: core.serialization.ObjectSchema<
@@ -11,12 +12,14 @@ export const DuplicatePlanEntitlementsResponseResponseData: core.serialization.O
     Schematic.DuplicatePlanEntitlementsResponseResponseData
 > = core.serialization.object({
     data: core.serialization.list(PlanEntitlementResponseData),
+    issues: core.serialization.list(PlanIssueResponseData),
     skipped: core.serialization.list(SkippedEntitlementResponseData),
 });
 
 export declare namespace DuplicatePlanEntitlementsResponseResponseData {
     export interface Raw {
         data: PlanEntitlementResponseData.Raw[];
+        issues: PlanIssueResponseData.Raw[];
         skipped: SkippedEntitlementResponseData.Raw[];
     }
 }
