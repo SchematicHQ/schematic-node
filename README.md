@@ -1,4 +1,4 @@
-# schematic-typescript-node
+# Schematic Typescript Node SDK
 
 ## Installation and Setup
 
@@ -601,6 +601,64 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 }
 ```
 
+## Caching
+
+### Local Caching
+
+By default, the client will do some local caching for flag checks. You can customize this behavior by specifying the max size of the cache and the max age of the cache (in milliseconds) as shown in the setup section above.
+
+### Cloudflare KV Caching
+
+If you're using Cloudflare Workers, you can leverage Cloudflare's KV storage for caching flag check results. This provides a more persistent and distributed cache compared to the local in-memory cache.
+
+To use Cloudflare KV caching, you'll need to install the Cloudflare adapter package:
+
+```bash
+npm install @schematichq/schematic-typescript-cloudflare
+# or
+yarn add @schematichq/schematic-typescript-cloudflare
+# or
+pnpm add @schematichq/schematic-typescript-cloudflare
+```
+
+Then, in your Cloudflare Worker, you can set up the client with KV caching:
+
+```typescript
+import { SchematicClient } from "@schematichq/schematic-typescript-node";
+import { CloudflareKVCache } from "@schematichq/schematic-typescript-cloudflare";
+
+// Inside a Cloudflare Worker
+export default {
+  async fetch(request, env, ctx) {
+    // Create a CloudflareKVCache instance
+    const cache = new CloudflareKVCache<boolean>(env.MY_KV_NAMESPACE, {
+      ttl: 1000 * 60 * 60, // 1 hour cache TTL
+      keyPrefix: 'schematic:', // Optional prefix for KV keys
+    });
+    
+    // Initialize Schematic with the KV cache
+    const schematic = new SchematicClient({
+      apiKey: env.SCHEMATIC_API_KEY,
+      cacheProviders: {
+        flagChecks: [cache],
+      }
+    });
+    
+    // Your application logic...
+    // ...
+    
+    // Don't forget to close the client when done
+    schematic.close();
+  }
+};
+```
+
+The CloudflareKVCache constructor accepts the following options:
+- `ttl`: Time-to-live for cache entries in milliseconds (default: 5000ms)
+- `keyPrefix`: Prefix to add to all KV keys (default: 'schematic:')
+
+With this setup, flag check results will be cached in your Cloudflare KV namespace, allowing for persistence across worker invocations and global distribution of your cache.
+
 ## DataStream
 
 DataStream enables local flag evaluation by maintaining a WebSocket connection to Schematic and caching flag rules, company, and user data locally.
@@ -720,3 +778,13 @@ const client = new SchematicClient({
 
 client.close();
 ```
+
+## Contributing
+
+While we value open-source contributions to this SDK, this library is generated programmatically.
+Additions made directly to this library would have to be moved over to our generation code,
+otherwise they would be overwritten upon the next generated release. Feel free to open a PR as
+ a proof of concept, but know that we will not be able to merge it as-is. We suggest opening
+an issue first to discuss with us!
+
+On the other hand, contributions to the README are always very welcome!
