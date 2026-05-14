@@ -18,6 +18,7 @@ describe("CompaniesClient", () => {
                             included_credit_grants: [
                                 {
                                     billing_credit_auto_topup_enabled: true,
+                                    billing_credit_auto_topup_self_service: true,
                                     created_at: "2024-01-15T09:30:00Z",
                                     credit_amount: 1000000,
                                     credit_description: "credit_description",
@@ -212,6 +213,7 @@ describe("CompaniesClient", () => {
                         included_credit_grants: [
                             {
                                 billing_credit_auto_topup_enabled: true,
+                                billing_credit_auto_topup_self_service: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -334,6 +336,7 @@ describe("CompaniesClient", () => {
                             includedCreditGrants: [
                                 {
                                     billingCreditAutoTopupEnabled: true,
+                                    billingCreditAutoTopupSelfService: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     creditAmount: 1000000,
                                     creditDescription: "credit_description",
@@ -536,6 +539,7 @@ describe("CompaniesClient", () => {
                         includedCreditGrants: [
                             {
                                 billingCreditAutoTopupEnabled: true,
+                                billingCreditAutoTopupSelfService: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -711,6 +715,7 @@ describe("CompaniesClient", () => {
                         included_credit_grants: [
                             {
                                 billing_credit_auto_topup_enabled: true,
+                                billing_credit_auto_topup_self_service: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -952,6 +957,7 @@ describe("CompaniesClient", () => {
                     included_credit_grants: [
                         {
                             billing_credit_auto_topup_enabled: true,
+                            billing_credit_auto_topup_self_service: true,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_description: "credit_description",
@@ -1048,6 +1054,7 @@ describe("CompaniesClient", () => {
                         includedCreditGrants: [
                             {
                                 billingCreditAutoTopupEnabled: true,
+                                billingCreditAutoTopupSelfService: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -1299,6 +1306,7 @@ describe("CompaniesClient", () => {
                     includedCreditGrants: [
                         {
                             billingCreditAutoTopupEnabled: true,
+                            billingCreditAutoTopupSelfService: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditDescription: "credit_description",
@@ -1515,6 +1523,7 @@ describe("CompaniesClient", () => {
                         included_credit_grants: [
                             {
                                 billing_credit_auto_topup_enabled: true,
+                                billing_credit_auto_topup_self_service: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -1756,6 +1765,7 @@ describe("CompaniesClient", () => {
                     included_credit_grants: [
                         {
                             billing_credit_auto_topup_enabled: true,
+                            billing_credit_auto_topup_self_service: true,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_description: "credit_description",
@@ -1847,6 +1857,7 @@ describe("CompaniesClient", () => {
                         includedCreditGrants: [
                             {
                                 billingCreditAutoTopupEnabled: true,
+                                billingCreditAutoTopupSelfService: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -2098,6 +2109,7 @@ describe("CompaniesClient", () => {
                     includedCreditGrants: [
                         {
                             billingCreditAutoTopupEnabled: true,
+                            billingCreditAutoTopupSelfService: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditDescription: "credit_description",
@@ -2539,6 +2551,7 @@ describe("CompaniesClient", () => {
                         included_credit_grants: [
                             {
                                 billing_credit_auto_topup_enabled: true,
+                                billing_credit_auto_topup_self_service: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -2780,6 +2793,7 @@ describe("CompaniesClient", () => {
                     included_credit_grants: [
                         {
                             billing_credit_auto_topup_enabled: true,
+                            billing_credit_auto_topup_self_service: true,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_description: "credit_description",
@@ -2876,6 +2890,7 @@ describe("CompaniesClient", () => {
                         includedCreditGrants: [
                             {
                                 billingCreditAutoTopupEnabled: true,
+                                billingCreditAutoTopupSelfService: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -3127,6 +3142,7 @@ describe("CompaniesClient", () => {
                     includedCreditGrants: [
                         {
                             billingCreditAutoTopupEnabled: true,
+                            billingCreditAutoTopupSelfService: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditDescription: "credit_description",
@@ -3520,8 +3536,12 @@ describe("CompaniesClient", () => {
                                 billing_credit_auto_topup_expiry_type: "duration",
                                 billing_credit_auto_topup_expiry_unit: "billing_periods",
                                 billing_credit_auto_topup_expiry_unit_count: 1000000,
+                                billing_credit_auto_topup_self_service: true,
                                 billing_credit_auto_topup_threshold_credits: 1000000,
                                 billing_credit_auto_topup_threshold_percent: 1000000,
+                                company_auto_topup_amount: 1000000,
+                                company_auto_topup_enabled: true,
+                                company_auto_topup_threshold_credits: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit: {
                                     account_id: "account_id",
@@ -3601,8 +3621,12 @@ describe("CompaniesClient", () => {
                                 billing_credit_auto_topup_expiry_type: "duration",
                                 billing_credit_auto_topup_expiry_unit: "billing_periods",
                                 billing_credit_auto_topup_expiry_unit_count: 1000000,
+                                billing_credit_auto_topup_self_service: true,
                                 billing_credit_auto_topup_threshold_credits: 1000000,
                                 billing_credit_auto_topup_threshold_percent: 1000000,
+                                company_auto_topup_amount: 1000000,
+                                company_auto_topup_enabled: true,
+                                company_auto_topup_threshold_credits: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit: {
                                     account_id: "account_id",
@@ -3696,8 +3720,12 @@ describe("CompaniesClient", () => {
                                 billing_credit_auto_topup_expiry_type: "duration",
                                 billing_credit_auto_topup_expiry_unit: "billing_periods",
                                 billing_credit_auto_topup_expiry_unit_count: 1000000,
+                                billing_credit_auto_topup_self_service: true,
                                 billing_credit_auto_topup_threshold_credits: 1000000,
                                 billing_credit_auto_topup_threshold_percent: 1000000,
+                                company_auto_topup_amount: 1000000,
+                                company_auto_topup_enabled: true,
+                                company_auto_topup_threshold_credits: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit: {
                                     account_id: "account_id",
@@ -3777,8 +3805,12 @@ describe("CompaniesClient", () => {
                                 billing_credit_auto_topup_expiry_type: "duration",
                                 billing_credit_auto_topup_expiry_unit: "billing_periods",
                                 billing_credit_auto_topup_expiry_unit_count: 1000000,
+                                billing_credit_auto_topup_self_service: true,
                                 billing_credit_auto_topup_threshold_credits: 1000000,
                                 billing_credit_auto_topup_threshold_percent: 1000000,
+                                company_auto_topup_amount: 1000000,
+                                company_auto_topup_enabled: true,
+                                company_auto_topup_threshold_credits: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit: {
                                     account_id: "account_id",
@@ -4627,8 +4659,12 @@ describe("CompaniesClient", () => {
                             billing_credit_auto_topup_expiry_type: "duration",
                             billing_credit_auto_topup_expiry_unit: "billing_periods",
                             billing_credit_auto_topup_expiry_unit_count: 1000000,
+                            billing_credit_auto_topup_self_service: true,
                             billing_credit_auto_topup_threshold_credits: 1000000,
                             billing_credit_auto_topup_threshold_percent: 1000000,
+                            company_auto_topup_amount: 1000000,
+                            company_auto_topup_enabled: true,
+                            company_auto_topup_threshold_credits: 1000000,
                             created_at: "2024-01-15T09:30:00Z",
                             credit: {
                                 account_id: "account_id",
@@ -4708,8 +4744,12 @@ describe("CompaniesClient", () => {
                             billing_credit_auto_topup_expiry_type: "duration",
                             billing_credit_auto_topup_expiry_unit: "billing_periods",
                             billing_credit_auto_topup_expiry_unit_count: 1000000,
+                            billing_credit_auto_topup_self_service: true,
                             billing_credit_auto_topup_threshold_credits: 1000000,
                             billing_credit_auto_topup_threshold_percent: 1000000,
+                            company_auto_topup_amount: 1000000,
+                            company_auto_topup_enabled: true,
+                            company_auto_topup_threshold_credits: 1000000,
                             created_at: "2024-01-15T09:30:00Z",
                             credit: {
                                 account_id: "account_id",
@@ -5135,8 +5175,12 @@ describe("CompaniesClient", () => {
                                 billingCreditAutoTopupExpiryType: "duration",
                                 billingCreditAutoTopupExpiryUnit: "billing_periods",
                                 billingCreditAutoTopupExpiryUnitCount: 1000000,
+                                billingCreditAutoTopupSelfService: true,
                                 billingCreditAutoTopupThresholdCredits: 1000000,
                                 billingCreditAutoTopupThresholdPercent: 1000000,
+                                companyAutoTopupAmount: 1000000,
+                                companyAutoTopupEnabled: true,
+                                companyAutoTopupThresholdCredits: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 credit: {
                                     accountId: "account_id",
@@ -5228,8 +5272,12 @@ describe("CompaniesClient", () => {
                                 billingCreditAutoTopupExpiryType: "duration",
                                 billingCreditAutoTopupExpiryUnit: "billing_periods",
                                 billingCreditAutoTopupExpiryUnitCount: 1000000,
+                                billingCreditAutoTopupSelfService: true,
                                 billingCreditAutoTopupThresholdCredits: 1000000,
                                 billingCreditAutoTopupThresholdPercent: 1000000,
+                                companyAutoTopupAmount: 1000000,
+                                companyAutoTopupEnabled: true,
+                                companyAutoTopupThresholdCredits: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 credit: {
                                     accountId: "account_id",
@@ -5335,8 +5383,12 @@ describe("CompaniesClient", () => {
                                 billingCreditAutoTopupExpiryType: "duration",
                                 billingCreditAutoTopupExpiryUnit: "billing_periods",
                                 billingCreditAutoTopupExpiryUnitCount: 1000000,
+                                billingCreditAutoTopupSelfService: true,
                                 billingCreditAutoTopupThresholdCredits: 1000000,
                                 billingCreditAutoTopupThresholdPercent: 1000000,
+                                companyAutoTopupAmount: 1000000,
+                                companyAutoTopupEnabled: true,
+                                companyAutoTopupThresholdCredits: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 credit: {
                                     accountId: "account_id",
@@ -5428,8 +5480,12 @@ describe("CompaniesClient", () => {
                                 billingCreditAutoTopupExpiryType: "duration",
                                 billingCreditAutoTopupExpiryUnit: "billing_periods",
                                 billingCreditAutoTopupExpiryUnitCount: 1000000,
+                                billingCreditAutoTopupSelfService: true,
                                 billingCreditAutoTopupThresholdCredits: 1000000,
                                 billingCreditAutoTopupThresholdPercent: 1000000,
+                                companyAutoTopupAmount: 1000000,
+                                companyAutoTopupEnabled: true,
+                                companyAutoTopupThresholdCredits: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 credit: {
                                     accountId: "account_id",
@@ -6304,8 +6360,12 @@ describe("CompaniesClient", () => {
                             billingCreditAutoTopupExpiryType: "duration",
                             billingCreditAutoTopupExpiryUnit: "billing_periods",
                             billingCreditAutoTopupExpiryUnitCount: 1000000,
+                            billingCreditAutoTopupSelfService: true,
                             billingCreditAutoTopupThresholdCredits: 1000000,
                             billingCreditAutoTopupThresholdPercent: 1000000,
+                            companyAutoTopupAmount: 1000000,
+                            companyAutoTopupEnabled: true,
+                            companyAutoTopupThresholdCredits: 1000000,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             credit: {
                                 accountId: "account_id",
@@ -6397,8 +6457,12 @@ describe("CompaniesClient", () => {
                             billingCreditAutoTopupExpiryType: "duration",
                             billingCreditAutoTopupExpiryUnit: "billing_periods",
                             billingCreditAutoTopupExpiryUnitCount: 1000000,
+                            billingCreditAutoTopupSelfService: true,
                             billingCreditAutoTopupThresholdCredits: 1000000,
                             billingCreditAutoTopupThresholdPercent: 1000000,
+                            companyAutoTopupAmount: 1000000,
+                            companyAutoTopupEnabled: true,
+                            companyAutoTopupThresholdCredits: 1000000,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             credit: {
                                 accountId: "account_id",
@@ -7683,6 +7747,7 @@ describe("CompaniesClient", () => {
                         included_credit_grants: [
                             {
                                 billing_credit_auto_topup_enabled: true,
+                                billing_credit_auto_topup_self_service: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -7924,6 +7989,7 @@ describe("CompaniesClient", () => {
                     included_credit_grants: [
                         {
                             billing_credit_auto_topup_enabled: true,
+                            billing_credit_auto_topup_self_service: true,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_description: "credit_description",
@@ -8021,6 +8087,7 @@ describe("CompaniesClient", () => {
                         includedCreditGrants: [
                             {
                                 billingCreditAutoTopupEnabled: true,
+                                billingCreditAutoTopupSelfService: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -8272,6 +8339,7 @@ describe("CompaniesClient", () => {
                     includedCreditGrants: [
                         {
                             billingCreditAutoTopupEnabled: true,
+                            billingCreditAutoTopupSelfService: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditDescription: "credit_description",
@@ -9936,6 +10004,7 @@ describe("CompaniesClient", () => {
                     },
                     environment_id: "environment_id",
                     id: "id",
+                    integration: { id: "id", state: "active", type: "clerk" },
                     last_used_at: "2024-01-15T09:30:00Z",
                     name: "name",
                     readonly: true,
@@ -9944,6 +10013,14 @@ describe("CompaniesClient", () => {
                 },
                 audit_log: {
                     actor_type: "api_key",
+                    api_key: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        id: "id",
+                        name: "name",
+                        readonly: true,
+                        scopes: ["admin"],
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
                     api_key_id: "api_key_id",
                     ended_at: "2024-01-15T09:30:00Z",
                     environment: {
@@ -10047,6 +10124,11 @@ describe("CompaniesClient", () => {
                     },
                     environmentId: "environment_id",
                     id: "id",
+                    integration: {
+                        id: "id",
+                        state: "active",
+                        type: "clerk",
+                    },
                     lastUsedAt: new Date("2024-01-15T09:30:00.000Z"),
                     name: "name",
                     readonly: true,
@@ -10055,6 +10137,14 @@ describe("CompaniesClient", () => {
                 },
                 auditLog: {
                     actorType: "api_key",
+                    apiKey: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        id: "id",
+                        name: "name",
+                        readonly: true,
+                        scopes: ["admin"],
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
                     apiKeyId: "api_key_id",
                     endedAt: new Date("2024-01-15T09:30:00.000Z"),
                     environment: {

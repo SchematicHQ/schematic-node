@@ -10,6 +10,7 @@ export const CountPlansParams: core.serialization.ObjectSchema<
     Schematic.CountPlansParams
 > = core.serialization.object({
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
+    companyScopedOnly: core.serialization.property("company_scoped_only", core.serialization.boolean().optional()),
     excludeCompanyScoped: core.serialization.property(
         "exclude_company_scoped",
         core.serialization.boolean().optional(),
@@ -41,6 +42,7 @@ export const CountPlansParams: core.serialization.ObjectSchema<
 export declare namespace CountPlansParams {
     export interface Raw {
         company_id?: string | null;
+        company_scoped_only?: boolean | null;
         exclude_company_scoped?: boolean | null;
         for_fallback_plan?: boolean | null;
         for_initial_plan?: boolean | null;

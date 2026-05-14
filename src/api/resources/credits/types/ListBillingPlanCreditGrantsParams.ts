@@ -13,4 +13,5 @@ export interface ListBillingPlanCreditGrantsParams {
     planId?: string;
     planIds?: string[];
     planVersionId?: string;
+    planVersionIds?: string[];
 }

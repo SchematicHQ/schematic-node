@@ -38,6 +38,7 @@ export class FeaturesClient {
      *         booleanRequireEvent: true,
      *         featureType: ["boolean"],
      *         ids: ["ids"],
+     *         managedBy: "orb",
      *         planVersionId: "plan_version_id",
      *         q: "q",
      *         withoutCompanyOverrideFor: "without_company_override_for",
@@ -61,6 +62,7 @@ export class FeaturesClient {
             booleanRequireEvent,
             featureType,
             ids,
+            managedBy,
             planVersionId,
             q,
             withoutCompanyOverrideFor,
@@ -78,6 +80,10 @@ export class FeaturesClient {
                   ? serializers.FeatureType.jsonOrThrow(featureType, { unrecognizedObjectKeys: "strip" })
                   : undefined,
             ids,
+            managed_by:
+                managedBy != null
+                    ? serializers.BillingProviderType.jsonOrThrow(managedBy, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
             plan_version_id: planVersionId,
             q,
             without_company_override_for: withoutCompanyOverrideFor,
@@ -860,6 +866,7 @@ export class FeaturesClient {
      *         booleanRequireEvent: true,
      *         featureType: ["boolean"],
      *         ids: ["ids"],
+     *         managedBy: "orb",
      *         planVersionId: "plan_version_id",
      *         q: "q",
      *         withoutCompanyOverrideFor: "without_company_override_for",
@@ -883,6 +890,7 @@ export class FeaturesClient {
             booleanRequireEvent,
             featureType,
             ids,
+            managedBy,
             planVersionId,
             q,
             withoutCompanyOverrideFor,
@@ -900,6 +908,10 @@ export class FeaturesClient {
                   ? serializers.FeatureType.jsonOrThrow(featureType, { unrecognizedObjectKeys: "strip" })
                   : undefined,
             ids,
+            managed_by:
+                managedBy != null
+                    ? serializers.BillingProviderType.jsonOrThrow(managedBy, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
             plan_version_id: planVersionId,
             q,
             without_company_override_for: withoutCompanyOverrideFor,

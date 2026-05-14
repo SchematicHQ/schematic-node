@@ -4,6 +4,7 @@ import type * as Schematic from "../index";
 
 export interface EventDetailResponseData {
     apiKey?: string;
+    apiKeyView?: Schematic.ApiKeyResponseData;
     body: Record<string, unknown>;
     bodyPreview: string;
     capturedAt: Date;

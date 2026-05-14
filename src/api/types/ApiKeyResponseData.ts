@@ -8,6 +8,7 @@ export interface ApiKeyResponseData {
     environment?: Schematic.EnvironmentResponseData;
     environmentId?: string;
     id: string;
+    integration?: Schematic.ApiKeyIntegrationResponseData;
     lastUsedAt?: Date;
     name: string;
     readonly: boolean;

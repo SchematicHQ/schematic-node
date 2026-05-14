@@ -27,6 +27,7 @@ describe("PlanbundleClient", () => {
                 credit_grants: [
                     {
                         auto_topup_enabled: true,
+                        auto_topup_self_service: true,
                         created_at: "2024-01-15T09:30:00Z",
                         credit_amount: 1000000,
                         credit_id: "credit_id",
@@ -112,6 +113,7 @@ describe("PlanbundleClient", () => {
                 creditGrants: [
                     {
                         autoTopupEnabled: true,
+                        autoTopupSelfService: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         creditAmount: 1000000,
                         creditId: "credit_id",
@@ -337,6 +339,7 @@ describe("PlanbundleClient", () => {
                 credit_grants: [
                     {
                         auto_topup_enabled: true,
+                        auto_topup_self_service: true,
                         created_at: "2024-01-15T09:30:00Z",
                         credit_amount: 1000000,
                         credit_id: "credit_id",
@@ -422,6 +425,7 @@ describe("PlanbundleClient", () => {
                 creditGrants: [
                     {
                         autoTopupEnabled: true,
+                        autoTopupSelfService: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         creditAmount: 1000000,
                         creditId: "credit_id",

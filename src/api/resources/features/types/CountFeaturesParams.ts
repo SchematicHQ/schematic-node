@@ -13,6 +13,8 @@ export interface CountFeaturesParams {
     ids?: string[];
     /** Page limit (default 100) */
     limit?: number;
+    /** Filter for features managed by a billing provider, or by Schematic (no billing provider) */
+    managedBy?: Schematic.BillingProviderType;
     /** Page offset (default 0) */
     offset?: number;
     /** Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used */

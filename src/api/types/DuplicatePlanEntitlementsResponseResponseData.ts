@@ -4,5 +4,6 @@ import type * as Schematic from "../index";
 
 export interface DuplicatePlanEntitlementsResponseResponseData {
     data: Schematic.PlanEntitlementResponseData[];
+    issues: Schematic.PlanIssueResponseData[];
     skipped: Schematic.SkippedEntitlementResponseData[];
 }

@@ -620,6 +620,7 @@ export class PlansClient {
      * @example
      *     await client.plans.listPlans({
      *         companyId: "company_id",
+     *         companyScopedOnly: true,
      *         excludeCompanyScoped: true,
      *         forFallbackPlan: true,
      *         forInitialPlan: true,
@@ -649,6 +650,7 @@ export class PlansClient {
     ): Promise<core.WithRawResponse<Schematic.ListPlansResponse>> {
         const {
             companyId,
+            companyScopedOnly,
             excludeCompanyScoped,
             forFallbackPlan,
             forInitialPlan,
@@ -666,6 +668,7 @@ export class PlansClient {
         } = request;
         const _queryParams: Record<string, unknown> = {
             company_id: companyId,
+            company_scoped_only: companyScopedOnly,
             exclude_company_scoped: excludeCompanyScoped,
             for_fallback_plan: forFallbackPlan,
             for_initial_plan: forInitialPlan,
@@ -1912,6 +1915,7 @@ export class PlansClient {
      * @example
      *     await client.plans.countPlans({
      *         companyId: "company_id",
+     *         companyScopedOnly: true,
      *         excludeCompanyScoped: true,
      *         forFallbackPlan: true,
      *         forInitialPlan: true,
@@ -1941,6 +1945,7 @@ export class PlansClient {
     ): Promise<core.WithRawResponse<Schematic.CountPlansResponse>> {
         const {
             companyId,
+            companyScopedOnly,
             excludeCompanyScoped,
             forFallbackPlan,
             forInitialPlan,
@@ -1958,6 +1963,7 @@ export class PlansClient {
         } = request;
         const _queryParams: Record<string, unknown> = {
             company_id: companyId,
+            company_scoped_only: companyScopedOnly,
             exclude_company_scoped: excludeCompanyScoped,
             for_fallback_plan: forFallbackPlan,
             for_initial_plan: forInitialPlan,
