@@ -19,6 +19,7 @@ describe("EntitlementsClient", () => {
                                 included_credit_grants: [
                                     {
                                         billing_credit_auto_topup_enabled: true,
+                                        billing_credit_auto_topup_self_service: true,
                                         created_at: "2024-01-15T09:30:00Z",
                                         credit_amount: 1000000,
                                         credit_description: "credit_description",
@@ -271,6 +272,7 @@ describe("EntitlementsClient", () => {
                                 includedCreditGrants: [
                                     {
                                         billingCreditAutoTopupEnabled: true,
+                                        billingCreditAutoTopupSelfService: true,
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         creditAmount: 1000000,
                                         creditDescription: "credit_description",
@@ -590,6 +592,7 @@ describe("EntitlementsClient", () => {
                             included_credit_grants: [
                                 {
                                     billing_credit_auto_topup_enabled: true,
+                                    billing_credit_auto_topup_self_service: true,
                                     created_at: "2024-01-15T09:30:00Z",
                                     credit_amount: 1000000,
                                     credit_description: "credit_description",
@@ -784,6 +787,7 @@ describe("EntitlementsClient", () => {
                         included_credit_grants: [
                             {
                                 billing_credit_auto_topup_enabled: true,
+                                billing_credit_auto_topup_self_service: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -927,6 +931,7 @@ describe("EntitlementsClient", () => {
                             includedCreditGrants: [
                                 {
                                     billingCreditAutoTopupEnabled: true,
+                                    billingCreditAutoTopupSelfService: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     creditAmount: 1000000,
                                     creditDescription: "credit_description",
@@ -1129,6 +1134,7 @@ describe("EntitlementsClient", () => {
                         includedCreditGrants: [
                             {
                                 billingCreditAutoTopupEnabled: true,
+                                billingCreditAutoTopupSelfService: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -1392,6 +1398,7 @@ describe("EntitlementsClient", () => {
                             included_credit_grants: [
                                 {
                                     billing_credit_auto_topup_enabled: true,
+                                    billing_credit_auto_topup_self_service: true,
                                     created_at: "2024-01-15T09:30:00Z",
                                     credit_amount: 1000000,
                                     credit_description: "credit_description",
@@ -1586,6 +1593,7 @@ describe("EntitlementsClient", () => {
                         included_credit_grants: [
                             {
                                 billing_credit_auto_topup_enabled: true,
+                                billing_credit_auto_topup_self_service: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -1724,6 +1732,7 @@ describe("EntitlementsClient", () => {
                             includedCreditGrants: [
                                 {
                                     billingCreditAutoTopupEnabled: true,
+                                    billingCreditAutoTopupSelfService: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     creditAmount: 1000000,
                                     creditDescription: "credit_description",
@@ -1926,6 +1935,7 @@ describe("EntitlementsClient", () => {
                         includedCreditGrants: [
                             {
                                 billingCreditAutoTopupEnabled: true,
+                                billingCreditAutoTopupSelfService: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -2145,6 +2155,7 @@ describe("EntitlementsClient", () => {
                             included_credit_grants: [
                                 {
                                     billing_credit_auto_topup_enabled: true,
+                                    billing_credit_auto_topup_self_service: true,
                                     created_at: "2024-01-15T09:30:00Z",
                                     credit_amount: 1000000,
                                     credit_description: "credit_description",
@@ -2339,6 +2350,7 @@ describe("EntitlementsClient", () => {
                         included_credit_grants: [
                             {
                                 billing_credit_auto_topup_enabled: true,
+                                billing_credit_auto_topup_self_service: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -2480,6 +2492,7 @@ describe("EntitlementsClient", () => {
                             includedCreditGrants: [
                                 {
                                     billingCreditAutoTopupEnabled: true,
+                                    billingCreditAutoTopupSelfService: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     creditAmount: 1000000,
                                     creditDescription: "credit_description",
@@ -2682,6 +2695,7 @@ describe("EntitlementsClient", () => {
                         includedCreditGrants: [
                             {
                                 billingCreditAutoTopupEnabled: true,
+                                billingCreditAutoTopupSelfService: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -3210,6 +3224,7 @@ describe("EntitlementsClient", () => {
                                 included_credit_grants: [
                                     {
                                         billing_credit_auto_topup_enabled: true,
+                                        billing_credit_auto_topup_self_service: true,
                                         created_at: "2024-01-15T09:30:00Z",
                                         credit_amount: 1000000,
                                         credit_description: "credit_description",
@@ -3577,6 +3592,7 @@ describe("EntitlementsClient", () => {
                                 includedCreditGrants: [
                                     {
                                         billingCreditAutoTopupEnabled: true,
+                                        billingCreditAutoTopupSelfService: true,
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         creditAmount: 1000000,
                                         creditDescription: "credit_description",
@@ -5002,6 +5018,7 @@ describe("EntitlementsClient", () => {
                                 included_credit_grants: [
                                     {
                                         billing_credit_auto_topup_enabled: true,
+                                        billing_credit_auto_topup_self_service: true,
                                         created_at: "2024-01-15T09:30:00Z",
                                         credit_amount: 1000000,
                                         credit_description: "credit_description",
@@ -5291,6 +5308,7 @@ describe("EntitlementsClient", () => {
                                 includedCreditGrants: [
                                     {
                                         billingCreditAutoTopupEnabled: true,
+                                        billingCreditAutoTopupSelfService: true,
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         creditAmount: 1000000,
                                         creditDescription: "credit_description",
@@ -8383,6 +8401,7 @@ describe("EntitlementsClient", () => {
                         value_type: "boolean",
                     },
                 ],
+                issues: [{ code: "code", description: "description" }],
                 skipped: [
                     {
                         entitlement_id: "entitlement_id",
@@ -8425,6 +8444,12 @@ describe("EntitlementsClient", () => {
                         ruleId: "rule_id",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         valueType: "boolean",
+                    },
+                ],
+                issues: [
+                    {
+                        code: "code",
+                        description: "description",
                     },
                 ],
                 skipped: [

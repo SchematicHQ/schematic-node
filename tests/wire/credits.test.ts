@@ -3991,6 +3991,7 @@ describe("CreditsClient", () => {
                     auto_topup_expiry_type: "duration",
                     auto_topup_expiry_unit: "billing_periods",
                     auto_topup_expiry_unit_count: 1000000,
+                    auto_topup_self_service: true,
                     auto_topup_threshold_credits: 1000000,
                     auto_topup_threshold_percent: 1000000,
                     created_at: "2024-01-15T09:30:00Z",
@@ -4031,6 +4032,7 @@ describe("CreditsClient", () => {
                 plan_id: "plan_id",
                 plan_ids: ["plan_ids"],
                 plan_version_id: "plan_version_id",
+                plan_version_ids: ["plan_version_ids"],
             },
         };
 
@@ -4048,6 +4050,7 @@ describe("CreditsClient", () => {
             planId: "plan_id",
             planIds: ["plan_ids"],
             planVersionId: "plan_version_id",
+            planVersionIds: ["plan_version_ids"],
             limit: 1000000,
             offset: 1000000,
         });
@@ -4060,6 +4063,7 @@ describe("CreditsClient", () => {
                     autoTopupExpiryType: "duration",
                     autoTopupExpiryUnit: "billing_periods",
                     autoTopupExpiryUnitCount: 1000000,
+                    autoTopupSelfService: true,
                     autoTopupThresholdCredits: 1000000,
                     autoTopupThresholdPercent: 1000000,
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -4107,6 +4111,7 @@ describe("CreditsClient", () => {
                 planId: "plan_id",
                 planIds: ["plan_ids"],
                 planVersionId: "plan_version_id",
+                planVersionIds: ["plan_version_ids"],
             },
         });
     });
@@ -4224,6 +4229,7 @@ describe("CreditsClient", () => {
                 auto_topup_expiry_type: "duration",
                 auto_topup_expiry_unit: "billing_periods",
                 auto_topup_expiry_unit_count: 1000000,
+                auto_topup_self_service: true,
                 auto_topup_threshold_credits: 1000000,
                 auto_topup_threshold_percent: 1000000,
                 created_at: "2024-01-15T09:30:00Z",
@@ -4308,6 +4314,7 @@ describe("CreditsClient", () => {
                 autoTopupExpiryType: "duration",
                 autoTopupExpiryUnit: "billing_periods",
                 autoTopupExpiryUnitCount: 1000000,
+                autoTopupSelfService: true,
                 autoTopupThresholdCredits: 1000000,
                 autoTopupThresholdPercent: 1000000,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -4552,6 +4559,7 @@ describe("CreditsClient", () => {
                 auto_topup_expiry_type: "duration",
                 auto_topup_expiry_unit: "billing_periods",
                 auto_topup_expiry_unit_count: 1000000,
+                auto_topup_self_service: true,
                 auto_topup_threshold_credits: 1000000,
                 auto_topup_threshold_percent: 1000000,
                 created_at: "2024-01-15T09:30:00Z",
@@ -4629,6 +4637,7 @@ describe("CreditsClient", () => {
                 autoTopupExpiryType: "duration",
                 autoTopupExpiryUnit: "billing_periods",
                 autoTopupExpiryUnitCount: 1000000,
+                autoTopupSelfService: true,
                 autoTopupThresholdCredits: 1000000,
                 autoTopupThresholdPercent: 1000000,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -4789,6 +4798,7 @@ describe("CreditsClient", () => {
                 auto_topup_expiry_type: "duration",
                 auto_topup_expiry_unit: "billing_periods",
                 auto_topup_expiry_unit_count: 1000000,
+                auto_topup_self_service: true,
                 auto_topup_threshold_credits: 1000000,
                 auto_topup_threshold_percent: 1000000,
                 created_at: "2024-01-15T09:30:00Z",
@@ -4870,6 +4880,7 @@ describe("CreditsClient", () => {
                 autoTopupExpiryType: "duration",
                 autoTopupExpiryUnit: "billing_periods",
                 autoTopupExpiryUnitCount: 1000000,
+                autoTopupSelfService: true,
                 autoTopupThresholdCredits: 1000000,
                 autoTopupThresholdPercent: 1000000,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -5193,6 +5204,7 @@ describe("CreditsClient", () => {
                 plan_id: "plan_id",
                 plan_ids: ["plan_ids"],
                 plan_version_id: "plan_version_id",
+                plan_version_ids: ["plan_version_ids"],
             },
         };
 
@@ -5210,6 +5222,7 @@ describe("CreditsClient", () => {
             planId: "plan_id",
             planIds: ["plan_ids"],
             planVersionId: "plan_version_id",
+            planVersionIds: ["plan_version_ids"],
             limit: 1000000,
             offset: 1000000,
         });
@@ -5225,6 +5238,7 @@ describe("CreditsClient", () => {
                 planId: "plan_id",
                 planIds: ["plan_ids"],
                 planVersionId: "plan_version_id",
+                planVersionIds: ["plan_version_ids"],
             },
         });
     });

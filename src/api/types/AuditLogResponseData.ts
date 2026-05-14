@@ -4,6 +4,7 @@ import type * as Schematic from "../index";
 
 export interface AuditLogResponseData {
     actorType: Schematic.ActorType;
+    apiKey?: Schematic.ApiKeyResponseData;
     apiKeyId?: string;
     endedAt?: Date;
     environment?: Schematic.EnvironmentResponseData;

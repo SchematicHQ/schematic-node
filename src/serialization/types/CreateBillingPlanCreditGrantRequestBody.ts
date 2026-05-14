@@ -24,6 +24,10 @@ export const CreateBillingPlanCreditGrantRequestBody: core.serialization.ObjectS
         "auto_topup_expiry_unit_count",
         core.serialization.number().optional(),
     ),
+    autoTopupSelfService: core.serialization.property(
+        "auto_topup_self_service",
+        core.serialization.boolean().optional(),
+    ),
     autoTopupThresholdCredits: core.serialization.property(
         "auto_topup_threshold_credits",
         core.serialization.number().optional(),
@@ -53,6 +57,7 @@ export declare namespace CreateBillingPlanCreditGrantRequestBody {
         auto_topup_expiry_type?: BillingCreditExpiryType.Raw | null;
         auto_topup_expiry_unit?: BillingCreditExpiryUnit.Raw | null;
         auto_topup_expiry_unit_count?: number | null;
+        auto_topup_self_service?: boolean | null;
         auto_topup_threshold_credits?: number | null;
         auto_topup_threshold_percent?: number | null;
         credit_amount: number;

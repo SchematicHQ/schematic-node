@@ -11,9 +11,9 @@ import { BillingPlanCreditGrantResetStart } from "./BillingPlanCreditGrantResetS
 import { BillingPlanCreditGrantResetType } from "./BillingPlanCreditGrantResetType";
 import { GenericPreviewObject } from "./GenericPreviewObject";
 
-export const PlanCreditGrantView: core.serialization.ObjectSchema<
-    serializers.PlanCreditGrantView.Raw,
-    Schematic.PlanCreditGrantView
+export const CompanyPlanCreditGrantView: core.serialization.ObjectSchema<
+    serializers.CompanyPlanCreditGrantView.Raw,
+    Schematic.CompanyPlanCreditGrantView
 > = core.serialization.object({
     billingCreditAutoTopupAmount: core.serialization.property(
         "billing_credit_auto_topup_amount",
@@ -51,6 +51,18 @@ export const PlanCreditGrantView: core.serialization.ObjectSchema<
         "billing_credit_auto_topup_threshold_percent",
         core.serialization.number().optional(),
     ),
+    companyAutoTopupAmount: core.serialization.property(
+        "company_auto_topup_amount",
+        core.serialization.number().optional(),
+    ),
+    companyAutoTopupEnabled: core.serialization.property(
+        "company_auto_topup_enabled",
+        core.serialization.boolean().optional(),
+    ),
+    companyAutoTopupThresholdCredits: core.serialization.property(
+        "company_auto_topup_threshold_credits",
+        core.serialization.number().optional(),
+    ),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     credit: BillingCreditView.optional(),
     creditAmount: core.serialization.property("credit_amount", core.serialization.number()),
@@ -73,7 +85,7 @@ export const PlanCreditGrantView: core.serialization.ObjectSchema<
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
-export declare namespace PlanCreditGrantView {
+export declare namespace CompanyPlanCreditGrantView {
     export interface Raw {
         billing_credit_auto_topup_amount?: number | null;
         billing_credit_auto_topup_amount_type?: string | null;
@@ -84,6 +96,9 @@ export declare namespace PlanCreditGrantView {
         billing_credit_auto_topup_self_service: boolean;
         billing_credit_auto_topup_threshold_credits?: number | null;
         billing_credit_auto_topup_threshold_percent?: number | null;
+        company_auto_topup_amount?: number | null;
+        company_auto_topup_enabled?: boolean | null;
+        company_auto_topup_threshold_credits?: number | null;
         created_at: string;
         credit?: BillingCreditView.Raw | null;
         credit_amount: number;

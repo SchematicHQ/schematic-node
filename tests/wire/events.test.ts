@@ -312,6 +312,14 @@ describe("EventsClient", () => {
             data: [
                 {
                     api_key: "api_key",
+                    api_key_view: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        id: "id",
+                        name: "name",
+                        readonly: true,
+                        scopes: ["admin"],
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
                     body: { key: "value" },
                     body_preview: "body_preview",
                     captured_at: "2024-01-15T09:30:00Z",
@@ -361,6 +369,14 @@ describe("EventsClient", () => {
             data: [
                 {
                     apiKey: "api_key",
+                    apiKeyView: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        id: "id",
+                        name: "name",
+                        readonly: true,
+                        scopes: ["admin"],
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
                     body: {
                         key: "value",
                     },
@@ -631,6 +647,25 @@ describe("EventsClient", () => {
         const rawResponseBody = {
             data: {
                 api_key: "api_key",
+                api_key_view: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    description: "description",
+                    environment: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        environment_type: "development",
+                        id: "id",
+                        name: "name",
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
+                    environment_id: "environment_id",
+                    id: "id",
+                    integration: { id: "id", state: "active", type: "clerk" },
+                    last_used_at: "2024-01-15T09:30:00Z",
+                    name: "name",
+                    readonly: true,
+                    scopes: ["admin"],
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
                 body: { key: "value" },
                 body_preview: "body_preview",
                 captured_at: "2024-01-15T09:30:00Z",
@@ -660,6 +695,29 @@ describe("EventsClient", () => {
         expect(response).toEqual({
             data: {
                 apiKey: "api_key",
+                apiKeyView: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    description: "description",
+                    environment: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        environmentType: "development",
+                        id: "id",
+                        name: "name",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                    environmentId: "environment_id",
+                    id: "id",
+                    integration: {
+                        id: "id",
+                        state: "active",
+                        type: "clerk",
+                    },
+                    lastUsedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    name: "name",
+                    readonly: true,
+                    scopes: ["admin"],
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
                 body: {
                     key: "value",
                 },

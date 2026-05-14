@@ -13,4 +13,5 @@ export interface CountBillingPlanCreditGrantsParams {
     planId?: string;
     planIds?: string[];
     planVersionId?: string;
+    planVersionIds?: string[];
 }

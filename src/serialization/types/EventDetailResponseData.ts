@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { ApiKeyResponseData } from "./ApiKeyResponseData";
 import { EventStatus } from "./EventStatus";
 import { EventType } from "./EventType";
 import { PreviewObject } from "./PreviewObject";
@@ -12,6 +13,7 @@ export const EventDetailResponseData: core.serialization.ObjectSchema<
     Schematic.EventDetailResponseData
 > = core.serialization.object({
     apiKey: core.serialization.property("api_key", core.serialization.string().optional()),
+    apiKeyView: core.serialization.property("api_key_view", ApiKeyResponseData.optional()),
     body: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
     bodyPreview: core.serialization.property("body_preview", core.serialization.string()),
     capturedAt: core.serialization.property("captured_at", core.serialization.date()),
@@ -39,6 +41,7 @@ export const EventDetailResponseData: core.serialization.ObjectSchema<
 export declare namespace EventDetailResponseData {
     export interface Raw {
         api_key?: string | null;
+        api_key_view?: ApiKeyResponseData.Raw | null;
         body: Record<string, unknown>;
         body_preview: string;
         captured_at: string;

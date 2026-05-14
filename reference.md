@@ -3229,6 +3229,7 @@ await client.credits.listBillingPlanCreditGrants({
     planId: "plan_id",
     planIds: ["plan_ids"],
     planVersionId: "plan_version_id",
+    planVersionIds: ["plan_version_ids"],
     limit: 1000000,
     offset: 1000000
 });
@@ -3509,6 +3510,7 @@ await client.credits.countBillingPlanCreditGrants({
     planId: "plan_id",
     planIds: ["plan_ids"],
     planVersionId: "plan_version_id",
+    planVersionIds: ["plan_version_ids"],
     limit: 1000000,
     offset: 1000000
 });
@@ -3682,6 +3684,9 @@ await client.checkout.internal({
             addOnId: "add_on_id",
             priceId: "price_id"
         }],
+    autoTopupOverrides: [{
+            planCreditGrantId: "plan_credit_grant_id"
+        }],
     companyId: "company_id",
     creditBundles: [{
             bundleId: "bundle_id",
@@ -3798,6 +3803,9 @@ await client.checkout.previewCheckoutInternal({
     addOnIds: [{
             addOnId: "add_on_id",
             priceId: "price_id"
+        }],
+    autoTopupOverrides: [{
+            planCreditGrantId: "plan_credit_grant_id"
         }],
     companyId: "company_id",
     creditBundles: [{
@@ -7511,6 +7519,7 @@ await client.plans.createCustomPlan({
 ```typescript
 await client.plans.listPlans({
     companyId: "company_id",
+    companyScopedOnly: true,
     excludeCompanyScoped: true,
     forFallbackPlan: true,
     forInitialPlan: true,
@@ -8019,6 +8028,7 @@ await client.plans.countBillingProductMatchCompanies({
 ```typescript
 await client.plans.countPlans({
     companyId: "company_id",
+    companyScopedOnly: true,
     excludeCompanyScoped: true,
     forFallbackPlan: true,
     forInitialPlan: true,
@@ -9036,6 +9046,7 @@ await client.features.listFeatures({
     booleanRequireEvent: true,
     featureType: ["boolean"],
     ids: ["ids"],
+    managedBy: "orb",
     planVersionId: "plan_version_id",
     q: "q",
     withoutCompanyOverrideFor: "without_company_override_for",
@@ -9358,6 +9369,7 @@ await client.features.countFeatures({
     booleanRequireEvent: true,
     featureType: ["boolean"],
     ids: ["ids"],
+    managedBy: "orb",
     planVersionId: "plan_version_id",
     q: "q",
     withoutCompanyOverrideFor: "without_company_override_for",

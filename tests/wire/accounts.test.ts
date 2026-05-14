@@ -262,6 +262,7 @@ describe("AccountsClient", () => {
                     },
                     environment_id: "environment_id",
                     id: "id",
+                    integration: { id: "id", state: "active", type: "clerk" },
                     last_used_at: "2024-01-15T09:30:00Z",
                     name: "name",
                     readonly: true,
@@ -294,6 +295,11 @@ describe("AccountsClient", () => {
                     },
                     environmentId: "environment_id",
                     id: "id",
+                    integration: {
+                        id: "id",
+                        state: "active",
+                        type: "clerk",
+                    },
                     lastUsedAt: new Date("2024-01-15T09:30:00.000Z"),
                     name: "name",
                     readonly: true,
@@ -402,6 +408,7 @@ describe("AccountsClient", () => {
                 },
                 environment_id: "environment_id",
                 id: "id",
+                integration: { id: "id", state: "active", type: "clerk" },
                 last_used_at: "2024-01-15T09:30:00Z",
                 name: "name",
                 readonly: true,
@@ -437,6 +444,11 @@ describe("AccountsClient", () => {
                 },
                 environmentId: "environment_id",
                 id: "id",
+                integration: {
+                    id: "id",
+                    state: "active",
+                    type: "clerk",
+                },
                 lastUsedAt: new Date("2024-01-15T09:30:00.000Z"),
                 name: "name",
                 readonly: true,
@@ -577,6 +589,7 @@ describe("AccountsClient", () => {
                 },
                 environment_id: "environment_id",
                 id: "id",
+                integration: { id: "id", state: "active", type: "clerk" },
                 last_used_at: "2024-01-15T09:30:00Z",
                 name: "name",
                 readonly: true,
@@ -608,6 +621,11 @@ describe("AccountsClient", () => {
                 },
                 environmentId: "environment_id",
                 id: "id",
+                integration: {
+                    id: "id",
+                    state: "active",
+                    type: "clerk",
+                },
                 lastUsedAt: new Date("2024-01-15T09:30:00.000Z"),
                 name: "name",
                 readonly: true,
@@ -713,6 +731,7 @@ describe("AccountsClient", () => {
                 },
                 environment_id: "environment_id",
                 id: "id",
+                integration: { id: "id", state: "active", type: "clerk" },
                 last_used_at: "2024-01-15T09:30:00Z",
                 name: "name",
                 readonly: true,
@@ -745,6 +764,11 @@ describe("AccountsClient", () => {
                 },
                 environmentId: "environment_id",
                 id: "id",
+                integration: {
+                    id: "id",
+                    state: "active",
+                    type: "clerk",
+                },
                 lastUsedAt: new Date("2024-01-15T09:30:00.000Z"),
                 name: "name",
                 readonly: true,
@@ -1090,6 +1114,14 @@ describe("AccountsClient", () => {
             data: [
                 {
                     actor_type: "api_key",
+                    api_key: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        id: "id",
+                        name: "name",
+                        readonly: true,
+                        scopes: ["admin"],
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
                     api_key_id: "api_key_id",
                     ended_at: "2024-01-15T09:30:00Z",
                     environment: {
@@ -1139,6 +1171,14 @@ describe("AccountsClient", () => {
             data: [
                 {
                     actorType: "api_key",
+                    apiKey: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        id: "id",
+                        name: "name",
+                        readonly: true,
+                        scopes: ["admin"],
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
                     apiKeyId: "api_key_id",
                     endedAt: new Date("2024-01-15T09:30:00.000Z"),
                     environment: {
@@ -1246,6 +1286,25 @@ describe("AccountsClient", () => {
         const rawResponseBody = {
             data: {
                 actor_type: "api_key",
+                api_key: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    description: "description",
+                    environment: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        environment_type: "development",
+                        id: "id",
+                        name: "name",
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
+                    environment_id: "environment_id",
+                    id: "id",
+                    integration: { id: "id", state: "active", type: "clerk" },
+                    last_used_at: "2024-01-15T09:30:00Z",
+                    name: "name",
+                    readonly: true,
+                    scopes: ["admin"],
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
                 api_key_id: "api_key_id",
                 ended_at: "2024-01-15T09:30:00Z",
                 environment: {
@@ -1286,6 +1345,29 @@ describe("AccountsClient", () => {
         expect(response).toEqual({
             data: {
                 actorType: "api_key",
+                apiKey: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    description: "description",
+                    environment: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        environmentType: "development",
+                        id: "id",
+                        name: "name",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                    environmentId: "environment_id",
+                    id: "id",
+                    integration: {
+                        id: "id",
+                        state: "active",
+                        type: "clerk",
+                    },
+                    lastUsedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    name: "name",
+                    readonly: true,
+                    scopes: ["admin"],
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
                 apiKeyId: "api_key_id",
                 endedAt: new Date("2024-01-15T09:30:00.000Z"),
                 environment: {

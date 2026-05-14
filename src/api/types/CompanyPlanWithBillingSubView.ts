@@ -9,7 +9,7 @@ export interface CompanyPlanWithBillingSubView {
     description?: string;
     id: string;
     imageUrl?: string;
-    includedCreditGrants: Schematic.PlanCreditGrantView[];
+    includedCreditGrants: Schematic.CompanyPlanCreditGrantView[];
     name: string;
     planPeriod?: string;
     planPrice?: number;

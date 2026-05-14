@@ -39,6 +39,9 @@ export class CheckoutClient {
      *                 addOnId: "add_on_id",
      *                 priceId: "price_id"
      *             }],
+     *         autoTopupOverrides: [{
+     *                 planCreditGrantId: "plan_credit_grant_id"
+     *             }],
      *         companyId: "company_id",
      *         creditBundles: [{
      *                 bundleId: "bundle_id",
@@ -321,6 +324,9 @@ export class CheckoutClient {
      *         addOnIds: [{
      *                 addOnId: "add_on_id",
      *                 priceId: "price_id"
+     *             }],
+     *         autoTopupOverrides: [{
+     *                 planCreditGrantId: "plan_credit_grant_id"
      *             }],
      *         companyId: "company_id",
      *         creditBundles: [{

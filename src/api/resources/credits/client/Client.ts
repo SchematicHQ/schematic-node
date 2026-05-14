@@ -3022,6 +3022,7 @@ export class CreditsClient {
      *         planId: "plan_id",
      *         planIds: ["plan_ids"],
      *         planVersionId: "plan_version_id",
+     *         planVersionIds: ["plan_version_ids"],
      *         limit: 1000000,
      *         offset: 1000000
      *     })
@@ -3037,13 +3038,14 @@ export class CreditsClient {
         request: Schematic.ListBillingPlanCreditGrantsRequest = {},
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListBillingPlanCreditGrantsResponse>> {
-        const { creditId, ids, planId, planIds, planVersionId, limit, offset } = request;
+        const { creditId, ids, planId, planIds, planVersionId, planVersionIds, limit, offset } = request;
         const _queryParams: Record<string, unknown> = {
             credit_id: creditId,
             ids,
             plan_id: planId,
             plan_ids: planIds,
             plan_version_id: planVersionId,
+            plan_version_ids: planVersionIds,
             limit,
             offset,
         };
@@ -3728,6 +3730,7 @@ export class CreditsClient {
      *         planId: "plan_id",
      *         planIds: ["plan_ids"],
      *         planVersionId: "plan_version_id",
+     *         planVersionIds: ["plan_version_ids"],
      *         limit: 1000000,
      *         offset: 1000000
      *     })
@@ -3743,13 +3746,14 @@ export class CreditsClient {
         request: Schematic.CountBillingPlanCreditGrantsRequest = {},
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountBillingPlanCreditGrantsResponse>> {
-        const { creditId, ids, planId, planIds, planVersionId, limit, offset } = request;
+        const { creditId, ids, planId, planIds, planVersionId, planVersionIds, limit, offset } = request;
         const _queryParams: Record<string, unknown> = {
             credit_id: creditId,
             ids,
             plan_id: planId,
             plan_ids: planIds,
             plan_version_id: planVersionId,
+            plan_version_ids: planVersionIds,
             limit,
             offset,
         };

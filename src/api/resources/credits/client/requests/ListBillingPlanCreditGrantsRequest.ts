@@ -8,6 +8,7 @@
  *         planId: "plan_id",
  *         planIds: ["plan_ids"],
  *         planVersionId: "plan_version_id",
+ *         planVersionIds: ["plan_version_ids"],
  *         limit: 1000000,
  *         offset: 1000000
  *     }
@@ -18,6 +19,7 @@ export interface ListBillingPlanCreditGrantsRequest {
     planId?: string;
     planIds?: string | string[];
     planVersionId?: string;
+    planVersionIds?: string | string[];
     /** Page limit (default 100) */
     limit?: number;
     /** Page offset (default 0) */

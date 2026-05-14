@@ -4,6 +4,7 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { UpdateAddOnRequestBody } from "./UpdateAddOnRequestBody";
+import { UpdateAutoTopupOverrideRequestBody } from "./UpdateAutoTopupOverrideRequestBody";
 import { UpdateCreditBundleRequestBody } from "./UpdateCreditBundleRequestBody";
 import { UpdatePayInAdvanceRequestBody } from "./UpdatePayInAdvanceRequestBody";
 
@@ -12,6 +13,10 @@ export const ChangeSubscriptionInternalRequestBody: core.serialization.ObjectSch
     Schematic.ChangeSubscriptionInternalRequestBody
 > = core.serialization.object({
     addOnIds: core.serialization.property("add_on_ids", core.serialization.list(UpdateAddOnRequestBody)),
+    autoTopupOverrides: core.serialization.property(
+        "auto_topup_overrides",
+        core.serialization.list(UpdateAutoTopupOverrideRequestBody),
+    ),
     companyId: core.serialization.property("company_id", core.serialization.string()),
     couponExternalId: core.serialization.property("coupon_external_id", core.serialization.string().optional()),
     creditBundles: core.serialization.property(
@@ -29,6 +34,7 @@ export const ChangeSubscriptionInternalRequestBody: core.serialization.ObjectSch
 export declare namespace ChangeSubscriptionInternalRequestBody {
     export interface Raw {
         add_on_ids: UpdateAddOnRequestBody.Raw[];
+        auto_topup_overrides: UpdateAutoTopupOverrideRequestBody.Raw[];
         company_id: string;
         coupon_external_id?: string | null;
         credit_bundles: UpdateCreditBundleRequestBody.Raw[];

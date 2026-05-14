@@ -3,6 +3,7 @@
 import type * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { BillingProviderType } from "../../../types/BillingProviderType";
 import { FeatureType } from "../../../types/FeatureType";
 
 export const CountFeaturesParams: core.serialization.ObjectSchema<
@@ -13,6 +14,7 @@ export const CountFeaturesParams: core.serialization.ObjectSchema<
     featureType: core.serialization.property("feature_type", core.serialization.list(FeatureType).optional()),
     ids: core.serialization.list(core.serialization.string()).optional(),
     limit: core.serialization.number().optional(),
+    managedBy: core.serialization.property("managed_by", BillingProviderType.optional()),
     offset: core.serialization.number().optional(),
     planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
     q: core.serialization.string().optional(),
@@ -32,6 +34,7 @@ export declare namespace CountFeaturesParams {
         feature_type?: FeatureType.Raw[] | null;
         ids?: string[] | null;
         limit?: number | null;
+        managed_by?: BillingProviderType.Raw | null;
         offset?: number | null;
         plan_version_id?: string | null;
         q?: string | null;
