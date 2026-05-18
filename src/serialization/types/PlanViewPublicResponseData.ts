@@ -63,6 +63,7 @@ export const PlanViewPublicResponseData: core.serialization.ObjectSchema<
     name: core.serialization.string(),
     oneTimePrice: core.serialization.property("one_time_price", BillingPriceResponseData.optional()),
     planType: core.serialization.property("plan_type", PlanType),
+    quarterlyPrice: core.serialization.property("quarterly_price", BillingPriceResponseData.optional()),
     trialDays: core.serialization.property("trial_days", core.serialization.number().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     versions: core.serialization.list(PlanVersionResponseData),
@@ -101,6 +102,7 @@ export declare namespace PlanViewPublicResponseData {
         name: string;
         one_time_price?: BillingPriceResponseData.Raw | null;
         plan_type: PlanType.Raw;
+        quarterly_price?: BillingPriceResponseData.Raw | null;
         trial_days?: number | null;
         updated_at: string;
         versions: PlanVersionResponseData.Raw[];

@@ -7,6 +7,7 @@ export interface BillingPriceResponseData {
     externalPriceId: string;
     id: string;
     interval: Schematic.BillingProductPriceInterval;
+    intervalCount: number;
     nickname?: string;
     price: number;
     priceDecimal?: string;

@@ -105,6 +105,7 @@ export * from "./CountResponse";
 export * from "./CouponRequestBody";
 export * from "./CreateBillingPlanCreditGrantRequestBody";
 export * from "./CreateBillingPriceTierRequestBody";
+export * from "./CreateCustomPlanBundlePlanRequestBody";
 export * from "./CreateEntitlementInBundleRequestBody";
 export * from "./CreateEntitlementReqCommon";
 export * from "./CreateEventRequestBody";

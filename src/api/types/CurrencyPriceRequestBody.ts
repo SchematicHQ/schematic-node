@@ -7,6 +7,9 @@ export interface CurrencyPriceRequestBody {
     monthlyPriceTiers?: Schematic.CreatePriceTierRequestBody[];
     monthlyUnitPrice?: number;
     monthlyUnitPriceDecimal?: string;
+    quarterlyPriceTiers?: Schematic.CreatePriceTierRequestBody[];
+    quarterlyUnitPrice?: number;
+    quarterlyUnitPriceDecimal?: string;
     yearlyPriceTiers?: Schematic.CreatePriceTierRequestBody[];
     yearlyUnitPrice?: number;
     yearlyUnitPriceDecimal?: string;

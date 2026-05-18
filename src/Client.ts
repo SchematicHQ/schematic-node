@@ -40,12 +40,12 @@ export class SchematicClient {
     protected _entitlements: EntitlementsClient | undefined;
     protected _plans: PlansClient | undefined;
     protected _components: ComponentsClient | undefined;
+    protected _planbundle: PlanbundleClient | undefined;
     protected _dataexports: DataexportsClient | undefined;
     protected _events: EventsClient | undefined;
     protected _features: FeaturesClient | undefined;
     protected _insights: InsightsClient | undefined;
     protected _integrationsapi: IntegrationsapiClient | undefined;
-    protected _planbundle: PlanbundleClient | undefined;
     protected _plangroups: PlangroupsClient | undefined;
     protected _planmigrations: PlanmigrationsClient | undefined;
     protected _componentspublic: ComponentspublicClient | undefined;
@@ -89,6 +89,10 @@ export class SchematicClient {
         return (this._components ??= new ComponentsClient(this._options));
     }
 
+    public get planbundle(): PlanbundleClient {
+        return (this._planbundle ??= new PlanbundleClient(this._options));
+    }
+
     public get dataexports(): DataexportsClient {
         return (this._dataexports ??= new DataexportsClient(this._options));
     }
@@ -107,10 +111,6 @@ export class SchematicClient {
 
     public get integrationsapi(): IntegrationsapiClient {
         return (this._integrationsapi ??= new IntegrationsapiClient(this._options));
-    }
-
-    public get planbundle(): PlanbundleClient {
-        return (this._planbundle ??= new PlanbundleClient(this._options));
     }
 
     public get plangroups(): PlangroupsClient {

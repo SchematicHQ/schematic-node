@@ -12,6 +12,8 @@ export interface UpsertBillingProductRequestBody {
     monthlyPriceId?: string;
     oneTimePrice?: number;
     oneTimePriceId?: string;
+    quarterlyPrice?: number;
+    quarterlyPriceId?: string;
     trialDays?: number;
     yearlyPrice?: number;
     yearlyPriceId?: string;

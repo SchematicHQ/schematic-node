@@ -19,6 +19,15 @@ export const CurrencyPriceRequestBody: core.serialization.ObjectSchema<
         "monthly_unit_price_decimal",
         core.serialization.string().optional(),
     ),
+    quarterlyPriceTiers: core.serialization.property(
+        "quarterly_price_tiers",
+        core.serialization.list(CreatePriceTierRequestBody).optional(),
+    ),
+    quarterlyUnitPrice: core.serialization.property("quarterly_unit_price", core.serialization.number().optional()),
+    quarterlyUnitPriceDecimal: core.serialization.property(
+        "quarterly_unit_price_decimal",
+        core.serialization.string().optional(),
+    ),
     yearlyPriceTiers: core.serialization.property(
         "yearly_price_tiers",
         core.serialization.list(CreatePriceTierRequestBody).optional(),
@@ -36,6 +45,9 @@ export declare namespace CurrencyPriceRequestBody {
         monthly_price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
         monthly_unit_price?: number | null;
         monthly_unit_price_decimal?: string | null;
+        quarterly_price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
+        quarterly_unit_price?: number | null;
+        quarterly_unit_price_decimal?: string | null;
         yearly_price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
         yearly_unit_price?: number | null;
         yearly_unit_price_decimal?: string | null;

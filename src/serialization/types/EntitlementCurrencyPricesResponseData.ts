@@ -11,6 +11,7 @@ export const EntitlementCurrencyPricesResponseData: core.serialization.ObjectSch
 > = core.serialization.object({
     currency: core.serialization.string(),
     monthlyPrice: core.serialization.property("monthly_price", BillingPriceView.optional()),
+    quarterlyPrice: core.serialization.property("quarterly_price", BillingPriceView.optional()),
     yearlyPrice: core.serialization.property("yearly_price", BillingPriceView.optional()),
 });
 
@@ -18,6 +19,7 @@ export declare namespace EntitlementCurrencyPricesResponseData {
     export interface Raw {
         currency: string;
         monthly_price?: BillingPriceView.Raw | null;
+        quarterly_price?: BillingPriceView.Raw | null;
         yearly_price?: BillingPriceView.Raw | null;
     }
 }

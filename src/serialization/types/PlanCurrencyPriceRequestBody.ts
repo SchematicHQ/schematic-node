@@ -11,6 +11,7 @@ export const PlanCurrencyPriceRequestBody: core.serialization.ObjectSchema<
     currency: core.serialization.string(),
     monthlyPrice: core.serialization.property("monthly_price", core.serialization.number().optional()),
     oneTimePrice: core.serialization.property("one_time_price", core.serialization.number().optional()),
+    quarterlyPrice: core.serialization.property("quarterly_price", core.serialization.number().optional()),
     yearlyPrice: core.serialization.property("yearly_price", core.serialization.number().optional()),
 });
 
@@ -19,6 +20,7 @@ export declare namespace PlanCurrencyPriceRequestBody {
         currency: string;
         monthly_price?: number | null;
         one_time_price?: number | null;
+        quarterly_price?: number | null;
         yearly_price?: number | null;
     }
 }

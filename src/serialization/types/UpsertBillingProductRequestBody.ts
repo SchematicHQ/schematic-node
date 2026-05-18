@@ -22,6 +22,8 @@ export const UpsertBillingProductRequestBody: core.serialization.ObjectSchema<
     monthlyPriceId: core.serialization.property("monthly_price_id", core.serialization.string().optional()),
     oneTimePrice: core.serialization.property("one_time_price", core.serialization.number().optional()),
     oneTimePriceId: core.serialization.property("one_time_price_id", core.serialization.string().optional()),
+    quarterlyPrice: core.serialization.property("quarterly_price", core.serialization.number().optional()),
+    quarterlyPriceId: core.serialization.property("quarterly_price_id", core.serialization.string().optional()),
     trialDays: core.serialization.property("trial_days", core.serialization.number().optional()),
     yearlyPrice: core.serialization.property("yearly_price", core.serialization.number().optional()),
     yearlyPriceId: core.serialization.property("yearly_price_id", core.serialization.string().optional()),
@@ -38,6 +40,8 @@ export declare namespace UpsertBillingProductRequestBody {
         monthly_price_id?: string | null;
         one_time_price?: number | null;
         one_time_price_id?: string | null;
+        quarterly_price?: number | null;
+        quarterly_price_id?: string | null;
         trial_days?: number | null;
         yearly_price?: number | null;
         yearly_price_id?: string | null;

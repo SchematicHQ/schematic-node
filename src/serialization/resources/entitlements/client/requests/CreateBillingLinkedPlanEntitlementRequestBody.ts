@@ -56,6 +56,19 @@ export const CreateBillingLinkedPlanEntitlementRequestBody: core.serialization.S
         "price_tiers",
         core.serialization.list(CreatePriceTierRequestBody).optional(),
     ),
+    quarterlyMeteredPriceId: core.serialization.property(
+        "quarterly_metered_price_id",
+        core.serialization.string().optional(),
+    ),
+    quarterlyPriceTiers: core.serialization.property(
+        "quarterly_price_tiers",
+        core.serialization.list(CreatePriceTierRequestBody).optional(),
+    ),
+    quarterlyUnitPrice: core.serialization.property("quarterly_unit_price", core.serialization.number().optional()),
+    quarterlyUnitPriceDecimal: core.serialization.property(
+        "quarterly_unit_price_decimal",
+        core.serialization.string().optional(),
+    ),
     softLimit: core.serialization.property("soft_limit", core.serialization.number().optional()),
     tierMode: core.serialization.property("tier_mode", BillingTiersMode.optional()),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
@@ -99,6 +112,10 @@ export declare namespace CreateBillingLinkedPlanEntitlementRequestBody {
         plan_version_id?: string | null;
         price_behavior?: EntitlementPriceBehavior.Raw | null;
         price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
+        quarterly_metered_price_id?: string | null;
+        quarterly_price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
+        quarterly_unit_price?: number | null;
+        quarterly_unit_price_decimal?: string | null;
         soft_limit?: number | null;
         tier_mode?: BillingTiersMode.Raw | null;
         value_bool?: boolean | null;

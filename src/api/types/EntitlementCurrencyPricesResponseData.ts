@@ -5,5 +5,6 @@ import type * as Schematic from "../index";
 export interface EntitlementCurrencyPricesResponseData {
     currency: string;
     monthlyPrice?: Schematic.BillingPriceView;
+    quarterlyPrice?: Schematic.BillingPriceView;
     yearlyPrice?: Schematic.BillingPriceView;
 }
