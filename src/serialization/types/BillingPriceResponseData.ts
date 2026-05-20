@@ -15,6 +15,7 @@ export const BillingPriceResponseData: core.serialization.ObjectSchema<
     externalPriceId: core.serialization.property("external_price_id", core.serialization.string()),
     id: core.serialization.string(),
     interval: BillingProductPriceInterval,
+    intervalCount: core.serialization.property("interval_count", core.serialization.number()),
     nickname: core.serialization.string().optional(),
     price: core.serialization.number(),
     priceDecimal: core.serialization.property("price_decimal", core.serialization.string().optional()),
@@ -28,6 +29,7 @@ export declare namespace BillingPriceResponseData {
         external_price_id: string;
         id: string;
         interval: BillingProductPriceInterval.Raw;
+        interval_count: number;
         nickname?: string | null;
         price: number;
         price_decimal?: string | null;

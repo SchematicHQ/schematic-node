@@ -4,5 +4,6 @@ export interface PlanCurrencyPriceRequestBody {
     currency: string;
     monthlyPrice?: number;
     oneTimePrice?: number;
+    quarterlyPrice?: number;
     yearlyPrice?: number;
 }

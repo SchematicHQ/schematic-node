@@ -11,6 +11,7 @@ export interface BillingProductForSubscriptionResponseData {
     externalId: string;
     id: string;
     interval: string;
+    intervalCount?: number;
     meterId?: string;
     name: string;
     packageSize: number;

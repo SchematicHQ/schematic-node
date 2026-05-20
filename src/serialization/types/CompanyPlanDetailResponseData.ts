@@ -68,6 +68,7 @@ export const CompanyPlanDetailResponseData: core.serialization.ObjectSchema<
     name: core.serialization.string(),
     oneTimePrice: core.serialization.property("one_time_price", BillingPriceResponseData.optional()),
     planType: core.serialization.property("plan_type", PlanType),
+    quarterlyPrice: core.serialization.property("quarterly_price", BillingPriceResponseData.optional()),
     trialDays: core.serialization.property("trial_days", core.serialization.number().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     usageViolations: core.serialization.property("usage_violations", core.serialization.list(FeatureUsageResponseData)),
@@ -111,6 +112,7 @@ export declare namespace CompanyPlanDetailResponseData {
         name: string;
         one_time_price?: BillingPriceResponseData.Raw | null;
         plan_type: PlanType.Raw;
+        quarterly_price?: BillingPriceResponseData.Raw | null;
         trial_days?: number | null;
         updated_at: string;
         usage_violations: FeatureUsageResponseData.Raw[];

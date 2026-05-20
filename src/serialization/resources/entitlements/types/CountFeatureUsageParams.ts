@@ -3,6 +3,7 @@
 import type * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { BillingProviderType } from "../../../types/BillingProviderType";
 
 export const CountFeatureUsageParams: core.serialization.ObjectSchema<
     serializers.CountFeatureUsageParams.Raw,
@@ -22,6 +23,7 @@ export const CountFeatureUsageParams: core.serialization.ObjectSchema<
         core.serialization.boolean().optional(),
     ),
     limit: core.serialization.number().optional(),
+    managedBy: core.serialization.property("managed_by", BillingProviderType.optional()),
     offset: core.serialization.number().optional(),
     q: core.serialization.string().optional(),
     withoutNegativeEntitlements: core.serialization.property(
@@ -37,6 +39,7 @@ export declare namespace CountFeatureUsageParams {
         feature_ids?: string[] | null;
         include_usage_aggregation?: boolean | null;
         limit?: number | null;
+        managed_by?: BillingProviderType.Raw | null;
         offset?: number | null;
         q?: string | null;
         without_negative_entitlements?: boolean | null;

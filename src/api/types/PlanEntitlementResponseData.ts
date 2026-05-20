@@ -13,6 +13,7 @@ export interface PlanEntitlementResponseData {
     featureId: string;
     id: string;
     meteredMonthlyPrice?: Schematic.BillingPriceView;
+    meteredQuarterlyPrice?: Schematic.BillingPriceView;
     meteredYearlyPrice?: Schematic.BillingPriceView;
     metricPeriod?: Schematic.MetricPeriod;
     metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;

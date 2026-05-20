@@ -68,6 +68,7 @@ export const FeatureCompanyResponseData: core.serialization.ObjectSchema<
     plan: PlanResponseData.optional(),
     planEntitlement: core.serialization.property("plan_entitlement", PlanEntitlementResponseData.optional()),
     priceBehavior: core.serialization.property("price_behavior", EntitlementPriceBehavior.optional()),
+    quarterlyUsageBasedPrice: core.serialization.property("quarterly_usage_based_price", BillingPriceView.optional()),
     softLimit: core.serialization.property("soft_limit", core.serialization.number().optional()),
     usage: core.serialization.number().optional(),
     yearlyUsageBasedPrice: core.serialization.property("yearly_usage_based_price", BillingPriceView.optional()),
@@ -108,6 +109,7 @@ export declare namespace FeatureCompanyResponseData {
         plan?: PlanResponseData.Raw | null;
         plan_entitlement?: PlanEntitlementResponseData.Raw | null;
         price_behavior?: EntitlementPriceBehavior.Raw | null;
+        quarterly_usage_based_price?: BillingPriceView.Raw | null;
         soft_limit?: number | null;
         usage?: number | null;
         yearly_usage_based_price?: BillingPriceView.Raw | null;

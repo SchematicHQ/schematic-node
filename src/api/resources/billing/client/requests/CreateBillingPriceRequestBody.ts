@@ -24,6 +24,7 @@ export interface CreateBillingPriceRequestBody {
     currency: string;
     externalAccountId: string;
     interval: string;
+    intervalCount?: number;
     isActive: boolean;
     meterId?: string;
     nickname?: string;

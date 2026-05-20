@@ -6,5 +6,6 @@ export interface PlanCurrencyPricesResponseData {
     currency: string;
     monthlyPrice?: Schematic.BillingPriceResponseData;
     oneTimePrice?: Schematic.BillingPriceResponseData;
+    quarterlyPrice?: Schematic.BillingPriceResponseData;
     yearlyPrice?: Schematic.BillingPriceResponseData;
 }

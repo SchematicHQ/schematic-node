@@ -1171,6 +1171,7 @@ export class EntitlementsClient {
      *         companyId: "company_id",
      *         featureIds: ["feature_ids"],
      *         includeUsageAggregation: true,
+     *         managedBy: "orb",
      *         q: "q",
      *         withoutNegativeEntitlements: true,
      *         limit: 1000000,
@@ -1193,6 +1194,7 @@ export class EntitlementsClient {
             companyKeys,
             featureIds,
             includeUsageAggregation,
+            managedBy,
             q,
             withoutNegativeEntitlements,
             limit,
@@ -1203,6 +1205,10 @@ export class EntitlementsClient {
             company_keys: companyKeys != null ? toJson(companyKeys) : undefined,
             feature_ids: featureIds,
             include_usage_aggregation: includeUsageAggregation,
+            managed_by:
+                managedBy != null
+                    ? serializers.BillingProviderType.jsonOrThrow(managedBy, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
             q,
             without_negative_entitlements: withoutNegativeEntitlements,
             limit,
@@ -1468,6 +1474,7 @@ export class EntitlementsClient {
      *         companyId: "company_id",
      *         featureIds: ["feature_ids"],
      *         includeUsageAggregation: true,
+     *         managedBy: "orb",
      *         q: "q",
      *         withoutNegativeEntitlements: true,
      *         limit: 1000000,
@@ -1490,6 +1497,7 @@ export class EntitlementsClient {
             companyKeys,
             featureIds,
             includeUsageAggregation,
+            managedBy,
             q,
             withoutNegativeEntitlements,
             limit,
@@ -1500,6 +1508,10 @@ export class EntitlementsClient {
             company_keys: companyKeys != null ? toJson(companyKeys) : undefined,
             feature_ids: featureIds,
             include_usage_aggregation: includeUsageAggregation,
+            managed_by:
+                managedBy != null
+                    ? serializers.BillingProviderType.jsonOrThrow(managedBy, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
             q,
             without_negative_entitlements: withoutNegativeEntitlements,
             limit,

@@ -24,6 +24,10 @@ export interface UpdatePlanEntitlementRequestBody {
     priceBehavior?: Schematic.EntitlementPriceBehavior;
     /** Use MonthlyPriceTiers or YearlyPriceTiers instead */
     priceTiers?: Schematic.CreatePriceTierRequestBody[];
+    quarterlyMeteredPriceId?: string;
+    quarterlyPriceTiers?: Schematic.CreatePriceTierRequestBody[];
+    quarterlyUnitPrice?: number;
+    quarterlyUnitPriceDecimal?: string;
     softLimit?: number;
     tierMode?: Schematic.BillingTiersMode;
     valueBool?: boolean;

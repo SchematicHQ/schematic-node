@@ -18,6 +18,7 @@ export const BillingProductPriceResponseData: core.serialization.ObjectSchema<
     currency: core.serialization.string(),
     id: core.serialization.string(),
     interval: BillingProductPriceInterval,
+    intervalCount: core.serialization.property("interval_count", core.serialization.number()),
     isActive: core.serialization.property("is_active", core.serialization.boolean()),
     meterId: core.serialization.property("meter_id", core.serialization.string().optional()),
     nickname: core.serialization.string().optional(),
@@ -39,6 +40,7 @@ export declare namespace BillingProductPriceResponseData {
         currency: string;
         id: string;
         interval: BillingProductPriceInterval.Raw;
+        interval_count: number;
         is_active: boolean;
         meter_id?: string | null;
         nickname?: string | null;

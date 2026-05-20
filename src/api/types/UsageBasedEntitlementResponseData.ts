@@ -11,6 +11,7 @@ export interface UsageBasedEntitlementResponseData {
     metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;
     monthlyUsageBasedPrice?: Schematic.BillingPriceView;
     priceBehavior?: Schematic.EntitlementPriceBehavior;
+    quarterlyUsageBasedPrice?: Schematic.BillingPriceView;
     valueBool?: boolean;
     valueNumeric?: number;
     valueType: Schematic.EntitlementValueType;

@@ -20,6 +20,7 @@ export const BillingProductForSubscriptionResponseData: core.serialization.Objec
     externalId: core.serialization.property("external_id", core.serialization.string()),
     id: core.serialization.string(),
     interval: core.serialization.string(),
+    intervalCount: core.serialization.property("interval_count", core.serialization.number().optional()),
     meterId: core.serialization.property("meter_id", core.serialization.string().optional()),
     name: core.serialization.string(),
     packageSize: core.serialization.property("package_size", core.serialization.number()),
@@ -49,6 +50,7 @@ export declare namespace BillingProductForSubscriptionResponseData {
         external_id: string;
         id: string;
         interval: string;
+        interval_count?: number | null;
         meter_id?: string | null;
         name: string;
         package_size: number;

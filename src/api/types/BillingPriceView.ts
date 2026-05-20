@@ -8,6 +8,7 @@ export interface BillingPriceView {
     currency: string;
     id: string;
     interval: Schematic.BillingProductPriceInterval;
+    intervalCount: number;
     isActive: boolean;
     meterEventName?: string;
     meterEventPayloadKey?: string;

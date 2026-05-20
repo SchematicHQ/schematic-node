@@ -36,6 +36,7 @@ export const PlanEntitlementResponseData: core.serialization.ObjectSchema<
     featureId: core.serialization.property("feature_id", core.serialization.string()),
     id: core.serialization.string(),
     meteredMonthlyPrice: core.serialization.property("metered_monthly_price", BillingPriceView.optional()),
+    meteredQuarterlyPrice: core.serialization.property("metered_quarterly_price", BillingPriceView.optional()),
     meteredYearlyPrice: core.serialization.property("metered_yearly_price", BillingPriceView.optional()),
     metricPeriod: core.serialization.property("metric_period", MetricPeriod.optional()),
     metricPeriodMonthReset: core.serialization.property("metric_period_month_reset", MetricPeriodMonthReset.optional()),
@@ -67,6 +68,7 @@ export declare namespace PlanEntitlementResponseData {
         feature_id: string;
         id: string;
         metered_monthly_price?: BillingPriceView.Raw | null;
+        metered_quarterly_price?: BillingPriceView.Raw | null;
         metered_yearly_price?: BillingPriceView.Raw | null;
         metric_period?: MetricPeriod.Raw | null;
         metric_period_month_reset?: MetricPeriodMonthReset.Raw | null;

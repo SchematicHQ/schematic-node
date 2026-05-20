@@ -32,6 +32,7 @@ export interface PlanGroupPlanDetailResponseData {
     name: string;
     oneTimePrice?: Schematic.BillingPriceResponseData;
     planType: Schematic.PlanType;
+    quarterlyPrice?: Schematic.BillingPriceResponseData;
     trialDays?: number;
     updatedAt: Date;
     versions: Schematic.PlanVersionResponseData[];

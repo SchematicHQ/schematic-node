@@ -8,6 +8,7 @@ export interface BillingProductPriceResponseData {
     currency: string;
     id: string;
     interval: Schematic.BillingProductPriceInterval;
+    intervalCount: number;
     isActive: boolean;
     meterId?: string;
     nickname?: string;

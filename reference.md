@@ -6520,6 +6520,7 @@ await client.entitlements.listFeatureUsage({
     companyId: "company_id",
     featureIds: ["feature_ids"],
     includeUsageAggregation: true,
+    managedBy: "orb",
     q: "q",
     withoutNegativeEntitlements: true,
     limit: 1000000,
@@ -6632,6 +6633,7 @@ await client.entitlements.countFeatureUsage({
     companyId: "company_id",
     featureIds: ["feature_ids"],
     includeUsageAggregation: true,
+    managedBy: "orb",
     q: "q",
     withoutNegativeEntitlements: true,
     limit: 1000000,
@@ -8620,6 +8622,174 @@ await client.components.previewComponentData({
 </dl>
 </details>
 
+## planbundle
+<details><summary><code>client.planbundle.<a href="/src/api/resources/planbundle/client/Client.ts">createCustomPlanBundle</a>({ ...params }) -> Schematic.CreateCustomPlanBundleResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.planbundle.createCustomPlanBundle({
+    entitlements: [{
+            action: "create"
+        }]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CreateCustomPlanBundleRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PlanbundleClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.planbundle.<a href="/src/api/resources/planbundle/client/Client.ts">createPlanBundle</a>({ ...params }) -> Schematic.CreatePlanBundleResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.planbundle.createPlanBundle({
+    entitlements: [{
+            action: "create"
+        }]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CreatePlanBundleRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PlanbundleClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.planbundle.<a href="/src/api/resources/planbundle/client/Client.ts">updatePlanBundle</a>(plan_bundle_id, { ...params }) -> Schematic.UpdatePlanBundleResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.planbundle.updatePlanBundle("plan_bundle_id", {
+    entitlements: [{
+            action: "create"
+        }]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**plan_bundle_id:** `string` — plan_bundle_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.UpdatePlanBundleRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PlanbundleClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## dataexports
 <details><summary><code>client.dataexports.<a href="/src/api/resources/dataexports/client/Client.ts">createDataExport</a>({ ...params }) -> Schematic.CreateDataExportResponse</code></summary>
 <dl>
@@ -10561,121 +10731,6 @@ await client.integrationsapi.uninstallIntegration("integration_id");
 <dd>
 
 **requestOptions:** `IntegrationsapiClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## planbundle
-<details><summary><code>client.planbundle.<a href="/src/api/resources/planbundle/client/Client.ts">createPlanBundle</a>({ ...params }) -> Schematic.CreatePlanBundleResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.planbundle.createPlanBundle({
-    entitlements: [{
-            action: "create"
-        }]
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.CreatePlanBundleRequestBody` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PlanbundleClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.planbundle.<a href="/src/api/resources/planbundle/client/Client.ts">updatePlanBundle</a>(plan_bundle_id, { ...params }) -> Schematic.UpdatePlanBundleResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.planbundle.updatePlanBundle("plan_bundle_id", {
-    entitlements: [{
-            action: "create"
-        }]
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**plan_bundle_id:** `string` — plan_bundle_id
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Schematic.UpdatePlanBundleRequestBody` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `PlanbundleClient.RequestOptions` 
     
 </dd>
 </dl>

@@ -17,6 +17,7 @@ export const CreateBillingPriceRequestBody: core.serialization.Schema<
     currency: core.serialization.string(),
     externalAccountId: core.serialization.property("external_account_id", core.serialization.string()),
     interval: core.serialization.string(),
+    intervalCount: core.serialization.property("interval_count", core.serialization.number().optional()),
     isActive: core.serialization.property("is_active", core.serialization.boolean()),
     meterId: core.serialization.property("meter_id", core.serialization.string().optional()),
     nickname: core.serialization.string().optional(),
@@ -37,6 +38,7 @@ export declare namespace CreateBillingPriceRequestBody {
         currency: string;
         external_account_id: string;
         interval: string;
+        interval_count?: number | null;
         is_active: boolean;
         meter_id?: string | null;
         nickname?: string | null;
