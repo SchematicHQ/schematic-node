@@ -13,6 +13,7 @@ describe("ComponentspublicClient", () => {
             data: {
                 active_add_ons: [
                     {
+                        billing_strategy: "schematic_managed",
                         charge_type: "free",
                         company_count: 1000000,
                         compatible_plan_ids: ["compatible_plan_ids"],
@@ -149,6 +150,7 @@ describe("ComponentspublicClient", () => {
                 ],
                 active_plans: [
                     {
+                        billing_strategy: "schematic_managed",
                         charge_type: "free",
                         company_count: 1000000,
                         compatible_plan_ids: ["compatible_plan_ids"],
@@ -310,6 +312,7 @@ describe("ComponentspublicClient", () => {
             data: {
                 activeAddOns: [
                     {
+                        billingStrategy: "schematic_managed",
                         chargeType: "free",
                         companyCount: 1000000,
                         compatiblePlanIds: ["compatible_plan_ids"],
@@ -469,6 +472,7 @@ describe("ComponentspublicClient", () => {
                 ],
                 activePlans: [
                     {
+                        billingStrategy: "schematic_managed",
                         chargeType: "free",
                         companyCount: 1000000,
                         compatiblePlanIds: ["compatible_plan_ids"],

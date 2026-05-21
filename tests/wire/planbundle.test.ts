@@ -14,6 +14,7 @@ describe("PlanbundleClient", () => {
                 billing_product: {
                     account_id: "account_id",
                     billing_product_id: "billing_product_id",
+                    billing_strategy: "schematic_managed",
                     charge_type: "free",
                     controlled_by: "orb",
                     environment_id: "environment_id",
@@ -100,6 +101,7 @@ describe("PlanbundleClient", () => {
                 billingProduct: {
                     accountId: "account_id",
                     billingProductId: "billing_product_id",
+                    billingStrategy: "schematic_managed",
                     chargeType: "free",
                     controlledBy: "orb",
                     environmentId: "environment_id",
@@ -326,6 +328,7 @@ describe("PlanbundleClient", () => {
                 billing_product: {
                     account_id: "account_id",
                     billing_product_id: "billing_product_id",
+                    billing_strategy: "schematic_managed",
                     charge_type: "free",
                     controlled_by: "orb",
                     environment_id: "environment_id",
@@ -412,6 +415,7 @@ describe("PlanbundleClient", () => {
                 billingProduct: {
                     accountId: "account_id",
                     billingProductId: "billing_product_id",
+                    billingStrategy: "schematic_managed",
                     chargeType: "free",
                     controlledBy: "orb",
                     environmentId: "environment_id",
@@ -638,6 +642,7 @@ describe("PlanbundleClient", () => {
                 billing_product: {
                     account_id: "account_id",
                     billing_product_id: "billing_product_id",
+                    billing_strategy: "schematic_managed",
                     charge_type: "free",
                     controlled_by: "orb",
                     environment_id: "environment_id",
@@ -724,6 +729,7 @@ describe("PlanbundleClient", () => {
                 billingProduct: {
                     accountId: "account_id",
                     billingProductId: "billing_product_id",
+                    billingStrategy: "schematic_managed",
                     chargeType: "free",
                     controlledBy: "orb",
                     environmentId: "environment_id",

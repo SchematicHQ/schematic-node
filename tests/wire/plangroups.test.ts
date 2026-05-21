@@ -13,6 +13,7 @@ describe("PlangroupsClient", () => {
             data: {
                 add_ons: [
                     {
+                        billing_strategy: "schematic_managed",
                         charge_type: "free",
                         company_count: 1000000,
                         compatible_plan_ids: ["compatible_plan_ids"],
@@ -186,6 +187,7 @@ describe("PlangroupsClient", () => {
                         subscription_count: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
+                    billing_strategy: "schematic_managed",
                     charge_type: "free",
                     company_count: 1000000,
                     company_id: "company_id",
@@ -422,6 +424,7 @@ describe("PlangroupsClient", () => {
                         subscription_count: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
+                    billing_strategy: "schematic_managed",
                     charge_type: "free",
                     company_count: 1000000,
                     company_id: "company_id",
@@ -660,6 +663,7 @@ describe("PlangroupsClient", () => {
                         subscription_count: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
+                    billing_strategy: "schematic_managed",
                     charge_type: "free",
                     company_count: 1000000,
                     company_id: "company_id",
@@ -885,6 +889,7 @@ describe("PlangroupsClient", () => {
                 ordered_plan_list: [{ plan_id: "plan_id" }],
                 plans: [
                     {
+                        billing_strategy: "schematic_managed",
                         charge_type: "free",
                         company_count: 1000000,
                         compatible_plan_ids: ["compatible_plan_ids"],
@@ -1061,6 +1066,7 @@ describe("PlangroupsClient", () => {
                         subscription_count: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
+                    billing_strategy: "schematic_managed",
                     charge_type: "free",
                     company_count: 1000000,
                     company_id: "company_id",
@@ -1295,6 +1301,7 @@ describe("PlangroupsClient", () => {
             data: {
                 addOns: [
                     {
+                        billingStrategy: "schematic_managed",
                         chargeType: "free",
                         companyCount: 1000000,
                         compatiblePlanIds: ["compatible_plan_ids"],
@@ -1499,6 +1506,7 @@ describe("PlangroupsClient", () => {
                         subscriptionCount: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
+                    billingStrategy: "schematic_managed",
                     chargeType: "free",
                     companyCount: 1000000,
                     companyId: "company_id",
@@ -1758,6 +1766,7 @@ describe("PlangroupsClient", () => {
                         subscriptionCount: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
+                    billingStrategy: "schematic_managed",
                     chargeType: "free",
                     companyCount: 1000000,
                     companyId: "company_id",
@@ -2019,6 +2028,7 @@ describe("PlangroupsClient", () => {
                         subscriptionCount: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
+                    billingStrategy: "schematic_managed",
                     chargeType: "free",
                     companyCount: 1000000,
                     companyId: "company_id",
@@ -2279,6 +2289,7 @@ describe("PlangroupsClient", () => {
                 ],
                 plans: [
                     {
+                        billingStrategy: "schematic_managed",
                         chargeType: "free",
                         companyCount: 1000000,
                         compatiblePlanIds: ["compatible_plan_ids"],
@@ -2478,6 +2489,7 @@ describe("PlangroupsClient", () => {
                         subscriptionCount: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
+                    billingStrategy: "schematic_managed",
                     chargeType: "free",
                     companyCount: 1000000,
                     companyId: "company_id",

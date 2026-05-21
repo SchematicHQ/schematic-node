@@ -7,6 +7,7 @@ import { BillingLinkedResourceResponseData } from "./BillingLinkedResourceRespon
 import { BillingPriceResponseData } from "./BillingPriceResponseData";
 import { BillingProductDetailResponseData } from "./BillingProductDetailResponseData";
 import { BillingProviderType } from "./BillingProviderType";
+import { BillingStrategy } from "./BillingStrategy";
 import { ChargeType } from "./ChargeType";
 import { CompanyPlanInvalidReason } from "./CompanyPlanInvalidReason";
 import { CustomPlanConfig } from "./CustomPlanConfig";
@@ -30,6 +31,7 @@ export const CompanyPlanDetailResponseData: core.serialization.ObjectSchema<
         BillingLinkedResourceResponseData.optional(),
     ),
     billingProduct: core.serialization.property("billing_product", BillingProductDetailResponseData.optional()),
+    billingStrategy: core.serialization.property("billing_strategy", BillingStrategy),
     chargeType: core.serialization.property("charge_type", ChargeType),
     companyCanTrial: core.serialization.property("company_can_trial", core.serialization.boolean()),
     companyCount: core.serialization.property("company_count", core.serialization.number()),
@@ -83,6 +85,7 @@ export declare namespace CompanyPlanDetailResponseData {
         audience_type?: string | null;
         billing_linked_resource?: BillingLinkedResourceResponseData.Raw | null;
         billing_product?: BillingProductDetailResponseData.Raw | null;
+        billing_strategy: BillingStrategy.Raw;
         charge_type: ChargeType.Raw;
         company_can_trial: boolean;
         company_count: number;

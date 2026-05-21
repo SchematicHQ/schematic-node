@@ -5,8 +5,8 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 
 export const ChargeType: core.serialization.Schema<serializers.ChargeType.Raw, Schematic.ChargeType> =
-    core.serialization.enum_(["free", "one_time", "recurring"]);
+    core.serialization.enum_(["free", "none", "one_time", "recurring"]);
 
 export declare namespace ChargeType {
-    export type Raw = "free" | "one_time" | "recurring";
+    export type Raw = "free" | "none" | "one_time" | "recurring";
 }

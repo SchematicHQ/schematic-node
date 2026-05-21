@@ -10,18 +10,22 @@ export const DataEventPayload: core.serialization.ObjectSchema<
     Schematic.DataEventPayload
 > = core.serialization.object({
     apiKey: core.serialization.property("api_key", core.serialization.string()),
+    backfill: core.serialization.boolean().optional(),
     body: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     idempotencyKey: core.serialization.property("idempotency_key", core.serialization.string().optional()),
     sentAt: core.serialization.property("sent_at", core.serialization.date().optional()),
+    trustedClientClock: core.serialization.property("trusted_client_clock", core.serialization.boolean().optional()),
     type: EventType,
 });
 
 export declare namespace DataEventPayload {
     export interface Raw {
         api_key: string;
+        backfill?: boolean | null;
         body?: Record<string, unknown> | null;
         idempotency_key?: string | null;
         sent_at?: string | null;
+        trusted_client_clock?: boolean | null;
         type: EventType.Raw;
     }
 }

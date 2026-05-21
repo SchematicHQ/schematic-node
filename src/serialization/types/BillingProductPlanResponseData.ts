@@ -4,6 +4,7 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingProviderType } from "./BillingProviderType";
+import { BillingStrategy } from "./BillingStrategy";
 import { ChargeType } from "./ChargeType";
 
 export const BillingProductPlanResponseData: core.serialization.ObjectSchema<
@@ -12,6 +13,7 @@ export const BillingProductPlanResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     accountId: core.serialization.property("account_id", core.serialization.string()),
     billingProductId: core.serialization.property("billing_product_id", core.serialization.string()),
+    billingStrategy: core.serialization.property("billing_strategy", BillingStrategy),
     chargeType: core.serialization.property("charge_type", ChargeType),
     controlledBy: core.serialization.property("controlled_by", BillingProviderType),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
@@ -27,6 +29,7 @@ export declare namespace BillingProductPlanResponseData {
     export interface Raw {
         account_id: string;
         billing_product_id: string;
+        billing_strategy: BillingStrategy.Raw;
         charge_type: ChargeType.Raw;
         controlled_by: BillingProviderType.Raw;
         environment_id: string;

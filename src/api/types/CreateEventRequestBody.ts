@@ -3,6 +3,8 @@
 import type * as Schematic from "../index";
 
 export interface CreateEventRequestBody {
+    /** Requires a secret API key, and trusted_client_clock. Import historical data without affecting billing. */
+    backfill?: boolean;
     body?: Schematic.EventBody;
     /** Either 'identify' or 'track' */
     eventType: Schematic.EventType;
@@ -10,4 +12,6 @@ export interface CreateEventRequestBody {
     idempotencyKey?: string;
     /** Optionally provide a timestamp at which the event was sent to Schematic */
     sentAt?: Date;
+    /** Requires a secret API key and sent_at. Use sent_at as the effective timestamp. */
+    trustedClientClock?: boolean;
 }

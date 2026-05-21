@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { BillingStrategy } from "./BillingStrategy";
 import { ChargeType } from "./ChargeType";
 import { PlanCurrencyPriceRequestBody } from "./PlanCurrencyPriceRequestBody";
 
@@ -11,6 +12,7 @@ export const UpsertBillingProductRequestBody: core.serialization.ObjectSchema<
     Schematic.UpsertBillingProductRequestBody
 > = core.serialization.object({
     billingProductId: core.serialization.property("billing_product_id", core.serialization.string().optional()),
+    billingStrategy: core.serialization.property("billing_strategy", BillingStrategy.optional()),
     chargeType: core.serialization.property("charge_type", ChargeType),
     currency: core.serialization.string().optional(),
     currencyPrices: core.serialization.property(
@@ -32,6 +34,7 @@ export const UpsertBillingProductRequestBody: core.serialization.ObjectSchema<
 export declare namespace UpsertBillingProductRequestBody {
     export interface Raw {
         billing_product_id?: string | null;
+        billing_strategy?: BillingStrategy.Raw | null;
         charge_type: ChargeType.Raw;
         currency?: string | null;
         currency_prices?: PlanCurrencyPriceRequestBody.Raw[] | null;

@@ -4,8 +4,10 @@ import type * as Schematic from "../index";
 
 export interface DataEventPayload {
     apiKey: string;
+    backfill?: boolean;
     body?: Record<string, unknown>;
     idempotencyKey?: string;
     sentAt?: Date;
+    trustedClientClock?: boolean;
     type: Schematic.EventType;
 }

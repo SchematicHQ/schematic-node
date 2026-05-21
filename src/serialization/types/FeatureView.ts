@@ -34,6 +34,7 @@ export const FeatureView: core.serialization.ObjectSchema<serializers.FeatureVie
         trait: EntityTraitDefinitionResponseData.optional(),
         traitId: core.serialization.property("trait_id", core.serialization.string().optional()),
         updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+        usageLimitTraitId: core.serialization.property("usage_limit_trait_id", core.serialization.string().optional()),
     });
 
 export declare namespace FeatureView {
@@ -56,5 +57,6 @@ export declare namespace FeatureView {
         trait?: EntityTraitDefinitionResponseData.Raw | null;
         trait_id?: string | null;
         updated_at: string;
+        usage_limit_trait_id?: string | null;
     }
 }
