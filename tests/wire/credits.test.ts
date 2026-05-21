@@ -3627,6 +3627,499 @@ describe("CreditsClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("acquireCreditLease (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { company_id: "company_id", credit_type_id: "credit_type_id", requested_amount: 1.1 };
+        const rawResponseBody = {
+            data: {
+                company_id: "company_id",
+                created_at: "2024-01-15T09:30:00Z",
+                credit_type_id: "credit_type_id",
+                expires_at: "2024-01-15T09:30:00Z",
+                granted_amount: 1.1,
+                id: "id",
+                released_at: "2024-01-15T09:30:00Z",
+                updated_at: "2024-01-15T09:30:00Z",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/billing/credits/lease")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.credits.acquireCreditLease({
+            companyId: "company_id",
+            creditTypeId: "credit_type_id",
+            requestedAmount: 1.1,
+        });
+        expect(response).toEqual({
+            data: {
+                companyId: "company_id",
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                creditTypeId: "credit_type_id",
+                expiresAt: new Date("2024-01-15T09:30:00.000Z"),
+                grantedAmount: 1.1,
+                id: "id",
+                releasedAt: new Date("2024-01-15T09:30:00.000Z"),
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("acquireCreditLease (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { company_id: "company_id", credit_type_id: "credit_type_id", requested_amount: 1.1 };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/billing/credits/lease")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.acquireCreditLease({
+                companyId: "company_id",
+                creditTypeId: "credit_type_id",
+                requestedAmount: 1.1,
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("acquireCreditLease (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { company_id: "company_id", credit_type_id: "credit_type_id", requested_amount: 1.1 };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/billing/credits/lease")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.acquireCreditLease({
+                companyId: "company_id",
+                creditTypeId: "credit_type_id",
+                requestedAmount: 1.1,
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("acquireCreditLease (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { company_id: "company_id", credit_type_id: "credit_type_id", requested_amount: 1.1 };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/billing/credits/lease")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.acquireCreditLease({
+                companyId: "company_id",
+                creditTypeId: "credit_type_id",
+                requestedAmount: 1.1,
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("acquireCreditLease (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { company_id: "company_id", credit_type_id: "credit_type_id", requested_amount: 1.1 };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/billing/credits/lease")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.acquireCreditLease({
+                companyId: "company_id",
+                creditTypeId: "credit_type_id",
+                requestedAmount: 1.1,
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("acquireCreditLease (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { company_id: "company_id", credit_type_id: "credit_type_id", requested_amount: 1.1 };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/billing/credits/lease")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.acquireCreditLease({
+                companyId: "company_id",
+                creditTypeId: "credit_type_id",
+                requestedAmount: 1.1,
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("extendCreditLease (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { additional_amount: 1.1 };
+        const rawResponseBody = {
+            data: {
+                company_id: "company_id",
+                created_at: "2024-01-15T09:30:00Z",
+                credit_type_id: "credit_type_id",
+                expires_at: "2024-01-15T09:30:00Z",
+                granted_amount: 1.1,
+                id: "id",
+                released_at: "2024-01-15T09:30:00Z",
+                updated_at: "2024-01-15T09:30:00Z",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .put("/billing/credits/lease/lease_id/extend")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.credits.extendCreditLease("lease_id", {
+            additionalAmount: 1.1,
+        });
+        expect(response).toEqual({
+            data: {
+                companyId: "company_id",
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                creditTypeId: "credit_type_id",
+                expiresAt: new Date("2024-01-15T09:30:00.000Z"),
+                grantedAmount: 1.1,
+                id: "id",
+                releasedAt: new Date("2024-01-15T09:30:00.000Z"),
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("extendCreditLease (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { additional_amount: 1.1 };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/billing/credits/lease/lease_id/extend")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.extendCreditLease("lease_id", {
+                additionalAmount: 1.1,
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("extendCreditLease (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { additional_amount: 1.1 };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/billing/credits/lease/lease_id/extend")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.extendCreditLease("lease_id", {
+                additionalAmount: 1.1,
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("extendCreditLease (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { additional_amount: 1.1 };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/billing/credits/lease/lease_id/extend")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.extendCreditLease("lease_id", {
+                additionalAmount: 1.1,
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("extendCreditLease (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { additional_amount: 1.1 };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/billing/credits/lease/lease_id/extend")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.extendCreditLease("lease_id", {
+                additionalAmount: 1.1,
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("extendCreditLease (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { additional_amount: 1.1 };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/billing/credits/lease/lease_id/extend")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.extendCreditLease("lease_id", {
+                additionalAmount: 1.1,
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("releaseCreditLease (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { key: "value" };
+        const rawResponseBody = {
+            data: {
+                company_id: "company_id",
+                created_at: "2024-01-15T09:30:00Z",
+                credit_type_id: "credit_type_id",
+                expires_at: "2024-01-15T09:30:00Z",
+                granted_amount: 1.1,
+                id: "id",
+                released_at: "2024-01-15T09:30:00Z",
+                updated_at: "2024-01-15T09:30:00Z",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .put("/billing/credits/lease/lease_id/release")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.credits.releaseCreditLease("lease_id", {
+            key: "value",
+        });
+        expect(response).toEqual({
+            data: {
+                companyId: "company_id",
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                creditTypeId: "credit_type_id",
+                expiresAt: new Date("2024-01-15T09:30:00.000Z"),
+                grantedAmount: 1.1,
+                id: "id",
+                releasedAt: new Date("2024-01-15T09:30:00.000Z"),
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("releaseCreditLease (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { string: { key: "value" } };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/billing/credits/lease/lease_id/release")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.releaseCreditLease("lease_id", {
+                string: {
+                    key: "value",
+                },
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("releaseCreditLease (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { string: { key: "value" } };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/billing/credits/lease/lease_id/release")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.releaseCreditLease("lease_id", {
+                string: {
+                    key: "value",
+                },
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("releaseCreditLease (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { string: { key: "value" } };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/billing/credits/lease/lease_id/release")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.releaseCreditLease("lease_id", {
+                string: {
+                    key: "value",
+                },
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("releaseCreditLease (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { string: { key: "value" } };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/billing/credits/lease/lease_id/release")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.releaseCreditLease("lease_id", {
+                string: {
+                    key: "value",
+                },
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("releaseCreditLease (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { string: { key: "value" } };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/billing/credits/lease/lease_id/release")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.releaseCreditLease("lease_id", {
+                string: {
+                    key: "value",
+                },
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("getEnrichedCreditLedger (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });

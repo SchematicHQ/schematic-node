@@ -7,6 +7,7 @@ import { BillingLinkedResourceResponseData } from "./BillingLinkedResourceRespon
 import { BillingPriceResponseData } from "./BillingPriceResponseData";
 import { BillingProductDetailResponseData } from "./BillingProductDetailResponseData";
 import { BillingProviderType } from "./BillingProviderType";
+import { BillingStrategy } from "./BillingStrategy";
 import { ChargeType } from "./ChargeType";
 import { CustomPlanConfig } from "./CustomPlanConfig";
 import { FeatureInPlanResponseData } from "./FeatureInPlanResponseData";
@@ -28,6 +29,7 @@ export const PlanViewPublicResponseData: core.serialization.ObjectSchema<
         BillingLinkedResourceResponseData.optional(),
     ),
     billingProduct: core.serialization.property("billing_product", BillingProductDetailResponseData.optional()),
+    billingStrategy: core.serialization.property("billing_strategy", BillingStrategy),
     chargeType: core.serialization.property("charge_type", ChargeType),
     companyCount: core.serialization.property("company_count", core.serialization.number()),
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
@@ -76,6 +78,7 @@ export declare namespace PlanViewPublicResponseData {
         audience_type?: string | null;
         billing_linked_resource?: BillingLinkedResourceResponseData.Raw | null;
         billing_product?: BillingProductDetailResponseData.Raw | null;
+        billing_strategy: BillingStrategy.Raw;
         charge_type: ChargeType.Raw;
         company_count: number;
         company_id?: string | null;

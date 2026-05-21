@@ -21,4 +21,5 @@ export interface FeatureView {
     trait?: Schematic.EntityTraitDefinitionResponseData;
     traitId?: string;
     updatedAt: Date;
+    usageLimitTraitId?: string;
 }

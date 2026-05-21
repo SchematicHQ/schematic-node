@@ -5,6 +5,7 @@ import type * as Schematic from "../index";
 export interface BillingProductPlanResponseData {
     accountId: string;
     billingProductId: string;
+    billingStrategy: Schematic.BillingStrategy;
     chargeType: Schematic.ChargeType;
     controlledBy: Schematic.BillingProviderType;
     environmentId: string;

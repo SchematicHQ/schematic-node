@@ -4,6 +4,7 @@ import type * as Schematic from "../index";
 
 export interface UpsertBillingProductRequestBody {
     billingProductId?: string;
+    billingStrategy?: Schematic.BillingStrategy;
     chargeType: Schematic.ChargeType;
     currency?: string;
     currencyPrices?: Schematic.PlanCurrencyPriceRequestBody[];

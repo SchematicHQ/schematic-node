@@ -7,6 +7,7 @@ export interface PlanDetailResponseData {
     audienceType?: string;
     billingLinkedResource?: Schematic.BillingLinkedResourceResponseData;
     billingProduct?: Schematic.BillingProductDetailResponseData;
+    billingStrategy: Schematic.BillingStrategy;
     chargeType: Schematic.ChargeType;
     companyCount: number;
     companyId?: string;
@@ -22,6 +23,7 @@ export interface PlanDetailResponseData {
     id: string;
     includedCreditGrants?: Schematic.BillingPlanCreditGrantResponseData[];
     isDefault: boolean;
+    /** Deprecated: Use BillingStrategy instead */
     isFree: boolean;
     isTrialable: boolean;
     monthlyPrice?: Schematic.BillingPriceResponseData;

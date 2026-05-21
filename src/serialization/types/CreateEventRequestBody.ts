@@ -10,17 +10,21 @@ export const CreateEventRequestBody: core.serialization.ObjectSchema<
     serializers.CreateEventRequestBody.Raw,
     Schematic.CreateEventRequestBody
 > = core.serialization.object({
+    backfill: core.serialization.boolean().optional(),
     body: EventBody.optional(),
     eventType: core.serialization.property("event_type", EventType),
     idempotencyKey: core.serialization.property("idempotency_key", core.serialization.string().optional()),
     sentAt: core.serialization.property("sent_at", core.serialization.date().optional()),
+    trustedClientClock: core.serialization.property("trusted_client_clock", core.serialization.boolean().optional()),
 });
 
 export declare namespace CreateEventRequestBody {
     export interface Raw {
+        backfill?: boolean | null;
         body?: EventBody.Raw | null;
         event_type: EventType.Raw;
         idempotency_key?: string | null;
         sent_at?: string | null;
+        trusted_client_clock?: boolean | null;
     }
 }

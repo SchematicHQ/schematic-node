@@ -547,6 +547,7 @@ describe("CheckoutClient", () => {
             data: {
                 active_add_ons: [
                     {
+                        billing_strategy: "schematic_managed",
                         charge_type: "free",
                         company_count: 1000000,
                         controlled_by: "orb",
@@ -694,6 +695,7 @@ describe("CheckoutClient", () => {
                         subscription_count: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
+                    billing_strategy: "schematic_managed",
                     charge_type: "free",
                     company_count: 1000000,
                     company_id: "company_id",
@@ -1207,6 +1209,7 @@ describe("CheckoutClient", () => {
                         subscription_count: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
+                    billing_strategy: "schematic_managed",
                     charge_type: "free",
                     company_count: 1000000,
                     company_id: "company_id",
@@ -1470,6 +1473,7 @@ describe("CheckoutClient", () => {
             data: {
                 activeAddOns: [
                     {
+                        billingStrategy: "schematic_managed",
                         chargeType: "free",
                         companyCount: 1000000,
                         controlledBy: "orb",
@@ -1636,6 +1640,7 @@ describe("CheckoutClient", () => {
                         subscriptionCount: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
+                    billingStrategy: "schematic_managed",
                     chargeType: "free",
                     companyCount: 1000000,
                     companyId: "company_id",
@@ -2197,6 +2202,7 @@ describe("CheckoutClient", () => {
                         subscriptionCount: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
+                    billingStrategy: "schematic_managed",
                     chargeType: "free",
                     companyCount: 1000000,
                     companyId: "company_id",

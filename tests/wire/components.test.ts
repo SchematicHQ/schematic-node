@@ -764,6 +764,7 @@ describe("ComponentsClient", () => {
             data: {
                 active_add_ons: [
                     {
+                        billing_strategy: "schematic_managed",
                         charge_type: "free",
                         company_can_trial: true,
                         company_count: 1000000,
@@ -911,6 +912,7 @@ describe("ComponentsClient", () => {
                 ],
                 active_plans: [
                     {
+                        billing_strategy: "schematic_managed",
                         charge_type: "free",
                         company_can_trial: true,
                         company_count: 1000000,
@@ -1423,6 +1425,7 @@ describe("ComponentsClient", () => {
                         subscription_count: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
+                    billing_strategy: "schematic_managed",
                     charge_type: "free",
                     company_count: 1000000,
                     company_id: "company_id",
@@ -1673,6 +1676,7 @@ describe("ComponentsClient", () => {
                         subscription_count: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
+                    billing_strategy: "schematic_managed",
                     charge_type: "free",
                     company_count: 1000000,
                     company_id: "company_id",
@@ -1983,6 +1987,7 @@ describe("ComponentsClient", () => {
             data: {
                 activeAddOns: [
                     {
+                        billingStrategy: "schematic_managed",
                         chargeType: "free",
                         companyCanTrial: true,
                         companyCount: 1000000,
@@ -2153,6 +2158,7 @@ describe("ComponentsClient", () => {
                 ],
                 activePlans: [
                     {
+                        billingStrategy: "schematic_managed",
                         chargeType: "free",
                         companyCanTrial: true,
                         companyCount: 1000000,
@@ -2720,6 +2726,7 @@ describe("ComponentsClient", () => {
                         subscriptionCount: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
+                    billingStrategy: "schematic_managed",
                     chargeType: "free",
                     companyCount: 1000000,
                     companyId: "company_id",
@@ -2989,6 +2996,7 @@ describe("ComponentsClient", () => {
                         subscriptionCount: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
+                    billingStrategy: "schematic_managed",
                     chargeType: "free",
                     companyCount: 1000000,
                     companyId: "company_id",

@@ -3094,6 +3094,177 @@ await client.credits.listGrantsForCredit({
 </dl>
 </details>
 
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">acquireCreditLease</a>({ ...params }) -> Schematic.AcquireCreditLeaseResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.credits.acquireCreditLease({
+    companyId: "company_id",
+    creditTypeId: "credit_type_id",
+    requestedAmount: 1.1
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.AcquireCreditLeaseRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">extendCreditLease</a>(lease_id, { ...params }) -> Schematic.ExtendCreditLeaseResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.credits.extendCreditLease("lease_id", {
+    additionalAmount: 1.1
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**lease_id:** `string` — lease_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ExtendCreditLeaseRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">releaseCreditLease</a>(lease_id, { ...params }) -> Schematic.ReleaseCreditLeaseResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.credits.releaseCreditLease("lease_id", {
+    "key": "value"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**lease_id:** `string` — lease_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ReleaseCreditLeaseRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">getEnrichedCreditLedger</a>({ ...params }) -> Schematic.GetEnrichedCreditLedgerResponse</code></summary>
 <dl>
 <dd>

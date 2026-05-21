@@ -1,3 +1,4 @@
+export type { AcquireCreditLeaseRequestBody } from "./AcquireCreditLeaseRequestBody";
 export type { CountBillingCreditsGrantsRequest } from "./CountBillingCreditsGrantsRequest";
 export type { CountBillingCreditsRequest } from "./CountBillingCreditsRequest";
 export type { CountBillingPlanCreditGrantsRequest } from "./CountBillingPlanCreditGrantsRequest";
@@ -9,6 +10,7 @@ export type { CreateBillingCreditRequestBody } from "./CreateBillingCreditReques
 export type { CreateCompanyCreditGrant } from "./CreateCompanyCreditGrant";
 export type { CreateCreditBundleRequestBody } from "./CreateCreditBundleRequestBody";
 export type { DeleteBillingPlanCreditGrantRequest } from "./DeleteBillingPlanCreditGrantRequest";
+export type { ExtendCreditLeaseRequestBody } from "./ExtendCreditLeaseRequestBody";
 export type { GetEnrichedCreditLedgerRequest } from "./GetEnrichedCreditLedgerRequest";
 export type { ListBillingCreditsRequest } from "./ListBillingCreditsRequest";
 export type { ListBillingPlanCreditGrantsRequest } from "./ListBillingPlanCreditGrantsRequest";
