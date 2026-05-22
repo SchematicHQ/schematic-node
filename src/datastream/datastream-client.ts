@@ -5,6 +5,55 @@ import { RulesEngineClient } from '../rules-engine';
 import { Logger } from '../logger';
 import { LazyEmitter } from './emitter';
 import { partialCompany, partialUser, deepCopyCompany as deepCopyCompanyFn } from './merge';
+import * as serializers from '../serialization';
+
+// Wire payloads from the schematic-api Go server use snake_case JSON
+// (e.g. `event_subtype`, `condition_type`, `credit_id`). The TypeScript
+// API types use camelCase (`eventSubtype`, `conditionType`, `creditId`),
+// and downstream consumers (lease check, rules-engine WASM bridge, etc.)
+// read camelCase. Without running incoming payloads through the Fern
+// serializer the fields read as `undefined`, which silently breaks
+// `findCreditCondition()` and any other camelCase access.
+const PARSE_OPTS = {
+  allowUnrecognizedEnumValues: true,
+  allowUnrecognizedUnionMembers: true,
+  unrecognizedObjectKeys: 'passthrough' as const,
+};
+
+// Go json.Marshal serializes nil slices as `null`, but the Fern-generated
+// serializers declare these fields as required `list(...)` and reject null
+// outright (with an opaque "Expected list. Received null." error that
+// silently disables every downstream feature). Walk the raw payload and
+// coerce known list-shaped wire fields from null to []. Names below are
+// the snake_case wire keys the Go server emits.
+const NULLABLE_LIST_KEYS = new Set([
+  'rules',
+  'conditions',
+  'condition_groups',
+  'resource_ids',
+  'metrics',
+  'traits',
+  'plans',
+  'billing_products',
+  'subscriptions',
+  'features',
+  'keys',
+  'company_plans',
+]);
+
+function coerceNullArrays(value: unknown): unknown {
+  if (Array.isArray(value)) return value.map(coerceNullArrays);
+  if (value === null || typeof value !== 'object') return value;
+  const out: Record<string, unknown> = {};
+  for (const [k, v] of Object.entries(value as Record<string, unknown>)) {
+    if (v === null && NULLABLE_LIST_KEYS.has(k)) {
+      out[k] = [];
+    } else {
+      out[k] = coerceNullArrays(v);
+    }
+  }
+  return out;
+}
 
 // Import cache providers from the cache module
 import type { CacheProvider } from '../cache/types';
@@ -705,7 +754,12 @@ export class DataStreamClient extends LazyEmitter {
         return;
       }
     } else {
-      company = message.data as Schematic.RulesengineCompany;
+      try {
+        company = serializers.RulesengineCompany.parseOrThrow(coerceNullArrays(message.data), PARSE_OPTS);
+      } catch (error) {
+        this.logger.warn(`Failed to deserialize company payload: ${error}`);
+        return;
+      }
     }
 
     if (!company) {
@@ -768,7 +822,12 @@ export class DataStreamClient extends LazyEmitter {
         return;
       }
     } else {
-      user = message.data as Schematic.RulesengineUser;
+      try {
+        user = serializers.RulesengineUser.parseOrThrow(coerceNullArrays(message.data), PARSE_OPTS);
+      } catch (error) {
+        this.logger.warn(`Failed to deserialize user payload: ${error}`);
+        return;
+      }
     }
 
     if (!user) {
@@ -808,11 +867,26 @@ export class DataStreamClient extends LazyEmitter {
    * handleFlagsMessage processes bulk flags messages
    */
   private async handleFlagsMessage(message: DataStreamResp): Promise<void> {
-    const flags = message.data as Schematic.RulesengineFlag[];
-    
-    if (!Array.isArray(flags)) {
+    const rawFlags = message.data as unknown[];
+
+    if (!Array.isArray(rawFlags)) {
       this.logger.warn('Expected flags array in bulk flags message');
       return;
+    }
+
+    const flags: Schematic.RulesengineFlag[] = [];
+    let parseFailureCount = 0;
+    let firstFailure: unknown = undefined;
+    for (const raw of rawFlags) {
+      try {
+        flags.push(serializers.RulesengineFlag.parseOrThrow(coerceNullArrays(raw), PARSE_OPTS));
+      } catch (error) {
+        parseFailureCount++;
+        if (firstFailure === undefined) firstFailure = error;
+      }
+    }
+    if (parseFailureCount > 0) {
+      this.logger.warn(`Failed to deserialize ${parseFailureCount} flag(s) in bulk message: ${String(firstFailure)}`);
     }
 
     const results = await Promise.allSettled(
@@ -854,7 +928,13 @@ export class DataStreamClient extends LazyEmitter {
    * handleFlagMessage processes single flag messages
    */
   private async handleFlagMessage(message: DataStreamResp): Promise<void> {
-    const flag = message.data as Schematic.RulesengineFlag;
+    let flag: Schematic.RulesengineFlag;
+    try {
+      flag = serializers.RulesengineFlag.parseOrThrow(coerceNullArrays(message.data), PARSE_OPTS);
+    } catch (error) {
+      this.logger.warn(`Failed to deserialize flag payload: ${error}`);
+      return;
+    }
     
     if (!flag?.key) {
       return;
