@@ -1146,7 +1146,16 @@ describe('DataStreamClient', () => {
       const companyWithMetrics = {
         ...multiKeyCompany,
         metrics: [
-          { eventSubtype: 'api-call', value: 10 },
+          {
+            account_id: 'account-123',
+            company_id: 'company-multi',
+            created_at: '2026-01-01T00:00:00Z',
+            environment_id: 'env-123',
+            event_subtype: 'api-call',
+            month_reset: 'first_of_month',
+            period: 'all_time',
+            value: 10,
+          },
         ],
       } as unknown as Schematic.RulesengineCompany;
 

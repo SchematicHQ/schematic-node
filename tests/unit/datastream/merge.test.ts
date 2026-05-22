@@ -6,23 +6,25 @@ import {
     deepCopyUser,
 } from '../../../src/datastream/merge';
 
-// Helper: base company in snake_case wire format (matches WebSocket data)
+// Helper: base company in camelCase (matches the cached, parseOrThrow-normalized
+// shape that partialCompany sees in production). Partial payloads arrive in
+// snake_case from the wire; the merge function canonicalizes to camelCase.
 function baseCompany(): Schematic.RulesengineCompany {
     return {
         id: 'co-1',
-        account_id: 'acc-1',
-        environment_id: 'env-1',
-        base_plan_id: 'plan-1',
-        billing_product_ids: ['bp-1'],
-        credit_balances: { 'credit-1': 100.0 },
+        accountId: 'acc-1',
+        environmentId: 'env-1',
+        basePlanId: 'plan-1',
+        billingProductIds: ['bp-1'],
+        creditBalances: { 'credit-1': 100.0 },
         keys: { domain: 'example.com' },
-        plan_ids: ['plan-1'],
-        plan_version_ids: ['pv-1'],
+        planIds: ['plan-1'],
+        planVersionIds: ['pv-1'],
         traits: [
-            { value: 'Enterprise', trait_definition: { id: 'plan', comparable_type: 'string', entity_type: 'company' } },
+            { value: 'Enterprise', traitDefinition: { id: 'plan', comparableType: 'string', entityType: 'company' } },
         ],
         entitlements: [
-            { feature_id: 'feat-1', feature_key: 'feature-one', value_type: 'boolean' },
+            { featureId: 'feat-1', featureKey: 'feature-one', valueType: 'boolean' },
         ],
         metrics: [],
         rules: [],
@@ -32,11 +34,11 @@ function baseCompany(): Schematic.RulesengineCompany {
 function baseUser(): Schematic.RulesengineUser {
     return {
         id: 'user-1',
-        account_id: 'acc-1',
-        environment_id: 'env-1',
+        accountId: 'acc-1',
+        environmentId: 'env-1',
         keys: { email: 'user@example.com' },
         traits: [
-            { value: 'Premium', trait_definition: { id: 'tier', comparable_type: 'string', entity_type: 'user' } },
+            { value: 'Premium', traitDefinition: { id: 'tier', comparableType: 'string', entityType: 'user' } },
         ],
         rules: [],
     } as unknown as Schematic.RulesengineUser;
@@ -73,11 +75,11 @@ describe('partialCompany', () => {
         expect((m.traits as Record<string, unknown>[])[0].value).toBe('Startup');
 
         // Other fields preserved
-        expect(m.account_id).toBe('acc-1');
-        expect(m.environment_id).toBe('env-1');
+        expect(m.accountId).toBe('acc-1');
+        expect(m.environmentId).toBe('env-1');
         expect(m.keys).toEqual({ domain: 'example.com' });
-        expect(m.billing_product_ids).toEqual(['bp-1']);
-        expect(m.base_plan_id).toBe('plan-1');
+        expect(m.billingProductIds).toEqual(['bp-1']);
+        expect(m.basePlanId).toBe('plan-1');
     });
 
     test('merges keys - new key added, existing preserved', () => {
@@ -98,7 +100,7 @@ describe('partialCompany', () => {
         const merged = partialCompany(existing, partial);
         const m = merged as unknown as Record<string, unknown>;
 
-        expect(m.credit_balances).toEqual({ 'credit-1': 100.0, 'credit-2': 200.0 });
+        expect(m.creditBalances).toEqual({ 'credit-1': 100.0, 'credit-2': 200.0 });
     });
 
     test('overwrites credit balance', () => {
@@ -108,7 +110,7 @@ describe('partialCompany', () => {
         const merged = partialCompany(existing, partial);
         const m = merged as unknown as Record<string, unknown>;
 
-        expect(m.credit_balances).toEqual({ 'credit-1': 50.0 });
+        expect(m.creditBalances).toEqual({ 'credit-1': 50.0 });
     });
 
     test('upserts metrics - updates existing, appends new', () => {
@@ -169,7 +171,7 @@ describe('partialCompany', () => {
         const m = merged as unknown as Record<string, unknown>;
 
         expect(m.entitlements).toEqual([]);
-        expect(m.account_id).toBe('acc-1');
+        expect(m.accountId).toBe('acc-1');
     });
 
     test('null base_plan_id sets to null', () => {
@@ -179,8 +181,8 @@ describe('partialCompany', () => {
         const merged = partialCompany(existing, partial);
         const m = merged as unknown as Record<string, unknown>;
 
-        expect(m.base_plan_id).toBeNull();
-        expect(m.billing_product_ids).toEqual(['bp-1']);
+        expect(m.basePlanId).toBeNull();
+        expect(m.billingProductIds).toEqual(['bp-1']);
     });
 
     test('tolerates missing id - cache lookup uses envelope entity_id', () => {
@@ -193,7 +195,7 @@ describe('partialCompany', () => {
         const merged = partialCompany(existing, partial);
         const m = merged as unknown as Record<string, unknown>;
 
-        expect(m.credit_balances).toEqual({ 'credit-1': 100.0, 'credit-2': 200.0 });
+        expect(m.creditBalances).toEqual({ 'credit-1': 100.0, 'credit-2': 200.0 });
         expect(m.id).toBe('co-1');
     });
 
@@ -277,13 +279,13 @@ describe('partialCompany', () => {
         const m = merged as unknown as Record<string, unknown>;
 
         expect(m.id).toBe('co-1');
-        expect(m.account_id).toBe('acc-2');
-        expect(m.environment_id).toBe('env-2');
-        expect(m.base_plan_id).toBe('plan-99');
-        expect(m.billing_product_ids).toEqual(['bp-10', 'bp-20']);
+        expect(m.accountId).toBe('acc-2');
+        expect(m.environmentId).toBe('env-2');
+        expect(m.basePlanId).toBe('plan-99');
+        expect(m.billingProductIds).toEqual(['bp-10', 'bp-20']);
 
         // Credit balances merge: credit-1 overwritten, credit-new added
-        expect(m.credit_balances).toEqual({ 'credit-1': 999.0, 'credit-new': 50.0 });
+        expect(m.creditBalances).toEqual({ 'credit-1': 999.0, 'credit-new': 50.0 });
 
         const entitlements = m.entitlements as Record<string, unknown>[];
         expect(entitlements.length).toBe(2);
@@ -301,8 +303,8 @@ describe('partialCompany', () => {
         expect(metrics[1].event_subtype).toBe('event-new');
         expect(metrics[1].value).toBe(7);
 
-        expect(m.plan_ids).toEqual(['plan-99', 'plan-100']);
-        expect(m.plan_version_ids).toEqual(['pv-99']);
+        expect(m.planIds).toEqual(['plan-99', 'plan-100']);
+        expect(m.planVersionIds).toEqual(['pv-99']);
 
         const rules = m.rules as Record<string, unknown>[];
         expect(rules.length).toBe(2);
@@ -318,8 +320,8 @@ describe('partialCompany', () => {
 
         // Original not mutated
         const orig = existing as unknown as Record<string, unknown>;
-        expect(orig.account_id).toBe('acc-1');
-        expect(orig.base_plan_id).toBe('plan-1');
+        expect(orig.accountId).toBe('acc-1');
+        expect(orig.basePlanId).toBe('plan-1');
         expect(orig.keys).toEqual({ domain: 'example.com' });
         expect((orig.metrics as Record<string, unknown>[])[0].value).toBe(10);
     });
@@ -422,12 +424,12 @@ describe('deepCopyCompany', () => {
         const origRaw = orig as unknown as Record<string, unknown>;
         origRaw.metrics = [
             {
-                account_id: 'acc-1', environment_id: 'env-1', company_id: 'co-1',
-                event_subtype: 'event-1', period: 'all_time', month_reset: 'first_of_month',
-                value: 42, created_at: '2026-01-01T00:00:00Z',
+                accountId: 'acc-1', environmentId: 'env-1', companyId: 'co-1',
+                eventSubtype: 'event-1', period: 'all_time', monthReset: 'first_of_month',
+                value: 42, createdAt: '2026-01-01T00:00:00Z',
             },
         ];
-        origRaw.subscription = { id: 'sub-1', period_start: '2026-01-01T00:00:00Z', period_end: '2027-01-01T00:00:00Z' };
+        origRaw.subscription = { id: 'sub-1', periodStart: '2026-01-01T00:00:00Z', periodEnd: '2027-01-01T00:00:00Z' };
 
         const cp = deepCopyCompany(orig);
         const cpRaw = cp as unknown as Record<string, unknown>;
@@ -437,8 +439,8 @@ describe('deepCopyCompany', () => {
         expect((origRaw.keys as Record<string, string>).domain).toBe('example.com');
 
         // Credit balances are independent
-        (cpRaw.credit_balances as Record<string, number>)['credit-1'] = 999;
-        expect((origRaw.credit_balances as Record<string, number>)['credit-1']).toBe(100.0);
+        (cpRaw.creditBalances as Record<string, number>)['credit-1'] = 999;
+        expect((origRaw.creditBalances as Record<string, number>)['credit-1']).toBe(100.0);
 
         // Metrics are independent
         ((cpRaw.metrics as Record<string, unknown>[])[0]).value = 999;
@@ -460,8 +462,8 @@ describe('deepCopyUser', () => {
     test('empty fields - user with only required fields', () => {
         const cp = deepCopyUser({
             id: 'u1',
-            account_id: 'acc-1',
-            environment_id: 'env-1',
+            accountId: 'acc-1',
+            environmentId: 'env-1',
             keys: {},
             traits: [],
             rules: [],
