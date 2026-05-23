@@ -39,6 +39,16 @@ const NULLABLE_LIST_KEYS = new Set([
   'features',
   'keys',
   'company_plans',
+  // rulesengine.Company slice fields. Pre-v0.1.16 these are []T in Go,
+  // post-v0.1.16 they're JSONSlice[T] (marshal as []). Once the schematic-api
+  // bump deploys (api PR #5535) the wire never ships null for these, and the
+  // whole coerceNullArrays helper can be deleted. Include them defensively
+  // in the meantime so a company without a plan/subscription doesn't fail
+  // parseOrThrow on the WS path.
+  'billing_product_ids',
+  'plan_ids',
+  'plan_version_ids',
+  'entitlements',
 ]);
 
 function coerceNullArrays(value: unknown): unknown {
