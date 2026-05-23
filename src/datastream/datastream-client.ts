@@ -7,19 +7,6 @@ import { LazyEmitter } from './emitter';
 import { partialCompany, partialUser, deepCopyCompany as deepCopyCompanyFn } from './merge';
 import * as serializers from '../serialization';
 
-// Wire payloads from the schematic-api Go server use snake_case JSON
-// (e.g. `event_subtype`, `condition_type`, `credit_id`). The TypeScript
-// API types use camelCase (`eventSubtype`, `conditionType`, `creditId`),
-// and downstream consumers (lease check, rules-engine WASM bridge, etc.)
-// read camelCase. Without running incoming payloads through the Fern
-// serializer the fields read as `undefined`, which silently breaks
-// `findCreditCondition()` and any other camelCase access.
-const PARSE_OPTS = {
-  allowUnrecognizedEnumValues: true,
-  allowUnrecognizedUnionMembers: true,
-  unrecognizedObjectKeys: 'passthrough' as const,
-};
-
 // Import cache providers from the cache module
 import type { CacheProvider } from '../cache/types';
 import { LocalCache } from '../cache/local';
@@ -720,7 +707,7 @@ export class DataStreamClient extends LazyEmitter {
       }
     } else {
       try {
-        company = serializers.RulesengineCompany.parseOrThrow(message.data, PARSE_OPTS);
+        company = serializers.RulesengineCompany.parseOrThrow(message.data);
       } catch (error) {
         this.logger.warn(`Failed to deserialize company payload: ${error}`);
         return;
@@ -788,7 +775,7 @@ export class DataStreamClient extends LazyEmitter {
       }
     } else {
       try {
-        user = serializers.RulesengineUser.parseOrThrow(message.data, PARSE_OPTS);
+        user = serializers.RulesengineUser.parseOrThrow(message.data);
       } catch (error) {
         this.logger.warn(`Failed to deserialize user payload: ${error}`);
         return;
@@ -844,7 +831,7 @@ export class DataStreamClient extends LazyEmitter {
     let firstFailure: unknown = undefined;
     for (const raw of rawFlags) {
       try {
-        flags.push(serializers.RulesengineFlag.parseOrThrow(raw, PARSE_OPTS));
+        flags.push(serializers.RulesengineFlag.parseOrThrow(raw));
       } catch (error) {
         parseFailureCount++;
         if (firstFailure === undefined) firstFailure = error;
@@ -895,7 +882,7 @@ export class DataStreamClient extends LazyEmitter {
   private async handleFlagMessage(message: DataStreamResp): Promise<void> {
     let flag: Schematic.RulesengineFlag;
     try {
-      flag = serializers.RulesengineFlag.parseOrThrow(message.data, PARSE_OPTS);
+      flag = serializers.RulesengineFlag.parseOrThrow(message.data);
     } catch (error) {
       this.logger.warn(`Failed to deserialize flag payload: ${error}`);
       return;
