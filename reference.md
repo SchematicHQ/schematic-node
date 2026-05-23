@@ -1529,6 +1529,55 @@ await client.billing.upsertPaymentMethod({
 </dl>
 </details>
 
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">deletePaymentMethodByExternalId</a>(billing_id) -> Schematic.DeletePaymentMethodByExternalIdResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.billing.deletePaymentMethodByExternalId("billing_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**billing_id:** `string` — billing_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">listBillingPrices</a>({ ...params }) -> Schematic.ListBillingPricesResponse</code></summary>
 <dl>
 <dd>
