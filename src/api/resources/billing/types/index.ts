@@ -3,6 +3,7 @@ export * from "./CountBillingProductsResponse";
 export * from "./CountCustomersParams";
 export * from "./CountCustomersResponse";
 export * from "./DeleteBillingProductResponse";
+export * from "./DeletePaymentMethodByExternalIdResponse";
 export * from "./DeleteProductPriceResponse";
 export * from "./ListBillingPricesParams";
 export * from "./ListBillingPricesResponse";

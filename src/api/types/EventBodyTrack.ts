@@ -5,6 +5,8 @@ export interface EventBodyTrack {
     company?: Record<string, string>;
     /** The name of the type of track event */
     event: string;
+    /** Credit lease ID this track event is redeeming against */
+    leaseId?: string;
     /** Optionally specify the quantity of the event */
     quantity?: number;
     /** A map of trait names to trait values */
