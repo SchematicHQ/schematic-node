@@ -20,51 +20,6 @@ const PARSE_OPTS = {
   unrecognizedObjectKeys: 'passthrough' as const,
 };
 
-// Go json.Marshal serializes nil slices as `null`, but the Fern-generated
-// serializers declare these fields as required `list(...)` and reject null
-// outright (with an opaque "Expected list. Received null." error that
-// silently disables every downstream feature). Walk the raw payload and
-// coerce known list-shaped wire fields from null to []. Names below are
-// the snake_case wire keys the Go server emits.
-const NULLABLE_LIST_KEYS = new Set([
-  'rules',
-  'conditions',
-  'condition_groups',
-  'resource_ids',
-  'metrics',
-  'traits',
-  'plans',
-  'billing_products',
-  'subscriptions',
-  'features',
-  'keys',
-  'company_plans',
-  // rulesengine.Company slice fields. Pre-v0.1.16 these are []T in Go,
-  // post-v0.1.16 they're JSONSlice[T] (marshal as []). Once the schematic-api
-  // bump deploys (api PR #5535) the wire never ships null for these, and the
-  // whole coerceNullArrays helper can be deleted. Include them defensively
-  // in the meantime so a company without a plan/subscription doesn't fail
-  // parseOrThrow on the WS path.
-  'billing_product_ids',
-  'plan_ids',
-  'plan_version_ids',
-  'entitlements',
-]);
-
-function coerceNullArrays(value: unknown): unknown {
-  if (Array.isArray(value)) return value.map(coerceNullArrays);
-  if (value === null || typeof value !== 'object') return value;
-  const out: Record<string, unknown> = {};
-  for (const [k, v] of Object.entries(value as Record<string, unknown>)) {
-    if (v === null && NULLABLE_LIST_KEYS.has(k)) {
-      out[k] = [];
-    } else {
-      out[k] = coerceNullArrays(v);
-    }
-  }
-  return out;
-}
-
 // Import cache providers from the cache module
 import type { CacheProvider } from '../cache/types';
 import { LocalCache } from '../cache/local';
@@ -765,7 +720,7 @@ export class DataStreamClient extends LazyEmitter {
       }
     } else {
       try {
-        company = serializers.RulesengineCompany.parseOrThrow(coerceNullArrays(message.data), PARSE_OPTS);
+        company = serializers.RulesengineCompany.parseOrThrow(message.data, PARSE_OPTS);
       } catch (error) {
         this.logger.warn(`Failed to deserialize company payload: ${error}`);
         return;
@@ -833,7 +788,7 @@ export class DataStreamClient extends LazyEmitter {
       }
     } else {
       try {
-        user = serializers.RulesengineUser.parseOrThrow(coerceNullArrays(message.data), PARSE_OPTS);
+        user = serializers.RulesengineUser.parseOrThrow(message.data, PARSE_OPTS);
       } catch (error) {
         this.logger.warn(`Failed to deserialize user payload: ${error}`);
         return;
@@ -889,7 +844,7 @@ export class DataStreamClient extends LazyEmitter {
     let firstFailure: unknown = undefined;
     for (const raw of rawFlags) {
       try {
-        flags.push(serializers.RulesengineFlag.parseOrThrow(coerceNullArrays(raw), PARSE_OPTS));
+        flags.push(serializers.RulesengineFlag.parseOrThrow(raw, PARSE_OPTS));
       } catch (error) {
         parseFailureCount++;
         if (firstFailure === undefined) firstFailure = error;
@@ -940,7 +895,7 @@ export class DataStreamClient extends LazyEmitter {
   private async handleFlagMessage(message: DataStreamResp): Promise<void> {
     let flag: Schematic.RulesengineFlag;
     try {
-      flag = serializers.RulesengineFlag.parseOrThrow(coerceNullArrays(message.data), PARSE_OPTS);
+      flag = serializers.RulesengineFlag.parseOrThrow(message.data, PARSE_OPTS);
     } catch (error) {
       this.logger.warn(`Failed to deserialize flag payload: ${error}`);
       return;
