@@ -140,6 +140,8 @@ function syncEntitlementDerivedFields(
             ent.credit_remaining = updatedBalances[creditId];
         }
 
+        // Credit-attached entitlements are intentionally NOT skipped: usage here
+        // reflects the raw event count for the entitlement's event, not credits used.
         const eventName = (ent.eventName ?? ent.event_name) as string | undefined;
         if (metricsLookup.size > 0 && eventName) {
             const period = ((ent.metricPeriod ?? ent.metric_period) as string) || "all_time";
