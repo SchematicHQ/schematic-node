@@ -153,7 +153,19 @@ const client = new SchematicClient({
 client.close();
 ```
 
-If no logger is provided, the client will use a default console logger that outputs to the standard console methods.
+If no logger is provided, the client uses a default console logger. By default it only emits `warn` and `error` messages; `debug` and `info` are suppressed to keep production output quiet. Use the `logLevel` option to raise or lower the verbosity of the default logger:
+
+```ts
+import { SchematicClient, LogLevel } from "@schematichq/schematic-typescript-node";
+
+const apiKey = process.env.SCHEMATIC_API_KEY;
+const client = new SchematicClient({
+    apiKey,
+    logLevel: "debug", // or LogLevel.Debug — emit all levels (debug, info, warn, error)
+});
+```
+
+The `logLevel` option only affects the default console logger. When you supply your own `logger`, its level configuration is respected as-is and `logLevel` is ignored.
 
 ## Usage examples
 

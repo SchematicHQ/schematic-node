@@ -2,7 +2,7 @@ import * as api from "./api";
 import { SchematicClient as BaseClient } from "./Client";
 
 import { type CacheProvider, LocalCache } from "./cache";
-import { ConsoleLogger, Logger } from "./logger";
+import { ConsoleLogger, Logger, LogLevel } from "./logger";
 import { EventBuffer } from "./events";
 import { EventCaptureClient } from "./event-capture";
 import { offlineFetcher, provideFetcher } from "./core/fetcher/custom";
@@ -50,8 +50,10 @@ export interface SchematicOptions {
     flagDefaults?: { [key: string]: boolean };
     /** Additional HTTP headers for API requests */
     headers?: Record<string, string>;
-    /** Custom logger implementation */
+    /** Custom logger implementation. When provided, its own level configuration is respected and `logLevel` is ignored. */
     logger?: Logger;
+    /** Minimum level for the default logger (default: "warn"). Ignored when a custom `logger` is provided. */
+    logLevel?: LogLevel;
     /** Enable offline mode to prevent network activity */
     offline?: boolean;
     /** The default maximum time to wait for a response in milliseconds */
@@ -121,10 +123,15 @@ export class SchematicClient extends BaseClient {
             eventBufferInterval,
             eventCaptureBaseURL,
             flagDefaults = {},
-            logger = new ConsoleLogger(),
+            logLevel,
             timeoutMs,
         } = opts ?? {};
         let { offline = false } = opts ?? {};
+
+        // A consumer-provided logger owns its own level configuration, so we use
+        // it as-is and ignore logLevel. Otherwise build the default
+        // ConsoleLogger at the requested level (defaulting to "warn").
+        const logger: Logger = opts?.logger ?? new ConsoleLogger(logLevel);
 
         // Set headers
         const headers: Record<string, string> = {};

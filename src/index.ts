@@ -8,6 +8,7 @@ export {
   type TrackOptions,
   type IdentifyOptions,
 } from "./wrapper";
+export { ConsoleLogger, LogLevel, type Logger } from "./logger";
 export { SchematicEnvironment } from "./environments";
 export { SchematicError, SchematicTimeoutError } from "./errors";
 export { RulesEngineClient } from "./rules-engine";
