@@ -234,6 +234,42 @@ client.track({
 });
 ```
 
+Both `track` and `identify` accept an optional second argument for event metadata. Supply an `idempotencyKey` to deduplicate events (duplicates with the same key, scoped to the environment, are dropped server-side for 24 hours):
+
+```ts
+client.track(
+    {
+        event: "some-action",
+        company: { id: "your-company-id" },
+    },
+    { idempotencyKey: "your-unique-key" },
+);
+
+client.identify(
+    {
+        keys: { userId: "your-user-id" },
+        name: "Wile E. Coyote",
+    },
+    { idempotencyKey: "your-unique-key" },
+);
+```
+
+For `track`, you can also set a trusted client clock to use your own timestamp as the effective event time, and backfill historical data without affecting billing. Both require a secret API key:
+
+```ts
+client.track(
+    {
+        event: "some-action",
+        company: { id: "your-company-id" },
+    },
+    {
+        sentAt: new Date("2026-01-01T00:00:00Z"),
+        trustedClientClock: true,
+        backfill: true,
+    },
+);
+```
+
 ### Creating and updating companies
 
 Although it is faster to create companies and users via identify events, if you need to handle a response, you can use the companies API to upsert companies. Because you use your own identifiers to identify companies, rather than a Schematic company ID, creating and updating companies are both done via the same upsert operation:

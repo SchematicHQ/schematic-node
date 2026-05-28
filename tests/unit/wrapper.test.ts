@@ -188,4 +188,72 @@ describe("SchematicClient wrapper - flag checking behavior", () => {
             await client.close();
         });
     });
+
+    describe("event options", () => {
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
+        const { EventBuffer } = require("../../src/events");
+
+        const lastPushedEvent = (): any => {
+            const buffer = (EventBuffer as jest.Mock).mock.results[0].value;
+            const pushMock = buffer.push as jest.Mock;
+            return pushMock.mock.calls[pushMock.mock.calls.length - 1][0];
+        };
+
+        it("should thread track options into the buffered event", async () => {
+            const client = new SchematicClient({ apiKey: "test-api-key", logger: mockLogger });
+            const sentAt = new Date("2026-04-28T12:00:00.000Z");
+
+            await client.track(
+                { event: "used-feature", company: { id: "comp-1" } },
+                {
+                    idempotencyKey: "dedupe-abc",
+                    sentAt,
+                    trustedClientClock: true,
+                    backfill: true,
+                },
+            );
+
+            expect(lastPushedEvent()).toEqual({
+                eventType: "track",
+                body: { event: "used-feature", company: { id: "comp-1" } },
+                idempotencyKey: "dedupe-abc",
+                sentAt,
+                trustedClientClock: true,
+                backfill: true,
+            });
+
+            await client.close();
+        });
+
+        it("should thread identify idempotencyKey into the buffered event", async () => {
+            const client = new SchematicClient({ apiKey: "test-api-key", logger: mockLogger });
+
+            await client.identify(
+                { keys: { id: "user-1" }, name: "Test User" },
+                { idempotencyKey: "dedupe-xyz" },
+            );
+
+            const event = lastPushedEvent();
+            expect(event.eventType).toBe("identify");
+            expect(event.idempotencyKey).toBe("dedupe-xyz");
+            expect(event.trustedClientClock).toBeUndefined();
+            expect(event.backfill).toBeUndefined();
+
+            await client.close();
+        });
+
+        it("should default sentAt and omit optional fields when no options are passed", async () => {
+            const client = new SchematicClient({ apiKey: "test-api-key", logger: mockLogger });
+
+            await client.track({ event: "used-feature", company: { id: "comp-1" } });
+
+            const event = lastPushedEvent();
+            expect(event.sentAt).toBeInstanceOf(Date);
+            expect(event).not.toHaveProperty("idempotencyKey");
+            expect(event).not.toHaveProperty("trustedClientClock");
+            expect(event).not.toHaveProperty("backfill");
+
+            await client.close();
+        });
+    });
 });
