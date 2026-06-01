@@ -17,6 +17,7 @@ import { PlanCreditGrantView } from "./PlanCreditGrantView";
 import { PlanCurrencyPricesResponseData } from "./PlanCurrencyPricesResponseData";
 import { PlanEntitlementResponseData } from "./PlanEntitlementResponseData";
 import { PlanIcon } from "./PlanIcon";
+import { PlanPriceCadence } from "./PlanPriceCadence";
 import { PlanType } from "./PlanType";
 import { PlanVersionResponseData } from "./PlanVersionResponseData";
 
@@ -26,6 +27,7 @@ export const CompanyPlanDetailResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     activeVersion: core.serialization.property("active_version", PlanVersionResponseData.optional()),
     audienceType: core.serialization.property("audience_type", core.serialization.string().optional()),
+    availablePeriods: core.serialization.property("available_periods", core.serialization.list(PlanPriceCadence)),
     billingLinkedResource: core.serialization.property(
         "billing_linked_resource",
         BillingLinkedResourceResponseData.optional(),
@@ -53,7 +55,7 @@ export const CompanyPlanDetailResponseData: core.serialization.ObjectSchema<
     customPlanConfig: core.serialization.property("custom_plan_config", CustomPlanConfig.optional()),
     description: core.serialization.string(),
     draftVersion: core.serialization.property("draft_version", PlanVersionResponseData.optional()),
-    entitlements: core.serialization.list(PlanEntitlementResponseData),
+    entitlements: core.serialization.list(PlanEntitlementResponseData).optional(),
     features: core.serialization.list(FeatureInPlanResponseData),
     icon: PlanIcon,
     id: core.serialization.string(),
@@ -83,6 +85,7 @@ export declare namespace CompanyPlanDetailResponseData {
     export interface Raw {
         active_version?: PlanVersionResponseData.Raw | null;
         audience_type?: string | null;
+        available_periods: PlanPriceCadence.Raw[];
         billing_linked_resource?: BillingLinkedResourceResponseData.Raw | null;
         billing_product?: BillingProductDetailResponseData.Raw | null;
         billing_strategy: BillingStrategy.Raw;
@@ -101,7 +104,7 @@ export declare namespace CompanyPlanDetailResponseData {
         custom_plan_config?: CustomPlanConfig.Raw | null;
         description: string;
         draft_version?: PlanVersionResponseData.Raw | null;
-        entitlements: PlanEntitlementResponseData.Raw[];
+        entitlements?: PlanEntitlementResponseData.Raw[] | null;
         features: FeatureInPlanResponseData.Raw[];
         icon: PlanIcon.Raw;
         id: string;

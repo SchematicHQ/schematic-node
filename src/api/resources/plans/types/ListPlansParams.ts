@@ -31,6 +31,8 @@ export interface ListPlansParams {
     q?: string;
     /** Filter plans scoped to a specific company (custom plans) */
     scopedToCompanyId?: string;
+    /** Include each plan's entitlements in the response */
+    withEntitlements?: boolean;
     /** Filter out plans that already have a plan entitlement for the specified feature ID */
     withoutEntitlementFor?: string;
     /** Filter out plans that have a paid billing product ID */

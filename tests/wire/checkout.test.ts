@@ -33,6 +33,7 @@ describe("CheckoutClient", () => {
                 expired_at: "2024-01-15T09:30:00Z",
                 id: "id",
                 interval: "interval",
+                invoice_id: "invoice_id",
                 invoice_url: "invoice_url",
                 metadata: { key: "value" },
                 period_end: 1000000,
@@ -100,6 +101,7 @@ describe("CheckoutClient", () => {
                 expiredAt: new Date("2024-01-15T09:30:00.000Z"),
                 id: "id",
                 interval: "interval",
+                invoiceId: "invoice_id",
                 invoiceUrl: "invoice_url",
                 metadata: {
                     key: "value",
@@ -717,6 +719,19 @@ describe("CheckoutClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                         version: 1000000,
                     },
+                    entitlements: [
+                        {
+                            created_at: "2024-01-15T09:30:00Z",
+                            currency_prices: [{ currency: "currency" }],
+                            environment_id: "environment_id",
+                            feature_id: "feature_id",
+                            id: "id",
+                            plan_id: "plan_id",
+                            rule_id: "rule_id",
+                            updated_at: "2024-01-15T09:30:00Z",
+                            value_type: "boolean",
+                        },
+                    ],
                     features: [
                         {
                             created_at: "2024-01-15T09:30:00Z",
@@ -1231,6 +1246,19 @@ describe("CheckoutClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                         version: 1000000,
                     },
+                    entitlements: [
+                        {
+                            created_at: "2024-01-15T09:30:00Z",
+                            currency_prices: [{ currency: "currency" }],
+                            environment_id: "environment_id",
+                            feature_id: "feature_id",
+                            id: "id",
+                            plan_id: "plan_id",
+                            rule_id: "rule_id",
+                            updated_at: "2024-01-15T09:30:00Z",
+                            value_type: "boolean",
+                        },
+                    ],
                     features: [
                         {
                             created_at: "2024-01-15T09:30:00Z",
@@ -1666,6 +1694,23 @@ describe("CheckoutClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         version: 1000000,
                     },
+                    entitlements: [
+                        {
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            currencyPrices: [
+                                {
+                                    currency: "currency",
+                                },
+                            ],
+                            environmentId: "environment_id",
+                            featureId: "feature_id",
+                            id: "id",
+                            planId: "plan_id",
+                            ruleId: "rule_id",
+                            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                            valueType: "boolean",
+                        },
+                    ],
                     features: [
                         {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2228,6 +2273,23 @@ describe("CheckoutClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         version: 1000000,
                     },
+                    entitlements: [
+                        {
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            currencyPrices: [
+                                {
+                                    currency: "currency",
+                                },
+                            ],
+                            environmentId: "environment_id",
+                            featureId: "feature_id",
+                            id: "id",
+                            planId: "plan_id",
+                            ruleId: "rule_id",
+                            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                            valueType: "boolean",
+                        },
+                    ],
                     features: [
                         {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),

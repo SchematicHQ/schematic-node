@@ -22,6 +22,7 @@ export const UsageBasedEntitlementResponseData: core.serialization.ObjectSchema<
     monthlyUsageBasedPrice: core.serialization.property("monthly_usage_based_price", BillingPriceView.optional()),
     priceBehavior: core.serialization.property("price_behavior", EntitlementPriceBehavior.optional()),
     quarterlyUsageBasedPrice: core.serialization.property("quarterly_usage_based_price", BillingPriceView.optional()),
+    usageQuantity: core.serialization.property("usage_quantity", core.serialization.number().optional()),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
     valueType: core.serialization.property("value_type", EntitlementValueType),
@@ -39,6 +40,7 @@ export declare namespace UsageBasedEntitlementResponseData {
         monthly_usage_based_price?: BillingPriceView.Raw | null;
         price_behavior?: EntitlementPriceBehavior.Raw | null;
         quarterly_usage_based_price?: BillingPriceView.Raw | null;
+        usage_quantity?: number | null;
         value_bool?: boolean | null;
         value_numeric?: number | null;
         value_type: EntitlementValueType.Raw;

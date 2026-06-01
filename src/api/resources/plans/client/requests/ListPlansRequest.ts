@@ -17,6 +17,7 @@ import type * as Schematic from "../../../../index";
  *         planType: "plan",
  *         q: "q",
  *         scopedToCompanyId: "scoped_to_company_id",
+ *         withEntitlements: true,
  *         withoutEntitlementFor: "without_entitlement_for",
  *         withoutPaidProductId: true,
  *         limit: 1000000,
@@ -45,6 +46,8 @@ export interface ListPlansRequest {
     q?: string;
     /** Filter plans scoped to a specific company (custom plans) */
     scopedToCompanyId?: string;
+    /** Include each plan's entitlements in the response */
+    withEntitlements?: boolean;
     /** Filter out plans that already have a plan entitlement for the specified feature ID */
     withoutEntitlementFor?: string;
     /** Filter out plans that have a paid billing product ID */

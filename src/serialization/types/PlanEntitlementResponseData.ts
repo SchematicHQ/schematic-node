@@ -48,6 +48,7 @@ export const PlanEntitlementResponseData: core.serialization.ObjectSchema<
     softLimit: core.serialization.property("soft_limit", core.serialization.number().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     usageBasedProduct: core.serialization.property("usage_based_product", BillingProductResponseData.optional()),
+    usageQuantity: core.serialization.property("usage_quantity", core.serialization.number().optional()),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
     valueCredit: core.serialization.property("value_credit", BillingCreditResponseData.optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
@@ -80,6 +81,7 @@ export declare namespace PlanEntitlementResponseData {
         soft_limit?: number | null;
         updated_at: string;
         usage_based_product?: BillingProductResponseData.Raw | null;
+        usage_quantity?: number | null;
         value_bool?: boolean | null;
         value_credit?: BillingCreditResponseData.Raw | null;
         value_numeric?: number | null;

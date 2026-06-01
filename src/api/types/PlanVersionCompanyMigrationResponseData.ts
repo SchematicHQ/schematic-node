@@ -8,6 +8,7 @@ export interface PlanVersionCompanyMigrationResponseData {
     completedAt?: Date;
     createdAt: Date;
     error?: string;
+    errorCode?: Schematic.MigrationErrorCode;
     id: string;
     migrationId: string;
     planVersionIdFrom?: string;

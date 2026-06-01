@@ -5,5 +5,6 @@ export const IntegrationType = {
     Orb: "orb",
     Stripe: "stripe",
     Unknown: "unknown",
+    Workos: "workos",
 } as const;
 export type IntegrationType = (typeof IntegrationType)[keyof typeof IntegrationType];

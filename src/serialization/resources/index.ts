@@ -45,6 +45,7 @@ export * as plangroups from "./plangroups";
 export * from "./plangroups/client/requests";
 export * from "./plangroups/types";
 export * as planmigrations from "./planmigrations";
+export * from "./planmigrations/client/requests";
 export * from "./planmigrations/types";
 export * as plans from "./plans";
 export * from "./plans/client/requests";

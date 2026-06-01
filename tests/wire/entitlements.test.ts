@@ -6037,6 +6037,7 @@ describe("EntitlementsClient", () => {
                         quantity: 1.1,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
+                    usage_quantity: 1000000,
                     value_bool: true,
                     value_credit: {
                         burn_strategy: "expiration_priority",
@@ -6212,6 +6213,7 @@ describe("EntitlementsClient", () => {
                         quantity: 1.1,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
+                    usageQuantity: 1000000,
                     valueBool: true,
                     valueCredit: {
                         burnStrategy: "expiration_priority",
@@ -6468,6 +6470,7 @@ describe("EntitlementsClient", () => {
                     quantity: 1.1,
                     updated_at: "2024-01-15T09:30:00Z",
                 },
+                usage_quantity: 1000000,
                 value_bool: true,
                 value_credit: {
                     burn_strategy: "expiration_priority",
@@ -6682,6 +6685,7 @@ describe("EntitlementsClient", () => {
                     quantity: 1.1,
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
+                usageQuantity: 1000000,
                 valueBool: true,
                 valueCredit: {
                     burnStrategy: "expiration_priority",
@@ -7009,6 +7013,7 @@ describe("EntitlementsClient", () => {
                     quantity: 1.1,
                     updated_at: "2024-01-15T09:30:00Z",
                 },
+                usage_quantity: 1000000,
                 value_bool: true,
                 value_credit: {
                     burn_strategy: "expiration_priority",
@@ -7218,6 +7223,7 @@ describe("EntitlementsClient", () => {
                     quantity: 1.1,
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
+                usageQuantity: 1000000,
                 valueBool: true,
                 valueCredit: {
                     burnStrategy: "expiration_priority",
@@ -7501,6 +7507,7 @@ describe("EntitlementsClient", () => {
                     quantity: 1.1,
                     updated_at: "2024-01-15T09:30:00Z",
                 },
+                usage_quantity: 1000000,
                 value_bool: true,
                 value_credit: {
                     burn_strategy: "expiration_priority",
@@ -7713,6 +7720,7 @@ describe("EntitlementsClient", () => {
                     quantity: 1.1,
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
+                usageQuantity: 1000000,
                 valueBool: true,
                 valueCredit: {
                     burnStrategy: "expiration_priority",
@@ -8156,6 +8164,7 @@ describe("EntitlementsClient", () => {
                     quantity: 1.1,
                     updated_at: "2024-01-15T09:30:00Z",
                 },
+                usage_quantity: 1000000,
                 value_bool: true,
                 value_credit: {
                     burn_strategy: "expiration_priority",
@@ -8372,6 +8381,7 @@ describe("EntitlementsClient", () => {
                     quantity: 1.1,
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
+                usageQuantity: 1000000,
                 valueBool: true,
                 valueCredit: {
                     burnStrategy: "expiration_priority",
@@ -9757,6 +9767,7 @@ describe("EntitlementsClient", () => {
                                 quantity: 1.1,
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
+                            usage_quantity: 1000000,
                             value_bool: true,
                             value_credit: {
                                 burn_strategy: "expiration_priority",
@@ -10686,6 +10697,7 @@ describe("EntitlementsClient", () => {
                                 quantity: 1.1,
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
+                            usage_quantity: 1000000,
                             value_bool: true,
                             value_credit: {
                                 burn_strategy: "expiration_priority",
@@ -11674,6 +11686,7 @@ describe("EntitlementsClient", () => {
                                 quantity: 1.1,
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
+                            usageQuantity: 1000000,
                             valueBool: true,
                             valueCredit: {
                                 burnStrategy: "expiration_priority",
@@ -12654,6 +12667,7 @@ describe("EntitlementsClient", () => {
                                 quantity: 1.1,
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
+                            usageQuantity: 1000000,
                             valueBool: true,
                             valueCredit: {
                                 burnStrategy: "expiration_priority",

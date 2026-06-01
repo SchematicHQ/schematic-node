@@ -6,6 +6,7 @@ import type * as serializers from "../index";
 import { ClerkIntegrationConfig } from "./ClerkIntegrationConfig";
 import { OrbIntegrationConfig } from "./OrbIntegrationConfig";
 import { StripeIntegrationConfig } from "./StripeIntegrationConfig";
+import { WorkOsIntegrationConfig } from "./WorkOsIntegrationConfig";
 
 export const IntegrationConfig: core.serialization.Schema<
     serializers.IntegrationConfig.Raw,
@@ -15,6 +16,7 @@ export const IntegrationConfig: core.serialization.Schema<
         clerk: ClerkIntegrationConfig,
         orb: OrbIntegrationConfig,
         stripe: StripeIntegrationConfig,
+        workos: WorkOsIntegrationConfig,
     })
     .transform<Schematic.IntegrationConfig>({
         transform: (value) => value,
@@ -22,7 +24,11 @@ export const IntegrationConfig: core.serialization.Schema<
     });
 
 export declare namespace IntegrationConfig {
-    export type Raw = IntegrationConfig.Clerk | IntegrationConfig.Orb | IntegrationConfig.Stripe;
+    export type Raw =
+        | IntegrationConfig.Clerk
+        | IntegrationConfig.Orb
+        | IntegrationConfig.Stripe
+        | IntegrationConfig.Workos;
 
     export interface Clerk extends ClerkIntegrationConfig.Raw {
         type: "clerk";
@@ -34,5 +40,9 @@ export declare namespace IntegrationConfig {
 
     export interface Stripe extends StripeIntegrationConfig.Raw {
         type: "stripe";
+    }
+
+    export interface Workos extends WorkOsIntegrationConfig.Raw {
+        type: "workos";
     }
 }

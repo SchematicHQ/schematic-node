@@ -12,6 +12,7 @@ import { BillingStrategy } from "./BillingStrategy";
 import { ChargeType } from "./ChargeType";
 import { FeatureInPlanResponseData } from "./FeatureInPlanResponseData";
 import { PlanCurrencyPricesResponseData } from "./PlanCurrencyPricesResponseData";
+import { PlanEntitlementResponseData } from "./PlanEntitlementResponseData";
 import { PlanIcon } from "./PlanIcon";
 import { PlanType } from "./PlanType";
 import { PlanVersionResponseData } from "./PlanVersionResponseData";
@@ -41,6 +42,7 @@ export const PlanDetailResponseData: core.serialization.ObjectSchema<
     ),
     description: core.serialization.string(),
     draftVersion: core.serialization.property("draft_version", PlanVersionResponseData.optional()),
+    entitlements: core.serialization.list(PlanEntitlementResponseData).optional(),
     features: core.serialization.list(FeatureInPlanResponseData),
     icon: PlanIcon,
     id: core.serialization.string(),
@@ -79,6 +81,7 @@ export declare namespace PlanDetailResponseData {
         currency_prices: PlanCurrencyPricesResponseData.Raw[];
         description: string;
         draft_version?: PlanVersionResponseData.Raw | null;
+        entitlements?: PlanEntitlementResponseData.Raw[] | null;
         features: FeatureInPlanResponseData.Raw[];
         icon: PlanIcon.Raw;
         id: string;

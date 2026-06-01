@@ -32,6 +32,7 @@ export const CheckoutSubscription: core.serialization.ObjectSchema<
     expiredAt: core.serialization.property("expired_at", core.serialization.date().optional()),
     id: core.serialization.string(),
     interval: core.serialization.string(),
+    invoiceId: core.serialization.property("invoice_id", core.serialization.string().optional()),
     invoiceUrl: core.serialization.property("invoice_url", core.serialization.string().optional()),
     metadata: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     periodEnd: core.serialization.property("period_end", core.serialization.number()),
@@ -59,6 +60,7 @@ export declare namespace CheckoutSubscription {
         expired_at?: string | null;
         id: string;
         interval: string;
+        invoice_id?: string | null;
         invoice_url?: string | null;
         metadata?: Record<string, unknown> | null;
         period_end: number;

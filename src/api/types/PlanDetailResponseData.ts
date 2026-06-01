@@ -18,6 +18,7 @@ export interface PlanDetailResponseData {
     currencyPrices: Schematic.PlanCurrencyPricesResponseData[];
     description: string;
     draftVersion?: Schematic.PlanVersionResponseData;
+    entitlements?: Schematic.PlanEntitlementResponseData[];
     features: Schematic.FeatureInPlanResponseData[];
     icon: Schematic.PlanIcon;
     id: string;

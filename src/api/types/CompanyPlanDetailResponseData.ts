@@ -5,6 +5,7 @@ import type * as Schematic from "../index";
 export interface CompanyPlanDetailResponseData {
     activeVersion?: Schematic.PlanVersionResponseData;
     audienceType?: string;
+    availablePeriods: Schematic.PlanPriceCadence[];
     billingLinkedResource?: Schematic.BillingLinkedResourceResponseData;
     billingProduct?: Schematic.BillingProductDetailResponseData;
     billingStrategy: Schematic.BillingStrategy;
@@ -23,7 +24,7 @@ export interface CompanyPlanDetailResponseData {
     customPlanConfig?: Schematic.CustomPlanConfig;
     description: string;
     draftVersion?: Schematic.PlanVersionResponseData;
-    entitlements: Schematic.PlanEntitlementResponseData[];
+    entitlements?: Schematic.PlanEntitlementResponseData[];
     features: Schematic.FeatureInPlanResponseData[];
     icon: Schematic.PlanIcon;
     id: string;

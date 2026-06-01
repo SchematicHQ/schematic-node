@@ -24,6 +24,8 @@ export interface CountCompaniesParams {
     planIds?: string[];
     /** Filter companies by plan version ID (starts with plvr_) */
     planVersionId?: string;
+    /** Filter companies by one or more plan version IDs (each ID starts with plvr_). Takes precedence over plan_version_id when set. */
+    planVersionIds?: string[];
     /** Search for companies by name, keys or string traits */
     q?: string;
     /** Column to sort by (e.g. name, created_at, last_seen_at) */
