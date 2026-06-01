@@ -812,6 +812,7 @@ describe("PlansClient", () => {
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
                     days_until_due: 1000000,
+                    external_invoice_id: "external_invoice_id",
                     id: "id",
                     paid_at: "2024-01-15T09:30:00Z",
                     plan_id: "plan_id",
@@ -854,6 +855,7 @@ describe("PlansClient", () => {
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     daysUntilDue: 1000000,
+                    externalInvoiceId: "external_invoice_id",
                     id: "id",
                     paidAt: new Date("2024-01-15T09:30:00.000Z"),
                     planId: "plan_id",
@@ -969,6 +971,181 @@ describe("PlansClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("markCustomPlanBillingPaid (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { key: "value" };
+        const rawResponseBody = {
+            data: {
+                activation_strategy: "on_payment",
+                company_id: "company_id",
+                created_at: "2024-01-15T09:30:00Z",
+                days_until_due: 1000000,
+                external_invoice_id: "external_invoice_id",
+                id: "id",
+                paid_at: "2024-01-15T09:30:00Z",
+                plan_id: "plan_id",
+                published_at: "2024-01-15T09:30:00Z",
+                status: "active",
+                stripe_invoice_url: "stripe_invoice_url",
+                updated_at: "2024-01-15T09:30:00Z",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .put("/custom-plan-billings/custom_plan_billing_id/mark-paid")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.plans.markCustomPlanBillingPaid("custom_plan_billing_id", {
+            key: "value",
+        });
+        expect(response).toEqual({
+            data: {
+                activationStrategy: "on_payment",
+                companyId: "company_id",
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                daysUntilDue: 1000000,
+                externalInvoiceId: "external_invoice_id",
+                id: "id",
+                paidAt: new Date("2024-01-15T09:30:00.000Z"),
+                planId: "plan_id",
+                publishedAt: new Date("2024-01-15T09:30:00.000Z"),
+                status: "active",
+                stripeInvoiceUrl: "stripe_invoice_url",
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("markCustomPlanBillingPaid (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { string: { key: "value" } };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/custom-plan-billings/custom_plan_billing_id/mark-paid")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.markCustomPlanBillingPaid("custom_plan_billing_id", {
+                string: {
+                    key: "value",
+                },
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("markCustomPlanBillingPaid (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { string: { key: "value" } };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/custom-plan-billings/custom_plan_billing_id/mark-paid")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.markCustomPlanBillingPaid("custom_plan_billing_id", {
+                string: {
+                    key: "value",
+                },
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("markCustomPlanBillingPaid (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { string: { key: "value" } };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/custom-plan-billings/custom_plan_billing_id/mark-paid")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.markCustomPlanBillingPaid("custom_plan_billing_id", {
+                string: {
+                    key: "value",
+                },
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("markCustomPlanBillingPaid (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { string: { key: "value" } };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/custom-plan-billings/custom_plan_billing_id/mark-paid")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.markCustomPlanBillingPaid("custom_plan_billing_id", {
+                string: {
+                    key: "value",
+                },
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("markCustomPlanBillingPaid (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { string: { key: "value" } };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/custom-plan-billings/custom_plan_billing_id/mark-paid")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.markCustomPlanBillingPaid("custom_plan_billing_id", {
+                string: {
+                    key: "value",
+                },
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("retryCustomPlanBilling (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -982,6 +1159,7 @@ describe("PlansClient", () => {
                 company_id: "company_id",
                 created_at: "2024-01-15T09:30:00Z",
                 days_until_due: 1000000,
+                external_invoice_id: "external_invoice_id",
                 id: "id",
                 paid_at: "2024-01-15T09:30:00Z",
                 plan_id: "plan_id",
@@ -1017,6 +1195,7 @@ describe("PlansClient", () => {
                 companyId: "company_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 daysUntilDue: 1000000,
+                externalInvoiceId: "external_invoice_id",
                 id: "id",
                 paidAt: new Date("2024-01-15T09:30:00.000Z"),
                 planId: "plan_id",
@@ -1295,6 +1474,19 @@ describe("PlansClient", () => {
                     updated_at: "2024-01-15T09:30:00Z",
                     version: 1000000,
                 },
+                entitlements: [
+                    {
+                        created_at: "2024-01-15T09:30:00Z",
+                        currency_prices: [{ currency: "currency" }],
+                        environment_id: "environment_id",
+                        feature_id: "feature_id",
+                        id: "id",
+                        plan_id: "plan_id",
+                        rule_id: "rule_id",
+                        updated_at: "2024-01-15T09:30:00Z",
+                        value_type: "boolean",
+                    },
+                ],
                 features: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
@@ -1545,6 +1737,23 @@ describe("PlansClient", () => {
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     version: 1000000,
                 },
+                entitlements: [
+                    {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        currencyPrices: [
+                            {
+                                currency: "currency",
+                            },
+                        ],
+                        environmentId: "environment_id",
+                        featureId: "feature_id",
+                        id: "id",
+                        planId: "plan_id",
+                        ruleId: "rule_id",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        valueType: "boolean",
+                    },
+                ],
                 features: [
                     {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1917,6 +2126,19 @@ describe("PlansClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                         version: 1000000,
                     },
+                    entitlements: [
+                        {
+                            created_at: "2024-01-15T09:30:00Z",
+                            currency_prices: [{ currency: "currency" }],
+                            environment_id: "environment_id",
+                            feature_id: "feature_id",
+                            id: "id",
+                            plan_id: "plan_id",
+                            rule_id: "rule_id",
+                            updated_at: "2024-01-15T09:30:00Z",
+                            value_type: "boolean",
+                        },
+                    ],
                     features: [
                         {
                             created_at: "2024-01-15T09:30:00Z",
@@ -2084,6 +2306,7 @@ describe("PlansClient", () => {
                 plan_type: "plan",
                 q: "q",
                 scoped_to_company_id: "scoped_to_company_id",
+                with_entitlements: true,
                 without_entitlement_for: "without_entitlement_for",
                 without_paid_product_id: true,
             },
@@ -2104,6 +2327,7 @@ describe("PlansClient", () => {
             planType: "plan",
             q: "q",
             scopedToCompanyId: "scoped_to_company_id",
+            withEntitlements: true,
             withoutEntitlementFor: "without_entitlement_for",
             withoutPaidProductId: true,
             limit: 1000000,
@@ -2181,6 +2405,23 @@ describe("PlansClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         version: 1000000,
                     },
+                    entitlements: [
+                        {
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            currencyPrices: [
+                                {
+                                    currency: "currency",
+                                },
+                            ],
+                            environmentId: "environment_id",
+                            featureId: "feature_id",
+                            id: "id",
+                            planId: "plan_id",
+                            ruleId: "rule_id",
+                            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                            valueType: "boolean",
+                        },
+                    ],
                     features: [
                         {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2363,6 +2604,7 @@ describe("PlansClient", () => {
                 planType: "plan",
                 q: "q",
                 scopedToCompanyId: "scoped_to_company_id",
+                withEntitlements: true,
                 withoutEntitlementFor: "without_entitlement_for",
                 withoutPaidProductId: true,
             },
@@ -2508,6 +2750,19 @@ describe("PlansClient", () => {
                     updated_at: "2024-01-15T09:30:00Z",
                     version: 1000000,
                 },
+                entitlements: [
+                    {
+                        created_at: "2024-01-15T09:30:00Z",
+                        currency_prices: [{ currency: "currency" }],
+                        environment_id: "environment_id",
+                        feature_id: "feature_id",
+                        id: "id",
+                        plan_id: "plan_id",
+                        rule_id: "rule_id",
+                        updated_at: "2024-01-15T09:30:00Z",
+                        value_type: "boolean",
+                    },
+                ],
                 features: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
@@ -2758,6 +3013,23 @@ describe("PlansClient", () => {
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     version: 1000000,
                 },
+                entitlements: [
+                    {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        currencyPrices: [
+                            {
+                                currency: "currency",
+                            },
+                        ],
+                        environmentId: "environment_id",
+                        featureId: "feature_id",
+                        id: "id",
+                        planId: "plan_id",
+                        ruleId: "rule_id",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        valueType: "boolean",
+                    },
+                ],
                 features: [
                     {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -3132,6 +3404,19 @@ describe("PlansClient", () => {
                     updated_at: "2024-01-15T09:30:00Z",
                     version: 1000000,
                 },
+                entitlements: [
+                    {
+                        created_at: "2024-01-15T09:30:00Z",
+                        currency_prices: [{ currency: "currency" }],
+                        environment_id: "environment_id",
+                        feature_id: "feature_id",
+                        id: "id",
+                        plan_id: "plan_id",
+                        rule_id: "rule_id",
+                        updated_at: "2024-01-15T09:30:00Z",
+                        value_type: "boolean",
+                    },
+                ],
                 features: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
@@ -3373,6 +3658,23 @@ describe("PlansClient", () => {
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     version: 1000000,
                 },
+                entitlements: [
+                    {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        currencyPrices: [
+                            {
+                                currency: "currency",
+                            },
+                        ],
+                        environmentId: "environment_id",
+                        featureId: "feature_id",
+                        id: "id",
+                        planId: "plan_id",
+                        ruleId: "rule_id",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        valueType: "boolean",
+                    },
+                ],
                 features: [
                     {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -3679,6 +3981,19 @@ describe("PlansClient", () => {
                     updated_at: "2024-01-15T09:30:00Z",
                     version: 1000000,
                 },
+                entitlements: [
+                    {
+                        created_at: "2024-01-15T09:30:00Z",
+                        currency_prices: [{ currency: "currency" }],
+                        environment_id: "environment_id",
+                        feature_id: "feature_id",
+                        id: "id",
+                        plan_id: "plan_id",
+                        rule_id: "rule_id",
+                        updated_at: "2024-01-15T09:30:00Z",
+                        value_type: "boolean",
+                    },
+                ],
                 features: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
@@ -3927,6 +4242,23 @@ describe("PlansClient", () => {
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     version: 1000000,
                 },
+                entitlements: [
+                    {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        currencyPrices: [
+                            {
+                                currency: "currency",
+                            },
+                        ],
+                        environmentId: "environment_id",
+                        featureId: "feature_id",
+                        id: "id",
+                        planId: "plan_id",
+                        ruleId: "rule_id",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        valueType: "boolean",
+                    },
+                ],
                 features: [
                     {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -4552,6 +4884,19 @@ describe("PlansClient", () => {
                     updated_at: "2024-01-15T09:30:00Z",
                     version: 1000000,
                 },
+                entitlements: [
+                    {
+                        created_at: "2024-01-15T09:30:00Z",
+                        currency_prices: [{ currency: "currency" }],
+                        environment_id: "environment_id",
+                        feature_id: "feature_id",
+                        id: "id",
+                        plan_id: "plan_id",
+                        rule_id: "rule_id",
+                        updated_at: "2024-01-15T09:30:00Z",
+                        value_type: "boolean",
+                    },
+                ],
                 features: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
@@ -4804,6 +5149,23 @@ describe("PlansClient", () => {
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     version: 1000000,
                 },
+                entitlements: [
+                    {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        currencyPrices: [
+                            {
+                                currency: "currency",
+                            },
+                        ],
+                        environmentId: "environment_id",
+                        featureId: "feature_id",
+                        id: "id",
+                        planId: "plan_id",
+                        ruleId: "rule_id",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        valueType: "boolean",
+                    },
+                ],
                 features: [
                     {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -6000,6 +6362,7 @@ describe("PlansClient", () => {
                 plan_type: "plan",
                 q: "q",
                 scoped_to_company_id: "scoped_to_company_id",
+                with_entitlements: true,
                 without_entitlement_for: "without_entitlement_for",
                 without_paid_product_id: true,
             },
@@ -6020,6 +6383,7 @@ describe("PlansClient", () => {
             planType: "plan",
             q: "q",
             scopedToCompanyId: "scoped_to_company_id",
+            withEntitlements: true,
             withoutEntitlementFor: "without_entitlement_for",
             withoutPaidProductId: true,
             limit: 1000000,
@@ -6044,6 +6408,7 @@ describe("PlansClient", () => {
                 planType: "plan",
                 q: "q",
                 scopedToCompanyId: "scoped_to_company_id",
+                withEntitlements: true,
                 withoutEntitlementFor: "without_entitlement_for",
                 withoutPaidProductId: true,
             },

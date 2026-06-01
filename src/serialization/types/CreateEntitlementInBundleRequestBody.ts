@@ -68,6 +68,7 @@ export const CreateEntitlementInBundleRequestBody: core.serialization.ObjectSche
     ),
     softLimit: core.serialization.property("soft_limit", core.serialization.number().optional()),
     tierMode: core.serialization.property("tier_mode", BillingTiersMode.optional()),
+    usageQuantity: core.serialization.property("usage_quantity", core.serialization.number().optional()),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
     valueCreditId: core.serialization.property("value_credit_id", core.serialization.string().optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
@@ -113,6 +114,7 @@ export declare namespace CreateEntitlementInBundleRequestBody {
         quarterly_unit_price_decimal?: string | null;
         soft_limit?: number | null;
         tier_mode?: BillingTiersMode.Raw | null;
+        usage_quantity?: number | null;
         value_bool?: boolean | null;
         value_credit_id?: string | null;
         value_numeric?: number | null;

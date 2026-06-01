@@ -56,6 +56,7 @@ export const UsageBasedEntitlementRequestBody: core.serialization.ObjectSchema<
     ),
     softLimit: core.serialization.property("soft_limit", core.serialization.number().optional()),
     tierMode: core.serialization.property("tier_mode", BillingTiersMode.optional()),
+    usageQuantity: core.serialization.property("usage_quantity", core.serialization.number().optional()),
     yearlyMeteredPriceId: core.serialization.property(
         "yearly_metered_price_id",
         core.serialization.string().optional(),
@@ -90,6 +91,7 @@ export declare namespace UsageBasedEntitlementRequestBody {
         quarterly_unit_price_decimal?: string | null;
         soft_limit?: number | null;
         tier_mode?: BillingTiersMode.Raw | null;
+        usage_quantity?: number | null;
         yearly_metered_price_id?: string | null;
         yearly_price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
         yearly_unit_price?: number | null;

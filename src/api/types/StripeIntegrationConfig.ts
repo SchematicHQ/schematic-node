@@ -13,6 +13,4 @@ export interface StripeIntegrationConfig {
     liveMode: boolean;
     /** Onboarding URL returned during the v2 (Connect) install flow before activation */
     onboardUrl?: string;
-    /** Stripe integration config version (1 = legacy API key install, 2 = Connect/App install) */
-    version: number;
 }

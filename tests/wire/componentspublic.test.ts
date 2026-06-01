@@ -13,6 +13,7 @@ describe("ComponentspublicClient", () => {
             data: {
                 active_add_ons: [
                     {
+                        available_periods: ["monthly"],
                         billing_strategy: "schematic_managed",
                         charge_type: "free",
                         company_count: 1000000,
@@ -22,19 +23,6 @@ describe("ComponentspublicClient", () => {
                         currency_prices: [{ currency: "currency" }],
                         custom: true,
                         description: "description",
-                        entitlements: [
-                            {
-                                created_at: "2024-01-15T09:30:00Z",
-                                currency_prices: [{ currency: "currency" }],
-                                environment_id: "environment_id",
-                                feature_id: "feature_id",
-                                id: "id",
-                                plan_id: "plan_id",
-                                rule_id: "rule_id",
-                                updated_at: "2024-01-15T09:30:00Z",
-                                value_type: "boolean",
-                            },
-                        ],
                         features: [
                             {
                                 created_at: "2024-01-15T09:30:00Z",
@@ -150,6 +138,7 @@ describe("ComponentspublicClient", () => {
                 ],
                 active_plans: [
                     {
+                        available_periods: ["monthly"],
                         billing_strategy: "schematic_managed",
                         charge_type: "free",
                         company_count: 1000000,
@@ -159,19 +148,6 @@ describe("ComponentspublicClient", () => {
                         currency_prices: [{ currency: "currency" }],
                         custom: true,
                         description: "description",
-                        entitlements: [
-                            {
-                                created_at: "2024-01-15T09:30:00Z",
-                                currency_prices: [{ currency: "currency" }],
-                                environment_id: "environment_id",
-                                feature_id: "feature_id",
-                                id: "id",
-                                plan_id: "plan_id",
-                                rule_id: "rule_id",
-                                updated_at: "2024-01-15T09:30:00Z",
-                                value_type: "boolean",
-                            },
-                        ],
                         features: [
                             {
                                 created_at: "2024-01-15T09:30:00Z",
@@ -312,6 +288,7 @@ describe("ComponentspublicClient", () => {
             data: {
                 activeAddOns: [
                     {
+                        availablePeriods: ["monthly"],
                         billingStrategy: "schematic_managed",
                         chargeType: "free",
                         companyCount: 1000000,
@@ -325,23 +302,6 @@ describe("ComponentspublicClient", () => {
                         ],
                         custom: true,
                         description: "description",
-                        entitlements: [
-                            {
-                                createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currencyPrices: [
-                                    {
-                                        currency: "currency",
-                                    },
-                                ],
-                                environmentId: "environment_id",
-                                featureId: "feature_id",
-                                id: "id",
-                                planId: "plan_id",
-                                ruleId: "rule_id",
-                                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                                valueType: "boolean",
-                            },
-                        ],
                         features: [
                             {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -472,6 +432,7 @@ describe("ComponentspublicClient", () => {
                 ],
                 activePlans: [
                     {
+                        availablePeriods: ["monthly"],
                         billingStrategy: "schematic_managed",
                         chargeType: "free",
                         companyCount: 1000000,
@@ -485,23 +446,6 @@ describe("ComponentspublicClient", () => {
                         ],
                         custom: true,
                         description: "description",
-                        entitlements: [
-                            {
-                                createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currencyPrices: [
-                                    {
-                                        currency: "currency",
-                                    },
-                                ],
-                                environmentId: "environment_id",
-                                featureId: "feature_id",
-                                id: "id",
-                                planId: "plan_id",
-                                ruleId: "rule_id",
-                                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                                valueType: "boolean",
-                            },
-                        ],
                         features: [
                             {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),

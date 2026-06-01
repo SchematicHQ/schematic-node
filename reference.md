@@ -4329,6 +4329,7 @@ await client.companies.listCompanies({
     planId: "plan_id",
     planIds: ["plan_ids"],
     planVersionId: "plan_version_id",
+    planVersionIds: ["plan_version_ids"],
     q: "q",
     sortOrderColumn: "sort_order_column",
     sortOrderDirection: "asc",
@@ -4560,6 +4561,7 @@ await client.companies.countCompanies({
     planId: "plan_id",
     planIds: ["plan_ids"],
     planVersionId: "plan_version_id",
+    planVersionIds: ["plan_version_ids"],
     q: "q",
     sortOrderColumn: "sort_order_column",
     sortOrderDirection: "asc",
@@ -7610,6 +7612,65 @@ await client.plans.listCustomPlanBillings({
 </dl>
 </details>
 
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">markCustomPlanBillingPaid</a>(custom_plan_billing_id, { ...params }) -> Schematic.MarkCustomPlanBillingPaidResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.markCustomPlanBillingPaid("custom_plan_billing_id", {
+    "key": "value"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**custom_plan_billing_id:** `string` — custom_plan_billing_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.MarkCustomPlanBillingPaidRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PlansClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">retryCustomPlanBilling</a>(custom_plan_billing_id, { ...params }) -> Schematic.RetryCustomPlanBillingResponse</code></summary>
 <dl>
 <dd>
@@ -7752,6 +7813,7 @@ await client.plans.listPlans({
     planType: "plan",
     q: "q",
     scopedToCompanyId: "scoped_to_company_id",
+    withEntitlements: true,
     withoutEntitlementFor: "without_entitlement_for",
     withoutPaidProductId: true,
     limit: 1000000,
@@ -8261,6 +8323,7 @@ await client.plans.countPlans({
     planType: "plan",
     q: "q",
     scopedToCompanyId: "scoped_to_company_id",
+    withEntitlements: true,
     withoutEntitlementFor: "without_entitlement_for",
     withoutPaidProductId: true,
     limit: 1000000,
@@ -11226,6 +11289,55 @@ await client.planmigrations.listCompanyMigrations({
 </dl>
 </details>
 
+<details><summary><code>client.planmigrations.<a href="/src/api/resources/planmigrations/client/Client.ts">retryCompanyMigration</a>(plan_version_company_migration_id) -> Schematic.RetryCompanyMigrationResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.planmigrations.retryCompanyMigration("plan_version_company_migration_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**plan_version_company_migration_id:** `string` — plan_version_company_migration_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PlanmigrationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.planmigrations.<a href="/src/api/resources/planmigrations/client/Client.ts">countCompanyMigrations</a>({ ...params }) -> Schematic.CountCompanyMigrationsResponse</code></summary>
 <dl>
 <dd>
@@ -11335,6 +11447,63 @@ await client.planmigrations.listMigrations({
 </dl>
 </details>
 
+<details><summary><code>client.planmigrations.<a href="/src/api/resources/planmigrations/client/Client.ts">createMigration</a>({ ...params }) -> Schematic.CreateMigrationResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.planmigrations.createMigration({
+    companyIds: ["company_ids"],
+    excludedCompanyIds: ["excluded_company_ids"],
+    planId: "plan_id",
+    planVersionIdTo: "plan_version_id_to",
+    planVersionIdsFrom: ["plan_version_ids_from"],
+    strategy: "immediate",
+    targetPlanType: "plan"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CreateMigrationInput` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PlanmigrationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.planmigrations.<a href="/src/api/resources/planmigrations/client/Client.ts">getMigration</a>(plan_version_migration_id) -> Schematic.GetMigrationResponse</code></summary>
 <dl>
 <dd>
@@ -11365,6 +11534,65 @@ await client.planmigrations.getMigration("plan_version_migration_id");
 <dd>
 
 **plan_version_migration_id:** `string` — plan_version_migration_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PlanmigrationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.planmigrations.<a href="/src/api/resources/planmigrations/client/Client.ts">retryMigration</a>(plan_version_migration_id, { ...params }) -> Schematic.RetryMigrationResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.planmigrations.retryMigration("plan_version_migration_id", {
+    errorCodes: ["ambiguous_subscription_item"]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**plan_version_migration_id:** `string` — plan_version_migration_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.RetryMigrationRequestBody` 
     
 </dd>
 </dl>

@@ -29,6 +29,10 @@ export const CountCompaniesParams: core.serialization.ObjectSchema<
     planId: core.serialization.property("plan_id", core.serialization.string().optional()),
     planIds: core.serialization.property("plan_ids", core.serialization.list(core.serialization.string()).optional()),
     planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
+    planVersionIds: core.serialization.property(
+        "plan_version_ids",
+        core.serialization.list(core.serialization.string()).optional(),
+    ),
     q: core.serialization.string().optional(),
     sortOrderColumn: core.serialization.property("sort_order_column", core.serialization.string().optional()),
     sortOrderDirection: core.serialization.property("sort_order_direction", SortDirection.optional()),
@@ -61,6 +65,7 @@ export declare namespace CountCompaniesParams {
         plan_id?: string | null;
         plan_ids?: string[] | null;
         plan_version_id?: string | null;
+        plan_version_ids?: string[] | null;
         q?: string | null;
         sort_order_column?: string | null;
         sort_order_direction?: SortDirection.Raw | null;

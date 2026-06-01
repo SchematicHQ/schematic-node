@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { MigrationErrorCode } from "./MigrationErrorCode";
 import { PlanVersionCompanyMigrationStatus } from "./PlanVersionCompanyMigrationStatus";
 
 export const PlanVersionCompanyMigrationResponseData: core.serialization.ObjectSchema<
@@ -14,6 +15,7 @@ export const PlanVersionCompanyMigrationResponseData: core.serialization.ObjectS
     completedAt: core.serialization.property("completed_at", core.serialization.date().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     error: core.serialization.string().optional(),
+    errorCode: core.serialization.property("error_code", MigrationErrorCode.optional()),
     id: core.serialization.string(),
     migrationId: core.serialization.property("migration_id", core.serialization.string()),
     planVersionIdFrom: core.serialization.property("plan_version_id_from", core.serialization.string().optional()),
@@ -29,6 +31,7 @@ export declare namespace PlanVersionCompanyMigrationResponseData {
         completed_at?: string | null;
         created_at: string;
         error?: string | null;
+        error_code?: MigrationErrorCode.Raw | null;
         id: string;
         migration_id: string;
         plan_version_id_from?: string | null;

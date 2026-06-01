@@ -12,6 +12,8 @@ export interface UsageBasedEntitlementResponseData {
     monthlyUsageBasedPrice?: Schematic.BillingPriceView;
     priceBehavior?: Schematic.EntitlementPriceBehavior;
     quarterlyUsageBasedPrice?: Schematic.BillingPriceView;
+    /** The committed unit quantity for this entitlement. For custom plans this is the quantity the company is contractually committed to; for standard plans it is the quantity pre-filled when subscribing. Only applies to pay-in-advance entitlements. Note: this is not yet enforced/auto-provisioned as a true default — it is currently stored for downstream billing use. */
+    usageQuantity?: number;
     valueBool?: boolean;
     valueNumeric?: number;
     valueType: Schematic.EntitlementValueType;

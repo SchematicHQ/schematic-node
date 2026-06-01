@@ -17,6 +17,7 @@ describe("PlanmigrationsClient", () => {
                     completed_at: "2024-01-15T09:30:00Z",
                     created_at: "2024-01-15T09:30:00Z",
                     error: "error",
+                    error_code: "ambiguous_subscription_item",
                     id: "id",
                     migration_id: "migration_id",
                     plan_version_id_from: "plan_version_id_from",
@@ -51,6 +52,7 @@ describe("PlanmigrationsClient", () => {
                     completedAt: new Date("2024-01-15T09:30:00.000Z"),
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     error: "error",
+                    errorCode: "ambiguous_subscription_item",
                     id: "id",
                     migrationId: "migration_id",
                     planVersionIdFrom: "plan_version_id_from",
@@ -161,6 +163,153 @@ describe("PlanmigrationsClient", () => {
 
         await expect(async () => {
             return await client.planmigrations.listCompanyMigrations();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("retryCompanyMigration (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                company_id: "company_id",
+                company_name: "company_name",
+                completed_at: "2024-01-15T09:30:00Z",
+                created_at: "2024-01-15T09:30:00Z",
+                error: "error",
+                error_code: "ambiguous_subscription_item",
+                id: "id",
+                migration_id: "migration_id",
+                plan_version_id_from: "plan_version_id_from",
+                started_at: "2024-01-15T09:30:00Z",
+                status: "completed",
+                updated_at: "2024-01-15T09:30:00Z",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-company-migrations/plan_version_company_migration_id/retry")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.planmigrations.retryCompanyMigration("plan_version_company_migration_id");
+        expect(response).toEqual({
+            data: {
+                companyId: "company_id",
+                companyName: "company_name",
+                completedAt: new Date("2024-01-15T09:30:00.000Z"),
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                error: "error",
+                errorCode: "ambiguous_subscription_item",
+                id: "id",
+                migrationId: "migration_id",
+                planVersionIdFrom: "plan_version_id_from",
+                startedAt: new Date("2024-01-15T09:30:00.000Z"),
+                status: "completed",
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("retryCompanyMigration (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-company-migrations/plan_version_company_migration_id/retry")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.planmigrations.retryCompanyMigration("plan_version_company_migration_id");
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("retryCompanyMigration (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-company-migrations/plan_version_company_migration_id/retry")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.planmigrations.retryCompanyMigration("plan_version_company_migration_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("retryCompanyMigration (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-company-migrations/plan_version_company_migration_id/retry")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.planmigrations.retryCompanyMigration("plan_version_company_migration_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("retryCompanyMigration (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-company-migrations/plan_version_company_migration_id/retry")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.planmigrations.retryCompanyMigration("plan_version_company_migration_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("retryCompanyMigration (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-company-migrations/plan_version_company_migration_id/retry")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.planmigrations.retryCompanyMigration("plan_version_company_migration_id");
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
@@ -313,6 +462,7 @@ describe("PlanmigrationsClient", () => {
                     plan_id: "plan_id",
                     plan_version_id_from: "plan_version_id_from",
                     plan_version_id_to: "plan_version_id_to",
+                    plan_version_ids_from: ["plan_version_ids_from"],
                     skipped_companies: 1000000,
                     started_at: "2024-01-15T09:30:00Z",
                     status: "completed",
@@ -350,6 +500,7 @@ describe("PlanmigrationsClient", () => {
                     planId: "plan_id",
                     planVersionIdFrom: "plan_version_id_from",
                     planVersionIdTo: "plan_version_id_to",
+                    planVersionIdsFrom: ["plan_version_ids_from"],
                     skippedCompanies: 1000000,
                     startedAt: new Date("2024-01-15T09:30:00.000Z"),
                     status: "completed",
@@ -462,6 +613,263 @@ describe("PlanmigrationsClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("createMigration (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            company_ids: ["company_ids"],
+            excluded_company_ids: ["excluded_company_ids"],
+            plan_id: "plan_id",
+            plan_version_id_to: "plan_version_id_to",
+            plan_version_ids_from: ["plan_version_ids_from"],
+            strategy: "immediate",
+            target_plan_type: "plan",
+        };
+        const rawResponseBody = {
+            data: {
+                completed_at: "2024-01-15T09:30:00Z",
+                completed_companies: 1000000,
+                created_at: "2024-01-15T09:30:00Z",
+                error: "error",
+                failed_companies: 1000000,
+                id: "id",
+                plan_id: "plan_id",
+                plan_version_id_from: "plan_version_id_from",
+                plan_version_id_to: "plan_version_id_to",
+                plan_version_ids_from: ["plan_version_ids_from"],
+                skipped_companies: 1000000,
+                started_at: "2024-01-15T09:30:00Z",
+                status: "completed",
+                strategy: "immediate",
+                total_companies: 1000000,
+                updated_at: "2024-01-15T09:30:00Z",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-migrations")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.planmigrations.createMigration({
+            companyIds: ["company_ids"],
+            excludedCompanyIds: ["excluded_company_ids"],
+            planId: "plan_id",
+            planVersionIdTo: "plan_version_id_to",
+            planVersionIdsFrom: ["plan_version_ids_from"],
+            strategy: "immediate",
+            targetPlanType: "plan",
+        });
+        expect(response).toEqual({
+            data: {
+                completedAt: new Date("2024-01-15T09:30:00.000Z"),
+                completedCompanies: 1000000,
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                error: "error",
+                failedCompanies: 1000000,
+                id: "id",
+                planId: "plan_id",
+                planVersionIdFrom: "plan_version_id_from",
+                planVersionIdTo: "plan_version_id_to",
+                planVersionIdsFrom: ["plan_version_ids_from"],
+                skippedCompanies: 1000000,
+                startedAt: new Date("2024-01-15T09:30:00.000Z"),
+                status: "completed",
+                strategy: "immediate",
+                totalCompanies: 1000000,
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("createMigration (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            company_ids: ["company_ids", "company_ids"],
+            excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
+            plan_id: "plan_id",
+            plan_version_id_to: "plan_version_id_to",
+            plan_version_ids_from: ["plan_version_ids_from", "plan_version_ids_from"],
+            strategy: "immediate",
+            target_plan_type: "plan",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-migrations")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.planmigrations.createMigration({
+                companyIds: ["company_ids", "company_ids"],
+                excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
+                planId: "plan_id",
+                planVersionIdTo: "plan_version_id_to",
+                planVersionIdsFrom: ["plan_version_ids_from", "plan_version_ids_from"],
+                strategy: "immediate",
+                targetPlanType: "plan",
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("createMigration (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            company_ids: ["company_ids", "company_ids"],
+            excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
+            plan_id: "plan_id",
+            plan_version_id_to: "plan_version_id_to",
+            plan_version_ids_from: ["plan_version_ids_from", "plan_version_ids_from"],
+            strategy: "immediate",
+            target_plan_type: "plan",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-migrations")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.planmigrations.createMigration({
+                companyIds: ["company_ids", "company_ids"],
+                excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
+                planId: "plan_id",
+                planVersionIdTo: "plan_version_id_to",
+                planVersionIdsFrom: ["plan_version_ids_from", "plan_version_ids_from"],
+                strategy: "immediate",
+                targetPlanType: "plan",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("createMigration (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            company_ids: ["company_ids", "company_ids"],
+            excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
+            plan_id: "plan_id",
+            plan_version_id_to: "plan_version_id_to",
+            plan_version_ids_from: ["plan_version_ids_from", "plan_version_ids_from"],
+            strategy: "immediate",
+            target_plan_type: "plan",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-migrations")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.planmigrations.createMigration({
+                companyIds: ["company_ids", "company_ids"],
+                excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
+                planId: "plan_id",
+                planVersionIdTo: "plan_version_id_to",
+                planVersionIdsFrom: ["plan_version_ids_from", "plan_version_ids_from"],
+                strategy: "immediate",
+                targetPlanType: "plan",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("createMigration (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            company_ids: ["company_ids", "company_ids"],
+            excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
+            plan_id: "plan_id",
+            plan_version_id_to: "plan_version_id_to",
+            plan_version_ids_from: ["plan_version_ids_from", "plan_version_ids_from"],
+            strategy: "immediate",
+            target_plan_type: "plan",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-migrations")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.planmigrations.createMigration({
+                companyIds: ["company_ids", "company_ids"],
+                excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
+                planId: "plan_id",
+                planVersionIdTo: "plan_version_id_to",
+                planVersionIdsFrom: ["plan_version_ids_from", "plan_version_ids_from"],
+                strategy: "immediate",
+                targetPlanType: "plan",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("createMigration (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            company_ids: ["company_ids", "company_ids"],
+            excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
+            plan_id: "plan_id",
+            plan_version_id_to: "plan_version_id_to",
+            plan_version_ids_from: ["plan_version_ids_from", "plan_version_ids_from"],
+            strategy: "immediate",
+            target_plan_type: "plan",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-migrations")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.planmigrations.createMigration({
+                companyIds: ["company_ids", "company_ids"],
+                excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
+                planId: "plan_id",
+                planVersionIdTo: "plan_version_id_to",
+                planVersionIdsFrom: ["plan_version_ids_from", "plan_version_ids_from"],
+                strategy: "immediate",
+                targetPlanType: "plan",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("getMigration (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -477,6 +885,7 @@ describe("PlanmigrationsClient", () => {
                 plan_id: "plan_id",
                 plan_version_id_from: "plan_version_id_from",
                 plan_version_id_to: "plan_version_id_to",
+                plan_version_ids_from: ["plan_version_ids_from"],
                 skipped_companies: 1000000,
                 started_at: "2024-01-15T09:30:00Z",
                 status: "completed",
@@ -507,6 +916,7 @@ describe("PlanmigrationsClient", () => {
                 planId: "plan_id",
                 planVersionIdFrom: "plan_version_id_from",
                 planVersionIdTo: "plan_version_id_to",
+                planVersionIdsFrom: ["plan_version_ids_from"],
                 skippedCompanies: 1000000,
                 startedAt: new Date("2024-01-15T09:30:00.000Z"),
                 status: "completed",
@@ -593,6 +1003,179 @@ describe("PlanmigrationsClient", () => {
 
         await expect(async () => {
             return await client.planmigrations.getMigration("plan_version_migration_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("retryMigration (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { error_codes: ["ambiguous_subscription_item"] };
+        const rawResponseBody = {
+            data: {
+                completed_at: "2024-01-15T09:30:00Z",
+                completed_companies: 1000000,
+                created_at: "2024-01-15T09:30:00Z",
+                error: "error",
+                failed_companies: 1000000,
+                id: "id",
+                plan_id: "plan_id",
+                plan_version_id_from: "plan_version_id_from",
+                plan_version_id_to: "plan_version_id_to",
+                plan_version_ids_from: ["plan_version_ids_from"],
+                skipped_companies: 1000000,
+                started_at: "2024-01-15T09:30:00Z",
+                status: "completed",
+                strategy: "immediate",
+                total_companies: 1000000,
+                updated_at: "2024-01-15T09:30:00Z",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-migrations/plan_version_migration_id/retry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.planmigrations.retryMigration("plan_version_migration_id", {
+            errorCodes: ["ambiguous_subscription_item"],
+        });
+        expect(response).toEqual({
+            data: {
+                completedAt: new Date("2024-01-15T09:30:00.000Z"),
+                completedCompanies: 1000000,
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                error: "error",
+                failedCompanies: 1000000,
+                id: "id",
+                planId: "plan_id",
+                planVersionIdFrom: "plan_version_id_from",
+                planVersionIdTo: "plan_version_id_to",
+                planVersionIdsFrom: ["plan_version_ids_from"],
+                skippedCompanies: 1000000,
+                startedAt: new Date("2024-01-15T09:30:00.000Z"),
+                status: "completed",
+                strategy: "immediate",
+                totalCompanies: 1000000,
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("retryMigration (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { error_codes: ["ambiguous_subscription_item", "ambiguous_subscription_item"] };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-migrations/plan_version_migration_id/retry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.planmigrations.retryMigration("plan_version_migration_id", {
+                errorCodes: ["ambiguous_subscription_item", "ambiguous_subscription_item"],
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("retryMigration (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { error_codes: ["ambiguous_subscription_item", "ambiguous_subscription_item"] };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-migrations/plan_version_migration_id/retry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.planmigrations.retryMigration("plan_version_migration_id", {
+                errorCodes: ["ambiguous_subscription_item", "ambiguous_subscription_item"],
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("retryMigration (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { error_codes: ["ambiguous_subscription_item", "ambiguous_subscription_item"] };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-migrations/plan_version_migration_id/retry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.planmigrations.retryMigration("plan_version_migration_id", {
+                errorCodes: ["ambiguous_subscription_item", "ambiguous_subscription_item"],
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("retryMigration (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { error_codes: ["ambiguous_subscription_item", "ambiguous_subscription_item"] };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-migrations/plan_version_migration_id/retry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.planmigrations.retryMigration("plan_version_migration_id", {
+                errorCodes: ["ambiguous_subscription_item", "ambiguous_subscription_item"],
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("retryMigration (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { error_codes: ["ambiguous_subscription_item", "ambiguous_subscription_item"] };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-migrations/plan_version_migration_id/retry")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.planmigrations.retryMigration("plan_version_migration_id", {
+                errorCodes: ["ambiguous_subscription_item", "ambiguous_subscription_item"],
+            });
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 

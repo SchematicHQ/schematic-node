@@ -7,6 +7,7 @@ export interface CustomPlanBillingResponseData {
     companyId: string;
     createdAt: Date;
     daysUntilDue: number;
+    externalInvoiceId?: string;
     id: string;
     paidAt?: Date;
     planId: string;

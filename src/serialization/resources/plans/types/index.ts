@@ -17,6 +17,7 @@ export * from "./ListPlanIssuesParams";
 export * from "./ListPlanIssuesResponse";
 export * from "./ListPlansParams";
 export * from "./ListPlansResponse";
+export * from "./MarkCustomPlanBillingPaidResponse";
 export * from "./PublishPlanVersionResponse";
 export * from "./RetryCustomPlanBillingResponse";
 export * from "./UpdateCompanyPlansResponse";

@@ -13,6 +13,7 @@ describe("PlangroupsClient", () => {
             data: {
                 add_ons: [
                     {
+                        available_periods: ["monthly"],
                         billing_strategy: "schematic_managed",
                         charge_type: "free",
                         company_count: 1000000,
@@ -21,19 +22,6 @@ describe("PlangroupsClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         currency_prices: [{ currency: "currency" }],
                         description: "description",
-                        entitlements: [
-                            {
-                                created_at: "2024-01-15T09:30:00Z",
-                                currency_prices: [{ currency: "currency" }],
-                                environment_id: "environment_id",
-                                feature_id: "feature_id",
-                                id: "id",
-                                plan_id: "plan_id",
-                                rule_id: "rule_id",
-                                updated_at: "2024-01-15T09:30:00Z",
-                                value_type: "boolean",
-                            },
-                        ],
                         features: [
                             {
                                 created_at: "2024-01-15T09:30:00Z",
@@ -156,6 +144,7 @@ describe("PlangroupsClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                         version: 1000000,
                     },
+                    available_periods: ["monthly"],
                     billing_linked_resource: {
                         billing_provider: "orb",
                         external_resource_id: "external_resource_id",
@@ -393,6 +382,7 @@ describe("PlangroupsClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                         version: 1000000,
                     },
+                    available_periods: ["monthly"],
                     billing_linked_resource: {
                         billing_provider: "orb",
                         external_resource_id: "external_resource_id",
@@ -632,6 +622,7 @@ describe("PlangroupsClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                         version: 1000000,
                     },
+                    available_periods: ["monthly"],
                     billing_linked_resource: {
                         billing_provider: "orb",
                         external_resource_id: "external_resource_id",
@@ -889,6 +880,7 @@ describe("PlangroupsClient", () => {
                 ordered_plan_list: [{ plan_id: "plan_id" }],
                 plans: [
                     {
+                        available_periods: ["monthly"],
                         billing_strategy: "schematic_managed",
                         charge_type: "free",
                         company_count: 1000000,
@@ -897,19 +889,6 @@ describe("PlangroupsClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         currency_prices: [{ currency: "currency" }],
                         description: "description",
-                        entitlements: [
-                            {
-                                created_at: "2024-01-15T09:30:00Z",
-                                currency_prices: [{ currency: "currency" }],
-                                environment_id: "environment_id",
-                                feature_id: "feature_id",
-                                id: "id",
-                                plan_id: "plan_id",
-                                rule_id: "rule_id",
-                                updated_at: "2024-01-15T09:30:00Z",
-                                value_type: "boolean",
-                            },
-                        ],
                         features: [
                             {
                                 created_at: "2024-01-15T09:30:00Z",
@@ -1035,6 +1014,7 @@ describe("PlangroupsClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                         version: 1000000,
                     },
+                    available_periods: ["monthly"],
                     billing_linked_resource: {
                         billing_provider: "orb",
                         external_resource_id: "external_resource_id",
@@ -1301,6 +1281,7 @@ describe("PlangroupsClient", () => {
             data: {
                 addOns: [
                     {
+                        availablePeriods: ["monthly"],
                         billingStrategy: "schematic_managed",
                         chargeType: "free",
                         companyCount: 1000000,
@@ -1313,23 +1294,6 @@ describe("PlangroupsClient", () => {
                             },
                         ],
                         description: "description",
-                        entitlements: [
-                            {
-                                createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currencyPrices: [
-                                    {
-                                        currency: "currency",
-                                    },
-                                ],
-                                environmentId: "environment_id",
-                                featureId: "feature_id",
-                                id: "id",
-                                planId: "plan_id",
-                                ruleId: "rule_id",
-                                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                                valueType: "boolean",
-                            },
-                        ],
                         features: [
                             {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1475,6 +1439,7 @@ describe("PlangroupsClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         version: 1000000,
                     },
+                    availablePeriods: ["monthly"],
                     billingLinkedResource: {
                         billingProvider: "orb",
                         externalResourceId: "external_resource_id",
@@ -1735,6 +1700,7 @@ describe("PlangroupsClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         version: 1000000,
                     },
+                    availablePeriods: ["monthly"],
                     billingLinkedResource: {
                         billingProvider: "orb",
                         externalResourceId: "external_resource_id",
@@ -1997,6 +1963,7 @@ describe("PlangroupsClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         version: 1000000,
                     },
+                    availablePeriods: ["monthly"],
                     billingLinkedResource: {
                         billingProvider: "orb",
                         externalResourceId: "external_resource_id",
@@ -2289,6 +2256,7 @@ describe("PlangroupsClient", () => {
                 ],
                 plans: [
                     {
+                        availablePeriods: ["monthly"],
                         billingStrategy: "schematic_managed",
                         chargeType: "free",
                         companyCount: 1000000,
@@ -2301,23 +2269,6 @@ describe("PlangroupsClient", () => {
                             },
                         ],
                         description: "description",
-                        entitlements: [
-                            {
-                                createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currencyPrices: [
-                                    {
-                                        currency: "currency",
-                                    },
-                                ],
-                                environmentId: "environment_id",
-                                featureId: "feature_id",
-                                id: "id",
-                                planId: "plan_id",
-                                ruleId: "rule_id",
-                                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                                valueType: "boolean",
-                            },
-                        ],
                         features: [
                             {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2458,6 +2409,7 @@ describe("PlangroupsClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         version: 1000000,
                     },
+                    availablePeriods: ["monthly"],
                     billingLinkedResource: {
                         billingProvider: "orb",
                         externalResourceId: "external_resource_id",
