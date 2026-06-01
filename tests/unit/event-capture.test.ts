@@ -218,6 +218,49 @@ describe("EventCaptureClient", () => {
         );
     });
 
+    it("should serialize idempotency_key, trusted_client_clock, and backfill when set", async () => {
+        const fetcher = makeFetcher();
+        const client = new EventCaptureClient({ apiKey, fetcher });
+
+        await client.sendBatch([
+            buildEvent({
+                idempotencyKey: "dedupe-123",
+                trustedClientClock: true,
+                backfill: true,
+            }),
+        ]);
+
+        const args = fetcher.mock.calls[0][0];
+        const batch = args.body as { events: any[] };
+        expect(batch.events[0]).toEqual({
+            api_key: apiKey,
+            type: "track",
+            body: {
+                company: { id: "company-1" },
+                event: "test-event",
+                user: { id: "user-1" },
+                quantity: 2,
+            },
+            idempotency_key: "dedupe-123",
+            sent_at: "2026-04-28T12:00:00.000Z",
+            trusted_client_clock: true,
+            backfill: true,
+        });
+    });
+
+    it("should omit idempotency_key, trusted_client_clock, and backfill when unset", async () => {
+        const fetcher = makeFetcher();
+        const client = new EventCaptureClient({ apiKey, fetcher });
+
+        await client.sendBatch([buildEvent()]);
+
+        const args = fetcher.mock.calls[0][0];
+        const batch = args.body as { events: any[] };
+        expect(batch.events[0]).not.toHaveProperty("idempotency_key");
+        expect(batch.events[0]).not.toHaveProperty("trusted_client_clock");
+        expect(batch.events[0]).not.toHaveProperty("backfill");
+    });
+
     it("should omit body when the event has no body", async () => {
         const fetcher = makeFetcher();
         const client = new EventCaptureClient({ apiKey, fetcher });

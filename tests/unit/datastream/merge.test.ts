@@ -161,6 +161,115 @@ describe('partialCompany', () => {
         expect(origMetrics[0].value).toBe(10);
     });
 
+    test('credit_balances update re-derives entitlement credit_remaining', () => {
+        const existing = baseCompany();
+        (existing as unknown as Record<string, unknown>).entitlements = [
+            { feature_id: 'feat-1', feature_key: 'feature-one', value_type: 'credit', credit_id: 'credit-1', credit_remaining: 100.0 },
+            { feature_id: 'feat-2', feature_key: 'feature-two', value_type: 'credit', credit_id: 'credit-2', credit_remaining: 0 },
+            { feature_id: 'feat-3', feature_key: 'feature-three', value_type: 'boolean' },
+        ];
+
+        // Partial only updates one of the credit balances and carries no entitlements.
+        const partial = { id: 'co-1', credit_balances: { 'credit-1': 42.0 } };
+
+        const merged = partialCompany(existing, partial);
+        const ents = (merged as unknown as Record<string, unknown>).entitlements as Record<string, unknown>[];
+
+        // credit-1 entitlement re-derived from incoming balance
+        expect(ents[0].credit_remaining).toBe(42.0);
+        // credit-2 was not in the partial, left untouched
+        expect(ents[1].credit_remaining).toBe(0);
+        // non-credit entitlement untouched
+        expect(ents[2].credit_remaining).toBeUndefined();
+
+        // Original not mutated
+        const origEnts = (existing as unknown as Record<string, unknown>).entitlements as Record<string, unknown>[];
+        expect(origEnts[0].credit_remaining).toBe(100.0);
+    });
+
+    test('metrics update re-derives entitlement usage', () => {
+        const existing = baseCompany();
+        (existing as unknown as Record<string, unknown>).metrics = [
+            {
+                account_id: 'acc-1', environment_id: 'env-1', company_id: 'co-1',
+                event_subtype: 'api-calls', period: 'current_month', month_reset: 'first_of_month',
+                value: 10, created_at: '2026-01-01T00:00:00Z',
+            },
+        ];
+        (existing as unknown as Record<string, unknown>).entitlements = [
+            { feature_id: 'feat-1', feature_key: 'feature-one', value_type: 'numeric', event_name: 'api-calls', metric_period: 'current_month', month_reset: 'first_of_month', usage: 10 },
+            { feature_id: 'feat-2', feature_key: 'feature-two', value_type: 'numeric', event_name: 'other-event', metric_period: 'current_month', month_reset: 'first_of_month', usage: 3 },
+        ];
+
+        // Partial upserts the api-calls metric and carries no entitlements.
+        const partial = {
+            id: 'co-1',
+            metrics: [
+                {
+                    account_id: 'acc-1', environment_id: 'env-1', company_id: 'co-1',
+                    event_subtype: 'api-calls', period: 'current_month', month_reset: 'first_of_month',
+                    value: 99, created_at: '2026-01-02T00:00:00Z',
+                },
+            ],
+        };
+
+        const merged = partialCompany(existing, partial);
+        const ents = (merged as unknown as Record<string, unknown>).entitlements as Record<string, unknown>[];
+
+        // matching entitlement usage synced to the merged metric value
+        expect(ents[0].usage).toBe(99);
+        // entitlement with no matching metric is unchanged
+        expect(ents[1].usage).toBe(3);
+    });
+
+    test('metrics update applies metric_period/month_reset defaults when entitlement omits them', () => {
+        const existing = baseCompany();
+        (existing as unknown as Record<string, unknown>).metrics = [];
+        (existing as unknown as Record<string, unknown>).entitlements = [
+            // No metric_period / month_reset → should default to all_time / first_of_month
+            { feature_id: 'feat-1', feature_key: 'feature-one', value_type: 'numeric', event_name: 'logins', usage: 0 },
+        ];
+
+        const partial = {
+            id: 'co-1',
+            metrics: [
+                {
+                    account_id: 'acc-1', environment_id: 'env-1', company_id: 'co-1',
+                    event_subtype: 'logins', period: 'all_time', month_reset: 'first_of_month',
+                    value: 7, created_at: '2026-01-02T00:00:00Z',
+                },
+            ],
+        };
+
+        const merged = partialCompany(existing, partial);
+        const ents = (merged as unknown as Record<string, unknown>).entitlements as Record<string, unknown>[];
+
+        expect(ents[0].usage).toBe(7);
+    });
+
+    test('does not re-derive when partial carries entitlements wholesale', () => {
+        const existing = baseCompany();
+        (existing as unknown as Record<string, unknown>).entitlements = [
+            { feature_id: 'feat-1', feature_key: 'feature-one', value_type: 'credit', credit_id: 'credit-1', credit_remaining: 100.0 },
+        ];
+
+        // Partial includes BOTH credit_balances and entitlements; the supplied
+        // entitlements win and the derived sync is skipped entirely.
+        const partial = {
+            id: 'co-1',
+            credit_balances: { 'credit-1': 42.0 },
+            entitlements: [
+                { feature_id: 'feat-1', feature_key: 'feature-one', value_type: 'credit', credit_id: 'credit-1', credit_remaining: 7.0 },
+            ],
+        };
+
+        const merged = partialCompany(existing, partial);
+        const ents = (merged as unknown as Record<string, unknown>).entitlements as Record<string, unknown>[];
+
+        // Uses the entitlement value from the partial, NOT the balance-derived 42.
+        expect(ents[0].credit_remaining).toBe(7.0);
+    });
+
     test('empty entitlements clears existing', () => {
         const existing = baseCompany();
         const partial = { id: 'co-1', entitlements: [] };

@@ -188,4 +188,137 @@ describe("SchematicClient wrapper - flag checking behavior", () => {
             await client.close();
         });
     });
+
+    describe("event options", () => {
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
+        const { EventBuffer } = require("../../src/events");
+
+        const lastPushedEvent = (): any => {
+            const buffer = (EventBuffer as jest.Mock).mock.results[0].value;
+            const pushMock = buffer.push as jest.Mock;
+            return pushMock.mock.calls[pushMock.mock.calls.length - 1][0];
+        };
+
+        it("should thread track options into the buffered event", async () => {
+            const client = new SchematicClient({ apiKey: "test-api-key", logger: mockLogger });
+            const sentAt = new Date("2026-04-28T12:00:00.000Z");
+
+            await client.track(
+                { event: "used-feature", company: { id: "comp-1" } },
+                {
+                    idempotencyKey: "dedupe-abc",
+                    sentAt,
+                    trustedClientClock: true,
+                    backfill: true,
+                },
+            );
+
+            expect(lastPushedEvent()).toEqual({
+                eventType: "track",
+                body: { event: "used-feature", company: { id: "comp-1" } },
+                idempotencyKey: "dedupe-abc",
+                sentAt,
+                trustedClientClock: true,
+                backfill: true,
+            });
+
+            await client.close();
+        });
+
+        it("should thread identify idempotencyKey into the buffered event", async () => {
+            const client = new SchematicClient({ apiKey: "test-api-key", logger: mockLogger });
+
+            await client.identify(
+                { keys: { id: "user-1" }, name: "Test User" },
+                { idempotencyKey: "dedupe-xyz" },
+            );
+
+            const event = lastPushedEvent();
+            expect(event.eventType).toBe("identify");
+            expect(event.idempotencyKey).toBe("dedupe-xyz");
+            expect(event.trustedClientClock).toBeUndefined();
+            expect(event.backfill).toBeUndefined();
+
+            await client.close();
+        });
+
+        it("should default sentAt and omit optional fields when no options are passed", async () => {
+            const client = new SchematicClient({ apiKey: "test-api-key", logger: mockLogger });
+
+            await client.track({ event: "used-feature", company: { id: "comp-1" } });
+
+            const event = lastPushedEvent();
+            expect(event.sentAt).toBeInstanceOf(Date);
+            expect(event).not.toHaveProperty("idempotencyKey");
+            expect(event).not.toHaveProperty("trustedClientClock");
+            expect(event).not.toHaveProperty("backfill");
+
+            await client.close();
+        });
+    });
+});
+
+describe("SchematicClient wrapper - logger configuration", () => {
+    let consoleSpy: {
+        debug: ReturnType<typeof jest.spyOn>;
+        warn: ReturnType<typeof jest.spyOn>;
+    };
+
+    beforeEach(() => {
+        consoleSpy = {
+            debug: jest.spyOn(console, "debug").mockImplementation(() => {}),
+            warn: jest.spyOn(console, "warn").mockImplementation(() => {}),
+        };
+    });
+
+    afterEach(() => {
+        jest.restoreAllMocks();
+        jest.clearAllMocks();
+    });
+
+    it("should suppress debug logs from the default logger (defaults to warn)", async () => {
+        const client = new SchematicClient({ offline: true });
+
+        // Offline checkFlag logs at debug level, which the default warn logger drops.
+        await client.checkFlag({}, "some-flag");
+
+        expect(consoleSpy.debug).not.toHaveBeenCalled();
+
+        await client.close();
+    });
+
+    it("should emit debug logs from the default logger when logLevel is debug", async () => {
+        const client = new SchematicClient({ offline: true, logLevel: "debug" });
+
+        await client.checkFlag({}, "some-flag");
+
+        expect(consoleSpy.debug).toHaveBeenCalled();
+
+        await client.close();
+    });
+
+    it("should call a custom logger's methods directly, ignoring logLevel", async () => {
+        const customLogger = {
+            debug: jest.fn(),
+            info: jest.fn(),
+            warn: jest.fn(),
+            error: jest.fn(),
+        };
+
+        // logLevel is set to warn, but the SDK must not filter a custom logger —
+        // the custom logger owns its own level.
+        const client = new SchematicClient({
+            offline: true,
+            logLevel: "warn",
+            logger: customLogger,
+        });
+
+        await client.checkFlag({}, "some-flag");
+
+        expect(customLogger.debug).toHaveBeenCalled();
+        // The built-in console must not be used when a custom logger is provided.
+        expect(consoleSpy.debug).not.toHaveBeenCalled();
+
+        await client.close();
+    });
 });

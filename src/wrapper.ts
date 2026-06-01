@@ -2,7 +2,7 @@ import * as api from "./api";
 import { SchematicClient as BaseClient } from "./Client";
 
 import { type CacheProvider, LocalCache } from "./cache";
-import { ConsoleLogger, Logger } from "./logger";
+import { ConsoleLogger, type Logger, type LogLevel } from "./logger";
 import { EventBuffer } from "./events";
 import { EventCaptureClient } from "./event-capture";
 import { offlineFetcher, provideFetcher } from "./core/fetcher/custom";
@@ -50,8 +50,10 @@ export interface SchematicOptions {
     flagDefaults?: { [key: string]: boolean };
     /** Additional HTTP headers for API requests */
     headers?: Record<string, string>;
-    /** Custom logger implementation */
+    /** Custom logger implementation. When provided, its own level configuration is respected and `logLevel` is ignored. */
     logger?: Logger;
+    /** Minimum level for the default logger (default: "warn"). Ignored when a custom `logger` is provided. */
+    logLevel?: LogLevel;
     /** Enable offline mode to prevent network activity */
     offline?: boolean;
     /** The default maximum time to wait for a response in milliseconds */
@@ -63,6 +65,30 @@ export interface CheckFlagOptions {
     defaultValue?: boolean | (() => boolean);
     /** The maximum time to wait for a response in milliseconds */
     timeoutMs?: number;
+}
+
+/**
+ * Optional metadata for a track event. Only fields that are explicitly set are
+ * sent to the capture service.
+ */
+export interface TrackOptions {
+    /** Client-supplied dedupe key. Duplicate events with the same key (scoped to the environment) are dropped server-side for 24 hours. */
+    idempotencyKey?: string;
+    /** Timestamp the event was sent. Required when trustedClientClock is true. Defaults to the time the event is enqueued. */
+    sentAt?: Date;
+    /** When true, use sentAt as the effective event timestamp instead of server receipt time. Requires a secret API key and sentAt. */
+    trustedClientClock?: boolean;
+    /** Import historical data without affecting billing. Requires a secret API key and trustedClientClock. */
+    backfill?: boolean;
+}
+
+/**
+ * Optional metadata for an identify event. Only fields that are explicitly set
+ * are sent to the capture service.
+ */
+export interface IdentifyOptions {
+    /** Client-supplied dedupe key. Duplicate events with the same key (scoped to the environment) are dropped server-side for 24 hours. */
+    idempotencyKey?: string;
 }
 
 export interface CheckFlagWithEntitlementResponse {
@@ -97,10 +123,15 @@ export class SchematicClient extends BaseClient {
             eventBufferInterval,
             eventCaptureBaseURL,
             flagDefaults = {},
-            logger = new ConsoleLogger(),
+            logLevel,
             timeoutMs,
         } = opts ?? {};
         let { offline = false } = opts ?? {};
+
+        // A consumer-provided logger owns its own level configuration, so we use
+        // it as-is and ignore logLevel. Otherwise build the default
+        // ConsoleLogger at the requested level (defaulting to "warn").
+        const logger: Logger = opts?.logger ?? new ConsoleLogger(logLevel);
 
         // Set headers
         const headers: Record<string, string> = {};
@@ -548,14 +579,15 @@ export class SchematicClient extends BaseClient {
     /**
      * Send a non-blocking event to create or update companies and users
      * @param body - The identify event payload containing user properties
+     * @param options - Optional event metadata (e.g. idempotencyKey)
      * @returns Promise that resolves when the event has been enqueued
      * @throws Will log error if event enqueueing fails
      */
-    async identify(body: api.EventBodyIdentify): Promise<void> {
+    async identify(body: api.EventBodyIdentify, options?: IdentifyOptions): Promise<void> {
         if (this.offline) return;
 
         try {
-            await this.enqueueEvent("identify", body);
+            await this.enqueueEvent("identify", body, options);
         } catch (err) {
             this.logger.error(`Error sending identify event: ${err}`);
         }
@@ -564,14 +596,15 @@ export class SchematicClient extends BaseClient {
     /**
      * Send a non-blocking event to track usage
      * @param body - The track event payload containing event details
+     * @param options - Optional event metadata (e.g. idempotencyKey, trustedClientClock)
      * @returns Promise that resolves when the event has been enqueued
      * @throws Will log error if event enqueueing fails
      */
-    async track(body: api.EventBodyTrack): Promise<void> {
+    async track(body: api.EventBodyTrack, options?: TrackOptions): Promise<void> {
         if (this.offline) return;
 
         try {
-            await this.enqueueEvent("track", body);
+            await this.enqueueEvent("track", body, options);
 
             // Update company metrics in DataStream if available and connected
             if (body.company && this.useDataStream() && this.datastreamClient!.isConnected()) {
@@ -613,14 +646,32 @@ export class SchematicClient extends BaseClient {
 
     private async enqueueEvent(
         eventType: api.EventType,
-        body: api.EventBody
+        body: api.EventBody,
+        options?: TrackOptions | IdentifyOptions,
     ): Promise<void> {
         try {
-            this.eventBuffer.push({
+            const event: api.CreateEventRequestBody = {
                 eventType,
                 body,
                 sentAt: new Date(),
-            });
+            };
+
+            if (options) {
+                if (options.idempotencyKey !== undefined) {
+                    event.idempotencyKey = options.idempotencyKey;
+                }
+                if ("sentAt" in options && options.sentAt !== undefined) {
+                    event.sentAt = options.sentAt;
+                }
+                if ("trustedClientClock" in options && options.trustedClientClock !== undefined) {
+                    event.trustedClientClock = options.trustedClientClock;
+                }
+                if ("backfill" in options && options.backfill !== undefined) {
+                    event.backfill = options.backfill;
+                }
+            }
+
+            this.eventBuffer.push(event);
         } catch (err) {
             this.logger.error(`Error enqueueing ${eventType} event: ${err}`);
         }

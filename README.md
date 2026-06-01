@@ -153,7 +153,19 @@ const client = new SchematicClient({
 client.close();
 ```
 
-If no logger is provided, the client will use a default console logger that outputs to the standard console methods.
+If no logger is provided, the client uses a default console logger. By default it only emits `warn` and `error` messages; `debug` and `info` are suppressed to keep production output quiet. Use the `logLevel` option to raise or lower the verbosity of the default logger:
+
+```ts
+import { SchematicClient, LogLevel } from "@schematichq/schematic-typescript-node";
+
+const apiKey = process.env.SCHEMATIC_API_KEY;
+const client = new SchematicClient({
+    apiKey,
+    logLevel: "debug", // or LogLevel.Debug — emit all levels (debug, info, warn, error)
+});
+```
+
+The `logLevel` option only affects the default console logger. When you supply your own `logger`, its level configuration is respected as-is and `logLevel` is ignored.
 
 ## Usage examples
 
@@ -232,6 +244,42 @@ client.track({
     },
     quantity: 10,
 });
+```
+
+Both `track` and `identify` accept an optional second argument for event metadata. Supply an `idempotencyKey` to deduplicate events (duplicates with the same key, scoped to the environment, are dropped server-side for 24 hours):
+
+```ts
+client.track(
+    {
+        event: "some-action",
+        company: { id: "your-company-id" },
+    },
+    { idempotencyKey: "your-unique-key" },
+);
+
+client.identify(
+    {
+        keys: { userId: "your-user-id" },
+        name: "Wile E. Coyote",
+    },
+    { idempotencyKey: "your-unique-key" },
+);
+```
+
+For `track`, you can also set a trusted client clock to use your own timestamp as the effective event time, and backfill historical data without affecting billing. Both require a secret API key:
+
+```ts
+client.track(
+    {
+        event: "some-action",
+        company: { id: "your-company-id" },
+    },
+    {
+        sentAt: new Date("2026-01-01T00:00:00Z"),
+        trustedClientClock: true,
+        backfill: true,
+    },
+);
 ```
 
 ### Creating and updating companies

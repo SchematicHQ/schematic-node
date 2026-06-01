@@ -22,7 +22,10 @@ interface CapturePayload {
     api_key: string;
     type: EventType;
     body?: unknown;
+    idempotency_key?: string;
     sent_at?: string;
+    trusted_client_clock?: boolean;
+    backfill?: boolean;
 }
 
 interface BatchPayload {
@@ -45,8 +48,20 @@ const toCapturePayload = (event: CreateEventRequestBody, apiKey: string): Captur
         });
     }
 
+    if (event.idempotencyKey !== undefined) {
+        payload.idempotency_key = event.idempotencyKey;
+    }
+
     if (event.sentAt !== undefined) {
         payload.sent_at = event.sentAt instanceof Date ? event.sentAt.toISOString() : event.sentAt;
+    }
+
+    if (event.trustedClientClock !== undefined) {
+        payload.trusted_client_clock = event.trustedClientClock;
+    }
+
+    if (event.backfill !== undefined) {
+        payload.backfill = event.backfill;
     }
 
     return payload;
