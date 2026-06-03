@@ -103,6 +103,11 @@ async function handleConfigure(req, res) {
   if (config.baseUrl) {
     opts.basePath = config.baseUrl;
   }
+  if (config.eventCaptureBaseUrl) {
+    // Without this, events go to the SDK's default (production) capture
+    // endpoint and never reach the environment under test.
+    opts.eventCaptureBaseURL = config.eventCaptureBaseUrl;
+  }
   if (config.flagDefaults) {
     opts.flagDefaults = config.flagDefaults;
   }
