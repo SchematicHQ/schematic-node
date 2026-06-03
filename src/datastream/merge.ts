@@ -1,4 +1,20 @@
 import type * as Schematic from "../api/types";
+import type { Schema } from "../core/schemas";
+import * as serializers from "../serialization";
+
+const PARSE_OPTS = { unrecognizedObjectKeys: "passthrough" as const };
+
+/**
+ * Canonicalizes a raw wire object (snake_case) to camelCase via its Fern
+ * serializer, falling back to the raw object if parsing fails. Used on nested
+ * objects arriving in partial payloads so the merged entity keeps a single
+ * shape — the WASM rules engine rejects objects carrying both casings of the
+ * same field ("duplicate field"), so per-object purity is load-bearing.
+ */
+function canonicalize<Raw, Parsed>(schema: Schema<Raw, Parsed>, raw: unknown): Parsed {
+    const result = schema.parse(raw, PARSE_OPTS);
+    return result.ok ? result.value : (raw as Parsed);
+}
 
 export function deepCopyCompany(c: Schematic.RulesengineCompany): Schematic.RulesengineCompany {
     return JSON.parse(JSON.stringify(c));
@@ -18,8 +34,8 @@ export function deepCopyUser(u: Schematic.RulesengineUser): Schematic.Rulesengin
  * Partials don't carry refreshed entitlements, so when their derived fields
  * change in another part of the company we sync them here to match server
  * behavior:
- *   - credit_remaining ← credit_balances[credit_id]
- *   - usage ← metric value matching (event_name, metric_period, month_reset)
+ *   - creditRemaining ← credit_balances[credit_id]
+ *   - usage ← metric value matching (eventName, metricPeriod, monthReset)
  * Both are skipped when the partial also sends entitlements wholesale.
  *
  * Partial updates arrive as raw wire payloads (snake_case keys) and are merged
@@ -60,9 +76,13 @@ export function partialCompany(
             case "plan_version_ids":
                 merged.planVersionIds = partial[key];
                 break;
-            case "entitlements":
-                merged.entitlements = partial[key];
+            case "entitlements": {
+                const incoming = (partial[key] ?? []) as unknown[];
+                merged.entitlements = incoming.map((e) =>
+                    canonicalize(serializers.RulesengineFeatureEntitlement, e),
+                );
                 break;
+            }
             case "rules":
                 merged.rules = partial[key];
                 break;
@@ -87,7 +107,9 @@ export function partialCompany(
             }
             case "metrics": {
                 const existingMetrics = (merged.metrics ?? []) as Schematic.RulesengineCompanyMetric[];
-                const incomingMetrics = (partial[key] ?? []) as Schematic.RulesengineCompanyMetric[];
+                const incomingMetrics = ((partial[key] ?? []) as unknown[]).map((m) =>
+                    canonicalize(serializers.RulesengineCompanyMetric, m),
+                );
                 merged.metrics = upsertMetrics(existingMetrics, incomingMetrics);
                 metricsUpdated = true;
                 break;
@@ -107,9 +129,9 @@ export function partialCompany(
  * Re-derives entitlement fields whose source data changed in a partial that
  * did not itself carry fresh entitlements. Mutates the entitlement objects on
  * the already-deep-copied `merged` company in place:
- *   - credit_remaining ← the incoming balance for the entitlement's credit_id
- *   - usage ← the merged metric value matching (event_name, metric_period, month_reset),
- *     defaulting metric_period to "all_time" and month_reset to "first_of_month"
+ *   - creditRemaining ← the incoming balance for the entitlement's creditId
+ *   - usage ← the merged metric value matching (eventName, metricPeriod, monthReset),
+ *     defaulting metricPeriod to "all_time" and monthReset to "first_of_month"
  */
 function syncEntitlementDerivedFields(
     merged: Record<string, unknown>,
@@ -135,7 +157,10 @@ function syncEntitlementDerivedFields(
     for (const ent of entitlements) {
         const creditId = (ent.creditId ?? ent.credit_id) as string | undefined;
         if (updatedBalances && creditId && creditId in updatedBalances) {
-            ent.credit_remaining = updatedBalances[creditId];
+            // Write the camelCase field: the cached entity is canonicalized, and
+            // the WASM engine errors on an object carrying both casings.
+            ent.creditRemaining = updatedBalances[creditId];
+            delete ent.credit_remaining;
         }
 
         // Credit-attached entitlements are intentionally NOT skipped: usage here

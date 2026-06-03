@@ -115,16 +115,17 @@ describe('partialCompany', () => {
 
     test('upserts metrics - updates existing, appends new', () => {
         const existing = baseCompany();
+        // Cached metrics are camelCase (canonicalized by parseOrThrow on ingest).
         (existing as unknown as Record<string, unknown>).metrics = [
             {
-                account_id: 'acc-1', environment_id: 'env-1', company_id: 'co-1',
-                event_subtype: 'event-a', period: 'all_time', month_reset: 'first_of_month',
-                value: 10, created_at: '2026-01-01T00:00:00Z',
+                accountId: 'acc-1', environmentId: 'env-1', companyId: 'co-1',
+                eventSubtype: 'event-a', period: 'all_time', monthReset: 'first_of_month',
+                value: 10, createdAt: '2026-01-01T00:00:00Z',
             },
             {
-                account_id: 'acc-1', environment_id: 'env-1', company_id: 'co-1',
-                event_subtype: 'event-b', period: 'current_month', month_reset: 'first_of_month',
-                value: 5, created_at: '2026-01-01T00:00:00Z',
+                accountId: 'acc-1', environmentId: 'env-1', companyId: 'co-1',
+                eventSubtype: 'event-b', period: 'current_month', monthReset: 'first_of_month',
+                value: 5, createdAt: '2026-01-01T00:00:00Z',
             },
         ];
 
@@ -148,14 +149,15 @@ describe('partialCompany', () => {
         const metrics = (merged as unknown as Record<string, unknown>).metrics as Record<string, unknown>[];
 
         expect(metrics.length).toBe(3);
-        // event-a updated in place
-        expect(metrics[0].event_subtype).toBe('event-a');
+        // event-a updated in place; incoming wire metric canonicalized to camelCase
+        expect(metrics[0].eventSubtype).toBe('event-a');
+        expect(metrics[0].event_subtype).toBeUndefined();
         expect(metrics[0].value).toBe(42);
         // event-b unchanged
-        expect(metrics[1].event_subtype).toBe('event-b');
+        expect(metrics[1].eventSubtype).toBe('event-b');
         expect(metrics[1].value).toBe(5);
-        // event-c appended
-        expect(metrics[2].event_subtype).toBe('event-c');
+        // event-c appended (canonicalized)
+        expect(metrics[2].eventSubtype).toBe('event-c');
         expect(metrics[2].value).toBe(1);
 
         // Original not mutated
@@ -163,12 +165,13 @@ describe('partialCompany', () => {
         expect(origMetrics[0].value).toBe(10);
     });
 
-    test('credit_balances update re-derives entitlement credit_remaining', () => {
+    test('credit_balances update re-derives entitlement creditRemaining', () => {
         const existing = baseCompany();
+        // Cached entitlements are camelCase (canonicalized by parseOrThrow on ingest).
         (existing as unknown as Record<string, unknown>).entitlements = [
-            { feature_id: 'feat-1', feature_key: 'feature-one', value_type: 'credit', credit_id: 'credit-1', credit_remaining: 100.0 },
-            { feature_id: 'feat-2', feature_key: 'feature-two', value_type: 'credit', credit_id: 'credit-2', credit_remaining: 0 },
-            { feature_id: 'feat-3', feature_key: 'feature-three', value_type: 'boolean' },
+            { featureId: 'feat-1', featureKey: 'feature-one', valueType: 'credit', creditId: 'credit-1', creditRemaining: 100.0 },
+            { featureId: 'feat-2', featureKey: 'feature-two', valueType: 'credit', creditId: 'credit-2', creditRemaining: 0 },
+            { featureId: 'feat-3', featureKey: 'feature-three', valueType: 'boolean' },
         ];
 
         // Partial only updates one of the credit balances and carries no entitlements.
@@ -178,29 +181,33 @@ describe('partialCompany', () => {
         const ents = (merged as unknown as Record<string, unknown>).entitlements as Record<string, unknown>[];
 
         // credit-1 entitlement re-derived from incoming balance
-        expect(ents[0].credit_remaining).toBe(42.0);
+        expect(ents[0].creditRemaining).toBe(42.0);
+        // Regression: the sync must not leave a snake_case twin next to the
+        // camelCase field — the WASM engine rejects objects carrying both
+        // casings of the same field ("duplicate field creditRemaining").
+        expect(ents[0].credit_remaining).toBeUndefined();
         // credit-2 was not in the partial, left untouched
-        expect(ents[1].credit_remaining).toBe(0);
+        expect(ents[1].creditRemaining).toBe(0);
         // non-credit entitlement untouched
-        expect(ents[2].credit_remaining).toBeUndefined();
+        expect(ents[2].creditRemaining).toBeUndefined();
 
         // Original not mutated
         const origEnts = (existing as unknown as Record<string, unknown>).entitlements as Record<string, unknown>[];
-        expect(origEnts[0].credit_remaining).toBe(100.0);
+        expect(origEnts[0].creditRemaining).toBe(100.0);
     });
 
     test('metrics update re-derives entitlement usage', () => {
         const existing = baseCompany();
         (existing as unknown as Record<string, unknown>).metrics = [
             {
-                account_id: 'acc-1', environment_id: 'env-1', company_id: 'co-1',
-                event_subtype: 'api-calls', period: 'current_month', month_reset: 'first_of_month',
-                value: 10, created_at: '2026-01-01T00:00:00Z',
+                accountId: 'acc-1', environmentId: 'env-1', companyId: 'co-1',
+                eventSubtype: 'api-calls', period: 'current_month', monthReset: 'first_of_month',
+                value: 10, createdAt: '2026-01-01T00:00:00Z',
             },
         ];
         (existing as unknown as Record<string, unknown>).entitlements = [
-            { feature_id: 'feat-1', feature_key: 'feature-one', value_type: 'numeric', event_name: 'api-calls', metric_period: 'current_month', month_reset: 'first_of_month', usage: 10 },
-            { feature_id: 'feat-2', feature_key: 'feature-two', value_type: 'numeric', event_name: 'other-event', metric_period: 'current_month', month_reset: 'first_of_month', usage: 3 },
+            { featureId: 'feat-1', featureKey: 'feature-one', valueType: 'numeric', eventName: 'api-calls', metricPeriod: 'current_month', monthReset: 'first_of_month', usage: 10 },
+            { featureId: 'feat-2', featureKey: 'feature-two', valueType: 'numeric', eventName: 'other-event', metricPeriod: 'current_month', monthReset: 'first_of_month', usage: 3 },
         ];
 
         // Partial upserts the api-calls metric and carries no entitlements.
@@ -228,8 +235,8 @@ describe('partialCompany', () => {
         const existing = baseCompany();
         (existing as unknown as Record<string, unknown>).metrics = [];
         (existing as unknown as Record<string, unknown>).entitlements = [
-            // No metric_period / month_reset → should default to all_time / first_of_month
-            { feature_id: 'feat-1', feature_key: 'feature-one', value_type: 'numeric', event_name: 'logins', usage: 0 },
+            // No metricPeriod / monthReset → should default to all_time / first_of_month
+            { featureId: 'feat-1', featureKey: 'feature-one', valueType: 'numeric', eventName: 'logins', usage: 0 },
         ];
 
         const partial = {
@@ -252,11 +259,12 @@ describe('partialCompany', () => {
     test('does not re-derive when partial carries entitlements wholesale', () => {
         const existing = baseCompany();
         (existing as unknown as Record<string, unknown>).entitlements = [
-            { feature_id: 'feat-1', feature_key: 'feature-one', value_type: 'credit', credit_id: 'credit-1', credit_remaining: 100.0 },
+            { featureId: 'feat-1', featureKey: 'feature-one', valueType: 'credit', creditId: 'credit-1', creditRemaining: 100.0 },
         ];
 
         // Partial includes BOTH credit_balances and entitlements; the supplied
         // entitlements win and the derived sync is skipped entirely.
+        // Partial payloads arrive in wire format (snake_case).
         const partial = {
             id: 'co-1',
             credit_balances: { 'credit-1': 42.0 },
@@ -269,7 +277,9 @@ describe('partialCompany', () => {
         const ents = (merged as unknown as Record<string, unknown>).entitlements as Record<string, unknown>[];
 
         // Uses the entitlement value from the partial, NOT the balance-derived 42.
-        expect(ents[0].credit_remaining).toBe(7.0);
+        // Incoming wire entitlements are canonicalized to camelCase on merge.
+        expect(ents[0].creditRemaining).toBe(7.0);
+        expect(ents[0].credit_remaining).toBeUndefined();
     });
 
     test('empty entitlements clears existing', () => {
@@ -343,9 +353,9 @@ describe('partialCompany', () => {
         const existing = baseCompany();
         (existing as unknown as Record<string, unknown>).metrics = [
             {
-                account_id: 'acc-1', environment_id: 'env-1', company_id: 'co-1',
-                event_subtype: 'event-a', period: 'all_time', month_reset: 'first_of_month',
-                value: 10, created_at: '2026-01-01T00:00:00Z',
+                accountId: 'acc-1', environmentId: 'env-1', companyId: 'co-1',
+                eventSubtype: 'event-a', period: 'all_time', monthReset: 'first_of_month',
+                value: 10, createdAt: '2026-01-01T00:00:00Z',
             },
         ];
         (existing as unknown as Record<string, unknown>).rules = [makeRule('rule-1')];
@@ -396,20 +406,21 @@ describe('partialCompany', () => {
         // Credit balances merge: credit-1 overwritten, credit-new added
         expect(m.creditBalances).toEqual({ 'credit-1': 999.0, 'credit-new': 50.0 });
 
+        // Incoming wire entitlements are canonicalized to camelCase on merge
         const entitlements = m.entitlements as Record<string, unknown>[];
         expect(entitlements.length).toBe(2);
-        expect(entitlements[0].feature_id).toBe('feat-new');
-        expect(entitlements[1].feature_id).toBe('feat-2');
+        expect(entitlements[0].featureId).toBe('feat-new');
+        expect(entitlements[1].featureId).toBe('feat-2');
 
         // Keys merge: domain overwritten, slug added
         expect(m.keys).toEqual({ domain: 'new.com', slug: 'new-slug' });
 
-        // Metrics upsert: event-a updated, event-new appended
+        // Metrics upsert: event-a updated, event-new appended (canonicalized)
         const metrics = m.metrics as Record<string, unknown>[];
         expect(metrics.length).toBe(2);
-        expect(metrics[0].event_subtype).toBe('event-a');
+        expect(metrics[0].eventSubtype).toBe('event-a');
         expect(metrics[0].value).toBe(42);
-        expect(metrics[1].event_subtype).toBe('event-new');
+        expect(metrics[1].eventSubtype).toBe('event-new');
         expect(metrics[1].value).toBe(7);
 
         expect(m.planIds).toEqual(['plan-99', 'plan-100']);
