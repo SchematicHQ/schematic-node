@@ -5,6 +5,7 @@ import { RulesEngineClient } from '../rules-engine';
 import { Logger } from '../logger';
 import { LazyEmitter } from './emitter';
 import { partialCompany, partialUser, deepCopyCompany as deepCopyCompanyFn } from './merge';
+import * as serializers from '../serialization';
 
 // Import cache providers from the cache module
 import type { CacheProvider } from '../cache/types';
@@ -705,7 +706,18 @@ export class DataStreamClient extends LazyEmitter {
         return;
       }
     } else {
-      company = message.data as Schematic.RulesengineCompany;
+      try {
+        // passthrough (not the Fern default of "fail") so a payload carrying a
+        // field this SDK's schema doesn't know about yet — e.g. a server that
+        // ships ahead of the pinned SDK — is canonicalized to camelCase for its
+        // known fields and kept, rather than dropping the whole entity.
+        company = serializers.RulesengineCompany.parseOrThrow(message.data, {
+          unrecognizedObjectKeys: "passthrough",
+        });
+      } catch (error) {
+        this.logger.warn(`Failed to deserialize company payload: ${error}`);
+        return;
+      }
     }
 
     if (!company) {
@@ -768,7 +780,14 @@ export class DataStreamClient extends LazyEmitter {
         return;
       }
     } else {
-      user = message.data as Schematic.RulesengineUser;
+      try {
+        user = serializers.RulesengineUser.parseOrThrow(message.data, {
+          unrecognizedObjectKeys: "passthrough",
+        });
+      } catch (error) {
+        this.logger.warn(`Failed to deserialize user payload: ${error}`);
+        return;
+      }
     }
 
     if (!user) {
@@ -808,11 +827,26 @@ export class DataStreamClient extends LazyEmitter {
    * handleFlagsMessage processes bulk flags messages
    */
   private async handleFlagsMessage(message: DataStreamResp): Promise<void> {
-    const flags = message.data as Schematic.RulesengineFlag[];
-    
-    if (!Array.isArray(flags)) {
+    const rawFlags = message.data as unknown[];
+
+    if (!Array.isArray(rawFlags)) {
       this.logger.warn('Expected flags array in bulk flags message');
       return;
+    }
+
+    const flags: Schematic.RulesengineFlag[] = [];
+    let parseFailureCount = 0;
+    let firstFailure: unknown = undefined;
+    for (const raw of rawFlags) {
+      try {
+        flags.push(serializers.RulesengineFlag.parseOrThrow(raw, { unrecognizedObjectKeys: "passthrough" }));
+      } catch (error) {
+        parseFailureCount++;
+        if (firstFailure === undefined) firstFailure = error;
+      }
+    }
+    if (parseFailureCount > 0) {
+      this.logger.warn(`Failed to deserialize ${parseFailureCount} flag(s) in bulk message: ${String(firstFailure)}`);
     }
 
     const results = await Promise.allSettled(
@@ -854,8 +888,16 @@ export class DataStreamClient extends LazyEmitter {
    * handleFlagMessage processes single flag messages
    */
   private async handleFlagMessage(message: DataStreamResp): Promise<void> {
-    const flag = message.data as Schematic.RulesengineFlag;
-    
+    let flag: Schematic.RulesengineFlag;
+    try {
+      flag = serializers.RulesengineFlag.parseOrThrow(message.data, {
+        unrecognizedObjectKeys: "passthrough",
+      });
+    } catch (error) {
+      this.logger.warn(`Failed to deserialize flag payload: ${error}`);
+      return;
+    }
+
     if (!flag?.key) {
       return;
     }

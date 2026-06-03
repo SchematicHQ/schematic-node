@@ -1,23 +1,9 @@
 import type * as Schematic from "../api/types";
 
-/**
- * Helper to read a property that may be in camelCase or snake_case form.
- * Wire data from WebSocket uses snake_case; Fern-generated types use camelCase.
- */
-function getProp(obj: Record<string, unknown>, camel: string, snake: string): unknown {
-    return obj[camel] ?? obj[snake];
-}
-
-/**
- * Creates a complete deep copy of a Company object.
- */
 export function deepCopyCompany(c: Schematic.RulesengineCompany): Schematic.RulesengineCompany {
     return JSON.parse(JSON.stringify(c));
 }
 
-/**
- * Creates a complete deep copy of a User object.
- */
 export function deepCopyUser(u: Schematic.RulesengineUser): Schematic.RulesengineUser {
     return JSON.parse(JSON.stringify(u));
 }
@@ -36,9 +22,9 @@ export function deepCopyUser(u: Schematic.RulesengineUser): Schematic.Rulesengin
  *   - usage ← metric value matching (event_name, metric_period, month_reset)
  * Both are skipped when the partial also sends entitlements wholesale.
  *
- * Wire format uses snake_case keys. The existing company from cache
- * may have either camelCase or snake_case keys depending on how it
- * was stored.
+ * Partial updates arrive as raw wire payloads (snake_case keys) and are merged
+ * into an existing camelCase-canonicalized entity; each case writes the
+ * corresponding camelCase field so the cached entity stays in a single shape.
  */
 export function partialCompany(
     existing: Schematic.RulesengineCompany,
@@ -54,43 +40,55 @@ export function partialCompany(
     for (const key of Object.keys(partial)) {
         switch (key) {
             case "id":
+                merged.id = partial[key];
+                break;
             case "account_id":
+                merged.accountId = partial[key];
+                break;
             case "environment_id":
-                merged[key] = partial[key];
+                merged.environmentId = partial[key];
                 break;
             case "base_plan_id":
-                merged[key] = partial[key] ?? null;
+                merged.basePlanId = partial[key] ?? null;
                 break;
             case "billing_product_ids":
+                merged.billingProductIds = partial[key];
+                break;
             case "plan_ids":
+                merged.planIds = partial[key];
+                break;
             case "plan_version_ids":
+                merged.planVersionIds = partial[key];
+                break;
             case "entitlements":
+                merged.entitlements = partial[key];
+                break;
             case "rules":
+                merged.rules = partial[key];
+                break;
             case "traits":
+                merged.traits = partial[key];
+                break;
             case "subscription":
-                merged[key] = partial[key];
+                merged.subscription = partial[key];
                 break;
             case "keys": {
-                const existingKeys = (getProp(merged, "keys", "keys") ?? {}) as Record<string, string>;
+                const existingKeys = (merged.keys ?? {}) as Record<string, string>;
                 const incomingKeys = partial[key] as Record<string, string>;
-                merged[key] = { ...existingKeys, ...incomingKeys };
+                merged.keys = { ...existingKeys, ...incomingKeys };
                 break;
             }
             case "credit_balances": {
-                const existingCB = (getProp(merged, "creditBalances", "credit_balances") ?? {}) as Record<
-                    string,
-                    number
-                >;
+                const existingCB = (merged.creditBalances ?? {}) as Record<string, number>;
                 const incomingCB = (partial[key] ?? {}) as Record<string, number>;
-                merged[key] = { ...existingCB, ...incomingCB };
+                merged.creditBalances = { ...existingCB, ...incomingCB };
                 updatedBalances = incomingCB;
                 break;
             }
             case "metrics": {
-                const existingMetrics = ((getProp(merged, "metrics", "metrics") as unknown[]) ??
-                    []) as Schematic.RulesengineCompanyMetric[];
+                const existingMetrics = (merged.metrics ?? []) as Schematic.RulesengineCompanyMetric[];
                 const incomingMetrics = (partial[key] ?? []) as Schematic.RulesengineCompanyMetric[];
-                merged[key] = upsertMetrics(existingMetrics, incomingMetrics);
+                merged.metrics = upsertMetrics(existingMetrics, incomingMetrics);
                 metricsUpdated = true;
                 break;
             }
@@ -118,7 +116,7 @@ function syncEntitlementDerivedFields(
     updatedBalances: Record<string, number> | undefined,
     metricsUpdated: boolean,
 ): void {
-    const entitlements = (getProp(merged, "entitlements", "entitlements") ?? []) as Record<string, unknown>[];
+    const entitlements = (merged.entitlements ?? []) as Record<string, unknown>[];
     if (entitlements.length === 0) {
         return;
     }
@@ -127,7 +125,7 @@ function syncEntitlementDerivedFields(
     // upsert so entitlements can find their matching usage.
     const metricsLookup = new Map<string, number>();
     if (metricsUpdated) {
-        const mergedMetrics = (getProp(merged, "metrics", "metrics") ?? []) as Record<string, unknown>[];
+        const mergedMetrics = (merged.metrics ?? []) as Record<string, unknown>[];
         for (const m of mergedMetrics) {
             if (!m) continue;
             metricsLookup.set(metricKeyString(getMetricKey(m)), (m.value as number) ?? 0);
@@ -170,19 +168,25 @@ export function partialUser(
     for (const key of Object.keys(partial)) {
         switch (key) {
             case "id":
+                merged.id = partial[key];
+                break;
             case "account_id":
+                merged.accountId = partial[key];
+                break;
             case "environment_id":
-                merged[key] = partial[key];
+                merged.environmentId = partial[key];
                 break;
             case "keys": {
-                const existingKeys = (getProp(merged, "keys", "keys") ?? {}) as Record<string, string>;
+                const existingKeys = (merged.keys ?? {}) as Record<string, string>;
                 const incomingKeys = partial[key] as Record<string, string>;
-                merged[key] = { ...existingKeys, ...incomingKeys };
+                merged.keys = { ...existingKeys, ...incomingKeys };
                 break;
             }
             case "traits":
+                merged.traits = partial[key];
+                break;
             case "rules":
-                merged[key] = partial[key];
+                merged.rules = partial[key];
                 break;
             // Ignore unknown keys silently
         }
