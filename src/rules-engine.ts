@@ -50,12 +50,15 @@ export class RulesEngineClient {
         }
 
         try {
-            // Dynamic require so the WASM module (which uses fs/path) is never
-            // pulled into edge/webpack bundles — it only loads in Node.js at runtime.
-            // The variable indirection prevents webpack from resolving the path statically.
-            const wasmPath = './wasm/rulesengine.js';
-            // eslint-disable-next-line @typescript-eslint/no-require-imports
-            const wasm = require(wasmPath);
+            // Load the WASM loader via dynamic import() so bundlers code-split it
+            // into its own async chunk rather than inlining the (base64) binary
+            // into a consumer's entry bundle. A consumer that only uses the HTTP
+            // API and never reaches initialize() therefore doesn't ship the wasm.
+            // The loader is a CommonJS module (wasm-bindgen nodejs target), so
+            // unwrap the interop `default` before reading the export.
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const ns: any = await import('./wasm/rulesengine.js');
+            const wasm = ns.RulesEngineJS ? ns : (ns.default ?? ns);
             this.wasmInstance = new wasm.RulesEngineJS();
             this.initialized = true;
         } catch (error) {
