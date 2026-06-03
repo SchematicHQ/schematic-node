@@ -40,11 +40,23 @@ jest.mock('../../../src/datastream/websocket-client', () => {
   };
 });
 
-// Mock RulesEngineClient so we can control what checkFlag returns
-const mockRulesEngineInstance = {
+// Mock RulesEngineClient so we can control what checkFlag returns.
+// The real client routes evaluateFlag through `checkFlagWithOptions`; mock
+// it to delegate to `checkFlag` so existing tests that stub `checkFlag` keep
+// working without per-test churn.
+const mockRulesEngineInstance: {
+  initialize: jest.Mock;
+  isInitialized: jest.Mock;
+  checkFlag: jest.Mock;
+  checkFlagWithOptions: jest.Mock;
+  getVersionKey: jest.Mock;
+} = {
   initialize: jest.fn().mockResolvedValue(undefined),
   isInitialized: jest.fn().mockReturnValue(false),
   checkFlag: jest.fn(),
+  checkFlagWithOptions: jest.fn((flag, company, user, _options) =>
+    mockRulesEngineInstance.checkFlag(flag, company, user),
+  ),
   getVersionKey: jest.fn().mockReturnValue('1'),
 };
 
@@ -129,6 +141,26 @@ describe('DataStreamClient', () => {
   test('should initialize with default options', () => {
     expect(client).toBeInstanceOf(DataStreamClient);
     expect(client.isConnected()).toBe(false);
+  });
+
+  test('should default baseURL to the standard API environment when omitted', async () => {
+    // Mirrors the REST client's default so `useDataStream: true` works
+    // without an explicit basePath (the WS layer maps api.* hosts to their
+    // datastream.* counterpart).
+    const clientWithoutBaseURL = new DataStreamClient({
+      apiKey: 'test-api-key',
+      logger: mockLogger,
+    });
+    try {
+      await clientWithoutBaseURL.start();
+      expect(DatastreamWSClient).toHaveBeenCalledWith(
+        expect.objectContaining({ url: 'https://api.schematichq.com' }),
+      );
+    } finally {
+      clientWithoutBaseURL.removeAllListeners();
+      clientWithoutBaseURL.close();
+      await new Promise(resolve => setImmediate(resolve));
+    }
   });
 
   test('should initialize with custom cache providers', () => {
@@ -786,6 +818,49 @@ describe('DataStreamClient', () => {
     
     // Restore original fetch
     global.fetch = originalFetch;
+  });
+
+  test('forwards preflight options to the rules engine in replicator mode', async () => {
+    // The replicator branch of checkFlag evaluates straight from cache without
+    // any WS fetching — assert the preflight envelope still reaches the
+    // engine's checkFlagWithOptions there, not just on the datastream path.
+    const flagCache = new LocalCache<Schematic.RulesengineFlag>();
+    // The external replicator normally populates this cache; seed it directly
+    // under the same key the client computes (`flags:<engine version>:<key>`).
+    await flagCache.set('flags:1:test-flag', asFlag(mockFlag));
+
+    const replicatorClient = new DataStreamClient({
+      ...options,
+      replicatorMode: true,
+      flagCache,
+    });
+
+    mockRulesEngineInstance.isInitialized.mockReturnValue(true);
+    mockRulesEngineInstance.checkFlag.mockResolvedValue({ value: true, reason: 'ok' });
+
+    const preflight = {
+      usage: 5,
+      eventUsage: { eventSubtype: 'inference_tokens', quantity: 5 },
+      creditCost: { bilcr_inference: 50 },
+    };
+    try {
+      const result = await replicatorClient.checkFlag({ company: { name: 'Test Company' } }, 'test-flag', preflight);
+
+      expect(result.value).toBe(true);
+      // Company/user aren't cached, so the replicator branch evaluates them as
+      // null — but the preflight options must be threaded through verbatim.
+      expect(mockRulesEngineInstance.checkFlagWithOptions).toHaveBeenCalledWith(
+        expect.objectContaining({ id: 'flag-123' }),
+        null,
+        null,
+        preflight,
+      );
+    } finally {
+      mockRulesEngineInstance.isInitialized.mockReturnValue(false);
+      replicatorClient.removeAllListeners();
+      replicatorClient.close();
+      await new Promise(resolve => setImmediate(resolve));
+    }
   });
 
   test('should use rules engine version key for cache keys in non-replicator mode', async () => {

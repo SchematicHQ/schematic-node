@@ -10,11 +10,13 @@ CLAUDE.md
 LICENSE
 README.md
 WASM_VERSION
+biome.json
 build.js
 scripts/
 testapp/
 src/cache/
 src/core/fetcher/custom.ts
+src/credits/
 src/datastream/
 src/event-capture.ts
 src/events.test.ts
@@ -27,7 +29,9 @@ src/wasm/
 src/webhooks.ts
 src/wrapper.ts
 tests/cloudflare/
+tests/integration/
 tests/unit/cache/local.test.ts
+tests/unit/credits/
 tests/unit/datastream/datastream-client.test.ts
 tests/unit/datastream/merge.test.ts
 tests/unit/datastream/websocket-client.test.ts

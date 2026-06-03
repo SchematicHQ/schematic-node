@@ -96,17 +96,17 @@ class CustomLogger implements Logger {
         // Your custom error logging logic
         console.error(`[ERROR] ${message}`, ...args);
     }
-    
+
     warn(message: string, ...args: any[]): void {
         // Your custom warning logging logic
         console.warn(`[WARN] ${message}`, ...args);
     }
-    
+
     info(message: string, ...args: any[]): void {
         // Your custom info logging logic
         console.info(`[INFO] ${message}`, ...args);
     }
-    
+
     debug(message: string, ...args: any[]): void {
         // Your custom debug logging logic
         console.debug(`[DEBUG] ${message}`, ...args);
@@ -683,7 +683,7 @@ export default {
       ttl: 1000 * 60 * 60, // 1 hour cache TTL
       keyPrefix: 'schematic:', // Optional prefix for KV keys
     });
-    
+
     // Initialize Schematic with the KV cache
     const schematic = new SchematicClient({
       apiKey: env.SCHEMATIC_API_KEY,
@@ -691,10 +691,10 @@ export default {
         flagChecks: [cache],
       }
     });
-    
+
     // Your application logic...
     // ...
-    
+
     // Don't forget to close the client when done
     schematic.close();
   }
@@ -797,6 +797,111 @@ const client = new SchematicClient({
 | `replicatorHealthURL` | `string` | — | URL to poll for replicator health status |
 | `replicatorHealthCheck` | `number` | 30000 | Health check polling interval in milliseconds |
 | `cacheTTL` | `number` | 24 hours | Cache TTL in milliseconds |
+
+## Credit Leases and Reservations
+
+For features metered by credit burndown (e.g. inference tokens), the SDK can enforce credit balances locally — without a Schematic API call on every check — using a lease-and-reservation system:
+
+- A **lease** is a tranche of credits acquired transactionally from Schematic's API. It functions as a hold against the company's credit balance until it is consumed, released, or expires.
+- A **reservation** is a client-side hold carved out of the lease at check time, sized to the upper bound of the operation's usage. This protects against races and over-spend between the check and the eventual usage report.
+- When the work completes, a track call reports actual usage; the difference between reserved and actual usage is refunded to the lease.
+
+> **Requirements:** Credit leases require [DataStream](#datastream) (or [Replicator Mode](#replicator-mode)) — lease-bearing checks are evaluated locally against cached flag and company state. In a horizontally-scaled deployment, a shared Redis backend is also required so that all SDK instances gate against the same lease balance; without one, lease state is per-process.
+
+### Setup
+
+```ts
+import { createClient } from "redis";
+import { SchematicClient } from "@schematichq/schematic-typescript-node";
+
+const redisClient = createClient({ url: "redis://localhost:6379" });
+await redisClient.connect();
+
+const client = new SchematicClient({
+    apiKey: process.env.SCHEMATIC_API_KEY,
+    useDataStream: true,
+    dataStream: {
+        redisClient, // also backs lease + reservation state automatically
+    },
+    creditLeases: {
+        defaultLeaseDuration: 5 * 60 * 1000, // lease lifetime (ms)
+        defaultReservationTTL: 60 * 1000, // how long a reservation is held if not settled by a track (ms)
+        defaultLeaseSize: 10_000, // credits requested per lease
+        lowWaterMark: 0.25, // extend the lease in the background when its balance dips below this fraction
+    },
+});
+```
+
+When `dataStream.redisClient` is configured, lease and reservation state automatically lives in the same Redis, with atomic reservations driven by Lua scripts — no additional configuration needed. To point lease state at a *different* Redis, set `creditLeases.redisClient` explicitly.
+
+### Checking and tracking
+
+`check()` reserves the operation's upper-bound usage against the lease and returns a reservation handle; `trackWithReservation()` settles it with actual usage:
+
+```ts
+// Per-request: reserve up to maxTokens against the lease.
+const result = await client.check(
+    { company: { id: "your-company-id" } },
+    "inference",
+    {
+        usage: maxTokens, // upper bound for this operation
+        eventSubtype: "inference_tokens", // the metered event
+    },
+);
+if (!result.allowed) {
+    throw new Error("credit balance exceeded");
+}
+
+const inference = await runInference(/* ... */);
+
+// Report actual usage; the unused slice of the reservation is refunded to the lease.
+await client.trackWithReservation(result.reservation!, inference.tokensUsed);
+```
+
+If the caller never settles a reservation, it expires after `defaultReservationTTL` and its credits are returned to the lease. If the work outlives the reservation's TTL, `trackWithReservation` still bills the usage — the track event carries a deterministic idempotency key, so duplicate or recovery emits never double-bill. However, the local lease balance is not re-debited on that late settle (the expired reservation's hold was already swept back to the lease), so it reads high until the lease rolls over. **Set `defaultReservationTTL` above the longest expected gap between `check()` and `trackWithReservation()`** to keep the local balance accurate.
+
+### Pre-warming
+
+To avoid paying the lease-acquire round trip on a session's first check, pre-warm leases when the user is identified:
+
+```ts
+await client.identify(
+    {
+        keys: { userId: "your-user-id" },
+        company: { keys: { id: "your-company-id" } },
+    },
+    { prewarm: ["credit-type-id"] }, // credit type IDs to acquire leases for
+);
+```
+
+Or call `client.prewarm(evalCtx, creditTypeIds)` directly.
+
+### Failure behavior
+
+By default, a check that cannot be gated (API unreachable, Redis down, lease exhausted) **fails closed** (`allowed: false`). Override per check for callers where letting traffic through is preferable to a denial:
+
+```ts
+const result = await client.check(evalCtx, "inference", {
+    usage: maxTokens,
+    eventSubtype: "inference_tokens",
+    onAcquireFailure: "fail-open",
+});
+```
+
+`fail-open` does not skip evaluation: the flag's rules still run with the credit balance assumed sufficient, so plan targeting, overrides, and all non-credit conditions still apply — only the credit gate is bypassed.
+
+### Configuration options
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `defaultLeaseDuration` | `number` | 5 minutes | Lease lifetime in milliseconds |
+| `defaultReservationTTL` | `number` | 60 seconds | How long an unsettled reservation is held (ms); set above your longest expected work duration |
+| `defaultLeaseSize` | `number` | 10000 | Credits requested per lease acquire/extend |
+| `lowWaterMark` | `number` | 0.25 | Extend in the background when the lease balance dips below this fraction |
+| `sweepIntervalMs` | `number` | 1000 | Sweep interval for expired reservations (ms) |
+| `redisClient` | `RedisClient` | `dataStream.redisClient` | Redis client for lease + reservation state |
+| `redisKeyPrefix` | `string` | `dataStream.redisKeyPrefix` | Key prefix for lease + reservation keys |
+| `overrides` | `object` | — | Per-credit-type overrides of the above (keyed by credit type ID) |
 
 ## Testing
 

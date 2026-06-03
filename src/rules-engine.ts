@@ -1,4 +1,5 @@
-import * as Schematic from './api/types';
+import * as Schematic from "./api/types";
+import type { CheckFlagOptions } from "./wrapper";
 
 /** Entitlement details returned by the WASM rules engine  */
 export interface WasmFeatureEntitlement {
@@ -57,7 +58,7 @@ export class RulesEngineClient {
             // The loader is a CommonJS module (wasm-bindgen nodejs target), so
             // unwrap the interop `default` before reading the export.
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const ns: any = await import('./wasm/rulesengine.js');
+            const ns: any = await import("./wasm/rulesengine.js");
             const wasm = ns.RulesEngineJS ? ns : (ns.default ?? ns);
             this.wasmInstance = new wasm.RulesEngineJS();
             this.initialized = true;
@@ -66,27 +67,29 @@ export class RulesEngineClient {
         }
     }
 
-    async checkFlag(
+    async checkFlag(flag: object, company?: object | null, user?: object | null): Promise<WasmCheckFlagResult> {
+        return this.checkFlagWithOptions(flag, company, user);
+    }
+
+    async checkFlagWithOptions(
         flag: object,
         company?: object | null,
-        user?: object | null
+        user?: object | null,
+        options?: CheckFlagOptions | null,
     ): Promise<WasmCheckFlagResult> {
         this.ensureInitialized();
 
         // Strip null values — WASM/Rust serde expects arrays not null, and
         // uses #[serde(default)] to default missing fields to empty values.
-        const stripNulls = (_key: string, value: unknown) => value === null ? undefined : value;
+        const stripNulls = (_key: string, value: unknown) => (value === null ? undefined : value);
 
         try {
             const flagJson = JSON.stringify(flag, stripNulls);
             const companyJson = company ? JSON.stringify(company, stripNulls) : undefined;
             const userJson = user ? JSON.stringify(user, stripNulls) : undefined;
+            const optionsJson = options ? JSON.stringify(serializeCheckFlagOptions(options), stripNulls) : undefined;
 
-            const resultJson = this.wasmInstance!.checkFlag(
-                flagJson,
-                companyJson,
-                userJson
-            );
+            const resultJson = this.wasmInstance!.checkFlagWithOptions(flagJson, companyJson, userJson, optionsJson);
 
             return JSON.parse(resultJson);
         } catch (error) {
@@ -112,9 +115,27 @@ export class RulesEngineClient {
 
     private ensureInitialized(): void {
         if (!this.initialized || !this.wasmInstance) {
-            throw new Error('WASM rules engine not initialized. Call initialize() first.');
+            throw new Error("WASM rules engine not initialized. Call initialize() first.");
         }
     }
+}
+
+// Serialize CheckFlagOptions to the snake_case envelope the WASM expects.
+function serializeCheckFlagOptions(options: CheckFlagOptions): Record<string, unknown> {
+    const envelope: Record<string, unknown> = {};
+    if (options.creditCost && Object.keys(options.creditCost).length > 0) {
+        envelope.credit_cost = options.creditCost;
+    }
+    if (options.usage !== undefined) {
+        envelope.usage = options.usage;
+    }
+    if (options.eventUsage) {
+        envelope.event_usage = {
+            event_subtype: options.eventUsage.eventSubtype,
+            quantity: options.eventUsage.quantity,
+        };
+    }
+    return envelope;
 }
 
 // Export for backward compatibility

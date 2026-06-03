@@ -12,6 +12,14 @@ export { ConsoleLogger, LogLevel, type Logger } from "./logger";
 export { SchematicEnvironment } from "./environments";
 export { SchematicError, SchematicTimeoutError } from "./errors";
 export { RulesEngineClient } from "./rules-engine";
+export type {
+  CheckOptions,
+  CheckResult,
+  CreditLeaseConfig,
+  OnAcquireFailure,
+  Reservation,
+  TrackWithReservationOptions,
+} from "./credits";
 export {
   verifyWebhookSignature,
   verifySignature,

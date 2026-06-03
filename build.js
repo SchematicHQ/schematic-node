@@ -97,7 +97,7 @@ function inlineWasmBinary() {
   // Match the wasm-bindgen-emitted block that reads the binary off disk.
   // Captures any whitespace/comments wasm-bindgen emits between the two
   // statements so future loader updates don't silently bypass this step.
-  const loaderPattern = /const wasmPath = `\$\{__dirname\}\/rulesengine_bg\.wasm`;\s*\nconst wasmBytes = require\('fs'\)\.readFileSync\(wasmPath\);/;
+  const loaderPattern = /const wasmPath = `\$\{__dirname\}\/rulesengine_bg\.wasm`;\s*\nconst wasmBytes = require\((['\"])fs\1\)\.readFileSync\(wasmPath\);/;
   if (!loaderPattern.test(loaderSource)) {
     throw new Error(
       'WASM inlining failed: expected `const wasmPath = `${__dirname}/...`; const wasmBytes = require(\'fs\').readFileSync(wasmPath);` in ' +
