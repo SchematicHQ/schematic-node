@@ -35,6 +35,7 @@ tests/unit/event-capture.test.ts
 tests/unit/events.test.ts
 tests/unit/logger.test.ts
 tests/unit/rules-engine.test.ts
+tests/unit/wasm-datastream.test.ts
 tests/unit/wasm-integration.test.ts
 tests/unit/webhooks.test.ts
 tests/unit/wrapper.test.ts
