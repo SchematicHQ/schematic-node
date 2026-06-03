@@ -85,16 +85,25 @@ jobs:
             echo "ERROR: dist/index.js not found"
             exit 1
           fi
-          if [ ! -f dist/wasm/rulesengine_bg.wasm ]; then
-            echo "ERROR: dist/wasm/rulesengine_bg.wasm not found"
-            echo "The build may have failed to copy WASM artifacts"
-            exit 1
-          fi
           if [ ! -f dist/wasm/rulesengine.js ]; then
             echo "ERROR: dist/wasm/rulesengine.js not found"
             exit 1
           fi
-          echo "Verified: WASM artifacts present in dist/wasm/"
+          # The .wasm binary is base64-inlined into rulesengine.js at build
+          # time (see build.js inlineWasmBinary), so the standalone .wasm
+          # is intentionally absent from dist/. Verify the inlining sentinel
+          # is present instead — guards against a future build change that
+          # silently reverts to the disk-loaded path.
+          if ! grep -q "WASM binary inlined at build time" dist/wasm/rulesengine.js; then
+            echo "ERROR: dist/wasm/rulesengine.js does not contain the inlined WASM sentinel"
+            echo "The build may have failed to run inlineWasmBinary()"
+            exit 1
+          fi
+          if [ -f dist/wasm/rulesengine_bg.wasm ]; then
+            echo "ERROR: dist/wasm/rulesengine_bg.wasm should have been removed by inlineWasmBinary()"
+            exit 1
+          fi
+          echo "Verified: WASM inlined into dist/wasm/rulesengine.js"
 
   publish:
     needs: [ compile, test, verify-package ]
