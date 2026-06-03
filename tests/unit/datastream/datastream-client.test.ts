@@ -7,6 +7,23 @@ import { DatastreamWSClient } from '../../../src/datastream/websocket-client';
 import { DataStreamResp, EntityType, MessageType } from '../../../src/datastream/types';
 import { Logger } from '../../../src/logger';
 import * as Schematic from '../../../src/api/types';
+import * as serializers from '../../../src/serialization';
+
+const PARSE_OPTS = {
+  allowUnrecognizedEnumValues: true,
+  allowUnrecognizedUnionMembers: true,
+  unrecognizedObjectKeys: 'passthrough' as const,
+};
+// The SUT runs incoming snake_case wire payloads through Fern's parseOrThrow
+// to canonicalize them to camelCase before caching. Mock fixtures are written
+// in wire format (snake_case), so we route them through the same serializer
+// to compute the expected camelCase shape returned by getCompany/getUser/getFlag.
+const asCompany = (c: unknown): Schematic.RulesengineCompany =>
+  serializers.RulesengineCompany.parseOrThrow(c, PARSE_OPTS);
+const asUser = (u: unknown): Schematic.RulesengineUser =>
+  serializers.RulesengineUser.parseOrThrow(u, PARSE_OPTS);
+const asFlag = (f: unknown): Schematic.RulesengineFlag =>
+  serializers.RulesengineFlag.parseOrThrow(f, PARSE_OPTS);
 // Mock DatastreamWSClient
 const mockDatastreamWSClientInstance = {
   on: jest.fn(),
@@ -52,8 +69,8 @@ describe('DataStreamClient', () => {
     rules: [],
     metrics: [],
     plan_ids: [],
+    plan_version_ids: [],
     billing_product_ids: [],
-    crm_product_ids: [],
     credit_balances: {},
   } as unknown as Schematic.RulesengineCompany;
 
@@ -251,7 +268,45 @@ describe('DataStreamClient', () => {
 
     // Verify company is cached and can be retrieved using the correct keys
     const retrievedCompany = await client.getCompany(mockCompany.keys!);
-    expect(retrievedCompany).toEqual(mockCompany);
+    expect(retrievedCompany).toEqual(asCompany(mockCompany));
+  }, 10000);
+
+  test('keeps a company carrying an unknown field instead of dropping it (forward-compat)', async () => {
+    // A server running ahead of this SDK can ship a field the generated schema
+    // doesn't know yet. parseOrThrow defaults to dropping the whole entity on an
+    // unrecognized key; the SUT overrides that to "passthrough" so the company
+    // is still cached (known fields canonicalized, unknown field retained).
+    await client.start();
+
+    const DatastreamWSClientMock = DatastreamWSClient as jest.MockedClass<typeof DatastreamWSClient>;
+    const messageHandler = DatastreamWSClientMock.mock.calls[0][0].messageHandler;
+
+    const companyWithUnknownField = {
+      ...(mockCompany as unknown as Record<string, unknown>),
+      id: 'company-future',
+      keys: { name: 'Future Co' },
+      // Field this SDK's schema has never seen:
+      some_future_field: { nested: 'value' },
+    };
+
+    await messageHandler({
+      entity_type: EntityType.COMPANY,
+      message_type: MessageType.FULL,
+      data: companyWithUnknownField,
+    } as DataStreamResp);
+
+    // The entity was kept (not dropped), known fields canonicalized to camelCase.
+    const retrieved = await client.getCompany({ name: 'Future Co' });
+    expect(retrieved).toBeDefined();
+    expect(retrieved?.id).toBe('company-future');
+    // The unknown field survives passthrough.
+    expect((retrieved as unknown as Record<string, unknown>).some_future_field).toEqual({
+      nested: 'value',
+    });
+    // And we did not warn about a failed deserialize.
+    expect(mockLogger.warn).not.toHaveBeenCalledWith(
+      expect.stringContaining('Failed to deserialize company payload'),
+    );
   }, 10000);
 
   test('should handle user messages and update cache', async () => {
@@ -273,7 +328,7 @@ describe('DataStreamClient', () => {
 
     // Verify user is cached and can be retrieved using the correct keys
     const retrievedUser = await client.getUser(mockUser.keys!);
-    expect(retrievedUser).toEqual(mockUser);
+    expect(retrievedUser).toEqual(asUser(mockUser));
   }, 10000);
 
   test('should handle flag messages and update cache', async () => {
@@ -295,7 +350,7 @@ describe('DataStreamClient', () => {
 
     // Verify flag is cached and can be retrieved
     const retrievedFlag = await client.getFlag(mockFlag.key);
-    expect(retrievedFlag).toEqual(mockFlag);
+    expect(retrievedFlag).toEqual(asFlag(mockFlag));
   });
 
   test('should handle partial entity message merging', async () => {
@@ -311,12 +366,12 @@ describe('DataStreamClient', () => {
       account_id: 'account-123',
       environment_id: 'env-123',
       keys: { name: 'Partial Corp' },
-      traits: [{ key: 'tier', value: 'free' }],
+      traits: [{ value: 'free' }],
       rules: [],
       metrics: [],
       plan_ids: ['plan-1'],
+      plan_version_ids: [],
       billing_product_ids: [],
-      crm_product_ids: [],
       credit_balances: {},
     } as unknown as Schematic.RulesengineCompany;
 
@@ -328,7 +383,7 @@ describe('DataStreamClient', () => {
 
     // Verify the full company is cached
     const cachedFull = await client.getCompany({ name: 'Partial Corp' });
-    expect(cachedFull).toEqual(fullCompany);
+    expect(cachedFull).toEqual(asCompany(fullCompany));
 
     // Send a PARTIAL company message. Wire shape: data is the partial fields,
     // entity_id at the top level identifies the cached company to merge into.
@@ -338,22 +393,24 @@ describe('DataStreamClient', () => {
       message_type: MessageType.PARTIAL,
       data: {
         keys: { name: 'Partial Corp' },
-        traits: [{ key: 'tier', value: 'enterprise' }],
+        traits: [{ value: 'enterprise' }],
         plan_ids: ['plan-2'],
       },
     });
 
     // Partial messages are now properly merged: fields in the partial update
     // the cached entity, while fields not present in the partial are preserved.
+    // Cached values are camelCase (canonicalized by parseOrThrow on the FULL
+    // message), and partialCompany writes camelCase keys, so assertions read
+    // camelCase regardless of whether the field was full-loaded or merged.
     const cachedAfterPartial = await client.getCompany({ name: 'Partial Corp' });
     expect(cachedAfterPartial.id).toBe('company-partial');
-    expect((cachedAfterPartial as any).traits).toEqual([{ key: 'tier', value: 'enterprise' }]);
-    expect((cachedAfterPartial as any).plan_ids).toEqual(['plan-2']);
-    // Original fields not present in the partial message are preserved
+    expect((cachedAfterPartial as any).traits).toEqual([{ value: 'enterprise' }]);
+    expect((cachedAfterPartial as any).planIds).toEqual(['plan-2']);
     expect((cachedAfterPartial as any).metrics).toEqual([]);
     expect((cachedAfterPartial as any).rules).toEqual([]);
-    expect((cachedAfterPartial as any).account_id).toBe('account-123');
-    expect((cachedAfterPartial as any).billing_product_ids).toEqual([]);
+    expect((cachedAfterPartial as any).accountId).toBe('account-123');
+    expect((cachedAfterPartial as any).billingProductIds).toEqual([]);
   }, 10000);
 
   test('should skip partial company message when entity is not in cache', async () => {
@@ -561,9 +618,9 @@ describe('DataStreamClient', () => {
     const cachedUser = await client.getUser(mockUser.keys!);
     const cachedFlag = await client.getFlag(mockFlag.key);
 
-    expect(cachedCompany).toEqual(mockCompany);
-    expect(cachedUser).toEqual(mockUser);
-    expect(cachedFlag).toEqual(mockFlag);
+    expect(cachedCompany).toEqual(asCompany(mockCompany));
+    expect(cachedUser).toEqual(asUser(mockUser));
+    expect(cachedFlag).toEqual(asFlag(mockFlag));
   });
 
   test('should handle error type messages from WebSocket', async () => {
@@ -793,8 +850,8 @@ describe('DataStreamClient', () => {
       rules: [],
       metrics: [],
       plan_ids: [],
+      plan_version_ids: [],
       billing_product_ids: [],
-      crm_product_ids: [],
       credit_balances: {},
     } as unknown as Schematic.RulesengineCompany;
 
@@ -827,9 +884,9 @@ describe('DataStreamClient', () => {
       const bySlug = await client.getCompany({ slug: 'acme-corp' });
       const byExtId = await client.getCompany({ external_id: 'ext-1' });
 
-      expect(byName).toEqual(multiKeyCompany);
-      expect(bySlug).toEqual(multiKeyCompany);
-      expect(byExtId).toEqual(multiKeyCompany);
+      expect(byName).toEqual(asCompany(multiKeyCompany));
+      expect(bySlug).toEqual(asCompany(multiKeyCompany));
+      expect(byExtId).toEqual(asCompany(multiKeyCompany));
     });
 
     test('should retrieve user by any of its keys after caching', async () => {
@@ -842,8 +899,8 @@ describe('DataStreamClient', () => {
       const byEmail = await client.getUser({ email: 'alice@example.com' });
       const byUserId = await client.getUser({ user_id: 'u-1' });
 
-      expect(byEmail).toEqual(multiKeyUser);
-      expect(byUserId).toEqual(multiKeyUser);
+      expect(byEmail).toEqual(asUser(multiKeyUser));
+      expect(byUserId).toEqual(asUser(multiKeyUser));
     });
 
     test('should remove company from cache on DELETE for all keys', async () => {
@@ -859,7 +916,7 @@ describe('DataStreamClient', () => {
       // Verify it's cached — returns from cache without sending a WS request
       mockDatastreamWSClientInstance.sendMessage.mockClear();
       const cached = await client.getCompany({ name: 'acme' });
-      expect(cached).toEqual(multiKeyCompany);
+      expect(cached).toEqual(asCompany(multiKeyCompany));
       expect(mockDatastreamWSClientInstance.sendMessage).not.toHaveBeenCalled();
 
       // Send DELETE
@@ -904,7 +961,7 @@ describe('DataStreamClient', () => {
       // Verify it's cached — returns from cache without sending a WS request
       mockDatastreamWSClientInstance.sendMessage.mockClear();
       const cached = await client.getUser({ email: 'alice@example.com' });
-      expect(cached).toEqual(multiKeyUser);
+      expect(cached).toEqual(asUser(multiKeyUser));
       expect(mockDatastreamWSClientInstance.sendMessage).not.toHaveBeenCalled();
 
       // Send DELETE
@@ -945,7 +1002,7 @@ describe('DataStreamClient', () => {
       // Send updated company with same keys but different data
       const updatedCompany = {
         ...multiKeyCompany,
-        traits: [{ key: 'tier', value: 'enterprise' }],
+        traits: [{ value: 'enterprise' }],
       } as unknown as Schematic.RulesengineCompany;
 
       await messageHandler({
@@ -958,8 +1015,8 @@ describe('DataStreamClient', () => {
       const byName = await client.getCompany({ name: 'acme' });
       const bySlug = await client.getCompany({ slug: 'acme-corp' });
 
-      expect(byName).toEqual(updatedCompany);
-      expect(bySlug).toEqual(updatedCompany);
+      expect(byName).toEqual(asCompany(updatedCompany));
+      expect(bySlug).toEqual(asCompany(updatedCompany));
     });
 
     test('should handle deep copy to prevent mutation of cached entities', async () => {
@@ -972,7 +1029,7 @@ describe('DataStreamClient', () => {
 
       // Retrieve the company from cache
       const firstRetrieval = await client.getCompany({ name: 'acme' });
-      expect(firstRetrieval).toEqual(multiKeyCompany);
+      expect(firstRetrieval).toEqual(asCompany(multiKeyCompany));
 
       // Mutate a field on the returned object
       (firstRetrieval as any).traits = [{ key: 'mutated', value: 'yes' }];
@@ -999,9 +1056,9 @@ describe('DataStreamClient', () => {
       });
 
       // Verify all three keys resolve from cache
-      expect(await client.getCompany({ name: 'acme' })).toEqual(multiKeyCompany);
-      expect(await client.getCompany({ slug: 'acme-corp' })).toEqual(multiKeyCompany);
-      expect(await client.getCompany({ external_id: 'ext-1' })).toEqual(multiKeyCompany);
+      expect(await client.getCompany({ name: 'acme' })).toEqual(asCompany(multiKeyCompany));
+      expect(await client.getCompany({ slug: 'acme-corp' })).toEqual(asCompany(multiKeyCompany));
+      expect(await client.getCompany({ external_id: 'ext-1' })).toEqual(asCompany(multiKeyCompany));
 
       // Update with only two keys — external_id has been removed
       const updatedCompany = {
@@ -1016,8 +1073,8 @@ describe('DataStreamClient', () => {
       });
 
       // Remaining keys should still resolve from cache
-      expect(await client.getCompany({ name: 'acme' })).toEqual(updatedCompany);
-      expect(await client.getCompany({ slug: 'acme-corp' })).toEqual(updatedCompany);
+      expect(await client.getCompany({ name: 'acme' })).toEqual(asCompany(updatedCompany));
+      expect(await client.getCompany({ slug: 'acme-corp' })).toEqual(asCompany(updatedCompany));
 
       // Removed key should miss cache and trigger a WS request
       mockDatastreamWSClientInstance.sendMessage.mockClear();
@@ -1045,8 +1102,8 @@ describe('DataStreamClient', () => {
       });
 
       // Verify both keys resolve from cache
-      expect(await client.getUser({ email: 'alice@example.com' })).toEqual(multiKeyUser);
-      expect(await client.getUser({ user_id: 'u-1' })).toEqual(multiKeyUser);
+      expect(await client.getUser({ email: 'alice@example.com' })).toEqual(asUser(multiKeyUser));
+      expect(await client.getUser({ user_id: 'u-1' })).toEqual(asUser(multiKeyUser));
 
       // Update with only email — user_id has been removed
       const updatedUser = {
@@ -1061,7 +1118,7 @@ describe('DataStreamClient', () => {
       });
 
       // Remaining key should still resolve from cache
-      expect(await client.getUser({ email: 'alice@example.com' })).toEqual(updatedUser);
+      expect(await client.getUser({ email: 'alice@example.com' })).toEqual(asUser(updatedUser));
 
       // Removed key should miss cache and trigger a WS request
       mockDatastreamWSClientInstance.sendMessage.mockClear();
@@ -1088,7 +1145,7 @@ describe('DataStreamClient', () => {
         data: multiKeyCompany,
       });
 
-      expect(await client.getCompany({ slug: 'acme-corp' })).toEqual(multiKeyCompany);
+      expect(await client.getCompany({ slug: 'acme-corp' })).toEqual(asCompany(multiKeyCompany));
 
       // Update: slug value changed from 'acme-corp' to 'acme-inc'
       const updatedCompany = {
@@ -1103,7 +1160,7 @@ describe('DataStreamClient', () => {
       });
 
       // New slug should resolve from cache
-      expect(await client.getCompany({ slug: 'acme-inc' })).toEqual(updatedCompany);
+      expect(await client.getCompany({ slug: 'acme-inc' })).toEqual(asCompany(updatedCompany));
 
       // Old slug value should miss cache and trigger a WS request
       mockDatastreamWSClientInstance.sendMessage.mockClear();
@@ -1124,7 +1181,16 @@ describe('DataStreamClient', () => {
       const companyWithMetrics = {
         ...multiKeyCompany,
         metrics: [
-          { eventSubtype: 'api-call', value: 10 },
+          {
+            account_id: 'account-123',
+            company_id: 'company-multi',
+            created_at: '2026-01-01T00:00:00Z',
+            environment_id: 'env-123',
+            event_subtype: 'api-call',
+            month_reset: 'first_of_month',
+            period: 'all_time',
+            value: 10,
+          },
         ],
       } as unknown as Schematic.RulesengineCompany;
 
@@ -1156,8 +1222,8 @@ describe('DataStreamClient', () => {
       rules: [],
       metrics: [],
       plan_ids: [],
+      plan_version_ids: [],
       billing_product_ids: [],
-      crm_product_ids: [],
       credit_balances: {},
     } as unknown as Schematic.RulesengineCompany;
 
