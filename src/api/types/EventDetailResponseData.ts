@@ -17,6 +17,7 @@ export interface EventDetailResponseData {
     features: Schematic.PreviewObject[];
     id: string;
     idempotencyKey?: string;
+    leaseId?: string;
     loadedAt?: Date;
     processedAt?: Date;
     quantity: number;

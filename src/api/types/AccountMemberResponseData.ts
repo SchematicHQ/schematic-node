@@ -5,8 +5,10 @@ import type * as Schematic from "../index";
 export interface AccountMemberResponseData {
     createdAt: Date;
     email?: string;
+    firstName?: string;
     id: string;
     imageUrl?: string;
+    lastName?: string;
     name?: string;
     permissions: Record<string, Schematic.AccountMemberPermission[]>;
     role?: Schematic.AccountMemberRole;

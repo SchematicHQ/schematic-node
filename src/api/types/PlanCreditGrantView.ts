@@ -34,6 +34,7 @@ export interface PlanCreditGrantView {
     resetCadence?: Schematic.BillingPlanCreditGrantResetCadence;
     resetStart?: Schematic.BillingPlanCreditGrantResetStart;
     resetType: Schematic.BillingPlanCreditGrantResetType;
+    rolloverPercentage: number;
     /** Deprecated field, will be removed in the future. Use Credit.SingularName instead. */
     singularName?: string;
     updatedAt: Date;

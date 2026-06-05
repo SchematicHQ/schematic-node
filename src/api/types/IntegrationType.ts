@@ -2,6 +2,7 @@
 
 export const IntegrationType = {
     Clerk: "clerk",
+    Metronome: "metronome",
     Orb: "orb",
     Stripe: "stripe",
     Unknown: "unknown",

@@ -8,6 +8,7 @@ export interface ChangeSubscriptionInternalRequestBody {
     companyId: string;
     couponExternalId?: string;
     creditBundles: Schematic.UpdateCreditBundleRequestBody[];
+    customFieldValues: Schematic.CheckoutFieldValue[];
     newPlanId: string;
     newPriceId: string;
     payInAdvance: Schematic.UpdatePayInAdvanceRequestBody[];

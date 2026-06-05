@@ -12,6 +12,7 @@ export interface ManagePlanRequest {
     companyId: string;
     couponExternalId?: string;
     creditBundles: Schematic.UpdateCreditBundleRequestBody[];
+    customFieldValues: Schematic.CheckoutFieldValue[];
     payInAdvanceEntitlements: Schematic.UpdatePayInAdvanceRequestBody[];
     paymentMethodExternalId?: string;
     promoCode?: string;

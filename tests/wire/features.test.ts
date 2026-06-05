@@ -13,9 +13,9 @@ describe("FeaturesClient", () => {
             data: [
                 {
                     billing_linked_resource: {
-                        billing_provider: "orb",
+                        billing_provider: "metronome",
                         external_resource_id: "external_resource_id",
-                        originator: "orb",
+                        originator: "metronome",
                     },
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
@@ -121,7 +121,7 @@ describe("FeaturesClient", () => {
                 feature_type: ["boolean"],
                 ids: ["ids"],
                 limit: 1000000,
-                managed_by: "orb",
+                managed_by: "metronome",
                 offset: 1000000,
                 plan_version_id: "plan_version_id",
                 q: "q",
@@ -136,7 +136,7 @@ describe("FeaturesClient", () => {
             booleanRequireEvent: true,
             featureType: ["boolean"],
             ids: ["ids"],
-            managedBy: "orb",
+            managedBy: "metronome",
             planVersionId: "plan_version_id",
             q: "q",
             withoutCompanyOverrideFor: "without_company_override_for",
@@ -148,9 +148,9 @@ describe("FeaturesClient", () => {
             data: [
                 {
                     billingLinkedResource: {
-                        billingProvider: "orb",
+                        billingProvider: "metronome",
                         externalResourceId: "external_resource_id",
-                        originator: "orb",
+                        originator: "metronome",
                     },
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
@@ -273,7 +273,7 @@ describe("FeaturesClient", () => {
                 featureType: ["boolean"],
                 ids: ["ids"],
                 limit: 1000000,
-                managedBy: "orb",
+                managedBy: "metronome",
                 offset: 1000000,
                 planVersionId: "plan_version_id",
                 q: "q",
@@ -355,9 +355,9 @@ describe("FeaturesClient", () => {
         const rawResponseBody = {
             data: {
                 billing_linked_resource: {
-                    billing_provider: "orb",
+                    billing_provider: "metronome",
                     external_resource_id: "external_resource_id",
-                    originator: "orb",
+                    originator: "metronome",
                 },
                 created_at: "2024-01-15T09:30:00Z",
                 description: "description",
@@ -438,8 +438,10 @@ describe("FeaturesClient", () => {
                 maintainer: {
                     created_at: "2024-01-15T09:30:00Z",
                     email: "email",
+                    first_name: "first_name",
                     id: "id",
                     image_url: "image_url",
+                    last_name: "last_name",
                     name: "name",
                     permissions: { key: ["billing_credits_edit"] },
                     role: "admin",
@@ -482,9 +484,9 @@ describe("FeaturesClient", () => {
         expect(response).toEqual({
             data: {
                 billingLinkedResource: {
-                    billingProvider: "orb",
+                    billingProvider: "metronome",
                     externalResourceId: "external_resource_id",
-                    originator: "orb",
+                    originator: "metronome",
                 },
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 description: "description",
@@ -575,8 +577,10 @@ describe("FeaturesClient", () => {
                 maintainer: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     email: "email",
+                    firstName: "first_name",
                     id: "id",
                     imageUrl: "image_url",
+                    lastName: "last_name",
                     name: "name",
                     permissions: {
                         key: ["billing_credits_edit"],
@@ -739,9 +743,9 @@ describe("FeaturesClient", () => {
         const rawResponseBody = {
             data: {
                 billing_linked_resource: {
-                    billing_provider: "orb",
+                    billing_provider: "metronome",
                     external_resource_id: "external_resource_id",
-                    originator: "orb",
+                    originator: "metronome",
                 },
                 created_at: "2024-01-15T09:30:00Z",
                 description: "description",
@@ -822,8 +826,10 @@ describe("FeaturesClient", () => {
                 maintainer: {
                     created_at: "2024-01-15T09:30:00Z",
                     email: "email",
+                    first_name: "first_name",
                     id: "id",
                     image_url: "image_url",
+                    last_name: "last_name",
                     name: "name",
                     permissions: { key: ["billing_credits_edit"] },
                     role: "admin",
@@ -861,9 +867,9 @@ describe("FeaturesClient", () => {
         expect(response).toEqual({
             data: {
                 billingLinkedResource: {
-                    billingProvider: "orb",
+                    billingProvider: "metronome",
                     externalResourceId: "external_resource_id",
-                    originator: "orb",
+                    originator: "metronome",
                 },
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 description: "description",
@@ -954,8 +960,10 @@ describe("FeaturesClient", () => {
                 maintainer: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     email: "email",
+                    firstName: "first_name",
                     id: "id",
                     imageUrl: "image_url",
+                    lastName: "last_name",
                     name: "name",
                     permissions: {
                         key: ["billing_credits_edit"],
@@ -1074,9 +1082,9 @@ describe("FeaturesClient", () => {
         const rawResponseBody = {
             data: {
                 billing_linked_resource: {
-                    billing_provider: "orb",
+                    billing_provider: "metronome",
                     external_resource_id: "external_resource_id",
-                    originator: "orb",
+                    originator: "metronome",
                 },
                 created_at: "2024-01-15T09:30:00Z",
                 description: "description",
@@ -1157,8 +1165,10 @@ describe("FeaturesClient", () => {
                 maintainer: {
                     created_at: "2024-01-15T09:30:00Z",
                     email: "email",
+                    first_name: "first_name",
                     id: "id",
                     image_url: "image_url",
+                    last_name: "last_name",
                     name: "name",
                     permissions: { key: ["billing_credits_edit"] },
                     role: "admin",
@@ -1197,9 +1207,9 @@ describe("FeaturesClient", () => {
         expect(response).toEqual({
             data: {
                 billingLinkedResource: {
-                    billingProvider: "orb",
+                    billingProvider: "metronome",
                     externalResourceId: "external_resource_id",
-                    originator: "orb",
+                    originator: "metronome",
                 },
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 description: "description",
@@ -1290,8 +1300,10 @@ describe("FeaturesClient", () => {
                 maintainer: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     email: "email",
+                    firstName: "first_name",
                     id: "id",
                     imageUrl: "image_url",
+                    lastName: "last_name",
                     name: "name",
                     permissions: {
                         key: ["billing_credits_edit"],
@@ -1551,7 +1563,7 @@ describe("FeaturesClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            billing_provider: "orb",
+            billing_provider: "metronome",
             description: "description",
             external_resource_id: "external_resource_id",
             feature_type: "boolean",
@@ -1560,9 +1572,9 @@ describe("FeaturesClient", () => {
         const rawResponseBody = {
             data: {
                 billing_linked_resource: {
-                    billing_provider: "orb",
+                    billing_provider: "metronome",
                     external_resource_id: "external_resource_id",
-                    originator: "orb",
+                    originator: "metronome",
                 },
                 created_at: "2024-01-15T09:30:00Z",
                 description: "description",
@@ -1643,8 +1655,10 @@ describe("FeaturesClient", () => {
                 maintainer: {
                     created_at: "2024-01-15T09:30:00Z",
                     email: "email",
+                    first_name: "first_name",
                     id: "id",
                     image_url: "image_url",
+                    last_name: "last_name",
                     name: "name",
                     permissions: { key: ["billing_credits_edit"] },
                     role: "admin",
@@ -1680,7 +1694,7 @@ describe("FeaturesClient", () => {
             .build();
 
         const response = await client.features.upsertFeatureForBillingProduct({
-            billingProvider: "orb",
+            billingProvider: "metronome",
             description: "description",
             externalResourceId: "external_resource_id",
             featureType: "boolean",
@@ -1689,9 +1703,9 @@ describe("FeaturesClient", () => {
         expect(response).toEqual({
             data: {
                 billingLinkedResource: {
-                    billingProvider: "orb",
+                    billingProvider: "metronome",
                     externalResourceId: "external_resource_id",
-                    originator: "orb",
+                    originator: "metronome",
                 },
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 description: "description",
@@ -1782,8 +1796,10 @@ describe("FeaturesClient", () => {
                 maintainer: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     email: "email",
+                    firstName: "first_name",
                     id: "id",
                     imageUrl: "image_url",
+                    lastName: "last_name",
                     name: "name",
                     permissions: {
                         key: ["billing_credits_edit"],
@@ -1823,7 +1839,7 @@ describe("FeaturesClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            billing_provider: "orb",
+            billing_provider: "metronome",
             description: "description",
             external_resource_id: "external_resource_id",
             feature_type: "boolean",
@@ -1842,7 +1858,7 @@ describe("FeaturesClient", () => {
 
         await expect(async () => {
             return await client.features.upsertFeatureForBillingProduct({
-                billingProvider: "orb",
+                billingProvider: "metronome",
                 description: "description",
                 externalResourceId: "external_resource_id",
                 featureType: "boolean",
@@ -1855,7 +1871,7 @@ describe("FeaturesClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            billing_provider: "orb",
+            billing_provider: "metronome",
             description: "description",
             external_resource_id: "external_resource_id",
             feature_type: "boolean",
@@ -1874,7 +1890,7 @@ describe("FeaturesClient", () => {
 
         await expect(async () => {
             return await client.features.upsertFeatureForBillingProduct({
-                billingProvider: "orb",
+                billingProvider: "metronome",
                 description: "description",
                 externalResourceId: "external_resource_id",
                 featureType: "boolean",
@@ -1887,7 +1903,7 @@ describe("FeaturesClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            billing_provider: "orb",
+            billing_provider: "metronome",
             description: "description",
             external_resource_id: "external_resource_id",
             feature_type: "boolean",
@@ -1906,7 +1922,7 @@ describe("FeaturesClient", () => {
 
         await expect(async () => {
             return await client.features.upsertFeatureForBillingProduct({
-                billingProvider: "orb",
+                billingProvider: "metronome",
                 description: "description",
                 externalResourceId: "external_resource_id",
                 featureType: "boolean",
@@ -1919,7 +1935,7 @@ describe("FeaturesClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            billing_provider: "orb",
+            billing_provider: "metronome",
             description: "description",
             external_resource_id: "external_resource_id",
             feature_type: "boolean",
@@ -1938,7 +1954,7 @@ describe("FeaturesClient", () => {
 
         await expect(async () => {
             return await client.features.upsertFeatureForBillingProduct({
-                billingProvider: "orb",
+                billingProvider: "metronome",
                 description: "description",
                 externalResourceId: "external_resource_id",
                 featureType: "boolean",
@@ -1951,7 +1967,7 @@ describe("FeaturesClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            billing_provider: "orb",
+            billing_provider: "metronome",
             description: "description",
             external_resource_id: "external_resource_id",
             feature_type: "boolean",
@@ -1970,7 +1986,7 @@ describe("FeaturesClient", () => {
 
         await expect(async () => {
             return await client.features.upsertFeatureForBillingProduct({
-                billingProvider: "orb",
+                billingProvider: "metronome",
                 description: "description",
                 externalResourceId: "external_resource_id",
                 featureType: "boolean",
@@ -1990,7 +2006,7 @@ describe("FeaturesClient", () => {
                 feature_type: ["boolean"],
                 ids: ["ids"],
                 limit: 1000000,
-                managed_by: "orb",
+                managed_by: "metronome",
                 offset: 1000000,
                 plan_version_id: "plan_version_id",
                 q: "q",
@@ -2005,7 +2021,7 @@ describe("FeaturesClient", () => {
             booleanRequireEvent: true,
             featureType: ["boolean"],
             ids: ["ids"],
-            managedBy: "orb",
+            managedBy: "metronome",
             planVersionId: "plan_version_id",
             q: "q",
             withoutCompanyOverrideFor: "without_company_override_for",
@@ -2022,7 +2038,7 @@ describe("FeaturesClient", () => {
                 featureType: ["boolean"],
                 ids: ["ids"],
                 limit: 1000000,
-                managedBy: "orb",
+                managedBy: "metronome",
                 offset: 1000000,
                 planVersionId: "plan_version_id",
                 q: "q",
@@ -2398,8 +2414,10 @@ describe("FeaturesClient", () => {
                 maintainer: {
                     created_at: "2024-01-15T09:30:00Z",
                     email: "email",
+                    first_name: "first_name",
                     id: "id",
                     image_url: "image_url",
+                    last_name: "last_name",
                     name: "name",
                     permissions: { key: ["billing_credits_edit"] },
                     role: "admin",
@@ -2505,8 +2523,10 @@ describe("FeaturesClient", () => {
                 maintainer: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     email: "email",
+                    firstName: "first_name",
                     id: "id",
                     imageUrl: "image_url",
+                    lastName: "last_name",
                     name: "name",
                     permissions: {
                         key: ["billing_credits_edit"],
@@ -2775,8 +2795,10 @@ describe("FeaturesClient", () => {
                 maintainer: {
                     created_at: "2024-01-15T09:30:00Z",
                     email: "email",
+                    first_name: "first_name",
                     id: "id",
                     image_url: "image_url",
+                    last_name: "last_name",
                     name: "name",
                     permissions: { key: ["billing_credits_edit"] },
                     role: "admin",
@@ -2869,8 +2891,10 @@ describe("FeaturesClient", () => {
                 maintainer: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     email: "email",
+                    firstName: "first_name",
                     id: "id",
                     imageUrl: "image_url",
+                    lastName: "last_name",
                     name: "name",
                     permissions: {
                         key: ["billing_credits_edit"],
@@ -3037,8 +3061,10 @@ describe("FeaturesClient", () => {
                 maintainer: {
                     created_at: "2024-01-15T09:30:00Z",
                     email: "email",
+                    first_name: "first_name",
                     id: "id",
                     image_url: "image_url",
+                    last_name: "last_name",
                     name: "name",
                     permissions: { key: ["billing_credits_edit"] },
                     role: "admin",
@@ -3144,8 +3170,10 @@ describe("FeaturesClient", () => {
                 maintainer: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     email: "email",
+                    firstName: "first_name",
                     id: "id",
                     imageUrl: "image_url",
+                    lastName: "last_name",
                     name: "name",
                     permissions: {
                         key: ["billing_credits_edit"],

@@ -13,6 +13,7 @@ describe("CheckoutClient", () => {
             auto_topup_overrides: [{ plan_credit_grant_id: "plan_credit_grant_id" }],
             company_id: "company_id",
             credit_bundles: [{ bundle_id: "bundle_id", quantity: 1000000 }],
+            custom_field_values: [{ id: "id", value: "value" }],
             new_plan_id: "new_plan_id",
             new_price_id: "new_price_id",
             pay_in_advance: [{ price_id: "price_id", quantity: 1000000 }],
@@ -38,7 +39,7 @@ describe("CheckoutClient", () => {
                 metadata: { key: "value" },
                 period_end: 1000000,
                 period_start: 1000000,
-                provider_type: "orb",
+                provider_type: "metronome",
                 status: "status",
                 subscription_external_id: "subscription_external_id",
                 total_price: 1000000,
@@ -76,6 +77,12 @@ describe("CheckoutClient", () => {
                     quantity: 1000000,
                 },
             ],
+            customFieldValues: [
+                {
+                    id: "id",
+                    value: "value",
+                },
+            ],
             newPlanId: "new_plan_id",
             newPriceId: "new_price_id",
             payInAdvance: [
@@ -108,7 +115,7 @@ describe("CheckoutClient", () => {
                 },
                 periodEnd: 1000000,
                 periodStart: 1000000,
-                providerType: "orb",
+                providerType: "metronome",
                 status: "status",
                 subscriptionExternalId: "subscription_external_id",
                 totalPrice: 1000000,
@@ -137,6 +144,10 @@ describe("CheckoutClient", () => {
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
                 { bundle_id: "bundle_id", quantity: 1000000 },
+            ],
+            custom_field_values: [
+                { id: "id", value: "value" },
+                { id: "id", value: "value" },
             ],
             new_plan_id: "new_plan_id",
             new_price_id: "new_price_id",
@@ -188,6 +199,16 @@ describe("CheckoutClient", () => {
                         quantity: 1000000,
                     },
                 ],
+                customFieldValues: [
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                ],
                 newPlanId: "new_plan_id",
                 newPriceId: "new_price_id",
                 payInAdvance: [
@@ -221,6 +242,10 @@ describe("CheckoutClient", () => {
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
                 { bundle_id: "bundle_id", quantity: 1000000 },
+            ],
+            custom_field_values: [
+                { id: "id", value: "value" },
+                { id: "id", value: "value" },
             ],
             new_plan_id: "new_plan_id",
             new_price_id: "new_price_id",
@@ -272,6 +297,16 @@ describe("CheckoutClient", () => {
                         quantity: 1000000,
                     },
                 ],
+                customFieldValues: [
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                ],
                 newPlanId: "new_plan_id",
                 newPriceId: "new_price_id",
                 payInAdvance: [
@@ -305,6 +340,10 @@ describe("CheckoutClient", () => {
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
                 { bundle_id: "bundle_id", quantity: 1000000 },
+            ],
+            custom_field_values: [
+                { id: "id", value: "value" },
+                { id: "id", value: "value" },
             ],
             new_plan_id: "new_plan_id",
             new_price_id: "new_price_id",
@@ -356,6 +395,16 @@ describe("CheckoutClient", () => {
                         quantity: 1000000,
                     },
                 ],
+                customFieldValues: [
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                ],
                 newPlanId: "new_plan_id",
                 newPriceId: "new_price_id",
                 payInAdvance: [
@@ -389,6 +438,10 @@ describe("CheckoutClient", () => {
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
                 { bundle_id: "bundle_id", quantity: 1000000 },
+            ],
+            custom_field_values: [
+                { id: "id", value: "value" },
+                { id: "id", value: "value" },
             ],
             new_plan_id: "new_plan_id",
             new_price_id: "new_price_id",
@@ -440,6 +493,16 @@ describe("CheckoutClient", () => {
                         quantity: 1000000,
                     },
                 ],
+                customFieldValues: [
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                ],
                 newPlanId: "new_plan_id",
                 newPriceId: "new_price_id",
                 payInAdvance: [
@@ -473,6 +536,10 @@ describe("CheckoutClient", () => {
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
                 { bundle_id: "bundle_id", quantity: 1000000 },
+            ],
+            custom_field_values: [
+                { id: "id", value: "value" },
+                { id: "id", value: "value" },
             ],
             new_plan_id: "new_plan_id",
             new_price_id: "new_price_id",
@@ -524,6 +591,16 @@ describe("CheckoutClient", () => {
                         quantity: 1000000,
                     },
                 ],
+                customFieldValues: [
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                ],
                 newPlanId: "new_plan_id",
                 newPriceId: "new_price_id",
                 payInAdvance: [
@@ -552,7 +629,7 @@ describe("CheckoutClient", () => {
                         billing_strategy: "schematic_managed",
                         charge_type: "free",
                         company_count: 1000000,
-                        controlled_by: "orb",
+                        controlled_by: "metronome",
                         created_at: "2024-01-15T09:30:00Z",
                         currency_prices: [{ currency: "currency" }],
                         description: "description",
@@ -667,9 +744,9 @@ describe("CheckoutClient", () => {
                         version: 1000000,
                     },
                     billing_linked_resource: {
-                        billing_provider: "orb",
+                        billing_provider: "metronome",
                         external_resource_id: "external_resource_id",
-                        originator: "orb",
+                        originator: "metronome",
                     },
                     billing_product: {
                         account_id: "account_id",
@@ -687,12 +764,12 @@ describe("CheckoutClient", () => {
                                 interval: "day",
                                 interval_count: 1000000,
                                 price: 1000000,
-                                provider_type: "orb",
+                                provider_type: "metronome",
                                 scheme: "per_unit",
                             },
                         ],
                         product_id: "product_id",
-                        provider_type: "orb",
+                        provider_type: "metronome",
                         quantity: 1.1,
                         subscription_count: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
@@ -702,7 +779,7 @@ describe("CheckoutClient", () => {
                     company_count: 1000000,
                     company_id: "company_id",
                     company_name: "company_name",
-                    controlled_by: "orb",
+                    controlled_by: "metronome",
                     copied_from_plan_id: "copied_from_plan_id",
                     created_at: "2024-01-15T09:30:00Z",
                     currency_prices: [{ currency: "currency" }],
@@ -818,6 +895,7 @@ describe("CheckoutClient", () => {
                             id: "id",
                             plan_id: "plan_id",
                             plan_name: "plan_name",
+                            rollover_percentage: 1000000,
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
@@ -831,7 +909,7 @@ describe("CheckoutClient", () => {
                         interval: "day",
                         interval_count: 1000000,
                         price: 1000000,
-                        provider_type: "orb",
+                        provider_type: "metronome",
                         scheme: "per_unit",
                     },
                     name: "name",
@@ -842,7 +920,7 @@ describe("CheckoutClient", () => {
                         interval: "day",
                         interval_count: 1000000,
                         price: 1000000,
-                        provider_type: "orb",
+                        provider_type: "metronome",
                         scheme: "per_unit",
                     },
                     plan_type: "plan",
@@ -853,7 +931,7 @@ describe("CheckoutClient", () => {
                         interval: "day",
                         interval_count: 1000000,
                         price: 1000000,
-                        provider_type: "orb",
+                        provider_type: "metronome",
                         scheme: "per_unit",
                     },
                     trial_days: 1000000,
@@ -879,7 +957,7 @@ describe("CheckoutClient", () => {
                         interval: "day",
                         interval_count: 1000000,
                         price: 1000000,
-                        provider_type: "orb",
+                        provider_type: "metronome",
                         scheme: "per_unit",
                     },
                 },
@@ -916,6 +994,7 @@ describe("CheckoutClient", () => {
                                     id: "id",
                                     plan_id: "plan_id",
                                     reset_type: "no_reset",
+                                    rollover_percentage: 1000000,
                                     updated_at: "2024-01-15T09:30:00Z",
                                 },
                             ],
@@ -958,14 +1037,14 @@ describe("CheckoutClient", () => {
                                 price_external_id: "price_external_id",
                                 price_id: "price_id",
                                 price_tier: [{}],
-                                provider_type: "orb",
+                                provider_type: "metronome",
                                 quantity: 1.1,
                                 subscription_id: "subscription_id",
                                 updated_at: "2024-01-15T09:30:00Z",
                                 usage_type: "licensed",
                             },
                         ],
-                        provider_type: "orb",
+                        provider_type: "metronome",
                         status: "status",
                         subscription_external_id: "subscription_external_id",
                         total_price: 1000000,
@@ -1006,14 +1085,14 @@ describe("CheckoutClient", () => {
                                     price_external_id: "price_external_id",
                                     price_id: "price_id",
                                     price_tier: [{}],
-                                    provider_type: "orb",
+                                    provider_type: "metronome",
                                     quantity: 1.1,
                                     subscription_id: "subscription_id",
                                     updated_at: "2024-01-15T09:30:00Z",
                                     usage_type: "licensed",
                                 },
                             ],
-                            provider_type: "orb",
+                            provider_type: "metronome",
                             status: "status",
                             subscription_external_id: "subscription_external_id",
                             total_price: 1000000,
@@ -1039,7 +1118,7 @@ describe("CheckoutClient", () => {
                         external_id: "external_id",
                         id: "id",
                         payment_method_type: "payment_method_type",
-                        provider_type: "orb",
+                        provider_type: "metronome",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     entitlements: [{ feature_id: "feature_id", feature_key: "feature_key", value_type: "boolean" }],
@@ -1093,7 +1172,7 @@ describe("CheckoutClient", () => {
                             external_id: "external_id",
                             id: "id",
                             payment_method_type: "payment_method_type",
-                            provider_type: "orb",
+                            provider_type: "metronome",
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
@@ -1111,6 +1190,7 @@ describe("CheckoutClient", () => {
                                 id: "id",
                                 plan_id: "plan_id",
                                 reset_type: "no_reset",
+                                rollover_percentage: 1000000,
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
                         ],
@@ -1169,6 +1249,15 @@ describe("CheckoutClient", () => {
                     updated_at: "2024-01-15T09:30:00Z",
                     user_count: 1000000,
                 },
+                custom_checkout_fields: [
+                    {
+                        definition_id: "definition_id",
+                        id: "id",
+                        name: "name",
+                        required: true,
+                        stripe_metadata_key: "stripe_metadata_key",
+                    },
+                ],
                 feature_usage: {
                     features: [
                         {
@@ -1194,9 +1283,9 @@ describe("CheckoutClient", () => {
                         version: 1000000,
                     },
                     billing_linked_resource: {
-                        billing_provider: "orb",
+                        billing_provider: "metronome",
                         external_resource_id: "external_resource_id",
-                        originator: "orb",
+                        originator: "metronome",
                     },
                     billing_product: {
                         account_id: "account_id",
@@ -1214,12 +1303,12 @@ describe("CheckoutClient", () => {
                                 interval: "day",
                                 interval_count: 1000000,
                                 price: 1000000,
-                                provider_type: "orb",
+                                provider_type: "metronome",
                                 scheme: "per_unit",
                             },
                         ],
                         product_id: "product_id",
-                        provider_type: "orb",
+                        provider_type: "metronome",
                         quantity: 1.1,
                         subscription_count: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
@@ -1229,7 +1318,7 @@ describe("CheckoutClient", () => {
                     company_count: 1000000,
                     company_id: "company_id",
                     company_name: "company_name",
-                    controlled_by: "orb",
+                    controlled_by: "metronome",
                     copied_from_plan_id: "copied_from_plan_id",
                     created_at: "2024-01-15T09:30:00Z",
                     currency_prices: [{ currency: "currency" }],
@@ -1345,6 +1434,7 @@ describe("CheckoutClient", () => {
                             id: "id",
                             plan_id: "plan_id",
                             plan_name: "plan_name",
+                            rollover_percentage: 1000000,
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
@@ -1358,7 +1448,7 @@ describe("CheckoutClient", () => {
                         interval: "day",
                         interval_count: 1000000,
                         price: 1000000,
-                        provider_type: "orb",
+                        provider_type: "metronome",
                         scheme: "per_unit",
                     },
                     name: "name",
@@ -1369,7 +1459,7 @@ describe("CheckoutClient", () => {
                         interval: "day",
                         interval_count: 1000000,
                         price: 1000000,
-                        provider_type: "orb",
+                        provider_type: "metronome",
                         scheme: "per_unit",
                     },
                     plan_type: "plan",
@@ -1380,7 +1470,7 @@ describe("CheckoutClient", () => {
                         interval: "day",
                         interval_count: 1000000,
                         price: 1000000,
-                        provider_type: "orb",
+                        provider_type: "metronome",
                         scheme: "per_unit",
                     },
                     trial_days: 1000000,
@@ -1406,7 +1496,7 @@ describe("CheckoutClient", () => {
                         interval: "day",
                         interval_count: 1000000,
                         price: 1000000,
-                        provider_type: "orb",
+                        provider_type: "metronome",
                         scheme: "per_unit",
                     },
                 },
@@ -1439,7 +1529,7 @@ describe("CheckoutClient", () => {
                         customer_external_id: "customer_external_id",
                         environment_id: "environment_id",
                         id: "id",
-                        provider_type: "orb",
+                        provider_type: "metronome",
                         subtotal: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
@@ -1450,7 +1540,7 @@ describe("CheckoutClient", () => {
                         external_id: "external_id",
                         id: "id",
                         payment_method_type: "payment_method_type",
-                        provider_type: "orb",
+                        provider_type: "metronome",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     products: [
@@ -1468,14 +1558,14 @@ describe("CheckoutClient", () => {
                             price_external_id: "price_external_id",
                             price_id: "price_id",
                             price_tier: [{}],
-                            provider_type: "orb",
+                            provider_type: "metronome",
                             quantity: 1.1,
                             subscription_id: "subscription_id",
                             updated_at: "2024-01-15T09:30:00Z",
                             usage_type: "licensed",
                         },
                     ],
-                    provider_type: "orb",
+                    provider_type: "metronome",
                     status: "status",
                     subscription_external_id: "subscription_external_id",
                     total_price: 1000000,
@@ -1504,7 +1594,7 @@ describe("CheckoutClient", () => {
                         billingStrategy: "schematic_managed",
                         chargeType: "free",
                         companyCount: 1000000,
-                        controlledBy: "orb",
+                        controlledBy: "metronome",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {
@@ -1638,9 +1728,9 @@ describe("CheckoutClient", () => {
                         version: 1000000,
                     },
                     billingLinkedResource: {
-                        billingProvider: "orb",
+                        billingProvider: "metronome",
                         externalResourceId: "external_resource_id",
-                        originator: "orb",
+                        originator: "metronome",
                     },
                     billingProduct: {
                         accountId: "account_id",
@@ -1658,12 +1748,12 @@ describe("CheckoutClient", () => {
                                 interval: "day",
                                 intervalCount: 1000000,
                                 price: 1000000,
-                                providerType: "orb",
+                                providerType: "metronome",
                                 scheme: "per_unit",
                             },
                         ],
                         productId: "product_id",
-                        providerType: "orb",
+                        providerType: "metronome",
                         quantity: 1.1,
                         subscriptionCount: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1673,7 +1763,7 @@ describe("CheckoutClient", () => {
                     companyCount: 1000000,
                     companyId: "company_id",
                     companyName: "company_name",
-                    controlledBy: "orb",
+                    controlledBy: "metronome",
                     copiedFromPlanId: "copied_from_plan_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     currencyPrices: [
@@ -1812,6 +1902,7 @@ describe("CheckoutClient", () => {
                             id: "id",
                             planId: "plan_id",
                             planName: "plan_name",
+                            rolloverPercentage: 1000000,
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                     ],
@@ -1825,7 +1916,7 @@ describe("CheckoutClient", () => {
                         interval: "day",
                         intervalCount: 1000000,
                         price: 1000000,
-                        providerType: "orb",
+                        providerType: "metronome",
                         scheme: "per_unit",
                     },
                     name: "name",
@@ -1836,7 +1927,7 @@ describe("CheckoutClient", () => {
                         interval: "day",
                         intervalCount: 1000000,
                         price: 1000000,
-                        providerType: "orb",
+                        providerType: "metronome",
                         scheme: "per_unit",
                     },
                     planType: "plan",
@@ -1847,7 +1938,7 @@ describe("CheckoutClient", () => {
                         interval: "day",
                         intervalCount: 1000000,
                         price: 1000000,
-                        providerType: "orb",
+                        providerType: "metronome",
                         scheme: "per_unit",
                     },
                     trialDays: 1000000,
@@ -1873,7 +1964,7 @@ describe("CheckoutClient", () => {
                         interval: "day",
                         intervalCount: 1000000,
                         price: 1000000,
-                        providerType: "orb",
+                        providerType: "metronome",
                         scheme: "per_unit",
                     },
                 },
@@ -1919,6 +2010,7 @@ describe("CheckoutClient", () => {
                                     id: "id",
                                     planId: "plan_id",
                                     resetType: "no_reset",
+                                    rolloverPercentage: 1000000,
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 },
                             ],
@@ -1963,14 +2055,14 @@ describe("CheckoutClient", () => {
                                 priceExternalId: "price_external_id",
                                 priceId: "price_id",
                                 priceTier: [{}],
-                                providerType: "orb",
+                                providerType: "metronome",
                                 quantity: 1.1,
                                 subscriptionId: "subscription_id",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 usageType: "licensed",
                             },
                         ],
-                        providerType: "orb",
+                        providerType: "metronome",
                         status: "status",
                         subscriptionExternalId: "subscription_external_id",
                         totalPrice: 1000000,
@@ -2011,14 +2103,14 @@ describe("CheckoutClient", () => {
                                     priceExternalId: "price_external_id",
                                     priceId: "price_id",
                                     priceTier: [{}],
-                                    providerType: "orb",
+                                    providerType: "metronome",
                                     quantity: 1.1,
                                     subscriptionId: "subscription_id",
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                     usageType: "licensed",
                                 },
                             ],
-                            providerType: "orb",
+                            providerType: "metronome",
                             status: "status",
                             subscriptionExternalId: "subscription_external_id",
                             totalPrice: 1000000,
@@ -2044,7 +2136,7 @@ describe("CheckoutClient", () => {
                         externalId: "external_id",
                         id: "id",
                         paymentMethodType: "payment_method_type",
-                        providerType: "orb",
+                        providerType: "metronome",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     entitlements: [
@@ -2104,7 +2196,7 @@ describe("CheckoutClient", () => {
                             externalId: "external_id",
                             id: "id",
                             paymentMethodType: "payment_method_type",
-                            providerType: "orb",
+                            providerType: "metronome",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                     ],
@@ -2122,6 +2214,7 @@ describe("CheckoutClient", () => {
                                 id: "id",
                                 planId: "plan_id",
                                 resetType: "no_reset",
+                                rolloverPercentage: 1000000,
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
                         ],
@@ -2187,6 +2280,15 @@ describe("CheckoutClient", () => {
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     userCount: 1000000,
                 },
+                customCheckoutFields: [
+                    {
+                        definitionId: "definition_id",
+                        id: "id",
+                        name: "name",
+                        required: true,
+                        stripeMetadataKey: "stripe_metadata_key",
+                    },
+                ],
                 featureUsage: {
                     features: [
                         {
@@ -2217,9 +2319,9 @@ describe("CheckoutClient", () => {
                         version: 1000000,
                     },
                     billingLinkedResource: {
-                        billingProvider: "orb",
+                        billingProvider: "metronome",
                         externalResourceId: "external_resource_id",
-                        originator: "orb",
+                        originator: "metronome",
                     },
                     billingProduct: {
                         accountId: "account_id",
@@ -2237,12 +2339,12 @@ describe("CheckoutClient", () => {
                                 interval: "day",
                                 intervalCount: 1000000,
                                 price: 1000000,
-                                providerType: "orb",
+                                providerType: "metronome",
                                 scheme: "per_unit",
                             },
                         ],
                         productId: "product_id",
-                        providerType: "orb",
+                        providerType: "metronome",
                         quantity: 1.1,
                         subscriptionCount: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2252,7 +2354,7 @@ describe("CheckoutClient", () => {
                     companyCount: 1000000,
                     companyId: "company_id",
                     companyName: "company_name",
-                    controlledBy: "orb",
+                    controlledBy: "metronome",
                     copiedFromPlanId: "copied_from_plan_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     currencyPrices: [
@@ -2391,6 +2493,7 @@ describe("CheckoutClient", () => {
                             id: "id",
                             planId: "plan_id",
                             planName: "plan_name",
+                            rolloverPercentage: 1000000,
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                     ],
@@ -2404,7 +2507,7 @@ describe("CheckoutClient", () => {
                         interval: "day",
                         intervalCount: 1000000,
                         price: 1000000,
-                        providerType: "orb",
+                        providerType: "metronome",
                         scheme: "per_unit",
                     },
                     name: "name",
@@ -2415,7 +2518,7 @@ describe("CheckoutClient", () => {
                         interval: "day",
                         intervalCount: 1000000,
                         price: 1000000,
-                        providerType: "orb",
+                        providerType: "metronome",
                         scheme: "per_unit",
                     },
                     planType: "plan",
@@ -2426,7 +2529,7 @@ describe("CheckoutClient", () => {
                         interval: "day",
                         intervalCount: 1000000,
                         price: 1000000,
-                        providerType: "orb",
+                        providerType: "metronome",
                         scheme: "per_unit",
                     },
                     trialDays: 1000000,
@@ -2452,7 +2555,7 @@ describe("CheckoutClient", () => {
                         interval: "day",
                         intervalCount: 1000000,
                         price: 1000000,
-                        providerType: "orb",
+                        providerType: "metronome",
                         scheme: "per_unit",
                     },
                 },
@@ -2490,7 +2593,7 @@ describe("CheckoutClient", () => {
                         customerExternalId: "customer_external_id",
                         environmentId: "environment_id",
                         id: "id",
-                        providerType: "orb",
+                        providerType: "metronome",
                         subtotal: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
@@ -2501,7 +2604,7 @@ describe("CheckoutClient", () => {
                         externalId: "external_id",
                         id: "id",
                         paymentMethodType: "payment_method_type",
-                        providerType: "orb",
+                        providerType: "metronome",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     products: [
@@ -2519,14 +2622,14 @@ describe("CheckoutClient", () => {
                             priceExternalId: "price_external_id",
                             priceId: "price_id",
                             priceTier: [{}],
-                            providerType: "orb",
+                            providerType: "metronome",
                             quantity: 1.1,
                             subscriptionId: "subscription_id",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             usageType: "licensed",
                         },
                     ],
-                    providerType: "orb",
+                    providerType: "metronome",
                     status: "status",
                     subscriptionExternalId: "subscription_external_id",
                     totalPrice: 1000000,
@@ -2657,6 +2760,7 @@ describe("CheckoutClient", () => {
             auto_topup_overrides: [{ plan_credit_grant_id: "plan_credit_grant_id" }],
             company_id: "company_id",
             credit_bundles: [{ bundle_id: "bundle_id", quantity: 1000000 }],
+            custom_field_values: [{ id: "id", value: "value" }],
             new_plan_id: "new_plan_id",
             new_price_id: "new_price_id",
             pay_in_advance: [{ price_id: "price_id", quantity: 1000000 }],
@@ -2737,6 +2841,12 @@ describe("CheckoutClient", () => {
                     quantity: 1000000,
                 },
             ],
+            customFieldValues: [
+                {
+                    id: "id",
+                    value: "value",
+                },
+            ],
             newPlanId: "new_plan_id",
             newPriceId: "new_price_id",
             payInAdvance: [
@@ -2814,6 +2924,10 @@ describe("CheckoutClient", () => {
                 { bundle_id: "bundle_id", quantity: 1000000 },
                 { bundle_id: "bundle_id", quantity: 1000000 },
             ],
+            custom_field_values: [
+                { id: "id", value: "value" },
+                { id: "id", value: "value" },
+            ],
             new_plan_id: "new_plan_id",
             new_price_id: "new_price_id",
             pay_in_advance: [
@@ -2864,6 +2978,16 @@ describe("CheckoutClient", () => {
                         quantity: 1000000,
                     },
                 ],
+                customFieldValues: [
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                ],
                 newPlanId: "new_plan_id",
                 newPriceId: "new_price_id",
                 payInAdvance: [
@@ -2897,6 +3021,10 @@ describe("CheckoutClient", () => {
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
                 { bundle_id: "bundle_id", quantity: 1000000 },
+            ],
+            custom_field_values: [
+                { id: "id", value: "value" },
+                { id: "id", value: "value" },
             ],
             new_plan_id: "new_plan_id",
             new_price_id: "new_price_id",
@@ -2948,6 +3076,16 @@ describe("CheckoutClient", () => {
                         quantity: 1000000,
                     },
                 ],
+                customFieldValues: [
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                ],
                 newPlanId: "new_plan_id",
                 newPriceId: "new_price_id",
                 payInAdvance: [
@@ -2981,6 +3119,10 @@ describe("CheckoutClient", () => {
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
                 { bundle_id: "bundle_id", quantity: 1000000 },
+            ],
+            custom_field_values: [
+                { id: "id", value: "value" },
+                { id: "id", value: "value" },
             ],
             new_plan_id: "new_plan_id",
             new_price_id: "new_price_id",
@@ -3032,6 +3174,16 @@ describe("CheckoutClient", () => {
                         quantity: 1000000,
                     },
                 ],
+                customFieldValues: [
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                ],
                 newPlanId: "new_plan_id",
                 newPriceId: "new_price_id",
                 payInAdvance: [
@@ -3065,6 +3217,10 @@ describe("CheckoutClient", () => {
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
                 { bundle_id: "bundle_id", quantity: 1000000 },
+            ],
+            custom_field_values: [
+                { id: "id", value: "value" },
+                { id: "id", value: "value" },
             ],
             new_plan_id: "new_plan_id",
             new_price_id: "new_price_id",
@@ -3116,6 +3272,16 @@ describe("CheckoutClient", () => {
                         quantity: 1000000,
                     },
                 ],
+                customFieldValues: [
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                ],
                 newPlanId: "new_plan_id",
                 newPriceId: "new_price_id",
                 payInAdvance: [
@@ -3149,6 +3315,10 @@ describe("CheckoutClient", () => {
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
                 { bundle_id: "bundle_id", quantity: 1000000 },
+            ],
+            custom_field_values: [
+                { id: "id", value: "value" },
+                { id: "id", value: "value" },
             ],
             new_plan_id: "new_plan_id",
             new_price_id: "new_price_id",
@@ -3200,6 +3370,16 @@ describe("CheckoutClient", () => {
                         quantity: 1000000,
                     },
                 ],
+                customFieldValues: [
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                ],
                 newPlanId: "new_plan_id",
                 newPriceId: "new_price_id",
                 payInAdvance: [
@@ -3224,6 +3404,7 @@ describe("CheckoutClient", () => {
             add_on_selections: [{ plan_id: "plan_id" }],
             company_id: "company_id",
             credit_bundles: [{ bundle_id: "bundle_id", quantity: 1000000 }],
+            custom_field_values: [{ id: "id", value: "value" }],
             pay_in_advance_entitlements: [{ price_id: "price_id", quantity: 1000000 }],
         };
         const rawResponseBody = {
@@ -3244,6 +3425,7 @@ describe("CheckoutClient", () => {
                                     id: "id",
                                     plan_id: "plan_id",
                                     reset_type: "no_reset",
+                                    rollover_percentage: 1000000,
                                     updated_at: "2024-01-15T09:30:00Z",
                                 },
                             ],
@@ -3286,14 +3468,14 @@ describe("CheckoutClient", () => {
                                 price_external_id: "price_external_id",
                                 price_id: "price_id",
                                 price_tier: [{}],
-                                provider_type: "orb",
+                                provider_type: "metronome",
                                 quantity: 1.1,
                                 subscription_id: "subscription_id",
                                 updated_at: "2024-01-15T09:30:00Z",
                                 usage_type: "licensed",
                             },
                         ],
-                        provider_type: "orb",
+                        provider_type: "metronome",
                         status: "status",
                         subscription_external_id: "subscription_external_id",
                         total_price: 1000000,
@@ -3334,14 +3516,14 @@ describe("CheckoutClient", () => {
                                     price_external_id: "price_external_id",
                                     price_id: "price_id",
                                     price_tier: [{}],
-                                    provider_type: "orb",
+                                    provider_type: "metronome",
                                     quantity: 1.1,
                                     subscription_id: "subscription_id",
                                     updated_at: "2024-01-15T09:30:00Z",
                                     usage_type: "licensed",
                                 },
                             ],
-                            provider_type: "orb",
+                            provider_type: "metronome",
                             status: "status",
                             subscription_external_id: "subscription_external_id",
                             total_price: 1000000,
@@ -3367,7 +3549,7 @@ describe("CheckoutClient", () => {
                         external_id: "external_id",
                         id: "id",
                         payment_method_type: "payment_method_type",
-                        provider_type: "orb",
+                        provider_type: "metronome",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     entitlements: [{ feature_id: "feature_id", feature_key: "feature_key", value_type: "boolean" }],
@@ -3421,7 +3603,7 @@ describe("CheckoutClient", () => {
                             external_id: "external_id",
                             id: "id",
                             payment_method_type: "payment_method_type",
-                            provider_type: "orb",
+                            provider_type: "metronome",
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
@@ -3439,6 +3621,7 @@ describe("CheckoutClient", () => {
                                 id: "id",
                                 plan_id: "plan_id",
                                 reset_type: "no_reset",
+                                rollover_percentage: 1000000,
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
                         ],
@@ -3524,6 +3707,12 @@ describe("CheckoutClient", () => {
                     quantity: 1000000,
                 },
             ],
+            customFieldValues: [
+                {
+                    id: "id",
+                    value: "value",
+                },
+            ],
             payInAdvanceEntitlements: [
                 {
                     priceId: "price_id",
@@ -3549,6 +3738,7 @@ describe("CheckoutClient", () => {
                                     id: "id",
                                     planId: "plan_id",
                                     resetType: "no_reset",
+                                    rolloverPercentage: 1000000,
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 },
                             ],
@@ -3593,14 +3783,14 @@ describe("CheckoutClient", () => {
                                 priceExternalId: "price_external_id",
                                 priceId: "price_id",
                                 priceTier: [{}],
-                                providerType: "orb",
+                                providerType: "metronome",
                                 quantity: 1.1,
                                 subscriptionId: "subscription_id",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 usageType: "licensed",
                             },
                         ],
-                        providerType: "orb",
+                        providerType: "metronome",
                         status: "status",
                         subscriptionExternalId: "subscription_external_id",
                         totalPrice: 1000000,
@@ -3641,14 +3831,14 @@ describe("CheckoutClient", () => {
                                     priceExternalId: "price_external_id",
                                     priceId: "price_id",
                                     priceTier: [{}],
-                                    providerType: "orb",
+                                    providerType: "metronome",
                                     quantity: 1.1,
                                     subscriptionId: "subscription_id",
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                     usageType: "licensed",
                                 },
                             ],
-                            providerType: "orb",
+                            providerType: "metronome",
                             status: "status",
                             subscriptionExternalId: "subscription_external_id",
                             totalPrice: 1000000,
@@ -3674,7 +3864,7 @@ describe("CheckoutClient", () => {
                         externalId: "external_id",
                         id: "id",
                         paymentMethodType: "payment_method_type",
-                        providerType: "orb",
+                        providerType: "metronome",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     entitlements: [
@@ -3734,7 +3924,7 @@ describe("CheckoutClient", () => {
                             externalId: "external_id",
                             id: "id",
                             paymentMethodType: "payment_method_type",
-                            providerType: "orb",
+                            providerType: "metronome",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                     ],
@@ -3752,6 +3942,7 @@ describe("CheckoutClient", () => {
                                 id: "id",
                                 planId: "plan_id",
                                 resetType: "no_reset",
+                                rolloverPercentage: 1000000,
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
                         ],
@@ -3835,6 +4026,10 @@ describe("CheckoutClient", () => {
                 { bundle_id: "bundle_id", quantity: 1000000 },
                 { bundle_id: "bundle_id", quantity: 1000000 },
             ],
+            custom_field_values: [
+                { id: "id", value: "value" },
+                { id: "id", value: "value" },
+            ],
             pay_in_advance_entitlements: [
                 { price_id: "price_id", quantity: 1000000 },
                 { price_id: "price_id", quantity: 1000000 },
@@ -3872,6 +4067,16 @@ describe("CheckoutClient", () => {
                         quantity: 1000000,
                     },
                 ],
+                customFieldValues: [
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                ],
                 payInAdvanceEntitlements: [
                     {
                         priceId: "price_id",
@@ -3895,6 +4100,10 @@ describe("CheckoutClient", () => {
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
                 { bundle_id: "bundle_id", quantity: 1000000 },
+            ],
+            custom_field_values: [
+                { id: "id", value: "value" },
+                { id: "id", value: "value" },
             ],
             pay_in_advance_entitlements: [
                 { price_id: "price_id", quantity: 1000000 },
@@ -3933,6 +4142,16 @@ describe("CheckoutClient", () => {
                         quantity: 1000000,
                     },
                 ],
+                customFieldValues: [
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                ],
                 payInAdvanceEntitlements: [
                     {
                         priceId: "price_id",
@@ -3956,6 +4175,10 @@ describe("CheckoutClient", () => {
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
                 { bundle_id: "bundle_id", quantity: 1000000 },
+            ],
+            custom_field_values: [
+                { id: "id", value: "value" },
+                { id: "id", value: "value" },
             ],
             pay_in_advance_entitlements: [
                 { price_id: "price_id", quantity: 1000000 },
@@ -3994,6 +4217,16 @@ describe("CheckoutClient", () => {
                         quantity: 1000000,
                     },
                 ],
+                customFieldValues: [
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                ],
                 payInAdvanceEntitlements: [
                     {
                         priceId: "price_id",
@@ -4017,6 +4250,10 @@ describe("CheckoutClient", () => {
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
                 { bundle_id: "bundle_id", quantity: 1000000 },
+            ],
+            custom_field_values: [
+                { id: "id", value: "value" },
+                { id: "id", value: "value" },
             ],
             pay_in_advance_entitlements: [
                 { price_id: "price_id", quantity: 1000000 },
@@ -4055,6 +4292,16 @@ describe("CheckoutClient", () => {
                         quantity: 1000000,
                     },
                 ],
+                customFieldValues: [
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                ],
                 payInAdvanceEntitlements: [
                     {
                         priceId: "price_id",
@@ -4078,6 +4325,10 @@ describe("CheckoutClient", () => {
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
                 { bundle_id: "bundle_id", quantity: 1000000 },
+            ],
+            custom_field_values: [
+                { id: "id", value: "value" },
+                { id: "id", value: "value" },
             ],
             pay_in_advance_entitlements: [
                 { price_id: "price_id", quantity: 1000000 },
@@ -4116,6 +4367,16 @@ describe("CheckoutClient", () => {
                         quantity: 1000000,
                     },
                 ],
+                customFieldValues: [
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                ],
                 payInAdvanceEntitlements: [
                     {
                         priceId: "price_id",
@@ -4137,6 +4398,7 @@ describe("CheckoutClient", () => {
             add_on_selections: [{ plan_id: "plan_id" }],
             company_id: "company_id",
             credit_bundles: [{ bundle_id: "bundle_id", quantity: 1000000 }],
+            custom_field_values: [{ id: "id", value: "value" }],
             pay_in_advance_entitlements: [{ price_id: "price_id", quantity: 1000000 }],
         };
         const rawResponseBody = {
@@ -4207,6 +4469,12 @@ describe("CheckoutClient", () => {
                     quantity: 1000000,
                 },
             ],
+            customFieldValues: [
+                {
+                    id: "id",
+                    value: "value",
+                },
+            ],
             payInAdvanceEntitlements: [
                 {
                     priceId: "price_id",
@@ -4273,6 +4541,10 @@ describe("CheckoutClient", () => {
                 { bundle_id: "bundle_id", quantity: 1000000 },
                 { bundle_id: "bundle_id", quantity: 1000000 },
             ],
+            custom_field_values: [
+                { id: "id", value: "value" },
+                { id: "id", value: "value" },
+            ],
             pay_in_advance_entitlements: [
                 { price_id: "price_id", quantity: 1000000 },
                 { price_id: "price_id", quantity: 1000000 },
@@ -4310,6 +4582,16 @@ describe("CheckoutClient", () => {
                         quantity: 1000000,
                     },
                 ],
+                customFieldValues: [
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                ],
                 payInAdvanceEntitlements: [
                     {
                         priceId: "price_id",
@@ -4333,6 +4615,10 @@ describe("CheckoutClient", () => {
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
                 { bundle_id: "bundle_id", quantity: 1000000 },
+            ],
+            custom_field_values: [
+                { id: "id", value: "value" },
+                { id: "id", value: "value" },
             ],
             pay_in_advance_entitlements: [
                 { price_id: "price_id", quantity: 1000000 },
@@ -4371,6 +4657,16 @@ describe("CheckoutClient", () => {
                         quantity: 1000000,
                     },
                 ],
+                customFieldValues: [
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                ],
                 payInAdvanceEntitlements: [
                     {
                         priceId: "price_id",
@@ -4394,6 +4690,10 @@ describe("CheckoutClient", () => {
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
                 { bundle_id: "bundle_id", quantity: 1000000 },
+            ],
+            custom_field_values: [
+                { id: "id", value: "value" },
+                { id: "id", value: "value" },
             ],
             pay_in_advance_entitlements: [
                 { price_id: "price_id", quantity: 1000000 },
@@ -4432,6 +4732,16 @@ describe("CheckoutClient", () => {
                         quantity: 1000000,
                     },
                 ],
+                customFieldValues: [
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                ],
                 payInAdvanceEntitlements: [
                     {
                         priceId: "price_id",
@@ -4455,6 +4765,10 @@ describe("CheckoutClient", () => {
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
                 { bundle_id: "bundle_id", quantity: 1000000 },
+            ],
+            custom_field_values: [
+                { id: "id", value: "value" },
+                { id: "id", value: "value" },
             ],
             pay_in_advance_entitlements: [
                 { price_id: "price_id", quantity: 1000000 },
@@ -4493,6 +4807,16 @@ describe("CheckoutClient", () => {
                         quantity: 1000000,
                     },
                 ],
+                customFieldValues: [
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                ],
                 payInAdvanceEntitlements: [
                     {
                         priceId: "price_id",
@@ -4516,6 +4840,10 @@ describe("CheckoutClient", () => {
             credit_bundles: [
                 { bundle_id: "bundle_id", quantity: 1000000 },
                 { bundle_id: "bundle_id", quantity: 1000000 },
+            ],
+            custom_field_values: [
+                { id: "id", value: "value" },
+                { id: "id", value: "value" },
             ],
             pay_in_advance_entitlements: [
                 { price_id: "price_id", quantity: 1000000 },
@@ -4554,6 +4882,16 @@ describe("CheckoutClient", () => {
                         quantity: 1000000,
                     },
                 ],
+                customFieldValues: [
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                ],
                 payInAdvanceEntitlements: [
                     {
                         priceId: "price_id",
@@ -4590,6 +4928,7 @@ describe("CheckoutClient", () => {
                                     id: "id",
                                     plan_id: "plan_id",
                                     reset_type: "no_reset",
+                                    rollover_percentage: 1000000,
                                     updated_at: "2024-01-15T09:30:00Z",
                                 },
                             ],
@@ -4632,14 +4971,14 @@ describe("CheckoutClient", () => {
                                 price_external_id: "price_external_id",
                                 price_id: "price_id",
                                 price_tier: [{}],
-                                provider_type: "orb",
+                                provider_type: "metronome",
                                 quantity: 1.1,
                                 subscription_id: "subscription_id",
                                 updated_at: "2024-01-15T09:30:00Z",
                                 usage_type: "licensed",
                             },
                         ],
-                        provider_type: "orb",
+                        provider_type: "metronome",
                         status: "status",
                         subscription_external_id: "subscription_external_id",
                         total_price: 1000000,
@@ -4680,14 +5019,14 @@ describe("CheckoutClient", () => {
                                     price_external_id: "price_external_id",
                                     price_id: "price_id",
                                     price_tier: [{}],
-                                    provider_type: "orb",
+                                    provider_type: "metronome",
                                     quantity: 1.1,
                                     subscription_id: "subscription_id",
                                     updated_at: "2024-01-15T09:30:00Z",
                                     usage_type: "licensed",
                                 },
                             ],
-                            provider_type: "orb",
+                            provider_type: "metronome",
                             status: "status",
                             subscription_external_id: "subscription_external_id",
                             total_price: 1000000,
@@ -4713,7 +5052,7 @@ describe("CheckoutClient", () => {
                         external_id: "external_id",
                         id: "id",
                         payment_method_type: "payment_method_type",
-                        provider_type: "orb",
+                        provider_type: "metronome",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     entitlements: [{ feature_id: "feature_id", feature_key: "feature_key", value_type: "boolean" }],
@@ -4767,7 +5106,7 @@ describe("CheckoutClient", () => {
                             external_id: "external_id",
                             id: "id",
                             payment_method_type: "payment_method_type",
-                            provider_type: "orb",
+                            provider_type: "metronome",
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
@@ -4785,6 +5124,7 @@ describe("CheckoutClient", () => {
                                 id: "id",
                                 plan_id: "plan_id",
                                 reset_type: "no_reset",
+                                rollover_percentage: 1000000,
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
                         ],
@@ -4878,6 +5218,7 @@ describe("CheckoutClient", () => {
                                     id: "id",
                                     planId: "plan_id",
                                     resetType: "no_reset",
+                                    rolloverPercentage: 1000000,
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 },
                             ],
@@ -4922,14 +5263,14 @@ describe("CheckoutClient", () => {
                                 priceExternalId: "price_external_id",
                                 priceId: "price_id",
                                 priceTier: [{}],
-                                providerType: "orb",
+                                providerType: "metronome",
                                 quantity: 1.1,
                                 subscriptionId: "subscription_id",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 usageType: "licensed",
                             },
                         ],
-                        providerType: "orb",
+                        providerType: "metronome",
                         status: "status",
                         subscriptionExternalId: "subscription_external_id",
                         totalPrice: 1000000,
@@ -4970,14 +5311,14 @@ describe("CheckoutClient", () => {
                                     priceExternalId: "price_external_id",
                                     priceId: "price_id",
                                     priceTier: [{}],
-                                    providerType: "orb",
+                                    providerType: "metronome",
                                     quantity: 1.1,
                                     subscriptionId: "subscription_id",
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                     usageType: "licensed",
                                 },
                             ],
-                            providerType: "orb",
+                            providerType: "metronome",
                             status: "status",
                             subscriptionExternalId: "subscription_external_id",
                             totalPrice: 1000000,
@@ -5003,7 +5344,7 @@ describe("CheckoutClient", () => {
                         externalId: "external_id",
                         id: "id",
                         paymentMethodType: "payment_method_type",
-                        providerType: "orb",
+                        providerType: "metronome",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     entitlements: [
@@ -5063,7 +5404,7 @@ describe("CheckoutClient", () => {
                             externalId: "external_id",
                             id: "id",
                             paymentMethodType: "payment_method_type",
-                            providerType: "orb",
+                            providerType: "metronome",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                     ],
@@ -5081,6 +5422,7 @@ describe("CheckoutClient", () => {
                                 id: "id",
                                 planId: "plan_id",
                                 resetType: "no_reset",
+                                rolloverPercentage: 1000000,
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
                         ],
@@ -5306,7 +5648,7 @@ describe("CheckoutClient", () => {
                     external_id: "external_id",
                     id: "id",
                     payment_method_external_id: "payment_method_external_id",
-                    provider_type: "orb",
+                    provider_type: "metronome",
                     status: "draft",
                     subscription_external_id: "subscription_external_id",
                     subtotal: 1000000,
@@ -5331,7 +5673,7 @@ describe("CheckoutClient", () => {
                     external_id: "external_id",
                     id: "id",
                     payment_method_type: "payment_method_type",
-                    provider_type: "orb",
+                    provider_type: "metronome",
                     updated_at: "2024-01-15T09:30:00Z",
                 },
                 period_end: 1000000,
@@ -5351,14 +5693,14 @@ describe("CheckoutClient", () => {
                         price_external_id: "price_external_id",
                         price_id: "price_id",
                         price_tier: [{}],
-                        provider_type: "orb",
+                        provider_type: "metronome",
                         quantity: 1.1,
                         subscription_id: "subscription_id",
                         updated_at: "2024-01-15T09:30:00Z",
                         usage_type: "licensed",
                     },
                 ],
-                provider_type: "orb",
+                provider_type: "metronome",
                 status: "status",
                 subscription_external_id: "subscription_external_id",
                 total_price: 1000000,
@@ -5416,7 +5758,7 @@ describe("CheckoutClient", () => {
                     externalId: "external_id",
                     id: "id",
                     paymentMethodExternalId: "payment_method_external_id",
-                    providerType: "orb",
+                    providerType: "metronome",
                     status: "draft",
                     subscriptionExternalId: "subscription_external_id",
                     subtotal: 1000000,
@@ -5443,7 +5785,7 @@ describe("CheckoutClient", () => {
                     externalId: "external_id",
                     id: "id",
                     paymentMethodType: "payment_method_type",
-                    providerType: "orb",
+                    providerType: "metronome",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
                 periodEnd: 1000000,
@@ -5463,14 +5805,14 @@ describe("CheckoutClient", () => {
                         priceExternalId: "price_external_id",
                         priceId: "price_id",
                         priceTier: [{}],
-                        providerType: "orb",
+                        providerType: "metronome",
                         quantity: 1.1,
                         subscriptionId: "subscription_id",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         usageType: "licensed",
                     },
                 ],
-                providerType: "orb",
+                providerType: "metronome",
                 status: "status",
                 subscriptionExternalId: "subscription_external_id",
                 totalPrice: 1000000,

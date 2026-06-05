@@ -38,7 +38,7 @@ export class FeaturesClient {
      *         booleanRequireEvent: true,
      *         featureType: ["boolean"],
      *         ids: ["ids"],
-     *         managedBy: "orb",
+     *         managedBy: "metronome",
      *         planVersionId: "plan_version_id",
      *         q: "q",
      *         withoutCompanyOverrideFor: "without_company_override_for",
@@ -724,7 +724,7 @@ export class FeaturesClient {
      *
      * @example
      *     await client.features.upsertFeatureForBillingProduct({
-     *         billingProvider: "orb",
+     *         billingProvider: "metronome",
      *         description: "description",
      *         externalResourceId: "external_resource_id",
      *         featureType: "boolean",
@@ -866,7 +866,7 @@ export class FeaturesClient {
      *         booleanRequireEvent: true,
      *         featureType: ["boolean"],
      *         ids: ["ids"],
-     *         managedBy: "orb",
+     *         managedBy: "metronome",
      *         planVersionId: "plan_version_id",
      *         q: "q",
      *         withoutCompanyOverrideFor: "without_company_override_for",

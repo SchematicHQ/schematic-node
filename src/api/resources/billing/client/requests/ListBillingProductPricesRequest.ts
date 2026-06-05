@@ -14,7 +14,7 @@ import type * as Schematic from "../../../../index";
  *         price: 1000000,
  *         productId: "product_id",
  *         productIds: ["product_ids"],
- *         providerType: "orb",
+ *         providerType: "metronome",
  *         q: "q",
  *         tiersMode: "graduated",
  *         usageType: "licensed",

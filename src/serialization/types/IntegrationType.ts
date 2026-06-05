@@ -5,8 +5,8 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 
 export const IntegrationType: core.serialization.Schema<serializers.IntegrationType.Raw, Schematic.IntegrationType> =
-    core.serialization.enum_(["clerk", "orb", "stripe", "unknown", "workos"]);
+    core.serialization.enum_(["clerk", "metronome", "orb", "stripe", "unknown", "workos"]);
 
 export declare namespace IntegrationType {
-    export type Raw = "clerk" | "orb" | "stripe" | "unknown" | "workos";
+    export type Raw = "clerk" | "metronome" | "orb" | "stripe" | "unknown" | "workos";
 }

@@ -69,6 +69,7 @@ export const PlanCreditGrantView: core.serialization.ObjectSchema<
     resetCadence: core.serialization.property("reset_cadence", BillingPlanCreditGrantResetCadence.optional()),
     resetStart: core.serialization.property("reset_start", BillingPlanCreditGrantResetStart.optional()),
     resetType: core.serialization.property("reset_type", BillingPlanCreditGrantResetType),
+    rolloverPercentage: core.serialization.property("rollover_percentage", core.serialization.number()),
     singularName: core.serialization.property("singular_name", core.serialization.string().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
@@ -102,6 +103,7 @@ export declare namespace PlanCreditGrantView {
         reset_cadence?: BillingPlanCreditGrantResetCadence.Raw | null;
         reset_start?: BillingPlanCreditGrantResetStart.Raw | null;
         reset_type: BillingPlanCreditGrantResetType.Raw;
+        rollover_percentage: number;
         singular_name?: string | null;
         updated_at: string;
     }

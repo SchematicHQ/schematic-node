@@ -3,6 +3,7 @@
 import type * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
+import { CheckoutFieldInput } from "../../../../types/CheckoutFieldInput";
 import { CompatiblePlans } from "../../../../types/CompatiblePlans";
 import { CustomPlanConfig } from "../../../../types/CustomPlanConfig";
 import { OrderedPlansInGroup } from "../../../../types/OrderedPlansInGroup";
@@ -22,6 +23,10 @@ export const CreatePlanGroupRequestBody: core.serialization.Schema<
     checkoutCollectAddress: core.serialization.property("checkout_collect_address", core.serialization.boolean()),
     checkoutCollectEmail: core.serialization.property("checkout_collect_email", core.serialization.boolean()),
     checkoutCollectPhone: core.serialization.property("checkout_collect_phone", core.serialization.boolean()),
+    customCheckoutFields: core.serialization.property(
+        "custom_checkout_fields",
+        core.serialization.list(CheckoutFieldInput).optional(),
+    ),
     customPlanConfig: core.serialization.property("custom_plan_config", CustomPlanConfig.optional()),
     customPlanId: core.serialization.property("custom_plan_id", core.serialization.string().optional()),
     enableTaxCollection: core.serialization.property("enable_tax_collection", core.serialization.boolean()),
@@ -88,6 +93,7 @@ export declare namespace CreatePlanGroupRequestBody {
         checkout_collect_address: boolean;
         checkout_collect_email: boolean;
         checkout_collect_phone: boolean;
+        custom_checkout_fields?: CheckoutFieldInput.Raw[] | null;
         custom_plan_config?: CustomPlanConfig.Raw | null;
         custom_plan_id?: string | null;
         enable_tax_collection: boolean;

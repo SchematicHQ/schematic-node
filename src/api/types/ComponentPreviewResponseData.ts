@@ -13,6 +13,7 @@ export interface ComponentPreviewResponseData {
     component?: Schematic.ComponentResponseData;
     creditBundles: Schematic.BillingCreditBundleView[];
     creditGrants: Schematic.CreditCompanyGrantView[];
+    customCheckoutFields: Schematic.CheckoutFieldWithValue[];
     defaultPlan?: Schematic.PlanDetailResponseData;
     displaySettings: Schematic.ComponentDisplaySettings;
     featureUsage?: Schematic.FeatureUsageDetailResponseData;

@@ -8,7 +8,7 @@ import type * as Schematic from "../../../../index";
  *         companyId: "company_id",
  *         featureIds: ["feature_ids"],
  *         includeUsageAggregation: true,
- *         managedBy: "orb",
+ *         managedBy: "metronome",
  *         q: "q",
  *         withoutNegativeEntitlements: true,
  *         limit: 1000000,

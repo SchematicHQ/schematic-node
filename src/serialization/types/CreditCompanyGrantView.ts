@@ -43,7 +43,10 @@ export const CreditCompanyGrantView: core.serialization.ObjectSchema<
     quantityUsed: core.serialization.property("quantity_used", core.serialization.number()),
     renewalEnabled: core.serialization.property("renewal_enabled", core.serialization.boolean()),
     renewalPeriod: core.serialization.property("renewal_period", BillingPlanCreditGrantResetCadence.optional()),
+    reserved: core.serialization.number().optional(),
+    settled: core.serialization.number().optional(),
     singularName: core.serialization.property("singular_name", core.serialization.string().optional()),
+    sourceGrantId: core.serialization.property("source_grant_id", core.serialization.string().optional()),
     sourceLabel: core.serialization.property("source_label", core.serialization.string()),
     transfers: core.serialization.list(CreditTransferView).optional(),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -79,7 +82,10 @@ export declare namespace CreditCompanyGrantView {
         quantity_used: number;
         renewal_enabled: boolean;
         renewal_period?: BillingPlanCreditGrantResetCadence.Raw | null;
+        reserved?: number | null;
+        settled?: number | null;
         singular_name?: string | null;
+        source_grant_id?: string | null;
         source_label: string;
         transfers?: CreditTransferView.Raw[] | null;
         updated_at: string;

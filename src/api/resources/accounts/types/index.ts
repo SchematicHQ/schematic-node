@@ -1,3 +1,5 @@
+export * from "./CountAccountMembersParams";
+export * from "./CountAccountMembersResponse";
 export * from "./CountApiKeysParams";
 export * from "./CountApiKeysResponse";
 export * from "./CountAuditLogsParams";

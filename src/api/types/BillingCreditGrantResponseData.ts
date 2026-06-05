@@ -21,6 +21,10 @@ export interface BillingCreditGrantResponseData {
     quantityUsed: number;
     renewalEnabled: boolean;
     renewalPeriod?: Schematic.BillingPlanCreditGrantResetCadence;
+    reserved?: number;
+    settled?: number;
+    /** For rollover grants, the ID of the source grant that this grant rolled from. */
+    sourceGrantId?: string;
     sourceLabel: string;
     transfers?: Schematic.CreditTransferResponseData[];
     updatedAt: Date;

@@ -1625,7 +1625,7 @@ export class PlansClient {
      *
      * @example
      *     await client.plans.upsertPlanForBillingProduct({
-     *         billingProvider: "orb",
+     *         billingProvider: "metronome",
      *         description: "description",
      *         externalResourceId: "external_resource_id",
      *         name: "name",

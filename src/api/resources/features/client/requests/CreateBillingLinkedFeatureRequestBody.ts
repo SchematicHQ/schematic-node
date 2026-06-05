@@ -5,7 +5,7 @@ import type * as Schematic from "../../../../index";
 /**
  * @example
  *     {
- *         billingProvider: "orb",
+ *         billingProvider: "metronome",
  *         description: "description",
  *         externalResourceId: "external_resource_id",
  *         featureType: "boolean",

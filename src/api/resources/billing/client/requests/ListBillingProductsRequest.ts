@@ -9,7 +9,7 @@ import type * as Schematic from "../../../../index";
  *         isActive: true,
  *         name: "name",
  *         priceUsageType: "licensed",
- *         providerType: "orb",
+ *         providerType: "metronome",
  *         q: "q",
  *         recurringChargesOnly: true,
  *         withOneTimeCharges: true,

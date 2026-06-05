@@ -4,6 +4,7 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingCreditBundleResponseData } from "./BillingCreditBundleResponseData";
+import { CheckoutFieldWithValue } from "./CheckoutFieldWithValue";
 import { CompanyDetailResponseData } from "./CompanyDetailResponseData";
 import { CompanySubscriptionResponseData } from "./CompanySubscriptionResponseData";
 import { CreditBundlePurchaseResponseData } from "./CreditBundlePurchaseResponseData";
@@ -26,6 +27,10 @@ export const CheckoutDataResponseData: core.serialization.ObjectSchema<
         core.serialization.list(BillingCreditBundleResponseData),
     ),
     company: CompanyDetailResponseData.optional(),
+    customCheckoutFields: core.serialization.property(
+        "custom_checkout_fields",
+        core.serialization.list(CheckoutFieldWithValue),
+    ),
     featureUsage: core.serialization.property("feature_usage", FeatureUsageDetailResponseData.optional()),
     selectedCreditBundles: core.serialization.property(
         "selected_credit_bundles",
@@ -46,6 +51,7 @@ export declare namespace CheckoutDataResponseData {
         active_usage_based_entitlements: UsageBasedEntitlementResponseData.Raw[];
         available_credit_bundles: BillingCreditBundleResponseData.Raw[];
         company?: CompanyDetailResponseData.Raw | null;
+        custom_checkout_fields: CheckoutFieldWithValue.Raw[];
         feature_usage?: FeatureUsageDetailResponseData.Raw | null;
         selected_credit_bundles: CreditBundlePurchaseResponseData.Raw[];
         selected_plan?: PlanDetailResponseData.Raw | null;

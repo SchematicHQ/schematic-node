@@ -4,6 +4,7 @@ import type * as Schematic from "../index";
 
 export type IntegrationConfig =
     | Schematic.IntegrationConfig.Clerk
+    | Schematic.IntegrationConfig.Metronome
     | Schematic.IntegrationConfig.Orb
     | Schematic.IntegrationConfig.Stripe
     | Schematic.IntegrationConfig.Workos;
@@ -11,6 +12,10 @@ export type IntegrationConfig =
 export namespace IntegrationConfig {
     export interface Clerk extends Schematic.ClerkIntegrationConfig {
         type: "clerk";
+    }
+
+    export interface Metronome extends Schematic.MetronomeIntegrationConfig {
+        type: "metronome";
     }
 
     export interface Orb extends Schematic.OrbIntegrationConfig {

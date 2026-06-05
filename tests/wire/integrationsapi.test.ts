@@ -354,6 +354,193 @@ describe("IntegrationsapiClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("installIntegration (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { type: "clerk" };
+        const rawResponseBody = {
+            data: {
+                capabilities: { author_plans: true, checkout: true, edit_billing: true },
+                config: {
+                    company_matching_criteria: "billing_meta_object",
+                    company_matching_field: "company_matching_field",
+                    config: { type: "clerk" },
+                    created_at: "2024-01-15T09:30:00Z",
+                    id: "id",
+                    integration_id: "integration_id",
+                    is_app_install: true,
+                    is_connect_install: true,
+                    live_mode: true,
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+                integration: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    id: "id",
+                    state: "active",
+                    type: "clerk",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/install")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.integrationsapi.installIntegration({
+            type: "clerk",
+        });
+        expect(response).toEqual({
+            data: {
+                capabilities: {
+                    authorPlans: true,
+                    checkout: true,
+                    editBilling: true,
+                },
+                config: {
+                    companyMatchingCriteria: "billing_meta_object",
+                    companyMatchingField: "company_matching_field",
+                    config: {
+                        type: "clerk",
+                    },
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    id: "id",
+                    integrationId: "integration_id",
+                    isAppInstall: true,
+                    isConnectInstall: true,
+                    liveMode: true,
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+                integration: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    id: "id",
+                    state: "active",
+                    type: "clerk",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("installIntegration (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { type: "clerk" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/install")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.installIntegration({
+                type: "clerk",
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("installIntegration (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { type: "clerk" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/install")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.installIntegration({
+                type: "clerk",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("installIntegration (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { type: "clerk" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/install")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.installIntegration({
+                type: "clerk",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("installIntegration (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { type: "clerk" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/install")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.installIntegration({
+                type: "clerk",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("installIntegration (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { type: "clerk" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/install")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.installIntegration({
+                type: "clerk",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("startDataImport (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -505,7 +692,7 @@ describe("IntegrationsapiClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
-    test("loadSampleDataSetV2 (1)", async () => {
+    test("loadSampleDataSet (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -519,7 +706,7 @@ describe("IntegrationsapiClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.integrationsapi.loadSampleDataSetV2();
+        const response = await client.integrationsapi.loadSampleDataSet();
         expect(response).toEqual({
             data: {
                 keys: ["keys"],
@@ -530,7 +717,7 @@ describe("IntegrationsapiClient", () => {
         });
     });
 
-    test("loadSampleDataSetV2 (2)", async () => {
+    test("loadSampleDataSet (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -545,11 +732,11 @@ describe("IntegrationsapiClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.integrationsapi.loadSampleDataSetV2();
+            return await client.integrationsapi.loadSampleDataSet();
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
 
-    test("loadSampleDataSetV2 (3)", async () => {
+    test("loadSampleDataSet (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -564,11 +751,11 @@ describe("IntegrationsapiClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.integrationsapi.loadSampleDataSetV2();
+            return await client.integrationsapi.loadSampleDataSet();
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
 
-    test("loadSampleDataSetV2 (4)", async () => {
+    test("loadSampleDataSet (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -583,11 +770,11 @@ describe("IntegrationsapiClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.integrationsapi.loadSampleDataSetV2();
+            return await client.integrationsapi.loadSampleDataSet();
         }).rejects.toThrow(Schematic.NotFoundError);
     });
 
-    test("loadSampleDataSetV2 (5)", async () => {
+    test("loadSampleDataSet (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -602,7 +789,381 @@ describe("IntegrationsapiClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.integrationsapi.loadSampleDataSetV2();
+            return await client.integrationsapi.loadSampleDataSet();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("assumeStripeInstalled (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { type: "clerk" };
+        const rawResponseBody = {
+            data: {
+                capabilities: { author_plans: true, checkout: true, edit_billing: true },
+                config: {
+                    company_matching_criteria: "billing_meta_object",
+                    company_matching_field: "company_matching_field",
+                    config: { type: "clerk" },
+                    created_at: "2024-01-15T09:30:00Z",
+                    id: "id",
+                    integration_id: "integration_id",
+                    is_app_install: true,
+                    is_connect_install: true,
+                    live_mode: true,
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+                integration: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    id: "id",
+                    state: "active",
+                    type: "clerk",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/stripe/v2/assume-installed")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.integrationsapi.assumeStripeInstalled({
+            type: "clerk",
+        });
+        expect(response).toEqual({
+            data: {
+                capabilities: {
+                    authorPlans: true,
+                    checkout: true,
+                    editBilling: true,
+                },
+                config: {
+                    companyMatchingCriteria: "billing_meta_object",
+                    companyMatchingField: "company_matching_field",
+                    config: {
+                        type: "clerk",
+                    },
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    id: "id",
+                    integrationId: "integration_id",
+                    isAppInstall: true,
+                    isConnectInstall: true,
+                    liveMode: true,
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+                integration: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    id: "id",
+                    state: "active",
+                    type: "clerk",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("assumeStripeInstalled (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { type: "clerk" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/stripe/v2/assume-installed")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.assumeStripeInstalled({
+                type: "clerk",
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("assumeStripeInstalled (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { type: "clerk" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/stripe/v2/assume-installed")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.assumeStripeInstalled({
+                type: "clerk",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("assumeStripeInstalled (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { type: "clerk" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/stripe/v2/assume-installed")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.assumeStripeInstalled({
+                type: "clerk",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("assumeStripeInstalled (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { type: "clerk" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/stripe/v2/assume-installed")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.assumeStripeInstalled({
+                type: "clerk",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("assumeStripeInstalled (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { type: "clerk" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/stripe/v2/assume-installed")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.assumeStripeInstalled({
+                type: "clerk",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("installStripe (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { type: "clerk" };
+        const rawResponseBody = {
+            data: {
+                capabilities: { author_plans: true, checkout: true, edit_billing: true },
+                config: {
+                    company_matching_criteria: "billing_meta_object",
+                    company_matching_field: "company_matching_field",
+                    config: { type: "clerk" },
+                    created_at: "2024-01-15T09:30:00Z",
+                    id: "id",
+                    integration_id: "integration_id",
+                    is_app_install: true,
+                    is_connect_install: true,
+                    live_mode: true,
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+                integration: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    id: "id",
+                    state: "active",
+                    type: "clerk",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/stripe/v2/install")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.integrationsapi.installStripe({
+            type: "clerk",
+        });
+        expect(response).toEqual({
+            data: {
+                capabilities: {
+                    authorPlans: true,
+                    checkout: true,
+                    editBilling: true,
+                },
+                config: {
+                    companyMatchingCriteria: "billing_meta_object",
+                    companyMatchingField: "company_matching_field",
+                    config: {
+                        type: "clerk",
+                    },
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    id: "id",
+                    integrationId: "integration_id",
+                    isAppInstall: true,
+                    isConnectInstall: true,
+                    liveMode: true,
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+                integration: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    id: "id",
+                    state: "active",
+                    type: "clerk",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("installStripe (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { type: "clerk" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/stripe/v2/install")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.installStripe({
+                type: "clerk",
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("installStripe (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { type: "clerk" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/stripe/v2/install")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.installStripe({
+                type: "clerk",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("installStripe (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { type: "clerk" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/stripe/v2/install")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.installStripe({
+                type: "clerk",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("installStripe (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { type: "clerk" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/stripe/v2/install")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.installStripe({
+                type: "clerk",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("installStripe (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { type: "clerk" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/stripe/v2/install")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.installStripe({
+                type: "clerk",
+            });
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 

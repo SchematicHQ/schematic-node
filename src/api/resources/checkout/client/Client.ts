@@ -47,6 +47,10 @@ export class CheckoutClient {
      *                 bundleId: "bundle_id",
      *                 quantity: 1000000
      *             }],
+     *         customFieldValues: [{
+     *                 id: "id",
+     *                 value: "value"
+     *             }],
      *         newPlanId: "new_plan_id",
      *         newPriceId: "new_price_id",
      *         payInAdvance: [{
@@ -333,6 +337,10 @@ export class CheckoutClient {
      *                 bundleId: "bundle_id",
      *                 quantity: 1000000
      *             }],
+     *         customFieldValues: [{
+     *                 id: "id",
+     *                 value: "value"
+     *             }],
      *         newPlanId: "new_plan_id",
      *         newPriceId: "new_price_id",
      *         payInAdvance: [{
@@ -482,6 +490,10 @@ export class CheckoutClient {
      *                 bundleId: "bundle_id",
      *                 quantity: 1000000
      *             }],
+     *         customFieldValues: [{
+     *                 id: "id",
+     *                 value: "value"
+     *             }],
      *         payInAdvanceEntitlements: [{
      *                 priceId: "price_id",
      *                 quantity: 1000000
@@ -625,6 +637,10 @@ export class CheckoutClient {
      *         creditBundles: [{
      *                 bundleId: "bundle_id",
      *                 quantity: 1000000
+     *             }],
+     *         customFieldValues: [{
+     *                 id: "id",
+     *                 value: "value"
      *             }],
      *         payInAdvanceEntitlements: [{
      *                 priceId: "price_id",

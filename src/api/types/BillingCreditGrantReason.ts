@@ -6,5 +6,6 @@ export const BillingCreditGrantReason = {
     Free: "free",
     Plan: "plan",
     Purchased: "purchased",
+    Rollover: "rollover",
 } as const;
 export type BillingCreditGrantReason = (typeof BillingCreditGrantReason)[keyof typeof BillingCreditGrantReason];

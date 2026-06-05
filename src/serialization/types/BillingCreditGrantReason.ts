@@ -7,8 +7,8 @@ import type * as serializers from "../index";
 export const BillingCreditGrantReason: core.serialization.Schema<
     serializers.BillingCreditGrantReason.Raw,
     Schematic.BillingCreditGrantReason
-> = core.serialization.enum_(["adjustment", "billing_credit_auto_topup", "free", "plan", "purchased"]);
+> = core.serialization.enum_(["adjustment", "billing_credit_auto_topup", "free", "plan", "purchased", "rollover"]);
 
 export declare namespace BillingCreditGrantReason {
-    export type Raw = "adjustment" | "billing_credit_auto_topup" | "free" | "plan" | "purchased";
+    export type Raw = "adjustment" | "billing_credit_auto_topup" | "free" | "plan" | "purchased" | "rollover";
 }

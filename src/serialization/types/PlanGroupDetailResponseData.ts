@@ -4,6 +4,7 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingPriceView } from "./BillingPriceView";
+import { CheckoutFieldResponseData } from "./CheckoutFieldResponseData";
 import { CheckoutSettingsResponseData } from "./CheckoutSettingsResponseData";
 import { ComponentSettingsResponseData } from "./ComponentSettingsResponseData";
 import { CustomPlanViewConfigResponseData } from "./CustomPlanViewConfigResponseData";
@@ -18,6 +19,10 @@ export const PlanGroupDetailResponseData: core.serialization.ObjectSchema<
     addOns: core.serialization.property("add_ons", core.serialization.list(PlanGroupPlanDetailResponseData)),
     checkoutSettings: core.serialization.property("checkout_settings", CheckoutSettingsResponseData),
     componentSettings: core.serialization.property("component_settings", ComponentSettingsResponseData),
+    customCheckoutFields: core.serialization.property(
+        "custom_checkout_fields",
+        core.serialization.list(CheckoutFieldResponseData),
+    ),
     customPlanConfig: core.serialization.property("custom_plan_config", CustomPlanViewConfigResponseData.optional()),
     customPlanId: core.serialization.property("custom_plan_id", core.serialization.string().optional()),
     defaultPlan: core.serialization.property("default_plan", PlanGroupPlanDetailResponseData.optional()),
@@ -95,6 +100,7 @@ export declare namespace PlanGroupDetailResponseData {
         add_ons: PlanGroupPlanDetailResponseData.Raw[];
         checkout_settings: CheckoutSettingsResponseData.Raw;
         component_settings: ComponentSettingsResponseData.Raw;
+        custom_checkout_fields: CheckoutFieldResponseData.Raw[];
         custom_plan_config?: CustomPlanViewConfigResponseData.Raw | null;
         custom_plan_id?: string | null;
         default_plan?: PlanGroupPlanDetailResponseData.Raw | null;
