@@ -103,6 +103,60 @@ await client.accounts.getAccountMember("account_member_id");
 </dl>
 </details>
 
+<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">countAccountMembers</a>({ ...params }) -> Schematic.CountAccountMembersResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounts.countAccountMembers({
+    ids: ["ids"],
+    q: "q",
+    limit: 1000000,
+    offset: 1000000
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CountAccountMembersRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">listApiKeys</a>({ ...params }) -> Schematic.ListApiKeysResponse</code></summary>
 <dl>
 <dd>
@@ -1107,7 +1161,7 @@ await client.billing.upsertBillingCustomer({
 await client.billing.listCustomersWithSubscriptions({
     companyIds: ["company_ids"],
     name: "name",
-    providerType: "orb",
+    providerType: "metronome",
     q: "q",
     limit: 1000000,
     offset: 1000000
@@ -1163,7 +1217,7 @@ await client.billing.listCustomersWithSubscriptions({
 await client.billing.countCustomers({
     companyIds: ["company_ids"],
     name: "name",
-    providerType: "orb",
+    providerType: "metronome",
     q: "q",
     limit: 1000000,
     offset: 1000000
@@ -1601,7 +1655,7 @@ await client.billing.listBillingPrices({
     price: 1000000,
     productId: "product_id",
     productIds: ["product_ids"],
-    providerType: "orb",
+    providerType: "metronome",
     q: "q",
     tiersMode: "graduated",
     usageType: "licensed",
@@ -1778,7 +1832,7 @@ await client.billing.listBillingProductPrices({
     price: 1000000,
     productId: "product_id",
     productIds: ["product_ids"],
-    providerType: "orb",
+    providerType: "metronome",
     q: "q",
     tiersMode: "graduated",
     usageType: "licensed",
@@ -1940,7 +1994,7 @@ await client.billing.listBillingProducts({
     isActive: true,
     name: "name",
     priceUsageType: "licensed",
-    providerType: "orb",
+    providerType: "metronome",
     q: "q",
     recurringChargesOnly: true,
     withOneTimeCharges: true,
@@ -2003,7 +2057,7 @@ await client.billing.countBillingProducts({
     isActive: true,
     name: "name",
     priceUsageType: "licensed",
-    providerType: "orb",
+    providerType: "metronome",
     q: "q",
     recurringChargesOnly: true,
     withOneTimeCharges: true,
@@ -3912,6 +3966,10 @@ await client.checkout.internal({
             bundleId: "bundle_id",
             quantity: 1000000
         }],
+    customFieldValues: [{
+            id: "id",
+            value: "value"
+        }],
     newPlanId: "new_plan_id",
     newPriceId: "new_price_id",
     payInAdvance: [{
@@ -4032,6 +4090,10 @@ await client.checkout.previewCheckoutInternal({
             bundleId: "bundle_id",
             quantity: 1000000
         }],
+    customFieldValues: [{
+            id: "id",
+            value: "value"
+        }],
     newPlanId: "new_plan_id",
     newPriceId: "new_price_id",
     payInAdvance: [{
@@ -4097,6 +4159,10 @@ await client.checkout.managePlan({
             bundleId: "bundle_id",
             quantity: 1000000
         }],
+    customFieldValues: [{
+            id: "id",
+            value: "value"
+        }],
     payInAdvanceEntitlements: [{
             priceId: "price_id",
             quantity: 1000000
@@ -4158,6 +4224,10 @@ await client.checkout.previewManagePlan({
     creditBundles: [{
             bundleId: "bundle_id",
             quantity: 1000000
+        }],
+    customFieldValues: [{
+            id: "id",
+            value: "value"
         }],
     payInAdvanceEntitlements: [{
             priceId: "price_id",
@@ -6742,7 +6812,7 @@ await client.entitlements.listFeatureUsage({
     companyId: "company_id",
     featureIds: ["feature_ids"],
     includeUsageAggregation: true,
-    managedBy: "orb",
+    managedBy: "metronome",
     q: "q",
     withoutNegativeEntitlements: true,
     limit: 1000000,
@@ -6855,7 +6925,7 @@ await client.entitlements.countFeatureUsage({
     companyId: "company_id",
     featureIds: ["feature_ids"],
     includeUsageAggregation: true,
-    managedBy: "orb",
+    managedBy: "metronome",
     q: "q",
     withoutNegativeEntitlements: true,
     limit: 1000000,
@@ -7289,7 +7359,7 @@ await client.entitlements.deletePlanEntitlement("plan_entitlement_id");
 
 ```typescript
 await client.entitlements.upsertPlanEntitlementForBillingProduct({
-    billingProvider: "orb",
+    billingProvider: "metronome",
     externalResourceId: "external_resource_id",
     featureId: "feature_id",
     planId: "plan_id",
@@ -8148,7 +8218,7 @@ await client.plans.upsertBillingProductPlan("plan_id", {
 
 ```typescript
 await client.plans.upsertPlanForBillingProduct({
-    billingProvider: "orb",
+    billingProvider: "metronome",
     description: "description",
     externalResourceId: "external_resource_id",
     name: "name",
@@ -9499,7 +9569,7 @@ await client.features.listFeatures({
     booleanRequireEvent: true,
     featureType: ["boolean"],
     ids: ["ids"],
-    managedBy: "orb",
+    managedBy: "metronome",
     planVersionId: "plan_version_id",
     q: "q",
     withoutCompanyOverrideFor: "without_company_override_for",
@@ -9764,7 +9834,7 @@ await client.features.deleteFeature("feature_id");
 
 ```typescript
 await client.features.upsertFeatureForBillingProduct({
-    billingProvider: "orb",
+    billingProvider: "metronome",
     description: "description",
     externalResourceId: "external_resource_id",
     featureType: "boolean",
@@ -9822,7 +9892,7 @@ await client.features.countFeatures({
     booleanRequireEvent: true,
     featureType: ["boolean"],
     ids: ["ids"],
-    managedBy: "orb",
+    managedBy: "metronome",
     planVersionId: "plan_version_id",
     q: "q",
     withoutCompanyOverrideFor: "without_company_override_for",
@@ -10884,6 +10954,57 @@ await client.integrationsapi.getIntegrationWebhookUrl("type");
 </dl>
 </details>
 
+<details><summary><code>client.integrationsapi.<a href="/src/api/resources/integrationsapi/client/Client.ts">installIntegration</a>({ ...params }) -> Schematic.InstallIntegrationResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.integrationsapi.installIntegration({
+    type: "clerk"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.InstallIntegrationRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `IntegrationsapiClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.integrationsapi.<a href="/src/api/resources/integrationsapi/client/Client.ts">startDataImport</a>({ ...params }) -> Schematic.StartDataImportResponse</code></summary>
 <dl>
 <dd>
@@ -10935,7 +11056,7 @@ await client.integrationsapi.startDataImport({
 </dl>
 </details>
 
-<details><summary><code>client.integrationsapi.<a href="/src/api/resources/integrationsapi/client/Client.ts">loadSampleDataSetV2</a>() -> Schematic.LoadSampleDataSetV2Response</code></summary>
+<details><summary><code>client.integrationsapi.<a href="/src/api/resources/integrationsapi/client/Client.ts">loadSampleDataSet</a>() -> Schematic.LoadSampleDataSetResponse</code></summary>
 <dl>
 <dd>
 
@@ -10948,7 +11069,7 @@ await client.integrationsapi.startDataImport({
 <dd>
 
 ```typescript
-await client.integrationsapi.loadSampleDataSetV2();
+await client.integrationsapi.loadSampleDataSet();
 
 ```
 </dd>
@@ -10960,6 +11081,108 @@ await client.integrationsapi.loadSampleDataSetV2();
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `IntegrationsapiClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.integrationsapi.<a href="/src/api/resources/integrationsapi/client/Client.ts">assumeStripeInstalled</a>({ ...params }) -> Schematic.AssumeStripeInstalledResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.integrationsapi.assumeStripeInstalled({
+    type: "clerk"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.InstallIntegrationRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `IntegrationsapiClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.integrationsapi.<a href="/src/api/resources/integrationsapi/client/Client.ts">installStripe</a>({ ...params }) -> Schematic.InstallStripeResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.integrationsapi.installStripe({
+    type: "clerk"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.InstallIntegrationRequestBody` 
+    
+</dd>
+</dl>
 
 <dl>
 <dd>

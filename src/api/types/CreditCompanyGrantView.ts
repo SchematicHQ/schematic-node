@@ -28,7 +28,10 @@ export interface CreditCompanyGrantView {
     quantityUsed: number;
     renewalEnabled: boolean;
     renewalPeriod?: Schematic.BillingPlanCreditGrantResetCadence;
+    reserved?: number;
+    settled?: number;
     singularName?: string;
+    sourceGrantId?: string;
     sourceLabel: string;
     transfers?: Schematic.CreditTransferView[];
     updatedAt: Date;

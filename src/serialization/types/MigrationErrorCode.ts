@@ -12,6 +12,7 @@ export const MigrationErrorCode: core.serialization.Schema<
     "multiple_subscriptions",
     "no_price_for_interval",
     "not_on_origin_version",
+    "operation_item_not_found",
     "permanent_config",
     "permanent_decline",
     "transient_decline",
@@ -27,6 +28,7 @@ export declare namespace MigrationErrorCode {
         | "multiple_subscriptions"
         | "no_price_for_interval"
         | "not_on_origin_version"
+        | "operation_item_not_found"
         | "permanent_config"
         | "permanent_decline"
         | "transient_decline"

@@ -3,19 +3,19 @@
 import type * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
-import { IntegrationsDataSetResponseData } from "../../../types/IntegrationsDataSetResponseData";
+import { IntegrationInstallResponseData } from "../../../types/IntegrationInstallResponseData";
 
-export const LoadSampleDataSetV2Response: core.serialization.ObjectSchema<
-    serializers.LoadSampleDataSetV2Response.Raw,
-    Schematic.LoadSampleDataSetV2Response
+export const InstallStripeResponse: core.serialization.ObjectSchema<
+    serializers.InstallStripeResponse.Raw,
+    Schematic.InstallStripeResponse
 > = core.serialization.object({
-    data: IntegrationsDataSetResponseData,
+    data: IntegrationInstallResponseData,
     params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
-export declare namespace LoadSampleDataSetV2Response {
+export declare namespace InstallStripeResponse {
     export interface Raw {
-        data: IntegrationsDataSetResponseData.Raw;
+        data: IntegrationInstallResponseData.Raw;
         params: Record<string, unknown>;
     }
 }

@@ -6,6 +6,7 @@ export interface PlanGroupDetailResponseData {
     addOns: Schematic.PlanGroupPlanDetailResponseData[];
     checkoutSettings: Schematic.CheckoutSettingsResponseData;
     componentSettings: Schematic.ComponentSettingsResponseData;
+    customCheckoutFields: Schematic.CheckoutFieldResponseData[];
     customPlanConfig?: Schematic.CustomPlanViewConfigResponseData;
     customPlanId?: string;
     defaultPlan?: Schematic.PlanGroupPlanDetailResponseData;

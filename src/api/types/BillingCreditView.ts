@@ -15,6 +15,7 @@ export interface BillingCreditView {
     environmentId: string;
     icon?: string;
     id: string;
+    ledgerAuthority: Schematic.BillingCreditLedgerAuthority;
     name: string;
     pluralName?: string;
     price?: Schematic.BillingPriceView;

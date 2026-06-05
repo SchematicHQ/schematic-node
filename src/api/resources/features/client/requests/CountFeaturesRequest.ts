@@ -8,7 +8,7 @@ import type * as Schematic from "../../../../index";
  *         booleanRequireEvent: true,
  *         featureType: ["boolean"],
  *         ids: ["ids"],
- *         managedBy: "orb",
+ *         managedBy: "metronome",
  *         planVersionId: "plan_version_id",
  *         q: "q",
  *         withoutCompanyOverrideFor: "without_company_override_for",

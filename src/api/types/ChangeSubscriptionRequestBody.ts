@@ -7,6 +7,7 @@ export interface ChangeSubscriptionRequestBody {
     autoTopupOverrides: Schematic.UpdateAutoTopupOverrideRequestBody[];
     couponExternalId?: string;
     creditBundles: Schematic.UpdateCreditBundleRequestBody[];
+    customFieldValues: Schematic.CheckoutFieldValue[];
     newPlanId: string;
     newPriceId: string;
     payInAdvance: Schematic.UpdatePayInAdvanceRequestBody[];

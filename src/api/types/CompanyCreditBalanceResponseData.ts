@@ -5,6 +5,8 @@ import type * as Schematic from "../index";
 export interface CompanyCreditBalanceResponseData {
     creditId: string;
     remaining: number;
+    reserved: number;
+    settled: number;
     source: Schematic.BillingProviderType;
     total?: number;
 }

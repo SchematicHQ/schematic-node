@@ -31,6 +31,9 @@ export const BillingCreditGrantResponseData: core.serialization.ObjectSchema<
     quantityUsed: core.serialization.property("quantity_used", core.serialization.number()),
     renewalEnabled: core.serialization.property("renewal_enabled", core.serialization.boolean()),
     renewalPeriod: core.serialization.property("renewal_period", BillingPlanCreditGrantResetCadence.optional()),
+    reserved: core.serialization.number().optional(),
+    settled: core.serialization.number().optional(),
+    sourceGrantId: core.serialization.property("source_grant_id", core.serialization.string().optional()),
     sourceLabel: core.serialization.property("source_label", core.serialization.string()),
     transfers: core.serialization.list(CreditTransferResponseData).optional(),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -59,6 +62,9 @@ export declare namespace BillingCreditGrantResponseData {
         quantity_used: number;
         renewal_enabled: boolean;
         renewal_period?: BillingPlanCreditGrantResetCadence.Raw | null;
+        reserved?: number | null;
+        settled?: number | null;
+        source_grant_id?: string | null;
         source_label: string;
         transfers?: CreditTransferResponseData.Raw[] | null;
         updated_at: string;

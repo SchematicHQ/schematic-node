@@ -14,8 +14,10 @@ describe("AccountsClient", () => {
                 {
                     created_at: "2024-01-15T09:30:00Z",
                     email: "email",
+                    first_name: "first_name",
                     id: "id",
                     image_url: "image_url",
+                    last_name: "last_name",
                     name: "name",
                     permissions: { key: ["billing_credits_edit"] },
                     role: "admin",
@@ -38,8 +40,10 @@ describe("AccountsClient", () => {
                 {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     email: "email",
+                    firstName: "first_name",
                     id: "id",
                     imageUrl: "image_url",
+                    lastName: "last_name",
                     name: "name",
                     permissions: {
                         key: ["billing_credits_edit"],
@@ -130,8 +134,10 @@ describe("AccountsClient", () => {
             data: {
                 created_at: "2024-01-15T09:30:00Z",
                 email: "email",
+                first_name: "first_name",
                 id: "id",
                 image_url: "image_url",
+                last_name: "last_name",
                 name: "name",
                 permissions: { key: ["billing_credits_edit"] },
                 role: "admin",
@@ -153,8 +159,10 @@ describe("AccountsClient", () => {
             data: {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 email: "email",
+                firstName: "first_name",
                 id: "id",
                 imageUrl: "image_url",
+                lastName: "last_name",
                 name: "name",
                 permissions: {
                     key: ["billing_credits_edit"],
@@ -241,6 +249,137 @@ describe("AccountsClient", () => {
 
         await expect(async () => {
             return await client.accounts.getAccountMember("account_member_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("countAccountMembers (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: { count: 1 },
+            params: { ids: ["ids"], limit: 1000000, offset: 1000000, q: "q" },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/account-members/count")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.accounts.countAccountMembers({
+            ids: ["ids"],
+            q: "q",
+            limit: 1000000,
+            offset: 1000000,
+        });
+        expect(response).toEqual({
+            data: {
+                count: 1,
+            },
+            params: {
+                ids: ["ids"],
+                limit: 1000000,
+                offset: 1000000,
+                q: "q",
+            },
+        });
+    });
+
+    test("countAccountMembers (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/account-members/count")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.accounts.countAccountMembers();
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("countAccountMembers (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/account-members/count")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.accounts.countAccountMembers();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("countAccountMembers (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/account-members/count")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.accounts.countAccountMembers();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("countAccountMembers (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/account-members/count")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.accounts.countAccountMembers();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("countAccountMembers (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/account-members/count")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.accounts.countAccountMembers();
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 

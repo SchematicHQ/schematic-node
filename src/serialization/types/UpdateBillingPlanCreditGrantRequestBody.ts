@@ -43,6 +43,7 @@ export const UpdateBillingPlanCreditGrantRequestBody: core.serialization.ObjectS
     resetCadence: core.serialization.property("reset_cadence", BillingPlanCreditGrantResetCadence),
     resetStart: core.serialization.property("reset_start", BillingPlanCreditGrantResetStart),
     resetType: core.serialization.property("reset_type", BillingPlanCreditGrantResetType.optional()),
+    rolloverPercentage: core.serialization.property("rollover_percentage", core.serialization.number().optional()),
 });
 
 export declare namespace UpdateBillingPlanCreditGrantRequestBody {
@@ -64,5 +65,6 @@ export declare namespace UpdateBillingPlanCreditGrantRequestBody {
         reset_cadence: BillingPlanCreditGrantResetCadence.Raw;
         reset_start: BillingPlanCreditGrantResetStart.Raw;
         reset_type?: BillingPlanCreditGrantResetType.Raw | null;
+        rollover_percentage?: number | null;
     }
 }

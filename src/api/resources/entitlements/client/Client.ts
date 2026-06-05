@@ -1171,7 +1171,7 @@ export class EntitlementsClient {
      *         companyId: "company_id",
      *         featureIds: ["feature_ids"],
      *         includeUsageAggregation: true,
-     *         managedBy: "orb",
+     *         managedBy: "metronome",
      *         q: "q",
      *         withoutNegativeEntitlements: true,
      *         limit: 1000000,
@@ -1474,7 +1474,7 @@ export class EntitlementsClient {
      *         companyId: "company_id",
      *         featureIds: ["feature_ids"],
      *         includeUsageAggregation: true,
-     *         managedBy: "orb",
+     *         managedBy: "metronome",
      *         q: "q",
      *         withoutNegativeEntitlements: true,
      *         limit: 1000000,
@@ -2631,7 +2631,7 @@ export class EntitlementsClient {
      *
      * @example
      *     await client.entitlements.upsertPlanEntitlementForBillingProduct({
-     *         billingProvider: "orb",
+     *         billingProvider: "metronome",
      *         externalResourceId: "external_resource_id",
      *         featureId: "feature_id",
      *         planId: "plan_id",

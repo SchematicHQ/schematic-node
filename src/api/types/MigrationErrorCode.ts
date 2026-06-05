@@ -5,6 +5,7 @@ export const MigrationErrorCode = {
     MultipleSubscriptions: "multiple_subscriptions",
     NoPriceForInterval: "no_price_for_interval",
     NotOnOriginVersion: "not_on_origin_version",
+    OperationItemNotFound: "operation_item_not_found",
     PermanentConfig: "permanent_config",
     PermanentDecline: "permanent_decline",
     TransientDecline: "transient_decline",

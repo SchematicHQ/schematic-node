@@ -4,6 +4,7 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingCreditBundleView } from "./BillingCreditBundleView";
+import { CheckoutFieldWithValue } from "./CheckoutFieldWithValue";
 import { CompanyDetailResponseData } from "./CompanyDetailResponseData";
 import { CompanyPlanDetailResponseData } from "./CompanyPlanDetailResponseData";
 import { CompanySubscriptionResponseData } from "./CompanySubscriptionResponseData";
@@ -40,6 +41,10 @@ export const ComponentPreviewResponseData: core.serialization.ObjectSchema<
     component: ComponentResponseData.optional(),
     creditBundles: core.serialization.property("credit_bundles", core.serialization.list(BillingCreditBundleView)),
     creditGrants: core.serialization.property("credit_grants", core.serialization.list(CreditCompanyGrantView)),
+    customCheckoutFields: core.serialization.property(
+        "custom_checkout_fields",
+        core.serialization.list(CheckoutFieldWithValue),
+    ),
     defaultPlan: core.serialization.property("default_plan", PlanDetailResponseData.optional()),
     displaySettings: core.serialization.property("display_settings", ComponentDisplaySettings),
     featureUsage: core.serialization.property("feature_usage", FeatureUsageDetailResponseData.optional()),
@@ -83,6 +88,7 @@ export declare namespace ComponentPreviewResponseData {
         component?: ComponentResponseData.Raw | null;
         credit_bundles: BillingCreditBundleView.Raw[];
         credit_grants: CreditCompanyGrantView.Raw[];
+        custom_checkout_fields: CheckoutFieldWithValue.Raw[];
         default_plan?: PlanDetailResponseData.Raw | null;
         display_settings: ComponentDisplaySettings.Raw;
         feature_usage?: FeatureUsageDetailResponseData.Raw | null;

@@ -12,8 +12,10 @@ export const AccountMemberResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     email: core.serialization.string().optional(),
+    firstName: core.serialization.property("first_name", core.serialization.string().optional()),
     id: core.serialization.string(),
     imageUrl: core.serialization.property("image_url", core.serialization.string().optional()),
+    lastName: core.serialization.property("last_name", core.serialization.string().optional()),
     name: core.serialization.string().optional(),
     permissions: core.serialization.record(
         core.serialization.string(),
@@ -27,8 +29,10 @@ export declare namespace AccountMemberResponseData {
     export interface Raw {
         created_at: string;
         email?: string | null;
+        first_name?: string | null;
         id: string;
         image_url?: string | null;
+        last_name?: string | null;
         name?: string | null;
         permissions: Record<string, AccountMemberPermission.Raw[]>;
         role?: AccountMemberRole.Raw | null;

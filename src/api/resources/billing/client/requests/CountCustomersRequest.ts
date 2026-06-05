@@ -7,7 +7,7 @@ import type * as Schematic from "../../../../index";
  *     {
  *         companyIds: ["company_ids"],
  *         name: "name",
- *         providerType: "orb",
+ *         providerType: "metronome",
  *         q: "q",
  *         limit: 1000000,
  *         offset: 1000000

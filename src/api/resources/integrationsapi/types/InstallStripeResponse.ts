@@ -2,8 +2,8 @@
 
 import type * as Schematic from "../../../index";
 
-export interface LoadSampleDataSetV2Response {
-    data: Schematic.IntegrationsDataSetResponseData;
+export interface InstallStripeResponse {
+    data: Schematic.IntegrationInstallResponseData;
     /** Input parameters */
     params: Record<string, unknown>;
 }

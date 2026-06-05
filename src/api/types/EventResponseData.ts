@@ -14,6 +14,7 @@ export interface EventResponseData {
     featureIds: string[];
     id: string;
     idempotencyKey?: string;
+    leaseId?: string;
     loadedAt?: Date;
     processedAt?: Date;
     quantity: number;

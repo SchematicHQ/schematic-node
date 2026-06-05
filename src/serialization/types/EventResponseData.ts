@@ -21,6 +21,7 @@ export const EventResponseData: core.serialization.ObjectSchema<
     featureIds: core.serialization.property("feature_ids", core.serialization.list(core.serialization.string())),
     id: core.serialization.string(),
     idempotencyKey: core.serialization.property("idempotency_key", core.serialization.string().optional()),
+    leaseId: core.serialization.property("lease_id", core.serialization.string().optional()),
     loadedAt: core.serialization.property("loaded_at", core.serialization.date().optional()),
     processedAt: core.serialization.property("processed_at", core.serialization.date().optional()),
     quantity: core.serialization.number(),
@@ -45,6 +46,7 @@ export declare namespace EventResponseData {
         feature_ids: string[];
         id: string;
         idempotency_key?: string | null;
+        lease_id?: string | null;
         loaded_at?: string | null;
         processed_at?: string | null;
         quantity: number;

@@ -11,6 +11,8 @@ export const CompanyCreditBalanceResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     creditId: core.serialization.property("credit_id", core.serialization.string()),
     remaining: core.serialization.number(),
+    reserved: core.serialization.number(),
+    settled: core.serialization.number(),
     source: BillingProviderType,
     total: core.serialization.number().optional(),
 });
@@ -19,6 +21,8 @@ export declare namespace CompanyCreditBalanceResponseData {
     export interface Raw {
         credit_id: string;
         remaining: number;
+        reserved: number;
+        settled: number;
         source: BillingProviderType.Raw;
         total?: number | null;
     }

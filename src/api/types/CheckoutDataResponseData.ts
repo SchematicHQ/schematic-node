@@ -8,6 +8,7 @@ export interface CheckoutDataResponseData {
     activeUsageBasedEntitlements: Schematic.UsageBasedEntitlementResponseData[];
     availableCreditBundles: Schematic.BillingCreditBundleResponseData[];
     company?: Schematic.CompanyDetailResponseData;
+    customCheckoutFields: Schematic.CheckoutFieldWithValue[];
     featureUsage?: Schematic.FeatureUsageDetailResponseData;
     selectedCreditBundles: Schematic.CreditBundlePurchaseResponseData[];
     selectedPlan?: Schematic.PlanDetailResponseData;

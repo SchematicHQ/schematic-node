@@ -1,3 +1,4 @@
+export type { CountAccountMembersRequest } from "./CountAccountMembersRequest";
 export type { CountApiKeysRequest } from "./CountApiKeysRequest";
 export type { CountAuditLogsRequest } from "./CountAuditLogsRequest";
 export type { CreateApiKeyRequestBody } from "./CreateApiKeyRequestBody";

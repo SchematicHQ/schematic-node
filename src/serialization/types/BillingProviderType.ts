@@ -7,8 +7,8 @@ import type * as serializers from "../index";
 export const BillingProviderType: core.serialization.Schema<
     serializers.BillingProviderType.Raw,
     Schematic.BillingProviderType
-> = core.serialization.enum_(["orb", "schematic", "stripe"]);
+> = core.serialization.enum_(["metronome", "orb", "schematic", "stripe"]);
 
 export declare namespace BillingProviderType {
-    export type Raw = "orb" | "schematic" | "stripe";
+    export type Raw = "metronome" | "orb" | "schematic" | "stripe";
 }

@@ -461,7 +461,7 @@ export class BillingClient {
      *     await client.billing.listCustomersWithSubscriptions({
      *         companyIds: ["company_ids"],
      *         name: "name",
-     *         providerType: "orb",
+     *         providerType: "metronome",
      *         q: "q",
      *         limit: 1000000,
      *         offset: 1000000
@@ -612,7 +612,7 @@ export class BillingClient {
      *     await client.billing.countCustomers({
      *         companyIds: ["company_ids"],
      *         name: "name",
-     *         providerType: "orb",
+     *         providerType: "metronome",
      *         q: "q",
      *         limit: 1000000,
      *         offset: 1000000
@@ -1745,7 +1745,7 @@ export class BillingClient {
      *         price: 1000000,
      *         productId: "product_id",
      *         productIds: ["product_ids"],
-     *         providerType: "orb",
+     *         providerType: "metronome",
      *         q: "q",
      *         tiersMode: "graduated",
      *         usageType: "licensed",
@@ -2216,7 +2216,7 @@ export class BillingClient {
      *         price: 1000000,
      *         productId: "product_id",
      *         productIds: ["product_ids"],
-     *         providerType: "orb",
+     *         providerType: "metronome",
      *         q: "q",
      *         tiersMode: "graduated",
      *         usageType: "licensed",
@@ -2672,7 +2672,7 @@ export class BillingClient {
      *         isActive: true,
      *         name: "name",
      *         priceUsageType: "licensed",
-     *         providerType: "orb",
+     *         providerType: "metronome",
      *         q: "q",
      *         recurringChargesOnly: true,
      *         withOneTimeCharges: true,
@@ -2854,7 +2854,7 @@ export class BillingClient {
      *         isActive: true,
      *         name: "name",
      *         priceUsageType: "licensed",
-     *         providerType: "orb",
+     *         providerType: "metronome",
      *         q: "q",
      *         recurringChargesOnly: true,
      *         withOneTimeCharges: true,

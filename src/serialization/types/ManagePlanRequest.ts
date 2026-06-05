@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { CheckoutFieldValue } from "./CheckoutFieldValue";
 import { PlanSelection } from "./PlanSelection";
 import { UpdateCreditBundleRequestBody } from "./UpdateCreditBundleRequestBody";
 import { UpdatePayInAdvanceRequestBody } from "./UpdatePayInAdvanceRequestBody";
@@ -22,6 +23,7 @@ export const ManagePlanRequest: core.serialization.ObjectSchema<
         "credit_bundles",
         core.serialization.list(UpdateCreditBundleRequestBody),
     ),
+    customFieldValues: core.serialization.property("custom_field_values", core.serialization.list(CheckoutFieldValue)),
     payInAdvanceEntitlements: core.serialization.property(
         "pay_in_advance_entitlements",
         core.serialization.list(UpdatePayInAdvanceRequestBody),
@@ -45,6 +47,7 @@ export declare namespace ManagePlanRequest {
         company_id: string;
         coupon_external_id?: string | null;
         credit_bundles: UpdateCreditBundleRequestBody.Raw[];
+        custom_field_values: CheckoutFieldValue.Raw[];
         pay_in_advance_entitlements: UpdatePayInAdvanceRequestBody.Raw[];
         payment_method_external_id?: string | null;
         promo_code?: string | null;

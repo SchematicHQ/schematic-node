@@ -4,6 +4,7 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { ClerkIntegrationConfig } from "./ClerkIntegrationConfig";
+import { MetronomeIntegrationConfig } from "./MetronomeIntegrationConfig";
 import { OrbIntegrationConfig } from "./OrbIntegrationConfig";
 import { StripeIntegrationConfig } from "./StripeIntegrationConfig";
 import { WorkOsIntegrationConfig } from "./WorkOsIntegrationConfig";
@@ -14,6 +15,7 @@ export const IntegrationConfig: core.serialization.Schema<
 > = core.serialization
     .union("type", {
         clerk: ClerkIntegrationConfig,
+        metronome: MetronomeIntegrationConfig,
         orb: OrbIntegrationConfig,
         stripe: StripeIntegrationConfig,
         workos: WorkOsIntegrationConfig,
@@ -26,12 +28,17 @@ export const IntegrationConfig: core.serialization.Schema<
 export declare namespace IntegrationConfig {
     export type Raw =
         | IntegrationConfig.Clerk
+        | IntegrationConfig.Metronome
         | IntegrationConfig.Orb
         | IntegrationConfig.Stripe
         | IntegrationConfig.Workos;
 
     export interface Clerk extends ClerkIntegrationConfig.Raw {
         type: "clerk";
+    }
+
+    export interface Metronome extends MetronomeIntegrationConfig.Raw {
+        type: "metronome";
     }
 
     export interface Orb extends OrbIntegrationConfig.Raw {

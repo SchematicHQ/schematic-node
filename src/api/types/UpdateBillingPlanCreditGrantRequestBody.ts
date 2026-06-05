@@ -20,4 +20,6 @@ export interface UpdateBillingPlanCreditGrantRequestBody {
     resetCadence: Schematic.BillingPlanCreditGrantResetCadence;
     resetStart: Schematic.BillingPlanCreditGrantResetStart;
     resetType?: Schematic.BillingPlanCreditGrantResetType;
+    /** Percentage of unused credits that carry over when this grant resets. Only applies when reset_type is plan_period. Rolled-over credits expire at the next reset and are not rolled again. */
+    rolloverPercentage?: number;
 }

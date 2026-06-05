@@ -38,6 +38,7 @@ export interface CreatePlanGroupRequestBody {
     checkoutCollectAddress: boolean;
     checkoutCollectEmail: boolean;
     checkoutCollectPhone: boolean;
+    customCheckoutFields?: Schematic.CheckoutFieldInput[];
     customPlanConfig?: Schematic.CustomPlanConfig;
     customPlanId?: string;
     enableTaxCollection: boolean;
