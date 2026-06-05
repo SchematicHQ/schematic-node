@@ -28,7 +28,14 @@ export function provideFetcher(defaultHeaders?: Record<string, string>): FetchFu
             }
         }
 
-        const url = createRequestUrl(args.url, args.queryParameters);
+        // Newer Fern-generated clients pass a pre-built `queryString` (via
+        // core.url.queryBuilder()) instead of `queryParameters`. Honor it first,
+        // falling back to the legacy `queryParameters` path. Without this, any
+        // query params built into `queryString` are silently dropped.
+        const url =
+            args.queryString != null && args.queryString.length > 0
+                ? `${args.url}?${args.queryString}`
+                : createRequestUrl(args.url, args.queryParameters);
         let requestBody: BodyInit | undefined = await getRequestBody({
             body: args.body,
             type: args.requestType === "json" ? "json" : "other",
