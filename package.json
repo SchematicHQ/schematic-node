@@ -1,6 +1,6 @@
 {
     "name": "@schematichq/schematic-typescript-node",
-    "version": "1.4.8",
+    "version": "1.5.0",
     "private": false,
     "repository": {
         "type": "git",
@@ -24,7 +24,6 @@
         "test:cloudflare": "node scripts/test-cloudflare.mjs"
     },
     "dependencies": {
-        "@types/ws": "^8.18.1",
         "form-data": "^4.0.4",
         "formdata-node": "^6.0.3",
         "node-fetch": "^2.7.0",
@@ -32,22 +31,23 @@
         "ws": "^8.18.1"
     },
     "devDependencies": {
-        "@biomejs/biome": "2.4.10",
-        "@jest/globals": "^29.7.0",
-        "@types/jest": "^29.5.14",
-        "@types/node": "^20.0.0",
         "@types/node-fetch": "^2.6.12",
         "@types/readable-stream": "^4.0.23",
-        "esbuild": "^0.25.9",
-        "jest": "^29.7.0",
-        "jest-environment-jsdom": "^29.7.0",
-        "miniflare": "^4.20260421.0",
-        "msw": "2.11.2",
-        "redis": "^4.7.0",
-        "ts-jest": "^29.3.4",
+        "webpack": "^5.105.4",
         "ts-loader": "^9.5.4",
+        "jest": "^29.7.0",
+        "@jest/globals": "^29.7.0",
+        "@types/jest": "^29.5.14",
+        "ts-jest": "^29.3.4",
+        "jest-environment-jsdom": "^29.7.0",
+        "msw": "2.11.2",
+        "@types/node": "^20.0.0",
         "typescript": "~5.9.3",
-        "webpack": "^5.105.4"
+        "@biomejs/biome": "2.4.10",
+        "esbuild": "^0.25.9",
+        "miniflare": "^4.20260421.0",
+        "redis": "^4.7.0",
+        "@types/ws": "^8.18.1"
     },
     "browser": {
         "fs": false,
