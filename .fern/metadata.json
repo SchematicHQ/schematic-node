@@ -32,7 +32,8 @@
             },
             "devDependencies": {
                 "esbuild": "^0.25.9",
-                "miniflare": "^4.20260421.0"
+                "miniflare": "^4.20260421.0",
+                "redis": "^4.7.0"
             },
             "scripts": {
                 "build": "node build.js",
@@ -52,10 +53,10 @@
             ]
         }
     },
-    "originGitCommit": "5fbe35fd91119e0e8c9052a2c5ffd6209edb11f9",
+    "originGitCommit": "21cac518356e682b1c6239ad65a84723a256f1dd",
     "originGitCommitIsDirty": false,
     "invokedBy": "ci",
-    "requestedVersion": "1.4.8",
+    "requestedVersion": "1.5.0",
     "ciProvider": "github",
-    "sdkVersion": "1.4.8"
+    "sdkVersion": "1.5.0"
 }
