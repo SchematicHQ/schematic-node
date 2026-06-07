@@ -23,6 +23,7 @@ jest.mock("../../src/events", () => {
     return {
         EventBuffer: jest.fn().mockImplementation(() => ({
             push: jest.fn(),
+            flush: jest.fn().mockResolvedValue(undefined),
             stop: jest.fn().mockResolvedValue(undefined),
         })),
     };
@@ -81,10 +82,7 @@ describe("SchematicClient wrapper - flag checking behavior", () => {
                 logger: mockLogger,
             });
 
-            const result = await client.checkFlag(
-                { company: { id: "comp-1" } },
-                "test-flag",
-            );
+            const result = await client.checkFlag({ company: { id: "comp-1" } }, "test-flag");
 
             expect(result).toBe(false);
 
@@ -101,10 +99,7 @@ describe("SchematicClient wrapper - flag checking behavior", () => {
                 logger: mockLogger,
             });
 
-            const result = await client.checkFlag(
-                { company: { id: "comp-1" } },
-                "test-flag",
-            );
+            const result = await client.checkFlag({ company: { id: "comp-1" } }, "test-flag");
 
             expect(result).toBe(true);
 
@@ -134,14 +129,8 @@ describe("SchematicClient wrapper - flag checking behavior", () => {
                 logger: mockLogger,
             });
 
-            await client.checkFlag(
-                { company: { id: "comp-1" } },
-                "test-flag",
-            );
-            await client.checkFlag(
-                { company: { id: "comp-2" } },
-                "test-flag",
-            );
+            await client.checkFlag({ company: { id: "comp-1" } }, "test-flag");
+            await client.checkFlag({ company: { id: "comp-2" } }, "test-flag");
 
             // Two different contexts should produce two cache get calls with different keys
             expect(mockCacheProvider.get).toHaveBeenCalledTimes(2);
@@ -170,14 +159,8 @@ describe("SchematicClient wrapper - flag checking behavior", () => {
                 logger: mockLogger,
             });
 
-            const result1 = await client.checkFlag(
-                { company: { id: "comp-1" } },
-                "test-flag",
-            );
-            const result2 = await client.checkFlag(
-                { company: { id: "comp-1" } },
-                "test-flag",
-            );
+            const result1 = await client.checkFlag({ company: { id: "comp-1" } }, "test-flag");
+            const result2 = await client.checkFlag({ company: { id: "comp-1" } }, "test-flag");
 
             expect(result1).toBe(true);
             expect(result2).toBe(true);
@@ -188,7 +171,6 @@ describe("SchematicClient wrapper - flag checking behavior", () => {
             await client.close();
         });
     });
-
     describe("event options", () => {
         // eslint-disable-next-line @typescript-eslint/no-require-imports
         const { EventBuffer } = require("../../src/events");
@@ -228,10 +210,7 @@ describe("SchematicClient wrapper - flag checking behavior", () => {
         it("should thread identify idempotencyKey into the buffered event", async () => {
             const client = new SchematicClient({ apiKey: "test-api-key", logger: mockLogger });
 
-            await client.identify(
-                { keys: { id: "user-1" }, name: "Test User" },
-                { idempotencyKey: "dedupe-xyz" },
-            );
+            await client.identify({ keys: { id: "user-1" }, name: "Test User" }, { idempotencyKey: "dedupe-xyz" });
 
             const event = lastPushedEvent();
             expect(event.eventType).toBe("identify");
@@ -255,6 +234,158 @@ describe("SchematicClient wrapper - flag checking behavior", () => {
 
             await client.close();
         });
+    });
+
+    describe("identify with prewarm", () => {
+        it("forwards prewarm credit type ids to client.prewarm and flushes the buffer", async () => {
+            const client = new SchematicClient({
+                apiKey: "test-api-key",
+                cacheProviders: { flagChecks: [] },
+                logger: mockLogger,
+            });
+            const prewarmSpy = jest.spyOn(client, "prewarm").mockResolvedValue(undefined);
+            // Reach into the buffer mock to verify flush is triggered so the
+            // server picks up the identify event before prewarm starts polling.
+            // biome-ignore lint/suspicious/noExplicitAny: introspect mock
+            const flushMock = (client as any).eventBuffer.flush as jest.Mock;
+
+            await client.identify(
+                {
+                    keys: { id: "user-1" },
+                    company: { keys: { id: "comp-1" } },
+                },
+                { prewarm: ["credit-type-1", "credit-type-2"] },
+            );
+
+            // Yield once so the fire-and-forget prewarm resolves.
+            await new Promise((r) => setImmediate(r));
+
+            expect(flushMock).toHaveBeenCalledTimes(1);
+            expect(prewarmSpy).toHaveBeenCalledWith({ company: { id: "comp-1" }, user: { id: "user-1" } }, [
+                "credit-type-1",
+                "credit-type-2",
+            ]);
+
+            await client.close();
+        });
+
+        it("does not call prewarm or flush when options.prewarm is omitted", async () => {
+            const client = new SchematicClient({
+                apiKey: "test-api-key",
+                cacheProviders: { flagChecks: [] },
+                logger: mockLogger,
+            });
+            const prewarmSpy = jest.spyOn(client, "prewarm").mockResolvedValue(undefined);
+            // biome-ignore lint/suspicious/noExplicitAny: introspect mock
+            const flushMock = (client as any).eventBuffer.flush as jest.Mock;
+
+            await client.identify({
+                keys: { id: "user-1" },
+                company: { keys: { id: "comp-1" } },
+            });
+
+            await new Promise((r) => setImmediate(r));
+            expect(prewarmSpy).not.toHaveBeenCalled();
+            expect(flushMock).not.toHaveBeenCalled();
+
+            await client.close();
+        });
+    });
+});
+
+describe("SchematicClient wrapper - getCreditBalance lease awareness", () => {
+    const mockLogger = {
+        error: jest.fn(),
+        warn: jest.fn(),
+        info: jest.fn(),
+        debug: jest.fn(),
+    };
+
+    const companyKeys = { id: "comp-1" };
+    const creditId = "credit-ai";
+
+    // Builds a client wired with a cached snapshot carrying `serverBalance`, a
+    // lease store returning `leaseEntry` (or undefined for "no lease"), and a
+    // reservation store summing to `reservedCredits`. All are private fields
+    // the wrapper reads in getCreditBalance.
+    const buildClient = (
+        serverBalance: number,
+        leaseEntry: { localRemainingCredits: number; expiresAt: Date } | undefined,
+        reservedCredits = 0,
+    ) => {
+        const client = new SchematicClient({ offline: true, logger: mockLogger });
+        (client as any).datastreamClient = {
+            getCachedCompany: jest.fn().mockResolvedValue({
+                id: "comp-internal-id",
+                creditBalances: { [creditId]: serverBalance },
+            }),
+            close: jest.fn(),
+        };
+        (client as any).leaseStore = {
+            get: jest.fn().mockResolvedValue(leaseEntry),
+        };
+        (client as any).reservations = {
+            reservedCredits: jest.fn().mockReturnValue(reservedCredits),
+            stop: jest.fn(),
+        };
+        return client;
+    };
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    it("reports a live lease's unspent local balance as reserved on top of remaining", async () => {
+        // remaining (B−L)=600, lease hold (L−spent)=900 ⇒ settled 1500.
+        const client = buildClient(600, {
+            localRemainingCredits: 900,
+            expiresAt: new Date(Date.now() + 60_000),
+        });
+
+        const result = await client.getCreditBalance(companyKeys, creditId);
+
+        expect(result).toEqual({ remaining: 600, reserved: 900, settled: 1500 });
+        await client.close();
+    });
+
+    it("folds open reservations into reserved so an in-flight hold doesn't dip settled", async () => {
+        // A 1500-credit reservation has carved out of the lease's local
+        // balance (900 = 2400 granted − 1500 reserved). `reserved` reports the
+        // whole unsettled lease hold (lease remainder 900 + open reservation
+        // 1500 = 2400), so settled = 600 + 2400 = 3000 = B − spent (nothing
+        // settled yet) and stays put whether or not the hold is open.
+        const client = buildClient(600, { localRemainingCredits: 900, expiresAt: new Date(Date.now() + 60_000) }, 1500);
+
+        const result = await client.getCreditBalance(companyKeys, creditId);
+
+        expect(result).toEqual({ remaining: 600, reserved: 2400, settled: 3000 });
+        await client.close();
+    });
+
+    it("ignores an expired lease so the refunded hold isn't double-counted", async () => {
+        // Past expiresAt the server has swept and refunded the hold, so the
+        // whole balance already sits in `remaining`. Counting the dead hold too
+        // would report settled 23000 — the stale-overstated-badge bug. Any open
+        // reservation is ignored for the same reason.
+        const client = buildClient(
+            12_000,
+            { localRemainingCredits: 11_000, expiresAt: new Date(Date.now() - 1_000) },
+            500,
+        );
+
+        const result = await client.getCreditBalance(companyKeys, creditId);
+
+        expect(result).toEqual({ remaining: 12_000, reserved: 0, settled: 12_000 });
+        await client.close();
+    });
+
+    it("returns the server balance as remaining when no lease is held", async () => {
+        const client = buildClient(450, undefined);
+
+        const result = await client.getCreditBalance(companyKeys, creditId);
+
+        expect(result).toEqual({ remaining: 450, reserved: 0, settled: 450 });
+        await client.close();
     });
 });
 
@@ -320,5 +451,126 @@ describe("SchematicClient wrapper - logger configuration", () => {
         expect(consoleSpy.debug).not.toHaveBeenCalled();
 
         await client.close();
+    });
+});
+describe("SchematicClient wrapper - credit lease store backend selection", () => {
+    const mockLogger = {
+        error: jest.fn(),
+        warn: jest.fn(),
+        info: jest.fn(),
+        debug: jest.fn(),
+    };
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    it("reuses the DataStream Redis client for lease state when no creditLeases.redisClient is set", async () => {
+        const { makeFakeRedis } = await import("./credits/fake-redis");
+        const redisClient = makeFakeRedis();
+        const client = new SchematicClient({
+            apiKey: "test-key",
+            logger: mockLogger,
+            creditLeases: {},
+            dataStream: { redisClient },
+        });
+        // The shared Redis backend must back leases automatically — no second
+        // client to wire up — so both stores are the Redis-backed variants.
+        expect((client as any).leaseStore?.constructor?.name).toBe("RedisLeaseStore");
+        expect((client as any).reservations?.constructor?.name).toBe("RedisReservationStore");
+        // No degrade warning when a shared backend is present.
+        expect(mockLogger.warn).not.toHaveBeenCalledWith(
+            expect.stringContaining("creditLeases is enabled without a shared Redis backend"),
+        );
+        (client as any).reservations?.stop?.();
+    });
+
+    it("falls back to in-memory stores and warns when no Redis backend is configured", async () => {
+        const client = new SchematicClient({
+            apiKey: "test-key",
+            logger: mockLogger,
+            creditLeases: {},
+        });
+        expect((client as any).leaseStore?.constructor?.name).toBe("LeaseStore");
+        expect((client as any).reservations?.constructor?.name).toBe("ReservationStore");
+        expect(mockLogger.warn).toHaveBeenCalledWith(
+            expect.stringContaining("creditLeases is enabled without a shared Redis backend"),
+        );
+        (client as any).reservations?.stop?.();
+    });
+
+    it("warns at construction when creditLeases is configured without DataStream", async () => {
+        const client = new SchematicClient({
+            apiKey: "test-key",
+            logger: mockLogger,
+            creditLeases: {},
+        });
+        // Without DataStream, every check() silently falls back to a plain flag
+        // check with no credit gating — surface that once, loudly.
+        expect(mockLogger.warn).toHaveBeenCalledWith(
+            expect.stringContaining("creditLeases is configured but DataStream is not enabled"),
+        );
+        (client as any).reservations?.stop?.();
+    });
+
+    it("does not warn about DataStream when it is enabled alongside creditLeases", async () => {
+        const { makeFakeRedis } = await import("./credits/fake-redis");
+        const redisClient = makeFakeRedis();
+        const client = new SchematicClient({
+            apiKey: "test-key",
+            logger: mockLogger,
+            useDataStream: true,
+            // Replicator mode: no WebSocket connection in unit tests.
+            dataStream: { replicatorMode: true, redisClient },
+            creditLeases: {},
+        });
+        expect(mockLogger.warn).not.toHaveBeenCalledWith(
+            expect.stringContaining("creditLeases is configured but DataStream is not enabled"),
+        );
+        await client.close();
+    });
+
+    it("warns at construction when creditLeases is configured in offline mode", async () => {
+        const client = new SchematicClient({
+            offline: true,
+            logger: mockLogger,
+            creditLeases: {},
+        });
+        expect(mockLogger.warn).toHaveBeenCalledWith(
+            expect.stringContaining("creditLeases is configured but the client is in offline mode"),
+        );
+        // Offline skips lease plumbing entirely — nothing to stop.
+        expect((client as any).leaseStore).toBeUndefined();
+        await client.close();
+    });
+
+    it("close() does not release outstanding leases (they reclaim via expiry, not shutdown)", async () => {
+        const { makeFakeRedis } = await import("./credits/fake-redis");
+        const redisClient = makeFakeRedis();
+        const client = new SchematicClient({
+            apiKey: "test-key",
+            logger: mockLogger,
+            creditLeases: {},
+            dataStream: { redisClient },
+        });
+        // A shared lease lives in the backend (could have been installed by this
+        // pod or a sibling). Releasing it on this pod's shutdown would pull the
+        // grant out from under siblings — so close() must leave it alone.
+        const leaseStore = (client as any).leaseStore;
+        await leaseStore.replace({
+            leaseId: "lse_shared",
+            companyId: "co_1",
+            creditTypeId: "ct_1",
+            grantedAmount: 1000,
+            expiresAt: new Date(Date.now() + 5 * 60_000),
+        });
+
+        await client.close();
+
+        // The old close() released + dropped every lease in the shared backend;
+        // the lease must now survive shutdown so siblings keep drawing on it.
+        const survivor = await leaseStore.get("co_1", "ct_1");
+        expect(survivor).toBeDefined();
+        expect(survivor?.leaseId).toBe("lse_shared");
     });
 });

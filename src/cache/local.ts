@@ -72,6 +72,14 @@ class LocalCache<T> implements CacheProvider<T> {
         // Set timeout after item is created to avoid circular reference
         // Cap at MAX_TIMEOUT_MS to avoid 32-bit overflow; expiration field handles the real TTL
         newItem.timeoutId = setTimeout(() => this.evictItem(key, newItem), Math.min(ttl, MAX_TIMEOUT_MS));
+        // Unref so a pending eviction (up to ~24.8 days for the datastream flag
+        // cache) doesn't hold the Node event loop open after the caller is done
+        // — without this, a process that cached anything can't exit gracefully.
+        // Guarded: non-Node runtimes (browser, Cloudflare Workers) return a
+        // number with no unref.
+        if (typeof newItem.timeoutId === "object" && typeof newItem.timeoutId.unref === "function") {
+            newItem.timeoutId.unref();
+        }
         this.cache.set(key, newItem);
     }
 

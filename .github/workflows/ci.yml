@@ -40,6 +40,21 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    # Real redis-server for tests/integration/redis-stores.test.ts — the only
+    # place the credit-lease Lua scripts execute as actual Lua (the unit suite
+    # runs them against a JS fake). The suite self-skips when TEST_REDIS_URL
+    # is unset, so local `yarn test` needs no Redis.
+    services:
+      redis:
+        image: redis:7
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v6
@@ -57,6 +72,8 @@ jobs:
 
       - name: Test
         run: yarn test
+        env:
+          TEST_REDIS_URL: redis://localhost:6379
 
   verify-package:
     runs-on: ubuntu-latest

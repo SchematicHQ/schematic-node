@@ -1,7 +1,9 @@
 import * as Schematic from '../api/types';
+import { SchematicEnvironment } from '../environments';
 import type { DatastreamWSClient } from './websocket-client';
 import { DataStreamResp, DataStreamReq, DataStreamError, EntityType, MessageType } from './types';
 import { RulesEngineClient } from '../rules-engine';
+import type { CheckFlagOptions } from '../wrapper';
 import { Logger } from '../logger';
 import { LazyEmitter } from './emitter';
 import { partialCompany, partialUser, deepCopyCompany as deepCopyCompanyFn } from './merge';
@@ -18,7 +20,11 @@ import { RedisCacheProvider, type RedisClient } from '../cache/redis';
 export interface DataStreamClientOptions {
   /** Schematic API key for authentication */
   apiKey: string;
-  /** Base URL for the API (will be converted to WebSocket URL) */
+  /**
+   * Base URL for the API, converted to its WebSocket counterpart (e.g.
+   * https://api.schematichq.com -> wss://datastream.schematichq.com).
+   * Defaults to the standard Schematic API environment.
+   */
   baseURL?: string;
   /** Logger for debug/info/error messages */
   logger: Logger;
@@ -61,7 +67,7 @@ const MAX_CACHE_TTL = 30 * 24 * 60 * 60 * 1000; // 30 days (matches Go maxCacheT
  */
 export class DataStreamClient extends LazyEmitter {
   private readonly apiKey: string;
-  private readonly baseURL?: string;
+  private readonly baseURL: string;
   private readonly logger: Logger;
   private readonly cacheTTL: number;
 
@@ -97,7 +103,9 @@ export class DataStreamClient extends LazyEmitter {
     super();
 
     this.apiKey = options.apiKey;
-    this.baseURL = options.baseURL;
+    // Default to the standard API environment, mirroring the REST client —
+    // the WS layer maps api.* hosts to their datastream.* counterpart.
+    this.baseURL = options.baseURL ?? SchematicEnvironment.Default;
     this.logger = options.logger;
     this.cacheTTL = options.cacheTTL ?? DEFAULT_TTL;
 
@@ -217,10 +225,6 @@ export class DataStreamClient extends LazyEmitter {
         this.startReplicatorHealthCheck();
       }
       return;
-    }
-
-    if (!this.baseURL) {
-      throw new Error('BaseURL is required when not in replicator mode');
     }
 
     this.logger.info('Starting DataStream client');
@@ -475,7 +479,8 @@ export class DataStreamClient extends LazyEmitter {
    */
   public async checkFlag(
     evalCtx: { company?: Record<string, string>; user?: Record<string, string> },
-    flagKey: string
+    flagKey: string,
+    options?: CheckFlagOptions
   ): Promise<Schematic.RulesengineCheckFlagResult> {
     // Get flag first - return error if not found
     const flag = await this.getFlag(flagKey);
@@ -503,13 +508,13 @@ export class DataStreamClient extends LazyEmitter {
     if (this.replicatorMode) {
       // In replicator mode, if we don't have all cached data, evaluate with null values instead of fetching
       // The external replicator should have populated the cache with all necessary data
-      return this.evaluateFlag(flag, cachedCompany, cachedUser);
+      return this.evaluateFlag(flag, cachedCompany, cachedUser, options);
     }
 
     // Non-replicator mode: if we have all cached data we need, use it
     if ((!needsCompany || cachedCompany) && (!needsUser || cachedUser)) {
       this.logger.debug(`All required resources found in cache for flag ${flagKey} evaluation`);
-      return this.evaluateFlag(flag, cachedCompany, cachedUser);
+      return this.evaluateFlag(flag, cachedCompany, cachedUser, options);
     }
 
     // Check if we're connected to datastream for live fetching
@@ -529,7 +534,30 @@ export class DataStreamClient extends LazyEmitter {
     const [company, user] = await Promise.all([companyPromise, userPromise]);
 
     // Evaluate against the rules engine
-    return this.evaluateFlag(flag, company, user);
+    return this.evaluateFlag(flag, company, user, options);
+  }
+
+  /**
+   * Public accessor for the cached company snapshot. Used by credit-lease
+   * callers that need the company's `credit_balances` so they can substitute
+   * a lease-bound view before calling the rules engine.
+   */
+  public async getCachedCompany(
+    keys: Record<string, string>,
+  ): Promise<Schematic.RulesengineCompany | null> {
+    return this.getCompanyFromCache(keys);
+  }
+
+  /** Public accessor for the cached user snapshot. */
+  public async getCachedUser(
+    keys: Record<string, string>,
+  ): Promise<Schematic.RulesengineUser | null> {
+    return this.getUserFromCache(keys);
+  }
+
+  /** Public accessor for the rules engine. Used by credit-lease eval. */
+  public getRulesEngine(): RulesEngineClient {
+    return this.rulesEngine;
   }
 
   /**
@@ -1354,7 +1382,8 @@ export class DataStreamClient extends LazyEmitter {
   private async evaluateFlag(
     flag: Schematic.RulesengineFlag,
     company: Schematic.RulesengineCompany | null,
-    user: Schematic.RulesengineUser | null
+    user: Schematic.RulesengineUser | null,
+    options?: CheckFlagOptions
   ): Promise<Schematic.RulesengineCheckFlagResult> {
     const defaultValue = flag.defaultValue ?? false;
 
@@ -1363,7 +1392,7 @@ export class DataStreamClient extends LazyEmitter {
       if (this.rulesEngine.isInitialized()) {
         this.logger.debug(`Evaluating flag with rules engine: ${JSON.stringify({ flagId: flag.id, flagRules: flag.rules?.length || 0, companyId: company?.id, userId: user?.id })}`);
 
-        const result = await this.rulesEngine.checkFlag(flag, company, user);
+        const result = await this.rulesEngine.checkFlagWithOptions(flag, company, user, options);
         this.logger.debug(`Rules engine evaluation result: ${JSON.stringify(result)}`);
 
         return {

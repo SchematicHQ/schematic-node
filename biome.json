@@ -8,6 +8,7 @@
         "ignoreUnknown": true,
         "includes": [
             "**",
+            "!!src/wasm",
             "!!dist",
             "!!**/dist",
             "!!lib",
