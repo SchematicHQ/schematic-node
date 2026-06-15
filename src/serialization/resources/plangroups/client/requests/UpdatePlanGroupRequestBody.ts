@@ -33,6 +33,9 @@ export const UpdatePlanGroupRequestBody: core.serialization.Schema<
     fallbackPlanId: core.serialization.property("fallback_plan_id", core.serialization.string().optional()),
     initialPlanId: core.serialization.property("initial_plan_id", core.serialization.string().optional()),
     initialPlanPriceId: core.serialization.property("initial_plan_price_id", core.serialization.string().optional()),
+    optInEnabled: core.serialization.property("opt_in_enabled", core.serialization.boolean()),
+    optInText: core.serialization.property("opt_in_text", core.serialization.string().optional()),
+    optInTitle: core.serialization.property("opt_in_title", core.serialization.string().optional()),
     orderedAddOns: core.serialization.property("ordered_add_ons", core.serialization.list(OrderedPlansInGroup)),
     orderedBundleList: core.serialization.property(
         "ordered_bundle_list",
@@ -100,6 +103,9 @@ export declare namespace UpdatePlanGroupRequestBody {
         fallback_plan_id?: string | null;
         initial_plan_id?: string | null;
         initial_plan_price_id?: string | null;
+        opt_in_enabled: boolean;
+        opt_in_text?: string | null;
+        opt_in_title?: string | null;
         ordered_add_ons: OrderedPlansInGroup.Raw[];
         ordered_bundle_list: PlanGroupBundleOrder.Raw[];
         ordered_plans: OrderedPlansInGroup.Raw[];

@@ -15,6 +15,9 @@ export const PreviewSubscriptionChangeResponseData: core.serialization.ObjectSch
     finance: PreviewSubscriptionFinanceResponseData.optional(),
     isScheduledDowngrade: core.serialization.property("is_scheduled_downgrade", core.serialization.boolean()),
     newCharges: core.serialization.property("new_charges", core.serialization.number()),
+    optInRequired: core.serialization.property("opt_in_required", core.serialization.boolean()),
+    optInText: core.serialization.property("opt_in_text", core.serialization.string().optional()),
+    optInTitle: core.serialization.property("opt_in_title", core.serialization.string().optional()),
     paymentMethodRequired: core.serialization.property("payment_method_required", core.serialization.boolean()),
     percentOff: core.serialization.property("percent_off", core.serialization.number()),
     periodStart: core.serialization.property("period_start", core.serialization.date()),
@@ -32,6 +35,9 @@ export declare namespace PreviewSubscriptionChangeResponseData {
         finance?: PreviewSubscriptionFinanceResponseData.Raw | null;
         is_scheduled_downgrade: boolean;
         new_charges: number;
+        opt_in_required: boolean;
+        opt_in_text?: string | null;
+        opt_in_title?: string | null;
         payment_method_required: boolean;
         percent_off: number;
         period_start: string;

@@ -8,6 +8,9 @@ export interface PreviewSubscriptionChangeResponseData {
     finance?: Schematic.PreviewSubscriptionFinanceResponseData;
     isScheduledDowngrade: boolean;
     newCharges: number;
+    optInRequired: boolean;
+    optInText?: string;
+    optInTitle?: string;
     paymentMethodRequired: boolean;
     percentOff: number;
     periodStart: Date;

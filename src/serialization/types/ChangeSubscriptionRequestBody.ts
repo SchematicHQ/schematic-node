@@ -26,6 +26,7 @@ export const ChangeSubscriptionRequestBody: core.serialization.ObjectSchema<
     customFieldValues: core.serialization.property("custom_field_values", core.serialization.list(CheckoutFieldValue)),
     newPlanId: core.serialization.property("new_plan_id", core.serialization.string()),
     newPriceId: core.serialization.property("new_price_id", core.serialization.string()),
+    optInAccepted: core.serialization.property("opt_in_accepted", core.serialization.boolean().optional()),
     payInAdvance: core.serialization.property("pay_in_advance", core.serialization.list(UpdatePayInAdvanceRequestBody)),
     paymentMethodId: core.serialization.property("payment_method_id", core.serialization.string().optional()),
     promoCode: core.serialization.property("promo_code", core.serialization.string().optional()),
@@ -41,6 +42,7 @@ export declare namespace ChangeSubscriptionRequestBody {
         custom_field_values: CheckoutFieldValue.Raw[];
         new_plan_id: string;
         new_price_id: string;
+        opt_in_accepted?: boolean | null;
         pay_in_advance: UpdatePayInAdvanceRequestBody.Raw[];
         payment_method_id?: string | null;
         promo_code?: string | null;

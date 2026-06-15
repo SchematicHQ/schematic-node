@@ -14,6 +14,8 @@ export const RulesengineFeatureEntitlement: core.serialization.ObjectSchema<
     allocation: core.serialization.number().optional(),
     creditId: core.serialization.property("credit_id", core.serialization.string().optional()),
     creditRemaining: core.serialization.property("credit_remaining", core.serialization.number().optional()),
+    creditReserved: core.serialization.property("credit_reserved", core.serialization.number().optional()),
+    creditSettled: core.serialization.property("credit_settled", core.serialization.number().optional()),
     creditTotal: core.serialization.property("credit_total", core.serialization.number().optional()),
     creditUsed: core.serialization.property("credit_used", core.serialization.number().optional()),
     eventName: core.serialization.property("event_name", core.serialization.string().optional()),
@@ -32,6 +34,8 @@ export declare namespace RulesengineFeatureEntitlement {
         allocation?: number | null;
         credit_id?: string | null;
         credit_remaining?: number | null;
+        credit_reserved?: number | null;
+        credit_settled?: number | null;
         credit_total?: number | null;
         credit_used?: number | null;
         event_name?: string | null;

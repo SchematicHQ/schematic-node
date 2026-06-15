@@ -481,11 +481,7 @@ export class PlansClient {
      *
      * @example
      *     await client.plans.retryCustomPlanBilling("custom_plan_billing_id", {
-     *         customerEmail: "customer_email",
-     *         payInAdvance: [{
-     *                 priceId: "price_id",
-     *                 quantity: 1000000
-     *             }]
+     *         customerEmail: "customer_email"
      *     })
      */
     public retryCustomPlanBilling(

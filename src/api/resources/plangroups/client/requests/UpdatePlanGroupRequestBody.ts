@@ -10,6 +10,7 @@ import type * as Schematic from "../../../../index";
  *         checkoutCollectEmail: true,
  *         checkoutCollectPhone: true,
  *         enableTaxCollection: true,
+ *         optInEnabled: true,
  *         orderedAddOns: [{
  *                 planId: "plan_id"
  *             }],
@@ -45,6 +46,9 @@ export interface UpdatePlanGroupRequestBody {
     fallbackPlanId?: string;
     initialPlanId?: string;
     initialPlanPriceId?: string;
+    optInEnabled: boolean;
+    optInText?: string;
+    optInTitle?: string;
     orderedAddOns: Schematic.OrderedPlansInGroup[];
     orderedBundleList: Schematic.PlanGroupBundleOrder[];
     orderedPlans: Schematic.OrderedPlansInGroup[];

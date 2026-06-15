@@ -10,6 +10,7 @@ export interface ChangeSubscriptionRequestBody {
     customFieldValues: Schematic.CheckoutFieldValue[];
     newPlanId: string;
     newPriceId: string;
+    optInAccepted?: boolean;
     payInAdvance: Schematic.UpdatePayInAdvanceRequestBody[];
     paymentMethodId?: string;
     promoCode?: string;

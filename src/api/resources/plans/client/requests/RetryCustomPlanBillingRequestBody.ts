@@ -5,16 +5,11 @@ import type * as Schematic from "../../../../index";
 /**
  * @example
  *     {
- *         customerEmail: "customer_email",
- *         payInAdvance: [{
- *                 priceId: "price_id",
- *                 quantity: 1000000
- *             }]
+ *         customerEmail: "customer_email"
  *     }
  */
 export interface RetryCustomPlanBillingRequestBody {
     activationStrategy?: Schematic.CustomPlanActivationStrategy;
     customerEmail: string;
     daysUntilDue?: number;
-    payInAdvance: Schematic.UpdatePayInAdvanceRequestBody[];
 }

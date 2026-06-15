@@ -5,13 +5,11 @@ export type { CountBillingPlanCreditGrantsRequest } from "./CountBillingPlanCred
 export type { CountCompanyGrantsRequest } from "./CountCompanyGrantsRequest";
 export type { CountCreditBundlesRequest } from "./CountCreditBundlesRequest";
 export type { CountCreditEventLedgerRequest } from "./CountCreditEventLedgerRequest";
-export type { CountCreditLedgerRequest } from "./CountCreditLedgerRequest";
 export type { CreateBillingCreditRequestBody } from "./CreateBillingCreditRequestBody";
 export type { CreateCompanyCreditGrant } from "./CreateCompanyCreditGrant";
 export type { CreateCreditBundleRequestBody } from "./CreateCreditBundleRequestBody";
 export type { DeleteBillingPlanCreditGrantRequest } from "./DeleteBillingPlanCreditGrantRequest";
 export type { ExtendCreditLeaseRequestBody } from "./ExtendCreditLeaseRequestBody";
-export type { GetEnrichedCreditLedgerRequest } from "./GetEnrichedCreditLedgerRequest";
 export type { ListBillingCreditsRequest } from "./ListBillingCreditsRequest";
 export type { ListBillingPlanCreditGrantsRequest } from "./ListBillingPlanCreditGrantsRequest";
 export type { ListCompanyCreditBalancesRequest } from "./ListCompanyCreditBalancesRequest";

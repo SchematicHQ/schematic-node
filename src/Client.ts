@@ -23,6 +23,10 @@ import { WebhooksClient } from "./api/resources/webhooks/client/Client";
 import type { BaseClientOptions, BaseRequestOptions } from "./BaseClient";
 import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "./BaseClient";
 import * as core from "./core";
+import { mergeHeaders } from "./core/headers";
+import * as environments from "./environments";
+import { handleNonStatusCodeError } from "./errors/handleNonStatusCodeError";
+import * as errors from "./errors/index";
 
 export declare namespace SchematicClient {
     export type Options = BaseClientOptions;
@@ -135,6 +139,56 @@ export class SchematicClient {
 
     public get webhooks(): WebhooksClient {
         return (this._webhooks ??= new WebhooksClient(this._options));
+    }
+
+    /**
+     * @param {SchematicClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.getCreditLedger()
+     */
+    public getCreditLedger(requestOptions?: SchematicClient.RequestOptions): core.HttpResponsePromise<void> {
+        return core.HttpResponsePromise.fromPromise(this.__getCreditLedger(requestOptions));
+    }
+
+    private async __getCreditLedger(
+        requestOptions?: SchematicClient.RequestOptions,
+    ): Promise<core.WithRawResponse<void>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "billing/credits/ledger",
+            ),
+            method: "GET",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: undefined, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.SchematicError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/billing/credits/ledger");
     }
 
     /**

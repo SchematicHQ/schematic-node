@@ -19,6 +19,8 @@ export interface PlanChangeResponseData {
     createdAt: Date;
     environmentId: string;
     id: string;
+    /** True when this change moved the company to a different version of the same plan (e.g. a plan version migration) rather than to a different plan. */
+    isVersionUpgrade: boolean;
     previousBasePlan?: Schematic.PlanSnapshotView;
     /** The plan version of the previous base plan before this change. */
     previousBasePlanVersion?: Schematic.PlanVersionSnapshotView;
