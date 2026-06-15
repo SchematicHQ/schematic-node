@@ -567,25 +567,34 @@ export class SchematicClient extends BaseClient {
             const cachedResults: Map<string, api.CheckFlagResponseData> = new Map();
             const missingKeys: string[] = [];
 
-            for (const key of keys) {
-                const cacheKey = JSON.stringify({ evalCtx, key });
-                let foundInCache = false;
-
-                for (const provider of this.flagCheckCacheProviders) {
-                    const cached = await provider.get(cacheKey);
-                    if (cached !== null && cached !== undefined) {
-                        this.logger.debug(`${provider.constructor.name} cache hit for flag ${key}`);
-                        cachedResults.set(key, {
-                            flag: key,
-                            value: cached.value,
-                            reason: cached.reason,
-                        });
-                        foundInCache = true;
-                        break;
+            // Read the cache for every key in parallel. The per-flag cache keys are
+            // independent, so with a remote cache provider the reads issue concurrently
+            // instead of serially. Order is preserved so missingKeys still mirrors keys.
+            const lookups = await Promise.all(
+                keys.map(async (key) => {
+                    const cacheKey = JSON.stringify({ evalCtx, key });
+                    for (const provider of this.flagCheckCacheProviders) {
+                        const cached = await provider.get(cacheKey);
+                        if (cached !== null && cached !== undefined) {
+                            this.logger.debug(`${provider.constructor.name} cache hit for flag ${key}`);
+                            return {
+                                key,
+                                cached: {
+                                    flag: key,
+                                    value: cached.value,
+                                    reason: cached.reason,
+                                } as api.CheckFlagResponseData,
+                            };
+                        }
                     }
-                }
+                    return { key, cached: null };
+                }),
+            );
 
-                if (!foundInCache) {
+            for (const { key, cached } of lookups) {
+                if (cached) {
+                    cachedResults.set(key, cached);
+                } else {
                     missingKeys.push(key);
                 }
             }
@@ -605,11 +614,20 @@ export class SchematicClient extends BaseClient {
             // Cache and return the fresh values
             const results: api.CheckFlagResponseData[] = [];
 
+            // Index the API results by flag key so per-key lookups are O(1) instead of
+            // re-scanning apiResults for every key (avoids O(N^2) matching).
+            const apiResultsByFlag = new Map(apiResults.map((flag) => [flag.flag, flag]));
+
+            // Collect cache writes so they can be issued concurrently after building the
+            // results array, instead of awaiting each provider write one flag at a time.
+            const cacheWrites: Array<{ cacheKey: string; cacheEntry: CheckFlagWithEntitlementResponse; key: string }> =
+                [];
+
             for (const key of keys) {
                 // Find result from API response first (prioritize fresh data)
-                const apiResult = apiResults.find((flag) => flag.flag === key);
+                const apiResult = apiResultsByFlag.get(key);
                 if (apiResult) {
-                    // Cache the fresh result
+                    // Queue the fresh result for caching
                     const cacheKey = JSON.stringify({ evalCtx, key });
                     const cacheEntry: CheckFlagWithEntitlementResponse = {
                         companyId: apiResult.companyId,
@@ -623,14 +641,7 @@ export class SchematicClient extends BaseClient {
                         userId: apiResult.userId,
                         value: apiResult.value,
                     };
-                    try {
-                        for (const provider of this.flagCheckCacheProviders) {
-                            this.logger.debug(`Caching value for flag ${cacheKey} in ${provider.constructor.name}`);
-                            await provider.set(cacheKey, cacheEntry);
-                        }
-                    } catch (cacheErr) {
-                        this.logger.warn(`Cache write failed for flag ${key}: ${cacheErr}`);
-                    }
+                    cacheWrites.push({ cacheKey, cacheEntry, key });
                     results.push(apiResult);
                 } else {
                     // Fall back to cached result if API doesn't return this flag
@@ -649,6 +660,23 @@ export class SchematicClient extends BaseClient {
                     }
                 }
             }
+
+            // Issue the cache writes concurrently. Errors are isolated per flag so a
+            // single failed write doesn't abort the rest (matching prior semantics).
+            await Promise.all(
+                cacheWrites.map(async ({ cacheKey, cacheEntry, key }) => {
+                    try {
+                        await Promise.all(
+                            this.flagCheckCacheProviders.map((provider) => {
+                                this.logger.debug(`Caching value for flag ${cacheKey} in ${provider.constructor.name}`);
+                                return provider.set(cacheKey, cacheEntry);
+                            }),
+                        );
+                    } catch (cacheErr) {
+                        this.logger.warn(`Cache write failed for flag ${key}: ${cacheErr}`);
+                    }
+                }),
+            );
 
             this.logger.debug(
                 `Checked ${keys.length} flags: used fresh API values for consistency (${missingKeys.length} were cache misses)`,
