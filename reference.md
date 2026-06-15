@@ -1,4 +1,45 @@
 # Reference
+<details><summary><code>client.<a href="/src/Client.ts">getCreditLedger</a>() -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.getCreditLedger();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `SchematicClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## accounts
 <details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">listAccountMembers</a>({ ...params }) -> Schematic.ListAccountMembersResponse</code></summary>
 <dl>
@@ -3349,122 +3390,6 @@ await client.credits.releaseCreditLease("lease_id", {
 <dd>
 
 **request:** `Schematic.ReleaseCreditLeaseRequestBody` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CreditsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">getEnrichedCreditLedger</a>({ ...params }) -> Schematic.GetEnrichedCreditLedgerResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.credits.getEnrichedCreditLedger({
-    companyId: "company_id",
-    billingCreditId: "billing_credit_id",
-    featureId: "feature_id",
-    period: "daily",
-    startTime: "start_time",
-    endTime: "end_time",
-    limit: 1000000,
-    offset: 1000000
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.GetEnrichedCreditLedgerRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `CreditsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">countCreditLedger</a>({ ...params }) -> Schematic.CountCreditLedgerResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.credits.countCreditLedger({
-    companyId: "company_id",
-    billingCreditId: "billing_credit_id",
-    featureId: "feature_id",
-    period: "daily",
-    startTime: "start_time",
-    endTime: "end_time",
-    limit: 1000000,
-    offset: 1000000
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `Schematic.CountCreditLedgerRequest` 
     
 </dd>
 </dl>
@@ -7755,11 +7680,7 @@ await client.plans.markCustomPlanBillingPaid("custom_plan_billing_id", {
 
 ```typescript
 await client.plans.retryCustomPlanBilling("custom_plan_billing_id", {
-    customerEmail: "customer_email",
-    payInAdvance: [{
-            priceId: "price_id",
-            quantity: 1000000
-        }]
+    customerEmail: "customer_email"
 });
 
 ```
@@ -11319,6 +11240,7 @@ await client.plangroups.createPlanGroup({
     checkoutCollectEmail: true,
     checkoutCollectPhone: true,
     enableTaxCollection: true,
+    optInEnabled: true,
     orderedAddOns: [{
             planId: "plan_id"
         }],
@@ -11393,6 +11315,7 @@ await client.plangroups.updatePlanGroup("plan_group_id", {
     checkoutCollectEmail: true,
     checkoutCollectPhone: true,
     enableTaxCollection: true,
+    optInEnabled: true,
     orderedAddOns: [{
             planId: "plan_id"
         }],

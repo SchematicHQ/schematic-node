@@ -120,7 +120,14 @@ describe("PlangroupsClient", () => {
                         ],
                     },
                 ],
-                checkout_settings: { collect_address: true, collect_email: true, collect_phone: true },
+                checkout_settings: {
+                    collect_address: true,
+                    collect_email: true,
+                    collect_phone: true,
+                    opt_in_enabled: true,
+                    opt_in_text: "opt_in_text",
+                    opt_in_title: "opt_in_title",
+                },
                 component_settings: {
                     show_as_monthly_prices: true,
                     show_credits: true,
@@ -1428,6 +1435,9 @@ describe("PlangroupsClient", () => {
                     collectAddress: true,
                     collectEmail: true,
                     collectPhone: true,
+                    optInEnabled: true,
+                    optInText: "opt_in_text",
+                    optInTitle: "opt_in_title",
                 },
                 componentSettings: {
                     showAsMonthlyPrices: true,
@@ -2788,6 +2798,7 @@ describe("PlangroupsClient", () => {
             checkout_collect_email: true,
             checkout_collect_phone: true,
             enable_tax_collection: true,
+            opt_in_enabled: true,
             ordered_add_ons: [{ plan_id: "plan_id" }],
             ordered_bundle_list: [{ bundleId: "bundleId" }],
             ordered_plans: [{ plan_id: "plan_id" }],
@@ -2808,7 +2819,14 @@ describe("PlangroupsClient", () => {
                     { compatible_plan_ids: ["compatible_plan_ids"], source_plan_id: "source_plan_id" },
                 ],
                 add_on_ids: ["add_on_ids"],
-                checkout_settings: { collect_address: true, collect_email: true, collect_phone: true },
+                checkout_settings: {
+                    collect_address: true,
+                    collect_email: true,
+                    collect_phone: true,
+                    opt_in_enabled: true,
+                    opt_in_text: "opt_in_text",
+                    opt_in_title: "opt_in_title",
+                },
                 component_settings: {
                     show_as_monthly_prices: true,
                     show_credits: true,
@@ -2859,6 +2877,7 @@ describe("PlangroupsClient", () => {
             checkoutCollectEmail: true,
             checkoutCollectPhone: true,
             enableTaxCollection: true,
+            optInEnabled: true,
             orderedAddOns: [
                 {
                     planId: "plan_id",
@@ -2898,6 +2917,9 @@ describe("PlangroupsClient", () => {
                     collectAddress: true,
                     collectEmail: true,
                     collectPhone: true,
+                    optInEnabled: true,
+                    optInText: "opt_in_text",
+                    optInTitle: "opt_in_title",
                 },
                 componentSettings: {
                     showAsMonthlyPrices: true,
@@ -2954,6 +2976,7 @@ describe("PlangroupsClient", () => {
             checkout_collect_email: true,
             checkout_collect_phone: true,
             enable_tax_collection: true,
+            opt_in_enabled: true,
             ordered_add_ons: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
             ordered_bundle_list: [{ bundleId: "bundleId" }, { bundleId: "bundleId" }],
             ordered_plans: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
@@ -2986,6 +3009,7 @@ describe("PlangroupsClient", () => {
                 checkoutCollectEmail: true,
                 checkoutCollectPhone: true,
                 enableTaxCollection: true,
+                optInEnabled: true,
                 orderedAddOns: [
                     {
                         planId: "plan_id",
@@ -3033,6 +3057,7 @@ describe("PlangroupsClient", () => {
             checkout_collect_email: true,
             checkout_collect_phone: true,
             enable_tax_collection: true,
+            opt_in_enabled: true,
             ordered_add_ons: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
             ordered_bundle_list: [{ bundleId: "bundleId" }, { bundleId: "bundleId" }],
             ordered_plans: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
@@ -3065,6 +3090,7 @@ describe("PlangroupsClient", () => {
                 checkoutCollectEmail: true,
                 checkoutCollectPhone: true,
                 enableTaxCollection: true,
+                optInEnabled: true,
                 orderedAddOns: [
                     {
                         planId: "plan_id",
@@ -3112,6 +3138,7 @@ describe("PlangroupsClient", () => {
             checkout_collect_email: true,
             checkout_collect_phone: true,
             enable_tax_collection: true,
+            opt_in_enabled: true,
             ordered_add_ons: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
             ordered_bundle_list: [{ bundleId: "bundleId" }, { bundleId: "bundleId" }],
             ordered_plans: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
@@ -3144,6 +3171,7 @@ describe("PlangroupsClient", () => {
                 checkoutCollectEmail: true,
                 checkoutCollectPhone: true,
                 enableTaxCollection: true,
+                optInEnabled: true,
                 orderedAddOns: [
                     {
                         planId: "plan_id",
@@ -3191,6 +3219,7 @@ describe("PlangroupsClient", () => {
             checkout_collect_email: true,
             checkout_collect_phone: true,
             enable_tax_collection: true,
+            opt_in_enabled: true,
             ordered_add_ons: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
             ordered_bundle_list: [{ bundleId: "bundleId" }, { bundleId: "bundleId" }],
             ordered_plans: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
@@ -3223,6 +3252,7 @@ describe("PlangroupsClient", () => {
                 checkoutCollectEmail: true,
                 checkoutCollectPhone: true,
                 enableTaxCollection: true,
+                optInEnabled: true,
                 orderedAddOns: [
                     {
                         planId: "plan_id",
@@ -3270,6 +3300,7 @@ describe("PlangroupsClient", () => {
             checkout_collect_email: true,
             checkout_collect_phone: true,
             enable_tax_collection: true,
+            opt_in_enabled: true,
             ordered_add_ons: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
             ordered_bundle_list: [{ bundleId: "bundleId" }, { bundleId: "bundleId" }],
             ordered_plans: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
@@ -3302,6 +3333,7 @@ describe("PlangroupsClient", () => {
                 checkoutCollectEmail: true,
                 checkoutCollectPhone: true,
                 enableTaxCollection: true,
+                optInEnabled: true,
                 orderedAddOns: [
                     {
                         planId: "plan_id",
@@ -3349,6 +3381,7 @@ describe("PlangroupsClient", () => {
             checkout_collect_email: true,
             checkout_collect_phone: true,
             enable_tax_collection: true,
+            opt_in_enabled: true,
             ordered_add_ons: [{ plan_id: "plan_id" }],
             ordered_bundle_list: [{ bundleId: "bundleId" }],
             ordered_plans: [{ plan_id: "plan_id" }],
@@ -3369,7 +3402,14 @@ describe("PlangroupsClient", () => {
                     { compatible_plan_ids: ["compatible_plan_ids"], source_plan_id: "source_plan_id" },
                 ],
                 add_on_ids: ["add_on_ids"],
-                checkout_settings: { collect_address: true, collect_email: true, collect_phone: true },
+                checkout_settings: {
+                    collect_address: true,
+                    collect_email: true,
+                    collect_phone: true,
+                    opt_in_enabled: true,
+                    opt_in_text: "opt_in_text",
+                    opt_in_title: "opt_in_title",
+                },
                 component_settings: {
                     show_as_monthly_prices: true,
                     show_credits: true,
@@ -3420,6 +3460,7 @@ describe("PlangroupsClient", () => {
             checkoutCollectEmail: true,
             checkoutCollectPhone: true,
             enableTaxCollection: true,
+            optInEnabled: true,
             orderedAddOns: [
                 {
                     planId: "plan_id",
@@ -3459,6 +3500,9 @@ describe("PlangroupsClient", () => {
                     collectAddress: true,
                     collectEmail: true,
                     collectPhone: true,
+                    optInEnabled: true,
+                    optInText: "opt_in_text",
+                    optInTitle: "opt_in_title",
                 },
                 componentSettings: {
                     showAsMonthlyPrices: true,
@@ -3515,6 +3559,7 @@ describe("PlangroupsClient", () => {
             checkout_collect_email: true,
             checkout_collect_phone: true,
             enable_tax_collection: true,
+            opt_in_enabled: true,
             ordered_add_ons: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
             ordered_bundle_list: [{ bundleId: "bundleId" }, { bundleId: "bundleId" }],
             ordered_plans: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
@@ -3547,6 +3592,7 @@ describe("PlangroupsClient", () => {
                 checkoutCollectEmail: true,
                 checkoutCollectPhone: true,
                 enableTaxCollection: true,
+                optInEnabled: true,
                 orderedAddOns: [
                     {
                         planId: "plan_id",
@@ -3594,6 +3640,7 @@ describe("PlangroupsClient", () => {
             checkout_collect_email: true,
             checkout_collect_phone: true,
             enable_tax_collection: true,
+            opt_in_enabled: true,
             ordered_add_ons: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
             ordered_bundle_list: [{ bundleId: "bundleId" }, { bundleId: "bundleId" }],
             ordered_plans: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
@@ -3626,6 +3673,7 @@ describe("PlangroupsClient", () => {
                 checkoutCollectEmail: true,
                 checkoutCollectPhone: true,
                 enableTaxCollection: true,
+                optInEnabled: true,
                 orderedAddOns: [
                     {
                         planId: "plan_id",
@@ -3673,6 +3721,7 @@ describe("PlangroupsClient", () => {
             checkout_collect_email: true,
             checkout_collect_phone: true,
             enable_tax_collection: true,
+            opt_in_enabled: true,
             ordered_add_ons: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
             ordered_bundle_list: [{ bundleId: "bundleId" }, { bundleId: "bundleId" }],
             ordered_plans: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
@@ -3705,6 +3754,7 @@ describe("PlangroupsClient", () => {
                 checkoutCollectEmail: true,
                 checkoutCollectPhone: true,
                 enableTaxCollection: true,
+                optInEnabled: true,
                 orderedAddOns: [
                     {
                         planId: "plan_id",
@@ -3752,6 +3802,7 @@ describe("PlangroupsClient", () => {
             checkout_collect_email: true,
             checkout_collect_phone: true,
             enable_tax_collection: true,
+            opt_in_enabled: true,
             ordered_add_ons: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
             ordered_bundle_list: [{ bundleId: "bundleId" }, { bundleId: "bundleId" }],
             ordered_plans: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
@@ -3784,6 +3835,7 @@ describe("PlangroupsClient", () => {
                 checkoutCollectEmail: true,
                 checkoutCollectPhone: true,
                 enableTaxCollection: true,
+                optInEnabled: true,
                 orderedAddOns: [
                     {
                         planId: "plan_id",
@@ -3831,6 +3883,7 @@ describe("PlangroupsClient", () => {
             checkout_collect_email: true,
             checkout_collect_phone: true,
             enable_tax_collection: true,
+            opt_in_enabled: true,
             ordered_add_ons: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
             ordered_bundle_list: [{ bundleId: "bundleId" }, { bundleId: "bundleId" }],
             ordered_plans: [{ plan_id: "plan_id" }, { plan_id: "plan_id" }],
@@ -3863,6 +3916,7 @@ describe("PlangroupsClient", () => {
                 checkoutCollectEmail: true,
                 checkoutCollectPhone: true,
                 enableTaxCollection: true,
+                optInEnabled: true,
                 orderedAddOns: [
                     {
                         planId: "plan_id",

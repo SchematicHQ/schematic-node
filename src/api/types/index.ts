@@ -137,8 +137,6 @@ export * from "./CreditGrantDetail";
 export * from "./CreditGrantExpiryRequestBody";
 export * from "./CreditGrantSortOrder";
 export * from "./CreditLeaseResponseData";
-export * from "./CreditLedgerEnrichedEntryResponseData";
-export * from "./CreditLedgerPeriod";
 export * from "./CreditsAutoTopupCompanySummary";
 export * from "./CreditsAutoTopupCreditSummary";
 export * from "./CreditsAutoTopupHardFailure";

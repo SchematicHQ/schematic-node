@@ -166,6 +166,7 @@ export class PlangroupsClient {
      *         checkoutCollectEmail: true,
      *         checkoutCollectPhone: true,
      *         enableTaxCollection: true,
+     *         optInEnabled: true,
      *         orderedAddOns: [{
      *                 planId: "plan_id"
      *             }],
@@ -323,6 +324,7 @@ export class PlangroupsClient {
      *         checkoutCollectEmail: true,
      *         checkoutCollectPhone: true,
      *         enableTaxCollection: true,
+     *         optInEnabled: true,
      *         orderedAddOns: [{
      *                 planId: "plan_id"
      *             }],

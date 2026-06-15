@@ -1153,10 +1153,7 @@ describe("PlansClient", () => {
     test("retryCustomPlanBilling (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            customer_email: "customer_email",
-            pay_in_advance: [{ price_id: "price_id", quantity: 1000000 }],
-        };
+        const rawRequestBody = { customer_email: "customer_email" };
         const rawResponseBody = {
             data: {
                 activation_strategy: "on_payment",
@@ -1186,12 +1183,6 @@ describe("PlansClient", () => {
 
         const response = await client.plans.retryCustomPlanBilling("custom_plan_billing_id", {
             customerEmail: "customer_email",
-            payInAdvance: [
-                {
-                    priceId: "price_id",
-                    quantity: 1000000,
-                },
-            ],
         });
         expect(response).toEqual({
             data: {
@@ -1217,13 +1208,7 @@ describe("PlansClient", () => {
     test("retryCustomPlanBilling (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            customer_email: "customer_email",
-            pay_in_advance: [
-                { price_id: "price_id", quantity: 1000000 },
-                { price_id: "price_id", quantity: 1000000 },
-            ],
-        };
+        const rawRequestBody = { customer_email: "customer_email" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -1238,16 +1223,6 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.retryCustomPlanBilling("custom_plan_billing_id", {
                 customerEmail: "customer_email",
-                payInAdvance: [
-                    {
-                        priceId: "price_id",
-                        quantity: 1000000,
-                    },
-                    {
-                        priceId: "price_id",
-                        quantity: 1000000,
-                    },
-                ],
             });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
@@ -1255,13 +1230,7 @@ describe("PlansClient", () => {
     test("retryCustomPlanBilling (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            customer_email: "customer_email",
-            pay_in_advance: [
-                { price_id: "price_id", quantity: 1000000 },
-                { price_id: "price_id", quantity: 1000000 },
-            ],
-        };
+        const rawRequestBody = { customer_email: "customer_email" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -1276,16 +1245,6 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.retryCustomPlanBilling("custom_plan_billing_id", {
                 customerEmail: "customer_email",
-                payInAdvance: [
-                    {
-                        priceId: "price_id",
-                        quantity: 1000000,
-                    },
-                    {
-                        priceId: "price_id",
-                        quantity: 1000000,
-                    },
-                ],
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
@@ -1293,13 +1252,7 @@ describe("PlansClient", () => {
     test("retryCustomPlanBilling (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            customer_email: "customer_email",
-            pay_in_advance: [
-                { price_id: "price_id", quantity: 1000000 },
-                { price_id: "price_id", quantity: 1000000 },
-            ],
-        };
+        const rawRequestBody = { customer_email: "customer_email" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -1314,16 +1267,6 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.retryCustomPlanBilling("custom_plan_billing_id", {
                 customerEmail: "customer_email",
-                payInAdvance: [
-                    {
-                        priceId: "price_id",
-                        quantity: 1000000,
-                    },
-                    {
-                        priceId: "price_id",
-                        quantity: 1000000,
-                    },
-                ],
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
@@ -1331,13 +1274,7 @@ describe("PlansClient", () => {
     test("retryCustomPlanBilling (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            customer_email: "customer_email",
-            pay_in_advance: [
-                { price_id: "price_id", quantity: 1000000 },
-                { price_id: "price_id", quantity: 1000000 },
-            ],
-        };
+        const rawRequestBody = { customer_email: "customer_email" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -1352,16 +1289,6 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.retryCustomPlanBilling("custom_plan_billing_id", {
                 customerEmail: "customer_email",
-                payInAdvance: [
-                    {
-                        priceId: "price_id",
-                        quantity: 1000000,
-                    },
-                    {
-                        priceId: "price_id",
-                        quantity: 1000000,
-                    },
-                ],
             });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
@@ -1369,13 +1296,7 @@ describe("PlansClient", () => {
     test("retryCustomPlanBilling (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            customer_email: "customer_email",
-            pay_in_advance: [
-                { price_id: "price_id", quantity: 1000000 },
-                { price_id: "price_id", quantity: 1000000 },
-            ],
-        };
+        const rawRequestBody = { customer_email: "customer_email" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -1390,16 +1311,6 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.retryCustomPlanBilling("custom_plan_billing_id", {
                 customerEmail: "customer_email",
-                payInAdvance: [
-                    {
-                        priceId: "price_id",
-                        quantity: 1000000,
-                    },
-                    {
-                        priceId: "price_id",
-                        quantity: 1000000,
-                    },
-                ],
             });
         }).rejects.toThrow(Schematic.InternalServerError);
     });

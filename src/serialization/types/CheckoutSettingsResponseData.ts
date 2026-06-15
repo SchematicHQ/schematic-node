@@ -11,6 +11,9 @@ export const CheckoutSettingsResponseData: core.serialization.ObjectSchema<
     collectAddress: core.serialization.property("collect_address", core.serialization.boolean()),
     collectEmail: core.serialization.property("collect_email", core.serialization.boolean()),
     collectPhone: core.serialization.property("collect_phone", core.serialization.boolean()),
+    optInEnabled: core.serialization.property("opt_in_enabled", core.serialization.boolean()),
+    optInText: core.serialization.property("opt_in_text", core.serialization.string().optional()),
+    optInTitle: core.serialization.property("opt_in_title", core.serialization.string().optional()),
 });
 
 export declare namespace CheckoutSettingsResponseData {
@@ -18,5 +21,8 @@ export declare namespace CheckoutSettingsResponseData {
         collect_address: boolean;
         collect_email: boolean;
         collect_phone: boolean;
+        opt_in_enabled: boolean;
+        opt_in_text?: string | null;
+        opt_in_title?: string | null;
     }
 }

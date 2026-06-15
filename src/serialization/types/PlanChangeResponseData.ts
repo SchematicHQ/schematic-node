@@ -32,6 +32,7 @@ export const PlanChangeResponseData: core.serialization.ObjectSchema<
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     id: core.serialization.string(),
+    isVersionUpgrade: core.serialization.property("is_version_upgrade", core.serialization.boolean()),
     previousBasePlan: core.serialization.property("previous_base_plan", PlanSnapshotView.optional()),
     previousBasePlanVersion: core.serialization.property(
         "previous_base_plan_version",
@@ -64,6 +65,7 @@ export declare namespace PlanChangeResponseData {
         created_at: string;
         environment_id: string;
         id: string;
+        is_version_upgrade: boolean;
         previous_base_plan?: PlanSnapshotView.Raw | null;
         previous_base_plan_version?: PlanVersionSnapshotView.Raw | null;
         request_id?: string | null;

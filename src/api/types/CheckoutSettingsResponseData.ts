@@ -4,4 +4,7 @@ export interface CheckoutSettingsResponseData {
     collectAddress: boolean;
     collectEmail: boolean;
     collectPhone: boolean;
+    optInEnabled: boolean;
+    optInText?: string;
+    optInTitle?: string;
 }
