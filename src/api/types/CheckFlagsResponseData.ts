@@ -3,6 +3,8 @@
 import type * as Schematic from "../index";
 
 export interface CheckFlagsResponseData {
+    /** Lease-aware credit balances keyed by credit ID, covering every credit type the company holds a balance in */
+    creditBalances?: Record<string, Schematic.CompanyCreditBalance>;
     flags: Schematic.CheckFlagResponseData[];
     plan?: Schematic.DatastreamCompanyPlan;
 }

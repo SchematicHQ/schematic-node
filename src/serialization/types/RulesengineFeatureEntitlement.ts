@@ -12,6 +12,7 @@ export const RulesengineFeatureEntitlement: core.serialization.ObjectSchema<
     Schematic.RulesengineFeatureEntitlement
 > = core.serialization.object({
     allocation: core.serialization.number().optional(),
+    consumptionRate: core.serialization.property("consumption_rate", core.serialization.number().optional()),
     creditId: core.serialization.property("credit_id", core.serialization.string().optional()),
     creditRemaining: core.serialization.property("credit_remaining", core.serialization.number().optional()),
     creditReserved: core.serialization.property("credit_reserved", core.serialization.number().optional()),
@@ -19,6 +20,7 @@ export const RulesengineFeatureEntitlement: core.serialization.ObjectSchema<
     creditTotal: core.serialization.property("credit_total", core.serialization.number().optional()),
     creditUsed: core.serialization.property("credit_used", core.serialization.number().optional()),
     eventName: core.serialization.property("event_name", core.serialization.string().optional()),
+    eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
     featureId: core.serialization.property("feature_id", core.serialization.string()),
     featureKey: core.serialization.property("feature_key", core.serialization.string()),
     metricPeriod: core.serialization.property("metric_period", RulesengineMetricPeriod.optional()),
@@ -32,6 +34,7 @@ export const RulesengineFeatureEntitlement: core.serialization.ObjectSchema<
 export declare namespace RulesengineFeatureEntitlement {
     export interface Raw {
         allocation?: number | null;
+        consumption_rate?: number | null;
         credit_id?: string | null;
         credit_remaining?: number | null;
         credit_reserved?: number | null;
@@ -39,6 +42,7 @@ export declare namespace RulesengineFeatureEntitlement {
         credit_total?: number | null;
         credit_used?: number | null;
         event_name?: string | null;
+        event_subtype?: string | null;
         feature_id: string;
         feature_key: string;
         metric_period?: RulesengineMetricPeriod.Raw | null;

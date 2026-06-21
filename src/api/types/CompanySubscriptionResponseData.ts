@@ -10,6 +10,7 @@ export interface CompanySubscriptionResponseData {
     discounts: Schematic.BillingSubscriptionDiscountView[];
     expiredAt?: Date;
     interval: string;
+    isInitial: boolean;
     latestInvoice?: Schematic.InvoiceResponseData;
     paymentMethod?: Schematic.PaymentMethodResponseData;
     products: Schematic.BillingProductForSubscriptionResponseData[];

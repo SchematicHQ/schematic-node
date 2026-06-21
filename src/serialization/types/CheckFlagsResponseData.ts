@@ -4,18 +4,24 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { CheckFlagResponseData } from "./CheckFlagResponseData";
+import { CompanyCreditBalance } from "./CompanyCreditBalance";
 import { DatastreamCompanyPlan } from "./DatastreamCompanyPlan";
 
 export const CheckFlagsResponseData: core.serialization.ObjectSchema<
     serializers.CheckFlagsResponseData.Raw,
     Schematic.CheckFlagsResponseData
 > = core.serialization.object({
+    creditBalances: core.serialization.property(
+        "credit_balances",
+        core.serialization.record(core.serialization.string(), CompanyCreditBalance).optional(),
+    ),
     flags: core.serialization.list(CheckFlagResponseData),
     plan: DatastreamCompanyPlan.optional(),
 });
 
 export declare namespace CheckFlagsResponseData {
     export interface Raw {
+        credit_balances?: Record<string, CompanyCreditBalance.Raw> | null;
         flags: CheckFlagResponseData.Raw[];
         plan?: DatastreamCompanyPlan.Raw | null;
     }

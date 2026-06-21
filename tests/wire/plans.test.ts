@@ -6642,11 +6642,7 @@ describe("PlansClient", () => {
     test("publishPlanVersion (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            excluded_company_ids: ["excluded_company_ids"],
-            migration_strategy: "immediate",
-            pay_in_advance: [{ price_id: "price_id", quantity: 1000000 }],
-        };
+        const rawRequestBody = { excluded_company_ids: ["excluded_company_ids"], migration_strategy: "immediate" };
         const rawResponseBody = {
             data: {
                 created_at: "2024-01-15T09:30:00Z",
@@ -6676,12 +6672,6 @@ describe("PlansClient", () => {
         const response = await client.plans.publishPlanVersion("plan_id", {
             excludedCompanyIds: ["excluded_company_ids"],
             migrationStrategy: "immediate",
-            payInAdvance: [
-                {
-                    priceId: "price_id",
-                    quantity: 1000000,
-                },
-            ],
         });
         expect(response).toEqual({
             data: {
@@ -6709,10 +6699,6 @@ describe("PlansClient", () => {
         const rawRequestBody = {
             excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
             migration_strategy: "immediate",
-            pay_in_advance: [
-                { price_id: "price_id", quantity: 1000000 },
-                { price_id: "price_id", quantity: 1000000 },
-            ],
         };
         const rawResponseBody = { error: "error" };
 
@@ -6729,16 +6715,6 @@ describe("PlansClient", () => {
             return await client.plans.publishPlanVersion("plan_id", {
                 excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
                 migrationStrategy: "immediate",
-                payInAdvance: [
-                    {
-                        priceId: "price_id",
-                        quantity: 1000000,
-                    },
-                    {
-                        priceId: "price_id",
-                        quantity: 1000000,
-                    },
-                ],
             });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
@@ -6749,10 +6725,6 @@ describe("PlansClient", () => {
         const rawRequestBody = {
             excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
             migration_strategy: "immediate",
-            pay_in_advance: [
-                { price_id: "price_id", quantity: 1000000 },
-                { price_id: "price_id", quantity: 1000000 },
-            ],
         };
         const rawResponseBody = { error: "error" };
 
@@ -6769,16 +6741,6 @@ describe("PlansClient", () => {
             return await client.plans.publishPlanVersion("plan_id", {
                 excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
                 migrationStrategy: "immediate",
-                payInAdvance: [
-                    {
-                        priceId: "price_id",
-                        quantity: 1000000,
-                    },
-                    {
-                        priceId: "price_id",
-                        quantity: 1000000,
-                    },
-                ],
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
@@ -6789,10 +6751,6 @@ describe("PlansClient", () => {
         const rawRequestBody = {
             excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
             migration_strategy: "immediate",
-            pay_in_advance: [
-                { price_id: "price_id", quantity: 1000000 },
-                { price_id: "price_id", quantity: 1000000 },
-            ],
         };
         const rawResponseBody = { error: "error" };
 
@@ -6809,16 +6767,6 @@ describe("PlansClient", () => {
             return await client.plans.publishPlanVersion("plan_id", {
                 excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
                 migrationStrategy: "immediate",
-                payInAdvance: [
-                    {
-                        priceId: "price_id",
-                        quantity: 1000000,
-                    },
-                    {
-                        priceId: "price_id",
-                        quantity: 1000000,
-                    },
-                ],
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
@@ -6829,10 +6777,6 @@ describe("PlansClient", () => {
         const rawRequestBody = {
             excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
             migration_strategy: "immediate",
-            pay_in_advance: [
-                { price_id: "price_id", quantity: 1000000 },
-                { price_id: "price_id", quantity: 1000000 },
-            ],
         };
         const rawResponseBody = { error: "error" };
 
@@ -6849,16 +6793,6 @@ describe("PlansClient", () => {
             return await client.plans.publishPlanVersion("plan_id", {
                 excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
                 migrationStrategy: "immediate",
-                payInAdvance: [
-                    {
-                        priceId: "price_id",
-                        quantity: 1000000,
-                    },
-                    {
-                        priceId: "price_id",
-                        quantity: 1000000,
-                    },
-                ],
             });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
@@ -6869,10 +6803,6 @@ describe("PlansClient", () => {
         const rawRequestBody = {
             excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
             migration_strategy: "immediate",
-            pay_in_advance: [
-                { price_id: "price_id", quantity: 1000000 },
-                { price_id: "price_id", quantity: 1000000 },
-            ],
         };
         const rawResponseBody = { error: "error" };
 
@@ -6889,16 +6819,6 @@ describe("PlansClient", () => {
             return await client.plans.publishPlanVersion("plan_id", {
                 excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
                 migrationStrategy: "immediate",
-                payInAdvance: [
-                    {
-                        priceId: "price_id",
-                        quantity: 1000000,
-                    },
-                    {
-                        priceId: "price_id",
-                        quantity: 1000000,
-                    },
-                ],
             });
         }).rejects.toThrow(Schematic.InternalServerError);
     });

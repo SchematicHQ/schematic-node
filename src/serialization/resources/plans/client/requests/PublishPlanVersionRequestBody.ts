@@ -5,7 +5,6 @@ import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
 import { CustomPlanActivationStrategy } from "../../../../types/CustomPlanActivationStrategy";
 import { PlanVersionMigrationStrategy } from "../../../../types/PlanVersionMigrationStrategy";
-import { UpdatePayInAdvanceRequestBody } from "../../../../types/UpdatePayInAdvanceRequestBody";
 
 export const PublishPlanVersionRequestBody: core.serialization.Schema<
     serializers.PublishPlanVersionRequestBody.Raw,
@@ -19,7 +18,6 @@ export const PublishPlanVersionRequestBody: core.serialization.Schema<
         core.serialization.list(core.serialization.string()),
     ),
     migrationStrategy: core.serialization.property("migration_strategy", PlanVersionMigrationStrategy),
-    payInAdvance: core.serialization.property("pay_in_advance", core.serialization.list(UpdatePayInAdvanceRequestBody)),
 });
 
 export declare namespace PublishPlanVersionRequestBody {
@@ -29,6 +27,5 @@ export declare namespace PublishPlanVersionRequestBody {
         days_until_due?: number | null;
         excluded_company_ids: string[];
         migration_strategy: PlanVersionMigrationStrategy.Raw;
-        pay_in_advance: UpdatePayInAdvanceRequestBody.Raw[];
     }
 }

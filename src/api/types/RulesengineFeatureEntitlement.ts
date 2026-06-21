@@ -5,6 +5,8 @@ import type * as Schematic from "../index";
 export interface RulesengineFeatureEntitlement {
     /** If the company has a numeric entitlement for this feature, the allocated amount */
     allocation?: number;
+    /** If the company has a credit-based entitlement for this feature, the credit cost per unit of usage */
+    consumptionRate?: number;
     /** If the company has a credit-based entitlement for this feature, the ID of the credit */
     creditId?: string;
     /** If the company has a credit-based entitlement for this feature, the credit available to fund new consumption or a new lease hold — open lease holds are excluded. Clients that hold a lease should gate on this plus their own unspent hold; clients with no lease awareness should use credit_settled instead */
@@ -19,6 +21,8 @@ export interface RulesengineFeatureEntitlement {
     creditUsed?: number;
     /** If the feature is event-based, the name of the event tracked for usage */
     eventName?: string;
+    /** For event-based or credit-metered feature entitlements, the event subtype whose usage is tracked */
+    eventSubtype?: string;
     /** The ID of the feature */
     featureId: string;
     /** The key of the flag associated with the feature */

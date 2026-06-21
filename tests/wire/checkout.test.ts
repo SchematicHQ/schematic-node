@@ -1519,6 +1519,7 @@ describe("CheckoutClient", () => {
                     ],
                     expired_at: "2024-01-15T09:30:00Z",
                     interval: "interval",
+                    is_initial: true,
                     latest_invoice: {
                         amount_due: 1000000,
                         amount_paid: 1000000,
@@ -2583,6 +2584,7 @@ describe("CheckoutClient", () => {
                     ],
                     expiredAt: new Date("2024-01-15T09:30:00.000Z"),
                     interval: "interval",
+                    isInitial: true,
                     latestInvoice: {
                         amountDue: 1000000,
                         amountPaid: 1000000,

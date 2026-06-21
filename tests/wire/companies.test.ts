@@ -4506,6 +4506,7 @@ describe("CompaniesClient", () => {
                 entitlements: [
                     {
                         allocation: 1000000,
+                        consumption_rate: 1.1,
                         credit_id: "credit_id",
                         credit_remaining: 1.1,
                         credit_reserved: 1.1,
@@ -4513,6 +4514,7 @@ describe("CompaniesClient", () => {
                         credit_total: 1.1,
                         credit_used: 1.1,
                         event_name: "event_name",
+                        event_subtype: "event_subtype",
                         feature_id: "feature_id",
                         feature_key: "feature_key",
                         metric_period: "all_time",
@@ -4524,6 +4526,7 @@ describe("CompaniesClient", () => {
                     },
                     {
                         allocation: 1000000,
+                        consumption_rate: 1.1,
                         credit_id: "credit_id",
                         credit_remaining: 1.1,
                         credit_reserved: 1.1,
@@ -4531,6 +4534,7 @@ describe("CompaniesClient", () => {
                         credit_total: 1.1,
                         credit_used: 1.1,
                         event_name: "event_name",
+                        event_subtype: "event_subtype",
                         feature_id: "feature_id",
                         feature_key: "feature_key",
                         metric_period: "all_time",
@@ -6237,6 +6241,7 @@ describe("CompaniesClient", () => {
                 entitlements: [
                     {
                         allocation: 1000000,
+                        consumptionRate: 1.1,
                         creditId: "credit_id",
                         creditRemaining: 1.1,
                         creditReserved: 1.1,
@@ -6244,6 +6249,7 @@ describe("CompaniesClient", () => {
                         creditTotal: 1.1,
                         creditUsed: 1.1,
                         eventName: "event_name",
+                        eventSubtype: "event_subtype",
                         featureId: "feature_id",
                         featureKey: "feature_key",
                         metricPeriod: "all_time",
@@ -6255,6 +6261,7 @@ describe("CompaniesClient", () => {
                     },
                     {
                         allocation: 1000000,
+                        consumptionRate: 1.1,
                         creditId: "credit_id",
                         creditRemaining: 1.1,
                         creditReserved: 1.1,
@@ -6262,6 +6269,7 @@ describe("CompaniesClient", () => {
                         creditTotal: 1.1,
                         creditUsed: 1.1,
                         eventName: "event_name",
+                        eventSubtype: "event_subtype",
                         featureId: "feature_id",
                         featureKey: "feature_key",
                         metricPeriod: "all_time",
@@ -7570,6 +7578,7 @@ describe("CompaniesClient", () => {
                     ],
                     expired_at: "2024-01-15T09:30:00Z",
                     interval: "interval",
+                    is_initial: true,
                     latest_invoice: {
                         amount_due: 1000000,
                         amount_paid: 1000000,
@@ -7660,6 +7669,7 @@ describe("CompaniesClient", () => {
                     ],
                     expiredAt: new Date("2024-01-15T09:30:00.000Z"),
                     interval: "interval",
+                    isInitial: true,
                     latestInvoice: {
                         amountDue: 1000000,
                         amountPaid: 1000000,

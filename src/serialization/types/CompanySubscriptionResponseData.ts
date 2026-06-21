@@ -20,6 +20,7 @@ export const CompanySubscriptionResponseData: core.serialization.ObjectSchema<
     discounts: core.serialization.list(BillingSubscriptionDiscountView),
     expiredAt: core.serialization.property("expired_at", core.serialization.date().optional()),
     interval: core.serialization.string(),
+    isInitial: core.serialization.property("is_initial", core.serialization.boolean()),
     latestInvoice: core.serialization.property("latest_invoice", InvoiceResponseData.optional()),
     paymentMethod: core.serialization.property("payment_method", PaymentMethodResponseData.optional()),
     products: core.serialization.list(BillingProductForSubscriptionResponseData),
@@ -39,6 +40,7 @@ export declare namespace CompanySubscriptionResponseData {
         discounts: BillingSubscriptionDiscountView.Raw[];
         expired_at?: string | null;
         interval: string;
+        is_initial: boolean;
         latest_invoice?: InvoiceResponseData.Raw | null;
         payment_method?: PaymentMethodResponseData.Raw | null;
         products: BillingProductForSubscriptionResponseData.Raw[];

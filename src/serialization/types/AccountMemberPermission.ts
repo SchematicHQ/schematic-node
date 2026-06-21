@@ -8,7 +8,6 @@ export const AccountMemberPermission: core.serialization.Schema<
     serializers.AccountMemberPermission.Raw,
     Schematic.AccountMemberPermission
 > = core.serialization.enum_([
-    "billing_credits_edit",
     "companies_edit",
     "company_users_edit",
     "components_edit",
@@ -27,7 +26,6 @@ export const AccountMemberPermission: core.serialization.Schema<
 
 export declare namespace AccountMemberPermission {
     export type Raw =
-        | "billing_credits_edit"
         | "companies_edit"
         | "company_users_edit"
         | "components_edit"
