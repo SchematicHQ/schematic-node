@@ -11,6 +11,7 @@ import type * as Schematic from "../../../../index";
  *         ids: ["ids"],
  *         interval: "interval",
  *         isActive: true,
+ *         planVersionId: "plan_version_id",
  *         price: 1000000,
  *         productId: "product_id",
  *         productIds: ["product_ids"],
@@ -34,6 +35,8 @@ export interface ListBillingPricesRequest {
     interval?: string;
     /** Filter for active prices on active products (defaults to true if not specified) */
     isActive?: boolean;
+    /** Filter for prices belonging to a specific plan version (e.g. the latest published version) */
+    planVersionId?: string;
     price?: number;
     productId?: string;
     productIds?: string | string[];

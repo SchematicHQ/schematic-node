@@ -6,11 +6,7 @@ import type * as Schematic from "../../../../index";
  * @example
  *     {
  *         excludedCompanyIds: ["excluded_company_ids"],
- *         migrationStrategy: "immediate",
- *         payInAdvance: [{
- *                 priceId: "price_id",
- *                 quantity: 1000000
- *             }]
+ *         migrationStrategy: "immediate"
  *     }
  */
 export interface PublishPlanVersionRequestBody {
@@ -19,5 +15,4 @@ export interface PublishPlanVersionRequestBody {
     daysUntilDue?: number;
     excludedCompanyIds: string[];
     migrationStrategy: Schematic.PlanVersionMigrationStrategy;
-    payInAdvance: Schematic.UpdatePayInAdvanceRequestBody[];
 }

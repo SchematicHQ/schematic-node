@@ -2532,11 +2532,7 @@ export class PlansClient {
      * @example
      *     await client.plans.publishPlanVersion("plan_id", {
      *         excludedCompanyIds: ["excluded_company_ids"],
-     *         migrationStrategy: "immediate",
-     *         payInAdvance: [{
-     *                 priceId: "price_id",
-     *                 quantity: 1000000
-     *             }]
+     *         migrationStrategy: "immediate"
      *     })
      */
     public publishPlanVersion(

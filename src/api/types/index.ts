@@ -73,6 +73,7 @@ export * from "./CheckoutFieldWithValue";
 export * from "./CheckoutSettingsResponseData";
 export * from "./CheckoutSubscription";
 export * from "./ClerkIntegrationConfig";
+export * from "./CompanyCreditBalance";
 export * from "./CompanyCreditBalanceResponseData";
 export * from "./CompanyDetailResponseData";
 export * from "./CompanyEventPeriodMetricsResponseData";

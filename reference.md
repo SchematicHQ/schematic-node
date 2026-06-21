@@ -1693,6 +1693,7 @@ await client.billing.listBillingPrices({
     ids: ["ids"],
     interval: "interval",
     isActive: true,
+    planVersionId: "plan_version_id",
     price: 1000000,
     productId: "product_id",
     productIds: ["product_ids"],
@@ -1870,6 +1871,7 @@ await client.billing.listBillingProductPrices({
     ids: ["ids"],
     interval: "interval",
     isActive: true,
+    planVersionId: "plan_version_id",
     price: 1000000,
     productId: "product_id",
     productIds: ["product_ids"],
@@ -8481,11 +8483,7 @@ await client.plans.deletePlanVersion("plan_id", {
 ```typescript
 await client.plans.publishPlanVersion("plan_id", {
     excludedCompanyIds: ["excluded_company_ids"],
-    migrationStrategy: "immediate",
-    payInAdvance: [{
-            priceId: "price_id",
-            quantity: 1000000
-        }]
+    migrationStrategy: "immediate"
 });
 
 ```

@@ -20,6 +20,8 @@ export interface ListBillingPricesParams {
     limit?: number;
     /** Page offset (default 0) */
     offset?: number;
+    /** Filter for prices belonging to a specific plan version (e.g. the latest published version) */
+    planVersionId?: string;
     price?: number;
     productId?: string;
     productIds?: string[];

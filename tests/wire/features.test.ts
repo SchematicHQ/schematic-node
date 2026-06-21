@@ -95,7 +95,7 @@ describe("FeaturesClient", () => {
                     maintainer: {
                         created_at: "2024-01-15T09:30:00Z",
                         id: "id",
-                        permissions: { key: ["billing_credits_edit"] },
+                        permissions: { key: ["companies_edit"] },
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     maintainer_account_member_id: "maintainer_account_member_id",
@@ -241,7 +241,7 @@ describe("FeaturesClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         id: "id",
                         permissions: {
-                            key: ["billing_credits_edit"],
+                            key: ["companies_edit"],
                         },
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
@@ -443,7 +443,7 @@ describe("FeaturesClient", () => {
                     image_url: "image_url",
                     last_name: "last_name",
                     name: "name",
-                    permissions: { key: ["billing_credits_edit"] },
+                    permissions: { key: ["companies_edit"] },
                     role: "admin",
                     updated_at: "2024-01-15T09:30:00Z",
                 },
@@ -583,7 +583,7 @@ describe("FeaturesClient", () => {
                     lastName: "last_name",
                     name: "name",
                     permissions: {
-                        key: ["billing_credits_edit"],
+                        key: ["companies_edit"],
                     },
                     role: "admin",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -831,7 +831,7 @@ describe("FeaturesClient", () => {
                     image_url: "image_url",
                     last_name: "last_name",
                     name: "name",
-                    permissions: { key: ["billing_credits_edit"] },
+                    permissions: { key: ["companies_edit"] },
                     role: "admin",
                     updated_at: "2024-01-15T09:30:00Z",
                 },
@@ -966,7 +966,7 @@ describe("FeaturesClient", () => {
                     lastName: "last_name",
                     name: "name",
                     permissions: {
-                        key: ["billing_credits_edit"],
+                        key: ["companies_edit"],
                     },
                     role: "admin",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1170,7 +1170,7 @@ describe("FeaturesClient", () => {
                     image_url: "image_url",
                     last_name: "last_name",
                     name: "name",
-                    permissions: { key: ["billing_credits_edit"] },
+                    permissions: { key: ["companies_edit"] },
                     role: "admin",
                     updated_at: "2024-01-15T09:30:00Z",
                 },
@@ -1306,7 +1306,7 @@ describe("FeaturesClient", () => {
                     lastName: "last_name",
                     name: "name",
                     permissions: {
-                        key: ["billing_credits_edit"],
+                        key: ["companies_edit"],
                     },
                     role: "admin",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1660,7 +1660,7 @@ describe("FeaturesClient", () => {
                     image_url: "image_url",
                     last_name: "last_name",
                     name: "name",
-                    permissions: { key: ["billing_credits_edit"] },
+                    permissions: { key: ["companies_edit"] },
                     role: "admin",
                     updated_at: "2024-01-15T09:30:00Z",
                 },
@@ -1802,7 +1802,7 @@ describe("FeaturesClient", () => {
                     lastName: "last_name",
                     name: "name",
                     permissions: {
-                        key: ["billing_credits_edit"],
+                        key: ["companies_edit"],
                     },
                     role: "admin",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2140,7 +2140,7 @@ describe("FeaturesClient", () => {
                     maintainer: {
                         created_at: "2024-01-15T09:30:00Z",
                         id: "id",
-                        permissions: { key: ["billing_credits_edit"] },
+                        permissions: { key: ["companies_edit"] },
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     maintainer_account_member_id: "maintainer_account_member_id",
@@ -2233,7 +2233,7 @@ describe("FeaturesClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         id: "id",
                         permissions: {
-                            key: ["billing_credits_edit"],
+                            key: ["companies_edit"],
                         },
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
@@ -2419,7 +2419,7 @@ describe("FeaturesClient", () => {
                     image_url: "image_url",
                     last_name: "last_name",
                     name: "name",
-                    permissions: { key: ["billing_credits_edit"] },
+                    permissions: { key: ["companies_edit"] },
                     role: "admin",
                     updated_at: "2024-01-15T09:30:00Z",
                 },
@@ -2529,7 +2529,7 @@ describe("FeaturesClient", () => {
                     lastName: "last_name",
                     name: "name",
                     permissions: {
-                        key: ["billing_credits_edit"],
+                        key: ["companies_edit"],
                     },
                     role: "admin",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2800,7 +2800,7 @@ describe("FeaturesClient", () => {
                     image_url: "image_url",
                     last_name: "last_name",
                     name: "name",
-                    permissions: { key: ["billing_credits_edit"] },
+                    permissions: { key: ["companies_edit"] },
                     role: "admin",
                     updated_at: "2024-01-15T09:30:00Z",
                 },
@@ -2897,7 +2897,7 @@ describe("FeaturesClient", () => {
                     lastName: "last_name",
                     name: "name",
                     permissions: {
-                        key: ["billing_credits_edit"],
+                        key: ["companies_edit"],
                     },
                     role: "admin",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -3066,7 +3066,7 @@ describe("FeaturesClient", () => {
                     image_url: "image_url",
                     last_name: "last_name",
                     name: "name",
-                    permissions: { key: ["billing_credits_edit"] },
+                    permissions: { key: ["companies_edit"] },
                     role: "admin",
                     updated_at: "2024-01-15T09:30:00Z",
                 },
@@ -3176,7 +3176,7 @@ describe("FeaturesClient", () => {
                     lastName: "last_name",
                     name: "name",
                     permissions: {
-                        key: ["billing_credits_edit"],
+                        key: ["companies_edit"],
                     },
                     role: "admin",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -4696,6 +4696,7 @@ describe("FeaturesClient", () => {
                 company_id: "company_id",
                 entitlement: {
                     allocation: 1000000,
+                    consumption_rate: 1.1,
                     credit_id: "credit_id",
                     credit_remaining: 1.1,
                     credit_reserved: 1.1,
@@ -4703,6 +4704,7 @@ describe("FeaturesClient", () => {
                     credit_total: 1.1,
                     credit_used: 1.1,
                     event_name: "event_name",
+                    event_subtype: "event_subtype",
                     feature_id: "feature_id",
                     feature_key: "feature_key",
                     metric_period: "all_time",
@@ -4740,6 +4742,7 @@ describe("FeaturesClient", () => {
                 companyId: "company_id",
                 entitlement: {
                     allocation: 1000000,
+                    consumptionRate: 1.1,
                     creditId: "credit_id",
                     creditRemaining: 1.1,
                     creditReserved: 1.1,
@@ -4747,6 +4750,7 @@ describe("FeaturesClient", () => {
                     creditTotal: 1.1,
                     creditUsed: 1.1,
                     eventName: "event_name",
+                    eventSubtype: "event_subtype",
                     featureId: "feature_id",
                     featureKey: "feature_key",
                     metricPeriod: "all_time",
@@ -4878,6 +4882,7 @@ describe("FeaturesClient", () => {
         const rawRequestBody = {};
         const rawResponseBody = {
             data: {
+                credit_balances: { key: { remaining: 1.1, reserved: 1.1, settled: 1.1 } },
                 flags: [{ flag: "flag", reason: "reason", value: true }],
                 plan: { id: "id", name: "name", trial_end_date: "2024-01-15T09:30:00Z", trial_status: "active" },
             },
@@ -4896,6 +4901,13 @@ describe("FeaturesClient", () => {
         const response = await client.features.checkFlags({});
         expect(response).toEqual({
             data: {
+                creditBalances: {
+                    key: {
+                        remaining: 1.1,
+                        reserved: 1.1,
+                        settled: 1.1,
+                    },
+                },
                 flags: [
                     {
                         flag: "flag",

@@ -19,6 +19,7 @@ export const ListBillingProductPricesParams: core.serialization.ObjectSchema<
     isActive: core.serialization.property("is_active", core.serialization.boolean().optional()),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
+    planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
     price: core.serialization.number().optional(),
     productId: core.serialization.property("product_id", core.serialization.string().optional()),
     productIds: core.serialization.property(
@@ -42,6 +43,7 @@ export declare namespace ListBillingProductPricesParams {
         is_active?: boolean | null;
         limit?: number | null;
         offset?: number | null;
+        plan_version_id?: string | null;
         price?: number | null;
         product_id?: string | null;
         product_ids?: string[] | null;
