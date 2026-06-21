@@ -167,15 +167,17 @@ export interface CheckResult {
     /**
      * Entitlement payload from the check.
      *
-     * NOTE: `entitlement.creditRemaining` (and `creditTotal` / `creditUsed`) is
-     * NOT lease-aware and must not be used as a user-facing balance when credit
-     * leases are enabled. The WASM derives those fields from the company's
-     * server `creditBalances`, which a lease distorts: a plain `checkFlag` sees
-     * the balance net of the whole lease tranche (reads low/~0), and a
-     * lease-bearing `check()` sees the substituted *tranche-local* balance, not
-     * the company total. For any "credits remaining" display use
-     * `client.getCreditBalance(...).settled` (`B − spent`), which speaks the
-     * server's `remaining`/`reserved`/`settled` vocabulary.
+     * For a credit-metered feature the entitlement carries the lease-aware
+     * three-way split the server computes: `creditRemaining` (drawable now, open
+     * lease holds excluded), `creditReserved` (the open lease's unspent hold),
+     * and `creditSettled` (`creditRemaining + creditReserved` = the balance net
+     * of actual consumption). Bind a user-facing "credits remaining" counter to
+     * `creditSettled` — it's invariant to in-flight lease holds, so it doesn't
+     * dip mid-call the way the raw server balance does.
+     *
+     * These come from the company's resolved entitlement, so the lease-balance
+     * substitution a lease-bearing `check()` applies for gating does NOT distort
+     * them — the same values surface whether or not `usage` was passed.
      */
     entitlement?: api.RulesengineFeatureEntitlement;
     /** Flag key checked. */

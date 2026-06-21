@@ -2,12 +2,13 @@
  * Real-WASM tests for the credit-lease check path.
  *
  * Everything else in `tests/unit/credits` stubs the rules engine, so the
- * contract that actually matters most — substituting the lease balance into
- * the company's `creditBalances` and letting the WASM's `event_usage` gate
- * decide allow/deny — is never exercised against the real engine. These tests
- * load the bundled WASM (`src/wasm/rulesengine.js`) and drive a credit-balance
- * flag end-to-end through `checkWithLease`, plus a direct rules-engine check, so
- * that a drift in the snake_case option envelope (`event_usage`) or in the
+ * contract that actually matters most — resolving the matched credit
+ * entitlement from the probe, substituting the lease balance into the company's
+ * `creditBalances`, and letting the WASM's `credit_cost` gate decide allow/deny
+ * — is never exercised against the real engine. These tests load the bundled
+ * WASM (`src/wasm/rulesengine.js`) and drive a credit-balance flag end-to-end
+ * through `checkWithLease`, plus a direct rules-engine check, so that a drift in
+ * the snake_case option envelope (`credit_cost` / `event_usage`) or in the
  * camelCase entity shape the SDK now feeds the engine would fail here instead of
  * silently mis-gating in production.
  */
@@ -87,13 +88,30 @@ function creditFlag(extraConditions: object[] = []): api.RulesengineFlag {
     } as unknown as api.RulesengineFlag;
 }
 
-function company(creditBalance: number): api.RulesengineCompany {
+// The company carries its resolved credit entitlement for the feature — the
+// shape the datastream cache holds after a plan assignment. Entitlement-first
+// resolution reads creditId / consumptionRate / eventSubtype off this via the
+// engine probe, so it must be present for the lease path to gate on the credit.
+function company(creditBalance: number, entitlements?: object[]): api.RulesengineCompany {
     return {
         id: "co",
         accountId: "acct",
         environmentId: "env",
         keys: {},
         creditBalances: { [CREDIT_ID]: creditBalance },
+        entitlements: entitlements ?? [
+            {
+                featureId: "feat-infer",
+                featureKey: "infer",
+                valueType: "credit",
+                creditId: CREDIT_ID,
+                consumptionRate: 1,
+                eventSubtype: EVENT_SUBTYPE,
+                creditTotal: creditBalance,
+                creditUsed: 0,
+                creditRemaining: creditBalance,
+            },
+        ],
     } as unknown as api.RulesengineCompany;
 }
 
@@ -210,12 +228,13 @@ describe("credit-lease check against the real WASM engine", () => {
         expect(reservations.size()).toBe(0);
     });
 
-    it("cancels the reservation when the WASM allows via an override rule instead of the credit rule", async () => {
-        // The company is granted the feature by a company_override rule that
-        // outranks the credit-metered rule. The engine allows — but via a rule
-        // that doesn't meter this credit, so the reservation taken before the
-        // eval must be cancelled (no handle, nothing billed) rather than left
-        // to charge credits for usage the override grants for free.
+    it("skips the lease entirely when the company's matched entitlement is a (non-credit) override", async () => {
+        // The company is granted the feature by a company_override that resolves
+        // to a boolean entitlement — its effective entitlement for the feature is
+        // no longer credit-metered. The probe surfaces the boolean entitlement,
+        // so the lease path never acquires or reserves; it defers to the plain
+        // check. No reserve-then-cancel, and no credits billed for usage the
+        // override grants for free.
         const flag = creditFlag();
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (flag.rules as any[]).unshift({
@@ -229,21 +248,27 @@ describe("credit-lease check against the real WASM engine", () => {
             conditions: [companyCondition(["co"])],
             conditionGroups: [],
         });
-        const { deps, leaseStore, reservations } = makeDeps(engine, flag, company(100), 10_000);
+        // Effective entitlement after the override: boolean, not credit.
+        const overrideCompany = company(100, [{ featureId: "feat-infer", featureKey: "infer", valueType: "boolean" }]);
+        const { deps, leaseStore, reservations } = makeDeps(engine, flag, overrideCompany, 10_000);
 
-        const result = await checkWithLease(
-            deps,
-            "infer",
-            evalCtx,
-            { usage: 50, eventSubtype: EVENT_SUBTYPE },
-            failFallback,
-        );
+        let fellBack = false;
+        const result = await checkWithLease(deps, "infer", evalCtx, { usage: 50, eventSubtype: EVENT_SUBTYPE }, () => {
+            fellBack = true;
+            return Promise.resolve({
+                allowed: true,
+                value: true,
+                reason: "override",
+                flagKey: "infer",
+            });
+        });
 
+        expect(fellBack).toBe(true);
         expect(result.allowed).toBe(true);
         expect(result.value).toBe(true);
         expect(result.reservation).toBeUndefined();
-        // The hold was refunded: lease back to full, reservation table empty.
-        expect((await leaseStore.get("co", CREDIT_ID))?.localRemainingCredits).toBe(10_000);
+        // The lease was never acquired or touched.
+        expect(await leaseStore.get("co", CREDIT_ID)).toBeUndefined();
         expect(reservations.size()).toBe(0);
     });
 

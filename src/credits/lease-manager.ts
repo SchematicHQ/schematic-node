@@ -88,9 +88,10 @@ export class CreditLeaseManager {
         // that can interleave between a sibling pod's `get` and its `replace`,
         // clobbering a lease that pod just installed and orphaning it until
         // server-side expiry. Reading a stale entry in the gap is harmless —
-        // every mutate/read path (`tryReserve`, `getCreditBalance`) already
-        // guards on expiry. The server treats an expired lease as released and
-        // refunds the full grant back to the company balance.
+        // every path that acts on a lease (`tryReserve`, and the expiry check
+        // just above) re-guards on expiry before trusting it. The server treats
+        // an expired lease as released and refunds the full grant back to the
+        // company balance.
 
         const key = leaseKey(companyId, creditTypeId);
         const inflight = this.inflightAcquire.get(key);
