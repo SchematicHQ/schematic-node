@@ -34,7 +34,7 @@ export function deepCopyUser(u: Schematic.RulesengineUser): Schematic.Rulesengin
  * Partials don't carry refreshed entitlements, so when their derived fields
  * change in another part of the company we sync them here to match server
  * behavior:
- *   - creditRemaining ← credit_balances[credit_id]
+ *   - creditRemaining ← credit_balances[credit_id] (or credit_lease_balance[credit_id].remaining)
  *   - usage ← metric value matching (eventName, metricPeriod, monthReset)
  * Both are skipped when the partial also sends entitlements wholesale.
  *
@@ -103,6 +103,27 @@ export function partialCompany(
                 const incomingCB = (partial[key] ?? {}) as Record<string, number>;
                 merged.creditBalances = { ...existingCB, ...incomingCB };
                 updatedBalances = incomingCB;
+                break;
+            }
+            case "credit_lease_balance": {
+                // Atomic lease-balance partial: for each credit it carries the
+                // post-move remaining together with the open lease hold
+                // (reserved), emitted as a single message on lease
+                // acquire/extend so a consumer never derives state from a
+                // remaining and a reserved captured at different instants. This
+                // SDK is lease-aware, gates on remaining locally, and derives no
+                // settled balance, so we apply remaining exactly like the
+                // credit_balances partial and ignore reserved.
+                const existingCB = (merged.creditBalances ?? {}) as Record<string, number>;
+                const incoming = (partial[key] ?? {}) as Record<string, { remaining?: number; reserved?: number }>;
+                const remainingByCredit: Record<string, number> = {};
+                for (const [creditId, lb] of Object.entries(incoming)) {
+                    if (lb && typeof lb.remaining === "number") {
+                        remainingByCredit[creditId] = lb.remaining;
+                    }
+                }
+                merged.creditBalances = { ...existingCB, ...remainingByCredit };
+                updatedBalances = { ...(updatedBalances ?? {}), ...remainingByCredit };
                 break;
             }
             case "metrics": {
