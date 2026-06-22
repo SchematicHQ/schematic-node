@@ -340,6 +340,7 @@ export * from "./SubscriptionTraitUpdate";
 export * from "./SubscriptionType";
 export * from "./TemporaryAccessTokenResourceType";
 export * from "./TemporaryAccessTokenResponseData";
+export * from "./TestWebhookResponseData";
 export * from "./TimeSeriesGranularity";
 export * from "./TopFeatureByUsageResponseData";
 export * from "./TopFeaturesByUsageResponseData";
