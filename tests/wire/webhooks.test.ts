@@ -1166,6 +1166,145 @@ describe("WebhooksClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("sendTestWebhookAction (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { request_type: "subscription.trial.ended" };
+        const rawResponseBody = { data: { response_code: 1000000, success: true }, params: { key: "value" } };
+
+        server
+            .mockEndpoint()
+            .post("/webhooks/webhook_id/test")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.webhooks.sendTestWebhookAction("webhook_id", {
+            requestType: "subscription.trial.ended",
+        });
+        expect(response).toEqual({
+            data: {
+                responseCode: 1000000,
+                success: true,
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("sendTestWebhookAction (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { request_type: "subscription.trial.ended" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/webhooks/webhook_id/test")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.webhooks.sendTestWebhookAction("webhook_id", {
+                requestType: "subscription.trial.ended",
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("sendTestWebhookAction (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { request_type: "subscription.trial.ended" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/webhooks/webhook_id/test")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.webhooks.sendTestWebhookAction("webhook_id", {
+                requestType: "subscription.trial.ended",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("sendTestWebhookAction (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { request_type: "subscription.trial.ended" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/webhooks/webhook_id/test")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.webhooks.sendTestWebhookAction("webhook_id", {
+                requestType: "subscription.trial.ended",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("sendTestWebhookAction (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { request_type: "subscription.trial.ended" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/webhooks/webhook_id/test")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.webhooks.sendTestWebhookAction("webhook_id", {
+                requestType: "subscription.trial.ended",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("sendTestWebhookAction (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { request_type: "subscription.trial.ended" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/webhooks/webhook_id/test")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.webhooks.sendTestWebhookAction("webhook_id", {
+                requestType: "subscription.trial.ended",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("countWebhooks (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });

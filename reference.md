@@ -1130,6 +1130,104 @@ await client.billing.upsertBillingCoupon({
 </dl>
 </details>
 
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">deleteBillingCoupon</a>(billing_id) -> Schematic.DeleteBillingCouponResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.billing.deleteBillingCoupon("billing_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**billing_id:** `string` — billing_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">deleteBillingCustomer</a>(billing_id) -> Schematic.DeleteBillingCustomerResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.billing.deleteBillingCustomer("billing_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**billing_id:** `string` — billing_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">upsertBillingCustomer</a>({ ...params }) -> Schematic.UpsertBillingCustomerResponse</code></summary>
 <dl>
 <dd>
@@ -1391,6 +1489,55 @@ await client.billing.upsertInvoice({
 <dd>
 
 **request:** `Schematic.CreateInvoiceRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">deleteBillingInvoice</a>(billing_id) -> Schematic.DeleteBillingInvoiceResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.billing.deleteBillingInvoice("billing_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**billing_id:** `string` — billing_id
     
 </dd>
 </dl>
@@ -12523,6 +12670,65 @@ await client.webhooks.deleteWebhook("webhook_id");
 <dd>
 
 **webhook_id:** `string` — webhook_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `WebhooksClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.webhooks.<a href="/src/api/resources/webhooks/client/Client.ts">sendTestWebhookAction</a>(webhook_id, { ...params }) -> Schematic.SendTestWebhookActionResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.webhooks.sendTestWebhookAction("webhook_id", {
+    requestType: "subscription.trial.ended"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**webhook_id:** `string` — webhook_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.TestWebhookRequestBody` 
     
 </dd>
 </dl>

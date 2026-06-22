@@ -10,4 +10,5 @@ export * from "./ListWebhookEventsParams";
 export * from "./ListWebhookEventsResponse";
 export * from "./ListWebhooksParams";
 export * from "./ListWebhooksResponse";
+export * from "./SendTestWebhookActionResponse";
 export * from "./UpdateWebhookResponse";
