@@ -98,35 +98,6 @@ const flag = {
     ],
 };
 
-// Build a single-condition credit rule for a given credit type. Used to
-// assemble flags that meter one feature across multiple credit types.
-function makeCreditRule(id: string, creditId: string, consumptionRate: number) {
-    return {
-        accountId: "acct",
-        conditionGroups: [],
-        conditions: [
-            {
-                accountId: "acct",
-                conditionType: "credit",
-                consumptionRate,
-                creditId,
-                environmentId: "env",
-                eventSubtype: "inference_tokens",
-                id: `cond_${creditId}`,
-                operator: "gte",
-                resourceIds: [],
-                traitValue: "0",
-            },
-        ],
-        environmentId: "env",
-        id,
-        name: id,
-        priority: 1,
-        ruleType: "standard",
-        value: true,
-    };
-}
-
 const company = {
     id: "co_1",
     accountId: "acct",
@@ -169,6 +140,69 @@ function configureDataStream() {
     mockDataStream.getCompany.mockResolvedValue(company);
 }
 
+// The matched credit entitlement the engine probe surfaces. Entitlement-first
+// resolution reads creditId + consumptionRate + eventSubtype straight off this
+// (no structural flag scan), so the consumption rate now lives here, not on the
+// flag condition.
+const CREDIT_ENTITLEMENT = {
+    featureId: "feat",
+    featureKey: "inference",
+    valueType: "credit",
+    creditId: "bilcr_inference",
+    consumptionRate: 10,
+    eventSubtype: "inference_tokens",
+    creditTotal: 1000,
+    creditUsed: 0,
+    creditRemaining: 1000,
+};
+
+// The lease path calls the rules engine twice: first an unsubstituted
+// entitlement probe (`options === null`) to identify the matched entitlement,
+// then a substituted gating eval (`options.creditCost` set) once a reservation
+// is held. This wires both: `probe`/`gate` override the respective result, and
+// the probe defaults to the credit entitlement above so the path proceeds to
+// reserve. The fail-open re-eval in `handleLeaseFailure` also runs without
+// `creditCost`, so it is served by the probe branch too.
+function configureEngine({
+    probe = {},
+    gate = {},
+}: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    probe?: Record<string, any>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    gate?: Record<string, any>;
+} = {}) {
+    mockRulesEngine.checkFlagWithOptions.mockImplementation(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (_flag: any, _co: any, _user: any, options: any) => {
+            if (options && options.creditCost) {
+                return Promise.resolve({
+                    value: true,
+                    reason: "matched",
+                    flagKey: "inference",
+                    flagId: "flag_1",
+                    ruleId: "rule_1",
+                    entitlement: CREDIT_ENTITLEMENT,
+                    ...gate,
+                });
+            }
+            return Promise.resolve({
+                value: true,
+                reason: "probe",
+                flagKey: "inference",
+                flagId: "flag_1",
+                entitlement: CREDIT_ENTITLEMENT,
+                ...probe,
+            });
+        },
+    );
+}
+
+// The substituted gating eval, found by its `creditCost` options envelope.
+function gateCall() {
+    return mockRulesEngine.checkFlagWithOptions.mock.calls.find((c) => c[3] && c[3].creditCost);
+}
+
 function makeClient() {
     return new SchematicClient({
         apiKey: "test-key",
@@ -199,21 +233,7 @@ describe("client.check (lease path)", () => {
     it("issues a reservation when the engine says allowed", async () => {
         configureSuccessfulAcquire();
         configureDataStream();
-        mockRulesEngine.checkFlagWithOptions.mockResolvedValue({
-            value: true,
-            reason: "matched",
-            flagKey: "inference",
-            flagId: "flag_1",
-            entitlement: {
-                featureId: "feat",
-                featureKey: "inference",
-                valueType: "credit_burndown",
-                creditId: "bilcr_inference",
-                creditTotal: 1000,
-                creditUsed: 0,
-                creditRemaining: 1000,
-            },
-        });
+        configureEngine();
 
         const client = makeClient();
         const result = await client.check({ company: { id: "co_1" } }, "inference", {
@@ -227,30 +247,19 @@ describe("client.check (lease path)", () => {
         expect(result.reservation?.consumptionRate).toBe(10);
         expect(result.reservation?.quantityReserved).toBe(50);
         expect(mockAcquireCreditLease).toHaveBeenCalledTimes(1);
-        // Substituted balance flows into WASM: pre-reservation localRemaining = 1000.
-        const callArgs = mockRulesEngine.checkFlagWithOptions.mock.calls[0];
-        expect(callArgs[1].creditBalances.bilcr_inference).toBe(1000);
-        expect(callArgs[3]).toEqual({ eventUsage: { eventSubtype: "inference_tokens", quantity: 50 } });
+        // The gating eval sees the substituted pre-reservation balance (1000) and
+        // the pre-computed credit cost (50 × 10).
+        const gate = gateCall();
+        expect(gate?.[1].creditBalances.bilcr_inference).toBe(1000);
+        expect(gate?.[3]).toEqual({ creditCost: { bilcr_inference: 500 } });
         await client.close();
     });
 
-    it("leases the credit the company's matched plan uses when a flag mixes credit types", async () => {
-        // `inference` is entitled via two plans: a legacy USD-cents credit
-        // (declared first on the flag) and an AI-credits credit. The company is
-        // on the AI-credits plan, so the lease must target AI credits even
-        // though the USD condition appears first. The engine probe reports the
-        // matched plan's credit; we lease that, not the first-declared one.
-        const mixedCreditFlag = {
-            ...flag,
-            rules: [makeCreditRule("rule_usd", "bilcr_usd", 10), makeCreditRule("rule_ai", "bilcr_ai", 5)],
-        };
-        mockDataStream.getFlag.mockResolvedValue(mixedCreditFlag);
-        const mixedCompany = {
-            ...company,
-            creditBalances: { bilcr_usd: 0, bilcr_ai: 5000 },
-        };
-        mockDataStream.getCachedCompany.mockResolvedValue(mixedCompany);
-        mockDataStream.getCompany.mockResolvedValue(mixedCompany);
+    it("leases the credit the company's matched plan entitlement uses", async () => {
+        // The entitlement probe names the company's matched plan credit
+        // (AI credits, rate 5) regardless of flag shape — we lease and meter
+        // that, reading both creditId and consumptionRate straight off it.
+        configureDataStream();
         mockAcquireCreditLease.mockResolvedValue({
             data: {
                 id: "lse_ai",
@@ -263,20 +272,13 @@ describe("client.check (lease path)", () => {
             },
             params: {},
         });
-        // Probe + final eval both report the matched plan's credit (AI credits).
-        mockRulesEngine.checkFlagWithOptions.mockResolvedValue({
-            value: true,
-            reason: "matched ai plan",
-            flagKey: "inference",
-            flagId: "flag_1",
-            entitlement: {
-                featureId: "feat",
-                featureKey: "inference",
-                valueType: "credit_burndown",
-                creditId: "bilcr_ai",
-                creditRemaining: 5000,
-            },
-        });
+        const aiEntitlement = {
+            ...CREDIT_ENTITLEMENT,
+            creditId: "bilcr_ai",
+            consumptionRate: 5,
+            creditRemaining: 5000,
+        };
+        configureEngine({ probe: { entitlement: aiEntitlement }, gate: { entitlement: aiEntitlement } });
 
         const client = makeClient();
         const result = await client.check({ company: { id: "co_1" } }, "inference", {
@@ -285,7 +287,6 @@ describe("client.check (lease path)", () => {
         });
 
         expect(result.allowed).toBe(true);
-        // Leased AI credits (the matched plan), not the first-declared USD credit.
         expect(result.reservation?.creditTypeId).toBe("bilcr_ai");
         expect(result.reservation?.consumptionRate).toBe(5);
         expect(result.reservation?.creditsReserved).toBe(250);
@@ -293,23 +294,24 @@ describe("client.check (lease path)", () => {
         expect(mockAcquireCreditLease.mock.calls[0][0].creditTypeId).toBe("bilcr_ai");
         // One probe eval (raw balance) + one gating eval (substituted balance).
         expect(mockRulesEngine.checkFlagWithOptions).toHaveBeenCalledTimes(2);
+        expect(gateCall()?.[3]).toEqual({ creditCost: { bilcr_ai: 250 } });
         await client.close();
     });
 
-    it("cancels the reservation when the allow comes from a different (non-credit) rule", async () => {
-        // The company is granted the feature by an override rule, not the
-        // credit-metered rule we reserved against. Billing the reservation
-        // would charge credits for usage the override grants for free — the
-        // hold must be cancelled and the allow returned without a handle.
+    it("skips the lease entirely when the matched entitlement is not credit-metered", async () => {
+        // A company/global override (or any boolean/numeric entitlement) grants
+        // the feature without drawing a credit. The probe surfaces a non-credit
+        // entitlement, so the lease path never acquires or reserves — it defers
+        // to the plain check, which returns the allow without a handle.
         configureSuccessfulAcquire();
         configureDataStream();
-        mockRulesEngine.checkFlagWithOptions.mockResolvedValueOnce({
+        configureEngine({
+            probe: { value: true, entitlement: { featureId: "feat", featureKey: "inference", valueType: "boolean" } },
+        });
+        mockDataStream.checkFlag.mockResolvedValue({
             value: true,
             reason: "company override",
             flagKey: "inference",
-            flagId: "flag_1",
-            ruleId: "rule_override",
-            ruleType: "company_override",
         });
 
         const client = makeClient();
@@ -321,37 +323,16 @@ describe("client.check (lease path)", () => {
         expect(result.allowed).toBe(true);
         expect(result.value).toBe(true);
         expect(result.reservation).toBeUndefined();
-
-        // The cancelled hold was refunded: a follow-up check that DOES match
-        // the credit rule sees the full lease balance (1000, not 1000-500)
-        // substituted into its evaluation.
-        mockRulesEngine.checkFlagWithOptions.mockResolvedValueOnce({
-            value: true,
-            reason: "matched",
-            flagKey: "inference",
-            flagId: "flag_1",
-            ruleId: "rule_1",
-        });
-        const second = await client.check({ company: { id: "co_1" } }, "inference", {
-            usage: 50,
-            eventSubtype: "inference_tokens",
-        });
-        expect(second.reservation?.creditsReserved).toBe(500);
-        const secondCallArgs = mockRulesEngine.checkFlagWithOptions.mock.calls[1];
-        expect(secondCallArgs[1].creditBalances.bilcr_inference).toBe(1000);
+        // No reserve-then-cancel round-trip: the lease is never acquired.
+        expect(mockAcquireCreditLease).not.toHaveBeenCalled();
+        expect(gateCall()).toBeUndefined();
         await client.close();
     });
 
-    it("keeps the reservation when the engine reports the credit rule's ruleId", async () => {
+    it("keeps the reservation when the gating eval allows", async () => {
         configureSuccessfulAcquire();
         configureDataStream();
-        mockRulesEngine.checkFlagWithOptions.mockResolvedValue({
-            value: true,
-            reason: "matched",
-            flagKey: "inference",
-            flagId: "flag_1",
-            ruleId: "rule_1",
-        });
+        configureEngine({ gate: { value: true } });
 
         const client = makeClient();
         const result = await client.check({ company: { id: "co_1" } }, "inference", {
@@ -364,14 +345,10 @@ describe("client.check (lease path)", () => {
         await client.close();
     });
 
-    it("returns allowed=false and refunds reservation when engine denies", async () => {
+    it("returns allowed=false and refunds reservation when the gating eval denies", async () => {
         configureSuccessfulAcquire();
         configureDataStream();
-        mockRulesEngine.checkFlagWithOptions.mockResolvedValue({
-            value: false,
-            reason: "denied",
-            flagKey: "inference",
-        });
+        configureEngine({ gate: { value: false, reason: "denied" } });
 
         const client = makeClient();
         const result = await client.check({ company: { id: "co_1" } }, "inference", {
@@ -387,6 +364,7 @@ describe("client.check (lease path)", () => {
     it("fails closed when lease acquire errors and onAcquireFailure='fail-closed'", async () => {
         configureFailingAcquire();
         configureDataStream();
+        configureEngine();
 
         const client = makeClient();
         const result = await client.check({ company: { id: "co_1" } }, "inference", {
@@ -397,13 +375,16 @@ describe("client.check (lease path)", () => {
 
         expect(result.allowed).toBe(false);
         expect(result.reservation).toBeUndefined();
-        expect(mockRulesEngine.checkFlagWithOptions).not.toHaveBeenCalled();
+        // The entitlement probe ran (to resolve the credit), but no gating eval —
+        // acquire failed before any reservation.
+        expect(gateCall()).toBeUndefined();
         await client.close();
     });
 
     it("defaults to fail-closed when onAcquireFailure is not specified", async () => {
         configureFailingAcquire();
         configureDataStream();
+        configureEngine();
 
         const client = makeClient();
         const result = await client.check({ company: { id: "co_1" } }, "inference", {
@@ -413,19 +394,14 @@ describe("client.check (lease path)", () => {
 
         expect(result.allowed).toBe(false);
         expect(result.reservation).toBeUndefined();
-        expect(mockRulesEngine.checkFlagWithOptions).not.toHaveBeenCalled();
+        expect(gateCall()).toBeUndefined();
         await client.close();
     });
 
     it("respects explicit fail-open override on acquire failure, still evaluating the rules", async () => {
         configureFailingAcquire();
         configureDataStream();
-        mockRulesEngine.checkFlagWithOptions.mockResolvedValue({
-            value: true,
-            reason: "matched",
-            flagKey: "inference",
-            flagId: "flag_1",
-        });
+        configureEngine();
 
         const client = makeClient();
         const result = await client.check({ company: { id: "co_1" } }, "inference", {
@@ -439,24 +415,21 @@ describe("client.check (lease path)", () => {
         expect(result.err).toBe("lease_acquire_failed");
         // Fail-open still runs the engine — with the credit balance substituted
         // to an effectively unlimited value so only the credit gate is bypassed.
-        expect(mockRulesEngine.checkFlagWithOptions).toHaveBeenCalledTimes(1);
-        const callArgs = mockRulesEngine.checkFlagWithOptions.mock.calls[0];
-        expect(callArgs[1].creditBalances.bilcr_inference).toBe(Number.MAX_SAFE_INTEGER);
-        expect(callArgs[3]).toEqual({ eventUsage: { eventSubtype: "inference_tokens", quantity: 50 } });
+        const failOpenCall = mockRulesEngine.checkFlagWithOptions.mock.calls.find(
+            (c) => c[1].creditBalances.bilcr_inference === Number.MAX_SAFE_INTEGER,
+        );
+        expect(failOpenCall).toBeDefined();
+        expect(failOpenCall?.[3]).toEqual({ eventUsage: { eventSubtype: "inference_tokens", quantity: 50 } });
         await client.close();
     });
 
     it("fail-open still denies a company the rules do not entitle", async () => {
         configureFailingAcquire();
         configureDataStream();
-        // The engine denies for a non-credit reason (e.g. no matching plan rule)
-        // even with the substituted unlimited balance.
-        mockRulesEngine.checkFlagWithOptions.mockResolvedValue({
-            value: false,
-            reason: "no matching rule",
-            flagKey: "inference",
-            flagId: "flag_1",
-        });
+        // The fail-open re-eval denies for a non-credit reason (e.g. no matching
+        // plan rule) even with the substituted unlimited balance. The probe
+        // still resolves the credit so the path reaches acquire.
+        configureEngine({ probe: { value: false, reason: "no matching rule" } });
 
         const client = makeClient();
         const result = await client.check({ company: { id: "co_1" } }, "inference", {
@@ -471,10 +444,25 @@ describe("client.check (lease path)", () => {
         await client.close();
     });
 
-    it("fail-open falls back to a blanket allow when the fail-open evaluation itself errors", async () => {
+    it("fail-open falls back to a blanket allow when the fail-open eval itself errors", async () => {
+        // Probe resolves the credit (so the path reaches acquire), acquire fails,
+        // then the fail-open re-eval in handleLeaseFailure throws — leaving only
+        // the static fail-open blanket allow.
         configureFailingAcquire();
         configureDataStream();
-        mockRulesEngine.checkFlagWithOptions.mockRejectedValue(new Error("wasm exploded"));
+        mockRulesEngine.checkFlagWithOptions.mockImplementation(
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (_flag: any, _co: any, _user: any, options: any) => {
+                if (options) return Promise.reject(new Error("wasm exploded")); // fail-open re-eval
+                return Promise.resolve({
+                    value: true,
+                    reason: "probe",
+                    flagKey: "inference",
+                    flagId: "flag_1",
+                    entitlement: CREDIT_ENTITLEMENT,
+                });
+            },
+        );
 
         const client = makeClient();
         const result = await client.check({ company: { id: "co_1" } }, "inference", {
@@ -485,6 +473,27 @@ describe("client.check (lease path)", () => {
 
         expect(result.allowed).toBe(true);
         expect(result.reservation).toBeUndefined();
+        await client.close();
+    });
+
+    it("falls back to the plain check when the entitlement probe itself errors", async () => {
+        // A probe failure is a resolution miss, not the gate — defer to the plain
+        // check (with its own degradation) rather than hard-denying. No lease is
+        // acquired.
+        configureSuccessfulAcquire();
+        configureDataStream();
+        mockRulesEngine.checkFlagWithOptions.mockRejectedValue(new Error("wasm exploded"));
+        mockDataStream.checkFlag.mockResolvedValue({ value: true, reason: "fallback", flagKey: "inference" });
+
+        const client = makeClient();
+        const result = await client.check({ company: { id: "co_1" } }, "inference", {
+            usage: 50,
+            eventSubtype: "inference_tokens",
+        });
+
+        expect(result.allowed).toBe(true);
+        expect(result.reservation).toBeUndefined();
+        expect(mockAcquireCreditLease).not.toHaveBeenCalled();
         await client.close();
     });
 
@@ -578,22 +587,16 @@ describe("client.check (lease path)", () => {
         await client.close();
     });
 
-    it("falls back when neither the caller nor the condition supplies an event subtype", async () => {
+    it("falls back when neither the caller nor the entitlement supplies an event subtype", async () => {
         // The reservation settles into a Track event named by the subtype; an
         // empty event name would consume the reservation while billing
-        // nothing, so the lease path must decline to reserve.
+        // nothing, so the lease path must decline to reserve when the matched
+        // credit entitlement carries no subtype and the caller named none.
         configureSuccessfulAcquire();
         configureDataStream();
-        const noSubtypeFlag = {
-            ...flag,
-            rules: [
-                {
-                    ...flag.rules[0],
-                    conditions: [{ ...flag.rules[0].conditions[0], eventSubtype: undefined }],
-                },
-            ],
-        };
-        mockDataStream.getFlag.mockResolvedValue(noSubtypeFlag);
+        configureEngine({
+            probe: { entitlement: { ...CREDIT_ENTITLEMENT, eventSubtype: undefined } },
+        });
         mockDataStream.checkFlag.mockResolvedValue({ value: true, reason: "match", flagKey: "inference" });
 
         const client = makeClient();
@@ -616,12 +619,7 @@ describe("client.check (lease path)", () => {
         // approving every subsequent reserve (`NaN < x` is always false).
         configureSuccessfulAcquire();
         configureDataStream();
-        mockRulesEngine.checkFlagWithOptions.mockResolvedValue({
-            value: true,
-            reason: "matched",
-            flagKey: "inference",
-            flagId: "flag_1",
-        });
+        configureEngine();
 
         const client = makeClient();
         const denied = await client.check({ company: { id: "co_1" } }, "inference", {
@@ -675,14 +673,7 @@ describe("flag_check event reporting on the lease path", () => {
     it("enqueues a flag_check event when the engine allows", async () => {
         configureSuccessfulAcquire();
         configureDataStream();
-        mockRulesEngine.checkFlagWithOptions.mockResolvedValue({
-            value: true,
-            reason: "matched",
-            flagKey: "inference",
-            flagId: "flag_1",
-            ruleId: "rule_1",
-            companyId: "co_1",
-        });
+        configureEngine({ gate: { value: true, reason: "matched", ruleId: "rule_1", companyId: "co_1" } });
 
         const client = makeClient();
         await client.check({ company: { id: "co_1" } }, "inference", {
@@ -707,11 +698,7 @@ describe("flag_check event reporting on the lease path", () => {
     it("enqueues a flag_check event when the engine denies", async () => {
         configureSuccessfulAcquire();
         configureDataStream();
-        mockRulesEngine.checkFlagWithOptions.mockResolvedValue({
-            value: false,
-            reason: "denied",
-            flagKey: "inference",
-        });
+        configureEngine({ gate: { value: false, reason: "denied", companyId: "co_1" } });
 
         const client = makeClient();
         await client.check({ company: { id: "co_1" } }, "inference", {
@@ -733,6 +720,7 @@ describe("flag_check event reporting on the lease path", () => {
     it("enqueues a flag_check event on a fail-closed acquire failure", async () => {
         configureFailingAcquire();
         configureDataStream();
+        configureEngine();
 
         const client = makeClient();
         await client.check({ company: { id: "co_1" } }, "inference", {
@@ -827,12 +815,7 @@ describe("client.trackWithReservation", () => {
     it("refunds unused credits and emits a Track event with actual quantity", async () => {
         configureSuccessfulAcquire();
         configureDataStream();
-        mockRulesEngine.checkFlagWithOptions.mockResolvedValue({
-            value: true,
-            reason: "matched",
-            flagKey: "inference",
-            flagId: "flag_1",
-        });
+        configureEngine();
 
         const client = makeClient();
         const res = await client.check({ company: { id: "co_1" } }, "inference", {
@@ -902,12 +885,7 @@ describe("client.trackWithReservation", () => {
     it("keys the normal settle Track with the reservation id too", async () => {
         configureSuccessfulAcquire();
         configureDataStream();
-        mockRulesEngine.checkFlagWithOptions.mockResolvedValue({
-            value: true,
-            reason: "matched",
-            flagKey: "inference",
-            flagId: "flag_1",
-        });
+        configureEngine();
         const client = makeClient();
         const res = await client.check({ company: { id: "co_1" } }, "inference", {
             usage: 50,
@@ -924,12 +902,7 @@ describe("client.trackWithReservation", () => {
     it("rejects a non-finite or negative actualQuantity without touching the store or billing", async () => {
         configureSuccessfulAcquire();
         configureDataStream();
-        mockRulesEngine.checkFlagWithOptions.mockResolvedValue({
-            value: true,
-            reason: "matched",
-            flagKey: "inference",
-            flagId: "flag_1",
-        });
+        configureEngine();
         const client = makeClient();
         const res = await client.check({ company: { id: "co_1" } }, "inference", {
             usage: 50,
@@ -968,12 +941,7 @@ describe("evalCtx user resolution on the lease path", () => {
         configureSuccessfulAcquire();
         configureDataStream();
         mockDataStream.getUser.mockResolvedValue(user);
-        mockRulesEngine.checkFlagWithOptions.mockResolvedValue({
-            value: true,
-            reason: "matched",
-            flagKey: "inference",
-            flagId: "flag_1",
-        });
+        configureEngine();
 
         const client = makeClient();
         const result = await client.check({ company: { id: "co_1" }, user: { id: "user_1" } }, "inference", {
@@ -983,7 +951,7 @@ describe("evalCtx user resolution on the lease path", () => {
 
         expect(result.allowed).toBe(true);
         expect(mockDataStream.getUser).toHaveBeenCalledWith({ id: "user_1" });
-        // The resolved user is threaded into the gating eval — user-targeted
+        // The resolved user is threaded into both engine calls — user-targeted
         // rules and overrides apply on the lease path.
         const callArgs = mockRulesEngine.checkFlagWithOptions.mock.calls[0];
         expect(callArgs[2]).toBe(user);
@@ -1080,6 +1048,7 @@ describe("store-failure containment (unreachable Redis backend)", () => {
     it("check() resolves fail-closed instead of rejecting when the store is down", async () => {
         configureSuccessfulAcquire();
         configureDataStream();
+        configureEngine();
 
         const client = makeRedisBackedClient();
         const result = await client.check({ company: { id: "co_1" } }, "inference", {
@@ -1096,12 +1065,7 @@ describe("store-failure containment (unreachable Redis backend)", () => {
     it("check() honors fail-open (rules still evaluated) when the store is down", async () => {
         configureSuccessfulAcquire();
         configureDataStream();
-        mockRulesEngine.checkFlagWithOptions.mockResolvedValue({
-            value: true,
-            reason: "matched",
-            flagKey: "inference",
-            flagId: "flag_1",
-        });
+        configureEngine();
 
         const client = makeRedisBackedClient();
         const result = await client.check({ company: { id: "co_1" } }, "inference", {
@@ -1112,8 +1076,10 @@ describe("store-failure containment (unreachable Redis backend)", () => {
 
         expect(result.allowed).toBe(true);
         expect(result.reservation).toBeUndefined();
-        const callArgs = mockRulesEngine.checkFlagWithOptions.mock.calls[0];
-        expect(callArgs[1].creditBalances.bilcr_inference).toBe(Number.MAX_SAFE_INTEGER);
+        const failOpenCall = mockRulesEngine.checkFlagWithOptions.mock.calls.find(
+            (c) => c[1].creditBalances.bilcr_inference === Number.MAX_SAFE_INTEGER,
+        );
+        expect(failOpenCall).toBeDefined();
         await client.close();
     });
 
@@ -1150,12 +1116,7 @@ describe("close() lease release", () => {
         configureSuccessfulAcquire();
         configureDataStream();
         mockReleaseCreditLease.mockResolvedValue({});
-        mockRulesEngine.checkFlagWithOptions.mockResolvedValue({
-            value: true,
-            reason: "matched",
-            flagKey: "inference",
-            flagId: "flag_1",
-        });
+        configureEngine();
 
         const client = makeClient();
         await client.check({ company: { id: "co_1" } }, "inference", { usage: 50, eventSubtype: "inference_tokens" });
@@ -1172,12 +1133,7 @@ describe("per-check timeout threading", () => {
     it("threads timeoutMs to the lease acquire wire call", async () => {
         configureSuccessfulAcquire();
         configureDataStream();
-        mockRulesEngine.checkFlagWithOptions.mockResolvedValue({
-            value: true,
-            reason: "matched",
-            flagKey: "inference",
-            flagId: "flag_1",
-        });
+        configureEngine();
 
         const client = makeClient();
         await client.check({ company: { id: "co_1" } }, "inference", {

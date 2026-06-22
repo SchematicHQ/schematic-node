@@ -10,13 +10,17 @@ export interface WasmFeatureEntitlement {
     softLimit?: number;
     usage?: number;
     eventName?: string;
+    eventSubtype?: string;
     metricPeriod?: Schematic.RulesengineMetricPeriod;
     monthReset?: Schematic.RulesengineMetricPeriodMonthReset;
     metricResetAt?: string;
     creditId?: string;
+    consumptionRate?: number;
     creditTotal?: number;
     creditUsed?: number;
     creditRemaining?: number;
+    creditReserved?: number;
+    creditSettled?: number;
 }
 
 /** Result returned by the WASM rules engine */

@@ -196,6 +196,34 @@ describe('partialCompany', () => {
         expect(origEnts[0].creditRemaining).toBe(100.0);
     });
 
+    test('credit_lease_balance applies remaining (ignoring reserved) and re-derives entitlement creditRemaining', () => {
+        const existing = baseCompany();
+        (existing as unknown as Record<string, unknown>).entitlements = [
+            { featureId: 'feat-1', featureKey: 'feature-one', valueType: 'credit', creditId: 'credit-1', creditRemaining: 100.0 },
+            { featureId: 'feat-2', featureKey: 'feature-two', valueType: 'credit', creditId: 'credit-2', creditRemaining: 0 },
+        ];
+
+        // Atomic lease-balance partial: remaining + reserved for credit-1, no entitlements.
+        const partial = { id: 'co-1', credit_lease_balance: { 'credit-1': { remaining: 42.0, reserved: 58.0 } } };
+
+        const merged = partialCompany(existing, partial);
+        const m = merged as unknown as Record<string, unknown>;
+
+        // Company-level balance updated to remaining; reserved is ignored.
+        expect(m.creditBalances).toEqual({ 'credit-1': 42.0 });
+
+        const ents = m.entitlements as Record<string, unknown>[];
+        // credit-1 entitlement re-derived from incoming remaining
+        expect(ents[0].creditRemaining).toBe(42.0);
+        expect(ents[0].credit_remaining).toBeUndefined();
+        // credit-2 not in the partial, left untouched
+        expect(ents[1].creditRemaining).toBe(0);
+
+        // Original not mutated
+        const origEnts = (existing as unknown as Record<string, unknown>).entitlements as Record<string, unknown>[];
+        expect(origEnts[0].creditRemaining).toBe(100.0);
+    });
+
     test('metrics update re-derives entitlement usage', () => {
         const existing = baseCompany();
         (existing as unknown as Record<string, unknown>).metrics = [

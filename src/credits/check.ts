@@ -1,10 +1,11 @@
 import { randomUUID } from "crypto";
 
 import type * as api from "../api";
+import { RulesengineEntitlementValueType } from "../api";
 import type { CreditsClient } from "../api/resources/credits/client/Client";
 import type { DataStreamClient } from "../datastream";
 import type { Logger } from "../logger";
-import type { WasmFeatureEntitlement } from "../rules-engine";
+import type { WasmCheckFlagResult, WasmFeatureEntitlement } from "../rules-engine";
 import type { CheckFlagOptions } from "../wrapper";
 
 import { CreditLeaseManager } from "./lease-manager";
@@ -55,15 +56,19 @@ function emitFlagCheck(
  * Drives a single `client.check` with `usage` set.
  *
  * Steps:
- *   1. Resolve the matching credit-balance condition on the flag to get
- *      `creditId` + `consumptionRate`.
+ *   1. Probe the engine once (real balance, no preflight, no substitution) and
+ *      read the matched plan entitlement. If it isn't credit-metered
+ *      (`valueType != credit` — boolean/override grant, numeric allocation,
+ *      unlimited, or not entitled) there's nothing to lease: defer to the plain
+ *      check. Otherwise `creditId` + `consumptionRate` + `eventSubtype` come
+ *      straight off the entitlement — no structural flag scan.
  *   2. Acquire (or reuse) a lease for `(company, creditId)`.
  *   3. Try to reserve `quantity × consumptionRate` from the lease.
  *   4. Run the WASM rules engine against a substituted company snapshot
  *      (`credit_balances[creditId] = lease.localRemaining` *before* the
- *      reservation we just made was debited), plus `event_usage` options so
- *      the engine evaluates the post-call balance. The reservation we made
- *      in step 3 only sticks if the engine says allowed.
+ *      reservation we just made was debited), gating with `credit_cost` so the
+ *      engine evaluates the post-call balance. The reservation we made in step 3
+ *      only sticks if the engine says allowed.
  */
 export async function checkWithLease(
     deps: CreditCheckDeps,
@@ -151,35 +156,62 @@ export async function checkWithLease(
         }
     }
 
-    // A flag can carry credit conditions from several plans, each metering a
-    // different credit type. Lease the credit the company's *matched* plan
-    // entitlement actually uses — not whichever credit condition is declared
-    // first on the flag. We can't read that off the flag structurally (a
-    // condition doesn't know which rule the company matched), so we probe the
-    // engine: its entitlement reports the plan-correct creditId regardless of
-    // balance. Falls back to first-match for single-credit flags or when the
-    // probe can't resolve a credit.
-    const match = await resolveCreditCondition(datastream, flag, company, user, eventSubtype, logger);
-    if (!match) {
+    // Entitlement-first resolution. One engine probe against the company's real
+    // balance — no preflight, no balance substitution — surfaces the matched
+    // plan entitlement. We read its *shape* only: `valueType` says whether a
+    // credit is metered at all, and a credit entitlement carries `creditId` +
+    // `consumptionRate` + `eventSubtype` directly. This replaces the structural
+    // credit-condition scan (immune to flag-shape drift) and lets a non-credit
+    // grant skip the lease + reserve round-trip entirely.
+    //
+    // The probe deliberately omits preflight: applying a credit cost to the
+    // (lease-depleted) server balance could fail the credit condition, drop the
+    // engine to a lower-priority rule, and hide the very entitlement we need to
+    // identify. The real preflight-aware gate runs in step 4 against the
+    // substituted lease balance.
+    let probe: WasmCheckFlagResult;
+    try {
+        probe = await datastream.getRulesEngine().checkFlagWithOptions(flag, company, user ?? null, null);
+    } catch (err) {
+        // The probe is a resolution step, not the gate — like a flag/company/user
+        // miss, a failure here means we couldn't resolve the credit, so defer to
+        // the plain check (which has its own defaultValue degradation) rather than
+        // hard-denying. No reservation exists yet, so nothing to cancel.
+        logger.warn(`Lease check: entitlement probe failed for flag ${key} (${err}), falling back`);
+        return fallback();
+    }
+
+    const entitlement = probe.entitlement;
+
+    // Not credit-metered — boolean/override grant, numeric allocation,
+    // unlimited, or simply not entitled. The feature resolves without drawing a
+    // credit, so skip the lease + reserve round-trip and let the plain check
+    // (preflight-aware, and the source of this check's flag_check event) decide.
+    // This is the path that previously cost an override-granted company a
+    // reserve-then-cancel.
+    if (!entitlement || entitlement.valueType !== RulesengineEntitlementValueType.Credit) {
         logger.debug(
-            `Lease check: flag ${key} has no matching credit condition (subtype=${eventSubtype ?? "<none>"}), falling back`,
+            `Lease check: flag ${key} matched a non-credit entitlement (valueType=${
+                entitlement?.valueType ?? "<none>"
+            }), falling back to plain check — no reservation`,
         );
         return fallback();
     }
 
-    const creditId = match.condition.creditId;
-    const consumptionRate = match.condition.consumptionRate ?? 0;
-    if (consumptionRate <= 0) {
-        logger.debug(`Lease check: condition has no consumption_rate, falling back`);
-        return fallback();
-    }
-    // The reservation settles into a Track event named by this subtype; an
-    // empty event name would consume the reservation while billing nothing,
-    // so a condition with no resolvable subtype is treated like one with no
-    // consumption_rate.
-    const resolvedSubtype = eventSubtype ?? match.condition.eventSubtype;
-    if (!resolvedSubtype) {
-        logger.debug(`Lease check: credit condition has no event subtype, falling back`);
+    const creditId = entitlement.creditId;
+    const consumptionRate = entitlement.consumptionRate ?? 0;
+    // The caller's explicit subtype wins; otherwise the entitlement names the
+    // metered event. The reservation settles into a Track event named by this
+    // subtype, so a credit entitlement with neither a resolvable subtype nor a
+    // positive rate can't be billed and is treated as ungateable.
+    const resolvedSubtype = eventSubtype ?? entitlement.eventSubtype;
+    if (!creditId || consumptionRate <= 0 || !resolvedSubtype) {
+        logger.debug(
+            `Lease check: flag ${key} credit entitlement is incomplete ` +
+                `(creditId=${creditId ?? "<none>"}, consumptionRate=${consumptionRate}, subtype=${
+                    resolvedSubtype ?? "<none>"
+                }), falling back`,
+        );
         return fallback();
     }
     const creditCost = quantity * consumptionRate;
@@ -284,10 +316,16 @@ export async function checkWithLease(
     const preReservation = postReserveBalance + creditCost;
     const substituted = substituteCreditBalance(company, creditId, preReservation);
 
-    const wasmOptions = buildPreflightOptions(options);
+    // Gate precisely on the lease tranche: tell the engine this action costs
+    // `creditCost` against this credit id. `credit_cost` carries the
+    // pre-computed `quantity × consumptionRate` — highest precedence for credit
+    // gates — so the engine checks `preReservation − creditCost ≥ 0`, the same
+    // arithmetic `tryReserve` just enforced, at the same per-credit-id
+    // granularity as the lease.
+    const gatingOptions: CheckFlagOptions = { creditCost: { [creditId]: creditCost } };
     let result;
     try {
-        result = await datastream.getRulesEngine().checkFlagWithOptions(flag, substituted, user ?? null, wasmOptions);
+        result = await datastream.getRulesEngine().checkFlagWithOptions(flag, substituted, user ?? null, gatingOptions);
     } catch (err) {
         logger.error(`Lease check: WASM eval failed: ${err}`);
         // Cancel the hold: removes the reservation record and refunds the full
@@ -326,34 +364,11 @@ export async function checkWithLease(
         );
     }
 
-    // The engine allowed — but keep the hold only if the allow actually came
-    // from the rule whose credit condition we reserved against. An allow via a
-    // different rule (company/global override, another plan's rule) grants the
-    // feature without metering this credit, so keeping the reservation would
-    // bill usage the matched rule grants for free. Cancel it and return the
-    // allow without a handle — `trackWithReservation` is never owed. Only a
-    // definitive mismatch cancels: if the engine doesn't report a ruleId, the
-    // reservation is kept rather than silently disabling credit gating.
-    if (result.ruleId !== undefined && result.ruleId !== match.ruleId) {
-        logger.debug(
-            `Lease check: flag ${key} allowed by rule ${result.ruleId} (${result.ruleType ?? "unknown type"}), ` +
-                `not the credit-metered rule ${match.ruleId} — cancelling reservation, no credits billed`,
-        );
-        await cancelReservation(reservations, reservation, logger);
-        return emitFlagCheck(
-            deps,
-            evalCtx,
-            {
-                allowed: true,
-                value: true,
-                reason: result.reason ?? "allowed_without_credit_rule",
-                entitlement: normalizeEntitlement(result.entitlement),
-                flagKey: result.flagKey ?? key,
-                flagId: result.flagId,
-            },
-            ids,
-        );
-    }
+    // The engine allowed against the substituted lease balance — keep the hold.
+    // No rule-match disambiguation is needed: the entitlement probe already
+    // established this company's matched entitlement is the credit one, so an
+    // override/boolean grant would have skipped the reserve path above. Bumping
+    // only the credit balance can't make a different rule match here.
 
     // Fire-and-forget low-water-mark refresh now that we've debited.
     void manager.maybeExtendInBackground(company.id, creditId);
@@ -400,109 +415,6 @@ export function buildPreflightOptions(options: CheckOptions): CheckFlagOptions |
         return { eventUsage: { eventSubtype: options.eventSubtype, quantity: options.usage } };
     }
     return { usage: options.usage };
-}
-
-interface CreditConditionMatch {
-    condition: api.RulesengineCondition & { creditId: string };
-    /**
-     * Id of the rule the condition belongs to. After the gating eval, the
-     * reservation is kept only if the engine's matched `ruleId` is this rule —
-     * an allow via a different rule (company/global override, another plan's
-     * rule) grants the feature without metering this credit, so the hold is
-     * cancelled instead of billed.
-     */
-    ruleId: string;
-}
-
-/**
- * Resolve the credit condition to lease against. A flag can declare credit
- * conditions for several credit types — one per plan that entitles the feature
- * — and the right one for this company is the credit its *matched* plan
- * entitlement uses, which only the rules engine knows.
- *
- * When the flag meters this event subtype in a single credit type (the common
- * case) the first matching condition is unambiguous and we return it directly,
- * with no extra engine call. Only when conditions disagree on credit type do
- * we probe: the engine's `entitlement.creditId` names the company's metered
- * credit regardless of balance, and we select that credit's condition to read
- * its `consumption_rate`. A probe that can't resolve a credit (non-credit
- * entitlement or an error) falls back to first-match, preserving prior
- * behavior.
- */
-async function resolveCreditCondition(
-    datastream: DataStreamClient,
-    flag: api.RulesengineFlag,
-    company: api.RulesengineCompany,
-    user: object | null,
-    eventSubtype: string | undefined,
-    logger: Logger,
-): Promise<CreditConditionMatch | null> {
-    const first = findCreditCondition(flag, eventSubtype);
-    if (!first) return null;
-    if (collectCreditIds(flag, eventSubtype).size <= 1) return first;
-
-    try {
-        const probe = await datastream.getRulesEngine().checkFlagWithOptions(flag, company, user, null);
-        const creditId = probe.entitlement?.creditId;
-        if (creditId) {
-            const byCredit = findCreditCondition(flag, eventSubtype, creditId);
-            if (byCredit) return byCredit;
-            logger.debug(
-                `Lease check: entitlement credit ${creditId} has no matching condition on flag, falling back to first credit condition`,
-            );
-        }
-    } catch (err) {
-        logger.warn(`Lease check: credit-resolution probe failed (${err}), falling back to first credit condition`);
-    }
-    return first;
-}
-
-/** Distinct credit-type ids across the flag's credit conditions for `eventSubtype`. */
-function collectCreditIds(flag: api.RulesengineFlag, eventSubtype: string | undefined): Set<string> {
-    const ids = new Set<string>();
-    const scan = (conditions: api.RulesengineCondition[]) => {
-        for (const c of conditions) {
-            if (c.conditionType !== "credit" || !c.creditId) continue;
-            if (eventSubtype !== undefined && c.eventSubtype !== eventSubtype) continue;
-            ids.add(c.creditId);
-        }
-    };
-    for (const rule of flag.rules ?? []) {
-        scan(rule.conditions ?? []);
-        for (const group of rule.conditionGroups ?? []) scan(group.conditions ?? []);
-    }
-    return ids;
-}
-
-function findCreditCondition(
-    flag: api.RulesengineFlag,
-    eventSubtype: string | undefined,
-    creditId?: string,
-): CreditConditionMatch | null {
-    for (const rule of flag.rules ?? []) {
-        const inRule = matchInConditions(rule.conditions ?? [], eventSubtype, creditId);
-        if (inRule) return { ...inRule, ruleId: rule.id };
-        for (const group of rule.conditionGroups ?? []) {
-            const inGroup = matchInConditions(group.conditions ?? [], eventSubtype, creditId);
-            if (inGroup) return { ...inGroup, ruleId: rule.id };
-        }
-    }
-    return null;
-}
-
-function matchInConditions(
-    conditions: api.RulesengineCondition[],
-    eventSubtype: string | undefined,
-    creditId?: string,
-): Omit<CreditConditionMatch, "ruleId"> | null {
-    for (const c of conditions) {
-        if (c.conditionType !== "credit") continue;
-        if (!c.creditId) continue;
-        if (eventSubtype !== undefined && c.eventSubtype !== eventSubtype) continue;
-        if (creditId !== undefined && c.creditId !== creditId) continue;
-        return { condition: c as api.RulesengineCondition & { creditId: string } };
-    }
-    return null;
 }
 
 function substituteCreditBalance(
