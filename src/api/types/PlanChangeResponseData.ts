@@ -19,6 +19,8 @@ export interface PlanChangeResponseData {
     createdAt: Date;
     environmentId: string;
     id: string;
+    /** The integration that performed this change, when the actor is an integration-owned API key (e.g. a billing-provider sync). */
+    integration?: Schematic.IntegrationResponseData;
     /** True when this change moved the company to a different version of the same plan (e.g. a plan version migration) rather than to a different plan. */
     isVersionUpgrade: boolean;
     previousBasePlan?: Schematic.PlanSnapshotView;

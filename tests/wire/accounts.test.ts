@@ -257,7 +257,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: { ids: ["ids"], limit: 1000000, offset: 1000000, q: "q" },
         };
 
@@ -277,7 +277,7 @@ describe("AccountsClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 ids: ["ids"],
@@ -1145,7 +1145,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: { environment_id: "environment_id", limit: 1000000, offset: 1000000, require_environment: true },
         };
 
@@ -1159,7 +1159,7 @@ describe("AccountsClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 environmentId: "environment_id",
@@ -1619,7 +1619,7 @@ describe("AccountsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: {
                 actor_type: "api_key",
                 end_time: "2024-01-15T09:30:00Z",
@@ -1644,7 +1644,7 @@ describe("AccountsClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 actorType: "api_key",

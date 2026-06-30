@@ -2000,7 +2000,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: {
                 boolean_require_event: true,
                 feature_type: ["boolean"],
@@ -2031,7 +2031,7 @@ describe("FeaturesClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 booleanRequireEvent: true,
@@ -5184,7 +5184,7 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: { feature_id: "feature_id", ids: ["ids"], limit: 1000000, offset: 1000000, q: "q" },
         };
 
@@ -5199,7 +5199,7 @@ describe("FeaturesClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 featureId: "feature_id",

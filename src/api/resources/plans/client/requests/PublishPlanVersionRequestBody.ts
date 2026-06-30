@@ -11,6 +11,7 @@ import type * as Schematic from "../../../../index";
  */
 export interface PublishPlanVersionRequestBody {
     activationStrategy?: Schematic.CustomPlanActivationStrategy;
+    couponExternalId?: string;
     customerEmail?: string;
     daysUntilDue?: number;
     excludedCompanyIds: string[];

@@ -7,6 +7,7 @@ import { ActorType } from "./ActorType";
 import { ApiKeyResponseData } from "./ApiKeyResponseData";
 import { AuditLogListResponseData } from "./AuditLogListResponseData";
 import { CompanyResponseData } from "./CompanyResponseData";
+import { IntegrationResponseData } from "./IntegrationResponseData";
 import { PlanChangeAction } from "./PlanChangeAction";
 import { PlanChangeBasePlanAction } from "./PlanChangeBasePlanAction";
 import { PlanChangeSubscriptionAction } from "./PlanChangeSubscriptionAction";
@@ -32,6 +33,7 @@ export const PlanChangeResponseData: core.serialization.ObjectSchema<
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     id: core.serialization.string(),
+    integration: IntegrationResponseData.optional(),
     isVersionUpgrade: core.serialization.property("is_version_upgrade", core.serialization.boolean()),
     previousBasePlan: core.serialization.property("previous_base_plan", PlanSnapshotView.optional()),
     previousBasePlanVersion: core.serialization.property(
@@ -65,6 +67,7 @@ export declare namespace PlanChangeResponseData {
         created_at: string;
         environment_id: string;
         id: string;
+        integration?: IntegrationResponseData.Raw | null;
         is_version_upgrade: boolean;
         previous_base_plan?: PlanSnapshotView.Raw | null;
         previous_base_plan_version?: PlanVersionSnapshotView.Raw | null;

@@ -670,7 +670,7 @@ describe("ComponentsClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { data: { count: 1 }, params: { limit: 1000000, offset: 1000000, q: "q" } };
+        const rawResponseBody = { data: { count: 1000000 }, params: { limit: 1000000, offset: 1000000, q: "q" } };
 
         server.mockEndpoint().get("/components/count").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
@@ -681,7 +681,7 @@ describe("ComponentsClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 limit: 1000000,
@@ -1353,7 +1353,7 @@ describe("ComponentsClient", () => {
                         credit_name: "credit_name",
                         grant_reason: "adjustment",
                         id: "id",
-                        quantity: 1000000,
+                        quantity: 1.1,
                         quantity_remaining: 1.1,
                         quantity_used: 1.1,
                         renewal_enabled: true,
@@ -2664,7 +2664,7 @@ describe("ComponentsClient", () => {
                         creditName: "credit_name",
                         grantReason: "adjustment",
                         id: "id",
-                        quantity: 1000000,
+                        quantity: 1.1,
                         quantityRemaining: 1.1,
                         quantityUsed: 1.1,
                         renewalEnabled: true,

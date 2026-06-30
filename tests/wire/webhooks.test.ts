@@ -303,7 +303,7 @@ describe("WebhooksClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: { ids: ["ids"], limit: 1000000, offset: 1000000, q: "q", webhook_id: "webhook_id" },
         };
 
@@ -324,7 +324,7 @@ describe("WebhooksClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 ids: ["ids"],
@@ -1309,7 +1309,7 @@ describe("WebhooksClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = { data: { count: 1 }, params: { limit: 1000000, offset: 1000000, q: "q" } };
+        const rawResponseBody = { data: { count: 1000000 }, params: { limit: 1000000, offset: 1000000, q: "q" } };
 
         server.mockEndpoint().get("/webhooks/count").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
@@ -1320,7 +1320,7 @@ describe("WebhooksClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 limit: 1000000,
