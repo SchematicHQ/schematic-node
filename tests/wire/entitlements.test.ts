@@ -3075,7 +3075,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: {
                 company_id: "company_id",
                 company_ids: ["company_ids"],
@@ -3110,7 +3110,7 @@ describe("EntitlementsClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 companyId: "company_id",
@@ -4122,7 +4122,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: { feature_id: "feature_id", limit: 1000000, offset: 1000000, q: "q" },
         };
 
@@ -4142,7 +4142,7 @@ describe("EntitlementsClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 featureId: "feature_id",
@@ -4964,7 +4964,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: {
                 company_id: "company_id",
                 company_keys: { key: "value" },
@@ -4998,7 +4998,7 @@ describe("EntitlementsClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 companyId: "company_id",
@@ -5801,7 +5801,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: { feature_id: "feature_id", limit: 1000000, offset: 1000000, q: "q" },
         };
 
@@ -5821,7 +5821,7 @@ describe("EntitlementsClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 featureId: "feature_id",
@@ -8628,7 +8628,7 @@ describe("EntitlementsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: {
                 feature_id: "feature_id",
                 feature_ids: ["feature_ids"],
@@ -8667,7 +8667,7 @@ describe("EntitlementsClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 featureId: "feature_id",

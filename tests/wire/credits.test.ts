@@ -2172,7 +2172,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: {
                 bundle_type: "fixed",
                 credit_id: "credit_id",
@@ -2201,7 +2201,7 @@ describe("CreditsClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 bundleType: "fixed",
@@ -2314,7 +2314,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: { ids: ["ids"], limit: 1000000, name: "name", offset: 1000000 },
         };
 
@@ -2334,7 +2334,7 @@ describe("CreditsClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 ids: ["ids"],
@@ -2470,7 +2470,7 @@ describe("CreditsClient", () => {
                     provider_type: "metronome",
                     scheme: "per_unit",
                 },
-                quantity: 1000000,
+                quantity: 1.1,
                 quantity_remaining: 1.1,
                 quantity_used: 1.1,
                 renewal_enabled: true,
@@ -2533,7 +2533,7 @@ describe("CreditsClient", () => {
                     providerType: "metronome",
                     scheme: "per_unit",
                 },
-                quantity: 1000000,
+                quantity: 1.1,
                 quantityRemaining: 1.1,
                 quantityUsed: 1.1,
                 renewalEnabled: true,
@@ -2698,7 +2698,7 @@ describe("CreditsClient", () => {
                     provider_type: "metronome",
                     scheme: "per_unit",
                 },
-                quantity: 1000000,
+                quantity: 1.1,
                 quantity_remaining: 1.1,
                 quantity_used: 1.1,
                 renewal_enabled: true,
@@ -2766,7 +2766,7 @@ describe("CreditsClient", () => {
                     providerType: "metronome",
                     scheme: "per_unit",
                 },
-                quantity: 1000000,
+                quantity: 1.1,
                 quantityRemaining: 1.1,
                 quantityUsed: 1.1,
                 renewalEnabled: true,
@@ -2951,7 +2951,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: { company_id: "company_id", dir: "asc", limit: 1000000, offset: 1000000, order: "created_at" },
         };
 
@@ -2972,7 +2972,7 @@ describe("CreditsClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 companyId: "company_id",
@@ -3108,7 +3108,7 @@ describe("CreditsClient", () => {
                         provider_type: "metronome",
                         scheme: "per_unit",
                     },
-                    quantity: 1000000,
+                    quantity: 1.1,
                     quantity_remaining: 1.1,
                     quantity_used: 1.1,
                     renewal_enabled: true,
@@ -3176,7 +3176,7 @@ describe("CreditsClient", () => {
                         providerType: "metronome",
                         scheme: "per_unit",
                     },
-                    quantity: 1000000,
+                    quantity: 1.1,
                     quantityRemaining: 1.1,
                     quantityUsed: 1.1,
                     renewalEnabled: true,
@@ -3311,7 +3311,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: { credit_id: "credit_id", ids: ["ids"], limit: 1000000, offset: 1000000 },
         };
 
@@ -3331,7 +3331,7 @@ describe("CreditsClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 creditId: "credit_id",
@@ -3466,7 +3466,7 @@ describe("CreditsClient", () => {
                         provider_type: "metronome",
                         scheme: "per_unit",
                     },
-                    quantity: 1000000,
+                    quantity: 1.1,
                     quantity_remaining: 1.1,
                     quantity_used: 1.1,
                     renewal_enabled: true,
@@ -3533,7 +3533,7 @@ describe("CreditsClient", () => {
                         providerType: "metronome",
                         scheme: "per_unit",
                     },
-                    quantity: 1000000,
+                    quantity: 1.1,
                     quantityRemaining: 1.1,
                     quantityUsed: 1.1,
                     renewalEnabled: true,
@@ -5386,7 +5386,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: {
                 credit_id: "credit_id",
                 ids: ["ids"],
@@ -5419,7 +5419,7 @@ describe("CreditsClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 creditId: "credit_id",
@@ -5556,7 +5556,7 @@ describe("CreditsClient", () => {
                     from_grant_id: "from_grant_id",
                     grant_expires_at: "2024-01-15T09:30:00Z",
                     grant_id: "grant_id",
-                    grant_quantity: 1000000,
+                    grant_quantity: 1.1,
                     grant_quantity_remaining: 1.1,
                     grant_reason: "adjustment",
                     grant_valid_from: "2024-01-15T09:30:00Z",
@@ -5632,7 +5632,7 @@ describe("CreditsClient", () => {
                     fromGrantId: "from_grant_id",
                     grantExpiresAt: new Date("2024-01-15T09:30:00.000Z"),
                     grantId: "grant_id",
-                    grantQuantity: 1000000,
+                    grantQuantity: 1.1,
                     grantQuantityRemaining: 1.1,
                     grantReason: "adjustment",
                     grantValidFrom: new Date("2024-01-15T09:30:00.000Z"),
@@ -5769,7 +5769,7 @@ describe("CreditsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: {
                 billing_credit_id: "billing_credit_id",
                 company_id: "company_id",
@@ -5802,7 +5802,7 @@ describe("CreditsClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 billingCreditId: "billing_credit_id",

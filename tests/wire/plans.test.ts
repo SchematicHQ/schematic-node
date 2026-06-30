@@ -6136,7 +6136,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: { limit: 1000000, offset: 1000000, plan_id: "plan_id", q: "q" },
         };
 
@@ -6156,7 +6156,7 @@ describe("PlansClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 limit: 1000000,
@@ -6277,7 +6277,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: {
                 company_id: "company_id",
                 company_scoped_only: true,
@@ -6322,7 +6322,7 @@ describe("PlansClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 companyId: "company_id",

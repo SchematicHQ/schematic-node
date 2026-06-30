@@ -11,6 +11,7 @@ export const PublishPlanVersionRequestBody: core.serialization.Schema<
     Schematic.PublishPlanVersionRequestBody
 > = core.serialization.object({
     activationStrategy: core.serialization.property("activation_strategy", CustomPlanActivationStrategy.optional()),
+    couponExternalId: core.serialization.property("coupon_external_id", core.serialization.string().optional()),
     customerEmail: core.serialization.property("customer_email", core.serialization.string().optional()),
     daysUntilDue: core.serialization.property("days_until_due", core.serialization.number().optional()),
     excludedCompanyIds: core.serialization.property(
@@ -23,6 +24,7 @@ export const PublishPlanVersionRequestBody: core.serialization.Schema<
 export declare namespace PublishPlanVersionRequestBody {
     export interface Raw {
         activation_strategy?: CustomPlanActivationStrategy.Raw | null;
+        coupon_external_id?: string | null;
         customer_email?: string | null;
         days_until_due?: number | null;
         excluded_company_ids: string[];

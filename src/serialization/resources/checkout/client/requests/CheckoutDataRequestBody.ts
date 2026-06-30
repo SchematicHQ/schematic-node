@@ -9,12 +9,14 @@ export const CheckoutDataRequestBody: core.serialization.Schema<
     Schematic.CheckoutDataRequestBody
 > = core.serialization.object({
     companyId: core.serialization.property("company_id", core.serialization.string()),
+    currency: core.serialization.string().optional(),
     selectedPlanId: core.serialization.property("selected_plan_id", core.serialization.string().optional()),
 });
 
 export declare namespace CheckoutDataRequestBody {
     export interface Raw {
         company_id: string;
+        currency?: string | null;
         selected_plan_id?: string | null;
     }
 }

@@ -2414,7 +2414,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: {
                 credit_type_ids: ["credit_type_ids"],
                 has_scheduled_downgrade: true,
@@ -2465,7 +2465,7 @@ describe("CompaniesClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 creditTypeIds: ["credit_type_ids"],
@@ -8797,7 +8797,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: { entity_type: "company", ids: ["ids"], limit: 1000000, offset: 1000000, q: "q" },
         };
 
@@ -8818,7 +8818,7 @@ describe("CompaniesClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 entityType: "company",
@@ -9533,7 +9533,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: {
                 entity_type: "company",
                 ids: ["ids"],
@@ -9564,7 +9564,7 @@ describe("CompaniesClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 entityType: "company",
@@ -9861,6 +9861,13 @@ describe("CompaniesClient", () => {
                     created_at: "2024-01-15T09:30:00Z",
                     environment_id: "environment_id",
                     id: "id",
+                    integration: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        id: "id",
+                        state: "active",
+                        type: "clerk",
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
                     is_version_upgrade: true,
                     previous_base_plan: {
                         deleted: true,
@@ -9972,6 +9979,13 @@ describe("CompaniesClient", () => {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     environmentId: "environment_id",
                     id: "id",
+                    integration: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        id: "id",
+                        state: "active",
+                        type: "clerk",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
                     isVersionUpgrade: true,
                     previousBasePlan: {
                         deleted: true,
@@ -10157,6 +10171,13 @@ describe("CompaniesClient", () => {
                 created_at: "2024-01-15T09:30:00Z",
                 environment_id: "environment_id",
                 id: "id",
+                integration: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    id: "id",
+                    state: "active",
+                    type: "clerk",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
                 is_version_upgrade: true,
                 previous_base_plan: { deleted: true, description: "description", icon: "icon", id: "id", name: "name" },
                 previous_base_plan_version: { id: "id", name: "name", version: 1000000 },
@@ -10292,6 +10313,13 @@ describe("CompaniesClient", () => {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 environmentId: "environment_id",
                 id: "id",
+                integration: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    id: "id",
+                    state: "active",
+                    type: "clerk",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
                 isVersionUpgrade: true,
                 previousBasePlan: {
                     deleted: true,
@@ -10923,7 +10951,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: {
                 ids: ["ids"],
                 limit: 1000000,
@@ -10946,7 +10974,7 @@ describe("CompaniesClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 ids: ["ids"],
@@ -11929,7 +11957,7 @@ describe("CompaniesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: {
                 company_id: "company_id",
                 ids: ["ids"],
@@ -11952,7 +11980,7 @@ describe("CompaniesClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 companyId: "company_id",

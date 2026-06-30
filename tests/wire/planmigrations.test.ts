@@ -318,7 +318,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: { limit: 1000000, migration_id: "migration_id", offset: 1000000, q: "q", status: "completed" },
         };
 
@@ -339,7 +339,7 @@ describe("PlanmigrationsClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 limit: 1000000,
@@ -1184,7 +1184,7 @@ describe("PlanmigrationsClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: { limit: 1000000, offset: 1000000, plan_version_id: "plan_version_id", status: "completed" },
         };
 
@@ -1204,7 +1204,7 @@ describe("PlanmigrationsClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 limit: 1000000,

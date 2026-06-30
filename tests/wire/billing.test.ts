@@ -989,7 +989,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: {
                 company_ids: ["company_ids"],
                 limit: 1000000,
@@ -1018,7 +1018,7 @@ describe("BillingClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 companyIds: ["company_ids"],
@@ -3833,7 +3833,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            data: { count: 1 },
+            data: { count: 1000000 },
             params: {
                 ids: ["ids"],
                 is_active: true,
@@ -3876,7 +3876,7 @@ describe("BillingClient", () => {
         });
         expect(response).toEqual({
             data: {
-                count: 1,
+                count: 1000000,
             },
             params: {
                 ids: ["ids"],

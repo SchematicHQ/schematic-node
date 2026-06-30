@@ -8,5 +8,6 @@
  */
 export interface CheckoutDataRequestBody {
     companyId: string;
+    currency?: string;
     selectedPlanId?: string;
 }
