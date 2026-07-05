@@ -32,11 +32,18 @@ export interface ILeaseStore {
      * sharing the backend: if a live (unexpired) lease is already present —
      * even one with a different `leaseId`, e.g. acquired by a sibling pod that
      * raced this one — leave it untouched so its already-debited
-     * `localRemainingCredits` wins. Returns `true` if it wrote a fresh row,
-     * `false` if it kept an existing live lease (the caller should release the
-     * lease it acquired ONLY if its ID differs from the installed one — the
-     * server hands a racing acquire the same active lease back, and releasing
-     * that would pull the shared lease out from under every sibling).
+     * `localRemainingCredits` wins. If the slot holds an *expired* row with
+     * the SAME `leaseId`, implementations must NOT rewrite it either:
+     * rewriting resets `localRemainingCredits` to the full grant, erasing
+     * debits whose reservations are still open (the idempotent server hands a
+     * racing acquire the same active lease back, and a stale response can
+     * land after the local row's expiry — especially when a concurrent extend
+     * pushed the server-side expiry forward). Instead, reconcile it like an
+     * extend: granted-to-total, expiry only forward, balance untouched.
+     * Returns `true` if it wrote a fresh row, `false` if it kept (or
+     * reconciled) an existing lease (the caller should release the lease it
+     * acquired ONLY if its ID differs from the installed one — releasing the
+     * shared lease would pull it out from under every sibling).
      */
     replace(entry: Omit<LeaseEntry, "localRemainingCredits">): Promise<boolean>;
     /**
@@ -115,9 +122,11 @@ export class LeaseStore implements ILeaseStore {
      * Replace (or insert) the lease for the given (company, creditType).
      * Resets `localRemainingCredits` to `grantedAmount` for a new lease.
      * If a live lease already occupies the slot — regardless of `leaseId` — it
-     * is left alone so any already-debited `localRemainingCredits` wins.
-     * Returns `true` if a fresh row was written, `false` if an existing live
-     * lease was kept.
+     * is left alone so any already-debited `localRemainingCredits` wins. If
+     * the slot holds an expired row with the SAME `leaseId`, the entry is
+     * reconciled (granted-to-total, expiry forward) instead of rewritten —
+     * see `ILeaseStore.replace`. Returns `true` if a fresh row was written,
+     * `false` if an existing lease was kept.
      */
     async replace(entry: Omit<LeaseEntry, "localRemainingCredits">): Promise<boolean> {
         const key = leaseKey(entry.companyId, entry.creditTypeId);
@@ -126,6 +135,24 @@ export class LeaseStore implements ILeaseStore {
             if (existing && existing.expiresAt.getTime() > Date.now()) {
                 // A live lease already holds this slot — preserve its
                 // already-debited localRemaining instead of clobbering it.
+                return false;
+            }
+            if (existing && existing.leaseId === entry.leaseId) {
+                // The SAME lease coming back over its own expired row: a stale
+                // acquire response for a lease the idempotent server handed to
+                // a racing sibling too (possibly since extended, so still
+                // active server-side). Rewriting would reset
+                // localRemainingCredits to the full grant, erasing debits
+                // whose reservations are still open — reconcile like an
+                // extend instead (see ILeaseStore.replace).
+                const add = entry.grantedAmount - existing.grantedAmount;
+                if (add > 0) {
+                    existing.grantedAmount = entry.grantedAmount;
+                    existing.localRemainingCredits += add;
+                }
+                if (entry.expiresAt.getTime() > existing.expiresAt.getTime()) {
+                    existing.expiresAt = entry.expiresAt;
+                }
                 return false;
             }
             this.leases.set(key, {

@@ -125,6 +125,35 @@ describeIf("Redis stores against a real redis-server", () => {
         expect(entry?.localRemainingCredits).toBe(200);
     });
 
+    it("replace reconciles an expired SAME-id lease instead of resetting its debited balance", async () => {
+        // A stale acquire response can hand back the lease already installed
+        // (the server is idempotent for an active slot) after the shared row
+        // expired — e.g. a concurrent extend pushed the server-side expiry
+        // forward. Rewriting would reset localRemainingCredits to the full
+        // grant, erasing debits whose reservations are still open.
+        const leaseStore = makeLeaseStore();
+        const creditTypeId = await installLease(leaseStore, { leaseId: "lse_a", grantedAmount: 100 });
+        expect(await leaseStore.tryReserve("co_1", creditTypeId, 40)).toBe(60);
+
+        await client.hSet(leaseStore.hashKey("co_1", creditTypeId), "expiresAt", String(Date.now() - 1_000));
+        const laterExpiry = new Date(Date.now() + 120_000);
+        const wrote = await leaseStore.replace({
+            leaseId: "lse_a",
+            companyId: "co_1",
+            creditTypeId,
+            grantedAmount: 150,
+            expiresAt: laterExpiry,
+        });
+        expect(wrote).toBe(false);
+        const entry = await leaseStore.get("co_1", creditTypeId);
+        expect(entry?.leaseId).toBe("lse_a");
+        // Granted reconciled to the server total; the 40-credit debit survives.
+        expect(entry?.grantedAmount).toBe(150);
+        expect(entry?.localRemainingCredits).toBe(110);
+        // Expiry moves forward with the response.
+        expect(entry?.expiresAt.getTime()).toBe(laterExpiry.getTime());
+    });
+
     it("tryReserve under contention admits exactly the available balance", async () => {
         const leaseStore = makeLeaseStore();
         const creditTypeId = await installLease(leaseStore, { grantedAmount: 100 });

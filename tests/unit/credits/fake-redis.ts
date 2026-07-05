@@ -38,7 +38,7 @@ export function makeFakeRedis(): RedisClient {
 
     const hset = (key: string, field: string, value: string): void => {
         if (!hashes.has(key)) hashes.set(key, new Map());
-        hashes.get(key)!.set(field, value);
+        hashes.get(key)?.set(field, value);
     };
 
     const hget = (key: string, field: string): string | null => {
@@ -56,7 +56,7 @@ export function makeFakeRedis(): RedisClient {
 
     const zadd = (key: string, score: number, member: string): void => {
         if (!zsets.has(key)) zsets.set(key, new Map());
-        zsets.get(key)!.set(member, score);
+        zsets.get(key)?.set(member, score);
     };
 
     const zrem = (key: string, member: string): void => {
@@ -83,6 +83,22 @@ export function makeFakeRedis(): RedisClient {
             const existingId = hget(leaseHashKey, "leaseId");
             const existingExpiry = Number(hget(leaseHashKey, "expiresAt") ?? "0");
             if (existingId && existingExpiry > now) {
+                return 0;
+            }
+            if (existingId === newId) {
+                // Same-id reinstall over an expired row: reconcile like an
+                // extend (keep the debited balance) instead of rewriting.
+                const granted = Number(hget(leaseHashKey, "grantedAmount") ?? "0");
+                const add = Number(newGranted) - granted;
+                if (add > 0) {
+                    const remaining = Number(hget(leaseHashKey, "localRemainingCredits") ?? "0");
+                    hset(leaseHashKey, "grantedAmount", newGranted);
+                    hset(leaseHashKey, "localRemainingCredits", String(remaining + add));
+                }
+                if (newExpiry > existingExpiry) {
+                    hset(leaseHashKey, "expiresAt", newExpiryStr);
+                    expirations.set(leaseHashKey, newExpiry + Number(grace));
+                }
                 return 0;
             }
             del(leaseHashKey);
