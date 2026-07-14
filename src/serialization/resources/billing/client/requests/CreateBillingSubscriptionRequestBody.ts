@@ -15,6 +15,7 @@ export const CreateBillingSubscriptionRequestBody: core.serialization.Schema<
     applicationId: core.serialization.property("application_id", core.serialization.string().optional()),
     cancelAt: core.serialization.property("cancel_at", core.serialization.number().optional()),
     cancelAtPeriodEnd: core.serialization.property("cancel_at_period_end", core.serialization.boolean()),
+    companyId: core.serialization.property("company_id", core.serialization.string().optional()),
     currency: core.serialization.string(),
     customerExternalId: core.serialization.property("customer_external_id", core.serialization.string()),
     defaultPaymentMethodExternalId: core.serialization.property(
@@ -48,6 +49,7 @@ export declare namespace CreateBillingSubscriptionRequestBody {
         application_id?: string | null;
         cancel_at?: number | null;
         cancel_at_period_end: boolean;
+        company_id?: string | null;
         currency: string;
         customer_external_id: string;
         default_payment_method_external_id?: string | null;

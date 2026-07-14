@@ -15,5 +15,4 @@ export interface CreatePlanBundleRequestBody {
     creditGrants?: Schematic.PlanBundleCreditGrantRequestBody[];
     entitlements: Schematic.PlanBundleEntitlementRequestBody[];
     plan?: Schematic.CreatePlanRequestBody;
-    traits?: Schematic.UpdatePlanTraitTraitRequestBody[];
 }

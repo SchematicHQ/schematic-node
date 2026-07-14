@@ -7,5 +7,4 @@ export interface PlanBundleResponseData {
     creditGrants?: Schematic.BillingPlanCreditGrantResponseData[];
     entitlements?: Schematic.PlanEntitlementResponseData[];
     plan?: Schematic.PlanResponseData;
-    traits?: Schematic.PlanTraitResponseData[];
 }

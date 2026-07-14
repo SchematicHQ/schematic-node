@@ -5,11 +5,17 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 import { EventBodyFlagCheck } from "./EventBodyFlagCheck";
 import { EventBodyIdentify } from "./EventBodyIdentify";
+import { EventBodyInference } from "./EventBodyInference";
 import { EventBodyTrack } from "./EventBodyTrack";
 
 export const EventBody: core.serialization.Schema<serializers.EventBody.Raw, Schematic.EventBody> =
-    core.serialization.undiscriminatedUnion([EventBodyTrack, EventBodyFlagCheck, EventBodyIdentify]);
+    core.serialization.undiscriminatedUnion([
+        EventBodyTrack,
+        EventBodyFlagCheck,
+        EventBodyIdentify,
+        EventBodyInference,
+    ]);
 
 export declare namespace EventBody {
-    export type Raw = EventBodyTrack.Raw | EventBodyFlagCheck.Raw | EventBodyIdentify.Raw;
+    export type Raw = EventBodyTrack.Raw | EventBodyFlagCheck.Raw | EventBodyIdentify.Raw | EventBodyInference.Raw;
 }

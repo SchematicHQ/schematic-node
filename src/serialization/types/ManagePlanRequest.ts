@@ -16,6 +16,7 @@ export const ManagePlanRequest: core.serialization.ObjectSchema<
     basePlanId: core.serialization.property("base_plan_id", core.serialization.string().optional()),
     basePlanPriceId: core.serialization.property("base_plan_price_id", core.serialization.string().optional()),
     basePlanVersionId: core.serialization.property("base_plan_version_id", core.serialization.string().optional()),
+    billingEntityId: core.serialization.property("billing_entity_id", core.serialization.string().optional()),
     cancelImmediately: core.serialization.property("cancel_immediately", core.serialization.boolean().optional()),
     companyId: core.serialization.property("company_id", core.serialization.string()),
     couponExternalId: core.serialization.property("coupon_external_id", core.serialization.string().optional()),
@@ -43,6 +44,7 @@ export declare namespace ManagePlanRequest {
         base_plan_id?: string | null;
         base_plan_price_id?: string | null;
         base_plan_version_id?: string | null;
+        billing_entity_id?: string | null;
         cancel_immediately?: boolean | null;
         company_id: string;
         coupon_external_id?: string | null;

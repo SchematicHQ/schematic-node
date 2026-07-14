@@ -16,11 +16,13 @@ export const CreateInvoiceRequestBody: core.serialization.Schema<
     currency: core.serialization.string(),
     customerExternalId: core.serialization.property("customer_external_id", core.serialization.string()),
     dueDate: core.serialization.property("due_date", core.serialization.date().optional()),
+    endingBalance: core.serialization.property("ending_balance", core.serialization.number().optional()),
     externalId: core.serialization.property("external_id", core.serialization.string().optional()),
     paymentMethodExternalId: core.serialization.property(
         "payment_method_external_id",
         core.serialization.string().optional(),
     ),
+    startingBalance: core.serialization.property("starting_balance", core.serialization.number().optional()),
     status: InvoiceStatus.optional(),
     subscriptionExternalId: core.serialization.property(
         "subscription_external_id",
@@ -39,8 +41,10 @@ export declare namespace CreateInvoiceRequestBody {
         currency: string;
         customer_external_id: string;
         due_date?: string | null;
+        ending_balance?: number | null;
         external_id?: string | null;
         payment_method_external_id?: string | null;
+        starting_balance?: number | null;
         status?: InvoiceStatus.Raw | null;
         subscription_external_id?: string | null;
         subtotal: number;

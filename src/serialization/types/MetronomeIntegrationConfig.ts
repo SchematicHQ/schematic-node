@@ -7,8 +7,15 @@ import type * as serializers from "../index";
 export const MetronomeIntegrationConfig: core.serialization.ObjectSchema<
     serializers.MetronomeIntegrationConfig.Raw,
     Schematic.MetronomeIntegrationConfig
-> = core.serialization.object({});
+> = core.serialization.object({
+    externalCustomerIdKey: core.serialization.property(
+        "external_customer_id_key",
+        core.serialization.string().optional(),
+    ),
+});
 
 export declare namespace MetronomeIntegrationConfig {
-    export type Raw = {};
+    export interface Raw {
+        external_customer_id_key?: string | null;
+    }
 }

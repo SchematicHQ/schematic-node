@@ -27,8 +27,10 @@ describe("PlanbundleClient", () => {
                 },
                 credit_grants: [
                     {
+                        auto_topup_availability: "off",
                         auto_topup_enabled: true,
                         auto_topup_self_service: true,
+                        can_buy_bundles: true,
                         created_at: "2024-01-15T09:30:00Z",
                         credit_amount: 1000000,
                         credit_id: "credit_id",
@@ -51,6 +53,7 @@ describe("PlanbundleClient", () => {
                         rule_id: "rule_id",
                         updated_at: "2024-01-15T09:30:00Z",
                         value_type: "boolean",
+                        warning_tiers: [{ id: "id", key: "key", value: 1000000 }],
                     },
                 ],
                 plan: {
@@ -64,19 +67,6 @@ describe("PlanbundleClient", () => {
                     plan_type: "plan",
                     updated_at: "2024-01-15T09:30:00Z",
                 },
-                traits: [
-                    {
-                        account_id: "account_id",
-                        created_at: "2024-01-15T09:30:00Z",
-                        environment_id: "environment_id",
-                        id: "id",
-                        plan_id: "plan_id",
-                        plan_type: "plan_type",
-                        trait_id: "trait_id",
-                        trait_value: "trait_value",
-                        updated_at: "2024-01-15T09:30:00Z",
-                    },
-                ],
             },
             params: { key: "value" },
         };
@@ -115,8 +105,10 @@ describe("PlanbundleClient", () => {
                 },
                 creditGrants: [
                     {
+                        autoTopupAvailability: "off",
                         autoTopupEnabled: true,
                         autoTopupSelfService: true,
+                        canBuyBundles: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         creditAmount: 1000000,
                         creditId: "credit_id",
@@ -143,6 +135,13 @@ describe("PlanbundleClient", () => {
                         ruleId: "rule_id",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         valueType: "boolean",
+                        warningTiers: [
+                            {
+                                id: "id",
+                                key: "key",
+                                value: 1000000,
+                            },
+                        ],
                     },
                 ],
                 plan: {
@@ -156,19 +155,6 @@ describe("PlanbundleClient", () => {
                     planType: "plan",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
-                traits: [
-                    {
-                        accountId: "account_id",
-                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        environmentId: "environment_id",
-                        id: "id",
-                        planId: "plan_id",
-                        planType: "plan_type",
-                        traitId: "trait_id",
-                        traitValue: "trait_value",
-                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    },
-                ],
             },
             params: {
                 key: "value",
@@ -343,8 +329,10 @@ describe("PlanbundleClient", () => {
                 },
                 credit_grants: [
                     {
+                        auto_topup_availability: "off",
                         auto_topup_enabled: true,
                         auto_topup_self_service: true,
+                        can_buy_bundles: true,
                         created_at: "2024-01-15T09:30:00Z",
                         credit_amount: 1000000,
                         credit_id: "credit_id",
@@ -367,6 +355,7 @@ describe("PlanbundleClient", () => {
                         rule_id: "rule_id",
                         updated_at: "2024-01-15T09:30:00Z",
                         value_type: "boolean",
+                        warning_tiers: [{ id: "id", key: "key", value: 1000000 }],
                     },
                 ],
                 plan: {
@@ -380,19 +369,6 @@ describe("PlanbundleClient", () => {
                     plan_type: "plan",
                     updated_at: "2024-01-15T09:30:00Z",
                 },
-                traits: [
-                    {
-                        account_id: "account_id",
-                        created_at: "2024-01-15T09:30:00Z",
-                        environment_id: "environment_id",
-                        id: "id",
-                        plan_id: "plan_id",
-                        plan_type: "plan_type",
-                        trait_id: "trait_id",
-                        trait_value: "trait_value",
-                        updated_at: "2024-01-15T09:30:00Z",
-                    },
-                ],
             },
             params: { key: "value" },
         };
@@ -431,8 +407,10 @@ describe("PlanbundleClient", () => {
                 },
                 creditGrants: [
                     {
+                        autoTopupAvailability: "off",
                         autoTopupEnabled: true,
                         autoTopupSelfService: true,
+                        canBuyBundles: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         creditAmount: 1000000,
                         creditId: "credit_id",
@@ -459,6 +437,13 @@ describe("PlanbundleClient", () => {
                         ruleId: "rule_id",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         valueType: "boolean",
+                        warningTiers: [
+                            {
+                                id: "id",
+                                key: "key",
+                                value: 1000000,
+                            },
+                        ],
                     },
                 ],
                 plan: {
@@ -472,19 +457,6 @@ describe("PlanbundleClient", () => {
                     planType: "plan",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
-                traits: [
-                    {
-                        accountId: "account_id",
-                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        environmentId: "environment_id",
-                        id: "id",
-                        planId: "plan_id",
-                        planType: "plan_type",
-                        traitId: "trait_id",
-                        traitValue: "trait_value",
-                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    },
-                ],
             },
             params: {
                 key: "value",
@@ -659,8 +631,10 @@ describe("PlanbundleClient", () => {
                 },
                 credit_grants: [
                     {
+                        auto_topup_availability: "off",
                         auto_topup_enabled: true,
                         auto_topup_self_service: true,
+                        can_buy_bundles: true,
                         created_at: "2024-01-15T09:30:00Z",
                         credit_amount: 1000000,
                         credit_id: "credit_id",
@@ -683,6 +657,7 @@ describe("PlanbundleClient", () => {
                         rule_id: "rule_id",
                         updated_at: "2024-01-15T09:30:00Z",
                         value_type: "boolean",
+                        warning_tiers: [{ id: "id", key: "key", value: 1000000 }],
                     },
                 ],
                 plan: {
@@ -696,19 +671,6 @@ describe("PlanbundleClient", () => {
                     plan_type: "plan",
                     updated_at: "2024-01-15T09:30:00Z",
                 },
-                traits: [
-                    {
-                        account_id: "account_id",
-                        created_at: "2024-01-15T09:30:00Z",
-                        environment_id: "environment_id",
-                        id: "id",
-                        plan_id: "plan_id",
-                        plan_type: "plan_type",
-                        trait_id: "trait_id",
-                        trait_value: "trait_value",
-                        updated_at: "2024-01-15T09:30:00Z",
-                    },
-                ],
             },
             params: { key: "value" },
         };
@@ -747,8 +709,10 @@ describe("PlanbundleClient", () => {
                 },
                 creditGrants: [
                     {
+                        autoTopupAvailability: "off",
                         autoTopupEnabled: true,
                         autoTopupSelfService: true,
+                        canBuyBundles: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         creditAmount: 1000000,
                         creditId: "credit_id",
@@ -775,6 +739,13 @@ describe("PlanbundleClient", () => {
                         ruleId: "rule_id",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         valueType: "boolean",
+                        warningTiers: [
+                            {
+                                id: "id",
+                                key: "key",
+                                value: 1000000,
+                            },
+                        ],
                     },
                 ],
                 plan: {
@@ -788,19 +759,6 @@ describe("PlanbundleClient", () => {
                     planType: "plan",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
-                traits: [
-                    {
-                        accountId: "account_id",
-                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        environmentId: "environment_id",
-                        id: "id",
-                        planId: "plan_id",
-                        planType: "plan_type",
-                        traitId: "trait_id",
-                        traitValue: "trait_value",
-                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    },
-                ],
             },
             params: {
                 key: "value",

@@ -772,6 +772,20 @@ describe("ComponentsClient", () => {
                         compatible_plan_ids: ["compatible_plan_ids"],
                         controlled_by: "metronome",
                         created_at: "2024-01-15T09:30:00Z",
+                        credits: [
+                            {
+                                burn_strategy: "expiration_priority",
+                                cost_editable: true,
+                                created_at: "2024-01-15T09:30:00Z",
+                                currency_prices: [{ currency: "currency" }],
+                                default_expiry_unit: "billing_periods",
+                                default_rollover_policy: "expire",
+                                description: "description",
+                                id: "id",
+                                name: "name",
+                                updated_at: "2024-01-15T09:30:00Z",
+                            },
+                        ],
                         currency_prices: [{ currency: "currency" }],
                         current: true,
                         custom: true,
@@ -855,6 +869,7 @@ describe("ComponentsClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
+                                billing_credit_can_buy_bundles: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -909,6 +924,20 @@ describe("ComponentsClient", () => {
                         compatible_plan_ids: ["compatible_plan_ids"],
                         controlled_by: "metronome",
                         created_at: "2024-01-15T09:30:00Z",
+                        credits: [
+                            {
+                                burn_strategy: "expiration_priority",
+                                cost_editable: true,
+                                created_at: "2024-01-15T09:30:00Z",
+                                currency_prices: [{ currency: "currency" }],
+                                default_expiry_unit: "billing_periods",
+                                default_rollover_policy: "expire",
+                                description: "description",
+                                id: "id",
+                                name: "name",
+                                updated_at: "2024-01-15T09:30:00Z",
+                            },
+                        ],
                         currency_prices: [{ currency: "currency" }],
                         current: true,
                         custom: true,
@@ -992,6 +1021,7 @@ describe("ComponentsClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
+                                billing_credit_can_buy_bundles: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -1055,6 +1085,7 @@ describe("ComponentsClient", () => {
                                 {
                                     billing_credit_auto_topup_enabled: true,
                                     billing_credit_auto_topup_self_service: true,
+                                    billing_credit_can_buy_bundles: true,
                                     created_at: "2024-01-15T09:30:00Z",
                                     credit_amount: 1000000,
                                     credit_description: "credit_description",
@@ -1251,6 +1282,7 @@ describe("ComponentsClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
+                                billing_credit_can_buy_bundles: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -1418,10 +1450,25 @@ describe("ComponentsClient", () => {
                     charge_type: "free",
                     company_count: 1000000,
                     company_id: "company_id",
+                    company_logo_url: "company_logo_url",
                     company_name: "company_name",
                     controlled_by: "metronome",
                     copied_from_plan_id: "copied_from_plan_id",
                     created_at: "2024-01-15T09:30:00Z",
+                    credits: [
+                        {
+                            burn_strategy: "expiration_priority",
+                            cost_editable: true,
+                            created_at: "2024-01-15T09:30:00Z",
+                            currency_prices: [{ currency: "currency" }],
+                            default_expiry_unit: "billing_periods",
+                            default_rollover_policy: "expire",
+                            description: "description",
+                            id: "id",
+                            name: "name",
+                            updated_at: "2024-01-15T09:30:00Z",
+                        },
+                    ],
                     currency_prices: [{ currency: "currency" }],
                     description: "description",
                     draft_version: {
@@ -1447,6 +1494,7 @@ describe("ComponentsClient", () => {
                             rule_id: "rule_id",
                             updated_at: "2024-01-15T09:30:00Z",
                             value_type: "boolean",
+                            warning_tiers: [{ id: "id", key: "key", value: 1000000 }],
                         },
                     ],
                     features: [
@@ -1526,8 +1574,10 @@ describe("ComponentsClient", () => {
                     id: "id",
                     included_credit_grants: [
                         {
+                            auto_topup_availability: "off",
                             auto_topup_enabled: true,
                             auto_topup_self_service: true,
+                            can_buy_bundles: true,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_id: "credit_id",
@@ -1628,9 +1678,11 @@ describe("ComponentsClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         currency: "currency",
                         customer_external_id: "customer_external_id",
+                        ending_balance: 1000000,
                         environment_id: "environment_id",
                         id: "id",
                         provider_type: "metronome",
+                        starting_balance: 1000000,
                         subtotal: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
@@ -1683,10 +1735,25 @@ describe("ComponentsClient", () => {
                     charge_type: "free",
                     company_count: 1000000,
                     company_id: "company_id",
+                    company_logo_url: "company_logo_url",
                     company_name: "company_name",
                     controlled_by: "metronome",
                     copied_from_plan_id: "copied_from_plan_id",
                     created_at: "2024-01-15T09:30:00Z",
+                    credits: [
+                        {
+                            burn_strategy: "expiration_priority",
+                            cost_editable: true,
+                            created_at: "2024-01-15T09:30:00Z",
+                            currency_prices: [{ currency: "currency" }],
+                            default_expiry_unit: "billing_periods",
+                            default_rollover_policy: "expire",
+                            description: "description",
+                            id: "id",
+                            name: "name",
+                            updated_at: "2024-01-15T09:30:00Z",
+                        },
+                    ],
                     currency_prices: [{ currency: "currency" }],
                     description: "description",
                     draft_version: {
@@ -1712,6 +1779,7 @@ describe("ComponentsClient", () => {
                             rule_id: "rule_id",
                             updated_at: "2024-01-15T09:30:00Z",
                             value_type: "boolean",
+                            warning_tiers: [{ id: "id", key: "key", value: 1000000 }],
                         },
                     ],
                     features: [
@@ -1791,8 +1859,10 @@ describe("ComponentsClient", () => {
                     id: "id",
                     included_credit_grants: [
                         {
+                            auto_topup_availability: "off",
                             auto_topup_enabled: true,
                             auto_topup_self_service: true,
+                            can_buy_bundles: true,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_id: "credit_id",
@@ -1919,9 +1989,11 @@ describe("ComponentsClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         currency: "currency",
                         customer_external_id: "customer_external_id",
+                        ending_balance: 1000000,
                         environment_id: "environment_id",
                         id: "id",
                         provider_type: "metronome",
+                        starting_balance: 1000000,
                         subtotal: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
@@ -1974,11 +2046,13 @@ describe("ComponentsClient", () => {
                     currency: "currency",
                     customer_external_id: "customer_external_id",
                     due_date: "2024-01-15T09:30:00Z",
+                    ending_balance: 1000000,
                     environment_id: "environment_id",
                     external_id: "external_id",
                     id: "id",
                     payment_method_external_id: "payment_method_external_id",
                     provider_type: "metronome",
+                    starting_balance: 1000000,
                     status: "draft",
                     subscription_external_id: "subscription_external_id",
                     subtotal: 1000000,
@@ -2013,6 +2087,24 @@ describe("ComponentsClient", () => {
                         compatiblePlanIds: ["compatible_plan_ids"],
                         controlledBy: "metronome",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        credits: [
+                            {
+                                burnStrategy: "expiration_priority",
+                                costEditable: true,
+                                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                currencyPrices: [
+                                    {
+                                        currency: "currency",
+                                    },
+                                ],
+                                defaultExpiryUnit: "billing_periods",
+                                defaultRolloverPolicy: "expire",
+                                description: "description",
+                                id: "id",
+                                name: "name",
+                                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                            },
+                        ],
                         currencyPrices: [
                             {
                                 currency: "currency",
@@ -2115,6 +2207,7 @@ describe("ComponentsClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
+                                billingCreditCanBuyBundles: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -2169,6 +2262,24 @@ describe("ComponentsClient", () => {
                         compatiblePlanIds: ["compatible_plan_ids"],
                         controlledBy: "metronome",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        credits: [
+                            {
+                                burnStrategy: "expiration_priority",
+                                costEditable: true,
+                                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                currencyPrices: [
+                                    {
+                                        currency: "currency",
+                                    },
+                                ],
+                                defaultExpiryUnit: "billing_periods",
+                                defaultRolloverPolicy: "expire",
+                                description: "description",
+                                id: "id",
+                                name: "name",
+                                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                            },
+                        ],
                         currencyPrices: [
                             {
                                 currency: "currency",
@@ -2271,6 +2382,7 @@ describe("ComponentsClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
+                                billingCreditCanBuyBundles: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -2345,6 +2457,7 @@ describe("ComponentsClient", () => {
                                 {
                                     billingCreditAutoTopupEnabled: true,
                                     billingCreditAutoTopupSelfService: true,
+                                    billingCreditCanBuyBundles: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     creditAmount: 1000000,
                                     creditDescription: "credit_description",
@@ -2549,6 +2662,7 @@ describe("ComponentsClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
+                                billingCreditCanBuyBundles: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -2729,10 +2843,29 @@ describe("ComponentsClient", () => {
                     chargeType: "free",
                     companyCount: 1000000,
                     companyId: "company_id",
+                    companyLogoUrl: "company_logo_url",
                     companyName: "company_name",
                     controlledBy: "metronome",
                     copiedFromPlanId: "copied_from_plan_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    credits: [
+                        {
+                            burnStrategy: "expiration_priority",
+                            costEditable: true,
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            currencyPrices: [
+                                {
+                                    currency: "currency",
+                                },
+                            ],
+                            defaultExpiryUnit: "billing_periods",
+                            defaultRolloverPolicy: "expire",
+                            description: "description",
+                            id: "id",
+                            name: "name",
+                            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        },
+                    ],
                     currencyPrices: [
                         {
                             currency: "currency",
@@ -2766,6 +2899,13 @@ describe("ComponentsClient", () => {
                             ruleId: "rule_id",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             valueType: "boolean",
+                            warningTiers: [
+                                {
+                                    id: "id",
+                                    key: "key",
+                                    value: 1000000,
+                                },
+                            ],
                         },
                     ],
                     features: [
@@ -2860,8 +3000,10 @@ describe("ComponentsClient", () => {
                     id: "id",
                     includedCreditGrants: [
                         {
+                            autoTopupAvailability: "off",
                             autoTopupEnabled: true,
                             autoTopupSelfService: true,
+                            canBuyBundles: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditId: "credit_id",
@@ -2962,9 +3104,11 @@ describe("ComponentsClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currency: "currency",
                         customerExternalId: "customer_external_id",
+                        endingBalance: 1000000,
                         environmentId: "environment_id",
                         id: "id",
                         providerType: "metronome",
+                        startingBalance: 1000000,
                         subtotal: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
@@ -3017,10 +3161,29 @@ describe("ComponentsClient", () => {
                     chargeType: "free",
                     companyCount: 1000000,
                     companyId: "company_id",
+                    companyLogoUrl: "company_logo_url",
                     companyName: "company_name",
                     controlledBy: "metronome",
                     copiedFromPlanId: "copied_from_plan_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    credits: [
+                        {
+                            burnStrategy: "expiration_priority",
+                            costEditable: true,
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            currencyPrices: [
+                                {
+                                    currency: "currency",
+                                },
+                            ],
+                            defaultExpiryUnit: "billing_periods",
+                            defaultRolloverPolicy: "expire",
+                            description: "description",
+                            id: "id",
+                            name: "name",
+                            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        },
+                    ],
                     currencyPrices: [
                         {
                             currency: "currency",
@@ -3054,6 +3217,13 @@ describe("ComponentsClient", () => {
                             ruleId: "rule_id",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             valueType: "boolean",
+                            warningTiers: [
+                                {
+                                    id: "id",
+                                    key: "key",
+                                    value: 1000000,
+                                },
+                            ],
                         },
                     ],
                     features: [
@@ -3148,8 +3318,10 @@ describe("ComponentsClient", () => {
                     id: "id",
                     includedCreditGrants: [
                         {
+                            autoTopupAvailability: "off",
                             autoTopupEnabled: true,
                             autoTopupSelfService: true,
+                            canBuyBundles: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditId: "credit_id",
@@ -3276,9 +3448,11 @@ describe("ComponentsClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currency: "currency",
                         customerExternalId: "customer_external_id",
+                        endingBalance: 1000000,
                         environmentId: "environment_id",
                         id: "id",
                         providerType: "metronome",
+                        startingBalance: 1000000,
                         subtotal: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
@@ -3331,11 +3505,13 @@ describe("ComponentsClient", () => {
                     currency: "currency",
                     customerExternalId: "customer_external_id",
                     dueDate: new Date("2024-01-15T09:30:00.000Z"),
+                    endingBalance: 1000000,
                     environmentId: "environment_id",
                     externalId: "external_id",
                     id: "id",
                     paymentMethodExternalId: "payment_method_external_id",
                     providerType: "metronome",
+                    startingBalance: 1000000,
                     status: "draft",
                     subscriptionExternalId: "subscription_external_id",
                     subtotal: 1000000,

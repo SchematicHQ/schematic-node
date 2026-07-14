@@ -17,6 +17,10 @@ export const IntegrationsListResponseData: core.serialization.ObjectSchema<
     id: core.serialization.string(),
     isAppInstall: core.serialization.property("is_app_install", core.serialization.boolean()),
     isConnectInstall: core.serialization.property("is_connect_install", core.serialization.boolean()),
+    lastWebhookReceivedAt: core.serialization.property(
+        "last_webhook_received_at",
+        core.serialization.date().optional(),
+    ),
     state: IntegrationState,
     type: IntegrationType,
 });
@@ -28,6 +32,7 @@ export declare namespace IntegrationsListResponseData {
         id: string;
         is_app_install: boolean;
         is_connect_install: boolean;
+        last_webhook_received_at?: string | null;
         state: IntegrationState.Raw;
         type: IntegrationType.Raw;
     }

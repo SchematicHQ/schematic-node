@@ -7,7 +7,6 @@ import { BillingPlanCreditGrantResponseData } from "./BillingPlanCreditGrantResp
 import { BillingProductPlanResponseData } from "./BillingProductPlanResponseData";
 import { PlanEntitlementResponseData } from "./PlanEntitlementResponseData";
 import { PlanResponseData } from "./PlanResponseData";
-import { PlanTraitResponseData } from "./PlanTraitResponseData";
 
 export const PlanBundleResponseData: core.serialization.ObjectSchema<
     serializers.PlanBundleResponseData.Raw,
@@ -20,7 +19,6 @@ export const PlanBundleResponseData: core.serialization.ObjectSchema<
     ),
     entitlements: core.serialization.list(PlanEntitlementResponseData).optional(),
     plan: PlanResponseData.optional(),
-    traits: core.serialization.list(PlanTraitResponseData).optional(),
 });
 
 export declare namespace PlanBundleResponseData {
@@ -29,6 +27,5 @@ export declare namespace PlanBundleResponseData {
         credit_grants?: BillingPlanCreditGrantResponseData.Raw[] | null;
         entitlements?: PlanEntitlementResponseData.Raw[] | null;
         plan?: PlanResponseData.Raw | null;
-        traits?: PlanTraitResponseData.Raw[] | null;
     }
 }

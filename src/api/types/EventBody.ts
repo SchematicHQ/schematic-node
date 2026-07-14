@@ -2,4 +2,8 @@
 
 import type * as Schematic from "../index";
 
-export type EventBody = Schematic.EventBodyTrack | Schematic.EventBodyFlagCheck | Schematic.EventBodyIdentify;
+export type EventBody =
+    | Schematic.EventBodyTrack
+    | Schematic.EventBodyFlagCheck
+    | Schematic.EventBodyIdentify
+    | Schematic.EventBodyInference;

@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { BillingCreditAutoTopupAvailability } from "./BillingCreditAutoTopupAvailability";
 import { BillingCreditExpiryType } from "./BillingCreditExpiryType";
 import { BillingCreditExpiryUnit } from "./BillingCreditExpiryUnit";
 import { BillingCreditView } from "./BillingCreditView";
@@ -22,6 +23,10 @@ export const CompanyPlanCreditGrantView: core.serialization.ObjectSchema<
     billingCreditAutoTopupAmountType: core.serialization.property(
         "billing_credit_auto_topup_amount_type",
         core.serialization.string().optional(),
+    ),
+    billingCreditAutoTopupAvailability: core.serialization.property(
+        "billing_credit_auto_topup_availability",
+        BillingCreditAutoTopupAvailability.optional(),
     ),
     billingCreditAutoTopupEnabled: core.serialization.property(
         "billing_credit_auto_topup_enabled",
@@ -50,6 +55,10 @@ export const CompanyPlanCreditGrantView: core.serialization.ObjectSchema<
     billingCreditAutoTopupThresholdPercent: core.serialization.property(
         "billing_credit_auto_topup_threshold_percent",
         core.serialization.number().optional(),
+    ),
+    billingCreditCanBuyBundles: core.serialization.property(
+        "billing_credit_can_buy_bundles",
+        core.serialization.boolean(),
     ),
     companyAutoTopupAmount: core.serialization.property(
         "company_auto_topup_amount",
@@ -90,6 +99,7 @@ export declare namespace CompanyPlanCreditGrantView {
     export interface Raw {
         billing_credit_auto_topup_amount?: number | null;
         billing_credit_auto_topup_amount_type?: string | null;
+        billing_credit_auto_topup_availability?: BillingCreditAutoTopupAvailability.Raw | null;
         billing_credit_auto_topup_enabled: boolean;
         billing_credit_auto_topup_expiry_type?: BillingCreditExpiryType.Raw | null;
         billing_credit_auto_topup_expiry_unit?: BillingCreditExpiryUnit.Raw | null;
@@ -97,6 +107,7 @@ export declare namespace CompanyPlanCreditGrantView {
         billing_credit_auto_topup_self_service: boolean;
         billing_credit_auto_topup_threshold_credits?: number | null;
         billing_credit_auto_topup_threshold_percent?: number | null;
+        billing_credit_can_buy_bundles: boolean;
         company_auto_topup_amount?: number | null;
         company_auto_topup_enabled?: boolean | null;
         company_auto_topup_threshold_credits?: number | null;

@@ -4,6 +4,7 @@ export const AccountMemberPermission = {
     CompaniesEdit: "companies_edit",
     CompanyUsersEdit: "company_users_edit",
     ComponentsEdit: "components_edit",
+    CustomPlansEdit: "custom_plans_edit",
     DataExportsEdit: "data_exports_edit",
     FeaturesEdit: "features_edit",
     FlagRulesEdit: "flag_rules_edit",

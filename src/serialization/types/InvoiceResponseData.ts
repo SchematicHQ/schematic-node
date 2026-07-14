@@ -19,6 +19,7 @@ export const InvoiceResponseData: core.serialization.ObjectSchema<
     currency: core.serialization.string(),
     customerExternalId: core.serialization.property("customer_external_id", core.serialization.string()),
     dueDate: core.serialization.property("due_date", core.serialization.date().optional()),
+    endingBalance: core.serialization.property("ending_balance", core.serialization.number()),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     externalId: core.serialization.property("external_id", core.serialization.string().optional()),
     id: core.serialization.string(),
@@ -27,6 +28,7 @@ export const InvoiceResponseData: core.serialization.ObjectSchema<
         core.serialization.string().optional(),
     ),
     providerType: core.serialization.property("provider_type", BillingProviderType),
+    startingBalance: core.serialization.property("starting_balance", core.serialization.number()),
     status: InvoiceStatus.optional(),
     subscriptionExternalId: core.serialization.property(
         "subscription_external_id",
@@ -48,11 +50,13 @@ export declare namespace InvoiceResponseData {
         currency: string;
         customer_external_id: string;
         due_date?: string | null;
+        ending_balance: number;
         environment_id: string;
         external_id?: string | null;
         id: string;
         payment_method_external_id?: string | null;
         provider_type: BillingProviderType.Raw;
+        starting_balance: number;
         status?: InvoiceStatus.Raw | null;
         subscription_external_id?: string | null;
         subtotal: number;

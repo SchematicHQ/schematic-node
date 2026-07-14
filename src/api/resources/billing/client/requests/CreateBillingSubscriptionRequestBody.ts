@@ -32,6 +32,7 @@ export interface CreateBillingSubscriptionRequestBody {
     applicationId?: string;
     cancelAt?: number;
     cancelAtPeriodEnd: boolean;
+    companyId?: string;
     currency: string;
     customerExternalId: string;
     defaultPaymentMethodExternalId?: string;

@@ -20,6 +20,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         billing_credit_auto_topup_enabled: true,
                                         billing_credit_auto_topup_self_service: true,
+                                        billing_credit_can_buy_bundles: true,
                                         created_at: "2024-01-15T09:30:00Z",
                                         credit_amount: 1000000,
                                         credit_description: "credit_description",
@@ -274,6 +275,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         billingCreditAutoTopupEnabled: true,
                                         billingCreditAutoTopupSelfService: true,
+                                        billingCreditCanBuyBundles: true,
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         creditAmount: 1000000,
                                         creditDescription: "credit_description",
@@ -595,6 +597,7 @@ describe("EntitlementsClient", () => {
                                 {
                                     billing_credit_auto_topup_enabled: true,
                                     billing_credit_auto_topup_self_service: true,
+                                    billing_credit_can_buy_bundles: true,
                                     created_at: "2024-01-15T09:30:00Z",
                                     credit_amount: 1000000,
                                     credit_description: "credit_description",
@@ -791,6 +794,7 @@ describe("EntitlementsClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
+                                billing_credit_can_buy_bundles: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -936,6 +940,7 @@ describe("EntitlementsClient", () => {
                                 {
                                     billingCreditAutoTopupEnabled: true,
                                     billingCreditAutoTopupSelfService: true,
+                                    billingCreditCanBuyBundles: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     creditAmount: 1000000,
                                     creditDescription: "credit_description",
@@ -1140,6 +1145,7 @@ describe("EntitlementsClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
+                                billingCreditCanBuyBundles: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -1405,6 +1411,7 @@ describe("EntitlementsClient", () => {
                                 {
                                     billing_credit_auto_topup_enabled: true,
                                     billing_credit_auto_topup_self_service: true,
+                                    billing_credit_can_buy_bundles: true,
                                     created_at: "2024-01-15T09:30:00Z",
                                     credit_amount: 1000000,
                                     credit_description: "credit_description",
@@ -1601,6 +1608,7 @@ describe("EntitlementsClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
+                                billing_credit_can_buy_bundles: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -1741,6 +1749,7 @@ describe("EntitlementsClient", () => {
                                 {
                                     billingCreditAutoTopupEnabled: true,
                                     billingCreditAutoTopupSelfService: true,
+                                    billingCreditCanBuyBundles: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     creditAmount: 1000000,
                                     creditDescription: "credit_description",
@@ -1945,6 +1954,7 @@ describe("EntitlementsClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
+                                billingCreditCanBuyBundles: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -2166,6 +2176,7 @@ describe("EntitlementsClient", () => {
                                 {
                                     billing_credit_auto_topup_enabled: true,
                                     billing_credit_auto_topup_self_service: true,
+                                    billing_credit_can_buy_bundles: true,
                                     created_at: "2024-01-15T09:30:00Z",
                                     credit_amount: 1000000,
                                     credit_description: "credit_description",
@@ -2362,6 +2373,7 @@ describe("EntitlementsClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
+                                billing_credit_can_buy_bundles: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -2505,6 +2517,7 @@ describe("EntitlementsClient", () => {
                                 {
                                     billingCreditAutoTopupEnabled: true,
                                     billingCreditAutoTopupSelfService: true,
+                                    billingCreditCanBuyBundles: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     creditAmount: 1000000,
                                     creditDescription: "credit_description",
@@ -2709,6 +2722,7 @@ describe("EntitlementsClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
+                                billingCreditCanBuyBundles: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -3239,6 +3253,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         billing_credit_auto_topup_enabled: true,
                                         billing_credit_auto_topup_self_service: true,
+                                        billing_credit_can_buy_bundles: true,
                                         created_at: "2024-01-15T09:30:00Z",
                                         credit_amount: 1000000,
                                         credit_description: "credit_description",
@@ -3559,6 +3574,7 @@ describe("EntitlementsClient", () => {
                         rule_id: "rule_id",
                         updated_at: "2024-01-15T09:30:00Z",
                         value_type: "boolean",
+                        warning_tiers: [{ id: "id", key: "key", value: 1000000 }],
                     },
                     price_behavior: "credit_burndown",
                     quarterly_usage_based_price: {
@@ -3630,6 +3646,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         billingCreditAutoTopupEnabled: true,
                                         billingCreditAutoTopupSelfService: true,
+                                        billingCreditCanBuyBundles: true,
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         creditAmount: 1000000,
                                         creditDescription: "credit_description",
@@ -3987,6 +4004,13 @@ describe("EntitlementsClient", () => {
                         ruleId: "rule_id",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         valueType: "boolean",
+                        warningTiers: [
+                            {
+                                id: "id",
+                                key: "key",
+                                value: 1000000,
+                            },
+                        ],
                     },
                     priceBehavior: "credit_burndown",
                     quarterlyUsageBasedPrice: {
@@ -4417,6 +4441,7 @@ describe("EntitlementsClient", () => {
                         rule_id: "rule_id",
                         updated_at: "2024-01-15T09:30:00Z",
                         value_type: "boolean",
+                        warning_tiers: [{ id: "id", key: "key", value: 1000000 }],
                     },
                     price_behavior: "credit_burndown",
                     quarterly_usage_based_price: {
@@ -4669,6 +4694,13 @@ describe("EntitlementsClient", () => {
                         ruleId: "rule_id",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         valueType: "boolean",
+                        warningTiers: [
+                            {
+                                id: "id",
+                                key: "key",
+                                value: 1000000,
+                            },
+                        ],
                     },
                     priceBehavior: "credit_burndown",
                     quarterlyUsageBasedPrice: {
@@ -5129,6 +5161,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         billing_credit_auto_topup_enabled: true,
                                         billing_credit_auto_topup_self_service: true,
+                                        billing_credit_can_buy_bundles: true,
                                         created_at: "2024-01-15T09:30:00Z",
                                         credit_amount: 1000000,
                                         credit_description: "credit_description",
@@ -5420,6 +5453,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         billingCreditAutoTopupEnabled: true,
                                         billingCreditAutoTopupSelfService: true,
+                                        billingCreditCanBuyBundles: true,
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         creditAmount: 1000000,
                                         creditDescription: "credit_description",
@@ -6081,6 +6115,7 @@ describe("EntitlementsClient", () => {
                     },
                     value_trait_id: "value_trait_id",
                     value_type: "boolean",
+                    warning_tiers: [{ id: "id", key: "key", value: 1000000 }],
                 },
             ],
             params: {
@@ -6261,6 +6296,13 @@ describe("EntitlementsClient", () => {
                     },
                     valueTraitId: "value_trait_id",
                     valueType: "boolean",
+                    warningTiers: [
+                        {
+                            id: "id",
+                            key: "key",
+                            value: 1000000,
+                        },
+                    ],
                 },
             ],
             params: {
@@ -6541,6 +6583,7 @@ describe("EntitlementsClient", () => {
                 },
                 value_trait_id: "value_trait_id",
                 value_type: "boolean",
+                warning_tiers: [{ id: "id", key: "key", value: 1000000 }],
             },
             params: { key: "value" },
         };
@@ -6760,6 +6803,13 @@ describe("EntitlementsClient", () => {
                 },
                 valueTraitId: "value_trait_id",
                 valueType: "boolean",
+                warningTiers: [
+                    {
+                        id: "id",
+                        key: "key",
+                        value: 1000000,
+                    },
+                ],
             },
             params: {
                 key: "value",
@@ -7084,6 +7134,7 @@ describe("EntitlementsClient", () => {
                 },
                 value_trait_id: "value_trait_id",
                 value_type: "boolean",
+                warning_tiers: [{ id: "id", key: "key", value: 1000000 }],
             },
             params: { key: "value" },
         };
@@ -7298,6 +7349,13 @@ describe("EntitlementsClient", () => {
                 },
                 valueTraitId: "value_trait_id",
                 valueType: "boolean",
+                warningTiers: [
+                    {
+                        id: "id",
+                        key: "key",
+                        value: 1000000,
+                    },
+                ],
             },
             params: {
                 key: "value",
@@ -7578,6 +7636,7 @@ describe("EntitlementsClient", () => {
                 },
                 value_trait_id: "value_trait_id",
                 value_type: "boolean",
+                warning_tiers: [{ id: "id", key: "key", value: 1000000 }],
             },
             params: { key: "value" },
         };
@@ -7795,6 +7854,13 @@ describe("EntitlementsClient", () => {
                 },
                 valueTraitId: "value_trait_id",
                 valueType: "boolean",
+                warningTiers: [
+                    {
+                        id: "id",
+                        key: "key",
+                        value: 1000000,
+                    },
+                ],
             },
             params: {
                 key: "value",
@@ -8235,6 +8301,7 @@ describe("EntitlementsClient", () => {
                 },
                 value_trait_id: "value_trait_id",
                 value_type: "boolean",
+                warning_tiers: [{ id: "id", key: "key", value: 1000000 }],
             },
             params: { key: "value" },
         };
@@ -8456,6 +8523,13 @@ describe("EntitlementsClient", () => {
                 },
                 valueTraitId: "value_trait_id",
                 valueType: "boolean",
+                warningTiers: [
+                    {
+                        id: "id",
+                        key: "key",
+                        value: 1000000,
+                    },
+                ],
             },
             params: {
                 key: "value",
@@ -8797,6 +8871,7 @@ describe("EntitlementsClient", () => {
                         rule_id: "rule_id",
                         updated_at: "2024-01-15T09:30:00Z",
                         value_type: "boolean",
+                        warning_tiers: [{ id: "id", key: "key", value: 1000000 }],
                     },
                 ],
                 issues: [{ code: "code", description: "description" }],
@@ -8842,6 +8917,13 @@ describe("EntitlementsClient", () => {
                         ruleId: "rule_id",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         valueType: "boolean",
+                        warningTiers: [
+                            {
+                                id: "id",
+                                key: "key",
+                                value: 1000000,
+                            },
+                        ],
                     },
                 ],
                 issues: [
@@ -9838,6 +9920,10 @@ describe("EntitlementsClient", () => {
                             },
                             value_trait_id: "value_trait_id",
                             value_type: "boolean",
+                            warning_tiers: [
+                                { id: "id", key: "key", value: 1000000 },
+                                { id: "id", key: "key", value: 1000000 },
+                            ],
                         },
                         price_behavior: "credit_burndown",
                         quarterly_usage_based_price: {
@@ -10768,6 +10854,10 @@ describe("EntitlementsClient", () => {
                             },
                             value_trait_id: "value_trait_id",
                             value_type: "boolean",
+                            warning_tiers: [
+                                { id: "id", key: "key", value: 1000000 },
+                                { id: "id", key: "key", value: 1000000 },
+                            ],
                         },
                         price_behavior: "credit_burndown",
                         quarterly_usage_based_price: {
@@ -11764,6 +11854,18 @@ describe("EntitlementsClient", () => {
                             },
                             valueTraitId: "value_trait_id",
                             valueType: "boolean",
+                            warningTiers: [
+                                {
+                                    id: "id",
+                                    key: "key",
+                                    value: 1000000,
+                                },
+                                {
+                                    id: "id",
+                                    key: "key",
+                                    value: 1000000,
+                                },
+                            ],
                         },
                         priceBehavior: "credit_burndown",
                         quarterlyUsageBasedPrice: {
@@ -12745,6 +12847,18 @@ describe("EntitlementsClient", () => {
                             },
                             valueTraitId: "value_trait_id",
                             valueType: "boolean",
+                            warningTiers: [
+                                {
+                                    id: "id",
+                                    key: "key",
+                                    value: 1000000,
+                                },
+                                {
+                                    id: "id",
+                                    key: "key",
+                                    value: 1000000,
+                                },
+                            ],
                         },
                         priceBehavior: "credit_burndown",
                         quarterlyUsageBasedPrice: {

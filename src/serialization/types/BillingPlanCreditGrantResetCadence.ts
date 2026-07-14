@@ -7,8 +7,8 @@ import type * as serializers from "../index";
 export const BillingPlanCreditGrantResetCadence: core.serialization.Schema<
     serializers.BillingPlanCreditGrantResetCadence.Raw,
     Schematic.BillingPlanCreditGrantResetCadence
-> = core.serialization.enum_(["daily", "monthly", "weekly", "yearly"]);
+> = core.serialization.enum_(["daily", "every_6_months", "monthly", "quarterly", "weekly", "yearly"]);
 
 export declare namespace BillingPlanCreditGrantResetCadence {
-    export type Raw = "daily" | "monthly" | "weekly" | "yearly";
+    export type Raw = "daily" | "every_6_months" | "monthly" | "quarterly" | "weekly" | "yearly";
 }

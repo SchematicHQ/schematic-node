@@ -18,6 +18,7 @@ export const ChangeSubscriptionInternalRequestBody: core.serialization.ObjectSch
         "auto_topup_overrides",
         core.serialization.list(UpdateAutoTopupOverrideRequestBody),
     ),
+    billingEntityId: core.serialization.property("billing_entity_id", core.serialization.string().optional()),
     companyId: core.serialization.property("company_id", core.serialization.string()),
     couponExternalId: core.serialization.property("coupon_external_id", core.serialization.string().optional()),
     creditBundles: core.serialization.property(
@@ -38,6 +39,7 @@ export declare namespace ChangeSubscriptionInternalRequestBody {
     export interface Raw {
         add_on_ids: UpdateAddOnRequestBody.Raw[];
         auto_topup_overrides: UpdateAutoTopupOverrideRequestBody.Raw[];
+        billing_entity_id?: string | null;
         company_id: string;
         coupon_external_id?: string | null;
         credit_bundles: UpdateCreditBundleRequestBody.Raw[];
