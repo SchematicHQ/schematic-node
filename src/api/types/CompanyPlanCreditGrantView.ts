@@ -5,6 +5,7 @@ import type * as Schematic from "../index";
 export interface CompanyPlanCreditGrantView {
     billingCreditAutoTopupAmount?: number;
     billingCreditAutoTopupAmountType?: string;
+    billingCreditAutoTopupAvailability?: Schematic.BillingCreditAutoTopupAvailability;
     billingCreditAutoTopupEnabled: boolean;
     billingCreditAutoTopupExpiryType?: Schematic.BillingCreditExpiryType;
     billingCreditAutoTopupExpiryUnit?: Schematic.BillingCreditExpiryUnit;
@@ -12,6 +13,7 @@ export interface CompanyPlanCreditGrantView {
     billingCreditAutoTopupSelfService: boolean;
     billingCreditAutoTopupThresholdCredits?: number;
     billingCreditAutoTopupThresholdPercent?: number;
+    billingCreditCanBuyBundles: boolean;
     companyAutoTopupAmount?: number;
     companyAutoTopupEnabled?: boolean;
     companyAutoTopupThresholdCredits?: number;

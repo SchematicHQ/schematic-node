@@ -5,13 +5,18 @@ import type * as Schematic from "../index";
 export interface BillingPlanCreditGrantResponseData {
     autoTopupAmount?: number;
     autoTopupAmountType?: string;
+    autoTopupAvailability: Schematic.BillingCreditAutoTopupAvailability;
+    /** Derived from auto_topup_availability; use that instead. */
     autoTopupEnabled: boolean;
     autoTopupExpiryType?: Schematic.BillingCreditExpiryType;
     autoTopupExpiryUnit?: Schematic.BillingCreditExpiryUnit;
     autoTopupExpiryUnitCount?: number;
+    /** Derived from auto_topup_availability; use that instead. */
     autoTopupSelfService: boolean;
     autoTopupThresholdCredits?: number;
     autoTopupThresholdPercent?: number;
+    /** Whether buyers can purchase one-time credit bundles on this grant, independent of auto top-up availability. */
+    canBuyBundles: boolean;
     createdAt: Date;
     credit?: Schematic.BillingCreditResponseData;
     creditAmount: number;

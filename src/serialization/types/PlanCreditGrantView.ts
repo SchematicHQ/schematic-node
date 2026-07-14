@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { BillingCreditAutoTopupAvailability } from "./BillingCreditAutoTopupAvailability";
 import { BillingCreditExpiryType } from "./BillingCreditExpiryType";
 import { BillingCreditExpiryUnit } from "./BillingCreditExpiryUnit";
 import { BillingCreditView } from "./BillingCreditView";
@@ -22,6 +23,10 @@ export const PlanCreditGrantView: core.serialization.ObjectSchema<
     billingCreditAutoTopupAmountType: core.serialization.property(
         "billing_credit_auto_topup_amount_type",
         core.serialization.string().optional(),
+    ),
+    billingCreditAutoTopupAvailability: core.serialization.property(
+        "billing_credit_auto_topup_availability",
+        BillingCreditAutoTopupAvailability.optional(),
     ),
     billingCreditAutoTopupEnabled: core.serialization.property(
         "billing_credit_auto_topup_enabled",
@@ -51,6 +56,10 @@ export const PlanCreditGrantView: core.serialization.ObjectSchema<
         "billing_credit_auto_topup_threshold_percent",
         core.serialization.number().optional(),
     ),
+    billingCreditCanBuyBundles: core.serialization.property(
+        "billing_credit_can_buy_bundles",
+        core.serialization.boolean(),
+    ),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     credit: BillingCreditView.optional(),
     creditAmount: core.serialization.property("credit_amount", core.serialization.number()),
@@ -78,6 +87,7 @@ export declare namespace PlanCreditGrantView {
     export interface Raw {
         billing_credit_auto_topup_amount?: number | null;
         billing_credit_auto_topup_amount_type?: string | null;
+        billing_credit_auto_topup_availability?: BillingCreditAutoTopupAvailability.Raw | null;
         billing_credit_auto_topup_enabled: boolean;
         billing_credit_auto_topup_expiry_type?: BillingCreditExpiryType.Raw | null;
         billing_credit_auto_topup_expiry_unit?: BillingCreditExpiryUnit.Raw | null;
@@ -85,6 +95,7 @@ export declare namespace PlanCreditGrantView {
         billing_credit_auto_topup_self_service: boolean;
         billing_credit_auto_topup_threshold_credits?: number | null;
         billing_credit_auto_topup_threshold_percent?: number | null;
+        billing_credit_can_buy_bundles: boolean;
         created_at: string;
         credit?: BillingCreditView.Raw | null;
         credit_amount: number;

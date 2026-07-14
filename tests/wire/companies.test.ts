@@ -19,6 +19,7 @@ describe("CompaniesClient", () => {
                                 {
                                     billing_credit_auto_topup_enabled: true,
                                     billing_credit_auto_topup_self_service: true,
+                                    billing_credit_can_buy_bundles: true,
                                     created_at: "2024-01-15T09:30:00Z",
                                     credit_amount: 1000000,
                                     credit_description: "credit_description",
@@ -215,6 +216,7 @@ describe("CompaniesClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
+                                billing_credit_can_buy_bundles: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -341,6 +343,7 @@ describe("CompaniesClient", () => {
                                 {
                                     billingCreditAutoTopupEnabled: true,
                                     billingCreditAutoTopupSelfService: true,
+                                    billingCreditCanBuyBundles: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     creditAmount: 1000000,
                                     creditDescription: "credit_description",
@@ -545,6 +548,7 @@ describe("CompaniesClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
+                                billingCreditCanBuyBundles: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -723,6 +727,7 @@ describe("CompaniesClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
+                                billing_credit_can_buy_bundles: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -770,9 +775,11 @@ describe("CompaniesClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         currency: "currency",
                         customer_external_id: "customer_external_id",
+                        ending_balance: 1000000,
                         environment_id: "environment_id",
                         id: "id",
                         provider_type: "metronome",
+                        starting_balance: 1000000,
                         subtotal: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
@@ -966,6 +973,7 @@ describe("CompaniesClient", () => {
                         {
                             billing_credit_auto_topup_enabled: true,
                             billing_credit_auto_topup_self_service: true,
+                            billing_credit_can_buy_bundles: true,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_description: "credit_description",
@@ -1064,6 +1072,7 @@ describe("CompaniesClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
+                                billingCreditCanBuyBundles: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -1113,9 +1122,11 @@ describe("CompaniesClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currency: "currency",
                         customerExternalId: "customer_external_id",
+                        endingBalance: 1000000,
                         environmentId: "environment_id",
                         id: "id",
                         providerType: "metronome",
+                        startingBalance: 1000000,
                         subtotal: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
@@ -1317,6 +1328,7 @@ describe("CompaniesClient", () => {
                         {
                             billingCreditAutoTopupEnabled: true,
                             billingCreditAutoTopupSelfService: true,
+                            billingCreditCanBuyBundles: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditDescription: "credit_description",
@@ -1535,6 +1547,7 @@ describe("CompaniesClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
+                                billing_credit_can_buy_bundles: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -1582,9 +1595,11 @@ describe("CompaniesClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         currency: "currency",
                         customer_external_id: "customer_external_id",
+                        ending_balance: 1000000,
                         environment_id: "environment_id",
                         id: "id",
                         provider_type: "metronome",
+                        starting_balance: 1000000,
                         subtotal: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
@@ -1778,6 +1793,7 @@ describe("CompaniesClient", () => {
                         {
                             billing_credit_auto_topup_enabled: true,
                             billing_credit_auto_topup_self_service: true,
+                            billing_credit_can_buy_bundles: true,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_description: "credit_description",
@@ -1871,6 +1887,7 @@ describe("CompaniesClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
+                                billingCreditCanBuyBundles: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -1920,9 +1937,11 @@ describe("CompaniesClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currency: "currency",
                         customerExternalId: "customer_external_id",
+                        endingBalance: 1000000,
                         environmentId: "environment_id",
                         id: "id",
                         providerType: "metronome",
+                        startingBalance: 1000000,
                         subtotal: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
@@ -2124,6 +2143,7 @@ describe("CompaniesClient", () => {
                         {
                             billingCreditAutoTopupEnabled: true,
                             billingCreditAutoTopupSelfService: true,
+                            billingCreditCanBuyBundles: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditDescription: "credit_description",
@@ -2570,6 +2590,7 @@ describe("CompaniesClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
+                                billing_credit_can_buy_bundles: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -2617,9 +2638,11 @@ describe("CompaniesClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         currency: "currency",
                         customer_external_id: "customer_external_id",
+                        ending_balance: 1000000,
                         environment_id: "environment_id",
                         id: "id",
                         provider_type: "metronome",
+                        starting_balance: 1000000,
                         subtotal: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
@@ -2813,6 +2836,7 @@ describe("CompaniesClient", () => {
                         {
                             billing_credit_auto_topup_enabled: true,
                             billing_credit_auto_topup_self_service: true,
+                            billing_credit_can_buy_bundles: true,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_description: "credit_description",
@@ -2911,6 +2935,7 @@ describe("CompaniesClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
+                                billingCreditCanBuyBundles: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -2960,9 +2985,11 @@ describe("CompaniesClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currency: "currency",
                         customerExternalId: "customer_external_id",
+                        endingBalance: 1000000,
                         environmentId: "environment_id",
                         id: "id",
                         providerType: "metronome",
+                        startingBalance: 1000000,
                         subtotal: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
@@ -3164,6 +3191,7 @@ describe("CompaniesClient", () => {
                         {
                             billingCreditAutoTopupEnabled: true,
                             billingCreditAutoTopupSelfService: true,
+                            billingCreditCanBuyBundles: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditDescription: "credit_description",
@@ -3554,6 +3582,7 @@ describe("CompaniesClient", () => {
                             {
                                 billing_credit_auto_topup_amount: 1000000,
                                 billing_credit_auto_topup_amount_type: "billing_credit_auto_topup_amount_type",
+                                billing_credit_auto_topup_availability: "off",
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_expiry_type: "duration",
                                 billing_credit_auto_topup_expiry_unit: "billing_periods",
@@ -3561,6 +3590,7 @@ describe("CompaniesClient", () => {
                                 billing_credit_auto_topup_self_service: true,
                                 billing_credit_auto_topup_threshold_credits: 1000000,
                                 billing_credit_auto_topup_threshold_percent: 1000000,
+                                billing_credit_can_buy_bundles: true,
                                 company_auto_topup_amount: 1000000,
                                 company_auto_topup_enabled: true,
                                 company_auto_topup_threshold_credits: 1000000,
@@ -3642,6 +3672,7 @@ describe("CompaniesClient", () => {
                             {
                                 billing_credit_auto_topup_amount: 1000000,
                                 billing_credit_auto_topup_amount_type: "billing_credit_auto_topup_amount_type",
+                                billing_credit_auto_topup_availability: "off",
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_expiry_type: "duration",
                                 billing_credit_auto_topup_expiry_unit: "billing_periods",
@@ -3649,6 +3680,7 @@ describe("CompaniesClient", () => {
                                 billing_credit_auto_topup_self_service: true,
                                 billing_credit_auto_topup_threshold_credits: 1000000,
                                 billing_credit_auto_topup_threshold_percent: 1000000,
+                                billing_credit_can_buy_bundles: true,
                                 company_auto_topup_amount: 1000000,
                                 company_auto_topup_enabled: true,
                                 company_auto_topup_threshold_credits: 1000000,
@@ -3744,6 +3776,7 @@ describe("CompaniesClient", () => {
                             {
                                 billing_credit_auto_topup_amount: 1000000,
                                 billing_credit_auto_topup_amount_type: "billing_credit_auto_topup_amount_type",
+                                billing_credit_auto_topup_availability: "off",
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_expiry_type: "duration",
                                 billing_credit_auto_topup_expiry_unit: "billing_periods",
@@ -3751,6 +3784,7 @@ describe("CompaniesClient", () => {
                                 billing_credit_auto_topup_self_service: true,
                                 billing_credit_auto_topup_threshold_credits: 1000000,
                                 billing_credit_auto_topup_threshold_percent: 1000000,
+                                billing_credit_can_buy_bundles: true,
                                 company_auto_topup_amount: 1000000,
                                 company_auto_topup_enabled: true,
                                 company_auto_topup_threshold_credits: 1000000,
@@ -3832,6 +3866,7 @@ describe("CompaniesClient", () => {
                             {
                                 billing_credit_auto_topup_amount: 1000000,
                                 billing_credit_auto_topup_amount_type: "billing_credit_auto_topup_amount_type",
+                                billing_credit_auto_topup_availability: "off",
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_expiry_type: "duration",
                                 billing_credit_auto_topup_expiry_unit: "billing_periods",
@@ -3839,6 +3874,7 @@ describe("CompaniesClient", () => {
                                 billing_credit_auto_topup_self_service: true,
                                 billing_credit_auto_topup_threshold_credits: 1000000,
                                 billing_credit_auto_topup_threshold_percent: 1000000,
+                                billing_credit_can_buy_bundles: true,
                                 company_auto_topup_amount: 1000000,
                                 company_auto_topup_enabled: true,
                                 company_auto_topup_threshold_credits: 1000000,
@@ -3981,11 +4017,13 @@ describe("CompaniesClient", () => {
                         currency: "currency",
                         customer_external_id: "customer_external_id",
                         due_date: "2024-01-15T09:30:00Z",
+                        ending_balance: 1000000,
                         environment_id: "environment_id",
                         external_id: "external_id",
                         id: "id",
                         payment_method_external_id: "payment_method_external_id",
                         provider_type: "metronome",
+                        starting_balance: 1000000,
                         status: "draft",
                         subscription_external_id: "subscription_external_id",
                         subtotal: 1000000,
@@ -4157,11 +4195,13 @@ describe("CompaniesClient", () => {
                             currency: "currency",
                             customer_external_id: "customer_external_id",
                             due_date: "2024-01-15T09:30:00Z",
+                            ending_balance: 1000000,
                             environment_id: "environment_id",
                             external_id: "external_id",
                             id: "id",
                             payment_method_external_id: "payment_method_external_id",
                             provider_type: "metronome",
+                            starting_balance: 1000000,
                             status: "draft",
                             subscription_external_id: "subscription_external_id",
                             subtotal: 1000000,
@@ -4332,11 +4372,13 @@ describe("CompaniesClient", () => {
                             currency: "currency",
                             customer_external_id: "customer_external_id",
                             due_date: "2024-01-15T09:30:00Z",
+                            ending_balance: 1000000,
                             environment_id: "environment_id",
                             external_id: "external_id",
                             id: "id",
                             payment_method_external_id: "payment_method_external_id",
                             provider_type: "metronome",
+                            starting_balance: 1000000,
                             status: "draft",
                             subscription_external_id: "subscription_external_id",
                             subtotal: 1000000,
@@ -4705,6 +4747,7 @@ describe("CompaniesClient", () => {
                         {
                             billing_credit_auto_topup_amount: 1000000,
                             billing_credit_auto_topup_amount_type: "billing_credit_auto_topup_amount_type",
+                            billing_credit_auto_topup_availability: "off",
                             billing_credit_auto_topup_enabled: true,
                             billing_credit_auto_topup_expiry_type: "duration",
                             billing_credit_auto_topup_expiry_unit: "billing_periods",
@@ -4712,6 +4755,7 @@ describe("CompaniesClient", () => {
                             billing_credit_auto_topup_self_service: true,
                             billing_credit_auto_topup_threshold_credits: 1000000,
                             billing_credit_auto_topup_threshold_percent: 1000000,
+                            billing_credit_can_buy_bundles: true,
                             company_auto_topup_amount: 1000000,
                             company_auto_topup_enabled: true,
                             company_auto_topup_threshold_credits: 1000000,
@@ -4793,6 +4837,7 @@ describe("CompaniesClient", () => {
                         {
                             billing_credit_auto_topup_amount: 1000000,
                             billing_credit_auto_topup_amount_type: "billing_credit_auto_topup_amount_type",
+                            billing_credit_auto_topup_availability: "off",
                             billing_credit_auto_topup_enabled: true,
                             billing_credit_auto_topup_expiry_type: "duration",
                             billing_credit_auto_topup_expiry_unit: "billing_periods",
@@ -4800,6 +4845,7 @@ describe("CompaniesClient", () => {
                             billing_credit_auto_topup_self_service: true,
                             billing_credit_auto_topup_threshold_credits: 1000000,
                             billing_credit_auto_topup_threshold_percent: 1000000,
+                            billing_credit_can_buy_bundles: true,
                             company_auto_topup_amount: 1000000,
                             company_auto_topup_enabled: true,
                             company_auto_topup_threshold_credits: 1000000,
@@ -5227,6 +5273,7 @@ describe("CompaniesClient", () => {
                             {
                                 billingCreditAutoTopupAmount: 1000000,
                                 billingCreditAutoTopupAmountType: "billing_credit_auto_topup_amount_type",
+                                billingCreditAutoTopupAvailability: "off",
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupExpiryType: "duration",
                                 billingCreditAutoTopupExpiryUnit: "billing_periods",
@@ -5234,6 +5281,7 @@ describe("CompaniesClient", () => {
                                 billingCreditAutoTopupSelfService: true,
                                 billingCreditAutoTopupThresholdCredits: 1000000,
                                 billingCreditAutoTopupThresholdPercent: 1000000,
+                                billingCreditCanBuyBundles: true,
                                 companyAutoTopupAmount: 1000000,
                                 companyAutoTopupEnabled: true,
                                 companyAutoTopupThresholdCredits: 1000000,
@@ -5327,6 +5375,7 @@ describe("CompaniesClient", () => {
                             {
                                 billingCreditAutoTopupAmount: 1000000,
                                 billingCreditAutoTopupAmountType: "billing_credit_auto_topup_amount_type",
+                                billingCreditAutoTopupAvailability: "off",
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupExpiryType: "duration",
                                 billingCreditAutoTopupExpiryUnit: "billing_periods",
@@ -5334,6 +5383,7 @@ describe("CompaniesClient", () => {
                                 billingCreditAutoTopupSelfService: true,
                                 billingCreditAutoTopupThresholdCredits: 1000000,
                                 billingCreditAutoTopupThresholdPercent: 1000000,
+                                billingCreditCanBuyBundles: true,
                                 companyAutoTopupAmount: 1000000,
                                 companyAutoTopupEnabled: true,
                                 companyAutoTopupThresholdCredits: 1000000,
@@ -5441,6 +5491,7 @@ describe("CompaniesClient", () => {
                             {
                                 billingCreditAutoTopupAmount: 1000000,
                                 billingCreditAutoTopupAmountType: "billing_credit_auto_topup_amount_type",
+                                billingCreditAutoTopupAvailability: "off",
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupExpiryType: "duration",
                                 billingCreditAutoTopupExpiryUnit: "billing_periods",
@@ -5448,6 +5499,7 @@ describe("CompaniesClient", () => {
                                 billingCreditAutoTopupSelfService: true,
                                 billingCreditAutoTopupThresholdCredits: 1000000,
                                 billingCreditAutoTopupThresholdPercent: 1000000,
+                                billingCreditCanBuyBundles: true,
                                 companyAutoTopupAmount: 1000000,
                                 companyAutoTopupEnabled: true,
                                 companyAutoTopupThresholdCredits: 1000000,
@@ -5541,6 +5593,7 @@ describe("CompaniesClient", () => {
                             {
                                 billingCreditAutoTopupAmount: 1000000,
                                 billingCreditAutoTopupAmountType: "billing_credit_auto_topup_amount_type",
+                                billingCreditAutoTopupAvailability: "off",
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupExpiryType: "duration",
                                 billingCreditAutoTopupExpiryUnit: "billing_periods",
@@ -5548,6 +5601,7 @@ describe("CompaniesClient", () => {
                                 billingCreditAutoTopupSelfService: true,
                                 billingCreditAutoTopupThresholdCredits: 1000000,
                                 billingCreditAutoTopupThresholdPercent: 1000000,
+                                billingCreditCanBuyBundles: true,
                                 companyAutoTopupAmount: 1000000,
                                 companyAutoTopupEnabled: true,
                                 companyAutoTopupThresholdCredits: 1000000,
@@ -5704,11 +5758,13 @@ describe("CompaniesClient", () => {
                         currency: "currency",
                         customerExternalId: "customer_external_id",
                         dueDate: new Date("2024-01-15T09:30:00.000Z"),
+                        endingBalance: 1000000,
                         environmentId: "environment_id",
                         externalId: "external_id",
                         id: "id",
                         paymentMethodExternalId: "payment_method_external_id",
                         providerType: "metronome",
+                        startingBalance: 1000000,
                         status: "draft",
                         subscriptionExternalId: "subscription_external_id",
                         subtotal: 1000000,
@@ -5884,11 +5940,13 @@ describe("CompaniesClient", () => {
                             currency: "currency",
                             customerExternalId: "customer_external_id",
                             dueDate: new Date("2024-01-15T09:30:00.000Z"),
+                            endingBalance: 1000000,
                             environmentId: "environment_id",
                             externalId: "external_id",
                             id: "id",
                             paymentMethodExternalId: "payment_method_external_id",
                             providerType: "metronome",
+                            startingBalance: 1000000,
                             status: "draft",
                             subscriptionExternalId: "subscription_external_id",
                             subtotal: 1000000,
@@ -6063,11 +6121,13 @@ describe("CompaniesClient", () => {
                             currency: "currency",
                             customerExternalId: "customer_external_id",
                             dueDate: new Date("2024-01-15T09:30:00.000Z"),
+                            endingBalance: 1000000,
                             environmentId: "environment_id",
                             externalId: "external_id",
                             id: "id",
                             paymentMethodExternalId: "payment_method_external_id",
                             providerType: "metronome",
+                            startingBalance: 1000000,
                             status: "draft",
                             subscriptionExternalId: "subscription_external_id",
                             subtotal: 1000000,
@@ -6440,6 +6500,7 @@ describe("CompaniesClient", () => {
                         {
                             billingCreditAutoTopupAmount: 1000000,
                             billingCreditAutoTopupAmountType: "billing_credit_auto_topup_amount_type",
+                            billingCreditAutoTopupAvailability: "off",
                             billingCreditAutoTopupEnabled: true,
                             billingCreditAutoTopupExpiryType: "duration",
                             billingCreditAutoTopupExpiryUnit: "billing_periods",
@@ -6447,6 +6508,7 @@ describe("CompaniesClient", () => {
                             billingCreditAutoTopupSelfService: true,
                             billingCreditAutoTopupThresholdCredits: 1000000,
                             billingCreditAutoTopupThresholdPercent: 1000000,
+                            billingCreditCanBuyBundles: true,
                             companyAutoTopupAmount: 1000000,
                             companyAutoTopupEnabled: true,
                             companyAutoTopupThresholdCredits: 1000000,
@@ -6540,6 +6602,7 @@ describe("CompaniesClient", () => {
                         {
                             billingCreditAutoTopupAmount: 1000000,
                             billingCreditAutoTopupAmountType: "billing_credit_auto_topup_amount_type",
+                            billingCreditAutoTopupAvailability: "off",
                             billingCreditAutoTopupEnabled: true,
                             billingCreditAutoTopupExpiryType: "duration",
                             billingCreditAutoTopupExpiryUnit: "billing_periods",
@@ -6547,6 +6610,7 @@ describe("CompaniesClient", () => {
                             billingCreditAutoTopupSelfService: true,
                             billingCreditAutoTopupThresholdCredits: 1000000,
                             billingCreditAutoTopupThresholdPercent: 1000000,
+                            billingCreditCanBuyBundles: true,
                             companyAutoTopupAmount: 1000000,
                             companyAutoTopupEnabled: true,
                             companyAutoTopupThresholdCredits: 1000000,
@@ -7100,6 +7164,438 @@ describe("CompaniesClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("getCompanyBillingEntity (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    billing_entity: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        environment_id: "environment_id",
+                        id: "id",
+                        name: "name",
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
+                    has_own_stripe_customer: true,
+                },
+            ],
+            params: { company_id: "company_id" },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/company-billing-entity")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.companies.getCompanyBillingEntity({
+            companyId: "company_id",
+        });
+        expect(response).toEqual({
+            data: [
+                {
+                    billingEntity: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        environmentId: "environment_id",
+                        id: "id",
+                        name: "name",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                    hasOwnStripeCustomer: true,
+                },
+            ],
+            params: {
+                companyId: "company_id",
+            },
+        });
+    });
+
+    test("getCompanyBillingEntity (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/company-billing-entity")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.getCompanyBillingEntity();
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("getCompanyBillingEntity (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/company-billing-entity")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.getCompanyBillingEntity();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getCompanyBillingEntity (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/company-billing-entity")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.getCompanyBillingEntity();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getCompanyBillingEntity (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/company-billing-entity")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.getCompanyBillingEntity();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getCompanyBillingEntity (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/company-billing-entity")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.getCompanyBillingEntity();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("getBillingEntityChildSubscriptions (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    cancel_at: "2024-01-15T09:30:00Z",
+                    cancel_at_period_end: true,
+                    company: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        environment_id: "environment_id",
+                        id: "id",
+                        name: "name",
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
+                    currency: "currency",
+                    customer_external_id: "customer_external_id",
+                    discounts: [
+                        {
+                            coupon_id: "coupon_id",
+                            coupon_name: "coupon_name",
+                            discount_external_id: "discount_external_id",
+                            duration: "duration",
+                            is_active: true,
+                            started_at: "2024-01-15T09:30:00Z",
+                            subscription_external_id: "subscription_external_id",
+                        },
+                    ],
+                    expired_at: "2024-01-15T09:30:00Z",
+                    interval: "interval",
+                    is_initial: true,
+                    latest_invoice: {
+                        amount_due: 1000000,
+                        amount_paid: 1000000,
+                        amount_remaining: 1000000,
+                        collection_method: "collection_method",
+                        created_at: "2024-01-15T09:30:00Z",
+                        currency: "currency",
+                        customer_external_id: "customer_external_id",
+                        ending_balance: 1000000,
+                        environment_id: "environment_id",
+                        id: "id",
+                        provider_type: "metronome",
+                        starting_balance: 1000000,
+                        subtotal: 1000000,
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
+                    payment_method: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        customer_external_id: "customer_external_id",
+                        environment_id: "environment_id",
+                        external_id: "external_id",
+                        id: "id",
+                        payment_method_type: "payment_method_type",
+                        provider_type: "metronome",
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
+                    plan_name: "plan_name",
+                    products: [
+                        {
+                            billing_scheme: "per_unit",
+                            created_at: "2024-01-15T09:30:00Z",
+                            currency: "currency",
+                            environment_id: "environment_id",
+                            external_id: "external_id",
+                            id: "id",
+                            interval: "interval",
+                            name: "name",
+                            package_size: 1000000,
+                            price: 1000000,
+                            price_external_id: "price_external_id",
+                            price_id: "price_id",
+                            price_tier: [{}],
+                            provider_type: "metronome",
+                            quantity: 1.1,
+                            subscription_id: "subscription_id",
+                            updated_at: "2024-01-15T09:30:00Z",
+                            usage_type: "licensed",
+                        },
+                    ],
+                    provider_type: "metronome",
+                    status: "status",
+                    subscription_external_id: "subscription_external_id",
+                    total_price: 1000000,
+                    trial_end: "2024-01-15T09:30:00Z",
+                },
+            ],
+            params: { company_id: "company_id" },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/company-billing-entity-subscriptions")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.companies.getBillingEntityChildSubscriptions({
+            companyId: "company_id",
+        });
+        expect(response).toEqual({
+            data: [
+                {
+                    cancelAt: new Date("2024-01-15T09:30:00.000Z"),
+                    cancelAtPeriodEnd: true,
+                    company: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        environmentId: "environment_id",
+                        id: "id",
+                        name: "name",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                    currency: "currency",
+                    customerExternalId: "customer_external_id",
+                    discounts: [
+                        {
+                            couponId: "coupon_id",
+                            couponName: "coupon_name",
+                            discountExternalId: "discount_external_id",
+                            duration: "duration",
+                            isActive: true,
+                            startedAt: new Date("2024-01-15T09:30:00.000Z"),
+                            subscriptionExternalId: "subscription_external_id",
+                        },
+                    ],
+                    expiredAt: new Date("2024-01-15T09:30:00.000Z"),
+                    interval: "interval",
+                    isInitial: true,
+                    latestInvoice: {
+                        amountDue: 1000000,
+                        amountPaid: 1000000,
+                        amountRemaining: 1000000,
+                        collectionMethod: "collection_method",
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        currency: "currency",
+                        customerExternalId: "customer_external_id",
+                        endingBalance: 1000000,
+                        environmentId: "environment_id",
+                        id: "id",
+                        providerType: "metronome",
+                        startingBalance: 1000000,
+                        subtotal: 1000000,
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                    paymentMethod: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        customerExternalId: "customer_external_id",
+                        environmentId: "environment_id",
+                        externalId: "external_id",
+                        id: "id",
+                        paymentMethodType: "payment_method_type",
+                        providerType: "metronome",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                    planName: "plan_name",
+                    products: [
+                        {
+                            billingScheme: "per_unit",
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            currency: "currency",
+                            environmentId: "environment_id",
+                            externalId: "external_id",
+                            id: "id",
+                            interval: "interval",
+                            name: "name",
+                            packageSize: 1000000,
+                            price: 1000000,
+                            priceExternalId: "price_external_id",
+                            priceId: "price_id",
+                            priceTier: [{}],
+                            providerType: "metronome",
+                            quantity: 1.1,
+                            subscriptionId: "subscription_id",
+                            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                            usageType: "licensed",
+                        },
+                    ],
+                    providerType: "metronome",
+                    status: "status",
+                    subscriptionExternalId: "subscription_external_id",
+                    totalPrice: 1000000,
+                    trialEnd: new Date("2024-01-15T09:30:00.000Z"),
+                },
+            ],
+            params: {
+                companyId: "company_id",
+            },
+        });
+    });
+
+    test("getBillingEntityChildSubscriptions (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/company-billing-entity-subscriptions")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.getBillingEntityChildSubscriptions();
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("getBillingEntityChildSubscriptions (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/company-billing-entity-subscriptions")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.getBillingEntityChildSubscriptions();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getBillingEntityChildSubscriptions (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/company-billing-entity-subscriptions")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.getBillingEntityChildSubscriptions();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getBillingEntityChildSubscriptions (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/company-billing-entity-subscriptions")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.getBillingEntityChildSubscriptions();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getBillingEntityChildSubscriptions (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/company-billing-entity-subscriptions")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.getBillingEntityChildSubscriptions();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("listCompanyMemberships (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -7587,9 +8083,11 @@ describe("CompaniesClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         currency: "currency",
                         customer_external_id: "customer_external_id",
+                        ending_balance: 1000000,
                         environment_id: "environment_id",
                         id: "id",
                         provider_type: "metronome",
+                        starting_balance: 1000000,
                         subtotal: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
@@ -7678,9 +8176,11 @@ describe("CompaniesClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currency: "currency",
                         customerExternalId: "customer_external_id",
+                        endingBalance: 1000000,
                         environmentId: "environment_id",
                         id: "id",
                         providerType: "metronome",
+                        startingBalance: 1000000,
                         subtotal: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
@@ -7840,6 +8340,7 @@ describe("CompaniesClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
+                                billing_credit_can_buy_bundles: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -7887,9 +8388,11 @@ describe("CompaniesClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         currency: "currency",
                         customer_external_id: "customer_external_id",
+                        ending_balance: 1000000,
                         environment_id: "environment_id",
                         id: "id",
                         provider_type: "metronome",
+                        starting_balance: 1000000,
                         subtotal: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
@@ -8083,6 +8586,7 @@ describe("CompaniesClient", () => {
                         {
                             billing_credit_auto_topup_enabled: true,
                             billing_credit_auto_topup_self_service: true,
+                            billing_credit_can_buy_bundles: true,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_description: "credit_description",
@@ -8182,6 +8686,7 @@ describe("CompaniesClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
+                                billingCreditCanBuyBundles: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -8231,9 +8736,11 @@ describe("CompaniesClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currency: "currency",
                         customerExternalId: "customer_external_id",
+                        endingBalance: 1000000,
                         environmentId: "environment_id",
                         id: "id",
                         providerType: "metronome",
+                        startingBalance: 1000000,
                         subtotal: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
@@ -8435,6 +8942,7 @@ describe("CompaniesClient", () => {
                         {
                             billingCreditAutoTopupEnabled: true,
                             billingCreditAutoTopupSelfService: true,
+                            billingCreditCanBuyBundles: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditDescription: "credit_description",

@@ -8,6 +8,7 @@ export interface IntegrationsListResponseData {
     id: string;
     isAppInstall: boolean;
     isConnectInstall: boolean;
+    lastWebhookReceivedAt?: Date;
     state: Schematic.IntegrationState;
     type: Schematic.IntegrationType;
 }

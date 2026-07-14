@@ -2,7 +2,9 @@
 
 export const BillingPlanCreditGrantResetCadence = {
     Daily: "daily",
+    Every6Months: "every_6_months",
     Monthly: "monthly",
+    Quarterly: "quarterly",
     Weekly: "weekly",
     Yearly: "yearly",
 } as const;

@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { BillingCreditResponseData } from "./BillingCreditResponseData";
 import { BillingLinkedResourceResponseData } from "./BillingLinkedResourceResponseData";
 import { BillingPriceResponseData } from "./BillingPriceResponseData";
 import { BillingProductDetailResponseData } from "./BillingProductDetailResponseData";
@@ -35,6 +36,7 @@ export const PlanViewPublicResponseData: core.serialization.ObjectSchema<
     chargeType: core.serialization.property("charge_type", ChargeType),
     companyCount: core.serialization.property("company_count", core.serialization.number()),
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
+    companyLogoUrl: core.serialization.property("company_logo_url", core.serialization.string().optional()),
     companyName: core.serialization.property("company_name", core.serialization.string().optional()),
     compatiblePlanIds: core.serialization.property(
         "compatible_plan_ids",
@@ -43,6 +45,7 @@ export const PlanViewPublicResponseData: core.serialization.ObjectSchema<
     controlledBy: core.serialization.property("controlled_by", BillingProviderType),
     copiedFromPlanId: core.serialization.property("copied_from_plan_id", core.serialization.string().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
+    credits: core.serialization.list(BillingCreditResponseData),
     currencyPrices: core.serialization.property(
         "currency_prices",
         core.serialization.list(PlanCurrencyPricesResponseData),
@@ -85,11 +88,13 @@ export declare namespace PlanViewPublicResponseData {
         charge_type: ChargeType.Raw;
         company_count: number;
         company_id?: string | null;
+        company_logo_url?: string | null;
         company_name?: string | null;
         compatible_plan_ids: string[];
         controlled_by: BillingProviderType.Raw;
         copied_from_plan_id?: string | null;
         created_at: string;
+        credits: BillingCreditResponseData.Raw[];
         currency_prices: PlanCurrencyPricesResponseData.Raw[];
         custom: boolean;
         custom_plan_config?: CustomPlanConfig.Raw | null;

@@ -22,8 +22,10 @@ export interface CreateInvoiceRequestBody {
     currency: string;
     customerExternalId: string;
     dueDate?: Date;
+    endingBalance?: number;
     externalId?: string;
     paymentMethodExternalId?: string;
+    startingBalance?: number;
     status?: Schematic.InvoiceStatus;
     subscriptionExternalId?: string;
     subtotal: number;

@@ -15,6 +15,7 @@ import { FeatureResponseData } from "./FeatureResponseData";
 import { MetricPeriod } from "./MetricPeriod";
 import { MetricPeriodMonthReset } from "./MetricPeriodMonthReset";
 import { PlanResponseData } from "./PlanResponseData";
+import { WarningTierResponseData } from "./WarningTierResponseData";
 
 export const PlanEntitlementResponseData: core.serialization.ObjectSchema<
     serializers.PlanEntitlementResponseData.Raw,
@@ -55,6 +56,7 @@ export const PlanEntitlementResponseData: core.serialization.ObjectSchema<
     valueTrait: core.serialization.property("value_trait", EntityTraitDefinitionResponseData.optional()),
     valueTraitId: core.serialization.property("value_trait_id", core.serialization.string().optional()),
     valueType: core.serialization.property("value_type", EntitlementValueType),
+    warningTiers: core.serialization.property("warning_tiers", core.serialization.list(WarningTierResponseData)),
 });
 
 export declare namespace PlanEntitlementResponseData {
@@ -88,5 +90,6 @@ export declare namespace PlanEntitlementResponseData {
         value_trait?: EntityTraitDefinitionResponseData.Raw | null;
         value_trait_id?: string | null;
         value_type: EntitlementValueType.Raw;
+        warning_tiers: WarningTierResponseData.Raw[];
     }
 }

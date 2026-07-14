@@ -20,6 +20,20 @@ describe("PlangroupsClient", () => {
                         compatible_plan_ids: ["compatible_plan_ids"],
                         controlled_by: "metronome",
                         created_at: "2024-01-15T09:30:00Z",
+                        credits: [
+                            {
+                                burn_strategy: "expiration_priority",
+                                cost_editable: true,
+                                created_at: "2024-01-15T09:30:00Z",
+                                currency_prices: [{ currency: "currency" }],
+                                default_expiry_unit: "billing_periods",
+                                default_rollover_policy: "expire",
+                                description: "description",
+                                id: "id",
+                                name: "name",
+                                updated_at: "2024-01-15T09:30:00Z",
+                            },
+                        ],
                         currency_prices: [{ currency: "currency" }],
                         description: "description",
                         features: [
@@ -200,11 +214,26 @@ describe("PlangroupsClient", () => {
                     charge_type: "free",
                     company_count: 1000000,
                     company_id: "company_id",
+                    company_logo_url: "company_logo_url",
                     company_name: "company_name",
                     compatible_plan_ids: ["compatible_plan_ids"],
                     controlled_by: "metronome",
                     copied_from_plan_id: "copied_from_plan_id",
                     created_at: "2024-01-15T09:30:00Z",
+                    credits: [
+                        {
+                            burn_strategy: "expiration_priority",
+                            cost_editable: true,
+                            created_at: "2024-01-15T09:30:00Z",
+                            currency_prices: [{ currency: "currency" }],
+                            default_expiry_unit: "billing_periods",
+                            default_rollover_policy: "expire",
+                            description: "description",
+                            id: "id",
+                            name: "name",
+                            updated_at: "2024-01-15T09:30:00Z",
+                        },
+                    ],
                     currency_prices: [{ currency: "currency" }],
                     custom_plan_config: {
                         cta_text: "cta_text",
@@ -235,6 +264,7 @@ describe("PlangroupsClient", () => {
                             rule_id: "rule_id",
                             updated_at: "2024-01-15T09:30:00Z",
                             value_type: "boolean",
+                            warning_tiers: [{ id: "id", key: "key", value: 1000000 }],
                         },
                     ],
                     features: [
@@ -314,8 +344,10 @@ describe("PlangroupsClient", () => {
                     id: "id",
                     included_credit_grants: [
                         {
+                            auto_topup_availability: "off",
                             auto_topup_enabled: true,
                             auto_topup_self_service: true,
+                            can_buy_bundles: true,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_id: "credit_id",
@@ -439,11 +471,26 @@ describe("PlangroupsClient", () => {
                     charge_type: "free",
                     company_count: 1000000,
                     company_id: "company_id",
+                    company_logo_url: "company_logo_url",
                     company_name: "company_name",
                     compatible_plan_ids: ["compatible_plan_ids"],
                     controlled_by: "metronome",
                     copied_from_plan_id: "copied_from_plan_id",
                     created_at: "2024-01-15T09:30:00Z",
+                    credits: [
+                        {
+                            burn_strategy: "expiration_priority",
+                            cost_editable: true,
+                            created_at: "2024-01-15T09:30:00Z",
+                            currency_prices: [{ currency: "currency" }],
+                            default_expiry_unit: "billing_periods",
+                            default_rollover_policy: "expire",
+                            description: "description",
+                            id: "id",
+                            name: "name",
+                            updated_at: "2024-01-15T09:30:00Z",
+                        },
+                    ],
                     currency_prices: [{ currency: "currency" }],
                     custom_plan_config: {
                         cta_text: "cta_text",
@@ -474,6 +521,7 @@ describe("PlangroupsClient", () => {
                             rule_id: "rule_id",
                             updated_at: "2024-01-15T09:30:00Z",
                             value_type: "boolean",
+                            warning_tiers: [{ id: "id", key: "key", value: 1000000 }],
                         },
                     ],
                     features: [
@@ -553,8 +601,10 @@ describe("PlangroupsClient", () => {
                     id: "id",
                     included_credit_grants: [
                         {
+                            auto_topup_availability: "off",
                             auto_topup_enabled: true,
                             auto_topup_self_service: true,
+                            can_buy_bundles: true,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_id: "credit_id",
@@ -680,11 +730,26 @@ describe("PlangroupsClient", () => {
                     charge_type: "free",
                     company_count: 1000000,
                     company_id: "company_id",
+                    company_logo_url: "company_logo_url",
                     company_name: "company_name",
                     compatible_plan_ids: ["compatible_plan_ids"],
                     controlled_by: "metronome",
                     copied_from_plan_id: "copied_from_plan_id",
                     created_at: "2024-01-15T09:30:00Z",
+                    credits: [
+                        {
+                            burn_strategy: "expiration_priority",
+                            cost_editable: true,
+                            created_at: "2024-01-15T09:30:00Z",
+                            currency_prices: [{ currency: "currency" }],
+                            default_expiry_unit: "billing_periods",
+                            default_rollover_policy: "expire",
+                            description: "description",
+                            id: "id",
+                            name: "name",
+                            updated_at: "2024-01-15T09:30:00Z",
+                        },
+                    ],
                     currency_prices: [{ currency: "currency" }],
                     custom_plan_config: {
                         cta_text: "cta_text",
@@ -715,6 +780,7 @@ describe("PlangroupsClient", () => {
                             rule_id: "rule_id",
                             updated_at: "2024-01-15T09:30:00Z",
                             value_type: "boolean",
+                            warning_tiers: [{ id: "id", key: "key", value: 1000000 }],
                         },
                     ],
                     features: [
@@ -794,8 +860,10 @@ describe("PlangroupsClient", () => {
                     id: "id",
                     included_credit_grants: [
                         {
+                            auto_topup_availability: "off",
                             auto_topup_enabled: true,
                             auto_topup_self_service: true,
+                            can_buy_bundles: true,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_id: "credit_id",
@@ -910,6 +978,20 @@ describe("PlangroupsClient", () => {
                         compatible_plan_ids: ["compatible_plan_ids"],
                         controlled_by: "metronome",
                         created_at: "2024-01-15T09:30:00Z",
+                        credits: [
+                            {
+                                burn_strategy: "expiration_priority",
+                                cost_editable: true,
+                                created_at: "2024-01-15T09:30:00Z",
+                                currency_prices: [{ currency: "currency" }],
+                                default_expiry_unit: "billing_periods",
+                                default_rollover_policy: "expire",
+                                description: "description",
+                                id: "id",
+                                name: "name",
+                                updated_at: "2024-01-15T09:30:00Z",
+                            },
+                        ],
                         currency_prices: [{ currency: "currency" }],
                         description: "description",
                         features: [
@@ -1073,11 +1155,26 @@ describe("PlangroupsClient", () => {
                     charge_type: "free",
                     company_count: 1000000,
                     company_id: "company_id",
+                    company_logo_url: "company_logo_url",
                     company_name: "company_name",
                     compatible_plan_ids: ["compatible_plan_ids"],
                     controlled_by: "metronome",
                     copied_from_plan_id: "copied_from_plan_id",
                     created_at: "2024-01-15T09:30:00Z",
+                    credits: [
+                        {
+                            burn_strategy: "expiration_priority",
+                            cost_editable: true,
+                            created_at: "2024-01-15T09:30:00Z",
+                            currency_prices: [{ currency: "currency" }],
+                            default_expiry_unit: "billing_periods",
+                            default_rollover_policy: "expire",
+                            description: "description",
+                            id: "id",
+                            name: "name",
+                            updated_at: "2024-01-15T09:30:00Z",
+                        },
+                    ],
                     currency_prices: [{ currency: "currency" }],
                     custom_plan_config: {
                         cta_text: "cta_text",
@@ -1108,6 +1205,7 @@ describe("PlangroupsClient", () => {
                             rule_id: "rule_id",
                             updated_at: "2024-01-15T09:30:00Z",
                             value_type: "boolean",
+                            warning_tiers: [{ id: "id", key: "key", value: 1000000 }],
                         },
                     ],
                     features: [
@@ -1187,8 +1285,10 @@ describe("PlangroupsClient", () => {
                     id: "id",
                     included_credit_grants: [
                         {
+                            auto_topup_availability: "off",
                             auto_topup_enabled: true,
                             auto_topup_self_service: true,
+                            can_buy_bundles: true,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_id: "credit_id",
@@ -1312,6 +1412,24 @@ describe("PlangroupsClient", () => {
                         compatiblePlanIds: ["compatible_plan_ids"],
                         controlledBy: "metronome",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        credits: [
+                            {
+                                burnStrategy: "expiration_priority",
+                                costEditable: true,
+                                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                currencyPrices: [
+                                    {
+                                        currency: "currency",
+                                    },
+                                ],
+                                defaultExpiryUnit: "billing_periods",
+                                defaultRolloverPolicy: "expire",
+                                description: "description",
+                                id: "id",
+                                name: "name",
+                                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                            },
+                        ],
                         currencyPrices: [
                             {
                                 currency: "currency",
@@ -1515,11 +1633,30 @@ describe("PlangroupsClient", () => {
                     chargeType: "free",
                     companyCount: 1000000,
                     companyId: "company_id",
+                    companyLogoUrl: "company_logo_url",
                     companyName: "company_name",
                     compatiblePlanIds: ["compatible_plan_ids"],
                     controlledBy: "metronome",
                     copiedFromPlanId: "copied_from_plan_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    credits: [
+                        {
+                            burnStrategy: "expiration_priority",
+                            costEditable: true,
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            currencyPrices: [
+                                {
+                                    currency: "currency",
+                                },
+                            ],
+                            defaultExpiryUnit: "billing_periods",
+                            defaultRolloverPolicy: "expire",
+                            description: "description",
+                            id: "id",
+                            name: "name",
+                            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        },
+                    ],
                     currencyPrices: [
                         {
                             currency: "currency",
@@ -1558,6 +1695,13 @@ describe("PlangroupsClient", () => {
                             ruleId: "rule_id",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             valueType: "boolean",
+                            warningTiers: [
+                                {
+                                    id: "id",
+                                    key: "key",
+                                    value: 1000000,
+                                },
+                            ],
                         },
                     ],
                     features: [
@@ -1652,8 +1796,10 @@ describe("PlangroupsClient", () => {
                     id: "id",
                     includedCreditGrants: [
                         {
+                            autoTopupAvailability: "off",
                             autoTopupEnabled: true,
                             autoTopupSelfService: true,
+                            canBuyBundles: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditId: "credit_id",
@@ -1777,11 +1923,30 @@ describe("PlangroupsClient", () => {
                     chargeType: "free",
                     companyCount: 1000000,
                     companyId: "company_id",
+                    companyLogoUrl: "company_logo_url",
                     companyName: "company_name",
                     compatiblePlanIds: ["compatible_plan_ids"],
                     controlledBy: "metronome",
                     copiedFromPlanId: "copied_from_plan_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    credits: [
+                        {
+                            burnStrategy: "expiration_priority",
+                            costEditable: true,
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            currencyPrices: [
+                                {
+                                    currency: "currency",
+                                },
+                            ],
+                            defaultExpiryUnit: "billing_periods",
+                            defaultRolloverPolicy: "expire",
+                            description: "description",
+                            id: "id",
+                            name: "name",
+                            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        },
+                    ],
                     currencyPrices: [
                         {
                             currency: "currency",
@@ -1820,6 +1985,13 @@ describe("PlangroupsClient", () => {
                             ruleId: "rule_id",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             valueType: "boolean",
+                            warningTiers: [
+                                {
+                                    id: "id",
+                                    key: "key",
+                                    value: 1000000,
+                                },
+                            ],
                         },
                     ],
                     features: [
@@ -1914,8 +2086,10 @@ describe("PlangroupsClient", () => {
                     id: "id",
                     includedCreditGrants: [
                         {
+                            autoTopupAvailability: "off",
                             autoTopupEnabled: true,
                             autoTopupSelfService: true,
+                            canBuyBundles: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditId: "credit_id",
@@ -2041,11 +2215,30 @@ describe("PlangroupsClient", () => {
                     chargeType: "free",
                     companyCount: 1000000,
                     companyId: "company_id",
+                    companyLogoUrl: "company_logo_url",
                     companyName: "company_name",
                     compatiblePlanIds: ["compatible_plan_ids"],
                     controlledBy: "metronome",
                     copiedFromPlanId: "copied_from_plan_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    credits: [
+                        {
+                            burnStrategy: "expiration_priority",
+                            costEditable: true,
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            currencyPrices: [
+                                {
+                                    currency: "currency",
+                                },
+                            ],
+                            defaultExpiryUnit: "billing_periods",
+                            defaultRolloverPolicy: "expire",
+                            description: "description",
+                            id: "id",
+                            name: "name",
+                            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        },
+                    ],
                     currencyPrices: [
                         {
                             currency: "currency",
@@ -2084,6 +2277,13 @@ describe("PlangroupsClient", () => {
                             ruleId: "rule_id",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             valueType: "boolean",
+                            warningTiers: [
+                                {
+                                    id: "id",
+                                    key: "key",
+                                    value: 1000000,
+                                },
+                            ],
                         },
                     ],
                     features: [
@@ -2178,8 +2378,10 @@ describe("PlangroupsClient", () => {
                     id: "id",
                     includedCreditGrants: [
                         {
+                            autoTopupAvailability: "off",
                             autoTopupEnabled: true,
                             autoTopupSelfService: true,
+                            canBuyBundles: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditId: "credit_id",
@@ -2306,6 +2508,24 @@ describe("PlangroupsClient", () => {
                         compatiblePlanIds: ["compatible_plan_ids"],
                         controlledBy: "metronome",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        credits: [
+                            {
+                                burnStrategy: "expiration_priority",
+                                costEditable: true,
+                                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                currencyPrices: [
+                                    {
+                                        currency: "currency",
+                                    },
+                                ],
+                                defaultExpiryUnit: "billing_periods",
+                                defaultRolloverPolicy: "expire",
+                                description: "description",
+                                id: "id",
+                                name: "name",
+                                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                            },
+                        ],
                         currencyPrices: [
                             {
                                 currency: "currency",
@@ -2488,11 +2708,30 @@ describe("PlangroupsClient", () => {
                     chargeType: "free",
                     companyCount: 1000000,
                     companyId: "company_id",
+                    companyLogoUrl: "company_logo_url",
                     companyName: "company_name",
                     compatiblePlanIds: ["compatible_plan_ids"],
                     controlledBy: "metronome",
                     copiedFromPlanId: "copied_from_plan_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    credits: [
+                        {
+                            burnStrategy: "expiration_priority",
+                            costEditable: true,
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            currencyPrices: [
+                                {
+                                    currency: "currency",
+                                },
+                            ],
+                            defaultExpiryUnit: "billing_periods",
+                            defaultRolloverPolicy: "expire",
+                            description: "description",
+                            id: "id",
+                            name: "name",
+                            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        },
+                    ],
                     currencyPrices: [
                         {
                             currency: "currency",
@@ -2531,6 +2770,13 @@ describe("PlangroupsClient", () => {
                             ruleId: "rule_id",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             valueType: "boolean",
+                            warningTiers: [
+                                {
+                                    id: "id",
+                                    key: "key",
+                                    value: 1000000,
+                                },
+                            ],
                         },
                     ],
                     features: [
@@ -2625,8 +2871,10 @@ describe("PlangroupsClient", () => {
                     id: "id",
                     includedCreditGrants: [
                         {
+                            autoTopupAvailability: "off",
                             autoTopupEnabled: true,
                             autoTopupSelfService: true,
+                            canBuyBundles: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditId: "credit_id",

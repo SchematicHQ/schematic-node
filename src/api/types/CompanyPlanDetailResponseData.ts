@@ -13,11 +13,13 @@ export interface CompanyPlanDetailResponseData {
     companyCanTrial: boolean;
     companyCount: number;
     companyId?: string;
+    companyLogoUrl?: string;
     companyName?: string;
     compatiblePlanIds: string[];
     controlledBy: Schematic.BillingProviderType;
     copiedFromPlanId?: string;
     createdAt: Date;
+    credits: Schematic.BillingCreditResponseData[];
     currencyPrices: Schematic.PlanCurrencyPricesResponseData[];
     current: boolean;
     custom: boolean;

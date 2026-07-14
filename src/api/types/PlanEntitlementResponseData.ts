@@ -33,4 +33,5 @@ export interface PlanEntitlementResponseData {
     valueTrait?: Schematic.EntityTraitDefinitionResponseData;
     valueTraitId?: string;
     valueType: Schematic.EntitlementValueType;
+    warningTiers: Schematic.WarningTierResponseData[];
 }

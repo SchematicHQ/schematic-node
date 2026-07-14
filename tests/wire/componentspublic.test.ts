@@ -20,6 +20,20 @@ describe("ComponentspublicClient", () => {
                         compatible_plan_ids: ["compatible_plan_ids"],
                         controlled_by: "metronome",
                         created_at: "2024-01-15T09:30:00Z",
+                        credits: [
+                            {
+                                burn_strategy: "expiration_priority",
+                                cost_editable: true,
+                                created_at: "2024-01-15T09:30:00Z",
+                                currency_prices: [{ currency: "currency" }],
+                                default_expiry_unit: "billing_periods",
+                                default_rollover_policy: "expire",
+                                description: "description",
+                                id: "id",
+                                name: "name",
+                                updated_at: "2024-01-15T09:30:00Z",
+                            },
+                        ],
                         currency_prices: [{ currency: "currency" }],
                         custom: true,
                         description: "description",
@@ -102,6 +116,7 @@ describe("ComponentspublicClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
+                                billing_credit_can_buy_bundles: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -146,6 +161,20 @@ describe("ComponentspublicClient", () => {
                         compatible_plan_ids: ["compatible_plan_ids"],
                         controlled_by: "metronome",
                         created_at: "2024-01-15T09:30:00Z",
+                        credits: [
+                            {
+                                burn_strategy: "expiration_priority",
+                                cost_editable: true,
+                                created_at: "2024-01-15T09:30:00Z",
+                                currency_prices: [{ currency: "currency" }],
+                                default_expiry_unit: "billing_periods",
+                                default_rollover_policy: "expire",
+                                description: "description",
+                                id: "id",
+                                name: "name",
+                                updated_at: "2024-01-15T09:30:00Z",
+                            },
+                        ],
                         currency_prices: [{ currency: "currency" }],
                         custom: true,
                         description: "description",
@@ -228,6 +257,7 @@ describe("ComponentspublicClient", () => {
                             {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
+                                billing_credit_can_buy_bundles: true,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -297,6 +327,24 @@ describe("ComponentspublicClient", () => {
                         compatiblePlanIds: ["compatible_plan_ids"],
                         controlledBy: "metronome",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        credits: [
+                            {
+                                burnStrategy: "expiration_priority",
+                                costEditable: true,
+                                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                currencyPrices: [
+                                    {
+                                        currency: "currency",
+                                    },
+                                ],
+                                defaultExpiryUnit: "billing_periods",
+                                defaultRolloverPolicy: "expire",
+                                description: "description",
+                                id: "id",
+                                name: "name",
+                                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                            },
+                        ],
                         currencyPrices: [
                             {
                                 currency: "currency",
@@ -398,6 +446,7 @@ describe("ComponentspublicClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
+                                billingCreditCanBuyBundles: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -442,6 +491,24 @@ describe("ComponentspublicClient", () => {
                         compatiblePlanIds: ["compatible_plan_ids"],
                         controlledBy: "metronome",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        credits: [
+                            {
+                                burnStrategy: "expiration_priority",
+                                costEditable: true,
+                                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                currencyPrices: [
+                                    {
+                                        currency: "currency",
+                                    },
+                                ],
+                                defaultExpiryUnit: "billing_periods",
+                                defaultRolloverPolicy: "expire",
+                                description: "description",
+                                id: "id",
+                                name: "name",
+                                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                            },
+                        ],
                         currencyPrices: [
                             {
                                 currency: "currency",
@@ -543,6 +610,7 @@ describe("ComponentspublicClient", () => {
                             {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
+                                billingCreditCanBuyBundles: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",

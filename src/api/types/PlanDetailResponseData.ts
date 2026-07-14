@@ -11,10 +11,12 @@ export interface PlanDetailResponseData {
     chargeType: Schematic.ChargeType;
     companyCount: number;
     companyId?: string;
+    companyLogoUrl?: string;
     companyName?: string;
     controlledBy: Schematic.BillingProviderType;
     copiedFromPlanId?: string;
     createdAt: Date;
+    credits: Schematic.BillingCreditResponseData[];
     currencyPrices: Schematic.PlanCurrencyPricesResponseData[];
     description: string;
     draftVersion?: Schematic.PlanVersionResponseData;

@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { BillingCreditAutoTopupAvailability } from "./BillingCreditAutoTopupAvailability";
 import { BillingCreditExpiryType } from "./BillingCreditExpiryType";
 import { BillingCreditExpiryUnit } from "./BillingCreditExpiryUnit";
 import { BillingCreditResponseData } from "./BillingCreditResponseData";
@@ -17,6 +18,7 @@ export const BillingPlanCreditGrantResponseData: core.serialization.ObjectSchema
 > = core.serialization.object({
     autoTopupAmount: core.serialization.property("auto_topup_amount", core.serialization.number().optional()),
     autoTopupAmountType: core.serialization.property("auto_topup_amount_type", core.serialization.string().optional()),
+    autoTopupAvailability: core.serialization.property("auto_topup_availability", BillingCreditAutoTopupAvailability),
     autoTopupEnabled: core.serialization.property("auto_topup_enabled", core.serialization.boolean()),
     autoTopupExpiryType: core.serialization.property("auto_topup_expiry_type", BillingCreditExpiryType.optional()),
     autoTopupExpiryUnit: core.serialization.property("auto_topup_expiry_unit", BillingCreditExpiryUnit.optional()),
@@ -33,6 +35,7 @@ export const BillingPlanCreditGrantResponseData: core.serialization.ObjectSchema
         "auto_topup_threshold_percent",
         core.serialization.number().optional(),
     ),
+    canBuyBundles: core.serialization.property("can_buy_bundles", core.serialization.boolean()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     credit: BillingCreditResponseData.optional(),
     creditAmount: core.serialization.property("credit_amount", core.serialization.number()),
@@ -59,6 +62,7 @@ export declare namespace BillingPlanCreditGrantResponseData {
     export interface Raw {
         auto_topup_amount?: number | null;
         auto_topup_amount_type?: string | null;
+        auto_topup_availability: BillingCreditAutoTopupAvailability.Raw;
         auto_topup_enabled: boolean;
         auto_topup_expiry_type?: BillingCreditExpiryType.Raw | null;
         auto_topup_expiry_unit?: BillingCreditExpiryUnit.Raw | null;
@@ -66,6 +70,7 @@ export declare namespace BillingPlanCreditGrantResponseData {
         auto_topup_self_service: boolean;
         auto_topup_threshold_credits?: number | null;
         auto_topup_threshold_percent?: number | null;
+        can_buy_bundles: boolean;
         created_at: string;
         credit?: BillingCreditResponseData.Raw | null;
         credit_amount: number;

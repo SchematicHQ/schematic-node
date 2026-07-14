@@ -6,6 +6,7 @@ export interface UpdateBillingPlanCreditGrantRequestBody {
     applyToExisting?: boolean;
     autoTopupAmount?: number;
     autoTopupAmountType?: Schematic.CreditAutoTopupAmountType;
+    autoTopupAvailability?: Schematic.BillingCreditAutoTopupAvailability;
     autoTopupEnabled?: boolean;
     autoTopupExpiryType?: Schematic.BillingCreditExpiryType;
     autoTopupExpiryUnit?: Schematic.BillingCreditExpiryUnit;
@@ -13,6 +14,7 @@ export interface UpdateBillingPlanCreditGrantRequestBody {
     autoTopupSelfService?: boolean;
     autoTopupThresholdCredits?: number;
     autoTopupThresholdPercent?: number;
+    canBuyBundles?: boolean;
     creditAmount?: number;
     expiryType?: Schematic.BillingCreditExpiryType;
     expiryUnit?: Schematic.BillingCreditExpiryUnit;

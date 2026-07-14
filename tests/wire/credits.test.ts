@@ -2492,7 +2492,7 @@ describe("CreditsClient", () => {
                 updated_at: "2024-01-15T09:30:00Z",
                 valid_from: "2024-01-15T09:30:00Z",
                 zeroed_out_date: "2024-01-15T09:30:00Z",
-                zeroed_out_reason: "expired",
+                zeroed_out_reason: "customer_archived",
             },
             params: { key: "value" },
         };
@@ -2555,7 +2555,7 @@ describe("CreditsClient", () => {
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 validFrom: new Date("2024-01-15T09:30:00.000Z"),
                 zeroedOutDate: new Date("2024-01-15T09:30:00.000Z"),
-                zeroedOutReason: "expired",
+                zeroedOutReason: "customer_archived",
             },
             params: {
                 key: "value",
@@ -2720,7 +2720,7 @@ describe("CreditsClient", () => {
                 updated_at: "2024-01-15T09:30:00Z",
                 valid_from: "2024-01-15T09:30:00Z",
                 zeroed_out_date: "2024-01-15T09:30:00Z",
-                zeroed_out_reason: "expired",
+                zeroed_out_reason: "customer_archived",
             },
             params: { key: "value" },
         };
@@ -2788,7 +2788,7 @@ describe("CreditsClient", () => {
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 validFrom: new Date("2024-01-15T09:30:00.000Z"),
                 zeroedOutDate: new Date("2024-01-15T09:30:00.000Z"),
-                zeroedOutReason: "expired",
+                zeroedOutReason: "customer_archived",
             },
             params: {
                 key: "value",
@@ -3130,7 +3130,7 @@ describe("CreditsClient", () => {
                     updated_at: "2024-01-15T09:30:00Z",
                     valid_from: "2024-01-15T09:30:00Z",
                     zeroed_out_date: "2024-01-15T09:30:00Z",
-                    zeroed_out_reason: "expired",
+                    zeroed_out_reason: "customer_archived",
                 },
             ],
             params: { company_id: "company_id", dir: "asc", limit: 1000000, offset: 1000000, order: "created_at" },
@@ -3198,7 +3198,7 @@ describe("CreditsClient", () => {
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     validFrom: new Date("2024-01-15T09:30:00.000Z"),
                     zeroedOutDate: new Date("2024-01-15T09:30:00.000Z"),
-                    zeroedOutReason: "expired",
+                    zeroedOutReason: "customer_archived",
                 },
             ],
             params: {
@@ -3488,7 +3488,7 @@ describe("CreditsClient", () => {
                     updated_at: "2024-01-15T09:30:00Z",
                     valid_from: "2024-01-15T09:30:00Z",
                     zeroed_out_date: "2024-01-15T09:30:00Z",
-                    zeroed_out_reason: "expired",
+                    zeroed_out_reason: "customer_archived",
                 },
             ],
             params: { credit_id: "credit_id", ids: ["ids"], limit: 1000000, offset: 1000000 },
@@ -3555,7 +3555,7 @@ describe("CreditsClient", () => {
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     validFrom: new Date("2024-01-15T09:30:00.000Z"),
                     zeroedOutDate: new Date("2024-01-15T09:30:00.000Z"),
-                    zeroedOutReason: "expired",
+                    zeroedOutReason: "customer_archived",
                 },
             ],
             params: {
@@ -4164,6 +4164,7 @@ describe("CreditsClient", () => {
                 {
                     auto_topup_amount: 1000000,
                     auto_topup_amount_type: "auto_topup_amount_type",
+                    auto_topup_availability: "off",
                     auto_topup_enabled: true,
                     auto_topup_expiry_type: "duration",
                     auto_topup_expiry_unit: "billing_periods",
@@ -4171,6 +4172,7 @@ describe("CreditsClient", () => {
                     auto_topup_self_service: true,
                     auto_topup_threshold_credits: 1000000,
                     auto_topup_threshold_percent: 1000000,
+                    can_buy_bundles: true,
                     created_at: "2024-01-15T09:30:00Z",
                     credit: {
                         burn_strategy: "expiration_priority",
@@ -4237,6 +4239,7 @@ describe("CreditsClient", () => {
                 {
                     autoTopupAmount: 1000000,
                     autoTopupAmountType: "auto_topup_amount_type",
+                    autoTopupAvailability: "off",
                     autoTopupEnabled: true,
                     autoTopupExpiryType: "duration",
                     autoTopupExpiryUnit: "billing_periods",
@@ -4244,6 +4247,7 @@ describe("CreditsClient", () => {
                     autoTopupSelfService: true,
                     autoTopupThresholdCredits: 1000000,
                     autoTopupThresholdPercent: 1000000,
+                    canBuyBundles: true,
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     credit: {
                         burnStrategy: "expiration_priority",
@@ -4404,6 +4408,7 @@ describe("CreditsClient", () => {
             data: {
                 auto_topup_amount: 1000000,
                 auto_topup_amount_type: "auto_topup_amount_type",
+                auto_topup_availability: "off",
                 auto_topup_enabled: true,
                 auto_topup_expiry_type: "duration",
                 auto_topup_expiry_unit: "billing_periods",
@@ -4411,6 +4416,7 @@ describe("CreditsClient", () => {
                 auto_topup_self_service: true,
                 auto_topup_threshold_credits: 1000000,
                 auto_topup_threshold_percent: 1000000,
+                can_buy_bundles: true,
                 created_at: "2024-01-15T09:30:00Z",
                 credit: {
                     burn_strategy: "expiration_priority",
@@ -4491,6 +4497,7 @@ describe("CreditsClient", () => {
             data: {
                 autoTopupAmount: 1000000,
                 autoTopupAmountType: "auto_topup_amount_type",
+                autoTopupAvailability: "off",
                 autoTopupEnabled: true,
                 autoTopupExpiryType: "duration",
                 autoTopupExpiryUnit: "billing_periods",
@@ -4498,6 +4505,7 @@ describe("CreditsClient", () => {
                 autoTopupSelfService: true,
                 autoTopupThresholdCredits: 1000000,
                 autoTopupThresholdPercent: 1000000,
+                canBuyBundles: true,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 credit: {
                     burnStrategy: "expiration_priority",
@@ -4738,6 +4746,7 @@ describe("CreditsClient", () => {
             data: {
                 auto_topup_amount: 1000000,
                 auto_topup_amount_type: "auto_topup_amount_type",
+                auto_topup_availability: "off",
                 auto_topup_enabled: true,
                 auto_topup_expiry_type: "duration",
                 auto_topup_expiry_unit: "billing_periods",
@@ -4745,6 +4754,7 @@ describe("CreditsClient", () => {
                 auto_topup_self_service: true,
                 auto_topup_threshold_credits: 1000000,
                 auto_topup_threshold_percent: 1000000,
+                can_buy_bundles: true,
                 created_at: "2024-01-15T09:30:00Z",
                 credit: {
                     burn_strategy: "expiration_priority",
@@ -4818,6 +4828,7 @@ describe("CreditsClient", () => {
             data: {
                 autoTopupAmount: 1000000,
                 autoTopupAmountType: "auto_topup_amount_type",
+                autoTopupAvailability: "off",
                 autoTopupEnabled: true,
                 autoTopupExpiryType: "duration",
                 autoTopupExpiryUnit: "billing_periods",
@@ -4825,6 +4836,7 @@ describe("CreditsClient", () => {
                 autoTopupSelfService: true,
                 autoTopupThresholdCredits: 1000000,
                 autoTopupThresholdPercent: 1000000,
+                canBuyBundles: true,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 credit: {
                     burnStrategy: "expiration_priority",
@@ -4981,6 +4993,7 @@ describe("CreditsClient", () => {
             data: {
                 auto_topup_amount: 1000000,
                 auto_topup_amount_type: "auto_topup_amount_type",
+                auto_topup_availability: "off",
                 auto_topup_enabled: true,
                 auto_topup_expiry_type: "duration",
                 auto_topup_expiry_unit: "billing_periods",
@@ -4988,6 +5001,7 @@ describe("CreditsClient", () => {
                 auto_topup_self_service: true,
                 auto_topup_threshold_credits: 1000000,
                 auto_topup_threshold_percent: 1000000,
+                can_buy_bundles: true,
                 created_at: "2024-01-15T09:30:00Z",
                 credit: {
                     burn_strategy: "expiration_priority",
@@ -5065,6 +5079,7 @@ describe("CreditsClient", () => {
             data: {
                 autoTopupAmount: 1000000,
                 autoTopupAmountType: "auto_topup_amount_type",
+                autoTopupAvailability: "off",
                 autoTopupEnabled: true,
                 autoTopupExpiryType: "duration",
                 autoTopupExpiryUnit: "billing_periods",
@@ -5072,6 +5087,7 @@ describe("CreditsClient", () => {
                 autoTopupSelfService: true,
                 autoTopupThresholdCredits: 1000000,
                 autoTopupThresholdPercent: 1000000,
+                canBuyBundles: true,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 credit: {
                     burnStrategy: "expiration_priority",
@@ -5567,7 +5583,7 @@ describe("CreditsClient", () => {
                     to_grant_id: "to_grant_id",
                     usage_event_id: "usage_event_id",
                     usage_reason: "lease_hold",
-                    zeroed_out_reason: "expired",
+                    zeroed_out_reason: "customer_archived",
                 },
             ],
             params: {
@@ -5643,7 +5659,7 @@ describe("CreditsClient", () => {
                     toGrantId: "to_grant_id",
                     usageEventId: "usage_event_id",
                     usageReason: "lease_hold",
-                    zeroedOutReason: "expired",
+                    zeroedOutReason: "customer_archived",
                 },
             ],
             params: {

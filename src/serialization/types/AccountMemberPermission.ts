@@ -11,6 +11,7 @@ export const AccountMemberPermission: core.serialization.Schema<
     "companies_edit",
     "company_users_edit",
     "components_edit",
+    "custom_plans_edit",
     "data_exports_edit",
     "features_edit",
     "flag_rules_edit",
@@ -29,6 +30,7 @@ export declare namespace AccountMemberPermission {
         | "companies_edit"
         | "company_users_edit"
         | "components_edit"
+        | "custom_plans_edit"
         | "data_exports_edit"
         | "features_edit"
         | "flag_rules_edit"

@@ -7,6 +7,8 @@ export interface ManagePlanRequest {
     basePlanId?: string;
     basePlanPriceId?: string;
     basePlanVersionId?: string;
+    /** The company that pays for this subscription. Must already have a Stripe customer. Only honored when starting a new subscription. */
+    billingEntityId?: string;
     /** If false, subscription cancels at period end. Only applies when removing all plans. Defaults to true. */
     cancelImmediately?: boolean;
     companyId: string;

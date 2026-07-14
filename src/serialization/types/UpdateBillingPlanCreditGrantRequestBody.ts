@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { BillingCreditAutoTopupAvailability } from "./BillingCreditAutoTopupAvailability";
 import { BillingCreditExpiryType } from "./BillingCreditExpiryType";
 import { BillingCreditExpiryUnit } from "./BillingCreditExpiryUnit";
 import { BillingPlanCreditGrantResetCadence } from "./BillingPlanCreditGrantResetCadence";
@@ -17,6 +18,10 @@ export const UpdateBillingPlanCreditGrantRequestBody: core.serialization.ObjectS
     applyToExisting: core.serialization.property("apply_to_existing", core.serialization.boolean().optional()),
     autoTopupAmount: core.serialization.property("auto_topup_amount", core.serialization.number().optional()),
     autoTopupAmountType: core.serialization.property("auto_topup_amount_type", CreditAutoTopupAmountType.optional()),
+    autoTopupAvailability: core.serialization.property(
+        "auto_topup_availability",
+        BillingCreditAutoTopupAvailability.optional(),
+    ),
     autoTopupEnabled: core.serialization.property("auto_topup_enabled", core.serialization.boolean().optional()),
     autoTopupExpiryType: core.serialization.property("auto_topup_expiry_type", BillingCreditExpiryType.optional()),
     autoTopupExpiryUnit: core.serialization.property("auto_topup_expiry_unit", BillingCreditExpiryUnit.optional()),
@@ -36,6 +41,7 @@ export const UpdateBillingPlanCreditGrantRequestBody: core.serialization.ObjectS
         "auto_topup_threshold_percent",
         core.serialization.number().optional(),
     ),
+    canBuyBundles: core.serialization.property("can_buy_bundles", core.serialization.boolean().optional()),
     creditAmount: core.serialization.property("credit_amount", core.serialization.number().optional()),
     expiryType: core.serialization.property("expiry_type", BillingCreditExpiryType.optional()),
     expiryUnit: core.serialization.property("expiry_unit", BillingCreditExpiryUnit.optional()),
@@ -51,6 +57,7 @@ export declare namespace UpdateBillingPlanCreditGrantRequestBody {
         apply_to_existing?: boolean | null;
         auto_topup_amount?: number | null;
         auto_topup_amount_type?: CreditAutoTopupAmountType.Raw | null;
+        auto_topup_availability?: BillingCreditAutoTopupAvailability.Raw | null;
         auto_topup_enabled?: boolean | null;
         auto_topup_expiry_type?: BillingCreditExpiryType.Raw | null;
         auto_topup_expiry_unit?: BillingCreditExpiryUnit.Raw | null;
@@ -58,6 +65,7 @@ export declare namespace UpdateBillingPlanCreditGrantRequestBody {
         auto_topup_self_service?: boolean | null;
         auto_topup_threshold_credits?: number | null;
         auto_topup_threshold_percent?: number | null;
+        can_buy_bundles?: boolean | null;
         credit_amount?: number | null;
         expiry_type?: BillingCreditExpiryType.Raw | null;
         expiry_unit?: BillingCreditExpiryUnit.Raw | null;

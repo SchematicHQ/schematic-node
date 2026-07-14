@@ -12,11 +12,13 @@ export interface InvoiceResponseData {
     currency: string;
     customerExternalId: string;
     dueDate?: Date;
+    endingBalance: number;
     environmentId: string;
     externalId?: string;
     id: string;
     paymentMethodExternalId?: string;
     providerType: Schematic.BillingProviderType;
+    startingBalance: number;
     status?: Schematic.InvoiceStatus;
     subscriptionExternalId?: string;
     subtotal: number;

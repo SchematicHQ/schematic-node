@@ -5,6 +5,7 @@ import type * as Schematic from "../index";
 export interface ChangeSubscriptionInternalRequestBody {
     addOnIds: Schematic.UpdateAddOnRequestBody[];
     autoTopupOverrides: Schematic.UpdateAutoTopupOverrideRequestBody[];
+    billingEntityId?: string;
     companyId: string;
     couponExternalId?: string;
     creditBundles: Schematic.UpdateCreditBundleRequestBody[];

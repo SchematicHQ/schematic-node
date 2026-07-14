@@ -5,8 +5,8 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 
 export const EventType: core.serialization.Schema<serializers.EventType.Raw, Schematic.EventType> =
-    core.serialization.enum_(["flag_check", "identify", "track"]);
+    core.serialization.enum_(["flag_check", "identify", "inference", "track"]);
 
 export declare namespace EventType {
-    export type Raw = "flag_check" | "identify" | "track";
+    export type Raw = "flag_check" | "identify" | "inference" | "track";
 }
