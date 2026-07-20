@@ -39,4 +39,6 @@ export interface FeatureEntitlement {
     usage?: number;
     /** The type of the entitlement value */
     valueType: Schematic.EntitlementValueType;
+    /** Customer-defined usage warning thresholds configured on this entitlement */
+    warningTiers?: Schematic.WarningTier[];
 }

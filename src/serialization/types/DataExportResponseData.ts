@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { DataExportMetadata } from "./DataExportMetadata";
 import { DataExportOutputFileType } from "./DataExportOutputFileType";
 import { DataExportStatus } from "./DataExportStatus";
 import { DataExportType } from "./DataExportType";
@@ -16,7 +17,7 @@ export const DataExportResponseData: core.serialization.ObjectSchema<
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     exportType: core.serialization.property("export_type", DataExportType),
     id: core.serialization.string(),
-    metadata: core.serialization.string(),
+    metadata: DataExportMetadata.optional(),
     outputFileType: core.serialization.property("output_file_type", DataExportOutputFileType),
     status: DataExportStatus,
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -29,7 +30,7 @@ export declare namespace DataExportResponseData {
         environment_id: string;
         export_type: DataExportType.Raw;
         id: string;
-        metadata: string;
+        metadata?: DataExportMetadata.Raw | null;
         output_file_type: DataExportOutputFileType.Raw;
         status: DataExportStatus.Raw;
         updated_at: string;

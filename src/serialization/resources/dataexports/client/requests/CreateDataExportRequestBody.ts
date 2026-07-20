@@ -3,16 +3,23 @@
 import type * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
+import { DataExportMetadata } from "../../../../types/DataExportMetadata";
+import { DataExportOutputFileType } from "../../../../types/DataExportOutputFileType";
+import { DataExportType } from "../../../../types/DataExportType";
 
 export const CreateDataExportRequestBody: core.serialization.Schema<
     serializers.CreateDataExportRequestBody.Raw,
     Schematic.CreateDataExportRequestBody
 > = core.serialization.object({
-    metadata: core.serialization.string(),
+    exportType: core.serialization.property("export_type", DataExportType),
+    metadata: DataExportMetadata.optional(),
+    outputFileType: core.serialization.property("output_file_type", DataExportOutputFileType),
 });
 
 export declare namespace CreateDataExportRequestBody {
     export interface Raw {
-        metadata: string;
+        export_type: DataExportType.Raw;
+        metadata?: DataExportMetadata.Raw | null;
+        output_file_type: DataExportOutputFileType.Raw;
     }
 }

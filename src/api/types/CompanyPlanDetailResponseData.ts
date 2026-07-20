@@ -9,6 +9,7 @@ export interface CompanyPlanDetailResponseData {
     billingLinkedResource?: Schematic.BillingLinkedResourceResponseData;
     billingProduct?: Schematic.BillingProductDetailResponseData;
     billingStrategy: Schematic.BillingStrategy;
+    catalogs?: Schematic.PlanCatalogMembershipResponseData[];
     chargeType: Schematic.ChargeType;
     companyCanTrial: boolean;
     companyCount: number;

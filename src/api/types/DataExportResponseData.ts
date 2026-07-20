@@ -8,7 +8,7 @@ export interface DataExportResponseData {
     environmentId: string;
     exportType: Schematic.DataExportType;
     id: string;
-    metadata: string;
+    metadata?: Schematic.DataExportMetadata;
     outputFileType: Schematic.DataExportOutputFileType;
     status: Schematic.DataExportStatus;
     updatedAt: Date;

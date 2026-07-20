@@ -3,6 +3,7 @@
 import { AccesstokensClient } from "./api/resources/accesstokens/client/Client";
 import { AccountsClient } from "./api/resources/accounts/client/Client";
 import { BillingClient } from "./api/resources/billing/client/Client";
+import { CatalogsClient } from "./api/resources/catalogs/client/Client";
 import { CheckoutClient } from "./api/resources/checkout/client/Client";
 import { CompaniesClient } from "./api/resources/companies/client/Client";
 import { ComponentsClient } from "./api/resources/components/client/Client";
@@ -39,6 +40,7 @@ export class SchematicClient {
     protected _accounts: AccountsClient | undefined;
     protected _billing: BillingClient | undefined;
     protected _credits: CreditsClient | undefined;
+    protected _catalogs: CatalogsClient | undefined;
     protected _checkout: CheckoutClient | undefined;
     protected _companies: CompaniesClient | undefined;
     protected _entitlements: EntitlementsClient | undefined;
@@ -71,6 +73,10 @@ export class SchematicClient {
 
     public get credits(): CreditsClient {
         return (this._credits ??= new CreditsClient(this._options));
+    }
+
+    public get catalogs(): CatalogsClient {
+        return (this._catalogs ??= new CatalogsClient(this._options));
     }
 
     public get checkout(): CheckoutClient {

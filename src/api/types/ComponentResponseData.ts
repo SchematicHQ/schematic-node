@@ -4,6 +4,7 @@ import type * as Schematic from "../index";
 
 export interface ComponentResponseData {
     ast?: Record<string, number>;
+    catalogId?: string;
     createdAt: Date;
     id: string;
     name: string;

@@ -4,6 +4,7 @@ import type * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
 import { CreateCustomPlanBundlePlanRequestBody } from "../../../../types/CreateCustomPlanBundlePlanRequestBody";
+import { PlanBundleCreditGrantRequestBody } from "../../../../types/PlanBundleCreditGrantRequestBody";
 import { PlanBundleEntitlementRequestBody } from "../../../../types/PlanBundleEntitlementRequestBody";
 import { UpsertBillingProductRequestBody } from "../../../../types/UpsertBillingProductRequestBody";
 
@@ -12,6 +13,10 @@ export const CreateCustomPlanBundleRequestBody: core.serialization.Schema<
     Schematic.CreateCustomPlanBundleRequestBody
 > = core.serialization.object({
     billingProduct: core.serialization.property("billing_product", UpsertBillingProductRequestBody.optional()),
+    creditGrants: core.serialization.property(
+        "credit_grants",
+        core.serialization.list(PlanBundleCreditGrantRequestBody).optional(),
+    ),
     entitlements: core.serialization.list(PlanBundleEntitlementRequestBody),
     plan: CreateCustomPlanBundlePlanRequestBody.optional(),
 });
@@ -19,6 +24,7 @@ export const CreateCustomPlanBundleRequestBody: core.serialization.Schema<
 export declare namespace CreateCustomPlanBundleRequestBody {
     export interface Raw {
         billing_product?: UpsertBillingProductRequestBody.Raw | null;
+        credit_grants?: PlanBundleCreditGrantRequestBody.Raw[] | null;
         entitlements: PlanBundleEntitlementRequestBody.Raw[];
         plan?: CreateCustomPlanBundlePlanRequestBody.Raw | null;
     }

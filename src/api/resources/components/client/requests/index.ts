@@ -1,3 +1,4 @@
+export type { BindCatalogRequestBody } from "./BindCatalogRequestBody";
 export type { CountComponentsRequest } from "./CountComponentsRequest";
 export type { CreateComponentRequestBody } from "./CreateComponentRequestBody";
 export type { ListComponentsRequest } from "./ListComponentsRequest";

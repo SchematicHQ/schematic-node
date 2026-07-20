@@ -39,4 +39,6 @@ export interface RulesengineFeatureEntitlement {
     usage?: number;
     /** The type of the entitlement value */
     valueType: Schematic.RulesengineEntitlementValueType;
+    /** Customer-defined usage warning thresholds configured on this entitlement */
+    warningTiers?: Schematic.RulesengineWarningTier[];
 }

@@ -5,18 +5,144 @@ import { SchematicClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
 describe("DataexportsClient", () => {
+    test("listDataExports (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    account_id: "account_id",
+                    created_at: "2024-01-15T09:30:00Z",
+                    environment_id: "environment_id",
+                    export_type: "audit-log",
+                    id: "id",
+                    metadata: { export_type: "audit-log" },
+                    output_file_type: "csv",
+                    status: "failure",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+            ],
+            params: { export_type: "audit-log", limit: 1000000, offset: 1000000, status: "failure" },
+        };
+
+        server.mockEndpoint().get("/data-exports").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.dataexports.listDataExports({
+            exportType: "audit-log",
+            status: "failure",
+            limit: 1000000,
+            offset: 1000000,
+        });
+        expect(response).toEqual({
+            data: [
+                {
+                    accountId: "account_id",
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    environmentId: "environment_id",
+                    exportType: "audit-log",
+                    id: "id",
+                    metadata: {
+                        exportType: "audit-log",
+                    },
+                    outputFileType: "csv",
+                    status: "failure",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+            ],
+            params: {
+                exportType: "audit-log",
+                limit: 1000000,
+                offset: 1000000,
+                status: "failure",
+            },
+        });
+    });
+
+    test("listDataExports (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/data-exports").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.dataexports.listDataExports();
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("listDataExports (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/data-exports").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.dataexports.listDataExports();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("listDataExports (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/data-exports").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.dataexports.listDataExports();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("listDataExports (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/data-exports").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.dataexports.listDataExports();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("listDataExports (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/data-exports").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.dataexports.listDataExports();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("createDataExport (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { export_type: "company-feature-usage", metadata: "metadata", output_file_type: "csv" };
+        const rawRequestBody = { export_type: "audit-log", output_file_type: "csv" };
         const rawResponseBody = {
             data: {
                 account_id: "account_id",
                 created_at: "2024-01-15T09:30:00Z",
                 environment_id: "environment_id",
-                export_type: "company-feature-usage",
+                export_type: "audit-log",
                 id: "id",
-                metadata: "metadata",
+                metadata: {
+                    export_type: "audit-log",
+                    actor_type: "actor_type",
+                    end_time: "2024-01-15T09:30:00Z",
+                    notification_email_recipient_email_addresses: ["notification_email_recipient_email_addresses"],
+                    q: "q",
+                    start_time: "2024-01-15T09:30:00Z",
+                },
                 output_file_type: "csv",
                 status: "failure",
                 updated_at: "2024-01-15T09:30:00Z",
@@ -34,16 +160,24 @@ describe("DataexportsClient", () => {
             .build();
 
         const response = await client.dataexports.createDataExport({
-            metadata: "metadata",
+            exportType: "audit-log",
+            outputFileType: "csv",
         });
         expect(response).toEqual({
             data: {
                 accountId: "account_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 environmentId: "environment_id",
-                exportType: "company-feature-usage",
+                exportType: "audit-log",
                 id: "id",
-                metadata: "metadata",
+                metadata: {
+                    exportType: "audit-log",
+                    actorType: "actor_type",
+                    endTime: new Date("2024-01-15T09:30:00.000Z"),
+                    notificationEmailRecipientEmailAddresses: ["notification_email_recipient_email_addresses"],
+                    q: "q",
+                    startTime: new Date("2024-01-15T09:30:00.000Z"),
+                },
                 outputFileType: "csv",
                 status: "failure",
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -57,7 +191,7 @@ describe("DataexportsClient", () => {
     test("createDataExport (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { export_type: "company-feature-usage", metadata: "metadata", output_file_type: "csv" };
+        const rawRequestBody = { export_type: "audit-log", output_file_type: "csv" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -71,7 +205,8 @@ describe("DataexportsClient", () => {
 
         await expect(async () => {
             return await client.dataexports.createDataExport({
-                metadata: "metadata",
+                exportType: "audit-log",
+                outputFileType: "csv",
             });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
@@ -79,7 +214,7 @@ describe("DataexportsClient", () => {
     test("createDataExport (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { export_type: "company-feature-usage", metadata: "metadata", output_file_type: "csv" };
+        const rawRequestBody = { export_type: "audit-log", output_file_type: "csv" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -93,7 +228,8 @@ describe("DataexportsClient", () => {
 
         await expect(async () => {
             return await client.dataexports.createDataExport({
-                metadata: "metadata",
+                exportType: "audit-log",
+                outputFileType: "csv",
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
@@ -101,7 +237,7 @@ describe("DataexportsClient", () => {
     test("createDataExport (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { export_type: "company-feature-usage", metadata: "metadata", output_file_type: "csv" };
+        const rawRequestBody = { export_type: "audit-log", output_file_type: "csv" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -115,7 +251,8 @@ describe("DataexportsClient", () => {
 
         await expect(async () => {
             return await client.dataexports.createDataExport({
-                metadata: "metadata",
+                exportType: "audit-log",
+                outputFileType: "csv",
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
@@ -123,7 +260,7 @@ describe("DataexportsClient", () => {
     test("createDataExport (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { export_type: "company-feature-usage", metadata: "metadata", output_file_type: "csv" };
+        const rawRequestBody = { export_type: "audit-log", output_file_type: "csv" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -137,7 +274,8 @@ describe("DataexportsClient", () => {
 
         await expect(async () => {
             return await client.dataexports.createDataExport({
-                metadata: "metadata",
+                exportType: "audit-log",
+                outputFileType: "csv",
             });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
@@ -145,7 +283,7 @@ describe("DataexportsClient", () => {
     test("createDataExport (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { export_type: "company-feature-usage", metadata: "metadata", output_file_type: "csv" };
+        const rawRequestBody = { export_type: "audit-log", output_file_type: "csv" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -159,8 +297,145 @@ describe("DataexportsClient", () => {
 
         await expect(async () => {
             return await client.dataexports.createDataExport({
-                metadata: "metadata",
+                exportType: "audit-log",
+                outputFileType: "csv",
             });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("getDataExport (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                account_id: "account_id",
+                created_at: "2024-01-15T09:30:00Z",
+                environment_id: "environment_id",
+                export_type: "audit-log",
+                id: "id",
+                metadata: {
+                    export_type: "audit-log",
+                    actor_type: "actor_type",
+                    end_time: "2024-01-15T09:30:00Z",
+                    notification_email_recipient_email_addresses: ["notification_email_recipient_email_addresses"],
+                    q: "q",
+                    start_time: "2024-01-15T09:30:00Z",
+                },
+                output_file_type: "csv",
+                status: "failure",
+                updated_at: "2024-01-15T09:30:00Z",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/data-exports/data_export_id")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.dataexports.getDataExport("data_export_id");
+        expect(response).toEqual({
+            data: {
+                accountId: "account_id",
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                environmentId: "environment_id",
+                exportType: "audit-log",
+                id: "id",
+                metadata: {
+                    exportType: "audit-log",
+                    actorType: "actor_type",
+                    endTime: new Date("2024-01-15T09:30:00.000Z"),
+                    notificationEmailRecipientEmailAddresses: ["notification_email_recipient_email_addresses"],
+                    q: "q",
+                    startTime: new Date("2024-01-15T09:30:00.000Z"),
+                },
+                outputFileType: "csv",
+                status: "failure",
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("getDataExport (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/data-exports/data_export_id")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.dataexports.getDataExport("data_export_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getDataExport (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/data-exports/data_export_id")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.dataexports.getDataExport("data_export_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getDataExport (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/data-exports/data_export_id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.dataexports.getDataExport("data_export_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getDataExport (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/data-exports/data_export_id")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.dataexports.getDataExport("data_export_id");
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 });

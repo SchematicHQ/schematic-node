@@ -4713,6 +4713,7 @@ describe("FeaturesClient", () => {
                     soft_limit: 1000000,
                     usage: 1000000,
                     value_type: "boolean",
+                    warning_tiers: [{ key: "key", value: 1000000 }],
                 },
                 error: "error",
                 feature_usage_period: "all_time",
@@ -4759,6 +4760,12 @@ describe("FeaturesClient", () => {
                     softLimit: 1000000,
                     usage: 1000000,
                     valueType: "boolean",
+                    warningTiers: [
+                        {
+                            key: "key",
+                            value: 1000000,
+                        },
+                    ],
                 },
                 error: "error",
                 featureUsagePeriod: "all_time",
