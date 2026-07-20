@@ -4013,6 +4013,749 @@ await client.credits.countCreditEventLedger({
 </dl>
 </details>
 
+## catalogs
+<details><summary><code>client.catalogs.<a href="/src/api/resources/catalogs/client/Client.ts">listCatalogs</a>({ ...params }) -> Schematic.ListCatalogsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.catalogs.listCatalogs({
+    isDefault: true,
+    q: "q",
+    limit: 1000000,
+    offset: 1000000
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListCatalogsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CatalogsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.catalogs.<a href="/src/api/resources/catalogs/client/Client.ts">createCatalog</a>({ ...params }) -> Schematic.CreateCatalogResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.catalogs.createCatalog({
+    isDefault: true,
+    name: "name"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CreateCatalogRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CatalogsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.catalogs.<a href="/src/api/resources/catalogs/client/Client.ts">getCatalog</a>(catalog_id) -> Schematic.GetCatalogResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.catalogs.getCatalog("catalog_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**catalog_id:** `string` — catalog_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CatalogsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.catalogs.<a href="/src/api/resources/catalogs/client/Client.ts">updateCatalog</a>(catalog_id, { ...params }) -> Schematic.UpdateCatalogResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.catalogs.updateCatalog("catalog_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**catalog_id:** `string` — catalog_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.UpdateCatalogRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CatalogsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.catalogs.<a href="/src/api/resources/catalogs/client/Client.ts">deleteCatalog</a>(catalog_id) -> Schematic.DeleteCatalogResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.catalogs.deleteCatalog("catalog_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**catalog_id:** `string` — catalog_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CatalogsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.catalogs.<a href="/src/api/resources/catalogs/client/Client.ts">getConfiguration</a>(catalog_id) -> Schematic.GetConfigurationResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.catalogs.getConfiguration("catalog_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**catalog_id:** `string` — catalog_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CatalogsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.catalogs.<a href="/src/api/resources/catalogs/client/Client.ts">updateConfiguration</a>(catalog_id, { ...params }) -> Schematic.UpdateConfigurationResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.catalogs.updateConfiguration("catalog_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**catalog_id:** `string` — catalog_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.UpdateCatalogConfigurationRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CatalogsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.catalogs.<a href="/src/api/resources/catalogs/client/Client.ts">getCreditBundlesInCatalog</a>(catalog_id) -> Schematic.GetCreditBundlesInCatalogResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.catalogs.getCreditBundlesInCatalog("catalog_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**catalog_id:** `string` — catalog_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CatalogsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.catalogs.<a href="/src/api/resources/catalogs/client/Client.ts">addCreditBundle</a>(catalog_id, credit_bundle_id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.catalogs.addCreditBundle("catalog_id", "credit_bundle_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**catalog_id:** `string` — catalog_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**credit_bundle_id:** `string` — credit_bundle_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CatalogsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.catalogs.<a href="/src/api/resources/catalogs/client/Client.ts">removeCreditBundle</a>(catalog_id, credit_bundle_id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.catalogs.removeCreditBundle("catalog_id", "credit_bundle_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**catalog_id:** `string` — catalog_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**credit_bundle_id:** `string` — credit_bundle_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CatalogsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.catalogs.<a href="/src/api/resources/catalogs/client/Client.ts">getDerivedFeatures</a>(catalog_id) -> Schematic.GetDerivedFeaturesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.catalogs.getDerivedFeatures("catalog_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**catalog_id:** `string` — catalog_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CatalogsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.catalogs.<a href="/src/api/resources/catalogs/client/Client.ts">getPlansInCatalog</a>(catalog_id) -> Schematic.GetPlansInCatalogResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.catalogs.getPlansInCatalog("catalog_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**catalog_id:** `string` — catalog_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CatalogsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.catalogs.<a href="/src/api/resources/catalogs/client/Client.ts">addPlan</a>(catalog_id, plan_id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.catalogs.addPlan("catalog_id", "plan_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**catalog_id:** `string` — catalog_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**plan_id:** `string` — plan_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CatalogsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.catalogs.<a href="/src/api/resources/catalogs/client/Client.ts">removePlan</a>(catalog_id, plan_id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.catalogs.removePlan("catalog_id", "plan_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**catalog_id:** `string` — catalog_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**plan_id:** `string` — plan_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CatalogsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## checkout
 <details><summary><code>client.checkout.<a href="/src/api/resources/checkout/client/Client.ts">internal</a>({ ...params }) -> Schematic.CheckoutInternalResponse</code></summary>
 <dl>
@@ -9038,6 +9781,63 @@ await client.components.deleteComponent("component_id");
 </dl>
 </details>
 
+<details><summary><code>client.components.<a href="/src/api/resources/components/client/Client.ts">bindCatalog</a>(component_id, { ...params }) -> Schematic.BindCatalogResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.components.bindCatalog("component_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**component_id:** `string` — component_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.BindCatalogRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ComponentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.components.<a href="/src/api/resources/components/client/Client.ts">countComponents</a>({ ...params }) -> Schematic.CountComponentsResponse</code></summary>
 <dl>
 <dd>
@@ -9312,6 +10112,60 @@ await client.planbundle.updatePlanBundle("plan_bundle_id", {
 </details>
 
 ## dataexports
+<details><summary><code>client.dataexports.<a href="/src/api/resources/dataexports/client/Client.ts">listDataExports</a>({ ...params }) -> Schematic.ListDataExportsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.dataexports.listDataExports({
+    exportType: "audit-log",
+    status: "failure",
+    limit: 1000000,
+    offset: 1000000
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListDataExportsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `DataexportsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.dataexports.<a href="/src/api/resources/dataexports/client/Client.ts">createDataExport</a>({ ...params }) -> Schematic.CreateDataExportResponse</code></summary>
 <dl>
 <dd>
@@ -9326,7 +10180,8 @@ await client.planbundle.updatePlanBundle("plan_bundle_id", {
 
 ```typescript
 await client.dataexports.createDataExport({
-    metadata: "metadata"
+    exportType: "audit-log",
+    outputFileType: "csv"
 });
 
 ```
@@ -9344,6 +10199,55 @@ await client.dataexports.createDataExport({
 <dd>
 
 **request:** `Schematic.CreateDataExportRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `DataexportsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.dataexports.<a href="/src/api/resources/dataexports/client/Client.ts">getDataExport</a>(data_export_id) -> Schematic.GetDataExportResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.dataexports.getDataExport("data_export_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**data_export_id:** `string` — data_export_id
     
 </dd>
 </dl>

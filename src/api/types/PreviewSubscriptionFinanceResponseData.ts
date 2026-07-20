@@ -4,9 +4,11 @@ import type * as Schematic from "../index";
 
 export interface PreviewSubscriptionFinanceResponseData {
     amountOff: number;
+    discounts: Schematic.PreviewSubscriptionDiscountResponseData[];
     dueNow: number;
     newCharges: number;
     percentOff: number;
+    periodEnd: Date;
     periodStart: Date;
     promoCodeApplied: boolean;
     proration: number;

@@ -14,6 +14,7 @@ import { CompanyPlanInvalidReason } from "./CompanyPlanInvalidReason";
 import { CustomPlanConfig } from "./CustomPlanConfig";
 import { FeatureInPlanResponseData } from "./FeatureInPlanResponseData";
 import { FeatureUsageResponseData } from "./FeatureUsageResponseData";
+import { PlanCatalogMembershipResponseData } from "./PlanCatalogMembershipResponseData";
 import { PlanCreditGrantView } from "./PlanCreditGrantView";
 import { PlanCurrencyPricesResponseData } from "./PlanCurrencyPricesResponseData";
 import { PlanEntitlementResponseData } from "./PlanEntitlementResponseData";
@@ -35,6 +36,7 @@ export const CompanyPlanDetailResponseData: core.serialization.ObjectSchema<
     ),
     billingProduct: core.serialization.property("billing_product", BillingProductDetailResponseData.optional()),
     billingStrategy: core.serialization.property("billing_strategy", BillingStrategy),
+    catalogs: core.serialization.list(PlanCatalogMembershipResponseData).optional(),
     chargeType: core.serialization.property("charge_type", ChargeType),
     companyCanTrial: core.serialization.property("company_can_trial", core.serialization.boolean()),
     companyCount: core.serialization.property("company_count", core.serialization.number()),
@@ -92,6 +94,7 @@ export declare namespace CompanyPlanDetailResponseData {
         billing_linked_resource?: BillingLinkedResourceResponseData.Raw | null;
         billing_product?: BillingProductDetailResponseData.Raw | null;
         billing_strategy: BillingStrategy.Raw;
+        catalogs?: PlanCatalogMembershipResponseData.Raw[] | null;
         charge_type: ChargeType.Raw;
         company_can_trial: boolean;
         company_count: number;

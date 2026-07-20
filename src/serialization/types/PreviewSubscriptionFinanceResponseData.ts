@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { PreviewSubscriptionDiscountResponseData } from "./PreviewSubscriptionDiscountResponseData";
 import { PreviewSubscriptionUpcomingInvoiceLineItems } from "./PreviewSubscriptionUpcomingInvoiceLineItems";
 
 export const PreviewSubscriptionFinanceResponseData: core.serialization.ObjectSchema<
@@ -10,9 +11,11 @@ export const PreviewSubscriptionFinanceResponseData: core.serialization.ObjectSc
     Schematic.PreviewSubscriptionFinanceResponseData
 > = core.serialization.object({
     amountOff: core.serialization.property("amount_off", core.serialization.number()),
+    discounts: core.serialization.list(PreviewSubscriptionDiscountResponseData),
     dueNow: core.serialization.property("due_now", core.serialization.number()),
     newCharges: core.serialization.property("new_charges", core.serialization.number()),
     percentOff: core.serialization.property("percent_off", core.serialization.number()),
+    periodEnd: core.serialization.property("period_end", core.serialization.date()),
     periodStart: core.serialization.property("period_start", core.serialization.date()),
     promoCodeApplied: core.serialization.property("promo_code_applied", core.serialization.boolean()),
     proration: core.serialization.number(),
@@ -30,9 +33,11 @@ export const PreviewSubscriptionFinanceResponseData: core.serialization.ObjectSc
 export declare namespace PreviewSubscriptionFinanceResponseData {
     export interface Raw {
         amount_off: number;
+        discounts: PreviewSubscriptionDiscountResponseData.Raw[];
         due_now: number;
         new_charges: number;
         percent_off: number;
+        period_end: string;
         period_start: string;
         promo_code_applied: boolean;
         proration: number;

@@ -4565,6 +4565,10 @@ describe("CompaniesClient", () => {
                         soft_limit: 1000000,
                         usage: 1000000,
                         value_type: "boolean",
+                        warning_tiers: [
+                            { key: "key", value: 1000000 },
+                            { key: "key", value: 1000000 },
+                        ],
                     },
                     {
                         allocation: 1000000,
@@ -4585,6 +4589,10 @@ describe("CompaniesClient", () => {
                         soft_limit: 1000000,
                         usage: 1000000,
                         value_type: "boolean",
+                        warning_tiers: [
+                            { key: "key", value: 1000000 },
+                            { key: "key", value: 1000000 },
+                        ],
                     },
                 ],
                 entity_traits: [
@@ -6318,6 +6326,16 @@ describe("CompaniesClient", () => {
                         softLimit: 1000000,
                         usage: 1000000,
                         valueType: "boolean",
+                        warningTiers: [
+                            {
+                                key: "key",
+                                value: 1000000,
+                            },
+                            {
+                                key: "key",
+                                value: 1000000,
+                            },
+                        ],
                     },
                     {
                         allocation: 1000000,
@@ -6338,6 +6356,16 @@ describe("CompaniesClient", () => {
                         softLimit: 1000000,
                         usage: 1000000,
                         valueType: "boolean",
+                        warningTiers: [
+                            {
+                                key: "key",
+                                value: 1000000,
+                            },
+                            {
+                                key: "key",
+                                value: 1000000,
+                            },
+                        ],
                     },
                 ],
                 entityTraits: [

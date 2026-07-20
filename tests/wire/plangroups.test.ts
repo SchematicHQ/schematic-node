@@ -211,6 +211,7 @@ describe("PlangroupsClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     billing_strategy: "schematic_managed",
+                    catalogs: [{ id: "id", name: "name" }],
                     charge_type: "free",
                     company_count: 1000000,
                     company_id: "company_id",
@@ -468,6 +469,7 @@ describe("PlangroupsClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     billing_strategy: "schematic_managed",
+                    catalogs: [{ id: "id", name: "name" }],
                     charge_type: "free",
                     company_count: 1000000,
                     company_id: "company_id",
@@ -727,6 +729,7 @@ describe("PlangroupsClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     billing_strategy: "schematic_managed",
+                    catalogs: [{ id: "id", name: "name" }],
                     charge_type: "free",
                     company_count: 1000000,
                     company_id: "company_id",
@@ -1152,6 +1155,7 @@ describe("PlangroupsClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     billing_strategy: "schematic_managed",
+                    catalogs: [{ id: "id", name: "name" }],
                     charge_type: "free",
                     company_count: 1000000,
                     company_id: "company_id",
@@ -1630,6 +1634,12 @@ describe("PlangroupsClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     billingStrategy: "schematic_managed",
+                    catalogs: [
+                        {
+                            id: "id",
+                            name: "name",
+                        },
+                    ],
                     chargeType: "free",
                     companyCount: 1000000,
                     companyId: "company_id",
@@ -1920,6 +1930,12 @@ describe("PlangroupsClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     billingStrategy: "schematic_managed",
+                    catalogs: [
+                        {
+                            id: "id",
+                            name: "name",
+                        },
+                    ],
                     chargeType: "free",
                     companyCount: 1000000,
                     companyId: "company_id",
@@ -2212,6 +2228,12 @@ describe("PlangroupsClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     billingStrategy: "schematic_managed",
+                    catalogs: [
+                        {
+                            id: "id",
+                            name: "name",
+                        },
+                    ],
                     chargeType: "free",
                     companyCount: 1000000,
                     companyId: "company_id",
@@ -2705,6 +2727,12 @@ describe("PlangroupsClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     billingStrategy: "schematic_managed",
+                    catalogs: [
+                        {
+                            id: "id",
+                            name: "name",
+                        },
+                    ],
                     chargeType: "free",
                     companyCount: 1000000,
                     companyId: "company_id",

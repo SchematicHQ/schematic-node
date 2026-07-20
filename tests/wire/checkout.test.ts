@@ -789,6 +789,7 @@ describe("CheckoutClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     billing_strategy: "schematic_managed",
+                    catalogs: [{ id: "id", name: "name" }],
                     charge_type: "free",
                     company_count: 1000000,
                     company_id: "company_id",
@@ -1348,6 +1349,7 @@ describe("CheckoutClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     billing_strategy: "schematic_managed",
+                    catalogs: [{ id: "id", name: "name" }],
                     charge_type: "free",
                     company_count: 1000000,
                     company_id: "company_id",
@@ -1832,6 +1834,12 @@ describe("CheckoutClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     billingStrategy: "schematic_managed",
+                    catalogs: [
+                        {
+                            id: "id",
+                            name: "name",
+                        },
+                    ],
                     chargeType: "free",
                     companyCount: 1000000,
                     companyId: "company_id",
@@ -2453,6 +2461,12 @@ describe("CheckoutClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     billingStrategy: "schematic_managed",
+                    catalogs: [
+                        {
+                            id: "id",
+                            name: "name",
+                        },
+                    ],
                     chargeType: "free",
                     companyCount: 1000000,
                     companyId: "company_id",
@@ -2906,9 +2920,18 @@ describe("CheckoutClient", () => {
                 due_now: 1000000,
                 finance: {
                     amount_off: 1000000,
+                    discounts: [
+                        {
+                            coupon_name: "coupon_name",
+                            duration: "duration",
+                            is_active: true,
+                            started_at: "2024-01-15T09:30:00Z",
+                        },
+                    ],
                     due_now: 1000000,
                     new_charges: 1000000,
                     percent_off: 1.1,
+                    period_end: "2024-01-15T09:30:00Z",
                     period_start: "2024-01-15T09:30:00Z",
                     promo_code_applied: true,
                     proration: 1000000,
@@ -3000,9 +3023,18 @@ describe("CheckoutClient", () => {
                 dueNow: 1000000,
                 finance: {
                     amountOff: 1000000,
+                    discounts: [
+                        {
+                            couponName: "coupon_name",
+                            duration: "duration",
+                            isActive: true,
+                            startedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        },
+                    ],
                     dueNow: 1000000,
                     newCharges: 1000000,
                     percentOff: 1.1,
+                    periodEnd: new Date("2024-01-15T09:30:00.000Z"),
                     periodStart: new Date("2024-01-15T09:30:00.000Z"),
                     promoCodeApplied: true,
                     proration: 1000000,
@@ -4552,9 +4584,18 @@ describe("CheckoutClient", () => {
                     due_now: 1000000,
                     finance: {
                         amount_off: 1000000,
+                        discounts: [
+                            {
+                                coupon_name: "coupon_name",
+                                duration: "duration",
+                                is_active: true,
+                                started_at: "2024-01-15T09:30:00Z",
+                            },
+                        ],
                         due_now: 1000000,
                         new_charges: 1000000,
                         percent_off: 1.1,
+                        period_end: "2024-01-15T09:30:00Z",
                         period_start: "2024-01-15T09:30:00Z",
                         promo_code_applied: true,
                         proration: 1000000,
@@ -4636,9 +4677,18 @@ describe("CheckoutClient", () => {
                     dueNow: 1000000,
                     finance: {
                         amountOff: 1000000,
+                        discounts: [
+                            {
+                                couponName: "coupon_name",
+                                duration: "duration",
+                                isActive: true,
+                                startedAt: new Date("2024-01-15T09:30:00.000Z"),
+                            },
+                        ],
                         dueNow: 1000000,
                         newCharges: 1000000,
                         percentOff: 1.1,
+                        periodEnd: new Date("2024-01-15T09:30:00.000Z"),
                         periodStart: new Date("2024-01-15T09:30:00.000Z"),
                         promoCodeApplied: true,
                         proration: 1000000,

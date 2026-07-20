@@ -13,6 +13,7 @@ describe("ComponentsClient", () => {
             data: [
                 {
                     ast: { key: 1.1 },
+                    catalog_id: "catalog_id",
                     created_at: "2024-01-15T09:30:00Z",
                     id: "id",
                     name: "name",
@@ -37,6 +38,7 @@ describe("ComponentsClient", () => {
                     ast: {
                         key: 1.1,
                     },
+                    catalogId: "catalog_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     id: "id",
                     name: "name",
@@ -125,6 +127,7 @@ describe("ComponentsClient", () => {
         const rawResponseBody = {
             data: {
                 ast: { key: 1.1 },
+                catalog_id: "catalog_id",
                 created_at: "2024-01-15T09:30:00Z",
                 id: "id",
                 name: "name",
@@ -153,6 +156,7 @@ describe("ComponentsClient", () => {
                 ast: {
                     key: 1.1,
                 },
+                catalogId: "catalog_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 id: "id",
                 name: "name",
@@ -288,6 +292,7 @@ describe("ComponentsClient", () => {
         const rawResponseBody = {
             data: {
                 ast: { key: 1.1 },
+                catalog_id: "catalog_id",
                 created_at: "2024-01-15T09:30:00Z",
                 id: "id",
                 name: "name",
@@ -312,6 +317,7 @@ describe("ComponentsClient", () => {
                 ast: {
                     key: 1.1,
                 },
+                catalogId: "catalog_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 id: "id",
                 name: "name",
@@ -408,6 +414,7 @@ describe("ComponentsClient", () => {
         const rawResponseBody = {
             data: {
                 ast: { key: 1.1 },
+                catalog_id: "catalog_id",
                 created_at: "2024-01-15T09:30:00Z",
                 id: "id",
                 name: "name",
@@ -433,6 +440,7 @@ describe("ComponentsClient", () => {
                 ast: {
                     key: 1.1,
                 },
+                catalogId: "catalog_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 id: "id",
                 name: "name",
@@ -663,6 +671,153 @@ describe("ComponentsClient", () => {
 
         await expect(async () => {
             return await client.components.deleteComponent("component_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("bindCatalog (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = {
+            data: {
+                ast: { key: 1.1 },
+                catalog_id: "catalog_id",
+                created_at: "2024-01-15T09:30:00Z",
+                id: "id",
+                name: "name",
+                state: "draft",
+                type: "billing",
+                updated_at: "2024-01-15T09:30:00Z",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .put("/components/component_id/catalog")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.components.bindCatalog("component_id");
+        expect(response).toEqual({
+            data: {
+                ast: {
+                    key: 1.1,
+                },
+                catalogId: "catalog_id",
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                id: "id",
+                name: "name",
+                state: "draft",
+                type: "billing",
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("bindCatalog (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/components/component_id/catalog")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.components.bindCatalog("component_id");
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("bindCatalog (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/components/component_id/catalog")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.components.bindCatalog("component_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("bindCatalog (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/components/component_id/catalog")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.components.bindCatalog("component_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("bindCatalog (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/components/component_id/catalog")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.components.bindCatalog("component_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("bindCatalog (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/components/component_id/catalog")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.components.bindCatalog("component_id");
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
@@ -1352,6 +1507,7 @@ describe("ComponentsClient", () => {
                 },
                 component: {
                     ast: { key: 1.1 },
+                    catalog_id: "catalog_id",
                     created_at: "2024-01-15T09:30:00Z",
                     id: "id",
                     name: "name",
@@ -1447,6 +1603,7 @@ describe("ComponentsClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     billing_strategy: "schematic_managed",
+                    catalogs: [{ id: "id", name: "name" }],
                     charge_type: "free",
                     company_count: 1000000,
                     company_id: "company_id",
@@ -1732,6 +1889,7 @@ describe("ComponentsClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     billing_strategy: "schematic_managed",
+                    catalogs: [{ id: "id", name: "name" }],
                     charge_type: "free",
                     company_count: 1000000,
                     company_id: "company_id",
@@ -2741,6 +2899,7 @@ describe("ComponentsClient", () => {
                     ast: {
                         key: 1.1,
                     },
+                    catalogId: "catalog_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     id: "id",
                     name: "name",
@@ -2840,6 +2999,12 @@ describe("ComponentsClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     billingStrategy: "schematic_managed",
+                    catalogs: [
+                        {
+                            id: "id",
+                            name: "name",
+                        },
+                    ],
                     chargeType: "free",
                     companyCount: 1000000,
                     companyId: "company_id",
@@ -3158,6 +3323,12 @@ describe("ComponentsClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     billingStrategy: "schematic_managed",
+                    catalogs: [
+                        {
+                            id: "id",
+                            name: "name",
+                        },
+                    ],
                     chargeType: "free",
                     companyCount: 1000000,
                     companyId: "company_id",

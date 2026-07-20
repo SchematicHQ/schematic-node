@@ -7,8 +7,8 @@ import type * as serializers from "../index";
 export const DataExportOutputFileType: core.serialization.Schema<
     serializers.DataExportOutputFileType.Raw,
     Schematic.DataExportOutputFileType
-> = core.serialization.stringLiteral("csv");
+> = core.serialization.enum_(["csv", "csv.gz"]);
 
 export declare namespace DataExportOutputFileType {
-    export type Raw = "csv";
+    export type Raw = "csv" | "csv.gz";
 }

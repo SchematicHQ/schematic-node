@@ -6,6 +6,7 @@ import type * as serializers from "../index";
 import { RulesengineEntitlementValueType } from "./RulesengineEntitlementValueType";
 import { RulesengineMetricPeriod } from "./RulesengineMetricPeriod";
 import { RulesengineMetricPeriodMonthReset } from "./RulesengineMetricPeriodMonthReset";
+import { RulesengineWarningTier } from "./RulesengineWarningTier";
 
 export const RulesengineFeatureEntitlement: core.serialization.ObjectSchema<
     serializers.RulesengineFeatureEntitlement.Raw,
@@ -29,6 +30,10 @@ export const RulesengineFeatureEntitlement: core.serialization.ObjectSchema<
     softLimit: core.serialization.property("soft_limit", core.serialization.number().optional()),
     usage: core.serialization.number().optional(),
     valueType: core.serialization.property("value_type", RulesengineEntitlementValueType),
+    warningTiers: core.serialization.property(
+        "warning_tiers",
+        core.serialization.list(RulesengineWarningTier).optional(),
+    ),
 });
 
 export declare namespace RulesengineFeatureEntitlement {
@@ -51,5 +56,6 @@ export declare namespace RulesengineFeatureEntitlement {
         soft_limit?: number | null;
         usage?: number | null;
         value_type: RulesengineEntitlementValueType.Raw;
+        warning_tiers?: RulesengineWarningTier.Raw[] | null;
     }
 }

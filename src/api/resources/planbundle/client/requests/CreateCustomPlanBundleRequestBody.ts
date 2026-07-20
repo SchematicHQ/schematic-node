@@ -12,6 +12,7 @@ import type * as Schematic from "../../../../index";
  */
 export interface CreateCustomPlanBundleRequestBody {
     billingProduct?: Schematic.UpsertBillingProductRequestBody;
+    creditGrants?: Schematic.PlanBundleCreditGrantRequestBody[];
     entitlements: Schematic.PlanBundleEntitlementRequestBody[];
     plan?: Schematic.CreateCustomPlanBundlePlanRequestBody;
 }

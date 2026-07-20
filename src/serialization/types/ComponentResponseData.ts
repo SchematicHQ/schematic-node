@@ -11,6 +11,7 @@ export const ComponentResponseData: core.serialization.ObjectSchema<
     Schematic.ComponentResponseData
 > = core.serialization.object({
     ast: core.serialization.record(core.serialization.string(), core.serialization.number()).optional(),
+    catalogId: core.serialization.property("catalog_id", core.serialization.string().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     id: core.serialization.string(),
     name: core.serialization.string(),
@@ -22,6 +23,7 @@ export const ComponentResponseData: core.serialization.ObjectSchema<
 export declare namespace ComponentResponseData {
     export interface Raw {
         ast?: Record<string, number> | null;
+        catalog_id?: string | null;
         created_at: string;
         id: string;
         name: string;

@@ -8,6 +8,8 @@ export const UpsertCompanyRequestBody: core.serialization.ObjectSchema<
     serializers.UpsertCompanyRequestBody.Raw,
     Schematic.UpsertCompanyRequestBody
 > = core.serialization.object({
+    basePlanId: core.serialization.property("base_plan_id", core.serialization.string().optional()),
+    basePlanPriceId: core.serialization.property("base_plan_price_id", core.serialization.string().optional()),
     id: core.serialization.string().optional(),
     keys: core.serialization.record(core.serialization.string(), core.serialization.string()),
     lastSeenAt: core.serialization.property("last_seen_at", core.serialization.date().optional()),
@@ -19,6 +21,8 @@ export const UpsertCompanyRequestBody: core.serialization.ObjectSchema<
 
 export declare namespace UpsertCompanyRequestBody {
     export interface Raw {
+        base_plan_id?: string | null;
+        base_plan_price_id?: string | null;
         id?: string | null;
         keys: Record<string, string>;
         last_seen_at?: string | null;

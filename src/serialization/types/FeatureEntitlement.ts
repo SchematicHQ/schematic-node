@@ -6,6 +6,7 @@ import type * as serializers from "../index";
 import { EntitlementValueType } from "./EntitlementValueType";
 import { MetricPeriod } from "./MetricPeriod";
 import { MetricPeriodMonthReset } from "./MetricPeriodMonthReset";
+import { WarningTier } from "./WarningTier";
 
 export const FeatureEntitlement: core.serialization.ObjectSchema<
     serializers.FeatureEntitlement.Raw,
@@ -29,6 +30,7 @@ export const FeatureEntitlement: core.serialization.ObjectSchema<
     softLimit: core.serialization.property("soft_limit", core.serialization.number().optional()),
     usage: core.serialization.number().optional(),
     valueType: core.serialization.property("value_type", EntitlementValueType),
+    warningTiers: core.serialization.property("warning_tiers", core.serialization.list(WarningTier).optional()),
 });
 
 export declare namespace FeatureEntitlement {
@@ -51,5 +53,6 @@ export declare namespace FeatureEntitlement {
         soft_limit?: number | null;
         usage?: number | null;
         value_type: EntitlementValueType.Raw;
+        warning_tiers?: WarningTier.Raw[] | null;
     }
 }

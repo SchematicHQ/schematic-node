@@ -1,3 +1,4 @@
+export * from "./BindCatalogResponse";
 export * from "./CountComponentsParams";
 export * from "./CountComponentsResponse";
 export * from "./CreateComponentResponse";
