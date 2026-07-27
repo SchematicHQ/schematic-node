@@ -4,6 +4,7 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingLinkedResourceResponseData } from "./BillingLinkedResourceResponseData";
+import { BillingProductResponseData } from "./BillingProductResponseData";
 import { EntityTraitDefinitionResponseData } from "./EntityTraitDefinitionResponseData";
 import { EventSummaryResponseData } from "./EventSummaryResponseData";
 import { FeatureLifecyclePhase } from "./FeatureLifecyclePhase";
@@ -18,6 +19,7 @@ export const FeatureView: core.serialization.ObjectSchema<serializers.FeatureVie
             "billing_linked_resource",
             BillingLinkedResourceResponseData.optional(),
         ),
+        billingProduct: core.serialization.property("billing_product", BillingProductResponseData.optional()),
         createdAt: core.serialization.property("created_at", core.serialization.date()),
         description: core.serialization.string(),
         eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
@@ -26,6 +28,7 @@ export const FeatureView: core.serialization.ObjectSchema<serializers.FeatureVie
         flags: core.serialization.list(FlagView),
         icon: core.serialization.string(),
         id: core.serialization.string(),
+        licenseId: core.serialization.property("license_id", core.serialization.string().optional()),
         lifecyclePhase: core.serialization.property("lifecycle_phase", FeatureLifecyclePhase.optional()),
         name: core.serialization.string(),
         plans: core.serialization.list(PreviewObject),
@@ -41,6 +44,7 @@ export declare namespace FeatureView {
     export interface Raw {
         account_id: string;
         billing_linked_resource?: BillingLinkedResourceResponseData.Raw | null;
+        billing_product?: BillingProductResponseData.Raw | null;
         created_at: string;
         description: string;
         event_subtype?: string | null;
@@ -49,6 +53,7 @@ export declare namespace FeatureView {
         flags: FlagView.Raw[];
         icon: string;
         id: string;
+        license_id?: string | null;
         lifecycle_phase?: FeatureLifecyclePhase.Raw | null;
         name: string;
         plans: PreviewObject.Raw[];

@@ -4,6 +4,8 @@ import type * as Schematic from "../index";
 
 export interface FeatureDetailResponseData {
     billingLinkedResource?: Schematic.BillingLinkedResourceResponseData;
+    /** The billing provider product that sells this feature in the current environment. Set for license features once they have been priced in a plan; a feature priced in several environments has a different product in each. */
+    billingProduct?: Schematic.BillingProductResponseData;
     createdAt: Date;
     description: string;
     eventSubtype?: string;
@@ -12,6 +14,8 @@ export interface FeatureDetailResponseData {
     flags: Schematic.FlagDetailResponseData[];
     icon: string;
     id: string;
+    /** The license sold through this feature. Set only on features of type license, and created automatically with them. */
+    licenseId?: string;
     lifecyclePhase?: Schematic.FeatureLifecyclePhase;
     maintainer?: Schematic.AccountMemberResponseData;
     maintainerAccountMemberId?: string;
@@ -22,4 +26,6 @@ export interface FeatureDetailResponseData {
     trait?: Schematic.EntityTraitDefinitionResponseData;
     traitId?: string;
     updatedAt: Date;
+    /** Set when the feature carries a pay-in-advance quantity. Provisioned lazily for other feature types, and at creation for license features. */
+    usageLimitTraitId?: string;
 }

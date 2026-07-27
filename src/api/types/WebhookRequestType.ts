@@ -13,6 +13,7 @@ export const WebhookRequestType = {
     CompanyUpdated: "company.updated",
     CreditLimitReached: "credit.limit.reached",
     CreditLimitWarning: "credit.limit.warning",
+    CreditPurchaseSuccess: "credit.purchase.success",
     EntitlementLimitReached: "entitlement.limit.reached",
     EntitlementLimitWarning: "entitlement.limit.warning",
     EntitlementSoftLimitReached: "entitlement.soft_limit.reached",
@@ -40,5 +41,6 @@ export const WebhookRequestType = {
     UserUpdated: "user.updated",
     AutoTopupHardFailure: "auto.topup.hard.failure",
     AutoTopupRetryExceeded: "auto.topup.retry.exceeded",
+    AutoTopupSuccess: "auto.topup.success",
 } as const;
 export type WebhookRequestType = (typeof WebhookRequestType)[keyof typeof WebhookRequestType];

@@ -27,6 +27,7 @@ export const FeatureInPlanResponseData: core.serialization.ObjectSchema<
     flags: core.serialization.list(FlagInPlanResponseData),
     icon: core.serialization.string(),
     id: core.serialization.string(),
+    licenseId: core.serialization.property("license_id", core.serialization.string().optional()),
     lifecyclePhase: core.serialization.property("lifecycle_phase", FeatureLifecyclePhase.optional()),
     maintainerAccountMemberId: core.serialization.property(
         "maintainer_account_member_id",
@@ -39,6 +40,7 @@ export const FeatureInPlanResponseData: core.serialization.ObjectSchema<
     trait: EntityTraitDefinitionResponseData.optional(),
     traitId: core.serialization.property("trait_id", core.serialization.string().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+    usageLimitTraitId: core.serialization.property("usage_limit_trait_id", core.serialization.string().optional()),
 });
 
 export declare namespace FeatureInPlanResponseData {
@@ -52,6 +54,7 @@ export declare namespace FeatureInPlanResponseData {
         flags: FlagInPlanResponseData.Raw[];
         icon: string;
         id: string;
+        license_id?: string | null;
         lifecycle_phase?: FeatureLifecyclePhase.Raw | null;
         maintainer_account_member_id?: string | null;
         name: string;
@@ -61,5 +64,6 @@ export declare namespace FeatureInPlanResponseData {
         trait?: EntityTraitDefinitionResponseData.Raw | null;
         trait_id?: string | null;
         updated_at: string;
+        usage_limit_trait_id?: string | null;
     }
 }

@@ -11,6 +11,7 @@ export const BillingCreditGrantZeroedOutReason: core.serialization.Schema<
     "customer_archived",
     "expired",
     "integration_uninstalled",
+    "license_retired",
     "manual",
     "plan_change",
     "plan_period_reset",
@@ -22,6 +23,7 @@ export declare namespace BillingCreditGrantZeroedOutReason {
         | "customer_archived"
         | "expired"
         | "integration_uninstalled"
+        | "license_retired"
         | "manual"
         | "plan_change"
         | "plan_period_reset"

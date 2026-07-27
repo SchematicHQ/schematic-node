@@ -37,6 +37,7 @@ export class AccountsClient {
      *     await client.accounts.listAccountMembers({
      *         ids: ["ids"],
      *         q: "q",
+     *         role: "admin",
      *         limit: 1000000,
      *         offset: 1000000
      *     })
@@ -52,10 +53,14 @@ export class AccountsClient {
         request: Schematic.ListAccountMembersRequest = {},
         requestOptions?: AccountsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListAccountMembersResponse>> {
-        const { ids, q, limit, offset } = request;
+        const { ids, q, role, limit, offset } = request;
         const _queryParams: Record<string, unknown> = {
             ids,
             q,
+            role:
+                role != null
+                    ? serializers.AccountMemberRole.jsonOrThrow(role, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
             limit,
             offset,
         };
@@ -302,6 +307,7 @@ export class AccountsClient {
      *     await client.accounts.countAccountMembers({
      *         ids: ["ids"],
      *         q: "q",
+     *         role: "admin",
      *         limit: 1000000,
      *         offset: 1000000
      *     })
@@ -317,10 +323,14 @@ export class AccountsClient {
         request: Schematic.CountAccountMembersRequest = {},
         requestOptions?: AccountsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountAccountMembersResponse>> {
-        const { ids, q, limit, offset } = request;
+        const { ids, q, role, limit, offset } = request;
         const _queryParams: Record<string, unknown> = {
             ids,
             q,
+            role:
+                role != null
+                    ? serializers.AccountMemberRole.jsonOrThrow(role, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
             limit,
             offset,
         };

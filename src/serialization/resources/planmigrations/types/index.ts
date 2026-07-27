@@ -8,5 +8,6 @@ export * from "./ListCompanyMigrationsParams";
 export * from "./ListCompanyMigrationsResponse";
 export * from "./ListMigrationsParams";
 export * from "./ListMigrationsResponse";
+export * from "./PreviewMigrationResponse";
 export * from "./RetryCompanyMigrationResponse";
 export * from "./RetryMigrationResponse";

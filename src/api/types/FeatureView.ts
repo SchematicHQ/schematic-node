@@ -5,6 +5,7 @@ import type * as Schematic from "../index";
 export interface FeatureView {
     accountId: string;
     billingLinkedResource?: Schematic.BillingLinkedResourceResponseData;
+    billingProduct?: Schematic.BillingProductResponseData;
     createdAt: Date;
     description: string;
     eventSubtype?: string;
@@ -13,6 +14,7 @@ export interface FeatureView {
     flags: Schematic.FlagView[];
     icon: string;
     id: string;
+    licenseId?: string;
     lifecyclePhase?: Schematic.FeatureLifecyclePhase;
     name: string;
     plans: Schematic.PreviewObject[];

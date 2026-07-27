@@ -16,6 +16,7 @@ export const FeatureResponseData: core.serialization.ObjectSchema<
     featureType: core.serialization.property("feature_type", FeatureType),
     icon: core.serialization.string(),
     id: core.serialization.string(),
+    licenseId: core.serialization.property("license_id", core.serialization.string().optional()),
     lifecyclePhase: core.serialization.property("lifecycle_phase", FeatureLifecyclePhase.optional()),
     maintainerAccountMemberId: core.serialization.property(
         "maintainer_account_member_id",
@@ -26,6 +27,7 @@ export const FeatureResponseData: core.serialization.ObjectSchema<
     singularName: core.serialization.property("singular_name", core.serialization.string().optional()),
     traitId: core.serialization.property("trait_id", core.serialization.string().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+    usageLimitTraitId: core.serialization.property("usage_limit_trait_id", core.serialization.string().optional()),
 });
 
 export declare namespace FeatureResponseData {
@@ -36,6 +38,7 @@ export declare namespace FeatureResponseData {
         feature_type: FeatureType.Raw;
         icon: string;
         id: string;
+        license_id?: string | null;
         lifecycle_phase?: FeatureLifecyclePhase.Raw | null;
         maintainer_account_member_id?: string | null;
         name: string;
@@ -43,5 +46,6 @@ export declare namespace FeatureResponseData {
         singular_name?: string | null;
         trait_id?: string | null;
         updated_at: string;
+        usage_limit_trait_id?: string | null;
     }
 }

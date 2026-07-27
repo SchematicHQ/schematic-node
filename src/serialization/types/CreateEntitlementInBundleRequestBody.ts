@@ -10,6 +10,7 @@ import { EntitlementPriceBehavior } from "./EntitlementPriceBehavior";
 import { EntitlementValueType } from "./EntitlementValueType";
 import { MetricPeriod } from "./MetricPeriod";
 import { MetricPeriodMonthReset } from "./MetricPeriodMonthReset";
+import { WarningTierRequestBody } from "./WarningTierRequestBody";
 
 export const CreateEntitlementInBundleRequestBody: core.serialization.ObjectSchema<
     serializers.CreateEntitlementInBundleRequestBody.Raw,
@@ -74,6 +75,10 @@ export const CreateEntitlementInBundleRequestBody: core.serialization.ObjectSche
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
     valueTraitId: core.serialization.property("value_trait_id", core.serialization.string().optional()),
     valueType: core.serialization.property("value_type", EntitlementValueType),
+    warningTiers: core.serialization.property(
+        "warning_tiers",
+        core.serialization.list(WarningTierRequestBody).optional(),
+    ),
     yearlyMeteredPriceId: core.serialization.property(
         "yearly_metered_price_id",
         core.serialization.string().optional(),
@@ -120,6 +125,7 @@ export declare namespace CreateEntitlementInBundleRequestBody {
         value_numeric?: number | null;
         value_trait_id?: string | null;
         value_type: EntitlementValueType.Raw;
+        warning_tiers?: WarningTierRequestBody.Raw[] | null;
         yearly_metered_price_id?: string | null;
         yearly_price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
         yearly_unit_price?: number | null;
