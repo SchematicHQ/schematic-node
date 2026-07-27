@@ -20,6 +20,7 @@ export const WebhookRequestType: core.serialization.Schema<
     "company.updated",
     "credit.limit.reached",
     "credit.limit.warning",
+    "credit.purchase.success",
     "entitlement.limit.reached",
     "entitlement.limit.warning",
     "entitlement.soft_limit.reached",
@@ -47,6 +48,7 @@ export const WebhookRequestType: core.serialization.Schema<
     "user.updated",
     "auto.topup.hard.failure",
     "auto.topup.retry.exceeded",
+    "auto.topup.success",
 ]);
 
 export declare namespace WebhookRequestType {
@@ -63,6 +65,7 @@ export declare namespace WebhookRequestType {
         | "company.updated"
         | "credit.limit.reached"
         | "credit.limit.warning"
+        | "credit.purchase.success"
         | "entitlement.limit.reached"
         | "entitlement.limit.warning"
         | "entitlement.soft_limit.reached"
@@ -89,5 +92,6 @@ export declare namespace WebhookRequestType {
         | "user.deleted"
         | "user.updated"
         | "auto.topup.hard.failure"
-        | "auto.topup.retry.exceeded";
+        | "auto.topup.retry.exceeded"
+        | "auto.topup.success";
 }

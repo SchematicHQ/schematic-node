@@ -3569,6 +3569,414 @@ describe("CheckoutClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("getCompanyBillingDetails (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                address: {
+                    city: "city",
+                    country: "country",
+                    line1: "line1",
+                    line2: "line2",
+                    postal_code: "postal_code",
+                    state: "state",
+                },
+                checkout_settings: { collect_address: true, collect_email: true, collect_phone: true },
+                custom_fields: [
+                    {
+                        definition_id: "definition_id",
+                        id: "id",
+                        name: "name",
+                        required: true,
+                        stripe_metadata_key: "stripe_metadata_key",
+                    },
+                ],
+                email: "email",
+                phone: "phone",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/companies/company_id/billing-details")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.checkout.getCompanyBillingDetails("company_id");
+        expect(response).toEqual({
+            data: {
+                address: {
+                    city: "city",
+                    country: "country",
+                    line1: "line1",
+                    line2: "line2",
+                    postalCode: "postal_code",
+                    state: "state",
+                },
+                checkoutSettings: {
+                    collectAddress: true,
+                    collectEmail: true,
+                    collectPhone: true,
+                },
+                customFields: [
+                    {
+                        definitionId: "definition_id",
+                        id: "id",
+                        name: "name",
+                        required: true,
+                        stripeMetadataKey: "stripe_metadata_key",
+                    },
+                ],
+                email: "email",
+                phone: "phone",
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("getCompanyBillingDetails (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/companies/company_id/billing-details")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.checkout.getCompanyBillingDetails("company_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getCompanyBillingDetails (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/companies/company_id/billing-details")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.checkout.getCompanyBillingDetails("company_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getCompanyBillingDetails (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/companies/company_id/billing-details")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.checkout.getCompanyBillingDetails("company_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getCompanyBillingDetails (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/companies/company_id/billing-details")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.checkout.getCompanyBillingDetails("company_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("updateCompanyBillingDetails (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { values: [{ id: "id", value: "value" }] };
+        const rawResponseBody = {
+            data: {
+                address: {
+                    city: "city",
+                    country: "country",
+                    line1: "line1",
+                    line2: "line2",
+                    postal_code: "postal_code",
+                    state: "state",
+                },
+                checkout_settings: { collect_address: true, collect_email: true, collect_phone: true },
+                custom_fields: [
+                    {
+                        definition_id: "definition_id",
+                        id: "id",
+                        name: "name",
+                        required: true,
+                        stripe_metadata_key: "stripe_metadata_key",
+                    },
+                ],
+                email: "email",
+                phone: "phone",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .put("/companies/company_id/billing-details")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.checkout.updateCompanyBillingDetails("company_id", {
+            values: [
+                {
+                    id: "id",
+                    value: "value",
+                },
+            ],
+        });
+        expect(response).toEqual({
+            data: {
+                address: {
+                    city: "city",
+                    country: "country",
+                    line1: "line1",
+                    line2: "line2",
+                    postalCode: "postal_code",
+                    state: "state",
+                },
+                checkoutSettings: {
+                    collectAddress: true,
+                    collectEmail: true,
+                    collectPhone: true,
+                },
+                customFields: [
+                    {
+                        definitionId: "definition_id",
+                        id: "id",
+                        name: "name",
+                        required: true,
+                        stripeMetadataKey: "stripe_metadata_key",
+                    },
+                ],
+                email: "email",
+                phone: "phone",
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("updateCompanyBillingDetails (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            values: [
+                { id: "id", value: "value" },
+                { id: "id", value: "value" },
+            ],
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/companies/company_id/billing-details")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.checkout.updateCompanyBillingDetails("company_id", {
+                values: [
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                ],
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("updateCompanyBillingDetails (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            values: [
+                { id: "id", value: "value" },
+                { id: "id", value: "value" },
+            ],
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/companies/company_id/billing-details")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.checkout.updateCompanyBillingDetails("company_id", {
+                values: [
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                ],
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("updateCompanyBillingDetails (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            values: [
+                { id: "id", value: "value" },
+                { id: "id", value: "value" },
+            ],
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/companies/company_id/billing-details")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.checkout.updateCompanyBillingDetails("company_id", {
+                values: [
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                ],
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("updateCompanyBillingDetails (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            values: [
+                { id: "id", value: "value" },
+                { id: "id", value: "value" },
+            ],
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/companies/company_id/billing-details")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.checkout.updateCompanyBillingDetails("company_id", {
+                values: [
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                ],
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("updateCompanyBillingDetails (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            values: [
+                { id: "id", value: "value" },
+                { id: "id", value: "value" },
+            ],
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/companies/company_id/billing-details")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.checkout.updateCompanyBillingDetails("company_id", {
+                values: [
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                    {
+                        id: "id",
+                        value: "value",
+                    },
+                ],
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("managePlan (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });

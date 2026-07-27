@@ -3,6 +3,7 @@
 import type * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { AccountMemberRole } from "../../../types/AccountMemberRole";
 
 export const CountAccountMembersParams: core.serialization.ObjectSchema<
     serializers.CountAccountMembersParams.Raw,
@@ -12,6 +13,7 @@ export const CountAccountMembersParams: core.serialization.ObjectSchema<
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
     q: core.serialization.string().optional(),
+    role: AccountMemberRole.optional(),
 });
 
 export declare namespace CountAccountMembersParams {
@@ -20,5 +22,6 @@ export declare namespace CountAccountMembersParams {
         limit?: number | null;
         offset?: number | null;
         q?: string | null;
+        role?: AccountMemberRole.Raw | null;
     }
 }

@@ -57,6 +57,7 @@ await client.getCreditLedger();
 await client.accounts.listAccountMembers({
     ids: ["ids"],
     q: "q",
+    role: "admin",
     limit: 1000000,
     offset: 1000000
 });
@@ -160,6 +161,7 @@ await client.accounts.getAccountMember("account_member_id");
 await client.accounts.countAccountMembers({
     ids: ["ids"],
     q: "q",
+    role: "admin",
     limit: 1000000,
     offset: 1000000
 });
@@ -4935,6 +4937,117 @@ await client.checkout.previewCheckoutInternal({
 <dd>
 
 **request:** `Schematic.ChangeSubscriptionInternalRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CheckoutClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.checkout.<a href="/src/api/resources/checkout/client/Client.ts">getCompanyBillingDetails</a>(company_id) -> Schematic.GetCompanyBillingDetailsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.checkout.getCompanyBillingDetails("company_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**company_id:** `string` — company_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CheckoutClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.checkout.<a href="/src/api/resources/checkout/client/Client.ts">updateCompanyBillingDetails</a>(company_id, { ...params }) -> Schematic.UpdateCompanyBillingDetailsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.checkout.updateCompanyBillingDetails("company_id", {
+    values: [{
+            id: "id",
+            value: "value"
+        }]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**company_id:** `string` — company_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.UpdateCompanyBillingDetailsRequestBody` 
     
 </dd>
 </dl>
@@ -12320,6 +12433,166 @@ await client.integrationsapi.uninstallIntegration("integration_id");
 </dl>
 </details>
 
+## licenses
+<details><summary><code>client.licenses.<a href="/src/api/resources/licenses/client/Client.ts">listLicenses</a>({ ...params }) -> Schematic.ListLicensesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.licenses.listLicenses({
+    featureIds: ["feature_ids"],
+    ids: ["ids"],
+    name: "name",
+    limit: 1000000,
+    offset: 1000000
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListLicensesRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `LicensesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.licenses.<a href="/src/api/resources/licenses/client/Client.ts">getSingleLicense</a>(license_id) -> Schematic.GetSingleLicenseResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.licenses.getSingleLicense("license_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**license_id:** `string` — license_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `LicensesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.licenses.<a href="/src/api/resources/licenses/client/Client.ts">countLicenses</a>({ ...params }) -> Schematic.CountLicensesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.licenses.countLicenses({
+    featureIds: ["feature_ids"],
+    ids: ["ids"],
+    name: "name",
+    limit: 1000000,
+    offset: 1000000
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CountLicensesRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `LicensesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## plangroups
 <details><summary><code>client.plangroups.<a href="/src/api/resources/plangroups/client/Client.ts">getPlanGroup</a>({ ...params }) -> Schematic.GetPlanGroupResponse</code></summary>
 <dl>
@@ -12944,6 +13217,60 @@ await client.planmigrations.countMigrations({
 <dd>
 
 **request:** `Schematic.CountMigrationsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PlanmigrationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.planmigrations.<a href="/src/api/resources/planmigrations/client/Client.ts">previewMigration</a>({ ...params }) -> Schematic.PreviewMigrationResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.planmigrations.previewMigration({
+    companyIds: ["company_ids"],
+    planId: "plan_id",
+    planVersionIdTo: "plan_version_id_to",
+    targetPlanType: "plan"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.PreviewMigrationRequestBody` 
     
 </dd>
 </dl>

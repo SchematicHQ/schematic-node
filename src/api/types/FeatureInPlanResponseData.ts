@@ -12,6 +12,8 @@ export interface FeatureInPlanResponseData {
     flags: Schematic.FlagInPlanResponseData[];
     icon: string;
     id: string;
+    /** The license sold through this feature. Set only on features of type license, and created automatically with them. */
+    licenseId?: string;
     lifecyclePhase?: Schematic.FeatureLifecyclePhase;
     maintainerAccountMemberId?: string;
     name: string;
@@ -21,4 +23,6 @@ export interface FeatureInPlanResponseData {
     trait?: Schematic.EntityTraitDefinitionResponseData;
     traitId?: string;
     updatedAt: Date;
+    /** Set when the feature carries a pay-in-advance quantity. Provisioned lazily for other feature types, and at creation for license features. */
+    usageLimitTraitId?: string;
 }

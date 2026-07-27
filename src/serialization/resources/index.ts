@@ -41,6 +41,8 @@ export * from "./insights/types";
 export * as integrationsapi from "./integrationsapi";
 export * from "./integrationsapi/client/requests";
 export * from "./integrationsapi/types";
+export * as licenses from "./licenses";
+export * from "./licenses/types";
 export * as planbundle from "./planbundle";
 export * from "./planbundle/client/requests";
 export * from "./planbundle/types";

@@ -5,8 +5,8 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 
 export const FeatureType: core.serialization.Schema<serializers.FeatureType.Raw, Schematic.FeatureType> =
-    core.serialization.enum_(["boolean", "event", "trait"]);
+    core.serialization.enum_(["boolean", "event", "license", "trait"]);
 
 export declare namespace FeatureType {
-    export type Raw = "boolean" | "event" | "trait";
+    export type Raw = "boolean" | "event" | "license" | "trait";
 }

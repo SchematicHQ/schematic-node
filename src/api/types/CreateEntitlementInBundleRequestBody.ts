@@ -34,6 +34,7 @@ export interface CreateEntitlementInBundleRequestBody {
     valueNumeric?: number;
     valueTraitId?: string;
     valueType: Schematic.EntitlementValueType;
+    warningTiers?: Schematic.WarningTierRequestBody[];
     yearlyMeteredPriceId?: string;
     yearlyPriceTiers?: Schematic.CreatePriceTierRequestBody[];
     yearlyUnitPrice?: number;

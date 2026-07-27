@@ -5,6 +5,7 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 import { AccountMemberResponseData } from "./AccountMemberResponseData";
 import { BillingLinkedResourceResponseData } from "./BillingLinkedResourceResponseData";
+import { BillingProductResponseData } from "./BillingProductResponseData";
 import { EntityTraitDefinitionResponseData } from "./EntityTraitDefinitionResponseData";
 import { EventSummaryResponseData } from "./EventSummaryResponseData";
 import { FeatureLifecyclePhase } from "./FeatureLifecyclePhase";
@@ -20,6 +21,7 @@ export const FeatureDetailResponseData: core.serialization.ObjectSchema<
         "billing_linked_resource",
         BillingLinkedResourceResponseData.optional(),
     ),
+    billingProduct: core.serialization.property("billing_product", BillingProductResponseData.optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     description: core.serialization.string(),
     eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
@@ -28,6 +30,7 @@ export const FeatureDetailResponseData: core.serialization.ObjectSchema<
     flags: core.serialization.list(FlagDetailResponseData),
     icon: core.serialization.string(),
     id: core.serialization.string(),
+    licenseId: core.serialization.property("license_id", core.serialization.string().optional()),
     lifecyclePhase: core.serialization.property("lifecycle_phase", FeatureLifecyclePhase.optional()),
     maintainer: AccountMemberResponseData.optional(),
     maintainerAccountMemberId: core.serialization.property(
@@ -41,11 +44,13 @@ export const FeatureDetailResponseData: core.serialization.ObjectSchema<
     trait: EntityTraitDefinitionResponseData.optional(),
     traitId: core.serialization.property("trait_id", core.serialization.string().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+    usageLimitTraitId: core.serialization.property("usage_limit_trait_id", core.serialization.string().optional()),
 });
 
 export declare namespace FeatureDetailResponseData {
     export interface Raw {
         billing_linked_resource?: BillingLinkedResourceResponseData.Raw | null;
+        billing_product?: BillingProductResponseData.Raw | null;
         created_at: string;
         description: string;
         event_subtype?: string | null;
@@ -54,6 +59,7 @@ export declare namespace FeatureDetailResponseData {
         flags: FlagDetailResponseData.Raw[];
         icon: string;
         id: string;
+        license_id?: string | null;
         lifecycle_phase?: FeatureLifecyclePhase.Raw | null;
         maintainer?: AccountMemberResponseData.Raw | null;
         maintainer_account_member_id?: string | null;
@@ -64,5 +70,6 @@ export declare namespace FeatureDetailResponseData {
         trait?: EntityTraitDefinitionResponseData.Raw | null;
         trait_id?: string | null;
         updated_at: string;
+        usage_limit_trait_id?: string | null;
     }
 }

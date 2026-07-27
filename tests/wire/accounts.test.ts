@@ -24,7 +24,7 @@ describe("AccountsClient", () => {
                     updated_at: "2024-01-15T09:30:00Z",
                 },
             ],
-            params: { ids: ["ids"], limit: 1000000, offset: 1000000, q: "q" },
+            params: { ids: ["ids"], limit: 1000000, offset: 1000000, q: "q", role: "admin" },
         };
 
         server.mockEndpoint().get("/account-members").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
@@ -32,6 +32,7 @@ describe("AccountsClient", () => {
         const response = await client.accounts.listAccountMembers({
             ids: ["ids"],
             q: "q",
+            role: "admin",
             limit: 1000000,
             offset: 1000000,
         });
@@ -57,6 +58,7 @@ describe("AccountsClient", () => {
                 limit: 1000000,
                 offset: 1000000,
                 q: "q",
+                role: "admin",
             },
         });
     });
@@ -258,7 +260,7 @@ describe("AccountsClient", () => {
 
         const rawResponseBody = {
             data: { count: 1000000 },
-            params: { ids: ["ids"], limit: 1000000, offset: 1000000, q: "q" },
+            params: { ids: ["ids"], limit: 1000000, offset: 1000000, q: "q", role: "admin" },
         };
 
         server
@@ -272,6 +274,7 @@ describe("AccountsClient", () => {
         const response = await client.accounts.countAccountMembers({
             ids: ["ids"],
             q: "q",
+            role: "admin",
             limit: 1000000,
             offset: 1000000,
         });
@@ -284,6 +287,7 @@ describe("AccountsClient", () => {
                 limit: 1000000,
                 offset: 1000000,
                 q: "q",
+                role: "admin",
             },
         });
     });
