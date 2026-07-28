@@ -187,14 +187,27 @@ export class SchematicClient extends BaseClient {
     constructor(opts?: SchematicOptions) {
         const {
             apiKey = "",
-            basePath,
+            basePath: basePathOpt,
             eventBufferInterval,
-            eventCaptureBaseURL,
+            eventCaptureBaseURL: eventCaptureBaseURLOpt,
             flagDefaults = {},
             logLevel,
             timeoutMs,
         } = opts ?? {};
         let { offline = false } = opts ?? {};
+
+        // Treat a blank URL option the same as an unset one. Consumers routinely
+        // forward an env var straight through (`basePath: process.env.X`), which
+        // is `""` when that var is present-but-empty — an extremely common shape
+        // (a blank `SCHEMATIC_*_URL=` line copied from a .env template). An empty
+        // string would otherwise survive the downstream `?? default` (which only
+        // rescues null/undefined) and produce a broken base URL — e.g. event
+        // capture's `"" + "/batch"` = "/batch" — silently dropping every event
+        // batch, including the lease-tagged Track events that settle credit
+        // usage. Normalizing to undefined lets the built-in prod defaults apply.
+        const basePath = basePathOpt && basePathOpt.trim() !== "" ? basePathOpt : undefined;
+        const eventCaptureBaseURL =
+            eventCaptureBaseURLOpt && eventCaptureBaseURLOpt.trim() !== "" ? eventCaptureBaseURLOpt : undefined;
 
         // A consumer-provided logger owns its own level configuration, so we use
         // it as-is and ignore logLevel. Otherwise build the default
