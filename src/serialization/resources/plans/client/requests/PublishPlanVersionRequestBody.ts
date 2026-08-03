@@ -3,15 +3,23 @@
 import type * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
+import { CheckoutFieldValue } from "../../../../types/CheckoutFieldValue";
+import { CustomerBillingAddress } from "../../../../types/CustomerBillingAddress";
 import { CustomPlanActivationStrategy } from "../../../../types/CustomPlanActivationStrategy";
 import { PlanVersionMigrationStrategy } from "../../../../types/PlanVersionMigrationStrategy";
+import { TaxIdInput } from "../../../../types/TaxIdInput";
 
 export const PublishPlanVersionRequestBody: core.serialization.Schema<
     serializers.PublishPlanVersionRequestBody.Raw,
     Schematic.PublishPlanVersionRequestBody
 > = core.serialization.object({
     activationStrategy: core.serialization.property("activation_strategy", CustomPlanActivationStrategy.optional()),
+    address: CustomerBillingAddress.optional(),
     couponExternalId: core.serialization.property("coupon_external_id", core.serialization.string().optional()),
+    customFieldValues: core.serialization.property(
+        "custom_field_values",
+        core.serialization.list(CheckoutFieldValue).optional(),
+    ),
     customerEmail: core.serialization.property("customer_email", core.serialization.string().optional()),
     daysUntilDue: core.serialization.property("days_until_due", core.serialization.number().optional()),
     excludedCompanyIds: core.serialization.property(
@@ -19,15 +27,23 @@ export const PublishPlanVersionRequestBody: core.serialization.Schema<
         core.serialization.list(core.serialization.string()),
     ),
     migrationStrategy: core.serialization.property("migration_strategy", PlanVersionMigrationStrategy),
+    phone: core.serialization.string().optional(),
+    sendInvoice: core.serialization.property("send_invoice", core.serialization.boolean().optional()),
+    taxId: core.serialization.property("tax_id", TaxIdInput.optional()),
 });
 
 export declare namespace PublishPlanVersionRequestBody {
     export interface Raw {
         activation_strategy?: CustomPlanActivationStrategy.Raw | null;
+        address?: CustomerBillingAddress.Raw | null;
         coupon_external_id?: string | null;
+        custom_field_values?: CheckoutFieldValue.Raw[] | null;
         customer_email?: string | null;
         days_until_due?: number | null;
         excluded_company_ids: string[];
         migration_strategy: PlanVersionMigrationStrategy.Raw;
+        phone?: string | null;
+        send_invoice?: boolean | null;
+        tax_id?: TaxIdInput.Raw | null;
     }
 }

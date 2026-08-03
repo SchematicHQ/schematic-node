@@ -56,7 +56,7 @@ export const PlanDetailResponseData: core.serialization.ObjectSchema<
         core.serialization.list(BillingPlanCreditGrantResponseData).optional(),
     ),
     isDefault: core.serialization.property("is_default", core.serialization.boolean()),
-    isFree: core.serialization.property("is_free", core.serialization.boolean()),
+    isFree: core.serialization.property("is_free", core.serialization.boolean().optional()),
     isTrialable: core.serialization.property("is_trialable", core.serialization.boolean()),
     monthlyPrice: core.serialization.property("monthly_price", BillingPriceResponseData.optional()),
     name: core.serialization.string(),
@@ -95,7 +95,7 @@ export declare namespace PlanDetailResponseData {
         id: string;
         included_credit_grants?: BillingPlanCreditGrantResponseData.Raw[] | null;
         is_default: boolean;
-        is_free: boolean;
+        is_free?: boolean | null;
         is_trialable: boolean;
         monthly_price?: BillingPriceResponseData.Raw | null;
         name: string;

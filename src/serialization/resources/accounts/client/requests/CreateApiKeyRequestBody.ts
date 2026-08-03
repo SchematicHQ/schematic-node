@@ -11,6 +11,7 @@ export const CreateApiKeyRequestBody: core.serialization.Schema<
     description: core.serialization.string().optional(),
     environmentId: core.serialization.property("environment_id", core.serialization.string().optional()),
     name: core.serialization.string(),
+    rateLimitPercent: core.serialization.property("rate_limit_percent", core.serialization.number().optional()),
     readonly: core.serialization.boolean().optional(),
 });
 
@@ -19,6 +20,7 @@ export declare namespace CreateApiKeyRequestBody {
         description?: string | null;
         environment_id?: string | null;
         name: string;
+        rate_limit_percent?: number | null;
         readonly?: boolean | null;
     }
 }

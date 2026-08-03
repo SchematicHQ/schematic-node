@@ -10,11 +10,13 @@ export const UpdateApiKeyRequestBody: core.serialization.Schema<
 > = core.serialization.object({
     description: core.serialization.string().optional(),
     name: core.serialization.string().optional(),
+    rateLimitPercent: core.serialization.property("rate_limit_percent", core.serialization.number().optional()),
 });
 
 export declare namespace UpdateApiKeyRequestBody {
     export interface Raw {
         description?: string | null;
         name?: string | null;
+        rate_limit_percent?: number | null;
     }
 }

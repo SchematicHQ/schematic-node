@@ -8,7 +8,6 @@ export interface CatalogResponseData {
     customPlanPriceText?: string;
     customPlansVisible: boolean;
     description?: string;
-    environmentId: string;
     id: string;
     isDefault: boolean;
     name: string;

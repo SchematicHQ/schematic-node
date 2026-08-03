@@ -11,6 +11,7 @@ import { BillingPlanCreditGrantResetCadence } from "./BillingPlanCreditGrantRese
 import { BillingPlanCreditGrantResetStart } from "./BillingPlanCreditGrantResetStart";
 import { BillingPlanCreditGrantResetType } from "./BillingPlanCreditGrantResetType";
 import { GenericPreviewObject } from "./GenericPreviewObject";
+import { PlanCreditGrantScaling } from "./PlanCreditGrantScaling";
 
 export const PlanCreditGrantView: core.serialization.ObjectSchema<
     serializers.PlanCreditGrantView.Raw,
@@ -71,6 +72,7 @@ export const PlanCreditGrantView: core.serialization.ObjectSchema<
     expiryUnit: core.serialization.property("expiry_unit", BillingCreditExpiryUnit.optional()),
     expiryUnitCount: core.serialization.property("expiry_unit_count", core.serialization.number().optional()),
     id: core.serialization.string(),
+    licenseId: core.serialization.property("license_id", core.serialization.string().optional()),
     plan: GenericPreviewObject.optional(),
     planId: core.serialization.property("plan_id", core.serialization.string()),
     planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
@@ -79,6 +81,7 @@ export const PlanCreditGrantView: core.serialization.ObjectSchema<
     resetStart: core.serialization.property("reset_start", BillingPlanCreditGrantResetStart.optional()),
     resetType: core.serialization.property("reset_type", BillingPlanCreditGrantResetType),
     rolloverPercentage: core.serialization.property("rollover_percentage", core.serialization.number()),
+    scaling: PlanCreditGrantScaling,
     singularName: core.serialization.property("singular_name", core.serialization.string().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
@@ -107,6 +110,7 @@ export declare namespace PlanCreditGrantView {
         expiry_unit?: BillingCreditExpiryUnit.Raw | null;
         expiry_unit_count?: number | null;
         id: string;
+        license_id?: string | null;
         plan?: GenericPreviewObject.Raw | null;
         plan_id: string;
         plan_version_id?: string | null;
@@ -115,6 +119,7 @@ export declare namespace PlanCreditGrantView {
         reset_start?: BillingPlanCreditGrantResetStart.Raw | null;
         reset_type: BillingPlanCreditGrantResetType.Raw;
         rollover_percentage: number;
+        scaling: PlanCreditGrantScaling.Raw;
         singular_name?: string | null;
         updated_at: string;
     }

@@ -31,6 +31,8 @@ export interface BillingPlanCreditGrantResponseData {
     expiryUnit?: Schematic.BillingCreditExpiryUnit;
     expiryUnitCount?: number;
     id: string;
+    /** The license whose quantity scales this grant. Set only when scaling is per_license. */
+    licenseId?: string;
     plan?: Schematic.PreviewObjectResponseData;
     planId: string;
     /** Use plan.name from the nested plan object instead */
@@ -41,5 +43,7 @@ export interface BillingPlanCreditGrantResponseData {
     resetType?: Schematic.BillingPlanCreditGrantResetType;
     /** Percentage of unused credits that carry over when this grant resets. Only meaningful when reset_type is plan_period. */
     rolloverPercentage: number;
+    /** Whether the grant is a fixed amount per company, or issued once per license the company holds. */
+    scaling: Schematic.PlanCreditGrantScaling;
     updatedAt: Date;
 }

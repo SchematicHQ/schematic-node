@@ -8,13 +8,13 @@ export const CatalogConfigOrderedEntitlementResponseData: core.serialization.Obj
     serializers.CatalogConfigOrderedEntitlementResponseData.Raw,
     Schematic.CatalogConfigOrderedEntitlementResponseData
 > = core.serialization.object({
-    planEntitlementId: core.serialization.property("plan_entitlement_id", core.serialization.string()),
+    featureId: core.serialization.property("feature_id", core.serialization.string()),
     visible: core.serialization.boolean(),
 });
 
 export declare namespace CatalogConfigOrderedEntitlementResponseData {
     export interface Raw {
-        plan_entitlement_id: string;
+        feature_id: string;
         visible: boolean;
     }
 }

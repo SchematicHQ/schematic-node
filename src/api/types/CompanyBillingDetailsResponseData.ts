@@ -8,4 +8,5 @@ export interface CompanyBillingDetailsResponseData {
     customFields: Schematic.CheckoutFieldWithValue[];
     email?: string;
     phone?: string;
+    taxIds: Schematic.CompanyTaxIdView[];
 }

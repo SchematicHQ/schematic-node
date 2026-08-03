@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { ProrationBehavior } from "./ProrationBehavior";
 
 export const ComponentCheckoutSettings: core.serialization.ObjectSchema<
     serializers.ComponentCheckoutSettings.Raw,
@@ -11,6 +12,7 @@ export const ComponentCheckoutSettings: core.serialization.ObjectSchema<
     collectAddress: core.serialization.property("collect_address", core.serialization.boolean()),
     collectEmail: core.serialization.property("collect_email", core.serialization.boolean()),
     collectPhone: core.serialization.property("collect_phone", core.serialization.boolean()),
+    prorationBehavior: core.serialization.property("proration_behavior", ProrationBehavior),
     taxCollectionEnabled: core.serialization.property("tax_collection_enabled", core.serialization.boolean()),
 });
 
@@ -19,6 +21,7 @@ export declare namespace ComponentCheckoutSettings {
         collect_address: boolean;
         collect_email: boolean;
         collect_phone: boolean;
+        proration_behavior: ProrationBehavior.Raw;
         tax_collection_enabled: boolean;
     }
 }

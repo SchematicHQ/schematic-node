@@ -1841,6 +1841,7 @@ await client.billing.listBillingPrices({
     forTrialExpiryPlan: true,
     ids: ["ids"],
     interval: "interval",
+    intervalCount: 1000000,
     isActive: true,
     planVersionId: "plan_version_id",
     price: 1000000,
@@ -2019,6 +2020,7 @@ await client.billing.listBillingProductPrices({
     forTrialExpiryPlan: true,
     ids: ["ids"],
     interval: "interval",
+    intervalCount: 1000000,
     isActive: true,
     planVersionId: "plan_version_id",
     price: 1000000,
@@ -4084,7 +4086,6 @@ await client.catalogs.listCatalogs({
 
 ```typescript
 await client.catalogs.createCatalog({
-    isDefault: true,
     name: "name"
 });
 
@@ -8579,6 +8580,114 @@ await client.entitlements.getFeatureUsageByCompany({
 <dd>
 
 **request:** `Schematic.GetFeatureUsageByCompanyRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">getUserUsageByCompany</a>({ ...params }) -> Schematic.GetUserUsageByCompanyResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.entitlements.getUserUsageByCompany({
+    companyId: "company_id",
+    endTime: new Date("2024-01-15T09:30:00.000Z"),
+    featureId: "feature_id",
+    startTime: new Date("2024-01-15T09:30:00.000Z")
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.GetUserUsageByCompanyRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">getUserUsageDetail</a>({ ...params }) -> Schematic.GetUserUsageDetailResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.entitlements.getUserUsageDetail({
+    companyId: "company_id",
+    endTime: new Date("2024-01-15T09:30:00.000Z"),
+    startTime: new Date("2024-01-15T09:30:00.000Z"),
+    userId: "user_id"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.GetUserUsageDetailRequest` 
     
 </dd>
 </dl>

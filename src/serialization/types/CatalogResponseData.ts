@@ -15,7 +15,6 @@ export const CatalogResponseData: core.serialization.ObjectSchema<
     customPlanPriceText: core.serialization.property("custom_plan_price_text", core.serialization.string().optional()),
     customPlansVisible: core.serialization.property("custom_plans_visible", core.serialization.boolean()),
     description: core.serialization.string().optional(),
-    environmentId: core.serialization.property("environment_id", core.serialization.string()),
     id: core.serialization.string(),
     isDefault: core.serialization.property("is_default", core.serialization.boolean()),
     name: core.serialization.string(),
@@ -33,7 +32,6 @@ export declare namespace CatalogResponseData {
         custom_plan_price_text?: string | null;
         custom_plans_visible: boolean;
         description?: string | null;
-        environment_id: string;
         id: string;
         is_default: boolean;
         name: string;

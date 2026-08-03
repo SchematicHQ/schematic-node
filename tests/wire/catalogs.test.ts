@@ -19,7 +19,6 @@ describe("CatalogsClient", () => {
                     custom_plan_price_text: "custom_plan_price_text",
                     custom_plans_visible: true,
                     description: "description",
-                    environment_id: "environment_id",
                     id: "id",
                     is_default: true,
                     name: "name",
@@ -49,7 +48,6 @@ describe("CatalogsClient", () => {
                     customPlanPriceText: "custom_plan_price_text",
                     customPlansVisible: true,
                     description: "description",
-                    environmentId: "environment_id",
                     id: "id",
                     isDefault: true,
                     name: "name",
@@ -135,7 +133,7 @@ describe("CatalogsClient", () => {
     test("createCatalog (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { is_default: true, name: "name" };
+        const rawRequestBody = { name: "name" };
         const rawResponseBody = {
             data: {
                 account_id: "account_id",
@@ -145,7 +143,6 @@ describe("CatalogsClient", () => {
                 custom_plan_price_text: "custom_plan_price_text",
                 custom_plans_visible: true,
                 description: "description",
-                environment_id: "environment_id",
                 id: "id",
                 is_default: true,
                 name: "name",
@@ -166,7 +163,6 @@ describe("CatalogsClient", () => {
             .build();
 
         const response = await client.catalogs.createCatalog({
-            isDefault: true,
             name: "name",
         });
         expect(response).toEqual({
@@ -178,7 +174,6 @@ describe("CatalogsClient", () => {
                 customPlanPriceText: "custom_plan_price_text",
                 customPlansVisible: true,
                 description: "description",
-                environmentId: "environment_id",
                 id: "id",
                 isDefault: true,
                 name: "name",
@@ -195,7 +190,7 @@ describe("CatalogsClient", () => {
     test("createCatalog (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { is_default: true, name: "name" };
+        const rawRequestBody = { name: "name" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -209,7 +204,6 @@ describe("CatalogsClient", () => {
 
         await expect(async () => {
             return await client.catalogs.createCatalog({
-                isDefault: true,
                 name: "name",
             });
         }).rejects.toThrow(Schematic.BadRequestError);
@@ -218,7 +212,7 @@ describe("CatalogsClient", () => {
     test("createCatalog (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { is_default: true, name: "name" };
+        const rawRequestBody = { name: "name" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -232,7 +226,6 @@ describe("CatalogsClient", () => {
 
         await expect(async () => {
             return await client.catalogs.createCatalog({
-                isDefault: true,
                 name: "name",
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
@@ -241,7 +234,7 @@ describe("CatalogsClient", () => {
     test("createCatalog (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { is_default: true, name: "name" };
+        const rawRequestBody = { name: "name" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -255,7 +248,6 @@ describe("CatalogsClient", () => {
 
         await expect(async () => {
             return await client.catalogs.createCatalog({
-                isDefault: true,
                 name: "name",
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
@@ -264,7 +256,7 @@ describe("CatalogsClient", () => {
     test("createCatalog (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { is_default: true, name: "name" };
+        const rawRequestBody = { name: "name" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -278,7 +270,6 @@ describe("CatalogsClient", () => {
 
         await expect(async () => {
             return await client.catalogs.createCatalog({
-                isDefault: true,
                 name: "name",
             });
         }).rejects.toThrow(Schematic.NotFoundError);
@@ -287,7 +278,7 @@ describe("CatalogsClient", () => {
     test("createCatalog (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { is_default: true, name: "name" };
+        const rawRequestBody = { name: "name" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -301,7 +292,6 @@ describe("CatalogsClient", () => {
 
         await expect(async () => {
             return await client.catalogs.createCatalog({
-                isDefault: true,
                 name: "name",
             });
         }).rejects.toThrow(Schematic.InternalServerError);
@@ -320,7 +310,6 @@ describe("CatalogsClient", () => {
                 custom_plan_price_text: "custom_plan_price_text",
                 custom_plans_visible: true,
                 description: "description",
-                environment_id: "environment_id",
                 id: "id",
                 is_default: true,
                 name: "name",
@@ -349,7 +338,6 @@ describe("CatalogsClient", () => {
                 customPlanPriceText: "custom_plan_price_text",
                 customPlansVisible: true,
                 description: "description",
-                environmentId: "environment_id",
                 id: "id",
                 isDefault: true,
                 name: "name",
@@ -452,7 +440,6 @@ describe("CatalogsClient", () => {
                 custom_plan_price_text: "custom_plan_price_text",
                 custom_plans_visible: true,
                 description: "description",
-                environment_id: "environment_id",
                 id: "id",
                 is_default: true,
                 name: "name",
@@ -482,7 +469,6 @@ describe("CatalogsClient", () => {
                 customPlanPriceText: "custom_plan_price_text",
                 customPlansVisible: true,
                 description: "description",
-                environmentId: "environment_id",
                 id: "id",
                 isDefault: true,
                 name: "name",
@@ -824,7 +810,6 @@ describe("CatalogsClient", () => {
                         id: "id",
                         is_custom: true,
                         is_default: true,
-                        is_free: true,
                         is_trialable: true,
                         name: "name",
                         plan_type: "plan",
@@ -849,19 +834,9 @@ describe("CatalogsClient", () => {
                 custom_plan_cta_url: "custom_plan_cta_url",
                 custom_plan_price_text: "custom_plan_price_text",
                 custom_plans_visible: true,
-                ordered_add_ons: [
-                    {
-                        entitlements: [{ plan_entitlement_id: "plan_entitlement_id", visible: true }],
-                        plan_id: "plan_id",
-                    },
-                ],
+                ordered_add_ons: [{ entitlements: [{ feature_id: "feature_id", visible: true }], plan_id: "plan_id" }],
                 ordered_bundles: [{ bundle_id: "bundle_id" }],
-                ordered_plans: [
-                    {
-                        entitlements: [{ plan_entitlement_id: "plan_entitlement_id", visible: true }],
-                        plan_id: "plan_id",
-                    },
-                ],
+                ordered_plans: [{ entitlements: [{ feature_id: "feature_id", visible: true }], plan_id: "plan_id" }],
                 plans: [
                     {
                         available_periods: ["monthly"],
@@ -964,7 +939,6 @@ describe("CatalogsClient", () => {
                         id: "id",
                         is_custom: true,
                         is_default: true,
-                        is_free: true,
                         is_trialable: true,
                         name: "name",
                         plan_type: "plan",
@@ -1127,7 +1101,6 @@ describe("CatalogsClient", () => {
                         id: "id",
                         isCustom: true,
                         isDefault: true,
-                        isFree: true,
                         isTrialable: true,
                         name: "name",
                         planType: "plan",
@@ -1156,7 +1129,7 @@ describe("CatalogsClient", () => {
                     {
                         entitlements: [
                             {
-                                planEntitlementId: "plan_entitlement_id",
+                                featureId: "feature_id",
                                 visible: true,
                             },
                         ],
@@ -1172,7 +1145,7 @@ describe("CatalogsClient", () => {
                     {
                         entitlements: [
                             {
-                                planEntitlementId: "plan_entitlement_id",
+                                featureId: "feature_id",
                                 visible: true,
                             },
                         ],
@@ -1304,7 +1277,6 @@ describe("CatalogsClient", () => {
                         id: "id",
                         isCustom: true,
                         isDefault: true,
-                        isFree: true,
                         isTrialable: true,
                         name: "name",
                         planType: "plan",
@@ -1423,7 +1395,6 @@ describe("CatalogsClient", () => {
                 custom_plan_price_text: "custom_plan_price_text",
                 custom_plans_visible: true,
                 description: "description",
-                environment_id: "environment_id",
                 id: "id",
                 is_default: true,
                 name: "name",
@@ -1453,7 +1424,6 @@ describe("CatalogsClient", () => {
                 customPlanPriceText: "custom_plan_price_text",
                 customPlansVisible: true,
                 description: "description",
-                environmentId: "environment_id",
                 id: "id",
                 isDefault: true,
                 name: "name",

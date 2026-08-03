@@ -19,6 +19,7 @@ export const ApiKeyCreateResponseData: core.serialization.ObjectSchema<
     integration: ApiKeyIntegrationResponseData.optional(),
     lastUsedAt: core.serialization.property("last_used_at", core.serialization.date().optional()),
     name: core.serialization.string(),
+    rateLimitPercent: core.serialization.property("rate_limit_percent", core.serialization.number().optional()),
     readonly: core.serialization.boolean(),
     scopes: core.serialization.list(ApiKeyScope),
     secret: core.serialization.string(),
@@ -35,6 +36,7 @@ export declare namespace ApiKeyCreateResponseData {
         integration?: ApiKeyIntegrationResponseData.Raw | null;
         last_used_at?: string | null;
         name: string;
+        rate_limit_percent?: number | null;
         readonly: boolean;
         scopes: ApiKeyScope.Raw[];
         secret: string;

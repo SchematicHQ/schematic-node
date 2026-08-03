@@ -10,6 +10,7 @@ import type * as Schematic from "../../../../index";
  *         forTrialExpiryPlan: true,
  *         ids: ["ids"],
  *         interval: "interval",
+ *         intervalCount: 1000000,
  *         isActive: true,
  *         planVersionId: "plan_version_id",
  *         price: 1000000,
@@ -33,6 +34,8 @@ export interface ListBillingPricesRequest {
     forTrialExpiryPlan?: boolean;
     ids?: string | string[];
     interval?: string;
+    /** Filter for prices billed every N intervals; combine with interval (e.g. interval=month, interval_count=3 for quarterly) */
+    intervalCount?: number;
     /** Filter for active prices on active products (defaults to true if not specified) */
     isActive?: boolean;
     /** Filter for prices belonging to a specific plan version (e.g. the latest published version) */

@@ -6,6 +6,7 @@ import type * as serializers from "../index";
 import { CheckoutFieldWithValue } from "./CheckoutFieldWithValue";
 import { CompanyBillingAddressView } from "./CompanyBillingAddressView";
 import { CompanyBillingCheckoutSettings } from "./CompanyBillingCheckoutSettings";
+import { CompanyTaxIdView } from "./CompanyTaxIdView";
 
 export const CompanyBillingDetailsView: core.serialization.ObjectSchema<
     serializers.CompanyBillingDetailsView.Raw,
@@ -16,6 +17,7 @@ export const CompanyBillingDetailsView: core.serialization.ObjectSchema<
     customFields: core.serialization.property("custom_fields", core.serialization.list(CheckoutFieldWithValue)),
     email: core.serialization.string().optional(),
     phone: core.serialization.string().optional(),
+    taxIds: core.serialization.property("tax_ids", core.serialization.list(CompanyTaxIdView)),
 });
 
 export declare namespace CompanyBillingDetailsView {
@@ -25,5 +27,6 @@ export declare namespace CompanyBillingDetailsView {
         custom_fields: CheckoutFieldWithValue.Raw[];
         email?: string | null;
         phone?: string | null;
+        tax_ids: CompanyTaxIdView.Raw[];
     }
 }

@@ -10,6 +10,7 @@ import { BillingPlanCreditGrantResetCadence } from "./BillingPlanCreditGrantRese
 import { BillingPlanCreditGrantResetStart } from "./BillingPlanCreditGrantResetStart";
 import { BillingPlanCreditGrantResetType } from "./BillingPlanCreditGrantResetType";
 import { CreditAutoTopupAmountType } from "./CreditAutoTopupAmountType";
+import { PlanCreditGrantScaling } from "./PlanCreditGrantScaling";
 
 export const CreateBillingPlanCreditGrantRequestBody: core.serialization.ObjectSchema<
     serializers.CreateBillingPlanCreditGrantRequestBody.Raw,
@@ -47,12 +48,14 @@ export const CreateBillingPlanCreditGrantRequestBody: core.serialization.ObjectS
     expiryType: core.serialization.property("expiry_type", BillingCreditExpiryType.optional()),
     expiryUnit: core.serialization.property("expiry_unit", BillingCreditExpiryUnit.optional()),
     expiryUnitCount: core.serialization.property("expiry_unit_count", core.serialization.number().optional()),
+    licenseId: core.serialization.property("license_id", core.serialization.string().optional()),
     planId: core.serialization.property("plan_id", core.serialization.string()),
     planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
     resetCadence: core.serialization.property("reset_cadence", BillingPlanCreditGrantResetCadence),
     resetStart: core.serialization.property("reset_start", BillingPlanCreditGrantResetStart),
     resetType: core.serialization.property("reset_type", BillingPlanCreditGrantResetType.optional()),
     rolloverPercentage: core.serialization.property("rollover_percentage", core.serialization.number().optional()),
+    scaling: PlanCreditGrantScaling.optional(),
 });
 
 export declare namespace CreateBillingPlanCreditGrantRequestBody {
@@ -74,11 +77,13 @@ export declare namespace CreateBillingPlanCreditGrantRequestBody {
         expiry_type?: BillingCreditExpiryType.Raw | null;
         expiry_unit?: BillingCreditExpiryUnit.Raw | null;
         expiry_unit_count?: number | null;
+        license_id?: string | null;
         plan_id: string;
         plan_version_id?: string | null;
         reset_cadence: BillingPlanCreditGrantResetCadence.Raw;
         reset_start: BillingPlanCreditGrantResetStart.Raw;
         reset_type?: BillingPlanCreditGrantResetType.Raw | null;
         rollover_percentage?: number | null;
+        scaling?: PlanCreditGrantScaling.Raw | null;
     }
 }

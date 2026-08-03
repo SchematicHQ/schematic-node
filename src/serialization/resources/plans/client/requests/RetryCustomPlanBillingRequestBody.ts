@@ -12,6 +12,7 @@ export const RetryCustomPlanBillingRequestBody: core.serialization.Schema<
     activationStrategy: core.serialization.property("activation_strategy", CustomPlanActivationStrategy.optional()),
     customerEmail: core.serialization.property("customer_email", core.serialization.string()),
     daysUntilDue: core.serialization.property("days_until_due", core.serialization.number().optional()),
+    sendInvoice: core.serialization.property("send_invoice", core.serialization.boolean().optional()),
 });
 
 export declare namespace RetryCustomPlanBillingRequestBody {
@@ -19,5 +20,6 @@ export declare namespace RetryCustomPlanBillingRequestBody {
         activation_strategy?: CustomPlanActivationStrategy.Raw | null;
         customer_email: string;
         days_until_due?: number | null;
+        send_invoice?: boolean | null;
     }
 }

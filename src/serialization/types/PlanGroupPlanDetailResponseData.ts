@@ -65,7 +65,7 @@ export const PlanGroupPlanDetailResponseData: core.serialization.ObjectSchema<
     ),
     isCustom: core.serialization.property("is_custom", core.serialization.boolean()),
     isDefault: core.serialization.property("is_default", core.serialization.boolean()),
-    isFree: core.serialization.property("is_free", core.serialization.boolean()),
+    isFree: core.serialization.property("is_free", core.serialization.boolean().optional()),
     isTrialable: core.serialization.property("is_trialable", core.serialization.boolean()),
     monthlyPrice: core.serialization.property("monthly_price", BillingPriceResponseData.optional()),
     name: core.serialization.string(),
@@ -108,7 +108,7 @@ export declare namespace PlanGroupPlanDetailResponseData {
         included_credit_grants?: BillingPlanCreditGrantResponseData.Raw[] | null;
         is_custom: boolean;
         is_default: boolean;
-        is_free: boolean;
+        is_free?: boolean | null;
         is_trialable: boolean;
         monthly_price?: BillingPriceResponseData.Raw | null;
         name: string;

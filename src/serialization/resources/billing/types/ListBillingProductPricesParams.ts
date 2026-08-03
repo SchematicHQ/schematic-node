@@ -16,6 +16,7 @@ export const ListBillingProductPricesParams: core.serialization.ObjectSchema<
     forTrialExpiryPlan: core.serialization.property("for_trial_expiry_plan", core.serialization.boolean().optional()),
     ids: core.serialization.list(core.serialization.string()).optional(),
     interval: core.serialization.string().optional(),
+    intervalCount: core.serialization.property("interval_count", core.serialization.number().optional()),
     isActive: core.serialization.property("is_active", core.serialization.boolean().optional()),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
@@ -40,6 +41,7 @@ export declare namespace ListBillingProductPricesParams {
         for_trial_expiry_plan?: boolean | null;
         ids?: string[] | null;
         interval?: string | null;
+        interval_count?: number | null;
         is_active?: boolean | null;
         limit?: number | null;
         offset?: number | null;
