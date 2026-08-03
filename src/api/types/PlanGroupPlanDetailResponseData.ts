@@ -31,8 +31,8 @@ export interface PlanGroupPlanDetailResponseData {
     includedCreditGrants?: Schematic.BillingPlanCreditGrantResponseData[];
     isCustom: boolean;
     isDefault: boolean;
-    /** Deprecated: Use BillingStrategy instead */
-    isFree: boolean;
+    /** Deprecated: reports the plan's charge type, not its price. Read the plan's prices to tell whether it costs anything, or billing_strategy to tell how it is billed. */
+    isFree?: boolean;
     isTrialable: boolean;
     monthlyPrice?: Schematic.BillingPriceResponseData;
     name: string;

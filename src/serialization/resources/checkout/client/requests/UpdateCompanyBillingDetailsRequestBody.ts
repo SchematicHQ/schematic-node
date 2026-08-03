@@ -5,6 +5,7 @@ import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
 import { CheckoutFieldValue } from "../../../../types/CheckoutFieldValue";
 import { CustomerBillingAddress } from "../../../../types/CustomerBillingAddress";
+import { TaxIdInput } from "../../../../types/TaxIdInput";
 
 export const UpdateCompanyBillingDetailsRequestBody: core.serialization.Schema<
     serializers.UpdateCompanyBillingDetailsRequestBody.Raw,
@@ -13,6 +14,7 @@ export const UpdateCompanyBillingDetailsRequestBody: core.serialization.Schema<
     address: CustomerBillingAddress.optional(),
     email: core.serialization.string().optional(),
     phone: core.serialization.string().optional(),
+    taxId: core.serialization.property("tax_id", TaxIdInput.optional()),
     values: core.serialization.list(CheckoutFieldValue),
 });
 
@@ -21,6 +23,7 @@ export declare namespace UpdateCompanyBillingDetailsRequestBody {
         address?: CustomerBillingAddress.Raw | null;
         email?: string | null;
         phone?: string | null;
+        tax_id?: TaxIdInput.Raw | null;
         values: CheckoutFieldValue.Raw[];
     }
 }

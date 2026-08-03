@@ -11,6 +11,7 @@ export interface ApiKeyCreateResponseData {
     integration?: Schematic.ApiKeyIntegrationResponseData;
     lastUsedAt?: Date;
     name: string;
+    rateLimitPercent?: number;
     readonly: boolean;
     scopes: Schematic.ApiKeyScope[];
     secret: string;

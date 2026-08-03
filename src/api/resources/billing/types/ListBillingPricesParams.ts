@@ -14,6 +14,8 @@ export interface ListBillingPricesParams {
     forTrialExpiryPlan?: boolean;
     ids?: string[];
     interval?: string;
+    /** Filter for prices billed every N intervals; combine with interval (e.g. interval=month, interval_count=3 for quarterly) */
+    intervalCount?: number;
     /** Filter for active prices on active products (defaults to true if not specified) */
     isActive?: boolean;
     /** Page limit (default 100) */

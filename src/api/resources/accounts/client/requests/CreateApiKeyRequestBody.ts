@@ -10,5 +10,6 @@ export interface CreateApiKeyRequestBody {
     description?: string;
     environmentId?: string;
     name: string;
+    rateLimitPercent?: number;
     readonly?: boolean;
 }

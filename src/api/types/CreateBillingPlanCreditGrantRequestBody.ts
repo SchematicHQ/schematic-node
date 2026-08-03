@@ -20,6 +20,8 @@ export interface CreateBillingPlanCreditGrantRequestBody {
     expiryType?: Schematic.BillingCreditExpiryType;
     expiryUnit?: Schematic.BillingCreditExpiryUnit;
     expiryUnitCount?: number;
+    /** The license whose quantity scales this grant. Required when scaling is per_license. */
+    licenseId?: string;
     planId: string;
     planVersionId?: string;
     resetCadence: Schematic.BillingPlanCreditGrantResetCadence;
@@ -27,4 +29,6 @@ export interface CreateBillingPlanCreditGrantRequestBody {
     resetType?: Schematic.BillingPlanCreditGrantResetType;
     /** Percentage of unused credits that carry over when this grant resets. Only applies when reset_type is plan_period. Rolled-over credits expire at the next reset and are not rolled again. Defaults to 0. */
     rolloverPercentage?: number;
+    /** Whether the grant is a fixed amount per company, or issued once per license the company holds. Defaults to fixed. */
+    scaling?: Schematic.PlanCreditGrantScaling;
 }

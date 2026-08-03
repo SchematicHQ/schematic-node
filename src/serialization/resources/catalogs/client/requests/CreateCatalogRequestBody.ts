@@ -9,14 +9,12 @@ export const CreateCatalogRequestBody: core.serialization.Schema<
     Schematic.CreateCatalogRequestBody
 > = core.serialization.object({
     description: core.serialization.string().optional(),
-    isDefault: core.serialization.property("is_default", core.serialization.boolean()),
     name: core.serialization.string(),
 });
 
 export declare namespace CreateCatalogRequestBody {
     export interface Raw {
         description?: string | null;
-        is_default: boolean;
         name: string;
     }
 }

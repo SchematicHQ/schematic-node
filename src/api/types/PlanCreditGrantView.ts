@@ -28,6 +28,7 @@ export interface PlanCreditGrantView {
     expiryUnit?: Schematic.BillingCreditExpiryUnit;
     expiryUnitCount?: number;
     id: string;
+    licenseId?: string;
     plan?: Schematic.GenericPreviewObject;
     planId: string;
     planVersionId?: string;
@@ -37,6 +38,7 @@ export interface PlanCreditGrantView {
     resetStart?: Schematic.BillingPlanCreditGrantResetStart;
     resetType: Schematic.BillingPlanCreditGrantResetType;
     rolloverPercentage: number;
+    scaling: Schematic.PlanCreditGrantScaling;
     /** Deprecated field, will be removed in the future. Use Credit.SingularName instead. */
     singularName?: string;
     updatedAt: Date;

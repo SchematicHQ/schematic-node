@@ -15,5 +15,6 @@ export interface UpdateCompanyBillingDetailsRequestBody {
     address?: Schematic.CustomerBillingAddress;
     email?: string;
     phone?: string;
+    taxId?: Schematic.TaxIdInput;
     values: Schematic.CheckoutFieldValue[];
 }

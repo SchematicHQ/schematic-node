@@ -71,7 +71,7 @@ export const CompanyPlanDetailResponseData: core.serialization.ObjectSchema<
     invalidReason: core.serialization.property("invalid_reason", CompanyPlanInvalidReason.optional()),
     isCustom: core.serialization.property("is_custom", core.serialization.boolean()),
     isDefault: core.serialization.property("is_default", core.serialization.boolean()),
-    isFree: core.serialization.property("is_free", core.serialization.boolean()),
+    isFree: core.serialization.property("is_free", core.serialization.boolean().optional()),
     isTrialable: core.serialization.property("is_trialable", core.serialization.boolean()),
     monthlyPrice: core.serialization.property("monthly_price", BillingPriceResponseData.optional()),
     name: core.serialization.string(),
@@ -120,7 +120,7 @@ export declare namespace CompanyPlanDetailResponseData {
         invalid_reason?: CompanyPlanInvalidReason.Raw | null;
         is_custom: boolean;
         is_default: boolean;
-        is_free: boolean;
+        is_free?: boolean | null;
         is_trialable: boolean;
         monthly_price?: BillingPriceResponseData.Raw | null;
         name: string;

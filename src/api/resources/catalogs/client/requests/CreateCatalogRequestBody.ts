@@ -3,12 +3,10 @@
 /**
  * @example
  *     {
- *         isDefault: true,
  *         name: "name"
  *     }
  */
 export interface CreateCatalogRequestBody {
     description?: string;
-    isDefault: boolean;
     name: string;
 }

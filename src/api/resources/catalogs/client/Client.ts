@@ -179,7 +179,6 @@ export class CatalogsClient {
      *
      * @example
      *     await client.catalogs.createCatalog({
-     *         isDefault: true,
      *         name: "name"
      *     })
      */

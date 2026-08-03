@@ -12,4 +12,6 @@ export interface RetryCustomPlanBillingRequestBody {
     activationStrategy?: Schematic.CustomPlanActivationStrategy;
     customerEmail: string;
     daysUntilDue?: number;
+    /** Whether Stripe emails the invoice when it is finalized. Defaults to true. */
+    sendInvoice?: boolean;
 }

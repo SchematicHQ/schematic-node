@@ -30,6 +30,7 @@ describe("EntitlementsClient", () => {
                                         plan_id: "plan_id",
                                         reset_type: "no_reset",
                                         rollover_percentage: 1000000,
+                                        scaling: "fixed",
                                         updated_at: "2024-01-15T09:30:00Z",
                                     },
                                 ],
@@ -94,6 +95,7 @@ describe("EntitlementsClient", () => {
                                 days_until_due: 1000000,
                                 id: "id",
                                 plan_id: "plan_id",
+                                send_invoice: true,
                                 status: "active",
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
@@ -285,6 +287,7 @@ describe("EntitlementsClient", () => {
                                         planId: "plan_id",
                                         resetType: "no_reset",
                                         rolloverPercentage: 1000000,
+                                        scaling: "fixed",
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                     },
                                 ],
@@ -349,6 +352,7 @@ describe("EntitlementsClient", () => {
                                 daysUntilDue: 1000000,
                                 id: "id",
                                 planId: "plan_id",
+                                sendInvoice: true,
                                 status: "active",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
@@ -607,6 +611,7 @@ describe("EntitlementsClient", () => {
                                     plan_id: "plan_id",
                                     reset_type: "no_reset",
                                     rollover_percentage: 1000000,
+                                    scaling: "fixed",
                                     updated_at: "2024-01-15T09:30:00Z",
                                 },
                             ],
@@ -719,6 +724,7 @@ describe("EntitlementsClient", () => {
                             days_until_due: 1000000,
                             id: "id",
                             plan_id: "plan_id",
+                            send_invoice: true,
                             status: "active",
                             updated_at: "2024-01-15T09:30:00Z",
                         },
@@ -804,6 +810,7 @@ describe("EntitlementsClient", () => {
                                 plan_id: "plan_id",
                                 reset_type: "no_reset",
                                 rollover_percentage: 1000000,
+                                scaling: "fixed",
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
                         ],
@@ -952,6 +959,7 @@ describe("EntitlementsClient", () => {
                                     planId: "plan_id",
                                     resetType: "no_reset",
                                     rolloverPercentage: 1000000,
+                                    scaling: "fixed",
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 },
                             ],
@@ -1066,6 +1074,7 @@ describe("EntitlementsClient", () => {
                             daysUntilDue: 1000000,
                             id: "id",
                             planId: "plan_id",
+                            sendInvoice: true,
                             status: "active",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
@@ -1157,6 +1166,7 @@ describe("EntitlementsClient", () => {
                                 planId: "plan_id",
                                 resetType: "no_reset",
                                 rolloverPercentage: 1000000,
+                                scaling: "fixed",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
                         ],
@@ -1425,6 +1435,7 @@ describe("EntitlementsClient", () => {
                                     plan_id: "plan_id",
                                     reset_type: "no_reset",
                                     rollover_percentage: 1000000,
+                                    scaling: "fixed",
                                     updated_at: "2024-01-15T09:30:00Z",
                                 },
                             ],
@@ -1537,6 +1548,7 @@ describe("EntitlementsClient", () => {
                             days_until_due: 1000000,
                             id: "id",
                             plan_id: "plan_id",
+                            send_invoice: true,
                             status: "active",
                             updated_at: "2024-01-15T09:30:00Z",
                         },
@@ -1622,6 +1634,7 @@ describe("EntitlementsClient", () => {
                                 plan_id: "plan_id",
                                 reset_type: "no_reset",
                                 rollover_percentage: 1000000,
+                                scaling: "fixed",
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
                         ],
@@ -1765,6 +1778,7 @@ describe("EntitlementsClient", () => {
                                     planId: "plan_id",
                                     resetType: "no_reset",
                                     rolloverPercentage: 1000000,
+                                    scaling: "fixed",
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 },
                             ],
@@ -1879,6 +1893,7 @@ describe("EntitlementsClient", () => {
                             daysUntilDue: 1000000,
                             id: "id",
                             planId: "plan_id",
+                            sendInvoice: true,
                             status: "active",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
@@ -1970,6 +1985,7 @@ describe("EntitlementsClient", () => {
                                 planId: "plan_id",
                                 resetType: "no_reset",
                                 rolloverPercentage: 1000000,
+                                scaling: "fixed",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
                         ],
@@ -2194,6 +2210,7 @@ describe("EntitlementsClient", () => {
                                     plan_id: "plan_id",
                                     reset_type: "no_reset",
                                     rollover_percentage: 1000000,
+                                    scaling: "fixed",
                                     updated_at: "2024-01-15T09:30:00Z",
                                 },
                             ],
@@ -2306,6 +2323,7 @@ describe("EntitlementsClient", () => {
                             days_until_due: 1000000,
                             id: "id",
                             plan_id: "plan_id",
+                            send_invoice: true,
                             status: "active",
                             updated_at: "2024-01-15T09:30:00Z",
                         },
@@ -2391,6 +2409,7 @@ describe("EntitlementsClient", () => {
                                 plan_id: "plan_id",
                                 reset_type: "no_reset",
                                 rollover_percentage: 1000000,
+                                scaling: "fixed",
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
                         ],
@@ -2537,6 +2556,7 @@ describe("EntitlementsClient", () => {
                                     planId: "plan_id",
                                     resetType: "no_reset",
                                     rolloverPercentage: 1000000,
+                                    scaling: "fixed",
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 },
                             ],
@@ -2651,6 +2671,7 @@ describe("EntitlementsClient", () => {
                             daysUntilDue: 1000000,
                             id: "id",
                             planId: "plan_id",
+                            sendInvoice: true,
                             status: "active",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
@@ -2742,6 +2763,7 @@ describe("EntitlementsClient", () => {
                                 planId: "plan_id",
                                 resetType: "no_reset",
                                 rolloverPercentage: 1000000,
+                                scaling: "fixed",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
                         ],
@@ -3275,6 +3297,7 @@ describe("EntitlementsClient", () => {
                                         plan_id: "plan_id",
                                         reset_type: "no_reset",
                                         rollover_percentage: 1000000,
+                                        scaling: "fixed",
                                         updated_at: "2024-01-15T09:30:00Z",
                                     },
                                 ],
@@ -3339,6 +3362,7 @@ describe("EntitlementsClient", () => {
                                 days_until_due: 1000000,
                                 id: "id",
                                 plan_id: "plan_id",
+                                send_invoice: true,
                                 status: "active",
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
@@ -3668,6 +3692,7 @@ describe("EntitlementsClient", () => {
                                         planId: "plan_id",
                                         resetType: "no_reset",
                                         rolloverPercentage: 1000000,
+                                        scaling: "fixed",
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                     },
                                 ],
@@ -3732,6 +3757,7 @@ describe("EntitlementsClient", () => {
                                 daysUntilDue: 1000000,
                                 id: "id",
                                 planId: "plan_id",
+                                sendInvoice: true,
                                 status: "active",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
@@ -5183,6 +5209,7 @@ describe("EntitlementsClient", () => {
                                         plan_id: "plan_id",
                                         reset_type: "no_reset",
                                         rollover_percentage: 1000000,
+                                        scaling: "fixed",
                                         updated_at: "2024-01-15T09:30:00Z",
                                     },
                                 ],
@@ -5247,6 +5274,7 @@ describe("EntitlementsClient", () => {
                                 days_until_due: 1000000,
                                 id: "id",
                                 plan_id: "plan_id",
+                                send_invoice: true,
                                 status: "active",
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
@@ -5475,6 +5503,7 @@ describe("EntitlementsClient", () => {
                                         planId: "plan_id",
                                         resetType: "no_reset",
                                         rolloverPercentage: 1000000,
+                                        scaling: "fixed",
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                     },
                                 ],
@@ -5539,6 +5568,7 @@ describe("EntitlementsClient", () => {
                                 daysUntilDue: 1000000,
                                 id: "id",
                                 planId: "plan_id",
+                                sendInvoice: true,
                                 status: "active",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                             },
@@ -9171,6 +9201,7 @@ describe("EntitlementsClient", () => {
                                         days_until_due: 1000000,
                                         id: "id",
                                         plan_id: "plan_id",
+                                        send_invoice: true,
                                         status: "active",
                                         updated_at: "2024-01-15T09:30:00Z",
                                     },
@@ -9181,6 +9212,7 @@ describe("EntitlementsClient", () => {
                                         days_until_due: 1000000,
                                         id: "id",
                                         plan_id: "plan_id",
+                                        send_invoice: true,
                                         status: "active",
                                         updated_at: "2024-01-15T09:30:00Z",
                                     },
@@ -10111,6 +10143,7 @@ describe("EntitlementsClient", () => {
                                         days_until_due: 1000000,
                                         id: "id",
                                         plan_id: "plan_id",
+                                        send_invoice: true,
                                         status: "active",
                                         updated_at: "2024-01-15T09:30:00Z",
                                     },
@@ -10121,6 +10154,7 @@ describe("EntitlementsClient", () => {
                                         days_until_due: 1000000,
                                         id: "id",
                                         plan_id: "plan_id",
+                                        send_invoice: true,
                                         status: "active",
                                         updated_at: "2024-01-15T09:30:00Z",
                                     },
@@ -11076,6 +11110,7 @@ describe("EntitlementsClient", () => {
                                         daysUntilDue: 1000000,
                                         id: "id",
                                         planId: "plan_id",
+                                        sendInvoice: true,
                                         status: "active",
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                     },
@@ -11086,6 +11121,7 @@ describe("EntitlementsClient", () => {
                                         daysUntilDue: 1000000,
                                         id: "id",
                                         planId: "plan_id",
+                                        sendInvoice: true,
                                         status: "active",
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                     },
@@ -12075,6 +12111,7 @@ describe("EntitlementsClient", () => {
                                         daysUntilDue: 1000000,
                                         id: "id",
                                         planId: "plan_id",
+                                        sendInvoice: true,
                                         status: "active",
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                     },
@@ -12085,6 +12122,7 @@ describe("EntitlementsClient", () => {
                                         daysUntilDue: 1000000,
                                         id: "id",
                                         planId: "plan_id",
+                                        sendInvoice: true,
                                         status: "active",
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                     },
@@ -13068,6 +13106,316 @@ describe("EntitlementsClient", () => {
                 keys: {
                     keys: "keys",
                 },
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("getUserUsageByCompany (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                credits: [
+                    {
+                        billing_credit_id: "billing_credit_id",
+                        credit_name: "credit_name",
+                        credits_used: 1.1,
+                        share: 1.1,
+                    },
+                ],
+                end_time: "2024-01-15T09:30:00Z",
+                rows: [{ last_seen: "2024-01-15T09:30:00Z", share: 1.1, value: 1000000 }],
+                start_time: "2024-01-15T09:30:00Z",
+            },
+            params: {
+                company_id: "company_id",
+                end_time: "2024-01-15T09:30:00Z",
+                feature_id: "feature_id",
+                start_time: "2024-01-15T09:30:00Z",
+            },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/user-usage-by-company")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.entitlements.getUserUsageByCompany({
+            companyId: "company_id",
+            endTime: new Date("2024-01-15T09:30:00.000Z"),
+            featureId: "feature_id",
+            startTime: new Date("2024-01-15T09:30:00.000Z"),
+        });
+        expect(response).toEqual({
+            data: {
+                credits: [
+                    {
+                        billingCreditId: "billing_credit_id",
+                        creditName: "credit_name",
+                        creditsUsed: 1.1,
+                        share: 1.1,
+                    },
+                ],
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                rows: [
+                    {
+                        lastSeen: new Date("2024-01-15T09:30:00.000Z"),
+                        share: 1.1,
+                        value: 1000000,
+                    },
+                ],
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                companyId: "company_id",
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                featureId: "feature_id",
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+            },
+        });
+    });
+
+    test("getUserUsageByCompany (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/user-usage-by-company")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.getUserUsageByCompany({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getUserUsageByCompany (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/user-usage-by-company")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.getUserUsageByCompany({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getUserUsageByCompany (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/user-usage-by-company")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.getUserUsageByCompany({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getUserUsageByCompany (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/user-usage-by-company")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.getUserUsageByCompany({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("getUserUsageDetail (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                credits: [
+                    {
+                        billing_credit_id: "billing_credit_id",
+                        credit_name: "credit_name",
+                        credits_used: 1.1,
+                        share: 1.1,
+                    },
+                ],
+                daily_credit_points: [{ credits_used: 1.1, date: "2024-01-15T09:30:00Z" }],
+                daily_points: [{ date: "2024-01-15T09:30:00Z", value: 1000000 }],
+                end_time: "2024-01-15T09:30:00Z",
+                feature_totals: [{ last_seen: "2024-01-15T09:30:00Z", share: 1.1, value: 1000000 }],
+                start_time: "2024-01-15T09:30:00Z",
+                user: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    environment_id: "environment_id",
+                    id: "id",
+                    last_seen_at: "2024-01-15T09:30:00Z",
+                    name: "name",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+            },
+            params: {
+                company_id: "company_id",
+                end_time: "2024-01-15T09:30:00Z",
+                start_time: "2024-01-15T09:30:00Z",
+                user_id: "user_id",
+            },
+        };
+
+        server.mockEndpoint().get("/user-usage-detail").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.entitlements.getUserUsageDetail({
+            companyId: "company_id",
+            endTime: new Date("2024-01-15T09:30:00.000Z"),
+            startTime: new Date("2024-01-15T09:30:00.000Z"),
+            userId: "user_id",
+        });
+        expect(response).toEqual({
+            data: {
+                credits: [
+                    {
+                        billingCreditId: "billing_credit_id",
+                        creditName: "credit_name",
+                        creditsUsed: 1.1,
+                        share: 1.1,
+                    },
+                ],
+                dailyCreditPoints: [
+                    {
+                        creditsUsed: 1.1,
+                        date: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                ],
+                dailyPoints: [
+                    {
+                        date: new Date("2024-01-15T09:30:00.000Z"),
+                        value: 1000000,
+                    },
+                ],
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                featureTotals: [
+                    {
+                        lastSeen: new Date("2024-01-15T09:30:00.000Z"),
+                        share: 1.1,
+                        value: 1000000,
+                    },
+                ],
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+                user: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    environmentId: "environment_id",
+                    id: "id",
+                    lastSeenAt: new Date("2024-01-15T09:30:00.000Z"),
+                    name: "name",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+            },
+            params: {
+                companyId: "company_id",
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+                userId: "user_id",
+            },
+        });
+    });
+
+    test("getUserUsageDetail (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/user-usage-detail").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.entitlements.getUserUsageDetail({
+                companyId: "company_id",
+                userId: "user_id",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getUserUsageDetail (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/user-usage-detail").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.entitlements.getUserUsageDetail({
+                companyId: "company_id",
+                userId: "user_id",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getUserUsageDetail (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/user-usage-detail").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.entitlements.getUserUsageDetail({
+                companyId: "company_id",
+                userId: "user_id",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getUserUsageDetail (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/user-usage-detail").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.entitlements.getUserUsageDetail({
+                companyId: "company_id",
+                userId: "user_id",
             });
         }).rejects.toThrow(Schematic.InternalServerError);
     });

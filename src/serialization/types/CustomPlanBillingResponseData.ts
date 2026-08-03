@@ -19,6 +19,7 @@ export const CustomPlanBillingResponseData: core.serialization.ObjectSchema<
     paidAt: core.serialization.property("paid_at", core.serialization.date().optional()),
     planId: core.serialization.property("plan_id", core.serialization.string()),
     publishedAt: core.serialization.property("published_at", core.serialization.date().optional()),
+    sendInvoice: core.serialization.property("send_invoice", core.serialization.boolean()),
     status: CustomPlanBillingStatus,
     stripeInvoiceUrl: core.serialization.property("stripe_invoice_url", core.serialization.string().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -35,6 +36,7 @@ export declare namespace CustomPlanBillingResponseData {
         paid_at?: string | null;
         plan_id: string;
         published_at?: string | null;
+        send_invoice: boolean;
         status: CustomPlanBillingStatus.Raw;
         stripe_invoice_url?: string | null;
         updated_at: string;

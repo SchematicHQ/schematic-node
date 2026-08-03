@@ -7,4 +7,5 @@
 export interface UpdateApiKeyRequestBody {
     description?: string;
     name?: string;
+    rateLimitPercent?: number;
 }

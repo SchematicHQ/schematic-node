@@ -11,9 +11,15 @@ import type * as Schematic from "../../../../index";
  */
 export interface PublishPlanVersionRequestBody {
     activationStrategy?: Schematic.CustomPlanActivationStrategy;
+    address?: Schematic.CustomerBillingAddress;
     couponExternalId?: string;
+    customFieldValues?: Schematic.CheckoutFieldValue[];
     customerEmail?: string;
     daysUntilDue?: number;
     excludedCompanyIds: string[];
     migrationStrategy: Schematic.PlanVersionMigrationStrategy;
+    phone?: string;
+    /** Whether Stripe emails the invoice when it is finalized. Defaults to true. */
+    sendInvoice?: boolean;
+    taxId?: Schematic.TaxIdInput;
 }

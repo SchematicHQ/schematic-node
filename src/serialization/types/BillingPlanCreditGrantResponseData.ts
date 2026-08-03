@@ -10,6 +10,7 @@ import { BillingCreditResponseData } from "./BillingCreditResponseData";
 import { BillingPlanCreditGrantResetCadence } from "./BillingPlanCreditGrantResetCadence";
 import { BillingPlanCreditGrantResetStart } from "./BillingPlanCreditGrantResetStart";
 import { BillingPlanCreditGrantResetType } from "./BillingPlanCreditGrantResetType";
+import { PlanCreditGrantScaling } from "./PlanCreditGrantScaling";
 import { PreviewObjectResponseData } from "./PreviewObjectResponseData";
 
 export const BillingPlanCreditGrantResponseData: core.serialization.ObjectSchema<
@@ -47,6 +48,7 @@ export const BillingPlanCreditGrantResponseData: core.serialization.ObjectSchema
     expiryUnit: core.serialization.property("expiry_unit", BillingCreditExpiryUnit.optional()),
     expiryUnitCount: core.serialization.property("expiry_unit_count", core.serialization.number().optional()),
     id: core.serialization.string(),
+    licenseId: core.serialization.property("license_id", core.serialization.string().optional()),
     plan: PreviewObjectResponseData.optional(),
     planId: core.serialization.property("plan_id", core.serialization.string()),
     planName: core.serialization.property("plan_name", core.serialization.string()),
@@ -55,6 +57,7 @@ export const BillingPlanCreditGrantResponseData: core.serialization.ObjectSchema
     resetStart: core.serialization.property("reset_start", BillingPlanCreditGrantResetStart.optional()),
     resetType: core.serialization.property("reset_type", BillingPlanCreditGrantResetType.optional()),
     rolloverPercentage: core.serialization.property("rollover_percentage", core.serialization.number()),
+    scaling: PlanCreditGrantScaling,
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
@@ -82,6 +85,7 @@ export declare namespace BillingPlanCreditGrantResponseData {
         expiry_unit?: BillingCreditExpiryUnit.Raw | null;
         expiry_unit_count?: number | null;
         id: string;
+        license_id?: string | null;
         plan?: PreviewObjectResponseData.Raw | null;
         plan_id: string;
         plan_name: string;
@@ -90,6 +94,7 @@ export declare namespace BillingPlanCreditGrantResponseData {
         reset_start?: BillingPlanCreditGrantResetStart.Raw | null;
         reset_type?: BillingPlanCreditGrantResetType.Raw | null;
         rollover_percentage: number;
+        scaling: PlanCreditGrantScaling.Raw;
         updated_at: string;
     }
 }

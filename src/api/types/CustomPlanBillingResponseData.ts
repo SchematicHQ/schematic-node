@@ -12,6 +12,7 @@ export interface CustomPlanBillingResponseData {
     paidAt?: Date;
     planId: string;
     publishedAt?: Date;
+    sendInvoice: boolean;
     status: Schematic.CustomPlanBillingStatus;
     stripeInvoiceUrl?: string;
     updatedAt: Date;

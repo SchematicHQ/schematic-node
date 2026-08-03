@@ -9,6 +9,8 @@ export type { CreatePlanEntitlementRequestBody } from "./CreatePlanEntitlementRe
 export type { DuplicatePlanEntitlementsRequestBody } from "./DuplicatePlanEntitlementsRequestBody";
 export type { GetFeatureUsageByCompanyRequest } from "./GetFeatureUsageByCompanyRequest";
 export type { GetFeatureUsageTimeSeriesRequest } from "./GetFeatureUsageTimeSeriesRequest";
+export type { GetUserUsageByCompanyRequest } from "./GetUserUsageByCompanyRequest";
+export type { GetUserUsageDetailRequest } from "./GetUserUsageDetailRequest";
 export type { ListCompanyOverridesRequest } from "./ListCompanyOverridesRequest";
 export type { ListFeatureCompaniesRequest } from "./ListFeatureCompaniesRequest";
 export type { ListFeatureUsageRequest } from "./ListFeatureUsageRequest";
