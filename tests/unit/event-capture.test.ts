@@ -1,10 +1,7 @@
 /* eslint @typescript-eslint/no-explicit-any: 0 */
 
 import { CreateEventRequestBody } from "../../src/api";
-import {
-    DEFAULT_EVENT_CAPTURE_BASE_URL,
-    EventCaptureClient,
-} from "../../src/event-capture";
+import { DEFAULT_EVENT_CAPTURE_BASE_URL, EventCaptureClient } from "../../src/event-capture";
 import type { FetchFunction } from "../../src/core/fetcher/Fetcher";
 
 describe("EventCaptureClient", () => {
@@ -25,7 +22,9 @@ describe("EventCaptureClient", () => {
     const okResponse = { ok: true, body: {}, headers: {}, rawResponse: {} as any };
 
     const makeFetcher = (impl?: (...args: any[]) => any): jest.MockedFunction<FetchFunction> => {
-        const fn = jest.fn(impl ?? (() => Promise.resolve(okResponse))) as unknown as jest.MockedFunction<FetchFunction>;
+        const fn = jest.fn(
+            impl ?? (() => Promise.resolve(okResponse)),
+        ) as unknown as jest.MockedFunction<FetchFunction>;
         return fn;
     };
 
@@ -164,6 +163,23 @@ describe("EventCaptureClient", () => {
         expect(args.url).toBe("https://custom.example.com/batch");
     });
 
+    // A consumer that forwards `baseUrl: process.env.X` passes "" when the env
+    // var is present-but-empty. It must fall back to the default, not build a
+    // broken "/batch" endpoint that silently drops every batch.
+    it.each([
+        undefined,
+        "",
+        "   ",
+    ])("should fall back to the default base URL when baseUrl is blank (%p)", async (baseUrl) => {
+        const fetcher = makeFetcher();
+        const client = new EventCaptureClient({ apiKey, fetcher, baseUrl });
+
+        await client.sendBatch([buildEvent()]);
+
+        const args = fetcher.mock.calls[0][0];
+        expect(args.url).toBe(`${DEFAULT_EVENT_CAPTURE_BASE_URL}/batch`);
+    });
+
     it("should be a no-op when sending an empty batch", async () => {
         const fetcher = makeFetcher();
         const client = new EventCaptureClient({ apiKey, fetcher });
@@ -183,9 +199,7 @@ describe("EventCaptureClient", () => {
         );
         const client = new EventCaptureClient({ apiKey, fetcher });
 
-        await expect(client.sendBatch([buildEvent()])).rejects.toThrow(
-            "capture service returned HTTP 500: boom",
-        );
+        await expect(client.sendBatch([buildEvent()])).rejects.toThrow("capture service returned HTTP 500: boom");
     });
 
     it("should surface fetcher timeouts", async () => {
@@ -198,9 +212,7 @@ describe("EventCaptureClient", () => {
         );
         const client = new EventCaptureClient({ apiKey, fetcher });
 
-        await expect(client.sendBatch([buildEvent()])).rejects.toThrow(
-            "capture service returned request timed out",
-        );
+        await expect(client.sendBatch([buildEvent()])).rejects.toThrow("capture service returned request timed out");
     });
 
     it("should surface unknown fetcher errors", async () => {
@@ -213,9 +225,7 @@ describe("EventCaptureClient", () => {
         );
         const client = new EventCaptureClient({ apiKey, fetcher });
 
-        await expect(client.sendBatch([buildEvent()])).rejects.toThrow(
-            "capture service returned network down",
-        );
+        await expect(client.sendBatch([buildEvent()])).rejects.toThrow("capture service returned network down");
     });
 
     it("should serialize idempotency_key, trusted_client_clock, and backfill when set", async () => {

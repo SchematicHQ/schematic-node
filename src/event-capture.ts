@@ -107,7 +107,11 @@ export class EventCaptureClient {
 
     constructor(options: EventCaptureClientOptions) {
         this.apiKey = options.apiKey;
-        this.baseUrl = options.baseUrl ?? DEFAULT_EVENT_CAPTURE_BASE_URL;
+        // Treat a blank baseUrl like an unset one: `?? default` only rescues
+        // null/undefined, so an empty string would slip through and make the
+        // endpoint `"" + "/batch"` = "/batch", silently dropping every batch.
+        this.baseUrl =
+            options.baseUrl && options.baseUrl.trim() !== "" ? options.baseUrl : DEFAULT_EVENT_CAPTURE_BASE_URL;
         this.timeoutMs = options.timeoutMs ?? DEFAULT_TIMEOUT_MS;
         this.fetcher = options.fetcher;
         this.headers = options.headers ?? {};
