@@ -5,7 +5,7 @@ import type * as Schematic from "../index";
 export interface FeatureView {
     accountId: string;
     billingLinkedResource?: Schematic.BillingLinkedResourceResponseData;
-    billingProduct?: Schematic.BillingProductResponseData;
+    billingProduct?: Schematic.BillingProductRecordResponseData;
     createdAt: Date;
     description: string;
     eventSubtype?: string;

@@ -8,12 +8,14 @@ export const TestWebhookResponseData: core.serialization.ObjectSchema<
     serializers.TestWebhookResponseData.Raw,
     Schematic.TestWebhookResponseData
 > = core.serialization.object({
+    failureReason: core.serialization.property("failure_reason", core.serialization.string().optional()),
     responseCode: core.serialization.property("response_code", core.serialization.number()),
     success: core.serialization.boolean(),
 });
 
 export declare namespace TestWebhookResponseData {
     export interface Raw {
+        failure_reason?: string | null;
         response_code: number;
         success: boolean;
     }

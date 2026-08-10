@@ -21,7 +21,7 @@ export interface BillingCreditView {
     price?: Schematic.BillingPriceView;
     pricePerUnit?: number;
     pricePerUnitDecimal?: string;
-    product?: Schematic.BillingProductResponseData;
+    product?: Schematic.BillingProductRecordResponseData;
     singularName?: string;
     updatedAt: Date;
 }

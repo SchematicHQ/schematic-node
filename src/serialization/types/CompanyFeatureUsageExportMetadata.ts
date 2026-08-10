@@ -3,6 +3,8 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { CompanyFeatureUsageExportMetadataSortOrderDirection } from "./CompanyFeatureUsageExportMetadataSortOrderDirection";
+import { CompanyFeatureUsageExportMetadataVisibleColumnsItem } from "./CompanyFeatureUsageExportMetadataVisibleColumnsItem";
 
 export const CompanyFeatureUsageExportMetadata: core.serialization.ObjectSchema<
     serializers.CompanyFeatureUsageExportMetadata.Raw,
@@ -16,7 +18,10 @@ export const CompanyFeatureUsageExportMetadata: core.serialization.ObjectSchema<
         "credit_type_ids",
         core.serialization.list(core.serialization.string()).optional(),
     ),
-    featureIds: core.serialization.property("feature_ids", core.serialization.list(core.serialization.string())),
+    featureIds: core.serialization.property(
+        "feature_ids",
+        core.serialization.list(core.serialization.string()).optional(),
+    ),
     hasScheduledDowngrade: core.serialization.property(
         "has_scheduled_downgrade",
         core.serialization.boolean().optional(),
@@ -33,6 +38,11 @@ export const CompanyFeatureUsageExportMetadata: core.serialization.ObjectSchema<
     planIds: core.serialization.property("plan_ids", core.serialization.list(core.serialization.string()).optional()),
     planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
     q: core.serialization.string().optional(),
+    sortOrderColumn: core.serialization.property("sort_order_column", core.serialization.string().optional()),
+    sortOrderDirection: core.serialization.property(
+        "sort_order_direction",
+        CompanyFeatureUsageExportMetadataSortOrderDirection.optional(),
+    ),
     subscriptionStatuses: core.serialization.property(
         "subscription_statuses",
         core.serialization.list(core.serialization.string()).optional(),
@@ -40,6 +50,10 @@ export const CompanyFeatureUsageExportMetadata: core.serialization.ObjectSchema<
     subscriptionTypes: core.serialization.property(
         "subscription_types",
         core.serialization.list(core.serialization.string()).optional(),
+    ),
+    visibleColumns: core.serialization.property(
+        "visible_columns",
+        core.serialization.list(CompanyFeatureUsageExportMetadataVisibleColumnsItem).optional(),
     ),
     withEntitlementFor: core.serialization.property("with_entitlement_for", core.serialization.string().optional()),
     withSubscription: core.serialization.property("with_subscription", core.serialization.boolean().optional()),
@@ -55,7 +69,7 @@ export declare namespace CompanyFeatureUsageExportMetadata {
     export interface Raw {
         company_ids?: string[] | null;
         credit_type_ids?: string[] | null;
-        feature_ids: string[];
+        feature_ids?: string[] | null;
         has_scheduled_downgrade?: boolean | null;
         monetized_subscriptions?: boolean | null;
         notification_email_recipient_email_addresses?: string[] | null;
@@ -63,8 +77,11 @@ export declare namespace CompanyFeatureUsageExportMetadata {
         plan_ids?: string[] | null;
         plan_version_id?: string | null;
         q?: string | null;
+        sort_order_column?: string | null;
+        sort_order_direction?: CompanyFeatureUsageExportMetadataSortOrderDirection.Raw | null;
         subscription_statuses?: string[] | null;
         subscription_types?: string[] | null;
+        visible_columns?: CompanyFeatureUsageExportMetadataVisibleColumnsItem.Raw[] | null;
         with_entitlement_for?: string | null;
         with_subscription?: boolean | null;
         without_feature_override_for?: string | null;

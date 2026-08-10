@@ -4,7 +4,7 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingLinkedResourceResponseData } from "./BillingLinkedResourceResponseData";
-import { BillingProductResponseData } from "./BillingProductResponseData";
+import { BillingProductRecordResponseData } from "./BillingProductRecordResponseData";
 import { EntityTraitDefinitionResponseData } from "./EntityTraitDefinitionResponseData";
 import { EventSummaryResponseData } from "./EventSummaryResponseData";
 import { FeatureLifecyclePhase } from "./FeatureLifecyclePhase";
@@ -19,7 +19,7 @@ export const FeatureView: core.serialization.ObjectSchema<serializers.FeatureVie
             "billing_linked_resource",
             BillingLinkedResourceResponseData.optional(),
         ),
-        billingProduct: core.serialization.property("billing_product", BillingProductResponseData.optional()),
+        billingProduct: core.serialization.property("billing_product", BillingProductRecordResponseData.optional()),
         createdAt: core.serialization.property("created_at", core.serialization.date()),
         description: core.serialization.string(),
         eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
@@ -44,7 +44,7 @@ export declare namespace FeatureView {
     export interface Raw {
         account_id: string;
         billing_linked_resource?: BillingLinkedResourceResponseData.Raw | null;
-        billing_product?: BillingProductResponseData.Raw | null;
+        billing_product?: BillingProductRecordResponseData.Raw | null;
         created_at: string;
         description: string;
         event_subtype?: string | null;
