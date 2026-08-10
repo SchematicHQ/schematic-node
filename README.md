@@ -12,7 +12,7 @@ yarn add @schematichq/schematic-typescript-node
 pnpm add @schematichq/schematic-typescript-node
 ```
 
-2. [Issue an API key](https://docs.schematichq.com/quickstart#create-an-api-key) for the appropriate environment using the [Schematic app](https://app.schematichq.com/settings/api-keys). Be sure to capture the secret key when you issue the API key; you'll only see this key once, and this is what you'll use with schematic-typescript-node.
+2. [Issue an API key](https://docs.schematichq.com/quickstart/account-setup#2-create-your-api-keys) for the appropriate environment using the [Schematic app](https://app.schematichq.com/settings/api-keys). Be sure to capture the secret key when you issue the API key; you'll only see this key once, and this is what you'll use with schematic-typescript-node.
 
 3. Using this secret key, initialize a client in your application:
 
