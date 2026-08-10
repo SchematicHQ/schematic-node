@@ -8,7 +8,7 @@ import { BillingCreditExpiryUnit } from "./BillingCreditExpiryUnit";
 import { BillingCreditLedgerAuthority } from "./BillingCreditLedgerAuthority";
 import { BillingCreditRolloverPolicy } from "./BillingCreditRolloverPolicy";
 import { BillingPriceView } from "./BillingPriceView";
-import { BillingProductResponseData } from "./BillingProductResponseData";
+import { BillingProductRecordResponseData } from "./BillingProductRecordResponseData";
 import { CreditCurrencyPrice } from "./CreditCurrencyPrice";
 
 export const BillingCreditView: core.serialization.ObjectSchema<
@@ -36,7 +36,7 @@ export const BillingCreditView: core.serialization.ObjectSchema<
     price: BillingPriceView.optional(),
     pricePerUnit: core.serialization.property("price_per_unit", core.serialization.number().optional()),
     pricePerUnitDecimal: core.serialization.property("price_per_unit_decimal", core.serialization.string().optional()),
-    product: BillingProductResponseData.optional(),
+    product: BillingProductRecordResponseData.optional(),
     singularName: core.serialization.property("singular_name", core.serialization.string().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
@@ -61,7 +61,7 @@ export declare namespace BillingCreditView {
         price?: BillingPriceView.Raw | null;
         price_per_unit?: number | null;
         price_per_unit_decimal?: string | null;
-        product?: BillingProductResponseData.Raw | null;
+        product?: BillingProductRecordResponseData.Raw | null;
         singular_name?: string | null;
         updated_at: string;
     }

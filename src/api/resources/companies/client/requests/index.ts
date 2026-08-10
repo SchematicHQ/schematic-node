@@ -1,5 +1,6 @@
 export type { CountCompaniesRequest } from "./CountCompaniesRequest";
 export type { CountEntityKeyDefinitionsRequest } from "./CountEntityKeyDefinitionsRequest";
+export type { CountEntityKeysRequest } from "./CountEntityKeysRequest";
 export type { CountEntityTraitDefinitionsRequest } from "./CountEntityTraitDefinitionsRequest";
 export type { CountPlanTraitsRequest } from "./CountPlanTraitsRequest";
 export type { CountUsersRequest } from "./CountUsersRequest";

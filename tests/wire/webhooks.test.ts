@@ -1170,7 +1170,10 @@ describe("WebhooksClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { request_type: "subscription.trial.ended" };
-        const rawResponseBody = { data: { response_code: 1000000, success: true }, params: { key: "value" } };
+        const rawResponseBody = {
+            data: { failure_reason: "failure_reason", response_code: 1000000, success: true },
+            params: { key: "value" },
+        };
 
         server
             .mockEndpoint()
@@ -1186,6 +1189,7 @@ describe("WebhooksClient", () => {
         });
         expect(response).toEqual({
             data: {
+                failureReason: "failure_reason",
                 responseCode: 1000000,
                 success: true,
             },

@@ -4,7 +4,8 @@ import type * as Schematic from "../index";
 
 export type DataExportMetadata =
     | Schematic.DataExportMetadata.AuditLog
-    | Schematic.DataExportMetadata.CompanyFeatureUsage;
+    | Schematic.DataExportMetadata.CompanyFeatureUsage
+    | Schematic.DataExportMetadata.Event;
 
 export namespace DataExportMetadata {
     export interface AuditLog extends Schematic.AuditLogExportMetadata {
@@ -13,5 +14,9 @@ export namespace DataExportMetadata {
 
     export interface CompanyFeatureUsage extends Schematic.CompanyFeatureUsageExportMetadata {
         exportType: "company-feature-usage";
+    }
+
+    export interface Event extends Schematic.EventExportMetadata {
+        exportType: "event";
     }
 }

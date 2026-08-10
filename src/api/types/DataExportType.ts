@@ -3,5 +3,6 @@
 export const DataExportType = {
     AuditLog: "audit-log",
     CompanyFeatureUsage: "company-feature-usage",
+    Event: "event",
 } as const;
 export type DataExportType = (typeof DataExportType)[keyof typeof DataExportType];

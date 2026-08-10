@@ -3662,12 +3662,10 @@ describe("CompaniesClient", () => {
                                         created_at: "2024-01-15T09:30:00Z",
                                         environment_id: "environment_id",
                                         external_id: "external_id",
+                                        id: "id",
                                         is_active: true,
                                         name: "name",
-                                        price: 1.1,
-                                        product_id: "product_id",
                                         provider_type: "metronome",
-                                        quantity: 1.1,
                                         updated_at: "2024-01-15T09:30:00Z",
                                     },
                                     singular_name: "singular_name",
@@ -3754,12 +3752,10 @@ describe("CompaniesClient", () => {
                                         created_at: "2024-01-15T09:30:00Z",
                                         environment_id: "environment_id",
                                         external_id: "external_id",
+                                        id: "id",
                                         is_active: true,
                                         name: "name",
-                                        price: 1.1,
-                                        product_id: "product_id",
                                         provider_type: "metronome",
-                                        quantity: 1.1,
                                         updated_at: "2024-01-15T09:30:00Z",
                                     },
                                     singular_name: "singular_name",
@@ -3860,12 +3856,10 @@ describe("CompaniesClient", () => {
                                         created_at: "2024-01-15T09:30:00Z",
                                         environment_id: "environment_id",
                                         external_id: "external_id",
+                                        id: "id",
                                         is_active: true,
                                         name: "name",
-                                        price: 1.1,
-                                        product_id: "product_id",
                                         provider_type: "metronome",
-                                        quantity: 1.1,
                                         updated_at: "2024-01-15T09:30:00Z",
                                     },
                                     singular_name: "singular_name",
@@ -3952,12 +3946,10 @@ describe("CompaniesClient", () => {
                                         created_at: "2024-01-15T09:30:00Z",
                                         environment_id: "environment_id",
                                         external_id: "external_id",
+                                        id: "id",
                                         is_active: true,
                                         name: "name",
-                                        price: 1.1,
-                                        product_id: "product_id",
                                         provider_type: "metronome",
-                                        quantity: 1.1,
                                         updated_at: "2024-01-15T09:30:00Z",
                                     },
                                     singular_name: "singular_name",
@@ -4845,12 +4837,10 @@ describe("CompaniesClient", () => {
                                     created_at: "2024-01-15T09:30:00Z",
                                     environment_id: "environment_id",
                                     external_id: "external_id",
+                                    id: "id",
                                     is_active: true,
                                     name: "name",
-                                    price: 1.1,
-                                    product_id: "product_id",
                                     provider_type: "metronome",
-                                    quantity: 1.1,
                                     updated_at: "2024-01-15T09:30:00Z",
                                 },
                                 singular_name: "singular_name",
@@ -4937,12 +4927,10 @@ describe("CompaniesClient", () => {
                                     created_at: "2024-01-15T09:30:00Z",
                                     environment_id: "environment_id",
                                     external_id: "external_id",
+                                    id: "id",
                                     is_active: true,
                                     name: "name",
-                                    price: 1.1,
-                                    product_id: "product_id",
                                     provider_type: "metronome",
-                                    quantity: 1.1,
                                     updated_at: "2024-01-15T09:30:00Z",
                                 },
                                 singular_name: "singular_name",
@@ -5382,12 +5370,10 @@ describe("CompaniesClient", () => {
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         environmentId: "environment_id",
                                         externalId: "external_id",
+                                        id: "id",
                                         isActive: true,
                                         name: "name",
-                                        price: 1.1,
-                                        productId: "product_id",
                                         providerType: "metronome",
-                                        quantity: 1.1,
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                     },
                                     singularName: "singular_name",
@@ -5486,12 +5472,10 @@ describe("CompaniesClient", () => {
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         environmentId: "environment_id",
                                         externalId: "external_id",
+                                        id: "id",
                                         isActive: true,
                                         name: "name",
-                                        price: 1.1,
-                                        productId: "product_id",
                                         providerType: "metronome",
-                                        quantity: 1.1,
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                     },
                                     singularName: "singular_name",
@@ -5604,12 +5588,10 @@ describe("CompaniesClient", () => {
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         environmentId: "environment_id",
                                         externalId: "external_id",
+                                        id: "id",
                                         isActive: true,
                                         name: "name",
-                                        price: 1.1,
-                                        productId: "product_id",
                                         providerType: "metronome",
-                                        quantity: 1.1,
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                     },
                                     singularName: "singular_name",
@@ -5708,12 +5690,10 @@ describe("CompaniesClient", () => {
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         environmentId: "environment_id",
                                         externalId: "external_id",
+                                        id: "id",
                                         isActive: true,
                                         name: "name",
-                                        price: 1.1,
-                                        productId: "product_id",
                                         providerType: "metronome",
-                                        quantity: 1.1,
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                     },
                                     singularName: "singular_name",
@@ -6639,12 +6619,10 @@ describe("CompaniesClient", () => {
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     environmentId: "environment_id",
                                     externalId: "external_id",
+                                    id: "id",
                                     isActive: true,
                                     name: "name",
-                                    price: 1.1,
-                                    productId: "product_id",
                                     providerType: "metronome",
-                                    quantity: 1.1,
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 },
                                 singularName: "singular_name",
@@ -6743,12 +6721,10 @@ describe("CompaniesClient", () => {
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     environmentId: "environment_id",
                                     externalId: "external_id",
+                                    id: "id",
                                     isActive: true,
                                     name: "name",
-                                    price: 1.1,
-                                    productId: "product_id",
                                     providerType: "metronome",
-                                    quantity: 1.1,
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 },
                                 singularName: "singular_name",
@@ -9386,6 +9362,126 @@ describe("CompaniesClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("deleteEntityKeyDefinition (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
+
+        server
+            .mockEndpoint()
+            .delete("/entity-key-definitions/entity_key_definition_id")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.companies.deleteEntityKeyDefinition("entity_key_definition_id");
+        expect(response).toEqual({
+            data: {
+                deleted: true,
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("deleteEntityKeyDefinition (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .delete("/entity-key-definitions/entity_key_definition_id")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.deleteEntityKeyDefinition("entity_key_definition_id");
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("deleteEntityKeyDefinition (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .delete("/entity-key-definitions/entity_key_definition_id")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.deleteEntityKeyDefinition("entity_key_definition_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("deleteEntityKeyDefinition (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .delete("/entity-key-definitions/entity_key_definition_id")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.deleteEntityKeyDefinition("entity_key_definition_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("deleteEntityKeyDefinition (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .delete("/entity-key-definitions/entity_key_definition_id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.deleteEntityKeyDefinition("entity_key_definition_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("deleteEntityKeyDefinition (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .delete("/entity-key-definitions/entity_key_definition_id")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.deleteEntityKeyDefinition("entity_key_definition_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("countEntityKeyDefinitions (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -9516,6 +9612,101 @@ describe("CompaniesClient", () => {
 
         await expect(async () => {
             return await client.companies.countEntityKeyDefinitions();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("countEntityKeys (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: { count: 1000000 },
+            params: { definition_id: "definition_id", entity_type: "company", limit: 1000000, offset: 1000000 },
+        };
+
+        server.mockEndpoint().get("/entity-keys/count").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.companies.countEntityKeys({
+            definitionId: "definition_id",
+            entityType: "company",
+            limit: 1000000,
+            offset: 1000000,
+        });
+        expect(response).toEqual({
+            data: {
+                count: 1000000,
+            },
+            params: {
+                definitionId: "definition_id",
+                entityType: "company",
+                limit: 1000000,
+                offset: 1000000,
+            },
+        });
+    });
+
+    test("countEntityKeys (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/entity-keys/count").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.companies.countEntityKeys();
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("countEntityKeys (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/entity-keys/count").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.companies.countEntityKeys();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("countEntityKeys (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/entity-keys/count").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.companies.countEntityKeys();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("countEntityKeys (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/entity-keys/count").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.companies.countEntityKeys();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("countEntityKeys (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/entity-keys/count").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.companies.countEntityKeys();
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
