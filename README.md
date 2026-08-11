@@ -167,6 +167,35 @@ const client = new SchematicClient({
 
 The `logLevel` option only affects the default console logger. When you supply your own `logger`, its level configuration is respected as-is and `logLevel` is ignored.
 
+## Graceful shutdown
+
+`client.close()` is asynchronous and **must be awaited**. It stops the event buffer's periodic flush and then flushes whatever is still buffered, retrying up to 3 times with exponential backoff and jitter. If your process exits before that promise resolves, the buffered events are gone.
+
+Wire it into your termination handlers so a deploy or a pod eviction doesn't drop events:
+
+```ts
+const shutdown = async () => {
+    await server.close(); // stop accepting new work first
+    await client.close(); // flush the event buffer
+    process.exit(0);
+};
+
+process.on("SIGTERM", shutdown);
+process.on("SIGINT", shutdown);
+```
+
+Two things to know about what is at stake:
+
+- **Events are buffered, not sent immediately.** By default the buffer flushes every second (configurable via the `eventBufferInterval` client option), so an unclean exit can lose up to a second of `identify` and `track` calls. Awaiting `close()` is the only supported way to force that flush.
+- **Lost track events can mean unbilled usage.** A [credit lease](#credit-leases-and-reservations) is redeemed by a `track` event carrying its `leaseId`. If that event is dropped on shutdown, the lease's unspent remainder is refunded when it is released or expires — so work you already performed is never charged for. `trackWithReservation()` emits a deterministic idempotency key, so re-emitting a redemption after a restart is safe and will not double-bill.
+
+`close()` also shuts down the reservation sweeper and the DataStream connection. Its behavior for credit leases depends on the lease backend:
+
+- **In-memory (per-process) backend:** this process is the only holder of its leases, so `close()` releases them, returning their unspent remainder to the company balance immediately instead of waiting out the lease expiry.
+- **Shared (Redis) backend:** leases are deliberately *not* released, because sibling instances are drawing on the same lease. They reclaim themselves by expiring or being fully consumed.
+
+Most snippets in this README call `client.close()` without `await` because they are standalone, top-level examples. In real application code — anywhere you are already inside an `async` function — await it.
+
 ## Usage examples
 
 A number of these examples use `keys` to identify companies and users. Learn more about keys [here](https://docs.schematichq.com/developer_resources/key_management).
@@ -696,7 +725,7 @@ export default {
     // ...
 
     // Don't forget to close the client when done
-    schematic.close();
+    await schematic.close();
   }
 };
 ```
@@ -859,6 +888,8 @@ await client.trackWithReservation(result.reservation!, inference.tokensUsed);
 ```
 
 If the caller never settles a reservation, it expires after `defaultReservationTTL` and its credits are returned to the lease. If the work outlives the reservation's TTL, `trackWithReservation` still bills the usage — the track event carries a deterministic idempotency key, so duplicate or recovery emits never double-bill. However, the local lease balance is not re-debited on that late settle (the expired reservation's hold was already swept back to the lease), so it reads high until the lease rolls over. **Set `defaultReservationTTL` above the longest expected gap between `check()` and `trackWithReservation()`** to keep the local balance accurate.
+
+Redemption rides the same buffered event pipeline as any other track, so a process that exits without awaiting `client.close()` can drop it and leave the work unbilled. See [Graceful shutdown](#graceful-shutdown).
 
 ### Pre-warming
 
