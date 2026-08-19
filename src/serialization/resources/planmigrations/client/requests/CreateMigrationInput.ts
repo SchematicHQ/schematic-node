@@ -3,6 +3,7 @@
 import type * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
+import { MigrationProrationBehavior } from "../../../../types/MigrationProrationBehavior";
 import { PlanType } from "../../../../types/PlanType";
 import { PlanVersionMigrationStrategy } from "../../../../types/PlanVersionMigrationStrategy";
 
@@ -10,28 +11,33 @@ export const CreateMigrationInput: core.serialization.Schema<
     serializers.CreateMigrationInput.Raw,
     Schematic.CreateMigrationInput
 > = core.serialization.object({
-    companyIds: core.serialization.property("company_ids", core.serialization.list(core.serialization.string())),
+    companyIds: core.serialization.property(
+        "company_ids",
+        core.serialization.list(core.serialization.string()).optional(),
+    ),
     excludedCompanyIds: core.serialization.property(
         "excluded_company_ids",
-        core.serialization.list(core.serialization.string()),
+        core.serialization.list(core.serialization.string()).optional(),
     ),
     planId: core.serialization.property("plan_id", core.serialization.string()),
     planVersionIdTo: core.serialization.property("plan_version_id_to", core.serialization.string()),
     planVersionIdsFrom: core.serialization.property(
         "plan_version_ids_from",
-        core.serialization.list(core.serialization.string()),
+        core.serialization.list(core.serialization.string()).optional(),
     ),
+    prorationBehavior: core.serialization.property("proration_behavior", MigrationProrationBehavior.optional()),
     strategy: PlanVersionMigrationStrategy,
     targetPlanType: core.serialization.property("target_plan_type", PlanType),
 });
 
 export declare namespace CreateMigrationInput {
     export interface Raw {
-        company_ids: string[];
-        excluded_company_ids: string[];
+        company_ids?: string[] | null;
+        excluded_company_ids?: string[] | null;
         plan_id: string;
         plan_version_id_to: string;
-        plan_version_ids_from: string[];
+        plan_version_ids_from?: string[] | null;
+        proration_behavior?: MigrationProrationBehavior.Raw | null;
         strategy: PlanVersionMigrationStrategy.Raw;
         target_plan_type: PlanType.Raw;
     }

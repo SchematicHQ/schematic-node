@@ -2119,14 +2119,14 @@ export class CreditsClient {
      *     })
      */
     public countCompanyGrants(
-        request: Schematic.CountCompanyGrantsRequest = {},
+        request: Schematic.CountCompanyGrantsRequest,
         requestOptions?: CreditsClient.RequestOptions,
     ): core.HttpResponsePromise<Schematic.CountCompanyGrantsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__countCompanyGrants(request, requestOptions));
     }
 
     private async __countCompanyGrants(
-        request: Schematic.CountCompanyGrantsRequest = {},
+        request: Schematic.CountCompanyGrantsRequest,
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountCompanyGrantsResponse>> {
         const { companyId, order, dir, limit, offset } = request;
@@ -2276,14 +2276,14 @@ export class CreditsClient {
      *     })
      */
     public listCompanyGrants(
-        request: Schematic.ListCompanyGrantsRequest = {},
+        request: Schematic.ListCompanyGrantsRequest,
         requestOptions?: CreditsClient.RequestOptions,
     ): core.HttpResponsePromise<Schematic.ListCompanyGrantsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__listCompanyGrants(request, requestOptions));
     }
 
     private async __listCompanyGrants(
-        request: Schematic.ListCompanyGrantsRequest = {},
+        request: Schematic.ListCompanyGrantsRequest,
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListCompanyGrantsResponse>> {
         const { companyId, order, dir, limit, offset } = request;

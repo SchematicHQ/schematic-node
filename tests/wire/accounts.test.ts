@@ -2394,6 +2394,255 @@ describe("AccountsClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("getOnboardingState (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                environment_id: "environment_id",
+                milestones: [{ id: "evaluated", missing: ["connect_billing"], progress: 1.1 }],
+                path: "agent",
+                requirements: [{ id: "connect_billing", status: "available" }],
+                suggested_next: ["connect_billing"],
+                track: "catalog",
+            },
+            params: { key: "value" },
+        };
+
+        server.mockEndpoint().get("/onboarding-state").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.accounts.getOnboardingState();
+        expect(response).toEqual({
+            data: {
+                environmentId: "environment_id",
+                milestones: [
+                    {
+                        id: "evaluated",
+                        missing: ["connect_billing"],
+                        progress: 1.1,
+                    },
+                ],
+                path: "agent",
+                requirements: [
+                    {
+                        id: "connect_billing",
+                        status: "available",
+                    },
+                ],
+                suggestedNext: ["connect_billing"],
+                track: "catalog",
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("getOnboardingState (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/onboarding-state").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.accounts.getOnboardingState();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getOnboardingState (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/onboarding-state").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.accounts.getOnboardingState();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getOnboardingState (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/onboarding-state").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.accounts.getOnboardingState();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getOnboardingState (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/onboarding-state").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.accounts.getOnboardingState();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("updateOnboardingState (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = {
+            data: {
+                environment_id: "environment_id",
+                milestones: [{ id: "evaluated", missing: ["connect_billing"], progress: 1.1 }],
+                path: "agent",
+                requirements: [{ id: "connect_billing", status: "available" }],
+                suggested_next: ["connect_billing"],
+                track: "catalog",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/onboarding-state")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.accounts.updateOnboardingState();
+        expect(response).toEqual({
+            data: {
+                environmentId: "environment_id",
+                milestones: [
+                    {
+                        id: "evaluated",
+                        missing: ["connect_billing"],
+                        progress: 1.1,
+                    },
+                ],
+                path: "agent",
+                requirements: [
+                    {
+                        id: "connect_billing",
+                        status: "available",
+                    },
+                ],
+                suggestedNext: ["connect_billing"],
+                track: "catalog",
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("updateOnboardingState (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/onboarding-state")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.accounts.updateOnboardingState();
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("updateOnboardingState (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/onboarding-state")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.accounts.updateOnboardingState();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("updateOnboardingState (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/onboarding-state")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.accounts.updateOnboardingState();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("updateOnboardingState (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/onboarding-state")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.accounts.updateOnboardingState();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("updateOnboardingState (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/onboarding-state")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.accounts.updateOnboardingState();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("quickstart (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -2498,6 +2747,7 @@ describe("AccountsClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                 ],
+                onboarding_complete: true,
                 stripe_user_id: "stripe_user_id",
                 user_id: "user_id",
                 user_name: "user_name",
@@ -2524,6 +2774,7 @@ describe("AccountsClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                 ],
+                onboardingComplete: true,
                 stripeUserId: "stripe_user_id",
                 userId: "user_id",
                 userName: "user_name",

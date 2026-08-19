@@ -11,6 +11,8 @@ export interface UpsertUserSubRequestBody {
     keys: Record<string, string>;
     lastSeenAt?: Date;
     name?: string;
+    /** Names of keys to remove from the user. Removing a key the user does not have does nothing, and a user must keep at least one key. */
+    removeKeys?: string[];
     /** A map of trait names to trait values */
     traits?: Record<string, unknown>;
     updateOnly?: boolean;

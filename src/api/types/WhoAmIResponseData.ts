@@ -9,6 +9,7 @@ export interface WhoAmIResponseData {
     apiKeyId?: string;
     environmentId?: string;
     environments: Schematic.EnvironmentResponseData[];
+    onboardingComplete: boolean;
     stripeUserId?: string;
     userId?: string;
     userName?: string;

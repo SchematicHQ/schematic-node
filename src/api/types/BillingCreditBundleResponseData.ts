@@ -5,6 +5,8 @@ import type * as Schematic from "../index";
 export interface BillingCreditBundleResponseData {
     billingInvoiceId?: string;
     bundleType: Schematic.BillingCreditBundleType;
+    /** Plans whose companies may purchase this bundle. Empty means the bundle is purchasable on every plan. */
+    compatiblePlanIds: string[];
     createdAt: Date;
     creditDescription?: string;
     creditIcon?: string;

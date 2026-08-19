@@ -4,6 +4,7 @@ import type * as Schematic from "../index";
 
 export interface BillingCreditBundleView {
     bundleType: Schematic.BillingCreditBundleType;
+    compatiblePlanIds: string[];
     createdAt: Date;
     creditDescription?: string;
     creditIcon?: string;

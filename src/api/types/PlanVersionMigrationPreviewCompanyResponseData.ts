@@ -7,4 +7,5 @@ export interface PlanVersionMigrationPreviewCompanyResponseData {
     note?: string;
     planVersionIdFrom?: string;
     willUpdateSubscription: boolean;
+    wouldFail: boolean;
 }

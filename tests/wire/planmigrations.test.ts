@@ -86,7 +86,9 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.listCompanyMigrations();
+            return await client.planmigrations.listCompanyMigrations({
+                migrationId: "migration_id",
+            });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
 
@@ -105,7 +107,9 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.listCompanyMigrations();
+            return await client.planmigrations.listCompanyMigrations({
+                migrationId: "migration_id",
+            });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
 
@@ -124,7 +128,9 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.listCompanyMigrations();
+            return await client.planmigrations.listCompanyMigrations({
+                migrationId: "migration_id",
+            });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
 
@@ -143,7 +149,9 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.listCompanyMigrations();
+            return await client.planmigrations.listCompanyMigrations({
+                migrationId: "migration_id",
+            });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
 
@@ -162,7 +170,9 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.listCompanyMigrations();
+            return await client.planmigrations.listCompanyMigrations({
+                migrationId: "migration_id",
+            });
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
@@ -366,7 +376,9 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.countCompanyMigrations();
+            return await client.planmigrations.countCompanyMigrations({
+                migrationId: "migration_id",
+            });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
 
@@ -385,7 +397,9 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.countCompanyMigrations();
+            return await client.planmigrations.countCompanyMigrations({
+                migrationId: "migration_id",
+            });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
 
@@ -404,7 +418,9 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.countCompanyMigrations();
+            return await client.planmigrations.countCompanyMigrations({
+                migrationId: "migration_id",
+            });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
 
@@ -423,7 +439,9 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.countCompanyMigrations();
+            return await client.planmigrations.countCompanyMigrations({
+                migrationId: "migration_id",
+            });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
 
@@ -442,7 +460,9 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.countCompanyMigrations();
+            return await client.planmigrations.countCompanyMigrations({
+                migrationId: "migration_id",
+            });
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
@@ -463,6 +483,7 @@ describe("PlanmigrationsClient", () => {
                     plan_version_id_from: "plan_version_id_from",
                     plan_version_id_to: "plan_version_id_to",
                     plan_version_ids_from: ["plan_version_ids_from"],
+                    proration_behavior: "always_invoice",
                     skipped_companies: 1000000,
                     started_at: "2024-01-15T09:30:00Z",
                     status: "completed",
@@ -501,6 +522,7 @@ describe("PlanmigrationsClient", () => {
                     planVersionIdFrom: "plan_version_id_from",
                     planVersionIdTo: "plan_version_id_to",
                     planVersionIdsFrom: ["plan_version_ids_from"],
+                    prorationBehavior: "always_invoice",
                     skippedCompanies: 1000000,
                     startedAt: new Date("2024-01-15T09:30:00.000Z"),
                     status: "completed",
@@ -533,7 +555,9 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.listMigrations();
+            return await client.planmigrations.listMigrations({
+                planVersionId: "plan_version_id",
+            });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
 
@@ -552,7 +576,9 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.listMigrations();
+            return await client.planmigrations.listMigrations({
+                planVersionId: "plan_version_id",
+            });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
 
@@ -571,7 +597,9 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.listMigrations();
+            return await client.planmigrations.listMigrations({
+                planVersionId: "plan_version_id",
+            });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
 
@@ -590,7 +618,9 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.listMigrations();
+            return await client.planmigrations.listMigrations({
+                planVersionId: "plan_version_id",
+            });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
 
@@ -609,7 +639,9 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.listMigrations();
+            return await client.planmigrations.listMigrations({
+                planVersionId: "plan_version_id",
+            });
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
@@ -617,11 +649,8 @@ describe("PlanmigrationsClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            company_ids: ["company_ids"],
-            excluded_company_ids: ["excluded_company_ids"],
             plan_id: "plan_id",
             plan_version_id_to: "plan_version_id_to",
-            plan_version_ids_from: ["plan_version_ids_from"],
             strategy: "immediate",
             target_plan_type: "plan",
         };
@@ -637,6 +666,7 @@ describe("PlanmigrationsClient", () => {
                 plan_version_id_from: "plan_version_id_from",
                 plan_version_id_to: "plan_version_id_to",
                 plan_version_ids_from: ["plan_version_ids_from"],
+                proration_behavior: "always_invoice",
                 skipped_companies: 1000000,
                 started_at: "2024-01-15T09:30:00Z",
                 status: "completed",
@@ -657,11 +687,8 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         const response = await client.planmigrations.createMigration({
-            companyIds: ["company_ids"],
-            excludedCompanyIds: ["excluded_company_ids"],
             planId: "plan_id",
             planVersionIdTo: "plan_version_id_to",
-            planVersionIdsFrom: ["plan_version_ids_from"],
             strategy: "immediate",
             targetPlanType: "plan",
         });
@@ -677,6 +704,7 @@ describe("PlanmigrationsClient", () => {
                 planVersionIdFrom: "plan_version_id_from",
                 planVersionIdTo: "plan_version_id_to",
                 planVersionIdsFrom: ["plan_version_ids_from"],
+                prorationBehavior: "always_invoice",
                 skippedCompanies: 1000000,
                 startedAt: new Date("2024-01-15T09:30:00.000Z"),
                 status: "completed",
@@ -694,11 +722,8 @@ describe("PlanmigrationsClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            company_ids: ["company_ids", "company_ids"],
-            excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
             plan_id: "plan_id",
             plan_version_id_to: "plan_version_id_to",
-            plan_version_ids_from: ["plan_version_ids_from", "plan_version_ids_from"],
             strategy: "immediate",
             target_plan_type: "plan",
         };
@@ -715,11 +740,8 @@ describe("PlanmigrationsClient", () => {
 
         await expect(async () => {
             return await client.planmigrations.createMigration({
-                companyIds: ["company_ids", "company_ids"],
-                excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
                 planId: "plan_id",
                 planVersionIdTo: "plan_version_id_to",
-                planVersionIdsFrom: ["plan_version_ids_from", "plan_version_ids_from"],
                 strategy: "immediate",
                 targetPlanType: "plan",
             });
@@ -730,11 +752,8 @@ describe("PlanmigrationsClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            company_ids: ["company_ids", "company_ids"],
-            excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
             plan_id: "plan_id",
             plan_version_id_to: "plan_version_id_to",
-            plan_version_ids_from: ["plan_version_ids_from", "plan_version_ids_from"],
             strategy: "immediate",
             target_plan_type: "plan",
         };
@@ -751,11 +770,8 @@ describe("PlanmigrationsClient", () => {
 
         await expect(async () => {
             return await client.planmigrations.createMigration({
-                companyIds: ["company_ids", "company_ids"],
-                excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
                 planId: "plan_id",
                 planVersionIdTo: "plan_version_id_to",
-                planVersionIdsFrom: ["plan_version_ids_from", "plan_version_ids_from"],
                 strategy: "immediate",
                 targetPlanType: "plan",
             });
@@ -766,11 +782,8 @@ describe("PlanmigrationsClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            company_ids: ["company_ids", "company_ids"],
-            excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
             plan_id: "plan_id",
             plan_version_id_to: "plan_version_id_to",
-            plan_version_ids_from: ["plan_version_ids_from", "plan_version_ids_from"],
             strategy: "immediate",
             target_plan_type: "plan",
         };
@@ -787,11 +800,8 @@ describe("PlanmigrationsClient", () => {
 
         await expect(async () => {
             return await client.planmigrations.createMigration({
-                companyIds: ["company_ids", "company_ids"],
-                excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
                 planId: "plan_id",
                 planVersionIdTo: "plan_version_id_to",
-                planVersionIdsFrom: ["plan_version_ids_from", "plan_version_ids_from"],
                 strategy: "immediate",
                 targetPlanType: "plan",
             });
@@ -802,11 +812,8 @@ describe("PlanmigrationsClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            company_ids: ["company_ids", "company_ids"],
-            excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
             plan_id: "plan_id",
             plan_version_id_to: "plan_version_id_to",
-            plan_version_ids_from: ["plan_version_ids_from", "plan_version_ids_from"],
             strategy: "immediate",
             target_plan_type: "plan",
         };
@@ -823,11 +830,8 @@ describe("PlanmigrationsClient", () => {
 
         await expect(async () => {
             return await client.planmigrations.createMigration({
-                companyIds: ["company_ids", "company_ids"],
-                excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
                 planId: "plan_id",
                 planVersionIdTo: "plan_version_id_to",
-                planVersionIdsFrom: ["plan_version_ids_from", "plan_version_ids_from"],
                 strategy: "immediate",
                 targetPlanType: "plan",
             });
@@ -838,11 +842,8 @@ describe("PlanmigrationsClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            company_ids: ["company_ids", "company_ids"],
-            excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
             plan_id: "plan_id",
             plan_version_id_to: "plan_version_id_to",
-            plan_version_ids_from: ["plan_version_ids_from", "plan_version_ids_from"],
             strategy: "immediate",
             target_plan_type: "plan",
         };
@@ -859,11 +860,8 @@ describe("PlanmigrationsClient", () => {
 
         await expect(async () => {
             return await client.planmigrations.createMigration({
-                companyIds: ["company_ids", "company_ids"],
-                excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
                 planId: "plan_id",
                 planVersionIdTo: "plan_version_id_to",
-                planVersionIdsFrom: ["plan_version_ids_from", "plan_version_ids_from"],
                 strategy: "immediate",
                 targetPlanType: "plan",
             });
@@ -886,6 +884,7 @@ describe("PlanmigrationsClient", () => {
                 plan_version_id_from: "plan_version_id_from",
                 plan_version_id_to: "plan_version_id_to",
                 plan_version_ids_from: ["plan_version_ids_from"],
+                proration_behavior: "always_invoice",
                 skipped_companies: 1000000,
                 started_at: "2024-01-15T09:30:00Z",
                 status: "completed",
@@ -917,6 +916,7 @@ describe("PlanmigrationsClient", () => {
                 planVersionIdFrom: "plan_version_id_from",
                 planVersionIdTo: "plan_version_id_to",
                 planVersionIdsFrom: ["plan_version_ids_from"],
+                prorationBehavior: "always_invoice",
                 skippedCompanies: 1000000,
                 startedAt: new Date("2024-01-15T09:30:00.000Z"),
                 status: "completed",
@@ -1022,6 +1022,7 @@ describe("PlanmigrationsClient", () => {
                 plan_version_id_from: "plan_version_id_from",
                 plan_version_id_to: "plan_version_id_to",
                 plan_version_ids_from: ["plan_version_ids_from"],
+                proration_behavior: "always_invoice",
                 skipped_companies: 1000000,
                 started_at: "2024-01-15T09:30:00Z",
                 status: "completed",
@@ -1056,6 +1057,7 @@ describe("PlanmigrationsClient", () => {
                 planVersionIdFrom: "plan_version_id_from",
                 planVersionIdTo: "plan_version_id_to",
                 planVersionIdsFrom: ["plan_version_ids_from"],
+                prorationBehavior: "always_invoice",
                 skippedCompanies: 1000000,
                 startedAt: new Date("2024-01-15T09:30:00.000Z"),
                 status: "completed",
@@ -1230,7 +1232,9 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.countMigrations();
+            return await client.planmigrations.countMigrations({
+                planVersionId: "plan_version_id",
+            });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
 
@@ -1249,7 +1253,9 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.countMigrations();
+            return await client.planmigrations.countMigrations({
+                planVersionId: "plan_version_id",
+            });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
 
@@ -1268,7 +1274,9 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.countMigrations();
+            return await client.planmigrations.countMigrations({
+                planVersionId: "plan_version_id",
+            });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
 
@@ -1287,7 +1295,9 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.countMigrations();
+            return await client.planmigrations.countMigrations({
+                planVersionId: "plan_version_id",
+            });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
 
@@ -1306,7 +1316,9 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.countMigrations();
+            return await client.planmigrations.countMigrations({
+                planVersionId: "plan_version_id",
+            });
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
@@ -1314,7 +1326,6 @@ describe("PlanmigrationsClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            company_ids: ["company_ids"],
             plan_id: "plan_id",
             plan_version_id_to: "plan_version_id_to",
             target_plan_type: "plan",
@@ -1327,8 +1338,10 @@ describe("PlanmigrationsClient", () => {
                         has_billing_changes: true,
                         has_custom_pricing: true,
                         will_update_subscription: true,
+                        would_fail: true,
                     },
                 ],
+                has_billing_changes: true,
             },
             params: { key: "value" },
         };
@@ -1343,7 +1356,6 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         const response = await client.planmigrations.previewMigration({
-            companyIds: ["company_ids"],
             planId: "plan_id",
             planVersionIdTo: "plan_version_id_to",
             targetPlanType: "plan",
@@ -1356,8 +1368,10 @@ describe("PlanmigrationsClient", () => {
                         hasBillingChanges: true,
                         hasCustomPricing: true,
                         willUpdateSubscription: true,
+                        wouldFail: true,
                     },
                 ],
+                hasBillingChanges: true,
             },
             params: {
                 key: "value",
@@ -1369,7 +1383,6 @@ describe("PlanmigrationsClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            company_ids: ["company_ids", "company_ids"],
             plan_id: "plan_id",
             plan_version_id_to: "plan_version_id_to",
             target_plan_type: "plan",
@@ -1387,7 +1400,6 @@ describe("PlanmigrationsClient", () => {
 
         await expect(async () => {
             return await client.planmigrations.previewMigration({
-                companyIds: ["company_ids", "company_ids"],
                 planId: "plan_id",
                 planVersionIdTo: "plan_version_id_to",
                 targetPlanType: "plan",
@@ -1399,7 +1411,6 @@ describe("PlanmigrationsClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            company_ids: ["company_ids", "company_ids"],
             plan_id: "plan_id",
             plan_version_id_to: "plan_version_id_to",
             target_plan_type: "plan",
@@ -1417,7 +1428,6 @@ describe("PlanmigrationsClient", () => {
 
         await expect(async () => {
             return await client.planmigrations.previewMigration({
-                companyIds: ["company_ids", "company_ids"],
                 planId: "plan_id",
                 planVersionIdTo: "plan_version_id_to",
                 targetPlanType: "plan",
@@ -1429,7 +1439,6 @@ describe("PlanmigrationsClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            company_ids: ["company_ids", "company_ids"],
             plan_id: "plan_id",
             plan_version_id_to: "plan_version_id_to",
             target_plan_type: "plan",
@@ -1447,7 +1456,6 @@ describe("PlanmigrationsClient", () => {
 
         await expect(async () => {
             return await client.planmigrations.previewMigration({
-                companyIds: ["company_ids", "company_ids"],
                 planId: "plan_id",
                 planVersionIdTo: "plan_version_id_to",
                 targetPlanType: "plan",
@@ -1459,7 +1467,6 @@ describe("PlanmigrationsClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            company_ids: ["company_ids", "company_ids"],
             plan_id: "plan_id",
             plan_version_id_to: "plan_version_id_to",
             target_plan_type: "plan",
@@ -1477,7 +1484,6 @@ describe("PlanmigrationsClient", () => {
 
         await expect(async () => {
             return await client.planmigrations.previewMigration({
-                companyIds: ["company_ids", "company_ids"],
                 planId: "plan_id",
                 planVersionIdTo: "plan_version_id_to",
                 targetPlanType: "plan",
@@ -1489,7 +1495,6 @@ describe("PlanmigrationsClient", () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            company_ids: ["company_ids", "company_ids"],
             plan_id: "plan_id",
             plan_version_id_to: "plan_version_id_to",
             target_plan_type: "plan",
@@ -1507,7 +1512,6 @@ describe("PlanmigrationsClient", () => {
 
         await expect(async () => {
             return await client.planmigrations.previewMigration({
-                companyIds: ["company_ids", "company_ids"],
                 planId: "plan_id",
                 planVersionIdTo: "plan_version_id_to",
                 targetPlanType: "plan",

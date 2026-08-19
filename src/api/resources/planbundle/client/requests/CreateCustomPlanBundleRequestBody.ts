@@ -5,14 +5,23 @@ import type * as Schematic from "../../../../index";
 /**
  * @example
  *     {
+ *         billingProduct: {
+ *             chargeType: "free",
+ *             isTrialable: true
+ *         },
  *         entitlements: [{
  *                 action: "create"
- *             }]
+ *             }],
+ *         plan: {
+ *             companyId: "company_id",
+ *             description: "description",
+ *             name: "name"
+ *         }
  *     }
  */
 export interface CreateCustomPlanBundleRequestBody {
-    billingProduct?: Schematic.UpsertBillingProductRequestBody;
+    billingProduct: Schematic.UpsertBillingProductRequestBody;
     creditGrants?: Schematic.PlanBundleCreditGrantRequestBody[];
     entitlements: Schematic.PlanBundleEntitlementRequestBody[];
-    plan?: Schematic.CreateCustomPlanBundlePlanRequestBody;
+    plan: Schematic.CreateCustomPlanBundlePlanRequestBody;
 }

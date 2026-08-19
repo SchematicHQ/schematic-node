@@ -43,14 +43,14 @@ export class PlanmigrationsClient {
      *     })
      */
     public listCompanyMigrations(
-        request: Schematic.ListCompanyMigrationsRequest = {},
+        request: Schematic.ListCompanyMigrationsRequest,
         requestOptions?: PlanmigrationsClient.RequestOptions,
     ): core.HttpResponsePromise<Schematic.ListCompanyMigrationsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__listCompanyMigrations(request, requestOptions));
     }
 
     private async __listCompanyMigrations(
-        request: Schematic.ListCompanyMigrationsRequest = {},
+        request: Schematic.ListCompanyMigrationsRequest,
         requestOptions?: PlanmigrationsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListCompanyMigrationsResponse>> {
         const { migrationId, q, status, limit, offset } = request;
@@ -334,14 +334,14 @@ export class PlanmigrationsClient {
      *     })
      */
     public countCompanyMigrations(
-        request: Schematic.CountCompanyMigrationsRequest = {},
+        request: Schematic.CountCompanyMigrationsRequest,
         requestOptions?: PlanmigrationsClient.RequestOptions,
     ): core.HttpResponsePromise<Schematic.CountCompanyMigrationsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__countCompanyMigrations(request, requestOptions));
     }
 
     private async __countCompanyMigrations(
-        request: Schematic.CountCompanyMigrationsRequest = {},
+        request: Schematic.CountCompanyMigrationsRequest,
         requestOptions?: PlanmigrationsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountCompanyMigrationsResponse>> {
         const { migrationId, q, status, limit, offset } = request;
@@ -489,14 +489,14 @@ export class PlanmigrationsClient {
      *     })
      */
     public listMigrations(
-        request: Schematic.ListMigrationsRequest = {},
+        request: Schematic.ListMigrationsRequest,
         requestOptions?: PlanmigrationsClient.RequestOptions,
     ): core.HttpResponsePromise<Schematic.ListMigrationsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__listMigrations(request, requestOptions));
     }
 
     private async __listMigrations(
-        request: Schematic.ListMigrationsRequest = {},
+        request: Schematic.ListMigrationsRequest,
         requestOptions?: PlanmigrationsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListMigrationsResponse>> {
         const { planVersionId, status, limit, offset } = request;
@@ -629,11 +629,8 @@ export class PlanmigrationsClient {
      *
      * @example
      *     await client.planmigrations.createMigration({
-     *         companyIds: ["company_ids"],
-     *         excludedCompanyIds: ["excluded_company_ids"],
      *         planId: "plan_id",
      *         planVersionIdTo: "plan_version_id_to",
-     *         planVersionIdsFrom: ["plan_version_ids_from"],
      *         strategy: "immediate",
      *         targetPlanType: "plan"
      *     })
@@ -1039,14 +1036,14 @@ export class PlanmigrationsClient {
      *     })
      */
     public countMigrations(
-        request: Schematic.CountMigrationsRequest = {},
+        request: Schematic.CountMigrationsRequest,
         requestOptions?: PlanmigrationsClient.RequestOptions,
     ): core.HttpResponsePromise<Schematic.CountMigrationsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__countMigrations(request, requestOptions));
     }
 
     private async __countMigrations(
-        request: Schematic.CountMigrationsRequest = {},
+        request: Schematic.CountMigrationsRequest,
         requestOptions?: PlanmigrationsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountMigrationsResponse>> {
         const { planVersionId, status, limit, offset } = request;
@@ -1184,7 +1181,6 @@ export class PlanmigrationsClient {
      *
      * @example
      *     await client.planmigrations.previewMigration({
-     *         companyIds: ["company_ids"],
      *         planId: "plan_id",
      *         planVersionIdTo: "plan_version_id_to",
      *         targetPlanType: "plan"

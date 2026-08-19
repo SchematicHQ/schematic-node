@@ -19,6 +19,9 @@ export interface PublishPlanVersionRequestBody {
     excludedCompanyIds: string[];
     migrationStrategy: Schematic.PlanVersionMigrationStrategy;
     phone?: string;
+    prorationBehavior?: Schematic.MigrationProrationBehavior;
+    /** Refuse the publish if any company would be migrated onto the new version */
+    requireNoMigration?: boolean;
     /** Whether Stripe emails the invoice when it is finalized. Defaults to true. */
     sendInvoice?: boolean;
     taxId?: Schematic.TaxIdInput;

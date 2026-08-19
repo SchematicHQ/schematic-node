@@ -4,4 +4,5 @@ export interface CompanyBillingCheckoutSettings {
     collectAddress: boolean;
     collectEmail: boolean;
     collectPhone: boolean;
+    collectTaxId: boolean;
 }

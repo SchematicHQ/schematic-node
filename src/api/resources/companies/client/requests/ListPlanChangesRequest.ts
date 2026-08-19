@@ -9,7 +9,6 @@ import type * as Schematic from "../../../../index";
  *         basePlanAction: "fallback",
  *         companyId: "company_id",
  *         companyIds: ["company_ids"],
- *         planIds: ["plan_ids"],
  *         limit: 1000000,
  *         offset: 1000000
  *     }
@@ -19,7 +18,6 @@ export interface ListPlanChangesRequest {
     basePlanAction?: Schematic.PlanChangeBasePlanAction;
     companyId?: string;
     companyIds?: string | string[];
-    planIds?: string | string[];
     /** Page limit (default 100) */
     limit?: number;
     /** Page offset (default 0) */

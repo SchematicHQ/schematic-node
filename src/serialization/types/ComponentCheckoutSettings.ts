@@ -3,24 +3,29 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { CheckoutBundlePurchaseBehavior } from "./CheckoutBundlePurchaseBehavior";
 import { ProrationBehavior } from "./ProrationBehavior";
 
 export const ComponentCheckoutSettings: core.serialization.ObjectSchema<
     serializers.ComponentCheckoutSettings.Raw,
     Schematic.ComponentCheckoutSettings
 > = core.serialization.object({
+    bundlePurchaseBehavior: core.serialization.property("bundle_purchase_behavior", CheckoutBundlePurchaseBehavior),
     collectAddress: core.serialization.property("collect_address", core.serialization.boolean()),
     collectEmail: core.serialization.property("collect_email", core.serialization.boolean()),
     collectPhone: core.serialization.property("collect_phone", core.serialization.boolean()),
+    collectTaxId: core.serialization.property("collect_tax_id", core.serialization.boolean()),
     prorationBehavior: core.serialization.property("proration_behavior", ProrationBehavior),
     taxCollectionEnabled: core.serialization.property("tax_collection_enabled", core.serialization.boolean()),
 });
 
 export declare namespace ComponentCheckoutSettings {
     export interface Raw {
+        bundle_purchase_behavior: CheckoutBundlePurchaseBehavior.Raw;
         collect_address: boolean;
         collect_email: boolean;
         collect_phone: boolean;
+        collect_tax_id: boolean;
         proration_behavior: ProrationBehavior.Raw;
         tax_collection_enabled: boolean;
     }

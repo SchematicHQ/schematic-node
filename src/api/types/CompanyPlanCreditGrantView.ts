@@ -17,6 +17,7 @@ export interface CompanyPlanCreditGrantView {
     companyAutoTopupAmount?: number;
     companyAutoTopupEnabled?: boolean;
     companyAutoTopupThresholdCredits?: number;
+    companyCreditAmount: number;
     createdAt: Date;
     credit?: Schematic.BillingCreditView;
     creditAmount: number;

@@ -18,7 +18,7 @@ export const UpdatePlanBundleRequestBody: core.serialization.Schema<
         core.serialization.list(PlanBundleCreditGrantRequestBody).optional(),
     ),
     entitlements: core.serialization.list(PlanBundleEntitlementRequestBody),
-    plan: UpdatePlanRequestBody.optional(),
+    plan: UpdatePlanRequestBody,
     planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
 });
 
@@ -27,7 +27,7 @@ export declare namespace UpdatePlanBundleRequestBody {
         billing_product?: UpsertBillingProductRequestBody.Raw | null;
         credit_grants?: PlanBundleCreditGrantRequestBody.Raw[] | null;
         entitlements: PlanBundleEntitlementRequestBody.Raw[];
-        plan?: UpdatePlanRequestBody.Raw | null;
+        plan: UpdatePlanRequestBody.Raw;
         plan_version_id?: string | null;
     }
 }

@@ -10,10 +10,12 @@ export const PlanVersionMigrationPreviewResponseData: core.serialization.ObjectS
     Schematic.PlanVersionMigrationPreviewResponseData
 > = core.serialization.object({
     companies: core.serialization.list(PlanVersionMigrationPreviewCompanyResponseData),
+    hasBillingChanges: core.serialization.property("has_billing_changes", core.serialization.boolean()),
 });
 
 export declare namespace PlanVersionMigrationPreviewResponseData {
     export interface Raw {
         companies: PlanVersionMigrationPreviewCompanyResponseData.Raw[];
+        has_billing_changes: boolean;
     }
 }

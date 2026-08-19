@@ -11,6 +11,8 @@ import type * as Schematic from "../../../../index";
  */
 export interface UpdateCreditBundleDetailsRequestBody {
     bundleName: string;
+    /** Plans whose companies may purchase this bundle. Omitted leaves compatibility unchanged; empty resets the bundle to purchasable on every plan. */
+    compatiblePlanIds?: string[];
     currencyPrices?: Schematic.CreditBundleCurrencyPriceRequestBody[];
     expiryType?: Schematic.BillingCreditExpiryType;
     expiryUnit?: Schematic.BillingCreditExpiryUnit;

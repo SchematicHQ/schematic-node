@@ -3,18 +3,21 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { PreflightRequestBody } from "./PreflightRequestBody";
 
 export const CheckFlagRequestBody: core.serialization.ObjectSchema<
     serializers.CheckFlagRequestBody.Raw,
     Schematic.CheckFlagRequestBody
 > = core.serialization.object({
     company: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
+    preflight: PreflightRequestBody.optional(),
     user: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
 });
 
 export declare namespace CheckFlagRequestBody {
     export interface Raw {
         company?: Record<string, string> | null;
+        preflight?: PreflightRequestBody.Raw | null;
         user?: Record<string, string> | null;
     }
 }

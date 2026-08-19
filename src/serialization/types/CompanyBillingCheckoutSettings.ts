@@ -11,6 +11,7 @@ export const CompanyBillingCheckoutSettings: core.serialization.ObjectSchema<
     collectAddress: core.serialization.property("collect_address", core.serialization.boolean()),
     collectEmail: core.serialization.property("collect_email", core.serialization.boolean()),
     collectPhone: core.serialization.property("collect_phone", core.serialization.boolean()),
+    collectTaxId: core.serialization.property("collect_tax_id", core.serialization.boolean()),
 });
 
 export declare namespace CompanyBillingCheckoutSettings {
@@ -18,5 +19,6 @@ export declare namespace CompanyBillingCheckoutSettings {
         collect_address: boolean;
         collect_email: boolean;
         collect_phone: boolean;
+        collect_tax_id: boolean;
     }
 }

@@ -21,6 +21,7 @@ export const CreditCompanyGrantView: core.serialization.ObjectSchema<
     ),
     billingCreditId: core.serialization.property("billing_credit_id", core.serialization.string()),
     companyId: core.serialization.property("company_id", core.serialization.string()),
+    companyLicenseId: core.serialization.property("company_license_id", core.serialization.string().optional()),
     companyName: core.serialization.property("company_name", core.serialization.string()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     creditDescription: core.serialization.property("credit_description", core.serialization.string()),
@@ -34,6 +35,7 @@ export const CreditCompanyGrantView: core.serialization.ObjectSchema<
     expiryUnitCount: core.serialization.property("expiry_unit_count", core.serialization.number().optional()),
     grantReason: core.serialization.property("grant_reason", BillingCreditGrantReason),
     id: core.serialization.string(),
+    licenseName: core.serialization.property("license_name", core.serialization.string().optional()),
     planId: core.serialization.property("plan_id", core.serialization.string().optional()),
     planName: core.serialization.property("plan_name", core.serialization.string().optional()),
     pluralName: core.serialization.property("plural_name", core.serialization.string().optional()),
@@ -60,6 +62,7 @@ export declare namespace CreditCompanyGrantView {
         billing_credit_bundle_id?: string | null;
         billing_credit_id: string;
         company_id: string;
+        company_license_id?: string | null;
         company_name: string;
         created_at: string;
         credit_description: string;
@@ -73,6 +76,7 @@ export declare namespace CreditCompanyGrantView {
         expiry_unit_count?: number | null;
         grant_reason: BillingCreditGrantReason.Raw;
         id: string;
+        license_name?: string | null;
         plan_id?: string | null;
         plan_name?: string | null;
         plural_name?: string | null;

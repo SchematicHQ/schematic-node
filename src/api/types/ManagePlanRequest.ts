@@ -3,22 +3,36 @@
 import type * as Schematic from "../index";
 
 export interface ManagePlanRequest {
+    /** If true, the company gets the plan only once the first invoice is paid. Only applies to an invoiced subscription. Defaults to false. */
+    activateOnPayment?: boolean;
     addOnSelections: Schematic.PlanSelection[];
     basePlanId?: string;
     basePlanPriceId?: string;
     basePlanVersionId?: string;
+    /** The date the subscription's billing period renews on. Only honored when starting a new subscription; changing the anchor on an existing subscription is not supported. */
+    billingCycleAnchor?: Date;
+    /** Address the invoice is sent to. Required when collection_method is send_invoice. */
+    billingEmail?: string;
     /** The company that pays for this subscription. Must already have a Stripe customer. Only honored when starting a new subscription. */
     billingEntityId?: string;
     /** If false, subscription cancels at period end. Only applies when removing all plans. Defaults to true. */
     cancelImmediately?: boolean;
+    /** How the subscription is paid: charged to a payment method on file, or invoiced with payment terms. Invoicing is only available when starting a new subscription. Defaults to charge_automatically. */
+    collectionMethod?: Schematic.BillingCollectionMethod;
     companyId: string;
     couponExternalId?: string;
     creditBundles: Schematic.UpdateCreditBundleRequestBody[];
     customFieldValues: Schematic.CheckoutFieldValue[];
+    /** Payment terms in days for an invoiced subscription. Defaults to 30. */
+    daysUntilDue?: number;
     payInAdvanceEntitlements: Schematic.UpdatePayInAdvanceRequestBody[];
     paymentMethodExternalId?: string;
     promoCode?: string;
     /** If true and cancel_immediately is true, issue prorated credit. Only applies when removing all plans. Defaults to true. */
     prorate?: boolean;
+    /** When true, the partial period between the subscription starting and its renewal date is billed pro rata straight away. When false that period is free and no invoice is raised until the renewal date. Only applies alongside billing_cycle_anchor. Defaults to true. */
+    prorateFirstPeriod?: boolean;
+    /** Whether Stripe emails the invoice when it is finalized. Only applies to an invoiced subscription. Defaults to true. */
+    sendInvoice?: boolean;
     trialEnd?: Date;
 }

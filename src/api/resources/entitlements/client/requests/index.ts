@@ -13,6 +13,7 @@ export type { GetUserUsageByCompanyRequest } from "./GetUserUsageByCompanyReques
 export type { GetUserUsageDetailRequest } from "./GetUserUsageDetailRequest";
 export type { ListCompanyOverridesRequest } from "./ListCompanyOverridesRequest";
 export type { ListFeatureCompaniesRequest } from "./ListFeatureCompaniesRequest";
+export type { ListFeatureUsageHistoryRequest } from "./ListFeatureUsageHistoryRequest";
 export type { ListFeatureUsageRequest } from "./ListFeatureUsageRequest";
 export type { ListFeatureUsersRequest } from "./ListFeatureUsersRequest";
 export type { ListPlanEntitlementsRequest } from "./ListPlanEntitlementsRequest";

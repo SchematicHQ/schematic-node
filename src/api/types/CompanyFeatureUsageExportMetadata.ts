@@ -7,6 +7,10 @@ export interface CompanyFeatureUsageExportMetadata {
     companyIds?: string[];
     /** Restrict the export to companies with these billing credit type IDs */
     creditTypeIds?: string[];
+    /** Company key definition IDs to include as columns, one column per definition, mirroring the companies list */
+    entityKeyDefinitionIds?: string[];
+    /** Company trait definition IDs to include as columns, one column per definition, mirroring the companies list */
+    entityTraitDefinitionIds?: string[];
     /** Schematic feature IDs (starting with 'feat_') to include as usage columns; empty means no usage columns */
     featureIds?: string[];
     /** Restrict the export to companies that do (or do not) have a scheduled downgrade */
@@ -21,6 +25,8 @@ export interface CompanyFeatureUsageExportMetadata {
     planIds?: string[];
     /** Restrict the export to companies on this plan version ID */
     planVersionId?: string;
+    /** Restrict the export to companies on a plan version that is no longer published */
+    planVersionUnpublished?: boolean;
     /** Free-text search over company name and keys */
     q?: string;
     /** Column to sort the exported rows by (e.g. name, created_at, plan); defaults to name */

@@ -15,6 +15,8 @@ export interface CreateBillingPlanCreditGrantRequestBody {
     autoTopupThresholdCredits?: number;
     autoTopupThresholdPercent?: number;
     canBuyBundles?: boolean;
+    /** Credits granted once per company on top of the per-license amount. Only valid when scaling is per_license. Defaults to 0. */
+    companyCreditAmount?: number;
     creditAmount: number;
     creditId: string;
     expiryType?: Schematic.BillingCreditExpiryType;

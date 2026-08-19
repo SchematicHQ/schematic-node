@@ -13,6 +13,7 @@ import type * as Schematic from "../../../../index";
 export interface CreateCustomPlanRequestBody {
     companyId: string;
     copiedFromPlanId?: string;
+    copiedPriceId?: string;
     description: string;
     icon?: Schematic.PlanIcon;
     name: string;

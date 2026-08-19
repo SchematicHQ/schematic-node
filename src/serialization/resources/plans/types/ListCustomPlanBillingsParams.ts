@@ -4,6 +4,7 @@ import type * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { CustomPlanBillingStatus } from "../../../types/CustomPlanBillingStatus";
+import { PlanBillingSource } from "../../../types/PlanBillingSource";
 
 export const ListCustomPlanBillingsParams: core.serialization.ObjectSchema<
     serializers.ListCustomPlanBillingsParams.Raw,
@@ -12,6 +13,7 @@ export const ListCustomPlanBillingsParams: core.serialization.ObjectSchema<
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
+    planBillingSource: core.serialization.property("plan_billing_source", PlanBillingSource.optional()),
     planId: core.serialization.property("plan_id", core.serialization.string().optional()),
     status: CustomPlanBillingStatus.optional(),
     statuses: core.serialization.list(CustomPlanBillingStatus).optional(),
@@ -22,6 +24,7 @@ export declare namespace ListCustomPlanBillingsParams {
         company_id?: string | null;
         limit?: number | null;
         offset?: number | null;
+        plan_billing_source?: PlanBillingSource.Raw | null;
         plan_id?: string | null;
         status?: CustomPlanBillingStatus.Raw | null;
         statuses?: CustomPlanBillingStatus.Raw[] | null;

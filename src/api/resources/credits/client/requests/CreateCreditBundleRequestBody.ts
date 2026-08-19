@@ -14,6 +14,8 @@ import type * as Schematic from "../../../../index";
 export interface CreateCreditBundleRequestBody {
     bundleName: string;
     bundleType?: Schematic.BillingCreditBundleType;
+    /** Plans whose companies may purchase this bundle. Omitted or empty means the bundle is purchasable on every plan. */
+    compatiblePlanIds?: string[];
     creditId: string;
     currency: string;
     currencyPrices?: Schematic.CreditBundleCurrencyPriceRequestBody[];

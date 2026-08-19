@@ -6,6 +6,7 @@ import type * as serializers from "../../../../index";
 import { CheckoutFieldValue } from "../../../../types/CheckoutFieldValue";
 import { CustomerBillingAddress } from "../../../../types/CustomerBillingAddress";
 import { CustomPlanActivationStrategy } from "../../../../types/CustomPlanActivationStrategy";
+import { MigrationProrationBehavior } from "../../../../types/MigrationProrationBehavior";
 import { PlanVersionMigrationStrategy } from "../../../../types/PlanVersionMigrationStrategy";
 import { TaxIdInput } from "../../../../types/TaxIdInput";
 
@@ -28,6 +29,8 @@ export const PublishPlanVersionRequestBody: core.serialization.Schema<
     ),
     migrationStrategy: core.serialization.property("migration_strategy", PlanVersionMigrationStrategy),
     phone: core.serialization.string().optional(),
+    prorationBehavior: core.serialization.property("proration_behavior", MigrationProrationBehavior.optional()),
+    requireNoMigration: core.serialization.property("require_no_migration", core.serialization.boolean().optional()),
     sendInvoice: core.serialization.property("send_invoice", core.serialization.boolean().optional()),
     taxId: core.serialization.property("tax_id", TaxIdInput.optional()),
 });
@@ -43,6 +46,8 @@ export declare namespace PublishPlanVersionRequestBody {
         excluded_company_ids: string[];
         migration_strategy: PlanVersionMigrationStrategy.Raw;
         phone?: string | null;
+        proration_behavior?: MigrationProrationBehavior.Raw | null;
+        require_no_migration?: boolean | null;
         send_invoice?: boolean | null;
         tax_id?: TaxIdInput.Raw | null;
     }

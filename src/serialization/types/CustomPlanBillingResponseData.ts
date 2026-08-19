@@ -5,18 +5,21 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 import { CustomPlanActivationStrategy } from "./CustomPlanActivationStrategy";
 import { CustomPlanBillingStatus } from "./CustomPlanBillingStatus";
+import { PlanBillingSource } from "./PlanBillingSource";
 
 export const CustomPlanBillingResponseData: core.serialization.ObjectSchema<
     serializers.CustomPlanBillingResponseData.Raw,
     Schematic.CustomPlanBillingResponseData
 > = core.serialization.object({
     activationStrategy: core.serialization.property("activation_strategy", CustomPlanActivationStrategy),
+    billingCycleAnchor: core.serialization.property("billing_cycle_anchor", core.serialization.date().optional()),
     companyId: core.serialization.property("company_id", core.serialization.string()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     daysUntilDue: core.serialization.property("days_until_due", core.serialization.number()),
     externalInvoiceId: core.serialization.property("external_invoice_id", core.serialization.string().optional()),
     id: core.serialization.string(),
     paidAt: core.serialization.property("paid_at", core.serialization.date().optional()),
+    planBillingSource: core.serialization.property("plan_billing_source", PlanBillingSource),
     planId: core.serialization.property("plan_id", core.serialization.string()),
     publishedAt: core.serialization.property("published_at", core.serialization.date().optional()),
     sendInvoice: core.serialization.property("send_invoice", core.serialization.boolean()),
@@ -28,12 +31,14 @@ export const CustomPlanBillingResponseData: core.serialization.ObjectSchema<
 export declare namespace CustomPlanBillingResponseData {
     export interface Raw {
         activation_strategy: CustomPlanActivationStrategy.Raw;
+        billing_cycle_anchor?: string | null;
         company_id: string;
         created_at: string;
         days_until_due: number;
         external_invoice_id?: string | null;
         id: string;
         paid_at?: string | null;
+        plan_billing_source: PlanBillingSource.Raw;
         plan_id: string;
         published_at?: string | null;
         send_invoice: boolean;

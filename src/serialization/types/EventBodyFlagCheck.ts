@@ -12,6 +12,7 @@ export const EventBodyFlagCheck: core.serialization.ObjectSchema<
     error: core.serialization.string().optional(),
     flagId: core.serialization.property("flag_id", core.serialization.string().optional()),
     flagKey: core.serialization.property("flag_key", core.serialization.string()),
+    preflight: core.serialization.boolean().optional(),
     reason: core.serialization.string(),
     reqCompany: core.serialization.property(
         "req_company",
@@ -32,6 +33,7 @@ export declare namespace EventBodyFlagCheck {
         error?: string | null;
         flag_id?: string | null;
         flag_key: string;
+        preflight?: boolean | null;
         reason: string;
         req_company?: Record<string, string> | null;
         req_user?: Record<string, string> | null;

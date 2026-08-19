@@ -7,6 +7,7 @@ import type * as Schematic from "../../../../index";
  *     {
  *         companyId: "company_id",
  *         planId: "plan_id",
+ *         planBillingSource: "custom_plan",
  *         status: "active",
  *         statuses: ["active"],
  *         limit: 1000000,
@@ -18,6 +19,8 @@ export interface ListCustomPlanBillingsRequest {
     companyId?: string;
     /** Filter by plan ID */
     planId?: string;
+    /** Filter by the flow that created the billing record. Defaults to custom_plan. */
+    planBillingSource?: Schematic.PlanBillingSource;
     /** Filter by billing status */
     status?: Schematic.CustomPlanBillingStatus;
     /** Filter by multiple billing statuses */

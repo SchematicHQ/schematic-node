@@ -20,6 +20,7 @@ describe("CompaniesClient", () => {
                                     billing_credit_auto_topup_enabled: true,
                                     billing_credit_auto_topup_self_service: true,
                                     billing_credit_can_buy_bundles: true,
+                                    company_credit_amount: 1000000,
                                     created_at: "2024-01-15T09:30:00Z",
                                     credit_amount: 1000000,
                                     credit_description: "credit_description",
@@ -141,6 +142,7 @@ describe("CompaniesClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             days_until_due: 1000000,
                             id: "id",
+                            plan_billing_source: "custom_plan",
                             plan_id: "plan_id",
                             send_invoice: true,
                             status: "active",
@@ -219,6 +221,7 @@ describe("CompaniesClient", () => {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
                                 billing_credit_can_buy_bundles: true,
+                                company_credit_amount: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -299,6 +302,7 @@ describe("CompaniesClient", () => {
                 plan_ids: ["plan_ids"],
                 plan_version_id: "plan_version_id",
                 plan_version_ids: ["plan_version_ids"],
+                plan_version_unpublished: true,
                 q: "q",
                 sort_order_column: "sort_order_column",
                 sort_order_direction: "asc",
@@ -323,6 +327,7 @@ describe("CompaniesClient", () => {
             planIds: ["plan_ids"],
             planVersionId: "plan_version_id",
             planVersionIds: ["plan_version_ids"],
+            planVersionUnpublished: true,
             q: "q",
             sortOrderColumn: "sort_order_column",
             sortOrderDirection: "asc",
@@ -347,6 +352,7 @@ describe("CompaniesClient", () => {
                                     billingCreditAutoTopupEnabled: true,
                                     billingCreditAutoTopupSelfService: true,
                                     billingCreditCanBuyBundles: true,
+                                    companyCreditAmount: 1000000,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     creditAmount: 1000000,
                                     creditDescription: "credit_description",
@@ -470,6 +476,7 @@ describe("CompaniesClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             daysUntilDue: 1000000,
                             id: "id",
+                            planBillingSource: "custom_plan",
                             planId: "plan_id",
                             sendInvoice: true,
                             status: "active",
@@ -554,6 +561,7 @@ describe("CompaniesClient", () => {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
                                 billingCreditCanBuyBundles: true,
+                                companyCreditAmount: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -641,6 +649,7 @@ describe("CompaniesClient", () => {
                 planIds: ["plan_ids"],
                 planVersionId: "plan_version_id",
                 planVersionIds: ["plan_version_ids"],
+                planVersionUnpublished: true,
                 q: "q",
                 sortOrderColumn: "sort_order_column",
                 sortOrderDirection: "asc",
@@ -734,6 +743,7 @@ describe("CompaniesClient", () => {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
                                 billing_credit_can_buy_bundles: true,
+                                company_credit_amount: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -889,6 +899,7 @@ describe("CompaniesClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         days_until_due: 1000000,
                         id: "id",
+                        plan_billing_source: "custom_plan",
                         plan_id: "plan_id",
                         send_invoice: true,
                         status: "active",
@@ -982,6 +993,7 @@ describe("CompaniesClient", () => {
                             billing_credit_auto_topup_enabled: true,
                             billing_credit_auto_topup_self_service: true,
                             billing_credit_can_buy_bundles: true,
+                            company_credit_amount: 1000000,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_description: "credit_description",
@@ -1082,6 +1094,7 @@ describe("CompaniesClient", () => {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
                                 billingCreditCanBuyBundles: true,
+                                companyCreditAmount: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -1241,6 +1254,7 @@ describe("CompaniesClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         daysUntilDue: 1000000,
                         id: "id",
+                        planBillingSource: "custom_plan",
                         planId: "plan_id",
                         sendInvoice: true,
                         status: "active",
@@ -1340,6 +1354,7 @@ describe("CompaniesClient", () => {
                             billingCreditAutoTopupEnabled: true,
                             billingCreditAutoTopupSelfService: true,
                             billingCreditCanBuyBundles: true,
+                            companyCreditAmount: 1000000,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditDescription: "credit_description",
@@ -1560,6 +1575,7 @@ describe("CompaniesClient", () => {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
                                 billing_credit_can_buy_bundles: true,
+                                company_credit_amount: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -1715,6 +1731,7 @@ describe("CompaniesClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         days_until_due: 1000000,
                         id: "id",
+                        plan_billing_source: "custom_plan",
                         plan_id: "plan_id",
                         send_invoice: true,
                         status: "active",
@@ -1808,6 +1825,7 @@ describe("CompaniesClient", () => {
                             billing_credit_auto_topup_enabled: true,
                             billing_credit_auto_topup_self_service: true,
                             billing_credit_can_buy_bundles: true,
+                            company_credit_amount: 1000000,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_description: "credit_description",
@@ -1903,6 +1921,7 @@ describe("CompaniesClient", () => {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
                                 billingCreditCanBuyBundles: true,
+                                companyCreditAmount: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -2062,6 +2081,7 @@ describe("CompaniesClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         daysUntilDue: 1000000,
                         id: "id",
+                        planBillingSource: "custom_plan",
                         planId: "plan_id",
                         sendInvoice: true,
                         status: "active",
@@ -2161,6 +2181,7 @@ describe("CompaniesClient", () => {
                             billingCreditAutoTopupEnabled: true,
                             billingCreditAutoTopupSelfService: true,
                             billingCreditCanBuyBundles: true,
+                            companyCreditAmount: 1000000,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditDescription: "credit_description",
@@ -2464,6 +2485,7 @@ describe("CompaniesClient", () => {
                 plan_ids: ["plan_ids"],
                 plan_version_id: "plan_version_id",
                 plan_version_ids: ["plan_version_ids"],
+                plan_version_unpublished: true,
                 q: "q",
                 sort_order_column: "sort_order_column",
                 sort_order_direction: "asc",
@@ -2488,6 +2510,7 @@ describe("CompaniesClient", () => {
             planIds: ["plan_ids"],
             planVersionId: "plan_version_id",
             planVersionIds: ["plan_version_ids"],
+            planVersionUnpublished: true,
             q: "q",
             sortOrderColumn: "sort_order_column",
             sortOrderDirection: "asc",
@@ -2516,6 +2539,7 @@ describe("CompaniesClient", () => {
                 planIds: ["plan_ids"],
                 planVersionId: "plan_version_id",
                 planVersionIds: ["plan_version_ids"],
+                planVersionUnpublished: true,
                 q: "q",
                 sortOrderColumn: "sort_order_column",
                 sortOrderDirection: "asc",
@@ -2609,6 +2633,7 @@ describe("CompaniesClient", () => {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
                                 billing_credit_can_buy_bundles: true,
+                                company_credit_amount: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -2764,6 +2789,7 @@ describe("CompaniesClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         days_until_due: 1000000,
                         id: "id",
+                        plan_billing_source: "custom_plan",
                         plan_id: "plan_id",
                         send_invoice: true,
                         status: "active",
@@ -2857,6 +2883,7 @@ describe("CompaniesClient", () => {
                             billing_credit_auto_topup_enabled: true,
                             billing_credit_auto_topup_self_service: true,
                             billing_credit_can_buy_bundles: true,
+                            company_credit_amount: 1000000,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_description: "credit_description",
@@ -2957,6 +2984,7 @@ describe("CompaniesClient", () => {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
                                 billingCreditCanBuyBundles: true,
+                                companyCreditAmount: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -3116,6 +3144,7 @@ describe("CompaniesClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         daysUntilDue: 1000000,
                         id: "id",
+                        planBillingSource: "custom_plan",
                         planId: "plan_id",
                         sendInvoice: true,
                         status: "active",
@@ -3215,6 +3244,7 @@ describe("CompaniesClient", () => {
                             billingCreditAutoTopupEnabled: true,
                             billingCreditAutoTopupSelfService: true,
                             billingCreditCanBuyBundles: true,
+                            companyCreditAmount: 1000000,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditDescription: "credit_description",
@@ -3618,6 +3648,7 @@ describe("CompaniesClient", () => {
                                 company_auto_topup_amount: 1000000,
                                 company_auto_topup_enabled: true,
                                 company_auto_topup_threshold_credits: 1000000,
+                                company_credit_amount: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit: {
                                     account_id: "account_id",
@@ -3708,6 +3739,7 @@ describe("CompaniesClient", () => {
                                 company_auto_topup_amount: 1000000,
                                 company_auto_topup_enabled: true,
                                 company_auto_topup_threshold_credits: 1000000,
+                                company_credit_amount: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit: {
                                     account_id: "account_id",
@@ -3812,6 +3844,7 @@ describe("CompaniesClient", () => {
                                 company_auto_topup_amount: 1000000,
                                 company_auto_topup_enabled: true,
                                 company_auto_topup_threshold_credits: 1000000,
+                                company_credit_amount: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit: {
                                     account_id: "account_id",
@@ -3902,6 +3935,7 @@ describe("CompaniesClient", () => {
                                 company_auto_topup_amount: 1000000,
                                 company_auto_topup_enabled: true,
                                 company_auto_topup_threshold_credits: 1000000,
+                                company_credit_amount: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit: {
                                     account_id: "account_id",
@@ -4522,12 +4556,14 @@ describe("CompaniesClient", () => {
                 custom_plan_billings: [
                     {
                         activation_strategy: "on_payment",
+                        billing_cycle_anchor: "2024-01-15T09:30:00Z",
                         company_id: "company_id",
                         created_at: "2024-01-15T09:30:00Z",
                         days_until_due: 1000000,
                         external_invoice_id: "external_invoice_id",
                         id: "id",
                         paid_at: "2024-01-15T09:30:00Z",
+                        plan_billing_source: "custom_plan",
                         plan_id: "plan_id",
                         published_at: "2024-01-15T09:30:00Z",
                         send_invoice: true,
@@ -4537,12 +4573,14 @@ describe("CompaniesClient", () => {
                     },
                     {
                         activation_strategy: "on_payment",
+                        billing_cycle_anchor: "2024-01-15T09:30:00Z",
                         company_id: "company_id",
                         created_at: "2024-01-15T09:30:00Z",
                         days_until_due: 1000000,
                         external_invoice_id: "external_invoice_id",
                         id: "id",
                         paid_at: "2024-01-15T09:30:00Z",
+                        plan_billing_source: "custom_plan",
                         plan_id: "plan_id",
                         published_at: "2024-01-15T09:30:00Z",
                         send_invoice: true,
@@ -4793,6 +4831,7 @@ describe("CompaniesClient", () => {
                             company_auto_topup_amount: 1000000,
                             company_auto_topup_enabled: true,
                             company_auto_topup_threshold_credits: 1000000,
+                            company_credit_amount: 1000000,
                             created_at: "2024-01-15T09:30:00Z",
                             credit: {
                                 account_id: "account_id",
@@ -4883,6 +4922,7 @@ describe("CompaniesClient", () => {
                             company_auto_topup_amount: 1000000,
                             company_auto_topup_enabled: true,
                             company_auto_topup_threshold_credits: 1000000,
+                            company_credit_amount: 1000000,
                             created_at: "2024-01-15T09:30:00Z",
                             credit: {
                                 account_id: "account_id",
@@ -5319,6 +5359,7 @@ describe("CompaniesClient", () => {
                                 companyAutoTopupAmount: 1000000,
                                 companyAutoTopupEnabled: true,
                                 companyAutoTopupThresholdCredits: 1000000,
+                                companyCreditAmount: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 credit: {
                                     accountId: "account_id",
@@ -5421,6 +5462,7 @@ describe("CompaniesClient", () => {
                                 companyAutoTopupAmount: 1000000,
                                 companyAutoTopupEnabled: true,
                                 companyAutoTopupThresholdCredits: 1000000,
+                                companyCreditAmount: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 credit: {
                                     accountId: "account_id",
@@ -5537,6 +5579,7 @@ describe("CompaniesClient", () => {
                                 companyAutoTopupAmount: 1000000,
                                 companyAutoTopupEnabled: true,
                                 companyAutoTopupThresholdCredits: 1000000,
+                                companyCreditAmount: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 credit: {
                                     accountId: "account_id",
@@ -5639,6 +5682,7 @@ describe("CompaniesClient", () => {
                                 companyAutoTopupAmount: 1000000,
                                 companyAutoTopupEnabled: true,
                                 companyAutoTopupThresholdCredits: 1000000,
+                                companyCreditAmount: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 credit: {
                                     accountId: "account_id",
@@ -6285,12 +6329,14 @@ describe("CompaniesClient", () => {
                 customPlanBillings: [
                     {
                         activationStrategy: "on_payment",
+                        billingCycleAnchor: new Date("2024-01-15T09:30:00.000Z"),
                         companyId: "company_id",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         daysUntilDue: 1000000,
                         externalInvoiceId: "external_invoice_id",
                         id: "id",
                         paidAt: new Date("2024-01-15T09:30:00.000Z"),
+                        planBillingSource: "custom_plan",
                         planId: "plan_id",
                         publishedAt: new Date("2024-01-15T09:30:00.000Z"),
                         sendInvoice: true,
@@ -6300,12 +6346,14 @@ describe("CompaniesClient", () => {
                     },
                     {
                         activationStrategy: "on_payment",
+                        billingCycleAnchor: new Date("2024-01-15T09:30:00.000Z"),
                         companyId: "company_id",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         daysUntilDue: 1000000,
                         externalInvoiceId: "external_invoice_id",
                         id: "id",
                         paidAt: new Date("2024-01-15T09:30:00.000Z"),
+                        planBillingSource: "custom_plan",
                         planId: "plan_id",
                         publishedAt: new Date("2024-01-15T09:30:00.000Z"),
                         sendInvoice: true,
@@ -6568,6 +6616,7 @@ describe("CompaniesClient", () => {
                             companyAutoTopupAmount: 1000000,
                             companyAutoTopupEnabled: true,
                             companyAutoTopupThresholdCredits: 1000000,
+                            companyCreditAmount: 1000000,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             credit: {
                                 accountId: "account_id",
@@ -6670,6 +6719,7 @@ describe("CompaniesClient", () => {
                             companyAutoTopupAmount: 1000000,
                             companyAutoTopupEnabled: true,
                             companyAutoTopupThresholdCredits: 1000000,
+                            companyCreditAmount: 1000000,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             credit: {
                                 accountId: "account_id",
@@ -7285,7 +7335,9 @@ describe("CompaniesClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.companies.getCompanyBillingEntity();
+            return await client.companies.getCompanyBillingEntity({
+                companyId: "company_id",
+            });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
 
@@ -7304,7 +7356,9 @@ describe("CompaniesClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.companies.getCompanyBillingEntity();
+            return await client.companies.getCompanyBillingEntity({
+                companyId: "company_id",
+            });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
 
@@ -7323,7 +7377,9 @@ describe("CompaniesClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.companies.getCompanyBillingEntity();
+            return await client.companies.getCompanyBillingEntity({
+                companyId: "company_id",
+            });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
 
@@ -7342,7 +7398,9 @@ describe("CompaniesClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.companies.getCompanyBillingEntity();
+            return await client.companies.getCompanyBillingEntity({
+                companyId: "company_id",
+            });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
 
@@ -7361,7 +7419,9 @@ describe("CompaniesClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.companies.getCompanyBillingEntity();
+            return await client.companies.getCompanyBillingEntity({
+                companyId: "company_id",
+            });
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
@@ -7572,7 +7632,9 @@ describe("CompaniesClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.companies.getBillingEntityChildSubscriptions();
+            return await client.companies.getBillingEntityChildSubscriptions({
+                companyId: "company_id",
+            });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
 
@@ -7591,7 +7653,9 @@ describe("CompaniesClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.companies.getBillingEntityChildSubscriptions();
+            return await client.companies.getBillingEntityChildSubscriptions({
+                companyId: "company_id",
+            });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
 
@@ -7610,7 +7674,9 @@ describe("CompaniesClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.companies.getBillingEntityChildSubscriptions();
+            return await client.companies.getBillingEntityChildSubscriptions({
+                companyId: "company_id",
+            });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
 
@@ -7629,7 +7695,9 @@ describe("CompaniesClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.companies.getBillingEntityChildSubscriptions();
+            return await client.companies.getBillingEntityChildSubscriptions({
+                companyId: "company_id",
+            });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
 
@@ -7648,7 +7716,9 @@ describe("CompaniesClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.companies.getBillingEntityChildSubscriptions();
+            return await client.companies.getBillingEntityChildSubscriptions({
+                companyId: "company_id",
+            });
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
@@ -8397,6 +8467,7 @@ describe("CompaniesClient", () => {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
                                 billing_credit_can_buy_bundles: true,
+                                company_credit_amount: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -8552,6 +8623,7 @@ describe("CompaniesClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         days_until_due: 1000000,
                         id: "id",
+                        plan_billing_source: "custom_plan",
                         plan_id: "plan_id",
                         send_invoice: true,
                         status: "active",
@@ -8645,6 +8717,7 @@ describe("CompaniesClient", () => {
                             billing_credit_auto_topup_enabled: true,
                             billing_credit_auto_topup_self_service: true,
                             billing_credit_can_buy_bundles: true,
+                            company_credit_amount: 1000000,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_description: "credit_description",
@@ -8746,6 +8819,7 @@ describe("CompaniesClient", () => {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
                                 billingCreditCanBuyBundles: true,
+                                companyCreditAmount: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -8905,6 +8979,7 @@ describe("CompaniesClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         daysUntilDue: 1000000,
                         id: "id",
+                        planBillingSource: "custom_plan",
                         planId: "plan_id",
                         sendInvoice: true,
                         status: "active",
@@ -9004,6 +9079,7 @@ describe("CompaniesClient", () => {
                             billingCreditAutoTopupEnabled: true,
                             billingCreditAutoTopupSelfService: true,
                             billingCreditCanBuyBundles: true,
+                            companyCreditAmount: 1000000,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditDescription: "credit_description",
@@ -10313,6 +10389,242 @@ describe("CompaniesClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("deleteEntityTraitDefinition (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
+
+        server
+            .mockEndpoint()
+            .delete("/entity-trait-definitions/entity_trait_definition_id")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.companies.deleteEntityTraitDefinition("entity_trait_definition_id");
+        expect(response).toEqual({
+            data: {
+                deleted: true,
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("deleteEntityTraitDefinition (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .delete("/entity-trait-definitions/entity_trait_definition_id")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.deleteEntityTraitDefinition("entity_trait_definition_id");
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("deleteEntityTraitDefinition (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .delete("/entity-trait-definitions/entity_trait_definition_id")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.deleteEntityTraitDefinition("entity_trait_definition_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("deleteEntityTraitDefinition (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .delete("/entity-trait-definitions/entity_trait_definition_id")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.deleteEntityTraitDefinition("entity_trait_definition_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("deleteEntityTraitDefinition (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .delete("/entity-trait-definitions/entity_trait_definition_id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.deleteEntityTraitDefinition("entity_trait_definition_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("deleteEntityTraitDefinition (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .delete("/entity-trait-definitions/entity_trait_definition_id")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.deleteEntityTraitDefinition("entity_trait_definition_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("getEntityTraitDefinitionUsage (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                checkout_field_config_count: 1000000,
+                company_override_count: 1000000,
+                feature_count: 1000000,
+                plan_entitlement_count: 1000000,
+                plan_trait_count: 1000000,
+                rule_condition_count: 1000000,
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/entity-trait-definitions/entity_trait_definition_id/usage")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.companies.getEntityTraitDefinitionUsage("entity_trait_definition_id");
+        expect(response).toEqual({
+            data: {
+                checkoutFieldConfigCount: 1000000,
+                companyOverrideCount: 1000000,
+                featureCount: 1000000,
+                planEntitlementCount: 1000000,
+                planTraitCount: 1000000,
+                ruleConditionCount: 1000000,
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("getEntityTraitDefinitionUsage (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/entity-trait-definitions/entity_trait_definition_id/usage")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.getEntityTraitDefinitionUsage("entity_trait_definition_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getEntityTraitDefinitionUsage (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/entity-trait-definitions/entity_trait_definition_id/usage")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.getEntityTraitDefinitionUsage("entity_trait_definition_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getEntityTraitDefinitionUsage (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/entity-trait-definitions/entity_trait_definition_id/usage")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.getEntityTraitDefinitionUsage("entity_trait_definition_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getEntityTraitDefinitionUsage (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/entity-trait-definitions/entity_trait_definition_id/usage")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.getEntityTraitDefinitionUsage("entity_trait_definition_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("countEntityTraitDefinitions (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -10602,6 +10914,137 @@ describe("CompaniesClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("countEntityTraits (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: { count: 1000000 },
+            params: { definition_id: "definition_id", entity_type: "company", limit: 1000000, offset: 1000000 },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/entity-traits/count")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.companies.countEntityTraits({
+            definitionId: "definition_id",
+            entityType: "company",
+            limit: 1000000,
+            offset: 1000000,
+        });
+        expect(response).toEqual({
+            data: {
+                count: 1000000,
+            },
+            params: {
+                definitionId: "definition_id",
+                entityType: "company",
+                limit: 1000000,
+                offset: 1000000,
+            },
+        });
+    });
+
+    test("countEntityTraits (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/entity-traits/count")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.countEntityTraits();
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("countEntityTraits (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/entity-traits/count")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.countEntityTraits();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("countEntityTraits (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/entity-traits/count")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.countEntityTraits();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("countEntityTraits (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/entity-traits/count")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.countEntityTraits();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("countEntityTraits (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/entity-traits/count")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.countEntityTraits();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("listPlanChanges (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -10687,7 +11130,6 @@ describe("CompaniesClient", () => {
                 company_ids: ["company_ids"],
                 limit: 1000000,
                 offset: 1000000,
-                plan_ids: ["plan_ids"],
             },
         };
 
@@ -10698,7 +11140,6 @@ describe("CompaniesClient", () => {
             basePlanAction: "fallback",
             companyId: "company_id",
             companyIds: ["company_ids"],
-            planIds: ["plan_ids"],
             limit: 1000000,
             offset: 1000000,
         });
@@ -10809,7 +11250,6 @@ describe("CompaniesClient", () => {
                 companyIds: ["company_ids"],
                 limit: 1000000,
                 offset: 1000000,
-                planIds: ["plan_ids"],
             },
         });
     });

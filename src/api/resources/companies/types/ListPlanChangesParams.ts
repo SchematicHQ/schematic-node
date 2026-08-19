@@ -14,5 +14,4 @@ export interface ListPlanChangesParams {
     limit?: number;
     /** Page offset (default 0) */
     offset?: number;
-    planIds?: string[];
 }

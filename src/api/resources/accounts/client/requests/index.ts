@@ -9,3 +9,4 @@ export type { ListAuditLogsRequest } from "./ListAuditLogsRequest";
 export type { ListEnvironmentsRequest } from "./ListEnvironmentsRequest";
 export type { UpdateApiKeyRequestBody } from "./UpdateApiKeyRequestBody";
 export type { UpdateEnvironmentRequestBody } from "./UpdateEnvironmentRequestBody";
+export type { UpdateOnboardingStateRequestBody } from "./UpdateOnboardingStateRequestBody";

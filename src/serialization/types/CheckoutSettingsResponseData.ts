@@ -3,14 +3,17 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { CheckoutBundlePurchaseBehavior } from "./CheckoutBundlePurchaseBehavior";
 
 export const CheckoutSettingsResponseData: core.serialization.ObjectSchema<
     serializers.CheckoutSettingsResponseData.Raw,
     Schematic.CheckoutSettingsResponseData
 > = core.serialization.object({
+    bundlePurchaseBehavior: core.serialization.property("bundle_purchase_behavior", CheckoutBundlePurchaseBehavior),
     collectAddress: core.serialization.property("collect_address", core.serialization.boolean()),
     collectEmail: core.serialization.property("collect_email", core.serialization.boolean()),
     collectPhone: core.serialization.property("collect_phone", core.serialization.boolean()),
+    collectTaxId: core.serialization.property("collect_tax_id", core.serialization.boolean()),
     optInEnabled: core.serialization.property("opt_in_enabled", core.serialization.boolean()),
     optInText: core.serialization.property("opt_in_text", core.serialization.string().optional()),
     optInTitle: core.serialization.property("opt_in_title", core.serialization.string().optional()),
@@ -18,9 +21,11 @@ export const CheckoutSettingsResponseData: core.serialization.ObjectSchema<
 
 export declare namespace CheckoutSettingsResponseData {
     export interface Raw {
+        bundle_purchase_behavior: CheckoutBundlePurchaseBehavior.Raw;
         collect_address: boolean;
         collect_email: boolean;
         collect_phone: boolean;
+        collect_tax_id: boolean;
         opt_in_enabled: boolean;
         opt_in_text?: string | null;
         opt_in_title?: string | null;

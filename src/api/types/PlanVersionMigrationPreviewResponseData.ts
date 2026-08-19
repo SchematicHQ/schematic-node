@@ -4,4 +4,5 @@ import type * as Schematic from "../index";
 
 export interface PlanVersionMigrationPreviewResponseData {
     companies: Schematic.PlanVersionMigrationPreviewCompanyResponseData[];
+    hasBillingChanges: boolean;
 }

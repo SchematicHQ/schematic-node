@@ -14,6 +14,7 @@ export interface PlanCreditGrantView {
     billingCreditAutoTopupThresholdCredits?: number;
     billingCreditAutoTopupThresholdPercent?: number;
     billingCreditCanBuyBundles: boolean;
+    companyCreditAmount: number;
     createdAt: Date;
     credit?: Schematic.BillingCreditView;
     creditAmount: number;

@@ -6,6 +6,7 @@ export interface CreditCompanyGrantView {
     billingCreditBundleId?: string;
     billingCreditId: string;
     companyId: string;
+    companyLicenseId?: string;
     companyName: string;
     createdAt: Date;
     creditDescription: string;
@@ -19,6 +20,7 @@ export interface CreditCompanyGrantView {
     expiryUnitCount?: number;
     grantReason: Schematic.BillingCreditGrantReason;
     id: string;
+    licenseName?: string;
     planId?: string;
     planName?: string;
     pluralName?: string;

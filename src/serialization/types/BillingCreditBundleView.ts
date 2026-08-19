@@ -15,6 +15,10 @@ export const BillingCreditBundleView: core.serialization.ObjectSchema<
     Schematic.BillingCreditBundleView
 > = core.serialization.object({
     bundleType: core.serialization.property("bundle_type", BillingCreditBundleType),
+    compatiblePlanIds: core.serialization.property(
+        "compatible_plan_ids",
+        core.serialization.list(core.serialization.string()),
+    ),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     creditDescription: core.serialization.property("credit_description", core.serialization.string().optional()),
     creditIcon: core.serialization.property("credit_icon", core.serialization.string().optional()),
@@ -39,6 +43,7 @@ export const BillingCreditBundleView: core.serialization.ObjectSchema<
 export declare namespace BillingCreditBundleView {
     export interface Raw {
         bundle_type: BillingCreditBundleType.Raw;
+        compatible_plan_ids: string[];
         created_at: string;
         credit_description?: string | null;
         credit_icon?: string | null;

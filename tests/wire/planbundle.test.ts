@@ -8,7 +8,11 @@ describe("PlanbundleClient", () => {
     test("createCustomPlanBundle (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entitlements: [{ action: "create" }] };
+        const rawRequestBody = {
+            billing_product: { charge_type: "free", is_trialable: true },
+            entitlements: [{ action: "create" }],
+            plan: { company_id: "company_id", description: "description", name: "name" },
+        };
         const rawResponseBody = {
             data: {
                 billing_product: {
@@ -31,6 +35,7 @@ describe("PlanbundleClient", () => {
                         auto_topup_enabled: true,
                         auto_topup_self_service: true,
                         can_buy_bundles: true,
+                        company_credit_amount: 1000000,
                         created_at: "2024-01-15T09:30:00Z",
                         credit_amount: 1000000,
                         credit_id: "credit_id",
@@ -68,6 +73,19 @@ describe("PlanbundleClient", () => {
                     plan_type: "plan",
                     updated_at: "2024-01-15T09:30:00Z",
                 },
+                plan_version: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    description: "description",
+                    environment_id: "environment_id",
+                    icon: "amber",
+                    id: "id",
+                    name: "name",
+                    original_plan_id: "original_plan_id",
+                    plan_type: "plan",
+                    status: "published",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    version: 1000000,
+                },
             },
             params: { key: "value" },
         };
@@ -82,11 +100,20 @@ describe("PlanbundleClient", () => {
             .build();
 
         const response = await client.planbundle.createCustomPlanBundle({
+            billingProduct: {
+                chargeType: "free",
+                isTrialable: true,
+            },
             entitlements: [
                 {
                     action: "create",
                 },
             ],
+            plan: {
+                companyId: "company_id",
+                description: "description",
+                name: "name",
+            },
         });
         expect(response).toEqual({
             data: {
@@ -110,6 +137,7 @@ describe("PlanbundleClient", () => {
                         autoTopupEnabled: true,
                         autoTopupSelfService: true,
                         canBuyBundles: true,
+                        companyCreditAmount: 1000000,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         creditAmount: 1000000,
                         creditId: "credit_id",
@@ -157,6 +185,19 @@ describe("PlanbundleClient", () => {
                     planType: "plan",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
+                planVersion: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    description: "description",
+                    environmentId: "environment_id",
+                    icon: "amber",
+                    id: "id",
+                    name: "name",
+                    originalPlanId: "original_plan_id",
+                    planType: "plan",
+                    status: "published",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    version: 1000000,
+                },
             },
             params: {
                 key: "value",
@@ -167,7 +208,11 @@ describe("PlanbundleClient", () => {
     test("createCustomPlanBundle (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }] };
+        const rawRequestBody = {
+            billing_product: { charge_type: "free", is_trialable: true },
+            entitlements: [{ action: "create" }, { action: "create" }],
+            plan: { company_id: "company_id", description: "description", name: "x" },
+        };
         const rawResponseBody = { error: "error" };
 
         server
@@ -181,6 +226,10 @@ describe("PlanbundleClient", () => {
 
         await expect(async () => {
             return await client.planbundle.createCustomPlanBundle({
+                billingProduct: {
+                    chargeType: "free",
+                    isTrialable: true,
+                },
                 entitlements: [
                     {
                         action: "create",
@@ -189,6 +238,11 @@ describe("PlanbundleClient", () => {
                         action: "create",
                     },
                 ],
+                plan: {
+                    companyId: "company_id",
+                    description: "description",
+                    name: "x",
+                },
             });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
@@ -196,7 +250,11 @@ describe("PlanbundleClient", () => {
     test("createCustomPlanBundle (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }] };
+        const rawRequestBody = {
+            billing_product: { charge_type: "free", is_trialable: true },
+            entitlements: [{ action: "create" }, { action: "create" }],
+            plan: { company_id: "company_id", description: "description", name: "x" },
+        };
         const rawResponseBody = { error: "error" };
 
         server
@@ -210,6 +268,10 @@ describe("PlanbundleClient", () => {
 
         await expect(async () => {
             return await client.planbundle.createCustomPlanBundle({
+                billingProduct: {
+                    chargeType: "free",
+                    isTrialable: true,
+                },
                 entitlements: [
                     {
                         action: "create",
@@ -218,6 +280,11 @@ describe("PlanbundleClient", () => {
                         action: "create",
                     },
                 ],
+                plan: {
+                    companyId: "company_id",
+                    description: "description",
+                    name: "x",
+                },
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
@@ -225,7 +292,11 @@ describe("PlanbundleClient", () => {
     test("createCustomPlanBundle (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }] };
+        const rawRequestBody = {
+            billing_product: { charge_type: "free", is_trialable: true },
+            entitlements: [{ action: "create" }, { action: "create" }],
+            plan: { company_id: "company_id", description: "description", name: "x" },
+        };
         const rawResponseBody = { error: "error" };
 
         server
@@ -239,6 +310,10 @@ describe("PlanbundleClient", () => {
 
         await expect(async () => {
             return await client.planbundle.createCustomPlanBundle({
+                billingProduct: {
+                    chargeType: "free",
+                    isTrialable: true,
+                },
                 entitlements: [
                     {
                         action: "create",
@@ -247,6 +322,11 @@ describe("PlanbundleClient", () => {
                         action: "create",
                     },
                 ],
+                plan: {
+                    companyId: "company_id",
+                    description: "description",
+                    name: "x",
+                },
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
@@ -254,7 +334,11 @@ describe("PlanbundleClient", () => {
     test("createCustomPlanBundle (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }] };
+        const rawRequestBody = {
+            billing_product: { charge_type: "free", is_trialable: true },
+            entitlements: [{ action: "create" }, { action: "create" }],
+            plan: { company_id: "company_id", description: "description", name: "x" },
+        };
         const rawResponseBody = { error: "error" };
 
         server
@@ -268,6 +352,10 @@ describe("PlanbundleClient", () => {
 
         await expect(async () => {
             return await client.planbundle.createCustomPlanBundle({
+                billingProduct: {
+                    chargeType: "free",
+                    isTrialable: true,
+                },
                 entitlements: [
                     {
                         action: "create",
@@ -276,6 +364,11 @@ describe("PlanbundleClient", () => {
                         action: "create",
                     },
                 ],
+                plan: {
+                    companyId: "company_id",
+                    description: "description",
+                    name: "x",
+                },
             });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
@@ -283,7 +376,11 @@ describe("PlanbundleClient", () => {
     test("createCustomPlanBundle (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }] };
+        const rawRequestBody = {
+            billing_product: { charge_type: "free", is_trialable: true },
+            entitlements: [{ action: "create" }, { action: "create" }],
+            plan: { company_id: "company_id", description: "description", name: "x" },
+        };
         const rawResponseBody = { error: "error" };
 
         server
@@ -297,6 +394,10 @@ describe("PlanbundleClient", () => {
 
         await expect(async () => {
             return await client.planbundle.createCustomPlanBundle({
+                billingProduct: {
+                    chargeType: "free",
+                    isTrialable: true,
+                },
                 entitlements: [
                     {
                         action: "create",
@@ -305,6 +406,11 @@ describe("PlanbundleClient", () => {
                         action: "create",
                     },
                 ],
+                plan: {
+                    companyId: "company_id",
+                    description: "description",
+                    name: "x",
+                },
             });
         }).rejects.toThrow(Schematic.InternalServerError);
     });
@@ -312,7 +418,10 @@ describe("PlanbundleClient", () => {
     test("createPlanBundle (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entitlements: [{ action: "create" }] };
+        const rawRequestBody = {
+            entitlements: [{ action: "create" }],
+            plan: { description: "description", name: "name", plan_type: "plan" },
+        };
         const rawResponseBody = {
             data: {
                 billing_product: {
@@ -335,6 +444,7 @@ describe("PlanbundleClient", () => {
                         auto_topup_enabled: true,
                         auto_topup_self_service: true,
                         can_buy_bundles: true,
+                        company_credit_amount: 1000000,
                         created_at: "2024-01-15T09:30:00Z",
                         credit_amount: 1000000,
                         credit_id: "credit_id",
@@ -371,6 +481,19 @@ describe("PlanbundleClient", () => {
                     name: "name",
                     plan_type: "plan",
                     updated_at: "2024-01-15T09:30:00Z",
+                },
+                plan_version: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    description: "description",
+                    environment_id: "environment_id",
+                    icon: "amber",
+                    id: "id",
+                    name: "name",
+                    original_plan_id: "original_plan_id",
+                    plan_type: "plan",
+                    status: "published",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    version: 1000000,
                 },
             },
             params: { key: "value" },
@@ -391,6 +514,11 @@ describe("PlanbundleClient", () => {
                     action: "create",
                 },
             ],
+            plan: {
+                description: "description",
+                name: "name",
+                planType: "plan",
+            },
         });
         expect(response).toEqual({
             data: {
@@ -414,6 +542,7 @@ describe("PlanbundleClient", () => {
                         autoTopupEnabled: true,
                         autoTopupSelfService: true,
                         canBuyBundles: true,
+                        companyCreditAmount: 1000000,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         creditAmount: 1000000,
                         creditId: "credit_id",
@@ -461,6 +590,19 @@ describe("PlanbundleClient", () => {
                     planType: "plan",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
+                planVersion: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    description: "description",
+                    environmentId: "environment_id",
+                    icon: "amber",
+                    id: "id",
+                    name: "name",
+                    originalPlanId: "original_plan_id",
+                    planType: "plan",
+                    status: "published",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    version: 1000000,
+                },
             },
             params: {
                 key: "value",
@@ -471,7 +613,10 @@ describe("PlanbundleClient", () => {
     test("createPlanBundle (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }] };
+        const rawRequestBody = {
+            entitlements: [{ action: "create" }, { action: "create" }],
+            plan: { description: "description", name: "x", plan_type: "plan" },
+        };
         const rawResponseBody = { error: "error" };
 
         server
@@ -493,6 +638,11 @@ describe("PlanbundleClient", () => {
                         action: "create",
                     },
                 ],
+                plan: {
+                    description: "description",
+                    name: "x",
+                    planType: "plan",
+                },
             });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
@@ -500,7 +650,10 @@ describe("PlanbundleClient", () => {
     test("createPlanBundle (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }] };
+        const rawRequestBody = {
+            entitlements: [{ action: "create" }, { action: "create" }],
+            plan: { description: "description", name: "x", plan_type: "plan" },
+        };
         const rawResponseBody = { error: "error" };
 
         server
@@ -522,6 +675,11 @@ describe("PlanbundleClient", () => {
                         action: "create",
                     },
                 ],
+                plan: {
+                    description: "description",
+                    name: "x",
+                    planType: "plan",
+                },
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
@@ -529,7 +687,10 @@ describe("PlanbundleClient", () => {
     test("createPlanBundle (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }] };
+        const rawRequestBody = {
+            entitlements: [{ action: "create" }, { action: "create" }],
+            plan: { description: "description", name: "x", plan_type: "plan" },
+        };
         const rawResponseBody = { error: "error" };
 
         server
@@ -551,6 +712,11 @@ describe("PlanbundleClient", () => {
                         action: "create",
                     },
                 ],
+                plan: {
+                    description: "description",
+                    name: "x",
+                    planType: "plan",
+                },
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
@@ -558,7 +724,10 @@ describe("PlanbundleClient", () => {
     test("createPlanBundle (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }] };
+        const rawRequestBody = {
+            entitlements: [{ action: "create" }, { action: "create" }],
+            plan: { description: "description", name: "x", plan_type: "plan" },
+        };
         const rawResponseBody = { error: "error" };
 
         server
@@ -580,6 +749,11 @@ describe("PlanbundleClient", () => {
                         action: "create",
                     },
                 ],
+                plan: {
+                    description: "description",
+                    name: "x",
+                    planType: "plan",
+                },
             });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
@@ -587,7 +761,10 @@ describe("PlanbundleClient", () => {
     test("createPlanBundle (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }] };
+        const rawRequestBody = {
+            entitlements: [{ action: "create" }, { action: "create" }],
+            plan: { description: "description", name: "x", plan_type: "plan" },
+        };
         const rawResponseBody = { error: "error" };
 
         server
@@ -609,6 +786,11 @@ describe("PlanbundleClient", () => {
                         action: "create",
                     },
                 ],
+                plan: {
+                    description: "description",
+                    name: "x",
+                    planType: "plan",
+                },
             });
         }).rejects.toThrow(Schematic.InternalServerError);
     });
@@ -616,7 +798,7 @@ describe("PlanbundleClient", () => {
     test("updatePlanBundle (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entitlements: [{ action: "create" }] };
+        const rawRequestBody = { entitlements: [{ action: "create" }], plan: { name: "name" } };
         const rawResponseBody = {
             data: {
                 billing_product: {
@@ -639,6 +821,7 @@ describe("PlanbundleClient", () => {
                         auto_topup_enabled: true,
                         auto_topup_self_service: true,
                         can_buy_bundles: true,
+                        company_credit_amount: 1000000,
                         created_at: "2024-01-15T09:30:00Z",
                         credit_amount: 1000000,
                         credit_id: "credit_id",
@@ -676,25 +859,41 @@ describe("PlanbundleClient", () => {
                     plan_type: "plan",
                     updated_at: "2024-01-15T09:30:00Z",
                 },
+                plan_version: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    description: "description",
+                    environment_id: "environment_id",
+                    icon: "amber",
+                    id: "id",
+                    name: "name",
+                    original_plan_id: "original_plan_id",
+                    plan_type: "plan",
+                    status: "published",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    version: 1000000,
+                },
             },
             params: { key: "value" },
         };
 
         server
             .mockEndpoint()
-            .put("/plan-bundles/plan_bundle_id")
+            .put("/plan-bundles/plan_id")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.planbundle.updatePlanBundle("plan_bundle_id", {
+        const response = await client.planbundle.updatePlanBundle("plan_id", {
             entitlements: [
                 {
                     action: "create",
                 },
             ],
+            plan: {
+                name: "name",
+            },
         });
         expect(response).toEqual({
             data: {
@@ -718,6 +917,7 @@ describe("PlanbundleClient", () => {
                         autoTopupEnabled: true,
                         autoTopupSelfService: true,
                         canBuyBundles: true,
+                        companyCreditAmount: 1000000,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         creditAmount: 1000000,
                         creditId: "credit_id",
@@ -765,6 +965,19 @@ describe("PlanbundleClient", () => {
                     planType: "plan",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
+                planVersion: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    description: "description",
+                    environmentId: "environment_id",
+                    icon: "amber",
+                    id: "id",
+                    name: "name",
+                    originalPlanId: "original_plan_id",
+                    planType: "plan",
+                    status: "published",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    version: 1000000,
+                },
             },
             params: {
                 key: "value",
@@ -775,12 +988,12 @@ describe("PlanbundleClient", () => {
     test("updatePlanBundle (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }] };
+        const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }], plan: { name: "x" } };
         const rawResponseBody = { error: "error" };
 
         server
             .mockEndpoint()
-            .put("/plan-bundles/plan_bundle_id")
+            .put("/plan-bundles/plan_id")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(400)
@@ -788,7 +1001,7 @@ describe("PlanbundleClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planbundle.updatePlanBundle("plan_bundle_id", {
+            return await client.planbundle.updatePlanBundle("plan_id", {
                 entitlements: [
                     {
                         action: "create",
@@ -797,6 +1010,9 @@ describe("PlanbundleClient", () => {
                         action: "create",
                     },
                 ],
+                plan: {
+                    name: "x",
+                },
             });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
@@ -804,12 +1020,12 @@ describe("PlanbundleClient", () => {
     test("updatePlanBundle (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }] };
+        const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }], plan: { name: "x" } };
         const rawResponseBody = { error: "error" };
 
         server
             .mockEndpoint()
-            .put("/plan-bundles/plan_bundle_id")
+            .put("/plan-bundles/plan_id")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(401)
@@ -817,7 +1033,7 @@ describe("PlanbundleClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planbundle.updatePlanBundle("plan_bundle_id", {
+            return await client.planbundle.updatePlanBundle("plan_id", {
                 entitlements: [
                     {
                         action: "create",
@@ -826,6 +1042,9 @@ describe("PlanbundleClient", () => {
                         action: "create",
                     },
                 ],
+                plan: {
+                    name: "x",
+                },
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
@@ -833,12 +1052,12 @@ describe("PlanbundleClient", () => {
     test("updatePlanBundle (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }] };
+        const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }], plan: { name: "x" } };
         const rawResponseBody = { error: "error" };
 
         server
             .mockEndpoint()
-            .put("/plan-bundles/plan_bundle_id")
+            .put("/plan-bundles/plan_id")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(403)
@@ -846,7 +1065,7 @@ describe("PlanbundleClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planbundle.updatePlanBundle("plan_bundle_id", {
+            return await client.planbundle.updatePlanBundle("plan_id", {
                 entitlements: [
                     {
                         action: "create",
@@ -855,6 +1074,9 @@ describe("PlanbundleClient", () => {
                         action: "create",
                     },
                 ],
+                plan: {
+                    name: "x",
+                },
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
@@ -862,12 +1084,12 @@ describe("PlanbundleClient", () => {
     test("updatePlanBundle (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }] };
+        const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }], plan: { name: "x" } };
         const rawResponseBody = { error: "error" };
 
         server
             .mockEndpoint()
-            .put("/plan-bundles/plan_bundle_id")
+            .put("/plan-bundles/plan_id")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(404)
@@ -875,7 +1097,7 @@ describe("PlanbundleClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planbundle.updatePlanBundle("plan_bundle_id", {
+            return await client.planbundle.updatePlanBundle("plan_id", {
                 entitlements: [
                     {
                         action: "create",
@@ -884,6 +1106,9 @@ describe("PlanbundleClient", () => {
                         action: "create",
                     },
                 ],
+                plan: {
+                    name: "x",
+                },
             });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
@@ -891,12 +1116,12 @@ describe("PlanbundleClient", () => {
     test("updatePlanBundle (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }] };
+        const rawRequestBody = { entitlements: [{ action: "create" }, { action: "create" }], plan: { name: "x" } };
         const rawResponseBody = { error: "error" };
 
         server
             .mockEndpoint()
-            .put("/plan-bundles/plan_bundle_id")
+            .put("/plan-bundles/plan_id")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(500)
@@ -904,7 +1129,7 @@ describe("PlanbundleClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planbundle.updatePlanBundle("plan_bundle_id", {
+            return await client.planbundle.updatePlanBundle("plan_id", {
                 entitlements: [
                     {
                         action: "create",
@@ -913,6 +1138,9 @@ describe("PlanbundleClient", () => {
                         action: "create",
                     },
                 ],
+                plan: {
+                    name: "x",
+                },
             });
         }).rejects.toThrow(Schematic.InternalServerError);
     });

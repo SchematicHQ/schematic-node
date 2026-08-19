@@ -11,6 +11,7 @@ export const CreateCustomPlanRequestBody: core.serialization.Schema<
 > = core.serialization.object({
     companyId: core.serialization.property("company_id", core.serialization.string()),
     copiedFromPlanId: core.serialization.property("copied_from_plan_id", core.serialization.string().optional()),
+    copiedPriceId: core.serialization.property("copied_price_id", core.serialization.string().optional()),
     description: core.serialization.string(),
     icon: PlanIcon.optional(),
     name: core.serialization.string(),
@@ -20,6 +21,7 @@ export declare namespace CreateCustomPlanRequestBody {
     export interface Raw {
         company_id: string;
         copied_from_plan_id?: string | null;
+        copied_price_id?: string | null;
         description: string;
         icon?: PlanIcon.Raw | null;
         name: string;
