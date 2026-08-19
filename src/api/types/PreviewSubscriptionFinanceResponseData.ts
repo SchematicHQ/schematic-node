@@ -4,6 +4,7 @@ import type * as Schematic from "../index";
 
 export interface PreviewSubscriptionFinanceResponseData {
     amountOff: number;
+    discountAmount: number;
     discounts: Schematic.PreviewSubscriptionDiscountResponseData[];
     dueNow: number;
     newCharges: number;

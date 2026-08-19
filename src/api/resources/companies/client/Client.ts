@@ -44,6 +44,7 @@ export class CompaniesClient {
      *         planIds: ["plan_ids"],
      *         planVersionId: "plan_version_id",
      *         planVersionIds: ["plan_version_ids"],
+     *         planVersionUnpublished: true,
      *         q: "q",
      *         sortOrderColumn: "sort_order_column",
      *         sortOrderDirection: "asc",
@@ -78,6 +79,7 @@ export class CompaniesClient {
             planIds,
             planVersionId,
             planVersionIds,
+            planVersionUnpublished,
             q,
             sortOrderColumn,
             sortOrderDirection,
@@ -100,6 +102,7 @@ export class CompaniesClient {
             plan_ids: planIds,
             plan_version_id: planVersionId,
             plan_version_ids: planVersionIds,
+            plan_version_unpublished: planVersionUnpublished,
             q,
             sort_order_column: sortOrderColumn,
             sort_order_direction:
@@ -652,6 +655,7 @@ export class CompaniesClient {
      *         planIds: ["plan_ids"],
      *         planVersionId: "plan_version_id",
      *         planVersionIds: ["plan_version_ids"],
+     *         planVersionUnpublished: true,
      *         q: "q",
      *         sortOrderColumn: "sort_order_column",
      *         sortOrderDirection: "asc",
@@ -686,6 +690,7 @@ export class CompaniesClient {
             planIds,
             planVersionId,
             planVersionIds,
+            planVersionUnpublished,
             q,
             sortOrderColumn,
             sortOrderDirection,
@@ -708,6 +713,7 @@ export class CompaniesClient {
             plan_ids: planIds,
             plan_version_id: planVersionId,
             plan_version_ids: planVersionIds,
+            plan_version_unpublished: planVersionUnpublished,
             q,
             sort_order_column: sortOrderColumn,
             sort_order_direction:
@@ -1266,14 +1272,14 @@ export class CompaniesClient {
      *     })
      */
     public getCompanyBillingEntity(
-        request: Schematic.GetCompanyBillingEntityRequest = {},
+        request: Schematic.GetCompanyBillingEntityRequest,
         requestOptions?: CompaniesClient.RequestOptions,
     ): core.HttpResponsePromise<Schematic.GetCompanyBillingEntityResponse> {
         return core.HttpResponsePromise.fromPromise(this.__getCompanyBillingEntity(request, requestOptions));
     }
 
     private async __getCompanyBillingEntity(
-        request: Schematic.GetCompanyBillingEntityRequest = {},
+        request: Schematic.GetCompanyBillingEntityRequest,
         requestOptions?: CompaniesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.GetCompanyBillingEntityResponse>> {
         const { companyId } = request;
@@ -1404,14 +1410,14 @@ export class CompaniesClient {
      *     })
      */
     public getBillingEntityChildSubscriptions(
-        request: Schematic.GetBillingEntityChildSubscriptionsRequest = {},
+        request: Schematic.GetBillingEntityChildSubscriptionsRequest,
         requestOptions?: CompaniesClient.RequestOptions,
     ): core.HttpResponsePromise<Schematic.GetBillingEntityChildSubscriptionsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__getBillingEntityChildSubscriptions(request, requestOptions));
     }
 
     private async __getBillingEntityChildSubscriptions(
-        request: Schematic.GetBillingEntityChildSubscriptionsRequest = {},
+        request: Schematic.GetBillingEntityChildSubscriptionsRequest,
         requestOptions?: CompaniesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.GetBillingEntityChildSubscriptionsResponse>> {
         const { companyId } = request;
@@ -3372,6 +3378,264 @@ export class CompaniesClient {
     }
 
     /**
+     * @param {string} entity_trait_definition_id - entity_trait_definition_id
+     * @param {CompaniesClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.BadRequestError}
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
+     * @throws {@link Schematic.InternalServerError}
+     *
+     * @example
+     *     await client.companies.deleteEntityTraitDefinition("entity_trait_definition_id")
+     */
+    public deleteEntityTraitDefinition(
+        entity_trait_definition_id: string,
+        requestOptions?: CompaniesClient.RequestOptions,
+    ): core.HttpResponsePromise<Schematic.DeleteEntityTraitDefinitionResponse> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__deleteEntityTraitDefinition(entity_trait_definition_id, requestOptions),
+        );
+    }
+
+    private async __deleteEntityTraitDefinition(
+        entity_trait_definition_id: string,
+        requestOptions?: CompaniesClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.DeleteEntityTraitDefinitionResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                `entity-trait-definitions/${core.url.encodePathParam(entity_trait_definition_id)}`,
+            ),
+            method: "DELETE",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.DeleteEntityTraitDefinitionResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Schematic.BadRequestError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "DELETE",
+            "/entity-trait-definitions/{entity_trait_definition_id}",
+        );
+    }
+
+    /**
+     * @param {string} entity_trait_definition_id - entity_trait_definition_id
+     * @param {CompaniesClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
+     * @throws {@link Schematic.InternalServerError}
+     *
+     * @example
+     *     await client.companies.getEntityTraitDefinitionUsage("entity_trait_definition_id")
+     */
+    public getEntityTraitDefinitionUsage(
+        entity_trait_definition_id: string,
+        requestOptions?: CompaniesClient.RequestOptions,
+    ): core.HttpResponsePromise<Schematic.GetEntityTraitDefinitionUsageResponse> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__getEntityTraitDefinitionUsage(entity_trait_definition_id, requestOptions),
+        );
+    }
+
+    private async __getEntityTraitDefinitionUsage(
+        entity_trait_definition_id: string,
+        requestOptions?: CompaniesClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.GetEntityTraitDefinitionUsageResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                `entity-trait-definitions/${core.url.encodePathParam(entity_trait_definition_id)}/usage`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.GetEntityTraitDefinitionUsageResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/entity-trait-definitions/{entity_trait_definition_id}/usage",
+        );
+    }
+
+    /**
      * @param {Schematic.CountEntityTraitDefinitionsRequest} request
      * @param {CompaniesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -3681,6 +3945,153 @@ export class CompaniesClient {
     }
 
     /**
+     * @param {Schematic.CountEntityTraitsRequest} request
+     * @param {CompaniesClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.BadRequestError}
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
+     * @throws {@link Schematic.InternalServerError}
+     *
+     * @example
+     *     await client.companies.countEntityTraits({
+     *         definitionId: "definition_id",
+     *         entityType: "company",
+     *         limit: 1000000,
+     *         offset: 1000000
+     *     })
+     */
+    public countEntityTraits(
+        request: Schematic.CountEntityTraitsRequest = {},
+        requestOptions?: CompaniesClient.RequestOptions,
+    ): core.HttpResponsePromise<Schematic.CountEntityTraitsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__countEntityTraits(request, requestOptions));
+    }
+
+    private async __countEntityTraits(
+        request: Schematic.CountEntityTraitsRequest = {},
+        requestOptions?: CompaniesClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.CountEntityTraitsResponse>> {
+        const { definitionId, entityType, limit, offset } = request;
+        const _queryParams: Record<string, unknown> = {
+            definition_id: definitionId,
+            entity_type:
+                entityType != null
+                    ? serializers.EntityType.jsonOrThrow(entityType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            limit,
+            offset,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "entity-traits/count",
+            ),
+            method: "GET",
+            headers: _headers,
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.CountEntityTraitsResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Schematic.BadRequestError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/entity-traits/count");
+    }
+
+    /**
      * @param {Schematic.ListPlanChangesRequest} request
      * @param {CompaniesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -3696,7 +4107,6 @@ export class CompaniesClient {
      *         basePlanAction: "fallback",
      *         companyId: "company_id",
      *         companyIds: ["company_ids"],
-     *         planIds: ["plan_ids"],
      *         limit: 1000000,
      *         offset: 1000000
      *     })
@@ -3712,7 +4122,7 @@ export class CompaniesClient {
         request: Schematic.ListPlanChangesRequest = {},
         requestOptions?: CompaniesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListPlanChangesResponse>> {
-        const { action, basePlanAction, companyId, companyIds, planIds, limit, offset } = request;
+        const { action, basePlanAction, companyId, companyIds, limit, offset } = request;
         const _queryParams: Record<string, unknown> = {
             action:
                 action != null
@@ -3726,7 +4136,6 @@ export class CompaniesClient {
                     : undefined,
             company_id: companyId,
             company_ids: companyIds,
-            plan_ids: planIds,
             limit,
             offset,
         };

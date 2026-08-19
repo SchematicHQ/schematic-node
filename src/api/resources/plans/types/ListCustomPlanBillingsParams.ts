@@ -12,6 +12,8 @@ export interface ListCustomPlanBillingsParams {
     limit?: number;
     /** Page offset (default 0) */
     offset?: number;
+    /** Filter by the flow that created the billing record. Defaults to custom_plan. */
+    planBillingSource?: Schematic.PlanBillingSource;
     /** Filter by plan ID */
     planId?: string;
     /** Filter by billing status */

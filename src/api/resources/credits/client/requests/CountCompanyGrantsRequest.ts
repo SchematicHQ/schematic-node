@@ -13,7 +13,7 @@ import type * as Schematic from "../../../../index";
  *     }
  */
 export interface CountCompanyGrantsRequest {
-    companyId?: string;
+    companyId: string;
     order?: Schematic.CreditGrantSortOrder;
     dir?: Schematic.SortDirection;
     /** Page limit (default 100) */

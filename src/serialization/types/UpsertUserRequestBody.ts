@@ -21,6 +21,10 @@ export const UpsertUserRequestBody: core.serialization.ObjectSchema<
     keys: core.serialization.record(core.serialization.string(), core.serialization.string()),
     lastSeenAt: core.serialization.property("last_seen_at", core.serialization.date().optional()),
     name: core.serialization.string().optional(),
+    removeKeys: core.serialization.property(
+        "remove_keys",
+        core.serialization.list(core.serialization.string()).optional(),
+    ),
     traits: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     updateOnly: core.serialization.property("update_only", core.serialization.boolean().optional()),
 });
@@ -35,6 +39,7 @@ export declare namespace UpsertUserRequestBody {
         keys: Record<string, string>;
         last_seen_at?: string | null;
         name?: string | null;
+        remove_keys?: string[] | null;
         traits?: Record<string, unknown> | null;
         update_only?: boolean | null;
     }

@@ -35,9 +35,18 @@ export class PlanbundleClient {
      *
      * @example
      *     await client.planbundle.createCustomPlanBundle({
+     *         billingProduct: {
+     *             chargeType: "free",
+     *             isTrialable: true
+     *         },
      *         entitlements: [{
      *                 action: "create"
-     *             }]
+     *             }],
+     *         plan: {
+     *             companyId: "company_id",
+     *             description: "description",
+     *             name: "name"
+     *         }
      *     })
      */
     public createCustomPlanBundle(
@@ -174,7 +183,12 @@ export class PlanbundleClient {
      *     await client.planbundle.createPlanBundle({
      *         entitlements: [{
      *                 action: "create"
-     *             }]
+     *             }],
+     *         plan: {
+     *             description: "description",
+     *             name: "name",
+     *             planType: "plan"
+     *         }
      *     })
      */
     public createPlanBundle(
@@ -296,7 +310,7 @@ export class PlanbundleClient {
     }
 
     /**
-     * @param {string} plan_bundle_id - plan_bundle_id
+     * @param {string} plan_id - plan_id
      * @param {Schematic.UpdatePlanBundleRequestBody} request
      * @param {PlanbundleClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -307,22 +321,25 @@ export class PlanbundleClient {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.planbundle.updatePlanBundle("plan_bundle_id", {
+     *     await client.planbundle.updatePlanBundle("plan_id", {
      *         entitlements: [{
      *                 action: "create"
-     *             }]
+     *             }],
+     *         plan: {
+     *             name: "name"
+     *         }
      *     })
      */
     public updatePlanBundle(
-        plan_bundle_id: string,
+        plan_id: string,
         request: Schematic.UpdatePlanBundleRequestBody,
         requestOptions?: PlanbundleClient.RequestOptions,
     ): core.HttpResponsePromise<Schematic.UpdatePlanBundleResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__updatePlanBundle(plan_bundle_id, request, requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__updatePlanBundle(plan_id, request, requestOptions));
     }
 
     private async __updatePlanBundle(
-        plan_bundle_id: string,
+        plan_id: string,
         request: Schematic.UpdatePlanBundleRequestBody,
         requestOptions?: PlanbundleClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.UpdatePlanBundleResponse>> {
@@ -337,7 +354,7 @@ export class PlanbundleClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `plan-bundles/${core.url.encodePathParam(plan_bundle_id)}`,
+                `plan-bundles/${core.url.encodePathParam(plan_id)}`,
             ),
             method: "PUT",
             headers: _headers,
@@ -430,11 +447,6 @@ export class PlanbundleClient {
             }
         }
 
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "PUT",
-            "/plan-bundles/{plan_bundle_id}",
-        );
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/plan-bundles/{plan_id}");
     }
 }

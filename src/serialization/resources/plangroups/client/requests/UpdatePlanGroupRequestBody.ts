@@ -3,6 +3,7 @@
 import type * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
+import { CheckoutBundlePurchaseBehavior } from "../../../../types/CheckoutBundlePurchaseBehavior";
 import { CheckoutFieldInput } from "../../../../types/CheckoutFieldInput";
 import { CompatiblePlans } from "../../../../types/CompatiblePlans";
 import { CustomPlanConfig } from "../../../../types/CustomPlanConfig";
@@ -20,9 +21,14 @@ export const UpdatePlanGroupRequestBody: core.serialization.Schema<
         core.serialization.list(CompatiblePlans).optional(),
     ),
     addOnIds: core.serialization.property("add_on_ids", core.serialization.list(core.serialization.string())),
+    checkoutBundlePurchaseBehavior: core.serialization.property(
+        "checkout_bundle_purchase_behavior",
+        CheckoutBundlePurchaseBehavior.optional(),
+    ),
     checkoutCollectAddress: core.serialization.property("checkout_collect_address", core.serialization.boolean()),
     checkoutCollectEmail: core.serialization.property("checkout_collect_email", core.serialization.boolean()),
     checkoutCollectPhone: core.serialization.property("checkout_collect_phone", core.serialization.boolean()),
+    checkoutCollectTaxId: core.serialization.property("checkout_collect_tax_id", core.serialization.boolean()),
     customCheckoutFields: core.serialization.property(
         "custom_checkout_fields",
         core.serialization.list(CheckoutFieldInput).optional(),
@@ -93,9 +99,11 @@ export declare namespace UpdatePlanGroupRequestBody {
     export interface Raw {
         add_on_compatibilities?: CompatiblePlans.Raw[] | null;
         add_on_ids: string[];
+        checkout_bundle_purchase_behavior?: CheckoutBundlePurchaseBehavior.Raw | null;
         checkout_collect_address: boolean;
         checkout_collect_email: boolean;
         checkout_collect_phone: boolean;
+        checkout_collect_tax_id: boolean;
         custom_checkout_fields?: CheckoutFieldInput.Raw[] | null;
         custom_plan_config?: CustomPlanConfig.Raw | null;
         custom_plan_id?: string | null;

@@ -7,12 +7,17 @@ import type * as Schematic from "../../../../index";
  *     {
  *         entitlements: [{
  *                 action: "create"
- *             }]
+ *             }],
+ *         plan: {
+ *             description: "description",
+ *             name: "name",
+ *             planType: "plan"
+ *         }
  *     }
  */
 export interface CreatePlanBundleRequestBody {
     billingProduct?: Schematic.UpsertBillingProductRequestBody;
     creditGrants?: Schematic.PlanBundleCreditGrantRequestBody[];
     entitlements: Schematic.PlanBundleEntitlementRequestBody[];
-    plan?: Schematic.CreatePlanRequestBody;
+    plan: Schematic.CreatePlanRequestBody;
 }

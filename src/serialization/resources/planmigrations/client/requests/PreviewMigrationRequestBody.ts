@@ -9,17 +9,25 @@ export const PreviewMigrationRequestBody: core.serialization.Schema<
     serializers.PreviewMigrationRequestBody.Raw,
     Schematic.PreviewMigrationRequestBody
 > = core.serialization.object({
-    companyIds: core.serialization.property("company_ids", core.serialization.list(core.serialization.string())),
+    companyIds: core.serialization.property(
+        "company_ids",
+        core.serialization.list(core.serialization.string()).optional(),
+    ),
     planId: core.serialization.property("plan_id", core.serialization.string()),
     planVersionIdTo: core.serialization.property("plan_version_id_to", core.serialization.string()),
+    planVersionIdsFrom: core.serialization.property(
+        "plan_version_ids_from",
+        core.serialization.list(core.serialization.string()).optional(),
+    ),
     targetPlanType: core.serialization.property("target_plan_type", PlanType),
 });
 
 export declare namespace PreviewMigrationRequestBody {
     export interface Raw {
-        company_ids: string[];
+        company_ids?: string[] | null;
         plan_id: string;
         plan_version_id_to: string;
+        plan_version_ids_from?: string[] | null;
         target_plan_type: PlanType.Raw;
     }
 }

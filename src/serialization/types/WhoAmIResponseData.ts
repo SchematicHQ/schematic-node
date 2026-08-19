@@ -16,6 +16,7 @@ export const WhoAmIResponseData: core.serialization.ObjectSchema<
     apiKeyId: core.serialization.property("api_key_id", core.serialization.string().optional()),
     environmentId: core.serialization.property("environment_id", core.serialization.string().optional()),
     environments: core.serialization.list(EnvironmentResponseData),
+    onboardingComplete: core.serialization.property("onboarding_complete", core.serialization.boolean()),
     stripeUserId: core.serialization.property("stripe_user_id", core.serialization.string().optional()),
     userId: core.serialization.property("user_id", core.serialization.string().optional()),
     userName: core.serialization.property("user_name", core.serialization.string().optional()),
@@ -29,6 +30,7 @@ export declare namespace WhoAmIResponseData {
         api_key_id?: string | null;
         environment_id?: string | null;
         environments: EnvironmentResponseData.Raw[];
+        onboarding_complete: boolean;
         stripe_user_id?: string | null;
         user_id?: string | null;
         user_name?: string | null;

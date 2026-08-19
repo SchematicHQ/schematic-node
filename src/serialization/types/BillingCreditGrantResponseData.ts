@@ -14,6 +14,7 @@ export const BillingCreditGrantResponseData: core.serialization.ObjectSchema<
     Schematic.BillingCreditGrantResponseData
 > = core.serialization.object({
     companyId: core.serialization.property("company_id", core.serialization.string()),
+    companyLicenseId: core.serialization.property("company_license_id", core.serialization.string().optional()),
     companyName: core.serialization.property("company_name", core.serialization.string()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     creditIcon: core.serialization.property("credit_icon", core.serialization.string().optional()),
@@ -23,6 +24,7 @@ export const BillingCreditGrantResponseData: core.serialization.ObjectSchema<
     expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
     grantReason: core.serialization.property("grant_reason", BillingCreditGrantReason),
     id: core.serialization.string(),
+    licenseName: core.serialization.property("license_name", core.serialization.string().optional()),
     planId: core.serialization.property("plan_id", core.serialization.string().optional()),
     planName: core.serialization.property("plan_name", core.serialization.string().optional()),
     price: BillingPriceResponseData.optional(),
@@ -45,6 +47,7 @@ export const BillingCreditGrantResponseData: core.serialization.ObjectSchema<
 export declare namespace BillingCreditGrantResponseData {
     export interface Raw {
         company_id: string;
+        company_license_id?: string | null;
         company_name: string;
         created_at: string;
         credit_icon?: string | null;
@@ -54,6 +57,7 @@ export declare namespace BillingCreditGrantResponseData {
         expires_at?: string | null;
         grant_reason: BillingCreditGrantReason.Raw;
         id: string;
+        license_name?: string | null;
         plan_id?: string | null;
         plan_name?: string | null;
         price?: BillingPriceResponseData.Raw | null;

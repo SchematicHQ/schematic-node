@@ -43,6 +43,7 @@ export const CreateBillingPlanCreditGrantRequestBody: core.serialization.ObjectS
         core.serialization.number().optional(),
     ),
     canBuyBundles: core.serialization.property("can_buy_bundles", core.serialization.boolean().optional()),
+    companyCreditAmount: core.serialization.property("company_credit_amount", core.serialization.number().optional()),
     creditAmount: core.serialization.property("credit_amount", core.serialization.number()),
     creditId: core.serialization.property("credit_id", core.serialization.string()),
     expiryType: core.serialization.property("expiry_type", BillingCreditExpiryType.optional()),
@@ -72,6 +73,7 @@ export declare namespace CreateBillingPlanCreditGrantRequestBody {
         auto_topup_threshold_credits?: number | null;
         auto_topup_threshold_percent?: number | null;
         can_buy_bundles?: boolean | null;
+        company_credit_amount?: number | null;
         credit_amount: number;
         credit_id: string;
         expiry_type?: BillingCreditExpiryType.Raw | null;

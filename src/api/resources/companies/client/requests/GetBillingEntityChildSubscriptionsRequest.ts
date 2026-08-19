@@ -7,5 +7,5 @@
  *     }
  */
 export interface GetBillingEntityChildSubscriptionsRequest {
-    companyId?: string;
+    companyId: string;
 }

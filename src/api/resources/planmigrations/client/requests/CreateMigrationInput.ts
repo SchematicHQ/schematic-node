@@ -5,21 +5,19 @@ import type * as Schematic from "../../../../index";
 /**
  * @example
  *     {
- *         companyIds: ["company_ids"],
- *         excludedCompanyIds: ["excluded_company_ids"],
  *         planId: "plan_id",
  *         planVersionIdTo: "plan_version_id_to",
- *         planVersionIdsFrom: ["plan_version_ids_from"],
  *         strategy: "immediate",
  *         targetPlanType: "plan"
  *     }
  */
 export interface CreateMigrationInput {
-    companyIds: string[];
-    excludedCompanyIds: string[];
+    companyIds?: string[];
+    excludedCompanyIds?: string[];
     planId: string;
     planVersionIdTo: string;
-    planVersionIdsFrom: string[];
+    planVersionIdsFrom?: string[];
+    prorationBehavior?: Schematic.MigrationProrationBehavior;
     strategy: Schematic.PlanVersionMigrationStrategy;
     targetPlanType: Schematic.PlanType;
 }

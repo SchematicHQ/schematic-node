@@ -12,6 +12,8 @@ export interface UpsertCompanyRequestBody {
     lastSeenAt?: Date;
     name?: string;
     preventKeyRemap?: boolean;
+    /** Names of keys to remove from the company. Removing a key the company does not have does nothing, and a company must keep at least one key. */
+    removeKeys?: string[];
     /** A map of trait names to trait values */
     traits?: Record<string, unknown>;
     updateOnly?: boolean;

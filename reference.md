@@ -937,6 +937,96 @@ await client.accounts.deleteEnvironment("environment_id");
 </dl>
 </details>
 
+<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">getOnboardingState</a>() -> Schematic.GetOnboardingStateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounts.getOnboardingState();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">updateOnboardingState</a>({ ...params }) -> Schematic.UpdateOnboardingStateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounts.updateOnboardingState();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.UpdateOnboardingStateRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AccountsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">quickstart</a>() -> Schematic.QuickstartResponse</code></summary>
 <dl>
 <dd>
@@ -5331,6 +5421,7 @@ await client.companies.listCompanies({
     planIds: ["plan_ids"],
     planVersionId: "plan_version_id",
     planVersionIds: ["plan_version_ids"],
+    planVersionUnpublished: true,
     q: "q",
     sortOrderColumn: "sort_order_column",
     sortOrderDirection: "asc",
@@ -5563,6 +5654,7 @@ await client.companies.countCompanies({
     planIds: ["plan_ids"],
     planVersionId: "plan_version_id",
     planVersionIds: ["plan_version_ids"],
+    planVersionUnpublished: true,
     q: "q",
     sortOrderColumn: "sort_order_column",
     sortOrderDirection: "asc",
@@ -6584,6 +6676,104 @@ await client.companies.updateEntityTraitDefinition("entity_trait_definition_id",
 </dl>
 </details>
 
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">deleteEntityTraitDefinition</a>(entity_trait_definition_id) -> Schematic.DeleteEntityTraitDefinitionResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.companies.deleteEntityTraitDefinition("entity_trait_definition_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**entity_trait_definition_id:** `string` — entity_trait_definition_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">getEntityTraitDefinitionUsage</a>(entity_trait_definition_id) -> Schematic.GetEntityTraitDefinitionUsageResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.companies.getEntityTraitDefinitionUsage("entity_trait_definition_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**entity_trait_definition_id:** `string` — entity_trait_definition_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">countEntityTraitDefinitions</a>({ ...params }) -> Schematic.CountEntityTraitDefinitionsResponse</code></summary>
 <dl>
 <dd>
@@ -6695,6 +6885,60 @@ await client.companies.getEntityTraitValues({
 </dl>
 </details>
 
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">countEntityTraits</a>({ ...params }) -> Schematic.CountEntityTraitsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.companies.countEntityTraits({
+    definitionId: "definition_id",
+    entityType: "company",
+    limit: 1000000,
+    offset: 1000000
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CountEntityTraitsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">listPlanChanges</a>({ ...params }) -> Schematic.ListPlanChangesResponse</code></summary>
 <dl>
 <dd>
@@ -6713,7 +6957,6 @@ await client.companies.listPlanChanges({
     basePlanAction: "fallback",
     companyId: "company_id",
     companyIds: ["company_ids"],
-    planIds: ["plan_ids"],
     limit: 1000000,
     offset: 1000000
 });
@@ -7989,6 +8232,63 @@ await client.entitlements.listFeatureUsage({
 </dl>
 </details>
 
+<details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">listFeatureUsageHistory</a>({ ...params }) -> Schematic.ListFeatureUsageHistoryResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.entitlements.listFeatureUsageHistory({
+    companyIds: ["company_ids"],
+    endTime: new Date("2024-01-15T09:30:00.000Z"),
+    featureIds: ["feature_ids"],
+    granularity: "daily",
+    startTime: new Date("2024-01-15T09:30:00.000Z"),
+    limit: 1000000,
+    offset: 1000000
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListFeatureUsageHistoryRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">getFeatureUsageTimeSeries</a>({ ...params }) -> Schematic.GetFeatureUsageTimeSeriesResponse</code></summary>
 <dl>
 <dd>
@@ -8811,7 +9111,7 @@ await client.entitlements.getUserUsageDetail({
 </details>
 
 ## plans
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">updateCompanyPlans</a>(company_plan_id, { ...params }) -> Schematic.UpdateCompanyPlansResponse</code></summary>
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">updateCompanyPlans</a>(company_id, { ...params }) -> Schematic.UpdateCompanyPlansResponse</code></summary>
 <dl>
 <dd>
 
@@ -8824,7 +9124,7 @@ await client.entitlements.getUserUsageDetail({
 <dd>
 
 ```typescript
-await client.plans.updateCompanyPlans("company_plan_id", {
+await client.plans.updateCompanyPlans("company_id", {
     addOnIds: ["add_on_ids"]
 });
 
@@ -8842,7 +9142,7 @@ await client.plans.updateCompanyPlans("company_plan_id", {
 <dl>
 <dd>
 
-**company_plan_id:** `string` — company_plan_id
+**company_id:** `string` — company_id
     
 </dd>
 </dl>
@@ -8886,6 +9186,7 @@ await client.plans.updateCompanyPlans("company_plan_id", {
 await client.plans.listCustomPlanBillings({
     companyId: "company_id",
     planId: "plan_id",
+    planBillingSource: "custom_plan",
     status: "active",
     statuses: ["active"],
     limit: 1000000,
@@ -9726,7 +10027,7 @@ await client.plans.listPlanIssues({
 </dl>
 </details>
 
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">deletePlanVersion</a>(plan_id, { ...params }) -> Schematic.DeletePlanVersionResponse</code></summary>
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">deletePlanVersion</a>(plan_version_id, { ...params }) -> Schematic.DeletePlanVersionResponse</code></summary>
 <dl>
 <dd>
 
@@ -9739,7 +10040,7 @@ await client.plans.listPlanIssues({
 <dd>
 
 ```typescript
-await client.plans.deletePlanVersion("plan_id", {
+await client.plans.deletePlanVersion("plan_version_id", {
     promoteArchivedVersion: true
 });
 
@@ -9757,7 +10058,7 @@ await client.plans.deletePlanVersion("plan_id", {
 <dl>
 <dd>
 
-**plan_id:** `string` — plan_id
+**plan_version_id:** `string` — plan_version_id
     
 </dd>
 </dl>
@@ -9785,7 +10086,7 @@ await client.plans.deletePlanVersion("plan_id", {
 </dl>
 </details>
 
-<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">publishPlanVersion</a>(plan_id, { ...params }) -> Schematic.PublishPlanVersionResponse</code></summary>
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">publishPlanVersion</a>(plan_version_id, { ...params }) -> Schematic.PublishPlanVersionResponse</code></summary>
 <dl>
 <dd>
 
@@ -9798,7 +10099,7 @@ await client.plans.deletePlanVersion("plan_id", {
 <dd>
 
 ```typescript
-await client.plans.publishPlanVersion("plan_id", {
+await client.plans.publishPlanVersion("plan_version_id", {
     excludedCompanyIds: ["excluded_company_ids"],
     migrationStrategy: "immediate"
 });
@@ -9817,7 +10118,7 @@ await client.plans.publishPlanVersion("plan_id", {
 <dl>
 <dd>
 
-**plan_id:** `string` — plan_id
+**plan_version_id:** `string` — plan_version_id
     
 </dd>
 </dl>
@@ -10283,9 +10584,18 @@ await client.components.previewComponentData({
 
 ```typescript
 await client.planbundle.createCustomPlanBundle({
+    billingProduct: {
+        chargeType: "free",
+        isTrialable: true
+    },
     entitlements: [{
             action: "create"
-        }]
+        }],
+    plan: {
+        companyId: "company_id",
+        description: "description",
+        name: "name"
+    }
 });
 
 ```
@@ -10338,7 +10648,12 @@ await client.planbundle.createCustomPlanBundle({
 await client.planbundle.createPlanBundle({
     entitlements: [{
             action: "create"
-        }]
+        }],
+    plan: {
+        description: "description",
+        name: "name",
+        planType: "plan"
+    }
 });
 
 ```
@@ -10375,7 +10690,7 @@ await client.planbundle.createPlanBundle({
 </dl>
 </details>
 
-<details><summary><code>client.planbundle.<a href="/src/api/resources/planbundle/client/Client.ts">updatePlanBundle</a>(plan_bundle_id, { ...params }) -> Schematic.UpdatePlanBundleResponse</code></summary>
+<details><summary><code>client.planbundle.<a href="/src/api/resources/planbundle/client/Client.ts">updatePlanBundle</a>(plan_id, { ...params }) -> Schematic.UpdatePlanBundleResponse</code></summary>
 <dl>
 <dd>
 
@@ -10388,10 +10703,13 @@ await client.planbundle.createPlanBundle({
 <dd>
 
 ```typescript
-await client.planbundle.updatePlanBundle("plan_bundle_id", {
+await client.planbundle.updatePlanBundle("plan_id", {
     entitlements: [{
             action: "create"
-        }]
+        }],
+    plan: {
+        name: "name"
+    }
 });
 
 ```
@@ -10408,7 +10726,7 @@ await client.planbundle.updatePlanBundle("plan_bundle_id", {
 <dl>
 <dd>
 
-**plan_bundle_id:** `string` — plan_bundle_id
+**plan_id:** `string` — plan_id
     
 </dd>
 </dl>
@@ -12875,6 +13193,7 @@ await client.plangroups.createPlanGroup({
     checkoutCollectAddress: true,
     checkoutCollectEmail: true,
     checkoutCollectPhone: true,
+    checkoutCollectTaxId: true,
     enableTaxCollection: true,
     optInEnabled: true,
     orderedAddOns: [{
@@ -12950,6 +13269,7 @@ await client.plangroups.updatePlanGroup("plan_group_id", {
     checkoutCollectAddress: true,
     checkoutCollectEmail: true,
     checkoutCollectPhone: true,
+    checkoutCollectTaxId: true,
     enableTaxCollection: true,
     optInEnabled: true,
     orderedAddOns: [{
@@ -13243,11 +13563,8 @@ await client.planmigrations.listMigrations({
 
 ```typescript
 await client.planmigrations.createMigration({
-    companyIds: ["company_ids"],
-    excludedCompanyIds: ["excluded_company_ids"],
     planId: "plan_id",
     planVersionIdTo: "plan_version_id_to",
-    planVersionIdsFrom: ["plan_version_ids_from"],
     strategy: "immediate",
     targetPlanType: "plan"
 });
@@ -13462,7 +13779,6 @@ await client.planmigrations.countMigrations({
 
 ```typescript
 await client.planmigrations.previewMigration({
-    companyIds: ["company_ids"],
     planId: "plan_id",
     planVersionIdTo: "plan_version_id_to",
     targetPlanType: "plan"

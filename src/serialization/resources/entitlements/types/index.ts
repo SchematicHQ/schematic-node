@@ -27,6 +27,8 @@ export * from "./ListCompanyOverridesParams";
 export * from "./ListCompanyOverridesResponse";
 export * from "./ListFeatureCompaniesParams";
 export * from "./ListFeatureCompaniesResponse";
+export * from "./ListFeatureUsageHistoryParams";
+export * from "./ListFeatureUsageHistoryResponse";
 export * from "./ListFeatureUsageParams";
 export * from "./ListFeatureUsageResponse";
 export * from "./ListFeatureUsersParams";

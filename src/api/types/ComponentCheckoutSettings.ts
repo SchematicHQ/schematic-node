@@ -3,9 +3,11 @@
 import type * as Schematic from "../index";
 
 export interface ComponentCheckoutSettings {
+    bundlePurchaseBehavior: Schematic.CheckoutBundlePurchaseBehavior;
     collectAddress: boolean;
     collectEmail: boolean;
     collectPhone: boolean;
+    collectTaxId: boolean;
     prorationBehavior: Schematic.ProrationBehavior;
     taxCollectionEnabled: boolean;
 }

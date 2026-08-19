@@ -18,7 +18,7 @@ export const CreatePlanBundleRequestBody: core.serialization.Schema<
         core.serialization.list(PlanBundleCreditGrantRequestBody).optional(),
     ),
     entitlements: core.serialization.list(PlanBundleEntitlementRequestBody),
-    plan: CreatePlanRequestBody.optional(),
+    plan: CreatePlanRequestBody,
 });
 
 export declare namespace CreatePlanBundleRequestBody {
@@ -26,6 +26,6 @@ export declare namespace CreatePlanBundleRequestBody {
         billing_product?: UpsertBillingProductRequestBody.Raw | null;
         credit_grants?: PlanBundleCreditGrantRequestBody.Raw[] | null;
         entitlements: PlanBundleEntitlementRequestBody.Raw[];
-        plan?: CreatePlanRequestBody.Raw | null;
+        plan: CreatePlanRequestBody.Raw;
     }
 }

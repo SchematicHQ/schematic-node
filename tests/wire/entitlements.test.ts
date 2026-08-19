@@ -21,6 +21,7 @@ describe("EntitlementsClient", () => {
                                         billing_credit_auto_topup_enabled: true,
                                         billing_credit_auto_topup_self_service: true,
                                         billing_credit_can_buy_bundles: true,
+                                        company_credit_amount: 1000000,
                                         created_at: "2024-01-15T09:30:00Z",
                                         credit_amount: 1000000,
                                         credit_description: "credit_description",
@@ -94,6 +95,7 @@ describe("EntitlementsClient", () => {
                                 created_at: "2024-01-15T09:30:00Z",
                                 days_until_due: 1000000,
                                 id: "id",
+                                plan_billing_source: "custom_plan",
                                 plan_id: "plan_id",
                                 send_invoice: true,
                                 status: "active",
@@ -278,6 +280,7 @@ describe("EntitlementsClient", () => {
                                         billingCreditAutoTopupEnabled: true,
                                         billingCreditAutoTopupSelfService: true,
                                         billingCreditCanBuyBundles: true,
+                                        companyCreditAmount: 1000000,
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         creditAmount: 1000000,
                                         creditDescription: "credit_description",
@@ -351,6 +354,7 @@ describe("EntitlementsClient", () => {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 daysUntilDue: 1000000,
                                 id: "id",
+                                planBillingSource: "custom_plan",
                                 planId: "plan_id",
                                 sendInvoice: true,
                                 status: "active",
@@ -602,6 +606,7 @@ describe("EntitlementsClient", () => {
                                     billing_credit_auto_topup_enabled: true,
                                     billing_credit_auto_topup_self_service: true,
                                     billing_credit_can_buy_bundles: true,
+                                    company_credit_amount: 1000000,
                                     created_at: "2024-01-15T09:30:00Z",
                                     credit_amount: 1000000,
                                     credit_description: "credit_description",
@@ -723,6 +728,7 @@ describe("EntitlementsClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             days_until_due: 1000000,
                             id: "id",
+                            plan_billing_source: "custom_plan",
                             plan_id: "plan_id",
                             send_invoice: true,
                             status: "active",
@@ -801,6 +807,7 @@ describe("EntitlementsClient", () => {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
                                 billing_credit_can_buy_bundles: true,
+                                company_credit_amount: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -950,6 +957,7 @@ describe("EntitlementsClient", () => {
                                     billingCreditAutoTopupEnabled: true,
                                     billingCreditAutoTopupSelfService: true,
                                     billingCreditCanBuyBundles: true,
+                                    companyCreditAmount: 1000000,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     creditAmount: 1000000,
                                     creditDescription: "credit_description",
@@ -1073,6 +1081,7 @@ describe("EntitlementsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             daysUntilDue: 1000000,
                             id: "id",
+                            planBillingSource: "custom_plan",
                             planId: "plan_id",
                             sendInvoice: true,
                             status: "active",
@@ -1157,6 +1166,7 @@ describe("EntitlementsClient", () => {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
                                 billingCreditCanBuyBundles: true,
+                                companyCreditAmount: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -1426,6 +1436,7 @@ describe("EntitlementsClient", () => {
                                     billing_credit_auto_topup_enabled: true,
                                     billing_credit_auto_topup_self_service: true,
                                     billing_credit_can_buy_bundles: true,
+                                    company_credit_amount: 1000000,
                                     created_at: "2024-01-15T09:30:00Z",
                                     credit_amount: 1000000,
                                     credit_description: "credit_description",
@@ -1547,6 +1558,7 @@ describe("EntitlementsClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             days_until_due: 1000000,
                             id: "id",
+                            plan_billing_source: "custom_plan",
                             plan_id: "plan_id",
                             send_invoice: true,
                             status: "active",
@@ -1625,6 +1637,7 @@ describe("EntitlementsClient", () => {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
                                 billing_credit_can_buy_bundles: true,
+                                company_credit_amount: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -1769,6 +1782,7 @@ describe("EntitlementsClient", () => {
                                     billingCreditAutoTopupEnabled: true,
                                     billingCreditAutoTopupSelfService: true,
                                     billingCreditCanBuyBundles: true,
+                                    companyCreditAmount: 1000000,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     creditAmount: 1000000,
                                     creditDescription: "credit_description",
@@ -1892,6 +1906,7 @@ describe("EntitlementsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             daysUntilDue: 1000000,
                             id: "id",
+                            planBillingSource: "custom_plan",
                             planId: "plan_id",
                             sendInvoice: true,
                             status: "active",
@@ -1976,6 +1991,7 @@ describe("EntitlementsClient", () => {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
                                 billingCreditCanBuyBundles: true,
+                                companyCreditAmount: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -2201,6 +2217,7 @@ describe("EntitlementsClient", () => {
                                     billing_credit_auto_topup_enabled: true,
                                     billing_credit_auto_topup_self_service: true,
                                     billing_credit_can_buy_bundles: true,
+                                    company_credit_amount: 1000000,
                                     created_at: "2024-01-15T09:30:00Z",
                                     credit_amount: 1000000,
                                     credit_description: "credit_description",
@@ -2322,6 +2339,7 @@ describe("EntitlementsClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             days_until_due: 1000000,
                             id: "id",
+                            plan_billing_source: "custom_plan",
                             plan_id: "plan_id",
                             send_invoice: true,
                             status: "active",
@@ -2400,6 +2418,7 @@ describe("EntitlementsClient", () => {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
                                 billing_credit_can_buy_bundles: true,
+                                company_credit_amount: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -2547,6 +2566,7 @@ describe("EntitlementsClient", () => {
                                     billingCreditAutoTopupEnabled: true,
                                     billingCreditAutoTopupSelfService: true,
                                     billingCreditCanBuyBundles: true,
+                                    companyCreditAmount: 1000000,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     creditAmount: 1000000,
                                     creditDescription: "credit_description",
@@ -2670,6 +2690,7 @@ describe("EntitlementsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             daysUntilDue: 1000000,
                             id: "id",
+                            planBillingSource: "custom_plan",
                             planId: "plan_id",
                             sendInvoice: true,
                             status: "active",
@@ -2754,6 +2775,7 @@ describe("EntitlementsClient", () => {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
                                 billingCreditCanBuyBundles: true,
+                                companyCreditAmount: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -3288,6 +3310,7 @@ describe("EntitlementsClient", () => {
                                         billing_credit_auto_topup_enabled: true,
                                         billing_credit_auto_topup_self_service: true,
                                         billing_credit_can_buy_bundles: true,
+                                        company_credit_amount: 1000000,
                                         created_at: "2024-01-15T09:30:00Z",
                                         credit_amount: 1000000,
                                         credit_description: "credit_description",
@@ -3361,6 +3384,7 @@ describe("EntitlementsClient", () => {
                                 created_at: "2024-01-15T09:30:00Z",
                                 days_until_due: 1000000,
                                 id: "id",
+                                plan_billing_source: "custom_plan",
                                 plan_id: "plan_id",
                                 send_invoice: true,
                                 status: "active",
@@ -3683,6 +3707,7 @@ describe("EntitlementsClient", () => {
                                         billingCreditAutoTopupEnabled: true,
                                         billingCreditAutoTopupSelfService: true,
                                         billingCreditCanBuyBundles: true,
+                                        companyCreditAmount: 1000000,
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         creditAmount: 1000000,
                                         creditDescription: "credit_description",
@@ -3756,6 +3781,7 @@ describe("EntitlementsClient", () => {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 daysUntilDue: 1000000,
                                 id: "id",
+                                planBillingSource: "custom_plan",
                                 planId: "plan_id",
                                 sendInvoice: true,
                                 status: "active",
@@ -4866,6 +4892,182 @@ describe("EntitlementsClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("listFeatureUsageHistory (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    company_id: "company_id",
+                    event_subtype: "event_subtype",
+                    feature_id: "feature_id",
+                    period_end: "2024-01-15T09:30:00Z",
+                    period_start: "2024-01-15T09:30:00Z",
+                    usage: 1000000,
+                },
+            ],
+            params: {
+                company_ids: ["company_ids"],
+                end_time: "2024-01-15T09:30:00Z",
+                feature_ids: ["feature_ids"],
+                granularity: "daily",
+                limit: 1000000,
+                offset: 1000000,
+                start_time: "2024-01-15T09:30:00Z",
+            },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/feature-usage-history")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.entitlements.listFeatureUsageHistory({
+            companyIds: ["company_ids"],
+            endTime: new Date("2024-01-15T09:30:00.000Z"),
+            featureIds: ["feature_ids"],
+            granularity: "daily",
+            startTime: new Date("2024-01-15T09:30:00.000Z"),
+            limit: 1000000,
+            offset: 1000000,
+        });
+        expect(response).toEqual({
+            data: [
+                {
+                    companyId: "company_id",
+                    eventSubtype: "event_subtype",
+                    featureId: "feature_id",
+                    periodEnd: new Date("2024-01-15T09:30:00.000Z"),
+                    periodStart: new Date("2024-01-15T09:30:00.000Z"),
+                    usage: 1000000,
+                },
+            ],
+            params: {
+                companyIds: ["company_ids"],
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                featureIds: ["feature_ids"],
+                granularity: "daily",
+                limit: 1000000,
+                offset: 1000000,
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+            },
+        });
+    });
+
+    test("listFeatureUsageHistory (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/feature-usage-history")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.listFeatureUsageHistory({
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("listFeatureUsageHistory (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/feature-usage-history")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.listFeatureUsageHistory({
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("listFeatureUsageHistory (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/feature-usage-history")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.listFeatureUsageHistory({
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("listFeatureUsageHistory (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/feature-usage-history")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.listFeatureUsageHistory({
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("listFeatureUsageHistory (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/feature-usage-history")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.listFeatureUsageHistory({
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("getFeatureUsageTimeSeries (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -5200,6 +5402,7 @@ describe("EntitlementsClient", () => {
                                         billing_credit_auto_topup_enabled: true,
                                         billing_credit_auto_topup_self_service: true,
                                         billing_credit_can_buy_bundles: true,
+                                        company_credit_amount: 1000000,
                                         created_at: "2024-01-15T09:30:00Z",
                                         credit_amount: 1000000,
                                         credit_description: "credit_description",
@@ -5273,6 +5476,7 @@ describe("EntitlementsClient", () => {
                                 created_at: "2024-01-15T09:30:00Z",
                                 days_until_due: 1000000,
                                 id: "id",
+                                plan_billing_source: "custom_plan",
                                 plan_id: "plan_id",
                                 send_invoice: true,
                                 status: "active",
@@ -5494,6 +5698,7 @@ describe("EntitlementsClient", () => {
                                         billingCreditAutoTopupEnabled: true,
                                         billingCreditAutoTopupSelfService: true,
                                         billingCreditCanBuyBundles: true,
+                                        companyCreditAmount: 1000000,
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         creditAmount: 1000000,
                                         creditDescription: "credit_description",
@@ -5567,6 +5772,7 @@ describe("EntitlementsClient", () => {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 daysUntilDue: 1000000,
                                 id: "id",
+                                planBillingSource: "custom_plan",
                                 planId: "plan_id",
                                 sendInvoice: true,
                                 status: "active",
@@ -9200,6 +9406,7 @@ describe("EntitlementsClient", () => {
                                         created_at: "2024-01-15T09:30:00Z",
                                         days_until_due: 1000000,
                                         id: "id",
+                                        plan_billing_source: "custom_plan",
                                         plan_id: "plan_id",
                                         send_invoice: true,
                                         status: "active",
@@ -9211,6 +9418,7 @@ describe("EntitlementsClient", () => {
                                         created_at: "2024-01-15T09:30:00Z",
                                         days_until_due: 1000000,
                                         id: "id",
+                                        plan_billing_source: "custom_plan",
                                         plan_id: "plan_id",
                                         send_invoice: true,
                                         status: "active",
@@ -10142,6 +10350,7 @@ describe("EntitlementsClient", () => {
                                         created_at: "2024-01-15T09:30:00Z",
                                         days_until_due: 1000000,
                                         id: "id",
+                                        plan_billing_source: "custom_plan",
                                         plan_id: "plan_id",
                                         send_invoice: true,
                                         status: "active",
@@ -10153,6 +10362,7 @@ describe("EntitlementsClient", () => {
                                         created_at: "2024-01-15T09:30:00Z",
                                         days_until_due: 1000000,
                                         id: "id",
+                                        plan_billing_source: "custom_plan",
                                         plan_id: "plan_id",
                                         send_invoice: true,
                                         status: "active",
@@ -11109,6 +11319,7 @@ describe("EntitlementsClient", () => {
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         daysUntilDue: 1000000,
                                         id: "id",
+                                        planBillingSource: "custom_plan",
                                         planId: "plan_id",
                                         sendInvoice: true,
                                         status: "active",
@@ -11120,6 +11331,7 @@ describe("EntitlementsClient", () => {
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         daysUntilDue: 1000000,
                                         id: "id",
+                                        planBillingSource: "custom_plan",
                                         planId: "plan_id",
                                         sendInvoice: true,
                                         status: "active",
@@ -12110,6 +12322,7 @@ describe("EntitlementsClient", () => {
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         daysUntilDue: 1000000,
                                         id: "id",
+                                        planBillingSource: "custom_plan",
                                         planId: "plan_id",
                                         sendInvoice: true,
                                         status: "active",
@@ -12121,6 +12334,7 @@ describe("EntitlementsClient", () => {
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         daysUntilDue: 1000000,
                                         id: "id",
+                                        planBillingSource: "custom_plan",
                                         planId: "plan_id",
                                         sendInvoice: true,
                                         status: "active",

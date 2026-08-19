@@ -4,12 +4,16 @@ import type * as Schematic from "../index";
 
 export interface CustomPlanBillingResponseData {
     activationStrategy: Schematic.CustomPlanActivationStrategy;
+    /** The billing period renewal date pinned when the subscription started, when one was set. When no invoice exists yet, the first invoice is raised on this date. */
+    billingCycleAnchor?: Date;
     companyId: string;
     createdAt: Date;
     daysUntilDue: number;
     externalInvoiceId?: string;
     id: string;
     paidAt?: Date;
+    /** The flow that created this billing record: a custom plan, or a standard plan assigned by invoice through Manage Plan. */
+    planBillingSource: Schematic.PlanBillingSource;
     planId: string;
     publishedAt?: Date;
     sendInvoice: boolean;

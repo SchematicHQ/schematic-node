@@ -9,6 +9,8 @@ export interface EventBodyFlagCheck {
     flagId?: string;
     /** The key of the flag being checked */
     flagKey: string;
+    /** Whether the check was a preflight, asking whether an action would be allowed rather than reporting one that happened. Absent on ordinary checks */
+    preflight?: boolean;
     /** The reason why the value was returned */
     reason: string;
     /** Key-value pairs used to to identify company for which the flag was checked */

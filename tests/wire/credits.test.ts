@@ -1118,6 +1118,7 @@ describe("CreditsClient", () => {
                 {
                     billing_invoice_id: "billing_invoice_id",
                     bundle_type: "fixed",
+                    compatible_plan_ids: ["compatible_plan_ids"],
                     created_at: "2024-01-15T09:30:00Z",
                     credit_description: "credit_description",
                     credit_icon: "credit_icon",
@@ -1188,6 +1189,7 @@ describe("CreditsClient", () => {
                 {
                     billingInvoiceId: "billing_invoice_id",
                     bundleType: "fixed",
+                    compatiblePlanIds: ["compatible_plan_ids"],
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     creditDescription: "credit_description",
                     creditIcon: "credit_icon",
@@ -1350,6 +1352,7 @@ describe("CreditsClient", () => {
             data: {
                 billing_invoice_id: "billing_invoice_id",
                 bundle_type: "fixed",
+                compatible_plan_ids: ["compatible_plan_ids"],
                 created_at: "2024-01-15T09:30:00Z",
                 credit_description: "credit_description",
                 credit_icon: "credit_icon",
@@ -1414,6 +1417,7 @@ describe("CreditsClient", () => {
             data: {
                 billingInvoiceId: "billing_invoice_id",
                 bundleType: "fixed",
+                compatiblePlanIds: ["compatible_plan_ids"],
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 creditDescription: "credit_description",
                 creditIcon: "credit_icon",
@@ -1472,7 +1476,7 @@ describe("CreditsClient", () => {
         const rawRequestBody = {
             bundle_name: "bundle_name",
             credit_id: "credit_id",
-            currency: "currency",
+            currency: "foo",
             price_per_unit: 1000000,
         };
         const rawResponseBody = { error: "error" };
@@ -1490,7 +1494,7 @@ describe("CreditsClient", () => {
             return await client.credits.createCreditBundle({
                 bundleName: "bundle_name",
                 creditId: "credit_id",
-                currency: "currency",
+                currency: "foo",
                 pricePerUnit: 1000000,
             });
         }).rejects.toThrow(Schematic.BadRequestError);
@@ -1502,7 +1506,7 @@ describe("CreditsClient", () => {
         const rawRequestBody = {
             bundle_name: "bundle_name",
             credit_id: "credit_id",
-            currency: "currency",
+            currency: "foo",
             price_per_unit: 1000000,
         };
         const rawResponseBody = { error: "error" };
@@ -1520,7 +1524,7 @@ describe("CreditsClient", () => {
             return await client.credits.createCreditBundle({
                 bundleName: "bundle_name",
                 creditId: "credit_id",
-                currency: "currency",
+                currency: "foo",
                 pricePerUnit: 1000000,
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
@@ -1532,7 +1536,7 @@ describe("CreditsClient", () => {
         const rawRequestBody = {
             bundle_name: "bundle_name",
             credit_id: "credit_id",
-            currency: "currency",
+            currency: "foo",
             price_per_unit: 1000000,
         };
         const rawResponseBody = { error: "error" };
@@ -1550,7 +1554,7 @@ describe("CreditsClient", () => {
             return await client.credits.createCreditBundle({
                 bundleName: "bundle_name",
                 creditId: "credit_id",
-                currency: "currency",
+                currency: "foo",
                 pricePerUnit: 1000000,
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
@@ -1562,7 +1566,7 @@ describe("CreditsClient", () => {
         const rawRequestBody = {
             bundle_name: "bundle_name",
             credit_id: "credit_id",
-            currency: "currency",
+            currency: "foo",
             price_per_unit: 1000000,
         };
         const rawResponseBody = { error: "error" };
@@ -1580,7 +1584,7 @@ describe("CreditsClient", () => {
             return await client.credits.createCreditBundle({
                 bundleName: "bundle_name",
                 creditId: "credit_id",
-                currency: "currency",
+                currency: "foo",
                 pricePerUnit: 1000000,
             });
         }).rejects.toThrow(Schematic.NotFoundError);
@@ -1592,7 +1596,7 @@ describe("CreditsClient", () => {
         const rawRequestBody = {
             bundle_name: "bundle_name",
             credit_id: "credit_id",
-            currency: "currency",
+            currency: "foo",
             price_per_unit: 1000000,
         };
         const rawResponseBody = { error: "error" };
@@ -1610,7 +1614,7 @@ describe("CreditsClient", () => {
             return await client.credits.createCreditBundle({
                 bundleName: "bundle_name",
                 creditId: "credit_id",
-                currency: "currency",
+                currency: "foo",
                 pricePerUnit: 1000000,
             });
         }).rejects.toThrow(Schematic.InternalServerError);
@@ -1624,6 +1628,7 @@ describe("CreditsClient", () => {
             data: {
                 billing_invoice_id: "billing_invoice_id",
                 bundle_type: "fixed",
+                compatible_plan_ids: ["compatible_plan_ids"],
                 created_at: "2024-01-15T09:30:00Z",
                 credit_description: "credit_description",
                 credit_icon: "credit_icon",
@@ -1682,6 +1687,7 @@ describe("CreditsClient", () => {
             data: {
                 billingInvoiceId: "billing_invoice_id",
                 bundleType: "fixed",
+                compatiblePlanIds: ["compatible_plan_ids"],
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 creditDescription: "credit_description",
                 creditIcon: "credit_icon",
@@ -1818,6 +1824,7 @@ describe("CreditsClient", () => {
             data: {
                 billing_invoice_id: "billing_invoice_id",
                 bundle_type: "fixed",
+                compatible_plan_ids: ["compatible_plan_ids"],
                 created_at: "2024-01-15T09:30:00Z",
                 credit_description: "credit_description",
                 credit_icon: "credit_icon",
@@ -1880,6 +1887,7 @@ describe("CreditsClient", () => {
             data: {
                 billingInvoiceId: "billing_invoice_id",
                 bundleType: "fixed",
+                compatiblePlanIds: ["compatible_plan_ids"],
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 creditDescription: "credit_description",
                 creditIcon: "credit_icon",
@@ -2447,6 +2455,7 @@ describe("CreditsClient", () => {
         const rawResponseBody = {
             data: {
                 company_id: "company_id",
+                company_license_id: "company_license_id",
                 company_name: "company_name",
                 created_at: "2024-01-15T09:30:00Z",
                 credit_icon: "credit_icon",
@@ -2456,6 +2465,7 @@ describe("CreditsClient", () => {
                 expires_at: "2024-01-15T09:30:00Z",
                 grant_reason: "adjustment",
                 id: "id",
+                license_name: "license_name",
                 plan_id: "plan_id",
                 plan_name: "plan_name",
                 price: {
@@ -2510,6 +2520,7 @@ describe("CreditsClient", () => {
         expect(response).toEqual({
             data: {
                 companyId: "company_id",
+                companyLicenseId: "company_license_id",
                 companyName: "company_name",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 creditIcon: "credit_icon",
@@ -2519,6 +2530,7 @@ describe("CreditsClient", () => {
                 expiresAt: new Date("2024-01-15T09:30:00.000Z"),
                 grantReason: "adjustment",
                 id: "id",
+                licenseName: "license_name",
                 planId: "plan_id",
                 planName: "plan_name",
                 price: {
@@ -2675,6 +2687,7 @@ describe("CreditsClient", () => {
         const rawResponseBody = {
             data: {
                 company_id: "company_id",
+                company_license_id: "company_license_id",
                 company_name: "company_name",
                 created_at: "2024-01-15T09:30:00Z",
                 credit_icon: "credit_icon",
@@ -2684,6 +2697,7 @@ describe("CreditsClient", () => {
                 expires_at: "2024-01-15T09:30:00Z",
                 grant_reason: "adjustment",
                 id: "id",
+                license_name: "license_name",
                 plan_id: "plan_id",
                 plan_name: "plan_name",
                 price: {
@@ -2743,6 +2757,7 @@ describe("CreditsClient", () => {
         expect(response).toEqual({
             data: {
                 companyId: "company_id",
+                companyLicenseId: "company_license_id",
                 companyName: "company_name",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 creditIcon: "credit_icon",
@@ -2752,6 +2767,7 @@ describe("CreditsClient", () => {
                 expiresAt: new Date("2024-01-15T09:30:00.000Z"),
                 grantReason: "adjustment",
                 id: "id",
+                licenseName: "license_name",
                 planId: "plan_id",
                 planName: "plan_name",
                 price: {
@@ -2999,7 +3015,9 @@ describe("CreditsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.credits.countCompanyGrants();
+            return await client.credits.countCompanyGrants({
+                companyId: "company_id",
+            });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
 
@@ -3018,7 +3036,9 @@ describe("CreditsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.credits.countCompanyGrants();
+            return await client.credits.countCompanyGrants({
+                companyId: "company_id",
+            });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
 
@@ -3037,7 +3057,9 @@ describe("CreditsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.credits.countCompanyGrants();
+            return await client.credits.countCompanyGrants({
+                companyId: "company_id",
+            });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
 
@@ -3056,7 +3078,9 @@ describe("CreditsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.credits.countCompanyGrants();
+            return await client.credits.countCompanyGrants({
+                companyId: "company_id",
+            });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
 
@@ -3075,7 +3099,9 @@ describe("CreditsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.credits.countCompanyGrants();
+            return await client.credits.countCompanyGrants({
+                companyId: "company_id",
+            });
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
@@ -3087,6 +3113,7 @@ describe("CreditsClient", () => {
             data: [
                 {
                     company_id: "company_id",
+                    company_license_id: "company_license_id",
                     company_name: "company_name",
                     created_at: "2024-01-15T09:30:00Z",
                     credit_icon: "credit_icon",
@@ -3096,6 +3123,7 @@ describe("CreditsClient", () => {
                     expires_at: "2024-01-15T09:30:00Z",
                     grant_reason: "adjustment",
                     id: "id",
+                    license_name: "license_name",
                     plan_id: "plan_id",
                     plan_name: "plan_name",
                     price: {
@@ -3155,6 +3183,7 @@ describe("CreditsClient", () => {
             data: [
                 {
                     companyId: "company_id",
+                    companyLicenseId: "company_license_id",
                     companyName: "company_name",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     creditIcon: "credit_icon",
@@ -3164,6 +3193,7 @@ describe("CreditsClient", () => {
                     expiresAt: new Date("2024-01-15T09:30:00.000Z"),
                     grantReason: "adjustment",
                     id: "id",
+                    licenseName: "license_name",
                     planId: "plan_id",
                     planName: "plan_name",
                     price: {
@@ -3226,7 +3256,9 @@ describe("CreditsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.credits.listCompanyGrants();
+            return await client.credits.listCompanyGrants({
+                companyId: "company_id",
+            });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
 
@@ -3245,7 +3277,9 @@ describe("CreditsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.credits.listCompanyGrants();
+            return await client.credits.listCompanyGrants({
+                companyId: "company_id",
+            });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
 
@@ -3264,7 +3298,9 @@ describe("CreditsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.credits.listCompanyGrants();
+            return await client.credits.listCompanyGrants({
+                companyId: "company_id",
+            });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
 
@@ -3283,7 +3319,9 @@ describe("CreditsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.credits.listCompanyGrants();
+            return await client.credits.listCompanyGrants({
+                companyId: "company_id",
+            });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
 
@@ -3302,7 +3340,9 @@ describe("CreditsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.credits.listCompanyGrants();
+            return await client.credits.listCompanyGrants({
+                companyId: "company_id",
+            });
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
@@ -3445,6 +3485,7 @@ describe("CreditsClient", () => {
             data: [
                 {
                     company_id: "company_id",
+                    company_license_id: "company_license_id",
                     company_name: "company_name",
                     created_at: "2024-01-15T09:30:00Z",
                     credit_icon: "credit_icon",
@@ -3454,6 +3495,7 @@ describe("CreditsClient", () => {
                     expires_at: "2024-01-15T09:30:00Z",
                     grant_reason: "adjustment",
                     id: "id",
+                    license_name: "license_name",
                     plan_id: "plan_id",
                     plan_name: "plan_name",
                     price: {
@@ -3512,6 +3554,7 @@ describe("CreditsClient", () => {
             data: [
                 {
                     companyId: "company_id",
+                    companyLicenseId: "company_license_id",
                     companyName: "company_name",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     creditIcon: "credit_icon",
@@ -3521,6 +3564,7 @@ describe("CreditsClient", () => {
                     expiresAt: new Date("2024-01-15T09:30:00.000Z"),
                     grantReason: "adjustment",
                     id: "id",
+                    licenseName: "license_name",
                     planId: "plan_id",
                     planName: "plan_name",
                     price: {
@@ -4173,6 +4217,7 @@ describe("CreditsClient", () => {
                     auto_topup_threshold_credits: 1000000,
                     auto_topup_threshold_percent: 1000000,
                     can_buy_bundles: true,
+                    company_credit_amount: 1000000,
                     created_at: "2024-01-15T09:30:00Z",
                     credit: {
                         burn_strategy: "expiration_priority",
@@ -4250,6 +4295,7 @@ describe("CreditsClient", () => {
                     autoTopupThresholdCredits: 1000000,
                     autoTopupThresholdPercent: 1000000,
                     canBuyBundles: true,
+                    companyCreditAmount: 1000000,
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     credit: {
                         burnStrategy: "expiration_priority",
@@ -4421,6 +4467,7 @@ describe("CreditsClient", () => {
                 auto_topup_threshold_credits: 1000000,
                 auto_topup_threshold_percent: 1000000,
                 can_buy_bundles: true,
+                company_credit_amount: 1000000,
                 created_at: "2024-01-15T09:30:00Z",
                 credit: {
                     burn_strategy: "expiration_priority",
@@ -4512,6 +4559,7 @@ describe("CreditsClient", () => {
                 autoTopupThresholdCredits: 1000000,
                 autoTopupThresholdPercent: 1000000,
                 canBuyBundles: true,
+                companyCreditAmount: 1000000,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 credit: {
                     burnStrategy: "expiration_priority",
@@ -4763,6 +4811,7 @@ describe("CreditsClient", () => {
                 auto_topup_threshold_credits: 1000000,
                 auto_topup_threshold_percent: 1000000,
                 can_buy_bundles: true,
+                company_credit_amount: 1000000,
                 created_at: "2024-01-15T09:30:00Z",
                 credit: {
                     burn_strategy: "expiration_priority",
@@ -4847,6 +4896,7 @@ describe("CreditsClient", () => {
                 autoTopupThresholdCredits: 1000000,
                 autoTopupThresholdPercent: 1000000,
                 canBuyBundles: true,
+                companyCreditAmount: 1000000,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 credit: {
                     burnStrategy: "expiration_priority",
@@ -5014,6 +5064,7 @@ describe("CreditsClient", () => {
                 auto_topup_threshold_credits: 1000000,
                 auto_topup_threshold_percent: 1000000,
                 can_buy_bundles: true,
+                company_credit_amount: 1000000,
                 created_at: "2024-01-15T09:30:00Z",
                 credit: {
                     burn_strategy: "expiration_priority",
@@ -5102,6 +5153,7 @@ describe("CreditsClient", () => {
                 autoTopupThresholdCredits: 1000000,
                 autoTopupThresholdPercent: 1000000,
                 canBuyBundles: true,
+                companyCreditAmount: 1000000,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 credit: {
                     burnStrategy: "expiration_priority",

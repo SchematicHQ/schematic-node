@@ -14,6 +14,7 @@ export const PlanVersionMigrationPreviewCompanyResponseData: core.serialization.
     note: core.serialization.string().optional(),
     planVersionIdFrom: core.serialization.property("plan_version_id_from", core.serialization.string().optional()),
     willUpdateSubscription: core.serialization.property("will_update_subscription", core.serialization.boolean()),
+    wouldFail: core.serialization.property("would_fail", core.serialization.boolean()),
 });
 
 export declare namespace PlanVersionMigrationPreviewCompanyResponseData {
@@ -24,5 +25,6 @@ export declare namespace PlanVersionMigrationPreviewCompanyResponseData {
         note?: string | null;
         plan_version_id_from?: string | null;
         will_update_subscription: boolean;
+        would_fail: boolean;
     }
 }

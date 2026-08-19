@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { MigrationProrationBehavior } from "./MigrationProrationBehavior";
 import { PlanVersionMigrationStatus } from "./PlanVersionMigrationStatus";
 import { PlanVersionMigrationStrategy } from "./PlanVersionMigrationStrategy";
 
@@ -23,6 +24,7 @@ export const PlanVersionMigrationResponseData: core.serialization.ObjectSchema<
         "plan_version_ids_from",
         core.serialization.list(core.serialization.string()),
     ),
+    prorationBehavior: core.serialization.property("proration_behavior", MigrationProrationBehavior.optional()),
     skippedCompanies: core.serialization.property("skipped_companies", core.serialization.number()),
     startedAt: core.serialization.property("started_at", core.serialization.date().optional()),
     status: PlanVersionMigrationStatus,
@@ -43,6 +45,7 @@ export declare namespace PlanVersionMigrationResponseData {
         plan_version_id_from?: string | null;
         plan_version_id_to: string;
         plan_version_ids_from: string[];
+        proration_behavior?: MigrationProrationBehavior.Raw | null;
         skipped_companies: number;
         started_at?: string | null;
         status: PlanVersionMigrationStatus.Raw;

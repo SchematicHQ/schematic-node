@@ -1,6 +1,6 @@
 {
     "name": "@schematichq/schematic-typescript-node",
-    "version": "1.5.8",
+    "version": "1.5.9",
     "private": false,
     "repository": {
         "type": "git",
@@ -56,9 +56,6 @@
         "stream": false,
         "crypto": false,
         "timers": false
-    },
-    "resolutions": {
-        "undici": "7.29.0"
     },
     "packageManager": "yarn@1.22.22",
     "engines": {

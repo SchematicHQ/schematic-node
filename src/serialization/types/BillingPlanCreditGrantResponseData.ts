@@ -37,6 +37,7 @@ export const BillingPlanCreditGrantResponseData: core.serialization.ObjectSchema
         core.serialization.number().optional(),
     ),
     canBuyBundles: core.serialization.property("can_buy_bundles", core.serialization.boolean()),
+    companyCreditAmount: core.serialization.property("company_credit_amount", core.serialization.number()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     credit: BillingCreditResponseData.optional(),
     creditAmount: core.serialization.property("credit_amount", core.serialization.number()),
@@ -74,6 +75,7 @@ export declare namespace BillingPlanCreditGrantResponseData {
         auto_topup_threshold_credits?: number | null;
         auto_topup_threshold_percent?: number | null;
         can_buy_bundles: boolean;
+        company_credit_amount: number;
         created_at: string;
         credit?: BillingCreditResponseData.Raw | null;
         credit_amount: number;

@@ -9,6 +9,7 @@ import type * as Schematic from "../../../../index";
  *         checkoutCollectAddress: true,
  *         checkoutCollectEmail: true,
  *         checkoutCollectPhone: true,
+ *         checkoutCollectTaxId: true,
  *         enableTaxCollection: true,
  *         optInEnabled: true,
  *         orderedAddOns: [{
@@ -36,9 +37,11 @@ export interface CreatePlanGroupRequestBody {
     addOnCompatibilities?: Schematic.CompatiblePlans[];
     /** Use OrderedAddOns instead */
     addOnIds: string[];
+    checkoutBundlePurchaseBehavior?: Schematic.CheckoutBundlePurchaseBehavior;
     checkoutCollectAddress: boolean;
     checkoutCollectEmail: boolean;
     checkoutCollectPhone: boolean;
+    checkoutCollectTaxId: boolean;
     customCheckoutFields?: Schematic.CheckoutFieldInput[];
     customPlanConfig?: Schematic.CustomPlanConfig;
     customPlanId?: string;

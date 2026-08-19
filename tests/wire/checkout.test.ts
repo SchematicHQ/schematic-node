@@ -920,6 +920,7 @@ describe("CheckoutClient", () => {
                             auto_topup_enabled: true,
                             auto_topup_self_service: true,
                             can_buy_bundles: true,
+                            company_credit_amount: 1000000,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_id: "credit_id",
@@ -997,6 +998,7 @@ describe("CheckoutClient", () => {
                 available_credit_bundles: [
                     {
                         bundle_type: "fixed",
+                        compatible_plan_ids: ["compatible_plan_ids"],
                         created_at: "2024-01-15T09:30:00Z",
                         credit_id: "credit_id",
                         credit_name: "credit_name",
@@ -1019,6 +1021,7 @@ describe("CheckoutClient", () => {
                                     billing_credit_auto_topup_enabled: true,
                                     billing_credit_auto_topup_self_service: true,
                                     billing_credit_can_buy_bundles: true,
+                                    company_credit_amount: 1000000,
                                     created_at: "2024-01-15T09:30:00Z",
                                     credit_amount: 1000000,
                                     credit_description: "credit_description",
@@ -1140,6 +1143,7 @@ describe("CheckoutClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             days_until_due: 1000000,
                             id: "id",
+                            plan_billing_source: "custom_plan",
                             plan_id: "plan_id",
                             send_invoice: true,
                             status: "active",
@@ -1218,6 +1222,7 @@ describe("CheckoutClient", () => {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
                                 billing_credit_can_buy_bundles: true,
+                                company_credit_amount: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -1483,6 +1488,7 @@ describe("CheckoutClient", () => {
                             auto_topup_enabled: true,
                             auto_topup_self_service: true,
                             can_buy_bundles: true,
+                            company_credit_amount: 1000000,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_id: "credit_id",
@@ -2005,6 +2011,7 @@ describe("CheckoutClient", () => {
                             autoTopupEnabled: true,
                             autoTopupSelfService: true,
                             canBuyBundles: true,
+                            companyCreditAmount: 1000000,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditId: "credit_id",
@@ -2087,6 +2094,7 @@ describe("CheckoutClient", () => {
                 availableCreditBundles: [
                     {
                         bundleType: "fixed",
+                        compatiblePlanIds: ["compatible_plan_ids"],
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         creditId: "credit_id",
                         creditName: "credit_name",
@@ -2113,6 +2121,7 @@ describe("CheckoutClient", () => {
                                     billingCreditAutoTopupEnabled: true,
                                     billingCreditAutoTopupSelfService: true,
                                     billingCreditCanBuyBundles: true,
+                                    companyCreditAmount: 1000000,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     creditAmount: 1000000,
                                     creditDescription: "credit_description",
@@ -2236,6 +2245,7 @@ describe("CheckoutClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             daysUntilDue: 1000000,
                             id: "id",
+                            planBillingSource: "custom_plan",
                             planId: "plan_id",
                             sendInvoice: true,
                             status: "active",
@@ -2320,6 +2330,7 @@ describe("CheckoutClient", () => {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
                                 billingCreditCanBuyBundles: true,
+                                companyCreditAmount: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -2635,6 +2646,7 @@ describe("CheckoutClient", () => {
                             autoTopupEnabled: true,
                             autoTopupSelfService: true,
                             canBuyBundles: true,
+                            companyCreditAmount: 1000000,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditId: "credit_id",
@@ -2924,6 +2936,7 @@ describe("CheckoutClient", () => {
                 due_now: 1000000,
                 finance: {
                     amount_off: 1000000,
+                    discount_amount: 1000000,
                     discounts: [
                         {
                             coupon_name: "coupon_name",
@@ -3027,6 +3040,7 @@ describe("CheckoutClient", () => {
                 dueNow: 1000000,
                 finance: {
                     amountOff: 1000000,
+                    discountAmount: 1000000,
                     discounts: [
                         {
                             couponName: "coupon_name",
@@ -3587,7 +3601,12 @@ describe("CheckoutClient", () => {
                     postal_code: "postal_code",
                     state: "state",
                 },
-                checkout_settings: { collect_address: true, collect_email: true, collect_phone: true },
+                checkout_settings: {
+                    collect_address: true,
+                    collect_email: true,
+                    collect_phone: true,
+                    collect_tax_id: true,
+                },
                 custom_fields: [
                     {
                         definition_id: "definition_id",
@@ -3627,6 +3646,7 @@ describe("CheckoutClient", () => {
                     collectAddress: true,
                     collectEmail: true,
                     collectPhone: true,
+                    collectTaxId: true,
                 },
                 customFields: [
                     {
@@ -3744,7 +3764,12 @@ describe("CheckoutClient", () => {
                     postal_code: "postal_code",
                     state: "state",
                 },
-                checkout_settings: { collect_address: true, collect_email: true, collect_phone: true },
+                checkout_settings: {
+                    collect_address: true,
+                    collect_email: true,
+                    collect_phone: true,
+                    collect_tax_id: true,
+                },
                 custom_fields: [
                     {
                         definition_id: "definition_id",
@@ -3792,6 +3817,7 @@ describe("CheckoutClient", () => {
                     collectAddress: true,
                     collectEmail: true,
                     collectPhone: true,
+                    collectTaxId: true,
                 },
                 customFields: [
                     {
@@ -4020,6 +4046,7 @@ describe("CheckoutClient", () => {
                                     billing_credit_auto_topup_enabled: true,
                                     billing_credit_auto_topup_self_service: true,
                                     billing_credit_can_buy_bundles: true,
+                                    company_credit_amount: 1000000,
                                     created_at: "2024-01-15T09:30:00Z",
                                     credit_amount: 1000000,
                                     credit_description: "credit_description",
@@ -4141,6 +4168,7 @@ describe("CheckoutClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             days_until_due: 1000000,
                             id: "id",
+                            plan_billing_source: "custom_plan",
                             plan_id: "plan_id",
                             send_invoice: true,
                             status: "active",
@@ -4219,6 +4247,7 @@ describe("CheckoutClient", () => {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
                                 billing_credit_can_buy_bundles: true,
+                                company_credit_amount: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -4338,6 +4367,7 @@ describe("CheckoutClient", () => {
                                     billingCreditAutoTopupEnabled: true,
                                     billingCreditAutoTopupSelfService: true,
                                     billingCreditCanBuyBundles: true,
+                                    companyCreditAmount: 1000000,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     creditAmount: 1000000,
                                     creditDescription: "credit_description",
@@ -4461,6 +4491,7 @@ describe("CheckoutClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             daysUntilDue: 1000000,
                             id: "id",
+                            planBillingSource: "custom_plan",
                             planId: "plan_id",
                             sendInvoice: true,
                             status: "active",
@@ -4545,6 +4576,7 @@ describe("CheckoutClient", () => {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
                                 billingCreditCanBuyBundles: true,
+                                companyCreditAmount: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -5020,6 +5052,7 @@ describe("CheckoutClient", () => {
                     due_now: 1000000,
                     finance: {
                         amount_off: 1000000,
+                        discount_amount: 1000000,
                         discounts: [
                             {
                                 coupon_name: "coupon_name",
@@ -5113,6 +5146,7 @@ describe("CheckoutClient", () => {
                     dueNow: 1000000,
                     finance: {
                         amountOff: 1000000,
+                        discountAmount: 1000000,
                         discounts: [
                             {
                                 couponName: "coupon_name",
@@ -5557,6 +5591,7 @@ describe("CheckoutClient", () => {
                                     billing_credit_auto_topup_enabled: true,
                                     billing_credit_auto_topup_self_service: true,
                                     billing_credit_can_buy_bundles: true,
+                                    company_credit_amount: 1000000,
                                     created_at: "2024-01-15T09:30:00Z",
                                     credit_amount: 1000000,
                                     credit_description: "credit_description",
@@ -5678,6 +5713,7 @@ describe("CheckoutClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             days_until_due: 1000000,
                             id: "id",
+                            plan_billing_source: "custom_plan",
                             plan_id: "plan_id",
                             send_invoice: true,
                             status: "active",
@@ -5756,6 +5792,7 @@ describe("CheckoutClient", () => {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
                                 billing_credit_can_buy_bundles: true,
+                                company_credit_amount: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -5852,6 +5889,7 @@ describe("CheckoutClient", () => {
                                     billingCreditAutoTopupEnabled: true,
                                     billingCreditAutoTopupSelfService: true,
                                     billingCreditCanBuyBundles: true,
+                                    companyCreditAmount: 1000000,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     creditAmount: 1000000,
                                     creditDescription: "credit_description",
@@ -5975,6 +6013,7 @@ describe("CheckoutClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             daysUntilDue: 1000000,
                             id: "id",
+                            planBillingSource: "custom_plan",
                             planId: "plan_id",
                             sendInvoice: true,
                             status: "active",
@@ -6059,6 +6098,7 @@ describe("CheckoutClient", () => {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
                                 billingCreditCanBuyBundles: true,
+                                companyCreditAmount: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",

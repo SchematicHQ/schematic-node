@@ -12,7 +12,7 @@ import type * as Schematic from "../../../../index";
  *     }
  */
 export interface ListMigrationsRequest {
-    planVersionId?: string;
+    planVersionId: string;
     status?: Schematic.PlanVersionMigrationStatus;
     /** Page limit (default 100) */
     limit?: number;

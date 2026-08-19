@@ -13,6 +13,10 @@ export const UpdateCreditBundleDetailsRequestBody: core.serialization.Schema<
     Schematic.UpdateCreditBundleDetailsRequestBody
 > = core.serialization.object({
     bundleName: core.serialization.property("bundle_name", core.serialization.string()),
+    compatiblePlanIds: core.serialization.property(
+        "compatible_plan_ids",
+        core.serialization.list(core.serialization.string()).optional(),
+    ),
     currencyPrices: core.serialization.property(
         "currency_prices",
         core.serialization.list(CreditBundleCurrencyPriceRequestBody).optional(),
@@ -29,6 +33,7 @@ export const UpdateCreditBundleDetailsRequestBody: core.serialization.Schema<
 export declare namespace UpdateCreditBundleDetailsRequestBody {
     export interface Raw {
         bundle_name: string;
+        compatible_plan_ids?: string[] | null;
         currency_prices?: CreditBundleCurrencyPriceRequestBody.Raw[] | null;
         expiry_type?: BillingCreditExpiryType.Raw | null;
         expiry_unit?: BillingCreditExpiryUnit.Raw | null;

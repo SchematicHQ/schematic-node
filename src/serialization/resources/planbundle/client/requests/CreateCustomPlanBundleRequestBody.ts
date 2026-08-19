@@ -12,20 +12,20 @@ export const CreateCustomPlanBundleRequestBody: core.serialization.Schema<
     serializers.CreateCustomPlanBundleRequestBody.Raw,
     Schematic.CreateCustomPlanBundleRequestBody
 > = core.serialization.object({
-    billingProduct: core.serialization.property("billing_product", UpsertBillingProductRequestBody.optional()),
+    billingProduct: core.serialization.property("billing_product", UpsertBillingProductRequestBody),
     creditGrants: core.serialization.property(
         "credit_grants",
         core.serialization.list(PlanBundleCreditGrantRequestBody).optional(),
     ),
     entitlements: core.serialization.list(PlanBundleEntitlementRequestBody),
-    plan: CreateCustomPlanBundlePlanRequestBody.optional(),
+    plan: CreateCustomPlanBundlePlanRequestBody,
 });
 
 export declare namespace CreateCustomPlanBundleRequestBody {
     export interface Raw {
-        billing_product?: UpsertBillingProductRequestBody.Raw | null;
+        billing_product: UpsertBillingProductRequestBody.Raw;
         credit_grants?: PlanBundleCreditGrantRequestBody.Raw[] | null;
         entitlements: PlanBundleEntitlementRequestBody.Raw[];
-        plan?: CreateCustomPlanBundlePlanRequestBody.Raw | null;
+        plan: CreateCustomPlanBundlePlanRequestBody.Raw;
     }
 }

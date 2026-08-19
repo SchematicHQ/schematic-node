@@ -19,7 +19,6 @@ export const ListPlanChangesParams: core.serialization.ObjectSchema<
     ),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
-    planIds: core.serialization.property("plan_ids", core.serialization.list(core.serialization.string()).optional()),
 });
 
 export declare namespace ListPlanChangesParams {
@@ -30,6 +29,5 @@ export declare namespace ListPlanChangesParams {
         company_ids?: string[] | null;
         limit?: number | null;
         offset?: number | null;
-        plan_ids?: string[] | null;
     }
 }

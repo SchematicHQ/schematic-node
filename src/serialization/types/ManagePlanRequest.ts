@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { BillingCollectionMethod } from "./BillingCollectionMethod";
 import { CheckoutFieldValue } from "./CheckoutFieldValue";
 import { PlanSelection } from "./PlanSelection";
 import { UpdateCreditBundleRequestBody } from "./UpdateCreditBundleRequestBody";
@@ -12,12 +13,16 @@ export const ManagePlanRequest: core.serialization.ObjectSchema<
     serializers.ManagePlanRequest.Raw,
     Schematic.ManagePlanRequest
 > = core.serialization.object({
+    activateOnPayment: core.serialization.property("activate_on_payment", core.serialization.boolean().optional()),
     addOnSelections: core.serialization.property("add_on_selections", core.serialization.list(PlanSelection)),
     basePlanId: core.serialization.property("base_plan_id", core.serialization.string().optional()),
     basePlanPriceId: core.serialization.property("base_plan_price_id", core.serialization.string().optional()),
     basePlanVersionId: core.serialization.property("base_plan_version_id", core.serialization.string().optional()),
+    billingCycleAnchor: core.serialization.property("billing_cycle_anchor", core.serialization.date().optional()),
+    billingEmail: core.serialization.property("billing_email", core.serialization.string().optional()),
     billingEntityId: core.serialization.property("billing_entity_id", core.serialization.string().optional()),
     cancelImmediately: core.serialization.property("cancel_immediately", core.serialization.boolean().optional()),
+    collectionMethod: core.serialization.property("collection_method", BillingCollectionMethod.optional()),
     companyId: core.serialization.property("company_id", core.serialization.string()),
     couponExternalId: core.serialization.property("coupon_external_id", core.serialization.string().optional()),
     creditBundles: core.serialization.property(
@@ -25,6 +30,7 @@ export const ManagePlanRequest: core.serialization.ObjectSchema<
         core.serialization.list(UpdateCreditBundleRequestBody),
     ),
     customFieldValues: core.serialization.property("custom_field_values", core.serialization.list(CheckoutFieldValue)),
+    daysUntilDue: core.serialization.property("days_until_due", core.serialization.number().optional()),
     payInAdvanceEntitlements: core.serialization.property(
         "pay_in_advance_entitlements",
         core.serialization.list(UpdatePayInAdvanceRequestBody),
@@ -35,25 +41,34 @@ export const ManagePlanRequest: core.serialization.ObjectSchema<
     ),
     promoCode: core.serialization.property("promo_code", core.serialization.string().optional()),
     prorate: core.serialization.boolean().optional(),
+    prorateFirstPeriod: core.serialization.property("prorate_first_period", core.serialization.boolean().optional()),
+    sendInvoice: core.serialization.property("send_invoice", core.serialization.boolean().optional()),
     trialEnd: core.serialization.property("trial_end", core.serialization.date().optional()),
 });
 
 export declare namespace ManagePlanRequest {
     export interface Raw {
+        activate_on_payment?: boolean | null;
         add_on_selections: PlanSelection.Raw[];
         base_plan_id?: string | null;
         base_plan_price_id?: string | null;
         base_plan_version_id?: string | null;
+        billing_cycle_anchor?: string | null;
+        billing_email?: string | null;
         billing_entity_id?: string | null;
         cancel_immediately?: boolean | null;
+        collection_method?: BillingCollectionMethod.Raw | null;
         company_id: string;
         coupon_external_id?: string | null;
         credit_bundles: UpdateCreditBundleRequestBody.Raw[];
         custom_field_values: CheckoutFieldValue.Raw[];
+        days_until_due?: number | null;
         pay_in_advance_entitlements: UpdatePayInAdvanceRequestBody.Raw[];
         payment_method_external_id?: string | null;
         promo_code?: string | null;
         prorate?: boolean | null;
+        prorate_first_period?: boolean | null;
+        send_invoice?: boolean | null;
         trial_end?: string | null;
     }
 }

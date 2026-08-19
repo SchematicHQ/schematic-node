@@ -13,6 +13,7 @@ export interface PlanVersionMigrationResponseData {
     planVersionIdFrom?: string;
     planVersionIdTo: string;
     planVersionIdsFrom: string[];
+    prorationBehavior?: Schematic.MigrationProrationBehavior;
     skippedCompanies: number;
     startedAt?: Date;
     status: Schematic.PlanVersionMigrationStatus;

@@ -5,15 +5,15 @@ import type * as Schematic from "../../../../index";
 /**
  * @example
  *     {
- *         companyIds: ["company_ids"],
  *         planId: "plan_id",
  *         planVersionIdTo: "plan_version_id_to",
  *         targetPlanType: "plan"
  *     }
  */
 export interface PreviewMigrationRequestBody {
-    companyIds: string[];
+    companyIds?: string[];
     planId: string;
     planVersionIdTo: string;
+    planVersionIdsFrom?: string[];
     targetPlanType: Schematic.PlanType;
 }

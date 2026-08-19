@@ -19,6 +19,7 @@ describe("PlansClient", () => {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
                                 billing_credit_can_buy_bundles: true,
+                                company_credit_amount: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -174,6 +175,7 @@ describe("PlansClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         days_until_due: 1000000,
                         id: "id",
+                        plan_billing_source: "custom_plan",
                         plan_id: "plan_id",
                         send_invoice: true,
                         status: "active",
@@ -267,6 +269,7 @@ describe("PlansClient", () => {
                             billing_credit_auto_topup_enabled: true,
                             billing_credit_auto_topup_self_service: true,
                             billing_credit_can_buy_bundles: true,
+                            company_credit_amount: 1000000,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_description: "credit_description",
@@ -345,14 +348,14 @@ describe("PlansClient", () => {
 
         server
             .mockEndpoint()
-            .put("/company-plans/company_plan_id")
+            .put("/company-plans/company_id")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.plans.updateCompanyPlans("company_plan_id", {
+        const response = await client.plans.updateCompanyPlans("company_id", {
             addOnIds: ["add_on_ids"],
         });
         expect(response).toEqual({
@@ -365,6 +368,7 @@ describe("PlansClient", () => {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
                                 billingCreditCanBuyBundles: true,
+                                companyCreditAmount: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -524,6 +528,7 @@ describe("PlansClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         daysUntilDue: 1000000,
                         id: "id",
+                        planBillingSource: "custom_plan",
                         planId: "plan_id",
                         sendInvoice: true,
                         status: "active",
@@ -623,6 +628,7 @@ describe("PlansClient", () => {
                             billingCreditAutoTopupEnabled: true,
                             billingCreditAutoTopupSelfService: true,
                             billingCreditCanBuyBundles: true,
+                            companyCreditAmount: 1000000,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditDescription: "credit_description",
@@ -717,7 +723,7 @@ describe("PlansClient", () => {
 
         server
             .mockEndpoint()
-            .put("/company-plans/company_plan_id")
+            .put("/company-plans/company_id")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(400)
@@ -725,7 +731,7 @@ describe("PlansClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.plans.updateCompanyPlans("company_plan_id", {
+            return await client.plans.updateCompanyPlans("company_id", {
                 addOnIds: ["add_on_ids", "add_on_ids"],
             });
         }).rejects.toThrow(Schematic.BadRequestError);
@@ -739,7 +745,7 @@ describe("PlansClient", () => {
 
         server
             .mockEndpoint()
-            .put("/company-plans/company_plan_id")
+            .put("/company-plans/company_id")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(401)
@@ -747,7 +753,7 @@ describe("PlansClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.plans.updateCompanyPlans("company_plan_id", {
+            return await client.plans.updateCompanyPlans("company_id", {
                 addOnIds: ["add_on_ids", "add_on_ids"],
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
@@ -761,7 +767,7 @@ describe("PlansClient", () => {
 
         server
             .mockEndpoint()
-            .put("/company-plans/company_plan_id")
+            .put("/company-plans/company_id")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(403)
@@ -769,7 +775,7 @@ describe("PlansClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.plans.updateCompanyPlans("company_plan_id", {
+            return await client.plans.updateCompanyPlans("company_id", {
                 addOnIds: ["add_on_ids", "add_on_ids"],
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
@@ -783,7 +789,7 @@ describe("PlansClient", () => {
 
         server
             .mockEndpoint()
-            .put("/company-plans/company_plan_id")
+            .put("/company-plans/company_id")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(404)
@@ -791,7 +797,7 @@ describe("PlansClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.plans.updateCompanyPlans("company_plan_id", {
+            return await client.plans.updateCompanyPlans("company_id", {
                 addOnIds: ["add_on_ids", "add_on_ids"],
             });
         }).rejects.toThrow(Schematic.NotFoundError);
@@ -805,7 +811,7 @@ describe("PlansClient", () => {
 
         server
             .mockEndpoint()
-            .put("/company-plans/company_plan_id")
+            .put("/company-plans/company_id")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(500)
@@ -813,7 +819,7 @@ describe("PlansClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.plans.updateCompanyPlans("company_plan_id", {
+            return await client.plans.updateCompanyPlans("company_id", {
                 addOnIds: ["add_on_ids", "add_on_ids"],
             });
         }).rejects.toThrow(Schematic.InternalServerError);
@@ -827,12 +833,14 @@ describe("PlansClient", () => {
             data: [
                 {
                     activation_strategy: "on_payment",
+                    billing_cycle_anchor: "2024-01-15T09:30:00Z",
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
                     days_until_due: 1000000,
                     external_invoice_id: "external_invoice_id",
                     id: "id",
                     paid_at: "2024-01-15T09:30:00Z",
+                    plan_billing_source: "custom_plan",
                     plan_id: "plan_id",
                     published_at: "2024-01-15T09:30:00Z",
                     send_invoice: true,
@@ -845,6 +853,7 @@ describe("PlansClient", () => {
                 company_id: "company_id",
                 limit: 1000000,
                 offset: 1000000,
+                plan_billing_source: "custom_plan",
                 plan_id: "plan_id",
                 status: "active",
                 statuses: ["active"],
@@ -862,6 +871,7 @@ describe("PlansClient", () => {
         const response = await client.plans.listCustomPlanBillings({
             companyId: "company_id",
             planId: "plan_id",
+            planBillingSource: "custom_plan",
             status: "active",
             statuses: ["active"],
             limit: 1000000,
@@ -871,12 +881,14 @@ describe("PlansClient", () => {
             data: [
                 {
                     activationStrategy: "on_payment",
+                    billingCycleAnchor: new Date("2024-01-15T09:30:00.000Z"),
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     daysUntilDue: 1000000,
                     externalInvoiceId: "external_invoice_id",
                     id: "id",
                     paidAt: new Date("2024-01-15T09:30:00.000Z"),
+                    planBillingSource: "custom_plan",
                     planId: "plan_id",
                     publishedAt: new Date("2024-01-15T09:30:00.000Z"),
                     sendInvoice: true,
@@ -889,6 +901,7 @@ describe("PlansClient", () => {
                 companyId: "company_id",
                 limit: 1000000,
                 offset: 1000000,
+                planBillingSource: "custom_plan",
                 planId: "plan_id",
                 status: "active",
                 statuses: ["active"],
@@ -998,12 +1011,14 @@ describe("PlansClient", () => {
         const rawResponseBody = {
             data: {
                 activation_strategy: "on_payment",
+                billing_cycle_anchor: "2024-01-15T09:30:00Z",
                 company_id: "company_id",
                 created_at: "2024-01-15T09:30:00Z",
                 days_until_due: 1000000,
                 external_invoice_id: "external_invoice_id",
                 id: "id",
                 paid_at: "2024-01-15T09:30:00Z",
+                plan_billing_source: "custom_plan",
                 plan_id: "plan_id",
                 published_at: "2024-01-15T09:30:00Z",
                 send_invoice: true,
@@ -1029,12 +1044,14 @@ describe("PlansClient", () => {
         expect(response).toEqual({
             data: {
                 activationStrategy: "on_payment",
+                billingCycleAnchor: new Date("2024-01-15T09:30:00.000Z"),
                 companyId: "company_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 daysUntilDue: 1000000,
                 externalInvoiceId: "external_invoice_id",
                 id: "id",
                 paidAt: new Date("2024-01-15T09:30:00.000Z"),
+                planBillingSource: "custom_plan",
                 planId: "plan_id",
                 publishedAt: new Date("2024-01-15T09:30:00.000Z"),
                 sendInvoice: true,
@@ -1175,12 +1192,14 @@ describe("PlansClient", () => {
         const rawResponseBody = {
             data: {
                 activation_strategy: "on_payment",
+                billing_cycle_anchor: "2024-01-15T09:30:00Z",
                 company_id: "company_id",
                 created_at: "2024-01-15T09:30:00Z",
                 days_until_due: 1000000,
                 external_invoice_id: "external_invoice_id",
                 id: "id",
                 paid_at: "2024-01-15T09:30:00Z",
+                plan_billing_source: "custom_plan",
                 plan_id: "plan_id",
                 published_at: "2024-01-15T09:30:00Z",
                 send_invoice: true,
@@ -1206,12 +1225,14 @@ describe("PlansClient", () => {
         expect(response).toEqual({
             data: {
                 activationStrategy: "on_payment",
+                billingCycleAnchor: new Date("2024-01-15T09:30:00.000Z"),
                 companyId: "company_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 daysUntilDue: 1000000,
                 externalInvoiceId: "external_invoice_id",
                 id: "id",
                 paidAt: new Date("2024-01-15T09:30:00.000Z"),
+                planBillingSource: "custom_plan",
                 planId: "plan_id",
                 publishedAt: new Date("2024-01-15T09:30:00.000Z"),
                 sendInvoice: true,
@@ -1520,6 +1541,7 @@ describe("PlansClient", () => {
                         auto_topup_enabled: true,
                         auto_topup_self_service: true,
                         can_buy_bundles: true,
+                        company_credit_amount: 1000000,
                         created_at: "2024-01-15T09:30:00Z",
                         credit_amount: 1000000,
                         credit_id: "credit_id",
@@ -1837,6 +1859,7 @@ describe("PlansClient", () => {
                         autoTopupEnabled: true,
                         autoTopupSelfService: true,
                         canBuyBundles: true,
+                        companyCreditAmount: 1000000,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         creditAmount: 1000000,
                         creditId: "credit_id",
@@ -2227,6 +2250,7 @@ describe("PlansClient", () => {
                             auto_topup_enabled: true,
                             auto_topup_self_service: true,
                             can_buy_bundles: true,
+                            company_credit_amount: 1000000,
                             created_at: "2024-01-15T09:30:00Z",
                             credit_amount: 1000000,
                             credit_id: "credit_id",
@@ -2560,6 +2584,7 @@ describe("PlansClient", () => {
                             autoTopupEnabled: true,
                             autoTopupSelfService: true,
                             canBuyBundles: true,
+                            companyCreditAmount: 1000000,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             creditAmount: 1000000,
                             creditId: "credit_id",
@@ -2906,6 +2931,7 @@ describe("PlansClient", () => {
                         auto_topup_enabled: true,
                         auto_topup_self_service: true,
                         can_buy_bundles: true,
+                        company_credit_amount: 1000000,
                         created_at: "2024-01-15T09:30:00Z",
                         credit_amount: 1000000,
                         credit_id: "credit_id",
@@ -3223,6 +3249,7 @@ describe("PlansClient", () => {
                         autoTopupEnabled: true,
                         autoTopupSelfService: true,
                         canBuyBundles: true,
+                        companyCreditAmount: 1000000,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         creditAmount: 1000000,
                         creditId: "credit_id",
@@ -3615,6 +3642,7 @@ describe("PlansClient", () => {
                         auto_topup_enabled: true,
                         auto_topup_self_service: true,
                         can_buy_bundles: true,
+                        company_credit_amount: 1000000,
                         created_at: "2024-01-15T09:30:00Z",
                         credit_amount: 1000000,
                         credit_id: "credit_id",
@@ -3923,6 +3951,7 @@ describe("PlansClient", () => {
                         autoTopupEnabled: true,
                         autoTopupSelfService: true,
                         canBuyBundles: true,
+                        companyCreditAmount: 1000000,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         creditAmount: 1000000,
                         creditId: "credit_id",
@@ -4247,6 +4276,7 @@ describe("PlansClient", () => {
                         auto_topup_enabled: true,
                         auto_topup_self_service: true,
                         can_buy_bundles: true,
+                        company_credit_amount: 1000000,
                         created_at: "2024-01-15T09:30:00Z",
                         credit_amount: 1000000,
                         credit_id: "credit_id",
@@ -4562,6 +4592,7 @@ describe("PlansClient", () => {
                         autoTopupEnabled: true,
                         autoTopupSelfService: true,
                         canBuyBundles: true,
+                        companyCreditAmount: 1000000,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         creditAmount: 1000000,
                         creditId: "credit_id",
@@ -5205,6 +5236,7 @@ describe("PlansClient", () => {
                         auto_topup_enabled: true,
                         auto_topup_self_service: true,
                         can_buy_bundles: true,
+                        company_credit_amount: 1000000,
                         created_at: "2024-01-15T09:30:00Z",
                         credit_amount: 1000000,
                         credit_id: "credit_id",
@@ -5524,6 +5556,7 @@ describe("PlansClient", () => {
                         autoTopupEnabled: true,
                         autoTopupSelfService: true,
                         canBuyBundles: true,
+                        companyCreditAmount: 1000000,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         creditAmount: 1000000,
                         creditId: "credit_id",
@@ -5786,6 +5819,7 @@ describe("PlansClient", () => {
                                     billing_credit_auto_topup_enabled: true,
                                     billing_credit_auto_topup_self_service: true,
                                     billing_credit_can_buy_bundles: true,
+                                    company_credit_amount: 1000000,
                                     created_at: "2024-01-15T09:30:00Z",
                                     credit_amount: 1000000,
                                     credit_description: "credit_description",
@@ -5907,6 +5941,7 @@ describe("PlansClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             days_until_due: 1000000,
                             id: "id",
+                            plan_billing_source: "custom_plan",
                             plan_id: "plan_id",
                             send_invoice: true,
                             status: "active",
@@ -5985,6 +6020,7 @@ describe("PlansClient", () => {
                                 billing_credit_auto_topup_enabled: true,
                                 billing_credit_auto_topup_self_service: true,
                                 billing_credit_can_buy_bundles: true,
+                                company_credit_amount: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
                                 credit_amount: 1000000,
                                 credit_description: "credit_description",
@@ -6082,6 +6118,7 @@ describe("PlansClient", () => {
                                     billingCreditAutoTopupEnabled: true,
                                     billingCreditAutoTopupSelfService: true,
                                     billingCreditCanBuyBundles: true,
+                                    companyCreditAmount: 1000000,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     creditAmount: 1000000,
                                     creditDescription: "credit_description",
@@ -6205,6 +6242,7 @@ describe("PlansClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             daysUntilDue: 1000000,
                             id: "id",
+                            planBillingSource: "custom_plan",
                             planId: "plan_id",
                             sendInvoice: true,
                             status: "active",
@@ -6289,6 +6327,7 @@ describe("PlansClient", () => {
                                 billingCreditAutoTopupEnabled: true,
                                 billingCreditAutoTopupSelfService: true,
                                 billingCreditCanBuyBundles: true,
+                                companyCreditAmount: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 creditAmount: 1000000,
                                 creditDescription: "credit_description",
@@ -6873,13 +6912,13 @@ describe("PlansClient", () => {
 
         server
             .mockEndpoint()
-            .delete("/plans/version/plan_id")
+            .delete("/plans/version/plan_version_id")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.plans.deletePlanVersion("plan_id", {
+        const response = await client.plans.deletePlanVersion("plan_version_id", {
             promoteArchivedVersion: true,
         });
         expect(response).toEqual({
@@ -6900,14 +6939,14 @@ describe("PlansClient", () => {
 
         server
             .mockEndpoint()
-            .delete("/plans/version/plan_id")
+            .delete("/plans/version/plan_version_id")
             .respondWith()
             .statusCode(400)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
-            return await client.plans.deletePlanVersion("plan_id");
+            return await client.plans.deletePlanVersion("plan_version_id");
         }).rejects.toThrow(Schematic.BadRequestError);
     });
 
@@ -6919,14 +6958,14 @@ describe("PlansClient", () => {
 
         server
             .mockEndpoint()
-            .delete("/plans/version/plan_id")
+            .delete("/plans/version/plan_version_id")
             .respondWith()
             .statusCode(401)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
-            return await client.plans.deletePlanVersion("plan_id");
+            return await client.plans.deletePlanVersion("plan_version_id");
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
 
@@ -6938,14 +6977,14 @@ describe("PlansClient", () => {
 
         server
             .mockEndpoint()
-            .delete("/plans/version/plan_id")
+            .delete("/plans/version/plan_version_id")
             .respondWith()
             .statusCode(403)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
-            return await client.plans.deletePlanVersion("plan_id");
+            return await client.plans.deletePlanVersion("plan_version_id");
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
 
@@ -6957,14 +6996,14 @@ describe("PlansClient", () => {
 
         server
             .mockEndpoint()
-            .delete("/plans/version/plan_id")
+            .delete("/plans/version/plan_version_id")
             .respondWith()
             .statusCode(404)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
-            return await client.plans.deletePlanVersion("plan_id");
+            return await client.plans.deletePlanVersion("plan_version_id");
         }).rejects.toThrow(Schematic.NotFoundError);
     });
 
@@ -6976,14 +7015,14 @@ describe("PlansClient", () => {
 
         server
             .mockEndpoint()
-            .delete("/plans/version/plan_id")
+            .delete("/plans/version/plan_version_id")
             .respondWith()
             .statusCode(500)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
-            return await client.plans.deletePlanVersion("plan_id");
+            return await client.plans.deletePlanVersion("plan_version_id");
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
@@ -7010,14 +7049,14 @@ describe("PlansClient", () => {
 
         server
             .mockEndpoint()
-            .put("/plans/version/plan_id/publish")
+            .put("/plans/version/plan_version_id/publish")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.plans.publishPlanVersion("plan_id", {
+        const response = await client.plans.publishPlanVersion("plan_version_id", {
             excludedCompanyIds: ["excluded_company_ids"],
             migrationStrategy: "immediate",
         });
@@ -7052,7 +7091,7 @@ describe("PlansClient", () => {
 
         server
             .mockEndpoint()
-            .put("/plans/version/plan_id/publish")
+            .put("/plans/version/plan_version_id/publish")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(400)
@@ -7060,7 +7099,7 @@ describe("PlansClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.plans.publishPlanVersion("plan_id", {
+            return await client.plans.publishPlanVersion("plan_version_id", {
                 excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
                 migrationStrategy: "immediate",
             });
@@ -7078,7 +7117,7 @@ describe("PlansClient", () => {
 
         server
             .mockEndpoint()
-            .put("/plans/version/plan_id/publish")
+            .put("/plans/version/plan_version_id/publish")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(401)
@@ -7086,7 +7125,7 @@ describe("PlansClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.plans.publishPlanVersion("plan_id", {
+            return await client.plans.publishPlanVersion("plan_version_id", {
                 excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
                 migrationStrategy: "immediate",
             });
@@ -7104,7 +7143,7 @@ describe("PlansClient", () => {
 
         server
             .mockEndpoint()
-            .put("/plans/version/plan_id/publish")
+            .put("/plans/version/plan_version_id/publish")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(403)
@@ -7112,7 +7151,7 @@ describe("PlansClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.plans.publishPlanVersion("plan_id", {
+            return await client.plans.publishPlanVersion("plan_version_id", {
                 excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
                 migrationStrategy: "immediate",
             });
@@ -7130,7 +7169,7 @@ describe("PlansClient", () => {
 
         server
             .mockEndpoint()
-            .put("/plans/version/plan_id/publish")
+            .put("/plans/version/plan_version_id/publish")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(404)
@@ -7138,7 +7177,7 @@ describe("PlansClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.plans.publishPlanVersion("plan_id", {
+            return await client.plans.publishPlanVersion("plan_version_id", {
                 excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
                 migrationStrategy: "immediate",
             });
@@ -7156,7 +7195,7 @@ describe("PlansClient", () => {
 
         server
             .mockEndpoint()
-            .put("/plans/version/plan_id/publish")
+            .put("/plans/version/plan_version_id/publish")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(500)
@@ -7164,7 +7203,7 @@ describe("PlansClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.plans.publishPlanVersion("plan_id", {
+            return await client.plans.publishPlanVersion("plan_version_id", {
                 excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
                 migrationStrategy: "immediate",
             });

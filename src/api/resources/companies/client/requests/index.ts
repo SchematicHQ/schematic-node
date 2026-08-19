@@ -2,6 +2,7 @@ export type { CountCompaniesRequest } from "./CountCompaniesRequest";
 export type { CountEntityKeyDefinitionsRequest } from "./CountEntityKeyDefinitionsRequest";
 export type { CountEntityKeysRequest } from "./CountEntityKeysRequest";
 export type { CountEntityTraitDefinitionsRequest } from "./CountEntityTraitDefinitionsRequest";
+export type { CountEntityTraitsRequest } from "./CountEntityTraitsRequest";
 export type { CountPlanTraitsRequest } from "./CountPlanTraitsRequest";
 export type { CountUsersRequest } from "./CountUsersRequest";
 export type { CreateEntityTraitDefinitionRequestBody } from "./CreateEntityTraitDefinitionRequestBody";

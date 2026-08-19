@@ -2,7 +2,7 @@
 
 /** The current schema version hash for rules engine types. The first enum value is always the current version. */
 export const RulesEngineSchemaVersion = {
-    V5B3E7220: "v5b3e7220",
+    Vc8Eb8Df4: "vc8eb8df4",
     PlaceholderForFernCompatibility: "placeholder-for-fern-compatibility",
 } as const;
 export type RulesEngineSchemaVersion = (typeof RulesEngineSchemaVersion)[keyof typeof RulesEngineSchemaVersion];

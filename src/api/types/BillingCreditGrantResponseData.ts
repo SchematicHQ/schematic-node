@@ -4,6 +4,8 @@ import type * as Schematic from "../index";
 
 export interface BillingCreditGrantResponseData {
     companyId: string;
+    /** The license instance this grant was issued for. Set only when a per-license plan grant issued it; null on a plan's own grant. */
+    companyLicenseId?: string;
     companyName: string;
     createdAt: Date;
     creditIcon?: string;
@@ -13,6 +15,8 @@ export interface BillingCreditGrantResponseData {
     expiresAt?: Date;
     grantReason: Schematic.BillingCreditGrantReason;
     id: string;
+    /** Name of the license this grant was issued for, when it came from a per-license plan grant. */
+    licenseName?: string;
     planId?: string;
     planName?: string;
     price?: Schematic.BillingPriceResponseData;

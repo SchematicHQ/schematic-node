@@ -24,7 +24,7 @@ export class PlansClient {
     }
 
     /**
-     * @param {string} company_plan_id - company_plan_id
+     * @param {string} company_id - company_id
      * @param {Schematic.UpdateCompanyPlansRequestBody} request
      * @param {PlansClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -35,22 +35,20 @@ export class PlansClient {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.plans.updateCompanyPlans("company_plan_id", {
+     *     await client.plans.updateCompanyPlans("company_id", {
      *         addOnIds: ["add_on_ids"]
      *     })
      */
     public updateCompanyPlans(
-        company_plan_id: string,
+        company_id: string,
         request: Schematic.UpdateCompanyPlansRequestBody,
         requestOptions?: PlansClient.RequestOptions,
     ): core.HttpResponsePromise<Schematic.UpdateCompanyPlansResponse> {
-        return core.HttpResponsePromise.fromPromise(
-            this.__updateCompanyPlans(company_plan_id, request, requestOptions),
-        );
+        return core.HttpResponsePromise.fromPromise(this.__updateCompanyPlans(company_id, request, requestOptions));
     }
 
     private async __updateCompanyPlans(
-        company_plan_id: string,
+        company_id: string,
         request: Schematic.UpdateCompanyPlansRequestBody,
         requestOptions?: PlansClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.UpdateCompanyPlansResponse>> {
@@ -65,7 +63,7 @@ export class PlansClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `company-plans/${core.url.encodePathParam(company_plan_id)}`,
+                `company-plans/${core.url.encodePathParam(company_id)}`,
             ),
             method: "PUT",
             headers: _headers,
@@ -158,12 +156,7 @@ export class PlansClient {
             }
         }
 
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "PUT",
-            "/company-plans/{company_plan_id}",
-        );
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/company-plans/{company_id}");
     }
 
     /**
@@ -180,6 +173,7 @@ export class PlansClient {
      *     await client.plans.listCustomPlanBillings({
      *         companyId: "company_id",
      *         planId: "plan_id",
+     *         planBillingSource: "custom_plan",
      *         status: "active",
      *         statuses: ["active"],
      *         limit: 1000000,
@@ -197,10 +191,14 @@ export class PlansClient {
         request: Schematic.ListCustomPlanBillingsRequest = {},
         requestOptions?: PlansClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListCustomPlanBillingsResponse>> {
-        const { companyId, planId, status, statuses, limit, offset } = request;
+        const { companyId, planId, planBillingSource, status, statuses, limit, offset } = request;
         const _queryParams: Record<string, unknown> = {
             company_id: companyId,
             plan_id: planId,
+            plan_billing_source:
+                planBillingSource != null
+                    ? serializers.PlanBillingSource.jsonOrThrow(planBillingSource, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
             status:
                 status != null
                     ? serializers.CustomPlanBillingStatus.jsonOrThrow(status, { unrecognizedObjectKeys: "strip" })
@@ -2378,7 +2376,7 @@ export class PlansClient {
     }
 
     /**
-     * @param {string} plan_id - plan_id
+     * @param {string} plan_version_id - plan_version_id
      * @param {Schematic.DeletePlanVersionRequest} request
      * @param {PlansClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -2389,20 +2387,20 @@ export class PlansClient {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.plans.deletePlanVersion("plan_id", {
+     *     await client.plans.deletePlanVersion("plan_version_id", {
      *         promoteArchivedVersion: true
      *     })
      */
     public deletePlanVersion(
-        plan_id: string,
+        plan_version_id: string,
         request: Schematic.DeletePlanVersionRequest = {},
         requestOptions?: PlansClient.RequestOptions,
     ): core.HttpResponsePromise<Schematic.DeletePlanVersionResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__deletePlanVersion(plan_id, request, requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__deletePlanVersion(plan_version_id, request, requestOptions));
     }
 
     private async __deletePlanVersion(
-        plan_id: string,
+        plan_version_id: string,
         request: Schematic.DeletePlanVersionRequest = {},
         requestOptions?: PlansClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.DeletePlanVersionResponse>> {
@@ -2421,7 +2419,7 @@ export class PlansClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `plans/version/${core.url.encodePathParam(plan_id)}`,
+                `plans/version/${core.url.encodePathParam(plan_version_id)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -2515,11 +2513,16 @@ export class PlansClient {
             }
         }
 
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/plans/version/{plan_id}");
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "DELETE",
+            "/plans/version/{plan_version_id}",
+        );
     }
 
     /**
-     * @param {string} plan_id - plan_id
+     * @param {string} plan_version_id - plan_version_id
      * @param {Schematic.PublishPlanVersionRequestBody} request
      * @param {PlansClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -2530,21 +2533,23 @@ export class PlansClient {
      * @throws {@link Schematic.InternalServerError}
      *
      * @example
-     *     await client.plans.publishPlanVersion("plan_id", {
+     *     await client.plans.publishPlanVersion("plan_version_id", {
      *         excludedCompanyIds: ["excluded_company_ids"],
      *         migrationStrategy: "immediate"
      *     })
      */
     public publishPlanVersion(
-        plan_id: string,
+        plan_version_id: string,
         request: Schematic.PublishPlanVersionRequestBody,
         requestOptions?: PlansClient.RequestOptions,
     ): core.HttpResponsePromise<Schematic.PublishPlanVersionResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__publishPlanVersion(plan_id, request, requestOptions));
+        return core.HttpResponsePromise.fromPromise(
+            this.__publishPlanVersion(plan_version_id, request, requestOptions),
+        );
     }
 
     private async __publishPlanVersion(
-        plan_id: string,
+        plan_version_id: string,
         request: Schematic.PublishPlanVersionRequestBody,
         requestOptions?: PlansClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.PublishPlanVersionResponse>> {
@@ -2559,7 +2564,7 @@ export class PlansClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `plans/version/${core.url.encodePathParam(plan_id)}/publish`,
+                `plans/version/${core.url.encodePathParam(plan_version_id)}/publish`,
             ),
             method: "PUT",
             headers: _headers,
@@ -2656,7 +2661,7 @@ export class PlansClient {
             _response.error,
             _response.rawResponse,
             "PUT",
-            "/plans/version/{plan_id}/publish",
+            "/plans/version/{plan_version_id}/publish",
         );
     }
 }

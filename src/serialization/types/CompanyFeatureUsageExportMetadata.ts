@@ -18,6 +18,14 @@ export const CompanyFeatureUsageExportMetadata: core.serialization.ObjectSchema<
         "credit_type_ids",
         core.serialization.list(core.serialization.string()).optional(),
     ),
+    entityKeyDefinitionIds: core.serialization.property(
+        "entity_key_definition_ids",
+        core.serialization.list(core.serialization.string()).optional(),
+    ),
+    entityTraitDefinitionIds: core.serialization.property(
+        "entity_trait_definition_ids",
+        core.serialization.list(core.serialization.string()).optional(),
+    ),
     featureIds: core.serialization.property(
         "feature_ids",
         core.serialization.list(core.serialization.string()).optional(),
@@ -37,6 +45,10 @@ export const CompanyFeatureUsageExportMetadata: core.serialization.ObjectSchema<
     planId: core.serialization.property("plan_id", core.serialization.string().optional()),
     planIds: core.serialization.property("plan_ids", core.serialization.list(core.serialization.string()).optional()),
     planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
+    planVersionUnpublished: core.serialization.property(
+        "plan_version_unpublished",
+        core.serialization.boolean().optional(),
+    ),
     q: core.serialization.string().optional(),
     sortOrderColumn: core.serialization.property("sort_order_column", core.serialization.string().optional()),
     sortOrderDirection: core.serialization.property(
@@ -69,6 +81,8 @@ export declare namespace CompanyFeatureUsageExportMetadata {
     export interface Raw {
         company_ids?: string[] | null;
         credit_type_ids?: string[] | null;
+        entity_key_definition_ids?: string[] | null;
+        entity_trait_definition_ids?: string[] | null;
         feature_ids?: string[] | null;
         has_scheduled_downgrade?: boolean | null;
         monetized_subscriptions?: boolean | null;
@@ -76,6 +90,7 @@ export declare namespace CompanyFeatureUsageExportMetadata {
         plan_id?: string | null;
         plan_ids?: string[] | null;
         plan_version_id?: string | null;
+        plan_version_unpublished?: boolean | null;
         q?: string | null;
         sort_order_column?: string | null;
         sort_order_direction?: CompanyFeatureUsageExportMetadataSortOrderDirection.Raw | null;
