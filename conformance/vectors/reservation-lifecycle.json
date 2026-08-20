@@ -1,0 +1,353 @@
+{
+    "category": "reservation_lifecycle",
+    "vectors": [
+        {
+            "name": "consume_exact_usage_no_refund",
+            "description": "Consuming exactly the reserved amount removes the reservation and refunds nothing.",
+            "given": {
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 60000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 100,
+                    "expect": { "balance": 900 }
+                },
+                {
+                    "op": "add_reservation",
+                    "id": "res_1",
+                    "lease_id": "lse_1",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "event_subtype": "inference_tokens",
+                    "quantity_reserved": 10,
+                    "credits_reserved": 100,
+                    "consumption_rate": 10,
+                    "expires_at_ms": 60000
+                },
+                { "op": "consume_reservation", "id": "res_1", "credits": 100, "expect": { "consumed": 100 } },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "local_remaining_credits": 900 }
+                },
+                { "op": "get_reservation", "id": "res_1", "expect": { "exists": false } }
+            ]
+        },
+        {
+            "name": "consume_under_reserved_refunds_unspent",
+            "description": "Consuming less than reserved refunds the unspent slice to the lease in the same step.",
+            "given": {
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 60000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 100,
+                    "expect": { "balance": 900 }
+                },
+                {
+                    "op": "add_reservation",
+                    "id": "res_1",
+                    "lease_id": "lse_1",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "event_subtype": "inference_tokens",
+                    "quantity_reserved": 10,
+                    "credits_reserved": 100,
+                    "consumption_rate": 10,
+                    "expires_at_ms": 60000
+                },
+                { "op": "consume_reservation", "id": "res_1", "credits": 30, "expect": { "consumed": 30 } },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "local_remaining_credits": 970 }
+                }
+            ]
+        },
+        {
+            "name": "consume_over_reserved_clamps_to_hold",
+            "description": "Local consumption is clamped to credits_reserved: over-use consumes the full hold, refunds nothing, and never debits the lease beyond the reservation. (The billed Track quantity is NOT clamped — see track-settle vectors.)",
+            "given": {
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 60000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 100,
+                    "expect": { "balance": 900 }
+                },
+                {
+                    "op": "add_reservation",
+                    "id": "res_1",
+                    "lease_id": "lse_1",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "event_subtype": "inference_tokens",
+                    "quantity_reserved": 10,
+                    "credits_reserved": 100,
+                    "consumption_rate": 10,
+                    "expires_at_ms": 60000
+                },
+                { "op": "consume_reservation", "id": "res_1", "credits": 999, "expect": { "consumed": 100 } },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "local_remaining_credits": 900 }
+                }
+            ]
+        },
+        {
+            "name": "consume_zero_cancels_with_full_refund",
+            "description": "Consuming 0 credits acts as a cancel: the full hold is refunded. Negative consumption clamps to 0 the same way.",
+            "given": {
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 60000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 100,
+                    "expect": { "balance": 900 }
+                },
+                {
+                    "op": "add_reservation",
+                    "id": "res_1",
+                    "lease_id": "lse_1",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "event_subtype": "inference_tokens",
+                    "quantity_reserved": 10,
+                    "credits_reserved": 100,
+                    "consumption_rate": 10,
+                    "expires_at_ms": 60000
+                },
+                { "op": "consume_reservation", "id": "res_1", "credits": 0, "expect": { "consumed": 0 } },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "local_remaining_credits": 1000 }
+                }
+            ]
+        },
+        {
+            "name": "consume_is_exactly_once",
+            "description": "A missing reservation and a second consume of the same id both return null and refund nothing — the claim is the exactly-once arbiter.",
+            "given": {
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 60000
+                    }
+                ]
+            },
+            "operations": [
+                { "op": "consume_reservation", "id": "res_missing", "credits": 10, "expect": { "consumed": null } },
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 100,
+                    "expect": { "balance": 900 }
+                },
+                {
+                    "op": "add_reservation",
+                    "id": "res_1",
+                    "lease_id": "lse_1",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "event_subtype": "inference_tokens",
+                    "quantity_reserved": 10,
+                    "credits_reserved": 100,
+                    "consumption_rate": 10,
+                    "expires_at_ms": 60000
+                },
+                { "op": "consume_reservation", "id": "res_1", "credits": 30, "expect": { "consumed": 30 } },
+                { "op": "consume_reservation", "id": "res_1", "credits": 30, "expect": { "consumed": null } },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "local_remaining_credits": 970 }
+                }
+            ]
+        },
+        {
+            "name": "reserved_credits_sums_open_holds_per_slot",
+            "description": "reserved_credits sums credits_reserved across open reservations for the exact (company, credit) slot only, and a hold stops counting the moment it is consumed.",
+            "given": {
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 60000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 350,
+                    "expect": { "balance": 650 }
+                },
+                {
+                    "op": "add_reservation",
+                    "id": "res_1",
+                    "lease_id": "lse_1",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "event_subtype": "inference_tokens",
+                    "quantity_reserved": 10,
+                    "credits_reserved": 100,
+                    "consumption_rate": 10,
+                    "expires_at_ms": 60000
+                },
+                {
+                    "op": "add_reservation",
+                    "id": "res_2",
+                    "lease_id": "lse_1",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "event_subtype": "inference_tokens",
+                    "quantity_reserved": 25,
+                    "credits_reserved": 250,
+                    "consumption_rate": 10,
+                    "expires_at_ms": 60000
+                },
+                {
+                    "op": "add_reservation",
+                    "id": "res_other_credit",
+                    "lease_id": "lse_9",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_2",
+                    "event_subtype": "inference_tokens",
+                    "quantity_reserved": 99,
+                    "credits_reserved": 999,
+                    "consumption_rate": 10,
+                    "expires_at_ms": 60000
+                },
+                {
+                    "op": "add_reservation",
+                    "id": "res_other_company",
+                    "lease_id": "lse_8",
+                    "company_id": "co_2",
+                    "credit_type_id": "ct_1",
+                    "event_subtype": "inference_tokens",
+                    "quantity_reserved": 99,
+                    "credits_reserved": 999,
+                    "consumption_rate": 10,
+                    "expires_at_ms": 60000
+                },
+                {
+                    "op": "reserved_credits",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "total": 350 }
+                },
+                {
+                    "op": "reserved_credits",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_2",
+                    "expect": { "total": 999 }
+                },
+                { "op": "reserved_credits", "company_id": "co_9", "credit_type_id": "ct_1", "expect": { "total": 0 } },
+                { "op": "consume_reservation", "id": "res_1", "credits": 40, "expect": { "consumed": 40 } },
+                { "op": "reserved_credits", "company_id": "co_1", "credit_type_id": "ct_1", "expect": { "total": 250 } }
+            ]
+        },
+        {
+            "name": "fractional_credit_amounts_are_exact",
+            "description": "Fractional consumption rates produce fractional holds; reserve, consume, and refund arithmetic must not truncate.",
+            "given": {
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 10,
+                        "expires_at_ms": 60000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 2.5,
+                    "expect": { "balance": 7.5 }
+                },
+                {
+                    "op": "add_reservation",
+                    "id": "res_1",
+                    "lease_id": "lse_1",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "event_subtype": "inference_tokens",
+                    "quantity_reserved": 25,
+                    "credits_reserved": 2.5,
+                    "consumption_rate": 0.1,
+                    "expires_at_ms": 60000
+                },
+                { "op": "consume_reservation", "id": "res_1", "credits": 1.5, "expect": { "consumed": 1.5 } },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "local_remaining_credits": 8.5 }
+                }
+            ]
+        }
+    ]
+}

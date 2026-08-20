@@ -1,0 +1,271 @@
+{
+    "category": "crash_window",
+    "vectors": [
+        {
+            "name": "debit_without_record_leaks_bounded",
+            "description": "Crash window 1 (debit-then-add): the atomic debit landed but the reservation record never did. The leak is exactly the reserved amount; the sweeper can never refund a hold that was never recorded.",
+            "given": {
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 60000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 100,
+                    "expect": { "balance": 900 }
+                },
+                { "op": "reserved_credits", "company_id": "co_1", "credit_type_id": "ct_1", "expect": { "total": 0 } },
+                { "op": "advance_clock", "ms": 55000 },
+                { "op": "sweep_expired", "expect": { "swept": 0 } },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "local_remaining_credits": 900 }
+                }
+            ]
+        },
+        {
+            "name": "debit_leak_reclaimed_at_lease_expiry",
+            "description": "Crash window 1 recovery: the leaked balance is never served after lease expiry, and the successor lease installs at the full grant — the leak does not outlive the lease.",
+            "given": {
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 60000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 100,
+                    "expect": { "balance": 900 }
+                },
+                { "op": "advance_clock", "ms": 60001 },
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 1,
+                    "expect": { "balance": null }
+                },
+                {
+                    "op": "replace_lease",
+                    "lease_id": "lse_2",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "granted_amount": 1000,
+                    "expires_at_ms": 180000,
+                    "expect": { "written": true }
+                },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "local_remaining_credits": 1000 }
+                }
+            ]
+        },
+        {
+            "name": "retried_check_after_debit_leak_settles_once",
+            "description": "A retry after a window-1 crash is a fresh check with a fresh reservation: its unspent slice refunds exactly once; the leaked slice never refunds — not on a repeat consume, not on a sweep.",
+            "given": {
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 3600000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 100,
+                    "expect": { "balance": 900 }
+                },
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 100,
+                    "expect": { "balance": 800 }
+                },
+                {
+                    "op": "add_reservation",
+                    "id": "res_retry",
+                    "lease_id": "lse_1",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "event_subtype": "inference_tokens",
+                    "quantity_reserved": 10,
+                    "credits_reserved": 100,
+                    "consumption_rate": 10,
+                    "expires_at_ms": 60000
+                },
+                { "op": "consume_reservation", "id": "res_retry", "credits": 40, "expect": { "consumed": 40 } },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "local_remaining_credits": 860 }
+                },
+                { "op": "consume_reservation", "id": "res_retry", "credits": 40, "expect": { "consumed": null } },
+                { "op": "advance_clock", "ms": 70000 },
+                { "op": "sweep_expired", "expect": { "swept": 0 } },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "local_remaining_credits": 860 }
+                }
+            ]
+        },
+        {
+            "name": "crash_before_refund_claim_is_durable",
+            "description": "Crash window 2 (consume-then-refund): the claim survives the crash, so the reservation is gone everywhere and nothing can double-spend; the unspent slice's refund is lost, bounded by credits_reserved. A retried settle neither re-claims nor double-refunds, and the sweeper cannot refund a claimed reservation.",
+            "given": {
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 3600000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 100,
+                    "expect": { "balance": 900 }
+                },
+                {
+                    "op": "add_reservation",
+                    "id": "res_1",
+                    "lease_id": "lse_1",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "event_subtype": "inference_tokens",
+                    "quantity_reserved": 10,
+                    "credits_reserved": 100,
+                    "consumption_rate": 10,
+                    "expires_at_ms": 60000
+                },
+                {
+                    "op": "consume_reservation",
+                    "id": "res_1",
+                    "credits": 30,
+                    "crash_before_refund": true,
+                    "expect": { "throws": true }
+                },
+                { "op": "get_reservation", "id": "res_1", "expect": { "exists": false } },
+                { "op": "reserved_credits", "company_id": "co_1", "credit_type_id": "ct_1", "expect": { "total": 0 } },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "local_remaining_credits": 900 }
+                },
+                { "op": "consume_reservation", "id": "res_1", "credits": 30, "expect": { "consumed": null } },
+                { "op": "advance_clock", "ms": 70000 },
+                { "op": "sweep_expired", "expect": { "swept": 0 } },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "local_remaining_credits": 900 }
+                }
+            ]
+        },
+        {
+            "name": "crash_before_refund_reclaimed_at_lease_expiry",
+            "description": "Crash window 2 recovery: after the lease expires and a successor takes the slot at full grant, a very late retried settle of the crashed reservation must not leak the lost refund into the successor.",
+            "given": {
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 60000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 100,
+                    "expect": { "balance": 900 }
+                },
+                {
+                    "op": "add_reservation",
+                    "id": "res_1",
+                    "lease_id": "lse_1",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "event_subtype": "inference_tokens",
+                    "quantity_reserved": 10,
+                    "credits_reserved": 100,
+                    "consumption_rate": 10,
+                    "expires_at_ms": 60000
+                },
+                {
+                    "op": "consume_reservation",
+                    "id": "res_1",
+                    "credits": 30,
+                    "crash_before_refund": true,
+                    "expect": { "throws": true }
+                },
+                { "op": "advance_clock", "ms": 60001 },
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 1,
+                    "expect": { "balance": null }
+                },
+                {
+                    "op": "replace_lease",
+                    "lease_id": "lse_2",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "granted_amount": 1000,
+                    "expires_at_ms": 180000,
+                    "expect": { "written": true }
+                },
+                { "op": "consume_reservation", "id": "res_1", "credits": 0, "expect": { "consumed": null } },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "lease_id": "lse_2", "local_remaining_credits": 1000 }
+                }
+            ]
+        }
+    ]
+}
