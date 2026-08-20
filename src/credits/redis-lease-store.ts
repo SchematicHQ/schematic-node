@@ -34,8 +34,13 @@ local now = (tonumber(t[1]) * 1000) + math.floor(tonumber(t[2]) / 1000)
  * installed by a sibling instance that raced this acquire. Keeping the existing
  * live lease preserves its already-debited `localRemainingCredits`; the caller
  * should release the lease it acquired only if its ID differs from the
- * installed one (see `CreditLeaseManager.acquire`). `now` is the Redis server
- * clock (see `LEASE_NOW_MS`).
+ * installed one (see `CreditLeaseManager.acquire`). An expired row with the
+ * SAME `leaseId` (a stale acquire response for a lease the idempotent server
+ * handed to a racing sibling, possibly since extended) is reconciled like an
+ * extend — granted-to-total, expiry only forward, balance untouched — instead
+ * of rewritten, which would reset the balance and erase debits whose
+ * reservations are still open. `now` is the Redis server clock (see
+ * `LEASE_NOW_MS`).
  */
 const REPLACE_SCRIPT =
     LEASE_NOW_MS +
@@ -48,6 +53,22 @@ local new_expiry = tonumber(ARGV[3])
 local grace = tonumber(ARGV[4])
 
 if existing_id and existing_expiry > now then
+    return 0
+end
+
+if existing_id == new_id then
+    local granted = tonumber(redis.call('HGET', KEYS[1], 'grantedAmount') or '0')
+    local add = tonumber(new_granted) - granted
+    if add > 0 then
+        local remaining = tonumber(redis.call('HGET', KEYS[1], 'localRemainingCredits') or '0')
+        redis.call('HSET', KEYS[1],
+            'grantedAmount', new_granted,
+            'localRemainingCredits', tostring(remaining + add))
+    end
+    if new_expiry > existing_expiry then
+        redis.call('HSET', KEYS[1], 'expiresAt', ARGV[3])
+        redis.call('PEXPIREAT', KEYS[1], new_expiry + grace)
+    end
     return 0
 end
 
@@ -189,7 +210,7 @@ export class RedisLeaseStore implements ILeaseStore {
 
     async get(companyId: string, creditTypeId: string): Promise<LeaseEntry | undefined> {
         const raw = await this.client.hGetAll(this.hashKey(companyId, creditTypeId));
-        if (!raw || !raw.leaseId) return undefined;
+        if (!raw?.leaseId) return undefined;
         return decodeEntry(raw);
     }
 
