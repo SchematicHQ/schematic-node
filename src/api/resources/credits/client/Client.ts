@@ -4,6 +4,7 @@ import type { BaseClientOptions, BaseRequestOptions } from "../../../../BaseClie
 import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "../../../../BaseClient";
 import * as core from "../../../../core";
 import { mergeHeaders } from "../../../../core/headers";
+import { mergeAdditionalBodyParameters } from "../../../../core/requestBody";
 import * as environments from "../../../../environments";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError";
 import * as errors from "../../../../errors/index";
@@ -32,6 +33,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.listBillingCredits({
@@ -176,6 +179,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.createBillingCredit({
@@ -213,7 +218,10 @@ export class CreditsClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.CreateBillingCreditRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.CreateBillingCreditRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -310,6 +318,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.getSingleBillingCredit("credit_id")
@@ -428,6 +438,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.updateBillingCredit("credit_id", {
@@ -466,7 +478,10 @@ export class CreditsClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.UpdateBillingCreditRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.UpdateBillingCreditRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -564,6 +579,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.softDeleteBillingCredit("credit_id")
@@ -697,6 +714,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.listCompanyCreditBalances({
@@ -835,6 +854,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.listCreditBundles({
@@ -989,6 +1010,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.createCreditBundle({
@@ -1027,7 +1050,10 @@ export class CreditsClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.CreateCreditBundleRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.CreateCreditBundleRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -1124,6 +1150,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.getCreditBundle("bundle_id")
@@ -1247,6 +1275,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.updateCreditBundleDetails("bundle_id", {
@@ -1287,9 +1317,12 @@ export class CreditsClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.UpdateCreditBundleDetailsRequestBody.jsonOrThrow(request, {
-                unrecognizedObjectKeys: "strip",
-            }),
+            body: mergeAdditionalBodyParameters(
+                serializers.UpdateCreditBundleDetailsRequestBody.jsonOrThrow(request, {
+                    unrecognizedObjectKeys: "strip",
+                }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -1392,6 +1425,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.deleteCreditBundle("bundle_id")
@@ -1525,6 +1560,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.countCreditBundles({
@@ -1684,6 +1721,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.countBillingCredits({
@@ -1829,6 +1868,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.zeroOutGrant("grant_id")
@@ -1864,7 +1905,10 @@ export class CreditsClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.ZeroOutGrantRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.ZeroOutGrantRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -1967,6 +2011,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.grantBillingCreditsToCompany({
@@ -2005,7 +2051,10 @@ export class CreditsClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.CreateCompanyCreditGrant.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.CreateCompanyCreditGrant.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -2108,6 +2157,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.countCompanyGrants({
@@ -2265,6 +2316,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.listCompanyGrants({
@@ -2422,6 +2475,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.countBillingCreditsGrants({
@@ -2566,6 +2621,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.listGrantsForCredit({
@@ -2710,6 +2767,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.acquireCreditLease({
@@ -2747,7 +2806,10 @@ export class CreditsClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.AcquireCreditLeaseRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.AcquireCreditLeaseRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -2846,6 +2908,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.extendCreditLease("lease_id", {
@@ -2883,7 +2947,10 @@ export class CreditsClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.ExtendCreditLeaseRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.ExtendCreditLeaseRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -2987,6 +3054,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.releaseCreditLease("lease_id", {
@@ -3024,7 +3093,10 @@ export class CreditsClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.ReleaseCreditLeaseRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.ReleaseCreditLeaseRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -3127,6 +3199,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.listBillingPlanCreditGrants({
@@ -3279,6 +3353,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.createBillingPlanCreditGrant({
@@ -3318,9 +3394,12 @@ export class CreditsClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.CreateBillingPlanCreditGrantRequestBody.jsonOrThrow(request, {
-                unrecognizedObjectKeys: "strip",
-            }),
+            body: mergeAdditionalBodyParameters(
+                serializers.CreateBillingPlanCreditGrantRequestBody.jsonOrThrow(request, {
+                    unrecognizedObjectKeys: "strip",
+                }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -3417,6 +3496,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.getSingleBillingPlanCreditGrant("plan_grant_id")
@@ -3542,6 +3623,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.updateBillingPlanCreditGrant("plan_grant_id", {
@@ -3582,9 +3665,12 @@ export class CreditsClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.UpdateBillingPlanCreditGrantRequestBody.jsonOrThrow(request, {
-                unrecognizedObjectKeys: "strip",
-            }),
+            body: mergeAdditionalBodyParameters(
+                serializers.UpdateBillingPlanCreditGrantRequestBody.jsonOrThrow(request, {
+                    unrecognizedObjectKeys: "strip",
+                }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -3688,6 +3774,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.deleteBillingPlanCreditGrant("plan_grant_id", {
@@ -3835,6 +3923,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.countBillingPlanCreditGrants({
@@ -3992,6 +4082,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.listCreditEventLedger({
@@ -4147,6 +4239,8 @@ export class CreditsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.credits.countCreditEventLedger({

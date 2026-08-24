@@ -11,7 +11,7 @@ describe("PlanbundleClient", () => {
         const rawRequestBody = {
             billing_product: { charge_type: "free", is_trialable: true },
             entitlements: [{ action: "create" }],
-            plan: { company_id: "company_id", description: "description", name: "name" },
+            plan: { company_id: "company_id", name: "name" },
         };
         const rawResponseBody = {
             data: {
@@ -111,7 +111,6 @@ describe("PlanbundleClient", () => {
             ],
             plan: {
                 companyId: "company_id",
-                description: "description",
                 name: "name",
             },
         });
@@ -211,7 +210,7 @@ describe("PlanbundleClient", () => {
         const rawRequestBody = {
             billing_product: { charge_type: "free", is_trialable: true },
             entitlements: [{ action: "create" }, { action: "create" }],
-            plan: { company_id: "company_id", description: "description", name: "x" },
+            plan: { company_id: "company_id", name: "x" },
         };
         const rawResponseBody = { error: "error" };
 
@@ -240,7 +239,6 @@ describe("PlanbundleClient", () => {
                 ],
                 plan: {
                     companyId: "company_id",
-                    description: "description",
                     name: "x",
                 },
             });
@@ -253,7 +251,7 @@ describe("PlanbundleClient", () => {
         const rawRequestBody = {
             billing_product: { charge_type: "free", is_trialable: true },
             entitlements: [{ action: "create" }, { action: "create" }],
-            plan: { company_id: "company_id", description: "description", name: "x" },
+            plan: { company_id: "company_id", name: "x" },
         };
         const rawResponseBody = { error: "error" };
 
@@ -282,7 +280,6 @@ describe("PlanbundleClient", () => {
                 ],
                 plan: {
                     companyId: "company_id",
-                    description: "description",
                     name: "x",
                 },
             });
@@ -295,7 +292,7 @@ describe("PlanbundleClient", () => {
         const rawRequestBody = {
             billing_product: { charge_type: "free", is_trialable: true },
             entitlements: [{ action: "create" }, { action: "create" }],
-            plan: { company_id: "company_id", description: "description", name: "x" },
+            plan: { company_id: "company_id", name: "x" },
         };
         const rawResponseBody = { error: "error" };
 
@@ -324,7 +321,6 @@ describe("PlanbundleClient", () => {
                 ],
                 plan: {
                     companyId: "company_id",
-                    description: "description",
                     name: "x",
                 },
             });
@@ -337,7 +333,7 @@ describe("PlanbundleClient", () => {
         const rawRequestBody = {
             billing_product: { charge_type: "free", is_trialable: true },
             entitlements: [{ action: "create" }, { action: "create" }],
-            plan: { company_id: "company_id", description: "description", name: "x" },
+            plan: { company_id: "company_id", name: "x" },
         };
         const rawResponseBody = { error: "error" };
 
@@ -366,7 +362,6 @@ describe("PlanbundleClient", () => {
                 ],
                 plan: {
                     companyId: "company_id",
-                    description: "description",
                     name: "x",
                 },
             });
@@ -379,7 +374,7 @@ describe("PlanbundleClient", () => {
         const rawRequestBody = {
             billing_product: { charge_type: "free", is_trialable: true },
             entitlements: [{ action: "create" }, { action: "create" }],
-            plan: { company_id: "company_id", description: "description", name: "x" },
+            plan: { company_id: "company_id", name: "x" },
         };
         const rawResponseBody = { error: "error" };
 
@@ -408,7 +403,6 @@ describe("PlanbundleClient", () => {
                 ],
                 plan: {
                     companyId: "company_id",
-                    description: "description",
                     name: "x",
                 },
             });
@@ -418,10 +412,7 @@ describe("PlanbundleClient", () => {
     test("createPlanBundle (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            entitlements: [{ action: "create" }],
-            plan: { description: "description", name: "name", plan_type: "plan" },
-        };
+        const rawRequestBody = { entitlements: [{ action: "create" }], plan: { name: "name", plan_type: "plan" } };
         const rawResponseBody = {
             data: {
                 billing_product: {
@@ -515,7 +506,6 @@ describe("PlanbundleClient", () => {
                 },
             ],
             plan: {
-                description: "description",
                 name: "name",
                 planType: "plan",
             },
@@ -615,7 +605,7 @@ describe("PlanbundleClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             entitlements: [{ action: "create" }, { action: "create" }],
-            plan: { description: "description", name: "x", plan_type: "plan" },
+            plan: { name: "x", plan_type: "plan" },
         };
         const rawResponseBody = { error: "error" };
 
@@ -639,7 +629,6 @@ describe("PlanbundleClient", () => {
                     },
                 ],
                 plan: {
-                    description: "description",
                     name: "x",
                     planType: "plan",
                 },
@@ -652,7 +641,7 @@ describe("PlanbundleClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             entitlements: [{ action: "create" }, { action: "create" }],
-            plan: { description: "description", name: "x", plan_type: "plan" },
+            plan: { name: "x", plan_type: "plan" },
         };
         const rawResponseBody = { error: "error" };
 
@@ -676,7 +665,6 @@ describe("PlanbundleClient", () => {
                     },
                 ],
                 plan: {
-                    description: "description",
                     name: "x",
                     planType: "plan",
                 },
@@ -689,7 +677,7 @@ describe("PlanbundleClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             entitlements: [{ action: "create" }, { action: "create" }],
-            plan: { description: "description", name: "x", plan_type: "plan" },
+            plan: { name: "x", plan_type: "plan" },
         };
         const rawResponseBody = { error: "error" };
 
@@ -713,7 +701,6 @@ describe("PlanbundleClient", () => {
                     },
                 ],
                 plan: {
-                    description: "description",
                     name: "x",
                     planType: "plan",
                 },
@@ -726,7 +713,7 @@ describe("PlanbundleClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             entitlements: [{ action: "create" }, { action: "create" }],
-            plan: { description: "description", name: "x", plan_type: "plan" },
+            plan: { name: "x", plan_type: "plan" },
         };
         const rawResponseBody = { error: "error" };
 
@@ -750,7 +737,6 @@ describe("PlanbundleClient", () => {
                     },
                 ],
                 plan: {
-                    description: "description",
                     name: "x",
                     planType: "plan",
                 },
@@ -763,7 +749,7 @@ describe("PlanbundleClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             entitlements: [{ action: "create" }, { action: "create" }],
-            plan: { description: "description", name: "x", plan_type: "plan" },
+            plan: { name: "x", plan_type: "plan" },
         };
         const rawResponseBody = { error: "error" };
 
@@ -787,7 +773,6 @@ describe("PlanbundleClient", () => {
                     },
                 ],
                 plan: {
-                    description: "description",
                     name: "x",
                     planType: "plan",
                 },

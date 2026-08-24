@@ -31,6 +31,8 @@ export class InsightsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.insights.getActivity({
@@ -157,6 +159,8 @@ export class InsightsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.insights.getEnvironmentFeatureUsageTimeSeries({
@@ -299,6 +303,8 @@ export class InsightsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.insights.getPlanGrowth({
@@ -424,6 +430,8 @@ export class InsightsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.insights.getSummary()
@@ -538,6 +546,8 @@ export class InsightsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.insights.getTopFeaturesByUsage({
@@ -668,6 +678,8 @@ export class InsightsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.insights.getEnvironmentTraitUsageTimeSeries({

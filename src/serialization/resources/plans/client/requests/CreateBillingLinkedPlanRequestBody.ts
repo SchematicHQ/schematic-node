@@ -12,7 +12,7 @@ export const CreateBillingLinkedPlanRequestBody: core.serialization.Schema<
     Schematic.CreateBillingLinkedPlanRequestBody
 > = core.serialization.object({
     billingProvider: core.serialization.property("billing_provider", BillingProviderType),
-    description: core.serialization.string(),
+    description: core.serialization.string().optional(),
     externalResourceId: core.serialization.property("external_resource_id", core.serialization.string()),
     externalResourceVersion: core.serialization.property(
         "external_resource_version",
@@ -26,7 +26,7 @@ export const CreateBillingLinkedPlanRequestBody: core.serialization.Schema<
 export declare namespace CreateBillingLinkedPlanRequestBody {
     export interface Raw {
         billing_provider: BillingProviderType.Raw;
-        description: string;
+        description?: string | null;
         external_resource_id: string;
         external_resource_version?: string | null;
         icon?: PlanIcon.Raw | null;

@@ -4,6 +4,7 @@ import type { BaseClientOptions, BaseRequestOptions } from "../../../../BaseClie
 import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "../../../../BaseClient";
 import * as core from "../../../../core";
 import { mergeHeaders } from "../../../../core/headers";
+import { mergeAdditionalBodyParameters } from "../../../../core/requestBody";
 import * as environments from "../../../../environments";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError";
 import * as errors from "../../../../errors/index";
@@ -32,6 +33,8 @@ export class EventsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.events.createEventBatch({
@@ -69,7 +72,10 @@ export class EventsClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.CreateEventBatchRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.CreateEventBatchRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -167,6 +173,8 @@ export class EventsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.events.getEventSummaries({
@@ -311,6 +319,8 @@ export class EventsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.events.listEvents({
@@ -467,6 +477,8 @@ export class EventsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.events.createEvent({
@@ -502,7 +514,10 @@ export class EventsClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.CreateEventRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.CreateEventRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -599,6 +614,8 @@ export class EventsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.events.getEvent("event_id")
@@ -714,6 +731,8 @@ export class EventsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.events.getSegmentIntegrationStatus()

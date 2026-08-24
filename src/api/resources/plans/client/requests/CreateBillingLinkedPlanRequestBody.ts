@@ -6,7 +6,6 @@ import type * as Schematic from "../../../../index";
  * @example
  *     {
  *         billingProvider: "metronome",
- *         description: "description",
  *         externalResourceId: "external_resource_id",
  *         name: "name",
  *         planType: "plan"
@@ -14,7 +13,7 @@ import type * as Schematic from "../../../../index";
  */
 export interface CreateBillingLinkedPlanRequestBody {
     billingProvider: Schematic.BillingProviderType;
-    description: string;
+    description?: string;
     externalResourceId: string;
     externalResourceVersion?: string;
     icon?: Schematic.PlanIcon;

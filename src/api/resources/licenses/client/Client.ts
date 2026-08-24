@@ -32,6 +32,8 @@ export class LicensesClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.licenses.listLicenses({
@@ -177,6 +179,8 @@ export class LicensesClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.licenses.getSingleLicense("license_id")
@@ -294,6 +298,8 @@ export class LicensesClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.licenses.countLicenses({

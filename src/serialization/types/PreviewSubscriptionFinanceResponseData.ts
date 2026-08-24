@@ -20,6 +20,7 @@ export const PreviewSubscriptionFinanceResponseData: core.serialization.ObjectSc
     periodStart: core.serialization.property("period_start", core.serialization.date()),
     promoCodeApplied: core.serialization.property("promo_code_applied", core.serialization.boolean()),
     proration: core.serialization.number(),
+    prorationBilledAt: core.serialization.property("proration_billed_at", core.serialization.date().optional()),
     taxAmount: core.serialization.property("tax_amount", core.serialization.number().optional()),
     taxDisplayName: core.serialization.property("tax_display_name", core.serialization.string().optional()),
     taxRequireBillingDetails: core.serialization.property("tax_require_billing_details", core.serialization.boolean()),
@@ -43,6 +44,7 @@ export declare namespace PreviewSubscriptionFinanceResponseData {
         period_start: string;
         promo_code_applied: boolean;
         proration: number;
+        proration_billed_at?: string | null;
         tax_amount?: number | null;
         tax_display_name?: string | null;
         tax_require_billing_details: boolean;

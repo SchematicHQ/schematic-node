@@ -9360,7 +9360,6 @@ await client.plans.retryCustomPlanBilling("custom_plan_billing_id", {
 ```typescript
 await client.plans.createCustomPlan({
     companyId: "company_id",
-    description: "description",
     name: "name"
 });
 
@@ -9479,7 +9478,6 @@ await client.plans.listPlans({
 
 ```typescript
 await client.plans.createPlan({
-    description: "description",
     name: "name",
     planType: "plan"
 });
@@ -9760,7 +9758,6 @@ await client.plans.upsertBillingProductPlan("plan_id", {
 ```typescript
 await client.plans.upsertPlanForBillingProduct({
     billingProvider: "metronome",
-    description: "description",
     externalResourceId: "external_resource_id",
     name: "name",
     planType: "plan"
@@ -10593,7 +10590,6 @@ await client.planbundle.createCustomPlanBundle({
         }],
     plan: {
         companyId: "company_id",
-        description: "description",
         name: "name"
     }
 });
@@ -10650,7 +10646,6 @@ await client.planbundle.createPlanBundle({
             action: "create"
         }],
     plan: {
-        description: "description",
         name: "name",
         planType: "plan"
     }

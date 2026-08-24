@@ -30,5 +30,5 @@ export interface ComponentPreviewResponseData {
     stripeEmbed?: Schematic.StripeEmbedInfo;
     subscription?: Schematic.CompanySubscriptionResponseData;
     trialPaymentMethodRequired?: boolean;
-    upcomingInvoice?: Schematic.InvoiceResponseData;
+    upcomingInvoice?: Schematic.UpcomingInvoiceResponseData;
 }

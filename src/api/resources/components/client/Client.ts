@@ -4,6 +4,7 @@ import type { BaseClientOptions, BaseRequestOptions } from "../../../../BaseClie
 import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "../../../../BaseClient";
 import * as core from "../../../../core";
 import { mergeHeaders } from "../../../../core/headers";
+import { mergeAdditionalBodyParameters } from "../../../../core/requestBody";
 import * as environments from "../../../../environments";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError";
 import * as errors from "../../../../errors/index";
@@ -32,6 +33,8 @@ export class ComponentsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.components.listComponents({
@@ -174,6 +177,8 @@ export class ComponentsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.components.createComponent({
@@ -210,7 +215,10 @@ export class ComponentsClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.CreateComponentRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.CreateComponentRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -307,6 +315,8 @@ export class ComponentsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.components.getComponent("component_id")
@@ -425,6 +435,8 @@ export class ComponentsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.components.updateComponent("component_id")
@@ -460,7 +472,10 @@ export class ComponentsClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.UpdateComponentRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.UpdateComponentRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -558,6 +573,8 @@ export class ComponentsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.components.deleteComponent("component_id")
@@ -687,6 +704,8 @@ export class ComponentsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.components.bindCatalog("component_id")
@@ -722,7 +741,10 @@ export class ComponentsClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.BindCatalogRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.BindCatalogRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -825,6 +847,8 @@ export class ComponentsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.components.countComponents({
@@ -966,6 +990,8 @@ export class ComponentsClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.components.previewComponentData({

@@ -5,6 +5,7 @@ import type * as Schematic from "../index";
 export interface OnboardingRequirementView {
     blockedBy?: Schematic.OnboardingRequirement[];
     id: Schematic.OnboardingRequirement;
+    reachedAt?: Date;
     satisfiedBy?: string;
     status: Schematic.OnboardingRequirementStatus;
 }

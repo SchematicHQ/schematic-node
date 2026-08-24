@@ -407,6 +407,7 @@ export * from "./TraitDefinition";
 export * from "./TraitDefinitionComparableType";
 export * from "./TraitType";
 export * from "./TrialStatus";
+export * from "./UpcomingInvoiceResponseData";
 export * from "./UpdateAddOnRequestBody";
 export * from "./UpdateAutoTopupOverrideRequestBody";
 export * from "./UpdateBillingPlanCreditGrantRequestBody";

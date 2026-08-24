@@ -4,6 +4,7 @@ import type { BaseClientOptions, BaseRequestOptions } from "../../../../BaseClie
 import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "../../../../BaseClient";
 import * as core from "../../../../core";
 import { mergeHeaders } from "../../../../core/headers";
+import { mergeAdditionalBodyParameters } from "../../../../core/requestBody";
 import * as environments from "../../../../environments";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError";
 import * as errors from "../../../../errors/index";
@@ -32,6 +33,8 @@ export class PlanbundleClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.planbundle.createCustomPlanBundle({
@@ -44,7 +47,6 @@ export class PlanbundleClient {
      *             }],
      *         plan: {
      *             companyId: "company_id",
-     *             description: "description",
      *             name: "name"
      *         }
      *     })
@@ -78,9 +80,10 @@ export class PlanbundleClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.CreateCustomPlanBundleRequestBody.jsonOrThrow(request, {
-                unrecognizedObjectKeys: "strip",
-            }),
+            body: mergeAdditionalBodyParameters(
+                serializers.CreateCustomPlanBundleRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -178,6 +181,8 @@ export class PlanbundleClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.planbundle.createPlanBundle({
@@ -185,7 +190,6 @@ export class PlanbundleClient {
      *                 action: "create"
      *             }],
      *         plan: {
-     *             description: "description",
      *             name: "name",
      *             planType: "plan"
      *         }
@@ -220,7 +224,10 @@ export class PlanbundleClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.CreatePlanBundleRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.CreatePlanBundleRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -319,6 +326,8 @@ export class PlanbundleClient {
      * @throws {@link Schematic.ForbiddenError}
      * @throws {@link Schematic.NotFoundError}
      * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
      *     await client.planbundle.updatePlanBundle("plan_id", {
@@ -361,7 +370,10 @@ export class PlanbundleClient {
             contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
-            body: serializers.UpdatePlanBundleRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: mergeAdditionalBodyParameters(
+                serializers.UpdatePlanBundleRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

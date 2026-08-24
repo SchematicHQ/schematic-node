@@ -11,6 +11,7 @@ export const AuditLogResponseData: core.serialization.ObjectSchema<
     serializers.AuditLogResponseData.Raw,
     Schematic.AuditLogResponseData
 > = core.serialization.object({
+    accountMemberId: core.serialization.property("account_member_id", core.serialization.string().optional()),
     actorType: core.serialization.property("actor_type", ActorType),
     apiKey: core.serialization.property("api_key", ApiKeyResponseData.optional()),
     apiKeyId: core.serialization.property("api_key_id", core.serialization.string().optional()),
@@ -35,6 +36,7 @@ export const AuditLogResponseData: core.serialization.ObjectSchema<
 
 export declare namespace AuditLogResponseData {
     export interface Raw {
+        account_member_id?: string | null;
         actor_type: ActorType.Raw;
         api_key?: ApiKeyResponseData.Raw | null;
         api_key_id?: string | null;

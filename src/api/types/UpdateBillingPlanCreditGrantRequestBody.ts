@@ -14,6 +14,7 @@ export interface UpdateBillingPlanCreditGrantRequestBody {
     autoTopupSelfService?: boolean;
     autoTopupThresholdCredits?: number;
     autoTopupThresholdPercent?: number;
+    /** Deprecated: use compatible_plan_ids on credit bundles instead. Still accepted; writes through to the credit's bundle compatibility. */
     canBuyBundles?: boolean;
     /** Credits granted once per company on top of the per-license amount. Only valid when the grant scales per license. */
     companyCreditAmount?: number;

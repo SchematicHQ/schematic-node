@@ -4,7 +4,7 @@ import type * as Schematic from "../index";
 
 export interface CreateCustomPlanBundlePlanRequestBody {
     companyId: string;
-    description: string;
+    description?: string;
     icon?: Schematic.PlanIcon;
     name: string;
 }

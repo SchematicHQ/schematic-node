@@ -5,6 +5,8 @@ import * as errors from "../../errors/index";
 import type * as Schematic from "../index";
 
 export class BadRequestError extends errors.SchematicError {
+    public declare readonly body: Schematic.ApiError;
+
     constructor(body: Schematic.ApiError, rawResponse?: core.RawResponse) {
         super({
             message: "BadRequestError",
@@ -17,6 +19,6 @@ export class BadRequestError extends errors.SchematicError {
             Error.captureStackTrace(this, this.constructor);
         }
 
-        this.name = this.constructor.name;
+        this.name = "BadRequestError";
     }
 }

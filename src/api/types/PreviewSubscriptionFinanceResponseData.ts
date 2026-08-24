@@ -13,6 +13,7 @@ export interface PreviewSubscriptionFinanceResponseData {
     periodStart: Date;
     promoCodeApplied: boolean;
     proration: number;
+    prorationBilledAt?: Date;
     taxAmount?: number;
     taxDisplayName?: string;
     taxRequireBillingDetails: boolean;
