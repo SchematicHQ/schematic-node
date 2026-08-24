@@ -14,7 +14,6 @@ import type * as Schematic from "../../../../index";
  *             }],
  *         plan: {
  *             companyId: "company_id",
- *             description: "description",
  *             name: "name"
  *         }
  *     }

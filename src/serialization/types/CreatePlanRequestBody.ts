@@ -10,7 +10,7 @@ export const CreatePlanRequestBody: core.serialization.ObjectSchema<
     serializers.CreatePlanRequestBody.Raw,
     Schematic.CreatePlanRequestBody
 > = core.serialization.object({
-    description: core.serialization.string(),
+    description: core.serialization.string().optional(),
     icon: PlanIcon.optional(),
     name: core.serialization.string(),
     planType: core.serialization.property("plan_type", PlanType),
@@ -18,7 +18,7 @@ export const CreatePlanRequestBody: core.serialization.ObjectSchema<
 
 export declare namespace CreatePlanRequestBody {
     export interface Raw {
-        description: string;
+        description?: string | null;
         icon?: PlanIcon.Raw | null;
         name: string;
         plan_type: PlanType.Raw;

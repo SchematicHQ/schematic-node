@@ -14,6 +14,7 @@ export const StripeIntegrationConfig: core.serialization.ObjectSchema<
     isSandbox: core.serialization.property("is_sandbox", core.serialization.boolean()),
     liveMode: core.serialization.property("live_mode", core.serialization.boolean()),
     onboardUrl: core.serialization.property("onboard_url", core.serialization.string().optional()),
+    returnTo: core.serialization.property("return_to", core.serialization.string().optional()),
 });
 
 export declare namespace StripeIntegrationConfig {
@@ -24,5 +25,6 @@ export declare namespace StripeIntegrationConfig {
         is_sandbox: boolean;
         live_mode: boolean;
         onboard_url?: string | null;
+        return_to?: string | null;
     }
 }

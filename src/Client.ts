@@ -156,6 +156,9 @@ export class SchematicClient {
     /**
      * @param {SchematicClient.RequestOptions} requestOptions - Request-specific configuration.
      *
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
+     *
      * @example
      *     await client.getCreditLedger()
      */

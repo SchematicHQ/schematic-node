@@ -12,7 +12,7 @@ export const CreateCustomPlanRequestBody: core.serialization.Schema<
     companyId: core.serialization.property("company_id", core.serialization.string()),
     copiedFromPlanId: core.serialization.property("copied_from_plan_id", core.serialization.string().optional()),
     copiedPriceId: core.serialization.property("copied_price_id", core.serialization.string().optional()),
-    description: core.serialization.string(),
+    description: core.serialization.string().optional(),
     icon: PlanIcon.optional(),
     name: core.serialization.string(),
 });
@@ -22,7 +22,7 @@ export declare namespace CreateCustomPlanRequestBody {
         company_id: string;
         copied_from_plan_id?: string | null;
         copied_price_id?: string | null;
-        description: string;
+        description?: string | null;
         icon?: PlanIcon.Raw | null;
         name: string;
     }

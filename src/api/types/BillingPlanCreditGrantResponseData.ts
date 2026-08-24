@@ -15,7 +15,7 @@ export interface BillingPlanCreditGrantResponseData {
     autoTopupSelfService: boolean;
     autoTopupThresholdCredits?: number;
     autoTopupThresholdPercent?: number;
-    /** Whether buyers can purchase one-time credit bundles on this grant, independent of auto top-up availability. */
+    /** Deprecated: bundle availability is a per-bundle plan compatibility set now; use compatible_plan_ids on credit bundles instead. */
     canBuyBundles: boolean;
     /** Credits granted once per company on top of the per-license amount. Always 0 when scaling is fixed. */
     companyCreditAmount: number;

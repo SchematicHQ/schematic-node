@@ -12,6 +12,7 @@ export const OnboardingRequirementView: core.serialization.ObjectSchema<
 > = core.serialization.object({
     blockedBy: core.serialization.property("blocked_by", core.serialization.list(OnboardingRequirement).optional()),
     id: OnboardingRequirement,
+    reachedAt: core.serialization.property("reached_at", core.serialization.date().optional()),
     satisfiedBy: core.serialization.property("satisfied_by", core.serialization.string().optional()),
     status: OnboardingRequirementStatus,
 });
@@ -20,6 +21,7 @@ export declare namespace OnboardingRequirementView {
     export interface Raw {
         blocked_by?: OnboardingRequirement.Raw[] | null;
         id: OnboardingRequirement.Raw;
+        reached_at?: string | null;
         satisfied_by?: string | null;
         status: OnboardingRequirementStatus.Raw;
     }

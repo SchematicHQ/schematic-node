@@ -1436,6 +1436,7 @@ describe("AccountsClient", () => {
 
         const rawResponseBody = {
             data: {
+                account_member_id: "account_member_id",
                 actor_type: "api_key",
                 api_key: {
                     created_at: "2024-01-15T09:30:00Z",
@@ -1496,6 +1497,7 @@ describe("AccountsClient", () => {
         const response = await client.accounts.getAuditLog("audit_log_id");
         expect(response).toEqual({
             data: {
+                accountMemberId: "account_member_id",
                 actorType: "api_key",
                 apiKey: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),

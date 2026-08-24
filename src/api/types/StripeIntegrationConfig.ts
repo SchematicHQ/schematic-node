@@ -13,4 +13,6 @@ export interface StripeIntegrationConfig {
     liveMode: boolean;
     /** Onboarding URL returned during the v2 (Connect) install flow before activation */
     onboardUrl?: string;
+    /** App location that started the connect flow; the OAuth callback redirects back there on success */
+    returnTo?: string;
 }

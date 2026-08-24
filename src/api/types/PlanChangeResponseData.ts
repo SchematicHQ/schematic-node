@@ -31,6 +31,12 @@ export interface PlanChangeResponseData {
     subscriptionChangeAction?: Schematic.PlanChangeSubscriptionAction;
     /** Any traits were updated as part of this plan change (via pay-in-advance entitlements). */
     traitsUpdated: Schematic.SubscriptionTraitUpdate[];
+    /** When the company's trial had converted to a paid subscription as of this change. Null when the trial had not converted, or for changes recorded before trial status was tracked. */
+    trialConvertedAt?: Date;
+    /** When the company's trial was set to end as of this change. Null when the company had never trialed, or for changes recorded before trial status was tracked. */
+    trialExpiresAt?: Date;
+    /** The company's trial status. Null when the company had never trialed, or for changes recorded before trial status was tracked. */
+    trialStatus?: Schematic.TrialStatus;
     updatedAt: Date;
     userId?: string;
     userName?: string;

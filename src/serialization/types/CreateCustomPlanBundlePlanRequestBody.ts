@@ -10,7 +10,7 @@ export const CreateCustomPlanBundlePlanRequestBody: core.serialization.ObjectSch
     Schematic.CreateCustomPlanBundlePlanRequestBody
 > = core.serialization.object({
     companyId: core.serialization.property("company_id", core.serialization.string()),
-    description: core.serialization.string(),
+    description: core.serialization.string().optional(),
     icon: PlanIcon.optional(),
     name: core.serialization.string(),
 });
@@ -18,7 +18,7 @@ export const CreateCustomPlanBundlePlanRequestBody: core.serialization.ObjectSch
 export declare namespace CreateCustomPlanBundlePlanRequestBody {
     export interface Raw {
         company_id: string;
-        description: string;
+        description?: string | null;
         icon?: PlanIcon.Raw | null;
         name: string;
     }

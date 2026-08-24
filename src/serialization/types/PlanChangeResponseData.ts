@@ -14,6 +14,7 @@ import { PlanChangeSubscriptionAction } from "./PlanChangeSubscriptionAction";
 import { PlanSnapshotView } from "./PlanSnapshotView";
 import { PlanVersionSnapshotView } from "./PlanVersionSnapshotView";
 import { SubscriptionTraitUpdate } from "./SubscriptionTraitUpdate";
+import { TrialStatus } from "./TrialStatus";
 
 export const PlanChangeResponseData: core.serialization.ObjectSchema<
     serializers.PlanChangeResponseData.Raw,
@@ -46,6 +47,9 @@ export const PlanChangeResponseData: core.serialization.ObjectSchema<
         PlanChangeSubscriptionAction.optional(),
     ),
     traitsUpdated: core.serialization.property("traits_updated", core.serialization.list(SubscriptionTraitUpdate)),
+    trialConvertedAt: core.serialization.property("trial_converted_at", core.serialization.date().optional()),
+    trialExpiresAt: core.serialization.property("trial_expires_at", core.serialization.date().optional()),
+    trialStatus: core.serialization.property("trial_status", TrialStatus.optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     userId: core.serialization.property("user_id", core.serialization.string().optional()),
     userName: core.serialization.property("user_name", core.serialization.string().optional()),
@@ -74,6 +78,9 @@ export declare namespace PlanChangeResponseData {
         request_id?: string | null;
         subscription_change_action?: PlanChangeSubscriptionAction.Raw | null;
         traits_updated: SubscriptionTraitUpdate.Raw[];
+        trial_converted_at?: string | null;
+        trial_expires_at?: string | null;
+        trial_status?: TrialStatus.Raw | null;
         updated_at: string;
         user_id?: string | null;
         user_name?: string | null;

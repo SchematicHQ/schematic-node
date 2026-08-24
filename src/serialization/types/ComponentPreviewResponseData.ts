@@ -19,6 +19,7 @@ import { InvoiceResponseData } from "./InvoiceResponseData";
 import { PlanDetailResponseData } from "./PlanDetailResponseData";
 import { ScheduledDowngradeResponseData } from "./ScheduledDowngradeResponseData";
 import { StripeEmbedInfo } from "./StripeEmbedInfo";
+import { UpcomingInvoiceResponseData } from "./UpcomingInvoiceResponseData";
 import { UsageBasedEntitlementResponseData } from "./UsageBasedEntitlementResponseData";
 
 export const ComponentPreviewResponseData: core.serialization.ObjectSchema<
@@ -73,7 +74,7 @@ export const ComponentPreviewResponseData: core.serialization.ObjectSchema<
         "trial_payment_method_required",
         core.serialization.boolean().optional(),
     ),
-    upcomingInvoice: core.serialization.property("upcoming_invoice", InvoiceResponseData.optional()),
+    upcomingInvoice: core.serialization.property("upcoming_invoice", UpcomingInvoiceResponseData.optional()),
 });
 
 export declare namespace ComponentPreviewResponseData {
@@ -105,6 +106,6 @@ export declare namespace ComponentPreviewResponseData {
         stripe_embed?: StripeEmbedInfo.Raw | null;
         subscription?: CompanySubscriptionResponseData.Raw | null;
         trial_payment_method_required?: boolean | null;
-        upcoming_invoice?: InvoiceResponseData.Raw | null;
+        upcoming_invoice?: UpcomingInvoiceResponseData.Raw | null;
     }
 }

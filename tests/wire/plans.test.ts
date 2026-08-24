@@ -1359,7 +1359,7 @@ describe("PlansClient", () => {
     test("createCustomPlan (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { company_id: "company_id", description: "description", name: "name" };
+        const rawRequestBody = { company_id: "company_id", name: "name" };
         const rawResponseBody = {
             data: {
                 active_version: {
@@ -1637,7 +1637,6 @@ describe("PlansClient", () => {
 
         const response = await client.plans.createCustomPlan({
             companyId: "company_id",
-            description: "description",
             name: "name",
         });
         expect(response).toEqual({
@@ -1950,7 +1949,7 @@ describe("PlansClient", () => {
     test("createCustomPlan (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { company_id: "company_id", description: "description", name: "x" };
+        const rawRequestBody = { company_id: "company_id", name: "x" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -1965,7 +1964,6 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.createCustomPlan({
                 companyId: "company_id",
-                description: "description",
                 name: "x",
             });
         }).rejects.toThrow(Schematic.BadRequestError);
@@ -1974,7 +1972,7 @@ describe("PlansClient", () => {
     test("createCustomPlan (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { company_id: "company_id", description: "description", name: "x" };
+        const rawRequestBody = { company_id: "company_id", name: "x" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -1989,7 +1987,6 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.createCustomPlan({
                 companyId: "company_id",
-                description: "description",
                 name: "x",
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
@@ -1998,7 +1995,7 @@ describe("PlansClient", () => {
     test("createCustomPlan (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { company_id: "company_id", description: "description", name: "x" };
+        const rawRequestBody = { company_id: "company_id", name: "x" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -2013,7 +2010,6 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.createCustomPlan({
                 companyId: "company_id",
-                description: "description",
                 name: "x",
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
@@ -2022,7 +2018,7 @@ describe("PlansClient", () => {
     test("createCustomPlan (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { company_id: "company_id", description: "description", name: "x" };
+        const rawRequestBody = { company_id: "company_id", name: "x" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -2037,7 +2033,6 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.createCustomPlan({
                 companyId: "company_id",
-                description: "description",
                 name: "x",
             });
         }).rejects.toThrow(Schematic.NotFoundError);
@@ -2046,7 +2041,7 @@ describe("PlansClient", () => {
     test("createCustomPlan (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { company_id: "company_id", description: "description", name: "x" };
+        const rawRequestBody = { company_id: "company_id", name: "x" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -2061,7 +2056,6 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.createCustomPlan({
                 companyId: "company_id",
-                description: "description",
                 name: "x",
             });
         }).rejects.toThrow(Schematic.InternalServerError);
@@ -2749,7 +2743,7 @@ describe("PlansClient", () => {
     test("createPlan (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { description: "description", name: "name", plan_type: "plan" };
+        const rawRequestBody = { name: "name", plan_type: "plan" };
         const rawResponseBody = {
             data: {
                 active_version: {
@@ -3026,7 +3020,6 @@ describe("PlansClient", () => {
             .build();
 
         const response = await client.plans.createPlan({
-            description: "description",
             name: "name",
             planType: "plan",
         });
@@ -3340,7 +3333,7 @@ describe("PlansClient", () => {
     test("createPlan (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { description: "description", name: "x", plan_type: "plan" };
+        const rawRequestBody = { name: "x", plan_type: "plan" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -3354,7 +3347,6 @@ describe("PlansClient", () => {
 
         await expect(async () => {
             return await client.plans.createPlan({
-                description: "description",
                 name: "x",
                 planType: "plan",
             });
@@ -3364,7 +3356,7 @@ describe("PlansClient", () => {
     test("createPlan (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { description: "description", name: "x", plan_type: "plan" };
+        const rawRequestBody = { name: "x", plan_type: "plan" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -3378,7 +3370,6 @@ describe("PlansClient", () => {
 
         await expect(async () => {
             return await client.plans.createPlan({
-                description: "description",
                 name: "x",
                 planType: "plan",
             });
@@ -3388,7 +3379,7 @@ describe("PlansClient", () => {
     test("createPlan (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { description: "description", name: "x", plan_type: "plan" };
+        const rawRequestBody = { name: "x", plan_type: "plan" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -3402,7 +3393,6 @@ describe("PlansClient", () => {
 
         await expect(async () => {
             return await client.plans.createPlan({
-                description: "description",
                 name: "x",
                 planType: "plan",
             });
@@ -3412,7 +3402,7 @@ describe("PlansClient", () => {
     test("createPlan (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { description: "description", name: "x", plan_type: "plan" };
+        const rawRequestBody = { name: "x", plan_type: "plan" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -3426,7 +3416,6 @@ describe("PlansClient", () => {
 
         await expect(async () => {
             return await client.plans.createPlan({
-                description: "description",
                 name: "x",
                 planType: "plan",
             });
@@ -3436,7 +3425,7 @@ describe("PlansClient", () => {
     test("createPlan (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { description: "description", name: "x", plan_type: "plan" };
+        const rawRequestBody = { name: "x", plan_type: "plan" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -3450,7 +3439,6 @@ describe("PlansClient", () => {
 
         await expect(async () => {
             return await client.plans.createPlan({
-                description: "description",
                 name: "x",
                 planType: "plan",
             });
@@ -5050,7 +5038,6 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             billing_provider: "metronome",
-            description: "description",
             external_resource_id: "external_resource_id",
             name: "name",
             plan_type: "plan",
@@ -5332,7 +5319,6 @@ describe("PlansClient", () => {
 
         const response = await client.plans.upsertPlanForBillingProduct({
             billingProvider: "metronome",
-            description: "description",
             externalResourceId: "external_resource_id",
             name: "name",
             planType: "plan",
@@ -5649,7 +5635,6 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             billing_provider: "metronome",
-            description: "description",
             external_resource_id: "external_resource_id",
             name: "x",
             plan_type: "plan",
@@ -5668,7 +5653,6 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.upsertPlanForBillingProduct({
                 billingProvider: "metronome",
-                description: "description",
                 externalResourceId: "external_resource_id",
                 name: "x",
                 planType: "plan",
@@ -5681,7 +5665,6 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             billing_provider: "metronome",
-            description: "description",
             external_resource_id: "external_resource_id",
             name: "x",
             plan_type: "plan",
@@ -5700,7 +5683,6 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.upsertPlanForBillingProduct({
                 billingProvider: "metronome",
-                description: "description",
                 externalResourceId: "external_resource_id",
                 name: "x",
                 planType: "plan",
@@ -5713,7 +5695,6 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             billing_provider: "metronome",
-            description: "description",
             external_resource_id: "external_resource_id",
             name: "x",
             plan_type: "plan",
@@ -5732,7 +5713,6 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.upsertPlanForBillingProduct({
                 billingProvider: "metronome",
-                description: "description",
                 externalResourceId: "external_resource_id",
                 name: "x",
                 planType: "plan",
@@ -5745,7 +5725,6 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             billing_provider: "metronome",
-            description: "description",
             external_resource_id: "external_resource_id",
             name: "x",
             plan_type: "plan",
@@ -5764,7 +5743,6 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.upsertPlanForBillingProduct({
                 billingProvider: "metronome",
-                description: "description",
                 externalResourceId: "external_resource_id",
                 name: "x",
                 planType: "plan",
@@ -5777,7 +5755,6 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             billing_provider: "metronome",
-            description: "description",
             external_resource_id: "external_resource_id",
             name: "x",
             plan_type: "plan",
@@ -5796,7 +5773,6 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.upsertPlanForBillingProduct({
                 billingProvider: "metronome",
-                description: "description",
                 externalResourceId: "external_resource_id",
                 name: "x",
                 planType: "plan",

@@ -3,7 +3,7 @@
 import type * as Schematic from "../index";
 
 export interface CreatePlanRequestBody {
-    description: string;
+    description?: string;
     icon?: Schematic.PlanIcon;
     name: string;
     planType: Schematic.PlanType;

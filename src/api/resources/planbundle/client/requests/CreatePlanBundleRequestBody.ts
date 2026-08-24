@@ -9,7 +9,6 @@ import type * as Schematic from "../../../../index";
  *                 action: "create"
  *             }],
  *         plan: {
- *             description: "description",
  *             name: "name",
  *             planType: "plan"
  *         }
