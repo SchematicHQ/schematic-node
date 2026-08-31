@@ -15,6 +15,8 @@ export interface CustomPlanBillingResponseData {
     /** The flow that created this billing record: a custom plan, or a standard plan assigned by invoice through Manage Plan. */
     planBillingSource: Schematic.PlanBillingSource;
     planId: string;
+    /** Whether the shortened period the renewal date created was billed pro rata when the subscription started. False means that period is free and the first invoice is the one raised on the renewal date. */
+    prorateFirstPeriod?: boolean;
     publishedAt?: Date;
     sendInvoice: boolean;
     status: Schematic.CustomPlanBillingStatus;

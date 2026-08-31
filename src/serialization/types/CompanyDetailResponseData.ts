@@ -12,6 +12,7 @@ import { EntityTraitDetailResponseData } from "./EntityTraitDetailResponseData";
 import { FeatureEntitlement } from "./FeatureEntitlement";
 import { GenericPreviewObject } from "./GenericPreviewObject";
 import { PaymentMethodResponseData } from "./PaymentMethodResponseData";
+import { PendingMigrationResponseData } from "./PendingMigrationResponseData";
 import { Rule } from "./Rule";
 import { ScheduledDowngradeResponseData } from "./ScheduledDowngradeResponseData";
 
@@ -45,6 +46,7 @@ export const CompanyDetailResponseData: core.serialization.ObjectSchema<
     metrics: core.serialization.list(CompanyEventPeriodMetricsResponseData),
     name: core.serialization.string(),
     paymentMethods: core.serialization.property("payment_methods", core.serialization.list(PaymentMethodResponseData)),
+    pendingMigration: core.serialization.property("pending_migration", PendingMigrationResponseData.optional()),
     plan: CompanyPlanWithBillingSubView.optional(),
     plans: core.serialization.list(GenericPreviewObject),
     rules: core.serialization.list(Rule),
@@ -73,6 +75,7 @@ export declare namespace CompanyDetailResponseData {
         metrics: CompanyEventPeriodMetricsResponseData.Raw[];
         name: string;
         payment_methods: PaymentMethodResponseData.Raw[];
+        pending_migration?: PendingMigrationResponseData.Raw | null;
         plan?: CompanyPlanWithBillingSubView.Raw | null;
         plans: GenericPreviewObject.Raw[];
         rules: Rule.Raw[];

@@ -2402,12 +2402,17 @@ describe("AccountsClient", () => {
 
         const rawResponseBody = {
             data: {
+                agent_connected_at: "2024-01-15T09:30:00Z",
+                dismissed_at: "2024-01-15T09:30:00Z",
                 environment_id: "environment_id",
-                milestones: [{ id: "evaluated", missing: ["connect_billing"], progress: 1.1 }],
+                milestones: [{ id: "evaluated", missing: ["connect_agent"], progress: 1.1 }],
                 path: "agent",
-                requirements: [{ id: "connect_billing", status: "available" }],
-                suggested_next: ["connect_billing"],
+                pricing_page_url: "pricing_page_url",
+                requirements: [{ id: "connect_agent", status: "available" }],
+                stripe_import: "complete",
+                suggested_next: ["connect_agent"],
                 track: "catalog",
+                website_url: "website_url",
             },
             params: { key: "value" },
         };
@@ -2417,23 +2422,28 @@ describe("AccountsClient", () => {
         const response = await client.accounts.getOnboardingState();
         expect(response).toEqual({
             data: {
+                agentConnectedAt: new Date("2024-01-15T09:30:00.000Z"),
+                dismissedAt: new Date("2024-01-15T09:30:00.000Z"),
                 environmentId: "environment_id",
                 milestones: [
                     {
                         id: "evaluated",
-                        missing: ["connect_billing"],
+                        missing: ["connect_agent"],
                         progress: 1.1,
                     },
                 ],
                 path: "agent",
+                pricingPageUrl: "pricing_page_url",
                 requirements: [
                     {
-                        id: "connect_billing",
+                        id: "connect_agent",
                         status: "available",
                     },
                 ],
-                suggestedNext: ["connect_billing"],
+                stripeImport: "complete",
+                suggestedNext: ["connect_agent"],
                 track: "catalog",
+                websiteUrl: "website_url",
             },
             params: {
                 key: "value",
@@ -2499,12 +2509,17 @@ describe("AccountsClient", () => {
         const rawRequestBody = {};
         const rawResponseBody = {
             data: {
+                agent_connected_at: "2024-01-15T09:30:00Z",
+                dismissed_at: "2024-01-15T09:30:00Z",
                 environment_id: "environment_id",
-                milestones: [{ id: "evaluated", missing: ["connect_billing"], progress: 1.1 }],
+                milestones: [{ id: "evaluated", missing: ["connect_agent"], progress: 1.1 }],
                 path: "agent",
-                requirements: [{ id: "connect_billing", status: "available" }],
-                suggested_next: ["connect_billing"],
+                pricing_page_url: "pricing_page_url",
+                requirements: [{ id: "connect_agent", status: "available" }],
+                stripe_import: "complete",
+                suggested_next: ["connect_agent"],
                 track: "catalog",
+                website_url: "website_url",
             },
             params: { key: "value" },
         };
@@ -2521,23 +2536,28 @@ describe("AccountsClient", () => {
         const response = await client.accounts.updateOnboardingState();
         expect(response).toEqual({
             data: {
+                agentConnectedAt: new Date("2024-01-15T09:30:00.000Z"),
+                dismissedAt: new Date("2024-01-15T09:30:00.000Z"),
                 environmentId: "environment_id",
                 milestones: [
                     {
                         id: "evaluated",
-                        missing: ["connect_billing"],
+                        missing: ["connect_agent"],
                         progress: 1.1,
                     },
                 ],
                 path: "agent",
+                pricingPageUrl: "pricing_page_url",
                 requirements: [
                     {
-                        id: "connect_billing",
+                        id: "connect_agent",
                         status: "available",
                     },
                 ],
-                suggestedNext: ["connect_billing"],
+                stripeImport: "complete",
+                suggestedNext: ["connect_agent"],
                 track: "catalog",
+                websiteUrl: "website_url",
             },
             params: {
                 key: "value",

@@ -8,6 +8,7 @@ export const OnboardingRequirement: core.serialization.Schema<
     serializers.OnboardingRequirement.Raw,
     Schematic.OnboardingRequirement
 > = core.serialization.enum_([
+    "connect_agent",
     "connect_billing",
     "create_api_key",
     "first_flag_check",
@@ -18,6 +19,7 @@ export const OnboardingRequirement: core.serialization.Schema<
 
 export declare namespace OnboardingRequirement {
     export type Raw =
+        | "connect_agent"
         | "connect_billing"
         | "create_api_key"
         | "first_flag_check"

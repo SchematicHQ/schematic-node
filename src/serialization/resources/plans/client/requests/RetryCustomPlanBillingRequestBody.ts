@@ -10,16 +10,20 @@ export const RetryCustomPlanBillingRequestBody: core.serialization.Schema<
     Schematic.RetryCustomPlanBillingRequestBody
 > = core.serialization.object({
     activationStrategy: core.serialization.property("activation_strategy", CustomPlanActivationStrategy.optional()),
+    billingCycleAnchor: core.serialization.property("billing_cycle_anchor", core.serialization.date().optional()),
     customerEmail: core.serialization.property("customer_email", core.serialization.string()),
     daysUntilDue: core.serialization.property("days_until_due", core.serialization.number().optional()),
+    prorateFirstPeriod: core.serialization.property("prorate_first_period", core.serialization.boolean().optional()),
     sendInvoice: core.serialization.property("send_invoice", core.serialization.boolean().optional()),
 });
 
 export declare namespace RetryCustomPlanBillingRequestBody {
     export interface Raw {
         activation_strategy?: CustomPlanActivationStrategy.Raw | null;
+        billing_cycle_anchor?: string | null;
         customer_email: string;
         days_until_due?: number | null;
+        prorate_first_period?: boolean | null;
         send_invoice?: boolean | null;
     }
 }

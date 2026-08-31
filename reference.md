@@ -10098,7 +10098,7 @@ await client.plans.deletePlanVersion("plan_version_id", {
 ```typescript
 await client.plans.publishPlanVersion("plan_version_id", {
     excludedCompanyIds: ["excluded_company_ids"],
-    migrationStrategy: "immediate"
+    migrationStrategy: "end_of_billing_period"
 });
 
 ```
@@ -13347,7 +13347,7 @@ await client.plangroups.updatePlanGroup("plan_group_id", {
 await client.planmigrations.listCompanyMigrations({
     migrationId: "migration_id",
     q: "q",
-    status: "completed",
+    status: "cancelled",
     limit: 1000000,
     offset: 1000000
 });
@@ -13451,7 +13451,7 @@ await client.planmigrations.retryCompanyMigration("plan_version_company_migratio
 await client.planmigrations.countCompanyMigrations({
     migrationId: "migration_id",
     q: "q",
-    status: "completed",
+    status: "cancelled",
     limit: 1000000,
     offset: 1000000
 });
@@ -13505,7 +13505,7 @@ await client.planmigrations.countCompanyMigrations({
 ```typescript
 await client.planmigrations.listMigrations({
     planVersionId: "plan_version_id",
-    status: "completed",
+    status: "cancelled",
     limit: 1000000,
     offset: 1000000
 });
@@ -13560,7 +13560,7 @@ await client.planmigrations.listMigrations({
 await client.planmigrations.createMigration({
     planId: "plan_id",
     planVersionIdTo: "plan_version_id_to",
-    strategy: "immediate",
+    strategy: "end_of_billing_period",
     targetPlanType: "plan"
 });
 
@@ -13628,6 +13628,112 @@ await client.planmigrations.getMigration("plan_version_migration_id");
 <dd>
 
 **plan_version_migration_id:** `string` — plan_version_migration_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PlanmigrationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.planmigrations.<a href="/src/api/resources/planmigrations/client/Client.ts">cancelMigration</a>(plan_version_migration_id) -> Schematic.CancelMigrationResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.planmigrations.cancelMigration("plan_version_migration_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**plan_version_migration_id:** `string` — plan_version_migration_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PlanmigrationsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.planmigrations.<a href="/src/api/resources/planmigrations/client/Client.ts">completeMigrationNow</a>(plan_version_migration_id, { ...params }) -> Schematic.CompleteMigrationNowResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.planmigrations.completeMigrationNow("plan_version_migration_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**plan_version_migration_id:** `string` — plan_version_migration_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CompleteMigrationNowRequestBody` 
     
 </dd>
 </dl>
@@ -13721,7 +13827,7 @@ await client.planmigrations.retryMigration("plan_version_migration_id", {
 ```typescript
 await client.planmigrations.countMigrations({
     planVersionId: "plan_version_id",
-    status: "completed",
+    status: "cancelled",
     limit: 1000000,
     offset: 1000000
 });

@@ -21,12 +21,13 @@ describe("PlanmigrationsClient", () => {
                     id: "id",
                     migration_id: "migration_id",
                     plan_version_id_from: "plan_version_id_from",
+                    scheduled_for: "2024-01-15T09:30:00Z",
                     started_at: "2024-01-15T09:30:00Z",
-                    status: "completed",
+                    status: "cancelled",
                     updated_at: "2024-01-15T09:30:00Z",
                 },
             ],
-            params: { limit: 1000000, migration_id: "migration_id", offset: 1000000, q: "q", status: "completed" },
+            params: { limit: 1000000, migration_id: "migration_id", offset: 1000000, q: "q", status: "cancelled" },
         };
 
         server
@@ -40,7 +41,7 @@ describe("PlanmigrationsClient", () => {
         const response = await client.planmigrations.listCompanyMigrations({
             migrationId: "migration_id",
             q: "q",
-            status: "completed",
+            status: "cancelled",
             limit: 1000000,
             offset: 1000000,
         });
@@ -56,8 +57,9 @@ describe("PlanmigrationsClient", () => {
                     id: "id",
                     migrationId: "migration_id",
                     planVersionIdFrom: "plan_version_id_from",
+                    scheduledFor: new Date("2024-01-15T09:30:00.000Z"),
                     startedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    status: "completed",
+                    status: "cancelled",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
             ],
@@ -66,7 +68,7 @@ describe("PlanmigrationsClient", () => {
                 migrationId: "migration_id",
                 offset: 1000000,
                 q: "q",
-                status: "completed",
+                status: "cancelled",
             },
         });
     });
@@ -191,8 +193,9 @@ describe("PlanmigrationsClient", () => {
                 id: "id",
                 migration_id: "migration_id",
                 plan_version_id_from: "plan_version_id_from",
+                scheduled_for: "2024-01-15T09:30:00Z",
                 started_at: "2024-01-15T09:30:00Z",
-                status: "completed",
+                status: "cancelled",
                 updated_at: "2024-01-15T09:30:00Z",
             },
             params: { key: "value" },
@@ -218,8 +221,9 @@ describe("PlanmigrationsClient", () => {
                 id: "id",
                 migrationId: "migration_id",
                 planVersionIdFrom: "plan_version_id_from",
+                scheduledFor: new Date("2024-01-15T09:30:00.000Z"),
                 startedAt: new Date("2024-01-15T09:30:00.000Z"),
-                status: "completed",
+                status: "cancelled",
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
             },
             params: {
@@ -329,7 +333,7 @@ describe("PlanmigrationsClient", () => {
 
         const rawResponseBody = {
             data: { count: 1000000 },
-            params: { limit: 1000000, migration_id: "migration_id", offset: 1000000, q: "q", status: "completed" },
+            params: { limit: 1000000, migration_id: "migration_id", offset: 1000000, q: "q", status: "cancelled" },
         };
 
         server
@@ -343,7 +347,7 @@ describe("PlanmigrationsClient", () => {
         const response = await client.planmigrations.countCompanyMigrations({
             migrationId: "migration_id",
             q: "q",
-            status: "completed",
+            status: "cancelled",
             limit: 1000000,
             offset: 1000000,
         });
@@ -356,7 +360,7 @@ describe("PlanmigrationsClient", () => {
                 migrationId: "migration_id",
                 offset: 1000000,
                 q: "q",
-                status: "completed",
+                status: "cancelled",
             },
         });
     });
@@ -479,6 +483,7 @@ describe("PlanmigrationsClient", () => {
                     error: "error",
                     failed_companies: 1000000,
                     id: "id",
+                    next_due_at: "2024-01-15T09:30:00Z",
                     plan_id: "plan_id",
                     plan_version_id_from: "plan_version_id_from",
                     plan_version_id_to: "plan_version_id_to",
@@ -486,13 +491,13 @@ describe("PlanmigrationsClient", () => {
                     proration_behavior: "always_invoice",
                     skipped_companies: 1000000,
                     started_at: "2024-01-15T09:30:00Z",
-                    status: "completed",
-                    strategy: "immediate",
+                    status: "cancelled",
+                    strategy: "end_of_billing_period",
                     total_companies: 1000000,
                     updated_at: "2024-01-15T09:30:00Z",
                 },
             ],
-            params: { limit: 1000000, offset: 1000000, plan_version_id: "plan_version_id", status: "completed" },
+            params: { limit: 1000000, offset: 1000000, plan_version_id: "plan_version_id", status: "cancelled" },
         };
 
         server
@@ -505,7 +510,7 @@ describe("PlanmigrationsClient", () => {
 
         const response = await client.planmigrations.listMigrations({
             planVersionId: "plan_version_id",
-            status: "completed",
+            status: "cancelled",
             limit: 1000000,
             offset: 1000000,
         });
@@ -518,6 +523,7 @@ describe("PlanmigrationsClient", () => {
                     error: "error",
                     failedCompanies: 1000000,
                     id: "id",
+                    nextDueAt: new Date("2024-01-15T09:30:00.000Z"),
                     planId: "plan_id",
                     planVersionIdFrom: "plan_version_id_from",
                     planVersionIdTo: "plan_version_id_to",
@@ -525,8 +531,8 @@ describe("PlanmigrationsClient", () => {
                     prorationBehavior: "always_invoice",
                     skippedCompanies: 1000000,
                     startedAt: new Date("2024-01-15T09:30:00.000Z"),
-                    status: "completed",
-                    strategy: "immediate",
+                    status: "cancelled",
+                    strategy: "end_of_billing_period",
                     totalCompanies: 1000000,
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
@@ -535,7 +541,7 @@ describe("PlanmigrationsClient", () => {
                 limit: 1000000,
                 offset: 1000000,
                 planVersionId: "plan_version_id",
-                status: "completed",
+                status: "cancelled",
             },
         });
     });
@@ -651,7 +657,7 @@ describe("PlanmigrationsClient", () => {
         const rawRequestBody = {
             plan_id: "plan_id",
             plan_version_id_to: "plan_version_id_to",
-            strategy: "immediate",
+            strategy: "end_of_billing_period",
             target_plan_type: "plan",
         };
         const rawResponseBody = {
@@ -662,6 +668,7 @@ describe("PlanmigrationsClient", () => {
                 error: "error",
                 failed_companies: 1000000,
                 id: "id",
+                next_due_at: "2024-01-15T09:30:00Z",
                 plan_id: "plan_id",
                 plan_version_id_from: "plan_version_id_from",
                 plan_version_id_to: "plan_version_id_to",
@@ -669,8 +676,8 @@ describe("PlanmigrationsClient", () => {
                 proration_behavior: "always_invoice",
                 skipped_companies: 1000000,
                 started_at: "2024-01-15T09:30:00Z",
-                status: "completed",
-                strategy: "immediate",
+                status: "cancelled",
+                strategy: "end_of_billing_period",
                 total_companies: 1000000,
                 updated_at: "2024-01-15T09:30:00Z",
             },
@@ -689,7 +696,7 @@ describe("PlanmigrationsClient", () => {
         const response = await client.planmigrations.createMigration({
             planId: "plan_id",
             planVersionIdTo: "plan_version_id_to",
-            strategy: "immediate",
+            strategy: "end_of_billing_period",
             targetPlanType: "plan",
         });
         expect(response).toEqual({
@@ -700,6 +707,7 @@ describe("PlanmigrationsClient", () => {
                 error: "error",
                 failedCompanies: 1000000,
                 id: "id",
+                nextDueAt: new Date("2024-01-15T09:30:00.000Z"),
                 planId: "plan_id",
                 planVersionIdFrom: "plan_version_id_from",
                 planVersionIdTo: "plan_version_id_to",
@@ -707,8 +715,8 @@ describe("PlanmigrationsClient", () => {
                 prorationBehavior: "always_invoice",
                 skippedCompanies: 1000000,
                 startedAt: new Date("2024-01-15T09:30:00.000Z"),
-                status: "completed",
-                strategy: "immediate",
+                status: "cancelled",
+                strategy: "end_of_billing_period",
                 totalCompanies: 1000000,
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
             },
@@ -724,7 +732,7 @@ describe("PlanmigrationsClient", () => {
         const rawRequestBody = {
             plan_id: "plan_id",
             plan_version_id_to: "plan_version_id_to",
-            strategy: "immediate",
+            strategy: "end_of_billing_period",
             target_plan_type: "plan",
         };
         const rawResponseBody = { error: "error" };
@@ -742,7 +750,7 @@ describe("PlanmigrationsClient", () => {
             return await client.planmigrations.createMigration({
                 planId: "plan_id",
                 planVersionIdTo: "plan_version_id_to",
-                strategy: "immediate",
+                strategy: "end_of_billing_period",
                 targetPlanType: "plan",
             });
         }).rejects.toThrow(Schematic.BadRequestError);
@@ -754,7 +762,7 @@ describe("PlanmigrationsClient", () => {
         const rawRequestBody = {
             plan_id: "plan_id",
             plan_version_id_to: "plan_version_id_to",
-            strategy: "immediate",
+            strategy: "end_of_billing_period",
             target_plan_type: "plan",
         };
         const rawResponseBody = { error: "error" };
@@ -772,7 +780,7 @@ describe("PlanmigrationsClient", () => {
             return await client.planmigrations.createMigration({
                 planId: "plan_id",
                 planVersionIdTo: "plan_version_id_to",
-                strategy: "immediate",
+                strategy: "end_of_billing_period",
                 targetPlanType: "plan",
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
@@ -784,7 +792,7 @@ describe("PlanmigrationsClient", () => {
         const rawRequestBody = {
             plan_id: "plan_id",
             plan_version_id_to: "plan_version_id_to",
-            strategy: "immediate",
+            strategy: "end_of_billing_period",
             target_plan_type: "plan",
         };
         const rawResponseBody = { error: "error" };
@@ -802,7 +810,7 @@ describe("PlanmigrationsClient", () => {
             return await client.planmigrations.createMigration({
                 planId: "plan_id",
                 planVersionIdTo: "plan_version_id_to",
-                strategy: "immediate",
+                strategy: "end_of_billing_period",
                 targetPlanType: "plan",
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
@@ -814,7 +822,7 @@ describe("PlanmigrationsClient", () => {
         const rawRequestBody = {
             plan_id: "plan_id",
             plan_version_id_to: "plan_version_id_to",
-            strategy: "immediate",
+            strategy: "end_of_billing_period",
             target_plan_type: "plan",
         };
         const rawResponseBody = { error: "error" };
@@ -832,7 +840,7 @@ describe("PlanmigrationsClient", () => {
             return await client.planmigrations.createMigration({
                 planId: "plan_id",
                 planVersionIdTo: "plan_version_id_to",
-                strategy: "immediate",
+                strategy: "end_of_billing_period",
                 targetPlanType: "plan",
             });
         }).rejects.toThrow(Schematic.NotFoundError);
@@ -844,7 +852,7 @@ describe("PlanmigrationsClient", () => {
         const rawRequestBody = {
             plan_id: "plan_id",
             plan_version_id_to: "plan_version_id_to",
-            strategy: "immediate",
+            strategy: "end_of_billing_period",
             target_plan_type: "plan",
         };
         const rawResponseBody = { error: "error" };
@@ -862,7 +870,7 @@ describe("PlanmigrationsClient", () => {
             return await client.planmigrations.createMigration({
                 planId: "plan_id",
                 planVersionIdTo: "plan_version_id_to",
-                strategy: "immediate",
+                strategy: "end_of_billing_period",
                 targetPlanType: "plan",
             });
         }).rejects.toThrow(Schematic.InternalServerError);
@@ -880,6 +888,7 @@ describe("PlanmigrationsClient", () => {
                 error: "error",
                 failed_companies: 1000000,
                 id: "id",
+                next_due_at: "2024-01-15T09:30:00Z",
                 plan_id: "plan_id",
                 plan_version_id_from: "plan_version_id_from",
                 plan_version_id_to: "plan_version_id_to",
@@ -887,8 +896,8 @@ describe("PlanmigrationsClient", () => {
                 proration_behavior: "always_invoice",
                 skipped_companies: 1000000,
                 started_at: "2024-01-15T09:30:00Z",
-                status: "completed",
-                strategy: "immediate",
+                status: "cancelled",
+                strategy: "end_of_billing_period",
                 total_companies: 1000000,
                 updated_at: "2024-01-15T09:30:00Z",
             },
@@ -912,6 +921,7 @@ describe("PlanmigrationsClient", () => {
                 error: "error",
                 failedCompanies: 1000000,
                 id: "id",
+                nextDueAt: new Date("2024-01-15T09:30:00.000Z"),
                 planId: "plan_id",
                 planVersionIdFrom: "plan_version_id_from",
                 planVersionIdTo: "plan_version_id_to",
@@ -919,8 +929,8 @@ describe("PlanmigrationsClient", () => {
                 prorationBehavior: "always_invoice",
                 skippedCompanies: 1000000,
                 startedAt: new Date("2024-01-15T09:30:00.000Z"),
-                status: "completed",
-                strategy: "immediate",
+                status: "cancelled",
+                strategy: "end_of_billing_period",
                 totalCompanies: 1000000,
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
             },
@@ -1006,6 +1016,330 @@ describe("PlanmigrationsClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("cancelMigration (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                completed_at: "2024-01-15T09:30:00Z",
+                completed_companies: 1000000,
+                created_at: "2024-01-15T09:30:00Z",
+                error: "error",
+                failed_companies: 1000000,
+                id: "id",
+                next_due_at: "2024-01-15T09:30:00Z",
+                plan_id: "plan_id",
+                plan_version_id_from: "plan_version_id_from",
+                plan_version_id_to: "plan_version_id_to",
+                plan_version_ids_from: ["plan_version_ids_from"],
+                proration_behavior: "always_invoice",
+                skipped_companies: 1000000,
+                started_at: "2024-01-15T09:30:00Z",
+                status: "cancelled",
+                strategy: "end_of_billing_period",
+                total_companies: 1000000,
+                updated_at: "2024-01-15T09:30:00Z",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-migrations/plan_version_migration_id/cancel")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.planmigrations.cancelMigration("plan_version_migration_id");
+        expect(response).toEqual({
+            data: {
+                completedAt: new Date("2024-01-15T09:30:00.000Z"),
+                completedCompanies: 1000000,
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                error: "error",
+                failedCompanies: 1000000,
+                id: "id",
+                nextDueAt: new Date("2024-01-15T09:30:00.000Z"),
+                planId: "plan_id",
+                planVersionIdFrom: "plan_version_id_from",
+                planVersionIdTo: "plan_version_id_to",
+                planVersionIdsFrom: ["plan_version_ids_from"],
+                prorationBehavior: "always_invoice",
+                skippedCompanies: 1000000,
+                startedAt: new Date("2024-01-15T09:30:00.000Z"),
+                status: "cancelled",
+                strategy: "end_of_billing_period",
+                totalCompanies: 1000000,
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("cancelMigration (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-migrations/plan_version_migration_id/cancel")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.planmigrations.cancelMigration("plan_version_migration_id");
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("cancelMigration (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-migrations/plan_version_migration_id/cancel")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.planmigrations.cancelMigration("plan_version_migration_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("cancelMigration (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-migrations/plan_version_migration_id/cancel")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.planmigrations.cancelMigration("plan_version_migration_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("cancelMigration (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-migrations/plan_version_migration_id/cancel")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.planmigrations.cancelMigration("plan_version_migration_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("cancelMigration (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-migrations/plan_version_migration_id/cancel")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.planmigrations.cancelMigration("plan_version_migration_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("completeMigrationNow (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = {
+            data: {
+                completed_at: "2024-01-15T09:30:00Z",
+                completed_companies: 1000000,
+                created_at: "2024-01-15T09:30:00Z",
+                error: "error",
+                failed_companies: 1000000,
+                id: "id",
+                next_due_at: "2024-01-15T09:30:00Z",
+                plan_id: "plan_id",
+                plan_version_id_from: "plan_version_id_from",
+                plan_version_id_to: "plan_version_id_to",
+                plan_version_ids_from: ["plan_version_ids_from"],
+                proration_behavior: "always_invoice",
+                skipped_companies: 1000000,
+                started_at: "2024-01-15T09:30:00Z",
+                status: "cancelled",
+                strategy: "end_of_billing_period",
+                total_companies: 1000000,
+                updated_at: "2024-01-15T09:30:00Z",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-migrations/plan_version_migration_id/complete-now")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.planmigrations.completeMigrationNow("plan_version_migration_id");
+        expect(response).toEqual({
+            data: {
+                completedAt: new Date("2024-01-15T09:30:00.000Z"),
+                completedCompanies: 1000000,
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                error: "error",
+                failedCompanies: 1000000,
+                id: "id",
+                nextDueAt: new Date("2024-01-15T09:30:00.000Z"),
+                planId: "plan_id",
+                planVersionIdFrom: "plan_version_id_from",
+                planVersionIdTo: "plan_version_id_to",
+                planVersionIdsFrom: ["plan_version_ids_from"],
+                prorationBehavior: "always_invoice",
+                skippedCompanies: 1000000,
+                startedAt: new Date("2024-01-15T09:30:00.000Z"),
+                status: "cancelled",
+                strategy: "end_of_billing_period",
+                totalCompanies: 1000000,
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("completeMigrationNow (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-migrations/plan_version_migration_id/complete-now")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.planmigrations.completeMigrationNow("plan_version_migration_id");
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("completeMigrationNow (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-migrations/plan_version_migration_id/complete-now")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.planmigrations.completeMigrationNow("plan_version_migration_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("completeMigrationNow (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-migrations/plan_version_migration_id/complete-now")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.planmigrations.completeMigrationNow("plan_version_migration_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("completeMigrationNow (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-migrations/plan_version_migration_id/complete-now")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.planmigrations.completeMigrationNow("plan_version_migration_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("completeMigrationNow (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plan-version-migrations/plan_version_migration_id/complete-now")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.planmigrations.completeMigrationNow("plan_version_migration_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("retryMigration (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -1018,6 +1352,7 @@ describe("PlanmigrationsClient", () => {
                 error: "error",
                 failed_companies: 1000000,
                 id: "id",
+                next_due_at: "2024-01-15T09:30:00Z",
                 plan_id: "plan_id",
                 plan_version_id_from: "plan_version_id_from",
                 plan_version_id_to: "plan_version_id_to",
@@ -1025,8 +1360,8 @@ describe("PlanmigrationsClient", () => {
                 proration_behavior: "always_invoice",
                 skipped_companies: 1000000,
                 started_at: "2024-01-15T09:30:00Z",
-                status: "completed",
-                strategy: "immediate",
+                status: "cancelled",
+                strategy: "end_of_billing_period",
                 total_companies: 1000000,
                 updated_at: "2024-01-15T09:30:00Z",
             },
@@ -1053,6 +1388,7 @@ describe("PlanmigrationsClient", () => {
                 error: "error",
                 failedCompanies: 1000000,
                 id: "id",
+                nextDueAt: new Date("2024-01-15T09:30:00.000Z"),
                 planId: "plan_id",
                 planVersionIdFrom: "plan_version_id_from",
                 planVersionIdTo: "plan_version_id_to",
@@ -1060,8 +1396,8 @@ describe("PlanmigrationsClient", () => {
                 prorationBehavior: "always_invoice",
                 skippedCompanies: 1000000,
                 startedAt: new Date("2024-01-15T09:30:00.000Z"),
-                status: "completed",
-                strategy: "immediate",
+                status: "cancelled",
+                strategy: "end_of_billing_period",
                 totalCompanies: 1000000,
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
             },
@@ -1187,7 +1523,7 @@ describe("PlanmigrationsClient", () => {
 
         const rawResponseBody = {
             data: { count: 1000000 },
-            params: { limit: 1000000, offset: 1000000, plan_version_id: "plan_version_id", status: "completed" },
+            params: { limit: 1000000, offset: 1000000, plan_version_id: "plan_version_id", status: "cancelled" },
         };
 
         server
@@ -1200,7 +1536,7 @@ describe("PlanmigrationsClient", () => {
 
         const response = await client.planmigrations.countMigrations({
             planVersionId: "plan_version_id",
-            status: "completed",
+            status: "cancelled",
             limit: 1000000,
             offset: 1000000,
         });
@@ -1212,7 +1548,7 @@ describe("PlanmigrationsClient", () => {
                 limit: 1000000,
                 offset: 1000000,
                 planVersionId: "plan_version_id",
-                status: "completed",
+                status: "cancelled",
             },
         });
     });

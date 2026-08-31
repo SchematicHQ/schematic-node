@@ -7,27 +7,38 @@ import { OnboardingMilestoneView } from "./OnboardingMilestoneView";
 import { OnboardingPath } from "./OnboardingPath";
 import { OnboardingRequirement } from "./OnboardingRequirement";
 import { OnboardingRequirementView } from "./OnboardingRequirementView";
+import { OnboardingStripeImport } from "./OnboardingStripeImport";
 import { OnboardingTrack } from "./OnboardingTrack";
 
 export const GetOnboardingStateResp: core.serialization.ObjectSchema<
     serializers.GetOnboardingStateResp.Raw,
     Schematic.GetOnboardingStateResp
 > = core.serialization.object({
+    agentConnectedAt: core.serialization.property("agent_connected_at", core.serialization.date().optional()),
+    dismissedAt: core.serialization.property("dismissed_at", core.serialization.date().optional()),
     environmentId: core.serialization.property("environment_id", core.serialization.string().optional()),
     milestones: core.serialization.list(OnboardingMilestoneView),
     path: OnboardingPath.optional(),
+    pricingPageUrl: core.serialization.property("pricing_page_url", core.serialization.string().optional()),
     requirements: core.serialization.list(OnboardingRequirementView),
+    stripeImport: core.serialization.property("stripe_import", OnboardingStripeImport.optional()),
     suggestedNext: core.serialization.property("suggested_next", core.serialization.list(OnboardingRequirement)),
     track: OnboardingTrack.optional(),
+    websiteUrl: core.serialization.property("website_url", core.serialization.string().optional()),
 });
 
 export declare namespace GetOnboardingStateResp {
     export interface Raw {
+        agent_connected_at?: string | null;
+        dismissed_at?: string | null;
         environment_id?: string | null;
         milestones: OnboardingMilestoneView.Raw[];
         path?: OnboardingPath.Raw | null;
+        pricing_page_url?: string | null;
         requirements: OnboardingRequirementView.Raw[];
+        stripe_import?: OnboardingStripeImport.Raw | null;
         suggested_next: OnboardingRequirement.Raw[];
         track?: OnboardingTrack.Raw | null;
+        website_url?: string | null;
     }
 }

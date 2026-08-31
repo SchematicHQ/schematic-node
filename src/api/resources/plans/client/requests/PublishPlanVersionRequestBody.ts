@@ -6,12 +6,14 @@ import type * as Schematic from "../../../../index";
  * @example
  *     {
  *         excludedCompanyIds: ["excluded_company_ids"],
- *         migrationStrategy: "immediate"
+ *         migrationStrategy: "end_of_billing_period"
  *     }
  */
 export interface PublishPlanVersionRequestBody {
     activationStrategy?: Schematic.CustomPlanActivationStrategy;
     address?: Schematic.CustomerBillingAddress;
+    /** The date the subscription's billing period renews on. Only honored on a first publish that starts a subscription. */
+    billingCycleAnchor?: Date;
     couponExternalId?: string;
     customFieldValues?: Schematic.CheckoutFieldValue[];
     customerEmail?: string;
@@ -19,6 +21,8 @@ export interface PublishPlanVersionRequestBody {
     excludedCompanyIds: string[];
     migrationStrategy: Schematic.PlanVersionMigrationStrategy;
     phone?: string;
+    /** When true, the partial period between the subscription starting and its renewal date is billed pro rata straight away. When false that period is free and no invoice is raised until the renewal date. Only applies alongside billing_cycle_anchor. Defaults to true. */
+    prorateFirstPeriod?: boolean;
     prorationBehavior?: Schematic.MigrationProrationBehavior;
     /** Refuse the publish if any company would be migrated onto the new version */
     requireNoMigration?: boolean;

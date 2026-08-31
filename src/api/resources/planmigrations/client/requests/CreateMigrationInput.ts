@@ -7,7 +7,7 @@ import type * as Schematic from "../../../../index";
  *     {
  *         planId: "plan_id",
  *         planVersionIdTo: "plan_version_id_to",
- *         strategy: "immediate",
+ *         strategy: "end_of_billing_period",
  *         targetPlanType: "plan"
  *     }
  */

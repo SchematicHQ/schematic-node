@@ -15,6 +15,7 @@ export const CreditLeaseResponseData: core.serialization.ObjectSchema<
     grantedAmount: core.serialization.property("granted_amount", core.serialization.number()),
     id: core.serialization.string(),
     releasedAt: core.serialization.property("released_at", core.serialization.date().optional()),
+    trackedAmount: core.serialization.property("tracked_amount", core.serialization.number()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
@@ -27,6 +28,7 @@ export declare namespace CreditLeaseResponseData {
         granted_amount: number;
         id: string;
         released_at?: string | null;
+        tracked_amount: number;
         updated_at: string;
     }
 }

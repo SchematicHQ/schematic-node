@@ -1215,6 +1215,12 @@ describe("CheckoutClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
+                    pending_migration: {
+                        migration_id: "migration_id",
+                        to_plan_id: "to_plan_id",
+                        to_plan_name: "to_plan_name",
+                        to_plan_version_id: "to_plan_version_id",
+                    },
                     plan: {
                         id: "id",
                         included_credit_grants: [
@@ -2323,6 +2329,12 @@ describe("CheckoutClient", () => {
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                     ],
+                    pendingMigration: {
+                        migrationId: "migration_id",
+                        toPlanId: "to_plan_id",
+                        toPlanName: "to_plan_name",
+                        toPlanVersionId: "to_plan_version_id",
+                    },
                     plan: {
                         id: "id",
                         includedCreditGrants: [
@@ -4242,6 +4254,12 @@ describe("CheckoutClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
+                    pending_migration: {
+                        migration_id: "migration_id",
+                        to_plan_id: "to_plan_id",
+                        to_plan_name: "to_plan_name",
+                        to_plan_version_id: "to_plan_version_id",
+                    },
                     plan: {
                         id: "id",
                         included_credit_grants: [
@@ -4571,6 +4589,12 @@ describe("CheckoutClient", () => {
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                     ],
+                    pendingMigration: {
+                        migrationId: "migration_id",
+                        toPlanId: "to_plan_id",
+                        toPlanName: "to_plan_name",
+                        toPlanVersionId: "to_plan_version_id",
+                    },
                     plan: {
                         id: "id",
                         includedCreditGrants: [
@@ -5787,6 +5811,12 @@ describe("CheckoutClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
+                    pending_migration: {
+                        migration_id: "migration_id",
+                        to_plan_id: "to_plan_id",
+                        to_plan_name: "to_plan_name",
+                        to_plan_version_id: "to_plan_version_id",
+                    },
                     plan: {
                         id: "id",
                         included_credit_grants: [
@@ -6093,6 +6123,12 @@ describe("CheckoutClient", () => {
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                     ],
+                    pendingMigration: {
+                        migrationId: "migration_id",
+                        toPlanId: "to_plan_id",
+                        toPlanName: "to_plan_name",
+                        toPlanVersionId: "to_plan_version_id",
+                    },
                     plan: {
                         id: "id",
                         includedCreditGrants: [
