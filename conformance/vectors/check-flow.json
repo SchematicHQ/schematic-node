@@ -1,0 +1,527 @@
+{
+    "category": "check_flow",
+    "vectors": [
+        {
+            "name": "check_happy_path_gates_on_pre_reservation_balance",
+            "description": "A lease-bearing check: probe against the real balance (no substitution, no credit cost), reserve usage x rate from the lease, then gate the engine on the PRE-reservation local balance with credit_cost — the same arithmetic the atomic reserve just enforced. The hold sticks only because the engine allowed.",
+            "given": {
+                "config": {
+                    "lease_duration_ms": 300000,
+                    "reservation_ttl_ms": 60000,
+                    "lease_size": 1000,
+                    "low_water_mark": 0.25
+                },
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 300000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "check",
+                    "flag_key": "inference",
+                    "company": { "id": "co_1", "credit_balances": { "ct_1": 5000 } },
+                    "usage": 10,
+                    "event_subtype": "inference_tokens",
+                    "save_reservation_as": "r1",
+                    "engine": [
+                        {
+                            "value": true,
+                            "reason": "probe",
+                            "entitlement": {
+                                "value_type": "credit",
+                                "credit_id": "ct_1",
+                                "consumption_rate": 10,
+                                "event_subtype": "inference_tokens"
+                            }
+                        },
+                        { "value": true, "reason": "ok" }
+                    ],
+                    "expect": {
+                        "allowed": true,
+                        "has_reservation": true,
+                        "reservation": {
+                            "lease_id": "lse_1",
+                            "credit_type_id": "ct_1",
+                            "event_subtype": "inference_tokens",
+                            "quantity_reserved": 10,
+                            "credits_reserved": 100,
+                            "consumption_rate": 10
+                        },
+                        "engine_calls": [{ "credit_balance": 5000 }, { "credit_balance": 1000, "credit_cost": 100 }]
+                    }
+                },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "local_remaining_credits": 900 }
+                },
+                { "op": "reserved_credits", "company_id": "co_1", "credit_type_id": "ct_1", "expect": { "total": 100 } }
+            ]
+        },
+        {
+            "name": "check_denied_by_engine_cancels_the_hold",
+            "description": "When the gate evaluation denies, the reservation made before the eval is cancelled: claimed and fully refunded, leaving no hold and no reservation.",
+            "given": {
+                "config": {
+                    "lease_duration_ms": 300000,
+                    "reservation_ttl_ms": 60000,
+                    "lease_size": 1000,
+                    "low_water_mark": 0.25
+                },
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 300000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "check",
+                    "flag_key": "inference",
+                    "company": { "id": "co_1", "credit_balances": { "ct_1": 5000 } },
+                    "usage": 10,
+                    "event_subtype": "inference_tokens",
+                    "engine": [
+                        {
+                            "value": true,
+                            "reason": "probe",
+                            "entitlement": {
+                                "value_type": "credit",
+                                "credit_id": "ct_1",
+                                "consumption_rate": 10,
+                                "event_subtype": "inference_tokens"
+                            }
+                        },
+                        { "value": false, "reason": "denied_by_targeting" }
+                    ],
+                    "expect": { "allowed": false, "reason": "denied_by_targeting", "has_reservation": false }
+                },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "local_remaining_credits": 1000 }
+                },
+                { "op": "reserved_credits", "company_id": "co_1", "credit_type_id": "ct_1", "expect": { "total": 0 } },
+                { "op": "reservation_count", "expect": { "count": 0 } }
+            ]
+        },
+        {
+            "name": "check_acquire_failure_fail_closed_denies",
+            "description": "fail-closed (the default): when no lease can be acquired the check denies outright with the failure reason; no reservation is issued.",
+            "given": {
+                "config": {
+                    "lease_duration_ms": 300000,
+                    "reservation_ttl_ms": 60000,
+                    "lease_size": 1000,
+                    "low_water_mark": 0.25
+                }
+            },
+            "operations": [
+                {
+                    "op": "check",
+                    "flag_key": "inference",
+                    "company": { "id": "co_1", "credit_balances": { "ct_1": 5000 } },
+                    "usage": 10,
+                    "event_subtype": "inference_tokens",
+                    "on_acquire_failure": "fail-closed",
+                    "server": { "acquire": { "error": "wire down" } },
+                    "engine": [
+                        {
+                            "value": true,
+                            "reason": "probe",
+                            "entitlement": {
+                                "value_type": "credit",
+                                "credit_id": "ct_1",
+                                "consumption_rate": 10,
+                                "event_subtype": "inference_tokens"
+                            }
+                        }
+                    ],
+                    "expect": {
+                        "allowed": false,
+                        "reason": "lease_acquire_failed",
+                        "err": "lease_acquire_failed",
+                        "has_reservation": false
+                    }
+                },
+                { "op": "reservation_count", "expect": { "count": 0 } }
+            ]
+        },
+        {
+            "name": "check_acquire_failure_fail_open_reevaluates",
+            "description": "fail-open is NOT blanket allow: the engine re-runs with the credit balance substituted to an effectively unlimited value and the caller's usage preflight threaded through, so non-credit rules still apply. Here they pass, so the check allows — with the failure recorded in err and no reservation.",
+            "given": {
+                "config": {
+                    "lease_duration_ms": 300000,
+                    "reservation_ttl_ms": 60000,
+                    "lease_size": 1000,
+                    "low_water_mark": 0.25
+                }
+            },
+            "operations": [
+                {
+                    "op": "check",
+                    "flag_key": "inference",
+                    "company": { "id": "co_1", "credit_balances": { "ct_1": 5000 } },
+                    "usage": 10,
+                    "event_subtype": "inference_tokens",
+                    "on_acquire_failure": "fail-open",
+                    "server": { "acquire": { "error": "wire down" } },
+                    "engine": [
+                        {
+                            "value": true,
+                            "reason": "probe",
+                            "entitlement": {
+                                "value_type": "credit",
+                                "credit_id": "ct_1",
+                                "consumption_rate": 10,
+                                "event_subtype": "inference_tokens"
+                            }
+                        },
+                        { "value": true, "reason": "evaluated" }
+                    ],
+                    "expect": {
+                        "allowed": true,
+                        "reason": "evaluated (lease_acquire_failed_fail_open)",
+                        "err": "lease_acquire_failed",
+                        "has_reservation": false,
+                        "engine_calls": [
+                            { "credit_balance": 5000 },
+                            {
+                                "credit_balance": "max_safe_integer",
+                                "event_usage": { "event_subtype": "inference_tokens", "quantity": 10 }
+                            }
+                        ]
+                    }
+                },
+                { "op": "reservation_count", "expect": { "count": 0 } }
+            ]
+        },
+        {
+            "name": "check_fail_open_still_denies_when_rules_deny",
+            "description": "fail-open with a denying rules evaluation stays denied: substituting an unlimited balance only bypasses the credit gate, never plan targeting or overrides.",
+            "given": {
+                "config": {
+                    "lease_duration_ms": 300000,
+                    "reservation_ttl_ms": 60000,
+                    "lease_size": 1000,
+                    "low_water_mark": 0.25
+                }
+            },
+            "operations": [
+                {
+                    "op": "check",
+                    "flag_key": "inference",
+                    "company": { "id": "co_1", "credit_balances": { "ct_1": 5000 } },
+                    "usage": 10,
+                    "event_subtype": "inference_tokens",
+                    "on_acquire_failure": "fail-open",
+                    "server": { "acquire": { "error": "wire down" } },
+                    "engine": [
+                        {
+                            "value": true,
+                            "reason": "probe",
+                            "entitlement": {
+                                "value_type": "credit",
+                                "credit_id": "ct_1",
+                                "consumption_rate": 10,
+                                "event_subtype": "inference_tokens"
+                            }
+                        },
+                        { "value": false, "reason": "not_targeted" }
+                    ],
+                    "expect": {
+                        "allowed": false,
+                        "reason": "not_targeted (lease_acquire_failed_fail_open)",
+                        "err": "lease_acquire_failed",
+                        "has_reservation": false
+                    }
+                }
+            ]
+        },
+        {
+            "name": "check_insufficient_lease_extends_and_retries",
+            "description": "A reserve refusal triggers an awaited opportunistic extend sized to cover the request (required_credits = credit_cost), then exactly one reserve retry. On success the check proceeds normally, gating on the post-extend pre-reservation balance.",
+            "given": {
+                "config": {
+                    "lease_duration_ms": 300000,
+                    "reservation_ttl_ms": 60000,
+                    "lease_size": 1000,
+                    "low_water_mark": 0.25
+                },
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 300000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 950,
+                    "expect": { "balance": 50 }
+                },
+                {
+                    "op": "check",
+                    "flag_key": "inference",
+                    "company": { "id": "co_1", "credit_balances": { "ct_1": 5000 } },
+                    "usage": 10,
+                    "event_subtype": "inference_tokens",
+                    "server": { "extend": { "lease": { "granted_total": 2000, "expires_at_ms": 600000 } } },
+                    "save_reservation_as": "r1",
+                    "engine": [
+                        {
+                            "value": true,
+                            "reason": "probe",
+                            "entitlement": {
+                                "value_type": "credit",
+                                "credit_id": "ct_1",
+                                "consumption_rate": 10,
+                                "event_subtype": "inference_tokens"
+                            }
+                        },
+                        { "value": true, "reason": "ok" }
+                    ],
+                    "expect": {
+                        "allowed": true,
+                        "has_reservation": true,
+                        "wire_extends": 1,
+                        "last_extend_additional_amount": 1000,
+                        "engine_calls": [{ "credit_balance": 5000 }, { "credit_balance": 1050, "credit_cost": 100 }]
+                    }
+                },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "granted_amount": 2000, "local_remaining_credits": 950 }
+                }
+            ]
+        },
+        {
+            "name": "check_insufficient_lease_after_failed_extend_resolves_by_mode",
+            "description": "When the opportunistic extend fails and the retry is still refused, the check resolves through the failure mode (fail-closed here) with reason insufficient_lease_balance, leaving the lease balance untouched.",
+            "given": {
+                "config": {
+                    "lease_duration_ms": 300000,
+                    "reservation_ttl_ms": 60000,
+                    "lease_size": 1000,
+                    "low_water_mark": 0.25
+                },
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 300000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 950,
+                    "expect": { "balance": 50 }
+                },
+                {
+                    "op": "check",
+                    "flag_key": "inference",
+                    "company": { "id": "co_1", "credit_balances": { "ct_1": 5000 } },
+                    "usage": 10,
+                    "event_subtype": "inference_tokens",
+                    "on_acquire_failure": "fail-closed",
+                    "server": { "extend": { "error": "wire down" } },
+                    "engine": [
+                        {
+                            "value": true,
+                            "reason": "probe",
+                            "entitlement": {
+                                "value_type": "credit",
+                                "credit_id": "ct_1",
+                                "consumption_rate": 10,
+                                "event_subtype": "inference_tokens"
+                            }
+                        }
+                    ],
+                    "expect": {
+                        "allowed": false,
+                        "reason": "insufficient_lease_balance",
+                        "err": "insufficient_lease_balance",
+                        "has_reservation": false
+                    }
+                },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "local_remaining_credits": 50 }
+                },
+                { "op": "reservation_count", "expect": { "count": 0 } }
+            ]
+        },
+        {
+            "name": "check_falls_back_without_usable_credit_entitlement",
+            "description": "A non-credit matched entitlement (boolean/override/numeric/unlimited/not entitled) or an incomplete credit entitlement (no positive consumption rate) defers to the plain check: no lease traffic, no reservation.",
+            "given": {
+                "config": {
+                    "lease_duration_ms": 300000,
+                    "reservation_ttl_ms": 60000,
+                    "lease_size": 1000,
+                    "low_water_mark": 0.25
+                }
+            },
+            "operations": [
+                {
+                    "op": "check",
+                    "flag_key": "inference",
+                    "company": { "id": "co_1", "credit_balances": {} },
+                    "usage": 10,
+                    "event_subtype": "inference_tokens",
+                    "engine": [{ "value": true, "reason": "probe", "entitlement": { "value_type": "boolean" } }],
+                    "expect": { "fallback_called": true, "reason": "fallback", "has_reservation": false }
+                },
+                {
+                    "op": "check",
+                    "flag_key": "inference",
+                    "company": { "id": "co_1", "credit_balances": { "ct_1": 5000 } },
+                    "usage": 10,
+                    "event_subtype": "inference_tokens",
+                    "engine": [
+                        {
+                            "value": true,
+                            "reason": "probe",
+                            "entitlement": {
+                                "value_type": "credit",
+                                "credit_id": "ct_1",
+                                "consumption_rate": 0,
+                                "event_subtype": "inference_tokens"
+                            }
+                        }
+                    ],
+                    "expect": { "fallback_called": true, "reason": "fallback", "has_reservation": false }
+                },
+                { "op": "reservation_count", "expect": { "count": 0 } }
+            ]
+        },
+        {
+            "name": "check_zero_usage_falls_back",
+            "description": "usage = 0 means nothing to reserve: the check defers to the plain (preflight-threaded) check instead of issuing a no-op 0-credit reservation.",
+            "given": {
+                "config": {
+                    "lease_duration_ms": 300000,
+                    "reservation_ttl_ms": 60000,
+                    "lease_size": 1000,
+                    "low_water_mark": 0.25
+                },
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 300000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "check",
+                    "flag_key": "inference",
+                    "company": { "id": "co_1", "credit_balances": { "ct_1": 5000 } },
+                    "usage": 0,
+                    "event_subtype": "inference_tokens",
+                    "engine": [],
+                    "expect": { "fallback_called": true, "reason": "fallback", "has_reservation": false }
+                },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "local_remaining_credits": 1000 }
+                }
+            ]
+        },
+        {
+            "name": "check_invalid_usage_resolves_statically_by_mode",
+            "description": "A negative (or non-finite) usage must never reach the stores; the check resolves statically by mode without any engine evaluation: deny for fail-closed, blanket allow for fail-open, reason invalid_usage either way.",
+            "given": {
+                "config": {
+                    "lease_duration_ms": 300000,
+                    "reservation_ttl_ms": 60000,
+                    "lease_size": 1000,
+                    "low_water_mark": 0.25
+                },
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 300000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "check",
+                    "flag_key": "inference",
+                    "company": { "id": "co_1", "credit_balances": { "ct_1": 5000 } },
+                    "usage": -5,
+                    "event_subtype": "inference_tokens",
+                    "on_acquire_failure": "fail-closed",
+                    "engine": [],
+                    "expect": {
+                        "allowed": false,
+                        "reason": "invalid_usage",
+                        "err": "invalid_usage",
+                        "has_reservation": false,
+                        "engine_calls": []
+                    }
+                },
+                {
+                    "op": "check",
+                    "flag_key": "inference",
+                    "company": { "id": "co_1", "credit_balances": { "ct_1": 5000 } },
+                    "usage": -5,
+                    "event_subtype": "inference_tokens",
+                    "on_acquire_failure": "fail-open",
+                    "engine": [],
+                    "expect": {
+                        "allowed": true,
+                        "reason": "invalid_usage_fail_open",
+                        "err": "invalid_usage",
+                        "has_reservation": false,
+                        "engine_calls": []
+                    }
+                },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "local_remaining_credits": 1000 }
+                }
+            ]
+        }
+    ]
+}

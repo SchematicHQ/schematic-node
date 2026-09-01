@@ -1,0 +1,395 @@
+{
+    "category": "lease_lifecycle",
+    "vectors": [
+        {
+            "name": "replace_installs_full_grant",
+            "description": "A fresh install initializes local_remaining_credits to the full granted amount.",
+            "operations": [
+                {
+                    "op": "replace_lease",
+                    "lease_id": "lse_1",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "granted_amount": 1000,
+                    "expires_at_ms": 60000,
+                    "expect": { "written": true }
+                },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": {
+                        "exists": true,
+                        "lease_id": "lse_1",
+                        "granted_amount": 1000,
+                        "local_remaining_credits": 1000
+                    }
+                }
+            ]
+        },
+        {
+            "name": "replace_keeps_live_lease_even_with_different_id",
+            "description": "A live lease occupying the slot wins over any replace — even one carrying a different lease_id (a sibling raced this acquire). Its already-debited balance is preserved.",
+            "given": {
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 60000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 400,
+                    "expect": { "balance": 600 }
+                },
+                {
+                    "op": "replace_lease",
+                    "lease_id": "lse_2",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "granted_amount": 5000,
+                    "expires_at_ms": 120000,
+                    "expect": { "written": false }
+                },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": {
+                        "exists": true,
+                        "lease_id": "lse_1",
+                        "granted_amount": 1000,
+                        "local_remaining_credits": 600
+                    }
+                }
+            ]
+        },
+        {
+            "name": "replace_overwrites_expired_lease",
+            "description": "An expired lease does not block the slot: replace overwrites it atomically and restores the full new grant.",
+            "given": {
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 60000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 400,
+                    "expect": { "balance": 600 }
+                },
+                { "op": "advance_clock", "ms": 60001 },
+                {
+                    "op": "replace_lease",
+                    "lease_id": "lse_2",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "granted_amount": 1000,
+                    "expires_at_ms": 180000,
+                    "expect": { "written": true }
+                },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "lease_id": "lse_2", "local_remaining_credits": 1000 }
+                }
+            ]
+        },
+        {
+            "name": "try_reserve_insufficient_and_boundary",
+            "description": "A reserve larger than the remaining balance is refused and touches nothing; reserving down to exactly zero is allowed; negative amounts are always refused.",
+            "given": {
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 100,
+                        "expires_at_ms": 60000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 101,
+                    "expect": { "balance": null }
+                },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "local_remaining_credits": 100 }
+                },
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": -1,
+                    "expect": { "balance": null }
+                },
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 100,
+                    "expect": { "balance": 0 }
+                },
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 1,
+                    "expect": { "balance": null }
+                },
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_9",
+                    "credit_type_id": "ct_1",
+                    "credits": 1,
+                    "expect": { "balance": null }
+                }
+            ]
+        },
+        {
+            "name": "refund_clamped_at_granted_amount",
+            "description": "A refund can never push the local balance above the granted amount.",
+            "given": {
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 60000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 100,
+                    "expect": { "balance": 900 }
+                },
+                { "op": "refund_lease", "company_id": "co_1", "credit_type_id": "ct_1", "credits": 500 },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "local_remaining_credits": 1000 }
+                }
+            ]
+        },
+        {
+            "name": "refund_pinned_to_lease_id_dropped_on_successor",
+            "description": "A refund pinned to an expired lease's id must not inflate the successor lease occupying the slot — the expired lease's remainder was already returned to the company balance server-side. An unpinned refund still applies.",
+            "given": {
+                "leases": [
+                    {
+                        "lease_id": "lse_2",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 60000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 200,
+                    "expect": { "balance": 800 }
+                },
+                {
+                    "op": "refund_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 100,
+                    "pin_lease_id": "lse_1"
+                },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "local_remaining_credits": 800 }
+                },
+                {
+                    "op": "refund_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 100,
+                    "pin_lease_id": "lse_2"
+                },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "local_remaining_credits": 900 }
+                }
+            ]
+        },
+        {
+            "name": "extend_reconciles_to_total_and_converges",
+            "description": "Extend applies the server-authoritative TOTAL: the delta is computed against the stored total, so a repeated or stale-lower total is a no-op and out-of-order applies converge without minting credits.",
+            "given": {
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 300000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 800,
+                    "expect": { "balance": 200 }
+                },
+                {
+                    "op": "extend_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "granted_total": 3000,
+                    "expires_at_ms": 300000
+                },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "granted_amount": 3000, "local_remaining_credits": 2200 }
+                },
+                {
+                    "op": "extend_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "granted_total": 3000,
+                    "expires_at_ms": 300000
+                },
+                {
+                    "op": "extend_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "granted_total": 2000,
+                    "expires_at_ms": 300000
+                },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "granted_amount": 3000, "local_remaining_credits": 2200 }
+                }
+            ]
+        },
+        {
+            "name": "extend_expiry_only_moves_forward",
+            "description": "An extend carrying an earlier expiry must not shorten the lease: after an extend to a later expiry, a stale out-of-order apply with an earlier expiry leaves the lease live past that earlier instant.",
+            "given": {
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 60000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "extend_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "granted_total": 2000,
+                    "expires_at_ms": 120000
+                },
+                {
+                    "op": "extend_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "granted_total": 2000,
+                    "expires_at_ms": 30000
+                },
+                { "op": "advance_clock", "ms": 90000 },
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 100,
+                    "expect": { "balance": 1900 }
+                }
+            ]
+        },
+        {
+            "name": "extend_pinned_to_lease_id_dropped_on_successor",
+            "description": "An extend pinned to a lease the slot no longer holds is dropped entirely — crediting the successor would mint credits the server granted to the expired lease.",
+            "given": {
+                "leases": [
+                    {
+                        "lease_id": "lse_2",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 300000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "extend_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "granted_total": 5000,
+                    "expires_at_ms": 600000,
+                    "pin_lease_id": "lse_1"
+                },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "granted_amount": 1000, "local_remaining_credits": 1000 }
+                },
+                {
+                    "op": "extend_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "granted_total": 2000,
+                    "expires_at_ms": 600000,
+                    "pin_lease_id": "lse_2"
+                },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "granted_amount": 2000, "local_remaining_credits": 2000 }
+                }
+            ]
+        }
+    ]
+}
