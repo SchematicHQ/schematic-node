@@ -161,10 +161,15 @@ with identical observable semantics. Each mutation must be atomic per slot/reser
 ### `replace(lease)` — install-if-not-live
 
 Install a fresh lease with `local_remaining_credits = granted_amount`, **only if** the slot is
-empty or the existing lease is expired. If a *live* lease occupies the slot — even with a
-different `lease_id` (a sibling pod won the race) — leave it untouched (its already-debited
-balance wins) and report "kept". Returns written/kept so the caller can run the redundant-lease
-release logic (see manager).
+empty or the existing lease is expired *and carries a different `lease_id`*. If a *live* lease
+occupies the slot — even with a different `lease_id` (a sibling pod won the race) — leave it
+untouched (its already-debited balance wins) and report "kept". If an *expired* lease with the
+**same** `lease_id` occupies the slot (a stale acquire response for a lease the idempotent server
+also handed to a racing sibling, which may since have extended it), do not rewrite it either:
+rewriting would reset `local_remaining_credits` to the full grant and erase debits whose
+reservations are still open. Reconcile it like `extend` instead — granted to the incoming total
+(lower/equal totals are no-ops), expiry only forward, balance untouched — and report "kept".
+Returns written/kept so the caller can run the redundant-lease release logic (see manager).
 
 ### `try_reserve(company, credit, credits)` — atomic check-and-debit
 
@@ -234,7 +239,8 @@ Owns the lease lifecycle against the server wire API (`acquire`, `extend`, `rele
   lease_duration_ms`. An expired local entry is left in place for `replace` to overwrite
   atomically (deleting it first would open a race window against sibling pods; every reader
   re-guards on expiry anyway).
-- On response, `replace` the slot. If `replace` kept an existing live lease (a sibling won):
+- On response, `replace` the slot. If `replace` kept an existing lease (a sibling won, or the
+  slot's expired row was reconciled in place):
   - If the installed lease has a **different id** than the one the server handed us, ours is a
     redundant hold nobody will draw on — release it (fire-and-forget; a failed release falls
     back to server-side lease expiry).

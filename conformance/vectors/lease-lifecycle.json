@@ -72,6 +72,58 @@
             ]
         },
         {
+            "name": "replace_reconciles_expired_slot_with_same_id",
+            "description": "A stale acquire response for the SAME lease landing over its own expired local row must not reinstall it: that would reset local_remaining_credits and erase debits whose reservations are still open. The row is reconciled like an extend (granted to total, expiry forward, balance untouched) and reported as kept.",
+            "given": {
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 60000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 400,
+                    "expect": { "balance": 600 }
+                },
+                { "op": "advance_clock", "ms": 60001 },
+                {
+                    "op": "replace_lease",
+                    "lease_id": "lse_1",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "granted_amount": 1500,
+                    "expires_at_ms": 120000,
+                    "expect": { "written": false }
+                },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": {
+                        "exists": true,
+                        "lease_id": "lse_1",
+                        "granted_amount": 1500,
+                        "local_remaining_credits": 1100
+                    }
+                },
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 100,
+                    "expect": { "balance": 1000 }
+                }
+            ]
+        },
+        {
             "name": "replace_overwrites_expired_lease",
             "description": "An expired lease does not block the slot: replace overwrites it atomically and restores the full new grant.",
             "given": {
