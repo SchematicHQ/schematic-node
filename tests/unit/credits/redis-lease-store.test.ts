@@ -43,6 +43,43 @@ describe("RedisLeaseStore", () => {
         expect(entry?.localRemainingCredits).toBe(600);
     });
 
+    it("replace reconciles an expired SAME-id lease instead of resetting its debited balance", async () => {
+        // A stale acquire response can hand back the lease already installed
+        // (the server is idempotent for an active slot) after the shared row
+        // expired — e.g. a concurrent extend pushed the server-side expiry
+        // forward. Rewriting would reset localRemainingCredits to the full
+        // grant, erasing debits whose reservations are still open.
+        const client = makeFakeRedis();
+        const store = new RedisLeaseStore({ client });
+        await store.replace({
+            leaseId: "lse_1",
+            companyId: "co_1",
+            creditTypeId: "ct_1",
+            grantedAmount: 1000,
+            expiresAt: new Date(Date.now() + 60_000),
+        });
+        await store.tryReserve("co_1", "ct_1", 400);
+        // Expire the row in place (judged by the store clock).
+        await client.hSet(store.hashKey("co_1", "ct_1"), "expiresAt", String(Date.now() - 1_000));
+
+        const laterExpiry = new Date(Date.now() + 120_000);
+        const wrote = await store.replace({
+            leaseId: "lse_1",
+            companyId: "co_1",
+            creditTypeId: "ct_1",
+            grantedAmount: 1500,
+            expiresAt: laterExpiry,
+        });
+        expect(wrote).toBe(false);
+        const entry = await store.get("co_1", "ct_1");
+        expect(entry?.leaseId).toBe("lse_1");
+        // Granted reconciled to the server total; the 400-credit debit survives.
+        expect(entry?.grantedAmount).toBe(1500);
+        expect(entry?.localRemainingCredits).toBe(1100);
+        // Expiry moves forward with the response.
+        expect(entry?.expiresAt.getTime()).toBe(laterExpiry.getTime());
+    });
+
     it("tryReserve atomically gates against the shared balance", async () => {
         const client = makeFakeRedis();
         const store = new RedisLeaseStore({ client });

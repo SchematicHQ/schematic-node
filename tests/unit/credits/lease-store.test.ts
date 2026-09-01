@@ -249,4 +249,44 @@ describe("LeaseStore", () => {
         expect(store.get("co_1", "ct_1")?.leaseId).toBe("lse_2");
         expect(store.get("co_1", "ct_1")?.localRemainingCredits).toBe(100);
     });
+
+    it("replace reconciles an expired SAME-id lease instead of resetting its debited balance", async () => {
+        // A stale acquire response can hand back the lease already installed
+        // (the server is idempotent for an active slot) after the local row
+        // expired — e.g. a concurrent extend pushed the server-side expiry
+        // forward. Rewriting would reset localRemainingCredits to the full
+        // grant, erasing debits whose reservations are still open.
+        const start = Date.now();
+        const nowSpy = jest.spyOn(Date, "now").mockReturnValue(start);
+        try {
+            await store.replace({
+                leaseId: "lse_1",
+                companyId: "co_1",
+                creditTypeId: "ct_1",
+                grantedAmount: 100,
+                expiresAt: new Date(start + 60_000),
+            });
+            await store.tryReserve("co_1", "ct_1", 40);
+            nowSpy.mockReturnValue(start + 61_000); // the local row expires
+
+            const laterExpiry = new Date(start + 120_000);
+            const wrote = await store.replace({
+                leaseId: "lse_1",
+                companyId: "co_1",
+                creditTypeId: "ct_1",
+                grantedAmount: 150,
+                expiresAt: laterExpiry,
+            });
+            expect(wrote).toBe(false);
+            const entry = store.get("co_1", "ct_1");
+            expect(entry?.leaseId).toBe("lse_1");
+            // Granted reconciled to the server total; the 40-credit debit survives.
+            expect(entry?.grantedAmount).toBe(150);
+            expect(entry?.localRemainingCredits).toBe(110);
+            // Expiry moves forward with the response.
+            expect(entry?.expiresAt.getTime()).toBe(laterExpiry.getTime());
+        } finally {
+            nowSpy.mockRestore();
+        }
+    });
 });
