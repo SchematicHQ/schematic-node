@@ -7,8 +7,8 @@ import type * as serializers from "../index";
 export const PlanVersionCompanyMigrationStatus: core.serialization.Schema<
     serializers.PlanVersionCompanyMigrationStatus.Raw,
     Schematic.PlanVersionCompanyMigrationStatus
-> = core.serialization.enum_(["completed", "failed", "in_progress", "pending", "skipped"]);
+> = core.serialization.enum_(["cancelled", "completed", "failed", "in_progress", "pending", "skipped"]);
 
 export declare namespace PlanVersionCompanyMigrationStatus {
-    export type Raw = "completed" | "failed" | "in_progress" | "pending" | "skipped";
+    export type Raw = "cancelled" | "completed" | "failed" | "in_progress" | "pending" | "skipped";
 }

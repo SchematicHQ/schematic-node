@@ -21,6 +21,7 @@ export const CustomPlanBillingResponseData: core.serialization.ObjectSchema<
     paidAt: core.serialization.property("paid_at", core.serialization.date().optional()),
     planBillingSource: core.serialization.property("plan_billing_source", PlanBillingSource),
     planId: core.serialization.property("plan_id", core.serialization.string()),
+    prorateFirstPeriod: core.serialization.property("prorate_first_period", core.serialization.boolean().optional()),
     publishedAt: core.serialization.property("published_at", core.serialization.date().optional()),
     sendInvoice: core.serialization.property("send_invoice", core.serialization.boolean()),
     status: CustomPlanBillingStatus,
@@ -40,6 +41,7 @@ export declare namespace CustomPlanBillingResponseData {
         paid_at?: string | null;
         plan_billing_source: PlanBillingSource.Raw;
         plan_id: string;
+        prorate_first_period?: boolean | null;
         published_at?: string | null;
         send_invoice: boolean;
         status: CustomPlanBillingStatus.Raw;

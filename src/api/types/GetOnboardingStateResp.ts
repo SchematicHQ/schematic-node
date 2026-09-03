@@ -3,10 +3,15 @@
 import type * as Schematic from "../index";
 
 export interface GetOnboardingStateResp {
+    agentConnectedAt?: Date;
+    dismissedAt?: Date;
     environmentId?: string;
     milestones: Schematic.OnboardingMilestoneView[];
     path?: Schematic.OnboardingPath;
+    pricingPageUrl?: string;
     requirements: Schematic.OnboardingRequirementView[];
+    stripeImport?: Schematic.OnboardingStripeImport;
     suggestedNext: Schematic.OnboardingRequirement[];
     track?: Schematic.OnboardingTrack;
+    websiteUrl?: string;
 }

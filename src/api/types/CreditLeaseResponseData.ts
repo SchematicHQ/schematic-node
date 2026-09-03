@@ -8,5 +8,6 @@ export interface CreditLeaseResponseData {
     grantedAmount: number;
     id: string;
     releasedAt?: Date;
+    trackedAmount: number;
     updatedAt: Date;
 }

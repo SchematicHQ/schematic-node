@@ -1,3 +1,4 @@
+export type { CompleteMigrationNowRequestBody } from "./CompleteMigrationNowRequestBody";
 export type { CountCompanyMigrationsRequest } from "./CountCompanyMigrationsRequest";
 export type { CountMigrationsRequest } from "./CountMigrationsRequest";
 export type { CreateMigrationInput } from "./CreateMigrationInput";

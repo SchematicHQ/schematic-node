@@ -20,6 +20,7 @@ export interface CompanyDetailResponseData {
     metrics: Schematic.CompanyEventPeriodMetricsResponseData[];
     name: string;
     paymentMethods: Schematic.PaymentMethodResponseData[];
+    pendingMigration?: Schematic.PendingMigrationResponseData;
     plan?: Schematic.CompanyPlanWithBillingSubView;
     plans: Schematic.GenericPreviewObject[];
     rules: Schematic.Rule[];

@@ -10,8 +10,12 @@ import type * as Schematic from "../../../../index";
  */
 export interface RetryCustomPlanBillingRequestBody {
     activationStrategy?: Schematic.CustomPlanActivationStrategy;
+    /** The date the subscription's billing period renews on. Only honored when the retry creates a subscription. */
+    billingCycleAnchor?: Date;
     customerEmail: string;
     daysUntilDue?: number;
+    /** When true, the partial period between the subscription starting and its renewal date is billed pro rata straight away. When false that period is free and no invoice is raised until the renewal date. Only applies alongside billing_cycle_anchor. Defaults to true. */
+    prorateFirstPeriod?: boolean;
     /** Whether Stripe emails the invoice when it is finalized. Defaults to true. */
     sendInvoice?: boolean;
 }

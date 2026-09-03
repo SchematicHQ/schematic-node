@@ -1,3 +1,5 @@
+export * from "./CancelMigrationResponse";
+export * from "./CompleteMigrationNowResponse";
 export * from "./CountCompanyMigrationsParams";
 export * from "./CountCompanyMigrationsResponse";
 export * from "./CountMigrationsParams";

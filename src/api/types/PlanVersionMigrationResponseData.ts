@@ -9,6 +9,7 @@ export interface PlanVersionMigrationResponseData {
     error?: string;
     failedCompanies: number;
     id: string;
+    nextDueAt?: Date;
     planId: string;
     planVersionIdFrom?: string;
     planVersionIdTo: string;

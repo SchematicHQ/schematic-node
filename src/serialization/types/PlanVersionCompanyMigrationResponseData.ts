@@ -19,6 +19,7 @@ export const PlanVersionCompanyMigrationResponseData: core.serialization.ObjectS
     id: core.serialization.string(),
     migrationId: core.serialization.property("migration_id", core.serialization.string()),
     planVersionIdFrom: core.serialization.property("plan_version_id_from", core.serialization.string().optional()),
+    scheduledFor: core.serialization.property("scheduled_for", core.serialization.date().optional()),
     startedAt: core.serialization.property("started_at", core.serialization.date().optional()),
     status: PlanVersionCompanyMigrationStatus,
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -35,6 +36,7 @@ export declare namespace PlanVersionCompanyMigrationResponseData {
         id: string;
         migration_id: string;
         plan_version_id_from?: string | null;
+        scheduled_for?: string | null;
         started_at?: string | null;
         status: PlanVersionCompanyMigrationStatus.Raw;
         updated_at: string;

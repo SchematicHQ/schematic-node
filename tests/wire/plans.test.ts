@@ -257,6 +257,14 @@ describe("PlansClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                 ],
+                pending_migration: {
+                    migration_id: "migration_id",
+                    scheduled_for: "2024-01-15T09:30:00Z",
+                    to_plan_id: "to_plan_id",
+                    to_plan_name: "to_plan_name",
+                    to_plan_version_id: "to_plan_version_id",
+                    to_plan_version_number: 1000000,
+                },
                 plan: {
                     added_on: "2024-01-15T09:30:00Z",
                     billing_product_external_id: "billing_product_external_id",
@@ -616,6 +624,14 @@ describe("PlansClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                 ],
+                pendingMigration: {
+                    migrationId: "migration_id",
+                    scheduledFor: new Date("2024-01-15T09:30:00.000Z"),
+                    toPlanId: "to_plan_id",
+                    toPlanName: "to_plan_name",
+                    toPlanVersionId: "to_plan_version_id",
+                    toPlanVersionNumber: 1000000,
+                },
                 plan: {
                     addedOn: new Date("2024-01-15T09:30:00.000Z"),
                     billingProductExternalId: "billing_product_external_id",
@@ -842,6 +858,7 @@ describe("PlansClient", () => {
                     paid_at: "2024-01-15T09:30:00Z",
                     plan_billing_source: "custom_plan",
                     plan_id: "plan_id",
+                    prorate_first_period: true,
                     published_at: "2024-01-15T09:30:00Z",
                     send_invoice: true,
                     status: "active",
@@ -890,6 +907,7 @@ describe("PlansClient", () => {
                     paidAt: new Date("2024-01-15T09:30:00.000Z"),
                     planBillingSource: "custom_plan",
                     planId: "plan_id",
+                    prorateFirstPeriod: true,
                     publishedAt: new Date("2024-01-15T09:30:00.000Z"),
                     sendInvoice: true,
                     status: "active",
@@ -1020,6 +1038,7 @@ describe("PlansClient", () => {
                 paid_at: "2024-01-15T09:30:00Z",
                 plan_billing_source: "custom_plan",
                 plan_id: "plan_id",
+                prorate_first_period: true,
                 published_at: "2024-01-15T09:30:00Z",
                 send_invoice: true,
                 status: "active",
@@ -1053,6 +1072,7 @@ describe("PlansClient", () => {
                 paidAt: new Date("2024-01-15T09:30:00.000Z"),
                 planBillingSource: "custom_plan",
                 planId: "plan_id",
+                prorateFirstPeriod: true,
                 publishedAt: new Date("2024-01-15T09:30:00.000Z"),
                 sendInvoice: true,
                 status: "active",
@@ -1201,6 +1221,7 @@ describe("PlansClient", () => {
                 paid_at: "2024-01-15T09:30:00Z",
                 plan_billing_source: "custom_plan",
                 plan_id: "plan_id",
+                prorate_first_period: true,
                 published_at: "2024-01-15T09:30:00Z",
                 send_invoice: true,
                 status: "active",
@@ -1234,6 +1255,7 @@ describe("PlansClient", () => {
                 paidAt: new Date("2024-01-15T09:30:00.000Z"),
                 planBillingSource: "custom_plan",
                 planId: "plan_id",
+                prorateFirstPeriod: true,
                 publishedAt: new Date("2024-01-15T09:30:00.000Z"),
                 sendInvoice: true,
                 status: "active",
@@ -5989,6 +6011,12 @@ describe("PlansClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
+                    pending_migration: {
+                        migration_id: "migration_id",
+                        to_plan_id: "to_plan_id",
+                        to_plan_name: "to_plan_name",
+                        to_plan_version_id: "to_plan_version_id",
+                    },
                     plan: {
                         id: "id",
                         included_credit_grants: [
@@ -6296,6 +6324,12 @@ describe("PlansClient", () => {
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                     ],
+                    pendingMigration: {
+                        migrationId: "migration_id",
+                        toPlanId: "to_plan_id",
+                        toPlanName: "to_plan_name",
+                        toPlanVersionId: "to_plan_version_id",
+                    },
                     plan: {
                         id: "id",
                         includedCreditGrants: [
@@ -7005,7 +7039,10 @@ describe("PlansClient", () => {
     test("publishPlanVersion (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { excluded_company_ids: ["excluded_company_ids"], migration_strategy: "immediate" };
+        const rawRequestBody = {
+            excluded_company_ids: ["excluded_company_ids"],
+            migration_strategy: "end_of_billing_period",
+        };
         const rawResponseBody = {
             data: {
                 created_at: "2024-01-15T09:30:00Z",
@@ -7034,7 +7071,7 @@ describe("PlansClient", () => {
 
         const response = await client.plans.publishPlanVersion("plan_version_id", {
             excludedCompanyIds: ["excluded_company_ids"],
-            migrationStrategy: "immediate",
+            migrationStrategy: "end_of_billing_period",
         });
         expect(response).toEqual({
             data: {
@@ -7061,7 +7098,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
-            migration_strategy: "immediate",
+            migration_strategy: "end_of_billing_period",
         };
         const rawResponseBody = { error: "error" };
 
@@ -7077,7 +7114,7 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.publishPlanVersion("plan_version_id", {
                 excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
-                migrationStrategy: "immediate",
+                migrationStrategy: "end_of_billing_period",
             });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
@@ -7087,7 +7124,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
-            migration_strategy: "immediate",
+            migration_strategy: "end_of_billing_period",
         };
         const rawResponseBody = { error: "error" };
 
@@ -7103,7 +7140,7 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.publishPlanVersion("plan_version_id", {
                 excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
-                migrationStrategy: "immediate",
+                migrationStrategy: "end_of_billing_period",
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
@@ -7113,7 +7150,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
-            migration_strategy: "immediate",
+            migration_strategy: "end_of_billing_period",
         };
         const rawResponseBody = { error: "error" };
 
@@ -7129,7 +7166,7 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.publishPlanVersion("plan_version_id", {
                 excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
-                migrationStrategy: "immediate",
+                migrationStrategy: "end_of_billing_period",
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
@@ -7139,7 +7176,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
-            migration_strategy: "immediate",
+            migration_strategy: "end_of_billing_period",
         };
         const rawResponseBody = { error: "error" };
 
@@ -7155,7 +7192,7 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.publishPlanVersion("plan_version_id", {
                 excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
-                migrationStrategy: "immediate",
+                migrationStrategy: "end_of_billing_period",
             });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
@@ -7165,7 +7202,7 @@ describe("PlansClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
-            migration_strategy: "immediate",
+            migration_strategy: "end_of_billing_period",
         };
         const rawResponseBody = { error: "error" };
 
@@ -7181,7 +7218,7 @@ describe("PlansClient", () => {
         await expect(async () => {
             return await client.plans.publishPlanVersion("plan_version_id", {
                 excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
-                migrationStrategy: "immediate",
+                migrationStrategy: "end_of_billing_period",
             });
         }).rejects.toThrow(Schematic.InternalServerError);
     });

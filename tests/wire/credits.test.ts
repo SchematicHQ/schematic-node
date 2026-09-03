@@ -3719,6 +3719,7 @@ describe("CreditsClient", () => {
                 granted_amount: 1.1,
                 id: "id",
                 released_at: "2024-01-15T09:30:00Z",
+                tracked_amount: 1.1,
                 updated_at: "2024-01-15T09:30:00Z",
             },
             params: { key: "value" },
@@ -3747,6 +3748,7 @@ describe("CreditsClient", () => {
                 grantedAmount: 1.1,
                 id: "id",
                 releasedAt: new Date("2024-01-15T09:30:00.000Z"),
+                trackedAmount: 1.1,
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
             },
             params: {
@@ -3888,6 +3890,7 @@ describe("CreditsClient", () => {
                 granted_amount: 1.1,
                 id: "id",
                 released_at: "2024-01-15T09:30:00Z",
+                tracked_amount: 1.1,
                 updated_at: "2024-01-15T09:30:00Z",
             },
             params: { key: "value" },
@@ -3914,6 +3917,7 @@ describe("CreditsClient", () => {
                 grantedAmount: 1.1,
                 id: "id",
                 releasedAt: new Date("2024-01-15T09:30:00.000Z"),
+                trackedAmount: 1.1,
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
             },
             params: {
@@ -4045,6 +4049,7 @@ describe("CreditsClient", () => {
                 granted_amount: 1.1,
                 id: "id",
                 released_at: "2024-01-15T09:30:00Z",
+                tracked_amount: 1.1,
                 updated_at: "2024-01-15T09:30:00Z",
             },
             params: { key: "value" },
@@ -4071,6 +4076,7 @@ describe("CreditsClient", () => {
                 grantedAmount: 1.1,
                 id: "id",
                 releasedAt: new Date("2024-01-15T09:30:00.000Z"),
+                trackedAmount: 1.1,
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
             },
             params: {

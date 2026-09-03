@@ -6,7 +6,7 @@ import type * as Schematic from "../../../../index";
  * @example
  *     {
  *         planVersionId: "plan_version_id",
- *         status: "completed",
+ *         status: "cancelled",
  *         limit: 1000000,
  *         offset: 1000000
  *     }

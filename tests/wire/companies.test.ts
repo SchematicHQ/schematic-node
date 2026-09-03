@@ -214,6 +214,12 @@ describe("CompaniesClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
+                    pending_migration: {
+                        migration_id: "migration_id",
+                        to_plan_id: "to_plan_id",
+                        to_plan_name: "to_plan_name",
+                        to_plan_version_id: "to_plan_version_id",
+                    },
                     plan: {
                         id: "id",
                         included_credit_grants: [
@@ -554,6 +560,12 @@ describe("CompaniesClient", () => {
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                     ],
+                    pendingMigration: {
+                        migrationId: "migration_id",
+                        toPlanId: "to_plan_id",
+                        toPlanName: "to_plan_name",
+                        toPlanVersionId: "to_plan_version_id",
+                    },
                     plan: {
                         id: "id",
                         includedCreditGrants: [
@@ -981,6 +993,14 @@ describe("CompaniesClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                 ],
+                pending_migration: {
+                    migration_id: "migration_id",
+                    scheduled_for: "2024-01-15T09:30:00Z",
+                    to_plan_id: "to_plan_id",
+                    to_plan_name: "to_plan_name",
+                    to_plan_version_id: "to_plan_version_id",
+                    to_plan_version_number: 1000000,
+                },
                 plan: {
                     added_on: "2024-01-15T09:30:00Z",
                     billing_product_external_id: "billing_product_external_id",
@@ -1342,6 +1362,14 @@ describe("CompaniesClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                 ],
+                pendingMigration: {
+                    migrationId: "migration_id",
+                    scheduledFor: new Date("2024-01-15T09:30:00.000Z"),
+                    toPlanId: "to_plan_id",
+                    toPlanName: "to_plan_name",
+                    toPlanVersionId: "to_plan_version_id",
+                    toPlanVersionNumber: 1000000,
+                },
                 plan: {
                     addedOn: new Date("2024-01-15T09:30:00.000Z"),
                     billingProductExternalId: "billing_product_external_id",
@@ -1813,6 +1841,14 @@ describe("CompaniesClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                 ],
+                pending_migration: {
+                    migration_id: "migration_id",
+                    scheduled_for: "2024-01-15T09:30:00Z",
+                    to_plan_id: "to_plan_id",
+                    to_plan_name: "to_plan_name",
+                    to_plan_version_id: "to_plan_version_id",
+                    to_plan_version_number: 1000000,
+                },
                 plan: {
                     added_on: "2024-01-15T09:30:00Z",
                     billing_product_external_id: "billing_product_external_id",
@@ -2169,6 +2205,14 @@ describe("CompaniesClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                 ],
+                pendingMigration: {
+                    migrationId: "migration_id",
+                    scheduledFor: new Date("2024-01-15T09:30:00.000Z"),
+                    toPlanId: "to_plan_id",
+                    toPlanName: "to_plan_name",
+                    toPlanVersionId: "to_plan_version_id",
+                    toPlanVersionNumber: 1000000,
+                },
                 plan: {
                     addedOn: new Date("2024-01-15T09:30:00.000Z"),
                     billingProductExternalId: "billing_product_external_id",
@@ -2871,6 +2915,14 @@ describe("CompaniesClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                 ],
+                pending_migration: {
+                    migration_id: "migration_id",
+                    scheduled_for: "2024-01-15T09:30:00Z",
+                    to_plan_id: "to_plan_id",
+                    to_plan_name: "to_plan_name",
+                    to_plan_version_id: "to_plan_version_id",
+                    to_plan_version_number: 1000000,
+                },
                 plan: {
                     added_on: "2024-01-15T09:30:00Z",
                     billing_product_external_id: "billing_product_external_id",
@@ -3232,6 +3284,14 @@ describe("CompaniesClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                 ],
+                pendingMigration: {
+                    migrationId: "migration_id",
+                    scheduledFor: new Date("2024-01-15T09:30:00.000Z"),
+                    toPlanId: "to_plan_id",
+                    toPlanName: "to_plan_name",
+                    toPlanVersionId: "to_plan_version_id",
+                    toPlanVersionNumber: 1000000,
+                },
                 plan: {
                     addedOn: new Date("2024-01-15T09:30:00.000Z"),
                     billingProductExternalId: "billing_product_external_id",
@@ -4565,6 +4625,7 @@ describe("CompaniesClient", () => {
                         paid_at: "2024-01-15T09:30:00Z",
                         plan_billing_source: "custom_plan",
                         plan_id: "plan_id",
+                        prorate_first_period: true,
                         published_at: "2024-01-15T09:30:00Z",
                         send_invoice: true,
                         status: "active",
@@ -4582,6 +4643,7 @@ describe("CompaniesClient", () => {
                         paid_at: "2024-01-15T09:30:00Z",
                         plan_billing_source: "custom_plan",
                         plan_id: "plan_id",
+                        prorate_first_period: true,
                         published_at: "2024-01-15T09:30:00Z",
                         send_invoice: true,
                         status: "active",
@@ -4808,6 +4870,14 @@ describe("CompaniesClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                 ],
+                pending_migration: {
+                    migration_id: "migration_id",
+                    scheduled_for: "2024-01-15T09:30:00Z",
+                    to_plan_id: "to_plan_id",
+                    to_plan_name: "to_plan_name",
+                    to_plan_version_id: "to_plan_version_id",
+                    to_plan_version_number: 1000000,
+                },
                 plan: {
                     added_on: "2024-01-15T09:30:00Z",
                     billing_product_external_id: "billing_product_external_id",
@@ -6338,6 +6408,7 @@ describe("CompaniesClient", () => {
                         paidAt: new Date("2024-01-15T09:30:00.000Z"),
                         planBillingSource: "custom_plan",
                         planId: "plan_id",
+                        prorateFirstPeriod: true,
                         publishedAt: new Date("2024-01-15T09:30:00.000Z"),
                         sendInvoice: true,
                         status: "active",
@@ -6355,6 +6426,7 @@ describe("CompaniesClient", () => {
                         paidAt: new Date("2024-01-15T09:30:00.000Z"),
                         planBillingSource: "custom_plan",
                         planId: "plan_id",
+                        prorateFirstPeriod: true,
                         publishedAt: new Date("2024-01-15T09:30:00.000Z"),
                         sendInvoice: true,
                         status: "active",
@@ -6593,6 +6665,14 @@ describe("CompaniesClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                 ],
+                pendingMigration: {
+                    migrationId: "migration_id",
+                    scheduledFor: new Date("2024-01-15T09:30:00.000Z"),
+                    toPlanId: "to_plan_id",
+                    toPlanName: "to_plan_name",
+                    toPlanVersionId: "to_plan_version_id",
+                    toPlanVersionNumber: 1000000,
+                },
                 plan: {
                     addedOn: new Date("2024-01-15T09:30:00.000Z"),
                     billingProductExternalId: "billing_product_external_id",
@@ -8705,6 +8785,14 @@ describe("CompaniesClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                 ],
+                pending_migration: {
+                    migration_id: "migration_id",
+                    scheduled_for: "2024-01-15T09:30:00Z",
+                    to_plan_id: "to_plan_id",
+                    to_plan_name: "to_plan_name",
+                    to_plan_version_id: "to_plan_version_id",
+                    to_plan_version_number: 1000000,
+                },
                 plan: {
                     added_on: "2024-01-15T09:30:00Z",
                     billing_product_external_id: "billing_product_external_id",
@@ -9067,6 +9155,14 @@ describe("CompaniesClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                 ],
+                pendingMigration: {
+                    migrationId: "migration_id",
+                    scheduledFor: new Date("2024-01-15T09:30:00.000Z"),
+                    toPlanId: "to_plan_id",
+                    toPlanName: "to_plan_name",
+                    toPlanVersionId: "to_plan_version_id",
+                    toPlanVersionNumber: 1000000,
+                },
                 plan: {
                     addedOn: new Date("2024-01-15T09:30:00.000Z"),
                     billingProductExternalId: "billing_product_external_id",

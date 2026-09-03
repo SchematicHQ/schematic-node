@@ -7,6 +7,7 @@ import type * as Schematic from "../../../../index";
  *     {}
  */
 export interface UpdateOnboardingStateRequestBody {
+    dismissed?: boolean;
     path?: Schematic.OnboardingPath;
     pricingPageUrl?: string;
     track?: Schematic.OnboardingTrack;

@@ -7,7 +7,7 @@ import type * as Schematic from "../../../../index";
  *     {
  *         migrationId: "migration_id",
  *         q: "q",
- *         status: "completed",
+ *         status: "cancelled",
  *         limit: 1000000,
  *         offset: 1000000
  *     }

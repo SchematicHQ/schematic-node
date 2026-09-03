@@ -16,6 +16,7 @@ export const PublishPlanVersionRequestBody: core.serialization.Schema<
 > = core.serialization.object({
     activationStrategy: core.serialization.property("activation_strategy", CustomPlanActivationStrategy.optional()),
     address: CustomerBillingAddress.optional(),
+    billingCycleAnchor: core.serialization.property("billing_cycle_anchor", core.serialization.date().optional()),
     couponExternalId: core.serialization.property("coupon_external_id", core.serialization.string().optional()),
     customFieldValues: core.serialization.property(
         "custom_field_values",
@@ -29,6 +30,7 @@ export const PublishPlanVersionRequestBody: core.serialization.Schema<
     ),
     migrationStrategy: core.serialization.property("migration_strategy", PlanVersionMigrationStrategy),
     phone: core.serialization.string().optional(),
+    prorateFirstPeriod: core.serialization.property("prorate_first_period", core.serialization.boolean().optional()),
     prorationBehavior: core.serialization.property("proration_behavior", MigrationProrationBehavior.optional()),
     requireNoMigration: core.serialization.property("require_no_migration", core.serialization.boolean().optional()),
     sendInvoice: core.serialization.property("send_invoice", core.serialization.boolean().optional()),
@@ -39,6 +41,7 @@ export declare namespace PublishPlanVersionRequestBody {
     export interface Raw {
         activation_strategy?: CustomPlanActivationStrategy.Raw | null;
         address?: CustomerBillingAddress.Raw | null;
+        billing_cycle_anchor?: string | null;
         coupon_external_id?: string | null;
         custom_field_values?: CheckoutFieldValue.Raw[] | null;
         customer_email?: string | null;
@@ -46,6 +49,7 @@ export declare namespace PublishPlanVersionRequestBody {
         excluded_company_ids: string[];
         migration_strategy: PlanVersionMigrationStrategy.Raw;
         phone?: string | null;
+        prorate_first_period?: boolean | null;
         proration_behavior?: MigrationProrationBehavior.Raw | null;
         require_no_migration?: boolean | null;
         send_invoice?: boolean | null;

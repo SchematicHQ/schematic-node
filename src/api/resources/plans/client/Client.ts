@@ -2591,7 +2591,7 @@ export class PlansClient {
      * @example
      *     await client.plans.publishPlanVersion("plan_version_id", {
      *         excludedCompanyIds: ["excluded_company_ids"],
-     *         migrationStrategy: "immediate"
+     *         migrationStrategy: "end_of_billing_period"
      *     })
      */
     public publishPlanVersion(
