@@ -16,6 +16,7 @@ export interface RuleConditionDetailResponseData {
     metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;
     metricValue?: number;
     operator: Schematic.ComparableOperator;
+    planVersions?: Schematic.RuleConditionPlanVersionResponseData[];
     resourceIds: string[];
     resources: Schematic.PreviewObjectResponseData[];
     ruleId: string;

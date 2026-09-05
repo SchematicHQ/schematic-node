@@ -11,8 +11,10 @@ export type { CreatePaymentMethodRequestBody } from "./CreatePaymentMethodReques
 export type { ListBillingPricesRequest } from "./ListBillingPricesRequest";
 export type { ListBillingProductPricesRequest } from "./ListBillingProductPricesRequest";
 export type { ListBillingProductsRequest } from "./ListBillingProductsRequest";
+export type { ListCompanyBillingProfilesRequest } from "./ListCompanyBillingProfilesRequest";
 export type { ListCouponsRequest } from "./ListCouponsRequest";
 export type { ListCustomersWithSubscriptionsRequest } from "./ListCustomersWithSubscriptionsRequest";
 export type { ListInvoicesRequest } from "./ListInvoicesRequest";
 export type { ListMetersRequest } from "./ListMetersRequest";
 export type { ListPaymentMethodsRequest } from "./ListPaymentMethodsRequest";
+export type { UpdateCompanyBillingProfileRequestBody } from "./UpdateCompanyBillingProfileRequestBody";

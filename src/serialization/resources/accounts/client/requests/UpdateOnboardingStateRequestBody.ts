@@ -10,6 +10,7 @@ export const UpdateOnboardingStateRequestBody: core.serialization.Schema<
     serializers.UpdateOnboardingStateRequestBody.Raw,
     Schematic.UpdateOnboardingStateRequestBody
 > = core.serialization.object({
+    country: core.serialization.string().optional(),
     dismissed: core.serialization.boolean().optional(),
     path: OnboardingPath.optional(),
     pricingPageUrl: core.serialization.property("pricing_page_url", core.serialization.string().optional()),
@@ -19,6 +20,7 @@ export const UpdateOnboardingStateRequestBody: core.serialization.Schema<
 
 export declare namespace UpdateOnboardingStateRequestBody {
     export interface Raw {
+        country?: string | null;
         dismissed?: boolean | null;
         path?: OnboardingPath.Raw | null;
         pricing_page_url?: string | null;

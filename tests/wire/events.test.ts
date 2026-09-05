@@ -819,6 +819,337 @@ describe("EventsClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("getOTLPEnvironmentSettings (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                company_attribute: "company_attribute",
+                company_key: "company_key",
+                created_at: "2024-01-15T09:30:00Z",
+                environment_id: "environment_id",
+                tool_events_enabled: true,
+                updated_at: "2024-01-15T09:30:00Z",
+                user_attribute: "user_attribute",
+                user_key: "user_key",
+            },
+            params: { key: "value" },
+        };
+
+        server.mockEndpoint().get("/otlp/settings").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.events.getOtlpEnvironmentSettings();
+        expect(response).toEqual({
+            data: {
+                companyAttribute: "company_attribute",
+                companyKey: "company_key",
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                environmentId: "environment_id",
+                toolEventsEnabled: true,
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                userAttribute: "user_attribute",
+                userKey: "user_key",
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("getOTLPEnvironmentSettings (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/otlp/settings").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.events.getOtlpEnvironmentSettings();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getOTLPEnvironmentSettings (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/otlp/settings").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.events.getOtlpEnvironmentSettings();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getOTLPEnvironmentSettings (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/otlp/settings").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.events.getOtlpEnvironmentSettings();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getOTLPEnvironmentSettings (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/otlp/settings").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.events.getOtlpEnvironmentSettings();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("upsertOTLPEnvironmentSettings (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { tool_events_enabled: true };
+        const rawResponseBody = {
+            data: {
+                company_attribute: "company_attribute",
+                company_key: "company_key",
+                created_at: "2024-01-15T09:30:00Z",
+                environment_id: "environment_id",
+                tool_events_enabled: true,
+                updated_at: "2024-01-15T09:30:00Z",
+                user_attribute: "user_attribute",
+                user_key: "user_key",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/otlp/settings")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.events.upsertOtlpEnvironmentSettings({
+            toolEventsEnabled: true,
+        });
+        expect(response).toEqual({
+            data: {
+                companyAttribute: "company_attribute",
+                companyKey: "company_key",
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                environmentId: "environment_id",
+                toolEventsEnabled: true,
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                userAttribute: "user_attribute",
+                userKey: "user_key",
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("upsertOTLPEnvironmentSettings (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { tool_events_enabled: true };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/otlp/settings")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.events.upsertOtlpEnvironmentSettings({
+                toolEventsEnabled: true,
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("upsertOTLPEnvironmentSettings (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { tool_events_enabled: true };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/otlp/settings")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.events.upsertOtlpEnvironmentSettings({
+                toolEventsEnabled: true,
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("upsertOTLPEnvironmentSettings (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { tool_events_enabled: true };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/otlp/settings")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.events.upsertOtlpEnvironmentSettings({
+                toolEventsEnabled: true,
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("upsertOTLPEnvironmentSettings (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { tool_events_enabled: true };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/otlp/settings")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.events.upsertOtlpEnvironmentSettings({
+                toolEventsEnabled: true,
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("upsertOTLPEnvironmentSettings (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { tool_events_enabled: true };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/otlp/settings")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.events.upsertOtlpEnvironmentSettings({
+                toolEventsEnabled: true,
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("deleteOTLPEnvironmentSettings (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
+
+        server.mockEndpoint().delete("/otlp/settings").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.events.deleteOtlpEnvironmentSettings();
+        expect(response).toEqual({
+            data: {
+                deleted: true,
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("deleteOTLPEnvironmentSettings (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().delete("/otlp/settings").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.events.deleteOtlpEnvironmentSettings();
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("deleteOTLPEnvironmentSettings (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().delete("/otlp/settings").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.events.deleteOtlpEnvironmentSettings();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("deleteOTLPEnvironmentSettings (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().delete("/otlp/settings").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.events.deleteOtlpEnvironmentSettings();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("deleteOTLPEnvironmentSettings (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().delete("/otlp/settings").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.events.deleteOtlpEnvironmentSettings();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("deleteOTLPEnvironmentSettings (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().delete("/otlp/settings").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.events.deleteOtlpEnvironmentSettings();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("getSegmentIntegrationStatus (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });

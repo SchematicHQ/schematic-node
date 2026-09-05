@@ -3816,6 +3816,30 @@ describe("CreditsClient", () => {
             .post("/billing/credits/lease")
             .jsonBody(rawRequestBody)
             .respondWith()
+            .statusCode(402)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.acquireCreditLease({
+                companyId: "company_id",
+                creditTypeId: "credit_type_id",
+                requestedAmount: 1.1,
+            });
+        }).rejects.toThrow(Schematic.PaymentRequiredError);
+    });
+
+    test("acquireCreditLease (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { company_id: "company_id", credit_type_id: "credit_type_id", requested_amount: 1.1 };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/billing/credits/lease")
+            .jsonBody(rawRequestBody)
+            .respondWith()
             .statusCode(403)
             .jsonBody(rawResponseBody)
             .build();
@@ -3829,7 +3853,7 @@ describe("CreditsClient", () => {
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
 
-    test("acquireCreditLease (5)", async () => {
+    test("acquireCreditLease (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { company_id: "company_id", credit_type_id: "credit_type_id", requested_amount: 1.1 };
@@ -3853,7 +3877,7 @@ describe("CreditsClient", () => {
         }).rejects.toThrow(Schematic.NotFoundError);
     });
 
-    test("acquireCreditLease (6)", async () => {
+    test("acquireCreditLease (7)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { company_id: "company_id", credit_type_id: "credit_type_id", requested_amount: 1.1 };
@@ -3981,6 +4005,28 @@ describe("CreditsClient", () => {
             .put("/billing/credits/lease/lease_id/extend")
             .jsonBody(rawRequestBody)
             .respondWith()
+            .statusCode(402)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.extendCreditLease("lease_id", {
+                additionalAmount: 1.1,
+            });
+        }).rejects.toThrow(Schematic.PaymentRequiredError);
+    });
+
+    test("extendCreditLease (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { additional_amount: 1.1 };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/billing/credits/lease/lease_id/extend")
+            .jsonBody(rawRequestBody)
+            .respondWith()
             .statusCode(403)
             .jsonBody(rawResponseBody)
             .build();
@@ -3992,7 +4038,7 @@ describe("CreditsClient", () => {
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
 
-    test("extendCreditLease (5)", async () => {
+    test("extendCreditLease (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { additional_amount: 1.1 };
@@ -4014,7 +4060,7 @@ describe("CreditsClient", () => {
         }).rejects.toThrow(Schematic.NotFoundError);
     });
 
-    test("extendCreditLease (6)", async () => {
+    test("extendCreditLease (7)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { additional_amount: 1.1 };
@@ -5616,6 +5662,872 @@ describe("CreditsClient", () => {
 
         await expect(async () => {
             return await client.credits.countBillingPlanCreditGrants();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("listCreditSpendPolicies (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    billing_credit_id: "billing_credit_id",
+                    company_id: "company_id",
+                    created_at: "2024-01-15T09:30:00Z",
+                    id: "id",
+                    label: "label",
+                    max_per_draw: 1.1,
+                    scope_type: "company",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    user_id: "user_id",
+                },
+            ],
+            params: {
+                billing_credit_id: "billing_credit_id",
+                company_id: "company_id",
+                limit: 1000000,
+                offset: 1000000,
+                scope_type: "company",
+                user_id: "user_id",
+                user_ids: ["user_ids"],
+            },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/spend-policies")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.credits.listCreditSpendPolicies({
+            billingCreditId: "billing_credit_id",
+            companyId: "company_id",
+            scopeType: "company",
+            userId: "user_id",
+            userIds: ["user_ids"],
+            limit: 1000000,
+            offset: 1000000,
+        });
+        expect(response).toEqual({
+            data: [
+                {
+                    billingCreditId: "billing_credit_id",
+                    companyId: "company_id",
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    id: "id",
+                    label: "label",
+                    maxPerDraw: 1.1,
+                    scopeType: "company",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    userId: "user_id",
+                },
+            ],
+            params: {
+                billingCreditId: "billing_credit_id",
+                companyId: "company_id",
+                limit: 1000000,
+                offset: 1000000,
+                scopeType: "company",
+                userId: "user_id",
+                userIds: ["user_ids"],
+            },
+        });
+    });
+
+    test("listCreditSpendPolicies (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/spend-policies")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.listCreditSpendPolicies();
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("listCreditSpendPolicies (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/spend-policies")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.listCreditSpendPolicies();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("listCreditSpendPolicies (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/spend-policies")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.listCreditSpendPolicies();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("listCreditSpendPolicies (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/spend-policies")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.listCreditSpendPolicies();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("listCreditSpendPolicies (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/spend-policies")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.listCreditSpendPolicies();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("createCreditSpendPolicy (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { billing_credit_id: "billing_credit_id", max_per_draw: 1.1 };
+        const rawResponseBody = {
+            data: {
+                billing_credit_id: "billing_credit_id",
+                company_id: "company_id",
+                created_at: "2024-01-15T09:30:00Z",
+                id: "id",
+                label: "label",
+                max_per_draw: 1.1,
+                scope_type: "company",
+                updated_at: "2024-01-15T09:30:00Z",
+                user_id: "user_id",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/billing/credits/spend-policies")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.credits.createCreditSpendPolicy({
+            billingCreditId: "billing_credit_id",
+            maxPerDraw: 1.1,
+        });
+        expect(response).toEqual({
+            data: {
+                billingCreditId: "billing_credit_id",
+                companyId: "company_id",
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                id: "id",
+                label: "label",
+                maxPerDraw: 1.1,
+                scopeType: "company",
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                userId: "user_id",
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("createCreditSpendPolicy (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { billing_credit_id: "billing_credit_id", max_per_draw: 1.1 };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/billing/credits/spend-policies")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.createCreditSpendPolicy({
+                billingCreditId: "billing_credit_id",
+                maxPerDraw: 1.1,
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("createCreditSpendPolicy (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { billing_credit_id: "billing_credit_id", max_per_draw: 1.1 };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/billing/credits/spend-policies")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.createCreditSpendPolicy({
+                billingCreditId: "billing_credit_id",
+                maxPerDraw: 1.1,
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("createCreditSpendPolicy (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { billing_credit_id: "billing_credit_id", max_per_draw: 1.1 };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/billing/credits/spend-policies")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.createCreditSpendPolicy({
+                billingCreditId: "billing_credit_id",
+                maxPerDraw: 1.1,
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("createCreditSpendPolicy (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { billing_credit_id: "billing_credit_id", max_per_draw: 1.1 };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/billing/credits/spend-policies")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.createCreditSpendPolicy({
+                billingCreditId: "billing_credit_id",
+                maxPerDraw: 1.1,
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("createCreditSpendPolicy (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { billing_credit_id: "billing_credit_id", max_per_draw: 1.1 };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/billing/credits/spend-policies")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.createCreditSpendPolicy({
+                billingCreditId: "billing_credit_id",
+                maxPerDraw: 1.1,
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("getCreditSpendPolicy (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                billing_credit_id: "billing_credit_id",
+                company_id: "company_id",
+                created_at: "2024-01-15T09:30:00Z",
+                id: "id",
+                label: "label",
+                max_per_draw: 1.1,
+                scope_type: "company",
+                updated_at: "2024-01-15T09:30:00Z",
+                user_id: "user_id",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/spend-policies/spend_policy_id")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.credits.getCreditSpendPolicy("spend_policy_id");
+        expect(response).toEqual({
+            data: {
+                billingCreditId: "billing_credit_id",
+                companyId: "company_id",
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                id: "id",
+                label: "label",
+                maxPerDraw: 1.1,
+                scopeType: "company",
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                userId: "user_id",
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("getCreditSpendPolicy (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/spend-policies/spend_policy_id")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.getCreditSpendPolicy("spend_policy_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getCreditSpendPolicy (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/spend-policies/spend_policy_id")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.getCreditSpendPolicy("spend_policy_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getCreditSpendPolicy (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/spend-policies/spend_policy_id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.getCreditSpendPolicy("spend_policy_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getCreditSpendPolicy (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/spend-policies/spend_policy_id")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.getCreditSpendPolicy("spend_policy_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("updateCreditSpendPolicy (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = {
+            data: {
+                billing_credit_id: "billing_credit_id",
+                company_id: "company_id",
+                created_at: "2024-01-15T09:30:00Z",
+                id: "id",
+                label: "label",
+                max_per_draw: 1.1,
+                scope_type: "company",
+                updated_at: "2024-01-15T09:30:00Z",
+                user_id: "user_id",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .put("/billing/credits/spend-policies/spend_policy_id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.credits.updateCreditSpendPolicy("spend_policy_id");
+        expect(response).toEqual({
+            data: {
+                billingCreditId: "billing_credit_id",
+                companyId: "company_id",
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                id: "id",
+                label: "label",
+                maxPerDraw: 1.1,
+                scopeType: "company",
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                userId: "user_id",
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("updateCreditSpendPolicy (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/billing/credits/spend-policies/spend_policy_id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.updateCreditSpendPolicy("spend_policy_id");
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("updateCreditSpendPolicy (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/billing/credits/spend-policies/spend_policy_id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.updateCreditSpendPolicy("spend_policy_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("updateCreditSpendPolicy (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/billing/credits/spend-policies/spend_policy_id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.updateCreditSpendPolicy("spend_policy_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("updateCreditSpendPolicy (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/billing/credits/spend-policies/spend_policy_id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.updateCreditSpendPolicy("spend_policy_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("updateCreditSpendPolicy (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/billing/credits/spend-policies/spend_policy_id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.updateCreditSpendPolicy("spend_policy_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("deleteCreditSpendPolicy (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
+
+        server
+            .mockEndpoint()
+            .delete("/billing/credits/spend-policies/spend_policy_id")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.credits.deleteCreditSpendPolicy("spend_policy_id");
+        expect(response).toEqual({
+            data: {
+                deleted: true,
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("deleteCreditSpendPolicy (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .delete("/billing/credits/spend-policies/spend_policy_id")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.deleteCreditSpendPolicy("spend_policy_id");
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("deleteCreditSpendPolicy (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .delete("/billing/credits/spend-policies/spend_policy_id")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.deleteCreditSpendPolicy("spend_policy_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("deleteCreditSpendPolicy (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .delete("/billing/credits/spend-policies/spend_policy_id")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.deleteCreditSpendPolicy("spend_policy_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("deleteCreditSpendPolicy (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .delete("/billing/credits/spend-policies/spend_policy_id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.deleteCreditSpendPolicy("spend_policy_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("deleteCreditSpendPolicy (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .delete("/billing/credits/spend-policies/spend_policy_id")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.deleteCreditSpendPolicy("spend_policy_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("countCreditSpendPolicies (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: { count: 1000000 },
+            params: {
+                billing_credit_id: "billing_credit_id",
+                company_id: "company_id",
+                limit: 1000000,
+                offset: 1000000,
+                scope_type: "company",
+                user_id: "user_id",
+                user_ids: ["user_ids"],
+            },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/spend-policies/count")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.credits.countCreditSpendPolicies({
+            billingCreditId: "billing_credit_id",
+            companyId: "company_id",
+            scopeType: "company",
+            userId: "user_id",
+            userIds: ["user_ids"],
+            limit: 1000000,
+            offset: 1000000,
+        });
+        expect(response).toEqual({
+            data: {
+                count: 1000000,
+            },
+            params: {
+                billingCreditId: "billing_credit_id",
+                companyId: "company_id",
+                limit: 1000000,
+                offset: 1000000,
+                scopeType: "company",
+                userId: "user_id",
+                userIds: ["user_ids"],
+            },
+        });
+    });
+
+    test("countCreditSpendPolicies (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/spend-policies/count")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.countCreditSpendPolicies();
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("countCreditSpendPolicies (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/spend-policies/count")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.countCreditSpendPolicies();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("countCreditSpendPolicies (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/spend-policies/count")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.countCreditSpendPolicies();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("countCreditSpendPolicies (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/spend-policies/count")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.countCreditSpendPolicies();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("countCreditSpendPolicies (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/spend-policies/count")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.countCreditSpendPolicies();
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 

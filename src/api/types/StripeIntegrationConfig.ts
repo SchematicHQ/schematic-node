@@ -5,6 +5,12 @@ export interface StripeIntegrationConfig {
     accountId?: string;
     /** Display name of the connected Stripe account */
     accountName?: string;
+    /** When Stripe deletes the sandbox if nobody claims it, 60 days from creation; absent on sandboxes created before it was recorded */
+    claimableSandboxExpiresAt?: Date;
+    /** Stripe claimable sandbox this connection was provisioned from; absent for an OAuth connect */
+    claimableSandboxId?: string;
+    /** Stripe's claim status for the sandbox: unclaimed, claimed, or live */
+    claimableSandboxStatus?: string;
     /** When importing Stripe customers, only update existing companies, do not create new companies */
     companyUpdateOnly?: boolean;
     /** Whether the integration is connected to a Stripe sandbox account */

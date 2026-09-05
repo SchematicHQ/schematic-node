@@ -15,6 +15,7 @@ export const GetOnboardingStateResp: core.serialization.ObjectSchema<
     Schematic.GetOnboardingStateResp
 > = core.serialization.object({
     agentConnectedAt: core.serialization.property("agent_connected_at", core.serialization.date().optional()),
+    country: core.serialization.string().optional(),
     dismissedAt: core.serialization.property("dismissed_at", core.serialization.date().optional()),
     environmentId: core.serialization.property("environment_id", core.serialization.string().optional()),
     milestones: core.serialization.list(OnboardingMilestoneView),
@@ -30,6 +31,7 @@ export const GetOnboardingStateResp: core.serialization.ObjectSchema<
 export declare namespace GetOnboardingStateResp {
     export interface Raw {
         agent_connected_at?: string | null;
+        country?: string | null;
         dismissed_at?: string | null;
         environment_id?: string | null;
         milestones: OnboardingMilestoneView.Raw[];

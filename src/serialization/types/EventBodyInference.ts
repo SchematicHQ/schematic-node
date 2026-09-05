@@ -8,6 +8,10 @@ export const EventBodyInference: core.serialization.ObjectSchema<
     serializers.EventBodyInference.Raw,
     Schematic.EventBodyInference
 > = core.serialization.object({
+    cacheCreationInputTokens: core.serialization.property(
+        "cache_creation_input_tokens",
+        core.serialization.number().optional(),
+    ),
     cachedInputTokens: core.serialization.property("cached_input_tokens", core.serialization.number().optional()),
     company: core.serialization.record(core.serialization.string(), core.serialization.string()),
     cost: core.serialization.string().optional(),
@@ -26,6 +30,7 @@ export const EventBodyInference: core.serialization.ObjectSchema<
 
 export declare namespace EventBodyInference {
     export interface Raw {
+        cache_creation_input_tokens?: number | null;
         cached_input_tokens?: number | null;
         company: Record<string, string>;
         cost?: string | null;
