@@ -151,6 +151,12 @@ jobs:
         run: yarn build
 
       - name: Publish to npm
+        env:
+          # No provenance attestation: npm checks package.json's repository.url
+          # against the OIDC claim byte for byte, and Fern writes the org as
+          # lowercase "schematichq" while GitHub reports "SchematicHQ". OIDC
+          # auth itself does not depend on it (schematic-js does the same).
+          NPM_CONFIG_PROVENANCE: "false"
         run: |
           publish() {  # use latest npm to ensure OIDC support
             npx -y npm@latest publish "$@"
