@@ -19,6 +19,8 @@ export interface CompanyOverrideResponseData {
     ruleIdUsageExceeded?: string;
     updatedAt: Date;
     valueBool?: boolean;
+    valueCredit?: Schematic.BillingCreditResponseData;
+    valueCreditId?: string;
     valueNumeric?: number;
     valueTrait?: Schematic.EntityTraitDefinitionResponseData;
     valueTraitId?: string;

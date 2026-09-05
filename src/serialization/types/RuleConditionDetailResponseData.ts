@@ -10,6 +10,7 @@ import { EntityType } from "./EntityType";
 import { MetricPeriod } from "./MetricPeriod";
 import { MetricPeriodMonthReset } from "./MetricPeriodMonthReset";
 import { PreviewObjectResponseData } from "./PreviewObjectResponseData";
+import { RuleConditionPlanVersionResponseData } from "./RuleConditionPlanVersionResponseData";
 
 export const RuleConditionDetailResponseData: core.serialization.ObjectSchema<
     serializers.RuleConditionDetailResponseData.Raw,
@@ -28,6 +29,10 @@ export const RuleConditionDetailResponseData: core.serialization.ObjectSchema<
     metricPeriodMonthReset: core.serialization.property("metric_period_month_reset", MetricPeriodMonthReset.optional()),
     metricValue: core.serialization.property("metric_value", core.serialization.number().optional()),
     operator: ComparableOperator,
+    planVersions: core.serialization.property(
+        "plan_versions",
+        core.serialization.list(RuleConditionPlanVersionResponseData).optional(),
+    ),
     resourceIds: core.serialization.property("resource_ids", core.serialization.list(core.serialization.string())),
     resources: core.serialization.list(PreviewObjectResponseData),
     ruleId: core.serialization.property("rule_id", core.serialization.string()),
@@ -53,6 +58,7 @@ export declare namespace RuleConditionDetailResponseData {
         metric_period_month_reset?: MetricPeriodMonthReset.Raw | null;
         metric_value?: number | null;
         operator: ComparableOperator.Raw;
+        plan_versions?: RuleConditionPlanVersionResponseData.Raw[] | null;
         resource_ids: string[];
         resources: PreviewObjectResponseData.Raw[];
         rule_id: string;
