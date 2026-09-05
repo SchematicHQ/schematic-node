@@ -4,6 +4,7 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingSubscriptionView } from "./BillingSubscriptionView";
+import { CompanyBillingProfileResponseData } from "./CompanyBillingProfileResponseData";
 import { CompanyEventPeriodMetricsResponseData } from "./CompanyEventPeriodMetricsResponseData";
 import { CompanyPlanWithBillingSubView } from "./CompanyPlanWithBillingSubView";
 import { CustomPlanBillingResponseData } from "./CustomPlanBillingResponseData";
@@ -24,6 +25,11 @@ export const CompanyDetailResponseData: core.serialization.ObjectSchema<
     billingCreditBalances: core.serialization.property(
         "billing_credit_balances",
         core.serialization.record(core.serialization.string(), core.serialization.number()).optional(),
+    ),
+    billingProfile: core.serialization.property("billing_profile", CompanyBillingProfileResponseData.optional()),
+    billingProfiles: core.serialization.property(
+        "billing_profiles",
+        core.serialization.list(CompanyBillingProfileResponseData).optional(),
     ),
     billingSubscription: core.serialization.property("billing_subscription", BillingSubscriptionView.optional()),
     billingSubscriptions: core.serialization.property(
@@ -60,6 +66,8 @@ export declare namespace CompanyDetailResponseData {
     export interface Raw {
         add_ons: CompanyPlanWithBillingSubView.Raw[];
         billing_credit_balances?: Record<string, number> | null;
+        billing_profile?: CompanyBillingProfileResponseData.Raw | null;
+        billing_profiles?: CompanyBillingProfileResponseData.Raw[] | null;
         billing_subscription?: BillingSubscriptionView.Raw | null;
         billing_subscriptions: BillingSubscriptionView.Raw[];
         created_at: string;

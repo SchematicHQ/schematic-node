@@ -4005,6 +4005,310 @@ describe("BillingClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("listCompanyBillingProfiles (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    account_id: "account_id",
+                    billing_customer_id: "billing_customer_id",
+                    collection_method: "charge_automatically",
+                    company_id: "company_id",
+                    created_at: "2024-01-15T09:30:00Z",
+                    days_until_due: 1000000,
+                    environment_id: "environment_id",
+                    id: "id",
+                    is_default: true,
+                    name: "name",
+                    payment_method_id: "payment_method_id",
+                    proration_behavior: "create_prorations",
+                    provider_type: "metronome",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+            ],
+            params: {
+                company_id: "company_id",
+                is_default: true,
+                limit: 1000000,
+                offset: 1000000,
+                provider_type: "metronome",
+            },
+        };
+
+        server.mockEndpoint().get("/billing/profiles").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.billing.listCompanyBillingProfiles({
+            companyId: "company_id",
+            isDefault: true,
+            providerType: "metronome",
+            limit: 1000000,
+            offset: 1000000,
+        });
+        expect(response).toEqual({
+            data: [
+                {
+                    accountId: "account_id",
+                    billingCustomerId: "billing_customer_id",
+                    collectionMethod: "charge_automatically",
+                    companyId: "company_id",
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    daysUntilDue: 1000000,
+                    environmentId: "environment_id",
+                    id: "id",
+                    isDefault: true,
+                    name: "name",
+                    paymentMethodId: "payment_method_id",
+                    prorationBehavior: "create_prorations",
+                    providerType: "metronome",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+            ],
+            params: {
+                companyId: "company_id",
+                isDefault: true,
+                limit: 1000000,
+                offset: 1000000,
+                providerType: "metronome",
+            },
+        });
+    });
+
+    test("listCompanyBillingProfiles (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/billing/profiles").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.billing.listCompanyBillingProfiles();
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("listCompanyBillingProfiles (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/billing/profiles").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.billing.listCompanyBillingProfiles();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("listCompanyBillingProfiles (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/billing/profiles").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.billing.listCompanyBillingProfiles();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("listCompanyBillingProfiles (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/billing/profiles").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.billing.listCompanyBillingProfiles();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("listCompanyBillingProfiles (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/billing/profiles").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.billing.listCompanyBillingProfiles();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("updateCompanyBillingProfile (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { collection_method: "charge_automatically" };
+        const rawResponseBody = {
+            data: {
+                account_id: "account_id",
+                billing_customer_id: "billing_customer_id",
+                collection_method: "charge_automatically",
+                company_id: "company_id",
+                created_at: "2024-01-15T09:30:00Z",
+                days_until_due: 1000000,
+                environment_id: "environment_id",
+                id: "id",
+                is_default: true,
+                name: "name",
+                payment_method_id: "payment_method_id",
+                proration_behavior: "create_prorations",
+                provider_type: "metronome",
+                updated_at: "2024-01-15T09:30:00Z",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .put("/billing/profiles/billing_profile_id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.billing.updateCompanyBillingProfile("billing_profile_id", {
+            collectionMethod: "charge_automatically",
+        });
+        expect(response).toEqual({
+            data: {
+                accountId: "account_id",
+                billingCustomerId: "billing_customer_id",
+                collectionMethod: "charge_automatically",
+                companyId: "company_id",
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                daysUntilDue: 1000000,
+                environmentId: "environment_id",
+                id: "id",
+                isDefault: true,
+                name: "name",
+                paymentMethodId: "payment_method_id",
+                prorationBehavior: "create_prorations",
+                providerType: "metronome",
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("updateCompanyBillingProfile (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { collection_method: "charge_automatically" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/billing/profiles/billing_profile_id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.updateCompanyBillingProfile("billing_profile_id", {
+                collectionMethod: "charge_automatically",
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("updateCompanyBillingProfile (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { collection_method: "charge_automatically" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/billing/profiles/billing_profile_id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.updateCompanyBillingProfile("billing_profile_id", {
+                collectionMethod: "charge_automatically",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("updateCompanyBillingProfile (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { collection_method: "charge_automatically" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/billing/profiles/billing_profile_id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.updateCompanyBillingProfile("billing_profile_id", {
+                collectionMethod: "charge_automatically",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("updateCompanyBillingProfile (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { collection_method: "charge_automatically" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/billing/profiles/billing_profile_id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.updateCompanyBillingProfile("billing_profile_id", {
+                collectionMethod: "charge_automatically",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("updateCompanyBillingProfile (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { collection_method: "charge_automatically" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/billing/profiles/billing_profile_id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.updateCompanyBillingProfile("billing_profile_id", {
+                collectionMethod: "charge_automatically",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("upsertBillingSubscription (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });

@@ -5,6 +5,8 @@ import type * as Schematic from "../index";
 export interface CompanyDetailResponseData {
     addOns: Schematic.CompanyPlanWithBillingSubView[];
     billingCreditBalances?: Record<string, number>;
+    billingProfile?: Schematic.CompanyBillingProfileResponseData;
+    billingProfiles?: Schematic.CompanyBillingProfileResponseData[];
     billingSubscription?: Schematic.BillingSubscriptionView;
     billingSubscriptions: Schematic.BillingSubscriptionView[];
     createdAt: Date;

@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { BillingCreditResponseData } from "./BillingCreditResponseData";
 import { CompanyDetailResponseData } from "./CompanyDetailResponseData";
 import { CompanyOverrideNoteResponseData } from "./CompanyOverrideNoteResponseData";
 import { EntitlementValueType } from "./EntitlementValueType";
@@ -31,6 +32,8 @@ export const CompanyOverrideResponseData: core.serialization.ObjectSchema<
     ruleIdUsageExceeded: core.serialization.property("rule_id_usage_exceeded", core.serialization.string().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     valueBool: core.serialization.property("value_bool", core.serialization.boolean().optional()),
+    valueCredit: core.serialization.property("value_credit", BillingCreditResponseData.optional()),
+    valueCreditId: core.serialization.property("value_credit_id", core.serialization.string().optional()),
     valueNumeric: core.serialization.property("value_numeric", core.serialization.number().optional()),
     valueTrait: core.serialization.property("value_trait", EntityTraitDefinitionResponseData.optional()),
     valueTraitId: core.serialization.property("value_trait_id", core.serialization.string().optional()),
@@ -55,6 +58,8 @@ export declare namespace CompanyOverrideResponseData {
         rule_id_usage_exceeded?: string | null;
         updated_at: string;
         value_bool?: boolean | null;
+        value_credit?: BillingCreditResponseData.Raw | null;
+        value_credit_id?: string | null;
         value_numeric?: number | null;
         value_trait?: EntityTraitDefinitionResponseData.Raw | null;
         value_trait_id?: string | null;

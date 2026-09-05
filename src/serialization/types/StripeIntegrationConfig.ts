@@ -10,6 +10,15 @@ export const StripeIntegrationConfig: core.serialization.ObjectSchema<
 > = core.serialization.object({
     accountId: core.serialization.property("account_id", core.serialization.string().optional()),
     accountName: core.serialization.property("account_name", core.serialization.string().optional()),
+    claimableSandboxExpiresAt: core.serialization.property(
+        "claimable_sandbox_expires_at",
+        core.serialization.date().optional(),
+    ),
+    claimableSandboxId: core.serialization.property("claimable_sandbox_id", core.serialization.string().optional()),
+    claimableSandboxStatus: core.serialization.property(
+        "claimable_sandbox_status",
+        core.serialization.string().optional(),
+    ),
     companyUpdateOnly: core.serialization.property("company_update_only", core.serialization.boolean().optional()),
     isSandbox: core.serialization.property("is_sandbox", core.serialization.boolean()),
     liveMode: core.serialization.property("live_mode", core.serialization.boolean()),
@@ -21,6 +30,9 @@ export declare namespace StripeIntegrationConfig {
     export interface Raw {
         account_id?: string | null;
         account_name?: string | null;
+        claimable_sandbox_expires_at?: string | null;
+        claimable_sandbox_id?: string | null;
+        claimable_sandbox_status?: string | null;
         company_update_only?: boolean | null;
         is_sandbox: boolean;
         live_mode: boolean;

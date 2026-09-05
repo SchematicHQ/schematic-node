@@ -4,6 +4,7 @@ import type * as Schematic from "../index";
 
 export interface GetOnboardingStateResp {
     agentConnectedAt?: Date;
+    country?: string;
     dismissedAt?: Date;
     environmentId?: string;
     milestones: Schematic.OnboardingMilestoneView[];

@@ -2403,6 +2403,7 @@ describe("AccountsClient", () => {
         const rawResponseBody = {
             data: {
                 agent_connected_at: "2024-01-15T09:30:00Z",
+                country: "country",
                 dismissed_at: "2024-01-15T09:30:00Z",
                 environment_id: "environment_id",
                 milestones: [{ id: "evaluated", missing: ["connect_agent"], progress: 1.1 }],
@@ -2423,6 +2424,7 @@ describe("AccountsClient", () => {
         expect(response).toEqual({
             data: {
                 agentConnectedAt: new Date("2024-01-15T09:30:00.000Z"),
+                country: "country",
                 dismissedAt: new Date("2024-01-15T09:30:00.000Z"),
                 environmentId: "environment_id",
                 milestones: [
@@ -2510,6 +2512,7 @@ describe("AccountsClient", () => {
         const rawResponseBody = {
             data: {
                 agent_connected_at: "2024-01-15T09:30:00Z",
+                country: "country",
                 dismissed_at: "2024-01-15T09:30:00Z",
                 environment_id: "environment_id",
                 milestones: [{ id: "evaluated", missing: ["connect_agent"], progress: 1.1 }],
@@ -2537,6 +2540,7 @@ describe("AccountsClient", () => {
         expect(response).toEqual({
             data: {
                 agentConnectedAt: new Date("2024-01-15T09:30:00.000Z"),
+                country: "country",
                 dismissedAt: new Date("2024-01-15T09:30:00.000Z"),
                 environmentId: "environment_id",
                 milestones: [

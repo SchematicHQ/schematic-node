@@ -795,6 +795,367 @@ describe("IntegrationsapiClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("getStripeSandboxClaimLink (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                claim_url: "claim_url",
+                expires_at: "2024-01-15T09:30:00Z",
+                sandbox_id: "sandbox_id",
+                status: "status",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/integrations/stripe/sandbox/claim-link")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.integrationsapi.getStripeSandboxClaimLink();
+        expect(response).toEqual({
+            data: {
+                claimUrl: "claim_url",
+                expiresAt: new Date("2024-01-15T09:30:00.000Z"),
+                sandboxId: "sandbox_id",
+                status: "status",
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("getStripeSandboxClaimLink (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/integrations/stripe/sandbox/claim-link")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.getStripeSandboxClaimLink();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getStripeSandboxClaimLink (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/integrations/stripe/sandbox/claim-link")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.getStripeSandboxClaimLink();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getStripeSandboxClaimLink (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/integrations/stripe/sandbox/claim-link")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.getStripeSandboxClaimLink();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getStripeSandboxClaimLink (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/integrations/stripe/sandbox/claim-link")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.getStripeSandboxClaimLink();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("getStripeSandboxKeys (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: { publishable: "publishable", sandbox_id: "sandbox_id", secret: "secret" },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/integrations/stripe/sandbox/keys")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.integrationsapi.getStripeSandboxKeys();
+        expect(response).toEqual({
+            data: {
+                publishable: "publishable",
+                sandboxId: "sandbox_id",
+                secret: "secret",
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("getStripeSandboxKeys (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/integrations/stripe/sandbox/keys")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.getStripeSandboxKeys();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getStripeSandboxKeys (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/integrations/stripe/sandbox/keys")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.getStripeSandboxKeys();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getStripeSandboxKeys (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/integrations/stripe/sandbox/keys")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.getStripeSandboxKeys();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getStripeSandboxKeys (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/integrations/stripe/sandbox/keys")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.getStripeSandboxKeys();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("claimStripeSandboxKeys (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { token: "token" };
+        const rawResponseBody = {
+            data: { publishable: "publishable", sandbox_id: "sandbox_id", secret: "secret" },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/stripe/sandbox/keys/claim")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.integrationsapi.claimStripeSandboxKeys({
+            token: "token",
+        });
+        expect(response).toEqual({
+            data: {
+                publishable: "publishable",
+                sandboxId: "sandbox_id",
+                secret: "secret",
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("claimStripeSandboxKeys (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { token: "x" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/stripe/sandbox/keys/claim")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.claimStripeSandboxKeys({
+                token: "x",
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("claimStripeSandboxKeys (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { token: "x" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/stripe/sandbox/keys/claim")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.claimStripeSandboxKeys({
+                token: "x",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("claimStripeSandboxKeys (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { token: "x" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/stripe/sandbox/keys/claim")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.claimStripeSandboxKeys({
+                token: "x",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("claimStripeSandboxKeys (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { token: "x" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/stripe/sandbox/keys/claim")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.claimStripeSandboxKeys({
+                token: "x",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("claimStripeSandboxKeys (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { token: "x" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/stripe/sandbox/keys/claim")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.claimStripeSandboxKeys({
+                token: "x",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("assumeStripeInstalled (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -1166,6 +1527,306 @@ describe("IntegrationsapiClient", () => {
             return await client.integrationsapi.installStripe({
                 type: "clerk",
             });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("installStripeClaimableSandbox (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { email: "email" };
+        const rawResponseBody = {
+            data: {
+                api_keys: { mcp: "mcp", publishable: "publishable", secret: "secret" },
+                claim_url: "claim_url",
+                claim_url_expires_at: "2024-01-15T09:30:00Z",
+                expires_at: "2024-01-15T09:30:00Z",
+                install: {
+                    capabilities: { author_plans: true, checkout: true, edit_billing: true },
+                    config: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        id: "id",
+                        integration_id: "integration_id",
+                        is_app_install: true,
+                        is_connect_install: true,
+                        live_mode: true,
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
+                    integration: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        id: "id",
+                        state: "active",
+                        type: "clerk",
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
+                },
+                sandbox_id: "sandbox_id",
+                stripe_account_id: "stripe_account_id",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/stripe/v2/sandbox")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.integrationsapi.installStripeClaimableSandbox({
+            email: "email",
+        });
+        expect(response).toEqual({
+            data: {
+                apiKeys: {
+                    mcp: "mcp",
+                    publishable: "publishable",
+                    secret: "secret",
+                },
+                claimUrl: "claim_url",
+                claimUrlExpiresAt: new Date("2024-01-15T09:30:00.000Z"),
+                expiresAt: new Date("2024-01-15T09:30:00.000Z"),
+                install: {
+                    capabilities: {
+                        authorPlans: true,
+                        checkout: true,
+                        editBilling: true,
+                    },
+                    config: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        id: "id",
+                        integrationId: "integration_id",
+                        isAppInstall: true,
+                        isConnectInstall: true,
+                        liveMode: true,
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                    integration: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        id: "id",
+                        state: "active",
+                        type: "clerk",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                },
+                sandboxId: "sandbox_id",
+                stripeAccountId: "stripe_account_id",
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("installStripeClaimableSandbox (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { email: "email" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/stripe/v2/sandbox")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.installStripeClaimableSandbox({
+                email: "email",
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("installStripeClaimableSandbox (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { email: "email" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/stripe/v2/sandbox")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.installStripeClaimableSandbox({
+                email: "email",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("installStripeClaimableSandbox (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { email: "email" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/stripe/v2/sandbox")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.installStripeClaimableSandbox({
+                email: "email",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("installStripeClaimableSandbox (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { email: "email" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/stripe/v2/sandbox")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.installStripeClaimableSandbox({
+                email: "email",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("installStripeClaimableSandbox (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { email: "email" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/integrations/stripe/v2/sandbox")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.installStripeClaimableSandbox({
+                email: "email",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("listStripeSandboxCountries (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { data: { countries: ["countries"] }, params: { key: "value" } };
+
+        server
+            .mockEndpoint()
+            .get("/integrations/stripe/v2/sandbox-countries")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.integrationsapi.listStripeSandboxCountries();
+        expect(response).toEqual({
+            data: {
+                countries: ["countries"],
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("listStripeSandboxCountries (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/integrations/stripe/v2/sandbox-countries")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.listStripeSandboxCountries();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("listStripeSandboxCountries (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/integrations/stripe/v2/sandbox-countries")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.listStripeSandboxCountries();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("listStripeSandboxCountries (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/integrations/stripe/v2/sandbox-countries")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.listStripeSandboxCountries();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("listStripeSandboxCountries (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/integrations/stripe/v2/sandbox-countries")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.listStripeSandboxCountries();
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
