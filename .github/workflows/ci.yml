@@ -126,6 +126,12 @@ jobs:
     needs: [ compile, test, verify-package ]
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
+    # Trusted Publishing (OIDC), as schematic-js does: no NPM_TOKEN to expire.
+    # This workflow file must be registered as the package's trusted publisher
+    # on npmjs.com (repo SchematicHQ/schematic-node, workflow ci.yml).
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - name: Checkout repo
         uses: actions/checkout@v6
@@ -146,7 +152,6 @@ jobs:
 
       - name: Publish to npm
         run: |
-          npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
           publish() {  # use latest npm to ensure OIDC support
             npx -y npm@latest publish "$@"
           }
@@ -165,5 +170,3 @@ jobs:
               publish --access public
             fi
           fi
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
