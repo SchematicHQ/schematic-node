@@ -12,6 +12,7 @@ README.md
 WASM_VERSION
 biome.json
 build.js
+conformance/
 scripts/
 testapp/
 src/cache/
@@ -29,7 +30,9 @@ src/wasm/
 src/webhooks.ts
 src/wrapper.ts
 tests/cloudflare/
+tests/conformance/
 tests/integration/
+tests/races/
 tests/unit/cache/local.test.ts
 tests/unit/credits/
 tests/unit/datastream/datastream-client.test.ts
