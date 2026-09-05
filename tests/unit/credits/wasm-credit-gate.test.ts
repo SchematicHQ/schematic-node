@@ -40,7 +40,7 @@ const creditCondition = {
     accountId: "acct",
     environmentId: "env",
     conditionType: "credit",
-    operator: "gte",
+    operator: "lt",
     resourceIds: [] as string[],
     traitValue: "",
     metricValue: 0,

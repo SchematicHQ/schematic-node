@@ -83,7 +83,7 @@ const flag = {
                     environmentId: "env",
                     eventSubtype: "inference_tokens",
                     id: "cond_1",
-                    operator: "gte",
+                    operator: "lt",
                     resourceIds: [],
                     traitValue: "0",
                 },
