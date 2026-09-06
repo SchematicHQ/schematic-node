@@ -1,0 +1,34 @@
+{
+  "description": "Redis keys the replicator writes. SDKs in replicator mode read these keys, so their key builders must produce exactly these strings (prefix included: the SDK's Redis provider prefix plus the datastream key must equal the replicator key). <VERSION> is the rules engine cache version (rulesengine.VersionKey) and is substituted at test time. Each SDK carries a unit test against these cases; change them only with a matching change in every SDK.",
+  "prefix": "schematic",
+  "cases": [
+    {
+      "kind": "flag",
+      "input": { "key": "My_Flag" },
+      "key": "schematic:flags:<VERSION>:my_flag",
+      "note": "flag keys are lowercased"
+    },
+    {
+      "kind": "company_id",
+      "input": { "id": "comp_Abc123" },
+      "key": "schematic:company:<VERSION>:comp_Abc123",
+      "note": "ids keep their case"
+    },
+    {
+      "kind": "company_lookup",
+      "input": { "key": "ExternalId", "value": "Acme-Co" },
+      "key": "schematic:company:<VERSION>:externalid:acme-co",
+      "note": "lookup key names and values are lowercased"
+    },
+    {
+      "kind": "user_id",
+      "input": { "id": "user_Xyz789" },
+      "key": "schematic:user:<VERSION>:user_Xyz789"
+    },
+    {
+      "kind": "user_lookup",
+      "input": { "key": "Email", "value": "Ada@Example.com" },
+      "key": "schematic:user:<VERSION>:email:ada@example.com"
+    }
+  ]
+}
