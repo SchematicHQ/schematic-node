@@ -5,6 +5,7 @@
 .github/workflows/ci.yml
 .github/workflows/cloudflare.yml
 .github/workflows/e2e.yml
+.github/workflows/sdk-e2e-status.yml
 .gitignore
 CLAUDE.md
 LICENSE
@@ -36,6 +37,8 @@ tests/races/
 tests/unit/cache/local.test.ts
 tests/unit/credits/
 tests/unit/datastream/datastream-client.test.ts
+tests/unit/datastream/redis-key-layout.test.ts
+tests/unit/datastream/redis_key_layout.json
 tests/unit/datastream/merge.test.ts
 tests/unit/datastream/websocket-client.test.ts
 tests/unit/event-capture.test.ts

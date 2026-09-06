@@ -90,10 +90,16 @@ async function handleConfigure(req, res) {
     apiKey: config.apiKey,
   };
 
+  // Optional Redis key prefix, as a README-following user would set it. In
+  // replicator mode it must match the keys the replicator writes ("schematic:").
+  const redisKeyPrefix = config.redisKeyPrefix || undefined;
+
   // Cache provider: explicit Redis, disabled, or SDK defaults
   if (redisClient) {
     opts.cacheProviders = {
-      flagChecks: [new RedisCacheProvider({ client: redisClient, ttl: CACHE_TTL_MS })],
+      flagChecks: [
+        new RedisCacheProvider({ client: redisClient, ttl: CACHE_TTL_MS, keyPrefix: redisKeyPrefix }),
+      ],
     };
   } else if (config.noCache) {
     opts.cacheProviders = { flagChecks: [] };
@@ -123,11 +129,13 @@ async function handleConfigure(req, res) {
         replicatorMode: true,
         replicatorHealthURL: config.replicatorUrl + "/ready",
         redisClient: redisClient,
+        redisKeyPrefix: redisKeyPrefix,
       };
     } else if (redisClient) {
       // DataStream with Redis cache (no replicator)
       opts.dataStream = {
         redisClient: redisClient,
+        redisKeyPrefix: redisKeyPrefix,
       };
     }
   }

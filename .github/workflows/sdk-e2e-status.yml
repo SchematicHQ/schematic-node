@@ -1,0 +1,50 @@
+name: sdk-e2e status
+
+# Makes `sdk-e2e` a commit status on every PR so it can be a required check
+# without blocking ordinary PRs:
+#
+#   - update-wasm-v* branches (rules engine bumps opened by schematic-bot from
+#     schematic-api's rulesengine_release.yml): `pending` until the SDK E2E run
+#     that the release workflow dispatches in schematic-api reports back
+#     (its report-status job posts success/failure to this same context).
+#   - every other PR: `success` immediately; SDK E2E is not required.
+#
+# A new push to a bump branch resets the status to pending; re-run schematic-api's
+# sdk_e2e.yml with sdk-ref=<branch> to report on the new head.
+#
+# pull_request_target so the token can write statuses on fork PRs too. Nothing
+# from the PR is checked out or executed here.
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+permissions: {}
+
+jobs:
+  status:
+    runs-on: ubuntu-latest
+    permissions:
+      statuses: write
+    steps:
+      - name: Set sdk-e2e status
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          E2E_URL: https://github.com/SchematicHQ/schematic-api/actions/workflows/sdk_e2e.yml
+        run: |
+          case "$HEAD_REF" in
+            update-wasm-v*)
+              state=pending
+              description="Waiting for the SDK E2E run in schematic-api"
+              ;;
+            *)
+              state=success
+              description="Not a rules engine WASM bump; SDK E2E not required"
+              ;;
+          esac
+          echo "$HEAD_REF @ ${HEAD_SHA:0:8}: sdk-e2e=$state ($description)"
+          gh api "repos/$GITHUB_REPOSITORY/statuses/$HEAD_SHA" \
+            -f state="$state" -f context=sdk-e2e \
+            -f description="$description" -f target_url="$E2E_URL" > /dev/null
