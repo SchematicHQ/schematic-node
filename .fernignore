@@ -5,6 +5,7 @@
 .github/workflows/ci.yml
 .github/workflows/cloudflare.yml
 .github/workflows/e2e.yml
+.github/workflows/sdk-e2e-status.yml
 .gitignore
 CLAUDE.md
 LICENSE
