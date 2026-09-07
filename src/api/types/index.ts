@@ -397,6 +397,8 @@ export * from "./ScheduledDowngradeResponseData";
 export * from "./SegmentStatusResp";
 export * from "./SkippedEntitlementErrorResponseData";
 export * from "./SkippedEntitlementResponseData";
+export * from "./SlackConnectInviteStatus";
+export * from "./SlackConnectInviteView";
 export * from "./SortDirection";
 export * from "./StripeEmbedInfo";
 export * from "./StripeIntegrationConfig";
