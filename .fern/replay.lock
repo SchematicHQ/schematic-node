@@ -66,20 +66,26 @@ generations:
     cli_version: unknown
     generator_versions:
       fernapi/fern-typescript-node-sdk: 3.90.0
-current_generation: fa73b5974a0dfce6574addee87bbf343665a68f6
+  - commit_sha: df555e01325b55cd21dba120d79f1d9d86f033fb
+    tree_hash: fe7fdd07b147048425bd7ce36eeae9207a0a4d34
+    timestamp: 2026-09-07T10:02:57.176Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-typescript-node-sdk: 3.90.0
+current_generation: df555e01325b55cd21dba120d79f1d9d86f033fb
 patches:
   - id: patch-7a37bae5
     content_hash: sha256:d668134d32b63ddb680e8e6c5c499b6e6871061c050e7aad130e876c514bc8ef
     original_commit: 7a37bae547cd7e3acf4123558f38a67e8de1449b
     original_message: "chore(deps): resolve dependabot security alerts (#156)"
     original_author: Orbit <ben+orbit@schematichq.com>
-    base_generation: fa73b5974a0dfce6574addee87bbf343665a68f6
+    base_generation: df555e01325b55cd21dba120d79f1d9d86f033fb
     files:
       - package.json
       - yarn.lock
     patch_content: |
       diff --git a/package.json b/package.json
-      index d779590..e6c1d02 100644
+      index 923accf..b90ac1d 100644
       --- a/package.json
       +++ b/package.json
       @@ -57,6 +57,9 @@
@@ -93,7 +99,7 @@ patches:
            "engines": {
                "node": ">=18.0.0"
       diff --git a/yarn.lock b/yarn.lock
-      index 182558b..ec63c7c 100644
+      index 4e88cab..2b8f980 100644
       --- a/yarn.lock
       +++ b/yarn.lock
       @@ -3636,10 +3636,10 @@ undici-types@~8.3.0:
@@ -115,7 +121,7 @@ patches:
       package.json: |
         {
             "name": "@schematichq/schematic-typescript-node",
-            "version": "1.5.12",
+            "version": "1.5.13",
             "private": false,
             "repository": {
                 "type": "git",
@@ -3140,9 +3146,9 @@ patches:
           integrity sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==
 
         minimizer-webpack-plugin@^5.7.0:
-          version "5.9.0"
-          resolved "https://registry.yarnpkg.com/minimizer-webpack-plugin/-/minimizer-webpack-plugin-5.9.0.tgz#06c5ade7d028f3ff63321eab87f9c8c20bfa5ee8"
-          integrity sha512-OASqv+dewv8vjkOBjqMOHvxUaXhtGBLZAXq7JbmYE8TSzBvOswiGq5JcBdc8ypuLL/8YUT1OEyupga6/iqdyTA==
+          version "5.10.0"
+          resolved "https://registry.yarnpkg.com/minimizer-webpack-plugin/-/minimizer-webpack-plugin-5.10.0.tgz#6c2b98613c1934a4877c1e09a0257f9d686f46ea"
+          integrity sha512-2//60T4S0X1Ug/dqLDOgDaGlZsN1Lv8hf8oB0NOV/KIHSaXlPwXBBIbim79dE2Z7NEs52ES8YHoSv6Lmsk+XNg==
           dependencies:
             "@jridgewell/trace-mapping" "^0.3.31"
             jest-worker "^27.4.5"
@@ -3712,17 +3718,17 @@ patches:
             glob "^7.1.4"
             minimatch "^3.0.4"
 
-        tldts-core@^7.4.11:
-          version "7.4.11"
-          resolved "https://registry.yarnpkg.com/tldts-core/-/tldts-core-7.4.11.tgz#a02fba29af72cbf9e658cb3a335f857efc9475f7"
-          integrity sha512-CW3WN2rIIE/Of21mulhgnGOwoDyEFNygyIBOONSdyAuSATgMMUCpLeUlB+E8sAwA5xRV9hYPl+kyZ9citHCaKg==
+        tldts-core@^7.4.12:
+          version "7.4.12"
+          resolved "https://registry.yarnpkg.com/tldts-core/-/tldts-core-7.4.12.tgz#db2ed323e525394f9b65380ef47a0076aa105d36"
+          integrity sha512-nYNzS2WRf4QJmjzFFgAxLOBjyBxAGRbCy9PVBPaglcYyYajh40VBn+v5Ngr96ZMc7oM0+aCJdtQnNejvdBnXMQ==
 
         tldts@^7.0.5:
-          version "7.4.11"
-          resolved "https://registry.yarnpkg.com/tldts/-/tldts-7.4.11.tgz#51d5a3feeb473e592edf671491a24fb23789eed2"
-          integrity sha512-aBiNayCfTQxuIJBm06M+xR14cYaYlDlSXZbgsnKzKNxDKUVq7KFwTjwBSsb7m9Y5xO8WfPnBc63WaYFMTGlvqw==
+          version "7.4.12"
+          resolved "https://registry.yarnpkg.com/tldts/-/tldts-7.4.12.tgz#b764e7e3d2cc0ad66ca1a75504a702f3e90a91e2"
+          integrity sha512-WylhSDKVeYnWXL3a+vKTaOxjnOeEGw938hImY8zoRWJjRRK/Jp1K+IihBzIONpUmW4e3WmXT6q5FW6vlESVZCA==
           dependencies:
-            tldts-core "^7.4.11"
+            tldts-core "^7.4.12"
 
         tmpl@1.0.5:
           version "1.0.5"
