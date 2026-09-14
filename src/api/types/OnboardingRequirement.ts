@@ -5,6 +5,7 @@ export const OnboardingRequirement = {
     ConnectBilling: "connect_billing",
     CreateApiKey: "create_api_key",
     FirstFlagCheck: "first_flag_check",
+    GenerateRoadmap: "generate_roadmap",
     ImportCompanies: "import_companies",
     ModelPackaging: "model_packaging",
     SendEvents: "send_events",

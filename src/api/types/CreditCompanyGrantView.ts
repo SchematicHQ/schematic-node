@@ -3,6 +3,7 @@
 import type * as Schematic from "../index";
 
 export interface CreditCompanyGrantView {
+    arrearsCadence?: Schematic.BillingArrearsCadence;
     billingCreditBundleId?: string;
     billingCreditId: string;
     companyId: string;
@@ -24,6 +25,12 @@ export interface CreditCompanyGrantView {
     planId?: string;
     planName?: string;
     pluralName?: string;
+    postpaidChargeAmount?: number;
+    postpaidChargeCurrency?: string;
+    postpaidChargedCredits?: number;
+    postpaidPeriodEnd?: Date;
+    postpaidRate?: number;
+    postpaidRateDecimal?: string;
     price?: Schematic.BillingProductPriceResponseData;
     quantity: number;
     quantityRemaining: number;

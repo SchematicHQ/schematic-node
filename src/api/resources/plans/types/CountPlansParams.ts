@@ -11,6 +11,8 @@ export interface CountPlansParams {
     companyScopedOnly?: boolean;
     /** Exclude plans that are scoped to a company (custom plans assigned to a company) */
     excludeCompanyScoped?: boolean;
+    /** Exclude plans that nothing is using: no company is on the plan and it has no draft version */
+    excludeUnused?: boolean;
     /** Filter for plans valid as fallback plans (not linked to billing) */
     forFallbackPlan?: boolean;
     /** Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) */

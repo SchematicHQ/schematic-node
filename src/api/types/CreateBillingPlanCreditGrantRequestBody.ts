@@ -4,6 +4,10 @@ import type * as Schematic from "../index";
 
 export interface CreateBillingPlanCreditGrantRequestBody {
     applyToExisting?: boolean;
+    /** Which boundary closes a monthly arrears window: the subscription's own recurrence (billing_period_start) or the calendar month (month_end). Only applies when arrears_cadence is monthly; defaults to billing_period_start. */
+    arrearsAnchor?: Schematic.BillingArrearsAnchor;
+    /** How often postpaid charges are closed and invoiced: end_of_billing_period (the default) or monthly. */
+    arrearsCadence?: Schematic.BillingArrearsCadence;
     autoTopupAmount?: number;
     autoTopupAmountType?: Schematic.CreditAutoTopupAmountType;
     autoTopupAvailability?: Schematic.BillingCreditAutoTopupAvailability;
@@ -25,8 +29,16 @@ export interface CreateBillingPlanCreditGrantRequestBody {
     expiryUnitCount?: number;
     /** The license whose quantity scales this grant. Required when scaling is per_license. */
     licenseId?: string;
+    /** Optional limit on how far the balance may go below zero, in credits. It is a floor on the balance rather than an allowance per invoice window: the balance may run down to minus this figure, and beyond it the flag check denies the same way an exhausted balance does with postpaid off. Nothing resets when an invoice window rolls, so a company that reaches the limit stays denied until a new grant lands or the negative balance is settled. Omit for no limit. */
+    overdraftLimit?: number;
     planId: string;
     planVersionId?: string;
+    /** Whether consumption may continue past a zero balance. When false (the default) the flag check denies once the balance is exhausted, which is the existing behavior. When true, consumption continues and accrues at postpaid_rate_per_unit, settled on arrears_cadence. Intended for invoice-billed customers on net terms, who have no card for auto top-up to charge. */
+    postpaidEnabled?: boolean;
+    /** Amount charged per credit consumed past a zero balance, in the currency's minor unit. Optional: defaults to the credit's own cost basis (price_per_unit) when postpaid_enabled is true. */
+    postpaidRatePerUnit?: number;
+    /** Decimal string form of postpaid_rate_per_unit, for rates finer than one minor unit (for example 0.0002). Takes precedence over postpaid_rate_per_unit when both are set, matching how the credit's own price_per_unit_decimal behaves. */
+    postpaidRatePerUnitDecimal?: string;
     resetCadence: Schematic.BillingPlanCreditGrantResetCadence;
     resetStart: Schematic.BillingPlanCreditGrantResetStart;
     resetType?: Schematic.BillingPlanCreditGrantResetType;

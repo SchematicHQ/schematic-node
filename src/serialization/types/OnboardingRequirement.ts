@@ -12,6 +12,7 @@ export const OnboardingRequirement: core.serialization.Schema<
     "connect_billing",
     "create_api_key",
     "first_flag_check",
+    "generate_roadmap",
     "import_companies",
     "model_packaging",
     "send_events",
@@ -23,6 +24,7 @@ export declare namespace OnboardingRequirement {
         | "connect_billing"
         | "create_api_key"
         | "first_flag_check"
+        | "generate_roadmap"
         | "import_companies"
         | "model_packaging"
         | "send_events";
