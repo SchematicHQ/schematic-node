@@ -2410,6 +2410,7 @@ describe("AccountsClient", () => {
                 path: "agent",
                 pricing_page_url: "pricing_page_url",
                 requirements: [{ id: "connect_agent", status: "available" }],
+                roadmap: { published_at: "2024-01-15T09:30:00Z", slug: "slug" },
                 slack_connect: {
                     can_resend_at: "2024-01-15T09:30:00Z",
                     email: "email",
@@ -2448,6 +2449,10 @@ describe("AccountsClient", () => {
                         status: "available",
                     },
                 ],
+                roadmap: {
+                    publishedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    slug: "slug",
+                },
                 slackConnect: {
                     canResendAt: new Date("2024-01-15T09:30:00.000Z"),
                     email: "email",
@@ -2531,6 +2536,7 @@ describe("AccountsClient", () => {
                 path: "agent",
                 pricing_page_url: "pricing_page_url",
                 requirements: [{ id: "connect_agent", status: "available" }],
+                roadmap: { published_at: "2024-01-15T09:30:00Z", slug: "slug" },
                 slack_connect: {
                     can_resend_at: "2024-01-15T09:30:00Z",
                     email: "email",
@@ -2576,6 +2582,10 @@ describe("AccountsClient", () => {
                         status: "available",
                     },
                 ],
+                roadmap: {
+                    publishedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    slug: "slug",
+                },
                 slackConnect: {
                     canResendAt: new Date("2024-01-15T09:30:00.000Z"),
                     email: "email",

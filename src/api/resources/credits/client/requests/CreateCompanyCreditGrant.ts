@@ -14,6 +14,7 @@ import type * as Schematic from "../../../../index";
 export interface CreateCompanyCreditGrant {
     billingPeriodsCount?: number;
     companyId: string;
+    creditBundleId?: string;
     creditId: string;
     currency?: string;
     expiresAt?: Date;

@@ -1,3 +1,4 @@
+export * from "./CheckAndReserveFlagResponse";
 export * from "./CheckFlagResponse";
 export * from "./CheckFlagsBulkResponse";
 export * from "./CheckFlagsResponse";

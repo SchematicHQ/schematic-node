@@ -4,6 +4,7 @@ export { CreateCompanyCreditGrant } from "./CreateCompanyCreditGrant";
 export { CreateCreditBundleRequestBody } from "./CreateCreditBundleRequestBody";
 export { CreateCreditSpendPolicyRequestBody } from "./CreateCreditSpendPolicyRequestBody";
 export { ExtendCreditLeaseRequestBody } from "./ExtendCreditLeaseRequestBody";
+export { ReserveCreditsRequestBody } from "./ReserveCreditsRequestBody";
 export { UpdateBillingCreditRequestBody } from "./UpdateBillingCreditRequestBody";
 export { UpdateCreditBundleDetailsRequestBody } from "./UpdateCreditBundleDetailsRequestBody";
 export { UpdateCreditSpendPolicyRequestBody } from "./UpdateCreditSpendPolicyRequestBody";

@@ -15,6 +15,7 @@ export const ListPlansParams: core.serialization.ObjectSchema<
         "exclude_company_scoped",
         core.serialization.boolean().optional(),
     ),
+    excludeUnused: core.serialization.property("exclude_unused", core.serialization.boolean().optional()),
     forFallbackPlan: core.serialization.property("for_fallback_plan", core.serialization.boolean().optional()),
     forInitialPlan: core.serialization.property("for_initial_plan", core.serialization.boolean().optional()),
     forTrialExpiryPlan: core.serialization.property("for_trial_expiry_plan", core.serialization.boolean().optional()),
@@ -45,6 +46,7 @@ export declare namespace ListPlansParams {
         company_id?: string | null;
         company_scoped_only?: boolean | null;
         exclude_company_scoped?: boolean | null;
+        exclude_unused?: boolean | null;
         for_fallback_plan?: boolean | null;
         for_initial_plan?: boolean | null;
         for_trial_expiry_plan?: boolean | null;

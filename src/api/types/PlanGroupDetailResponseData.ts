@@ -36,6 +36,7 @@ export interface PlanGroupDetailResponseData {
     syncCustomerBillingDetails: boolean;
     taxCollectionEnabled: boolean;
     trialDays?: number;
+    trialEligibilityPerPlan: boolean;
     trialExpiryPlan?: Schematic.PlanGroupPlanDetailResponseData;
     trialExpiryPlanId?: string;
     trialExpiryPlanPrice?: Schematic.BillingPriceView;

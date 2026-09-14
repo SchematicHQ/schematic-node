@@ -44,6 +44,8 @@ export * from "./ListCreditSpendPoliciesResponse";
 export * from "./ListGrantsForCreditParams";
 export * from "./ListGrantsForCreditResponse";
 export * from "./ReleaseCreditLeaseResponse";
+export * from "./ReleaseCreditReservationResponse";
+export * from "./ReserveCreditsResponse";
 export * from "./SoftDeleteBillingCreditResponse";
 export * from "./UpdateBillingCreditResponse";
 export * from "./UpdateBillingPlanCreditGrantResponse";

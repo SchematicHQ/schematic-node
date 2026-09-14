@@ -21,6 +21,7 @@ export interface EventDetailResponseData {
     loadedAt?: Date;
     processedAt?: Date;
     quantity: number;
+    reservationId?: string;
     sentAt?: Date;
     status: Schematic.EventStatus;
     subtype?: string;

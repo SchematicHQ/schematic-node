@@ -7,6 +7,7 @@ import { OnboardingMilestoneView } from "./OnboardingMilestoneView";
 import { OnboardingPath } from "./OnboardingPath";
 import { OnboardingRequirement } from "./OnboardingRequirement";
 import { OnboardingRequirementView } from "./OnboardingRequirementView";
+import { OnboardingRoadmapView } from "./OnboardingRoadmapView";
 import { OnboardingStripeImport } from "./OnboardingStripeImport";
 import { OnboardingTrack } from "./OnboardingTrack";
 import { SlackConnectInviteView } from "./SlackConnectInviteView";
@@ -23,6 +24,7 @@ export const GetOnboardingStateResp: core.serialization.ObjectSchema<
     path: OnboardingPath.optional(),
     pricingPageUrl: core.serialization.property("pricing_page_url", core.serialization.string().optional()),
     requirements: core.serialization.list(OnboardingRequirementView),
+    roadmap: OnboardingRoadmapView.optional(),
     slackConnect: core.serialization.property("slack_connect", SlackConnectInviteView.optional()),
     stripeImport: core.serialization.property("stripe_import", OnboardingStripeImport.optional()),
     suggestedNext: core.serialization.property("suggested_next", core.serialization.list(OnboardingRequirement)),
@@ -40,6 +42,7 @@ export declare namespace GetOnboardingStateResp {
         path?: OnboardingPath.Raw | null;
         pricing_page_url?: string | null;
         requirements: OnboardingRequirementView.Raw[];
+        roadmap?: OnboardingRoadmapView.Raw | null;
         slack_connect?: SlackConnectInviteView.Raw | null;
         stripe_import?: OnboardingStripeImport.Raw | null;
         suggested_next: OnboardingRequirement.Raw[];

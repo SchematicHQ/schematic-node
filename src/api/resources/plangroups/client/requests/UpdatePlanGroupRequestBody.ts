@@ -70,6 +70,7 @@ export interface UpdatePlanGroupRequestBody {
     showZeroPriceAsFree: boolean;
     syncCustomerBillingDetails: boolean;
     trialDays?: number;
+    trialEligibilityPerPlan?: boolean;
     trialExpiryPlanId?: string;
     trialExpiryPlanPriceId?: string;
     trialPaymentMethodRequired?: boolean;

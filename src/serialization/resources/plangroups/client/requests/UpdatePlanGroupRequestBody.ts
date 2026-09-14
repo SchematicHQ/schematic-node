@@ -84,6 +84,10 @@ export const UpdatePlanGroupRequestBody: core.serialization.Schema<
         core.serialization.boolean(),
     ),
     trialDays: core.serialization.property("trial_days", core.serialization.number().optional()),
+    trialEligibilityPerPlan: core.serialization.property(
+        "trial_eligibility_per_plan",
+        core.serialization.boolean().optional(),
+    ),
     trialExpiryPlanId: core.serialization.property("trial_expiry_plan_id", core.serialization.string().optional()),
     trialExpiryPlanPriceId: core.serialization.property(
         "trial_expiry_plan_price_id",
@@ -132,6 +136,7 @@ export declare namespace UpdatePlanGroupRequestBody {
         show_zero_price_as_free: boolean;
         sync_customer_billing_details: boolean;
         trial_days?: number | null;
+        trial_eligibility_per_plan?: boolean | null;
         trial_expiry_plan_id?: string | null;
         trial_expiry_plan_price_id?: string | null;
         trial_payment_method_required?: boolean | null;

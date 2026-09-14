@@ -17,6 +17,7 @@ export const BillingCreditGrantResponseData: core.serialization.ObjectSchema<
     companyLicenseId: core.serialization.property("company_license_id", core.serialization.string().optional()),
     companyName: core.serialization.property("company_name", core.serialization.string()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
+    creditBundleId: core.serialization.property("credit_bundle_id", core.serialization.string().optional()),
     creditIcon: core.serialization.property("credit_icon", core.serialization.string().optional()),
     creditId: core.serialization.property("credit_id", core.serialization.string()),
     creditName: core.serialization.property("credit_name", core.serialization.string()),
@@ -27,6 +28,15 @@ export const BillingCreditGrantResponseData: core.serialization.ObjectSchema<
     licenseName: core.serialization.property("license_name", core.serialization.string().optional()),
     planId: core.serialization.property("plan_id", core.serialization.string().optional()),
     planName: core.serialization.property("plan_name", core.serialization.string().optional()),
+    postpaidChargeAmount: core.serialization.property("postpaid_charge_amount", core.serialization.number().optional()),
+    postpaidChargeCurrency: core.serialization.property(
+        "postpaid_charge_currency",
+        core.serialization.string().optional(),
+    ),
+    postpaidChargedCredits: core.serialization.property(
+        "postpaid_charged_credits",
+        core.serialization.number().optional(),
+    ),
     price: BillingPriceResponseData.optional(),
     quantity: core.serialization.number(),
     quantityRemaining: core.serialization.property("quantity_remaining", core.serialization.number()),
@@ -50,6 +60,7 @@ export declare namespace BillingCreditGrantResponseData {
         company_license_id?: string | null;
         company_name: string;
         created_at: string;
+        credit_bundle_id?: string | null;
         credit_icon?: string | null;
         credit_id: string;
         credit_name: string;
@@ -60,6 +71,9 @@ export declare namespace BillingCreditGrantResponseData {
         license_name?: string | null;
         plan_id?: string | null;
         plan_name?: string | null;
+        postpaid_charge_amount?: number | null;
+        postpaid_charge_currency?: string | null;
+        postpaid_charged_credits?: number | null;
         price?: BillingPriceResponseData.Raw | null;
         quantity: number;
         quantity_remaining: number;

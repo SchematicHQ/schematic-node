@@ -12,6 +12,7 @@ describe("WebhooksClient", () => {
         const rawResponseBody = {
             data: [
                 {
+                    attempt_count: 1000000,
                     created_at: "2024-01-15T09:30:00Z",
                     id: "id",
                     payload: "payload",
@@ -48,6 +49,7 @@ describe("WebhooksClient", () => {
         expect(response).toEqual({
             data: [
                 {
+                    attemptCount: 1000000,
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     id: "id",
                     payload: "payload",
@@ -150,6 +152,7 @@ describe("WebhooksClient", () => {
 
         const rawResponseBody = {
             data: {
+                attempt_count: 1000000,
                 created_at: "2024-01-15T09:30:00Z",
                 id: "id",
                 payload: "payload",
@@ -186,6 +189,7 @@ describe("WebhooksClient", () => {
         const response = await client.webhooks.getWebhookEvent("webhook_event_id");
         expect(response).toEqual({
             data: {
+                attemptCount: 1000000,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 id: "id",
                 payload: "payload",

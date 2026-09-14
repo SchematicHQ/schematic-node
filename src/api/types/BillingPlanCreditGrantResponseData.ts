@@ -3,6 +3,10 @@
 import type * as Schematic from "../index";
 
 export interface BillingPlanCreditGrantResponseData {
+    /** Which boundary closes a monthly arrears window. Only meaningful when arrears_cadence is monthly. */
+    arrearsAnchor?: Schematic.BillingArrearsAnchor;
+    /** How often postpaid charges are closed and invoiced. Defaults to end_of_billing_period. */
+    arrearsCadence?: Schematic.BillingArrearsCadence;
     autoTopupAmount?: number;
     autoTopupAmountType?: string;
     autoTopupAvailability: Schematic.BillingCreditAutoTopupAvailability;
@@ -35,11 +39,19 @@ export interface BillingPlanCreditGrantResponseData {
     id: string;
     /** The license whose quantity scales this grant. Set only when scaling is per_license. */
     licenseId?: string;
+    /** Optional limit on how far the balance may go below zero, in credits. A floor on the balance, not an allowance per invoice window: consumption is denied once the balance would fall below minus this figure, and stays denied until a new grant lands or the negative balance is settled. Absent means no limit. */
+    overdraftLimit?: number;
     plan?: Schematic.PreviewObjectResponseData;
     planId: string;
     /** Use plan.name from the nested plan object instead */
     planName: string;
     planVersionId?: string;
+    /** Whether consumption may continue past a zero balance, accruing at postpaid_rate_per_unit rather than being denied. */
+    postpaidEnabled: boolean;
+    /** Amount charged per credit consumed past zero, in the currency's minor unit. Defaults to the credit's own cost basis when postpaid is enabled without one. */
+    postpaidRatePerUnit?: number;
+    /** Decimal form of postpaid_rate_per_unit, for rates finer than one minor unit. */
+    postpaidRatePerUnitDecimal?: string;
     resetCadence?: Schematic.BillingPlanCreditGrantResetCadence;
     resetStart?: Schematic.BillingPlanCreditGrantResetStart;
     resetType?: Schematic.BillingPlanCreditGrantResetType;

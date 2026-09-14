@@ -20,6 +20,7 @@ export type { ListCreditBundlesRequest } from "./ListCreditBundlesRequest";
 export type { ListCreditEventLedgerRequest } from "./ListCreditEventLedgerRequest";
 export type { ListCreditSpendPoliciesRequest } from "./ListCreditSpendPoliciesRequest";
 export type { ListGrantsForCreditRequest } from "./ListGrantsForCreditRequest";
+export type { ReserveCreditsRequestBody } from "./ReserveCreditsRequestBody";
 export type { UpdateBillingCreditRequestBody } from "./UpdateBillingCreditRequestBody";
 export type { UpdateCreditBundleDetailsRequestBody } from "./UpdateCreditBundleDetailsRequestBody";
 export type { UpdateCreditSpendPolicyRequestBody } from "./UpdateCreditSpendPolicyRequestBody";

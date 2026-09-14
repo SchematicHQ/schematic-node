@@ -61,6 +61,7 @@ export const PlanGroupResponseData: core.serialization.ObjectSchema<
     ),
     taxCollectionEnabled: core.serialization.property("tax_collection_enabled", core.serialization.boolean()),
     trialDays: core.serialization.property("trial_days", core.serialization.number().optional()),
+    trialEligibilityPerPlan: core.serialization.property("trial_eligibility_per_plan", core.serialization.boolean()),
     trialExpiryPlanId: core.serialization.property("trial_expiry_plan_id", core.serialization.string().optional()),
     trialExpiryPlanPriceId: core.serialization.property(
         "trial_expiry_plan_price_id",
@@ -99,6 +100,7 @@ export declare namespace PlanGroupResponseData {
         sync_customer_billing_details: boolean;
         tax_collection_enabled: boolean;
         trial_days?: number | null;
+        trial_eligibility_per_plan: boolean;
         trial_expiry_plan_id?: string | null;
         trial_expiry_plan_price_id?: string | null;
         trial_payment_method_required?: boolean | null;
