@@ -27,6 +27,10 @@ export const CheckoutDataResponseData: core.serialization.ObjectSchema<
         core.serialization.list(BillingCreditBundleResponseData),
     ),
     company: CompanyDetailResponseData.optional(),
+    companyCanTrialSelectedPlan: core.serialization.property(
+        "company_can_trial_selected_plan",
+        core.serialization.boolean(),
+    ),
     customCheckoutFields: core.serialization.property(
         "custom_checkout_fields",
         core.serialization.list(CheckoutFieldWithValue),
@@ -37,6 +41,10 @@ export const CheckoutDataResponseData: core.serialization.ObjectSchema<
         core.serialization.list(CreditBundlePurchaseResponseData),
     ),
     selectedPlan: core.serialization.property("selected_plan", PlanDetailResponseData.optional()),
+    selectedPlanAlreadyTrialed: core.serialization.property(
+        "selected_plan_already_trialed",
+        core.serialization.boolean(),
+    ),
     selectedUsageBasedEntitlements: core.serialization.property(
         "selected_usage_based_entitlements",
         core.serialization.list(UsageBasedEntitlementResponseData),
@@ -51,10 +59,12 @@ export declare namespace CheckoutDataResponseData {
         active_usage_based_entitlements: UsageBasedEntitlementResponseData.Raw[];
         available_credit_bundles: BillingCreditBundleResponseData.Raw[];
         company?: CompanyDetailResponseData.Raw | null;
+        company_can_trial_selected_plan: boolean;
         custom_checkout_fields: CheckoutFieldWithValue.Raw[];
         feature_usage?: FeatureUsageDetailResponseData.Raw | null;
         selected_credit_bundles: CreditBundlePurchaseResponseData.Raw[];
         selected_plan?: PlanDetailResponseData.Raw | null;
+        selected_plan_already_trialed: boolean;
         selected_usage_based_entitlements: UsageBasedEntitlementResponseData.Raw[];
         subscription?: CompanySubscriptionResponseData.Raw | null;
     }

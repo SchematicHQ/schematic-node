@@ -5053,6 +5053,222 @@ describe("FeaturesClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("checkAndReserveFlag (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = {
+            data: {
+                company_id: "company_id",
+                entitlement: {
+                    allocation: 1000000,
+                    consumption_rate: 1.1,
+                    credit_id: "credit_id",
+                    credit_remaining: 1.1,
+                    credit_reserved: 1.1,
+                    credit_settled: 1.1,
+                    credit_total: 1.1,
+                    credit_used: 1.1,
+                    event_name: "event_name",
+                    event_subtype: "event_subtype",
+                    feature_id: "feature_id",
+                    feature_key: "feature_key",
+                    metric_period: "all_time",
+                    metric_reset_at: "2024-01-15T09:30:00Z",
+                    month_reset: "billing_cycle",
+                    soft_limit: 1000000,
+                    usage: 1000000,
+                    value_type: "boolean",
+                    warning_tiers: [{ key: "key", value: 1000000 }],
+                },
+                error: "error",
+                feature_usage_period: "all_time",
+                flag: "flag",
+                flag_id: "flag_id",
+                reason: "reason",
+                reservation: {
+                    company_id: "company_id",
+                    consumption_rate: 1.1,
+                    credit_type_id: "credit_type_id",
+                    credits_reserved: 1.1,
+                    event_subtype: "event_subtype",
+                    expires_at: "2024-01-15T09:30:00Z",
+                    id: "id",
+                    quantity_reserved: 1.1,
+                },
+                rule_id: "rule_id",
+                rule_type: "company_override",
+                user_id: "user_id",
+                value: true,
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/flags/key/check-and-reserve")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.features.checkAndReserveFlag("key");
+        expect(response).toEqual({
+            data: {
+                companyId: "company_id",
+                entitlement: {
+                    allocation: 1000000,
+                    consumptionRate: 1.1,
+                    creditId: "credit_id",
+                    creditRemaining: 1.1,
+                    creditReserved: 1.1,
+                    creditSettled: 1.1,
+                    creditTotal: 1.1,
+                    creditUsed: 1.1,
+                    eventName: "event_name",
+                    eventSubtype: "event_subtype",
+                    featureId: "feature_id",
+                    featureKey: "feature_key",
+                    metricPeriod: "all_time",
+                    metricResetAt: new Date("2024-01-15T09:30:00.000Z"),
+                    monthReset: "billing_cycle",
+                    softLimit: 1000000,
+                    usage: 1000000,
+                    valueType: "boolean",
+                    warningTiers: [
+                        {
+                            key: "key",
+                            value: 1000000,
+                        },
+                    ],
+                },
+                error: "error",
+                featureUsagePeriod: "all_time",
+                flag: "flag",
+                flagId: "flag_id",
+                reason: "reason",
+                reservation: {
+                    companyId: "company_id",
+                    consumptionRate: 1.1,
+                    creditTypeId: "credit_type_id",
+                    creditsReserved: 1.1,
+                    eventSubtype: "event_subtype",
+                    expiresAt: new Date("2024-01-15T09:30:00.000Z"),
+                    id: "id",
+                    quantityReserved: 1.1,
+                },
+                ruleId: "rule_id",
+                ruleType: "company_override",
+                userId: "user_id",
+                value: true,
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("checkAndReserveFlag (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/flags/key/check-and-reserve")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.features.checkAndReserveFlag("key");
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("checkAndReserveFlag (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/flags/key/check-and-reserve")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.features.checkAndReserveFlag("key");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("checkAndReserveFlag (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/flags/key/check-and-reserve")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.features.checkAndReserveFlag("key");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("checkAndReserveFlag (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/flags/key/check-and-reserve")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.features.checkAndReserveFlag("key");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("checkAndReserveFlag (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/flags/key/check-and-reserve")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.features.checkAndReserveFlag("key");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("checkFlags (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });

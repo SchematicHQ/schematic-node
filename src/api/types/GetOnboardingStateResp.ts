@@ -11,6 +11,7 @@ export interface GetOnboardingStateResp {
     path?: Schematic.OnboardingPath;
     pricingPageUrl?: string;
     requirements: Schematic.OnboardingRequirementView[];
+    roadmap?: Schematic.OnboardingRoadmapView;
     slackConnect?: Schematic.SlackConnectInviteView;
     stripeImport?: Schematic.OnboardingStripeImport;
     suggestedNext: Schematic.OnboardingRequirement[];

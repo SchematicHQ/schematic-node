@@ -3,6 +3,7 @@
 import type * as Schematic from "../index";
 
 export interface WebhookEventResponseData {
+    attemptCount: number;
     createdAt: Date;
     id: string;
     payload?: string;

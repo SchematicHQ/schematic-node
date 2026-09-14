@@ -4,6 +4,7 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { RulesengineCompanyMetric } from "./RulesengineCompanyMetric";
+import { RulesengineCreditPostpaidConfig } from "./RulesengineCreditPostpaidConfig";
 import { RulesengineFeatureEntitlement } from "./RulesengineFeatureEntitlement";
 import { RulesengineRule } from "./RulesengineRule";
 import { RulesengineSubscription } from "./RulesengineSubscription";
@@ -22,6 +23,10 @@ export const RulesengineCompany: core.serialization.ObjectSchema<
     creditBalances: core.serialization.property(
         "credit_balances",
         core.serialization.record(core.serialization.string(), core.serialization.number()),
+    ),
+    creditPostpaid: core.serialization.property(
+        "credit_postpaid",
+        core.serialization.record(core.serialization.string(), RulesengineCreditPostpaidConfig).optional(),
     ),
     entitlements: core.serialization.list(RulesengineFeatureEntitlement).optional(),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
@@ -44,6 +49,7 @@ export declare namespace RulesengineCompany {
         base_plan_id?: string | null;
         billing_product_ids: string[];
         credit_balances: Record<string, number>;
+        credit_postpaid?: Record<string, RulesengineCreditPostpaidConfig.Raw> | null;
         entitlements?: RulesengineFeatureEntitlement.Raw[] | null;
         environment_id: string;
         id: string;

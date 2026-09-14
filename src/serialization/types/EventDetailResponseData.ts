@@ -30,6 +30,7 @@ export const EventDetailResponseData: core.serialization.ObjectSchema<
     loadedAt: core.serialization.property("loaded_at", core.serialization.date().optional()),
     processedAt: core.serialization.property("processed_at", core.serialization.date().optional()),
     quantity: core.serialization.number(),
+    reservationId: core.serialization.property("reservation_id", core.serialization.string().optional()),
     sentAt: core.serialization.property("sent_at", core.serialization.date().optional()),
     status: EventStatus,
     subtype: core.serialization.string().optional(),
@@ -59,6 +60,7 @@ export declare namespace EventDetailResponseData {
         loaded_at?: string | null;
         processed_at?: string | null;
         quantity: number;
+        reservation_id?: string | null;
         sent_at?: string | null;
         status: EventStatus.Raw;
         subtype?: string | null;

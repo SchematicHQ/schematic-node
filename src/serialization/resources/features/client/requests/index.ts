@@ -1,3 +1,4 @@
+export { CheckAndReserveFlagRequestBody } from "./CheckAndReserveFlagRequestBody";
 export { CheckFlagsBulkRequestBody } from "./CheckFlagsBulkRequestBody";
 export { CreateBillingLinkedFeatureRequestBody } from "./CreateBillingLinkedFeatureRequestBody";
 export { CreateFeatureRequestBody } from "./CreateFeatureRequestBody";

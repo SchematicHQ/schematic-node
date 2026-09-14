@@ -7,8 +7,8 @@ import type * as serializers from "../index";
 export const RulesEngineSchemaVersion: core.serialization.Schema<
     serializers.RulesEngineSchemaVersion.Raw,
     Schematic.RulesEngineSchemaVersion
-> = core.serialization.enum_(["vc8eb8df4", "placeholder-for-fern-compatibility"]);
+> = core.serialization.enum_(["v94b8f7a7", "placeholder-for-fern-compatibility"]);
 
 export declare namespace RulesEngineSchemaVersion {
-    export type Raw = "vc8eb8df4" | "placeholder-for-fern-compatibility";
+    export type Raw = "v94b8f7a7" | "placeholder-for-fern-compatibility";
 }

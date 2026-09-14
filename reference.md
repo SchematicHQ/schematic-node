@@ -3707,7 +3707,7 @@ await client.credits.extendCreditLease("lease_id", {
 </dl>
 </details>
 
-<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">releaseCreditLease</a>(lease_id, { ...params }) -> Schematic.ReleaseCreditLeaseResponse</code></summary>
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">releaseCreditLease</a>(lease_id) -> Schematic.ReleaseCreditLeaseResponse</code></summary>
 <dl>
 <dd>
 
@@ -3720,9 +3720,7 @@ await client.credits.extendCreditLease("lease_id", {
 <dd>
 
 ```typescript
-await client.credits.releaseCreditLease("lease_id", {
-    "key": "value"
-});
+await client.credits.releaseCreditLease("lease_id");
 
 ```
 </dd>
@@ -3739,14 +3737,6 @@ await client.credits.releaseCreditLease("lease_id", {
 <dd>
 
 **lease_id:** `string` — lease_id
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Schematic.ReleaseCreditLeaseRequestBody` 
     
 </dd>
 </dl>
@@ -4086,6 +4076,108 @@ await client.credits.countBillingPlanCreditGrants({
 <dd>
 
 **request:** `Schematic.CountBillingPlanCreditGrantsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">reserveCredits</a>({ ...params }) -> Schematic.ReserveCreditsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.credits.reserveCredits({
+    amount: 1.1,
+    companyId: "company_id",
+    creditTypeId: "credit_type_id"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ReserveCreditsRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">releaseCreditReservation</a>(reservation_id) -> Schematic.ReleaseCreditReservationResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.credits.releaseCreditReservation("reservation_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**reservation_id:** `string` — reservation_id
     
 </dd>
 </dl>
@@ -9849,6 +9941,7 @@ await client.plans.listPlans({
     companyId: "company_id",
     companyScopedOnly: true,
     excludeCompanyScoped: true,
+    excludeUnused: true,
     forFallbackPlan: true,
     forInitialPlan: true,
     forTrialExpiryPlan: true,
@@ -10357,6 +10450,7 @@ await client.plans.countPlans({
     companyId: "company_id",
     companyScopedOnly: true,
     excludeCompanyScoped: true,
+    excludeUnused: true,
     forFallbackPlan: true,
     forInitialPlan: true,
     forTrialExpiryPlan: true,
@@ -12597,6 +12691,63 @@ await client.features.checkFlag("key", {});
 <dd>
 
 **request:** `Schematic.CheckFlagRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FeaturesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">checkAndReserveFlag</a>(key, { ...params }) -> Schematic.CheckAndReserveFlagResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.features.checkAndReserveFlag("key");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**key:** `string` — key
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CheckAndReserveFlagRequestBody` 
     
 </dd>
 </dl>

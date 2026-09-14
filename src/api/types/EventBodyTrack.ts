@@ -9,6 +9,8 @@ export interface EventBodyTrack {
     leaseId?: string;
     /** Optionally specify the quantity of the event */
     quantity?: number;
+    /** Credit reservation ID this track event settles. lease_id takes precedence when both are set */
+    reservationId?: string;
     /** A map of trait names to trait values */
     traits?: Record<string, unknown>;
     /** Key-value pairs to identify user associated with track event */
