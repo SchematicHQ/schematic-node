@@ -16,6 +16,7 @@ export type {
   CheckOptions,
   CheckResult,
   CreditLeaseConfig,
+  CreditLeaseMode,
   OnAcquireFailure,
   Reservation,
   TrackWithReservationOptions,

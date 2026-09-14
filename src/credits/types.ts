@@ -29,11 +29,29 @@ export const DEFAULT_PREWARM_RESOLVE_TIMEOUT_MS: number = 5000;
 export const DEFAULT_PREWARM_POLL_INTERVAL_MS: number = 100;
 
 /**
+ * Where a credit hold lives for a `check()` that passes `usage`.
+ * - `client`: local leases over DataStream — the SDK acquires a tranche of
+ *   credits up front and carves reservations out of it locally (today's
+ *   behavior). Requires DataStream (or replicator mode), and a shared Redis
+ *   backend to gate across pods.
+ * - `server`: one `check-and-reserve` API call per check — the server
+ *   evaluates the flag and takes the hold in the same round-trip. No
+ *   DataStream, no Redis, no local stores.
+ * - `auto` (default): `client` when DataStream is enabled, `server` otherwise.
+ */
+export type CreditLeaseMode = "client" | "server" | "auto";
+
+/**
  * Configuration block enabling client-side lease + reservation behavior on
  * `client.check` / `client.trackWithReservation`. Omit to keep the SDK
  * lease-unaware (`check` falls back to a plain flag check).
  */
 export interface CreditLeaseConfig {
+    /**
+     * Where the credit hold lives. Default `auto` — client mode when
+     * DataStream is enabled, server mode otherwise. See `CreditLeaseMode`.
+     */
+    mode?: CreditLeaseMode;
     /** Default lease duration in milliseconds. Default `DEFAULT_LEASE_DURATION_MS` (5 minutes). */
     defaultLeaseDuration?: number;
     /**
@@ -83,7 +101,7 @@ export interface CreditLeaseConfig {
     /** Per-credit-type overrides (keyed by credit type ID). */
     overrides?: Record<
         string,
-        Partial<Omit<CreditLeaseConfig, "overrides" | "sweepIntervalMs" | "redisClient" | "redisKeyPrefix">>
+        Partial<Omit<CreditLeaseConfig, "overrides" | "mode" | "sweepIntervalMs" | "redisClient" | "redisKeyPrefix">>
     >;
 }
 
@@ -99,8 +117,17 @@ export interface ResolvedLeaseConfig {
 export interface Reservation {
     /** Opaque reservation ID. */
     id: string;
-    /** Underlying lease ID this reservation draws from. */
+    /**
+     * Underlying lease ID this reservation draws from. In server mode there is
+     * no lease — this mirrors `id` so the field stays populated.
+     */
     leaseId: string;
+    /**
+     * Where the hold lives. `server` means the API holds the credits and the
+     * settling Track event routes by `reservation_id`; absent (or `client`)
+     * means the hold is a local carve-out of a lease.
+     */
+    mode?: "client" | "server";
     /** Company that owns the lease. */
     companyId: string;
     /** Credit type the reservation reserves against. */

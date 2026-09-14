@@ -375,7 +375,7 @@ describe("SchematicClient wrapper - credit lease store backend selection", () =>
         const client = new SchematicClient({
             apiKey: "test-key",
             logger: mockLogger,
-            creditLeases: {},
+            creditLeases: { mode: "client" },
             dataStream: { redisClient },
         });
         // The shared Redis backend must back leases automatically — no second
@@ -393,7 +393,7 @@ describe("SchematicClient wrapper - credit lease store backend selection", () =>
         const client = new SchematicClient({
             apiKey: "test-key",
             logger: mockLogger,
-            creditLeases: {},
+            creditLeases: { mode: "client" },
         });
         expect((client as any).leaseStore?.constructor?.name).toBe("LeaseStore");
         expect((client as any).reservations?.constructor?.name).toBe("ReservationStore");
@@ -407,7 +407,7 @@ describe("SchematicClient wrapper - credit lease store backend selection", () =>
         const client = new SchematicClient({
             apiKey: "test-key",
             logger: mockLogger,
-            creditLeases: {},
+            creditLeases: { mode: "client" },
         });
         // Without DataStream, every check() silently falls back to a plain flag
         // check with no credit gating — surface that once, loudly.
@@ -454,7 +454,7 @@ describe("SchematicClient wrapper - credit lease store backend selection", () =>
         const client = new SchematicClient({
             apiKey: "test-key",
             logger: mockLogger,
-            creditLeases: {},
+            creditLeases: { mode: "client" },
             dataStream: { redisClient },
         });
         // A shared lease lives in the backend (could have been installed by this

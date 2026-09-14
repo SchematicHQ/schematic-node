@@ -14,6 +14,7 @@ export {
 } from "./types";
 export type {
     CreditLeaseConfig,
+    CreditLeaseMode,
     ResolvedLeaseConfig,
     Reservation,
     CheckOptions,
