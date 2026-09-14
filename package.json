@@ -58,6 +58,7 @@
         "timers": false
     },
     "resolutions": {
+        "sharp": "^0.35.4",
         "undici": "7.29.0"
     },
     "packageManager": "yarn@1.22.22",
