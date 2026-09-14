@@ -806,12 +806,7 @@ For features metered by credit burndown (e.g. inference tokens), the SDK can enf
 - A **reservation** is a client-side hold carved out of the lease at check time, sized to the upper bound of the operation's usage. This protects against races and over-spend between the check and the eventual usage report.
 - When the work completes, a track call reports actual usage; the difference between reserved and actual usage is refunded to the lease.
 
-The SDK gates in one of two modes, chosen by `creditLeases.mode`:
-
-- **Client mode** holds credits in a local lease as described above.
-- **Server mode** takes the hold on the server: one `check-and-reserve` API call per check, no lease, no local state.
-
-> **Requirements:** DataStream is not required for credit gating. It is required for *client mode* — lease-bearing checks are evaluated locally against cached flag and company state. Without [DataStream](#datastream) (or [Replicator Mode](#replicator-mode)) the SDK gates in [server mode](#server-mode) instead. In client mode on a horizontally-scaled deployment, a shared Redis backend is also required so that all SDK instances gate against the same lease balance; without one, lease state is per-process.
+> **Requirements:** Client-side leases require [DataStream](#datastream) (or [Replicator Mode](#replicator-mode)) and, in a horizontally-scaled deployment, a shared Redis backend so all SDK instances gate against the same lease balance. Without DataStream the SDK uses [server mode](#server-mode) instead.
 
 ### Setup
 
@@ -841,28 +836,18 @@ When `dataStream.redisClient` is configured, lease and reservation state automat
 
 ### Server mode
 
-In server mode the SDK holds no credits itself. Each `check()` with `usage` makes one `check-and-reserve` API call: the server evaluates the flag against the company's real balance and takes the hold in the same round-trip. `trackWithReservation()` settles that hold with a track event carrying the `reservation_id`; if nothing settles it, the server refunds the unspent hold when it expires.
-
-There is no DataStream, no Redis, and no local lease or reservation store to run:
+In server mode each `check()` with `usage` makes one `check-and-reserve` API call: the server evaluates the flag and takes the hold, and `trackWithReservation()` settles it with a track event carrying the reservation ID. No lease, no Redis, no local state. It suits low-volume checks and operations that run for seconds; client mode suits high-throughput gating. `mode` defaults to `auto`: client when DataStream is enabled, server otherwise.
 
 ```ts
 const client = new SchematicClient({
     apiKey: process.env.SCHEMATIC_API_KEY,
     creditLeases: {
-        defaultReservationTTL: 60 * 1000, // how long the server holds the credits if no track settles them (ms)
+        defaultReservationTTL: 60 * 1000, // how long the server holds the credits if no track settles them (ms, max 1 hour)
     },
 });
 ```
 
-`check()` and `trackWithReservation()` are used exactly as below — the reservation handle is the same shape either way.
-
-**Which mode to pick.** Client mode suits high-throughput gating, where paying an API round-trip on every check is too expensive and the operations are short. Server mode suits low-volume checks, operations that run for seconds (an inference call, a long job), and any deployment that cannot run DataStream or Redis. `mode` defaults to `auto`: client mode when DataStream is enabled, server mode otherwise. Set it explicitly to pin the behavior.
-
-Three things differ in server mode:
-
-- `prewarm()` (and `identify({ prewarm })`) is a no-op — there is no local lease to warm.
-- Only `defaultReservationTTL` and `mode` apply. Every other `creditLeases` option steers the local lease plumbing; the SDK warns at startup if one is set. The server caps a hold at one hour, so keep `defaultReservationTTL` at or below that.
-- `onAcquireFailure: "fail-open"` returns the flag's default value (`options.defaultValue`, else the client's `flagDefaults`). There is no local rules engine to re-evaluate with an assumed-sufficient balance the way client mode does.
+Only `defaultReservationTTL` and `mode` apply in server mode; the SDK warns at startup if a client-only option is set. `prewarm()` is a no-op, and `fail-open` returns the flag's default value since there is no local engine to re-evaluate.
 
 ### Checking and tracking
 
@@ -918,7 +903,7 @@ const result = await client.check(evalCtx, "inference", {
 });
 ```
 
-In client mode, `fail-open` does not skip evaluation: the flag's rules still run with the credit balance assumed sufficient, so plan targeting, overrides, and all non-credit conditions still apply — only the credit gate is bypassed. In server mode there is no local engine to re-run, so `fail-open` returns the flag's default value instead (`options.defaultValue`, else the client's `flagDefaults`).
+In client mode, `fail-open` does not skip evaluation: the flag's rules still run with the credit balance assumed sufficient, so plan targeting, overrides, and all non-credit conditions still apply — only the credit gate is bypassed. In server mode it returns the flag's default value.
 
 ### Configuration options
 
