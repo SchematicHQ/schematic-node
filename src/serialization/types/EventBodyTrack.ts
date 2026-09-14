@@ -10,6 +10,7 @@ export const EventBodyTrack: core.serialization.ObjectSchema<serializers.EventBo
         event: core.serialization.string(),
         leaseId: core.serialization.property("lease_id", core.serialization.string().optional()),
         quantity: core.serialization.number().optional(),
+        reservationId: core.serialization.property("reservation_id", core.serialization.string().optional()),
         traits: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
         user: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
     });
@@ -20,6 +21,7 @@ export declare namespace EventBodyTrack {
         event: string;
         lease_id?: string | null;
         quantity?: number | null;
+        reservation_id?: string | null;
         traits?: Record<string, unknown> | null;
         user?: Record<string, string> | null;
     }

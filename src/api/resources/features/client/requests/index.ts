@@ -1,3 +1,4 @@
+export type { CheckAndReserveFlagRequestBody } from "./CheckAndReserveFlagRequestBody";
 export type { CheckFlagsBulkRequestBody } from "./CheckFlagsBulkRequestBody";
 export type { CountFeaturesRequest } from "./CountFeaturesRequest";
 export type { CountFlagsRequest } from "./CountFlagsRequest";

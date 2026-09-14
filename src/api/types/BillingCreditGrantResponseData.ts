@@ -8,6 +8,8 @@ export interface BillingCreditGrantResponseData {
     companyLicenseId?: string;
     companyName: string;
     createdAt: Date;
+    /** The catalog bundle this grant was issued from, when the company bought one. */
+    creditBundleId?: string;
     creditIcon?: string;
     creditId: string;
     creditName: string;
@@ -19,6 +21,11 @@ export interface BillingCreditGrantResponseData {
     licenseName?: string;
     planId?: string;
     planName?: string;
+    /** What the postpaid charges costs, in the currency's minor unit. */
+    postpaidChargeAmount?: number;
+    postpaidChargeCurrency?: string;
+    /** Credits consumed past a zero balance in the window still open. */
+    postpaidChargedCredits?: number;
     price?: Schematic.BillingPriceResponseData;
     quantity: number;
     quantityRemaining: number;

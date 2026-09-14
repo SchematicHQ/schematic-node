@@ -3,6 +3,8 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { BillingArrearsAnchor } from "./BillingArrearsAnchor";
+import { BillingArrearsCadence } from "./BillingArrearsCadence";
 import { BillingCreditAutoTopupAvailability } from "./BillingCreditAutoTopupAvailability";
 import { BillingCreditExpiryType } from "./BillingCreditExpiryType";
 import { BillingCreditExpiryUnit } from "./BillingCreditExpiryUnit";
@@ -17,6 +19,8 @@ export const BillingPlanCreditGrantResponseData: core.serialization.ObjectSchema
     serializers.BillingPlanCreditGrantResponseData.Raw,
     Schematic.BillingPlanCreditGrantResponseData
 > = core.serialization.object({
+    arrearsAnchor: core.serialization.property("arrears_anchor", BillingArrearsAnchor.optional()),
+    arrearsCadence: core.serialization.property("arrears_cadence", BillingArrearsCadence.optional()),
     autoTopupAmount: core.serialization.property("auto_topup_amount", core.serialization.number().optional()),
     autoTopupAmountType: core.serialization.property("auto_topup_amount_type", core.serialization.string().optional()),
     autoTopupAvailability: core.serialization.property("auto_topup_availability", BillingCreditAutoTopupAvailability),
@@ -50,10 +54,17 @@ export const BillingPlanCreditGrantResponseData: core.serialization.ObjectSchema
     expiryUnitCount: core.serialization.property("expiry_unit_count", core.serialization.number().optional()),
     id: core.serialization.string(),
     licenseId: core.serialization.property("license_id", core.serialization.string().optional()),
+    overdraftLimit: core.serialization.property("overdraft_limit", core.serialization.number().optional()),
     plan: PreviewObjectResponseData.optional(),
     planId: core.serialization.property("plan_id", core.serialization.string()),
     planName: core.serialization.property("plan_name", core.serialization.string()),
     planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
+    postpaidEnabled: core.serialization.property("postpaid_enabled", core.serialization.boolean()),
+    postpaidRatePerUnit: core.serialization.property("postpaid_rate_per_unit", core.serialization.number().optional()),
+    postpaidRatePerUnitDecimal: core.serialization.property(
+        "postpaid_rate_per_unit_decimal",
+        core.serialization.string().optional(),
+    ),
     resetCadence: core.serialization.property("reset_cadence", BillingPlanCreditGrantResetCadence.optional()),
     resetStart: core.serialization.property("reset_start", BillingPlanCreditGrantResetStart.optional()),
     resetType: core.serialization.property("reset_type", BillingPlanCreditGrantResetType.optional()),
@@ -64,6 +75,8 @@ export const BillingPlanCreditGrantResponseData: core.serialization.ObjectSchema
 
 export declare namespace BillingPlanCreditGrantResponseData {
     export interface Raw {
+        arrears_anchor?: BillingArrearsAnchor.Raw | null;
+        arrears_cadence?: BillingArrearsCadence.Raw | null;
         auto_topup_amount?: number | null;
         auto_topup_amount_type?: string | null;
         auto_topup_availability: BillingCreditAutoTopupAvailability.Raw;
@@ -88,10 +101,14 @@ export declare namespace BillingPlanCreditGrantResponseData {
         expiry_unit_count?: number | null;
         id: string;
         license_id?: string | null;
+        overdraft_limit?: number | null;
         plan?: PreviewObjectResponseData.Raw | null;
         plan_id: string;
         plan_name: string;
         plan_version_id?: string | null;
+        postpaid_enabled: boolean;
+        postpaid_rate_per_unit?: number | null;
+        postpaid_rate_per_unit_decimal?: string | null;
         reset_cadence?: BillingPlanCreditGrantResetCadence.Raw | null;
         reset_start?: BillingPlanCreditGrantResetStart.Raw | null;
         reset_type?: BillingPlanCreditGrantResetType.Raw | null;

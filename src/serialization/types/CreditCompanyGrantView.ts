@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { BillingArrearsCadence } from "./BillingArrearsCadence";
 import { BillingCreditExpiryType } from "./BillingCreditExpiryType";
 import { BillingCreditExpiryUnit } from "./BillingCreditExpiryUnit";
 import { BillingCreditGrantReason } from "./BillingCreditGrantReason";
@@ -15,6 +16,7 @@ export const CreditCompanyGrantView: core.serialization.ObjectSchema<
     serializers.CreditCompanyGrantView.Raw,
     Schematic.CreditCompanyGrantView
 > = core.serialization.object({
+    arrearsCadence: core.serialization.property("arrears_cadence", BillingArrearsCadence.optional()),
     billingCreditBundleId: core.serialization.property(
         "billing_credit_bundle_id",
         core.serialization.string().optional(),
@@ -39,6 +41,18 @@ export const CreditCompanyGrantView: core.serialization.ObjectSchema<
     planId: core.serialization.property("plan_id", core.serialization.string().optional()),
     planName: core.serialization.property("plan_name", core.serialization.string().optional()),
     pluralName: core.serialization.property("plural_name", core.serialization.string().optional()),
+    postpaidChargeAmount: core.serialization.property("postpaid_charge_amount", core.serialization.number().optional()),
+    postpaidChargeCurrency: core.serialization.property(
+        "postpaid_charge_currency",
+        core.serialization.string().optional(),
+    ),
+    postpaidChargedCredits: core.serialization.property(
+        "postpaid_charged_credits",
+        core.serialization.number().optional(),
+    ),
+    postpaidPeriodEnd: core.serialization.property("postpaid_period_end", core.serialization.date().optional()),
+    postpaidRate: core.serialization.property("postpaid_rate", core.serialization.number().optional()),
+    postpaidRateDecimal: core.serialization.property("postpaid_rate_decimal", core.serialization.string().optional()),
     price: BillingProductPriceResponseData.optional(),
     quantity: core.serialization.number(),
     quantityRemaining: core.serialization.property("quantity_remaining", core.serialization.number()),
@@ -59,6 +73,7 @@ export const CreditCompanyGrantView: core.serialization.ObjectSchema<
 
 export declare namespace CreditCompanyGrantView {
     export interface Raw {
+        arrears_cadence?: BillingArrearsCadence.Raw | null;
         billing_credit_bundle_id?: string | null;
         billing_credit_id: string;
         company_id: string;
@@ -80,6 +95,12 @@ export declare namespace CreditCompanyGrantView {
         plan_id?: string | null;
         plan_name?: string | null;
         plural_name?: string | null;
+        postpaid_charge_amount?: number | null;
+        postpaid_charge_currency?: string | null;
+        postpaid_charged_credits?: number | null;
+        postpaid_period_end?: string | null;
+        postpaid_rate?: number | null;
+        postpaid_rate_decimal?: string | null;
         price?: BillingProductPriceResponseData.Raw | null;
         quantity: number;
         quantity_remaining: number;

@@ -3,6 +3,8 @@
 import type * as Schematic from "../index";
 
 export interface PlanCreditGrantView {
+    billingCreditArrearsAnchor?: Schematic.BillingArrearsAnchor;
+    billingCreditArrearsCadence?: Schematic.BillingArrearsCadence;
     billingCreditAutoTopupAmount?: number;
     billingCreditAutoTopupAmountType?: string;
     billingCreditAutoTopupAvailability?: Schematic.BillingCreditAutoTopupAvailability;
@@ -14,6 +16,10 @@ export interface PlanCreditGrantView {
     billingCreditAutoTopupThresholdCredits?: number;
     billingCreditAutoTopupThresholdPercent?: number;
     billingCreditCanBuyBundles: boolean;
+    billingCreditOverdraftLimit?: number;
+    billingCreditPostpaidEnabled: boolean;
+    billingCreditPostpaidRatePerUnit?: number;
+    billingCreditPostpaidRatePerUnitDecimal?: string;
     companyCreditAmount: number;
     createdAt: Date;
     credit?: Schematic.BillingCreditView;

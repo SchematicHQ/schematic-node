@@ -11,6 +11,7 @@ export const WebhookEventDetailResponseData: core.serialization.ObjectSchema<
     serializers.WebhookEventDetailResponseData.Raw,
     Schematic.WebhookEventDetailResponseData
 > = core.serialization.object({
+    attemptCount: core.serialization.property("attempt_count", core.serialization.number()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     id: core.serialization.string(),
     payload: core.serialization.string().optional(),
@@ -25,6 +26,7 @@ export const WebhookEventDetailResponseData: core.serialization.ObjectSchema<
 
 export declare namespace WebhookEventDetailResponseData {
     export interface Raw {
+        attempt_count: number;
         created_at: string;
         id: string;
         payload?: string | null;

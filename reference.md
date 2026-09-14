@@ -4105,6 +4105,118 @@ await client.credits.countBillingPlanCreditGrants({
 </dl>
 </details>
 
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">reserveCredits</a>({ ...params }) -> Schematic.ReserveCreditsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.credits.reserveCredits({
+    amount: 1.1,
+    companyId: "company_id",
+    creditTypeId: "credit_type_id"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ReserveCreditsRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">releaseCreditReservation</a>(reservation_id, { ...params }) -> Schematic.ReleaseCreditReservationResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.credits.releaseCreditReservation("reservation_id", {
+    "key": "value"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**reservation_id:** `string` — reservation_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ReleaseCreditReservationRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">listCreditSpendPolicies</a>({ ...params }) -> Schematic.ListCreditSpendPoliciesResponse</code></summary>
 <dl>
 <dd>
@@ -9849,6 +9961,7 @@ await client.plans.listPlans({
     companyId: "company_id",
     companyScopedOnly: true,
     excludeCompanyScoped: true,
+    excludeUnused: true,
     forFallbackPlan: true,
     forInitialPlan: true,
     forTrialExpiryPlan: true,
@@ -10357,6 +10470,7 @@ await client.plans.countPlans({
     companyId: "company_id",
     companyScopedOnly: true,
     excludeCompanyScoped: true,
+    excludeUnused: true,
     forFallbackPlan: true,
     forInitialPlan: true,
     forTrialExpiryPlan: true,
@@ -12597,6 +12711,63 @@ await client.features.checkFlag("key", {});
 <dd>
 
 **request:** `Schematic.CheckFlagRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FeaturesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.features.<a href="/src/api/resources/features/client/Client.ts">checkAndReserveFlag</a>(key, { ...params }) -> Schematic.CheckAndReserveFlagResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.features.checkAndReserveFlag("key");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**key:** `string` — key
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CheckAndReserveFlagRequestBody` 
     
 </dd>
 </dl>

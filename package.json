@@ -57,16 +57,16 @@
         "crypto": false,
         "timers": false
     },
-    "resolutions": {
-        "sharp": "^0.35.4",
-        "undici": "7.29.0"
-    },
     "packageManager": "yarn@1.22.22",
     "engines": {
         "node": ">=18.0.0"
     },
     "sideEffects": false,
     "license": "MIT",
+    "resolutions": {
+        "sharp": "^0.35.4",
+        "undici": "7.29.0"
+    },
     "files": [
         "dist/**/*.js",
         "dist/**/*.d.ts",

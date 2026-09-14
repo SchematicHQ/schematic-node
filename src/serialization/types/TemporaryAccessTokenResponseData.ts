@@ -3,28 +3,31 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { TemporaryAccessTokenIssuerType } from "./TemporaryAccessTokenIssuerType";
 import { TemporaryAccessTokenResourceType } from "./TemporaryAccessTokenResourceType";
 
 export const TemporaryAccessTokenResponseData: core.serialization.ObjectSchema<
     serializers.TemporaryAccessTokenResponseData.Raw,
     Schematic.TemporaryAccessTokenResponseData
 > = core.serialization.object({
-    apiKeyId: core.serialization.property("api_key_id", core.serialization.string()),
+    apiKeyId: core.serialization.property("api_key_id", core.serialization.string().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     expiredAt: core.serialization.property("expired_at", core.serialization.date()),
     id: core.serialization.string(),
+    issuerType: core.serialization.property("issuer_type", TemporaryAccessTokenIssuerType),
     resourceType: core.serialization.property("resource_type", TemporaryAccessTokenResourceType),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
 export declare namespace TemporaryAccessTokenResponseData {
     export interface Raw {
-        api_key_id: string;
+        api_key_id?: string | null;
         created_at: string;
         environment_id: string;
         expired_at: string;
         id: string;
+        issuer_type: TemporaryAccessTokenIssuerType.Raw;
         resource_type: TemporaryAccessTokenResourceType.Raw;
         updated_at: string;
     }

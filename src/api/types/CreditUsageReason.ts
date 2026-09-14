@@ -5,6 +5,8 @@ export const CreditUsageReason = {
     LeaseRelease: "lease_release",
     ManualAdjustment: "manual_adjustment",
     Reconciliation: "reconciliation",
+    ReservationHold: "reservation_hold",
+    ReservationRelease: "reservation_release",
     Track: "track",
 } as const;
 export type CreditUsageReason = (typeof CreditUsageReason)[keyof typeof CreditUsageReason];
