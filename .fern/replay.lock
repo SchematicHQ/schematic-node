@@ -72,7 +72,13 @@ generations:
     cli_version: unknown
     generator_versions:
       fernapi/fern-typescript-node-sdk: 3.90.0
-current_generation: df555e01325b55cd21dba120d79f1d9d86f033fb
+  - commit_sha: 6ed2ec916d7f86a79d47a5ce954e6f632ecb9aac
+    tree_hash: 2b9953fd3bcb49cd8f1c97cda73ec9fd8aeba82c
+    timestamp: 2026-09-14T10:02:51.328Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-typescript-node-sdk: 3.92.0
+current_generation: 6ed2ec916d7f86a79d47a5ce954e6f632ecb9aac
 patches:
   - id: patch-7a37bae5
     content_hash: sha256:d668134d32b63ddb680e8e6c5c499b6e6871061c050e7aad130e876c514bc8ef
@@ -4095,3 +4101,4 @@ patches:
             cookie "^1.0.2"
             youch-core "^0.3.3"
     user_owned: true
+    status: unresolved
