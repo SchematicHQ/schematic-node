@@ -37,10 +37,12 @@ jobs:
         else
           ./scripts/download-wasm.sh
           yarn build
-          cd testapp && npm install
           if [ "$SDK_SOURCE" = "pack" ]; then
-            cd .. && npm pack
-            cd testapp && npm install ../schematichq-schematic-typescript-node-*.tgz
+            # Packs the tarball, asserts the rules engine is inside it, and
+            # installs it into testapp/ (including testapp's own npm install).
+            ./scripts/e2e-pack.sh
+          else
+            cd testapp && npm install
           fi
         fi
       start: node testapp/index.js

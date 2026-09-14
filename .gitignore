@@ -7,3 +7,5 @@ src/wasm/rulesengine.js
 src/wasm/rulesengine.d.ts
 src/wasm/rulesengine_bg.wasm.d.ts
 src/wasm/.wasm_version
+# npm pack tarballs built by scripts/e2e-pack.sh
+/artifacts
