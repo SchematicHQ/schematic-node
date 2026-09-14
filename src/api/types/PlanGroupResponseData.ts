@@ -28,6 +28,7 @@ export interface PlanGroupResponseData {
     syncCustomerBillingDetails: boolean;
     taxCollectionEnabled: boolean;
     trialDays?: number;
+    trialEligibilityPerPlan: boolean;
     trialExpiryPlanId?: string;
     trialExpiryPlanPriceId?: string;
     trialPaymentMethodRequired?: boolean;

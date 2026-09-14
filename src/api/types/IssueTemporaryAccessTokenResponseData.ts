@@ -3,11 +3,12 @@
 import type * as Schematic from "../index";
 
 export interface IssueTemporaryAccessTokenResponseData {
-    apiKeyId: string;
+    apiKeyId?: string;
     createdAt: Date;
     environmentId: string;
     expiredAt: Date;
     id: string;
+    issuerType: Schematic.TemporaryAccessTokenIssuerType;
     resourceType: Schematic.TemporaryAccessTokenResourceType;
     token: string;
     updatedAt: Date;

@@ -2458,6 +2458,7 @@ describe("CreditsClient", () => {
                 company_license_id: "company_license_id",
                 company_name: "company_name",
                 created_at: "2024-01-15T09:30:00Z",
+                credit_bundle_id: "credit_bundle_id",
                 credit_icon: "credit_icon",
                 credit_id: "credit_id",
                 credit_name: "credit_name",
@@ -2468,6 +2469,9 @@ describe("CreditsClient", () => {
                 license_name: "license_name",
                 plan_id: "plan_id",
                 plan_name: "plan_name",
+                postpaid_charge_amount: 1000000,
+                postpaid_charge_currency: "postpaid_charge_currency",
+                postpaid_charged_credits: 1.1,
                 price: {
                     currency: "currency",
                     external_price_id: "external_price_id",
@@ -2523,6 +2527,7 @@ describe("CreditsClient", () => {
                 companyLicenseId: "company_license_id",
                 companyName: "company_name",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                creditBundleId: "credit_bundle_id",
                 creditIcon: "credit_icon",
                 creditId: "credit_id",
                 creditName: "credit_name",
@@ -2533,6 +2538,9 @@ describe("CreditsClient", () => {
                 licenseName: "license_name",
                 planId: "plan_id",
                 planName: "plan_name",
+                postpaidChargeAmount: 1000000,
+                postpaidChargeCurrency: "postpaid_charge_currency",
+                postpaidChargedCredits: 1.1,
                 price: {
                     currency: "currency",
                     externalPriceId: "external_price_id",
@@ -2690,6 +2698,7 @@ describe("CreditsClient", () => {
                 company_license_id: "company_license_id",
                 company_name: "company_name",
                 created_at: "2024-01-15T09:30:00Z",
+                credit_bundle_id: "credit_bundle_id",
                 credit_icon: "credit_icon",
                 credit_id: "credit_id",
                 credit_name: "credit_name",
@@ -2700,6 +2709,9 @@ describe("CreditsClient", () => {
                 license_name: "license_name",
                 plan_id: "plan_id",
                 plan_name: "plan_name",
+                postpaid_charge_amount: 1000000,
+                postpaid_charge_currency: "postpaid_charge_currency",
+                postpaid_charged_credits: 1.1,
                 price: {
                     currency: "currency",
                     external_price_id: "external_price_id",
@@ -2760,6 +2772,7 @@ describe("CreditsClient", () => {
                 companyLicenseId: "company_license_id",
                 companyName: "company_name",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                creditBundleId: "credit_bundle_id",
                 creditIcon: "credit_icon",
                 creditId: "credit_id",
                 creditName: "credit_name",
@@ -2770,6 +2783,9 @@ describe("CreditsClient", () => {
                 licenseName: "license_name",
                 planId: "plan_id",
                 planName: "plan_name",
+                postpaidChargeAmount: 1000000,
+                postpaidChargeCurrency: "postpaid_charge_currency",
+                postpaidChargedCredits: 1.1,
                 price: {
                     currency: "currency",
                     externalPriceId: "external_price_id",
@@ -3116,6 +3132,7 @@ describe("CreditsClient", () => {
                     company_license_id: "company_license_id",
                     company_name: "company_name",
                     created_at: "2024-01-15T09:30:00Z",
+                    credit_bundle_id: "credit_bundle_id",
                     credit_icon: "credit_icon",
                     credit_id: "credit_id",
                     credit_name: "credit_name",
@@ -3126,6 +3143,9 @@ describe("CreditsClient", () => {
                     license_name: "license_name",
                     plan_id: "plan_id",
                     plan_name: "plan_name",
+                    postpaid_charge_amount: 1000000,
+                    postpaid_charge_currency: "postpaid_charge_currency",
+                    postpaid_charged_credits: 1.1,
                     price: {
                         currency: "currency",
                         external_price_id: "external_price_id",
@@ -3186,6 +3206,7 @@ describe("CreditsClient", () => {
                     companyLicenseId: "company_license_id",
                     companyName: "company_name",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    creditBundleId: "credit_bundle_id",
                     creditIcon: "credit_icon",
                     creditId: "credit_id",
                     creditName: "credit_name",
@@ -3196,6 +3217,9 @@ describe("CreditsClient", () => {
                     licenseName: "license_name",
                     planId: "plan_id",
                     planName: "plan_name",
+                    postpaidChargeAmount: 1000000,
+                    postpaidChargeCurrency: "postpaid_charge_currency",
+                    postpaidChargedCredits: 1.1,
                     price: {
                         currency: "currency",
                         externalPriceId: "external_price_id",
@@ -3488,6 +3512,7 @@ describe("CreditsClient", () => {
                     company_license_id: "company_license_id",
                     company_name: "company_name",
                     created_at: "2024-01-15T09:30:00Z",
+                    credit_bundle_id: "credit_bundle_id",
                     credit_icon: "credit_icon",
                     credit_id: "credit_id",
                     credit_name: "credit_name",
@@ -3498,6 +3523,9 @@ describe("CreditsClient", () => {
                     license_name: "license_name",
                     plan_id: "plan_id",
                     plan_name: "plan_name",
+                    postpaid_charge_amount: 1000000,
+                    postpaid_charge_currency: "postpaid_charge_currency",
+                    postpaid_charged_credits: 1.1,
                     price: {
                         currency: "currency",
                         external_price_id: "external_price_id",
@@ -3557,6 +3585,7 @@ describe("CreditsClient", () => {
                     companyLicenseId: "company_license_id",
                     companyName: "company_name",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    creditBundleId: "credit_bundle_id",
                     creditIcon: "credit_icon",
                     creditId: "credit_id",
                     creditName: "credit_name",
@@ -3567,6 +3596,9 @@ describe("CreditsClient", () => {
                     licenseName: "license_name",
                     planId: "plan_id",
                     planName: "plan_name",
+                    postpaidChargeAmount: 1000000,
+                    postpaidChargeCurrency: "postpaid_charge_currency",
+                    postpaidChargedCredits: 1.1,
                     price: {
                         currency: "currency",
                         externalPriceId: "external_price_id",
@@ -4258,6 +4290,8 @@ describe("CreditsClient", () => {
         const rawResponseBody = {
             data: [
                 {
+                    arrears_anchor: "billing_period_start",
+                    arrears_cadence: "end_of_billing_period",
                     auto_topup_amount: 1000000,
                     auto_topup_amount_type: "auto_topup_amount_type",
                     auto_topup_availability: "off",
@@ -4291,10 +4325,14 @@ describe("CreditsClient", () => {
                     expiry_unit_count: 1000000,
                     id: "id",
                     license_id: "license_id",
+                    overdraft_limit: 1.1,
                     plan: { id: "id", name: "name" },
                     plan_id: "plan_id",
                     plan_name: "plan_name",
                     plan_version_id: "plan_version_id",
+                    postpaid_enabled: true,
+                    postpaid_rate_per_unit: 1000000,
+                    postpaid_rate_per_unit_decimal: "postpaid_rate_per_unit_decimal",
                     reset_cadence: "daily",
                     reset_start: "billing_period",
                     reset_type: "no_reset",
@@ -4336,6 +4374,8 @@ describe("CreditsClient", () => {
         expect(response).toEqual({
             data: [
                 {
+                    arrearsAnchor: "billing_period_start",
+                    arrearsCadence: "end_of_billing_period",
                     autoTopupAmount: 1000000,
                     autoTopupAmountType: "auto_topup_amount_type",
                     autoTopupAvailability: "off",
@@ -4373,6 +4413,7 @@ describe("CreditsClient", () => {
                     expiryUnitCount: 1000000,
                     id: "id",
                     licenseId: "license_id",
+                    overdraftLimit: 1.1,
                     plan: {
                         id: "id",
                         name: "name",
@@ -4380,6 +4421,9 @@ describe("CreditsClient", () => {
                     planId: "plan_id",
                     planName: "plan_name",
                     planVersionId: "plan_version_id",
+                    postpaidEnabled: true,
+                    postpaidRatePerUnit: 1000000,
+                    postpaidRatePerUnitDecimal: "postpaid_rate_per_unit_decimal",
                     resetCadence: "daily",
                     resetStart: "billing_period",
                     resetType: "no_reset",
@@ -4508,6 +4552,8 @@ describe("CreditsClient", () => {
         };
         const rawResponseBody = {
             data: {
+                arrears_anchor: "billing_period_start",
+                arrears_cadence: "end_of_billing_period",
                 auto_topup_amount: 1000000,
                 auto_topup_amount_type: "auto_topup_amount_type",
                 auto_topup_availability: "off",
@@ -4568,10 +4614,14 @@ describe("CreditsClient", () => {
                 expiry_unit_count: 1000000,
                 id: "id",
                 license_id: "license_id",
+                overdraft_limit: 1.1,
                 plan: { description: "description", id: "id", image_url: "image_url", name: "name" },
                 plan_id: "plan_id",
                 plan_name: "plan_name",
                 plan_version_id: "plan_version_id",
+                postpaid_enabled: true,
+                postpaid_rate_per_unit: 1000000,
+                postpaid_rate_per_unit_decimal: "postpaid_rate_per_unit_decimal",
                 reset_cadence: "daily",
                 reset_start: "billing_period",
                 reset_type: "no_reset",
@@ -4600,6 +4650,8 @@ describe("CreditsClient", () => {
         });
         expect(response).toEqual({
             data: {
+                arrearsAnchor: "billing_period_start",
+                arrearsCadence: "end_of_billing_period",
                 autoTopupAmount: 1000000,
                 autoTopupAmountType: "auto_topup_amount_type",
                 autoTopupAvailability: "off",
@@ -4664,6 +4716,7 @@ describe("CreditsClient", () => {
                 expiryUnitCount: 1000000,
                 id: "id",
                 licenseId: "license_id",
+                overdraftLimit: 1.1,
                 plan: {
                     description: "description",
                     id: "id",
@@ -4673,6 +4726,9 @@ describe("CreditsClient", () => {
                 planId: "plan_id",
                 planName: "plan_name",
                 planVersionId: "plan_version_id",
+                postpaidEnabled: true,
+                postpaidRatePerUnit: 1000000,
+                postpaidRatePerUnitDecimal: "postpaid_rate_per_unit_decimal",
                 resetCadence: "daily",
                 resetStart: "billing_period",
                 resetType: "no_reset",
@@ -4852,6 +4908,8 @@ describe("CreditsClient", () => {
 
         const rawResponseBody = {
             data: {
+                arrears_anchor: "billing_period_start",
+                arrears_cadence: "end_of_billing_period",
                 auto_topup_amount: 1000000,
                 auto_topup_amount_type: "auto_topup_amount_type",
                 auto_topup_availability: "off",
@@ -4912,10 +4970,14 @@ describe("CreditsClient", () => {
                 expiry_unit_count: 1000000,
                 id: "id",
                 license_id: "license_id",
+                overdraft_limit: 1.1,
                 plan: { description: "description", id: "id", image_url: "image_url", name: "name" },
                 plan_id: "plan_id",
                 plan_name: "plan_name",
                 plan_version_id: "plan_version_id",
+                postpaid_enabled: true,
+                postpaid_rate_per_unit: 1000000,
+                postpaid_rate_per_unit_decimal: "postpaid_rate_per_unit_decimal",
                 reset_cadence: "daily",
                 reset_start: "billing_period",
                 reset_type: "no_reset",
@@ -4937,6 +4999,8 @@ describe("CreditsClient", () => {
         const response = await client.credits.getSingleBillingPlanCreditGrant("plan_grant_id");
         expect(response).toEqual({
             data: {
+                arrearsAnchor: "billing_period_start",
+                arrearsCadence: "end_of_billing_period",
                 autoTopupAmount: 1000000,
                 autoTopupAmountType: "auto_topup_amount_type",
                 autoTopupAvailability: "off",
@@ -5001,6 +5065,7 @@ describe("CreditsClient", () => {
                 expiryUnitCount: 1000000,
                 id: "id",
                 licenseId: "license_id",
+                overdraftLimit: 1.1,
                 plan: {
                     description: "description",
                     id: "id",
@@ -5010,6 +5075,9 @@ describe("CreditsClient", () => {
                 planId: "plan_id",
                 planName: "plan_name",
                 planVersionId: "plan_version_id",
+                postpaidEnabled: true,
+                postpaidRatePerUnit: 1000000,
+                postpaidRatePerUnitDecimal: "postpaid_rate_per_unit_decimal",
                 resetCadence: "daily",
                 resetStart: "billing_period",
                 resetType: "no_reset",
@@ -5105,6 +5173,8 @@ describe("CreditsClient", () => {
         const rawRequestBody = { reset_cadence: "daily", reset_start: "billing_period" };
         const rawResponseBody = {
             data: {
+                arrears_anchor: "billing_period_start",
+                arrears_cadence: "end_of_billing_period",
                 auto_topup_amount: 1000000,
                 auto_topup_amount_type: "auto_topup_amount_type",
                 auto_topup_availability: "off",
@@ -5165,10 +5235,14 @@ describe("CreditsClient", () => {
                 expiry_unit_count: 1000000,
                 id: "id",
                 license_id: "license_id",
+                overdraft_limit: 1.1,
                 plan: { description: "description", id: "id", image_url: "image_url", name: "name" },
                 plan_id: "plan_id",
                 plan_name: "plan_name",
                 plan_version_id: "plan_version_id",
+                postpaid_enabled: true,
+                postpaid_rate_per_unit: 1000000,
+                postpaid_rate_per_unit_decimal: "postpaid_rate_per_unit_decimal",
                 reset_cadence: "daily",
                 reset_start: "billing_period",
                 reset_type: "no_reset",
@@ -5194,6 +5268,8 @@ describe("CreditsClient", () => {
         });
         expect(response).toEqual({
             data: {
+                arrearsAnchor: "billing_period_start",
+                arrearsCadence: "end_of_billing_period",
                 autoTopupAmount: 1000000,
                 autoTopupAmountType: "auto_topup_amount_type",
                 autoTopupAvailability: "off",
@@ -5258,6 +5334,7 @@ describe("CreditsClient", () => {
                 expiryUnitCount: 1000000,
                 id: "id",
                 licenseId: "license_id",
+                overdraftLimit: 1.1,
                 plan: {
                     description: "description",
                     id: "id",
@@ -5267,6 +5344,9 @@ describe("CreditsClient", () => {
                 planId: "plan_id",
                 planName: "plan_name",
                 planVersionId: "plan_version_id",
+                postpaidEnabled: true,
+                postpaidRatePerUnit: 1000000,
+                postpaidRatePerUnitDecimal: "postpaid_rate_per_unit_decimal",
                 resetCadence: "daily",
                 resetStart: "billing_period",
                 resetType: "no_reset",

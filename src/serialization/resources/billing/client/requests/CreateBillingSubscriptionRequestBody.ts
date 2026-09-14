@@ -37,6 +37,7 @@ export const CreateBillingSubscriptionRequestBody: core.serialization.Schema<
         core.serialization.list(BillingProductPricing),
     ),
     providerType: core.serialization.property("provider_type", BillingProviderType.optional()),
+    startedAt: core.serialization.property("started_at", core.serialization.date().optional()),
     status: core.serialization.string().optional(),
     subscriptionExternalId: core.serialization.property("subscription_external_id", core.serialization.string()),
     totalPrice: core.serialization.property("total_price", core.serialization.number()),
@@ -62,6 +63,7 @@ export declare namespace CreateBillingSubscriptionRequestBody {
         period_start?: number | null;
         product_external_ids: BillingProductPricing.Raw[];
         provider_type?: BillingProviderType.Raw | null;
+        started_at?: string | null;
         status?: string | null;
         subscription_external_id: string;
         total_price: number;

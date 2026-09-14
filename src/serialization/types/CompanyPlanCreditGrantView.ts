@@ -3,6 +3,8 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { BillingArrearsAnchor } from "./BillingArrearsAnchor";
+import { BillingArrearsCadence } from "./BillingArrearsCadence";
 import { BillingCreditAutoTopupAvailability } from "./BillingCreditAutoTopupAvailability";
 import { BillingCreditExpiryType } from "./BillingCreditExpiryType";
 import { BillingCreditExpiryUnit } from "./BillingCreditExpiryUnit";
@@ -17,6 +19,14 @@ export const CompanyPlanCreditGrantView: core.serialization.ObjectSchema<
     serializers.CompanyPlanCreditGrantView.Raw,
     Schematic.CompanyPlanCreditGrantView
 > = core.serialization.object({
+    billingCreditArrearsAnchor: core.serialization.property(
+        "billing_credit_arrears_anchor",
+        BillingArrearsAnchor.optional(),
+    ),
+    billingCreditArrearsCadence: core.serialization.property(
+        "billing_credit_arrears_cadence",
+        BillingArrearsCadence.optional(),
+    ),
     billingCreditAutoTopupAmount: core.serialization.property(
         "billing_credit_auto_topup_amount",
         core.serialization.number().optional(),
@@ -61,6 +71,22 @@ export const CompanyPlanCreditGrantView: core.serialization.ObjectSchema<
         "billing_credit_can_buy_bundles",
         core.serialization.boolean(),
     ),
+    billingCreditOverdraftLimit: core.serialization.property(
+        "billing_credit_overdraft_limit",
+        core.serialization.number().optional(),
+    ),
+    billingCreditPostpaidEnabled: core.serialization.property(
+        "billing_credit_postpaid_enabled",
+        core.serialization.boolean(),
+    ),
+    billingCreditPostpaidRatePerUnit: core.serialization.property(
+        "billing_credit_postpaid_rate_per_unit",
+        core.serialization.number().optional(),
+    ),
+    billingCreditPostpaidRatePerUnitDecimal: core.serialization.property(
+        "billing_credit_postpaid_rate_per_unit_decimal",
+        core.serialization.string().optional(),
+    ),
     companyAutoTopupAmount: core.serialization.property(
         "company_auto_topup_amount",
         core.serialization.number().optional(),
@@ -101,6 +127,8 @@ export const CompanyPlanCreditGrantView: core.serialization.ObjectSchema<
 
 export declare namespace CompanyPlanCreditGrantView {
     export interface Raw {
+        billing_credit_arrears_anchor?: BillingArrearsAnchor.Raw | null;
+        billing_credit_arrears_cadence?: BillingArrearsCadence.Raw | null;
         billing_credit_auto_topup_amount?: number | null;
         billing_credit_auto_topup_amount_type?: string | null;
         billing_credit_auto_topup_availability?: BillingCreditAutoTopupAvailability.Raw | null;
@@ -112,6 +140,10 @@ export declare namespace CompanyPlanCreditGrantView {
         billing_credit_auto_topup_threshold_credits?: number | null;
         billing_credit_auto_topup_threshold_percent?: number | null;
         billing_credit_can_buy_bundles: boolean;
+        billing_credit_overdraft_limit?: number | null;
+        billing_credit_postpaid_enabled: boolean;
+        billing_credit_postpaid_rate_per_unit?: number | null;
+        billing_credit_postpaid_rate_per_unit_decimal?: string | null;
         company_auto_topup_amount?: number | null;
         company_auto_topup_enabled?: boolean | null;
         company_auto_topup_threshold_credits?: number | null;
