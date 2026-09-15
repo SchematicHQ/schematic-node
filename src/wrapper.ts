@@ -13,8 +13,11 @@ import {
     CreditLeaseManager,
     DEFAULT_PREWARM_POLL_INTERVAL_MS,
     DEFAULT_PREWARM_RESOLVE_TIMEOUT_MS,
+    DEFAULT_RESERVATION_TTL_MS,
     DEFAULT_SWEEP_INTERVAL_MS,
     LeaseStore,
+    MAX_RESERVATION_TTL_MS,
+    RESERVATION_TTL_SKEW_ALLOWANCE_MS,
     RedisLeaseStore,
     RedisReservationStore,
     ReservationStore,
@@ -23,10 +26,12 @@ import {
     type CheckOptions,
     type CheckResult,
     type CreditLeaseConfig,
+    type CreditLeaseMode,
     type Reservation,
     type TrackWithReservationOptions,
 } from "./credits";
 import { buildPreflightOptions, checkWithLease } from "./credits/check";
+import { checkWithServerReservation } from "./credits/server-check";
 import { buildReservationTrackEvent, consumeReservationAndBuildEvent } from "./credits/track";
 
 // Idempotency-key namespace for the Track event a reservation settles into.
@@ -85,12 +90,14 @@ export interface SchematicOptions {
     /** The default maximum time to wait for a response in milliseconds */
     timeoutMs?: number;
     /**
-     * Enable client-side credit lease + reservation behavior on `check` /
-     * `trackWithReservation`. Omit to keep the SDK lease-unaware.
+     * Enable credit reservation behavior on `check` / `trackWithReservation`.
+     * Omit to keep the SDK credit-unaware.
      *
-     * Lease-bearing checks require DataStream (or replicator mode) so the
-     * SDK has access to the cached flag + company state needed for local
-     * gating against the lease balance.
+     * Client mode (local leases) requires DataStream (or replicator mode) so
+     * the SDK has the cached flag + company state it needs to gate locally
+     * against the lease balance. Without DataStream the SDK gates in server
+     * mode instead — one `check-and-reserve` API call per check. See
+     * `CreditLeaseConfig.mode`.
      */
     creditLeases?: CreditLeaseConfig;
 }
@@ -179,6 +186,10 @@ export class SchematicClient extends BaseClient {
     // pods may also be drawing on — close() must then NOT release leases.
     private leaseBackendShared: boolean = false;
     private prewarmResolveTimeoutMs: number = DEFAULT_PREWARM_RESOLVE_TIMEOUT_MS;
+    // Configured credit-lease mode; undefined when creditLeases is not set.
+    private creditLeaseMode?: CreditLeaseMode;
+    // TTL applied to a server-side hold's `expiresAt` (server mode only).
+    private serverReservationTTL: number = DEFAULT_RESERVATION_TTL_MS;
 
     /**
      * Creates a new instance of the SchematicClient
@@ -321,18 +332,78 @@ export class SchematicClient extends BaseClient {
             );
         }
         if (opts?.creditLeases && !offline) {
-            // Lease-bearing checks evaluate locally against the datastream's
-            // cached flag + company state. Without it, every check() silently
-            // falls back to a plain flag check — usage is ignored and no credit
-            // gating happens — so surface the misconfiguration once, loudly,
-            // instead of a per-check debug line.
-            if (!this.datastreamClient) {
+            const mode: CreditLeaseMode = opts.creditLeases.mode ?? "auto";
+            this.creditLeaseMode = mode;
+            const configuredTTL = opts.creditLeases.defaultReservationTTL ?? DEFAULT_RESERVATION_TTL_MS;
+            // The API refuses a hold expiring more than MAX_RESERVATION_TTL_MS
+            // after its own clock, and this TTL is applied to the caller's, so
+            // clamp a step below the cap to leave room for skew. Only server
+            // mode sends the value to the API: in client mode it sizes the
+            // local sweep, so clamping it there would shorten holds for no
+            // reason and the warning would be untrue.
+            const maxTTL = MAX_RESERVATION_TTL_MS - RESERVATION_TTL_SKEW_ALLOWANCE_MS;
+            this.serverReservationTTL = mode === "client" ? configuredTTL : Math.min(configuredTTL, maxTTL);
+            if (mode !== "client" && configuredTTL > maxTTL) {
+                logger.warn(
+                    `creditLeases.defaultReservationTTL of ${configuredTTL}ms is longer than the API will hold ` +
+                        `credits for; server-mode holds will be clamped to ${maxTTL}ms (the ` +
+                        `${MAX_RESERVATION_TTL_MS}ms maximum, less ${RESERVATION_TTL_SKEW_ALLOWANCE_MS}ms of room ` +
+                        "for clock skew).",
+                );
+            }
+
+            // Server mode holds credits over the API, so none of the local
+            // lease plumbing is built. Options that only steer that plumbing
+            // would silently do nothing — say so once, at startup. `auto` with
+            // no DataStream lands in server mode too, and is the likelier way
+            // to get here, so warn for it as well. The DataStream client is
+            // wired above, so the field already answers whether DataStream is
+            // enabled, including the runtimes where it was asked for and
+            // refused.
+            if (mode === "server" || (mode === "auto" && !this.datastreamClient)) {
+                const clientOnly = (
+                    [
+                        "defaultLeaseDuration",
+                        "defaultLeaseSize",
+                        "lowWaterMark",
+                        "sweepIntervalMs",
+                        "redisClient",
+                        "redisKeyPrefix",
+                        "prewarmResolveTimeoutMs",
+                        "overrides",
+                    ] as const
+                ).filter((name) => opts.creditLeases?.[name] !== undefined);
+                if (clientOnly.length > 0) {
+                    logger.warn(
+                        `creditLeases resolves to server mode, so ${clientOnly.join(", ")} will be ignored: ` +
+                            "those options only apply to client mode (local leases over DataStream).",
+                    );
+                }
+            }
+
+            // `auto` with no DataStream is the server-mode default, not a
+            // misconfiguration: check-and-reserve gates over the API instead.
+            // `client` without DataStream is the old degraded path — every
+            // check() falls back to a plain flag check with usage ignored — so
+            // it still warns, once, loudly.
+            if (mode === "auto" && !this.datastreamClient) {
+                logger.info(
+                    "creditLeases is configured and DataStream is not enabled — credit reservations will run in " +
+                        "server mode (one check-and-reserve API call per check). Set useDataStream: true " +
+                        "(or replicatorMode) for client-side leases.",
+                );
+            }
+            if (mode === "client" && !this.datastreamClient) {
                 logger.warn(
                     "creditLeases is configured but DataStream is not enabled — check() will fall back to " +
                         "plain flag checks with NO credit gating (usage is ignored). Set useDataStream: true " +
                         "(or replicatorMode) to enable lease-gated checks.",
                 );
             }
+        }
+        // Client-mode plumbing: lease + reservation stores, the manager, and
+        // the sweeper. Server mode builds none of it.
+        if (opts?.creditLeases && !offline && this.creditLeaseModeUsesLeases()) {
             const sweepMs = opts.creditLeases.sweepIntervalMs ?? DEFAULT_SWEEP_INTERVAL_MS;
             // Lease + reservation state belongs in a shared cache so gating
             // holds across horizontally-scaled pods. Prefer an explicit
@@ -389,6 +460,35 @@ export class SchematicClient extends BaseClient {
      */
     private useDataStream(): boolean {
         return this.datastreamClient !== undefined;
+    }
+
+    /**
+     * Whether the configured mode wants the local lease plumbing (stores,
+     * manager, sweeper). Read during construction, after the DataStream client
+     * has been wired, so `auto` can resolve against it.
+     */
+    private creditLeaseModeUsesLeases(): boolean {
+        if (this.creditLeaseMode === undefined || this.creditLeaseMode === "server") return false;
+        if (this.creditLeaseMode === "client") return true;
+        return this.datastreamClient !== undefined;
+    }
+
+    /**
+     * Which reservation mode a `check()` with `usage` resolves to right now.
+     * `undefined` means no credit gating at all — `creditLeases` isn't
+     * configured, or the client is offline.
+     *
+     * `auto` is resolved per check rather than once at startup so a DataStream
+     * that failed to start after construction (its `start()` rejection clears
+     * `datastreamClient`) falls to server mode instead of silently dropping
+     * every check to a plain, ungated flag check.
+     */
+    private effectiveLeaseMode(): "client" | "server" | undefined {
+        if (this.creditLeaseMode === undefined || this.offline) return undefined;
+        if (this.creditLeaseMode === "server") return "server";
+        if (this.creditLeaseMode === "client") return "client";
+        const clientPlumbingReady = !!this.creditLeaseManager && !!this.leaseStore && !!this.reservations;
+        return this.datastreamClient !== undefined && clientPlumbingReady ? "client" : "server";
     }
 
     /**
@@ -791,7 +891,11 @@ export class SchematicClient extends BaseClient {
      */
     async prewarm(evalCtx: api.CheckFlagRequestBody, creditTypeIds: string[]): Promise<void> {
         if (!this.creditLeaseManager || !this.leaseStore) {
-            this.logger.debug("prewarm called but creditLeases is not configured");
+            this.logger.debug(
+                this.effectiveLeaseMode() === "server"
+                    ? "prewarm is a no-op in server mode — there is no local lease to warm"
+                    : "prewarm called but creditLeases is not configured",
+            );
             return;
         }
         if (!evalCtx.company || Object.keys(evalCtx.company).length === 0) {
@@ -855,11 +959,17 @@ export class SchematicClient extends BaseClient {
     }
 
     /**
-     * Lease-aware feature check. When `creditLeases` is configured and the
+     * Credit-aware feature check. When `creditLeases` is configured and the
      * caller passes `usage` (optionally qualified by `eventSubtype`), this
-     * acquires a lease (if needed), gates the check against the lease's local
-     * balance via WASM, and returns a reservation handle on success — pass
-     * that handle to `trackWithReservation` when the work completes.
+     * gates the check against the company's credit balance and returns a
+     * reservation handle on success — pass that handle to
+     * `trackWithReservation` when the work completes.
+     *
+     * In client mode (DataStream enabled) the hold is carved out of a local
+     * lease and the flag is evaluated by the WASM engine. In server mode it is
+     * a single `check-and-reserve` API call that evaluates the flag and takes
+     * the hold server-side. `creditLeases.mode` picks; the default (`auto`)
+     * uses client mode when DataStream is enabled and server mode otherwise.
      *
      * When `creditLeases` is not configured (or `usage` is omitted) this falls
      * through to a plain flag check and returns `{allowed: value}` with no
@@ -870,6 +980,13 @@ export class SchematicClient extends BaseClient {
      * REST fallback ignores preflight.
      */
     async check(evalCtx: api.CheckFlagRequestBody, key: string, options?: CheckOptions): Promise<CheckResult> {
+        const getDefault = (): boolean => {
+            if (options?.defaultValue === undefined) {
+                return this.getFlagDefault(key);
+            }
+            return typeof options.defaultValue === "function" ? options.defaultValue() : options.defaultValue;
+        };
+
         const fallback = async (): Promise<CheckResult> => {
             const resp = await this.checkFlagWithEntitlement(evalCtx, key, {
                 defaultValue: options?.defaultValue,
@@ -887,8 +1004,30 @@ export class SchematicClient extends BaseClient {
             };
         };
 
-        const hasPreflight = options?.usage !== undefined;
-        if (!hasPreflight || !this.creditLeaseManager || !this.leaseStore || !this.reservations) {
+        const mode = this.effectiveLeaseMode();
+        if (options?.usage === undefined || mode === undefined) {
+            return fallback();
+        }
+
+        if (mode === "server") {
+            return checkWithServerReservation(
+                {
+                    features: this.features,
+                    credits: this.credits,
+                    logger: this.logger,
+                    reservationTTL: this.serverReservationTTL,
+                    getDefault,
+                },
+                key,
+                evalCtx,
+                options,
+                fallback,
+            );
+        }
+
+        // Client mode without the local plumbing (`mode: "client"` and no
+        // DataStream) keeps its old behavior: a plain, ungated flag check.
+        if (!this.creditLeaseManager || !this.leaseStore || !this.reservations) {
             return fallback();
         }
 
@@ -918,6 +1057,10 @@ export class SchematicClient extends BaseClient {
      * `actualQuantity × consumption_rate` from the company's real credit
      * balance.
      *
+     * A server-mode handle has no local hold to refund: the Track event carries
+     * the reservation id, and the server settles the hold (refunding the
+     * unspent slice) when it processes the event.
+     *
      * If the work outlived the reservation's TTL and the sweeper already
      * returned the hold to the lease, the local refund has happened but the
      * usage must still be billed — so we emit the Track anyway (a "recovery"
@@ -933,11 +1076,23 @@ export class SchematicClient extends BaseClient {
      * event — across pods and process restarts, not just within one process.
      */
     async trackWithReservation(
-        reservation: Reservation,
+        reservation: Reservation | undefined,
         actualQuantity: number,
         options?: TrackWithReservationOptions,
     ): Promise<void> {
         if (this.offline) return;
+        // `check()` allows without a hold in several ordinary cases: the
+        // feature isn't credit-metered, the check failed open, `usage` was 0,
+        // or credit leases aren't configured. Callers pass `result.reservation`
+        // straight through, so take the undefined and tell them how to bill the
+        // usage instead of throwing on a settle that has nothing to settle.
+        if (!reservation) {
+            this.logger.error(
+                "trackWithReservation called without a reservation: the check allowed without taking a hold, " +
+                    "so there is nothing to settle. Report the usage with track() instead.",
+            );
+            return;
+        }
         // Mirror the check-path usage guard: a non-finite quantity must reach
         // neither the store (`Math.min(NaN, reserved)` claims the reservation
         // with NO refund of the unspent slice) nor the billing event (NaN
@@ -950,6 +1105,14 @@ export class SchematicClient extends BaseClient {
                 `trackWithReservation: invalid actualQuantity ${actualQuantity} for reservation ${reservation.id} ` +
                     `— must be a finite, non-negative number; skipping settle (the hold is refunded at its TTL)`,
             );
+            return;
+        }
+        // Server mode: the hold lives on the server and settles by id, so
+        // there is nothing local to consume or refund — just emit the Track.
+        if (reservation.mode === "server") {
+            await this.track(buildReservationTrackEvent(reservation, actualQuantity, options), {
+                idempotencyKey: `${RESERVATION_TRACK_IDEMPOTENCY_PREFIX}${reservation.id}`,
+            });
             return;
         }
         if (!this.reservations) {

@@ -5,7 +5,7 @@ import type { Reservation, TrackWithReservationOptions } from "./types";
 
 /** Outcome of consuming a reservation and building its Track event. */
 export interface ReservationConsumeResult {
-    /** The Track event to emit. Always carries the `leaseId`. */
+    /** The Track event to emit. Always carries the `leaseId` (client mode) or the `reservationId` (server mode). */
     track: api.EventBodyTrack;
     /**
      * `true` when the reservation was still live and `consume` debited/refunded
@@ -65,12 +65,19 @@ export function buildReservationTrackEvent(
     const body: api.EventBodyTrack = {
         event: reservation.eventSubtype,
         quantity: actualQuantity,
+    };
+    if (reservation.mode === "server") {
+        // Server mode: the hold lives on the server, so the event settles it by
+        // id. Never send `leaseId` too — the server prefers it when both are
+        // set, and there is no lease here for it to route through.
+        body.reservationId = reservation.id;
+    } else {
         // Routes the server-side credit consumption through the lease's
         // sub-ledger instead of decrementing the grant again (which was
         // already pre-debited at acquire/extend). Without this the grant
         // double-debits and eventually starves redemptions mid-session.
-        leaseId: reservation.leaseId,
-    };
+        body.leaseId = reservation.leaseId;
+    }
     if (reservation.evalCtx.company) {
         body.company = reservation.evalCtx.company;
     }
