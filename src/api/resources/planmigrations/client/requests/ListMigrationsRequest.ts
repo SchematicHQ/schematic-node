@@ -5,6 +5,7 @@ import type * as Schematic from "../../../../index";
 /**
  * @example
  *     {
+ *         featureId: "feature_id",
  *         planVersionId: "plan_version_id",
  *         status: "cancelled",
  *         limit: 1000000,
@@ -12,7 +13,8 @@ import type * as Schematic from "../../../../index";
  *     }
  */
 export interface ListMigrationsRequest {
-    planVersionId: string;
+    featureId?: string;
+    planVersionId?: string;
     status?: Schematic.PlanVersionMigrationStatus;
     /** Page limit (default 100) */
     limit?: number;

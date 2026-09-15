@@ -31,9 +31,17 @@ export const ListPlansParams: core.serialization.ObjectSchema<
     q: core.serialization.string().optional(),
     scopedToCompanyId: core.serialization.property("scoped_to_company_id", core.serialization.string().optional()),
     withEntitlements: core.serialization.property("with_entitlements", core.serialization.boolean().optional()),
+    withPublishedVersion: core.serialization.property(
+        "with_published_version",
+        core.serialization.boolean().optional(),
+    ),
     withoutEntitlementFor: core.serialization.property(
         "without_entitlement_for",
         core.serialization.string().optional(),
+    ),
+    withoutEntitlementForIncludeDrafts: core.serialization.property(
+        "without_entitlement_for_include_drafts",
+        core.serialization.boolean().optional(),
     ),
     withoutPaidProductId: core.serialization.property(
         "without_paid_product_id",
@@ -59,7 +67,9 @@ export declare namespace ListPlansParams {
         q?: string | null;
         scoped_to_company_id?: string | null;
         with_entitlements?: boolean | null;
+        with_published_version?: boolean | null;
         without_entitlement_for?: string | null;
+        without_entitlement_for_include_drafts?: boolean | null;
         without_paid_product_id?: boolean | null;
     }
 }
