@@ -913,7 +913,7 @@ const result = await client.check(evalCtx, "inference", {
 });
 ```
 
-In client mode, `fail-open` does not skip evaluation: the flag's rules still run with the credit balance assumed sufficient, so plan targeting, overrides, and all non-credit conditions still apply — only the credit gate is bypassed. In server mode it returns the flag's default value.
+In client mode, `fail-open` does not skip evaluation: the flag's rules still run with the credit balance assumed sufficient, so plan targeting, overrides, and all non-credit conditions still apply — only the credit gate is bypassed. In server mode it returns the flag's default value. That default is `false`, so a server-mode `fail-open` check denies unless you pass `defaultValue: true` or configure a `flagDefaults` entry for the flag.
 
 ### Configuration options
 

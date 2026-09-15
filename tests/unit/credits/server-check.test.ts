@@ -636,6 +636,36 @@ describe("credit lease mode routing", () => {
         void client.close();
     });
 
+    it("warns about client-only options when auto resolves to server mode", () => {
+        const logger = makeLogger();
+        // The likelier way to reach server mode: no explicit mode, no
+        // DataStream, and lease options that now steer nothing.
+        const client = new SchematicClient({
+            apiKey: "test-key",
+            creditLeases: { defaultLeaseSize: 5000 },
+            logger,
+        });
+
+        const warning = logger.warn.mock.calls.map((call) => String(call[0])).find((m) => m.includes("only apply"));
+        expect(warning).toBeDefined();
+        expect(warning).toContain("defaultLeaseSize");
+        void client.close();
+    });
+
+    it("does not warn about client-only options when auto resolves to client mode", () => {
+        const logger = makeLogger();
+        const client = new SchematicClient({
+            apiKey: "test-key",
+            useDataStream: true,
+            creditLeases: { defaultLeaseSize: 5000, sweepIntervalMs: 60_000 },
+            logger,
+        });
+
+        const warning = logger.warn.mock.calls.map((call) => String(call[0])).find((m) => m.includes("only apply"));
+        expect(warning).toBeUndefined();
+        void client.close();
+    });
+
     it("prewarm is a no-op in server mode", async () => {
         const { client } = makeServerClient();
 

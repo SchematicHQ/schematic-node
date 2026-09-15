@@ -588,7 +588,7 @@ describe("SchematicClient wrapper - server-mode credit reservations", () => {
         });
 
         const maxTTL = MAX_RESERVATION_TTL_MS - RESERVATION_TTL_SKEW_ALLOWANCE_MS;
-        expect(mockLogger.warn).toHaveBeenCalledWith(expect.stringContaining(`clamping to ${maxTTL}ms`));
+        expect(mockLogger.warn).toHaveBeenCalledWith(expect.stringContaining(`clamped to ${maxTTL}ms`));
 
         const before = Date.now();
         await client.check({ company: { id: "co_1" } }, "inference", { usage: 50 });
@@ -613,7 +613,7 @@ describe("SchematicClient wrapper - server-mode credit reservations", () => {
 
         // Client mode sizes the local sweep with this value and never sends it
         // to the API, so neither the clamp nor its warning applies.
-        expect(mockLogger.warn).not.toHaveBeenCalledWith(expect.stringContaining("clamping"));
+        expect(mockLogger.warn).not.toHaveBeenCalledWith(expect.stringContaining("clamped"));
         // biome-ignore lint/suspicious/noExplicitAny: introspect the resolved lease config
         const resolved = (client as any).creditLeaseManager.resolveConfig("bilcr_inference");
         expect(resolved.reservationTTL).toBe(ttl);

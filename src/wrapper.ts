@@ -346,15 +346,21 @@ export class SchematicClient extends BaseClient {
             if (mode !== "client" && configuredTTL > maxTTL) {
                 logger.warn(
                     `creditLeases.defaultReservationTTL of ${configuredTTL}ms is longer than the API will hold ` +
-                        `credits for; clamping to ${maxTTL}ms (the ${MAX_RESERVATION_TTL_MS}ms maximum, less ` +
-                        `${RESERVATION_TTL_SKEW_ALLOWANCE_MS}ms of room for clock skew).`,
+                        `credits for; server-mode holds will be clamped to ${maxTTL}ms (the ` +
+                        `${MAX_RESERVATION_TTL_MS}ms maximum, less ${RESERVATION_TTL_SKEW_ALLOWANCE_MS}ms of room ` +
+                        "for clock skew).",
                 );
             }
 
             // Server mode holds credits over the API, so none of the local
             // lease plumbing is built. Options that only steer that plumbing
-            // would silently do nothing — say so once, at startup.
-            if (mode === "server") {
+            // would silently do nothing — say so once, at startup. `auto` with
+            // no DataStream lands in server mode too, and is the likelier way
+            // to get here, so warn for it as well. The DataStream client is
+            // wired above, so the field already answers whether DataStream is
+            // enabled, including the runtimes where it was asked for and
+            // refused.
+            if (mode === "server" || (mode === "auto" && !this.datastreamClient)) {
                 const clientOnly = (
                     [
                         "defaultLeaseDuration",
@@ -369,8 +375,8 @@ export class SchematicClient extends BaseClient {
                 ).filter((name) => opts.creditLeases?.[name] !== undefined);
                 if (clientOnly.length > 0) {
                     logger.warn(
-                        `creditLeases.mode is "server", so ${clientOnly.join(", ")} ` +
-                            "will be ignored — those options only apply to client mode (local leases over DataStream).",
+                        `creditLeases resolves to server mode, so ${clientOnly.join(", ")} will be ignored: ` +
+                            "those options only apply to client mode (local leases over DataStream).",
                     );
                 }
             }
