@@ -16,6 +16,11 @@ export const PlanVersionMigrationResponseData: core.serialization.ObjectSchema<
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     error: core.serialization.string().optional(),
     failedCompanies: core.serialization.property("failed_companies", core.serialization.number()),
+    featureId: core.serialization.property("feature_id", core.serialization.string().optional()),
+    featurePlanRolloutId: core.serialization.property(
+        "feature_plan_rollout_id",
+        core.serialization.string().optional(),
+    ),
     id: core.serialization.string(),
     nextDueAt: core.serialization.property("next_due_at", core.serialization.date().optional()),
     planId: core.serialization.property("plan_id", core.serialization.string()),
@@ -41,6 +46,8 @@ export declare namespace PlanVersionMigrationResponseData {
         created_at: string;
         error?: string | null;
         failed_companies: number;
+        feature_id?: string | null;
+        feature_plan_rollout_id?: string | null;
         id: string;
         next_due_at?: string | null;
         plan_id: string;

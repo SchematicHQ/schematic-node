@@ -8,6 +8,8 @@ export interface PlanVersionMigrationResponseData {
     createdAt: Date;
     error?: string;
     failedCompanies: number;
+    featureId?: string;
+    featurePlanRolloutId?: string;
     id: string;
     nextDueAt?: Date;
     planId: string;

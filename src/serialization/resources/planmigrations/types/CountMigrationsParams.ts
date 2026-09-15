@@ -9,6 +9,7 @@ export const CountMigrationsParams: core.serialization.ObjectSchema<
     serializers.CountMigrationsParams.Raw,
     Schematic.CountMigrationsParams
 > = core.serialization.object({
+    featureId: core.serialization.property("feature_id", core.serialization.string().optional()),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
     planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
@@ -17,6 +18,7 @@ export const CountMigrationsParams: core.serialization.ObjectSchema<
 
 export declare namespace CountMigrationsParams {
     export interface Raw {
+        feature_id?: string | null;
         limit?: number | null;
         offset?: number | null;
         plan_version_id?: string | null;

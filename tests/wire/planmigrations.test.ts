@@ -482,6 +482,8 @@ describe("PlanmigrationsClient", () => {
                     created_at: "2024-01-15T09:30:00Z",
                     error: "error",
                     failed_companies: 1000000,
+                    feature_id: "feature_id",
+                    feature_plan_rollout_id: "feature_plan_rollout_id",
                     id: "id",
                     next_due_at: "2024-01-15T09:30:00Z",
                     plan_id: "plan_id",
@@ -497,7 +499,13 @@ describe("PlanmigrationsClient", () => {
                     updated_at: "2024-01-15T09:30:00Z",
                 },
             ],
-            params: { limit: 1000000, offset: 1000000, plan_version_id: "plan_version_id", status: "cancelled" },
+            params: {
+                feature_id: "feature_id",
+                limit: 1000000,
+                offset: 1000000,
+                plan_version_id: "plan_version_id",
+                status: "cancelled",
+            },
         };
 
         server
@@ -509,6 +517,7 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         const response = await client.planmigrations.listMigrations({
+            featureId: "feature_id",
             planVersionId: "plan_version_id",
             status: "cancelled",
             limit: 1000000,
@@ -522,6 +531,8 @@ describe("PlanmigrationsClient", () => {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     error: "error",
                     failedCompanies: 1000000,
+                    featureId: "feature_id",
+                    featurePlanRolloutId: "feature_plan_rollout_id",
                     id: "id",
                     nextDueAt: new Date("2024-01-15T09:30:00.000Z"),
                     planId: "plan_id",
@@ -538,6 +549,7 @@ describe("PlanmigrationsClient", () => {
                 },
             ],
             params: {
+                featureId: "feature_id",
                 limit: 1000000,
                 offset: 1000000,
                 planVersionId: "plan_version_id",
@@ -561,9 +573,7 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.listMigrations({
-                planVersionId: "plan_version_id",
-            });
+            return await client.planmigrations.listMigrations();
         }).rejects.toThrow(Schematic.BadRequestError);
     });
 
@@ -582,9 +592,7 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.listMigrations({
-                planVersionId: "plan_version_id",
-            });
+            return await client.planmigrations.listMigrations();
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
 
@@ -603,9 +611,7 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.listMigrations({
-                planVersionId: "plan_version_id",
-            });
+            return await client.planmigrations.listMigrations();
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
 
@@ -624,9 +630,7 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.listMigrations({
-                planVersionId: "plan_version_id",
-            });
+            return await client.planmigrations.listMigrations();
         }).rejects.toThrow(Schematic.NotFoundError);
     });
 
@@ -645,9 +649,7 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.listMigrations({
-                planVersionId: "plan_version_id",
-            });
+            return await client.planmigrations.listMigrations();
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
@@ -667,6 +669,8 @@ describe("PlanmigrationsClient", () => {
                 created_at: "2024-01-15T09:30:00Z",
                 error: "error",
                 failed_companies: 1000000,
+                feature_id: "feature_id",
+                feature_plan_rollout_id: "feature_plan_rollout_id",
                 id: "id",
                 next_due_at: "2024-01-15T09:30:00Z",
                 plan_id: "plan_id",
@@ -706,6 +710,8 @@ describe("PlanmigrationsClient", () => {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 error: "error",
                 failedCompanies: 1000000,
+                featureId: "feature_id",
+                featurePlanRolloutId: "feature_plan_rollout_id",
                 id: "id",
                 nextDueAt: new Date("2024-01-15T09:30:00.000Z"),
                 planId: "plan_id",
@@ -887,6 +893,8 @@ describe("PlanmigrationsClient", () => {
                 created_at: "2024-01-15T09:30:00Z",
                 error: "error",
                 failed_companies: 1000000,
+                feature_id: "feature_id",
+                feature_plan_rollout_id: "feature_plan_rollout_id",
                 id: "id",
                 next_due_at: "2024-01-15T09:30:00Z",
                 plan_id: "plan_id",
@@ -920,6 +928,8 @@ describe("PlanmigrationsClient", () => {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 error: "error",
                 failedCompanies: 1000000,
+                featureId: "feature_id",
+                featurePlanRolloutId: "feature_plan_rollout_id",
                 id: "id",
                 nextDueAt: new Date("2024-01-15T09:30:00.000Z"),
                 planId: "plan_id",
@@ -1027,6 +1037,8 @@ describe("PlanmigrationsClient", () => {
                 created_at: "2024-01-15T09:30:00Z",
                 error: "error",
                 failed_companies: 1000000,
+                feature_id: "feature_id",
+                feature_plan_rollout_id: "feature_plan_rollout_id",
                 id: "id",
                 next_due_at: "2024-01-15T09:30:00Z",
                 plan_id: "plan_id",
@@ -1060,6 +1072,8 @@ describe("PlanmigrationsClient", () => {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 error: "error",
                 failedCompanies: 1000000,
+                featureId: "feature_id",
+                featurePlanRolloutId: "feature_plan_rollout_id",
                 id: "id",
                 nextDueAt: new Date("2024-01-15T09:30:00.000Z"),
                 planId: "plan_id",
@@ -1186,6 +1200,8 @@ describe("PlanmigrationsClient", () => {
                 created_at: "2024-01-15T09:30:00Z",
                 error: "error",
                 failed_companies: 1000000,
+                feature_id: "feature_id",
+                feature_plan_rollout_id: "feature_plan_rollout_id",
                 id: "id",
                 next_due_at: "2024-01-15T09:30:00Z",
                 plan_id: "plan_id",
@@ -1220,6 +1236,8 @@ describe("PlanmigrationsClient", () => {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 error: "error",
                 failedCompanies: 1000000,
+                featureId: "feature_id",
+                featurePlanRolloutId: "feature_plan_rollout_id",
                 id: "id",
                 nextDueAt: new Date("2024-01-15T09:30:00.000Z"),
                 planId: "plan_id",
@@ -1351,6 +1369,8 @@ describe("PlanmigrationsClient", () => {
                 created_at: "2024-01-15T09:30:00Z",
                 error: "error",
                 failed_companies: 1000000,
+                feature_id: "feature_id",
+                feature_plan_rollout_id: "feature_plan_rollout_id",
                 id: "id",
                 next_due_at: "2024-01-15T09:30:00Z",
                 plan_id: "plan_id",
@@ -1387,6 +1407,8 @@ describe("PlanmigrationsClient", () => {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 error: "error",
                 failedCompanies: 1000000,
+                featureId: "feature_id",
+                featurePlanRolloutId: "feature_plan_rollout_id",
                 id: "id",
                 nextDueAt: new Date("2024-01-15T09:30:00.000Z"),
                 planId: "plan_id",
@@ -1523,7 +1545,13 @@ describe("PlanmigrationsClient", () => {
 
         const rawResponseBody = {
             data: { count: 1000000 },
-            params: { limit: 1000000, offset: 1000000, plan_version_id: "plan_version_id", status: "cancelled" },
+            params: {
+                feature_id: "feature_id",
+                limit: 1000000,
+                offset: 1000000,
+                plan_version_id: "plan_version_id",
+                status: "cancelled",
+            },
         };
 
         server
@@ -1535,6 +1563,7 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         const response = await client.planmigrations.countMigrations({
+            featureId: "feature_id",
             planVersionId: "plan_version_id",
             status: "cancelled",
             limit: 1000000,
@@ -1545,6 +1574,7 @@ describe("PlanmigrationsClient", () => {
                 count: 1000000,
             },
             params: {
+                featureId: "feature_id",
                 limit: 1000000,
                 offset: 1000000,
                 planVersionId: "plan_version_id",
@@ -1568,9 +1598,7 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.countMigrations({
-                planVersionId: "plan_version_id",
-            });
+            return await client.planmigrations.countMigrations();
         }).rejects.toThrow(Schematic.BadRequestError);
     });
 
@@ -1589,9 +1617,7 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.countMigrations({
-                planVersionId: "plan_version_id",
-            });
+            return await client.planmigrations.countMigrations();
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
 
@@ -1610,9 +1636,7 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.countMigrations({
-                planVersionId: "plan_version_id",
-            });
+            return await client.planmigrations.countMigrations();
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
 
@@ -1631,9 +1655,7 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.countMigrations({
-                planVersionId: "plan_version_id",
-            });
+            return await client.planmigrations.countMigrations();
         }).rejects.toThrow(Schematic.NotFoundError);
     });
 
@@ -1652,9 +1674,7 @@ describe("PlanmigrationsClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.planmigrations.countMigrations({
-                planVersionId: "plan_version_id",
-            });
+            return await client.planmigrations.countMigrations();
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 

@@ -491,6 +491,7 @@ export class PlanmigrationsClient {
      *
      * @example
      *     await client.planmigrations.listMigrations({
+     *         featureId: "feature_id",
      *         planVersionId: "plan_version_id",
      *         status: "cancelled",
      *         limit: 1000000,
@@ -498,18 +499,19 @@ export class PlanmigrationsClient {
      *     })
      */
     public listMigrations(
-        request: Schematic.ListMigrationsRequest,
+        request: Schematic.ListMigrationsRequest = {},
         requestOptions?: PlanmigrationsClient.RequestOptions,
     ): core.HttpResponsePromise<Schematic.ListMigrationsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__listMigrations(request, requestOptions));
     }
 
     private async __listMigrations(
-        request: Schematic.ListMigrationsRequest,
+        request: Schematic.ListMigrationsRequest = {},
         requestOptions?: PlanmigrationsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListMigrationsResponse>> {
-        const { planVersionId, status, limit, offset } = request;
+        const { featureId, planVersionId, status, limit, offset } = request;
         const _queryParams: Record<string, unknown> = {
+            feature_id: featureId,
             plan_version_id: planVersionId,
             status:
                 status != null
@@ -1333,6 +1335,7 @@ export class PlanmigrationsClient {
      *
      * @example
      *     await client.planmigrations.countMigrations({
+     *         featureId: "feature_id",
      *         planVersionId: "plan_version_id",
      *         status: "cancelled",
      *         limit: 1000000,
@@ -1340,18 +1343,19 @@ export class PlanmigrationsClient {
      *     })
      */
     public countMigrations(
-        request: Schematic.CountMigrationsRequest,
+        request: Schematic.CountMigrationsRequest = {},
         requestOptions?: PlanmigrationsClient.RequestOptions,
     ): core.HttpResponsePromise<Schematic.CountMigrationsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__countMigrations(request, requestOptions));
     }
 
     private async __countMigrations(
-        request: Schematic.CountMigrationsRequest,
+        request: Schematic.CountMigrationsRequest = {},
         requestOptions?: PlanmigrationsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountMigrationsResponse>> {
-        const { planVersionId, status, limit, offset } = request;
+        const { featureId, planVersionId, status, limit, offset } = request;
         const _queryParams: Record<string, unknown> = {
+            feature_id: featureId,
             plan_version_id: planVersionId,
             status:
                 status != null

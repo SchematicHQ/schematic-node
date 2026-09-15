@@ -9952,6 +9952,8 @@ await client.plans.listPlans({
     q: "q",
     scopedToCompanyId: "scoped_to_company_id",
     withEntitlements: true,
+    withPublishedVersion: true,
+    withoutEntitlementForIncludeDrafts: true,
     withoutEntitlementFor: "without_entitlement_for",
     withoutPaidProductId: true,
     limit: 1000000,
@@ -10461,6 +10463,8 @@ await client.plans.countPlans({
     q: "q",
     scopedToCompanyId: "scoped_to_company_id",
     withEntitlements: true,
+    withPublishedVersion: true,
+    withoutEntitlementForIncludeDrafts: true,
     withoutEntitlementFor: "without_entitlement_for",
     withoutPaidProductId: true,
     limit: 1000000,
@@ -14448,6 +14452,7 @@ await client.planmigrations.countCompanyMigrations({
 
 ```typescript
 await client.planmigrations.listMigrations({
+    featureId: "feature_id",
     planVersionId: "plan_version_id",
     status: "cancelled",
     limit: 1000000,
@@ -14770,6 +14775,7 @@ await client.planmigrations.retryMigration("plan_version_migration_id", {
 
 ```typescript
 await client.planmigrations.countMigrations({
+    featureId: "feature_id",
     planVersionId: "plan_version_id",
     status: "cancelled",
     limit: 1000000,

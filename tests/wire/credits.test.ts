@@ -5771,7 +5771,7 @@ describe("CreditsClient", () => {
     test("reserveCredits (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { amount: 1.1, company_id: "company_id", credit_type_id: "credit_type_id" };
+        const rawRequestBody = { amount: 9999999999, company_id: "company_id", credit_type_id: "credit_type_id" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -5785,7 +5785,7 @@ describe("CreditsClient", () => {
 
         await expect(async () => {
             return await client.credits.reserveCredits({
-                amount: 1.1,
+                amount: 9999999999,
                 companyId: "company_id",
                 creditTypeId: "credit_type_id",
             });
@@ -5795,7 +5795,7 @@ describe("CreditsClient", () => {
     test("reserveCredits (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { amount: 1.1, company_id: "company_id", credit_type_id: "credit_type_id" };
+        const rawRequestBody = { amount: 9999999999, company_id: "company_id", credit_type_id: "credit_type_id" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -5809,7 +5809,7 @@ describe("CreditsClient", () => {
 
         await expect(async () => {
             return await client.credits.reserveCredits({
-                amount: 1.1,
+                amount: 9999999999,
                 companyId: "company_id",
                 creditTypeId: "credit_type_id",
             });
@@ -5819,7 +5819,7 @@ describe("CreditsClient", () => {
     test("reserveCredits (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { amount: 1.1, company_id: "company_id", credit_type_id: "credit_type_id" };
+        const rawRequestBody = { amount: 9999999999, company_id: "company_id", credit_type_id: "credit_type_id" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -5833,7 +5833,7 @@ describe("CreditsClient", () => {
 
         await expect(async () => {
             return await client.credits.reserveCredits({
-                amount: 1.1,
+                amount: 9999999999,
                 companyId: "company_id",
                 creditTypeId: "credit_type_id",
             });
@@ -5843,7 +5843,7 @@ describe("CreditsClient", () => {
     test("reserveCredits (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { amount: 1.1, company_id: "company_id", credit_type_id: "credit_type_id" };
+        const rawRequestBody = { amount: 9999999999, company_id: "company_id", credit_type_id: "credit_type_id" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -5857,7 +5857,7 @@ describe("CreditsClient", () => {
 
         await expect(async () => {
             return await client.credits.reserveCredits({
-                amount: 1.1,
+                amount: 9999999999,
                 companyId: "company_id",
                 creditTypeId: "credit_type_id",
             });
@@ -5867,7 +5867,7 @@ describe("CreditsClient", () => {
     test("reserveCredits (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { amount: 1.1, company_id: "company_id", credit_type_id: "credit_type_id" };
+        const rawRequestBody = { amount: 9999999999, company_id: "company_id", credit_type_id: "credit_type_id" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -5881,7 +5881,7 @@ describe("CreditsClient", () => {
 
         await expect(async () => {
             return await client.credits.reserveCredits({
-                amount: 1.1,
+                amount: 9999999999,
                 companyId: "company_id",
                 creditTypeId: "credit_type_id",
             });
@@ -5891,7 +5891,7 @@ describe("CreditsClient", () => {
     test("reserveCredits (7)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { amount: 1.1, company_id: "company_id", credit_type_id: "credit_type_id" };
+        const rawRequestBody = { amount: 9999999999, company_id: "company_id", credit_type_id: "credit_type_id" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -5905,7 +5905,7 @@ describe("CreditsClient", () => {
 
         await expect(async () => {
             return await client.credits.reserveCredits({
-                amount: 1.1,
+                amount: 9999999999,
                 companyId: "company_id",
                 creditTypeId: "credit_type_id",
             });
