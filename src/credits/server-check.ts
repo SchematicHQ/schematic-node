@@ -2,6 +2,7 @@ import type * as api from "../api";
 import { PaymentRequiredError } from "../api";
 import type { CreditsClient } from "../api/resources/credits/client/Client";
 import type { FeaturesClient } from "../api/resources/features/client/Client";
+import { SchematicError } from "../errors";
 import type { Logger } from "../logger";
 
 import { buildPreflightOptions } from "./check";
@@ -91,7 +92,12 @@ export async function checkWithServerReservation(
         // failing open here would hand out credit the balance can't cover.
         // check-and-reserve itself answers 200/value=false for insufficient
         // credits; this is defensive.
-        if (err instanceof PaymentRequiredError) {
+        //
+        // The generated client only throws `PaymentRequiredError` for
+        // endpoints that declare a 402, which check-and-reserve does not, so a
+        // real 402 arrives as a plain `SchematicError`. Match on the status
+        // code too.
+        if (err instanceof PaymentRequiredError || (err instanceof SchematicError && err.statusCode === 402)) {
             return {
                 allowed: false,
                 value: false,
@@ -138,7 +144,14 @@ export async function checkWithServerReservation(
                 `Server reservation: failed to release ${held.id} (${err}); its hold is refunded when it expires`,
             );
         }
-        return serverFailureResult(deps, onFailure, key, "missing_event_subtype");
+        if (onFailure === "fail-closed") {
+            return serverFailureResult(deps, onFailure, key, "missing_event_subtype");
+        }
+        // Fail-open means assume the credits are there, and the server has
+        // already evaluated the flag and allowed this check. Only the settle
+        // is impossible, so keep the server's verdict rather than falling back
+        // to the caller's default, which could deny what the server allowed.
+        return { ...base, err: "missing_event_subtype" };
     }
 
     const reservation: Reservation = {
@@ -186,6 +199,7 @@ function serverFailureResult(
     return { allowed: value, value, reason: `${reason}_fail_open`, flagKey, err: reason };
 }
 
-function paymentRequiredMessage(err: PaymentRequiredError): string | undefined {
-    return err.body?.error ?? err.message;
+function paymentRequiredMessage(err: SchematicError): string | undefined {
+    const body = err.body as { error?: string } | undefined;
+    return body?.error ?? err.message;
 }

@@ -18,6 +18,10 @@ export type OnAcquireFailure = "fail-open" | "fail-closed";
 // below stay accurate even if a consumer overrides only a subset of fields.
 export const DEFAULT_LEASE_DURATION_MS: number = 5 * 60 * 1000;
 export const DEFAULT_RESERVATION_TTL_MS: number = 60 * 1000;
+// The API rejects a hold whose `expiresAt` is more than an hour out, so a
+// larger reservation TTL would fail every server-mode check. The SDK clamps to
+// this instead.
+export const MAX_RESERVATION_TTL_MS: number = 60 * 60 * 1000;
 export const DEFAULT_LEASE_SIZE: number = 10_000;
 export const DEFAULT_LOW_WATER_MARK: number = 0.25;
 export const DEFAULT_SWEEP_INTERVAL_MS: number = 1000;
@@ -56,8 +60,10 @@ export interface CreditLeaseConfig {
     defaultLeaseDuration?: number;
     /**
      * Default reservation TTL in milliseconds. Default `DEFAULT_RESERVATION_TTL_MS`
-     * (60 seconds). Size this above the longest expected gap between `check()`
-     * and `trackWithReservation()`: a settle arriving after the TTL still bills
+     * (60 seconds). In server mode it is capped at `MAX_RESERVATION_TTL_MS`
+     * (1 hour), the furthest out the API will hold credits. Size this above the
+     * longest expected gap between `check()` and `trackWithReservation()`: a
+     * settle arriving after the TTL still bills
      * the server but doesn't re-debit the local lease (its hold was already
      * swept back), so the local balance reads high until the lease rolls over.
      */

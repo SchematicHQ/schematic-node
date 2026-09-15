@@ -1,4 +1,5 @@
 import { PaymentRequiredError } from "../../../src/api";
+import { SchematicError } from "../../../src/errors";
 import { SchematicClient } from "../../../src/wrapper";
 
 const mockCheckFlag = jest.fn();
@@ -104,6 +105,22 @@ function reserveResponse(overrides: Record<string, unknown> = {}) {
         },
         params: {},
     };
+}
+
+// A hold the server issued without naming an event subtype: nothing can ever
+// settle it.
+function orphanHoldResponse() {
+    return reserveResponse({
+        reservation: {
+            id: "rsv_orphan",
+            companyId: "co_1",
+            creditTypeId: "bilcr_inference",
+            consumptionRate: 10,
+            creditsReserved: 500,
+            quantityReserved: 50,
+            expiresAt: new Date(Date.now() + TTL_MS),
+        },
+    });
 }
 
 function makeLogger() {
@@ -298,6 +315,29 @@ describe("client.check (server reservation path)", () => {
         await client.close();
     });
 
+    it("treats a plain 402 as a definitive denial, even with fail-open", async () => {
+        // check-and-reserve declares no 402, so the generated client throws the
+        // base error rather than PaymentRequiredError.
+        mockCheckAndReserveFlag.mockRejectedValue(
+            new SchematicError({ statusCode: 402, body: { error: "credit balance exhausted" } }),
+        );
+        const { client } = makeServerClient();
+
+        const result = await client.check({ company: { id: "co_1" } }, "inference", {
+            usage: 50,
+            eventSubtype: "inference_tokens",
+            onAcquireFailure: "fail-open",
+            defaultValue: true,
+        });
+
+        expect(result.allowed).toBe(false);
+        expect(result.value).toBe(false);
+        expect(result.reason).toBe("insufficient_credits");
+        expect(result.err).toBe("credit balance exhausted");
+        expect(result.reservation).toBeUndefined();
+        await client.close();
+    });
+
     it("fails closed when the check-and-reserve call errors", async () => {
         mockCheckAndReserveFlag.mockRejectedValue(new Error("ECONNRESET"));
         const { client } = makeServerClient();
@@ -395,19 +435,7 @@ describe("client.check (server reservation path)", () => {
     });
 
     it("releases a hold that names no event subtype, since it could never settle", async () => {
-        mockCheckAndReserveFlag.mockResolvedValue(
-            reserveResponse({
-                reservation: {
-                    id: "rsv_orphan",
-                    companyId: "co_1",
-                    creditTypeId: "bilcr_inference",
-                    consumptionRate: 10,
-                    creditsReserved: 500,
-                    quantityReserved: 50,
-                    expiresAt: new Date(Date.now() + TTL_MS),
-                },
-            }),
-        );
+        mockCheckAndReserveFlag.mockResolvedValue(orphanHoldResponse());
         const { client } = makeServerClient();
 
         const result = await client.check({ company: { id: "co_1" } }, "inference", { usage: 50 });
@@ -415,6 +443,31 @@ describe("client.check (server reservation path)", () => {
         expect(mockReleaseCreditReservation).toHaveBeenCalledWith("rsv_orphan");
         expect(result.allowed).toBe(false);
         expect(result.reason).toBe("missing_event_subtype");
+        expect(result.err).toBe("missing_event_subtype");
+        expect(result.reservation).toBeUndefined();
+        await client.close();
+    });
+
+    it("keeps the server's verdict for an unsettleable hold when failing open", async () => {
+        mockCheckAndReserveFlag.mockResolvedValue(orphanHoldResponse());
+        const { client } = makeServerClient();
+
+        const result = await client.check({ company: { id: "co_1" } }, "inference", {
+            usage: 50,
+            onAcquireFailure: "fail-open",
+            // The default would deny; the server already allowed this check,
+            // so fail-open must not fall back to it.
+            defaultValue: false,
+        });
+
+        expect(mockReleaseCreditReservation).toHaveBeenCalledWith("rsv_orphan");
+        expect(result.allowed).toBe(true);
+        expect(result.value).toBe(true);
+        expect(result.reason).toBe("matched");
+        expect(result.entitlement).toEqual(CREDIT_ENTITLEMENT);
+        expect(result.flagKey).toBe("inference");
+        expect(result.flagId).toBe("flag_1");
+        expect(result.err).toBe("missing_event_subtype");
         expect(result.reservation).toBeUndefined();
         await client.close();
     });
@@ -444,6 +497,16 @@ describe("client.trackWithReservation (server handle)", () => {
         expect(pushed?.[0].idempotencyKey).toBe("lease-reservation:rsv_1");
         // Nothing local to settle — the server owns the hold.
         expect(mockReleaseCreditReservation).not.toHaveBeenCalled();
+        await client.close();
+    });
+
+    it("logs and returns when there is no reservation to settle", async () => {
+        const { client, logger } = makeServerClient();
+
+        await client.trackWithReservation(undefined, 20);
+
+        expect(mockEventBufferPush.mock.calls.filter((call) => call[0]?.eventType === "track")).toHaveLength(0);
+        expect(logger.error).toHaveBeenCalledWith(expect.stringContaining("without a reservation"));
         await client.close();
     });
 

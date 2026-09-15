@@ -16,6 +16,7 @@ import {
     DEFAULT_RESERVATION_TTL_MS,
     DEFAULT_SWEEP_INTERVAL_MS,
     LeaseStore,
+    MAX_RESERVATION_TTL_MS,
     RedisLeaseStore,
     RedisReservationStore,
     ReservationStore,
@@ -332,7 +333,17 @@ export class SchematicClient extends BaseClient {
         if (opts?.creditLeases && !offline) {
             const mode: CreditLeaseMode = opts.creditLeases.mode ?? "auto";
             this.creditLeaseMode = mode;
-            this.serverReservationTTL = opts.creditLeases.defaultReservationTTL ?? DEFAULT_RESERVATION_TTL_MS;
+            const configuredTTL = opts.creditLeases.defaultReservationTTL ?? DEFAULT_RESERVATION_TTL_MS;
+            // The API refuses a hold expiring more than an hour out, so an
+            // oversized TTL would fail every server-mode check. Clamp it and
+            // say so once, rather than letting the checks fail.
+            this.serverReservationTTL = Math.min(configuredTTL, MAX_RESERVATION_TTL_MS);
+            if (configuredTTL > MAX_RESERVATION_TTL_MS) {
+                logger.warn(
+                    `creditLeases.defaultReservationTTL of ${configuredTTL}ms exceeds the ${MAX_RESERVATION_TTL_MS}ms ` +
+                        "maximum the API will hold credits for; clamping to that maximum.",
+                );
+            }
 
             // Server mode holds credits over the API, so none of the local
             // lease plumbing is built. Options that only steer that plumbing
@@ -347,6 +358,7 @@ export class SchematicClient extends BaseClient {
                         "redisClient",
                         "redisKeyPrefix",
                         "prewarmResolveTimeoutMs",
+                        "overrides",
                     ] as const
                 ).filter((name) => opts.creditLeases?.[name] !== undefined);
                 if (clientOnly.length > 0) {
@@ -1052,11 +1064,23 @@ export class SchematicClient extends BaseClient {
      * event — across pods and process restarts, not just within one process.
      */
     async trackWithReservation(
-        reservation: Reservation,
+        reservation: Reservation | undefined,
         actualQuantity: number,
         options?: TrackWithReservationOptions,
     ): Promise<void> {
         if (this.offline) return;
+        // `check()` allows without a hold in several ordinary cases: the
+        // feature isn't credit-metered, the check failed open, `usage` was 0,
+        // or credit leases aren't configured. Callers pass `result.reservation`
+        // straight through, so take the undefined and tell them how to bill the
+        // usage instead of throwing on a settle that has nothing to settle.
+        if (!reservation) {
+            this.logger.error(
+                "trackWithReservation called without a reservation: the check allowed without taking a hold, " +
+                    "so there is nothing to settle. Report the usage with track() instead.",
+            );
+            return;
+        }
         // Mirror the check-path usage guard: a non-finite quantity must reach
         // neither the store (`Math.min(NaN, reserved)` claims the reservation
         // with NO refund of the unspent slice) nor the billing event (NaN

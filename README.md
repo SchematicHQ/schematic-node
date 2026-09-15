@@ -870,8 +870,18 @@ if (!result.allowed) {
 const inference = await runInference(/* ... */);
 
 // Report actual usage; the unused slice of the reservation is refunded to the lease.
-await client.trackWithReservation(result.reservation!, inference.tokensUsed);
+if (result.reservation) {
+    await client.trackWithReservation(result.reservation, inference.tokensUsed);
+} else {
+    await client.track({
+        event: "inference_tokens",
+        company: { id: "your-company-id" },
+        quantity: inference.tokensUsed,
+    });
+}
 ```
+
+A check can allow without taking a hold (the feature is not credit-metered, `usage` is 0, or the check failed open), and that usage still has to be tracked.
 
 If the caller never settles a reservation, it expires after `defaultReservationTTL` and its credits are returned to the lease. If the work outlives the reservation's TTL, `trackWithReservation` still bills the usage — the track event carries a deterministic idempotency key, so duplicate or recovery emits never double-bill. However, the local lease balance is not re-debited on that late settle (the expired reservation's hold was already swept back to the lease), so it reads high until the lease rolls over. **Set `defaultReservationTTL` above the longest expected gap between `check()` and `trackWithReservation()`** to keep the local balance accurate.
 

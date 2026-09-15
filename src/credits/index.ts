@@ -11,6 +11,7 @@ export {
     DEFAULT_PREWARM_RESOLVE_TIMEOUT_MS,
     DEFAULT_RESERVATION_TTL_MS,
     DEFAULT_SWEEP_INTERVAL_MS,
+    MAX_RESERVATION_TTL_MS,
 } from "./types";
 export type {
     CreditLeaseConfig,

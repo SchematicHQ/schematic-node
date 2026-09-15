@@ -1,21 +1,57 @@
 import { SchematicClient } from "../../src/wrapper";
 import type { CacheProvider } from "../../src/cache";
+import { MAX_RESERVATION_TTL_MS } from "../../src/credits";
 import type { CheckFlagWithEntitlementResponse } from "../../src/wrapper";
 
 // Mock the features.checkFlag API call
 const mockCheckFlag = jest.fn();
+const mockCheckAndReserveFlag = jest.fn();
+const mockAcquireCreditLease = jest.fn();
+const mockReleaseCreditReservation = jest.fn();
 
 jest.mock("../../src/Client", () => {
     class MockBaseClient {
         features = {
             checkFlag: mockCheckFlag,
+            checkAndReserveFlag: mockCheckAndReserveFlag,
             checkFlags: jest.fn().mockResolvedValue({
                 data: { flags: [] },
             }),
         };
+        credits = {
+            acquireCreditLease: mockAcquireCreditLease,
+            extendCreditLease: jest.fn(),
+            releaseCreditLease: jest.fn(),
+            releaseCreditReservation: mockReleaseCreditReservation,
+        };
         events = {};
     }
     return { SchematicClient: MockBaseClient };
+});
+
+// Stubbed DataStream so the routing cases can run without a websocket.
+const mockDataStream = {
+    start: jest.fn().mockResolvedValue(undefined),
+    close: jest.fn(),
+    isConnected: jest.fn().mockReturnValue(true),
+    checkFlag: jest.fn(),
+    updateCompanyMetrics: jest.fn().mockResolvedValue(undefined),
+    getFlag: jest.fn(),
+    getCachedCompany: jest.fn(),
+    getCompany: jest.fn(),
+    getCachedUser: jest.fn().mockResolvedValue(null),
+    getUser: jest.fn(),
+    getRulesEngine: jest.fn(),
+};
+jest.mock("../../src/datastream", () => ({
+    DataStreamClient: jest.fn().mockImplementation(() => mockDataStream),
+}));
+
+// `mockRejectedValue` survives `clearAllMocks`, so put the stub back to a
+// healthy DataStream before every test.
+beforeEach(() => {
+    mockDataStream.start.mockResolvedValue(undefined);
+    mockDataStream.isConnected.mockReturnValue(true);
 });
 
 // Mock the EventBuffer to avoid side effects
@@ -476,5 +512,112 @@ describe("SchematicClient wrapper - credit lease store backend selection", () =>
         const survivor = await leaseStore.get("co_1", "ct_1");
         expect(survivor).toBeDefined();
         expect(survivor?.leaseId).toBe("lse_shared");
+    });
+});
+
+describe("SchematicClient wrapper - server-mode credit reservations", () => {
+    const mockLogger = {
+        error: jest.fn(),
+        warn: jest.fn(),
+        info: jest.fn(),
+        debug: jest.fn(),
+    };
+
+    function reserveResponse() {
+        return {
+            data: {
+                flag: "inference",
+                flagId: "flag_1",
+                value: true,
+                reason: "matched",
+                reservation: {
+                    id: "rsv_1",
+                    companyId: "co_1",
+                    creditTypeId: "bilcr_inference",
+                    consumptionRate: 10,
+                    creditsReserved: 500,
+                    quantityReserved: 50,
+                    eventSubtype: "inference_tokens",
+                    expiresAt: new Date(Date.now() + 60_000),
+                },
+            },
+            params: {},
+        };
+    }
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    it("falls back to the server path when DataStream fails to start at runtime", async () => {
+        // `auto` resolves per check, so a DataStream that rejected its start
+        // after construction must land on check-and-reserve rather than an
+        // ungated plain check.
+        mockDataStream.start.mockRejectedValue(new Error("websocket handshake failed"));
+        mockCheckAndReserveFlag.mockResolvedValue(reserveResponse());
+
+        const client = new SchematicClient({
+            apiKey: "test-key",
+            useDataStream: true,
+            logger: mockLogger,
+            creditLeases: { mode: "auto", sweepIntervalMs: 60_000 },
+        });
+        // Let the rejected start() clear the datastream client.
+        await new Promise((r) => setImmediate(r));
+
+        const result = await client.check({ company: { id: "co_1" } }, "inference", {
+            usage: 50,
+            eventSubtype: "inference_tokens",
+        });
+
+        expect(mockCheckAndReserveFlag).toHaveBeenCalledTimes(1);
+        expect(mockAcquireCreditLease).not.toHaveBeenCalled();
+        expect(mockCheckFlag).not.toHaveBeenCalled();
+        expect(result.allowed).toBe(true);
+        expect(result.reservation?.mode).toBe("server");
+
+        await client.close();
+    });
+
+    it("clamps an oversized reservation TTL to the API maximum", async () => {
+        mockCheckAndReserveFlag.mockResolvedValue(reserveResponse());
+        const client = new SchematicClient({
+            apiKey: "test-key",
+            logger: mockLogger,
+            creditLeases: { mode: "server", defaultReservationTTL: 4 * 60 * 60 * 1000 },
+        });
+
+        expect(mockLogger.warn).toHaveBeenCalledWith(expect.stringContaining("defaultReservationTTL"));
+
+        const before = Date.now();
+        await client.check({ company: { id: "co_1" } }, "inference", { usage: 50 });
+        const after = Date.now();
+
+        const expiresAt = (mockCheckAndReserveFlag.mock.calls[0][1].expiresAt as Date).getTime();
+        expect(expiresAt).toBeGreaterThanOrEqual(before + MAX_RESERVATION_TTL_MS);
+        expect(expiresAt).toBeLessThanOrEqual(after + MAX_RESERVATION_TTL_MS);
+
+        await client.close();
+    });
+
+    it("leaves a reservation TTL under the maximum alone", async () => {
+        mockCheckAndReserveFlag.mockResolvedValue(reserveResponse());
+        const ttl = 120_000;
+        const client = new SchematicClient({
+            apiKey: "test-key",
+            logger: mockLogger,
+            creditLeases: { mode: "server", defaultReservationTTL: ttl },
+        });
+
+        const before = Date.now();
+        await client.check({ company: { id: "co_1" } }, "inference", { usage: 50 });
+        const after = Date.now();
+
+        expect(mockLogger.warn).not.toHaveBeenCalledWith(expect.stringContaining("defaultReservationTTL"));
+        const expiresAt = (mockCheckAndReserveFlag.mock.calls[0][1].expiresAt as Date).getTime();
+        expect(expiresAt).toBeGreaterThanOrEqual(before + ttl);
+        expect(expiresAt).toBeLessThanOrEqual(after + ttl);
+
+        await client.close();
     });
 });
