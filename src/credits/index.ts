@@ -12,6 +12,7 @@ export {
     DEFAULT_RESERVATION_TTL_MS,
     DEFAULT_SWEEP_INTERVAL_MS,
     MAX_RESERVATION_TTL_MS,
+    RESERVATION_TTL_SKEW_ALLOWANCE_MS,
 } from "./types";
 export type {
     CreditLeaseConfig,

@@ -8,6 +8,10 @@ import type { Logger } from "../logger";
 import { buildPreflightOptions } from "./check";
 import type { CheckOptions, CheckResult, OnAcquireFailure, Reservation } from "./types";
 
+// Mirrors the reason the API returns on a 200 with `value: false` for the same
+// denial, so a caller matching on `reason` has one string to match either way.
+const INSUFFICIENT_CREDITS_REASON = "Insufficient credits";
+
 /** Everything `checkWithServerReservation` needs to satisfy a server-mode check. */
 export interface ServerCheckDeps {
     features: FeaturesClient;
@@ -79,8 +83,13 @@ export async function checkWithServerReservation(
         expiresAt: new Date(Date.now() + deps.reservationTTL),
         preflight,
     };
-    const requestOptions: FeaturesClient.RequestOptions | undefined =
-        options.timeoutMs !== undefined ? { timeoutInSeconds: options.timeoutMs / 1000 } : undefined;
+    // Never retry: the request carries no idempotency key, so a 502/504 from a
+    // load balancer after the API committed the hold would have Fern's default
+    // retry take a second hold, with the first parked until its TTL.
+    const requestOptions: FeaturesClient.RequestOptions = {
+        maxRetries: 0,
+        ...(options.timeoutMs !== undefined ? { timeoutInSeconds: options.timeoutMs / 1000 } : undefined),
+    };
 
     let data: api.CheckAndReserveFlagResponseData;
     try {
@@ -101,7 +110,7 @@ export async function checkWithServerReservation(
             return {
                 allowed: false,
                 value: false,
-                reason: "insufficient_credits",
+                reason: INSUFFICIENT_CREDITS_REASON,
                 flagKey: key,
                 err: paymentRequiredMessage(err),
             };

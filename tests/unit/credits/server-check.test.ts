@@ -244,13 +244,17 @@ describe("client.check (server reservation path)", () => {
         await client.close();
     });
 
-    it("threads the per-check timeout to the request options", async () => {
+    it("disables retries on check-and-reserve, with and without a per-check timeout", async () => {
         mockCheckAndReserveFlag.mockResolvedValue(reserveResponse());
         const { client } = makeServerClient();
 
-        await client.check({ company: { id: "co_1" } }, "inference", { usage: 50, timeoutMs: 2500 });
+        // The request carries no idempotency key, so a retry after the API
+        // committed a hold would take a second one.
+        await client.check({ company: { id: "co_1" } }, "inference", { usage: 50 });
+        expect(mockCheckAndReserveFlag.mock.calls[0][2]).toEqual({ maxRetries: 0 });
 
-        expect(mockCheckAndReserveFlag.mock.calls[0][2]).toEqual({ timeoutInSeconds: 2.5 });
+        await client.check({ company: { id: "co_1" } }, "inference", { usage: 50, timeoutMs: 2500 });
+        expect(mockCheckAndReserveFlag.mock.calls[1][2]).toEqual({ maxRetries: 0, timeoutInSeconds: 2.5 });
         await client.close();
     });
 
@@ -309,7 +313,7 @@ describe("client.check (server reservation path)", () => {
 
         expect(result.allowed).toBe(false);
         expect(result.value).toBe(false);
-        expect(result.reason).toBe("insufficient_credits");
+        expect(result.reason).toBe("Insufficient credits");
         expect(result.err).toBe("credit balance exhausted");
         expect(result.reservation).toBeUndefined();
         await client.close();
@@ -332,7 +336,7 @@ describe("client.check (server reservation path)", () => {
 
         expect(result.allowed).toBe(false);
         expect(result.value).toBe(false);
-        expect(result.reason).toBe("insufficient_credits");
+        expect(result.reason).toBe("Insufficient credits");
         expect(result.err).toBe("credit balance exhausted");
         expect(result.reservation).toBeUndefined();
         await client.close();

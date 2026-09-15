@@ -17,6 +17,7 @@ import {
     DEFAULT_SWEEP_INTERVAL_MS,
     LeaseStore,
     MAX_RESERVATION_TTL_MS,
+    RESERVATION_TTL_SKEW_ALLOWANCE_MS,
     RedisLeaseStore,
     RedisReservationStore,
     ReservationStore,
@@ -334,14 +335,19 @@ export class SchematicClient extends BaseClient {
             const mode: CreditLeaseMode = opts.creditLeases.mode ?? "auto";
             this.creditLeaseMode = mode;
             const configuredTTL = opts.creditLeases.defaultReservationTTL ?? DEFAULT_RESERVATION_TTL_MS;
-            // The API refuses a hold expiring more than an hour out, so an
-            // oversized TTL would fail every server-mode check. Clamp it and
-            // say so once, rather than letting the checks fail.
-            this.serverReservationTTL = Math.min(configuredTTL, MAX_RESERVATION_TTL_MS);
-            if (configuredTTL > MAX_RESERVATION_TTL_MS) {
+            // The API refuses a hold expiring more than MAX_RESERVATION_TTL_MS
+            // after its own clock, and this TTL is applied to the caller's, so
+            // clamp a step below the cap to leave room for skew. Only server
+            // mode sends the value to the API: in client mode it sizes the
+            // local sweep, so clamping it there would shorten holds for no
+            // reason and the warning would be untrue.
+            const maxTTL = MAX_RESERVATION_TTL_MS - RESERVATION_TTL_SKEW_ALLOWANCE_MS;
+            this.serverReservationTTL = mode === "client" ? configuredTTL : Math.min(configuredTTL, maxTTL);
+            if (mode !== "client" && configuredTTL > maxTTL) {
                 logger.warn(
-                    `creditLeases.defaultReservationTTL of ${configuredTTL}ms exceeds the ${MAX_RESERVATION_TTL_MS}ms ` +
-                        "maximum the API will hold credits for; clamping to that maximum.",
+                    `creditLeases.defaultReservationTTL of ${configuredTTL}ms is longer than the API will hold ` +
+                        `credits for; clamping to ${maxTTL}ms (the ${MAX_RESERVATION_TTL_MS}ms maximum, less ` +
+                        `${RESERVATION_TTL_SKEW_ALLOWANCE_MS}ms of room for clock skew).`,
                 );
             }
 

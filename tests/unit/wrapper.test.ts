@@ -1,6 +1,6 @@
 import { SchematicClient } from "../../src/wrapper";
 import type { CacheProvider } from "../../src/cache";
-import { MAX_RESERVATION_TTL_MS } from "../../src/credits";
+import { MAX_RESERVATION_TTL_MS, RESERVATION_TTL_SKEW_ALLOWANCE_MS } from "../../src/credits";
 import type { CheckFlagWithEntitlementResponse } from "../../src/wrapper";
 
 // Mock the features.checkFlag API call
@@ -579,7 +579,7 @@ describe("SchematicClient wrapper - server-mode credit reservations", () => {
         await client.close();
     });
 
-    it("clamps an oversized reservation TTL to the API maximum", async () => {
+    it("clamps an oversized reservation TTL to the API maximum, less room for clock skew", async () => {
         mockCheckAndReserveFlag.mockResolvedValue(reserveResponse());
         const client = new SchematicClient({
             apiKey: "test-key",
@@ -587,15 +587,36 @@ describe("SchematicClient wrapper - server-mode credit reservations", () => {
             creditLeases: { mode: "server", defaultReservationTTL: 4 * 60 * 60 * 1000 },
         });
 
-        expect(mockLogger.warn).toHaveBeenCalledWith(expect.stringContaining("defaultReservationTTL"));
+        const maxTTL = MAX_RESERVATION_TTL_MS - RESERVATION_TTL_SKEW_ALLOWANCE_MS;
+        expect(mockLogger.warn).toHaveBeenCalledWith(expect.stringContaining(`clamping to ${maxTTL}ms`));
 
         const before = Date.now();
         await client.check({ company: { id: "co_1" } }, "inference", { usage: 50 });
         const after = Date.now();
 
+        // The API measures the cap against its own clock, so the hold has to
+        // land under it even when this client runs ahead.
         const expiresAt = (mockCheckAndReserveFlag.mock.calls[0][1].expiresAt as Date).getTime();
-        expect(expiresAt).toBeGreaterThanOrEqual(before + MAX_RESERVATION_TTL_MS);
-        expect(expiresAt).toBeLessThanOrEqual(after + MAX_RESERVATION_TTL_MS);
+        expect(expiresAt).toBeGreaterThanOrEqual(before + maxTTL);
+        expect(expiresAt).toBeLessThanOrEqual(after + maxTTL);
+
+        await client.close();
+    });
+
+    it("leaves the TTL alone in client mode, where the API never sees it", async () => {
+        const ttl = 2 * 60 * 60 * 1000;
+        const client = new SchematicClient({
+            apiKey: "test-key",
+            logger: mockLogger,
+            creditLeases: { mode: "client", defaultReservationTTL: ttl, sweepIntervalMs: 60_000 },
+        });
+
+        // Client mode sizes the local sweep with this value and never sends it
+        // to the API, so neither the clamp nor its warning applies.
+        expect(mockLogger.warn).not.toHaveBeenCalledWith(expect.stringContaining("clamping"));
+        // biome-ignore lint/suspicious/noExplicitAny: introspect the resolved lease config
+        const resolved = (client as any).creditLeaseManager.resolveConfig("bilcr_inference");
+        expect(resolved.reservationTTL).toBe(ttl);
 
         await client.close();
     });
