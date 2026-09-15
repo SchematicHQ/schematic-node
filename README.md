@@ -800,13 +800,12 @@ const client = new SchematicClient({
 
 ## Credit Leases and Reservations
 
-For features metered by credit burndown (e.g. inference tokens), the SDK can enforce credit balances locally — without a Schematic API call on every check — using a lease-and-reservation system:
+For features metered by credit burndown (e.g. inference tokens), `check()` holds credits for the work about to run and `trackWithReservation()` settles the hold with actual usage. The SDK gates in one of two modes:
 
-- A **lease** is a tranche of credits acquired transactionally from Schematic's API. It functions as a hold against the company's credit balance until it is consumed, released, or expires.
-- A **reservation** is a client-side hold carved out of the lease at check time, sized to the upper bound of the operation's usage. This protects against races and over-spend between the check and the eventual usage report.
-- When the work completes, a track call reports actual usage; the difference between reserved and actual usage is refunded to the lease.
+- **Client mode** acquires a **lease**, a tranche of credits held against the company's balance, and carves a per-request **reservation** out of it locally, so a check needs no API call. It requires [DataStream](#datastream) (or [Replicator Mode](#replicator-mode)) and, across multiple processes, a shared Redis so every instance gates against the same lease.
+- **Server mode** makes one `check-and-reserve` API call per check. No lease, no Redis, no local state.
 
-> **Requirements:** Client-side leases require [DataStream](#datastream) (or [Replicator Mode](#replicator-mode)) and, in a horizontally-scaled deployment, a shared Redis backend so all SDK instances gate against the same lease balance. Without DataStream the SDK uses [server mode](#server-mode) instead.
+`creditLeases.mode` defaults to `auto`: client when DataStream is enabled, server otherwise. Client mode suits high-throughput gating; server mode suits low-volume checks and operations that run for seconds.
 
 ### Setup
 
@@ -821,22 +820,19 @@ const client = new SchematicClient({
     apiKey: process.env.SCHEMATIC_API_KEY,
     useDataStream: true,
     dataStream: {
-        redisClient, // also backs lease + reservation state automatically
+        redisClient, // also backs lease + reservation state
     },
     creditLeases: {
-        defaultLeaseDuration: 5 * 60 * 1000, // lease lifetime (ms)
-        defaultReservationTTL: 60 * 1000, // how long a reservation is held if not settled by a track (ms)
         defaultLeaseSize: 10_000, // credits requested per lease
-        lowWaterMark: 0.25, // extend the lease in the background when its balance dips below this fraction
+        defaultLeaseDuration: 5 * 60 * 1000, // lease lifetime (ms)
+        defaultReservationTTL: 60 * 1000, // how long a reservation is held if no track settles it (ms)
     },
 });
 ```
 
-When `dataStream.redisClient` is configured, lease and reservation state automatically lives in the same Redis, with atomic reservations driven by Lua scripts — no additional configuration needed. To point lease state at a *different* Redis, set `creditLeases.redisClient` explicitly.
+Set `creditLeases.redisClient` to keep lease state in a different Redis than the DataStream cache.
 
-### Server mode
-
-In server mode each `check()` with `usage` makes one `check-and-reserve` API call: the server evaluates the flag and takes the hold, and `trackWithReservation()` settles it with a track event carrying the reservation ID. No lease, no Redis, no local state. It suits low-volume checks and operations that run for seconds; client mode suits high-throughput gating. `mode` defaults to `auto`: client when DataStream is enabled, server otherwise.
+Server mode needs only a TTL:
 
 ```ts
 const client = new SchematicClient({
@@ -847,14 +843,12 @@ const client = new SchematicClient({
 });
 ```
 
-Only `defaultReservationTTL` and `mode` apply in server mode; the SDK warns at startup if a client-only option is set. `prewarm()` is a no-op, and `fail-open` returns the flag's default value since there is no local engine to re-evaluate.
+Only `mode` and `defaultReservationTTL` apply in server mode; the SDK warns at startup if a client-only option is set.
 
 ### Checking and tracking
 
-`check()` reserves the operation's upper-bound usage against the lease and returns a reservation handle; `trackWithReservation()` settles it with actual usage:
-
 ```ts
-// Per-request: reserve up to maxTokens against the lease.
+// Reserve up to maxTokens for this operation.
 const result = await client.check(
     { company: { id: "your-company-id" } },
     "inference",
@@ -869,7 +863,7 @@ if (!result.allowed) {
 
 const inference = await runInference(/* ... */);
 
-// Report actual usage; the unused slice of the reservation is refunded to the lease.
+// Report actual usage; the unused slice of the reservation is refunded.
 if (result.reservation) {
     await client.trackWithReservation(result.reservation, inference.tokensUsed);
 } else {
@@ -883,11 +877,11 @@ if (result.reservation) {
 
 A check can allow without taking a hold (the feature is not credit-metered, `usage` is 0, or the check failed open), and that usage still has to be tracked.
 
-If the caller never settles a reservation, it expires after `defaultReservationTTL` and its credits are returned to the lease. If the work outlives the reservation's TTL, `trackWithReservation` still bills the usage — the track event carries a deterministic idempotency key, so duplicate or recovery emits never double-bill. However, the local lease balance is not re-debited on that late settle (the expired reservation's hold was already swept back to the lease), so it reads high until the lease rolls over. **Set `defaultReservationTTL` above the longest expected gap between `check()` and `trackWithReservation()`** to keep the local balance accurate.
+An unsettled reservation expires after `defaultReservationTTL` and its credits return to the lease. A late settle still bills the usage (the track event carries a deterministic idempotency key, so it never double-bills) but does not re-debit the local lease, so set `defaultReservationTTL` above the longest expected gap between `check()` and `trackWithReservation()`.
 
 ### Pre-warming
 
-To avoid paying the lease-acquire round trip on a session's first check, pre-warm leases when the user is identified:
+Pre-warm leases when the user is identified, so a session's first check does not wait on a lease acquire:
 
 ```ts
 await client.identify(
@@ -903,7 +897,7 @@ Or call `client.prewarm(evalCtx, creditTypeIds)` directly. Both are no-ops in se
 
 ### Failure behavior
 
-By default, a check that cannot be gated (API unreachable, Redis down, lease exhausted) **fails closed** (`allowed: false`). Override per check for callers where letting traffic through is preferable to a denial:
+A check that cannot be gated (API unreachable, Redis down, lease exhausted) fails closed by default. Override per check:
 
 ```ts
 const result = await client.check(evalCtx, "inference", {
@@ -913,22 +907,22 @@ const result = await client.check(evalCtx, "inference", {
 });
 ```
 
-In client mode, `fail-open` does not skip evaluation: the flag's rules still run with the credit balance assumed sufficient, so plan targeting, overrides, and all non-credit conditions still apply — only the credit gate is bypassed. In server mode it returns the flag's default value. That default is `false`, so a server-mode `fail-open` check denies unless you pass `defaultValue: true` or configure a `flagDefaults` entry for the flag.
+In client mode, `fail-open` still evaluates the flag's rules with the credit balance assumed sufficient, so plan targeting and all non-credit conditions apply and only the credit gate is bypassed. In server mode it returns the flag's default value, which is `false` unless you pass `defaultValue` or configure a `flagDefaults` entry.
 
 ### Configuration options
 
 | Option | Type | Default | Description |
 |---|---|---|---|
 | `mode` | `"client" \| "server" \| "auto"` | `auto` | Where the credit hold lives; `auto` picks client when DataStream is enabled, server otherwise |
-| `defaultReservationTTL` | `number` | 60 seconds | How long an unsettled reservation is held (ms); set above your longest expected work duration |
-| `defaultLeaseDuration` | `number` | 5 minutes | (client mode) Lease lifetime in milliseconds |
-| `defaultLeaseSize` | `number` | 10000 | (client mode) Credits requested per lease acquire/extend |
+| `defaultReservationTTL` | `number` | 60 seconds | How long an unsettled reservation is held (ms) |
+| `defaultLeaseDuration` | `number` | 5 minutes | (client mode) Lease lifetime (ms) |
+| `defaultLeaseSize` | `number` | 10000 | (client mode) Credits requested per lease acquire or extend |
 | `lowWaterMark` | `number` | 0.25 | (client mode) Extend in the background when the lease balance dips below this fraction |
 | `sweepIntervalMs` | `number` | 1000 | (client mode) Sweep interval for expired reservations (ms) |
-| `prewarmResolveTimeoutMs` | `number` | 5000 | (client mode) How long `prewarm()` waits for a freshly-identified company to surface (ms) |
-| `redisClient` | `RedisClient` | `dataStream.redisClient` | (client mode) Redis client for lease + reservation state |
-| `redisKeyPrefix` | `string` | `dataStream.redisKeyPrefix` | (client mode) Key prefix for lease + reservation keys |
-| `overrides` | `object` | — | (client mode) Per-credit-type overrides of the above (keyed by credit type ID) |
+| `prewarmResolveTimeoutMs` | `number` | 5000 | (client mode) How long `prewarm()` waits for a freshly identified company to surface (ms) |
+| `redisClient` | `RedisClient` | `dataStream.redisClient` | (client mode) Redis client for lease and reservation state |
+| `redisKeyPrefix` | `string` | `dataStream.redisKeyPrefix` | (client mode) Key prefix for lease and reservation keys |
+| `overrides` | `object` | — | (client mode) Per-credit-type overrides of the above, keyed by credit type ID |
 
 ## Testing
 
