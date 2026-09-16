@@ -22,6 +22,7 @@ import { type ILeaseStore, LeaseStore } from "../../../src/credits/lease-store";
 import { RedisLeaseStore } from "../../../src/credits/redis-lease-store";
 import { RedisReservationStore } from "../../../src/credits/redis-reservation-store";
 import { type IReservationStore, ReservationStore } from "../../../src/credits/reservation-store";
+import { consumeReservationAndBuildEvent } from "../../../src/credits/track";
 import type { Reservation } from "../../../src/credits/types";
 import type { DataStreamClient } from "../../../src/datastream";
 import type { Logger } from "../../../src/logger";
@@ -309,6 +310,142 @@ describe("crash-window leaks — redis index reconciliation", () => {
         expect(await reservations.reservedCredits("co_1", "ct_1")).toBe(0);
         expect(await reservations.size()).toBe(0);
         expect(await balance(leases)).toBe(900);
+        reservations.stop();
+    });
+});
+
+/**
+ * Lease-store wrapper that expires the slot's lease and installs a successor
+ * right before delegating the debit — the deterministic form of the window
+ * between `acquireIfNeeded` and `tryReserve` (the awaited extend wire call, or
+ * a sibling pod's `replace` on a shared backend). The debit is not keyed by
+ * lease id, so it lands on the successor.
+ */
+function swapLeaseOnReserve(target: ILeaseStore, successorId: string): ILeaseStore {
+    let swapped = false;
+    return {
+        get: (companyId, creditTypeId) => target.get(companyId, creditTypeId),
+        replace: (entry) => target.replace(entry),
+        extend: (companyId, creditTypeId, grantedAmount, newExpiresAt, leaseId) =>
+            target.extend(companyId, creditTypeId, grantedAmount, newExpiresAt, leaseId),
+        drop: (companyId, creditTypeId) => target.drop(companyId, creditTypeId),
+        tryReserve: async (companyId, creditTypeId, credits) => {
+            if (!swapped) {
+                swapped = true;
+                const now = Date.now();
+                // Expire the incumbent, then install the successor: `replace`
+                // refuses to displace a live lease.
+                const incumbent = await target.get(companyId, creditTypeId);
+                if (incumbent) {
+                    await target.replace({
+                        leaseId: incumbent.leaseId,
+                        companyId,
+                        creditTypeId,
+                        grantedAmount: incumbent.grantedAmount,
+                        expiresAt: new Date(now - 1),
+                    });
+                    await target.drop(companyId, creditTypeId);
+                }
+                await target.replace({
+                    leaseId: successorId,
+                    companyId,
+                    creditTypeId,
+                    grantedAmount: 1000,
+                    expiresAt: new Date(now + 60_000),
+                });
+            }
+            return target.tryReserve(companyId, creditTypeId, credits);
+        },
+        refund: (companyId, creditTypeId, credits, leaseId) => target.refund(companyId, creditTypeId, credits, leaseId),
+    };
+}
+
+/** The real `checkWithLease` flow, wired to whatever lease store is handed in. */
+function makeCheckDeps(leaseStore: ILeaseStore, reservations: IReservationStore): CreditCheckDeps {
+    const logger: Logger = { debug: jest.fn(), info: jest.fn(), warn: jest.fn(), error: jest.fn() };
+    const manager = new CreditLeaseManager({
+        // The seeded live lease means acquireIfNeeded never hits the wire.
+        creditsClient: {} as unknown as CreditsClient,
+        leaseStore,
+        logger,
+        config: { defaultReservationTTL: 60_000 },
+    });
+    const engine = {
+        checkFlagWithOptions: jest.fn().mockResolvedValue({
+            value: true,
+            reason: "probe",
+            flagKey: "inference",
+            flagId: "flag_1",
+            entitlement: {
+                featureId: "feat",
+                featureKey: "inference",
+                valueType: "credit",
+                creditId: "ct_1",
+                consumptionRate: 10,
+                eventSubtype: "inference_tokens",
+            },
+        }),
+    };
+    const datastream = {
+        getFlag: jest.fn().mockResolvedValue({ id: "flag_1", key: "inference" }),
+        getCompany: jest.fn().mockResolvedValue({ id: "co_1", creditBalances: { ct_1: 5000 } }),
+        getUser: jest.fn(),
+        getRulesEngine: () => engine,
+    } as unknown as DataStreamClient;
+    return { leaseStore, reservations, manager, datastream, logger, enqueueFlagCheckEvent: jest.fn() };
+}
+
+describe.each(backends)("checkWithLease lease-swap window — %s stores", (_name, makeStores) => {
+    it("pins the reservation to the successor the debit landed on, so its refund applies", async () => {
+        const { leases, reservations } = makeStores();
+        await seedLease(leases);
+
+        const deps = makeCheckDeps(swapLeaseOnReserve(leases, "lse_2"), reservations);
+        const result = await checkWithLease(
+            deps,
+            "inference",
+            { company: { id: "co_1" } },
+            { usage: 10, eventSubtype: "inference_tokens" },
+            jest.fn(),
+        );
+
+        expect(result.allowed).toBe(true);
+        // Pinning `acquireIfNeeded`'s lse_1 here would name a lease that was
+        // never charged.
+        expect(result.reservation?.leaseId).toBe("lse_2");
+        expect(await leases.get("co_1", "ct_1")).toMatchObject({ leaseId: "lse_2" });
+        expect(await balance(leases)).toBe(900);
+
+        // Cancelling refunds the successor: `refund`'s pin drops a refund aimed
+        // at any other lease, so a stale pin would leave the balance at 900.
+        expect(await reservations.consume(result.reservation?.id ?? "", 0)).toBe(0);
+        expect(await balance(leases)).toBe(1000);
+        reservations.stop();
+    });
+
+    it("emits the successor's lease_id on the settling Track event", async () => {
+        const { leases, reservations } = makeStores();
+        await seedLease(leases);
+
+        const deps = makeCheckDeps(swapLeaseOnReserve(leases, "lse_2"), reservations);
+        const result = await checkWithLease(
+            deps,
+            "inference",
+            { company: { id: "co_1" } },
+            { usage: 10, eventSubtype: "inference_tokens" },
+            jest.fn(),
+        );
+        const reservation = result.reservation;
+        if (!reservation) throw new Error("expected a reservation");
+
+        const { track, settledLocally } = await consumeReservationAndBuildEvent(reservations, reservation, 4);
+
+        expect(settledLocally).toBe(true);
+        // A stale pin would bill lse_2's spend against the released lse_1, and
+        // the server would fall through to the grants.
+        expect(track.leaseId).toBe("lse_2");
+        // 1000 − 100 reserved + 60 unspent refunded to lse_2.
+        expect(await balance(leases)).toBe(960);
         reservations.stop();
     });
 });

@@ -222,6 +222,56 @@
             ]
         },
         {
+            "name": "try_reserve_reports_the_lease_it_charged",
+            "description": "try_reserve is not keyed by lease id: it debits whichever lease holds the slot. When the incumbent has expired and a successor was installed, the debit lands on the successor, and try_reserve must report the successor's id \u2014 that is the id the caller pins its reservation to, so the settle and sweep refunds (both pinned) apply and the Track event bills the lease that was actually charged.",
+            "given": {
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 60000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "advance_clock",
+                    "ms": 60001
+                },
+                {
+                    "op": "replace_lease",
+                    "lease_id": "lse_2",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "granted_amount": 500,
+                    "expires_at_ms": 180000,
+                    "expect": { "written": true }
+                },
+                {
+                    "op": "try_reserve",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 100,
+                    "expect": { "balance": 400, "lease_id": "lse_2" }
+                },
+                {
+                    "op": "refund_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "credits": 100,
+                    "pin_lease_id": "lse_2"
+                },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "lease_id": "lse_2", "local_remaining_credits": 500 }
+                }
+            ]
+        },
+        {
             "name": "refund_clamped_at_granted_amount",
             "description": "A refund can never push the local balance above the granted amount.",
             "given": {
