@@ -7,8 +7,8 @@ import type * as serializers from "../index";
 export const BillingArrearsCadence: core.serialization.Schema<
     serializers.BillingArrearsCadence.Raw,
     Schematic.BillingArrearsCadence
-> = core.serialization.enum_(["end_of_billing_period", "monthly"]);
+> = core.serialization.enum_(["end_of_billing_period", "monthly", "quarterly"]);
 
 export declare namespace BillingArrearsCadence {
-    export type Raw = "end_of_billing_period" | "monthly";
+    export type Raw = "end_of_billing_period" | "monthly" | "quarterly";
 }

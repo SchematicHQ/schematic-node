@@ -10,11 +10,13 @@ export const ExtendCreditLeaseRequestBody: core.serialization.Schema<
 > = core.serialization.object({
     additionalAmount: core.serialization.property("additional_amount", core.serialization.number()),
     expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
+    idempotencyKey: core.serialization.property("idempotency_key", core.serialization.string().optional()),
 });
 
 export declare namespace ExtendCreditLeaseRequestBody {
     export interface Raw {
         additional_amount: number;
         expires_at?: string | null;
+        idempotency_key?: string | null;
     }
 }
