@@ -5,6 +5,7 @@ export const BillingCreditGrantReason = {
     BillingCreditAutoTopup: "billing_credit_auto_topup",
     Free: "free",
     Plan: "plan",
+    PostpaidOverdraft: "postpaid_overdraft",
     Purchased: "purchased",
     Rollover: "rollover",
 } as const;

@@ -17,6 +17,10 @@ export interface PlanEntitlementResponseData {
     meteredYearlyPrice?: Schematic.BillingPriceView;
     metricPeriod?: Schematic.MetricPeriod;
     metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;
+    /** How often overage charges are assessed and invoiced. Null or end_of_billing_period means the billing provider aggregates usage over the subscription's own period and bills it at period end. Monthly and quarterly mean Schematic assesses the overage each month or quarter and bills it on its own invoice. Only applies to overage price behavior. */
+    overageBillingCadence?: Schematic.BillingArrearsCadence;
+    /** Which boundary closes a monthly or quarterly overage window: the subscription's own recurrence (billing_period_start) or the calendar month (month_end), which for a quarterly window means calendar quarters. Only meaningful when overage_billing_cadence is monthly or quarterly. */
+    overageInvoiceAnchor?: Schematic.BillingArrearsAnchor;
     plan?: Schematic.PlanResponseData;
     planId: string;
     priceBehavior?: Schematic.EntitlementPriceBehavior;

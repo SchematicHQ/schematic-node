@@ -3,6 +3,8 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { BillingArrearsAnchor } from "./BillingArrearsAnchor";
+import { BillingArrearsCadence } from "./BillingArrearsCadence";
 import { BillingTiersMode } from "./BillingTiersMode";
 import { CreatePriceTierRequestBody } from "./CreatePriceTierRequestBody";
 import { CurrencyPriceRequestBody } from "./CurrencyPriceRequestBody";
@@ -43,10 +45,12 @@ export const CreateEntitlementInBundleRequestBody: core.serialization.ObjectSche
         "monthly_unit_price_decimal",
         core.serialization.string().optional(),
     ),
+    overageBillingCadence: core.serialization.property("overage_billing_cadence", BillingArrearsCadence.optional()),
     overageBillingProductId: core.serialization.property(
         "overage_billing_product_id",
         core.serialization.string().optional(),
     ),
+    overageInvoiceAnchor: core.serialization.property("overage_invoice_anchor", BillingArrearsAnchor.optional()),
     planId: core.serialization.property("plan_id", core.serialization.string()),
     planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
     priceBehavior: core.serialization.property("price_behavior", EntitlementPriceBehavior.optional()),
@@ -108,7 +112,9 @@ export declare namespace CreateEntitlementInBundleRequestBody {
         monthly_price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
         monthly_unit_price?: number | null;
         monthly_unit_price_decimal?: string | null;
+        overage_billing_cadence?: BillingArrearsCadence.Raw | null;
         overage_billing_product_id?: string | null;
+        overage_invoice_anchor?: BillingArrearsAnchor.Raw | null;
         plan_id: string;
         plan_version_id?: string | null;
         price_behavior?: EntitlementPriceBehavior.Raw | null;

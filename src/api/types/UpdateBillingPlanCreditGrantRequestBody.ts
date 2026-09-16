@@ -6,7 +6,7 @@ export interface UpdateBillingPlanCreditGrantRequestBody {
     applyToExisting?: boolean;
     /** Which boundary closes a monthly arrears window: the subscription's own recurrence (billing_period_start) or the calendar month (month_end). Only applies when arrears_cadence is monthly; defaults to billing_period_start. Send null to fall back to the default. */
     arrearsAnchor?: Schematic.BillingArrearsAnchor;
-    /** How often postpaid charges are closed and invoiced: end_of_billing_period (the default) or monthly. Send null to fall back to the default. */
+    /** How often postpaid charges are closed and invoiced: end_of_billing_period (the default) or monthly. Quarterly is not available for postpaid charges. Send null to fall back to the default. */
     arrearsCadence?: Schematic.BillingArrearsCadence;
     autoTopupAmount?: number;
     autoTopupAmountType?: Schematic.CreditAutoTopupAmountType;

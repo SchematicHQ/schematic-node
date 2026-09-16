@@ -6789,6 +6789,8 @@ describe("EntitlementsClient", () => {
                     },
                     metric_period: "all_time",
                     metric_period_month_reset: "billing_cycle",
+                    overage_billing_cadence: "end_of_billing_period",
+                    overage_invoice_anchor: "billing_period_start",
                     plan: {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
@@ -6966,6 +6968,8 @@ describe("EntitlementsClient", () => {
                     },
                     metricPeriod: "all_time",
                     metricPeriodMonthReset: "billing_cycle",
+                    overageBillingCadence: "end_of_billing_period",
+                    overageInvoiceAnchor: "billing_period_start",
                     plan: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
@@ -7229,6 +7233,8 @@ describe("EntitlementsClient", () => {
                 },
                 metric_period: "all_time",
                 metric_period_month_reset: "billing_cycle",
+                overage_billing_cadence: "end_of_billing_period",
+                overage_invoice_anchor: "billing_period_start",
                 plan: {
                     company_id: "company_id",
                     copied_from_plan_id: "copied_from_plan_id",
@@ -7447,6 +7453,8 @@ describe("EntitlementsClient", () => {
                 },
                 metricPeriod: "all_time",
                 metricPeriodMonthReset: "billing_cycle",
+                overageBillingCadence: "end_of_billing_period",
+                overageInvoiceAnchor: "billing_period_start",
                 plan: {
                     companyId: "company_id",
                     copiedFromPlanId: "copied_from_plan_id",
@@ -7784,6 +7792,8 @@ describe("EntitlementsClient", () => {
                 },
                 metric_period: "all_time",
                 metric_period_month_reset: "billing_cycle",
+                overage_billing_cadence: "end_of_billing_period",
+                overage_invoice_anchor: "billing_period_start",
                 plan: {
                     company_id: "company_id",
                     copied_from_plan_id: "copied_from_plan_id",
@@ -7997,6 +8007,8 @@ describe("EntitlementsClient", () => {
                 },
                 metricPeriod: "all_time",
                 metricPeriodMonthReset: "billing_cycle",
+                overageBillingCadence: "end_of_billing_period",
+                overageInvoiceAnchor: "billing_period_start",
                 plan: {
                     companyId: "company_id",
                     copiedFromPlanId: "copied_from_plan_id",
@@ -8290,6 +8302,8 @@ describe("EntitlementsClient", () => {
                 },
                 metric_period: "all_time",
                 metric_period_month_reset: "billing_cycle",
+                overage_billing_cadence: "end_of_billing_period",
+                overage_invoice_anchor: "billing_period_start",
                 plan: {
                     company_id: "company_id",
                     copied_from_plan_id: "copied_from_plan_id",
@@ -8506,6 +8520,8 @@ describe("EntitlementsClient", () => {
                 },
                 metricPeriod: "all_time",
                 metricPeriodMonthReset: "billing_cycle",
+                overageBillingCadence: "end_of_billing_period",
+                overageInvoiceAnchor: "billing_period_start",
                 plan: {
                     companyId: "company_id",
                     copiedFromPlanId: "copied_from_plan_id",
@@ -8959,6 +8975,8 @@ describe("EntitlementsClient", () => {
                 },
                 metric_period: "all_time",
                 metric_period_month_reset: "billing_cycle",
+                overage_billing_cadence: "end_of_billing_period",
+                overage_invoice_anchor: "billing_period_start",
                 plan: {
                     company_id: "company_id",
                     copied_from_plan_id: "copied_from_plan_id",
@@ -9179,6 +9197,8 @@ describe("EntitlementsClient", () => {
                 },
                 metricPeriod: "all_time",
                 metricPeriodMonthReset: "billing_cycle",
+                overageBillingCadence: "end_of_billing_period",
+                overageInvoiceAnchor: "billing_period_start",
                 plan: {
                     companyId: "company_id",
                     copiedFromPlanId: "copied_from_plan_id",
@@ -10646,6 +10666,8 @@ describe("EntitlementsClient", () => {
                             },
                             metric_period: "all_time",
                             metric_period_month_reset: "billing_cycle",
+                            overage_billing_cadence: "end_of_billing_period",
+                            overage_invoice_anchor: "billing_period_start",
                             plan: {
                                 audience_type: "audience_type",
                                 company_id: "company_id",
@@ -11648,6 +11670,8 @@ describe("EntitlementsClient", () => {
                             },
                             metric_period: "all_time",
                             metric_period_month_reset: "billing_cycle",
+                            overage_billing_cadence: "end_of_billing_period",
+                            overage_invoice_anchor: "billing_period_start",
                             plan: {
                                 audience_type: "audience_type",
                                 company_id: "company_id",
@@ -12716,6 +12740,8 @@ describe("EntitlementsClient", () => {
                             },
                             metricPeriod: "all_time",
                             metricPeriodMonthReset: "billing_cycle",
+                            overageBillingCadence: "end_of_billing_period",
+                            overageInvoiceAnchor: "billing_period_start",
                             plan: {
                                 audienceType: "audience_type",
                                 companyId: "company_id",
@@ -13784,6 +13810,8 @@ describe("EntitlementsClient", () => {
                             },
                             metricPeriod: "all_time",
                             metricPeriodMonthReset: "billing_cycle",
+                            overageBillingCadence: "end_of_billing_period",
+                            overageInvoiceAnchor: "billing_period_start",
                             plan: {
                                 audienceType: "audience_type",
                                 companyId: "company_id",

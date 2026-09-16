@@ -9,4 +9,6 @@
 export interface ExtendCreditLeaseRequestBody {
     additionalAmount: number;
     expiresAt?: Date;
+    /** A caller-chosen key for safe retries: a second request with the same key returns the lease as it stands instead of growing it again. Keys are unique per environment across every extend */
+    idempotencyKey?: string;
 }
