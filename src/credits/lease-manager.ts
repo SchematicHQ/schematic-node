@@ -13,6 +13,15 @@ import {
 } from "./types";
 
 /**
+ * An in-flight extend plus the additional amount its wire call asked for —
+ * the figure a joiner compares its own shortfall against.
+ */
+interface ExtendFlight {
+    requestedAdditional: number;
+    promise: Promise<LeaseEntry | undefined>;
+}
+
+/**
  * Owns the lifecycle of `credit_lease` rows for a single client: acquire on
  * first use or after expiry, extend when the local view dips below the low
  * water mark, release on `client.close()`.
@@ -30,7 +39,7 @@ export class CreditLeaseManager {
     private readonly config: CreditLeaseConfig;
     // Kept separate so acquire and extend never share an in-flight promise.
     private readonly inflightAcquire = new Map<string, Promise<LeaseEntry | undefined>>();
-    private readonly inflightExtend = new Map<string, Promise<LeaseEntry | undefined>>();
+    private readonly inflightExtend = new Map<string, ExtendFlight>();
 
     constructor(opts: {
         creditsClient: CreditsClient;
@@ -183,6 +192,11 @@ export class CreditLeaseManager {
      *     that figure (a single check just failed a reserve for that many
      *     credits — extend opportunistically instead of waiting for the next
      *     sub-watermark check).
+     * A caller arriving while an extend is in flight joins it. If its own
+     * shortfall is larger than what that extend asked for, it waits the flight
+     * out and then issues exactly one follow-up extend for the remaining
+     * difference — otherwise it would inherit a tranche-sized ask and fail its
+     * post-extend retry with credits still sitting on the server.
      * Returns the in-flight promise so callers can await it or fire-and-forget.
      * Never rejects (it is often fire-and-forget — a rejection would surface
      * as an unhandled promise rejection).
@@ -192,6 +206,16 @@ export class CreditLeaseManager {
         creditTypeId: string,
         requiredCredits?: number,
         requestOptions?: CreditsClient.RequestOptions,
+    ): Promise<LeaseEntry | undefined> {
+        return this.extendIfNeeded(companyId, creditTypeId, requiredCredits, requestOptions, true);
+    }
+
+    private async extendIfNeeded(
+        companyId: string,
+        creditTypeId: string,
+        requiredCredits: number | undefined,
+        requestOptions: CreditsClient.RequestOptions | undefined,
+        allowFollowUp: boolean,
     ): Promise<LeaseEntry | undefined> {
         let entry: LeaseEntry | undefined;
         try {
@@ -213,31 +237,62 @@ export class CreditLeaseManager {
         const belowRequired = requiredCredits !== undefined && entry.localRemainingCredits < requiredCredits;
         if (!belowWatermark && !belowRequired) return entry;
 
+        // Size the extend to cover the request that triggered it: a single
+        // check needing more than `localRemaining + leaseSize` would otherwise
+        // fail its post-extend retry forever, even with ample server balance.
+        // The watermark-driven steady-state path (no requiredCredits) keeps
+        // requesting the configured tranche. Sized here, one level above the
+        // wire call, so the flight we register below and the request body
+        // provably carry the same number for a joiner to compare against.
+        const shortfall = requiredCredits !== undefined ? requiredCredits - entry.localRemainingCredits : 0;
+        const additionalAmount = Math.max(resolved.leaseSize, shortfall);
+
         const key = leaseKey(companyId, creditTypeId);
         const inflight = this.inflightExtend.get(key);
-        if (inflight) return inflight;
+        if (inflight) {
+            const joined = await inflight.promise;
+            // The flight already asked for at least what we need — every
+            // watermark-driven joiner, and any check the tranche covers. One
+            // wire call serves all of them, which is the point of single-flight.
+            if (additionalAmount <= inflight.requestedAdditional || !allowFollowUp) return joined;
+            // Our shortfall outran the flight's ask. We waited it out rather
+            // than racing a second extend onto the same lease; now top up the
+            // difference with exactly one more, re-reading the slot the flight
+            // just moved. `allowFollowUp: false` keeps this from chaining: when
+            // the server cannot cover the request, a chain would spin.
+            return this.extendIfNeeded(companyId, creditTypeId, requiredCredits, requestOptions, false);
+        }
+        return this.startExtend(key, entry, resolved, additionalAmount, requestOptions);
+    }
 
-        const promise = this.extend(entry, resolved, requiredCredits, requestOptions).finally(() => {
-            this.inflightExtend.delete(key);
+    /**
+     * Register and run an extend as the slot's in-flight one. The cleanup is
+     * identity-guarded rather than an unconditional `delete`: a joiner whose
+     * shortfall outran this flight registers a follow-up for the same key, and
+     * this flight's `finally` must not evict it.
+     */
+    private startExtend(
+        key: string,
+        entry: LeaseEntry,
+        resolved: ResolvedLeaseConfig,
+        additionalAmount: number,
+        requestOptions?: CreditsClient.RequestOptions,
+    ): Promise<LeaseEntry | undefined> {
+        const promise = this.extend(entry, resolved, additionalAmount, requestOptions).finally(() => {
+            if (this.inflightExtend.get(key)?.promise === promise) this.inflightExtend.delete(key);
         });
-        this.inflightExtend.set(key, promise);
+        this.inflightExtend.set(key, { requestedAdditional: additionalAmount, promise });
         return promise;
     }
 
     private async extend(
         entry: LeaseEntry,
         resolved: ResolvedLeaseConfig,
-        requiredCredits?: number,
+        additionalAmount: number,
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<LeaseEntry | undefined> {
-        // Size the extend to cover the request that triggered it: a single
-        // check needing more than `localRemaining + leaseSize` would otherwise
-        // fail its post-extend retry forever, even with ample server balance.
-        // The watermark-driven steady-state path (no requiredCredits) keeps
-        // requesting the configured tranche.
-        const shortfall = requiredCredits !== undefined ? requiredCredits - entry.localRemainingCredits : 0;
         const body: api.ExtendCreditLeaseRequestBody = {
-            additionalAmount: Math.max(resolved.leaseSize, shortfall),
+            additionalAmount,
             expiresAt: new Date(Date.now() + resolved.leaseDuration),
         };
         try {

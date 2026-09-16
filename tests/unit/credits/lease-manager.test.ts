@@ -31,6 +31,38 @@ function makeManager(creditsClient: { [k: string]: jest.Mock }) {
     return { manager, store };
 }
 
+// A wire response for `lse_1` reporting the server's new authoritative total.
+function extendResponse(grantedAmount: number) {
+    return {
+        data: {
+            id: "lse_1",
+            companyId: "co_1",
+            creditTypeId: "ct_1",
+            grantedAmount,
+            expiresAt: new Date(Date.now() + 5 * 60_000),
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        },
+        params: {},
+    };
+}
+
+function seedLease(store: LeaseStore, grantedAmount: number) {
+    return store.replace({
+        leaseId: "lse_1",
+        companyId: "co_1",
+        creditTypeId: "ct_1",
+        grantedAmount,
+        expiresAt: new Date(Date.now() + 5 * 60_000),
+    });
+}
+
+// Drain the microtask queue so a just-started extend has registered its
+// in-flight entry (or a joiner has reached the join) before we act.
+function flush() {
+    return new Promise((r) => setImmediate(r));
+}
+
 describe("CreditLeaseManager", () => {
     it("acquireIfNeeded calls acquireCreditLease and installs the lease", async () => {
         const expiresAt = new Date(Date.now() + 5 * 60_000);
@@ -273,6 +305,107 @@ describe("CreditLeaseManager", () => {
         expect(body.additionalAmount).toBe(4100);
         // Local mirror reflects the server's new totals: 900 + 4100 = 5000.
         expect(store.get("co_1", "ct_1")?.localRemainingCredits).toBe(5000);
+    });
+
+    it("a joiner whose shortfall outran the in-flight extend gets its own top-up", async () => {
+        // A watermark extend (asking for one tranche) is in flight when a check
+        // needing 5000 arrives. Joining it and taking the tranche would leave
+        // the check's post-extend retry failing with credits on the server —
+        // the joiner has to wait the flight out and top up the difference.
+        let releaseExtend!: (v: unknown) => void;
+        const extendPending = new Promise((r) => (releaseExtend = r));
+        const creditsClient = {
+            acquireCreditLease: jest.fn(),
+            extendCreditLease: jest.fn().mockReturnValueOnce(extendPending).mockResolvedValueOnce(extendResponse(5800)),
+            releaseCreditLease: jest.fn(),
+        };
+        const { manager, store } = makeManager(creditsClient);
+        await seedLease(store, 1000);
+        await store.tryReserve("co_1", "ct_1", 800); // 200 left → below the 25% watermark
+
+        // The steady-state refresh: asks for the configured tranche, then hangs.
+        const watermarkP = manager.maybeExtendInBackground("co_1", "ct_1");
+        await flush();
+        expect(creditsClient.extendCreditLease).toHaveBeenCalledTimes(1);
+        expect(creditsClient.extendCreditLease.mock.calls[0][1].additionalAmount).toBe(1000);
+
+        const joinerP = manager.maybeExtendInBackground("co_1", "ct_1", 5000);
+        await flush();
+        // Still one wire call: the joiner waits the flight out rather than
+        // racing a second extend onto the same lease.
+        expect(creditsClient.extendCreditLease).toHaveBeenCalledTimes(1);
+
+        releaseExtend(extendResponse(2000));
+        await watermarkP;
+        const joined = await joinerP;
+
+        // Exactly one follow-up, sized against the slot the flight just moved:
+        // 5000 required − (200 + 1000 granted) = 3800.
+        expect(creditsClient.extendCreditLease).toHaveBeenCalledTimes(2);
+        expect(creditsClient.extendCreditLease.mock.calls[1][1].additionalAmount).toBe(3800);
+        expect(joined?.localRemainingCredits).toBe(5000);
+        expect(store.get("co_1", "ct_1")?.localRemainingCredits).toBeGreaterThanOrEqual(5000);
+    });
+
+    it("a joiner the in-flight extend already covers still shares the one wire call", async () => {
+        // The common case, and the fan-out the follow-up must not introduce:
+        // both shortfalls fit inside the tranche the flight already asked for.
+        let releaseExtend!: (v: unknown) => void;
+        const extendPending = new Promise((r) => (releaseExtend = r));
+        const creditsClient = {
+            acquireCreditLease: jest.fn(),
+            extendCreditLease: jest.fn().mockReturnValue(extendPending),
+            releaseCreditLease: jest.fn(),
+        };
+        const { manager, store } = makeManager(creditsClient);
+        await seedLease(store, 1000);
+        await store.tryReserve("co_1", "ct_1", 800); // 200 left
+
+        const watermarkP = manager.maybeExtendInBackground("co_1", "ct_1");
+        await flush();
+        // Needs 900 against 200 remaining: a 700 shortfall, inside the tranche.
+        const joinerP = manager.maybeExtendInBackground("co_1", "ct_1", 900);
+        await flush();
+
+        releaseExtend(extendResponse(2000));
+        const [first, joined] = await Promise.all([watermarkP, joinerP]);
+
+        expect(creditsClient.extendCreditLease).toHaveBeenCalledTimes(1);
+        expect(joined).toEqual(first);
+        expect(joined?.localRemainingCredits).toBe(1200);
+    });
+
+    it("bounds the follow-up at one extend when the server cannot cover the request", async () => {
+        // The follow-up must not chain: a company whose balance simply cannot
+        // reach the request would otherwise spin extending forever.
+        let releaseExtend!: (v: unknown) => void;
+        const extendPending = new Promise((r) => (releaseExtend = r));
+        const creditsClient = {
+            acquireCreditLease: jest.fn(),
+            extendCreditLease: jest
+                .fn()
+                .mockReturnValueOnce(extendPending)
+                // The server grants what it has, still far short of the ask.
+                .mockResolvedValue(extendResponse(3000)),
+            releaseCreditLease: jest.fn(),
+        };
+        const { manager, store } = makeManager(creditsClient);
+        await seedLease(store, 1000);
+        await store.tryReserve("co_1", "ct_1", 800); // 200 left
+
+        const watermarkP = manager.maybeExtendInBackground("co_1", "ct_1");
+        await flush();
+        const joinerP = manager.maybeExtendInBackground("co_1", "ct_1", 50_000);
+        await flush();
+
+        releaseExtend(extendResponse(2000));
+        await watermarkP;
+        const joined = await joinerP;
+
+        expect(creditsClient.extendCreditLease).toHaveBeenCalledTimes(2);
+        // Resolves rather than chaining, still short — the caller's reserve
+        // fails and the check reports insufficient balance, as it should.
+        expect(joined?.localRemainingCredits).toBe(2200);
     });
 
     it("maybeExtendInBackground refuses to extend an expired lease", async () => {
