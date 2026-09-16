@@ -84,20 +84,26 @@ generations:
     cli_version: unknown
     generator_versions:
       fernapi/fern-typescript-node-sdk: 3.94.0
-current_generation: 7a1810ef114e011006559e4b4fb3fa3788af9c35
+  - commit_sha: 6197532d30e4076cb461298e1b7f3f2fd72d73a6
+    tree_hash: 9602935f2f6d123296788a2166d4cf4d695972dc
+    timestamp: 2026-09-16T23:38:44.739Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-typescript-node-sdk: 3.94.2
+current_generation: 6197532d30e4076cb461298e1b7f3f2fd72d73a6
 patches:
   - id: patch-7a37bae5
     content_hash: sha256:bb19efd5975a5595353241b77d24494453b1eb170129c665202620134b18cf72
     original_commit: 7a37bae547cd7e3acf4123558f38a67e8de1449b
     original_message: "chore(deps): resolve dependabot security alerts (#156)"
     original_author: Orbit <ben+orbit@schematichq.com>
-    base_generation: 7a1810ef114e011006559e4b4fb3fa3788af9c35
+    base_generation: 6197532d30e4076cb461298e1b7f3f2fd72d73a6
     files:
       - package.json
       - yarn.lock
     patch_content: |
       diff --git a/package.json b/package.json
-      index d6c7147..edf6fac 100644
+      index 37b055b..e128ea7 100644
       --- a/package.json
       +++ b/package.json
       @@ -57,6 +57,10 @@
@@ -115,7 +121,7 @@ patches:
       package.json: |
         {
             "name": "@schematichq/schematic-typescript-node",
-            "version": "1.6.1",
+            "version": "1.6.2",
             "private": false,
             "repository": {
                 "type": "git",
@@ -2039,9 +2045,9 @@ patches:
             gopd "^1.2.0"
 
         electron-to-chromium@^1.5.427:
-          version "1.5.429"
-          resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.429.tgz#1f9bf3eea3c99942dd86d66e121e8b864c26f01e"
-          integrity sha512-/1ENIE3cx4HTIx4IfPZFaOunJmsrSVTnj6coXoRVbiJUbkeTyFkJvBeWGkdgh08OhFbxYLMT1kbkwFVSarq6Ow==
+          version "1.5.430"
+          resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.430.tgz#788eada5bbfda8095a95149184368a2bb4fb8e4a"
+          integrity sha512-e1QEj72Y4zd8RlNZVmoTg+iCOSVwpk05IOiiQwdrkwCSVlZfPthevErhE+nckGd2YbsXfp1SkisznhGVIXP2NQ==
 
         emittery@^0.13.1:
           version "0.13.1"
@@ -4092,13 +4098,13 @@ patches:
     original_commit: f33b87acaa0c8474ad5851a4d4a0fe7e4216ea41
     original_message: "chore(deps): resolve sharp to 0.35.4 (#177)"
     original_author: Orbit <ben+orbit@schematichq.com>
-    base_generation: 7a1810ef114e011006559e4b4fb3fa3788af9c35
+    base_generation: 6197532d30e4076cb461298e1b7f3f2fd72d73a6
     files:
       - package.json
       - yarn.lock
     patch_content: |
       diff --git a/package.json b/package.json
-      index d6c7147..edf6fac 100644
+      index 37b055b..e128ea7 100644
       --- a/package.json
       +++ b/package.json
       @@ -57,6 +57,10 @@
@@ -4116,7 +4122,7 @@ patches:
       package.json: |
         {
             "name": "@schematichq/schematic-typescript-node",
-            "version": "1.6.1",
+            "version": "1.6.2",
             "private": false,
             "repository": {
                 "type": "git",
@@ -6040,9 +6046,9 @@ patches:
             gopd "^1.2.0"
 
         electron-to-chromium@^1.5.427:
-          version "1.5.429"
-          resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.429.tgz#1f9bf3eea3c99942dd86d66e121e8b864c26f01e"
-          integrity sha512-/1ENIE3cx4HTIx4IfPZFaOunJmsrSVTnj6coXoRVbiJUbkeTyFkJvBeWGkdgh08OhFbxYLMT1kbkwFVSarq6Ow==
+          version "1.5.430"
+          resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.430.tgz#788eada5bbfda8095a95149184368a2bb4fb8e4a"
+          integrity sha512-e1QEj72Y4zd8RlNZVmoTg+iCOSVwpk05IOiiQwdrkwCSVlZfPthevErhE+nckGd2YbsXfp1SkisznhGVIXP2NQ==
 
         emittery@^0.13.1:
           version "0.13.1"
