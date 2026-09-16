@@ -95,7 +95,7 @@ describeIf("Redis stores against a real redis-server", () => {
     it("replace round-trips, keeps a live lease, and overwrites an expired one", async () => {
         const leaseStore = makeLeaseStore();
         const creditTypeId = await installLease(leaseStore, { leaseId: "lse_a", grantedAmount: 100 });
-        expect(await leaseStore.tryReserve("co_1", creditTypeId, 40)).toBe(60);
+        expect(await leaseStore.tryReserve("co_1", creditTypeId, 40)).toEqual({ balance: 60, leaseId: "lse_a" });
 
         // A racing acquire must not clobber the live, partially-debited lease.
         const wroteOverLive = await leaseStore.replace({
@@ -133,7 +133,7 @@ describeIf("Redis stores against a real redis-server", () => {
         // grant, erasing debits whose reservations are still open.
         const leaseStore = makeLeaseStore();
         const creditTypeId = await installLease(leaseStore, { leaseId: "lse_a", grantedAmount: 100 });
-        expect(await leaseStore.tryReserve("co_1", creditTypeId, 40)).toBe(60);
+        expect(await leaseStore.tryReserve("co_1", creditTypeId, 40)).toEqual({ balance: 60, leaseId: "lse_a" });
 
         await client.hSet(leaseStore.hashKey("co_1", creditTypeId), "expiresAt", String(Date.now() - 1_000));
         const laterExpiry = new Date(Date.now() + 120_000);
@@ -162,10 +162,12 @@ describeIf("Redis stores against a real redis-server", () => {
         const results = await Promise.all(
             Array.from({ length: 25 }, () => leaseStore.tryReserve("co_1", creditTypeId, 10)),
         );
-        const successes = results.filter((r): r is number => r !== null);
+        const successes = results.filter((r) => r !== null);
         expect(successes).toHaveLength(10);
-        // Each success returns the post-debit balance: one distinct step each.
-        expect([...successes].sort((a, b) => a - b)).toEqual([0, 10, 20, 30, 40, 50, 60, 70, 80, 90]);
+        // Each success returns the post-debit balance and the lease it charged:
+        // one distinct balance step each, all against the one installed lease.
+        expect(successes.map((r) => r.leaseId)).toEqual(Array(10).fill("lse_1"));
+        expect(successes.map((r) => r.balance).sort((a, b) => a - b)).toEqual([0, 10, 20, 30, 40, 50, 60, 70, 80, 90]);
         expect((await leaseStore.get("co_1", creditTypeId))?.localRemainingCredits).toBe(0);
     });
 
@@ -174,7 +176,7 @@ describeIf("Redis stores against a real redis-server", () => {
         // balance as a string for fractional consumption rates to survive.
         const leaseStore = makeLeaseStore();
         const creditTypeId = await installLease(leaseStore, { grantedAmount: 10 });
-        expect(await leaseStore.tryReserve("co_1", creditTypeId, 0.5)).toBe(9.5);
+        expect(await leaseStore.tryReserve("co_1", creditTypeId, 0.5)).toEqual({ balance: 9.5, leaseId: "lse_1" });
         expect((await leaseStore.get("co_1", creditTypeId))?.localRemainingCredits).toBe(9.5);
     });
 
@@ -191,7 +193,7 @@ describeIf("Redis stores against a real redis-server", () => {
     it("refund clamps at grantedAmount and honors the leaseId pin", async () => {
         const leaseStore = makeLeaseStore();
         const creditTypeId = await installLease(leaseStore, { leaseId: "lse_live", grantedAmount: 100 });
-        expect(await leaseStore.tryReserve("co_1", creditTypeId, 50)).toBe(50);
+        expect(await leaseStore.tryReserve("co_1", creditTypeId, 50)).toEqual({ balance: 50, leaseId: "lse_live" });
 
         // Pinned to a stale lease: dropped.
         await leaseStore.refund("co_1", creditTypeId, 30, "lse_stale");
@@ -232,7 +234,7 @@ describeIf("Redis stores against a real redis-server", () => {
     it("concurrent consumes settle a reservation exactly once", async () => {
         const { leaseStore, reservations } = makeStores();
         const creditTypeId = await installLease(leaseStore, { grantedAmount: 1_000 });
-        expect(await leaseStore.tryReserve("co_1", creditTypeId, 100)).toBe(900);
+        expect(await leaseStore.tryReserve("co_1", creditTypeId, 100)).toEqual({ balance: 900, leaseId: "lse_1" });
         const reservation = makeReservation({ creditTypeId });
         await reservations.add(reservation);
 
@@ -249,7 +251,7 @@ describeIf("Redis stores against a real redis-server", () => {
     it("sweepExpired refunds expired holds and cleans both indexes", async () => {
         const { leaseStore, reservations } = makeStores();
         const creditTypeId = await installLease(leaseStore, { grantedAmount: 1_000 });
-        expect(await leaseStore.tryReserve("co_1", creditTypeId, 300)).toBe(700);
+        expect(await leaseStore.tryReserve("co_1", creditTypeId, 300)).toEqual({ balance: 700, leaseId: "lse_1" });
         for (let i = 0; i < 3; i++) {
             await reservations.add(
                 makeReservation({ creditTypeId, creditsReserved: 100, expiresAt: new Date(Date.now() - 1) }),

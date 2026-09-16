@@ -23,6 +23,15 @@ export interface LeaseEntry {
     expiresAt: Date;
 }
 
+/**
+ * Outcome of a successful `tryReserve`: the post-debit balance plus the ID of
+ * the lease the credits actually came out of.
+ */
+export interface ReserveResult {
+    balance: number;
+    leaseId: string;
+}
+
 /** Backing-store contract shared by `LeaseStore` (in-memory) and `RedisLeaseStore` (shared). */
 export interface ILeaseStore {
     get(companyId: string, creditTypeId: string): Promise<LeaseEntry | undefined> | LeaseEntry | undefined;
@@ -73,15 +82,23 @@ export interface ILeaseStore {
     drop(companyId: string, creditTypeId: string): Promise<void>;
     /**
      * Atomically check-and-debit `credits` from the lease's remaining balance.
-     * Returns the post-debit `localRemainingCredits` on success, or `null` if
-     * there is no live lease, the balance is insufficient, or `credits` is not
-     * a finite non-negative number (NaN must never reach the debit — it slips
-     * through every numeric comparison and would poison the balance into
-     * allowing everything). Returning the balance rather than a boolean lets
-     * the caller derive the pre-debit figure (`returned + credits`) without a
-     * follow-up read.
+     * Returns the post-debit `localRemainingCredits` together with the
+     * `leaseId` the debit landed on, or `null` if there is no live lease, the
+     * balance is insufficient, or `credits` is not a finite non-negative
+     * number (NaN must never reach the debit — it slips through every numeric
+     * comparison and would poison the balance into allowing everything).
+     * Returning the balance rather than a boolean lets the caller derive the
+     * pre-debit figure (`returned + credits`) without a follow-up read.
+     *
+     * The debit is NOT keyed by lease ID: it charges whichever lease occupies
+     * the slot at that moment, which need not be the one the caller's acquire
+     * handed back — the slot's lease can be replaced in between (by the
+     * sweeper, or by a sibling pod on a shared backend). The caller MUST
+     * therefore pin its reservation to the returned `leaseId`, never to the
+     * acquired one: the settle refund, the sweep refund, and the Track event's
+     * `lease_id` all have to name the lease that was actually charged.
      */
-    tryReserve(companyId: string, creditTypeId: string, credits: number): Promise<number | null>;
+    tryReserve(companyId: string, creditTypeId: string, credits: number): Promise<ReserveResult | null>;
     /**
      * Refund credits to the slot's lease balance (clamped at `grantedAmount`).
      * When `leaseId` is supplied, the refund applies ONLY if the slot still
@@ -207,10 +224,10 @@ export class LeaseStore implements ILeaseStore {
 
     /**
      * Attempt to reserve `credits` from the local remaining balance.
-     * Returns the post-debit balance on success, `null` if there isn't enough
-     * remaining (see `ILeaseStore.tryReserve`).
+     * Returns the post-debit balance and the charged lease's ID on success,
+     * `null` if there isn't enough remaining (see `ILeaseStore.tryReserve`).
      */
-    async tryReserve(companyId: string, creditTypeId: string, credits: number): Promise<number | null> {
+    async tryReserve(companyId: string, creditTypeId: string, credits: number): Promise<ReserveResult | null> {
         // Reject non-finite/negative debits outright: `NaN` passes every `<`
         // comparison below and `balance -= NaN` would poison the lease into
         // approving all future reserves (`NaN < x` is always false).
@@ -226,7 +243,10 @@ export class LeaseStore implements ILeaseStore {
             if (entry.expiresAt.getTime() <= Date.now()) return null;
             if (entry.localRemainingCredits < credits) return null;
             entry.localRemainingCredits -= credits;
-            return entry.localRemainingCredits;
+            // Read the lease ID under the SAME lock as the debit: the caller
+            // pins its reservation to it, so a read after the lock could name
+            // a lease that replaced this one in between.
+            return { balance: entry.localRemainingCredits, leaseId: entry.leaseId };
         });
     }
 

@@ -123,7 +123,7 @@ describe.each(backends)("crash-window leaks — %s stores", (_name, makeStores) 
             await seedLease(leases);
 
             // The crash: the atomic debit landed, the reservation record never did.
-            expect(await leases.tryReserve("co_1", "ct_1", 100)).toBe(900);
+            expect(await leases.tryReserve("co_1", "ct_1", 100)).toEqual({ balance: 900, leaseId: "lse_1" });
 
             // Bounded: exactly the reserved amount is stranded, nothing more.
             expect(await balance(leases)).toBe(900);
@@ -142,7 +142,7 @@ describe.each(backends)("crash-window leaks — %s stores", (_name, makeStores) 
                 jest.setSystemTime(t0);
                 const { leases, reservations } = makeStores();
                 await seedLease(leases, new Date(t0 + 60_000));
-                expect(await leases.tryReserve("co_1", "ct_1", 100)).toBe(900);
+                expect(await leases.tryReserve("co_1", "ct_1", 100)).toEqual({ balance: 900, leaseId: "lse_1" });
 
                 jest.setSystemTime(t0 + 60_001);
                 // Expiry guard: the leaked balance is stale (the server refunds the
@@ -170,10 +170,10 @@ describe.each(backends)("crash-window leaks — %s stores", (_name, makeStores) 
             const { leases, reservations } = makeStores();
             await seedLease(leases);
             // The crashed attempt.
-            expect(await leases.tryReserve("co_1", "ct_1", 100)).toBe(900);
+            expect(await leases.tryReserve("co_1", "ct_1", 100)).toEqual({ balance: 900, leaseId: "lse_1" });
 
             // The retry is a fresh check with a fresh reservation id.
-            expect(await leases.tryReserve("co_1", "ct_1", 100)).toBe(800);
+            expect(await leases.tryReserve("co_1", "ct_1", 100)).toEqual({ balance: 800, leaseId: "lse_1" });
             await reservations.add(makeReservation({ id: "res_retry" }));
 
             expect(await reservations.consume("res_retry", 40)).toBe(40);
@@ -197,7 +197,7 @@ describe.each(backends)("crash-window leaks — %s stores", (_name, makeStores) 
                 return crash.store;
             });
             await seedLease(leases);
-            expect(await leases.tryReserve("co_1", "ct_1", 100)).toBe(900);
+            expect(await leases.tryReserve("co_1", "ct_1", 100)).toEqual({ balance: 900, leaseId: "lse_1" });
             await reservations.add(makeReservation());
 
             await expect(reservations.consume("res_1", 30)).rejects.toThrow("simulated crash before refund");
@@ -217,7 +217,7 @@ describe.each(backends)("crash-window leaks — %s stores", (_name, makeStores) 
                 return crash.store;
             });
             await seedLease(leases);
-            expect(await leases.tryReserve("co_1", "ct_1", 100)).toBe(900);
+            expect(await leases.tryReserve("co_1", "ct_1", 100)).toEqual({ balance: 900, leaseId: "lse_1" });
             await reservations.add(makeReservation());
             await expect(reservations.consume("res_1", 30)).rejects.toThrow("simulated crash before refund");
             crash.disarm();
@@ -243,7 +243,7 @@ describe.each(backends)("crash-window leaks — %s stores", (_name, makeStores) 
                     return crash.store;
                 });
                 await seedLease(leases, new Date(t0 + 60_000));
-                expect(await leases.tryReserve("co_1", "ct_1", 100)).toBe(900);
+                expect(await leases.tryReserve("co_1", "ct_1", 100)).toEqual({ balance: 900, leaseId: "lse_1" });
                 await reservations.add(makeReservation());
                 await expect(reservations.consume("res_1", 30)).rejects.toThrow("simulated crash before refund");
 
@@ -294,7 +294,7 @@ describe("crash-window leaks — redis index reconciliation", () => {
         const leases = new RedisLeaseStore({ client });
         const reservations = new RedisReservationStore({ client, leaseStore: leases, sweepIntervalMs: 60_000 });
         await seedLease(leases);
-        expect(await leases.tryReserve("co_1", "ct_1", 100)).toBe(900);
+        expect(await leases.tryReserve("co_1", "ct_1", 100)).toEqual({ balance: 900, leaseId: "lse_1" });
         await reservations.add(makeReservation({ expiresAt: new Date(Date.now() - 1) }));
 
         await expect(reservations.consume("res_1", 30)).rejects.toThrow("simulated crash after claim");

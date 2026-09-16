@@ -117,11 +117,14 @@ export function makeFakeRedis(): RedisClient {
         ) {
             // TRY_RESERVE_SCRIPT — `now` is the Redis server clock in the real
             // script (redis.call('TIME')); emulated with the local clock here.
-            // Success returns the post-debit balance as a string (matching the
-            // real script's tostring()); failure returns nil (null here).
+            // Success returns a [post-debit balance, charged leaseId]
+            // multi-bulk with the balance as a string (matching the real
+            // script's tostring()); failure returns nil (null here).
             const [leaseHashKey] = keys;
             const remainingRaw = hget(leaseHashKey, "localRemainingCredits");
             if (remainingRaw === null) return null;
+            const leaseId = hget(leaseHashKey, "leaseId");
+            if (leaseId === null) return null;
             const expiry = Number(hget(leaseHashKey, "expiresAt") ?? "0");
             const now = Date.now();
             if (expiry <= now) return null;
@@ -130,7 +133,7 @@ export function makeFakeRedis(): RedisClient {
             if (remaining < requested) return null;
             const newRemaining = remaining - requested;
             hset(leaseHashKey, "localRemainingCredits", String(newRemaining));
-            return String(newRemaining);
+            return [String(newRemaining), leaseId];
         }
         if (
             trimmed.includes("local new_balance = remaining + refund") &&

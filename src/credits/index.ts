@@ -1,4 +1,4 @@
-export { LeaseStore, leaseKey, type LeaseEntry, type ILeaseStore } from "./lease-store";
+export { LeaseStore, leaseKey, type LeaseEntry, type ILeaseStore, type ReserveResult } from "./lease-store";
 export { ReservationStore, type IReservationStore } from "./reservation-store";
 export { CreditLeaseManager } from "./lease-manager";
 export { RedisLeaseStore } from "./redis-lease-store";
