@@ -10,6 +10,7 @@ import { BillingCreditGrantZeroedOutReason } from "./BillingCreditGrantZeroedOut
 import { BillingCreditLedgerResponseData } from "./BillingCreditLedgerResponseData";
 import { CompanyLedgerResponseData } from "./CompanyLedgerResponseData";
 import { CreditEventType } from "./CreditEventType";
+import { CreditTransferReason } from "./CreditTransferReason";
 import { CreditUsageReason } from "./CreditUsageReason";
 import { FeatureLedgerResponseData } from "./FeatureLedgerResponseData";
 
@@ -55,6 +56,7 @@ export const CreditEventLedgerResponseData: core.serialization.ObjectSchema<
     ),
     sourceId: core.serialization.property("source_id", core.serialization.number()),
     toGrantId: core.serialization.property("to_grant_id", core.serialization.string().optional()),
+    transferReason: core.serialization.property("transfer_reason", CreditTransferReason.optional()),
     usageEventId: core.serialization.property("usage_event_id", core.serialization.string().optional()),
     usageReason: core.serialization.property("usage_reason", CreditUsageReason.optional()),
     zeroedOutReason: core.serialization.property("zeroed_out_reason", BillingCreditGrantZeroedOutReason.optional()),
@@ -91,6 +93,7 @@ export declare namespace CreditEventLedgerResponseData {
         quantity_remaining_at_zero_out?: number | null;
         source_id: number;
         to_grant_id?: string | null;
+        transfer_reason?: CreditTransferReason.Raw | null;
         usage_event_id?: string | null;
         usage_reason?: CreditUsageReason.Raw | null;
         zeroed_out_reason?: BillingCreditGrantZeroedOutReason.Raw | null;

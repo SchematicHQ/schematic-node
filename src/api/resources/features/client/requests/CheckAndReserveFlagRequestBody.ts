@@ -10,9 +10,11 @@ export interface CheckAndReserveFlagRequestBody {
     company?: Record<string, string>;
     /** When the hold lapses if no track event settles it; defaults to one minute from now and may be at most one hour out. The unspent hold is refunded on expiry */
     expiresAt?: Date;
-    /** Hypothetical usage to evaluate the flag against. When credit_cost names the entitlement's credit, that cost is what gets held; otherwise the hold is quantity times the entitlement's consumption rate */
+    /** A caller-chosen key for safe retries: a second request with the same key returns the original reservation instead of taking another hold */
+    idempotencyKey?: string;
+    /** Hypothetical usage to evaluate the flag against. When credit_cost names the entitlement's credit, that cost is what gets held; otherwise the hold is the entitlement's consumption rate times quantity, or, when quantity is omitted, times the usage stated here */
     preflight?: Schematic.PreflightRequestBody;
-    /** Units of the feature the operation will consume; defaults to 1. Sets the hold size together with the entitlement's consumption rate, and is echoed back on the reservation for the settling track event */
+    /** Units of the feature the operation will consume. Sets the hold size together with the entitlement's consumption rate, and is echoed back on the reservation for the settling track event. When it is omitted the units come from preflight.event_usage.quantity, if that event subtype is the entitlement's, else from preflight.usage, else 1 */
     quantity?: number;
     user?: Record<string, string>;
 }

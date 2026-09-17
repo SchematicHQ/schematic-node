@@ -32,6 +32,7 @@ export interface CreditEventLedgerResponseData {
     quantityRemainingAtZeroOut?: number;
     sourceId: number;
     toGrantId?: string;
+    transferReason?: Schematic.CreditTransferReason;
     usageEventId?: string;
     usageReason?: Schematic.CreditUsageReason;
     zeroedOutReason?: Schematic.BillingCreditGrantZeroedOutReason;

@@ -13,6 +13,7 @@ export interface BillingCreditResponseData {
     description: string;
     icon?: string;
     id: string;
+    ledgerAuthority: Schematic.BillingCreditLedgerAuthority;
     name: string;
     pluralName?: string;
     price?: Schematic.BillingPriceResponseData;

@@ -5,6 +5,7 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingCreditBurnStrategy } from "./BillingCreditBurnStrategy";
 import { BillingCreditExpiryUnit } from "./BillingCreditExpiryUnit";
+import { BillingCreditLedgerAuthority } from "./BillingCreditLedgerAuthority";
 import { BillingCreditRolloverPolicy } from "./BillingCreditRolloverPolicy";
 import { BillingPriceResponseData } from "./BillingPriceResponseData";
 import { BillingProductResponseData } from "./BillingProductResponseData";
@@ -30,6 +31,7 @@ export const BillingCreditResponseData: core.serialization.ObjectSchema<
     description: core.serialization.string(),
     icon: core.serialization.string().optional(),
     id: core.serialization.string(),
+    ledgerAuthority: core.serialization.property("ledger_authority", BillingCreditLedgerAuthority),
     name: core.serialization.string(),
     pluralName: core.serialization.property("plural_name", core.serialization.string().optional()),
     price: BillingPriceResponseData.optional(),
@@ -50,6 +52,7 @@ export declare namespace BillingCreditResponseData {
         description: string;
         icon?: string | null;
         id: string;
+        ledger_authority: BillingCreditLedgerAuthority.Raw;
         name: string;
         plural_name?: string | null;
         price?: BillingPriceResponseData.Raw | null;
