@@ -1,3 +1,5 @@
+import { randomUUID } from "crypto";
+
 import type * as api from "../api";
 import type { CreditsClient } from "../api/resources/credits/client/Client";
 import type { Logger } from "../logger";
@@ -294,6 +296,10 @@ export class CreditLeaseManager {
         const body: api.ExtendCreditLeaseRequestBody = {
             additionalAmount,
             expiresAt: new Date(Date.now() + resolved.leaseDuration),
+            // Minted once per extend, outside the wire call, so the transport's
+            // retries resend the same key: a retry after a lost 2xx is handed
+            // the lease as it stands instead of growing it a second time.
+            idempotencyKey: randomUUID(),
         };
         try {
             const response = await this.creditsClient.extendCreditLease(entry.leaseId, body, requestOptions);
