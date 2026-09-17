@@ -143,6 +143,13 @@ export class CreditLeaseManager {
         // an expired lease as released and refunds the full grant back to the
         // company balance.
 
+        // Check again: stop() may have landed during the store read, and a
+        // drain that ran in that gap saw nothing in flight.
+        if (this.stopped) {
+            this.logger.debug(`Lease manager is stopped; skipping acquire for ${companyId}/${creditTypeId}`);
+            return undefined;
+        }
+
         const key = leaseKey(companyId, creditTypeId);
         const inflight = this.inflightAcquire.get(key);
         if (inflight) return inflight;

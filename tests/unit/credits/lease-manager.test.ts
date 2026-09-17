@@ -544,6 +544,24 @@ describe("CreditLeaseManager", () => {
         expect(store.get("co_1", "ct_1")).toBeUndefined();
     });
 
+    it("stop() during the store read refuses the acquire", async () => {
+        const creditsClient = {
+            acquireCreditLease: jest.fn(),
+            extendCreditLease: jest.fn(),
+            releaseCreditLease: jest.fn(),
+        };
+        const { manager, store } = makeManager(creditsClient);
+
+        // Past the first stopped check, waiting on the store read.
+        const acquiring = manager.acquireIfNeeded("co_1", "ct_1");
+        manager.stop();
+        await manager.drain();
+
+        await expect(acquiring).resolves.toBeUndefined();
+        expect(creditsClient.acquireCreditLease).not.toHaveBeenCalled();
+        expect(store.get("co_1", "ct_1")).toBeUndefined();
+    });
+
     it("stop() keeps a background extend from starting", async () => {
         const creditsClient = {
             acquireCreditLease: jest.fn(),
