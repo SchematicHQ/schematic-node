@@ -16,11 +16,12 @@ function makeLogger(): Logger {
 
 function makeManager(creditsClient: { [k: string]: jest.Mock }) {
     const store = new LeaseStore();
+    const logger = makeLogger();
     const manager = new CreditLeaseManager({
         // biome-ignore lint/suspicious/noExplicitAny: stubbed client
         creditsClient: creditsClient as any,
         leaseStore: store,
-        logger: makeLogger(),
+        logger,
         config: {
             defaultLeaseDuration: 5 * 60_000,
             defaultReservationTTL: 60_000,
@@ -28,7 +29,7 @@ function makeManager(creditsClient: { [k: string]: jest.Mock }) {
             lowWaterMark: 0.25,
         },
     });
-    return { manager, store };
+    return { manager, store, logger };
 }
 
 // A wire response for `lse_1` reporting the server's new authoritative total.
@@ -524,6 +525,118 @@ describe("CreditLeaseManager", () => {
         expect(creditsClient.releaseCreditLease).toHaveBeenCalledWith("lse_live", {});
         // Released lease is dropped locally; the expired one is left for lazy expiry.
         expect(store.get("co_1", "ct_1")).toBeUndefined();
+    });
+
+    it("stop() refuses an acquire before it reaches the wire", async () => {
+        const creditsClient = {
+            acquireCreditLease: jest.fn(),
+            extendCreditLease: jest.fn(),
+            releaseCreditLease: jest.fn(),
+        };
+        const { manager, store } = makeManager(creditsClient);
+
+        manager.stop();
+
+        // A lease acquired now is one the close that called stop() has already
+        // drained past, so nothing would be left to release it.
+        await expect(manager.acquireIfNeeded("co_1", "ct_1")).resolves.toBeUndefined();
+        expect(creditsClient.acquireCreditLease).not.toHaveBeenCalled();
+        expect(store.get("co_1", "ct_1")).toBeUndefined();
+    });
+
+    it("stop() keeps a background extend from starting", async () => {
+        const creditsClient = {
+            acquireCreditLease: jest.fn(),
+            extendCreditLease: jest.fn(),
+            releaseCreditLease: jest.fn(),
+        };
+        const { manager, store } = makeManager(creditsClient);
+        await store.replace({
+            leaseId: "lse_live",
+            companyId: "co_1",
+            creditTypeId: "ct_1",
+            grantedAmount: 1000,
+            expiresAt: new Date(Date.now() + 5 * 60_000),
+        });
+        await store.tryReserve("co_1", "ct_1", 900);
+
+        manager.stop();
+        await manager.maybeExtendInBackground("co_1", "ct_1");
+        await manager.drain();
+
+        expect(creditsClient.extendCreditLease).not.toHaveBeenCalled();
+    });
+
+    it("drain waits out an extend that is still on the wire", async () => {
+        let releaseExtend!: (v: unknown) => void;
+        const extendPending = new Promise((r) => (releaseExtend = r));
+        const creditsClient = {
+            acquireCreditLease: jest.fn(),
+            extendCreditLease: jest.fn().mockReturnValue(extendPending),
+            releaseCreditLease: jest.fn(),
+        };
+        const { manager, store } = makeManager(creditsClient);
+        await store.replace({
+            leaseId: "lse_live",
+            companyId: "co_1",
+            creditTypeId: "ct_1",
+            grantedAmount: 1000,
+            expiresAt: new Date(Date.now() + 5 * 60_000),
+        });
+        await store.tryReserve("co_1", "ct_1", 900); // below the watermark
+
+        // Fire and forget, the way check() does.
+        void manager.maybeExtendInBackground("co_1", "ct_1");
+        manager.stop();
+
+        let drained = false;
+        const draining = manager.drain().then(() => {
+            drained = true;
+        });
+        await new Promise((r) => setImmediate(r));
+        expect(drained).toBe(false);
+
+        releaseExtend({
+            data: {
+                id: "lse_live",
+                companyId: "co_1",
+                creditTypeId: "ct_1",
+                grantedAmount: 2000,
+                expiresAt: new Date(Date.now() + 5 * 60_000),
+                createdAt: new Date(),
+                updatedAt: new Date(),
+            },
+            params: {},
+        });
+        await draining;
+
+        expect(drained).toBe(true);
+        expect(store.get("co_1", "ct_1")?.grantedAmount).toBe(2000);
+    });
+
+    it("drain gives up on work that will not land", async () => {
+        const creditsClient = {
+            acquireCreditLease: jest.fn(),
+            // Never settles: the wire call is wedged.
+            extendCreditLease: jest.fn().mockReturnValue(new Promise(() => {})),
+            releaseCreditLease: jest.fn(),
+        };
+        const { manager, store, logger } = makeManager(creditsClient);
+        await store.replace({
+            leaseId: "lse_live",
+            companyId: "co_1",
+            creditTypeId: "ct_1",
+            grantedAmount: 1000,
+            expiresAt: new Date(Date.now() + 5 * 60_000),
+        });
+        await store.tryReserve("co_1", "ct_1", 900);
+        void manager.maybeExtendInBackground("co_1", "ct_1");
+        manager.stop();
+
+        // A shutdown that hangs is worse than a hold the server expires.
+        await manager.drain(10);
+
+        expect(logger.warn).toHaveBeenCalledWith(expect.stringContaining("server-side expiry"));
     });
 
     it("does not conflate concurrent acquire and extend on the same key", async () => {

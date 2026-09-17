@@ -1,6 +1,6 @@
 export { LeaseStore, leaseKey, type LeaseEntry, type ILeaseStore, type ReserveResult } from "./lease-store";
 export { ReservationStore, type IReservationStore } from "./reservation-store";
-export { CreditLeaseManager } from "./lease-manager";
+export { CreditLeaseManager, settleWithin, unrefTimer } from "./lease-manager";
 export { RedisLeaseStore } from "./redis-lease-store";
 export { RedisReservationStore } from "./redis-reservation-store";
 export {
@@ -13,6 +13,7 @@ export {
     DEFAULT_SWEEP_INTERVAL_MS,
     MAX_RESERVATION_TTL_MS,
     RESERVATION_TTL_SKEW_ALLOWANCE_MS,
+    SHUTDOWN_DRAIN_TIMEOUT_MS,
 } from "./types";
 export type {
     CreditLeaseConfig,

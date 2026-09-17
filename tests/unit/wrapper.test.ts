@@ -7,6 +7,7 @@ import type { CheckFlagWithEntitlementResponse } from "../../src/wrapper";
 const mockCheckFlag = jest.fn();
 const mockCheckAndReserveFlag = jest.fn();
 const mockAcquireCreditLease = jest.fn();
+const mockReleaseCreditLease = jest.fn();
 const mockReleaseCreditReservation = jest.fn();
 
 jest.mock("../../src/Client", () => {
@@ -21,7 +22,7 @@ jest.mock("../../src/Client", () => {
         credits = {
             acquireCreditLease: mockAcquireCreditLease,
             extendCreditLease: jest.fn(),
-            releaseCreditLease: jest.fn(),
+            releaseCreditLease: mockReleaseCreditLease,
             releaseCreditReservation: mockReleaseCreditReservation,
         };
         events = {};
@@ -512,6 +513,96 @@ describe("SchematicClient wrapper - credit lease store backend selection", () =>
         const survivor = await leaseStore.get("co_1", "ct_1");
         expect(survivor).toBeDefined();
         expect(survivor?.leaseId).toBe("lse_shared");
+    });
+
+    it("close() releases a lease an in-flight prewarm installs", async () => {
+        // The prewarm's acquire is on the wire when close() starts. Promises
+        // are not cancellable, so the lease still lands: close has to drain it
+        // before listing the store, or nothing releases it and the credits
+        // stay held until server-side expiry.
+        let landAcquire!: () => void;
+        const acquireLanded = new Promise<void>((r) => {
+            landAcquire = r;
+        });
+        let onTheWire!: () => void;
+        const reachedTheWire = new Promise<void>((r) => {
+            onTheWire = r;
+        });
+        mockAcquireCreditLease.mockImplementation(async () => {
+            onTheWire();
+            await acquireLanded;
+            return {
+                data: {
+                    id: "lse_1",
+                    companyId: "co_1",
+                    creditTypeId: "bilcr_inference",
+                    grantedAmount: 1000,
+                    expiresAt: new Date(Date.now() + 5 * 60_000),
+                },
+                params: {},
+            };
+        });
+        mockReleaseCreditLease.mockResolvedValue({});
+
+        const client = new SchematicClient({
+            apiKey: "test-key",
+            logger: mockLogger,
+            creditLeases: { mode: "client", sweepIntervalMs: 60_000 },
+        });
+        await client.identify(
+            { keys: { user_id: "u_1" }, company: { keys: { id: "co_1" } } },
+            {
+                prewarm: ["bilcr_inference"],
+            },
+        );
+        await reachedTheWire;
+
+        const closing = client.close();
+        // An untracked acquire would install here, behind the release.
+        landAcquire();
+        await closing;
+
+        const leaseStore = (client as any).leaseStore;
+        expect(leaseStore.list()).toEqual([]);
+        expect(mockReleaseCreditLease).toHaveBeenCalledWith("lse_1", {});
+    });
+
+    it("prewarm() called after close() has started acquires nothing", async () => {
+        const client = new SchematicClient({
+            apiKey: "test-key",
+            logger: mockLogger,
+            creditLeases: { mode: "client", sweepIntervalMs: 60_000 },
+        });
+        await client.close();
+
+        await client.prewarm({ company: { id: "co_1" } }, ["bilcr_inference"]);
+
+        expect(mockAcquireCreditLease).not.toHaveBeenCalled();
+    });
+
+    it("close() cuts short a prewarm still polling for its company", async () => {
+        // The poll waits out prewarmResolveTimeoutMs on a company that never
+        // surfaces. Its timer is unref'd and the loop reads the closing flag,
+        // so close() neither hangs on it nor leaves a handle behind.
+        mockDataStream.getCachedCompany.mockResolvedValue(null);
+        mockDataStream.getCompany.mockResolvedValue(null);
+        const client = new SchematicClient({
+            apiKey: "test-key",
+            logger: mockLogger,
+            useDataStream: true,
+            creditLeases: { mode: "client", sweepIntervalMs: 60_000, prewarmResolveTimeoutMs: 60_000 },
+        });
+
+        const prewarming = client.prewarm({ company: { key: "co-1" } }, ["bilcr_inference"]);
+        // Let the poll get past its first attempt and into the sleep.
+        await new Promise((r) => setTimeout(r, 150));
+
+        const startedClosing = Date.now();
+        await client.close();
+        await prewarming;
+
+        expect(Date.now() - startedClosing).toBeLessThan(1000);
+        expect(mockAcquireCreditLease).not.toHaveBeenCalled();
     });
 });
 

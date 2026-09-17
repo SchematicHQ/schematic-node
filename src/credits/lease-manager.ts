@@ -10,9 +10,37 @@ import {
     DEFAULT_LEASE_SIZE,
     DEFAULT_LOW_WATER_MARK,
     DEFAULT_RESERVATION_TTL_MS,
+    SHUTDOWN_DRAIN_TIMEOUT_MS,
     type CreditLeaseConfig,
     type ResolvedLeaseConfig,
 } from "./types";
+
+/** Drop a timer's hold on the event loop where the runtime has one (Node). */
+export function unrefTimer(timer: ReturnType<typeof setTimeout>): void {
+    if (timer.unref) timer.unref();
+}
+
+/**
+ * Await `promises`, giving up after `timeoutMs`. Reports whether everything
+ * landed, so a caller winding down can say what it is abandoning. Abandoned
+ * work is not cancelled — promises have no cancellation — it just stops being
+ * waited on.
+ */
+export async function settleWithin(promises: Promise<unknown>[], timeoutMs: number): Promise<boolean> {
+    if (promises.length === 0) return true;
+    if (timeoutMs <= 0) return false;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const expiry = new Promise<boolean>((resolve) => {
+        timer = setTimeout(() => resolve(false), timeoutMs);
+        // A shutdown timer must never be the thing holding the process open.
+        unrefTimer(timer);
+    });
+    try {
+        return await Promise.race([Promise.allSettled(promises).then(() => true), expiry]);
+    } finally {
+        if (timer) clearTimeout(timer);
+    }
+}
 
 /**
  * An in-flight extend plus the additional amount its wire call asked for —
@@ -42,6 +70,11 @@ export class CreditLeaseManager {
     // Kept separate so acquire and extend never share an in-flight promise.
     private readonly inflightAcquire = new Map<string, Promise<LeaseEntry | undefined>>();
     private readonly inflightExtend = new Map<string, ExtendFlight>();
+    // Lease work nobody awaits: the redundant release a lost acquire race
+    // issues, and the background extends callers fire and forget. `drain()`
+    // waits these out so a close releases what they installed.
+    private readonly background = new Set<Promise<unknown>>();
+    private stopped = false;
 
     constructor(opts: {
         creditsClient: CreditsClient;
@@ -82,6 +115,12 @@ export class CreditLeaseManager {
         creditTypeId: string,
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<LeaseEntry | undefined> {
+        if (this.stopped) {
+            // Past stop() the drain has run or is running, so a lease acquired
+            // now is one nothing is left to release.
+            this.logger.debug(`Lease manager is stopped; skipping acquire for ${companyId}/${creditTypeId}`);
+            return undefined;
+        }
         let existing: LeaseEntry | undefined;
         try {
             existing = await this.leaseStore.get(companyId, creditTypeId);
@@ -162,11 +201,13 @@ export class CreditLeaseManager {
                     this.logger.debug(
                         `Lost acquire race for ${companyId}/${creditTypeId}; releasing redundant lease ${data.id}`,
                     );
-                    void this.creditsClient
-                        .releaseCreditLease(data.id, {})
-                        .catch((err) =>
-                            this.logger.warn(`Failed to release redundant credit lease ${data.id}: ${err}`),
-                        );
+                    void this.track(
+                        this.creditsClient
+                            .releaseCreditLease(data.id, {})
+                            .catch((err) =>
+                                this.logger.warn(`Failed to release redundant credit lease ${data.id}: ${err}`),
+                            ),
+                    );
                 } else {
                     this.logger.debug(
                         `Lost acquire race for ${companyId}/${creditTypeId}; server returned the installed lease ${data.id}, nothing to release`,
@@ -203,13 +244,22 @@ export class CreditLeaseManager {
      * Never rejects (it is often fire-and-forget — a rejection would surface
      * as an unhandled promise rejection).
      */
-    async maybeExtendInBackground(
+    maybeExtendInBackground(
         companyId: string,
         creditTypeId: string,
         requiredCredits?: number,
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<LeaseEntry | undefined> {
-        return this.extendIfNeeded(companyId, creditTypeId, requiredCredits, requestOptions, true);
+        if (this.stopped) {
+            // Extending past stop() re-holds credits on a lease the close is
+            // about to release, or has already released.
+            this.logger.debug(`Lease manager is stopped; skipping extend for ${companyId}/${creditTypeId}`);
+            return Promise.resolve(undefined);
+        }
+        // Tracked whole, not just the wire call inside it: callers void this,
+        // so between the store read and the extend there would otherwise be a
+        // window where a drain sees nothing pending.
+        return this.track(this.extendIfNeeded(companyId, creditTypeId, requiredCredits, requestOptions, true));
     }
 
     private async extendIfNeeded(
@@ -328,6 +378,52 @@ export class CreditLeaseManager {
         } catch (err) {
             this.logger.warn(`Failed to extend credit lease ${entry.leaseId}: ${err}`);
             return undefined;
+        }
+    }
+
+    /** Hold a reference to unawaited work so `drain()` can wait it out. */
+    private track<T>(promise: Promise<T>): Promise<T> {
+        this.background.add(promise);
+        void promise.then(
+            () => this.background.delete(promise),
+            () => this.background.delete(promise),
+        );
+        return promise;
+    }
+
+    /**
+     * Refuse new lease work. Idempotent, and paired with `drain()`: stopping
+     * first is what makes the drain terminate, since nothing can enqueue
+     * behind it.
+     */
+    stop(): void {
+        this.stopped = true;
+    }
+
+    /**
+     * Wait out lease work already on the wire, so a close releases what that
+     * work installs instead of orphaning it. Bounded: whatever has not landed
+     * by `timeoutMs` is abandoned rather than stalling the caller's shutdown,
+     * and the credits it holds fall back to server-side expiry.
+     */
+    async drain(timeoutMs: number = SHUTDOWN_DRAIN_TIMEOUT_MS): Promise<void> {
+        const deadline = Date.now() + timeoutMs;
+        for (;;) {
+            const pending = [
+                ...this.inflightAcquire.values(),
+                ...[...this.inflightExtend.values()].map((flight) => flight.promise),
+                ...this.background,
+            ];
+            if (pending.length === 0) return;
+            // Settling one round can enqueue another (an acquire that loses its
+            // race fires a release), so keep going until the set empties.
+            if (!(await settleWithin(pending, deadline - Date.now()))) {
+                this.logger.warn(
+                    `Timed out after ${timeoutMs}ms draining in-flight credit lease work; ` +
+                        "any credits it holds will be released by server-side expiry",
+                );
+                return;
+            }
         }
     }
 

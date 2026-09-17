@@ -35,6 +35,10 @@ export const DEFAULT_SWEEP_INTERVAL_MS: number = 1000;
 // company; short enough that a misconfigured caller doesn't hang.
 export const DEFAULT_PREWARM_RESOLVE_TIMEOUT_MS: number = 5000;
 export const DEFAULT_PREWARM_POLL_INTERVAL_MS: number = 100;
+// How long `close()` waits for in-flight lease work to land before giving up
+// on it. Bounded on purpose: a shutdown that hangs is worse than a hold the
+// server expires at `DEFAULT_LEASE_DURATION_MS`.
+export const SHUTDOWN_DRAIN_TIMEOUT_MS: number = 5000;
 
 /**
  * Where a credit hold lives for a `check()` that passes `usage`.

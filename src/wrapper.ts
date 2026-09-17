@@ -21,6 +21,9 @@ import {
     RedisLeaseStore,
     RedisReservationStore,
     ReservationStore,
+    SHUTDOWN_DRAIN_TIMEOUT_MS,
+    settleWithin,
+    unrefTimer,
     type ILeaseStore,
     type IReservationStore,
     type CheckOptions,
@@ -190,6 +193,13 @@ export class SchematicClient extends BaseClient {
     private creditLeaseMode?: CreditLeaseMode;
     // TTL applied to a server-side hold's `expiresAt` (server mode only).
     private serverReservationTTL: number = DEFAULT_RESERVATION_TTL_MS;
+    // Set at the top of close(), so work that is still starting is refused
+    // rather than racing the teardown.
+    private closing: boolean = false;
+    // Prewarms `identify` spawned and nobody awaits. close() waits them out:
+    // an acquire that lands after the release installs a lease nothing
+    // releases, and its credits stay held until the server expires them.
+    private readonly pendingPrewarms = new Set<Promise<void>>();
 
     /**
      * Creates a new instance of the SchematicClient
@@ -862,14 +872,37 @@ export class SchematicClient extends BaseClient {
      * are still drawing on — doing so would refund the grant server-side and
      * pull the balance out from under them. Shared leases reclaim themselves:
      * they expire (client- and server-side) or are fully consumed.
+     *
+     * Lease work already in flight is waited out (bounded by
+     * `SHUTDOWN_DRAIN_TIMEOUT_MS`) before the release, so an acquire that
+     * lands mid-shutdown is one the release can see.
      * @returns Promise that resolves when everything has been stopped
      */
     async close(): Promise<void> {
+        this.closing = true;
         if (this.reservations) {
             this.reservations.stop();
         }
-        if (this.creditLeaseManager && !this.leaseBackendShared) {
-            await this.creditLeaseManager.releaseAllLocalLeases();
+        if (this.creditLeaseManager) {
+            // Refuse new lease work first, so the waits below are waiting on
+            // work that is already unwinding rather than work still starting.
+            // Both steps run for a shared backend too: the work must not
+            // outlive the client, even where there is nothing to release.
+            this.creditLeaseManager.stop();
+            // One budget across both waits, not each timeout in turn: a caller
+            // closing a client wants a bounded shutdown, not the sum of every
+            // wait inside it.
+            const deadline = Date.now() + SHUTDOWN_DRAIN_TIMEOUT_MS;
+            const prewarms = [...this.pendingPrewarms];
+            if (!(await settleWithin(prewarms, deadline - Date.now()))) {
+                this.logger.warn(
+                    `Timed out after ${SHUTDOWN_DRAIN_TIMEOUT_MS}ms waiting for in-flight prewarms on close`,
+                );
+            }
+            await this.creditLeaseManager.drain(deadline - Date.now());
+            if (!this.leaseBackendShared) {
+                await this.creditLeaseManager.releaseAllLocalLeases();
+            }
         }
         if (this.datastreamClient) {
             this.datastreamClient.close();
@@ -900,6 +933,13 @@ export class SchematicClient extends BaseClient {
         }
         if (!evalCtx.company || Object.keys(evalCtx.company).length === 0) {
             this.logger.debug("prewarm requires a company on evalCtx");
+            return;
+        }
+        if (this.closing) {
+            // close() only waits out the prewarms it spawned; a caller
+            // invoking prewarm() directly would otherwise install a lease
+            // after the release has already listed the store.
+            this.logger.debug("prewarm: client is closing, skipping acquire");
             return;
         }
         const companyId = await this.resolveCompanyIdWithWait(evalCtx);
@@ -947,6 +987,9 @@ export class SchematicClient extends BaseClient {
         // bounded by prewarmResolveTimeoutMs.
         const deadline = Date.now() + this.prewarmResolveTimeoutMs;
         for (;;) {
+            // A company resolved for a client that is shutting down warms
+            // nothing, and close() would be waiting out the rest of this poll.
+            if (this.closing) return undefined;
             try {
                 const resolved = await datastream.getCompany(company);
                 if (resolved?.id) return resolved.id;
@@ -954,7 +997,11 @@ export class SchematicClient extends BaseClient {
                 this.logger.debug(`prewarm: datastream company fetch failed (${err})`);
             }
             if (Date.now() >= deadline) return undefined;
-            await new Promise((r) => setTimeout(r, DEFAULT_PREWARM_POLL_INTERVAL_MS));
+            await new Promise((r) => {
+                // Unref'd: a poll between attempts must not hold the process
+                // open past close().
+                unrefTimer(setTimeout(r, DEFAULT_PREWARM_POLL_INTERVAL_MS));
+            });
         }
     }
 
@@ -1202,9 +1249,11 @@ export class SchematicClient extends BaseClient {
             void this.eventBuffer.flush().catch((err) => {
                 this.logger.debug(`identify flush before prewarm failed: ${err}`);
             });
-            void this.prewarm(evalCtx, options.prewarm).catch((err) => {
+            const prewarming = this.prewarm(evalCtx, options.prewarm).catch((err) => {
                 this.logger.warn(`identify prewarm failed: ${err}`);
             });
+            this.pendingPrewarms.add(prewarming);
+            void prewarming.then(() => this.pendingPrewarms.delete(prewarming));
         }
     }
 
