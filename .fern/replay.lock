@@ -90,14 +90,20 @@ generations:
     cli_version: unknown
     generator_versions:
       fernapi/fern-typescript-node-sdk: 3.94.2
-current_generation: 6197532d30e4076cb461298e1b7f3f2fd72d73a6
+  - commit_sha: a818b9c1507ad6804978e4bddeae72744f5f1560
+    tree_hash: 38126070a11399786960fd9765c63f6469561c7d
+    timestamp: 2026-09-17T06:10:14.310Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-typescript-node-sdk: 3.94.2
+current_generation: a818b9c1507ad6804978e4bddeae72744f5f1560
 patches:
   - id: patch-7a37bae5
     content_hash: sha256:bb19efd5975a5595353241b77d24494453b1eb170129c665202620134b18cf72
     original_commit: 7a37bae547cd7e3acf4123558f38a67e8de1449b
     original_message: "chore(deps): resolve dependabot security alerts (#156)"
     original_author: Orbit <ben+orbit@schematichq.com>
-    base_generation: 6197532d30e4076cb461298e1b7f3f2fd72d73a6
+    base_generation: a818b9c1507ad6804978e4bddeae72744f5f1560
     files:
       - package.json
       - yarn.lock
@@ -2398,7 +2404,7 @@ patches:
           dependencies:
             has-symbols "^1.0.3"
 
-        hasown@^2.0.2, hasown@^2.0.3, hasown@^2.0.4:
+        hasown@^2.0.2, hasown@^2.0.4:
           version "2.0.4"
           resolved "https://registry.yarnpkg.com/hasown/-/hasown-2.0.4.tgz#8c62d8cb90beb2aad5d0a5b67581ad9854c3f003"
           integrity sha512-T2UbfbBEF32wiepXIsMlTW9+dDYC6wMh/t/vYA4tuOMKqWz/n3vr1NFSxQiyP+zk2mXsoMA/i/7qV6LKut1t1A==
@@ -2488,11 +2494,11 @@ patches:
           integrity sha512-zz06S8t0ozoDXMG+ube26zeCTNXcKIPJZJi8hBrF4idCLms4CG9QtK7qBl1boi5ODzFpjswb5JPmHCbMpjaYzg==
 
         is-core-module@^2.16.1:
-          version "2.16.2"
-          resolved "https://registry.yarnpkg.com/is-core-module/-/is-core-module-2.16.2.tgz#3e07450a8080ebce3fbf0cac494f4d2ab324e082"
-          integrity sha512-evOr8xfXKxE6qSR0hSXL2r3sd7ALj8+7jQEUvPYcm5sgZFdJ+AYzT6yNmJenvIYQBgIGwfwz08sL8zoL7yq2BA==
+          version "2.17.0"
+          resolved "https://registry.yarnpkg.com/is-core-module/-/is-core-module-2.17.0.tgz#75c1c76236c9f7e38ddbfff292e127dc13b21027"
+          integrity sha512-J/vG0zBCbIKOQFfufSwyXdMrsohyJIUNkrnmo6WZGzoM7tr/lsbfW5b2BvisL6zsyMzK9UxV9L6c7AoFbyXHOA==
           dependencies:
-            hasown "^2.0.3"
+            hasown "^2.0.4"
 
         is-fullwidth-code-point@^3.0.0:
           version "3.0.0"
@@ -4098,7 +4104,7 @@ patches:
     original_commit: f33b87acaa0c8474ad5851a4d4a0fe7e4216ea41
     original_message: "chore(deps): resolve sharp to 0.35.4 (#177)"
     original_author: Orbit <ben+orbit@schematichq.com>
-    base_generation: 6197532d30e4076cb461298e1b7f3f2fd72d73a6
+    base_generation: a818b9c1507ad6804978e4bddeae72744f5f1560
     files:
       - package.json
       - yarn.lock
@@ -6399,7 +6405,7 @@ patches:
           dependencies:
             has-symbols "^1.0.3"
 
-        hasown@^2.0.2, hasown@^2.0.3, hasown@^2.0.4:
+        hasown@^2.0.2, hasown@^2.0.4:
           version "2.0.4"
           resolved "https://registry.yarnpkg.com/hasown/-/hasown-2.0.4.tgz#8c62d8cb90beb2aad5d0a5b67581ad9854c3f003"
           integrity sha512-T2UbfbBEF32wiepXIsMlTW9+dDYC6wMh/t/vYA4tuOMKqWz/n3vr1NFSxQiyP+zk2mXsoMA/i/7qV6LKut1t1A==
@@ -6489,11 +6495,11 @@ patches:
           integrity sha512-zz06S8t0ozoDXMG+ube26zeCTNXcKIPJZJi8hBrF4idCLms4CG9QtK7qBl1boi5ODzFpjswb5JPmHCbMpjaYzg==
 
         is-core-module@^2.16.1:
-          version "2.16.2"
-          resolved "https://registry.yarnpkg.com/is-core-module/-/is-core-module-2.16.2.tgz#3e07450a8080ebce3fbf0cac494f4d2ab324e082"
-          integrity sha512-evOr8xfXKxE6qSR0hSXL2r3sd7ALj8+7jQEUvPYcm5sgZFdJ+AYzT6yNmJenvIYQBgIGwfwz08sL8zoL7yq2BA==
+          version "2.17.0"
+          resolved "https://registry.yarnpkg.com/is-core-module/-/is-core-module-2.17.0.tgz#75c1c76236c9f7e38ddbfff292e127dc13b21027"
+          integrity sha512-J/vG0zBCbIKOQFfufSwyXdMrsohyJIUNkrnmo6WZGzoM7tr/lsbfW5b2BvisL6zsyMzK9UxV9L6c7AoFbyXHOA==
           dependencies:
-            hasown "^2.0.3"
+            hasown "^2.0.4"
 
         is-fullwidth-code-point@^3.0.0:
           version "3.0.0"
