@@ -8,6 +8,7 @@
  */
 export interface ExtendCreditLeaseRequestBody {
     additionalAmount: number;
+    /** Pushes the lease's expiry out; may be at most one hour from now. Leave unset to keep the expiry the lease already has */
     expiresAt?: Date;
     /** A caller-chosen key for safe retries: a second request with the same key returns the lease as it stands instead of growing it again. Keys are unique per environment across every extend */
     idempotencyKey?: string;

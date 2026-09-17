@@ -181,6 +181,7 @@ export * from "./CreditsAutoTopupSuccess";
 export * from "./CreditsCreditPurchaseSuccess";
 export * from "./CreditsWebhookCompanySummary";
 export * from "./CreditsWebhookCreditSummary";
+export * from "./CreditTransferReason";
 export * from "./CreditTransferResponseData";
 export * from "./CreditTransferView";
 export * from "./CreditTriggerConfig";

@@ -11,6 +11,7 @@ export const CheckAndReserveFlagRequestBody: core.serialization.Schema<
 > = core.serialization.object({
     company: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
     expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
+    idempotencyKey: core.serialization.property("idempotency_key", core.serialization.string().optional()),
     preflight: PreflightRequestBody.optional(),
     quantity: core.serialization.number().optional(),
     user: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
@@ -20,6 +21,7 @@ export declare namespace CheckAndReserveFlagRequestBody {
     export interface Raw {
         company?: Record<string, string> | null;
         expires_at?: string | null;
+        idempotency_key?: string | null;
         preflight?: PreflightRequestBody.Raw | null;
         quantity?: number | null;
         user?: Record<string, string> | null;

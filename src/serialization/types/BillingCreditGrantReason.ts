@@ -12,7 +12,9 @@ export const BillingCreditGrantReason: core.serialization.Schema<
     "billing_credit_auto_topup",
     "free",
     "plan",
+    "postpaid_forgiven",
     "postpaid_overdraft",
+    "postpaid_settlement",
     "purchased",
     "rollover",
 ]);
@@ -23,7 +25,9 @@ export declare namespace BillingCreditGrantReason {
         | "billing_credit_auto_topup"
         | "free"
         | "plan"
+        | "postpaid_forgiven"
         | "postpaid_overdraft"
+        | "postpaid_settlement"
         | "purchased"
         | "rollover";
 }

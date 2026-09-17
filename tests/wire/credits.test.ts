@@ -22,6 +22,7 @@ describe("CreditsClient", () => {
                     description: "description",
                     icon: "icon",
                     id: "id",
+                    ledger_authority: "schematic_authoritative",
                     name: "name",
                     plural_name: "plural_name",
                     price: {
@@ -79,6 +80,7 @@ describe("CreditsClient", () => {
                     description: "description",
                     icon: "icon",
                     id: "id",
+                    ledgerAuthority: "schematic_authoritative",
                     name: "name",
                     pluralName: "plural_name",
                     price: {
@@ -198,6 +200,7 @@ describe("CreditsClient", () => {
                 description: "description",
                 icon: "icon",
                 id: "id",
+                ledger_authority: "schematic_authoritative",
                 name: "name",
                 plural_name: "plural_name",
                 price: {
@@ -262,6 +265,7 @@ describe("CreditsClient", () => {
                 description: "description",
                 icon: "icon",
                 id: "id",
+                ledgerAuthority: "schematic_authoritative",
                 name: "name",
                 pluralName: "plural_name",
                 price: {
@@ -435,6 +439,7 @@ describe("CreditsClient", () => {
                 description: "description",
                 icon: "icon",
                 id: "id",
+                ledger_authority: "schematic_authoritative",
                 name: "name",
                 plural_name: "plural_name",
                 price: {
@@ -494,6 +499,7 @@ describe("CreditsClient", () => {
                 description: "description",
                 icon: "icon",
                 id: "id",
+                ledgerAuthority: "schematic_authoritative",
                 name: "name",
                 pluralName: "plural_name",
                 price: {
@@ -623,6 +629,7 @@ describe("CreditsClient", () => {
                 description: "description",
                 icon: "icon",
                 id: "id",
+                ledger_authority: "schematic_authoritative",
                 name: "name",
                 plural_name: "plural_name",
                 price: {
@@ -686,6 +693,7 @@ describe("CreditsClient", () => {
                 description: "description",
                 icon: "icon",
                 id: "id",
+                ledgerAuthority: "schematic_authoritative",
                 name: "name",
                 pluralName: "plural_name",
                 price: {
@@ -3792,7 +3800,11 @@ describe("CreditsClient", () => {
     test("acquireCreditLease (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { company_id: "company_id", credit_type_id: "credit_type_id", requested_amount: 1.1 };
+        const rawRequestBody = {
+            company_id: "company_id",
+            credit_type_id: "credit_type_id",
+            requested_amount: 9999999999,
+        };
         const rawResponseBody = { error: "error" };
 
         server
@@ -3808,7 +3820,7 @@ describe("CreditsClient", () => {
             return await client.credits.acquireCreditLease({
                 companyId: "company_id",
                 creditTypeId: "credit_type_id",
-                requestedAmount: 1.1,
+                requestedAmount: 9999999999,
             });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
@@ -3816,7 +3828,11 @@ describe("CreditsClient", () => {
     test("acquireCreditLease (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { company_id: "company_id", credit_type_id: "credit_type_id", requested_amount: 1.1 };
+        const rawRequestBody = {
+            company_id: "company_id",
+            credit_type_id: "credit_type_id",
+            requested_amount: 9999999999,
+        };
         const rawResponseBody = { error: "error" };
 
         server
@@ -3832,7 +3848,7 @@ describe("CreditsClient", () => {
             return await client.credits.acquireCreditLease({
                 companyId: "company_id",
                 creditTypeId: "credit_type_id",
-                requestedAmount: 1.1,
+                requestedAmount: 9999999999,
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
@@ -3840,7 +3856,11 @@ describe("CreditsClient", () => {
     test("acquireCreditLease (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { company_id: "company_id", credit_type_id: "credit_type_id", requested_amount: 1.1 };
+        const rawRequestBody = {
+            company_id: "company_id",
+            credit_type_id: "credit_type_id",
+            requested_amount: 9999999999,
+        };
         const rawResponseBody = { error: "error" };
 
         server
@@ -3856,7 +3876,7 @@ describe("CreditsClient", () => {
             return await client.credits.acquireCreditLease({
                 companyId: "company_id",
                 creditTypeId: "credit_type_id",
-                requestedAmount: 1.1,
+                requestedAmount: 9999999999,
             });
         }).rejects.toThrow(Schematic.PaymentRequiredError);
     });
@@ -3864,7 +3884,11 @@ describe("CreditsClient", () => {
     test("acquireCreditLease (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { company_id: "company_id", credit_type_id: "credit_type_id", requested_amount: 1.1 };
+        const rawRequestBody = {
+            company_id: "company_id",
+            credit_type_id: "credit_type_id",
+            requested_amount: 9999999999,
+        };
         const rawResponseBody = { error: "error" };
 
         server
@@ -3880,7 +3904,7 @@ describe("CreditsClient", () => {
             return await client.credits.acquireCreditLease({
                 companyId: "company_id",
                 creditTypeId: "credit_type_id",
-                requestedAmount: 1.1,
+                requestedAmount: 9999999999,
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
@@ -3888,7 +3912,11 @@ describe("CreditsClient", () => {
     test("acquireCreditLease (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { company_id: "company_id", credit_type_id: "credit_type_id", requested_amount: 1.1 };
+        const rawRequestBody = {
+            company_id: "company_id",
+            credit_type_id: "credit_type_id",
+            requested_amount: 9999999999,
+        };
         const rawResponseBody = { error: "error" };
 
         server
@@ -3904,7 +3932,7 @@ describe("CreditsClient", () => {
             return await client.credits.acquireCreditLease({
                 companyId: "company_id",
                 creditTypeId: "credit_type_id",
-                requestedAmount: 1.1,
+                requestedAmount: 9999999999,
             });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
@@ -3912,7 +3940,11 @@ describe("CreditsClient", () => {
     test("acquireCreditLease (7)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { company_id: "company_id", credit_type_id: "credit_type_id", requested_amount: 1.1 };
+        const rawRequestBody = {
+            company_id: "company_id",
+            credit_type_id: "credit_type_id",
+            requested_amount: 9999999999,
+        };
         const rawResponseBody = { error: "error" };
 
         server
@@ -3928,7 +3960,7 @@ describe("CreditsClient", () => {
             return await client.credits.acquireCreditLease({
                 companyId: "company_id",
                 creditTypeId: "credit_type_id",
-                requestedAmount: 1.1,
+                requestedAmount: 9999999999,
             });
         }).rejects.toThrow(Schematic.InternalServerError);
     });
@@ -3985,7 +4017,7 @@ describe("CreditsClient", () => {
     test("extendCreditLease (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { additional_amount: 1.1 };
+        const rawRequestBody = { additional_amount: 9999999999 };
         const rawResponseBody = { error: "error" };
 
         server
@@ -3999,7 +4031,7 @@ describe("CreditsClient", () => {
 
         await expect(async () => {
             return await client.credits.extendCreditLease("lease_id", {
-                additionalAmount: 1.1,
+                additionalAmount: 9999999999,
             });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
@@ -4007,7 +4039,7 @@ describe("CreditsClient", () => {
     test("extendCreditLease (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { additional_amount: 1.1 };
+        const rawRequestBody = { additional_amount: 9999999999 };
         const rawResponseBody = { error: "error" };
 
         server
@@ -4021,7 +4053,7 @@ describe("CreditsClient", () => {
 
         await expect(async () => {
             return await client.credits.extendCreditLease("lease_id", {
-                additionalAmount: 1.1,
+                additionalAmount: 9999999999,
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
@@ -4029,7 +4061,7 @@ describe("CreditsClient", () => {
     test("extendCreditLease (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { additional_amount: 1.1 };
+        const rawRequestBody = { additional_amount: 9999999999 };
         const rawResponseBody = { error: "error" };
 
         server
@@ -4043,7 +4075,7 @@ describe("CreditsClient", () => {
 
         await expect(async () => {
             return await client.credits.extendCreditLease("lease_id", {
-                additionalAmount: 1.1,
+                additionalAmount: 9999999999,
             });
         }).rejects.toThrow(Schematic.PaymentRequiredError);
     });
@@ -4051,7 +4083,7 @@ describe("CreditsClient", () => {
     test("extendCreditLease (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { additional_amount: 1.1 };
+        const rawRequestBody = { additional_amount: 9999999999 };
         const rawResponseBody = { error: "error" };
 
         server
@@ -4065,7 +4097,7 @@ describe("CreditsClient", () => {
 
         await expect(async () => {
             return await client.credits.extendCreditLease("lease_id", {
-                additionalAmount: 1.1,
+                additionalAmount: 9999999999,
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
@@ -4073,7 +4105,7 @@ describe("CreditsClient", () => {
     test("extendCreditLease (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { additional_amount: 1.1 };
+        const rawRequestBody = { additional_amount: 9999999999 };
         const rawResponseBody = { error: "error" };
 
         server
@@ -4087,7 +4119,7 @@ describe("CreditsClient", () => {
 
         await expect(async () => {
             return await client.credits.extendCreditLease("lease_id", {
-                additionalAmount: 1.1,
+                additionalAmount: 9999999999,
             });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
@@ -4095,7 +4127,7 @@ describe("CreditsClient", () => {
     test("extendCreditLease (7)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { additional_amount: 1.1 };
+        const rawRequestBody = { additional_amount: 9999999999 };
         const rawResponseBody = { error: "error" };
 
         server
@@ -4109,7 +4141,7 @@ describe("CreditsClient", () => {
 
         await expect(async () => {
             return await client.credits.extendCreditLease("lease_id", {
-                additionalAmount: 1.1,
+                additionalAmount: 9999999999,
             });
         }).rejects.toThrow(Schematic.InternalServerError);
     });
@@ -4286,6 +4318,7 @@ describe("CreditsClient", () => {
                         default_rollover_policy: "expire",
                         description: "description",
                         id: "id",
+                        ledger_authority: "schematic_authoritative",
                         name: "name",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
@@ -4374,6 +4407,7 @@ describe("CreditsClient", () => {
                         defaultRolloverPolicy: "expire",
                         description: "description",
                         id: "id",
+                        ledgerAuthority: "schematic_authoritative",
                         name: "name",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
@@ -4550,6 +4584,7 @@ describe("CreditsClient", () => {
                     description: "description",
                     icon: "icon",
                     id: "id",
+                    ledger_authority: "schematic_authoritative",
                     name: "name",
                     plural_name: "plural_name",
                     price: {
@@ -4652,6 +4687,7 @@ describe("CreditsClient", () => {
                     description: "description",
                     icon: "icon",
                     id: "id",
+                    ledgerAuthority: "schematic_authoritative",
                     name: "name",
                     pluralName: "plural_name",
                     price: {
@@ -4906,6 +4942,7 @@ describe("CreditsClient", () => {
                     description: "description",
                     icon: "icon",
                     id: "id",
+                    ledger_authority: "schematic_authoritative",
                     name: "name",
                     plural_name: "plural_name",
                     price: {
@@ -5001,6 +5038,7 @@ describe("CreditsClient", () => {
                     description: "description",
                     icon: "icon",
                     id: "id",
+                    ledgerAuthority: "schematic_authoritative",
                     name: "name",
                     pluralName: "plural_name",
                     price: {
@@ -5171,6 +5209,7 @@ describe("CreditsClient", () => {
                     description: "description",
                     icon: "icon",
                     id: "id",
+                    ledger_authority: "schematic_authoritative",
                     name: "name",
                     plural_name: "plural_name",
                     price: {
@@ -5270,6 +5309,7 @@ describe("CreditsClient", () => {
                     description: "description",
                     icon: "icon",
                     id: "id",
+                    ledgerAuthority: "schematic_authoritative",
                     name: "name",
                     pluralName: "plural_name",
                     price: {
@@ -6955,6 +6995,7 @@ describe("CreditsClient", () => {
                     quantity_remaining_at_zero_out: 1.1,
                     source_id: 1000000,
                     to_grant_id: "to_grant_id",
+                    transfer_reason: "overdraft_recovery",
                     usage_event_id: "usage_event_id",
                     usage_reason: "lease_hold",
                     zeroed_out_reason: "customer_archived",
@@ -7031,6 +7072,7 @@ describe("CreditsClient", () => {
                     quantityRemainingAtZeroOut: 1.1,
                     sourceId: 1000000,
                     toGrantId: "to_grant_id",
+                    transferReason: "overdraft_recovery",
                     usageEventId: "usage_event_id",
                     usageReason: "lease_hold",
                     zeroedOutReason: "customer_archived",
