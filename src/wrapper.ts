@@ -111,12 +111,12 @@ export interface CheckFlagOptions {
     /** The maximum time to wait for a response in milliseconds */
     timeoutMs?: number;
     /**
-     * Preflight inputs forwarded to the WASM rules engine's
-     * `checkFlagWithOptions`. The engine picks the most specific knob for each
-     * condition it evaluates. Only applied when the flag is evaluated locally
-     * (DataStream); the REST fallback path does not support preflight and
-     * ignores these. No reservation is issued — for lease-backed gating use
-     * `check()` instead.
+     * Preflight inputs applied on every evaluation path: forwarded to the WASM
+     * rules engine's `checkFlagWithOptions` when the flag is evaluated locally
+     * (DataStream), and sent as the request body's `preflight` when it is
+     * evaluated over the REST API. The engine picks the most specific knob for
+     * each condition it evaluates. No reservation is issued — for lease-backed
+     * gating use `check()` instead.
      */
     /** Pre-computed per-credit-id cost. Highest precedence for credit-balance gates. */
     creditCost?: Record<string, number>;
@@ -173,6 +173,67 @@ export interface CheckFlagWithEntitlementResponse {
     ruleType?: api.RulesengineRuleType;
     userId?: string;
     value: boolean;
+}
+
+/**
+ * The preflight implied by a check's options, in the wire shape the REST flag
+ * check takes. Returns undefined when the options carry no hypothetical, which
+ * is what keeps a plain check cacheable.
+ */
+function preflightFromOptions(options?: CheckFlagOptions): api.PreflightRequestBody | undefined {
+    if (!options) return undefined;
+
+    const preflight: api.PreflightRequestBody = {};
+    if (options.creditCost !== undefined) {
+        preflight.creditCost = options.creditCost;
+    }
+    if (options.eventUsage !== undefined && isSendableQuantity(options.eventUsage.quantity)) {
+        preflight.eventUsage = {
+            eventSubtype: options.eventUsage.eventSubtype,
+            quantity: wireQuantity(options.eventUsage.quantity),
+        };
+    }
+    if (options.usage !== undefined && isSendableQuantity(options.usage)) {
+        preflight.usage = wireQuantity(options.usage);
+    }
+
+    return Object.keys(preflight).length > 0 ? preflight : undefined;
+}
+
+/**
+ * A quantity the server will accept. NaN, Infinity and negatives are rejected
+ * there, so dropping them here keeps a malformed hypothetical from turning the
+ * whole check into an error.
+ */
+function isSendableQuantity(quantity: number): boolean {
+    return Number.isFinite(quantity) && quantity >= 0;
+}
+
+/**
+ * The wire quantity is an integer and the question a preflight asks is an upper
+ * bound, so a fraction rounds up: the check must not pass on less usage than
+ * the action is about to record.
+ */
+function wireQuantity(quantity: number): number {
+    return Math.ceil(quantity);
+}
+
+/**
+ * Combines a preflight the caller put on the evaluation context with the one
+ * the check options imply. The options own `usage` and `eventUsage` as a pair,
+ * since they ask the same question at different granularities and taking one
+ * from each source would preflight two different actions. A credit cost the
+ * caller priced itself rides along; nothing here can recompute it.
+ */
+function mergedPreflight(
+    caller: api.PreflightRequestBody | undefined,
+    options: CheckFlagOptions | undefined,
+): api.PreflightRequestBody | undefined {
+    const fromOptions = preflightFromOptions(options);
+    if (fromOptions === undefined) return caller;
+    if (caller === undefined) return fromOptions;
+
+    return { ...fromOptions, creditCost: fromOptions.creditCost ?? caller.creditCost };
 }
 
 export class SchematicClient extends BaseClient {
@@ -589,16 +650,25 @@ export class SchematicClient extends BaseClient {
         const getDefaultValue = getDefault ?? (() => this.getFlagDefault(key));
 
         try {
-            const cacheKey = JSON.stringify({ evalCtx, key });
-            for (const provider of this.flagCheckCacheProviders) {
-                const cached = await provider.get(cacheKey);
-                if (cached !== null && cached !== undefined) {
-                    this.logger.debug(`${provider.constructor.name} cache hit for flag ${key}`);
-                    return cached;
+            const preflight = mergedPreflight(evalCtx.preflight, options);
+            // The cache is keyed by flag, company and user, so it cannot tell a
+            // hypothetical apart from the plain question. Reading it would answer
+            // "would this action be allowed?" with the current balance's verdict,
+            // and writing it would serve the hypothetical to every later plain
+            // check, so a preflighted check skips the cache in both directions.
+            const cacheKey = preflight === undefined ? JSON.stringify({ evalCtx, key }) : undefined;
+            if (cacheKey !== undefined) {
+                for (const provider of this.flagCheckCacheProviders) {
+                    const cached = await provider.get(cacheKey);
+                    if (cached !== null && cached !== undefined) {
+                        this.logger.debug(`${provider.constructor.name} cache hit for flag ${key}`);
+                        return cached;
+                    }
                 }
             }
 
-            const response = await this.features.checkFlag(key, evalCtx, {
+            const body = preflight === undefined ? evalCtx : { ...evalCtx, preflight };
+            const response = await this.features.checkFlag(key, body, {
                 timeoutInSeconds: options?.timeoutMs !== undefined ? options.timeoutMs / 1000 : undefined,
             });
             if (response.data.value === undefined) {
@@ -625,13 +695,15 @@ export class SchematicClient extends BaseClient {
                 value: response.data.value,
             };
 
-            try {
-                for (const provider of this.flagCheckCacheProviders) {
-                    this.logger.debug(`Caching value for flag ${key} in ${provider.constructor.name}`);
-                    await provider.set(cacheKey, result);
+            if (cacheKey !== undefined) {
+                try {
+                    for (const provider of this.flagCheckCacheProviders) {
+                        this.logger.debug(`Caching value for flag ${key} in ${provider.constructor.name}`);
+                        await provider.set(cacheKey, result);
+                    }
+                } catch (cacheErr) {
+                    this.logger.warn(`Cache write failed for flag ${key}: ${cacheErr}`);
                 }
-            } catch (cacheErr) {
-                this.logger.warn(`Cache write failed for flag ${key}: ${cacheErr}`);
             }
 
             return result;
@@ -1022,9 +1094,8 @@ export class SchematicClient extends BaseClient {
      * through to a plain flag check and returns `{allowed: value}` with no
      * reservation, byte-compatible with `checkFlag` semantics. The caller's
      * preflight (`usage` / `eventSubtype`) is still threaded through the plain
-     * check, so any client-side evaluation path (datastream, replicator)
-     * gates on the post-call balance — just without a reservation. Only the
-     * REST fallback ignores preflight.
+     * check, so every evaluation path (datastream, replicator, REST) gates on
+     * the post-call balance — just without a reservation.
      */
     async check(evalCtx: api.CheckFlagRequestBody, key: string, options?: CheckOptions): Promise<CheckResult> {
         const getDefault = (): boolean => {

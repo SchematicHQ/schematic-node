@@ -208,6 +208,109 @@ describe("SchematicClient wrapper - flag checking behavior", () => {
             await client.close();
         });
     });
+    describe("REST preflight", () => {
+        const apiAllows = (value: boolean): void => {
+            mockCheckFlag.mockResolvedValue({
+                data: { value, flag: "test-flag", reason: "match" },
+            });
+        };
+
+        const newCacheProvider = (cached: CheckFlagWithEntitlementResponse | null = null) => ({
+            get: jest.fn().mockResolvedValue(cached),
+            set: jest.fn().mockResolvedValue(undefined),
+            delete: jest.fn().mockResolvedValue(undefined),
+        });
+
+        it("sends the check options' preflight on the request body", async () => {
+            apiAllows(true);
+
+            const client = new SchematicClient({
+                apiKey: "test-api-key",
+                cacheProviders: { flagChecks: [] },
+                logger: mockLogger,
+            });
+
+            await client.checkFlag({ company: { id: "comp-1" } }, "test-flag", {
+                usage: 5,
+                creditCost: { "credit-1": 20 },
+            });
+
+            const [flagKey, body] = mockCheckFlag.mock.calls[0];
+            expect(flagKey).toBe("test-flag");
+            expect(body).toEqual({
+                company: { id: "comp-1" },
+                preflight: { usage: 5, creditCost: { "credit-1": 20 } },
+            });
+
+            await client.close();
+        });
+
+        it("rounds a fractional usage up on the wire", async () => {
+            apiAllows(true);
+
+            const client = new SchematicClient({
+                apiKey: "test-api-key",
+                cacheProviders: { flagChecks: [] },
+                logger: mockLogger,
+            });
+
+            await client.checkFlag({ company: { id: "comp-1" } }, "test-flag", { usage: 2.4 });
+            await client.checkFlag({ company: { id: "comp-1" } }, "test-flag", {
+                eventUsage: { eventSubtype: "tokens", quantity: 0.2 },
+            });
+
+            expect(mockCheckFlag.mock.calls[0][1].preflight).toEqual({ usage: 3 });
+            expect(mockCheckFlag.mock.calls[1][1].preflight).toEqual({
+                eventUsage: { eventSubtype: "tokens", quantity: 1 },
+            });
+
+            await client.close();
+        });
+
+        it("does not answer a preflighted check from a cached plain verdict, or cache its own", async () => {
+            apiAllows(false);
+            const cacheProvider = newCacheProvider({
+                flagKey: "test-flag",
+                reason: "match",
+                value: true,
+            });
+
+            const client = new SchematicClient({
+                apiKey: "test-api-key",
+                cacheProviders: { flagChecks: [cacheProvider] },
+                logger: mockLogger,
+            });
+
+            const result = await client.checkFlag({ company: { id: "comp-1" } }, "test-flag", { usage: 5 });
+
+            expect(result).toBe(false);
+            expect(cacheProvider.get).not.toHaveBeenCalled();
+            expect(cacheProvider.set).not.toHaveBeenCalled();
+            expect(mockCheckFlag).toHaveBeenCalledTimes(1);
+
+            await client.close();
+        });
+
+        it("still caches a plain check", async () => {
+            apiAllows(true);
+            const cacheProvider = newCacheProvider();
+
+            const client = new SchematicClient({
+                apiKey: "test-api-key",
+                cacheProviders: { flagChecks: [cacheProvider] },
+                logger: mockLogger,
+            });
+
+            await client.checkFlag({ company: { id: "comp-1" } }, "test-flag");
+
+            expect(cacheProvider.get).toHaveBeenCalledTimes(1);
+            expect(cacheProvider.set).toHaveBeenCalledTimes(1);
+            expect(mockCheckFlag.mock.calls[0][1]).toEqual({ company: { id: "comp-1" } });
+
+            await client.close();
+        });
+    });
+
     describe("event options", () => {
         // eslint-disable-next-line @typescript-eslint/no-require-imports
         const { EventBuffer } = require("../../src/events");
