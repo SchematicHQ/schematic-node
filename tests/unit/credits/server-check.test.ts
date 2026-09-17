@@ -244,17 +244,30 @@ describe("client.check (server reservation path)", () => {
         await client.close();
     });
 
-    it("disables retries on check-and-reserve, with and without a per-check timeout", async () => {
+    it("leaves the wire client's retries alone, with and without a per-check timeout", async () => {
         mockCheckAndReserveFlag.mockResolvedValue(reserveResponse());
         const { client } = makeServerClient();
 
-        // The request carries no idempotency key, so a retry after the API
-        // committed a hold would take a second one.
         await client.check({ company: { id: "co_1" } }, "inference", { usage: 50 });
-        expect(mockCheckAndReserveFlag.mock.calls[0][2]).toEqual({ maxRetries: 0 });
+        expect(mockCheckAndReserveFlag.mock.calls[0][2]).toEqual({});
 
         await client.check({ company: { id: "co_1" } }, "inference", { usage: 50, timeoutMs: 2500 });
-        expect(mockCheckAndReserveFlag.mock.calls[1][2]).toEqual({ maxRetries: 0, timeoutInSeconds: 2.5 });
+        expect(mockCheckAndReserveFlag.mock.calls[1][2]).toEqual({ timeoutInSeconds: 2.5 });
+        await client.close();
+    });
+
+    it("sends an idempotency key, and two checks send different keys", async () => {
+        mockCheckAndReserveFlag.mockResolvedValue(reserveResponse());
+        const { client } = makeServerClient();
+
+        await client.check({ company: { id: "co_1" } }, "inference", { usage: 50 });
+        await client.check({ company: { id: "co_1" } }, "inference", { usage: 50 });
+
+        const first = mockCheckAndReserveFlag.mock.calls[0][1].idempotencyKey;
+        const second = mockCheckAndReserveFlag.mock.calls[1][1].idempotencyKey;
+        expect(first).toMatch(/^[0-9a-f-]{36}$/);
+        expect(second).toMatch(/^[0-9a-f-]{36}$/);
+        expect(first).not.toBe(second);
         await client.close();
     });
 

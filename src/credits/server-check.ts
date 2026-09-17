@@ -1,3 +1,5 @@
+import { randomUUID } from "crypto";
+
 import type * as api from "../api";
 import { PaymentRequiredError } from "../api";
 import type { CreditsClient } from "../api/resources/credits/client/Client";
@@ -82,12 +84,13 @@ export async function checkWithServerReservation(
         quantity: options.usage,
         expiresAt: new Date(Date.now() + deps.reservationTTL),
         preflight,
+        // Minted once per check, outside the wire call, so every transport
+        // retry of this call resends the same key: a retry after a 502/504 hid
+        // a committed hold is handed that hold back instead of taking a second
+        // one and parking the first until its TTL.
+        idempotencyKey: randomUUID(),
     };
-    // Never retry: the request carries no idempotency key, so a 502/504 from a
-    // load balancer after the API committed the hold would have Fern's default
-    // retry take a second hold, with the first parked until its TTL.
     const requestOptions: FeaturesClient.RequestOptions = {
-        maxRetries: 0,
         ...(options.timeoutMs !== undefined ? { timeoutInSeconds: options.timeoutMs / 1000 } : undefined),
     };
 
