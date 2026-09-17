@@ -247,9 +247,9 @@ export function reserveOp(ctx: RaceCtx, opts: ReserveOpts): WeightedOp {
             await jitter(rng);
             const post = await ctx.leases.tryReserve(slot.companyId, slot.creditTypeId, credits);
             if (post === null) return;
-            if (post < -EPS) {
+            if (post.balance < -EPS) {
                 ctx.model.violations.push(
-                    `tryReserve(${credits}) on ${slotKeyOf(slot)} returned a negative balance ${post}`,
+                    `tryReserve(${credits}) on ${slotKeyOf(slot)} returned a negative balance ${post.balance}`,
                 );
             }
             await jitter(rng);
@@ -260,9 +260,13 @@ export function reserveOp(ctx: RaceCtx, opts: ReserveOpts): WeightedOp {
                 ctx.model.addTo(ctx.model.leaked, slotKeyOf(slot), credits);
                 return;
             }
-            const reservation = makeReservation(ctx, slot, entry.leaseId, credits, rng.intBetween(...opts.ttlMs));
+            // Pinned to the lease `tryReserve` says it charged, not the one
+            // observed above: the slot's lease can be replaced in the seeded
+            // yield point between the two, and a reservation pinned to the
+            // stale id would have its refund dropped.
+            const reservation = makeReservation(ctx, slot, post.leaseId, credits, rng.intBetween(...opts.ttlMs));
             await ctx.reservations.add(reservation);
-            ctx.model.open.set(reservation.id, { slotKey: slotKeyOf(slot), leaseId: entry.leaseId, credits });
+            ctx.model.open.set(reservation.id, { slotKey: slotKeyOf(slot), leaseId: post.leaseId, credits });
         },
     };
 }
@@ -336,7 +340,9 @@ export function invalidReserveOp(ctx: RaceCtx): WeightedOp {
             const bad = rng.pick([Number.NaN, -3, Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]);
             const result = await ctx.leases.tryReserve(slot.companyId, slot.creditTypeId, bad);
             if (result !== null) {
-                ctx.model.violations.push(`tryReserve(${bad}) on ${slotKeyOf(slot)} returned ${result}, not null`);
+                ctx.model.violations.push(
+                    `tryReserve(${bad}) on ${slotKeyOf(slot)} returned ${JSON.stringify(result)}, not null`,
+                );
             }
         },
     };

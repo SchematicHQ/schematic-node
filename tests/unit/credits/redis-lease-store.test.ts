@@ -96,9 +96,13 @@ describe("RedisLeaseStore", () => {
             store.tryReserve("co_1", "ct_1", 40),
         ]);
         // Two should succeed, one should fail (40 left after two debits).
-        // Successes return the post-debit balance; failures return null.
-        const successes = results.filter((r) => r !== null).sort((a, b) => (a ?? 0) - (b ?? 0));
-        expect(successes).toEqual([20, 60]);
+        // Successes return the post-debit balance plus the charged lease ID;
+        // failures return null.
+        const successes = results.filter((r) => r !== null).sort((a, b) => a.balance - b.balance);
+        expect(successes).toEqual([
+            { balance: 20, leaseId: "lse_1" },
+            { balance: 60, leaseId: "lse_1" },
+        ]);
         const entry = await store.get("co_1", "ct_1");
         expect(entry?.localRemainingCredits).toBe(20);
     });
@@ -138,7 +142,7 @@ describe("RedisLeaseStore", () => {
         expect(await store.tryReserve("co_1", "ct_1", -10)).toBeNull();
         expect((await store.get("co_1", "ct_1"))?.localRemainingCredits).toBe(100);
         // The lease still gates correctly afterwards.
-        expect(await store.tryReserve("co_1", "ct_1", 30)).toBe(70);
+        expect(await store.tryReserve("co_1", "ct_1", 30)).toEqual({ balance: 70, leaseId: "lse_1" });
     });
 
     it("refund caps at grantedAmount", async () => {

@@ -9,7 +9,7 @@ import type { WasmCheckFlagResult, WasmFeatureEntitlement } from "../rules-engin
 import type { CheckFlagOptions } from "../wrapper";
 
 import { CreditLeaseManager } from "./lease-manager";
-import type { ILeaseStore } from "./lease-store";
+import type { ILeaseStore, ReserveResult } from "./lease-store";
 import type { IReservationStore } from "./reservation-store";
 import type { CheckOptions, CheckResult, OnAcquireFailure, Reservation, ResolvedLeaseConfig } from "./types";
 
@@ -244,23 +244,27 @@ export async function checkWithLease(
     }
 
     // `tryReserve` is the atomic gate: check-and-debit in one step, returning
-    // the post-debit balance on success (so we can derive the pre-debit figure
-    // below without a follow-up store read).
-    let postReserveBalance: number | null;
+    // the post-debit balance (so we can derive the pre-debit figure below
+    // without a follow-up store read) *and* the ID of the lease it charged.
+    // That ID — not `lease.leaseId` — is what the reservation must be pinned
+    // to: the debit isn't keyed by lease, so the slot's lease may have been
+    // replaced since the acquire above (the sweeper, or a sibling pod on a
+    // shared backend; the window spans the awaited extend below).
+    let reserve: ReserveResult | null;
     try {
-        postReserveBalance = await leaseStore.tryReserve(company.id, creditId, creditCost);
-        if (postReserveBalance === null) {
+        reserve = await leaseStore.tryReserve(company.id, creditId, creditCost);
+        if (reserve === null) {
             // Lease has less than `creditCost` left locally. Pass `creditCost` so
             // `maybeExtendInBackground` extends even when the ratio is still above
             // the low-watermark (e.g. a single large request).
             await manager.maybeExtendInBackground(company.id, creditId, creditCost, requestOptions);
-            postReserveBalance = await leaseStore.tryReserve(company.id, creditId, creditCost);
+            reserve = await leaseStore.tryReserve(company.id, creditId, creditCost);
         }
     } catch (err) {
         logger.error(`Lease check: reserve against ${company.id}/${creditId} failed: ${err}`);
         return failure("lease_store_error");
     }
-    if (postReserveBalance === null) {
+    if (reserve === null) {
         return failure("insufficient_lease_balance");
     }
 
@@ -272,7 +276,11 @@ export async function checkWithLease(
     // add (no I/O in between); a crash there leaks at most `creditCost` until
     // the lease's own expiry reclaims it server-side.
     const reservation = registerReservation({
-        leaseId: lease.leaseId,
+        // The lease the debit actually landed on, which may not be the one
+        // `acquireIfNeeded` handed back — see `reserve` above. Pinning the
+        // acquired ID instead would send the settle refund, the sweep refund,
+        // and the Track event's `lease_id` to a lease that was never charged.
+        leaseId: reserve.leaseId,
         companyId: company.id,
         creditTypeId: creditId,
         eventSubtype: resolvedSubtype,
@@ -290,13 +298,15 @@ export async function checkWithLease(
         // Undo the local debit so the credits aren't stranded until lease
         // expiry. `consume` claims whatever slice of `add` made it to the
         // store and refunds it; if nothing was persisted (`null`), refund the
-        // debit directly. Both pinned to this lease. If even the undo fails,
+        // debit directly. Both pinned to the lease the debit landed on (the
+        // reservation carries that ID, so `consume` pins to it too), never to
+        // the acquired one. If even the undo fails,
         // accept the bounded leak — the slice is reclaimed when the lease
         // expires server-side, which beats risking a double refund.
         try {
             const undone = await reservations.consume(reservation.id, 0);
             if (undone === null) {
-                await leaseStore.refund(company.id, creditId, creditCost, lease.leaseId);
+                await leaseStore.refund(company.id, creditId, creditCost, reserve.leaseId);
             }
         } catch (undoErr) {
             logger.warn(
@@ -313,7 +323,7 @@ export async function checkWithLease(
     // `tryReserve` just enforced. Pre-reservation = the post-debit balance the
     // atomic reserve returned + the creditCost it debited — exact as of the
     // debit, no read race.
-    const preReservation = postReserveBalance + creditCost;
+    const preReservation = reserve.balance + creditCost;
     const substituted = substituteCreditBalance(company, creditId, preReservation);
 
     // Gate precisely on the lease tranche: tell the engine this action costs

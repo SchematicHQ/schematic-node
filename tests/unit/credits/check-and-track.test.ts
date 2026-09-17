@@ -1,4 +1,6 @@
+import { RedisLeaseStore } from "../../../src/credits/redis-lease-store";
 import { SchematicClient } from "../../../src/wrapper";
+import { makeFakeRedis } from "./fake-redis";
 
 const mockCheckFlag = jest.fn();
 const mockAcquireCreditLease = jest.fn();
@@ -1160,6 +1162,96 @@ describe("store-failure containment (unreachable Redis backend)", () => {
         expect(pushed?.[0].body.quantity).toBe(7);
         expect(pushed?.[0].body.leaseId).toBe("lse_x");
         expect(pushed?.[0].idempotencyKey).toBe("lease-reservation:res_orphan");
+        await client.close();
+    });
+});
+
+describe("lease replaced mid-check (the real extend window)", () => {
+    it("pins the reservation to the lease the debit landed on, not the acquired one", async () => {
+        // The window this exercises is `check.ts`'s own: the first `tryReserve`
+        // comes up short, so the flow awaits `maybeExtendInBackground` — and
+        // while that extend is on the wire, the slot's lease is replaced (here
+        // by the mock's side effect; in production by the sweeper or a sibling
+        // pod). The retried debit charges the successor, so the reservation has
+        // to name it.
+        const sharedRedis = makeFakeRedis();
+        const client = new SchematicClient({
+            apiKey: "test-key",
+            useDataStream: true,
+            creditLeases: {
+                defaultLeaseDuration: 5 * 60_000,
+                defaultReservationTTL: 60_000,
+                defaultLeaseSize: 1000,
+                lowWaterMark: 0.25,
+                sweepIntervalMs: 60_000,
+                redisClient: sharedRedis,
+            },
+            logger: { debug: jest.fn(), info: jest.fn(), warn: jest.fn(), error: jest.fn() },
+        });
+        // Same client, same default key prefix — this targets the very hash the
+        // SDK's own store reads.
+        const probe = new RedisLeaseStore({ client: sharedRedis });
+
+        configureSuccessfulAcquire(); // lse_1, grant 1000
+        configureDataStream();
+        configureEngine();
+        // Only the first extend swaps the lease. `check.ts` also fires a
+        // background top-up after a successful check (lse_2 lands at 25%, on
+        // the watermark), and letting that one fail keeps the balances below
+        // deterministic.
+        mockExtendCreditLease.mockRejectedValue(new Error("no further extends"));
+        mockExtendCreditLease.mockImplementationOnce(async () => {
+            // Expire lse_1 and install lse_2 over it: `replace` refuses to
+            // displace a live lease, and reinstalling the same id reconciles
+            // rather than rewrites.
+            await sharedRedis.hSet(probe.hashKey("co_1", "bilcr_inference"), "expiresAt", String(Date.now() - 1));
+            await probe.drop("co_1", "bilcr_inference");
+            await probe.replace({
+                leaseId: "lse_2",
+                companyId: "co_1",
+                creditTypeId: "bilcr_inference",
+                grantedAmount: 2000,
+                expiresAt: new Date(Date.now() + 5 * 60_000),
+            });
+            // The extend the server granted lse_1: the store drops it because
+            // the slot has moved on.
+            return {
+                data: {
+                    id: "lse_1",
+                    companyId: "co_1",
+                    creditTypeId: "bilcr_inference",
+                    grantedAmount: 2500,
+                    expiresAt: new Date(Date.now() + 5 * 60_000),
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+                params: {},
+            };
+        });
+
+        // 150 × 10 = 1500 credits: more than lse_1's 1000, so the first
+        // reserve fails and the extend runs.
+        const result = await client.check({ company: { id: "co_1" } }, "inference", {
+            usage: 150,
+            eventSubtype: "inference_tokens",
+        });
+
+        // The extend went out against the acquired lease...
+        expect(mockExtendCreditLease.mock.calls[0][0]).toBe("lse_1");
+        expect(result.allowed).toBe(true);
+        // ...but the debit landed on the successor that replaced it in flight.
+        expect(await probe.get("co_1", "bilcr_inference")).toMatchObject({ leaseId: "lse_2" });
+        expect(result.reservation?.leaseId).toBe("lse_2");
+        // The debit came out of lse_2: 2000 − 1500.
+        expect((await probe.get("co_1", "bilcr_inference"))?.localRemainingCredits).toBe(500);
+
+        // And the settle refund lands, because it is pinned to lse_2.
+        const reservation = result.reservation;
+        if (!reservation) throw new Error("expected a reservation");
+        await client.trackWithReservation(reservation, 100);
+        expect((await probe.get("co_1", "bilcr_inference"))?.localRemainingCredits).toBe(1000);
+        const pushed = mockEventBufferPush.mock.calls.find((call) => call[0]?.eventType === "track");
+        expect(pushed?.[0].body.leaseId).toBe("lse_2");
         await client.close();
     });
 });

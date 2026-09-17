@@ -1,6 +1,6 @@
 import type { RedisClient } from "../cache/redis";
 
-import { type ILeaseStore, type LeaseEntry, leaseKey } from "./lease-store";
+import { type ILeaseStore, type LeaseEntry, leaseKey, type ReserveResult } from "./lease-store";
 import { DEFAULT_LEASE_DURATION_MS } from "./types";
 
 const DEFAULT_KEY_PREFIX = "schematic:";
@@ -85,21 +85,31 @@ return 1
 `;
 
 /**
- * Atomic check-and-decrement on `localRemainingCredits`. Returns the
- * post-debit balance (as a string — a Lua number reply truncates to integer,
- * which would corrupt fractional credit costs) on success; `false` (a nil
- * reply) if there's no lease, the lease has expired, or there's insufficient
- * remaining. Returning the balance saves the caller a follow-up read when it
- * needs the pre-debit figure. The expiry guard compares against the Redis
- * server clock (`now`, see `LEASE_NOW_MS`) so a reserve against an
- * expired-but-not-yet-evicted row during the TTL grace window is rejected —
- * the server treats an expired lease as released, so its balance is stale.
+ * Atomic check-and-decrement on `localRemainingCredits`. Returns
+ * `{ post-debit balance, charged leaseId }` on success — the balance as a
+ * string, because a Lua number reply truncates to integer and would corrupt
+ * fractional credit costs; `false` (a nil reply) if there's no lease, the
+ * lease has expired, or there's insufficient remaining. Returning the balance
+ * saves the caller a follow-up read when it needs the pre-debit figure, and
+ * returning the lease ID read inside the same script lets the caller pin its
+ * reservation to the lease the debit actually landed on (the debit is not
+ * keyed by lease ID, and a sibling pod can replace the slot's lease at any
+ * point before it). The expiry guard compares against the Redis server clock
+ * (`now`, see `LEASE_NOW_MS`) so a reserve against an expired-but-not-yet-
+ * evicted row during the TTL grace window is rejected — the server treats an
+ * expired lease as released, so its balance is stale.
+ *
+ * The reply shape is safe for a mixed fleet: every pod EVALs its own copy of
+ * this script text and decodes its own reply, and the key layout and hash
+ * fields are untouched, so old and new pods keep sharing one lease hash.
  */
 const TRY_RESERVE_SCRIPT =
     LEASE_NOW_MS +
     `
 local raw = redis.call('HGET', KEYS[1], 'localRemainingCredits')
 if not raw then return false end
+local lease_id = redis.call('HGET', KEYS[1], 'leaseId')
+if not lease_id then return false end
 local expiry = tonumber(redis.call('HGET', KEYS[1], 'expiresAt') or '0')
 if expiry <= now then return false end
 local remaining = tonumber(raw)
@@ -107,7 +117,7 @@ local requested = tonumber(ARGV[1])
 if remaining < requested then return false end
 local new_remaining = remaining - requested
 redis.call('HSET', KEYS[1], 'localRemainingCredits', tostring(new_remaining))
-return tostring(new_remaining)
+return { tostring(new_remaining), lease_id }
 `;
 
 /**
@@ -253,7 +263,7 @@ export class RedisLeaseStore implements ILeaseStore {
         await this.client.del(this.hashKey(companyId, creditTypeId));
     }
 
-    async tryReserve(companyId: string, creditTypeId: string, credits: number): Promise<number | null> {
+    async tryReserve(companyId: string, creditTypeId: string, credits: number): Promise<ReserveResult | null> {
         // Reject non-finite/negative debits before they reach the script:
         // `String(NaN)` parses back to `nan` in Lua (strtod), slips through the
         // `<` comparison, and would poison the SHARED balance for every pod.
@@ -263,10 +273,12 @@ export class RedisLeaseStore implements ILeaseStore {
             // Only the requested amount — `now` comes from the Redis server clock.
             arguments: [String(credits)],
         });
-        // nil reply (could not reserve) surfaces as null; success is the
-        // post-debit balance as a string.
-        if (result === null || result === undefined) return null;
-        return Number(result);
+        // nil reply (could not reserve) surfaces as null; success is a
+        // two-element multi-bulk of [post-debit balance, charged leaseId],
+        // both as strings.
+        if (result === null || result === undefined || result === false) return null;
+        const reply = result as unknown[];
+        return { balance: Number(reply[0]), leaseId: String(reply[1]) };
     }
 
     async refund(companyId: string, creditTypeId: string, credits: number, leaseId?: string): Promise<void> {

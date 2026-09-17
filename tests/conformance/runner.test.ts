@@ -500,12 +500,15 @@ async function runVector(vector: Vector, makeStores: () => Stores): Promise<void
                     break;
                 }
                 case "try_reserve": {
-                    const balance = await stores.leases.tryReserve(
+                    const reserve = await stores.leases.tryReserve(
                         op.company_id as string,
                         op.credit_type_id as string,
                         op.credits as number,
                     );
-                    if ("balance" in exp) expect(balance).toBe(exp.balance);
+                    if ("balance" in exp) expect(reserve === null ? null : reserve.balance).toBe(exp.balance);
+                    // Optional: the lease the debit actually landed on, which
+                    // the caller must pin its reservation to.
+                    if ("lease_id" in exp) expect(reserve?.leaseId).toBe(exp.lease_id);
                     break;
                 }
                 case "refund_lease": {

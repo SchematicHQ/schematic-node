@@ -70,7 +70,7 @@ Store-level (exercise the lease store and reservation store directly):
 | `advance_clock` | `ms` | — |
 | `replace_lease` | `lease_id`, `company_id`, `credit_type_id`, `granted_amount`, `expires_at_ms` | `written` (bool) |
 | `drop_lease` | `company_id`, `credit_type_id` | — |
-| `try_reserve` | `company_id`, `credit_type_id`, `credits` | `balance` (post-debit number, or `null`) |
+| `try_reserve` | `company_id`, `credit_type_id`, `credits` | `balance` (post-debit number, or `null`), `lease_id`? (the lease actually charged) |
 | `refund_lease` | `company_id`, `credit_type_id`, `credits`, `pin_lease_id`? | — |
 | `extend_lease` | `company_id`, `credit_type_id`, `granted_total`, `expires_at_ms`?, `pin_lease_id`? | — |
 | `get_lease` | `company_id`, `credit_type_id` | `exists`, `lease_id`?, `granted_amount`?, `local_remaining_credits`? |
@@ -178,7 +178,14 @@ Returns written/kept so the caller can run the redundant-lease release logic (se
   never reach the arithmetic — it slips through every comparison and would poison the balance
   into approving everything).
 - Otherwise debit and return the **post-debit balance** (so the caller can derive the pre-debit
-  figure as `returned + credits` without a racy follow-up read).
+  figure as `returned + credits` without a racy follow-up read) **and the `lease_id` of the lease
+  that was charged**, read atomically with the debit (in-process: under the same per-slot lock;
+  Redis: inside the same script).
+- The debit is **not keyed by lease id** — it charges whichever lease occupies the slot at that
+  moment, which need not be the one the caller's acquire returned (the slot's lease can be
+  replaced in between by expiry + a successor install, by the sweeper, or by a sibling process
+  sharing the backend). Reporting the charged id is what lets the caller pin its reservation to
+  the lease it actually drew on; see [check flow](#check-flow) step 9.
 - Reserving down to exactly 0 is allowed.
 
 ### `refund(company, credit, credits, pin_lease_id?)`
@@ -326,9 +333,14 @@ Then:
    Still refused → failure handling, reason `insufficient_lease_balance`. Store error →
    failure handling, reason `lease_store_error`.
 9. **Record the reservation** (TTL = `reservation_ttl_ms` from now) — *after* the debit, *before*
-   the engine gate. If persisting fails, undo the debit (claim-and-refund; direct refund if
-   nothing persisted; both pinned to the lease) and go to failure handling
-   (`lease_store_error`). If even the undo fails, accept the bounded leak.
+   the engine gate. Pin it to the `lease_id` **`try_reserve` reported**, never to the one the
+   acquire in step 7 returned: those differ whenever the slot's lease was replaced in the window
+   between them (which spans the awaited extend in step 8), and a stale pin sends the settle
+   refund and the sweep refund to a lease that was never charged — `refund`'s pin drops both —
+   while the Track event bills a released lease. If persisting fails, undo the debit
+   (claim-and-refund; direct refund if nothing persisted; both pinned to the charged lease) and
+   go to failure handling (`lease_store_error`). If even the undo fails, accept the bounded
+   leak.
 10. **Engine gate.** Re-run the engine against a company snapshot whose
     `credit_balances[credit_id]` is substituted with the **pre-reservation** local balance
     (post-debit balance returned by `try_reserve` + `credit_cost` — exact as of the debit, no

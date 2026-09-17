@@ -21,7 +21,7 @@ describe("LeaseStore", () => {
         expect(entry?.grantedAmount).toBe(100);
     });
 
-    it("tryReserve debits localRemaining and returns the post-debit balance on success", async () => {
+    it("tryReserve debits localRemaining and returns the post-debit balance and charged lease", async () => {
         await store.replace({
             leaseId: "lse_1",
             companyId: "co_1",
@@ -30,7 +30,7 @@ describe("LeaseStore", () => {
             expiresAt: new Date(Date.now() + 60_000),
         });
         const remaining = await store.tryReserve("co_1", "ct_1", 30);
-        expect(remaining).toBe(70);
+        expect(remaining).toEqual({ balance: 70, leaseId: "lse_1" });
         expect(store.get("co_1", "ct_1")?.localRemainingCredits).toBe(70);
     });
 
@@ -76,7 +76,7 @@ describe("LeaseStore", () => {
         expect(await store.tryReserve("co_1", "ct_1", Number.POSITIVE_INFINITY)).toBeNull();
         expect(store.get("co_1", "ct_1")?.localRemainingCredits).toBe(100);
         // The lease still gates correctly afterwards.
-        expect(await store.tryReserve("co_1", "ct_1", 30)).toBe(70);
+        expect(await store.tryReserve("co_1", "ct_1", 30)).toEqual({ balance: 70, leaseId: "lse_1" });
         expect(await store.tryReserve("co_1", "ct_1", 80)).toBeNull();
     });
 
