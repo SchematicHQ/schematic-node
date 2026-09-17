@@ -105,27 +105,40 @@ export interface SchematicOptions {
     creditLeases?: CreditLeaseConfig;
 }
 
+/**
+ * Options for a single flag check.
+ *
+ * `creditCost`, `usage` and `eventUsage` are preflight inputs: they ask
+ * "would this action be allowed?" rather than "is it allowed now". They apply
+ * on every evaluation path, forwarded to the WASM rules engine's
+ * `checkFlagWithOptions` when the flag is evaluated locally (DataStream) and
+ * sent as the request body's `preflight` when it is evaluated over the REST
+ * API. The engine picks the most specific knob for each condition it
+ * evaluates. No reservation is issued; for lease-backed gating use `check()`.
+ */
 export interface CheckFlagOptions {
     /** Default value to return on error. Can be a boolean or a function returning a boolean. If not provided, uses configured flag defaults */
     defaultValue?: boolean | (() => boolean);
     /** The maximum time to wait for a response in milliseconds */
     timeoutMs?: number;
     /**
-     * Preflight inputs applied on every evaluation path: forwarded to the WASM
-     * rules engine's `checkFlagWithOptions` when the flag is evaluated locally
-     * (DataStream), and sent as the request body's `preflight` when it is
-     * evaluated over the REST API. The engine picks the most specific knob for
-     * each condition it evaluates. No reservation is issued — for lease-backed
-     * gating use `check()` instead.
+     * Pre-computed cost of the action, keyed by credit id. Highest precedence
+     * for credit-balance gates. A cost of zero means the action is free, not
+     * that the input is absent.
      */
-    /** Pre-computed per-credit-id cost. Highest precedence for credit-balance gates. */
     creditCost?: Record<string, number>;
-    /** Single integer quantity applied to whatever numeric condition is being evaluated. */
+    /**
+     * Quantity applied to whatever numeric condition is being evaluated. Zero
+     * has no effect. A local evaluation takes the value as given; the REST
+     * request body takes an integer, so a fraction rounds up there rather than
+     * letting the check pass on less usage than the action is about to record.
+     */
     usage?: number;
     /**
      * Simulated quantity scoped to a specific event subtype. Preferred over
      * `usage` when the subtype is known. Deliberately singular: one check
-     * preflights one action.
+     * preflights one action. `quantity` rounds up on the REST path the same way
+     * `usage` does, and zero has no effect.
      */
     eventUsage?: { eventSubtype: string; quantity: number };
 }
@@ -175,65 +188,90 @@ export interface CheckFlagWithEntitlementResponse {
     value: boolean;
 }
 
+/** The `usage` / `eventUsage` half of a preflight, which moves as one unit. */
+type PreflightUsageKnobs = Pick<api.PreflightRequestBody, "usage" | "eventUsage">;
+
 /**
- * The preflight implied by a check's options, in the wire shape the REST flag
- * check takes. Returns undefined when the options carry no hypothetical, which
- * is what keeps a plain check cacheable.
+ * The usage knobs a check's options imply, in the wire shape the REST flag
+ * check takes, or undefined when the options name none. A zero is dropped: the
+ * API reads it as no effect, and sending it would cost the check its cache
+ * entry for a hypothetical that changes nothing.
  */
-function preflightFromOptions(options?: CheckFlagOptions): api.PreflightRequestBody | undefined {
-    if (!options) return undefined;
+function usageKnobsFromOptions(
+    options: CheckFlagOptions,
+    key: string,
+    logger: Logger,
+): PreflightUsageKnobs | undefined {
+    const knobs: PreflightUsageKnobs = {};
 
-    const preflight: api.PreflightRequestBody = {};
-    if (options.creditCost !== undefined) {
-        preflight.creditCost = options.creditCost;
+    if (options.eventUsage !== undefined) {
+        const quantity = wireQuantity(options.eventUsage.quantity, "eventUsage.quantity", key, logger);
+        if (quantity !== undefined && quantity > 0) {
+            knobs.eventUsage = { eventSubtype: options.eventUsage.eventSubtype, quantity };
+        }
     }
-    if (options.eventUsage !== undefined && isSendableQuantity(options.eventUsage.quantity)) {
-        preflight.eventUsage = {
-            eventSubtype: options.eventUsage.eventSubtype,
-            quantity: wireQuantity(options.eventUsage.quantity),
-        };
-    }
-    if (options.usage !== undefined && isSendableQuantity(options.usage)) {
-        preflight.usage = wireQuantity(options.usage);
+    if (options.usage !== undefined) {
+        const usage = wireQuantity(options.usage, "usage", key, logger);
+        if (usage !== undefined && usage > 0) {
+            knobs.usage = usage;
+        }
     }
 
-    return Object.keys(preflight).length > 0 ? preflight : undefined;
+    return knobs.usage === undefined && knobs.eventUsage === undefined ? undefined : knobs;
 }
 
 /**
- * A quantity the server will accept. NaN, Infinity and negatives are rejected
- * there, so dropping them here keeps a malformed hypothetical from turning the
- * whole check into an error.
- */
-function isSendableQuantity(quantity: number): boolean {
-    return Number.isFinite(quantity) && quantity >= 0;
-}
-
-/**
+ * The quantity as the REST body takes it, or undefined when it is not one the
+ * server would accept.
+ *
  * The wire quantity is an integer and the question a preflight asks is an upper
  * bound, so a fraction rounds up: the check must not pass on less usage than
- * the action is about to record.
+ * the action is about to record. NaN, Infinity and negatives are rejected
+ * server-side, so dropping one here keeps a malformed hypothetical from turning
+ * the whole check into an error. That silently answers a narrower question than
+ * the caller asked, in the permissive direction, so it warns.
  */
-function wireQuantity(quantity: number): number {
+function wireQuantity(quantity: number, field: string, key: string, logger: Logger): number | undefined {
+    if (!Number.isFinite(quantity) || quantity < 0) {
+        logger.warn(
+            `Preflight ${field} of ${quantity} for flag ${key} is not a usable quantity; dropping it, so the check answers against the current balance rather than the hypothetical one`,
+        );
+        return undefined;
+    }
     return Math.ceil(quantity);
 }
 
 /**
  * Combines a preflight the caller put on the evaluation context with the one
- * the check options imply. The options own `usage` and `eventUsage` as a pair,
- * since they ask the same question at different granularities and taking one
- * from each source would preflight two different actions. A credit cost the
- * caller priced itself rides along; nothing here can recompute it.
+ * the check options imply.
+ *
+ * `usage` and `eventUsage` move together: they ask the same question at
+ * different granularities, so taking one from each source would preflight two
+ * different actions. Options that name either own the pair; options that name
+ * neither leave the caller's pair alone. A credit cost the options carry wins
+ * over the caller's, since it is the cost this check was priced with, and
+ * otherwise the caller's rides along; nothing here can recompute it.
  */
 function mergedPreflight(
     caller: api.PreflightRequestBody | undefined,
     options: CheckFlagOptions | undefined,
+    key: string,
+    logger: Logger,
 ): api.PreflightRequestBody | undefined {
-    const fromOptions = preflightFromOptions(options);
-    if (fromOptions === undefined) return caller;
-    if (caller === undefined) return fromOptions;
+    const knobs = options === undefined ? undefined : usageKnobsFromOptions(options, key, logger);
+    if (knobs === undefined && options?.creditCost === undefined) {
+        return caller;
+    }
 
-    return { ...fromOptions, creditCost: fromOptions.creditCost ?? caller.creditCost };
+    const { usage, eventUsage } = knobs ?? { usage: caller?.usage, eventUsage: caller?.eventUsage };
+    const creditCost = options?.creditCost ?? caller?.creditCost;
+
+    const preflight: api.PreflightRequestBody = {};
+    if (creditCost !== undefined) preflight.creditCost = creditCost;
+    if (eventUsage !== undefined) preflight.eventUsage = eventUsage;
+    if (usage !== undefined) preflight.usage = usage;
+
+    return Object.keys(preflight).length > 0 ? preflight : undefined;
 }
 
 export class SchematicClient extends BaseClient {
@@ -650,7 +688,7 @@ export class SchematicClient extends BaseClient {
         const getDefaultValue = getDefault ?? (() => this.getFlagDefault(key));
 
         try {
-            const preflight = mergedPreflight(evalCtx.preflight, options);
+            const preflight = mergedPreflight(evalCtx.preflight, options, key, this.logger);
             // The cache is keyed by flag, company and user, so it cannot tell a
             // hypothetical apart from the plain question. Reading it would answer
             // "would this action be allowed?" with the current balance's verdict,
