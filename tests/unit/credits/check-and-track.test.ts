@@ -345,6 +345,59 @@ describe("client.check (lease path)", () => {
         await client.close();
     });
 
+    it("allows a check that needs more than the extend already in flight asked for", async () => {
+        // The ticket's case: a sub-watermark check fires a fire-and-forget
+        // extend for one tranche (1000), and a check needing 1500 arrives while
+        // it is in flight. Inheriting the tranche leaves it at 1200 local and
+        // failing `insufficient_lease_balance` with credits on the server, so
+        // the joiner tops up the difference once the flight lands.
+        configureSuccessfulAcquire();
+        configureDataStream();
+        configureEngine();
+
+        let releaseExtend!: (v: unknown) => void;
+        const extendPending = new Promise((r) => (releaseExtend = r));
+        const extendResponse = (grantedAmount: number) => ({
+            data: {
+                id: "lse_1",
+                companyId: "co_1",
+                creditTypeId: "bilcr_inference",
+                grantedAmount,
+                expiresAt: new Date(Date.now() + 5 * 60_000),
+                createdAt: new Date(),
+                updatedAt: new Date(),
+            },
+            params: {},
+        });
+        mockExtendCreditLease.mockReturnValueOnce(extendPending).mockResolvedValue(extendResponse(3000));
+        const flush = () => new Promise((r) => setImmediate(r));
+
+        const client = makeClient();
+        // 80 × rate 10 = 800 of the 1000-credit lease → 200 left, below the
+        // watermark, so this check's fire-and-forget extend goes out and hangs.
+        const first = await client.check({ company: { id: "co_1" } }, "inference", {
+            usage: 80,
+            eventSubtype: "inference_tokens",
+        });
+        expect(first.allowed).toBe(true);
+        await flush();
+        expect(mockExtendCreditLease).toHaveBeenCalledTimes(1);
+
+        // 150 × 10 = 1500 against 200 local: the reserve fails and the check
+        // asks for an extend, joining the tranche-sized flight.
+        const secondP = client.check({ company: { id: "co_1" } }, "inference", {
+            usage: 150,
+            eventSubtype: "inference_tokens",
+        });
+        await flush();
+        releaseExtend(extendResponse(2000));
+        const second = await secondP;
+
+        expect(second.allowed).toBe(true);
+        expect(second.reservation?.creditsReserved).toBe(1500);
+        await client.close();
+    });
+
     it("returns allowed=false and refunds reservation when the gating eval denies", async () => {
         configureSuccessfulAcquire();
         configureDataStream();

@@ -270,6 +270,13 @@ Rules:
   Sizing to the shortfall matters: a single check needing more than `remaining + lease_size`
   would otherwise fail its post-extend retry forever regardless of server balance.
   `expires_at = now + lease_duration_ms`.
+- A caller that joins an extend already in flight must be sized too. If its own
+  `additional_amount` exceeds the one the in-flight extend asked for, it waits that flight out
+  and then issues **exactly one** further extend, re-sized against the slot the flight just
+  moved; if the flight's ask already covers it, it issues nothing. A joiner that silently
+  inherits a tranche-sized ask fails its post-extend retry with credits sitting on the server.
+  The follow-up never chains — a company whose balance cannot reach the request would otherwise
+  spin.
 - On response, reconcile via the store's `extend` with the server's **total** and new expiry,
   **pinned** to the extended lease's id.
 - Failures resolve to "no lease" without throwing (often fire-and-forget).
@@ -431,7 +438,11 @@ to demonstrate; ports must uphold them and should test them natively.
    stores balances as strings to avoid integer truncation.
 4. **Single-flight.** Per-process, per-slot single-flight for acquire and for extend, tracked
    separately. Best-effort only: duplicate wire calls are safe (idempotent server + keep-first
-   `replace` + reconcile-to-total `extend`).
+   `replace` + reconcile-to-total `extend`). An extend flight carries the `additional_amount` it
+   asked for: a joiner whose required shortfall exceeds that figure waits the flight out and
+   then issues exactly one further extend for the remaining shortfall, while a joiner the flight
+   already covers — every watermark-driven one, the common case — issues nothing and shares the
+   single wire call.
 5. **Concurrent cross-pod extends converge.** Two pods extending from the same stale read must
    not double-count — guaranteed by reconcile-to-total computed inside the store (the sequential
    out-of-order-totals vector pins the arithmetic; the concurrent schedule needs a race).
