@@ -276,25 +276,10 @@ export class CreditLeaseManager {
         requestOptions: CreditsClient.RequestOptions | undefined,
         allowFollowUp: boolean,
     ): Promise<LeaseEntry | undefined> {
-        let entry: LeaseEntry | undefined;
-        try {
-            entry = await this.leaseStore.get(companyId, creditTypeId);
-        } catch (err) {
-            this.logger.warn(`Failed to read lease store for ${companyId}/${creditTypeId}: ${err}`);
-            return undefined;
-        }
+        const entry = await this.readLiveLease(companyId, creditTypeId);
         if (!entry) return undefined;
-        // Never extend an expired lease: the server treats it as released (its
-        // remainder already refunded to the company balance), so the right
-        // move is a fresh acquire, which the next check's `acquireIfNeeded`
-        // performs. Extending would at best waste a wire call and at worst
-        // resurrect a stale local row.
-        if (entry.expiresAt.getTime() <= Date.now()) return undefined;
         const resolved = this.resolveConfig(creditTypeId);
-        const ratio = entry.localRemainingCredits / Math.max(entry.grantedAmount, 1);
-        const belowWatermark = ratio <= resolved.lowWaterMark;
-        const belowRequired = requiredCredits !== undefined && entry.localRemainingCredits < requiredCredits;
-        if (!belowWatermark && !belowRequired) return entry;
+        if (!this.needsExtend(entry, resolved, requiredCredits)) return entry;
 
         // Size the extend to cover the request that triggered it: a single
         // check needing more than `localRemaining + leaseSize` would otherwise
@@ -321,7 +306,48 @@ export class CreditLeaseManager {
             // the server cannot cover the request, a chain would spin.
             return this.extendIfNeeded(companyId, creditTypeId, requiredCredits, requestOptions, false);
         }
-        return this.startExtend(key, entry, resolved, additionalAmount, requestOptions);
+        return this.startExtend(
+            key,
+            companyId,
+            creditTypeId,
+            resolved,
+            requiredCredits,
+            additionalAmount,
+            requestOptions,
+        );
+    }
+
+    /**
+     * Read the slot, reporting `undefined` when the read fails or the lease is
+     * absent or expired. An expired lease is never extended: the server treats
+     * it as released (its remainder already refunded to the company balance),
+     * so the right move is a fresh acquire, which the next check's
+     * `acquireIfNeeded` performs. Extending would at best waste a wire call and
+     * at worst resurrect a stale local row.
+     */
+    private async readLiveLease(companyId: string, creditTypeId: string): Promise<LeaseEntry | undefined> {
+        let entry: LeaseEntry | undefined;
+        try {
+            entry = await this.leaseStore.get(companyId, creditTypeId);
+        } catch (err) {
+            this.logger.warn(`Failed to read lease store for ${companyId}/${creditTypeId}: ${err}`);
+            return undefined;
+        }
+        if (!entry) return undefined;
+        if (entry.expiresAt.getTime() <= Date.now()) return undefined;
+        return entry;
+    }
+
+    /** Whether `entry` sits low enough to warrant an extend. */
+    private needsExtend(
+        entry: LeaseEntry,
+        resolved: ResolvedLeaseConfig,
+        requiredCredits: number | undefined,
+    ): boolean {
+        const ratio = entry.localRemainingCredits / Math.max(entry.grantedAmount, 1);
+        const belowWatermark = ratio <= resolved.lowWaterMark;
+        const belowRequired = requiredCredits !== undefined && entry.localRemainingCredits < requiredCredits;
+        return belowWatermark || belowRequired;
     }
 
     /**
@@ -332,16 +358,48 @@ export class CreditLeaseManager {
      */
     private startExtend(
         key: string,
-        entry: LeaseEntry,
+        companyId: string,
+        creditTypeId: string,
         resolved: ResolvedLeaseConfig,
+        requiredCredits: number | undefined,
         additionalAmount: number,
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<LeaseEntry | undefined> {
-        const promise = this.extend(entry, resolved, additionalAmount, requestOptions).finally(() => {
+        const promise = this.recheckAndExtend(
+            companyId,
+            creditTypeId,
+            resolved,
+            requiredCredits,
+            additionalAmount,
+            requestOptions,
+        ).finally(() => {
             if (this.inflightExtend.get(key)?.promise === promise) this.inflightExtend.delete(key);
         });
         this.inflightExtend.set(key, { requestedAdditional: additionalAmount, promise });
         return promise;
+    }
+
+    /**
+     * Re-read the slot now that this flight owns it, and extend only if the
+     * fresh row still warrants one. The row that decided this extend was read
+     * before the flight was registered, so an extend that landed in that gap —
+     * clearing its own flight on the way out — would otherwise be followed by a
+     * second extend, under a new idempotency key, for a lease it already topped
+     * up. The registered `requestedAdditional` stands: a joiner compares its
+     * shortfall against that figure, so the wire body has to carry it.
+     */
+    private async recheckAndExtend(
+        companyId: string,
+        creditTypeId: string,
+        resolved: ResolvedLeaseConfig,
+        requiredCredits: number | undefined,
+        additionalAmount: number,
+        requestOptions?: CreditsClient.RequestOptions,
+    ): Promise<LeaseEntry | undefined> {
+        const entry = await this.readLiveLease(companyId, creditTypeId);
+        if (!entry) return undefined;
+        if (!this.needsExtend(entry, resolved, requiredCredits)) return entry;
+        return this.extend(entry, resolved, additionalAmount, requestOptions);
     }
 
     private async extend(

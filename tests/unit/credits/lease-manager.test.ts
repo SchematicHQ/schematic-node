@@ -224,6 +224,36 @@ describe("CreditLeaseManager", () => {
         expect(store.get("co_1", "ct_1")?.grantedAmount).toBe(2000);
     });
 
+    it("sends nothing for a trigger that read the lease before the previous extend landed", async () => {
+        const creditsClient = {
+            extendCreditLease: jest.fn().mockResolvedValue(extendResponse(2000)),
+            releaseCreditLease: jest.fn(),
+        };
+        const { manager, store } = makeManager(creditsClient);
+        await seedLease(store, 1000);
+        // Spend down to below the 25% water mark.
+        await store.tryReserve("co_1", "ct_1", 900);
+        const stale = store.get("co_1", "ct_1");
+
+        await manager.maybeExtendInBackground("co_1", "ct_1");
+        expect(creditsClient.extendCreditLease).toHaveBeenCalledTimes(1);
+
+        // The second trigger reads the slot as it was before that extend
+        // landed: its own flight is gone, so nothing stops it reaching the
+        // wire but the re-read the flight registration now makes.
+        const live = store.get.bind(store);
+        let reads = 0;
+        jest.spyOn(store, "get").mockImplementation((companyId, creditTypeId) => {
+            reads += 1;
+            return reads === 1 ? stale : live(companyId, creditTypeId);
+        });
+
+        await manager.maybeExtendInBackground("co_1", "ct_1");
+
+        expect(creditsClient.extendCreditLease).toHaveBeenCalledTimes(1);
+        expect(store.get("co_1", "ct_1")?.grantedAmount).toBe(2000);
+    });
+
     it("maybeExtendInBackground extends when requiredCredits exceeds local remaining even above watermark", async () => {
         const creditsClient = {
             acquireCreditLease: jest.fn().mockResolvedValue({
