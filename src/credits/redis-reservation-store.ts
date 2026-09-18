@@ -196,8 +196,12 @@ export class RedisReservationStore implements IReservationStore {
         // hash BEFORE the refund below so the lease (localRemaining + this hash)
         // never transiently double-counts the slice: while it sits on the hash
         // it's "reserved", and the refund moves it back to localRemaining.
-        await this.client.zRem(this.indexKey(), encodeMember({ companyId, creditTypeId, id })).catch(() => {});
+        // The per-tenant field goes first, and the expiry index second, because
+        // the index is what the sweeper would reach a surviving field through:
+        // dropping the index first and then failing on the field would inflate
+        // `reservedCredits` for that tenant forever.
         await this.client.hDel(this.byCreditKey(companyId, creditTypeId), id).catch(() => {});
+        await this.client.zRem(this.indexKey(), encodeMember({ companyId, creditTypeId, id })).catch(() => {});
 
         let consumed = creditsConsumed;
         if (consumed < 0) consumed = 0;
