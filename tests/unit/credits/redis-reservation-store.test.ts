@@ -40,6 +40,20 @@ describe("RedisReservationStore", () => {
         reservations.stop();
     });
 
+    it("writes the reservation hash and its TTL in one transaction", async () => {
+        const client = makeFakeRedis();
+        const leaseStore = new RedisLeaseStore({ client });
+        const reservations = new RedisReservationStore({ client, leaseStore, sweepIntervalMs: 60_000 });
+
+        await reservations.add(makeReservation());
+
+        // Separately, a crash between the two leaves a row that never expires
+        // and that nothing points at once the sweeper drops its index entry.
+        expect(client.transactions).toEqual([["hSet", "pExpireAt"]]);
+        expect((await reservations.get("res_1"))?.creditsReserved).toBe(100);
+        reservations.stop();
+    });
+
     it("consume refunds unused credits atomically", async () => {
         const client = makeFakeRedis();
         const leaseStore = new RedisLeaseStore({ client });

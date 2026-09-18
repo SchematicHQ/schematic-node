@@ -39,6 +39,22 @@ export interface RedisClient {
     // Expiry on a millisecond-precision absolute timestamp — used to auto-clean
     // lease + reservation rows shortly after their declared expiry.
     pExpireAt(key: string, timestamp: number): Promise<unknown>;
+    // MULTI/EXEC — used to write a row and its expiry as one step, so a crash
+    // between them can't leave a row that never expires. Optional: a client
+    // shim that predates it (or a cluster client without it) still works, on
+    // the sequential path.
+    multi?(): RedisMulti;
+}
+
+/**
+ * The queued-command half of MULTI/EXEC, as node-redis v4 returns it from
+ * `multi()`. Only the commands the SDK queues are declared; every one of them
+ * is single-key, so the transaction is safe under Redis Cluster too.
+ */
+export interface RedisMulti {
+    hSet(key: string, field: string | Record<string, string | number>, value?: string | number): RedisMulti;
+    pExpireAt(key: string, timestamp: number): RedisMulti;
+    exec(): Promise<unknown>;
 }
 
 export interface RedisOptions extends CacheOptions {

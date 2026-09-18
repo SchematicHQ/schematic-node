@@ -111,12 +111,7 @@ export class RedisReservationStore implements IReservationStore {
     async add(reservation: Reservation): Promise<void> {
         const expiresMs = reservation.expiresAt.getTime();
         const hashKey = this.hashKey(reservation.id);
-        // Write the hash first so the reservation exists before anything
-        // references it. These are independent single-key ops rather than one
-        // multi-key script: a partial failure at worst leaves an un-indexed
-        // reservation that the TTL reaps (its slice reclaimed when the lease
-        // expires), never a double-spend.
-        await this.client.hSet(hashKey, {
+        const fields = {
             id: reservation.id,
             leaseId: reservation.leaseId,
             companyId: reservation.companyId,
@@ -127,13 +122,30 @@ export class RedisReservationStore implements IReservationStore {
             consumptionRate: String(reservation.consumptionRate),
             expiresAt: String(expiresMs),
             evalCtx: JSON.stringify(reservation.evalCtx),
-        });
-        // The TTL and the two indexes (expiry zset for the sweeper, per-tenant
-        // hash for `reservedCredits`) only depend on the hash existing — not on
-        // each other — so they go out concurrently: one round-trip wave instead
-        // of three. This sits on every allowed check, so the latency matters.
+        };
+        const ttlAt = expiresMs + RES_TTL_GRACE_MS;
+        // The hash and its expiry go out as one MULTI/EXEC. Written separately,
+        // a crash in the gap leaves a reservation row with no TTL: once the
+        // sweeper drops its index entry, nothing points at the row and nothing
+        // reaps it, so it sits in Redis for good. Same commands, same key, same
+        // fields as before, so what other SDKs read is unchanged, and both
+        // commands touch the one key, so this is Cluster-safe.
+        const multi = this.client.multi?.();
+        if (multi) {
+            await multi.hSet(hashKey, fields).pExpireAt(hashKey, ttlAt).exec();
+        } else {
+            await this.client.hSet(hashKey, fields);
+            await this.client.pExpireAt(hashKey, ttlAt);
+        }
+        // The two indexes (expiry zset for the sweeper, per-tenant hash for
+        // `reservedCredits`) only depend on the hash existing, so they go out
+        // concurrently: one round-trip wave rather than two. They stay outside
+        // the transaction because their keys hash to other slots. A partial
+        // failure here at worst leaves an un-indexed reservation that the TTL
+        // reaps (its slice reclaimed when the lease expires), never a
+        // double-spend. This sits on every allowed check, so the latency
+        // matters.
         await Promise.all([
-            this.client.pExpireAt(hashKey, expiresMs + RES_TTL_GRACE_MS),
             this.client.zAdd(this.indexKey(), { score: expiresMs, value: encodeMember(reservation) }),
             this.client.hSet(
                 this.byCreditKey(reservation.companyId, reservation.creditTypeId),
