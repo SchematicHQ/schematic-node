@@ -43,6 +43,13 @@ export async function settleWithin(promises: Promise<unknown>[], timeoutMs: numb
 }
 
 /**
+ * How many in-flight extends one caller will wait out before issuing its own.
+ * Two covers the case the single-flight was written for: the flight a caller
+ * joins, and the follow-up another caller registers while it was waiting.
+ */
+const MAX_EXTEND_JOINS = 2;
+
+/**
  * An in-flight extend plus the additional amount its wire call asked for —
  * the figure a joiner compares its own shortfall against.
  */
@@ -246,7 +253,9 @@ export class CreditLeaseManager {
      * shortfall is larger than what that extend asked for, it waits the flight
      * out and then issues exactly one follow-up extend for the remaining
      * difference — otherwise it would inherit a tranche-sized ask and fail its
-     * post-extend retry with credits still sitting on the server.
+     * post-extend retry with credits still sitting on the server. A flight it
+     * finds on the way back is only joined if that one covers the shortfall
+     * too; a smaller one is waited out, never inherited.
      * Returns the in-flight promise so callers can await it or fire-and-forget.
      * Never rejects (it is often fire-and-forget — a rejection would surface
      * as an unhandled promise rejection).
@@ -266,7 +275,7 @@ export class CreditLeaseManager {
         // Tracked whole, not just the wire call inside it: callers void this,
         // so between the store read and the extend there would otherwise be a
         // window where a drain sees nothing pending.
-        return this.track(this.extendIfNeeded(companyId, creditTypeId, requiredCredits, requestOptions, true));
+        return this.track(this.extendIfNeeded(companyId, creditTypeId, requiredCredits, requestOptions));
     }
 
     private async extendIfNeeded(
@@ -274,47 +283,54 @@ export class CreditLeaseManager {
         creditTypeId: string,
         requiredCredits: number | undefined,
         requestOptions: CreditsClient.RequestOptions | undefined,
-        allowFollowUp: boolean,
     ): Promise<LeaseEntry | undefined> {
-        const entry = await this.readLiveLease(companyId, creditTypeId);
-        if (!entry) return undefined;
-        const resolved = this.resolveConfig(creditTypeId);
-        if (!this.needsExtend(entry, resolved, requiredCredits)) return entry;
+        // Joins are budgeted, extends of our own are not: a caller may wait out
+        // flights that ask for too little, but once the budget runs out it
+        // issues its own single extend rather than joining again. Without the
+        // budget a caller could wait behind an unbounded run of other callers'
+        // follow-ups; without the "own extend" it would return a balance it
+        // already knows is short and fail its retry with credits on the server.
+        for (let joinsLeft = MAX_EXTEND_JOINS; ; joinsLeft--) {
+            const entry = await this.readLiveLease(companyId, creditTypeId);
+            if (!entry) return undefined;
+            const resolved = this.resolveConfig(creditTypeId);
+            if (!this.needsExtend(entry, resolved, requiredCredits)) return entry;
 
-        // Size the extend to cover the request that triggered it: a single
-        // check needing more than `localRemaining + leaseSize` would otherwise
-        // fail its post-extend retry forever, even with ample server balance.
-        // The watermark-driven steady-state path (no requiredCredits) keeps
-        // requesting the configured tranche. Sized here, one level above the
-        // wire call, so the flight we register below and the request body
-        // provably carry the same number for a joiner to compare against.
-        const shortfall = requiredCredits !== undefined ? requiredCredits - entry.localRemainingCredits : 0;
-        const additionalAmount = Math.max(resolved.leaseSize, shortfall);
+            // Size the extend to cover the request that triggered it: a single
+            // check needing more than `localRemaining + leaseSize` would
+            // otherwise fail its post-extend retry forever, even with ample
+            // server balance. The watermark-driven steady-state path (no
+            // requiredCredits) keeps requesting the configured tranche. Sized
+            // here, one level above the wire call, so the flight we register
+            // below and the request body provably carry the same number for a
+            // joiner to compare against.
+            const shortfall = requiredCredits !== undefined ? requiredCredits - entry.localRemainingCredits : 0;
+            const additionalAmount = Math.max(resolved.leaseSize, shortfall);
 
-        const key = leaseKey(companyId, creditTypeId);
-        const inflight = this.inflightExtend.get(key);
-        if (inflight) {
-            const joined = await inflight.promise;
-            // The flight already asked for at least what we need — every
-            // watermark-driven joiner, and any check the tranche covers. One
-            // wire call serves all of them, which is the point of single-flight.
-            if (additionalAmount <= inflight.requestedAdditional || !allowFollowUp) return joined;
-            // Our shortfall outran the flight's ask. We waited it out rather
-            // than racing a second extend onto the same lease; now top up the
-            // difference with exactly one more, re-reading the slot the flight
-            // just moved. `allowFollowUp: false` keeps this from chaining: when
-            // the server cannot cover the request, a chain would spin.
-            return this.extendIfNeeded(companyId, creditTypeId, requiredCredits, requestOptions, false);
+            const key = leaseKey(companyId, creditTypeId);
+            const inflight = this.inflightExtend.get(key);
+            if (inflight && joinsLeft > 0) {
+                const joined = await inflight.promise;
+                // The flight asked for at least what we need — every
+                // watermark-driven joiner, and any check the tranche covers.
+                // One wire call serves all of them, which is the point of
+                // single-flight.
+                if (additionalAmount <= inflight.requestedAdditional) return joined;
+                // It asked for less. Go round again to re-read the slot it just
+                // moved, so what we ask for next is sized against the balance
+                // it left rather than the one we started from.
+                continue;
+            }
+            return this.startExtend(
+                key,
+                companyId,
+                creditTypeId,
+                resolved,
+                requiredCredits,
+                additionalAmount,
+                requestOptions,
+            );
         }
-        return this.startExtend(
-            key,
-            companyId,
-            creditTypeId,
-            resolved,
-            requiredCredits,
-            additionalAmount,
-            requestOptions,
-        );
     }
 
     /**

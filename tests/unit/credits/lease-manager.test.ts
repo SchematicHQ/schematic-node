@@ -406,6 +406,54 @@ describe("CreditLeaseManager", () => {
         expect(joined?.localRemainingCredits).toBe(1200);
     });
 
+    it("does not let a follow-up inherit another caller's smaller follow-up", async () => {
+        // Two checks join one 10k refill, both needing more than it asked for.
+        // C's follow-up (2k) registers first; A still needs 18k. Taking C's
+        // result would send A's retry back to a lease it already knows is
+        // short, with the credits sitting on the server.
+        let releaseRefill!: (v: unknown) => void;
+        const refillPending = new Promise((r) => (releaseRefill = r));
+        const creditsClient = {
+            acquireCreditLease: jest.fn(),
+            extendCreditLease: jest
+                .fn()
+                // The 10k refill both checks join.
+                .mockReturnValueOnce(refillPending)
+                // C's follow-up: +2000 on top of the refill's 20000 total.
+                .mockResolvedValueOnce(extendResponse(22000))
+                // A's own follow-up.
+                .mockResolvedValueOnce(extendResponse(40000)),
+            releaseCreditLease: jest.fn(),
+        };
+        const { manager, store } = makeManager(creditsClient);
+        await seedLease(store, 10_000);
+        await store.tryReserve("co_1", "ct_1", 10_000); // nothing left
+
+        const refillP = manager.maybeExtendInBackground("co_1", "ct_1", 10_000);
+        await flush();
+        expect(creditsClient.extendCreditLease.mock.calls[0][1].additionalAmount).toBe(10_000);
+
+        // C joins first, so its follow-up is the one in flight when A resumes.
+        const cP = manager.maybeExtendInBackground("co_1", "ct_1", 12_000);
+        await flush();
+        const aP = manager.maybeExtendInBackground("co_1", "ct_1", 28_000);
+        await flush();
+        expect(creditsClient.extendCreditLease).toHaveBeenCalledTimes(1);
+
+        releaseRefill(extendResponse(20_000));
+        await refillP;
+        const c = await cP;
+        const a = await aP;
+
+        // C topped up its 2000 shortfall; A then asked for its own, sized
+        // against the 12000 C left behind rather than inheriting C's ask.
+        expect(creditsClient.extendCreditLease).toHaveBeenCalledTimes(3);
+        expect(creditsClient.extendCreditLease.mock.calls[1][1].additionalAmount).toBe(2_000);
+        expect(creditsClient.extendCreditLease.mock.calls[2][1].additionalAmount).toBe(16_000);
+        expect(c?.localRemainingCredits).toBeGreaterThanOrEqual(12_000);
+        expect(a?.localRemainingCredits).toBeGreaterThanOrEqual(28_000);
+    });
+
     it("bounds the follow-up at one extend when the server cannot cover the request", async () => {
         // The follow-up must not chain: a company whose balance simply cannot
         // reach the request would otherwise spin extending forever.
