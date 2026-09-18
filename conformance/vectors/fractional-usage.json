@@ -3,7 +3,7 @@
     "vectors": [
         {
             "name": "fractional_usage_rounds_the_hold_and_the_settle_up",
-            "description": "Usage below one whole event unit: the hold is ceil(usage) x rate, the engine gates on that same cost, and a settle at the same fractional actual debits ceil(actual) x rate — so the local ledger moves by exactly what the Track event bills. The reservation still records the caller-declared quantity.",
+            "description": "Usage below one whole event unit: the hold is ceil(usage) x rate, the engine gates on that same cost, and a settle at the same fractional actual debits ceil(actual) x rate, so the local ledger moves by exactly what the Track event bills. The reservation still records the caller-declared quantity.",
             "given": {
                 "config": {
                     "lease_duration_ms": 300000,

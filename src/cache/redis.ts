@@ -39,7 +39,7 @@ export interface RedisClient {
     // Expiry on a millisecond-precision absolute timestamp — used to auto-clean
     // lease + reservation rows shortly after their declared expiry.
     pExpireAt(key: string, timestamp: number): Promise<unknown>;
-    // MULTI/EXEC — used to write a row and its expiry as one step, so a crash
+    // MULTI/EXEC: used to write a row and its expiry as one step, so a crash
     // between them can't leave a row that never expires. Optional: a client
     // shim that predates it (or a cluster client without it) still works, on
     // the sequential path.

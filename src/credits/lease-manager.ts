@@ -382,8 +382,8 @@ export class CreditLeaseManager {
     /**
      * Re-read the slot now that this flight owns it, and extend only if the
      * fresh row still warrants one. The row that decided this extend was read
-     * before the flight was registered, so an extend that landed in that gap —
-     * clearing its own flight on the way out — would otherwise be followed by a
+     * before the flight was registered, so an extend that landed in that gap,
+     * clearing its own flight on the way out, would otherwise be followed by a
      * second extend, under a new idempotency key, for a lease it already topped
      * up. The registered `requestedAdditional` stands: a joiner compares its
      * shortfall against that figure, so the wire body has to carry it.
