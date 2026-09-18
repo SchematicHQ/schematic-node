@@ -392,11 +392,12 @@ configured `on_acquire_failure` mode (default **fail-closed**):
      over. This is why `reservation_ttl_ms` should exceed the longest expected gap between
      `check()` and `track_with_reservation()`.
 3. Either way, emit the Track event built from the **caller-held handle** (not the store):
-   `event = event_subtype`, `quantity = actual_quantity` (the *unclamped* actual — the server is
-   the source of truth for real consumption; only local bookkeeping clamps to the reserved
-   amount), `lease_id = reservation.lease_id` (routes the server-side consumption through the
-   lease's sub-ledger instead of double-debiting the pre-debited grant), plus the reservation's
-   `eval_ctx` company/user and any caller traits.
+   `event = event_subtype`, `quantity = ceil(actual_quantity)` (the *unclamped* actual, rounded
+   up: the server is the source of truth for real consumption and only local bookkeeping clamps
+   to the reserved amount, but the event's quantity has to be a whole number or the server
+   rejects it while processing and the usage is never billed), `lease_id = reservation.lease_id`
+   (routes the server-side consumption through the lease's sub-ledger instead of double-debiting
+   the pre-debited grant), plus the reservation's `eval_ctx` company/user and any caller traits.
 4. The Track carries a deterministic idempotency key derived from the reservation id
    (`"lease-reservation:" + reservation.id` in Node); the server dedupes by it for 24h, so a
    recovery emit racing the normal emit, or an accidental double settle, collapses to one billed

@@ -935,6 +935,27 @@ describe("client.trackWithReservation", () => {
         await client.close();
     });
 
+    it("bills a fractional settle as whole units", async () => {
+        // The API takes the quantity as a float only to deserialize it and
+        // rejects a non-integer while processing, so a raw 0.5 would be dropped
+        // server-side and never billed while the lease had already debited it.
+        configureSuccessfulAcquire();
+        configureDataStream();
+        configureEngine();
+        const client = makeClient();
+        const res = await client.check({ company: { id: "co_1" } }, "inference", {
+            usage: 50,
+            eventSubtype: "inference_tokens",
+        });
+        if (!res.reservation) throw new Error("expected reservation");
+
+        await client.trackWithReservation(res.reservation, 0.5);
+
+        const pushed = mockEventBufferPush.mock.calls.find((call) => call[0]?.eventType === "track");
+        expect(pushed?.[0].body.quantity).toBe(1);
+        await client.close();
+    });
+
     it("moves the cached company metric on the settle, but not on a re-settle", async () => {
         configureSuccessfulAcquire();
         configureDataStream();

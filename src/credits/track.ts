@@ -66,7 +66,13 @@ export function buildReservationTrackEvent(
 ): api.EventBodyTrack {
     const body: api.EventBodyTrack = {
         event: reservation.eventSubtype,
-        quantity: actualQuantity,
+        // Whole units on the wire: the API takes the quantity as a float only
+        // to deserialize it and rejects a non-integer while processing the
+        // event, so a fractional settle would be dropped server-side and never
+        // billed while the local ledger had already debited it. Rounded up, the
+        // direction the preflight takes, so the hold, the local debit and the
+        // billed quantity all agree.
+        quantity: Math.ceil(actualQuantity),
     };
     if (reservation.mode === "server") {
         // Server mode: the hold lives on the server, so the event settles it by
