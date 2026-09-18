@@ -63,7 +63,7 @@ function emitFlagCheck(
  *      check. Otherwise `creditId` + `consumptionRate` + `eventSubtype` come
  *      straight off the entitlement — no structural flag scan.
  *   2. Acquire (or reuse) a lease for `(company, creditId)`.
- *   3. Try to reserve `quantity × consumptionRate` from the lease.
+ *   3. Try to reserve `ceil(quantity) × consumptionRate` from the lease.
  *   4. Run the WASM rules engine against a substituted company snapshot
  *      (`credit_balances[creditId] = lease.localRemaining` *before* the
  *      reservation we just made was debited), gating with `credit_cost` so the
@@ -214,7 +214,11 @@ export async function checkWithLease(
         );
         return fallback();
     }
-    const creditCost = quantity * consumptionRate;
+    // Whole event units: a fraction of an event is not something the server
+    // bills, so the hold rounds up to what the settle will charge. Sizing it on
+    // the raw quantity would move the local ledger by less than the Track
+    // event, and the two would drift apart over a session.
+    const creditCost = Math.ceil(quantity) * consumptionRate;
 
     // Thread the caller's per-check timeout to the lease wire calls
     // (acquire/extend) the same way the fallback path threads it to checkFlag.

@@ -42,7 +42,9 @@ export async function consumeReservationAndBuildEvent(
     actualQuantity: number,
     options?: TrackWithReservationOptions,
 ): Promise<ReservationConsumeResult> {
-    const credits = actualQuantity * reservation.consumptionRate;
+    // Rounded up for the same reason the hold is (see `checkWithLease`): the
+    // debit has to move the local ledger by exactly what the Track event bills.
+    const credits = Math.ceil(actualQuantity) * reservation.consumptionRate;
     const consumed = await reservations.consume(reservation.id, credits);
     return {
         track: buildReservationTrackEvent(reservation, actualQuantity, options),

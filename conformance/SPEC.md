@@ -109,7 +109,7 @@ Credit-metered features are gated client-side without a wire call per check. The
 1. **Leases** a tranche of credits from the server per `(company_id, credit_type_id)`. The server
    pre-debits the company balance by the granted amount; the SDK tracks a local view of how much
    of the tranche remains un-reserved (`local_remaining_credits`).
-2. **Reserves** `usage x consumption_rate` credits from the lease at `check()` time, atomically
+2. **Reserves** `ceil(usage) x consumption_rate` credits from the lease at `check()` time, atomically
    (check-and-debit). A successful, engine-approved check returns a *reservation handle*.
 3. **Settles** the reservation at `track()` time with the actual usage: the actually-consumed
    credits stay debited, the unspent slice is refunded to the lease, and a Track event bills the
@@ -147,7 +147,7 @@ Leases and reservations both expire:
 | `company_id`, `credit_type_id` | Slot key. |
 | `event_subtype` | Event the settle will bill as. |
 | `quantity_reserved` | Caller-declared usage (event units). |
-| `credits_reserved` | `quantity_reserved x consumption_rate`. |
+| `credits_reserved` | `ceil(quantity_reserved) x consumption_rate` (whole event units, so the hold matches what the settle bills). |
 | `consumption_rate` | Rate at reservation time. |
 | `expires_at` | Reservation TTL deadline (sweep target). |
 | `eval_ctx` | Company/user keys used at check time; threaded onto the Track event. |
@@ -325,7 +325,9 @@ Then:
    - Credit entitlement missing `credit_id`, a positive `consumption_rate`, or a resolvable
      `event_subtype` (caller's explicit subtype wins over the entitlement's) → fall back.
    - Probe error → fall back (it is a resolution step, not the gate).
-6. `credit_cost = usage x consumption_rate`.
+6. `credit_cost = ceil(usage) x consumption_rate`. A fraction of an event is not something the
+   server bills, so the hold rounds up rather than moving the local ledger by less than the Track
+   event will.
 7. **Acquire** a lease for `(company, credit_id)`. Failure → [failure handling](#failure-handling)
    with reason `lease_acquire_failed`.
 8. **Reserve** `credit_cost` via `try_reserve`. On refusal, opportunistically
@@ -372,7 +374,8 @@ configured `on_acquire_failure` mode (default **fail-closed**):
 
 `track_with_reservation(reservation, actual_quantity)` settles a reservation:
 
-1. `credits = actual_quantity x reservation.consumption_rate`.
+1. `credits = ceil(actual_quantity) x reservation.consumption_rate`, rounded up the same way the
+   hold is, so the debit moves the lease by exactly what the Track event bills.
 2. `consume(reservation.id, credits)`:
    - **Settled locally** (claim succeeded): the clamped consumed slice stays debited; the unspent
      slice is refunded to the lease (pinned).
