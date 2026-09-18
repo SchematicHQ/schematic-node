@@ -109,7 +109,7 @@ Credit-metered features are gated client-side without a wire call per check. The
 1. **Leases** a tranche of credits from the server per `(company_id, credit_type_id)`. The server
    pre-debits the company balance by the granted amount; the SDK tracks a local view of how much
    of the tranche remains un-reserved (`local_remaining_credits`).
-2. **Reserves** `usage x consumption_rate` credits from the lease at `check()` time, atomically
+2. **Reserves** `ceil(usage) x consumption_rate` credits from the lease at `check()` time, atomically
    (check-and-debit). A successful, engine-approved check returns a *reservation handle*.
 3. **Settles** the reservation at `track()` time with the actual usage: the actually-consumed
    credits stay debited, the unspent slice is refunded to the lease, and a Track event bills the
@@ -147,7 +147,7 @@ Leases and reservations both expire:
 | `company_id`, `credit_type_id` | Slot key. |
 | `event_subtype` | Event the settle will bill as. |
 | `quantity_reserved` | Caller-declared usage (event units). |
-| `credits_reserved` | `quantity_reserved x consumption_rate`. |
+| `credits_reserved` | `ceil(quantity_reserved) x consumption_rate` (whole event units, so the hold matches what the settle bills). |
 | `consumption_rate` | Rate at reservation time. |
 | `expires_at` | Reservation TTL deadline (sweep target). |
 | `eval_ctx` | Company/user keys used at check time; threaded onto the Track event. |
@@ -277,13 +277,20 @@ Rules:
   Sizing to the shortfall matters: a single check needing more than `remaining + lease_size`
   would otherwise fail its post-extend retry forever regardless of server balance.
   `expires_at = now + lease_duration_ms`.
-- A caller that joins an extend already in flight must be sized too. If its own
-  `additional_amount` exceeds the one the in-flight extend asked for, it waits that flight out
-  and then issues **exactly one** further extend, re-sized against the slot the flight just
-  moved; if the flight's ask already covers it, it issues nothing. A joiner that silently
-  inherits a tranche-sized ask fails its post-extend retry with credits sitting on the server.
-  The follow-up never chains — a company whose balance cannot reach the request would otherwise
-  spin.
+- A caller that joins an extend already in flight must be sized too. It joins that flight only
+  when the flight's `additional_amount` covers its own; if the flight asked for less, it waits
+  that flight out, re-reads the slot the flight just moved, and sizes itself against the balance
+  left behind. After **two** such joins it issues **exactly one** extend of its own instead of
+  joining again. A joiner that silently inherits a tranche-sized ask fails its post-extend retry
+  with credits sitting on the server, whether that ask came from the flight it first found or
+  from a smaller follow-up another caller registered while it waited. The follow-up never chains:
+  a company whose balance cannot reach the request would otherwise spin.
+- A joiner's wait is capped at the caller's **per-check timeout** when one is given. The flight
+  runs on the timeout of whichever call started it, which for a steady-state refresh is the
+  client default, so a check with a budget of its own must not sit behind it. On expiry the
+  joiner stops waiting and resolves to "no lease", which sends the check down its
+  [failure path](#failure-handling) by mode; the flight itself continues for the callers still on
+  it, and whatever it installs is there for the next check to read.
 - On response, reconcile via the store's `extend` with the server's **total** and new expiry,
   **pinned** to the extended lease's id.
 - Failures resolve to "no lease" without throwing (often fire-and-forget).
@@ -325,7 +332,9 @@ Then:
    - Credit entitlement missing `credit_id`, a positive `consumption_rate`, or a resolvable
      `event_subtype` (caller's explicit subtype wins over the entitlement's) → fall back.
    - Probe error → fall back (it is a resolution step, not the gate).
-6. `credit_cost = usage x consumption_rate`.
+6. `credit_cost = ceil(usage) x consumption_rate`. A fraction of an event is not something the
+   server bills, so the hold rounds up rather than moving the local ledger by less than the Track
+   event will.
 7. **Acquire** a lease for `(company, credit_id)`. Failure → [failure handling](#failure-handling)
    with reason `lease_acquire_failed`.
 8. **Reserve** `credit_cost` via `try_reserve`. On refusal, opportunistically
@@ -372,7 +381,8 @@ configured `on_acquire_failure` mode (default **fail-closed**):
 
 `track_with_reservation(reservation, actual_quantity)` settles a reservation:
 
-1. `credits = actual_quantity x reservation.consumption_rate`.
+1. `credits = ceil(actual_quantity) x reservation.consumption_rate`, rounded up the same way the
+   hold is, so the debit moves the lease by exactly what the Track event bills.
 2. `consume(reservation.id, credits)`:
    - **Settled locally** (claim succeeded): the clamped consumed slice stays debited; the unspent
      slice is refunded to the lease (pinned).
@@ -382,11 +392,12 @@ configured `on_acquire_failure` mode (default **fail-closed**):
      over. This is why `reservation_ttl_ms` should exceed the longest expected gap between
      `check()` and `track_with_reservation()`.
 3. Either way, emit the Track event built from the **caller-held handle** (not the store):
-   `event = event_subtype`, `quantity = actual_quantity` (the *unclamped* actual — the server is
-   the source of truth for real consumption; only local bookkeeping clamps to the reserved
-   amount), `lease_id = reservation.lease_id` (routes the server-side consumption through the
-   lease's sub-ledger instead of double-debiting the pre-debited grant), plus the reservation's
-   `eval_ctx` company/user and any caller traits.
+   `event = event_subtype`, `quantity = ceil(actual_quantity)` (the *unclamped* actual, rounded
+   up: the server is the source of truth for real consumption and only local bookkeeping clamps
+   to the reserved amount, but the event's quantity has to be a whole number or the server
+   rejects it while processing and the usage is never billed), `lease_id = reservation.lease_id`
+   (routes the server-side consumption through the lease's sub-ledger instead of double-debiting
+   the pre-debited grant), plus the reservation's `eval_ctx` company/user and any caller traits.
 4. The Track carries a deterministic idempotency key derived from the reservation id
    (`"lease-reservation:" + reservation.id` in Node); the server dedupes by it for 24h, so a
    recovery emit racing the normal emit, or an accidental double settle, collapses to one billed

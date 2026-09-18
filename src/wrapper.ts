@@ -129,16 +129,16 @@ export interface CheckFlagOptions {
     creditCost?: Record<string, number>;
     /**
      * Quantity applied to whatever numeric condition is being evaluated. Zero
-     * has no effect. A local evaluation takes the value as given; the REST
-     * request body takes an integer, so a fraction rounds up there rather than
-     * letting the check pass on less usage than the action is about to record.
+     * has no effect. Both the REST request body and the local (WASM) engine
+     * take an integer, so a fraction rounds up rather than letting the check
+     * pass on less usage than the action is about to record.
      */
     usage?: number;
     /**
      * Simulated quantity scoped to a specific event subtype. Preferred over
      * `usage` when the subtype is known. Deliberately singular: one check
-     * preflights one action. `quantity` rounds up on the REST path the same way
-     * `usage` does, and zero has no effect.
+     * preflights one action. `quantity` rounds up the same way `usage` does,
+     * and zero has no effect.
      */
     eventUsage?: { eventSubtype: string; quantity: number };
 }
@@ -272,6 +272,39 @@ function mergedPreflight(
     if (usage !== undefined) preflight.usage = usage;
 
     return Object.keys(preflight).length > 0 ? preflight : undefined;
+}
+
+/** Prefixes Schematic's secure ids carry, whatever key name they are passed under. */
+const COMPANY_ID_PREFIX = "comp_";
+
+/**
+ * The Schematic id hiding among a set of entity keys, recognized by its secure-id
+ * prefix. The server reads keys this way once a key lookup has come up empty, so
+ * `{ account_id: "comp_1" }` resolves and `{ id: "acme" }` does not: the prefix
+ * decides, not the key's name.
+ */
+function schematicId(keys: Record<string, string>, prefix: string): string | undefined {
+    return Object.values(keys).find((value) => typeof value === "string" && value.startsWith(prefix));
+}
+
+/**
+ * The options a local (WASM) evaluation runs with: the caller's options, with
+ * the merged preflight's knobs in place of whatever the options carried. The
+ * merge already decided which source owns each knob, so a knob it dropped is
+ * one the engine must not see.
+ */
+function engineOptions(
+    options: CheckFlagOptions | undefined,
+    preflight: api.PreflightRequestBody | undefined,
+): CheckFlagOptions | undefined {
+    if (options === undefined && preflight === undefined) return undefined;
+    return {
+        defaultValue: options?.defaultValue,
+        timeoutMs: options?.timeoutMs,
+        creditCost: preflight?.creditCost,
+        usage: preflight?.usage,
+        eventUsage: preflight?.eventUsage,
+    };
 }
 
 export class SchematicClient extends BaseClient {
@@ -643,7 +676,13 @@ export class SchematicClient extends BaseClient {
 
         if (this.useDataStream()) {
             try {
-                const resp = await this.datastreamClient!.checkFlag(evalCtx, key, options);
+                // The local engine reads its preflight from the options, so a
+                // preflight the caller set on the evaluation context has to be
+                // merged in here the way the REST body merges it. Otherwise the
+                // same call answers the hypothetical over REST and the plain
+                // question over DataStream.
+                const preflight = mergedPreflight(evalCtx.preflight, options, key, this.logger);
+                const resp = await this.datastreamClient!.checkFlag(evalCtx, key, engineOptions(options, preflight));
 
                 // Enqueue the flag check event
                 this.enqueueEvent(api.EventType.FlagCheck, {
@@ -668,7 +707,11 @@ export class SchematicClient extends BaseClient {
                     ruleId: resp.ruleId,
                     ruleType: resp.ruleType,
                     userId: resp.userId,
-                    value: resp.value ?? this.getFlagDefault(key),
+                    // The engine declining to answer is the case
+                    // `defaultValue` exists for, so resolve it the way the
+                    // offline and API branches do rather than reaching past
+                    // `getDefault` for the registered default.
+                    value: resp.value ?? getDefault(),
                 };
             } catch (err) {
                 this.logger.debug(`Datastream flag check failed (${err}), falling back to API`);
@@ -983,9 +1026,10 @@ export class SchematicClient extends BaseClient {
      * pull the balance out from under them. Shared leases reclaim themselves:
      * they expire (client- and server-side) or are fully consumed.
      *
-     * Lease work already in flight is waited out (bounded by
-     * `SHUTDOWN_DRAIN_TIMEOUT_MS`) before the release, so an acquire that
-     * lands mid-shutdown is one the release can see.
+     * Lease work already in flight is waited out before the release, so an
+     * acquire that lands mid-shutdown is one the release can see. The wait and
+     * the release share one `SHUTDOWN_DRAIN_TIMEOUT_MS` budget, so close()
+     * stays bounded however slow the store or the wire is.
      * @returns Promise that resolves when everything has been stopped
      */
     async close(): Promise<void> {
@@ -1011,7 +1055,7 @@ export class SchematicClient extends BaseClient {
             }
             await this.creditLeaseManager.drain(deadline - Date.now());
             if (!this.leaseBackendShared) {
-                await this.creditLeaseManager.releaseAllLocalLeases();
+                await this.creditLeaseManager.releaseAllLocalLeases(deadline - Date.now());
             }
         }
         if (this.datastreamClient) {
@@ -1069,10 +1113,10 @@ export class SchematicClient extends BaseClient {
     }
 
     /**
-     * Like `resolveCompanyId` but actively fetches the company over the
-     * datastream when only secondary keys are supplied, warming the cache as a
-     * side effect. Returns the resolved id, or undefined if the company never
-     * surfaced within `prewarmResolveTimeoutMs`.
+     * Like `resolveCompanyId` but, on a cache miss, actively fetches the
+     * company over the datastream, warming the cache as a side effect. Returns
+     * the resolved id, the `comp_`-prefixed id the keys carry if the company
+     * never surfaced within `prewarmResolveTimeoutMs`, or undefined.
      *
      * `identify` does not push a company into the datastream cache —  companies
      * are only streamed in response to a request. So we call `getCompany`
@@ -1083,7 +1127,6 @@ export class SchematicClient extends BaseClient {
      */
     private async resolveCompanyIdWithWait(evalCtx: api.CheckFlagRequestBody): Promise<string | undefined> {
         if (!evalCtx.company) return undefined;
-        if (evalCtx.company.id) return evalCtx.company.id;
         const datastream = this.datastreamClient;
         if (!datastream || this.prewarmResolveTimeoutMs <= 0) {
             return this.resolveCompanyId(evalCtx);
@@ -1106,7 +1149,9 @@ export class SchematicClient extends BaseClient {
             } catch (err) {
                 this.logger.debug(`prewarm: datastream company fetch failed (${err})`);
             }
-            if (Date.now() >= deadline) return undefined;
+            // The keys never resolved, so fall back to a `comp_` value the way
+            // the server does once its own key lookup comes up empty.
+            if (Date.now() >= deadline) return schematicId(company, COMPANY_ID_PREFIX);
             await new Promise((r) => {
                 // Unref'd: a poll between attempts must not hold the process
                 // open past close().
@@ -1313,22 +1358,33 @@ export class SchematicClient extends BaseClient {
             );
         }
         // Deterministic idempotency key so duplicate/recovery emits dedupe
-        // server-side rather than double-billing the lease's sub-ledger.
-        await this.track(track, {
-            idempotencyKey: `${RESERVATION_TRACK_IDEMPOTENCY_PREFIX}${reservation.id}`,
-        });
+        // server-side rather than double-billing the lease's sub-ledger. The
+        // cached company metric moves only when this call moved local state
+        // with it: the server drops a duplicate event on the key, so bumping
+        // the metric for one would have a caller's retry deny its own next
+        // numeric-limit check until the stream pushes the real figure.
+        await this.emitTrack(
+            track,
+            { idempotencyKey: `${RESERVATION_TRACK_IDEMPOTENCY_PREFIX}${reservation.id}` },
+            settledLocally,
+        );
     }
 
+    /**
+     * The Schematic company id for an evaluation context, resolved in the
+     * server's order: every supplied key/value pair is an ordinary entity key
+     * and gets looked up first; only when nothing matches is a value read as
+     * the company's own id, by its `comp_` prefix rather than by the name of
+     * the key it sits under. An account is free to define a key called `id`
+     * holding its own identifier, so the name alone settles nothing.
+     */
     private async resolveCompanyId(evalCtx: api.CheckFlagRequestBody): Promise<string | undefined> {
         if (!evalCtx.company) return undefined;
-        // If the caller passed `id`, use that directly.
-        if (evalCtx.company.id) return evalCtx.company.id;
-        // Otherwise, the datastream cache can resolve secondary keys → id.
         if (this.datastreamClient) {
             const cached = await this.datastreamClient.getCachedCompany(evalCtx.company);
-            return cached?.id;
+            if (cached?.id) return cached.id;
         }
-        return undefined;
+        return schematicId(evalCtx.company, COMPANY_ID_PREFIX);
     }
 
     /**
@@ -1374,13 +1430,27 @@ export class SchematicClient extends BaseClient {
      * @throws Will log error if event enqueueing fails
      */
     async track(body: api.EventBodyTrack, options?: TrackOptions): Promise<void> {
+        return this.emitTrack(body, options, true);
+    }
+
+    /**
+     * Enqueue a track event, optimistically bumping the cached company metric
+     * with it unless `updateMetrics` says not to. The bump is a local
+     * prediction of what the stream will push back, so it belongs only to an
+     * event that records usage the server has not already counted.
+     */
+    private async emitTrack(
+        body: api.EventBodyTrack,
+        options: TrackOptions | undefined,
+        updateMetrics: boolean,
+    ): Promise<void> {
         if (this.offline) return;
 
         try {
             await this.enqueueEvent("track", body, options);
 
             // Update company metrics in DataStream if available and connected
-            if (body.company && this.useDataStream() && this.datastreamClient!.isConnected()) {
+            if (updateMetrics && body.company && this.useDataStream() && this.datastreamClient!.isConnected()) {
                 try {
                     await this.datastreamClient!.updateCompanyMetrics(body.company, body.event, body.quantity || 1);
                 } catch (err) {

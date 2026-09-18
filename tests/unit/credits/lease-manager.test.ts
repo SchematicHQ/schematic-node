@@ -224,6 +224,36 @@ describe("CreditLeaseManager", () => {
         expect(store.get("co_1", "ct_1")?.grantedAmount).toBe(2000);
     });
 
+    it("sends nothing for a trigger that read the lease before the previous extend landed", async () => {
+        const creditsClient = {
+            extendCreditLease: jest.fn().mockResolvedValue(extendResponse(2000)),
+            releaseCreditLease: jest.fn(),
+        };
+        const { manager, store } = makeManager(creditsClient);
+        await seedLease(store, 1000);
+        // Spend down to below the 25% water mark.
+        await store.tryReserve("co_1", "ct_1", 900);
+        const stale = store.get("co_1", "ct_1");
+
+        await manager.maybeExtendInBackground("co_1", "ct_1");
+        expect(creditsClient.extendCreditLease).toHaveBeenCalledTimes(1);
+
+        // The second trigger reads the slot as it was before that extend
+        // landed: its own flight is gone, so nothing stops it reaching the
+        // wire but the re-read the flight registration now makes.
+        const live = store.get.bind(store);
+        let reads = 0;
+        jest.spyOn(store, "get").mockImplementation((companyId, creditTypeId) => {
+            reads += 1;
+            return reads === 1 ? stale : live(companyId, creditTypeId);
+        });
+
+        await manager.maybeExtendInBackground("co_1", "ct_1");
+
+        expect(creditsClient.extendCreditLease).toHaveBeenCalledTimes(1);
+        expect(store.get("co_1", "ct_1")?.grantedAmount).toBe(2000);
+    });
+
     it("maybeExtendInBackground extends when requiredCredits exceeds local remaining even above watermark", async () => {
         const creditsClient = {
             acquireCreditLease: jest.fn().mockResolvedValue({
@@ -376,6 +406,54 @@ describe("CreditLeaseManager", () => {
         expect(joined?.localRemainingCredits).toBe(1200);
     });
 
+    it("does not let a follow-up inherit another caller's smaller follow-up", async () => {
+        // Two checks join one 10k refill, both needing more than it asked for.
+        // C's follow-up (2k) registers first; A still needs 18k. Taking C's
+        // result would send A's retry back to a lease it already knows is
+        // short, with the credits sitting on the server.
+        let releaseRefill!: (v: unknown) => void;
+        const refillPending = new Promise((r) => (releaseRefill = r));
+        const creditsClient = {
+            acquireCreditLease: jest.fn(),
+            extendCreditLease: jest
+                .fn()
+                // The 10k refill both checks join.
+                .mockReturnValueOnce(refillPending)
+                // C's follow-up: +2000 on top of the refill's 20000 total.
+                .mockResolvedValueOnce(extendResponse(22000))
+                // A's own follow-up.
+                .mockResolvedValueOnce(extendResponse(40000)),
+            releaseCreditLease: jest.fn(),
+        };
+        const { manager, store } = makeManager(creditsClient);
+        await seedLease(store, 10_000);
+        await store.tryReserve("co_1", "ct_1", 10_000); // nothing left
+
+        const refillP = manager.maybeExtendInBackground("co_1", "ct_1", 10_000);
+        await flush();
+        expect(creditsClient.extendCreditLease.mock.calls[0][1].additionalAmount).toBe(10_000);
+
+        // C joins first, so its follow-up is the one in flight when A resumes.
+        const cP = manager.maybeExtendInBackground("co_1", "ct_1", 12_000);
+        await flush();
+        const aP = manager.maybeExtendInBackground("co_1", "ct_1", 28_000);
+        await flush();
+        expect(creditsClient.extendCreditLease).toHaveBeenCalledTimes(1);
+
+        releaseRefill(extendResponse(20_000));
+        await refillP;
+        const c = await cP;
+        const a = await aP;
+
+        // C topped up its 2000 shortfall; A then asked for its own, sized
+        // against the 12000 C left behind rather than inheriting C's ask.
+        expect(creditsClient.extendCreditLease).toHaveBeenCalledTimes(3);
+        expect(creditsClient.extendCreditLease.mock.calls[1][1].additionalAmount).toBe(2_000);
+        expect(creditsClient.extendCreditLease.mock.calls[2][1].additionalAmount).toBe(16_000);
+        expect(c?.localRemainingCredits).toBeGreaterThanOrEqual(12_000);
+        expect(a?.localRemainingCredits).toBeGreaterThanOrEqual(28_000);
+    });
+
     it("bounds the follow-up at one extend when the server cannot cover the request", async () => {
         // The follow-up must not chain: a company whose balance simply cannot
         // reach the request would otherwise spin extending forever.
@@ -407,6 +485,44 @@ describe("CreditLeaseManager", () => {
         // Resolves rather than chaining, still short — the caller's reserve
         // fails and the check reports insufficient balance, as it should.
         expect(joined?.localRemainingCredits).toBe(2200);
+    });
+
+    it("caps a joiner's wait at the caller's own timeout", async () => {
+        // The flight runs on whatever timeout started it (a background refresh
+        // uses the client default). A check with 50ms to spend must not sit
+        // behind it: it gives up, takes its fail-open/fail-closed path, and
+        // leaves the flight running for everyone else.
+        const creditsClient = {
+            acquireCreditLease: jest.fn(),
+            extendCreditLease: jest.fn().mockImplementation(
+                () =>
+                    new Promise((resolve) => {
+                        setTimeout(() => resolve(extendResponse(2000)), 500);
+                    }),
+            ),
+            releaseCreditLease: jest.fn(),
+        };
+        const { manager, store } = makeManager(creditsClient);
+        await seedLease(store, 1000);
+        await store.tryReserve("co_1", "ct_1", 800); // 200 left, below the water mark
+
+        const flightP = manager.maybeExtendInBackground("co_1", "ct_1");
+        await flush();
+        expect(creditsClient.extendCreditLease).toHaveBeenCalledTimes(1);
+
+        const startedWaiting = Date.now();
+        const impatient = await manager.maybeExtendInBackground("co_1", "ct_1", 900, { timeoutInSeconds: 0.05 });
+        const waited = Date.now() - startedWaiting;
+
+        expect(impatient).toBeUndefined();
+        expect(waited).toBeLessThan(200);
+        // No second wire call: the joiner abandoned its wait, it did not race
+        // another extend onto the lease.
+        expect(creditsClient.extendCreditLease).toHaveBeenCalledTimes(1);
+
+        // The flight still lands for the caller that started it.
+        const first = await flightP;
+        expect(first?.grantedAmount).toBe(2000);
     });
 
     it("maybeExtendInBackground refuses to extend an expired lease", async () => {
@@ -525,6 +641,28 @@ describe("CreditLeaseManager", () => {
         expect(creditsClient.releaseCreditLease).toHaveBeenCalledWith("lse_live", {});
         // Released lease is dropped locally; the expired one is left for lazy expiry.
         expect(store.get("co_1", "ct_1")).toBeUndefined();
+    });
+
+    it("releaseAllLocalLeases gives up on a release that never lands", async () => {
+        const creditsClient = {
+            acquireCreditLease: jest.fn(),
+            extendCreditLease: jest.fn(),
+            releaseCreditLease: jest.fn().mockReturnValue(new Promise(() => {})),
+        };
+        const { manager, store, logger } = makeManager(creditsClient);
+        await store.replace({
+            leaseId: "lse_live",
+            companyId: "co_1",
+            creditTypeId: "ct_1",
+            grantedAmount: 1000,
+            expiresAt: new Date(Date.now() + 60_000),
+        });
+
+        const started = Date.now();
+        await manager.releaseAllLocalLeases(50);
+
+        expect(Date.now() - started).toBeLessThan(1_000);
+        expect(logger.warn).toHaveBeenCalledWith(expect.stringContaining("releasing credit leases on close"));
     });
 
     it("stop() refuses an acquire before it reaches the wire", async () => {

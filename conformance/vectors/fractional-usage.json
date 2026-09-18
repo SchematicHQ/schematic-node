@@ -1,0 +1,82 @@
+{
+    "category": "fractional_usage",
+    "vectors": [
+        {
+            "name": "fractional_usage_rounds_the_hold_and_the_settle_up",
+            "description": "Usage below one whole event unit: the hold is ceil(usage) x rate, the engine gates on that same cost, and a settle at the same fractional actual debits ceil(actual) x rate and bills ceil(actual) units, so the local ledger moves by exactly what the Track event bills. The reservation still records the caller-declared quantity.",
+            "given": {
+                "config": {
+                    "lease_duration_ms": 300000,
+                    "reservation_ttl_ms": 60000,
+                    "lease_size": 1000,
+                    "low_water_mark": 0.25
+                },
+                "leases": [
+                    {
+                        "lease_id": "lse_1",
+                        "company_id": "co_1",
+                        "credit_type_id": "ct_1",
+                        "granted_amount": 1000,
+                        "expires_at_ms": 300000
+                    }
+                ]
+            },
+            "operations": [
+                {
+                    "op": "check",
+                    "flag_key": "inference",
+                    "company": { "id": "co_1", "credit_balances": { "ct_1": 5000 } },
+                    "usage": 0.5,
+                    "event_subtype": "inference_tokens",
+                    "save_reservation_as": "r1",
+                    "engine": [
+                        {
+                            "value": true,
+                            "reason": "probe",
+                            "entitlement": {
+                                "value_type": "credit",
+                                "credit_id": "ct_1",
+                                "consumption_rate": 10,
+                                "event_subtype": "inference_tokens"
+                            }
+                        },
+                        { "value": true, "reason": "ok" }
+                    ],
+                    "expect": {
+                        "allowed": true,
+                        "has_reservation": true,
+                        "reservation": {
+                            "lease_id": "lse_1",
+                            "quantity_reserved": 0.5,
+                            "credits_reserved": 10,
+                            "consumption_rate": 10
+                        },
+                        "engine_calls": [{ "credit_balance": 5000 }, { "credit_balance": 1000, "credit_cost": 10 }]
+                    }
+                },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "local_remaining_credits": 990 }
+                },
+                {
+                    "op": "track",
+                    "handle": "r1",
+                    "actual_quantity": 0.5,
+                    "expect": {
+                        "settled_locally": true,
+                        "track": { "event": "inference_tokens", "quantity": 1, "lease_id": "lse_1" }
+                    }
+                },
+                {
+                    "op": "get_lease",
+                    "company_id": "co_1",
+                    "credit_type_id": "ct_1",
+                    "expect": { "exists": true, "local_remaining_credits": 990 }
+                },
+                { "op": "reserved_credits", "company_id": "co_1", "credit_type_id": "ct_1", "expect": { "total": 0 } }
+            ]
+        }
+    ]
+}

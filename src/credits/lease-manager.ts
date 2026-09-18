@@ -43,6 +43,16 @@ export async function settleWithin(promises: Promise<unknown>[], timeoutMs: numb
 }
 
 /**
+ * How many in-flight extends one caller will wait out before issuing its own.
+ * Two covers the case the single-flight was written for: the flight a caller
+ * joins, and the follow-up another caller registers while it was waiting.
+ */
+const MAX_EXTEND_JOINS = 2;
+
+/** A wait on a shared extend that ran out the joiner's own timeout. */
+const JOIN_TIMED_OUT = Symbol("extend-join-timed-out");
+
+/**
  * An in-flight extend plus the additional amount its wire call asked for —
  * the figure a joiner compares its own shortfall against.
  */
@@ -246,7 +256,9 @@ export class CreditLeaseManager {
      * shortfall is larger than what that extend asked for, it waits the flight
      * out and then issues exactly one follow-up extend for the remaining
      * difference — otherwise it would inherit a tranche-sized ask and fail its
-     * post-extend retry with credits still sitting on the server.
+     * post-extend retry with credits still sitting on the server. A flight it
+     * finds on the way back is only joined if that one covers the shortfall
+     * too; a smaller one is waited out, never inherited.
      * Returns the in-flight promise so callers can await it or fire-and-forget.
      * Never rejects (it is often fire-and-forget — a rejection would surface
      * as an unhandled promise rejection).
@@ -266,7 +278,7 @@ export class CreditLeaseManager {
         // Tracked whole, not just the wire call inside it: callers void this,
         // so between the store read and the extend there would otherwise be a
         // window where a drain sees nothing pending.
-        return this.track(this.extendIfNeeded(companyId, creditTypeId, requiredCredits, requestOptions, true));
+        return this.track(this.extendIfNeeded(companyId, creditTypeId, requiredCredits, requestOptions));
     }
 
     private async extendIfNeeded(
@@ -274,8 +286,110 @@ export class CreditLeaseManager {
         creditTypeId: string,
         requiredCredits: number | undefined,
         requestOptions: CreditsClient.RequestOptions | undefined,
-        allowFollowUp: boolean,
     ): Promise<LeaseEntry | undefined> {
+        // A joiner waits on someone else's wire call, which runs on whatever
+        // timeout ITS caller set (a background refresh uses the client
+        // default). So the wait is capped at this caller's own timeout: a check
+        // with 200ms to spend must not sit behind a 30s extend.
+        const joinDeadline = this.joinDeadline(requestOptions);
+        // Joins are budgeted, extends of our own are not: a caller may wait out
+        // flights that ask for too little, but once the budget runs out it
+        // issues its own single extend rather than joining again. Without the
+        // budget a caller could wait behind an unbounded run of other callers'
+        // follow-ups; without the "own extend" it would return a balance it
+        // already knows is short and fail its retry with credits on the server.
+        for (let joinsLeft = MAX_EXTEND_JOINS; ; joinsLeft--) {
+            const entry = await this.readLiveLease(companyId, creditTypeId);
+            if (!entry) return undefined;
+            const resolved = this.resolveConfig(creditTypeId);
+            if (!this.needsExtend(entry, resolved, requiredCredits)) return entry;
+
+            // Size the extend to cover the request that triggered it: a single
+            // check needing more than `localRemaining + leaseSize` would
+            // otherwise fail its post-extend retry forever, even with ample
+            // server balance. The watermark-driven steady-state path (no
+            // requiredCredits) keeps requesting the configured tranche. Sized
+            // here, one level above the wire call, so the flight we register
+            // below and the request body provably carry the same number for a
+            // joiner to compare against.
+            const shortfall = requiredCredits !== undefined ? requiredCredits - entry.localRemainingCredits : 0;
+            const additionalAmount = Math.max(resolved.leaseSize, shortfall);
+
+            const key = leaseKey(companyId, creditTypeId);
+            const inflight = this.inflightExtend.get(key);
+            if (inflight && joinsLeft > 0) {
+                const joined = await this.joinWithin(inflight.promise, joinDeadline);
+                if (joined === JOIN_TIMED_OUT) {
+                    // The flight runs on for everybody else; we just stop
+                    // waiting on it. Reporting no entry sends the caller down
+                    // its fail-open/fail-closed path, which is what its timeout
+                    // asked for.
+                    this.logger.debug(
+                        `Extend in flight for ${companyId}/${creditTypeId} outlasted the caller's timeout; not waiting on it`,
+                    );
+                    return undefined;
+                }
+                // The flight asked for at least what we need: every
+                // watermark-driven joiner, and any check the tranche covers.
+                // One wire call serves all of them, which is the point of
+                // single-flight.
+                if (additionalAmount <= inflight.requestedAdditional) return joined;
+                // It asked for less. Go round again to re-read the slot it just
+                // moved, so what we ask for next is sized against the balance
+                // it left rather than the one we started from.
+                continue;
+            }
+            return this.startExtend(
+                key,
+                companyId,
+                creditTypeId,
+                resolved,
+                requiredCredits,
+                additionalAmount,
+                requestOptions,
+            );
+        }
+    }
+
+    /** When a joiner's wait on a shared flight runs out, or undefined for no cap. */
+    private joinDeadline(requestOptions: CreditsClient.RequestOptions | undefined): number | undefined {
+        const timeoutInSeconds = requestOptions?.timeoutInSeconds;
+        if (timeoutInSeconds === undefined || !Number.isFinite(timeoutInSeconds)) return undefined;
+        return Date.now() + timeoutInSeconds * 1000;
+    }
+
+    /**
+     * Await a flight somebody else is running, giving up at `deadline`. Giving
+     * up abandons only our wait: the flight keeps running for the callers still
+     * on it, and whatever it installs is there for our next check to read.
+     */
+    private joinWithin(
+        promise: Promise<LeaseEntry | undefined>,
+        deadline: number | undefined,
+    ): Promise<LeaseEntry | undefined | typeof JOIN_TIMED_OUT> {
+        if (deadline === undefined) return promise;
+        const remaining = deadline - Date.now();
+        if (remaining <= 0) return Promise.resolve(JOIN_TIMED_OUT);
+        let timer: ReturnType<typeof setTimeout> | undefined;
+        const expiry = new Promise<typeof JOIN_TIMED_OUT>((resolve) => {
+            timer = setTimeout(() => resolve(JOIN_TIMED_OUT), remaining);
+            // A wait nobody is left waiting on must not hold the process open.
+            unrefTimer(timer);
+        });
+        return Promise.race([promise, expiry]).finally(() => {
+            if (timer) clearTimeout(timer);
+        });
+    }
+
+    /**
+     * Read the slot, reporting `undefined` when the read fails or the lease is
+     * absent or expired. An expired lease is never extended: the server treats
+     * it as released (its remainder already refunded to the company balance),
+     * so the right move is a fresh acquire, which the next check's
+     * `acquireIfNeeded` performs. Extending would at best waste a wire call and
+     * at worst resurrect a stale local row.
+     */
+    private async readLiveLease(companyId: string, creditTypeId: string): Promise<LeaseEntry | undefined> {
         let entry: LeaseEntry | undefined;
         try {
             entry = await this.leaseStore.get(companyId, creditTypeId);
@@ -284,44 +398,20 @@ export class CreditLeaseManager {
             return undefined;
         }
         if (!entry) return undefined;
-        // Never extend an expired lease: the server treats it as released (its
-        // remainder already refunded to the company balance), so the right
-        // move is a fresh acquire, which the next check's `acquireIfNeeded`
-        // performs. Extending would at best waste a wire call and at worst
-        // resurrect a stale local row.
         if (entry.expiresAt.getTime() <= Date.now()) return undefined;
-        const resolved = this.resolveConfig(creditTypeId);
+        return entry;
+    }
+
+    /** Whether `entry` sits low enough to warrant an extend. */
+    private needsExtend(
+        entry: LeaseEntry,
+        resolved: ResolvedLeaseConfig,
+        requiredCredits: number | undefined,
+    ): boolean {
         const ratio = entry.localRemainingCredits / Math.max(entry.grantedAmount, 1);
         const belowWatermark = ratio <= resolved.lowWaterMark;
         const belowRequired = requiredCredits !== undefined && entry.localRemainingCredits < requiredCredits;
-        if (!belowWatermark && !belowRequired) return entry;
-
-        // Size the extend to cover the request that triggered it: a single
-        // check needing more than `localRemaining + leaseSize` would otherwise
-        // fail its post-extend retry forever, even with ample server balance.
-        // The watermark-driven steady-state path (no requiredCredits) keeps
-        // requesting the configured tranche. Sized here, one level above the
-        // wire call, so the flight we register below and the request body
-        // provably carry the same number for a joiner to compare against.
-        const shortfall = requiredCredits !== undefined ? requiredCredits - entry.localRemainingCredits : 0;
-        const additionalAmount = Math.max(resolved.leaseSize, shortfall);
-
-        const key = leaseKey(companyId, creditTypeId);
-        const inflight = this.inflightExtend.get(key);
-        if (inflight) {
-            const joined = await inflight.promise;
-            // The flight already asked for at least what we need — every
-            // watermark-driven joiner, and any check the tranche covers. One
-            // wire call serves all of them, which is the point of single-flight.
-            if (additionalAmount <= inflight.requestedAdditional || !allowFollowUp) return joined;
-            // Our shortfall outran the flight's ask. We waited it out rather
-            // than racing a second extend onto the same lease; now top up the
-            // difference with exactly one more, re-reading the slot the flight
-            // just moved. `allowFollowUp: false` keeps this from chaining: when
-            // the server cannot cover the request, a chain would spin.
-            return this.extendIfNeeded(companyId, creditTypeId, requiredCredits, requestOptions, false);
-        }
-        return this.startExtend(key, entry, resolved, additionalAmount, requestOptions);
+        return belowWatermark || belowRequired;
     }
 
     /**
@@ -332,16 +422,48 @@ export class CreditLeaseManager {
      */
     private startExtend(
         key: string,
-        entry: LeaseEntry,
+        companyId: string,
+        creditTypeId: string,
         resolved: ResolvedLeaseConfig,
+        requiredCredits: number | undefined,
         additionalAmount: number,
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<LeaseEntry | undefined> {
-        const promise = this.extend(entry, resolved, additionalAmount, requestOptions).finally(() => {
+        const promise = this.recheckAndExtend(
+            companyId,
+            creditTypeId,
+            resolved,
+            requiredCredits,
+            additionalAmount,
+            requestOptions,
+        ).finally(() => {
             if (this.inflightExtend.get(key)?.promise === promise) this.inflightExtend.delete(key);
         });
         this.inflightExtend.set(key, { requestedAdditional: additionalAmount, promise });
         return promise;
+    }
+
+    /**
+     * Re-read the slot now that this flight owns it, and extend only if the
+     * fresh row still warrants one. The row that decided this extend was read
+     * before the flight was registered, so an extend that landed in that gap,
+     * clearing its own flight on the way out, would otherwise be followed by a
+     * second extend, under a new idempotency key, for a lease it already topped
+     * up. The registered `requestedAdditional` stands: a joiner compares its
+     * shortfall against that figure, so the wire body has to carry it.
+     */
+    private async recheckAndExtend(
+        companyId: string,
+        creditTypeId: string,
+        resolved: ResolvedLeaseConfig,
+        requiredCredits: number | undefined,
+        additionalAmount: number,
+        requestOptions?: CreditsClient.RequestOptions,
+    ): Promise<LeaseEntry | undefined> {
+        const entry = await this.readLiveLease(companyId, creditTypeId);
+        if (!entry) return undefined;
+        if (!this.needsExtend(entry, resolved, requiredCredits)) return entry;
+        return this.extend(entry, resolved, additionalAmount, requestOptions);
     }
 
     private async extend(
@@ -443,24 +565,30 @@ export class CreditLeaseManager {
      * drawing on the same leases — and is excluded by the `list` capability
      * check (only the in-memory store implements it). Best-effort: failures
      * are logged and the lease falls back to server-side expiry.
+     * Bounded by `timeoutMs`, so a store or wire call that never lands cannot
+     * hold a closing client open; whatever is abandoned expires server-side.
      */
-    async releaseAllLocalLeases(): Promise<void> {
+    async releaseAllLocalLeases(timeoutMs: number = SHUTDOWN_DRAIN_TIMEOUT_MS): Promise<void> {
         const entries = this.leaseStore.list?.();
         if (!entries || entries.length === 0) return;
-        await Promise.all(
-            entries.map(async (entry) => {
-                // Skip expired leases: the server already swept and refunded them.
-                if (entry.expiresAt.getTime() <= Date.now()) return;
-                try {
-                    await this.creditsClient.releaseCreditLease(entry.leaseId, {});
-                    await this.leaseStore.drop(entry.companyId, entry.creditTypeId);
-                    this.logger.debug(`Released credit lease ${entry.leaseId} on close`);
-                } catch (err) {
-                    this.logger.warn(
-                        `Failed to release credit lease ${entry.leaseId} on close (it will expire server-side): ${err}`,
-                    );
-                }
-            }),
-        );
+        const releases = entries.map(async (entry) => {
+            // Skip expired leases: the server already swept and refunded them.
+            if (entry.expiresAt.getTime() <= Date.now()) return;
+            try {
+                await this.creditsClient.releaseCreditLease(entry.leaseId, {});
+                await this.leaseStore.drop(entry.companyId, entry.creditTypeId);
+                this.logger.debug(`Released credit lease ${entry.leaseId} on close`);
+            } catch (err) {
+                this.logger.warn(
+                    `Failed to release credit lease ${entry.leaseId} on close (it will expire server-side): ${err}`,
+                );
+            }
+        });
+        if (!(await settleWithin(releases, timeoutMs))) {
+            this.logger.warn(
+                `Timed out after ${timeoutMs}ms releasing credit leases on close; ` +
+                    "any still held will be released by server-side expiry",
+            );
+        }
     }
 }
