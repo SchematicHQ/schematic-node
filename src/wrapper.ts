@@ -129,16 +129,16 @@ export interface CheckFlagOptions {
     creditCost?: Record<string, number>;
     /**
      * Quantity applied to whatever numeric condition is being evaluated. Zero
-     * has no effect. A local evaluation takes the value as given; the REST
-     * request body takes an integer, so a fraction rounds up there rather than
-     * letting the check pass on less usage than the action is about to record.
+     * has no effect. Both the REST request body and the local (WASM) engine
+     * take an integer, so a fraction rounds up rather than letting the check
+     * pass on less usage than the action is about to record.
      */
     usage?: number;
     /**
      * Simulated quantity scoped to a specific event subtype. Preferred over
      * `usage` when the subtype is known. Deliberately singular: one check
-     * preflights one action. `quantity` rounds up on the REST path the same way
-     * `usage` does, and zero has no effect.
+     * preflights one action. `quantity` rounds up the same way `usage` does,
+     * and zero has no effect.
      */
     eventUsage?: { eventSubtype: string; quantity: number };
 }
