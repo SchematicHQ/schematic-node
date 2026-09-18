@@ -557,6 +557,28 @@ describe("CreditLeaseManager", () => {
         expect(store.get("co_1", "ct_1")).toBeUndefined();
     });
 
+    it("releaseAllLocalLeases gives up on a release that never lands", async () => {
+        const creditsClient = {
+            acquireCreditLease: jest.fn(),
+            extendCreditLease: jest.fn(),
+            releaseCreditLease: jest.fn().mockReturnValue(new Promise(() => {})),
+        };
+        const { manager, store, logger } = makeManager(creditsClient);
+        await store.replace({
+            leaseId: "lse_live",
+            companyId: "co_1",
+            creditTypeId: "ct_1",
+            grantedAmount: 1000,
+            expiresAt: new Date(Date.now() + 60_000),
+        });
+
+        const started = Date.now();
+        await manager.releaseAllLocalLeases(50);
+
+        expect(Date.now() - started).toBeLessThan(1_000);
+        expect(logger.warn).toHaveBeenCalledWith(expect.stringContaining("releasing credit leases on close"));
+    });
+
     it("stop() refuses an acquire before it reaches the wire", async () => {
         const creditsClient = {
             acquireCreditLease: jest.fn(),

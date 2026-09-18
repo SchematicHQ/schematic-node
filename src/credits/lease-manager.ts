@@ -501,24 +501,30 @@ export class CreditLeaseManager {
      * drawing on the same leases — and is excluded by the `list` capability
      * check (only the in-memory store implements it). Best-effort: failures
      * are logged and the lease falls back to server-side expiry.
+     * Bounded by `timeoutMs`, so a store or wire call that never lands cannot
+     * hold a closing client open; whatever is abandoned expires server-side.
      */
-    async releaseAllLocalLeases(): Promise<void> {
+    async releaseAllLocalLeases(timeoutMs: number = SHUTDOWN_DRAIN_TIMEOUT_MS): Promise<void> {
         const entries = this.leaseStore.list?.();
         if (!entries || entries.length === 0) return;
-        await Promise.all(
-            entries.map(async (entry) => {
-                // Skip expired leases: the server already swept and refunded them.
-                if (entry.expiresAt.getTime() <= Date.now()) return;
-                try {
-                    await this.creditsClient.releaseCreditLease(entry.leaseId, {});
-                    await this.leaseStore.drop(entry.companyId, entry.creditTypeId);
-                    this.logger.debug(`Released credit lease ${entry.leaseId} on close`);
-                } catch (err) {
-                    this.logger.warn(
-                        `Failed to release credit lease ${entry.leaseId} on close (it will expire server-side): ${err}`,
-                    );
-                }
-            }),
-        );
+        const releases = entries.map(async (entry) => {
+            // Skip expired leases: the server already swept and refunded them.
+            if (entry.expiresAt.getTime() <= Date.now()) return;
+            try {
+                await this.creditsClient.releaseCreditLease(entry.leaseId, {});
+                await this.leaseStore.drop(entry.companyId, entry.creditTypeId);
+                this.logger.debug(`Released credit lease ${entry.leaseId} on close`);
+            } catch (err) {
+                this.logger.warn(
+                    `Failed to release credit lease ${entry.leaseId} on close (it will expire server-side): ${err}`,
+                );
+            }
+        });
+        if (!(await settleWithin(releases, timeoutMs))) {
+            this.logger.warn(
+                `Timed out after ${timeoutMs}ms releasing credit leases on close; ` +
+                    "any still held will be released by server-side expiry",
+            );
+        }
     }
 }

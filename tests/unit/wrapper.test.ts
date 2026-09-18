@@ -1,6 +1,10 @@
 import { SchematicClient } from "../../src/wrapper";
 import type { CacheProvider } from "../../src/cache";
-import { MAX_RESERVATION_TTL_MS, RESERVATION_TTL_SKEW_ALLOWANCE_MS } from "../../src/credits";
+import {
+    MAX_RESERVATION_TTL_MS,
+    RESERVATION_TTL_SKEW_ALLOWANCE_MS,
+    SHUTDOWN_DRAIN_TIMEOUT_MS,
+} from "../../src/credits";
 import type { CheckFlagWithEntitlementResponse } from "../../src/wrapper";
 
 // Mock the features.checkFlag API call
@@ -802,6 +806,35 @@ describe("SchematicClient wrapper - credit lease store backend selection", () =>
         const leaseStore = (client as any).leaseStore;
         expect(leaseStore.list()).toEqual([]);
         expect(mockReleaseCreditLease).toHaveBeenCalledWith("lse_1", {});
+    });
+
+    it("close() returns within the shutdown budget when a release never lands", async () => {
+        mockReleaseCreditLease.mockReturnValue(new Promise(() => {}));
+        const client = new SchematicClient({
+            apiKey: "test-key",
+            logger: mockLogger,
+            creditLeases: { mode: "client", sweepIntervalMs: 60_000 },
+        });
+        // biome-ignore lint/suspicious/noExplicitAny: reaching into the client's store
+        const leaseStore = (client as any).leaseStore;
+        await leaseStore.replace({
+            leaseId: "lse_1",
+            companyId: "co_1",
+            creditTypeId: "ct_1",
+            grantedAmount: 1000,
+            expiresAt: new Date(Date.now() + 5 * 60_000),
+        });
+
+        jest.useFakeTimers();
+        try {
+            const closing = client.close();
+            await jest.advanceTimersByTimeAsync(SHUTDOWN_DRAIN_TIMEOUT_MS + 10);
+            await closing;
+        } finally {
+            jest.useRealTimers();
+        }
+
+        expect(mockLogger.warn).toHaveBeenCalledWith(expect.stringContaining("releasing credit leases on close"));
     });
 
     it("prewarm() called after close() has started acquires nothing", async () => {

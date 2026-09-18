@@ -1009,9 +1009,10 @@ export class SchematicClient extends BaseClient {
      * pull the balance out from under them. Shared leases reclaim themselves:
      * they expire (client- and server-side) or are fully consumed.
      *
-     * Lease work already in flight is waited out (bounded by
-     * `SHUTDOWN_DRAIN_TIMEOUT_MS`) before the release, so an acquire that
-     * lands mid-shutdown is one the release can see.
+     * Lease work already in flight is waited out before the release, so an
+     * acquire that lands mid-shutdown is one the release can see. The wait and
+     * the release share one `SHUTDOWN_DRAIN_TIMEOUT_MS` budget, so close()
+     * stays bounded however slow the store or the wire is.
      * @returns Promise that resolves when everything has been stopped
      */
     async close(): Promise<void> {
@@ -1037,7 +1038,7 @@ export class SchematicClient extends BaseClient {
             }
             await this.creditLeaseManager.drain(deadline - Date.now());
             if (!this.leaseBackendShared) {
-                await this.creditLeaseManager.releaseAllLocalLeases();
+                await this.creditLeaseManager.releaseAllLocalLeases(deadline - Date.now());
             }
         }
         if (this.datastreamClient) {
