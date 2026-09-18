@@ -935,6 +935,32 @@ describe("client.trackWithReservation", () => {
         await client.close();
     });
 
+    it("moves the cached company metric on the settle, but not on a re-settle", async () => {
+        configureSuccessfulAcquire();
+        configureDataStream();
+        configureEngine();
+        const client = makeClient();
+        const res = await client.check({ company: { id: "co_1" } }, "inference", {
+            usage: 50,
+            eventSubtype: "inference_tokens",
+        });
+        if (!res.reservation) throw new Error("expected reservation");
+
+        await client.trackWithReservation(res.reservation, 20);
+        expect(mockDataStream.updateCompanyMetrics).toHaveBeenCalledTimes(1);
+        expect(mockDataStream.updateCompanyMetrics).toHaveBeenCalledWith({ id: "co_1" }, "inference_tokens", 20);
+
+        // The reservation is already consumed, so this settle changes nothing
+        // locally and the server drops the event on its idempotency key.
+        // Bumping the metric again would deny the company's next numeric-limit
+        // check on usage nobody recorded.
+        await client.trackWithReservation(res.reservation, 20);
+        const trackCalls = mockEventBufferPush.mock.calls.filter((call) => call[0]?.eventType === "track");
+        expect(trackCalls).toHaveLength(2);
+        expect(mockDataStream.updateCompanyMetrics).toHaveBeenCalledTimes(1);
+        await client.close();
+    });
+
     it("keys the normal settle Track with the reservation id too", async () => {
         configureSuccessfulAcquire();
         configureDataStream();

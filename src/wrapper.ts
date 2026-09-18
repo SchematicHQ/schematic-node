@@ -1354,10 +1354,16 @@ export class SchematicClient extends BaseClient {
             );
         }
         // Deterministic idempotency key so duplicate/recovery emits dedupe
-        // server-side rather than double-billing the lease's sub-ledger.
-        await this.track(track, {
-            idempotencyKey: `${RESERVATION_TRACK_IDEMPOTENCY_PREFIX}${reservation.id}`,
-        });
+        // server-side rather than double-billing the lease's sub-ledger. The
+        // cached company metric moves only when this call moved local state
+        // with it: the server drops a duplicate event on the key, so bumping
+        // the metric for one would have a caller's retry deny its own next
+        // numeric-limit check until the stream pushes the real figure.
+        await this.emitTrack(
+            track,
+            { idempotencyKey: `${RESERVATION_TRACK_IDEMPOTENCY_PREFIX}${reservation.id}` },
+            settledLocally,
+        );
     }
 
     /**
@@ -1420,13 +1426,27 @@ export class SchematicClient extends BaseClient {
      * @throws Will log error if event enqueueing fails
      */
     async track(body: api.EventBodyTrack, options?: TrackOptions): Promise<void> {
+        return this.emitTrack(body, options, true);
+    }
+
+    /**
+     * Enqueue a track event, optimistically bumping the cached company metric
+     * with it unless `updateMetrics` says not to. The bump is a local
+     * prediction of what the stream will push back, so it belongs only to an
+     * event that records usage the server has not already counted.
+     */
+    private async emitTrack(
+        body: api.EventBodyTrack,
+        options: TrackOptions | undefined,
+        updateMetrics: boolean,
+    ): Promise<void> {
         if (this.offline) return;
 
         try {
             await this.enqueueEvent("track", body, options);
 
             // Update company metrics in DataStream if available and connected
-            if (body.company && this.useDataStream() && this.datastreamClient!.isConnected()) {
+            if (updateMetrics && body.company && this.useDataStream() && this.datastreamClient!.isConnected()) {
                 try {
                     await this.datastreamClient!.updateCompanyMetrics(body.company, body.event, body.quantity || 1);
                 } catch (err) {
