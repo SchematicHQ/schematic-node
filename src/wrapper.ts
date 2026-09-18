@@ -274,6 +274,26 @@ function mergedPreflight(
     return Object.keys(preflight).length > 0 ? preflight : undefined;
 }
 
+/**
+ * The options a local (WASM) evaluation runs with: the caller's options, with
+ * the merged preflight's knobs in place of whatever the options carried. The
+ * merge already decided which source owns each knob, so a knob it dropped is
+ * one the engine must not see.
+ */
+function engineOptions(
+    options: CheckFlagOptions | undefined,
+    preflight: api.PreflightRequestBody | undefined,
+): CheckFlagOptions | undefined {
+    if (options === undefined && preflight === undefined) return undefined;
+    return {
+        defaultValue: options?.defaultValue,
+        timeoutMs: options?.timeoutMs,
+        creditCost: preflight?.creditCost,
+        usage: preflight?.usage,
+        eventUsage: preflight?.eventUsage,
+    };
+}
+
 export class SchematicClient extends BaseClient {
     private datastreamClient?: DataStreamClient;
     private eventBuffer: EventBuffer;
@@ -643,7 +663,13 @@ export class SchematicClient extends BaseClient {
 
         if (this.useDataStream()) {
             try {
-                const resp = await this.datastreamClient!.checkFlag(evalCtx, key, options);
+                // The local engine reads its preflight from the options, so a
+                // preflight the caller set on the evaluation context has to be
+                // merged in here the way the REST body merges it. Otherwise the
+                // same call answers the hypothetical over REST and the plain
+                // question over DataStream.
+                const preflight = mergedPreflight(evalCtx.preflight, options, key, this.logger);
+                const resp = await this.datastreamClient!.checkFlag(evalCtx, key, engineOptions(options, preflight));
 
                 // Enqueue the flag check event
                 this.enqueueEvent(api.EventType.FlagCheck, {

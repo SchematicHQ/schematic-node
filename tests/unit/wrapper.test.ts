@@ -397,6 +397,54 @@ describe("SchematicClient wrapper - flag checking behavior", () => {
         });
     });
 
+    describe("DataStream preflight", () => {
+        const streamAllows = (value: boolean): void => {
+            mockDataStream.checkFlag.mockResolvedValue({ value, flagKey: "test-flag", reason: "match" });
+        };
+
+        const newClient = () =>
+            new SchematicClient({
+                apiKey: "test-api-key",
+                cacheProviders: { flagChecks: [] },
+                logger: mockLogger,
+                useDataStream: true,
+            });
+
+        it("hands the local engine a preflight the eval context carries", async () => {
+            streamAllows(true);
+            const client = newClient();
+
+            await client.checkFlag({ company: { id: "comp-1" }, preflight: { usage: 7 } }, "test-flag");
+
+            expect(mockDataStream.checkFlag.mock.calls[0][2]).toEqual(
+                expect.objectContaining({ usage: 7, eventUsage: undefined }),
+            );
+
+            await client.close();
+        });
+
+        it("lets the options' usage knobs replace the eval context's for the local engine", async () => {
+            streamAllows(true);
+            const client = newClient();
+
+            await client.checkFlag(
+                { company: { id: "comp-1" }, preflight: { usage: 7, creditCost: { "credit-1": 20 } } },
+                "test-flag",
+                { eventUsage: { eventSubtype: "tokens", quantity: 9 } },
+            );
+
+            expect(mockDataStream.checkFlag.mock.calls[0][2]).toEqual(
+                expect.objectContaining({
+                    creditCost: { "credit-1": 20 },
+                    eventUsage: { eventSubtype: "tokens", quantity: 9 },
+                    usage: undefined,
+                }),
+            );
+
+            await client.close();
+        });
+    });
+
     describe("event options", () => {
         // eslint-disable-next-line @typescript-eslint/no-require-imports
         const { EventBuffer } = require("../../src/events");
