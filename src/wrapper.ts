@@ -707,7 +707,11 @@ export class SchematicClient extends BaseClient {
                     ruleId: resp.ruleId,
                     ruleType: resp.ruleType,
                     userId: resp.userId,
-                    value: resp.value ?? this.getFlagDefault(key),
+                    // The engine declining to answer is the case
+                    // `defaultValue` exists for, so resolve it the way the
+                    // offline and API branches do rather than reaching past
+                    // `getDefault` for the registered default.
+                    value: resp.value ?? getDefault(),
                 };
             } catch (err) {
                 this.logger.debug(`Datastream flag check failed (${err}), falling back to API`);

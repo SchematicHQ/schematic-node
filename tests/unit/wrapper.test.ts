@@ -414,6 +414,30 @@ describe("SchematicClient wrapper - flag checking behavior", () => {
                 useDataStream: true,
             });
 
+        it("honours the caller's defaultValue when the engine returns no value", async () => {
+            // The engine declining to answer is the case `defaultValue` exists
+            // for, so the DataStream branch has to resolve it the way the
+            // offline and API branches do.
+            mockDataStream.checkFlag.mockResolvedValue({ value: undefined, flagKey: "test-flag", reason: "no verdict" });
+            const client = newClient();
+            client.setFlagDefault("test-flag", false);
+
+            const withDefault = await client.checkFlagWithEntitlement({ company: { id: "comp-1" } }, "test-flag", {
+                defaultValue: true,
+            });
+            const withFn = await client.checkFlagWithEntitlement({ company: { id: "comp-1" } }, "test-flag", {
+                defaultValue: () => true,
+            });
+            const withoutDefault = await client.checkFlagWithEntitlement({ company: { id: "comp-1" } }, "test-flag");
+
+            expect(withDefault.value).toBe(true);
+            expect(withFn.value).toBe(true);
+            // With no caller default the registered one still stands in.
+            expect(withoutDefault.value).toBe(false);
+
+            await client.close();
+        });
+
         it("hands the local engine a preflight the eval context carries", async () => {
             streamAllows(true);
             const client = newClient();
