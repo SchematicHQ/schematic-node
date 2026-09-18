@@ -274,6 +274,19 @@ function mergedPreflight(
     return Object.keys(preflight).length > 0 ? preflight : undefined;
 }
 
+/** Prefixes Schematic's secure ids carry, whatever key name they are passed under. */
+const COMPANY_ID_PREFIX = "comp_";
+
+/**
+ * The Schematic id hiding among a set of entity keys, recognized by its secure-id
+ * prefix. The server reads keys this way once a key lookup has come up empty, so
+ * `{ account_id: "comp_1" }` resolves and `{ id: "acme" }` does not: the prefix
+ * decides, not the key's name.
+ */
+function schematicId(keys: Record<string, string>, prefix: string): string | undefined {
+    return Object.values(keys).find((value) => typeof value === "string" && value.startsWith(prefix));
+}
+
 /**
  * The options a local (WASM) evaluation runs with: the caller's options, with
  * the merged preflight's knobs in place of whatever the options carried. The
@@ -1096,10 +1109,10 @@ export class SchematicClient extends BaseClient {
     }
 
     /**
-     * Like `resolveCompanyId` but actively fetches the company over the
-     * datastream when only secondary keys are supplied, warming the cache as a
-     * side effect. Returns the resolved id, or undefined if the company never
-     * surfaced within `prewarmResolveTimeoutMs`.
+     * Like `resolveCompanyId` but, on a cache miss, actively fetches the
+     * company over the datastream, warming the cache as a side effect. Returns
+     * the resolved id, the `comp_`-prefixed id the keys carry if the company
+     * never surfaced within `prewarmResolveTimeoutMs`, or undefined.
      *
      * `identify` does not push a company into the datastream cache —  companies
      * are only streamed in response to a request. So we call `getCompany`
@@ -1110,7 +1123,6 @@ export class SchematicClient extends BaseClient {
      */
     private async resolveCompanyIdWithWait(evalCtx: api.CheckFlagRequestBody): Promise<string | undefined> {
         if (!evalCtx.company) return undefined;
-        if (evalCtx.company.id) return evalCtx.company.id;
         const datastream = this.datastreamClient;
         if (!datastream || this.prewarmResolveTimeoutMs <= 0) {
             return this.resolveCompanyId(evalCtx);
@@ -1133,7 +1145,9 @@ export class SchematicClient extends BaseClient {
             } catch (err) {
                 this.logger.debug(`prewarm: datastream company fetch failed (${err})`);
             }
-            if (Date.now() >= deadline) return undefined;
+            // The keys never resolved, so fall back to a `comp_` value the way
+            // the server does once its own key lookup comes up empty.
+            if (Date.now() >= deadline) return schematicId(company, COMPANY_ID_PREFIX);
             await new Promise((r) => {
                 // Unref'd: a poll between attempts must not hold the process
                 // open past close().
@@ -1346,16 +1360,21 @@ export class SchematicClient extends BaseClient {
         });
     }
 
+    /**
+     * The Schematic company id for an evaluation context, resolved in the
+     * server's order: every supplied key/value pair is an ordinary entity key
+     * and gets looked up first; only when nothing matches is a value read as
+     * the company's own id, by its `comp_` prefix rather than by the name of
+     * the key it sits under. An account is free to define a key called `id`
+     * holding its own identifier, so the name alone settles nothing.
+     */
     private async resolveCompanyId(evalCtx: api.CheckFlagRequestBody): Promise<string | undefined> {
         if (!evalCtx.company) return undefined;
-        // If the caller passed `id`, use that directly.
-        if (evalCtx.company.id) return evalCtx.company.id;
-        // Otherwise, the datastream cache can resolve secondary keys → id.
         if (this.datastreamClient) {
             const cached = await this.datastreamClient.getCachedCompany(evalCtx.company);
-            return cached?.id;
+            if (cached?.id) return cached.id;
         }
-        return undefined;
+        return schematicId(evalCtx.company, COMPANY_ID_PREFIX);
     }
 
     /**

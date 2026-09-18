@@ -775,7 +775,7 @@ describe("SchematicClient wrapper - credit lease store backend selection", () =>
             return {
                 data: {
                     id: "lse_1",
-                    companyId: "co_1",
+                    companyId: "comp_1",
                     creditTypeId: "bilcr_inference",
                     grantedAmount: 1000,
                     expiresAt: new Date(Date.now() + 5 * 60_000),
@@ -791,7 +791,7 @@ describe("SchematicClient wrapper - credit lease store backend selection", () =>
             creditLeases: { mode: "client", sweepIntervalMs: 60_000 },
         });
         await client.identify(
-            { keys: { user_id: "u_1" }, company: { keys: { id: "co_1" } } },
+            { keys: { user_id: "u_1" }, company: { keys: { id: "comp_1" } } },
             {
                 prewarm: ["bilcr_inference"],
             },
@@ -835,6 +835,9 @@ describe("SchematicClient wrapper - credit lease store backend selection", () =>
         }
 
         expect(mockLogger.warn).toHaveBeenCalledWith(expect.stringContaining("releasing credit leases on close"));
+        // `clearAllMocks` keeps implementations, so hand the next test a
+        // release that resolves.
+        mockReleaseCreditLease.mockResolvedValue({});
     });
 
     it("prewarm() called after close() has started acquires nothing", async () => {
@@ -873,6 +876,74 @@ describe("SchematicClient wrapper - credit lease store backend selection", () =>
 
         expect(Date.now() - startedClosing).toBeLessThan(1000);
         expect(mockAcquireCreditLease).not.toHaveBeenCalled();
+    });
+
+    describe("company resolution", () => {
+        beforeEach(() => {
+            // `clearAllMocks` keeps implementations, so put the wire calls back
+            // to a healthy server after the tests above rewire them.
+            mockAcquireCreditLease.mockResolvedValue({
+                data: {
+                    id: "lse_1",
+                    companyId: "comp_real",
+                    creditTypeId: "bilcr_inference",
+                    grantedAmount: 1000,
+                    expiresAt: new Date(Date.now() + 5 * 60_000),
+                },
+                params: {},
+            });
+            mockReleaseCreditLease.mockResolvedValue({});
+        });
+
+        const newClient = () =>
+            new SchematicClient({
+                apiKey: "test-key",
+                logger: mockLogger,
+                useDataStream: true,
+                creditLeases: { mode: "client", sweepIntervalMs: 60_000, prewarmResolveTimeoutMs: 0 },
+            });
+
+        it("resolves an account-defined `id` key through the cache", async () => {
+            // The account's own identifier happens to live under a key named
+            // `id`. It is an ordinary entity key, so the lookup decides.
+            mockDataStream.getCachedCompany.mockResolvedValue({ id: "comp_real" });
+            const client = newClient();
+
+            await client.prewarm({ company: { id: "acme" } }, ["bilcr_inference"]);
+
+            expect(mockDataStream.getCachedCompany).toHaveBeenCalledWith({ id: "acme" });
+            expect(mockAcquireCreditLease).toHaveBeenCalledWith(
+                expect.objectContaining({ companyId: "comp_real" }),
+                undefined,
+            );
+
+            await client.close();
+        });
+
+        it("falls back to a comp_-prefixed value when the keys resolve nothing", async () => {
+            mockDataStream.getCachedCompany.mockResolvedValue(null);
+            const client = newClient();
+
+            await client.prewarm({ company: { account_id: "comp_1" } }, ["bilcr_inference"]);
+
+            expect(mockAcquireCreditLease).toHaveBeenCalledWith(
+                expect.objectContaining({ companyId: "comp_1" }),
+                undefined,
+            );
+
+            await client.close();
+        });
+
+        it("resolves nothing when the keys miss and carry no schematic id", async () => {
+            mockDataStream.getCachedCompany.mockResolvedValue(null);
+            const client = newClient();
+
+            await client.prewarm({ company: { id: "acme" } }, ["bilcr_inference"]);
+
+            expect(mockAcquireCreditLease).not.toHaveBeenCalled();
+
+            await client.close();
+        });
     });
 });
 
