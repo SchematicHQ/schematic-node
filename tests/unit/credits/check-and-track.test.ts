@@ -595,8 +595,8 @@ describe("client.check (lease path)", () => {
 
     it("short-circuits usage 0 to a plain check with no lease and no reservation", async () => {
         // Zero usage means nothing to reserve — a 0-credit hold would be a pure
-        // no-op handle. The plain check still runs with the preflight threaded
-        // (usage: 0), so every rule evaluates normally.
+        // no-op handle. The plain check still runs, and carries no usage knob:
+        // a zero simulates nothing, so the engine sees the plain question.
         configureSuccessfulAcquire();
         configureDataStream();
         mockDataStream.checkFlag.mockResolvedValue({ value: true, reason: "match", flagKey: "inference" });
@@ -613,9 +613,7 @@ describe("client.check (lease path)", () => {
         expect(mockDataStream.checkFlag).toHaveBeenCalledWith(
             { company: { id: "co_1" } },
             "inference",
-            expect.objectContaining({
-                eventUsage: { eventSubtype: "inference_tokens", quantity: 0 },
-            }),
+            expect.objectContaining({ usage: undefined, eventUsage: undefined }),
         );
         await client.close();
     });
