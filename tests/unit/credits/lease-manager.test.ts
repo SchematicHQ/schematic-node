@@ -487,6 +487,44 @@ describe("CreditLeaseManager", () => {
         expect(joined?.localRemainingCredits).toBe(2200);
     });
 
+    it("caps a joiner's wait at the caller's own timeout", async () => {
+        // The flight runs on whatever timeout started it (a background refresh
+        // uses the client default). A check with 50ms to spend must not sit
+        // behind it: it gives up, takes its fail-open/fail-closed path, and
+        // leaves the flight running for everyone else.
+        const creditsClient = {
+            acquireCreditLease: jest.fn(),
+            extendCreditLease: jest.fn().mockImplementation(
+                () =>
+                    new Promise((resolve) => {
+                        setTimeout(() => resolve(extendResponse(2000)), 500);
+                    }),
+            ),
+            releaseCreditLease: jest.fn(),
+        };
+        const { manager, store } = makeManager(creditsClient);
+        await seedLease(store, 1000);
+        await store.tryReserve("co_1", "ct_1", 800); // 200 left, below the water mark
+
+        const flightP = manager.maybeExtendInBackground("co_1", "ct_1");
+        await flush();
+        expect(creditsClient.extendCreditLease).toHaveBeenCalledTimes(1);
+
+        const startedWaiting = Date.now();
+        const impatient = await manager.maybeExtendInBackground("co_1", "ct_1", 900, { timeoutInSeconds: 0.05 });
+        const waited = Date.now() - startedWaiting;
+
+        expect(impatient).toBeUndefined();
+        expect(waited).toBeLessThan(200);
+        // No second wire call: the joiner abandoned its wait, it did not race
+        // another extend onto the lease.
+        expect(creditsClient.extendCreditLease).toHaveBeenCalledTimes(1);
+
+        // The flight still lands for the caller that started it.
+        const first = await flightP;
+        expect(first?.grantedAmount).toBe(2000);
+    });
+
     it("maybeExtendInBackground refuses to extend an expired lease", async () => {
         const creditsClient = {
             acquireCreditLease: jest.fn(),

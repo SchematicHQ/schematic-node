@@ -49,6 +49,9 @@ export async function settleWithin(promises: Promise<unknown>[], timeoutMs: numb
  */
 const MAX_EXTEND_JOINS = 2;
 
+/** A wait on a shared extend that ran out the joiner's own timeout. */
+const JOIN_TIMED_OUT = Symbol("extend-join-timed-out");
+
 /**
  * An in-flight extend plus the additional amount its wire call asked for —
  * the figure a joiner compares its own shortfall against.
@@ -284,6 +287,11 @@ export class CreditLeaseManager {
         requiredCredits: number | undefined,
         requestOptions: CreditsClient.RequestOptions | undefined,
     ): Promise<LeaseEntry | undefined> {
+        // A joiner waits on someone else's wire call, which runs on whatever
+        // timeout ITS caller set (a background refresh uses the client
+        // default). So the wait is capped at this caller's own timeout: a check
+        // with 200ms to spend must not sit behind a 30s extend.
+        const joinDeadline = this.joinDeadline(requestOptions);
         // Joins are budgeted, extends of our own are not: a caller may wait out
         // flights that ask for too little, but once the budget runs out it
         // issues its own single extend rather than joining again. Without the
@@ -310,8 +318,18 @@ export class CreditLeaseManager {
             const key = leaseKey(companyId, creditTypeId);
             const inflight = this.inflightExtend.get(key);
             if (inflight && joinsLeft > 0) {
-                const joined = await inflight.promise;
-                // The flight asked for at least what we need — every
+                const joined = await this.joinWithin(inflight.promise, joinDeadline);
+                if (joined === JOIN_TIMED_OUT) {
+                    // The flight runs on for everybody else; we just stop
+                    // waiting on it. Reporting no entry sends the caller down
+                    // its fail-open/fail-closed path, which is what its timeout
+                    // asked for.
+                    this.logger.debug(
+                        `Extend in flight for ${companyId}/${creditTypeId} outlasted the caller's timeout; not waiting on it`,
+                    );
+                    return undefined;
+                }
+                // The flight asked for at least what we need: every
                 // watermark-driven joiner, and any check the tranche covers.
                 // One wire call serves all of them, which is the point of
                 // single-flight.
@@ -331,6 +349,36 @@ export class CreditLeaseManager {
                 requestOptions,
             );
         }
+    }
+
+    /** When a joiner's wait on a shared flight runs out, or undefined for no cap. */
+    private joinDeadline(requestOptions: CreditsClient.RequestOptions | undefined): number | undefined {
+        const timeoutInSeconds = requestOptions?.timeoutInSeconds;
+        if (timeoutInSeconds === undefined || !Number.isFinite(timeoutInSeconds)) return undefined;
+        return Date.now() + timeoutInSeconds * 1000;
+    }
+
+    /**
+     * Await a flight somebody else is running, giving up at `deadline`. Giving
+     * up abandons only our wait: the flight keeps running for the callers still
+     * on it, and whatever it installs is there for our next check to read.
+     */
+    private joinWithin(
+        promise: Promise<LeaseEntry | undefined>,
+        deadline: number | undefined,
+    ): Promise<LeaseEntry | undefined | typeof JOIN_TIMED_OUT> {
+        if (deadline === undefined) return promise;
+        const remaining = deadline - Date.now();
+        if (remaining <= 0) return Promise.resolve(JOIN_TIMED_OUT);
+        let timer: ReturnType<typeof setTimeout> | undefined;
+        const expiry = new Promise<typeof JOIN_TIMED_OUT>((resolve) => {
+            timer = setTimeout(() => resolve(JOIN_TIMED_OUT), remaining);
+            // A wait nobody is left waiting on must not hold the process open.
+            unrefTimer(timer);
+        });
+        return Promise.race([promise, expiry]).finally(() => {
+            if (timer) clearTimeout(timer);
+        });
     }
 
     /**
