@@ -63,7 +63,7 @@ function emitFlagCheck(
  *      check. Otherwise `creditId` + `consumptionRate` + `eventSubtype` come
  *      straight off the entitlement — no structural flag scan.
  *   2. Acquire (or reuse) a lease for `(company, creditId)`.
- *   3. Try to reserve `quantity × consumptionRate` from the lease.
+ *   3. Try to reserve `ceil(quantity) × consumptionRate` from the lease.
  *   4. Run the WASM rules engine against a substituted company snapshot
  *      (`credit_balances[creditId] = lease.localRemaining` *before* the
  *      reservation we just made was debited), gating with `credit_cost` so the
@@ -79,6 +79,12 @@ export async function checkWithLease(
 ): Promise<CheckResult> {
     const { datastream, leaseStore, reservations, manager, logger } = deps;
     const onFailure = options.onAcquireFailure ?? "fail-closed";
+    // Anchored here, at the top of the check, rather than derived from the
+    // timeout further down: by the time the lease path reaches an extend it
+    // has already spent some of the caller's budget on the entity fetches and
+    // the engine probe, and a wait on someone else's extend that started its
+    // own clock then would let the check overrun what it was given.
+    const checkDeadline = options.timeoutMs !== undefined ? Date.now() + options.timeoutMs : undefined;
 
     // A malformed `usage` must never reach the stores: NaN slips through every
     // numeric comparison (`NaN <= 0` and `balance < NaN` are both false), so a
@@ -214,7 +220,11 @@ export async function checkWithLease(
         );
         return fallback();
     }
-    const creditCost = quantity * consumptionRate;
+    // Whole event units: a fraction of an event is not something the server
+    // bills, so the hold rounds up to what the settle will charge. Sizing it on
+    // the raw quantity would move the local ledger by less than the Track
+    // event, and the two would drift apart over a session.
+    const creditCost = Math.ceil(quantity) * consumptionRate;
 
     // Thread the caller's per-check timeout to the lease wire calls
     // (acquire/extend) the same way the fallback path threads it to checkFlag.
@@ -257,7 +267,7 @@ export async function checkWithLease(
             // Lease has less than `creditCost` left locally. Pass `creditCost` so
             // `maybeExtendInBackground` extends even when the ratio is still above
             // the low-watermark (e.g. a single large request).
-            await manager.maybeExtendInBackground(company.id, creditId, creditCost, requestOptions);
+            await manager.maybeExtendInBackground(company.id, creditId, creditCost, requestOptions, checkDeadline);
             reserve = await leaseStore.tryReserve(company.id, creditId, creditCost);
         }
     } catch (err) {
@@ -414,17 +424,23 @@ function extractPreflightQuantity(options: CheckOptions): {
  * Build the preflight options envelope for a client-side rules evaluation.
  * With an `eventSubtype` the quantity goes out as the `event_usage` pair so
  * the engine matches it to the subtype's condition; without one it goes out
- * as the generic `usage` knob. Exported so `client.check`'s fallback path can
- * thread the same preflight through a plain flag check — any client-side
- * evaluation (datastream, replicator) honors it even when the lease path
- * can't run.
+ * as the generic `usage` knob. Exported so `client.check`'s fallback path and
+ * the server-mode check-and-reserve body can thread the same preflight — any
+ * evaluation path honors it even when the lease path can't run.
+ *
+ * The quantity rounds up here, once, so every consumer of this envelope asks
+ * the same whole-unit question: the engine takes an integer, the REST body
+ * takes an integer, and the settling Track event bills `ceil(actual)`. A
+ * preflight is an upper bound, so rounding up is also the only safe direction
+ * — the check must not pass on less usage than the action is about to record.
  */
 export function buildPreflightOptions(options: CheckOptions): CheckFlagOptions | undefined {
     if (options.usage === undefined) return undefined;
+    const quantity = Math.ceil(options.usage);
     if (options.eventSubtype !== undefined) {
-        return { eventUsage: { eventSubtype: options.eventSubtype, quantity: options.usage } };
+        return { eventUsage: { eventSubtype: options.eventSubtype, quantity } };
     }
-    return { usage: options.usage };
+    return { usage: quantity };
 }
 
 function substituteCreditBalance(

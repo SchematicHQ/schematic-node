@@ -244,6 +244,30 @@ describe("client.check (server reservation path)", () => {
         await client.close();
     });
 
+    it("rounds a fractional usage up on the wire, in the quantity and the preflight", async () => {
+        mockCheckAndReserveFlag.mockResolvedValue(reserveResponse());
+        const { client } = makeServerClient();
+
+        await client.check({ company: { id: "co_1" } }, "inference", { usage: 0.5 });
+        expect(mockCheckAndReserveFlag.mock.calls[0][1].quantity).toBe(1);
+        expect(mockCheckAndReserveFlag.mock.calls[0][1].preflight).toEqual({ usage: 1 });
+
+        await client.check({ company: { id: "co_1" } }, "inference", {
+            usage: 2.1,
+            eventSubtype: "inference_tokens",
+        });
+        expect(mockCheckAndReserveFlag.mock.calls[1][1].quantity).toBe(3);
+        expect(mockCheckAndReserveFlag.mock.calls[1][1].preflight).toEqual({
+            eventUsage: { eventSubtype: "inference_tokens", quantity: 3 },
+        });
+
+        // The hold the server sizes from `quantity` and the credits the
+        // settling track event bills have to be the same number: the settle
+        // sends ceil(actual), so a fractional quantity here would hold less
+        // than it bills.
+        await client.close();
+    });
+
     it("leaves the wire client's retries alone, with and without a per-check timeout", async () => {
         mockCheckAndReserveFlag.mockResolvedValue(reserveResponse());
         const { client } = makeServerClient();

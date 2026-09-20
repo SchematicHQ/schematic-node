@@ -595,8 +595,8 @@ describe("client.check (lease path)", () => {
 
     it("short-circuits usage 0 to a plain check with no lease and no reservation", async () => {
         // Zero usage means nothing to reserve — a 0-credit hold would be a pure
-        // no-op handle. The plain check still runs with the preflight threaded
-        // (usage: 0), so every rule evaluates normally.
+        // no-op handle. The plain check still runs, and carries no usage knob:
+        // a zero simulates nothing, so the engine sees the plain question.
         configureSuccessfulAcquire();
         configureDataStream();
         mockDataStream.checkFlag.mockResolvedValue({ value: true, reason: "match", flagKey: "inference" });
@@ -613,9 +613,7 @@ describe("client.check (lease path)", () => {
         expect(mockDataStream.checkFlag).toHaveBeenCalledWith(
             { company: { id: "co_1" } },
             "inference",
-            expect.objectContaining({
-                eventUsage: { eventSubtype: "inference_tokens", quantity: 0 },
-            }),
+            expect.objectContaining({ usage: undefined, eventUsage: undefined }),
         );
         await client.close();
     });
@@ -934,6 +932,53 @@ describe("client.trackWithReservation", () => {
         const calls = trackCalls();
         expect(calls).toHaveLength(2);
         expect(calls[1][0].idempotencyKey).toBe("lease-reservation:missing");
+        await client.close();
+    });
+
+    it("bills a fractional settle as whole units", async () => {
+        // The API takes the quantity as a float only to deserialize it and
+        // rejects a non-integer while processing, so a raw 0.5 would be dropped
+        // server-side and never billed while the lease had already debited it.
+        configureSuccessfulAcquire();
+        configureDataStream();
+        configureEngine();
+        const client = makeClient();
+        const res = await client.check({ company: { id: "co_1" } }, "inference", {
+            usage: 50,
+            eventSubtype: "inference_tokens",
+        });
+        if (!res.reservation) throw new Error("expected reservation");
+
+        await client.trackWithReservation(res.reservation, 0.5);
+
+        const pushed = mockEventBufferPush.mock.calls.find((call) => call[0]?.eventType === "track");
+        expect(pushed?.[0].body.quantity).toBe(1);
+        await client.close();
+    });
+
+    it("moves the cached company metric on the settle, but not on a re-settle", async () => {
+        configureSuccessfulAcquire();
+        configureDataStream();
+        configureEngine();
+        const client = makeClient();
+        const res = await client.check({ company: { id: "co_1" } }, "inference", {
+            usage: 50,
+            eventSubtype: "inference_tokens",
+        });
+        if (!res.reservation) throw new Error("expected reservation");
+
+        await client.trackWithReservation(res.reservation, 20);
+        expect(mockDataStream.updateCompanyMetrics).toHaveBeenCalledTimes(1);
+        expect(mockDataStream.updateCompanyMetrics).toHaveBeenCalledWith({ id: "co_1" }, "inference_tokens", 20);
+
+        // The reservation is already consumed, so this settle changes nothing
+        // locally and the server drops the event on its idempotency key.
+        // Bumping the metric again would deny the company's next numeric-limit
+        // check on usage nobody recorded.
+        await client.trackWithReservation(res.reservation, 20);
+        const trackCalls = mockEventBufferPush.mock.calls.filter((call) => call[0]?.eventType === "track");
+        expect(trackCalls).toHaveLength(2);
+        expect(mockDataStream.updateCompanyMetrics).toHaveBeenCalledTimes(1);
         await client.close();
     });
 

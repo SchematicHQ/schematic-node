@@ -1053,6 +1053,53 @@ describe("WASM Integration - Flag Evaluation", () => {
       expect(result).toBeDefined();
       expect(result.value).toBe(true);
     });
+
+    describe("fractional preflight quantities", () => {
+      // The engine reads usage and event_usage.quantity as i64, so a value
+      // with a decimal point fails to deserialize and takes the whole check
+      // with it. Round up at the boundary instead.
+      const flag = makeFlag([
+        { ...metricCondition, metric_value: 100, trait_value: "100" },
+      ]);
+      const company = {
+        ...minimalCompany,
+        metrics: [
+          {
+            account_id: "account-123",
+            company_id: "company-1",
+            created_at: "2024-01-15T10:00:00Z",
+            environment_id: "env-123",
+            event_subtype: "api-call",
+            month_reset: "first_of_month",
+            period: "current_day",
+            value: 99,
+          },
+        ],
+      };
+
+      test("usage of 0.5 counts as one unit instead of failing the check", async () => {
+        const plain = await rulesEngine.checkFlagWithOptions(flag, company);
+        expect(plain.value).toBe(true);
+
+        const preflighted = await rulesEngine.checkFlagWithOptions(
+          flag,
+          company,
+          null,
+          { usage: 0.5 },
+        );
+        expect(preflighted.value).toBe(false);
+      });
+
+      test("event usage of 0.5 counts as one unit instead of failing the check", async () => {
+        const preflighted = await rulesEngine.checkFlagWithOptions(
+          flag,
+          company,
+          null,
+          { eventUsage: { eventSubtype: "api-call", quantity: 0.5 } },
+        );
+        expect(preflighted.value).toBe(false);
+      });
+    });
   });
 
   describe("Edge cases - null/undefined field handling", () => {

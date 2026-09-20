@@ -895,6 +895,8 @@ await client.identify(
 
 Or call `client.prewarm(evalCtx, creditTypeIds)` directly. Both are no-ops in server mode.
 
+Pre-warming resolves the company the way the server does: it looks the keys up first, whatever they are named, and only when nothing matches does it read a value carrying Schematic's `comp_` prefix as the company id.
+
 ### Failure behavior
 
 A check that cannot be gated (API unreachable, Redis down, lease exhausted) fails closed by default. Override per check:

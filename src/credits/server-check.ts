@@ -81,7 +81,12 @@ export async function checkWithServerReservation(
     const body: api.CheckAndReserveFlagRequestBody = {
         company: evalCtx.company,
         user: evalCtx.user,
-        quantity: options.usage,
+        // Whole event units, the same rounding the local lease path applies to
+        // its hold. `quantity` is what the server sizes the hold from, and the
+        // settling Track event bills `ceil(actual)`, so a fractional quantity
+        // here would have the server hold less than it later bills — the drift
+        // the client path rounds up to avoid, moved onto the server's ledger.
+        quantity: Math.ceil(options.usage),
         expiresAt: new Date(Date.now() + deps.reservationTTL),
         preflight,
         // Minted once per check, outside the wire call, so every transport

@@ -131,15 +131,26 @@ function serializeCheckFlagOptions(options: CheckFlagOptions): Record<string, un
         envelope.credit_cost = options.creditCost;
     }
     if (options.usage !== undefined) {
-        envelope.usage = options.usage;
+        envelope.usage = engineQuantity(options.usage);
     }
     if (options.eventUsage) {
         envelope.event_usage = {
             event_subtype: options.eventUsage.eventSubtype,
-            quantity: options.eventUsage.quantity,
+            quantity: engineQuantity(options.eventUsage.quantity),
         };
     }
     return envelope;
+}
+
+/**
+ * The quantity as the engine takes it. `usage` and `event_usage.quantity`
+ * deserialize as i64 there, so a value with a decimal point fails the whole
+ * check. Round up, the direction the REST body takes: a preflight asks an
+ * upper-bound question, and the check must not pass on less usage than the
+ * action is about to record.
+ */
+function engineQuantity(quantity: number): number {
+    return Math.ceil(quantity);
 }
 
 // Export for backward compatibility

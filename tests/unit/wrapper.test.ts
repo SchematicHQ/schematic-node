@@ -1,6 +1,10 @@
 import { SchematicClient } from "../../src/wrapper";
 import type { CacheProvider } from "../../src/cache";
-import { MAX_RESERVATION_TTL_MS, RESERVATION_TTL_SKEW_ALLOWANCE_MS } from "../../src/credits";
+import {
+    MAX_RESERVATION_TTL_MS,
+    RESERVATION_TTL_SKEW_ALLOWANCE_MS,
+    SHUTDOWN_DRAIN_TIMEOUT_MS,
+} from "../../src/credits";
 import type { CheckFlagWithEntitlementResponse } from "../../src/wrapper";
 
 // Mock the features.checkFlag API call
@@ -314,6 +318,34 @@ describe("SchematicClient wrapper - flag checking behavior", () => {
             await client.close();
         });
 
+        it("does not let a zero usage in the options inherit the eval context's", async () => {
+            apiAllows(true);
+
+            const client = new SchematicClient({
+                apiKey: "test-api-key",
+                cacheProviders: { flagChecks: [] },
+                logger: mockLogger,
+            });
+
+            // `usage: 0` names the pair and prices this action at nothing.
+            // Reading the eval context's 5 instead would preflight an action
+            // the caller just said is free.
+            await client.checkFlag({ company: { id: "comp-1" }, preflight: { usage: 5 } }, "test-flag", {
+                usage: 0,
+            });
+            expect(mockCheckFlag.mock.calls[0][1].preflight).toBeUndefined();
+
+            // Same with a credit cost alongside it: the cost survives, the
+            // context's usage still does not.
+            await client.checkFlag({ company: { id: "comp-1" }, preflight: { usage: 5 } }, "test-flag", {
+                usage: 0,
+                creditCost: { "credit-1": 20 },
+            });
+            expect(mockCheckFlag.mock.calls[1][1].preflight).toEqual({ creditCost: { "credit-1": 20 } });
+
+            await client.close();
+        });
+
         it("sends no preflight for a zero usage, and caches the check", async () => {
             apiAllows(true);
             const cacheProvider = newCacheProvider();
@@ -392,6 +424,82 @@ describe("SchematicClient wrapper - flag checking behavior", () => {
             expect(cacheProvider.get).toHaveBeenCalledTimes(1);
             expect(cacheProvider.set).toHaveBeenCalledTimes(1);
             expect(mockCheckFlag.mock.calls[0][1]).toEqual({ company: { id: "comp-1" } });
+
+            await client.close();
+        });
+    });
+
+    describe("DataStream preflight", () => {
+        const streamAllows = (value: boolean): void => {
+            mockDataStream.checkFlag.mockResolvedValue({ value, flagKey: "test-flag", reason: "match" });
+        };
+
+        const newClient = () =>
+            new SchematicClient({
+                apiKey: "test-api-key",
+                cacheProviders: { flagChecks: [] },
+                logger: mockLogger,
+                useDataStream: true,
+            });
+
+        it("honours the caller's defaultValue when the engine returns no value", async () => {
+            // The engine declining to answer is the case `defaultValue` exists
+            // for, so the DataStream branch has to resolve it the way the
+            // offline and API branches do.
+            mockDataStream.checkFlag.mockResolvedValue({
+                value: undefined,
+                flagKey: "test-flag",
+                reason: "no verdict",
+            });
+            const client = newClient();
+            client.setFlagDefault("test-flag", false);
+
+            const withDefault = await client.checkFlagWithEntitlement({ company: { id: "comp-1" } }, "test-flag", {
+                defaultValue: true,
+            });
+            const withFn = await client.checkFlagWithEntitlement({ company: { id: "comp-1" } }, "test-flag", {
+                defaultValue: () => true,
+            });
+            const withoutDefault = await client.checkFlagWithEntitlement({ company: { id: "comp-1" } }, "test-flag");
+
+            expect(withDefault.value).toBe(true);
+            expect(withFn.value).toBe(true);
+            // With no caller default the registered one still stands in.
+            expect(withoutDefault.value).toBe(false);
+
+            await client.close();
+        });
+
+        it("hands the local engine a preflight the eval context carries", async () => {
+            streamAllows(true);
+            const client = newClient();
+
+            await client.checkFlag({ company: { id: "comp-1" }, preflight: { usage: 7 } }, "test-flag");
+
+            expect(mockDataStream.checkFlag.mock.calls[0][2]).toEqual(
+                expect.objectContaining({ usage: 7, eventUsage: undefined }),
+            );
+
+            await client.close();
+        });
+
+        it("lets the options' usage knobs replace the eval context's for the local engine", async () => {
+            streamAllows(true);
+            const client = newClient();
+
+            await client.checkFlag(
+                { company: { id: "comp-1" }, preflight: { usage: 7, creditCost: { "credit-1": 20 } } },
+                "test-flag",
+                { eventUsage: { eventSubtype: "tokens", quantity: 9 } },
+            );
+
+            expect(mockDataStream.checkFlag.mock.calls[0][2]).toEqual(
+                expect.objectContaining({
+                    creditCost: { "credit-1": 20 },
+                    eventUsage: { eventSubtype: "tokens", quantity: 9 },
+                    usage: undefined,
+                }),
+            );
 
             await client.close();
         });
@@ -723,7 +831,7 @@ describe("SchematicClient wrapper - credit lease store backend selection", () =>
             return {
                 data: {
                     id: "lse_1",
-                    companyId: "co_1",
+                    companyId: "comp_1",
                     creditTypeId: "bilcr_inference",
                     grantedAmount: 1000,
                     expiresAt: new Date(Date.now() + 5 * 60_000),
@@ -739,7 +847,7 @@ describe("SchematicClient wrapper - credit lease store backend selection", () =>
             creditLeases: { mode: "client", sweepIntervalMs: 60_000 },
         });
         await client.identify(
-            { keys: { user_id: "u_1" }, company: { keys: { id: "co_1" } } },
+            { keys: { user_id: "u_1" }, company: { keys: { id: "comp_1" } } },
             {
                 prewarm: ["bilcr_inference"],
             },
@@ -754,6 +862,38 @@ describe("SchematicClient wrapper - credit lease store backend selection", () =>
         const leaseStore = (client as any).leaseStore;
         expect(leaseStore.list()).toEqual([]);
         expect(mockReleaseCreditLease).toHaveBeenCalledWith("lse_1", {});
+    });
+
+    it("close() returns within the shutdown budget when a release never lands", async () => {
+        mockReleaseCreditLease.mockReturnValue(new Promise(() => {}));
+        const client = new SchematicClient({
+            apiKey: "test-key",
+            logger: mockLogger,
+            creditLeases: { mode: "client", sweepIntervalMs: 60_000 },
+        });
+        // biome-ignore lint/suspicious/noExplicitAny: reaching into the client's store
+        const leaseStore = (client as any).leaseStore;
+        await leaseStore.replace({
+            leaseId: "lse_1",
+            companyId: "co_1",
+            creditTypeId: "ct_1",
+            grantedAmount: 1000,
+            expiresAt: new Date(Date.now() + 5 * 60_000),
+        });
+
+        jest.useFakeTimers();
+        try {
+            const closing = client.close();
+            await jest.advanceTimersByTimeAsync(SHUTDOWN_DRAIN_TIMEOUT_MS + 10);
+            await closing;
+        } finally {
+            jest.useRealTimers();
+        }
+
+        expect(mockLogger.warn).toHaveBeenCalledWith(expect.stringContaining("releasing credit leases on close"));
+        // `clearAllMocks` keeps implementations, so hand the next test a
+        // release that resolves.
+        mockReleaseCreditLease.mockResolvedValue({});
     });
 
     it("prewarm() called after close() has started acquires nothing", async () => {
@@ -792,6 +932,74 @@ describe("SchematicClient wrapper - credit lease store backend selection", () =>
 
         expect(Date.now() - startedClosing).toBeLessThan(1000);
         expect(mockAcquireCreditLease).not.toHaveBeenCalled();
+    });
+
+    describe("company resolution", () => {
+        beforeEach(() => {
+            // `clearAllMocks` keeps implementations, so put the wire calls back
+            // to a healthy server after the tests above rewire them.
+            mockAcquireCreditLease.mockResolvedValue({
+                data: {
+                    id: "lse_1",
+                    companyId: "comp_real",
+                    creditTypeId: "bilcr_inference",
+                    grantedAmount: 1000,
+                    expiresAt: new Date(Date.now() + 5 * 60_000),
+                },
+                params: {},
+            });
+            mockReleaseCreditLease.mockResolvedValue({});
+        });
+
+        const newClient = () =>
+            new SchematicClient({
+                apiKey: "test-key",
+                logger: mockLogger,
+                useDataStream: true,
+                creditLeases: { mode: "client", sweepIntervalMs: 60_000, prewarmResolveTimeoutMs: 0 },
+            });
+
+        it("resolves an account-defined `id` key through the cache", async () => {
+            // The account's own identifier happens to live under a key named
+            // `id`. It is an ordinary entity key, so the lookup decides.
+            mockDataStream.getCachedCompany.mockResolvedValue({ id: "comp_real" });
+            const client = newClient();
+
+            await client.prewarm({ company: { id: "acme" } }, ["bilcr_inference"]);
+
+            expect(mockDataStream.getCachedCompany).toHaveBeenCalledWith({ id: "acme" });
+            expect(mockAcquireCreditLease).toHaveBeenCalledWith(
+                expect.objectContaining({ companyId: "comp_real" }),
+                undefined,
+            );
+
+            await client.close();
+        });
+
+        it("falls back to a comp_-prefixed value when the keys resolve nothing", async () => {
+            mockDataStream.getCachedCompany.mockResolvedValue(null);
+            const client = newClient();
+
+            await client.prewarm({ company: { account_id: "comp_1" } }, ["bilcr_inference"]);
+
+            expect(mockAcquireCreditLease).toHaveBeenCalledWith(
+                expect.objectContaining({ companyId: "comp_1" }),
+                undefined,
+            );
+
+            await client.close();
+        });
+
+        it("resolves nothing when the keys miss and carry no schematic id", async () => {
+            mockDataStream.getCachedCompany.mockResolvedValue(null);
+            const client = newClient();
+
+            await client.prewarm({ company: { id: "acme" } }, ["bilcr_inference"]);
+
+            expect(mockAcquireCreditLease).not.toHaveBeenCalled();
+
+            await client.close();
+        });
     });
 });
 

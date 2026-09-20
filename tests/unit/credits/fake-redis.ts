@@ -1,4 +1,10 @@
-import type { RedisClient } from "../../../src/cache/redis";
+import type { RedisClient, RedisMulti } from "../../../src/cache/redis";
+
+/** A fake client that also records what each MULTI/EXEC carried. */
+export type FakeRedis = RedisClient & {
+    /** One entry per EXEC, naming the commands that transaction queued. */
+    transactions: string[][];
+};
 
 /**
  * In-memory implementation of the subset of the `RedisClient` interface used
@@ -11,7 +17,8 @@ import type { RedisClient } from "../../../src/cache/redis";
  * promises emulates real Redis Lua atomicity faithfully enough for these
  * tests.
  */
-export function makeFakeRedis(): RedisClient {
+export function makeFakeRedis(): FakeRedis {
+    const transactions: string[][] = [];
     const strings = new Map<string, string>();
     const hashes = new Map<string, Map<string, string>>();
     const sets = new Map<string, Set<string>>();
@@ -209,6 +216,37 @@ export function makeFakeRedis(): RedisClient {
     };
 
     return {
+        transactions,
+        // MULTI/EXEC: queue the commands, apply them on exec, and record what
+        // the transaction carried so a test can tell one round trip from two.
+        multi() {
+            const queued: [string, () => void][] = [];
+            const chain: RedisMulti = {
+                hSet(key, field, value) {
+                    queued.push([
+                        "hSet",
+                        () => {
+                            if (typeof field === "object" && field !== null) {
+                                for (const [f, v] of Object.entries(field)) hset(key, f, String(v));
+                                return;
+                            }
+                            hset(key, field, String(value));
+                        },
+                    ]);
+                    return chain;
+                },
+                pExpireAt(key, timestamp) {
+                    queued.push(["pExpireAt", () => expirations.set(key, timestamp)]);
+                    return chain;
+                },
+                async exec() {
+                    transactions.push(queued.map(([name]) => name));
+                    for (const [, apply] of queued) apply();
+                    return queued.map(() => "OK");
+                },
+            };
+            return chain;
+        },
         // Basic string ops (unused by lease stores but required by interface)
         async get(key) {
             checkExpiry(key);
