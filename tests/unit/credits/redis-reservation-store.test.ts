@@ -1,3 +1,4 @@
+import type { RedisClient } from "../../../src/cache/redis";
 import { RedisLeaseStore } from "../../../src/credits/redis-lease-store";
 import { RedisReservationStore } from "../../../src/credits/redis-reservation-store";
 import type { Reservation } from "../../../src/credits/types";
@@ -51,6 +52,29 @@ describe("RedisReservationStore", () => {
         // and that nothing points at once the sweeper drops its index entry.
         expect(client.transactions).toEqual([["hSet", "pExpireAt"]]);
         expect((await reservations.get("res_1"))?.creditsReserved).toBe(100);
+        reservations.stop();
+    });
+
+    it("still writes the hash and its TTL on a client that has no multi()", async () => {
+        // A client shim that predates MULTI (or a cluster client without it)
+        // falls back to two sequential calls. The row still has to end up with
+        // a TTL, or it outlives the index entry the sweeper would reach it
+        // through and then nothing ever reaps it.
+        const fake = makeFakeRedis();
+        const pExpireAt = jest.fn(fake.pExpireAt);
+        const client: RedisClient = { ...fake, multi: undefined, pExpireAt };
+        const leaseStore = new RedisLeaseStore({ client });
+        const reservations = new RedisReservationStore({ client, leaseStore, sweepIntervalMs: 60_000 });
+
+        const reservation = makeReservation();
+        await reservations.add(reservation);
+
+        expect(fake.transactions).toEqual([]);
+        expect(pExpireAt).toHaveBeenCalledWith(
+            expect.stringContaining(reservation.id),
+            reservation.expiresAt.getTime() + 30_000,
+        );
+        expect((await reservations.get(reservation.id))?.creditsReserved).toBe(100);
         reservations.stop();
     });
 

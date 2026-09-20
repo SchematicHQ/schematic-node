@@ -454,6 +454,59 @@ describe("CreditLeaseManager", () => {
         expect(a?.localRemainingCredits).toBeGreaterThanOrEqual(28_000);
     });
 
+    it("issues its own extend once the join budget runs out", async () => {
+        // A big caller can be out-waited indefinitely if every flight it joins
+        // was sized for somebody smaller. After two joins it stops waiting on
+        // other people's asks and issues exactly one of its own, sized against
+        // the balance those flights left behind.
+        const pending: ((v: unknown) => void)[] = [];
+        const nextPending = () => new Promise((r) => pending.push(r));
+        const creditsClient = {
+            acquireCreditLease: jest.fn(),
+            extendCreditLease: jest
+                .fn()
+                // 1: the refill all three join. 2: C's follow-up. 3: D's.
+                .mockReturnValueOnce(nextPending())
+                .mockReturnValueOnce(nextPending())
+                .mockReturnValueOnce(nextPending())
+                // 4: A's own, after the budget is spent.
+                .mockResolvedValueOnce(extendResponse(52_000)),
+            releaseCreditLease: jest.fn(),
+        };
+        const { manager, store } = makeManager(creditsClient);
+        await seedLease(store, 10_000);
+        await store.tryReserve("co_1", "ct_1", 10_000); // nothing left
+
+        const refillP = manager.maybeExtendInBackground("co_1", "ct_1", 10_000);
+        await flush();
+        // Subscription order decides who registers the next follow-up, so the
+        // small callers queue ahead of A on every flight it joins.
+        const cP = manager.maybeExtendInBackground("co_1", "ct_1", 12_000);
+        await flush();
+        const dP = manager.maybeExtendInBackground("co_1", "ct_1", 14_000);
+        await flush();
+        const aP = manager.maybeExtendInBackground("co_1", "ct_1", 40_000);
+        await flush();
+        expect(creditsClient.extendCreditLease).toHaveBeenCalledTimes(1);
+
+        pending[0](extendResponse(20_000)); // remaining 10_000 — C's follow-up
+        await refillP;
+        await flush();
+        pending[1](extendResponse(22_000)); // remaining 12_000 — D's follow-up
+        await cP;
+        await flush();
+        pending[2](extendResponse(24_000));
+        await dP;
+        const a = await aP;
+
+        // Four calls, not three: A did not join D's flight. Its own ask is
+        // sized against the 12_000 the second flight left, not the 0 it started
+        // from, and not inherited from either follow-up's 2_000.
+        expect(creditsClient.extendCreditLease).toHaveBeenCalledTimes(4);
+        expect(creditsClient.extendCreditLease.mock.calls[3][1].additionalAmount).toBe(28_000);
+        expect(a?.localRemainingCredits).toBeGreaterThanOrEqual(40_000);
+    });
+
     it("bounds the follow-up at one extend when the server cannot cover the request", async () => {
         // The follow-up must not chain: a company whose balance simply cannot
         // reach the request would otherwise spin extending forever.
