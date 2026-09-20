@@ -193,15 +193,22 @@ type PreflightUsageKnobs = Pick<api.PreflightRequestBody, "usage" | "eventUsage"
 
 /**
  * The usage knobs a check's options imply, in the wire shape the REST flag
- * check takes, or undefined when the options name none. A zero is dropped: the
- * API reads it as no effect, and sending it would cost the check its cache
- * entry for a hypothetical that changes nothing.
+ * check takes, or undefined when the options name neither knob.
+ *
+ * Naming a knob and sending one are different things: a zero is dropped from
+ * the result (the API reads it as no effect, and sending it would cost the
+ * check its cache entry for a hypothetical that changes nothing), as is a
+ * quantity the server would reject. Either way the options *named* the pair,
+ * so the return is an empty object rather than undefined — a caller that says
+ * `usage: 0` means "this action is free", not "use whatever the evaluation
+ * context carries".
  */
 function usageKnobsFromOptions(
     options: CheckFlagOptions,
     key: string,
     logger: Logger,
 ): PreflightUsageKnobs | undefined {
+    if (options.usage === undefined && options.eventUsage === undefined) return undefined;
     const knobs: PreflightUsageKnobs = {};
 
     if (options.eventUsage !== undefined) {
@@ -217,7 +224,7 @@ function usageKnobsFromOptions(
         }
     }
 
-    return knobs.usage === undefined && knobs.eventUsage === undefined ? undefined : knobs;
+    return knobs;
 }
 
 /**
@@ -748,7 +755,12 @@ export class SchematicClient extends BaseClient {
                 }
             }
 
-            const body = preflight === undefined ? evalCtx : { ...evalCtx, preflight };
+            // The merge, not the evaluation context, decides what goes on the
+            // wire: it may have dropped a preflight the context carried (the
+            // options priced this action at nothing), and leaving the context's
+            // copy in place would send the very hypothetical the merge rejected.
+            const body = { ...evalCtx, preflight };
+            if (preflight === undefined) delete body.preflight;
             const response = await this.features.checkFlag(key, body, {
                 timeoutInSeconds: options?.timeoutMs !== undefined ? options.timeoutMs / 1000 : undefined,
             });

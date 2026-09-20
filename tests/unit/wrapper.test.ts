@@ -318,6 +318,34 @@ describe("SchematicClient wrapper - flag checking behavior", () => {
             await client.close();
         });
 
+        it("does not let a zero usage in the options inherit the eval context's", async () => {
+            apiAllows(true);
+
+            const client = new SchematicClient({
+                apiKey: "test-api-key",
+                cacheProviders: { flagChecks: [] },
+                logger: mockLogger,
+            });
+
+            // `usage: 0` names the pair and prices this action at nothing.
+            // Reading the eval context's 5 instead would preflight an action
+            // the caller just said is free.
+            await client.checkFlag({ company: { id: "comp-1" }, preflight: { usage: 5 } }, "test-flag", {
+                usage: 0,
+            });
+            expect(mockCheckFlag.mock.calls[0][1].preflight).toBeUndefined();
+
+            // Same with a credit cost alongside it: the cost survives, the
+            // context's usage still does not.
+            await client.checkFlag({ company: { id: "comp-1" }, preflight: { usage: 5 } }, "test-flag", {
+                usage: 0,
+                creditCost: { "credit-1": 20 },
+            });
+            expect(mockCheckFlag.mock.calls[1][1].preflight).toEqual({ creditCost: { "credit-1": 20 } });
+
+            await client.close();
+        });
+
         it("sends no preflight for a zero usage, and caches the check", async () => {
             apiAllows(true);
             const cacheProvider = newCacheProvider();
@@ -418,7 +446,11 @@ describe("SchematicClient wrapper - flag checking behavior", () => {
             // The engine declining to answer is the case `defaultValue` exists
             // for, so the DataStream branch has to resolve it the way the
             // offline and API branches do.
-            mockDataStream.checkFlag.mockResolvedValue({ value: undefined, flagKey: "test-flag", reason: "no verdict" });
+            mockDataStream.checkFlag.mockResolvedValue({
+                value: undefined,
+                flagKey: "test-flag",
+                reason: "no verdict",
+            });
             const client = newClient();
             client.setFlagDefault("test-flag", false);
 
