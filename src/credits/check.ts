@@ -418,17 +418,23 @@ function extractPreflightQuantity(options: CheckOptions): {
  * Build the preflight options envelope for a client-side rules evaluation.
  * With an `eventSubtype` the quantity goes out as the `event_usage` pair so
  * the engine matches it to the subtype's condition; without one it goes out
- * as the generic `usage` knob. Exported so `client.check`'s fallback path can
- * thread the same preflight through a plain flag check — any client-side
- * evaluation (datastream, replicator) honors it even when the lease path
- * can't run.
+ * as the generic `usage` knob. Exported so `client.check`'s fallback path and
+ * the server-mode check-and-reserve body can thread the same preflight — any
+ * evaluation path honors it even when the lease path can't run.
+ *
+ * The quantity rounds up here, once, so every consumer of this envelope asks
+ * the same whole-unit question: the engine takes an integer, the REST body
+ * takes an integer, and the settling Track event bills `ceil(actual)`. A
+ * preflight is an upper bound, so rounding up is also the only safe direction
+ * — the check must not pass on less usage than the action is about to record.
  */
 export function buildPreflightOptions(options: CheckOptions): CheckFlagOptions | undefined {
     if (options.usage === undefined) return undefined;
+    const quantity = Math.ceil(options.usage);
     if (options.eventSubtype !== undefined) {
-        return { eventUsage: { eventSubtype: options.eventSubtype, quantity: options.usage } };
+        return { eventUsage: { eventSubtype: options.eventSubtype, quantity } };
     }
-    return { usage: options.usage };
+    return { usage: quantity };
 }
 
 function substituteCreditBalance(
