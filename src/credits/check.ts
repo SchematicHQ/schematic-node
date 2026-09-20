@@ -79,6 +79,12 @@ export async function checkWithLease(
 ): Promise<CheckResult> {
     const { datastream, leaseStore, reservations, manager, logger } = deps;
     const onFailure = options.onAcquireFailure ?? "fail-closed";
+    // Anchored here, at the top of the check, rather than derived from the
+    // timeout further down: by the time the lease path reaches an extend it
+    // has already spent some of the caller's budget on the entity fetches and
+    // the engine probe, and a wait on someone else's extend that started its
+    // own clock then would let the check overrun what it was given.
+    const checkDeadline = options.timeoutMs !== undefined ? Date.now() + options.timeoutMs : undefined;
 
     // A malformed `usage` must never reach the stores: NaN slips through every
     // numeric comparison (`NaN <= 0` and `balance < NaN` are both false), so a
@@ -261,7 +267,7 @@ export async function checkWithLease(
             // Lease has less than `creditCost` left locally. Pass `creditCost` so
             // `maybeExtendInBackground` extends even when the ratio is still above
             // the low-watermark (e.g. a single large request).
-            await manager.maybeExtendInBackground(company.id, creditId, creditCost, requestOptions);
+            await manager.maybeExtendInBackground(company.id, creditId, creditCost, requestOptions, checkDeadline);
             reserve = await leaseStore.tryReserve(company.id, creditId, creditCost);
         }
     } catch (err) {

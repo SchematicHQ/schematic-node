@@ -268,6 +268,7 @@ export class CreditLeaseManager {
         creditTypeId: string,
         requiredCredits?: number,
         requestOptions?: CreditsClient.RequestOptions,
+        joinDeadlineMs?: number,
     ): Promise<LeaseEntry | undefined> {
         if (this.stopped) {
             // Extending past stop() re-holds credits on a lease the close is
@@ -278,7 +279,9 @@ export class CreditLeaseManager {
         // Tracked whole, not just the wire call inside it: callers void this,
         // so between the store read and the extend there would otherwise be a
         // window where a drain sees nothing pending.
-        return this.track(this.extendIfNeeded(companyId, creditTypeId, requiredCredits, requestOptions));
+        return this.track(
+            this.extendIfNeeded(companyId, creditTypeId, requiredCredits, requestOptions, joinDeadlineMs),
+        );
     }
 
     private async extendIfNeeded(
@@ -286,12 +289,16 @@ export class CreditLeaseManager {
         creditTypeId: string,
         requiredCredits: number | undefined,
         requestOptions: CreditsClient.RequestOptions | undefined,
+        joinDeadlineMs: number | undefined,
     ): Promise<LeaseEntry | undefined> {
         // A joiner waits on someone else's wire call, which runs on whatever
         // timeout ITS caller set (a background refresh uses the client
-        // default). So the wait is capped at this caller's own timeout: a check
-        // with 200ms to spend must not sit behind a 30s extend.
-        const joinDeadline = this.joinDeadline(requestOptions);
+        // default). So the wait is capped at this caller's own budget: a check
+        // with 200ms to spend must not sit behind a 30s extend. The caller
+        // passes the deadline it started its check on where it has one, so the
+        // wait is capped by what is *left* of that budget rather than by a
+        // fresh copy of it; otherwise the timeout is all we know.
+        const joinDeadline = joinDeadlineMs ?? this.joinDeadline(requestOptions);
         // Joins are budgeted, extends of our own are not: a caller may wait out
         // flights that ask for too little, but once the budget runs out it
         // issues its own single extend rather than joining again. Without the
