@@ -9,9 +9,13 @@ import { BillingCreditAutoTopupAvailability } from "./BillingCreditAutoTopupAvai
 import { BillingCreditExpiryType } from "./BillingCreditExpiryType";
 import { BillingCreditExpiryUnit } from "./BillingCreditExpiryUnit";
 import { BillingCreditResponseData } from "./BillingCreditResponseData";
+import { BillingPlanCreditGrantBillingMode } from "./BillingPlanCreditGrantBillingMode";
+import { BillingPlanCreditGrantPriceTierResponseData } from "./BillingPlanCreditGrantPriceTierResponseData";
 import { BillingPlanCreditGrantResetCadence } from "./BillingPlanCreditGrantResetCadence";
 import { BillingPlanCreditGrantResetStart } from "./BillingPlanCreditGrantResetStart";
 import { BillingPlanCreditGrantResetType } from "./BillingPlanCreditGrantResetType";
+import { BillingPriceResponseData } from "./BillingPriceResponseData";
+import { BillingTiersMode } from "./BillingTiersMode";
 import { PlanCreditGrantScaling } from "./PlanCreditGrantScaling";
 import { PreviewObjectResponseData } from "./PreviewObjectResponseData";
 
@@ -40,6 +44,7 @@ export const BillingPlanCreditGrantResponseData: core.serialization.ObjectSchema
         "auto_topup_threshold_percent",
         core.serialization.number().optional(),
     ),
+    billingMode: core.serialization.property("billing_mode", BillingPlanCreditGrantBillingMode),
     canBuyBundles: core.serialization.property("can_buy_bundles", core.serialization.boolean()),
     companyCreditAmount: core.serialization.property("company_credit_amount", core.serialization.number()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
@@ -65,11 +70,19 @@ export const BillingPlanCreditGrantResponseData: core.serialization.ObjectSchema
         "postpaid_rate_per_unit_decimal",
         core.serialization.string().optional(),
     ),
+    price: BillingPriceResponseData.optional(),
+    priceTiers: core.serialization.property(
+        "price_tiers",
+        core.serialization.list(BillingPlanCreditGrantPriceTierResponseData),
+    ),
     resetCadence: core.serialization.property("reset_cadence", BillingPlanCreditGrantResetCadence.optional()),
     resetStart: core.serialization.property("reset_start", BillingPlanCreditGrantResetStart.optional()),
     resetType: core.serialization.property("reset_type", BillingPlanCreditGrantResetType.optional()),
     rolloverPercentage: core.serialization.property("rollover_percentage", core.serialization.number()),
     scaling: PlanCreditGrantScaling,
+    tierMode: core.serialization.property("tier_mode", BillingTiersMode.optional()),
+    unitPrice: core.serialization.property("unit_price", core.serialization.number().optional()),
+    unitPriceDecimal: core.serialization.property("unit_price_decimal", core.serialization.string().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
@@ -87,6 +100,7 @@ export declare namespace BillingPlanCreditGrantResponseData {
         auto_topup_self_service: boolean;
         auto_topup_threshold_credits?: number | null;
         auto_topup_threshold_percent?: number | null;
+        billing_mode: BillingPlanCreditGrantBillingMode.Raw;
         can_buy_bundles: boolean;
         company_credit_amount: number;
         created_at: string;
@@ -109,11 +123,16 @@ export declare namespace BillingPlanCreditGrantResponseData {
         postpaid_enabled: boolean;
         postpaid_rate_per_unit?: number | null;
         postpaid_rate_per_unit_decimal?: string | null;
+        price?: BillingPriceResponseData.Raw | null;
+        price_tiers: BillingPlanCreditGrantPriceTierResponseData.Raw[];
         reset_cadence?: BillingPlanCreditGrantResetCadence.Raw | null;
         reset_start?: BillingPlanCreditGrantResetStart.Raw | null;
         reset_type?: BillingPlanCreditGrantResetType.Raw | null;
         rollover_percentage: number;
         scaling: PlanCreditGrantScaling.Raw;
+        tier_mode?: BillingTiersMode.Raw | null;
+        unit_price?: number | null;
+        unit_price_decimal?: string | null;
         updated_at: string;
     }
 }

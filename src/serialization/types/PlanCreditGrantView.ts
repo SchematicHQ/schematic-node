@@ -9,9 +9,11 @@ import { BillingCreditAutoTopupAvailability } from "./BillingCreditAutoTopupAvai
 import { BillingCreditExpiryType } from "./BillingCreditExpiryType";
 import { BillingCreditExpiryUnit } from "./BillingCreditExpiryUnit";
 import { BillingCreditView } from "./BillingCreditView";
+import { BillingPlanCreditGrantBillingMode } from "./BillingPlanCreditGrantBillingMode";
 import { BillingPlanCreditGrantResetCadence } from "./BillingPlanCreditGrantResetCadence";
 import { BillingPlanCreditGrantResetStart } from "./BillingPlanCreditGrantResetStart";
 import { BillingPlanCreditGrantResetType } from "./BillingPlanCreditGrantResetType";
+import { BillingPriceView } from "./BillingPriceView";
 import { GenericPreviewObject } from "./GenericPreviewObject";
 import { PlanCreditGrantScaling } from "./PlanCreditGrantScaling";
 
@@ -87,6 +89,11 @@ export const PlanCreditGrantView: core.serialization.ObjectSchema<
         "billing_credit_postpaid_rate_per_unit_decimal",
         core.serialization.string().optional(),
     ),
+    billingMode: core.serialization.property("billing_mode", BillingPlanCreditGrantBillingMode),
+    billingProductPriceId: core.serialization.property(
+        "billing_product_price_id",
+        core.serialization.string().optional(),
+    ),
     companyCreditAmount: core.serialization.property("company_credit_amount", core.serialization.number()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     credit: BillingCreditView.optional(),
@@ -104,6 +111,7 @@ export const PlanCreditGrantView: core.serialization.ObjectSchema<
     planId: core.serialization.property("plan_id", core.serialization.string()),
     planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
     pluralName: core.serialization.property("plural_name", core.serialization.string().optional()),
+    price: BillingPriceView.optional(),
     resetCadence: core.serialization.property("reset_cadence", BillingPlanCreditGrantResetCadence.optional()),
     resetStart: core.serialization.property("reset_start", BillingPlanCreditGrantResetStart.optional()),
     resetType: core.serialization.property("reset_type", BillingPlanCreditGrantResetType),
@@ -132,6 +140,8 @@ export declare namespace PlanCreditGrantView {
         billing_credit_postpaid_enabled: boolean;
         billing_credit_postpaid_rate_per_unit?: number | null;
         billing_credit_postpaid_rate_per_unit_decimal?: string | null;
+        billing_mode: BillingPlanCreditGrantBillingMode.Raw;
+        billing_product_price_id?: string | null;
         company_credit_amount: number;
         created_at: string;
         credit?: BillingCreditView.Raw | null;
@@ -149,6 +159,7 @@ export declare namespace PlanCreditGrantView {
         plan_id: string;
         plan_version_id?: string | null;
         plural_name?: string | null;
+        price?: BillingPriceView.Raw | null;
         reset_cadence?: BillingPlanCreditGrantResetCadence.Raw | null;
         reset_start?: BillingPlanCreditGrantResetStart.Raw | null;
         reset_type: BillingPlanCreditGrantResetType.Raw;

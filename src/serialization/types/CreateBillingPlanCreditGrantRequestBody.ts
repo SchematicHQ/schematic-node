@@ -8,10 +8,13 @@ import { BillingArrearsCadence } from "./BillingArrearsCadence";
 import { BillingCreditAutoTopupAvailability } from "./BillingCreditAutoTopupAvailability";
 import { BillingCreditExpiryType } from "./BillingCreditExpiryType";
 import { BillingCreditExpiryUnit } from "./BillingCreditExpiryUnit";
+import { BillingPlanCreditGrantBillingMode } from "./BillingPlanCreditGrantBillingMode";
 import { BillingPlanCreditGrantResetCadence } from "./BillingPlanCreditGrantResetCadence";
 import { BillingPlanCreditGrantResetStart } from "./BillingPlanCreditGrantResetStart";
 import { BillingPlanCreditGrantResetType } from "./BillingPlanCreditGrantResetType";
+import { BillingTiersMode } from "./BillingTiersMode";
 import { CreditAutoTopupAmountType } from "./CreditAutoTopupAmountType";
+import { CreditGrantPriceTierRequestBody } from "./CreditGrantPriceTierRequestBody";
 import { PlanCreditGrantScaling } from "./PlanCreditGrantScaling";
 
 export const CreateBillingPlanCreditGrantRequestBody: core.serialization.ObjectSchema<
@@ -46,6 +49,7 @@ export const CreateBillingPlanCreditGrantRequestBody: core.serialization.ObjectS
         "auto_topup_threshold_percent",
         core.serialization.number().optional(),
     ),
+    billingMode: core.serialization.property("billing_mode", BillingPlanCreditGrantBillingMode.optional()),
     canBuyBundles: core.serialization.property("can_buy_bundles", core.serialization.boolean().optional()),
     companyCreditAmount: core.serialization.property("company_credit_amount", core.serialization.number().optional()),
     creditAmount: core.serialization.property("credit_amount", core.serialization.number()),
@@ -63,11 +67,18 @@ export const CreateBillingPlanCreditGrantRequestBody: core.serialization.ObjectS
         "postpaid_rate_per_unit_decimal",
         core.serialization.string().optional(),
     ),
+    priceTiers: core.serialization.property(
+        "price_tiers",
+        core.serialization.list(CreditGrantPriceTierRequestBody).optional(),
+    ),
     resetCadence: core.serialization.property("reset_cadence", BillingPlanCreditGrantResetCadence),
     resetStart: core.serialization.property("reset_start", BillingPlanCreditGrantResetStart),
     resetType: core.serialization.property("reset_type", BillingPlanCreditGrantResetType.optional()),
     rolloverPercentage: core.serialization.property("rollover_percentage", core.serialization.number().optional()),
     scaling: PlanCreditGrantScaling.optional(),
+    tierMode: core.serialization.property("tier_mode", BillingTiersMode.optional()),
+    unitPrice: core.serialization.property("unit_price", core.serialization.number().optional()),
+    unitPriceDecimal: core.serialization.property("unit_price_decimal", core.serialization.string().optional()),
 });
 
 export declare namespace CreateBillingPlanCreditGrantRequestBody {
@@ -85,6 +96,7 @@ export declare namespace CreateBillingPlanCreditGrantRequestBody {
         auto_topup_self_service?: boolean | null;
         auto_topup_threshold_credits?: number | null;
         auto_topup_threshold_percent?: number | null;
+        billing_mode?: BillingPlanCreditGrantBillingMode.Raw | null;
         can_buy_bundles?: boolean | null;
         company_credit_amount?: number | null;
         credit_amount: number;
@@ -99,10 +111,14 @@ export declare namespace CreateBillingPlanCreditGrantRequestBody {
         postpaid_enabled?: boolean | null;
         postpaid_rate_per_unit?: number | null;
         postpaid_rate_per_unit_decimal?: string | null;
+        price_tiers?: CreditGrantPriceTierRequestBody.Raw[] | null;
         reset_cadence: BillingPlanCreditGrantResetCadence.Raw;
         reset_start: BillingPlanCreditGrantResetStart.Raw;
         reset_type?: BillingPlanCreditGrantResetType.Raw | null;
         rollover_percentage?: number | null;
         scaling?: PlanCreditGrantScaling.Raw | null;
+        tier_mode?: BillingTiersMode.Raw | null;
+        unit_price?: number | null;
+        unit_price_decimal?: string | null;
     }
 }

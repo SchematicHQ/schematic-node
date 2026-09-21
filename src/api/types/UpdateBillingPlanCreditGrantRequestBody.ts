@@ -18,6 +18,8 @@ export interface UpdateBillingPlanCreditGrantRequestBody {
     autoTopupSelfService?: boolean;
     autoTopupThresholdCredits?: number;
     autoTopupThresholdPercent?: number;
+    /** Whether the credits are included in the plan price (granted) or billed as their own subscription line at a price per credit (billed). Billed is only available on custom plans. */
+    billingMode?: Schematic.BillingPlanCreditGrantBillingMode;
     /** Deprecated: use compatible_plan_ids on credit bundles instead. Still accepted; writes through to the credit's bundle compatibility. */
     canBuyBundles?: boolean;
     /** Credits granted once per company on top of the per-license amount. Only valid when the grant scales per license. */
@@ -36,6 +38,8 @@ export interface UpdateBillingPlanCreditGrantRequestBody {
     postpaidRatePerUnit?: number;
     /** Decimal string form of postpaid_rate_per_unit, for rates finer than one minor unit (for example 0.0002). Takes precedence over postpaid_rate_per_unit when both are set, matching how the credit's own price_per_unit_decimal behaves. Send null to clear it. */
     postpaidRatePerUnitDecimal?: string;
+    /** Tier table pricing the credits on this grant, cheapest bound first, the last tier unbounded. Sending it moves the grant off one rate per credit. Requires tier_mode. */
+    priceTiers?: Schematic.CreditGrantPriceTierRequestBody[];
     resetCadence: Schematic.BillingPlanCreditGrantResetCadence;
     resetStart: Schematic.BillingPlanCreditGrantResetStart;
     resetType?: Schematic.BillingPlanCreditGrantResetType;
@@ -43,4 +47,10 @@ export interface UpdateBillingPlanCreditGrantRequestBody {
     rolloverPercentage?: number;
     /** Whether the grant is a fixed amount per company, or issued once per license the company holds. Changing this re-issues the credits companies already hold for this grant. */
     scaling?: Schematic.PlanCreditGrantScaling;
+    /** How price_tiers apply: volume prices every credit at the rate of the tier the total lands in, graduated prices each tier's own credits at its own rate. Required with price_tiers. */
+    tierMode?: Schematic.BillingTiersMode;
+    /** Price per credit in the plan currency's smallest unit. Required when billing_mode is billed, unless unit_price_decimal or price_tiers is set. Sending it moves a tiered grant back to one rate per credit. */
+    unitPrice?: number;
+    /** Price per credit as a decimal in the plan currency's smallest unit, for prices below one cent. */
+    unitPriceDecimal?: string;
 }
