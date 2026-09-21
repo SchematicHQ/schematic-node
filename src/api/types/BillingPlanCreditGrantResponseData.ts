@@ -19,6 +19,8 @@ export interface BillingPlanCreditGrantResponseData {
     autoTopupSelfService: boolean;
     autoTopupThresholdCredits?: number;
     autoTopupThresholdPercent?: number;
+    /** Whether the credits are included in the plan price (granted) or billed as their own subscription line at a price per credit (billed). */
+    billingMode: Schematic.BillingPlanCreditGrantBillingMode;
     /** Deprecated: bundle availability is a per-bundle plan compatibility set now; use compatible_plan_ids on credit bundles instead. */
     canBuyBundles: boolean;
     /** Credits granted once per company on top of the per-license amount. Always 0 when scaling is fixed. */
@@ -52,6 +54,10 @@ export interface BillingPlanCreditGrantResponseData {
     postpaidRatePerUnit?: number;
     /** Decimal form of postpaid_rate_per_unit, for rates finer than one minor unit. */
     postpaidRatePerUnitDecimal?: string;
+    /** The Stripe price a billed grant bills through. Minted when the plan version is published. */
+    price?: Schematic.BillingPriceResponseData;
+    /** Tier table pricing the credits, cheapest bound first. Empty unless billing_mode is billed and the credits are priced on tiers. */
+    priceTiers: Schematic.BillingPlanCreditGrantPriceTierResponseData[];
     resetCadence?: Schematic.BillingPlanCreditGrantResetCadence;
     resetStart?: Schematic.BillingPlanCreditGrantResetStart;
     resetType?: Schematic.BillingPlanCreditGrantResetType;
@@ -59,5 +65,11 @@ export interface BillingPlanCreditGrantResponseData {
     rolloverPercentage: number;
     /** Whether the grant is a fixed amount per company, or issued once per license the company holds. */
     scaling: Schematic.PlanCreditGrantScaling;
+    /** How price_tiers apply: volume prices every credit at the rate of the tier the total lands in, graduated prices each tier's own credits at its own rate. Set only when price_tiers is non-empty. */
+    tierMode?: Schematic.BillingTiersMode;
+    /** Price per credit in the plan currency's smallest unit. Set only when billing_mode is billed and the credits are priced at one rate. */
+    unitPrice?: number;
+    /** Price per credit as a decimal in the plan currency's smallest unit. Set only when billing_mode is billed and the rate is below one cent. */
+    unitPriceDecimal?: string;
     updatedAt: Date;
 }

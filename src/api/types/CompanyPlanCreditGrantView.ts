@@ -20,6 +20,8 @@ export interface CompanyPlanCreditGrantView {
     billingCreditPostpaidEnabled: boolean;
     billingCreditPostpaidRatePerUnit?: number;
     billingCreditPostpaidRatePerUnitDecimal?: string;
+    billingMode: Schematic.BillingPlanCreditGrantBillingMode;
+    billingProductPriceId?: string;
     companyAutoTopupAmount?: number;
     companyAutoTopupEnabled?: boolean;
     companyAutoTopupThresholdCredits?: number;
@@ -44,6 +46,7 @@ export interface CompanyPlanCreditGrantView {
     planVersionId?: string;
     /** Deprecated field, will be removed in the future. Use Credit.PluralName instead. */
     pluralName?: string;
+    price?: Schematic.BillingPriceView;
     resetCadence?: Schematic.BillingPlanCreditGrantResetCadence;
     resetStart?: Schematic.BillingPlanCreditGrantResetStart;
     resetType: Schematic.BillingPlanCreditGrantResetType;
