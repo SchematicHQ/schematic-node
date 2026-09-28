@@ -785,6 +785,22 @@ describe("CreditLeaseManager", () => {
         expect(store.get("co_1", "ct_1")).toBeUndefined();
     });
 
+    it("releaseAllLocalLeases logs a listing failure instead of rejecting", async () => {
+        const creditsClient = {
+            acquireCreditLease: jest.fn(),
+            extendCreditLease: jest.fn(),
+            releaseCreditLease: jest.fn(),
+        };
+        const { manager, store, logger } = makeManager(creditsClient);
+        jest.spyOn(store, "list").mockImplementation(() => {
+            throw new Error("boom");
+        });
+
+        await expect(manager.releaseAllLocalLeases()).resolves.toBeUndefined();
+        expect(logger.warn).toHaveBeenCalledWith(expect.stringContaining("Failed to list credit leases"));
+        expect(creditsClient.releaseCreditLease).not.toHaveBeenCalled();
+    });
+
     it("releaseAllLocalLeases gives up on a release that never lands", async () => {
         const creditsClient = {
             acquireCreditLease: jest.fn(),

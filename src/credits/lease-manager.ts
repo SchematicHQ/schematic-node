@@ -601,7 +601,13 @@ export class CreditLeaseManager {
      * hold a closing client open; whatever is abandoned expires server-side.
      */
     async releaseAllLocalLeases(timeoutMs: number = SHUTDOWN_DRAIN_TIMEOUT_MS): Promise<void> {
-        const entries = this.leaseStore.list?.();
+        let entries: LeaseEntry[] | undefined;
+        try {
+            entries = this.leaseStore.list?.();
+        } catch (err) {
+            this.logger.warn(`Failed to list credit leases on close (they will expire server-side): ${err}`);
+            return;
+        }
         if (!entries || entries.length === 0) return;
         const releases = entries.map(async (entry) => {
             // Skip expired leases: the server already swept and refunded them.
