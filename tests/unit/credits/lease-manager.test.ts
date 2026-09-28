@@ -578,6 +578,50 @@ describe("CreditLeaseManager", () => {
         expect(first?.grantedAmount).toBe(2000);
     });
 
+    it("caps an acquire joiner's wait at the deadline its check started on", async () => {
+        // A prewarm's acquire (no timeout) is on the wire when a check joins it.
+        // The check's deadline was set when it started, so the join gets only
+        // what is left of it, not a fresh copy of the timeout.
+        const creditsClient = {
+            acquireCreditLease: jest.fn().mockImplementation(
+                () =>
+                    new Promise((resolve) => {
+                        setTimeout(
+                            () =>
+                                resolve({
+                                    data: {
+                                        id: "lse_1",
+                                        companyId: "co_1",
+                                        creditTypeId: "ct_1",
+                                        grantedAmount: 1000,
+                                        expiresAt: new Date(Date.now() + 5 * 60_000),
+                                        createdAt: new Date(),
+                                        updatedAt: new Date(),
+                                    },
+                                    params: {},
+                                }),
+                            500,
+                        );
+                    }),
+            ),
+            extendCreditLease: jest.fn(),
+            releaseCreditLease: jest.fn(),
+        };
+        const { manager } = makeManager(creditsClient);
+
+        const prewarmP = manager.acquireIfNeeded("co_1", "ct_1");
+        await flush();
+
+        const startedWaiting = Date.now();
+        const impatient = await manager.acquireIfNeeded("co_1", "ct_1", { timeoutInSeconds: 10 }, Date.now() + 50);
+        expect(impatient).toBeUndefined();
+        expect(Date.now() - startedWaiting).toBeLessThan(200);
+        expect(creditsClient.acquireCreditLease).toHaveBeenCalledTimes(1);
+
+        const first = await prewarmP;
+        expect(first?.leaseId).toBe("lse_1");
+    });
+
     it("maybeExtendInBackground refuses to extend an expired lease", async () => {
         const creditsClient = {
             acquireCreditLease: jest.fn(),

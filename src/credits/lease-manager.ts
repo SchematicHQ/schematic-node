@@ -116,6 +116,9 @@ export class CreditLeaseManager {
      * a request is registered share it (the first caller's `requestOptions`
      * win); callers racing ahead of registration may duplicate the wire call,
      * which the server's idempotent acquire absorbs.
+     * A joiner's wait is capped the same way an extend joiner's is: at
+     * `joinDeadlineMs` (the deadline the caller's check started on) when
+     * given, else at the caller's own timeout from now.
      * Never rejects: a store (Redis) failure is logged and reported as
      * `undefined`, the same as a wire failure, so callers route it through
      * their fail-open/fail-closed handling instead of an unhandled rejection.
@@ -124,6 +127,7 @@ export class CreditLeaseManager {
         companyId: string,
         creditTypeId: string,
         requestOptions?: CreditsClient.RequestOptions,
+        joinDeadlineMs?: number,
     ): Promise<LeaseEntry | undefined> {
         if (this.stopped) {
             // Past stop() the drain has run or is running, so a lease acquired
@@ -162,7 +166,18 @@ export class CreditLeaseManager {
 
         const key = leaseKey(companyId, creditTypeId);
         const inflight = this.inflightAcquire.get(key);
-        if (inflight) return inflight;
+        if (inflight) {
+            // The flight runs on the timeout of whoever started it (a prewarm
+            // uses the client default), so cap our wait at our own budget.
+            const joined = await this.joinWithin(inflight, joinDeadlineMs ?? this.joinDeadline(requestOptions));
+            if (joined === JOIN_TIMED_OUT) {
+                this.logger.debug(
+                    `Acquire in flight for ${companyId}/${creditTypeId} outlasted the caller's timeout; not waiting on it`,
+                );
+                return undefined;
+            }
+            return joined;
+        }
 
         const promise = this.acquire(companyId, creditTypeId, requestOptions).finally(() => {
             this.inflightAcquire.delete(key);
