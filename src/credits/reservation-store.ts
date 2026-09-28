@@ -1,6 +1,16 @@
 import type { Reservation } from "./types";
 import type { ILeaseStore } from "./lease-store";
 
+/**
+ * Whether a hold's unspent slice may go back to its lease. A hold that can't
+ * name its lease isn't refunded: the refund could only land on whichever lease
+ * holds the slot now, inflating a successor, and the slice comes back anyway
+ * when the lease expires. Every SDK sharing a Redis backend must agree on this.
+ */
+export function refundable(leaseId: string | undefined): leaseId is string {
+    return !!leaseId;
+}
+
 /** Backing-store contract for the reservation table. */
 export interface IReservationStore {
     add(reservation: Reservation): Promise<void> | void;
@@ -76,10 +86,12 @@ export class ReservationStore implements IReservationStore {
 
         const actual = Math.max(0, Math.min(creditsConsumed, reservation.creditsReserved));
         const refund = reservation.creditsReserved - actual;
-        if (refund > 0) {
+        if (refund > 0 && refundable(reservation.leaseId)) {
             // Pinned to the originating lease: if that lease has expired and a
             // successor occupies the slot, the refund is dropped (the expired
-            // lease's remainder was already returned server-side).
+            // lease's remainder was already returned server-side). A hold with
+            // no lease id can't be pinned, so it isn't refunded at all (see
+            // `refundable`).
             await this.leaseStore.refund(reservation.companyId, reservation.creditTypeId, refund, reservation.leaseId);
         }
         return actual;
@@ -106,13 +118,14 @@ export class ReservationStore implements IReservationStore {
         for (const [id, reservation] of this.reservations) {
             if (reservation.expiresAt.getTime() <= now.getTime()) {
                 this.reservations.delete(id);
+                swept++;
+                if (!refundable(reservation.leaseId)) continue;
                 await this.leaseStore.refund(
                     reservation.companyId,
                     reservation.creditTypeId,
                     reservation.creditsReserved,
                     reservation.leaseId,
                 );
-                swept++;
             }
         }
         return swept;
