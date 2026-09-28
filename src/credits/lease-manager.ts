@@ -354,11 +354,21 @@ export class CreditLeaseManager {
                 // The flight asked for at least what we need: every
                 // watermark-driven joiner, and any check the tranche covers.
                 // One wire call serves all of them, which is the point of
-                // single-flight.
-                if (additionalAmount <= inflight.requestedAdditional) return joined;
-                // It asked for less. Go round again to re-read the slot it just
-                // moved, so what we ask for next is sized against the balance
-                // it left rather than the one we started from.
+                // single-flight. But the flight re-checks the slot against its
+                // starter's requirement, not ours, and may have skipped the
+                // wire call when a sibling's extend landed first; so a failed
+                // flight is taken as is, and a result that still leaves us
+                // short is not.
+                if (
+                    additionalAmount <= inflight.requestedAdditional &&
+                    (!joined || requiredCredits === undefined || joined.localRemainingCredits >= requiredCredits)
+                ) {
+                    return joined;
+                }
+                // It asked for less, or skipped the extend we needed. Go round
+                // again to re-read the slot it just moved, so what we ask for
+                // next is sized against the balance it left rather than the one
+                // we started from.
                 continue;
             }
             return this.startExtend(

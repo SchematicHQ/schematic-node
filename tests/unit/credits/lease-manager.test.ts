@@ -406,6 +406,51 @@ describe("CreditLeaseManager", () => {
         expect(joined?.localRemainingCredits).toBe(1200);
     });
 
+    it("a joiner does not accept a flight that decided not to extend", async () => {
+        // A (needs 300) starts a flight, but a sibling's extend lands before the
+        // flight re-reads the slot, so the flight skips its wire call. B (needs
+        // 400) joined it; the 350 the flight hands back is not enough for B.
+        const creditsClient = {
+            acquireCreditLease: jest.fn(),
+            extendCreditLease: jest.fn().mockResolvedValue(extendResponse(2150)),
+            releaseCreditLease: jest.fn(),
+        };
+        const { manager, store } = makeManager(creditsClient);
+        await seedLease(store, 1000);
+        await store.tryReserve("co_1", "ct_1", 800); // 200 left
+
+        const realGet = store.get.bind(store);
+        let openRecheck!: () => void;
+        const recheckGate = new Promise<void>((r) => (openRecheck = r));
+        let calls = 0;
+        jest.spyOn(store, "get").mockImplementation(((companyId: string, creditTypeId: string) => {
+            calls++;
+            // A's recheck is the second read; hold it until B has joined.
+            if (calls === 2) {
+                return recheckGate.then(async () => {
+                    // The sibling's extend: 1150 granted, 350 left, above the watermark.
+                    await store.extend("co_1", "ct_1", 1150, undefined, "lse_1");
+                    return realGet(companyId, creditTypeId);
+                });
+            }
+            return realGet(companyId, creditTypeId);
+            // biome-ignore lint/suspicious/noExplicitAny: get is sync on LeaseStore
+        }) as any);
+
+        const aP = manager.maybeExtendInBackground("co_1", "ct_1", 300);
+        await flush();
+        const bP = manager.maybeExtendInBackground("co_1", "ct_1", 400);
+        await flush();
+        openRecheck();
+
+        const a = await aP;
+        expect(a?.localRemainingCredits).toBe(350);
+        const b = await bP;
+        // B ran its own extend rather than taking A's result.
+        expect(creditsClient.extendCreditLease).toHaveBeenCalledTimes(1);
+        expect(b?.localRemainingCredits).toBeGreaterThanOrEqual(400);
+    });
+
     it("does not let a follow-up inherit another caller's smaller follow-up", async () => {
         // Two checks join one 10k refill, both needing more than it asked for.
         // C's follow-up (2k) registers first; A still needs 18k. Taking C's
