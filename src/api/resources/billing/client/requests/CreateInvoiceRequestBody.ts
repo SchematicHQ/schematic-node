@@ -29,5 +29,6 @@ export interface CreateInvoiceRequestBody {
     status?: Schematic.InvoiceStatus;
     subscriptionExternalId?: string;
     subtotal: number;
+    total?: number;
     url?: string;
 }

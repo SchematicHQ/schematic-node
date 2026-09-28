@@ -35,5 +35,6 @@ export interface CreditEventLedgerResponseData {
     transferReason?: Schematic.CreditTransferReason;
     usageEventId?: string;
     usageReason?: Schematic.CreditUsageReason;
+    userId?: string;
     zeroedOutReason?: Schematic.BillingCreditGrantZeroedOutReason;
 }

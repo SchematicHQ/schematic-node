@@ -380,6 +380,7 @@ export * from "./RulesEngineSchemaVersion";
 export * from "./RulesengineCheckFlagResult";
 export * from "./RulesengineCompany";
 export * from "./RulesengineCompanyMetric";
+export * from "./RulesengineComparableOperator";
 export * from "./RulesengineCondition";
 export * from "./RulesengineConditionGroup";
 export * from "./RulesengineConditionType";

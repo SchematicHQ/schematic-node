@@ -29,6 +29,7 @@ export const ManagePlanRequest: core.serialization.ObjectSchema<
         "credit_bundles",
         core.serialization.list(UpdateCreditBundleRequestBody),
     ),
+    currency: core.serialization.string().optional(),
     customFieldValues: core.serialization.property("custom_field_values", core.serialization.list(CheckoutFieldValue)),
     daysUntilDue: core.serialization.property("days_until_due", core.serialization.number().optional()),
     payInAdvanceEntitlements: core.serialization.property(
@@ -61,6 +62,7 @@ export declare namespace ManagePlanRequest {
         company_id: string;
         coupon_external_id?: string | null;
         credit_bundles: UpdateCreditBundleRequestBody.Raw[];
+        currency?: string | null;
         custom_field_values: CheckoutFieldValue.Raw[];
         days_until_due?: number | null;
         pay_in_advance_entitlements: UpdatePayInAdvanceRequestBody.Raw[];

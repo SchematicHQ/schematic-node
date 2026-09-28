@@ -5,6 +5,7 @@ export const CompanyFeatureUsageExportMetadataVisibleColumnsItem = {
     Subscription: "subscription",
     Users: "users",
     LastSeenAt: "last_seen_at",
+    CreatedAt: "created_at",
 } as const;
 export type CompanyFeatureUsageExportMetadataVisibleColumnsItem =
     (typeof CompanyFeatureUsageExportMetadataVisibleColumnsItem)[keyof typeof CompanyFeatureUsageExportMetadataVisibleColumnsItem];

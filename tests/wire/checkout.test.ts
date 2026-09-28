@@ -3034,6 +3034,7 @@ describe("CheckoutClient", () => {
                 due_now: 1000000,
                 finance: {
                     amount_off: 1000000,
+                    currency: "currency",
                     discount_amount: 1000000,
                     discounts: [
                         {
@@ -3139,6 +3140,7 @@ describe("CheckoutClient", () => {
                 dueNow: 1000000,
                 finance: {
                     amountOff: 1000000,
+                    currency: "currency",
                     discountAmount: 1000000,
                     discounts: [
                         {
@@ -5220,6 +5222,7 @@ describe("CheckoutClient", () => {
                     due_now: 1000000,
                     finance: {
                         amount_off: 1000000,
+                        currency: "currency",
                         discount_amount: 1000000,
                         discounts: [
                             {
@@ -5314,6 +5317,7 @@ describe("CheckoutClient", () => {
                     dueNow: 1000000,
                     finance: {
                         amountOff: 1000000,
+                        currency: "currency",
                         discountAmount: 1000000,
                         discounts: [
                             {
@@ -6576,6 +6580,7 @@ describe("CheckoutClient", () => {
                     status: "draft",
                     subscription_external_id: "subscription_external_id",
                     subtotal: 1000000,
+                    total: 1000000,
                     updated_at: "2024-01-15T09:30:00Z",
                     url: "url",
                 },
@@ -6688,6 +6693,7 @@ describe("CheckoutClient", () => {
                     status: "draft",
                     subscriptionExternalId: "subscription_external_id",
                     subtotal: 1000000,
+                    total: 1000000,
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     url: "url",
                 },

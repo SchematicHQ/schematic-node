@@ -29,6 +29,7 @@ export const CreateInvoiceRequestBody: core.serialization.Schema<
         core.serialization.string().optional(),
     ),
     subtotal: core.serialization.number(),
+    total: core.serialization.number().optional(),
     url: core.serialization.string().optional(),
 });
 
@@ -48,6 +49,7 @@ export declare namespace CreateInvoiceRequestBody {
         status?: InvoiceStatus.Raw | null;
         subscription_external_id?: string | null;
         subtotal: number;
+        total?: number | null;
         url?: string | null;
     }
 }
