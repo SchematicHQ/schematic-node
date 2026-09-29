@@ -837,7 +837,16 @@ export class SchematicClient extends BaseClient {
         try {
             // DataStream path: evaluate all requested keys locally when available.
             // No flag_check events are enqueued for the bulk checkFlags codepath.
-            if (this.useDataStream() && this.datastreamClient!.isConnected() && keys && keys.length > 0) {
+            //
+            // This does not gate on isConnected(), matching checkFlag and the Go
+            // SDK. In replicator mode the replicator can report not ready (for
+            // example when Schematic is unreachable) while its Redis cache still
+            // holds everything needed to evaluate, and the datastream client
+            // evaluates from that cache without a readiness check. In WebSocket
+            // mode a disconnected client still evaluates entities it has cached
+            // and throws for anything it would need to fetch, which sends the
+            // whole set to the API below.
+            if (this.useDataStream() && keys && keys.length > 0) {
                 const dsResults = await this.checkFlagsViaDataStream(evalCtx, keys);
                 if (dsResults) {
                     return dsResults;
