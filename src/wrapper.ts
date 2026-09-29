@@ -1461,8 +1461,14 @@ export class SchematicClient extends BaseClient {
         try {
             await this.enqueueEvent("track", body, options);
 
-            // Update company metrics in DataStream if available and connected
-            if (updateMetrics && body.company && this.useDataStream() && this.datastreamClient!.isConnected()) {
+            // Update company metrics in DataStream if available. This does not
+            // gate on isConnected(): flag checks keep evaluating from the cached
+            // company while the replicator reports not ready or the WebSocket is
+            // down, so the cached usage has to keep moving with them. The bump
+            // only touches a company already in the cache, and the next company
+            // the server sends replaces the metric value rather than adding to
+            // it, so it cannot double count.
+            if (updateMetrics && body.company && this.useDataStream()) {
                 try {
                     await this.datastreamClient!.updateCompanyMetrics(body.company, body.event, body.quantity || 1);
                 } catch (err) {

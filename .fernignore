@@ -44,6 +44,7 @@ tests/unit/datastream/websocket-client.test.ts
 tests/unit/event-capture.test.ts
 tests/unit/events.test.ts
 tests/unit/logger.test.ts
+tests/unit/replicator/
 tests/unit/rules-engine.test.ts
 tests/unit/wasm-datastream.test.ts
 tests/unit/wasm-integration.test.ts
