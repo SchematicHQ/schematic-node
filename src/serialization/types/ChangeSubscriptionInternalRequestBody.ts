@@ -25,6 +25,7 @@ export const ChangeSubscriptionInternalRequestBody: core.serialization.ObjectSch
         "credit_bundles",
         core.serialization.list(UpdateCreditBundleRequestBody),
     ),
+    currency: core.serialization.string().optional(),
     customFieldValues: core.serialization.property("custom_field_values", core.serialization.list(CheckoutFieldValue)),
     newPlanId: core.serialization.property("new_plan_id", core.serialization.string()),
     newPriceId: core.serialization.property("new_price_id", core.serialization.string()),
@@ -43,6 +44,7 @@ export declare namespace ChangeSubscriptionInternalRequestBody {
         company_id: string;
         coupon_external_id?: string | null;
         credit_bundles: UpdateCreditBundleRequestBody.Raw[];
+        currency?: string | null;
         custom_field_values: CheckoutFieldValue.Raw[];
         new_plan_id: string;
         new_price_id: string;

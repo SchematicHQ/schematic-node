@@ -22,6 +22,8 @@ export interface ManagePlanRequest {
     companyId: string;
     couponExternalId?: string;
     creditBundles: Schematic.UpdateCreditBundleRequestBody[];
+    /** ISO 4217 currency this change is being built in. Prices are still selected by id; this records the intent. */
+    currency?: string;
     customFieldValues: Schematic.CheckoutFieldValue[];
     /** Payment terms in days for an invoiced subscription. Defaults to 30. */
     daysUntilDue?: number;

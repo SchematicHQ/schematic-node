@@ -16,5 +16,6 @@ export interface InvoiceRequestBody {
     status?: Schematic.InvoiceStatus;
     subscriptionExternalId?: string;
     subtotal: number;
+    total?: number;
     url?: string;
 }

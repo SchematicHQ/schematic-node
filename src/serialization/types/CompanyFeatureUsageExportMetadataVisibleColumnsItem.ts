@@ -7,8 +7,8 @@ import type * as serializers from "../index";
 export const CompanyFeatureUsageExportMetadataVisibleColumnsItem: core.serialization.Schema<
     serializers.CompanyFeatureUsageExportMetadataVisibleColumnsItem.Raw,
     Schematic.CompanyFeatureUsageExportMetadataVisibleColumnsItem
-> = core.serialization.enum_(["plan", "subscription", "users", "last_seen_at"]);
+> = core.serialization.enum_(["plan", "subscription", "users", "last_seen_at", "created_at"]);
 
 export declare namespace CompanyFeatureUsageExportMetadataVisibleColumnsItem {
-    export type Raw = "plan" | "subscription" | "users" | "last_seen_at";
+    export type Raw = "plan" | "subscription" | "users" | "last_seen_at" | "created_at";
 }

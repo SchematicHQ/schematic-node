@@ -35,6 +35,7 @@ export const InvoiceResponseData: core.serialization.ObjectSchema<
         core.serialization.string().optional(),
     ),
     subtotal: core.serialization.number(),
+    total: core.serialization.number().optional(),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     url: core.serialization.string().optional(),
 });
@@ -60,6 +61,7 @@ export declare namespace InvoiceResponseData {
         status?: InvoiceStatus.Raw | null;
         subscription_external_id?: string | null;
         subtotal: number;
+        total?: number | null;
         updated_at: string;
         url?: string | null;
     }

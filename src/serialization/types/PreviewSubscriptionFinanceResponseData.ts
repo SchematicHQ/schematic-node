@@ -11,6 +11,7 @@ export const PreviewSubscriptionFinanceResponseData: core.serialization.ObjectSc
     Schematic.PreviewSubscriptionFinanceResponseData
 > = core.serialization.object({
     amountOff: core.serialization.property("amount_off", core.serialization.number()),
+    currency: core.serialization.string(),
     discountAmount: core.serialization.property("discount_amount", core.serialization.number()),
     discounts: core.serialization.list(PreviewSubscriptionDiscountResponseData),
     dueNow: core.serialization.property("due_now", core.serialization.number()),
@@ -35,6 +36,7 @@ export const PreviewSubscriptionFinanceResponseData: core.serialization.ObjectSc
 export declare namespace PreviewSubscriptionFinanceResponseData {
     export interface Raw {
         amount_off: number;
+        currency: string;
         discount_amount: number;
         discounts: PreviewSubscriptionDiscountResponseData.Raw[];
         due_now: number;

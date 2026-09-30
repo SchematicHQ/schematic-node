@@ -59,6 +59,7 @@ export const CreditEventLedgerResponseData: core.serialization.ObjectSchema<
     transferReason: core.serialization.property("transfer_reason", CreditTransferReason.optional()),
     usageEventId: core.serialization.property("usage_event_id", core.serialization.string().optional()),
     usageReason: core.serialization.property("usage_reason", CreditUsageReason.optional()),
+    userId: core.serialization.property("user_id", core.serialization.string().optional()),
     zeroedOutReason: core.serialization.property("zeroed_out_reason", BillingCreditGrantZeroedOutReason.optional()),
 });
 
@@ -96,6 +97,7 @@ export declare namespace CreditEventLedgerResponseData {
         transfer_reason?: CreditTransferReason.Raw | null;
         usage_event_id?: string | null;
         usage_reason?: CreditUsageReason.Raw | null;
+        user_id?: string | null;
         zeroed_out_reason?: BillingCreditGrantZeroedOutReason.Raw | null;
     }
 }

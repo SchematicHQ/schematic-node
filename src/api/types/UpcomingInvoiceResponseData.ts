@@ -21,6 +21,8 @@ export interface UpcomingInvoiceResponseData {
     status?: Schematic.InvoiceStatus;
     subscriptionExternalId?: string;
     subtotal: number;
+    /** Amount after discounts and tax, before applying the customer balance. Null when the provider has not reported it. */
+    total?: number;
     updatedAt: Date;
     url?: string;
 }

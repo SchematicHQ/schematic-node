@@ -22,6 +22,8 @@ export interface InvoiceResponseData {
     status?: Schematic.InvoiceStatus;
     subscriptionExternalId?: string;
     subtotal: number;
+    /** Amount after discounts and tax, before applying the customer balance. Null when the provider has not reported it: rows synced before the column existed, or pushed without one. */
+    total?: number;
     updatedAt: Date;
     url?: string;
 }
