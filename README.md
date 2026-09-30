@@ -804,7 +804,7 @@ const client = new SchematicClient({
 });
 ```
 
-Until a health check succeeds, the SDK treats the replicator as not ready: bulk flag checks bypass the shared cache, `track` skips local metric updates, and cache keys use the SDK's own rules engine version rather than the replicator's cache version.
+Until the replicator reports ready, flag checks use the Schematic API rather than the shared cache (see [Cache readiness](#cache-readiness)). Until the SDK has read a `cache_version` from the health endpoint, cache keys use the SDK's own rules engine version rather than the replicator's.
 
 ### Configuration options
 
