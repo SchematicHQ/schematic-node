@@ -42,9 +42,9 @@ export interface DataStreamClientOptions {
   flagCache?: CacheProvider<Schematic.RulesengineFlag>;
   /** Enable replicator mode for external data synchronization */
   replicatorMode?: boolean;
-  /** Health check URL for replicator mode */
+  /** Health check URL for replicator mode (default: http://localhost:8090/ready) */
   replicatorHealthURL?: string;
-  /** Health check interval for replicator mode in milliseconds */
+  /** Health check interval for replicator mode in milliseconds (default: 30 seconds) */
   replicatorHealthCheck?: number;
 }
 
@@ -60,6 +60,9 @@ const CACHE_KEY_PREFIX_FLAGS = 'flags';
 const RESOURCE_TIMEOUT = 30 * 1000; // 30 seconds
 const DEFAULT_TTL = 24 * 60 * 60 * 1000; // 24 hours (matches Go defaultTTL)
 const MAX_CACHE_TTL = 30 * 24 * 60 * 60 * 1000; // 30 days (matches Go maxCacheTTL)
+// Replicator mode defaults, applied only when replicatorMode is enabled (matches Go WithDatastream)
+const DEFAULT_REPLICATOR_HEALTH_URL = 'http://localhost:8090/ready';
+const DEFAULT_REPLICATOR_HEALTH_CHECK = 30 * 1000; // 30 seconds
 
 /**
  * DataStreamClient provides a comprehensive client for Schematic's datastream
@@ -120,8 +123,12 @@ export class DataStreamClient extends LazyEmitter {
 
     // Replicator mode settings
     this.replicatorMode = options.replicatorMode ?? false;
-    this.replicatorHealthURL = options.replicatorHealthURL;
-    this.replicatorHealthCheck = options.replicatorHealthCheck ?? 30 * 1000; // Default 30 seconds
+    // Default the health URL only in replicator mode; an explicit value wins.
+    // Without a health URL the SDK never marks the replicator ready or learns its cache version.
+    this.replicatorHealthURL = this.replicatorMode
+      ? options.replicatorHealthURL || DEFAULT_REPLICATOR_HEALTH_URL
+      : options.replicatorHealthURL;
+    this.replicatorHealthCheck = options.replicatorHealthCheck || DEFAULT_REPLICATOR_HEALTH_CHECK;
 
     // Replicator mode requires a shared cache (Redis or custom providers)
     if (this.replicatorMode && !options.redisClient && !options.companyCache && !options.userCache && !options.flagCache) {

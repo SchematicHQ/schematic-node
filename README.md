@@ -781,11 +781,26 @@ const client = new SchematicClient({
     dataStream: {
         replicatorMode: true,
         redisClient,
-        replicatorHealthURL: "http://localhost:8080/health",
-        replicatorHealthCheck: 30000, // 30 seconds
     },
 });
 ```
+
+In replicator mode the SDK polls the replicator's health endpoint to learn when it is ready and which cache version it is writing. The health URL defaults to `http://localhost:8090/ready` and the polling interval defaults to 30 seconds, matching the other Schematic SDKs. If your replicator runs elsewhere, set `replicatorHealthURL` explicitly:
+
+```ts
+const client = new SchematicClient({
+    apiKey: process.env.SCHEMATIC_API_KEY,
+    useDataStream: true,
+    dataStream: {
+        replicatorMode: true,
+        redisClient,
+        replicatorHealthURL: "http://my-replicator:8090/ready",
+        replicatorHealthCheck: 60000, // 60 seconds
+    },
+});
+```
+
+Until a health check succeeds, the SDK treats the replicator as not ready: bulk flag checks bypass the shared cache, `track` skips local metric updates, and cache keys use the SDK's own rules engine version rather than the replicator's cache version.
 
 ### Configuration options
 
@@ -794,7 +809,7 @@ const client = new SchematicClient({
 | `replicatorMode` | `boolean` | `false` | Enable replicator mode |
 | `redisClient` | `RedisClient` | — | **Required.** Redis client for reading from the shared cache |
 | `redisKeyPrefix` | `string` | `schematic:` | Key prefix for Redis cache entries |
-| `replicatorHealthURL` | `string` | — | URL to poll for replicator health status |
+| `replicatorHealthURL` | `string` | `http://localhost:8090/ready` | URL to poll for replicator health status (default applies in replicator mode only) |
 | `replicatorHealthCheck` | `number` | 30000 | Health check polling interval in milliseconds |
 | `cacheTTL` | `number` | 24 hours | Cache TTL in milliseconds |
 
