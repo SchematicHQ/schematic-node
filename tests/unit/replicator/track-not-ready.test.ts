@@ -95,6 +95,7 @@ describe("track in replicator mode when the replicator is not ready", () => {
     const realFetch = global.fetch;
     let redisClient: FakeRedis;
     let client: SchematicClient;
+    let replicatorReady: boolean;
 
     const cachedMetricValue = async (): Promise<number> => {
         const raw = await redisClient.get(COMPANY_KEY);
@@ -103,9 +104,10 @@ describe("track in replicator mode when the replicator is not ready", () => {
     };
 
     beforeEach(async () => {
+        replicatorReady = false;
         global.fetch = jest.fn(async (input: unknown) => {
             if (String(input) === HEALTH_URL) {
-                return new Response(JSON.stringify({ ready: false, cache_version: CACHE_VERSION }), {
+                return new Response(JSON.stringify({ ready: replicatorReady, cache_version: CACHE_VERSION }), {
                     status: 200,
                     headers: { "content-type": "application/json" },
                 });
@@ -155,18 +157,23 @@ describe("track in replicator mode when the replicator is not ready", () => {
         expect(logger.error).not.toHaveBeenCalled();
     });
 
-    it("moves a metric-gated flag check with the tracked usage", async () => {
+    it("counts usage a metric-gated flag check sees once the replicator is ready", async () => {
         jest.spyOn(client.features, "checkFlag").mockRejectedValue(new Error("Schematic is unreachable"));
         const check = () => client.checkFlag({ company: { name: "Acme" } }, "metric-flag");
 
-        expect(await check()).toBe(false);
-
         await client.track({ event: "api_call", company: { name: "Acme" } });
-        expect(await cachedMetricValue()).toBe(4);
-        expect(await check()).toBe(false);
-
         await client.track({ event: "api_call", company: { name: "Acme" } });
         expect(await cachedMetricValue()).toBe(5);
+
+        // Not ready: flag checks skip the cache and ask the API, which is down,
+        // so they return the flag default even though the cache has moved.
+        expect(await check()).toBe(false);
+
+        // Once the replicator reports ready, the check reads the tracked usage.
+        replicatorReady = true;
+        const datastream = (client as unknown as { datastreamClient: { checkReplicatorHealth(): Promise<void> } })
+            .datastreamClient;
+        await datastream.checkReplicatorHealth();
         expect(await check()).toBe(true);
     });
 
