@@ -1,7 +1,7 @@
 import type { RedisClient } from "../cache/redis";
 
 import type { ILeaseStore } from "./lease-store";
-import type { IReservationStore } from "./reservation-store";
+import { type IReservationStore, refundable } from "./reservation-store";
 import type { Reservation } from "./types";
 
 const DEFAULT_KEY_PREFIX = "schematic:";
@@ -207,11 +207,13 @@ export class RedisReservationStore implements IReservationStore {
         if (consumed < 0) consumed = 0;
         if (consumed > reserved) consumed = reserved;
         const refund = reserved - consumed;
-        if (refund > 0) {
+        if (refund > 0 && refundable(raw.leaseId)) {
             // Delegate the clamped refund to the lease store, which owns the
             // lease hash. Keeps the cross-key write out of a single Lua script.
             // Pinned to the reservation's leaseId so a hold carved out of an
-            // expired lease can't inflate a successor lease's balance.
+            // expired lease can't inflate a successor lease's balance. An empty
+            // leaseId would turn the pin off in the refund script, so such a
+            // hold is skipped instead (see `refundable`).
             await this.leaseStore.refund(companyId, creditTypeId, refund, raw.leaseId);
         }
         return consumed;

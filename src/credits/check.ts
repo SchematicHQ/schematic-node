@@ -80,10 +80,10 @@ export async function checkWithLease(
     const { datastream, leaseStore, reservations, manager, logger } = deps;
     const onFailure = options.onAcquireFailure ?? "fail-closed";
     // Anchored here, at the top of the check, rather than derived from the
-    // timeout further down: by the time the lease path reaches an extend it
-    // has already spent some of the caller's budget on the entity fetches and
-    // the engine probe, and a wait on someone else's extend that started its
-    // own clock then would let the check overrun what it was given.
+    // timeout further down: by the time the lease path joins an acquire or
+    // extend it has already spent some of the caller's budget on the entity
+    // fetches and the engine probe, and a wait on someone else's flight that
+    // started its own clock then would let the check overrun what it was given.
     const checkDeadline = options.timeoutMs !== undefined ? Date.now() + options.timeoutMs : undefined;
 
     // A malformed `usage` must never reach the stores: NaN slips through every
@@ -248,7 +248,7 @@ export async function checkWithLease(
             options,
         }).then((result) => emitFlagCheck(deps, evalCtx, result, { companyId: company.id, userId: user?.id }));
 
-    const lease = await manager.acquireIfNeeded(company.id, creditId, requestOptions);
+    const lease = await manager.acquireIfNeeded(company.id, creditId, requestOptions, checkDeadline);
     if (!lease) {
         return failure("lease_acquire_failed");
     }
