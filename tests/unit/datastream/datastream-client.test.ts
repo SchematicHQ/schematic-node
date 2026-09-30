@@ -820,6 +820,81 @@ describe('DataStreamClient', () => {
     global.fetch = originalFetch;
   });
 
+  describe('replicator health URL default', () => {
+    const DEFAULT_HEALTH_URL = 'http://localhost:8090/ready';
+    let originalFetch: typeof global.fetch;
+    let mockFetch: jest.Mock;
+
+    const makeRedisClient = () => ({
+      get: jest.fn().mockResolvedValue(null),
+      set: jest.fn().mockResolvedValue('OK'),
+      setEx: jest.fn().mockResolvedValue('OK'),
+      del: jest.fn().mockResolvedValue(1),
+      scanIterator: jest.fn().mockReturnValue((async function* () {})()),
+    });
+
+    beforeEach(() => {
+      originalFetch = global.fetch;
+      mockFetch = jest.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({ ready: true, cache_version: 'v-default' }),
+      });
+      global.fetch = mockFetch as any;
+    });
+
+    afterEach(() => {
+      global.fetch = originalFetch;
+    });
+
+    test('polls http://localhost:8090/ready in replicator mode when no health URL is set', async () => {
+      const replicatorClient = new DataStreamClient({
+        ...options,
+        replicatorMode: true,
+        redisClient: makeRedisClient(),
+      });
+
+      try {
+        await replicatorClient.start();
+        await new Promise(resolve => setTimeout(resolve, 50));
+
+        expect(mockFetch).toHaveBeenCalledWith(DEFAULT_HEALTH_URL, expect.objectContaining({ method: 'GET' }));
+        expect(replicatorClient.isReplicatorReady()).toBe(true);
+        expect(replicatorClient.getReplicatorCacheVersion()).toBe('v-default');
+      } finally {
+        replicatorClient.removeAllListeners();
+        replicatorClient.close();
+      }
+    });
+
+    test('an explicit health URL overrides the default', async () => {
+      const replicatorClient = new DataStreamClient({
+        ...options,
+        replicatorMode: true,
+        replicatorHealthURL: 'http://my-replicator:9000/ready',
+        redisClient: makeRedisClient(),
+      });
+
+      try {
+        await replicatorClient.start();
+        await new Promise(resolve => setTimeout(resolve, 50));
+
+        expect(mockFetch).toHaveBeenCalledWith('http://my-replicator:9000/ready', expect.anything());
+        expect(mockFetch).not.toHaveBeenCalledWith(DEFAULT_HEALTH_URL, expect.anything());
+      } finally {
+        replicatorClient.removeAllListeners();
+        replicatorClient.close();
+      }
+    });
+
+    test('does not poll a health URL outside replicator mode', async () => {
+      await client.start();
+      await new Promise(resolve => setTimeout(resolve, 50));
+
+      expect(mockFetch).not.toHaveBeenCalled();
+      expect(client.isReplicatorMode()).toBe(false);
+    });
+  });
+
   test('forwards preflight options to the rules engine in replicator mode', async () => {
     // The replicator branch of checkFlag evaluates straight from cache without
     // any WS fetching — assert the preflight envelope still reaches the

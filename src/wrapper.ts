@@ -69,9 +69,9 @@ export interface SchematicOptions {
         redisKeyPrefix?: string;
         /** Enable replicator mode for external data synchronization */
         replicatorMode?: boolean;
-        /** Health check URL for replicator mode */
+        /** Health check URL for replicator mode (default: http://localhost:8090/ready) */
         replicatorHealthURL?: string;
-        /** Health check interval for replicator mode in milliseconds */
+        /** Health check interval for replicator mode in milliseconds (default: 30 seconds) */
         replicatorHealthCheck?: number;
     };
     /** If using an API key that is not environment-specific, use this option to specify the environment */
