@@ -28,6 +28,7 @@ export interface CompanyPlanDetailResponseData {
     description: string;
     draftVersion?: Schematic.PlanVersionResponseData;
     entitlements?: Schematic.PlanEntitlementResponseData[];
+    estimatedTotals?: Schematic.EstimatedPlanTotal[];
     features: Schematic.FeatureInPlanResponseData[];
     icon: Schematic.PlanIcon;
     id: string;

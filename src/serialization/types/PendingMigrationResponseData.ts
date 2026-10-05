@@ -3,13 +3,18 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { MigrationProrationBehavior } from "./MigrationProrationBehavior";
+import { PlanVersionMigrationStrategy } from "./PlanVersionMigrationStrategy";
 
 export const PendingMigrationResponseData: core.serialization.ObjectSchema<
     serializers.PendingMigrationResponseData.Raw,
     Schematic.PendingMigrationResponseData
 > = core.serialization.object({
+    effectiveAt: core.serialization.property("effective_at", core.serialization.date().optional()),
     migrationId: core.serialization.property("migration_id", core.serialization.string()),
+    prorationBehavior: core.serialization.property("proration_behavior", MigrationProrationBehavior.optional()),
     scheduledFor: core.serialization.property("scheduled_for", core.serialization.date().optional()),
+    strategy: PlanVersionMigrationStrategy,
     toPlanId: core.serialization.property("to_plan_id", core.serialization.string()),
     toPlanName: core.serialization.property("to_plan_name", core.serialization.string()),
     toPlanVersionId: core.serialization.property("to_plan_version_id", core.serialization.string()),
@@ -18,8 +23,11 @@ export const PendingMigrationResponseData: core.serialization.ObjectSchema<
 
 export declare namespace PendingMigrationResponseData {
     export interface Raw {
+        effective_at?: string | null;
         migration_id: string;
+        proration_behavior?: MigrationProrationBehavior.Raw | null;
         scheduled_for?: string | null;
+        strategy: PlanVersionMigrationStrategy.Raw;
         to_plan_id: string;
         to_plan_name: string;
         to_plan_version_id: string;

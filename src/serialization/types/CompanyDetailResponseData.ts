@@ -26,6 +26,7 @@ export const CompanyDetailResponseData: core.serialization.ObjectSchema<
         "billing_credit_balances",
         core.serialization.record(core.serialization.string(), core.serialization.number()).optional(),
     ),
+    billingEmail: core.serialization.property("billing_email", core.serialization.string().optional()),
     billingProfile: core.serialization.property("billing_profile", CompanyBillingProfileResponseData.optional()),
     billingProfiles: core.serialization.property(
         "billing_profiles",
@@ -66,6 +67,7 @@ export declare namespace CompanyDetailResponseData {
     export interface Raw {
         add_ons: CompanyPlanWithBillingSubView.Raw[];
         billing_credit_balances?: Record<string, number> | null;
+        billing_email?: string | null;
         billing_profile?: CompanyBillingProfileResponseData.Raw | null;
         billing_profiles?: CompanyBillingProfileResponseData.Raw[] | null;
         billing_subscription?: BillingSubscriptionView.Raw | null;

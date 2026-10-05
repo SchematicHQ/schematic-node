@@ -11,11 +11,16 @@ export const UpdateEnvironmentRequestBody: core.serialization.Schema<
 > = core.serialization.object({
     environmentType: core.serialization.property("environment_type", EnvironmentType.optional()),
     name: core.serialization.string().optional(),
+    requireContextSignature: core.serialization.property(
+        "require_context_signature",
+        core.serialization.boolean().optional(),
+    ),
 });
 
 export declare namespace UpdateEnvironmentRequestBody {
     export interface Raw {
         environment_type?: EnvironmentType.Raw | null;
         name?: string | null;
+        require_context_signature?: boolean | null;
     }
 }

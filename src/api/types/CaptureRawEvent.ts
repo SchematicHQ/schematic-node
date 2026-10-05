@@ -2,6 +2,8 @@
 
 export interface CaptureRawEvent {
     capturedAt: Date;
+    contextSignature?: string;
+    contextSignatureChecked?: boolean;
     eventId?: string;
     rawBytes: string;
     remoteIp: string;

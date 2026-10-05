@@ -12,6 +12,7 @@ import { BillingStrategy } from "./BillingStrategy";
 import { ChargeType } from "./ChargeType";
 import { CompanyPlanInvalidReason } from "./CompanyPlanInvalidReason";
 import { CustomPlanConfig } from "./CustomPlanConfig";
+import { EstimatedPlanTotal } from "./EstimatedPlanTotal";
 import { FeatureInPlanResponseData } from "./FeatureInPlanResponseData";
 import { FeatureUsageResponseData } from "./FeatureUsageResponseData";
 import { PlanCatalogMembershipResponseData } from "./PlanCatalogMembershipResponseData";
@@ -61,6 +62,10 @@ export const CompanyPlanDetailResponseData: core.serialization.ObjectSchema<
     description: core.serialization.string(),
     draftVersion: core.serialization.property("draft_version", PlanVersionResponseData.optional()),
     entitlements: core.serialization.list(PlanEntitlementResponseData).optional(),
+    estimatedTotals: core.serialization.property(
+        "estimated_totals",
+        core.serialization.list(EstimatedPlanTotal).optional(),
+    ),
     features: core.serialization.list(FeatureInPlanResponseData),
     icon: PlanIcon,
     id: core.serialization.string(),
@@ -113,6 +118,7 @@ export declare namespace CompanyPlanDetailResponseData {
         description: string;
         draft_version?: PlanVersionResponseData.Raw | null;
         entitlements?: PlanEntitlementResponseData.Raw[] | null;
+        estimated_totals?: EstimatedPlanTotal.Raw[] | null;
         features: FeatureInPlanResponseData.Raw[];
         icon: PlanIcon.Raw;
         id: string;

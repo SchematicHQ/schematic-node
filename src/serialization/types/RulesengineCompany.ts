@@ -5,6 +5,7 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 import { RulesengineCompanyMetric } from "./RulesengineCompanyMetric";
 import { RulesengineCreditPostpaidConfig } from "./RulesengineCreditPostpaidConfig";
+import { RulesengineCreditSpendPolicy } from "./RulesengineCreditSpendPolicy";
 import { RulesengineFeatureEntitlement } from "./RulesengineFeatureEntitlement";
 import { RulesengineRule } from "./RulesengineRule";
 import { RulesengineSubscription } from "./RulesengineSubscription";
@@ -28,6 +29,10 @@ export const RulesengineCompany: core.serialization.ObjectSchema<
         "credit_postpaid",
         core.serialization.record(core.serialization.string(), RulesengineCreditPostpaidConfig).optional(),
     ),
+    creditSpendPolicies: core.serialization.property(
+        "credit_spend_policies",
+        core.serialization.list(RulesengineCreditSpendPolicy).optional(),
+    ),
     entitlements: core.serialization.list(RulesengineFeatureEntitlement).optional(),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     id: core.serialization.string(),
@@ -50,6 +55,7 @@ export declare namespace RulesengineCompany {
         billing_product_ids: string[];
         credit_balances: Record<string, number>;
         credit_postpaid?: Record<string, RulesengineCreditPostpaidConfig.Raw> | null;
+        credit_spend_policies?: RulesengineCreditSpendPolicy.Raw[] | null;
         entitlements?: RulesengineFeatureEntitlement.Raw[] | null;
         environment_id: string;
         id: string;

@@ -14,6 +14,8 @@ export interface PublishPlanVersionRequestBody {
     address?: Schematic.CustomerBillingAddress;
     /** The date the subscription's billing period renews on. Only honored on a first publish that starts a subscription. */
     billingCycleAnchor?: Date;
+    /** The date the contract term starts. A past date backdates the subscription so the first invoice covers the term from this date to the renewal date. Requires billing_cycle_anchor. Only honored on a first publish that starts a subscription. */
+    billingStartDate?: Date;
     couponExternalId?: string;
     customFieldValues?: Schematic.CheckoutFieldValue[];
     customerEmail?: string;
@@ -23,9 +25,12 @@ export interface PublishPlanVersionRequestBody {
     phone?: string;
     /** When true, the partial period between the subscription starting and its renewal date is billed pro rata straight away. When false that period is free and no invoice is raised until the renewal date. Only applies alongside billing_cycle_anchor. Defaults to true. */
     prorateFirstPeriod?: boolean;
+    /** How Stripe handles the price difference when companies are migrated. With migration_strategy immediate, omitted means create_prorations. With end_of_billing_period only none is accepted and means the same as omitting it: the change lands on the renewal boundary, so there is nothing to prorate. With scheduled any value is accepted and omitted means none. Not accepted with leave. */
     prorationBehavior?: Schematic.MigrationProrationBehavior;
     /** Refuse the publish if any company would be migrated onto the new version */
     requireNoMigration?: boolean;
+    /** When every company moves, for migration_strategy scheduled. Must be in the future; the migration runs within about a minute of this time. Not accepted with other strategies. */
+    scheduledAt?: Date;
     /** Whether Stripe emails the invoice when it is finalized. Defaults to true. */
     sendInvoice?: boolean;
     taxId?: Schematic.TaxIdInput;

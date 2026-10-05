@@ -1272,6 +1272,7 @@ describe("ComponentsClient", () => {
                         },
                     ],
                     billing_credit_balances: { key: 1.1 },
+                    billing_email: "billing_email",
                     billing_profile: {
                         account_id: "account_id",
                         collection_method: "charge_automatically",
@@ -1474,6 +1475,7 @@ describe("ComponentsClient", () => {
                     ],
                     pending_migration: {
                         migration_id: "migration_id",
+                        strategy: "end_of_billing_period",
                         to_plan_id: "to_plan_id",
                         to_plan_name: "to_plan_name",
                         to_plan_version_id: "to_plan_version_id",
@@ -1868,6 +1870,7 @@ describe("ComponentsClient", () => {
                 display_settings: {
                     show_as_monthly_prices: true,
                     show_credits: true,
+                    show_estimated_total: true,
                     show_feature_description: true,
                     show_hard_limit: true,
                     show_period_toggle: true,
@@ -2711,6 +2714,7 @@ describe("ComponentsClient", () => {
                     billingCreditBalances: {
                         key: 1.1,
                     },
+                    billingEmail: "billing_email",
                     billingProfile: {
                         accountId: "account_id",
                         collectionMethod: "charge_automatically",
@@ -2919,6 +2923,7 @@ describe("ComponentsClient", () => {
                     ],
                     pendingMigration: {
                         migrationId: "migration_id",
+                        strategy: "end_of_billing_period",
                         toPlanId: "to_plan_id",
                         toPlanName: "to_plan_name",
                         toPlanVersionId: "to_plan_version_id",
@@ -3368,6 +3373,7 @@ describe("ComponentsClient", () => {
                 displaySettings: {
                     showAsMonthlyPrices: true,
                     showCredits: true,
+                    showEstimatedTotal: true,
                     showFeatureDescription: true,
                     showHardLimit: true,
                     showPeriodToggle: true,

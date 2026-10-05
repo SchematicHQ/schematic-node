@@ -12,6 +12,8 @@ export interface RetryCustomPlanBillingRequestBody {
     activationStrategy?: Schematic.CustomPlanActivationStrategy;
     /** The date the subscription's billing period renews on. Only honored when the retry creates a subscription. */
     billingCycleAnchor?: Date;
+    /** The date the contract term starts. A past date backdates the subscription so the first invoice covers the term from this date to the renewal date. Requires billing_cycle_anchor. When both are omitted, the term pinned at finalize is reissued. Only honored when the retry creates a subscription. */
+    billingStartDate?: Date;
     customerEmail: string;
     daysUntilDue?: number;
     /** When true, the partial period between the subscription starting and its renewal date is billed pro rata straight away. When false that period is free and no invoice is raised until the renewal date. Only applies alongside billing_cycle_anchor. Defaults to true. */

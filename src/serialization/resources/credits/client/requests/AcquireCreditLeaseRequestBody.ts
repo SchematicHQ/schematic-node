@@ -12,6 +12,7 @@ export const AcquireCreditLeaseRequestBody: core.serialization.Schema<
     creditTypeId: core.serialization.property("credit_type_id", core.serialization.string()),
     expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
     requestedAmount: core.serialization.property("requested_amount", core.serialization.number()),
+    userId: core.serialization.property("user_id", core.serialization.string().optional()),
 });
 
 export declare namespace AcquireCreditLeaseRequestBody {
@@ -20,5 +21,6 @@ export declare namespace AcquireCreditLeaseRequestBody {
         credit_type_id: string;
         expires_at?: string | null;
         requested_amount: number;
+        user_id?: string | null;
     }
 }

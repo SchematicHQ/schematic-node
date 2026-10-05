@@ -24,6 +24,8 @@ export * from "./DeleteCreditSpendPolicyResponse";
 export * from "./ExtendCreditLeaseResponse";
 export * from "./GetCreditBundleResponse";
 export * from "./GetCreditSpendPolicyResponse";
+export * from "./GetCreditSpendPolicyUsageParams";
+export * from "./GetCreditSpendPolicyUsageResponse";
 export * from "./GetSingleBillingCreditResponse";
 export * from "./GetSingleBillingPlanCreditGrantResponse";
 export * from "./GrantBillingCreditsToCompanyResponse";

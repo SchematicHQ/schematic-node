@@ -5,6 +5,7 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 import { CheckFlagResponseData } from "./CheckFlagResponseData";
 import { CompanyCreditBalance } from "./CompanyCreditBalance";
+import { CreditSpendPolicy } from "./CreditSpendPolicy";
 import { DatastreamCompanyPlan } from "./DatastreamCompanyPlan";
 
 export const CheckFlagsResponseData: core.serialization.ObjectSchema<
@@ -15,6 +16,10 @@ export const CheckFlagsResponseData: core.serialization.ObjectSchema<
         "credit_balances",
         core.serialization.record(core.serialization.string(), CompanyCreditBalance).optional(),
     ),
+    creditSpendPolicies: core.serialization.property(
+        "credit_spend_policies",
+        core.serialization.list(CreditSpendPolicy),
+    ),
     flags: core.serialization.list(CheckFlagResponseData),
     plan: DatastreamCompanyPlan.optional(),
 });
@@ -22,6 +27,7 @@ export const CheckFlagsResponseData: core.serialization.ObjectSchema<
 export declare namespace CheckFlagsResponseData {
     export interface Raw {
         credit_balances?: Record<string, CompanyCreditBalance.Raw> | null;
+        credit_spend_policies: CreditSpendPolicy.Raw[];
         flags: CheckFlagResponseData.Raw[];
         plan?: DatastreamCompanyPlan.Raw | null;
     }

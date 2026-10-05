@@ -6,6 +6,8 @@ export interface CustomPlanBillingResponseData {
     activationStrategy: Schematic.CustomPlanActivationStrategy;
     /** The billing period renewal date pinned when the subscription started, when one was set. When no invoice exists yet, the first invoice is raised on this date. */
     billingCycleAnchor?: Date;
+    /** The date the contract term starts, when the operator pinned one. A past date was backdated onto the subscription so the first period runs from the contract date rather than from finalization. */
+    billingStartDate?: Date;
     companyId: string;
     createdAt: Date;
     daysUntilDue: number;

@@ -3,6 +3,7 @@
 import type * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
+import { CreditSpendWindowUnit } from "../../../../types/CreditSpendWindowUnit";
 
 export const UpdateCreditSpendPolicyRequestBody: core.serialization.Schema<
     serializers.UpdateCreditSpendPolicyRequestBody.Raw,
@@ -10,11 +11,15 @@ export const UpdateCreditSpendPolicyRequestBody: core.serialization.Schema<
 > = core.serialization.object({
     label: core.serialization.string().optional(),
     maxPerDraw: core.serialization.property("max_per_draw", core.serialization.number().optional()),
+    windowAmount: core.serialization.property("window_amount", core.serialization.number().optional()),
+    windowUnit: core.serialization.property("window_unit", CreditSpendWindowUnit.optional()),
 });
 
 export declare namespace UpdateCreditSpendPolicyRequestBody {
     export interface Raw {
         label?: string | null;
         max_per_draw?: number | null;
+        window_amount?: number | null;
+        window_unit?: CreditSpendWindowUnit.Raw | null;
     }
 }

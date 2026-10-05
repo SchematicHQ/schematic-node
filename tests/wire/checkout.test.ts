@@ -1046,6 +1046,7 @@ describe("CheckoutClient", () => {
                         },
                     ],
                     billing_credit_balances: { key: 1.1 },
+                    billing_email: "billing_email",
                     billing_profile: {
                         account_id: "account_id",
                         collection_method: "charge_automatically",
@@ -1248,6 +1249,7 @@ describe("CheckoutClient", () => {
                     ],
                     pending_migration: {
                         migration_id: "migration_id",
+                        strategy: "end_of_billing_period",
                         to_plan_id: "to_plan_id",
                         to_plan_name: "to_plan_name",
                         to_plan_version_id: "to_plan_version_id",
@@ -2197,6 +2199,7 @@ describe("CheckoutClient", () => {
                     billingCreditBalances: {
                         key: 1.1,
                     },
+                    billingEmail: "billing_email",
                     billingProfile: {
                         accountId: "account_id",
                         collectionMethod: "charge_automatically",
@@ -2405,6 +2408,7 @@ describe("CheckoutClient", () => {
                     ],
                     pendingMigration: {
                         migrationId: "migration_id",
+                        strategy: "end_of_billing_period",
                         toPlanId: "to_plan_id",
                         toPlanName: "to_plan_name",
                         toPlanVersionId: "to_plan_version_id",
@@ -4168,6 +4172,7 @@ describe("CheckoutClient", () => {
                         },
                     ],
                     billing_credit_balances: { key: 1.1 },
+                    billing_email: "billing_email",
                     billing_profile: {
                         account_id: "account_id",
                         collection_method: "charge_automatically",
@@ -4370,6 +4375,7 @@ describe("CheckoutClient", () => {
                     ],
                     pending_migration: {
                         migration_id: "migration_id",
+                        strategy: "end_of_billing_period",
                         to_plan_id: "to_plan_id",
                         to_plan_name: "to_plan_name",
                         to_plan_version_id: "to_plan_version_id",
@@ -4525,6 +4531,7 @@ describe("CheckoutClient", () => {
                     billingCreditBalances: {
                         key: 1.1,
                     },
+                    billingEmail: "billing_email",
                     billingProfile: {
                         accountId: "account_id",
                         collectionMethod: "charge_automatically",
@@ -4733,6 +4740,7 @@ describe("CheckoutClient", () => {
                     ],
                     pendingMigration: {
                         migrationId: "migration_id",
+                        strategy: "end_of_billing_period",
                         toPlanId: "to_plan_id",
                         toPlanName: "to_plan_name",
                         toPlanVersionId: "to_plan_version_id",
@@ -5783,6 +5791,7 @@ describe("CheckoutClient", () => {
                         },
                     ],
                     billing_credit_balances: { key: 1.1 },
+                    billing_email: "billing_email",
                     billing_profile: {
                         account_id: "account_id",
                         collection_method: "charge_automatically",
@@ -5985,6 +5994,7 @@ describe("CheckoutClient", () => {
                     ],
                     pending_migration: {
                         migration_id: "migration_id",
+                        strategy: "end_of_billing_period",
                         to_plan_id: "to_plan_id",
                         to_plan_name: "to_plan_name",
                         to_plan_version_id: "to_plan_version_id",
@@ -6117,6 +6127,7 @@ describe("CheckoutClient", () => {
                     billingCreditBalances: {
                         key: 1.1,
                     },
+                    billingEmail: "billing_email",
                     billingProfile: {
                         accountId: "account_id",
                         collectionMethod: "charge_automatically",
@@ -6325,6 +6336,7 @@ describe("CheckoutClient", () => {
                     ],
                     pendingMigration: {
                         migrationId: "migration_id",
+                        strategy: "end_of_billing_period",
                         toPlanId: "to_plan_id",
                         toPlanName: "to_plan_name",
                         toPlanVersionId: "to_plan_version_id",

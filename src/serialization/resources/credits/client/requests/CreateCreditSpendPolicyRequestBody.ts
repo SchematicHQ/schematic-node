@@ -3,6 +3,7 @@
 import type * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
+import { CreditSpendWindowUnit } from "../../../../types/CreditSpendWindowUnit";
 
 export const CreateCreditSpendPolicyRequestBody: core.serialization.Schema<
     serializers.CreateCreditSpendPolicyRequestBody.Raw,
@@ -11,8 +12,10 @@ export const CreateCreditSpendPolicyRequestBody: core.serialization.Schema<
     billingCreditId: core.serialization.property("billing_credit_id", core.serialization.string()),
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
     label: core.serialization.string().optional(),
-    maxPerDraw: core.serialization.property("max_per_draw", core.serialization.number()),
+    maxPerDraw: core.serialization.property("max_per_draw", core.serialization.number().optional()),
     userId: core.serialization.property("user_id", core.serialization.string().optional()),
+    windowAmount: core.serialization.property("window_amount", core.serialization.number().optional()),
+    windowUnit: core.serialization.property("window_unit", CreditSpendWindowUnit.optional()),
 });
 
 export declare namespace CreateCreditSpendPolicyRequestBody {
@@ -20,7 +23,9 @@ export declare namespace CreateCreditSpendPolicyRequestBody {
         billing_credit_id: string;
         company_id?: string | null;
         label?: string | null;
-        max_per_draw: number;
+        max_per_draw?: number | null;
         user_id?: string | null;
+        window_amount?: number | null;
+        window_unit?: CreditSpendWindowUnit.Raw | null;
     }
 }

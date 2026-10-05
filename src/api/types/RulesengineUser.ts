@@ -4,6 +4,7 @@ import type * as Schematic from "../index";
 
 export interface RulesengineUser {
     accountId: string;
+    creditSpendPolicies?: Schematic.RulesengineCreditSpendPolicy[];
     environmentId: string;
     id: string;
     keys: Record<string, string>;

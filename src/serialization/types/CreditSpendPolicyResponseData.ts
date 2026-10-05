@@ -4,6 +4,7 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { CreditSpendPolicyScope } from "./CreditSpendPolicyScope";
+import { CreditSpendWindowUnit } from "./CreditSpendWindowUnit";
 
 export const CreditSpendPolicyResponseData: core.serialization.ObjectSchema<
     serializers.CreditSpendPolicyResponseData.Raw,
@@ -11,25 +12,37 @@ export const CreditSpendPolicyResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     billingCreditId: core.serialization.property("billing_credit_id", core.serialization.string()),
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
+    consumed: core.serialization.number().optional(),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
+    headroom: core.serialization.number().optional(),
     id: core.serialization.string(),
     label: core.serialization.string().optional(),
     maxPerDraw: core.serialization.property("max_per_draw", core.serialization.number().optional()),
+    resetsAt: core.serialization.property("resets_at", core.serialization.date().optional()),
     scopeType: core.serialization.property("scope_type", CreditSpendPolicyScope),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     userId: core.serialization.property("user_id", core.serialization.string().optional()),
+    windowAmount: core.serialization.property("window_amount", core.serialization.number().optional()),
+    windowCount: core.serialization.property("window_count", core.serialization.number()),
+    windowUnit: core.serialization.property("window_unit", CreditSpendWindowUnit.optional()),
 });
 
 export declare namespace CreditSpendPolicyResponseData {
     export interface Raw {
         billing_credit_id: string;
         company_id?: string | null;
+        consumed?: number | null;
         created_at: string;
+        headroom?: number | null;
         id: string;
         label?: string | null;
         max_per_draw?: number | null;
+        resets_at?: string | null;
         scope_type: CreditSpendPolicyScope.Raw;
         updated_at: string;
         user_id?: string | null;
+        window_amount?: number | null;
+        window_count: number;
+        window_unit?: CreditSpendWindowUnit.Raw | null;
     }
 }

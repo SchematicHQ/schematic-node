@@ -8,6 +8,7 @@ export interface RulesengineCompany {
     billingProductIds: string[];
     creditBalances: Record<string, number>;
     creditPostpaid?: Record<string, Schematic.RulesengineCreditPostpaidConfig>;
+    creditSpendPolicies?: Schematic.RulesengineCreditSpendPolicy[];
     entitlements?: Schematic.RulesengineFeatureEntitlement[];
     environmentId: string;
     id: string;

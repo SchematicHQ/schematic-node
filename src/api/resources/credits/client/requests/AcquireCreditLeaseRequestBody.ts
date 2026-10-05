@@ -14,4 +14,6 @@ export interface AcquireCreditLeaseRequestBody {
     /** When the hold lapses if the lease is never released; defaults to five minutes from now and may be at most one hour out. The unspent hold is refunded on expiry */
     expiresAt?: Date;
     requestedAmount: number;
+    /** The user drawing the hold, so a user-scope spend policy applies to it */
+    userId?: string;
 }

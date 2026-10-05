@@ -10,6 +10,7 @@ import { BillingCreditGrantZeroedOutReason } from "./BillingCreditGrantZeroedOut
 import { BillingCreditLedgerResponseData } from "./BillingCreditLedgerResponseData";
 import { CompanyLedgerResponseData } from "./CompanyLedgerResponseData";
 import { CreditEventType } from "./CreditEventType";
+import { CreditLedgerEntryKind } from "./CreditLedgerEntryKind";
 import { CreditTransferReason } from "./CreditTransferReason";
 import { CreditUsageReason } from "./CreditUsageReason";
 import { FeatureLedgerResponseData } from "./FeatureLedgerResponseData";
@@ -24,11 +25,12 @@ export const CreditEventLedgerResponseData: core.serialization.ObjectSchema<
         "billing_credit_bundle_id",
         core.serialization.string().optional(),
     ),
-    billingCreditId: core.serialization.property("billing_credit_id", core.serialization.string()),
+    billingCreditId: core.serialization.property("billing_credit_id", core.serialization.string().optional()),
     company: CompanyLedgerResponseData.optional(),
     companyId: core.serialization.property("company_id", core.serialization.string()),
     credit: BillingCreditLedgerResponseData.optional(),
     creditName: core.serialization.property("credit_name", core.serialization.string()),
+    currency: core.serialization.string().optional(),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     eventAt: core.serialization.property("event_at", core.serialization.date()),
     eventId: core.serialization.property("event_id", core.serialization.string()),
@@ -48,6 +50,7 @@ export const CreditEventLedgerResponseData: core.serialization.ObjectSchema<
     ),
     grantReason: core.serialization.property("grant_reason", BillingCreditGrantReason.optional()),
     grantValidFrom: core.serialization.property("grant_valid_from", core.serialization.date().optional()),
+    kind: CreditLedgerEntryKind,
     planId: core.serialization.property("plan_id", core.serialization.string().optional()),
     quantityConsumed: core.serialization.property("quantity_consumed", core.serialization.number().optional()),
     quantityRemainingAtZeroOut: core.serialization.property(
@@ -68,11 +71,12 @@ export declare namespace CreditEventLedgerResponseData {
         amount: number;
         auto_topup_log_id?: string | null;
         billing_credit_bundle_id?: string | null;
-        billing_credit_id: string;
+        billing_credit_id?: string | null;
         company?: CompanyLedgerResponseData.Raw | null;
         company_id: string;
         credit?: BillingCreditLedgerResponseData.Raw | null;
         credit_name: string;
+        currency?: string | null;
         environment_id: string;
         event_at: string;
         event_id: string;
@@ -89,6 +93,7 @@ export declare namespace CreditEventLedgerResponseData {
         grant_quantity_remaining?: number | null;
         grant_reason?: BillingCreditGrantReason.Raw | null;
         grant_valid_from?: string | null;
+        kind: CreditLedgerEntryKind.Raw;
         plan_id?: string | null;
         quantity_consumed?: number | null;
         quantity_remaining_at_zero_out?: number | null;

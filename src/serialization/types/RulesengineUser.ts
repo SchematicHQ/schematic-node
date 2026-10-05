@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { RulesengineCreditSpendPolicy } from "./RulesengineCreditSpendPolicy";
 import { RulesengineRule } from "./RulesengineRule";
 import { RulesengineTrait } from "./RulesengineTrait";
 
@@ -11,6 +12,10 @@ export const RulesengineUser: core.serialization.ObjectSchema<
     Schematic.RulesengineUser
 > = core.serialization.object({
     accountId: core.serialization.property("account_id", core.serialization.string()),
+    creditSpendPolicies: core.serialization.property(
+        "credit_spend_policies",
+        core.serialization.list(RulesengineCreditSpendPolicy).optional(),
+    ),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     id: core.serialization.string(),
     keys: core.serialization.record(core.serialization.string(), core.serialization.string()),
@@ -21,6 +26,7 @@ export const RulesengineUser: core.serialization.ObjectSchema<
 export declare namespace RulesengineUser {
     export interface Raw {
         account_id: string;
+        credit_spend_policies?: RulesengineCreditSpendPolicy.Raw[] | null;
         environment_id: string;
         id: string;
         keys: Record<string, string>;

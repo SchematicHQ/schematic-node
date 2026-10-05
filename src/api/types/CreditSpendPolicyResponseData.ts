@@ -5,11 +5,20 @@ import type * as Schematic from "../index";
 export interface CreditSpendPolicyResponseData {
     billingCreditId: string;
     companyId?: string;
+    /** Credits spent in the current window. Set only by the usage route, and only for a window cap. */
+    consumed?: number;
     createdAt: Date;
+    /** Credits left in the current window. Set only by the usage route, and only for a window cap. */
+    headroom?: number;
     id: string;
     label?: string;
     maxPerDraw?: number;
+    /** When the current window ends. Set only by the usage route, and only for a window cap. */
+    resetsAt?: Date;
     scopeType: Schematic.CreditSpendPolicyScope;
     updatedAt: Date;
     userId?: string;
+    windowAmount?: number;
+    windowCount: number;
+    windowUnit?: Schematic.CreditSpendWindowUnit;
 }

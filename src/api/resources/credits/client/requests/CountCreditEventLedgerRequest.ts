@@ -8,7 +8,7 @@ import type * as Schematic from "../../../../index";
  *         billingCreditId: "billing_credit_id",
  *         companyId: "company_id",
  *         endTime: "end_time",
- *         eventType: "grant",
+ *         eventType: "adjustment",
  *         featureId: "feature_id",
  *         startTime: "start_time",
  *         limit: 1000000,

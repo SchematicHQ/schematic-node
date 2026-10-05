@@ -662,6 +662,7 @@ describe("EntitlementsClient", () => {
                         },
                     ],
                     billing_credit_balances: { key: 1.1 },
+                    billing_email: "billing_email",
                     billing_profile: {
                         account_id: "account_id",
                         collection_method: "charge_automatically",
@@ -864,6 +865,7 @@ describe("EntitlementsClient", () => {
                     ],
                     pending_migration: {
                         migration_id: "migration_id",
+                        strategy: "end_of_billing_period",
                         to_plan_id: "to_plan_id",
                         to_plan_name: "to_plan_name",
                         to_plan_version_id: "to_plan_version_id",
@@ -1090,6 +1092,7 @@ describe("EntitlementsClient", () => {
                     billingCreditBalances: {
                         key: 1.1,
                     },
+                    billingEmail: "billing_email",
                     billingProfile: {
                         accountId: "account_id",
                         collectionMethod: "charge_automatically",
@@ -1298,6 +1301,7 @@ describe("EntitlementsClient", () => {
                     ],
                     pendingMigration: {
                         migrationId: "migration_id",
+                        strategy: "end_of_billing_period",
                         toPlanId: "to_plan_id",
                         toPlanName: "to_plan_name",
                         toPlanVersionId: "to_plan_version_id",
@@ -1646,6 +1650,7 @@ describe("EntitlementsClient", () => {
                         },
                     ],
                     billing_credit_balances: { key: 1.1 },
+                    billing_email: "billing_email",
                     billing_profile: {
                         account_id: "account_id",
                         collection_method: "charge_automatically",
@@ -1848,6 +1853,7 @@ describe("EntitlementsClient", () => {
                     ],
                     pending_migration: {
                         migration_id: "migration_id",
+                        strategy: "end_of_billing_period",
                         to_plan_id: "to_plan_id",
                         to_plan_name: "to_plan_name",
                         to_plan_version_id: "to_plan_version_id",
@@ -2069,6 +2075,7 @@ describe("EntitlementsClient", () => {
                     billingCreditBalances: {
                         key: 1.1,
                     },
+                    billingEmail: "billing_email",
                     billingProfile: {
                         accountId: "account_id",
                         collectionMethod: "charge_automatically",
@@ -2277,6 +2284,7 @@ describe("EntitlementsClient", () => {
                     ],
                     pendingMigration: {
                         migrationId: "migration_id",
+                        strategy: "end_of_billing_period",
                         toPlanId: "to_plan_id",
                         toPlanName: "to_plan_name",
                         toPlanVersionId: "to_plan_version_id",
@@ -2581,6 +2589,7 @@ describe("EntitlementsClient", () => {
                         },
                     ],
                     billing_credit_balances: { key: 1.1 },
+                    billing_email: "billing_email",
                     billing_profile: {
                         account_id: "account_id",
                         collection_method: "charge_automatically",
@@ -2783,6 +2792,7 @@ describe("EntitlementsClient", () => {
                     ],
                     pending_migration: {
                         migration_id: "migration_id",
+                        strategy: "end_of_billing_period",
                         to_plan_id: "to_plan_id",
                         to_plan_name: "to_plan_name",
                         to_plan_version_id: "to_plan_version_id",
@@ -3007,6 +3017,7 @@ describe("EntitlementsClient", () => {
                     billingCreditBalances: {
                         key: 1.1,
                     },
+                    billingEmail: "billing_email",
                     billingProfile: {
                         accountId: "account_id",
                         collectionMethod: "charge_automatically",
@@ -3215,6 +3226,7 @@ describe("EntitlementsClient", () => {
                     ],
                     pendingMigration: {
                         migrationId: "migration_id",
+                        strategy: "end_of_billing_period",
                         toPlanId: "to_plan_id",
                         toPlanName: "to_plan_name",
                         toPlanVersionId: "to_plan_version_id",
@@ -9884,6 +9896,7 @@ describe("EntitlementsClient", () => {
                                     { id: "id", included_credit_grants: [], name: "name" },
                                 ],
                                 billing_credit_balances: { billing_credit_balances: 1.1 },
+                                billing_email: "billing_email",
                                 billing_profile: {
                                     account_id: "account_id",
                                     collection_method: "charge_automatically",
@@ -10084,6 +10097,7 @@ describe("EntitlementsClient", () => {
                                 ],
                                 pending_migration: {
                                     migration_id: "migration_id",
+                                    strategy: "end_of_billing_period",
                                     to_plan_id: "to_plan_id",
                                     to_plan_name: "to_plan_name",
                                     to_plan_version_id: "to_plan_version_id",
@@ -10890,6 +10904,7 @@ describe("EntitlementsClient", () => {
                                     { id: "id", included_credit_grants: [], name: "name" },
                                 ],
                                 billing_credit_balances: { billing_credit_balances: 1.1 },
+                                billing_email: "billing_email",
                                 billing_profile: {
                                     account_id: "account_id",
                                     collection_method: "charge_automatically",
@@ -11090,6 +11105,7 @@ describe("EntitlementsClient", () => {
                                 ],
                                 pending_migration: {
                                     migration_id: "migration_id",
+                                    strategy: "end_of_billing_period",
                                     to_plan_id: "to_plan_id",
                                     to_plan_name: "to_plan_name",
                                     to_plan_version_id: "to_plan_version_id",
@@ -11921,6 +11937,7 @@ describe("EntitlementsClient", () => {
                                 billingCreditBalances: {
                                     billing_credit_balances: 1.1,
                                 },
+                                billingEmail: "billing_email",
                                 billingProfile: {
                                     accountId: "account_id",
                                     collectionMethod: "charge_automatically",
@@ -12129,6 +12146,7 @@ describe("EntitlementsClient", () => {
                                 ],
                                 pendingMigration: {
                                     migrationId: "migration_id",
+                                    strategy: "end_of_billing_period",
                                     toPlanId: "to_plan_id",
                                     toPlanName: "to_plan_name",
                                     toPlanVersionId: "to_plan_version_id",
@@ -12993,6 +13011,7 @@ describe("EntitlementsClient", () => {
                                 billingCreditBalances: {
                                     billing_credit_balances: 1.1,
                                 },
+                                billingEmail: "billing_email",
                                 billingProfile: {
                                     accountId: "account_id",
                                     collectionMethod: "charge_automatically",
@@ -13201,6 +13220,7 @@ describe("EntitlementsClient", () => {
                                 ],
                                 pendingMigration: {
                                     migrationId: "migration_id",
+                                    strategy: "end_of_billing_period",
                                     toPlanId: "to_plan_id",
                                     toPlanName: "to_plan_name",
                                     toPlanVersionId: "to_plan_version_id",
@@ -14271,6 +14291,491 @@ describe("EntitlementsClient", () => {
         await expect(async () => {
             return await client.entitlements.getUserUsageByCompany({
                 companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("getCompanyUserUsageMetrics (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                end_time: "2024-01-15T09:30:00Z",
+                features: [
+                    {
+                        created_at: "2024-01-15T09:30:00Z",
+                        description: "description",
+                        feature_type: "boolean",
+                        icon: "icon",
+                        id: "id",
+                        name: "name",
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
+                ],
+                has_credits: true,
+                start_time: "2024-01-15T09:30:00Z",
+            },
+            params: { company_id: "company_id", end_time: "2024-01-15T09:30:00Z", start_time: "2024-01-15T09:30:00Z" },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/user-usage-by-company/metrics")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.entitlements.getCompanyUserUsageMetrics({
+            companyId: "company_id",
+            endTime: new Date("2024-01-15T09:30:00.000Z"),
+            startTime: new Date("2024-01-15T09:30:00.000Z"),
+        });
+        expect(response).toEqual({
+            data: {
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                features: [
+                    {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        description: "description",
+                        featureType: "boolean",
+                        icon: "icon",
+                        id: "id",
+                        name: "name",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                ],
+                hasCredits: true,
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                companyId: "company_id",
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+            },
+        });
+    });
+
+    test("getCompanyUserUsageMetrics (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/user-usage-by-company/metrics")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.getCompanyUserUsageMetrics({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getCompanyUserUsageMetrics (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/user-usage-by-company/metrics")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.getCompanyUserUsageMetrics({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getCompanyUserUsageMetrics (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/user-usage-by-company/metrics")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.getCompanyUserUsageMetrics({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getCompanyUserUsageMetrics (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/user-usage-by-company/metrics")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.getCompanyUserUsageMetrics({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("listCompanyUserUsage (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                end_time: "2024-01-15T09:30:00Z",
+                rows: [{ share: 1.1, value: 1.1 }],
+                start_time: "2024-01-15T09:30:00Z",
+                top_user_share: 1.1,
+                total: 1.1,
+                unattributed: {
+                    last_seen: "2024-01-15T09:30:00Z",
+                    share: 1.1,
+                    user: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        environment_id: "environment_id",
+                        id: "id",
+                        name: "name",
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
+                    user_id: "user_id",
+                    value: 1.1,
+                },
+            },
+            params: {
+                company_id: "company_id",
+                end_time: "2024-01-15T09:30:00Z",
+                feature_id: "feature_id",
+                limit: 1000000,
+                metric: "credits",
+                offset: 1000000,
+                start_time: "2024-01-15T09:30:00Z",
+            },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/user-usage-by-company/users")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.entitlements.listCompanyUserUsage({
+            companyId: "company_id",
+            endTime: new Date("2024-01-15T09:30:00.000Z"),
+            featureId: "feature_id",
+            metric: "credits",
+            limit: 1000000,
+            offset: 1000000,
+            startTime: new Date("2024-01-15T09:30:00.000Z"),
+        });
+        expect(response).toEqual({
+            data: {
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                rows: [
+                    {
+                        share: 1.1,
+                        value: 1.1,
+                    },
+                ],
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+                topUserShare: 1.1,
+                total: 1.1,
+                unattributed: {
+                    lastSeen: new Date("2024-01-15T09:30:00.000Z"),
+                    share: 1.1,
+                    user: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        environmentId: "environment_id",
+                        id: "id",
+                        name: "name",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                    userId: "user_id",
+                    value: 1.1,
+                },
+            },
+            params: {
+                companyId: "company_id",
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                featureId: "feature_id",
+                limit: 1000000,
+                metric: "credits",
+                offset: 1000000,
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+            },
+        });
+    });
+
+    test("listCompanyUserUsage (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/user-usage-by-company/users")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.listCompanyUserUsage({
+                companyId: "company_id",
+                metric: "credits",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("listCompanyUserUsage (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/user-usage-by-company/users")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.listCompanyUserUsage({
+                companyId: "company_id",
+                metric: "credits",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("listCompanyUserUsage (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/user-usage-by-company/users")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.listCompanyUserUsage({
+                companyId: "company_id",
+                metric: "credits",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("listCompanyUserUsage (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/user-usage-by-company/users")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.listCompanyUserUsage({
+                companyId: "company_id",
+                metric: "credits",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("countCompanyUserUsage (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: { count: 1000000 },
+            params: {
+                company_id: "company_id",
+                end_time: "2024-01-15T09:30:00Z",
+                feature_id: "feature_id",
+                limit: 1000000,
+                metric: "credits",
+                offset: 1000000,
+                start_time: "2024-01-15T09:30:00Z",
+            },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/user-usage-by-company/users/count")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.entitlements.countCompanyUserUsage({
+            companyId: "company_id",
+            endTime: new Date("2024-01-15T09:30:00.000Z"),
+            featureId: "feature_id",
+            metric: "credits",
+            limit: 1000000,
+            offset: 1000000,
+            startTime: new Date("2024-01-15T09:30:00.000Z"),
+        });
+        expect(response).toEqual({
+            data: {
+                count: 1000000,
+            },
+            params: {
+                companyId: "company_id",
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                featureId: "feature_id",
+                limit: 1000000,
+                metric: "credits",
+                offset: 1000000,
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+            },
+        });
+    });
+
+    test("countCompanyUserUsage (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/user-usage-by-company/users/count")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.countCompanyUserUsage({
+                companyId: "company_id",
+                metric: "credits",
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("countCompanyUserUsage (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/user-usage-by-company/users/count")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.countCompanyUserUsage({
+                companyId: "company_id",
+                metric: "credits",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("countCompanyUserUsage (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/user-usage-by-company/users/count")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.countCompanyUserUsage({
+                companyId: "company_id",
+                metric: "credits",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("countCompanyUserUsage (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/user-usage-by-company/users/count")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.countCompanyUserUsage({
+                companyId: "company_id",
+                metric: "credits",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("countCompanyUserUsage (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/user-usage-by-company/users/count")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.entitlements.countCompanyUserUsage({
+                companyId: "company_id",
+                metric: "credits",
             });
         }).rejects.toThrow(Schematic.InternalServerError);
     });

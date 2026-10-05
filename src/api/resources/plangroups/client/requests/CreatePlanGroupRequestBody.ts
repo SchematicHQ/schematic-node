@@ -26,6 +26,7 @@ import type * as Schematic from "../../../../index";
  *         prorationBehavior: "create_prorations",
  *         showAsMonthlyPrices: true,
  *         showCredits: true,
+ *         showEstimatedTotal: true,
  *         showFeatureDescription: true,
  *         showHardLimit: true,
  *         showPeriodToggle: true,
@@ -64,6 +65,7 @@ export interface CreatePlanGroupRequestBody {
     scheduledDowngradePreventWhenOverLimit?: boolean;
     showAsMonthlyPrices: boolean;
     showCredits: boolean;
+    showEstimatedTotal: boolean;
     showFeatureDescription: boolean;
     showHardLimit: boolean;
     showPeriodToggle: boolean;

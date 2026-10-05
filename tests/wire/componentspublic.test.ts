@@ -308,6 +308,7 @@ describe("ComponentspublicClient", () => {
                 display_settings: {
                     show_as_monthly_prices: true,
                     show_credits: true,
+                    show_estimated_total: true,
                     show_feature_description: true,
                     show_hard_limit: true,
                     show_period_toggle: true,
@@ -675,6 +676,7 @@ describe("ComponentspublicClient", () => {
                 displaySettings: {
                     showAsMonthlyPrices: true,
                     showCredits: true,
+                    showEstimatedTotal: true,
                     showFeatureDescription: true,
                     showHardLimit: true,
                     showPeriodToggle: true,
