@@ -17,6 +17,7 @@ export const PublishPlanVersionRequestBody: core.serialization.Schema<
     activationStrategy: core.serialization.property("activation_strategy", CustomPlanActivationStrategy.optional()),
     address: CustomerBillingAddress.optional(),
     billingCycleAnchor: core.serialization.property("billing_cycle_anchor", core.serialization.date().optional()),
+    billingStartDate: core.serialization.property("billing_start_date", core.serialization.date().optional()),
     couponExternalId: core.serialization.property("coupon_external_id", core.serialization.string().optional()),
     customFieldValues: core.serialization.property(
         "custom_field_values",
@@ -33,6 +34,7 @@ export const PublishPlanVersionRequestBody: core.serialization.Schema<
     prorateFirstPeriod: core.serialization.property("prorate_first_period", core.serialization.boolean().optional()),
     prorationBehavior: core.serialization.property("proration_behavior", MigrationProrationBehavior.optional()),
     requireNoMigration: core.serialization.property("require_no_migration", core.serialization.boolean().optional()),
+    scheduledAt: core.serialization.property("scheduled_at", core.serialization.date().optional()),
     sendInvoice: core.serialization.property("send_invoice", core.serialization.boolean().optional()),
     taxId: core.serialization.property("tax_id", TaxIdInput.optional()),
 });
@@ -42,6 +44,7 @@ export declare namespace PublishPlanVersionRequestBody {
         activation_strategy?: CustomPlanActivationStrategy.Raw | null;
         address?: CustomerBillingAddress.Raw | null;
         billing_cycle_anchor?: string | null;
+        billing_start_date?: string | null;
         coupon_external_id?: string | null;
         custom_field_values?: CheckoutFieldValue.Raw[] | null;
         customer_email?: string | null;
@@ -52,6 +55,7 @@ export declare namespace PublishPlanVersionRequestBody {
         prorate_first_period?: boolean | null;
         proration_behavior?: MigrationProrationBehavior.Raw | null;
         require_no_migration?: boolean | null;
+        scheduled_at?: string | null;
         send_invoice?: boolean | null;
         tax_id?: TaxIdInput.Raw | null;
     }

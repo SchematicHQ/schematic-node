@@ -5,8 +5,8 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 
 export const CreditEventType: core.serialization.Schema<serializers.CreditEventType.Raw, Schematic.CreditEventType> =
-    core.serialization.enum_(["grant", "transfer", "usage", "zero_out"]);
+    core.serialization.enum_(["adjustment", "charge", "grant", "settlement", "transfer", "usage", "zero_out"]);
 
 export declare namespace CreditEventType {
-    export type Raw = "grant" | "transfer" | "usage" | "zero_out";
+    export type Raw = "adjustment" | "charge" | "grant" | "settlement" | "transfer" | "usage" | "zero_out";
 }

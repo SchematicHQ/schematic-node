@@ -39,6 +39,7 @@ describe("PlansClient", () => {
                     },
                 ],
                 billing_credit_balances: { key: 1.1 },
+                billing_email: "billing_email",
                 billing_profile: {
                     account_id: "account_id",
                     billing_customer_id: "billing_customer_id",
@@ -289,8 +290,10 @@ describe("PlansClient", () => {
                     },
                 ],
                 pending_migration: {
+                    effective_at: "2024-01-15T09:30:00Z",
                     migration_id: "migration_id",
-                    scheduled_for: "2024-01-15T09:30:00Z",
+                    proration_behavior: "always_invoice",
+                    strategy: "end_of_billing_period",
                     to_plan_id: "to_plan_id",
                     to_plan_name: "to_plan_name",
                     to_plan_version_id: "to_plan_version_id",
@@ -431,6 +434,7 @@ describe("PlansClient", () => {
                 billingCreditBalances: {
                     key: 1.1,
                 },
+                billingEmail: "billing_email",
                 billingProfile: {
                     accountId: "account_id",
                     billingCustomerId: "billing_customer_id",
@@ -689,8 +693,10 @@ describe("PlansClient", () => {
                     },
                 ],
                 pendingMigration: {
+                    effectiveAt: new Date("2024-01-15T09:30:00.000Z"),
                     migrationId: "migration_id",
-                    scheduledFor: new Date("2024-01-15T09:30:00.000Z"),
+                    prorationBehavior: "always_invoice",
+                    strategy: "end_of_billing_period",
                     toPlanId: "to_plan_id",
                     toPlanName: "to_plan_name",
                     toPlanVersionId: "to_plan_version_id",
@@ -916,6 +922,7 @@ describe("PlansClient", () => {
                 {
                     activation_strategy: "on_payment",
                     billing_cycle_anchor: "2024-01-15T09:30:00Z",
+                    billing_start_date: "2024-01-15T09:30:00Z",
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
                     days_until_due: 1000000,
@@ -965,6 +972,7 @@ describe("PlansClient", () => {
                 {
                     activationStrategy: "on_payment",
                     billingCycleAnchor: new Date("2024-01-15T09:30:00.000Z"),
+                    billingStartDate: new Date("2024-01-15T09:30:00.000Z"),
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     daysUntilDue: 1000000,
@@ -1096,6 +1104,7 @@ describe("PlansClient", () => {
             data: {
                 activation_strategy: "on_payment",
                 billing_cycle_anchor: "2024-01-15T09:30:00Z",
+                billing_start_date: "2024-01-15T09:30:00Z",
                 company_id: "company_id",
                 created_at: "2024-01-15T09:30:00Z",
                 days_until_due: 1000000,
@@ -1130,6 +1139,7 @@ describe("PlansClient", () => {
             data: {
                 activationStrategy: "on_payment",
                 billingCycleAnchor: new Date("2024-01-15T09:30:00.000Z"),
+                billingStartDate: new Date("2024-01-15T09:30:00.000Z"),
                 companyId: "company_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 daysUntilDue: 1000000,
@@ -1279,6 +1289,7 @@ describe("PlansClient", () => {
             data: {
                 activation_strategy: "on_payment",
                 billing_cycle_anchor: "2024-01-15T09:30:00Z",
+                billing_start_date: "2024-01-15T09:30:00Z",
                 company_id: "company_id",
                 created_at: "2024-01-15T09:30:00Z",
                 days_until_due: 1000000,
@@ -1313,6 +1324,7 @@ describe("PlansClient", () => {
             data: {
                 activationStrategy: "on_payment",
                 billingCycleAnchor: new Date("2024-01-15T09:30:00.000Z"),
+                billingStartDate: new Date("2024-01-15T09:30:00.000Z"),
                 companyId: "company_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 daysUntilDue: 1000000,
@@ -5984,6 +5996,7 @@ describe("PlansClient", () => {
                         },
                     ],
                     billing_credit_balances: { key: 1.1 },
+                    billing_email: "billing_email",
                     billing_profile: {
                         account_id: "account_id",
                         collection_method: "charge_automatically",
@@ -6186,6 +6199,7 @@ describe("PlansClient", () => {
                     ],
                     pending_migration: {
                         migration_id: "migration_id",
+                        strategy: "end_of_billing_period",
                         to_plan_id: "to_plan_id",
                         to_plan_name: "to_plan_name",
                         to_plan_version_id: "to_plan_version_id",
@@ -6319,6 +6333,7 @@ describe("PlansClient", () => {
                     billingCreditBalances: {
                         key: 1.1,
                     },
+                    billingEmail: "billing_email",
                     billingProfile: {
                         accountId: "account_id",
                         collectionMethod: "charge_automatically",
@@ -6527,6 +6542,7 @@ describe("PlansClient", () => {
                     ],
                     pendingMigration: {
                         migrationId: "migration_id",
+                        strategy: "end_of_billing_period",
                         toPlanId: "to_plan_id",
                         toPlanName: "to_plan_name",
                         toPlanVersionId: "to_plan_version_id",

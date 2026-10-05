@@ -7,8 +7,8 @@ import type * as serializers from "../index";
 export const PlanVersionMigrationStrategy: core.serialization.Schema<
     serializers.PlanVersionMigrationStrategy.Raw,
     Schematic.PlanVersionMigrationStrategy
-> = core.serialization.enum_(["end_of_billing_period", "immediate", "leave"]);
+> = core.serialization.enum_(["end_of_billing_period", "immediate", "leave", "scheduled"]);
 
 export declare namespace PlanVersionMigrationStrategy {
-    export type Raw = "end_of_billing_period" | "immediate" | "leave";
+    export type Raw = "end_of_billing_period" | "immediate" | "leave" | "scheduled";
 }

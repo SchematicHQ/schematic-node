@@ -9,4 +9,5 @@ import type * as Schematic from "../../../../index";
 export interface UpdateEnvironmentRequestBody {
     environmentType?: Schematic.EnvironmentType;
     name?: string;
+    requireContextSignature?: boolean;
 }

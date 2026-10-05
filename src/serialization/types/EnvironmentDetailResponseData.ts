@@ -15,6 +15,7 @@ export const EnvironmentDetailResponseData: core.serialization.ObjectSchema<
     environmentType: core.serialization.property("environment_type", EnvironmentType),
     id: core.serialization.string(),
     name: core.serialization.string(),
+    requireContextSignature: core.serialization.property("require_context_signature", core.serialization.boolean()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
@@ -25,6 +26,7 @@ export declare namespace EnvironmentDetailResponseData {
         environment_type: EnvironmentType.Raw;
         id: string;
         name: string;
+        require_context_signature: boolean;
         updated_at: string;
     }
 }

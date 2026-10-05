@@ -6,11 +6,12 @@ export interface CreditEventLedgerResponseData {
     amount: number;
     autoTopupLogId?: string;
     billingCreditBundleId?: string;
-    billingCreditId: string;
+    billingCreditId?: string;
     company?: Schematic.CompanyLedgerResponseData;
     companyId: string;
     credit?: Schematic.BillingCreditLedgerResponseData;
     creditName: string;
+    currency?: string;
     environmentId: string;
     eventAt: Date;
     eventId: string;
@@ -27,6 +28,7 @@ export interface CreditEventLedgerResponseData {
     grantQuantityRemaining?: number;
     grantReason?: Schematic.BillingCreditGrantReason;
     grantValidFrom?: Date;
+    kind: Schematic.CreditLedgerEntryKind;
     planId?: string;
     quantityConsumed?: number;
     quantityRemainingAtZeroOut?: number;

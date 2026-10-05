@@ -26,6 +26,7 @@ export const CreateMigrationInput: core.serialization.Schema<
         core.serialization.list(core.serialization.string()).optional(),
     ),
     prorationBehavior: core.serialization.property("proration_behavior", MigrationProrationBehavior.optional()),
+    scheduledAt: core.serialization.property("scheduled_at", core.serialization.date().optional()),
     strategy: PlanVersionMigrationStrategy,
     targetPlanType: core.serialization.property("target_plan_type", PlanType),
 });
@@ -38,6 +39,7 @@ export declare namespace CreateMigrationInput {
         plan_version_id_to: string;
         plan_version_ids_from?: string[] | null;
         proration_behavior?: MigrationProrationBehavior.Raw | null;
+        scheduled_at?: string | null;
         strategy: PlanVersionMigrationStrategy.Raw;
         target_plan_type: PlanType.Raw;
     }

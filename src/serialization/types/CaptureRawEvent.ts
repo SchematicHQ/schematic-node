@@ -9,6 +9,11 @@ export const CaptureRawEvent: core.serialization.ObjectSchema<
     Schematic.CaptureRawEvent
 > = core.serialization.object({
     capturedAt: core.serialization.property("captured_at", core.serialization.date()),
+    contextSignature: core.serialization.property("context_signature", core.serialization.string().optional()),
+    contextSignatureChecked: core.serialization.property(
+        "context_signature_checked",
+        core.serialization.boolean().optional(),
+    ),
     eventId: core.serialization.property("event_id", core.serialization.string().optional()),
     rawBytes: core.serialization.property("raw_bytes", core.serialization.string()),
     remoteIp: core.serialization.property("remote_ip", core.serialization.string()),
@@ -18,6 +23,8 @@ export const CaptureRawEvent: core.serialization.ObjectSchema<
 export declare namespace CaptureRawEvent {
     export interface Raw {
         captured_at: string;
+        context_signature?: string | null;
+        context_signature_checked?: boolean | null;
         event_id?: string | null;
         raw_bytes: string;
         remote_ip: string;

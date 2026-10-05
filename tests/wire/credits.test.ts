@@ -6250,13 +6250,19 @@ describe("CreditsClient", () => {
                 {
                     billing_credit_id: "billing_credit_id",
                     company_id: "company_id",
+                    consumed: 1.1,
                     created_at: "2024-01-15T09:30:00Z",
+                    headroom: 1.1,
                     id: "id",
                     label: "label",
                     max_per_draw: 1.1,
+                    resets_at: "2024-01-15T09:30:00Z",
                     scope_type: "company",
                     updated_at: "2024-01-15T09:30:00Z",
                     user_id: "user_id",
+                    window_amount: 1.1,
+                    window_count: 1000000,
+                    window_unit: "hour",
                 },
             ],
             params: {
@@ -6292,13 +6298,19 @@ describe("CreditsClient", () => {
                 {
                     billingCreditId: "billing_credit_id",
                     companyId: "company_id",
+                    consumed: 1.1,
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    headroom: 1.1,
                     id: "id",
                     label: "label",
                     maxPerDraw: 1.1,
+                    resetsAt: new Date("2024-01-15T09:30:00.000Z"),
                     scopeType: "company",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     userId: "user_id",
+                    windowAmount: 1.1,
+                    windowCount: 1000000,
+                    windowUnit: "hour",
                 },
             ],
             params: {
@@ -6411,18 +6423,24 @@ describe("CreditsClient", () => {
     test("createCreditSpendPolicy (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { billing_credit_id: "billing_credit_id", max_per_draw: 1.1 };
+        const rawRequestBody = { billing_credit_id: "billing_credit_id" };
         const rawResponseBody = {
             data: {
                 billing_credit_id: "billing_credit_id",
                 company_id: "company_id",
+                consumed: 1.1,
                 created_at: "2024-01-15T09:30:00Z",
+                headroom: 1.1,
                 id: "id",
                 label: "label",
                 max_per_draw: 1.1,
+                resets_at: "2024-01-15T09:30:00Z",
                 scope_type: "company",
                 updated_at: "2024-01-15T09:30:00Z",
                 user_id: "user_id",
+                window_amount: 1.1,
+                window_count: 1000000,
+                window_unit: "hour",
             },
             params: { key: "value" },
         };
@@ -6438,19 +6456,24 @@ describe("CreditsClient", () => {
 
         const response = await client.credits.createCreditSpendPolicy({
             billingCreditId: "billing_credit_id",
-            maxPerDraw: 1.1,
         });
         expect(response).toEqual({
             data: {
                 billingCreditId: "billing_credit_id",
                 companyId: "company_id",
+                consumed: 1.1,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                headroom: 1.1,
                 id: "id",
                 label: "label",
                 maxPerDraw: 1.1,
+                resetsAt: new Date("2024-01-15T09:30:00.000Z"),
                 scopeType: "company",
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 userId: "user_id",
+                windowAmount: 1.1,
+                windowCount: 1000000,
+                windowUnit: "hour",
             },
             params: {
                 key: "value",
@@ -6461,7 +6484,7 @@ describe("CreditsClient", () => {
     test("createCreditSpendPolicy (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { billing_credit_id: "billing_credit_id", max_per_draw: 1.1 };
+        const rawRequestBody = { billing_credit_id: "billing_credit_id" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -6476,7 +6499,6 @@ describe("CreditsClient", () => {
         await expect(async () => {
             return await client.credits.createCreditSpendPolicy({
                 billingCreditId: "billing_credit_id",
-                maxPerDraw: 1.1,
             });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
@@ -6484,7 +6506,7 @@ describe("CreditsClient", () => {
     test("createCreditSpendPolicy (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { billing_credit_id: "billing_credit_id", max_per_draw: 1.1 };
+        const rawRequestBody = { billing_credit_id: "billing_credit_id" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -6499,7 +6521,6 @@ describe("CreditsClient", () => {
         await expect(async () => {
             return await client.credits.createCreditSpendPolicy({
                 billingCreditId: "billing_credit_id",
-                maxPerDraw: 1.1,
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
@@ -6507,7 +6528,7 @@ describe("CreditsClient", () => {
     test("createCreditSpendPolicy (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { billing_credit_id: "billing_credit_id", max_per_draw: 1.1 };
+        const rawRequestBody = { billing_credit_id: "billing_credit_id" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -6522,7 +6543,6 @@ describe("CreditsClient", () => {
         await expect(async () => {
             return await client.credits.createCreditSpendPolicy({
                 billingCreditId: "billing_credit_id",
-                maxPerDraw: 1.1,
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
@@ -6530,7 +6550,7 @@ describe("CreditsClient", () => {
     test("createCreditSpendPolicy (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { billing_credit_id: "billing_credit_id", max_per_draw: 1.1 };
+        const rawRequestBody = { billing_credit_id: "billing_credit_id" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -6545,7 +6565,6 @@ describe("CreditsClient", () => {
         await expect(async () => {
             return await client.credits.createCreditSpendPolicy({
                 billingCreditId: "billing_credit_id",
-                maxPerDraw: 1.1,
             });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
@@ -6553,7 +6572,7 @@ describe("CreditsClient", () => {
     test("createCreditSpendPolicy (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { billing_credit_id: "billing_credit_id", max_per_draw: 1.1 };
+        const rawRequestBody = { billing_credit_id: "billing_credit_id" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -6568,7 +6587,6 @@ describe("CreditsClient", () => {
         await expect(async () => {
             return await client.credits.createCreditSpendPolicy({
                 billingCreditId: "billing_credit_id",
-                maxPerDraw: 1.1,
             });
         }).rejects.toThrow(Schematic.InternalServerError);
     });
@@ -6581,13 +6599,19 @@ describe("CreditsClient", () => {
             data: {
                 billing_credit_id: "billing_credit_id",
                 company_id: "company_id",
+                consumed: 1.1,
                 created_at: "2024-01-15T09:30:00Z",
+                headroom: 1.1,
                 id: "id",
                 label: "label",
                 max_per_draw: 1.1,
+                resets_at: "2024-01-15T09:30:00Z",
                 scope_type: "company",
                 updated_at: "2024-01-15T09:30:00Z",
                 user_id: "user_id",
+                window_amount: 1.1,
+                window_count: 1000000,
+                window_unit: "hour",
             },
             params: { key: "value" },
         };
@@ -6605,13 +6629,19 @@ describe("CreditsClient", () => {
             data: {
                 billingCreditId: "billing_credit_id",
                 companyId: "company_id",
+                consumed: 1.1,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                headroom: 1.1,
                 id: "id",
                 label: "label",
                 maxPerDraw: 1.1,
+                resetsAt: new Date("2024-01-15T09:30:00.000Z"),
                 scopeType: "company",
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 userId: "user_id",
+                windowAmount: 1.1,
+                windowCount: 1000000,
+                windowUnit: "hour",
             },
             params: {
                 key: "value",
@@ -6703,13 +6733,19 @@ describe("CreditsClient", () => {
             data: {
                 billing_credit_id: "billing_credit_id",
                 company_id: "company_id",
+                consumed: 1.1,
                 created_at: "2024-01-15T09:30:00Z",
+                headroom: 1.1,
                 id: "id",
                 label: "label",
                 max_per_draw: 1.1,
+                resets_at: "2024-01-15T09:30:00Z",
                 scope_type: "company",
                 updated_at: "2024-01-15T09:30:00Z",
                 user_id: "user_id",
+                window_amount: 1.1,
+                window_count: 1000000,
+                window_unit: "hour",
             },
             params: { key: "value" },
         };
@@ -6728,13 +6764,19 @@ describe("CreditsClient", () => {
             data: {
                 billingCreditId: "billing_credit_id",
                 companyId: "company_id",
+                consumed: 1.1,
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                headroom: 1.1,
                 id: "id",
                 label: "label",
                 maxPerDraw: 1.1,
+                resetsAt: new Date("2024-01-15T09:30:00.000Z"),
                 scopeType: "company",
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 userId: "user_id",
+                windowAmount: 1.1,
+                windowCount: 1000000,
+                windowUnit: "hour",
             },
             params: {
                 key: "value",
@@ -7107,6 +7149,179 @@ describe("CreditsClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("getCreditSpendPolicyUsage (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    billing_credit_id: "billing_credit_id",
+                    company_id: "company_id",
+                    consumed: 1.1,
+                    created_at: "2024-01-15T09:30:00Z",
+                    headroom: 1.1,
+                    id: "id",
+                    label: "label",
+                    max_per_draw: 1.1,
+                    resets_at: "2024-01-15T09:30:00Z",
+                    scope_type: "company",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    user_id: "user_id",
+                    window_amount: 1.1,
+                    window_count: 1000000,
+                    window_unit: "hour",
+                },
+            ],
+            params: { billing_credit_id: "billing_credit_id", company_id: "company_id", user_ids: ["user_ids"] },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/spend-policies/usage")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.credits.getCreditSpendPolicyUsage({
+            billingCreditId: "billing_credit_id",
+            companyId: "company_id",
+            userIds: ["user_ids"],
+        });
+        expect(response).toEqual({
+            data: [
+                {
+                    billingCreditId: "billing_credit_id",
+                    companyId: "company_id",
+                    consumed: 1.1,
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    headroom: 1.1,
+                    id: "id",
+                    label: "label",
+                    maxPerDraw: 1.1,
+                    resetsAt: new Date("2024-01-15T09:30:00.000Z"),
+                    scopeType: "company",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    userId: "user_id",
+                    windowAmount: 1.1,
+                    windowCount: 1000000,
+                    windowUnit: "hour",
+                },
+            ],
+            params: {
+                billingCreditId: "billing_credit_id",
+                companyId: "company_id",
+                userIds: ["user_ids"],
+            },
+        });
+    });
+
+    test("getCreditSpendPolicyUsage (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/spend-policies/usage")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.getCreditSpendPolicyUsage({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("getCreditSpendPolicyUsage (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/spend-policies/usage")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.getCreditSpendPolicyUsage({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getCreditSpendPolicyUsage (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/spend-policies/usage")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.getCreditSpendPolicyUsage({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getCreditSpendPolicyUsage (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/spend-policies/usage")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.getCreditSpendPolicyUsage({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getCreditSpendPolicyUsage (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/spend-policies/usage")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.getCreditSpendPolicyUsage({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("listCreditEventLedger (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -7122,10 +7337,11 @@ describe("CreditsClient", () => {
                     company_id: "company_id",
                     credit: { id: "id", name: "name" },
                     credit_name: "credit_name",
+                    currency: "currency",
                     environment_id: "environment_id",
                     event_at: "2024-01-15T09:30:00Z",
                     event_id: "event_id",
-                    event_type: "grant",
+                    event_type: "adjustment",
                     expiry_type: "duration",
                     expiry_unit: "billing_periods",
                     expiry_unit_count: 1000000,
@@ -7138,6 +7354,7 @@ describe("CreditsClient", () => {
                     grant_quantity_remaining: 1.1,
                     grant_reason: "adjustment",
                     grant_valid_from: "2024-01-15T09:30:00Z",
+                    kind: "adjustment",
                     plan_id: "plan_id",
                     quantity_consumed: 1.1,
                     quantity_remaining_at_zero_out: 1.1,
@@ -7154,7 +7371,7 @@ describe("CreditsClient", () => {
                 billing_credit_id: "billing_credit_id",
                 company_id: "company_id",
                 end_time: "end_time",
-                event_type: "grant",
+                event_type: "adjustment",
                 feature_id: "feature_id",
                 limit: 1000000,
                 offset: 1000000,
@@ -7174,7 +7391,7 @@ describe("CreditsClient", () => {
             billingCreditId: "billing_credit_id",
             companyId: "company_id",
             endTime: "end_time",
-            eventType: "grant",
+            eventType: "adjustment",
             featureId: "feature_id",
             startTime: "start_time",
             limit: 1000000,
@@ -7197,10 +7414,11 @@ describe("CreditsClient", () => {
                         name: "name",
                     },
                     creditName: "credit_name",
+                    currency: "currency",
                     environmentId: "environment_id",
                     eventAt: new Date("2024-01-15T09:30:00.000Z"),
                     eventId: "event_id",
-                    eventType: "grant",
+                    eventType: "adjustment",
                     expiryType: "duration",
                     expiryUnit: "billing_periods",
                     expiryUnitCount: 1000000,
@@ -7216,6 +7434,7 @@ describe("CreditsClient", () => {
                     grantQuantityRemaining: 1.1,
                     grantReason: "adjustment",
                     grantValidFrom: new Date("2024-01-15T09:30:00.000Z"),
+                    kind: "adjustment",
                     planId: "plan_id",
                     quantityConsumed: 1.1,
                     quantityRemainingAtZeroOut: 1.1,
@@ -7232,7 +7451,7 @@ describe("CreditsClient", () => {
                 billingCreditId: "billing_credit_id",
                 companyId: "company_id",
                 endTime: "end_time",
-                eventType: "grant",
+                eventType: "adjustment",
                 featureId: "feature_id",
                 limit: 1000000,
                 offset: 1000000,
@@ -7356,7 +7575,7 @@ describe("CreditsClient", () => {
                 billing_credit_id: "billing_credit_id",
                 company_id: "company_id",
                 end_time: "end_time",
-                event_type: "grant",
+                event_type: "adjustment",
                 feature_id: "feature_id",
                 limit: 1000000,
                 offset: 1000000,
@@ -7376,7 +7595,7 @@ describe("CreditsClient", () => {
             billingCreditId: "billing_credit_id",
             companyId: "company_id",
             endTime: "end_time",
-            eventType: "grant",
+            eventType: "adjustment",
             featureId: "feature_id",
             startTime: "start_time",
             limit: 1000000,
@@ -7390,7 +7609,7 @@ describe("CreditsClient", () => {
                 billingCreditId: "billing_credit_id",
                 companyId: "company_id",
                 endTime: "end_time",
-                eventType: "grant",
+                eventType: "adjustment",
                 featureId: "feature_id",
                 limit: 1000000,
                 offset: 1000000,

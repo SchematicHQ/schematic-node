@@ -4,6 +4,7 @@ export const PlanVersionMigrationStrategy = {
     EndOfBillingPeriod: "end_of_billing_period",
     Immediate: "immediate",
     Leave: "leave",
+    Scheduled: "scheduled",
 } as const;
 export type PlanVersionMigrationStrategy =
     (typeof PlanVersionMigrationStrategy)[keyof typeof PlanVersionMigrationStrategy];

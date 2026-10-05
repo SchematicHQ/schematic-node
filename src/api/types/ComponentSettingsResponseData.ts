@@ -3,6 +3,7 @@
 export interface ComponentSettingsResponseData {
     showAsMonthlyPrices: boolean;
     showCredits: boolean;
+    showEstimatedTotal: boolean;
     showFeatureDescription: boolean;
     showHardLimit: boolean;
     showPeriodToggle: boolean;

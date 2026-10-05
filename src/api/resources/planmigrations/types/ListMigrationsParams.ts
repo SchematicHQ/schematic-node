@@ -7,6 +7,7 @@ import type * as Schematic from "../../../index";
  */
 export interface ListMigrationsParams {
     featureId?: string;
+    featurePlanRolloutId?: string;
     /** Page limit (default 100) */
     limit?: number;
     /** Page offset (default 0) */

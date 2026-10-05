@@ -4268,8 +4268,7 @@ await client.credits.listCreditSpendPolicies({
 
 ```typescript
 await client.credits.createCreditSpendPolicy({
-    billingCreditId: "billing_credit_id",
-    maxPerDraw: 1.1
+    billingCreditId: "billing_credit_id"
 });
 
 ```
@@ -4518,6 +4517,59 @@ await client.credits.countCreditSpendPolicies({
 </dl>
 </details>
 
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">getCreditSpendPolicyUsage</a>({ ...params }) -> Schematic.GetCreditSpendPolicyUsageResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.credits.getCreditSpendPolicyUsage({
+    billingCreditId: "billing_credit_id",
+    companyId: "company_id",
+    userIds: ["user_ids"]
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.GetCreditSpendPolicyUsageRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">listCreditEventLedger</a>({ ...params }) -> Schematic.ListCreditEventLedgerResponse</code></summary>
 <dl>
 <dd>
@@ -4535,7 +4587,7 @@ await client.credits.listCreditEventLedger({
     billingCreditId: "billing_credit_id",
     companyId: "company_id",
     endTime: "end_time",
-    eventType: "grant",
+    eventType: "adjustment",
     featureId: "feature_id",
     startTime: "start_time",
     limit: 1000000,
@@ -4593,7 +4645,7 @@ await client.credits.countCreditEventLedger({
     billingCreditId: "billing_credit_id",
     companyId: "company_id",
     endTime: "end_time",
-    eventType: "grant",
+    eventType: "adjustment",
     featureId: "feature_id",
     startTime: "start_time",
     limit: 1000000,
@@ -9583,6 +9635,173 @@ await client.entitlements.getUserUsageByCompany({
 </dl>
 </details>
 
+<details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">getCompanyUserUsageMetrics</a>({ ...params }) -> Schematic.GetCompanyUserUsageMetricsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.entitlements.getCompanyUserUsageMetrics({
+    companyId: "company_id",
+    endTime: new Date("2024-01-15T09:30:00.000Z"),
+    startTime: new Date("2024-01-15T09:30:00.000Z")
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.GetCompanyUserUsageMetricsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">listCompanyUserUsage</a>({ ...params }) -> Schematic.ListCompanyUserUsageResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.entitlements.listCompanyUserUsage({
+    companyId: "company_id",
+    endTime: new Date("2024-01-15T09:30:00.000Z"),
+    featureId: "feature_id",
+    metric: "credits",
+    limit: 1000000,
+    offset: 1000000,
+    startTime: new Date("2024-01-15T09:30:00.000Z")
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListCompanyUserUsageRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">countCompanyUserUsage</a>({ ...params }) -> Schematic.CountCompanyUserUsageResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.entitlements.countCompanyUserUsage({
+    companyId: "company_id",
+    endTime: new Date("2024-01-15T09:30:00.000Z"),
+    featureId: "feature_id",
+    metric: "credits",
+    limit: 1000000,
+    offset: 1000000,
+    startTime: new Date("2024-01-15T09:30:00.000Z")
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CountCompanyUserUsageRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EntitlementsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.entitlements.<a href="/src/api/resources/entitlements/client/Client.ts">getUserUsageDetail</a>({ ...params }) -> Schematic.GetUserUsageDetailResponse</code></summary>
 <dl>
 <dd>
@@ -14153,6 +14372,7 @@ await client.plangroups.createPlanGroup({
     prorationBehavior: "create_prorations",
     showAsMonthlyPrices: true,
     showCredits: true,
+    showEstimatedTotal: true,
     showFeatureDescription: true,
     showHardLimit: true,
     showPeriodToggle: true,
@@ -14229,6 +14449,7 @@ await client.plangroups.updatePlanGroup("plan_group_id", {
     prorationBehavior: "create_prorations",
     showAsMonthlyPrices: true,
     showCredits: true,
+    showEstimatedTotal: true,
     showFeatureDescription: true,
     showHardLimit: true,
     showPeriodToggle: true,
@@ -14453,6 +14674,7 @@ await client.planmigrations.countCompanyMigrations({
 ```typescript
 await client.planmigrations.listMigrations({
     featureId: "feature_id",
+    featurePlanRolloutId: "feature_plan_rollout_id",
     planVersionId: "plan_version_id",
     status: "cancelled",
     limit: 1000000,
@@ -14776,6 +14998,7 @@ await client.planmigrations.retryMigration("plan_version_migration_id", {
 ```typescript
 await client.planmigrations.countMigrations({
     featureId: "feature_id",
+    featurePlanRolloutId: "feature_plan_rollout_id",
     planVersionId: "plan_version_id",
     status: "cancelled",
     limit: 1000000,

@@ -8,5 +8,6 @@ export interface EnvironmentDetailResponseData {
     environmentType: Schematic.EnvironmentType;
     id: string;
     name: string;
+    requireContextSignature: boolean;
     updatedAt: Date;
 }

@@ -5276,6 +5276,9 @@ describe("FeaturesClient", () => {
         const rawResponseBody = {
             data: {
                 credit_balances: { key: { remaining: 1.1, reserved: 1.1, settled: 1.1 } },
+                credit_spend_policies: [
+                    { credit_id: "credit_id", id: "id", kind: "kind", limit: 1.1, scope: "company" },
+                ],
                 flags: [{ flag: "flag", reason: "reason", value: true }],
                 plan: { id: "id", name: "name", trial_end_date: "2024-01-15T09:30:00Z", trial_status: "active" },
             },
@@ -5301,6 +5304,15 @@ describe("FeaturesClient", () => {
                         settled: 1.1,
                     },
                 },
+                creditSpendPolicies: [
+                    {
+                        creditId: "credit_id",
+                        id: "id",
+                        kind: "kind",
+                        limit: 1.1,
+                        scope: "company",
+                    },
+                ],
                 flags: [
                     {
                         flag: "flag",
@@ -5426,7 +5438,16 @@ describe("FeaturesClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { contexts: [{}] };
         const rawResponseBody = {
-            data: { data: [{ flags: [{ flag: "flag", reason: "reason", value: true }] }] },
+            data: {
+                data: [
+                    {
+                        credit_spend_policies: [
+                            { credit_id: "credit_id", id: "id", kind: "kind", limit: 1.1, scope: "company" },
+                        ],
+                        flags: [{ flag: "flag", reason: "reason", value: true }],
+                    },
+                ],
+            },
             params: { key: "value" },
         };
 
@@ -5446,6 +5467,15 @@ describe("FeaturesClient", () => {
             data: {
                 data: [
                     {
+                        creditSpendPolicies: [
+                            {
+                                creditId: "credit_id",
+                                id: "id",
+                                kind: "kind",
+                                limit: 1.1,
+                                scope: "company",
+                            },
+                        ],
                         flags: [
                             {
                                 flag: "flag",

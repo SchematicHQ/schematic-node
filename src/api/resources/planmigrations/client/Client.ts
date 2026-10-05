@@ -492,6 +492,7 @@ export class PlanmigrationsClient {
      * @example
      *     await client.planmigrations.listMigrations({
      *         featureId: "feature_id",
+     *         featurePlanRolloutId: "feature_plan_rollout_id",
      *         planVersionId: "plan_version_id",
      *         status: "cancelled",
      *         limit: 1000000,
@@ -509,9 +510,10 @@ export class PlanmigrationsClient {
         request: Schematic.ListMigrationsRequest = {},
         requestOptions?: PlanmigrationsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListMigrationsResponse>> {
-        const { featureId, planVersionId, status, limit, offset } = request;
+        const { featureId, featurePlanRolloutId, planVersionId, status, limit, offset } = request;
         const _queryParams: Record<string, unknown> = {
             feature_id: featureId,
+            feature_plan_rollout_id: featurePlanRolloutId,
             plan_version_id: planVersionId,
             status:
                 status != null
@@ -1336,6 +1338,7 @@ export class PlanmigrationsClient {
      * @example
      *     await client.planmigrations.countMigrations({
      *         featureId: "feature_id",
+     *         featurePlanRolloutId: "feature_plan_rollout_id",
      *         planVersionId: "plan_version_id",
      *         status: "cancelled",
      *         limit: 1000000,
@@ -1353,9 +1356,10 @@ export class PlanmigrationsClient {
         request: Schematic.CountMigrationsRequest = {},
         requestOptions?: PlanmigrationsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountMigrationsResponse>> {
-        const { featureId, planVersionId, status, limit, offset } = request;
+        const { featureId, featurePlanRolloutId, planVersionId, status, limit, offset } = request;
         const _queryParams: Record<string, unknown> = {
             feature_id: featureId,
+            feature_plan_rollout_id: featurePlanRolloutId,
             plan_version_id: planVersionId,
             status:
                 status != null

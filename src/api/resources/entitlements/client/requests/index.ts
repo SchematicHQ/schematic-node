@@ -1,4 +1,5 @@
 export type { CountCompanyOverridesRequest } from "./CountCompanyOverridesRequest";
+export type { CountCompanyUserUsageRequest } from "./CountCompanyUserUsageRequest";
 export type { CountFeatureCompaniesRequest } from "./CountFeatureCompaniesRequest";
 export type { CountFeatureUsageRequest } from "./CountFeatureUsageRequest";
 export type { CountFeatureUsersRequest } from "./CountFeatureUsersRequest";
@@ -7,11 +8,13 @@ export type { CreateBillingLinkedPlanEntitlementRequestBody } from "./CreateBill
 export type { CreateCompanyOverrideRequestBody } from "./CreateCompanyOverrideRequestBody";
 export type { CreatePlanEntitlementRequestBody } from "./CreatePlanEntitlementRequestBody";
 export type { DuplicatePlanEntitlementsRequestBody } from "./DuplicatePlanEntitlementsRequestBody";
+export type { GetCompanyUserUsageMetricsRequest } from "./GetCompanyUserUsageMetricsRequest";
 export type { GetFeatureUsageByCompanyRequest } from "./GetFeatureUsageByCompanyRequest";
 export type { GetFeatureUsageTimeSeriesRequest } from "./GetFeatureUsageTimeSeriesRequest";
 export type { GetUserUsageByCompanyRequest } from "./GetUserUsageByCompanyRequest";
 export type { GetUserUsageDetailRequest } from "./GetUserUsageDetailRequest";
 export type { ListCompanyOverridesRequest } from "./ListCompanyOverridesRequest";
+export type { ListCompanyUserUsageRequest } from "./ListCompanyUserUsageRequest";
 export type { ListFeatureCompaniesRequest } from "./ListFeatureCompaniesRequest";
 export type { ListFeatureUsageHistoryRequest } from "./ListFeatureUsageHistoryRequest";
 export type { ListFeatureUsageRequest } from "./ListFeatureUsageRequest";

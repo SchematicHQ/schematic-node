@@ -12,6 +12,7 @@ export type { CreateCreditBundleRequestBody } from "./CreateCreditBundleRequestB
 export type { CreateCreditSpendPolicyRequestBody } from "./CreateCreditSpendPolicyRequestBody";
 export type { DeleteBillingPlanCreditGrantRequest } from "./DeleteBillingPlanCreditGrantRequest";
 export type { ExtendCreditLeaseRequestBody } from "./ExtendCreditLeaseRequestBody";
+export type { GetCreditSpendPolicyUsageRequest } from "./GetCreditSpendPolicyUsageRequest";
 export type { ListBillingCreditsRequest } from "./ListBillingCreditsRequest";
 export type { ListBillingPlanCreditGrantsRequest } from "./ListBillingPlanCreditGrantsRequest";
 export type { ListCompanyCreditBalancesRequest } from "./ListCompanyCreditBalancesRequest";

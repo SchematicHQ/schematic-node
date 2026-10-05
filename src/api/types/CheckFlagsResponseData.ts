@@ -5,6 +5,8 @@ import type * as Schematic from "../index";
 export interface CheckFlagsResponseData {
     /** Lease-aware credit balances keyed by credit ID, covering every credit type the company holds a balance in */
     creditBalances?: Record<string, Schematic.CompanyCreditBalance>;
+    /** Credit spend policies binding the evaluated company and user; empty when none bind. Each response carries the whole set, so replace any previously received set with it. Advisory: the flag values do not reflect them, since a check names no draw amount */
+    creditSpendPolicies: Schematic.CreditSpendPolicy[];
     flags: Schematic.CheckFlagResponseData[];
     plan?: Schematic.DatastreamCompanyPlan;
 }

@@ -13,6 +13,7 @@ export const CustomPlanBillingResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     activationStrategy: core.serialization.property("activation_strategy", CustomPlanActivationStrategy),
     billingCycleAnchor: core.serialization.property("billing_cycle_anchor", core.serialization.date().optional()),
+    billingStartDate: core.serialization.property("billing_start_date", core.serialization.date().optional()),
     companyId: core.serialization.property("company_id", core.serialization.string()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     daysUntilDue: core.serialization.property("days_until_due", core.serialization.number()),
@@ -33,6 +34,7 @@ export declare namespace CustomPlanBillingResponseData {
     export interface Raw {
         activation_strategy: CustomPlanActivationStrategy.Raw;
         billing_cycle_anchor?: string | null;
+        billing_start_date?: string | null;
         company_id: string;
         created_at: string;
         days_until_due: number;
