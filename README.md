@@ -766,6 +766,10 @@ Replicator mode is designed for environments where a separate process (the repli
 
 Replicator mode requires a shared cache (Redis or custom cache providers) so the SDK can read data written by the external replicator process.
 
+### Cache readiness
+
+The SDK serves flag checks from the replicator's cache only once the replicator reports ready. It polls the replicator's health URL, reads `ready` and `cache_version` from the JSON body (including the body of a 503, which the replicator returns while it is still loading), and treats a failed poll as not ready. Until the replicator reports ready, `checkFlag`, `checkFlagWithEntitlement` and `checkFlags` all skip the cache and ask the Schematic API, falling back to the flag default if the API call fails. Once it is ready, they evaluate from the cache, and a flag the cache can't evaluate still falls back to the API.
+
 ### Setup
 
 ```ts
@@ -800,7 +804,7 @@ const client = new SchematicClient({
 });
 ```
 
-Until a health check succeeds, the SDK treats the replicator as not ready: bulk flag checks bypass the shared cache, `track` skips local metric updates, and cache keys use the SDK's own rules engine version rather than the replicator's cache version.
+Until the replicator reports ready, flag checks use the Schematic API rather than the shared cache (see [Cache readiness](#cache-readiness)). Until the SDK has read a `cache_version` from the health endpoint, cache keys use the SDK's own rules engine version rather than the replicator's.
 
 ### Configuration options
 
