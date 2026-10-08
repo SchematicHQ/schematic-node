@@ -31,6 +31,10 @@ npx jest --coverage
 yarn build
 ```
 
+## Generated Code
+
+Fern generates most of this repo from `schematic-fern-config`. Any file not listed in `.fernignore` is overwritten on regeneration, including `package.json`. Make changes to dependencies, `resolutions`, scripts, or other generated files in `schematic-fern-config/fern/generators.yml` (or the API spec), not here.
+
 ## Architecture Overview
 
 ### Client Structure
