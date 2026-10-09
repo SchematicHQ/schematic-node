@@ -42,10 +42,12 @@ tests/unit/datastream/redis_key_layout.json
 tests/unit/datastream/merge.test.ts
 tests/unit/datastream/websocket-client.test.ts
 tests/unit/event-capture.test.ts
+tests/unit/event-quantities.test.ts
 tests/unit/events.test.ts
 tests/unit/logger.test.ts
 tests/unit/replicator/
 tests/unit/rules-engine.test.ts
+tests/unit/testdata/
 tests/unit/wasm-datastream.test.ts
 tests/unit/wasm-integration.test.ts
 tests/unit/webhooks.test.ts
