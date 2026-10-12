@@ -28,6 +28,10 @@ export const CompanyOverrideResponseData: core.serialization.ObjectSchema<
     metricPeriod: core.serialization.property("metric_period", MetricPeriod.optional()),
     metricPeriodMonthReset: core.serialization.property("metric_period_month_reset", MetricPeriodMonthReset.optional()),
     notes: core.serialization.list(CompanyOverrideNoteResponseData),
+    quantityRates: core.serialization.property(
+        "quantity_rates",
+        core.serialization.record(core.serialization.string(), core.serialization.number()).optional(),
+    ),
     ruleId: core.serialization.property("rule_id", core.serialization.string().optional()),
     ruleIdUsageExceeded: core.serialization.property("rule_id_usage_exceeded", core.serialization.string().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
@@ -54,6 +58,7 @@ export declare namespace CompanyOverrideResponseData {
         metric_period?: MetricPeriod.Raw | null;
         metric_period_month_reset?: MetricPeriodMonthReset.Raw | null;
         notes: CompanyOverrideNoteResponseData.Raw[];
+        quantity_rates?: Record<string, number> | null;
         rule_id?: string | null;
         rule_id_usage_exceeded?: string | null;
         updated_at: string;

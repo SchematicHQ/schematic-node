@@ -7,7 +7,7 @@ export interface InvoiceRequestBody {
     amountPaid: number;
     amountRemaining: number;
     collectionMethod: string;
-    currency: string;
+    currency: Schematic.Currency;
     customerExternalId: string;
     dueDate?: Date;
     endingBalance?: number;

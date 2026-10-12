@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { Currency } from "./Currency";
 
 export const BillingSubscriptionDiscountView: core.serialization.ObjectSchema<
     serializers.BillingSubscriptionDiscountView.Raw,
@@ -11,7 +12,7 @@ export const BillingSubscriptionDiscountView: core.serialization.ObjectSchema<
     amountOff: core.serialization.property("amount_off", core.serialization.number().optional()),
     couponId: core.serialization.property("coupon_id", core.serialization.string()),
     couponName: core.serialization.property("coupon_name", core.serialization.string()),
-    currency: core.serialization.string().optional(),
+    currency: Currency.optional(),
     customerFacingCode: core.serialization.property("customer_facing_code", core.serialization.string().optional()),
     discountExternalId: core.serialization.property("discount_external_id", core.serialization.string()),
     duration: core.serialization.string(),
@@ -29,7 +30,7 @@ export declare namespace BillingSubscriptionDiscountView {
         amount_off?: number | null;
         coupon_id: string;
         coupon_name: string;
-        currency?: string | null;
+        currency?: Currency.Raw | null;
         customer_facing_code?: string | null;
         discount_external_id: string;
         duration: string;

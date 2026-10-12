@@ -1200,7 +1200,7 @@ export class BillingClient {
      *         amountPaid: 1000000,
      *         amountRemaining: 1000000,
      *         collectionMethod: "collection_method",
-     *         currency: "currency",
+     *         currency: "aed",
      *         customerExternalId: "customer_external_id",
      *         subtotal: 1000000
      *     })
@@ -2181,7 +2181,7 @@ export class BillingClient {
      *
      * @example
      *     await client.billing.listBillingPrices({
-     *         currency: "currency",
+     *         currency: "aed",
      *         forInitialPlan: true,
      *         forTrialExpiryPlan: true,
      *         ids: ["ids"],
@@ -2233,7 +2233,10 @@ export class BillingClient {
             offset,
         } = request;
         const _queryParams: Record<string, unknown> = {
-            currency,
+            currency:
+                currency != null
+                    ? serializers.Currency.jsonOrThrow(currency, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
             for_initial_plan: forInitialPlan,
             for_trial_expiry_plan: forTrialExpiryPlan,
             ids,
@@ -2384,7 +2387,7 @@ export class BillingClient {
      * @example
      *     await client.billing.upsertBillingPrice({
      *         billingScheme: "per_unit",
-     *         currency: "currency",
+     *         currency: "aed",
      *         externalAccountId: "external_account_id",
      *         interval: "interval",
      *         isActive: true,
@@ -2667,7 +2670,7 @@ export class BillingClient {
      *
      * @example
      *     await client.billing.listBillingProductPrices({
-     *         currency: "currency",
+     *         currency: "aed",
      *         forInitialPlan: true,
      *         forTrialExpiryPlan: true,
      *         ids: ["ids"],
@@ -2719,7 +2722,10 @@ export class BillingClient {
             offset,
         } = request;
         const _queryParams: Record<string, unknown> = {
-            currency,
+            currency:
+                currency != null
+                    ? serializers.Currency.jsonOrThrow(currency, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
             for_initial_plan: forInitialPlan,
             for_trial_expiry_plan: forTrialExpiryPlan,
             ids,
@@ -3799,6 +3805,257 @@ export class BillingClient {
     }
 
     /**
+     * @param {BillingClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
+     * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
+     *
+     * @example
+     *     await client.billing.getBillingSettings()
+     */
+    public getBillingSettings(
+        requestOptions?: BillingClient.RequestOptions,
+    ): core.HttpResponsePromise<Schematic.GetBillingSettingsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getBillingSettings(requestOptions));
+    }
+
+    private async __getBillingSettings(
+        requestOptions?: BillingClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.GetBillingSettingsResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "billing/settings",
+            ),
+            method: "GET",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.GetBillingSettingsResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/billing/settings");
+    }
+
+    /**
+     * @param {Schematic.UpdateBillingSettingsRequestBody} request
+     * @param {BillingClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.BadRequestError}
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
+     * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
+     *
+     * @example
+     *     await client.billing.updateBillingSettings()
+     */
+    public updateBillingSettings(
+        request: Schematic.UpdateBillingSettingsRequestBody = {},
+        requestOptions?: BillingClient.RequestOptions,
+    ): core.HttpResponsePromise<Schematic.UpdateBillingSettingsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__updateBillingSettings(request, requestOptions));
+    }
+
+    private async __updateBillingSettings(
+        request: Schematic.UpdateBillingSettingsRequestBody = {},
+        requestOptions?: BillingClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.UpdateBillingSettingsResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                "billing/settings",
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: mergeAdditionalBodyParameters(
+                serializers.UpdateBillingSettingsRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.UpdateBillingSettingsResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Schematic.BadRequestError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/billing/settings");
+    }
+
+    /**
      * @param {Schematic.CreateBillingSubscriptionRequestBody} request
      * @param {BillingClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -3813,7 +4070,7 @@ export class BillingClient {
      * @example
      *     await client.billing.upsertBillingSubscription({
      *         cancelAtPeriodEnd: true,
-     *         currency: "currency",
+     *         currency: "aed",
      *         customerExternalId: "customer_external_id",
      *         discounts: [{
      *                 couponExternalId: "coupon_external_id",
@@ -3823,7 +4080,7 @@ export class BillingClient {
      *             }],
      *         expiredAt: new Date("2024-01-15T09:30:00.000Z"),
      *         productExternalIds: [{
-     *                 currency: "currency",
+     *                 currency: "aed",
      *                 interval: "interval",
      *                 price: 1000000,
      *                 priceExternalId: "price_external_id",

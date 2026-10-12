@@ -13,7 +13,7 @@ export interface CreditCompanyGrantView {
     creditDescription: string;
     creditIcon?: string;
     creditName: string;
-    currency?: string;
+    currency?: Schematic.Currency;
     exhaustedAt?: Date;
     expiresAt?: Date;
     expiryType?: Schematic.BillingCreditExpiryType;
@@ -26,7 +26,7 @@ export interface CreditCompanyGrantView {
     planName?: string;
     pluralName?: string;
     postpaidChargeAmount?: number;
-    postpaidChargeCurrency?: string;
+    postpaidChargeCurrency?: Schematic.Currency;
     postpaidChargedCredits?: number;
     postpaidPeriodEnd?: Date;
     postpaidRate?: number;

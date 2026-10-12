@@ -3,6 +3,6 @@
 import type * as Schematic from "../index";
 
 export interface CreditBundleCurrencyPrice {
-    currency: string;
+    currency: Schematic.Currency;
     price?: Schematic.BillingPriceView;
 }

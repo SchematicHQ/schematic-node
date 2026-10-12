@@ -9,6 +9,8 @@ export * from "./DeletePlanVersionParams";
 export * from "./DeletePlanVersionResponse";
 export * from "./GetPlanParams";
 export * from "./GetPlanResponse";
+export * from "./GetPlanVersionDiffParams";
+export * from "./GetPlanVersionDiffResponse";
 export * from "./ListBillingProductMatchCompaniesParams";
 export * from "./ListBillingProductMatchCompaniesResponse";
 export * from "./ListCustomPlanBillingsParams";

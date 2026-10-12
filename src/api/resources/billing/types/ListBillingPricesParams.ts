@@ -7,7 +7,7 @@ import type * as Schematic from "../../../index";
  */
 export interface ListBillingPricesParams {
     /** Filter for prices in a specific currency (e.g. usd, eur) */
-    currency?: string;
+    currency?: Schematic.Currency;
     /** Filter for prices valid for initial plans (free prices only) */
     forInitialPlan?: boolean;
     /** Filter for prices valid for trial expiry plans (free prices only) */

@@ -10,15 +10,20 @@ import type * as Schematic from "../../../../index";
  *     }
  */
 export interface PublishPlanVersionRequestBody {
+    /** When the company gets the plan. On a custom-plan republish, on_payment is only accepted when the amendment is invoiced today (migration_strategy immediate, proration_behavior always_invoice, collection_method send_invoice): the company stays on its current version until that invoice is paid. */
     activationStrategy?: Schematic.CustomPlanActivationStrategy;
     address?: Schematic.CustomerBillingAddress;
     /** The date the subscription's billing period renews on. Only honored on a first publish that starts a subscription. */
     billingCycleAnchor?: Date;
     /** The date the contract term starts. A past date backdates the subscription so the first invoice covers the term from this date to the renewal date. Requires billing_cycle_anchor. Only honored on a first publish that starts a subscription. */
     billingStartDate?: Date;
+    /** How the invoice a custom-plan republish raises today is collected. send_invoice (the default) issues it for the company to pay; charge_automatically charges the default payment method straight away. Only accepted on a custom-plan republish with migration_strategy immediate and proration_behavior always_invoice. */
+    collectionMethod?: Schematic.BillingCollectionMethod;
+    /** A Stripe coupon to apply. On a custom-plan republish it discounts the amendment invoice and is only used when that invoice is raised today; it must exist in Stripe. It is attached to the subscription, so a repeating or forever coupon also discounts the renewals that follow. */
     couponExternalId?: string;
     customFieldValues?: Schematic.CheckoutFieldValue[];
     customerEmail?: string;
+    /** Payment terms in days. On a custom-plan republish they apply to the amendment invoice only, leave the subscription's renewal terms unchanged, and are only used when that invoice is raised today and sent rather than charged. Defaults to the subscription's terms. */
     daysUntilDue?: number;
     excludedCompanyIds: string[];
     migrationStrategy: Schematic.PlanVersionMigrationStrategy;

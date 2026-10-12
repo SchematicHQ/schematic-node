@@ -5,7 +5,7 @@ import type * as Schematic from "../index";
 export interface PreviewSubscriptionFinanceResponseData {
     amountOff: number;
     /** ISO 4217 currency every amount in this block is denominated in. */
-    currency: string;
+    currency: Schematic.Currency;
     discountAmount: number;
     discounts: Schematic.PreviewSubscriptionDiscountResponseData[];
     dueNow: number;

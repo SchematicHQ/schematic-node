@@ -4,18 +4,19 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingPriceView } from "./BillingPriceView";
+import { Currency } from "./Currency";
 
 export const CreditBundleCurrencyPrice: core.serialization.ObjectSchema<
     serializers.CreditBundleCurrencyPrice.Raw,
     Schematic.CreditBundleCurrencyPrice
 > = core.serialization.object({
-    currency: core.serialization.string(),
+    currency: Currency,
     price: BillingPriceView.optional(),
 });
 
 export declare namespace CreditBundleCurrencyPrice {
     export interface Raw {
-        currency: string;
+        currency: Currency.Raw;
         price?: BillingPriceView.Raw | null;
     }
 }

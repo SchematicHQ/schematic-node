@@ -3,6 +3,7 @@
 import type * as Schematic from "../index";
 
 export interface OrderedPlansInGroup {
+    credits?: Schematic.CreditsInPlan[];
     entitlements?: Schematic.EntitlementsInPlan[];
     planId: string;
 }

@@ -8,6 +8,8 @@ import type * as Schematic from "../../../../index";
  */
 export interface UpdateFeatureRequestBody {
     description?: string;
+    /** Which event stream meters this feature. It is fixed at creation: an update that changes it is rejected. */
+    eventSource?: Schematic.FeatureEventSource;
     eventSubtype?: string;
     featureType?: Schematic.FeatureType;
     flag?: Schematic.CreateOrUpdateFlagRequestBody;

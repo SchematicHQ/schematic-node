@@ -27,6 +27,10 @@ export const RulesengineFeatureEntitlement: core.serialization.ObjectSchema<
     metricPeriod: core.serialization.property("metric_period", RulesengineMetricPeriod.optional()),
     metricResetAt: core.serialization.property("metric_reset_at", core.serialization.date().optional()),
     monthReset: core.serialization.property("month_reset", RulesengineMetricPeriodMonthReset.optional()),
+    quantityRates: core.serialization.property(
+        "quantity_rates",
+        core.serialization.record(core.serialization.string(), core.serialization.number()).optional(),
+    ),
     softLimit: core.serialization.property("soft_limit", core.serialization.number().optional()),
     usage: core.serialization.number().optional(),
     valueType: core.serialization.property("value_type", RulesengineEntitlementValueType),
@@ -53,6 +57,7 @@ export declare namespace RulesengineFeatureEntitlement {
         metric_period?: RulesengineMetricPeriod.Raw | null;
         metric_reset_at?: string | null;
         month_reset?: RulesengineMetricPeriodMonthReset.Raw | null;
+        quantity_rates?: Record<string, number> | null;
         soft_limit?: number | null;
         usage?: number | null;
         value_type: RulesengineEntitlementValueType.Raw;

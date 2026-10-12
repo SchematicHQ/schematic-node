@@ -7,13 +7,14 @@ import { BillingCreditBurnStrategy } from "../../../../types/BillingCreditBurnSt
 import { BillingCreditExpiryUnit } from "../../../../types/BillingCreditExpiryUnit";
 import { BillingCreditRolloverPolicy } from "../../../../types/BillingCreditRolloverPolicy";
 import { CreditCurrencyPriceRequestBody } from "../../../../types/CreditCurrencyPriceRequestBody";
+import { Currency } from "../../../../types/Currency";
 
 export const CreateBillingCreditRequestBody: core.serialization.Schema<
     serializers.CreateBillingCreditRequestBody.Raw,
     Schematic.CreateBillingCreditRequestBody
 > = core.serialization.object({
     burnStrategy: core.serialization.property("burn_strategy", BillingCreditBurnStrategy.optional()),
-    currency: core.serialization.string(),
+    currency: Currency,
     currencyPrices: core.serialization.property(
         "currency_prices",
         core.serialization.list(CreditCurrencyPriceRequestBody).optional(),
@@ -39,7 +40,7 @@ export const CreateBillingCreditRequestBody: core.serialization.Schema<
 export declare namespace CreateBillingCreditRequestBody {
     export interface Raw {
         burn_strategy?: BillingCreditBurnStrategy.Raw | null;
-        currency: string;
+        currency: Currency.Raw;
         currency_prices?: CreditCurrencyPriceRequestBody.Raw[] | null;
         default_expiry_unit?: BillingCreditExpiryUnit.Raw | null;
         default_expiry_unit_count?: number | null;

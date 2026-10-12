@@ -9,7 +9,7 @@ import type * as Schematic from "../../../../index";
  *         amountPaid: 1000000,
  *         amountRemaining: 1000000,
  *         collectionMethod: "collection_method",
- *         currency: "currency",
+ *         currency: "aed",
  *         customerExternalId: "customer_external_id",
  *         subtotal: 1000000
  *     }
@@ -19,7 +19,7 @@ export interface CreateInvoiceRequestBody {
     amountPaid: number;
     amountRemaining: number;
     collectionMethod: string;
-    currency: string;
+    currency: Schematic.Currency;
     customerExternalId: string;
     dueDate?: Date;
     endingBalance?: number;

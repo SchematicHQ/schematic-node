@@ -3,6 +3,7 @@
 import type * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
+import { Currency } from "../../../../types/Currency";
 import { InvoiceStatus } from "../../../../types/InvoiceStatus";
 
 export const CreateInvoiceRequestBody: core.serialization.Schema<
@@ -13,7 +14,7 @@ export const CreateInvoiceRequestBody: core.serialization.Schema<
     amountPaid: core.serialization.property("amount_paid", core.serialization.number()),
     amountRemaining: core.serialization.property("amount_remaining", core.serialization.number()),
     collectionMethod: core.serialization.property("collection_method", core.serialization.string()),
-    currency: core.serialization.string(),
+    currency: Currency,
     customerExternalId: core.serialization.property("customer_external_id", core.serialization.string()),
     dueDate: core.serialization.property("due_date", core.serialization.date().optional()),
     endingBalance: core.serialization.property("ending_balance", core.serialization.number().optional()),
@@ -39,7 +40,7 @@ export declare namespace CreateInvoiceRequestBody {
         amount_paid: number;
         amount_remaining: number;
         collection_method: string;
-        currency: string;
+        currency: Currency.Raw;
         customer_external_id: string;
         due_date?: string | null;
         ending_balance?: number | null;

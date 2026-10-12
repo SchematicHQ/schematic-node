@@ -4,6 +4,6 @@ import type * as Schematic from "../index";
 
 export interface EstimatedPlanTotal {
     amount: number;
-    currency: string;
+    currency: Schematic.Currency;
     period: Schematic.PlanPriceCadence;
 }

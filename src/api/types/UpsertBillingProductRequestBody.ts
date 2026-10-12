@@ -6,7 +6,7 @@ export interface UpsertBillingProductRequestBody {
     billingProductId?: string;
     billingStrategy?: Schematic.BillingStrategy;
     chargeType: Schematic.ChargeType;
-    currency?: string;
+    currency?: Schematic.Currency;
     currencyPrices?: Schematic.PlanCurrencyPriceRequestBody[];
     isTrialable: boolean;
     monthlyPrice?: number;

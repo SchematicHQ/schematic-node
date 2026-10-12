@@ -17,4 +17,5 @@ export type { ListCustomersWithSubscriptionsRequest } from "./ListCustomersWithS
 export type { ListInvoicesRequest } from "./ListInvoicesRequest";
 export type { ListMetersRequest } from "./ListMetersRequest";
 export type { ListPaymentMethodsRequest } from "./ListPaymentMethodsRequest";
+export type { UpdateBillingSettingsRequestBody } from "./UpdateBillingSettingsRequestBody";
 export type { UpdateCompanyBillingProfileRequestBody } from "./UpdateCompanyBillingProfileRequestBody";

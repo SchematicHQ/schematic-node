@@ -8,6 +8,7 @@ import { BillingPriceUsageType } from "./BillingPriceUsageType";
 import { BillingProductPriceInterval } from "./BillingProductPriceInterval";
 import { BillingProviderType } from "./BillingProviderType";
 import { BillingTiersMode } from "./BillingTiersMode";
+import { Currency } from "./Currency";
 
 export const BillingProductPriceResponseData: core.serialization.ObjectSchema<
     serializers.BillingProductPriceResponseData.Raw,
@@ -15,7 +16,7 @@ export const BillingProductPriceResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     billingScheme: core.serialization.property("billing_scheme", BillingPriceScheme),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
-    currency: core.serialization.string(),
+    currency: Currency,
     id: core.serialization.string(),
     interval: BillingProductPriceInterval,
     intervalCount: core.serialization.property("interval_count", core.serialization.number()),
@@ -37,7 +38,7 @@ export declare namespace BillingProductPriceResponseData {
     export interface Raw {
         billing_scheme: BillingPriceScheme.Raw;
         created_at: string;
-        currency: string;
+        currency: Currency.Raw;
         id: string;
         interval: BillingProductPriceInterval.Raw;
         interval_count: number;

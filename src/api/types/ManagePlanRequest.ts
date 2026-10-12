@@ -23,10 +23,12 @@ export interface ManagePlanRequest {
     couponExternalId?: string;
     creditBundles: Schematic.UpdateCreditBundleRequestBody[];
     /** ISO 4217 currency this change is being built in. Prices are still selected by id; this records the intent. */
-    currency?: string;
+    currency?: Schematic.Currency;
     customFieldValues: Schematic.CheckoutFieldValue[];
     /** Payment terms in days for an invoiced subscription. Defaults to 30. */
     daysUntilDue?: number;
+    /** If true, the first invoice is recorded in Stripe as paid outside Stripe and the company gets the plan straight away. Requires collection_method to be send_invoice, and the invoice is not emailed. Defaults to false. */
+    paidOutsideStripe?: boolean;
     payInAdvanceEntitlements: Schematic.UpdatePayInAdvanceRequestBody[];
     paymentMethodExternalId?: string;
     promoCode?: string;

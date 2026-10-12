@@ -29,6 +29,10 @@ export const Condition: core.serialization.ObjectSchema<serializers.Condition.Ra
         ),
         metricValue: core.serialization.property("metric_value", core.serialization.number().optional()),
         operator: ComparableOperator,
+        quantityRates: core.serialization.property(
+            "quantity_rates",
+            core.serialization.record(core.serialization.string(), core.serialization.number()).optional(),
+        ),
         resourceIds: core.serialization.property("resource_ids", core.serialization.list(core.serialization.string())),
         traitDefinition: core.serialization.property("trait_definition", TraitDefinition.optional()),
         traitValue: core.serialization.property("trait_value", core.serialization.string()),
@@ -48,6 +52,7 @@ export declare namespace Condition {
         metric_period_month_reset?: MetricPeriodMonthReset.Raw | null;
         metric_value?: number | null;
         operator: ComparableOperator.Raw;
+        quantity_rates?: Record<string, number> | null;
         resource_ids: string[];
         trait_definition?: TraitDefinition.Raw | null;
         trait_value: string;

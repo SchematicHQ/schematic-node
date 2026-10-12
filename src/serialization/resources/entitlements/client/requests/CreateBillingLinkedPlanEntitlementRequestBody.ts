@@ -8,6 +8,7 @@ import { BillingArrearsCadence } from "../../../../types/BillingArrearsCadence";
 import { BillingProviderType } from "../../../../types/BillingProviderType";
 import { BillingTiersMode } from "../../../../types/BillingTiersMode";
 import { CreatePriceTierRequestBody } from "../../../../types/CreatePriceTierRequestBody";
+import { Currency } from "../../../../types/Currency";
 import { CurrencyPriceRequestBody } from "../../../../types/CurrencyPriceRequestBody";
 import { EntitlementPriceBehavior } from "../../../../types/EntitlementPriceBehavior";
 import { EntitlementValueType } from "../../../../types/EntitlementValueType";
@@ -26,7 +27,7 @@ export const CreateBillingLinkedPlanEntitlementRequestBody: core.serialization.S
         "credit_consumption_rate",
         core.serialization.number().optional(),
     ),
-    currency: core.serialization.string().optional(),
+    currency: Currency.optional(),
     currencyPrices: core.serialization.property(
         "currency_prices",
         core.serialization.list(CurrencyPriceRequestBody).optional(),
@@ -60,6 +61,10 @@ export const CreateBillingLinkedPlanEntitlementRequestBody: core.serialization.S
     priceTiers: core.serialization.property(
         "price_tiers",
         core.serialization.list(CreatePriceTierRequestBody).optional(),
+    ),
+    quantityRates: core.serialization.property(
+        "quantity_rates",
+        core.serialization.record(core.serialization.string(), core.serialization.number()).optional(),
     ),
     quarterlyMeteredPriceId: core.serialization.property(
         "quarterly_metered_price_id",
@@ -107,7 +112,7 @@ export declare namespace CreateBillingLinkedPlanEntitlementRequestBody {
         billing_provider: BillingProviderType.Raw;
         billing_threshold?: number | null;
         credit_consumption_rate?: number | null;
-        currency?: string | null;
+        currency?: Currency.Raw | null;
         currency_prices?: CurrencyPriceRequestBody.Raw[] | null;
         external_resource_id: string;
         feature_id: string;
@@ -124,6 +129,7 @@ export declare namespace CreateBillingLinkedPlanEntitlementRequestBody {
         plan_version_id?: string | null;
         price_behavior?: EntitlementPriceBehavior.Raw | null;
         price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
+        quantity_rates?: Record<string, number> | null;
         quarterly_metered_price_id?: string | null;
         quarterly_price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
         quarterly_unit_price?: number | null;

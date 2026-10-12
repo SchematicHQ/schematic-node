@@ -15,7 +15,7 @@ describe("CreditsClient", () => {
                     burn_strategy: "expiration_priority",
                     cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
-                    currency_prices: [{ currency: "currency" }],
+                    currency_prices: [{ currency: "aed" }],
                     default_expiry_unit: "billing_periods",
                     default_expiry_unit_count: 1000000,
                     default_rollover_policy: "expire",
@@ -26,7 +26,7 @@ describe("CreditsClient", () => {
                     name: "name",
                     plural_name: "plural_name",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -71,7 +71,7 @@ describe("CreditsClient", () => {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     currencyPrices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                         },
                     ],
                     defaultExpiryUnit: "billing_periods",
@@ -84,7 +84,7 @@ describe("CreditsClient", () => {
                     name: "name",
                     pluralName: "plural_name",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -187,13 +187,13 @@ describe("CreditsClient", () => {
     test("createBillingCredit (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { currency: "currency", description: "description", name: "name" };
+        const rawRequestBody = { currency: "aed", description: "description", name: "name" };
         const rawResponseBody = {
             data: {
                 burn_strategy: "expiration_priority",
                 cost_editable: true,
                 created_at: "2024-01-15T09:30:00Z",
-                currency_prices: [{ currency: "currency" }],
+                currency_prices: [{ currency: "aed" }],
                 default_expiry_unit: "billing_periods",
                 default_expiry_unit_count: 1000000,
                 default_rollover_policy: "expire",
@@ -204,7 +204,7 @@ describe("CreditsClient", () => {
                 name: "name",
                 plural_name: "plural_name",
                 price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -245,7 +245,7 @@ describe("CreditsClient", () => {
             .build();
 
         const response = await client.credits.createBillingCredit({
-            currency: "currency",
+            currency: "aed",
             description: "description",
             name: "name",
         });
@@ -256,7 +256,7 @@ describe("CreditsClient", () => {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 currencyPrices: [
                     {
-                        currency: "currency",
+                        currency: "aed",
                     },
                 ],
                 defaultExpiryUnit: "billing_periods",
@@ -269,7 +269,7 @@ describe("CreditsClient", () => {
                 name: "name",
                 pluralName: "plural_name",
                 price: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -306,7 +306,7 @@ describe("CreditsClient", () => {
     test("createBillingCredit (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { currency: "currency", description: "description", name: "name" };
+        const rawRequestBody = { currency: "aed", description: "description", name: "name" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -320,7 +320,7 @@ describe("CreditsClient", () => {
 
         await expect(async () => {
             return await client.credits.createBillingCredit({
-                currency: "currency",
+                currency: "aed",
                 description: "description",
                 name: "name",
             });
@@ -330,7 +330,7 @@ describe("CreditsClient", () => {
     test("createBillingCredit (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { currency: "currency", description: "description", name: "name" };
+        const rawRequestBody = { currency: "aed", description: "description", name: "name" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -344,7 +344,7 @@ describe("CreditsClient", () => {
 
         await expect(async () => {
             return await client.credits.createBillingCredit({
-                currency: "currency",
+                currency: "aed",
                 description: "description",
                 name: "name",
             });
@@ -354,7 +354,7 @@ describe("CreditsClient", () => {
     test("createBillingCredit (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { currency: "currency", description: "description", name: "name" };
+        const rawRequestBody = { currency: "aed", description: "description", name: "name" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -368,7 +368,7 @@ describe("CreditsClient", () => {
 
         await expect(async () => {
             return await client.credits.createBillingCredit({
-                currency: "currency",
+                currency: "aed",
                 description: "description",
                 name: "name",
             });
@@ -378,7 +378,7 @@ describe("CreditsClient", () => {
     test("createBillingCredit (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { currency: "currency", description: "description", name: "name" };
+        const rawRequestBody = { currency: "aed", description: "description", name: "name" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -392,7 +392,7 @@ describe("CreditsClient", () => {
 
         await expect(async () => {
             return await client.credits.createBillingCredit({
-                currency: "currency",
+                currency: "aed",
                 description: "description",
                 name: "name",
             });
@@ -402,7 +402,7 @@ describe("CreditsClient", () => {
     test("createBillingCredit (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { currency: "currency", description: "description", name: "name" };
+        const rawRequestBody = { currency: "aed", description: "description", name: "name" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -416,7 +416,7 @@ describe("CreditsClient", () => {
 
         await expect(async () => {
             return await client.credits.createBillingCredit({
-                currency: "currency",
+                currency: "aed",
                 description: "description",
                 name: "name",
             });
@@ -432,7 +432,7 @@ describe("CreditsClient", () => {
                 burn_strategy: "expiration_priority",
                 cost_editable: true,
                 created_at: "2024-01-15T09:30:00Z",
-                currency_prices: [{ currency: "currency" }],
+                currency_prices: [{ currency: "aed" }],
                 default_expiry_unit: "billing_periods",
                 default_expiry_unit_count: 1000000,
                 default_rollover_policy: "expire",
@@ -443,7 +443,7 @@ describe("CreditsClient", () => {
                 name: "name",
                 plural_name: "plural_name",
                 price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -490,7 +490,7 @@ describe("CreditsClient", () => {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 currencyPrices: [
                     {
-                        currency: "currency",
+                        currency: "aed",
                     },
                 ],
                 defaultExpiryUnit: "billing_periods",
@@ -503,7 +503,7 @@ describe("CreditsClient", () => {
                 name: "name",
                 pluralName: "plural_name",
                 price: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -622,7 +622,7 @@ describe("CreditsClient", () => {
                 burn_strategy: "expiration_priority",
                 cost_editable: true,
                 created_at: "2024-01-15T09:30:00Z",
-                currency_prices: [{ currency: "currency" }],
+                currency_prices: [{ currency: "aed" }],
                 default_expiry_unit: "billing_periods",
                 default_expiry_unit_count: 1000000,
                 default_rollover_policy: "expire",
@@ -633,7 +633,7 @@ describe("CreditsClient", () => {
                 name: "name",
                 plural_name: "plural_name",
                 price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -684,7 +684,7 @@ describe("CreditsClient", () => {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 currencyPrices: [
                     {
-                        currency: "currency",
+                        currency: "aed",
                     },
                 ],
                 defaultExpiryUnit: "billing_periods",
@@ -697,7 +697,7 @@ describe("CreditsClient", () => {
                 name: "name",
                 pluralName: "plural_name",
                 price: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -1117,6 +1117,177 @@ describe("CreditsClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("getCreditBalanceTimeSeries (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                balance_points: [
+                    {
+                        balance: 1.1,
+                        consumed: 1.1,
+                        consumed_by_feature: [{ amount: 1.1, feature_id: "feature_id", feature_name: "feature_name" }],
+                        timestamp: "2024-01-15T09:30:00Z",
+                    },
+                ],
+                billing_credit_id: "billing_credit_id",
+                events: [{ amount: 1.1, event_type: "adjustment", timestamp: "2024-01-15T09:30:00Z" }],
+                external: true,
+            },
+            params: {
+                billing_credit_id: "billing_credit_id",
+                company_id: "company_id",
+                end_time: "2024-01-15T09:30:00Z",
+                start_time: "2024-01-15T09:30:00Z",
+            },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/balance-timeseries")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.credits.getCreditBalanceTimeSeries({
+            billingCreditId: "billing_credit_id",
+            companyId: "company_id",
+            endTime: new Date("2024-01-15T09:30:00.000Z"),
+            startTime: new Date("2024-01-15T09:30:00.000Z"),
+        });
+        expect(response).toEqual({
+            data: {
+                balancePoints: [
+                    {
+                        balance: 1.1,
+                        consumed: 1.1,
+                        consumedByFeature: [
+                            {
+                                amount: 1.1,
+                                featureId: "feature_id",
+                                featureName: "feature_name",
+                            },
+                        ],
+                        timestamp: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                ],
+                billingCreditId: "billing_credit_id",
+                events: [
+                    {
+                        amount: 1.1,
+                        eventType: "adjustment",
+                        timestamp: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                ],
+                external: true,
+            },
+            params: {
+                billingCreditId: "billing_credit_id",
+                companyId: "company_id",
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+            },
+        });
+    });
+
+    test("getCreditBalanceTimeSeries (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/balance-timeseries")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.getCreditBalanceTimeSeries({
+                billingCreditId: "billing_credit_id",
+                companyId: "company_id",
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getCreditBalanceTimeSeries (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/balance-timeseries")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.getCreditBalanceTimeSeries({
+                billingCreditId: "billing_credit_id",
+                companyId: "company_id",
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getCreditBalanceTimeSeries (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/balance-timeseries")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.getCreditBalanceTimeSeries({
+                billingCreditId: "billing_credit_id",
+                companyId: "company_id",
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getCreditBalanceTimeSeries (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/billing/credits/balance-timeseries")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.credits.getCreditBalanceTimeSeries({
+                billingCreditId: "billing_credit_id",
+                companyId: "company_id",
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("listCreditBundles (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -1132,7 +1303,7 @@ describe("CreditsClient", () => {
                     credit_icon: "credit_icon",
                     credit_id: "credit_id",
                     credit_name: "credit_name",
-                    currency_prices: [{ currency: "currency" }],
+                    currency_prices: [{ currency: "aed" }],
                     expiry_type: "duration",
                     expiry_unit: "billing_periods",
                     expiry_unit_count: 1000000,
@@ -1141,7 +1312,7 @@ describe("CreditsClient", () => {
                     name: "name",
                     plural_name: "plural_name",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -1154,7 +1325,7 @@ describe("CreditsClient", () => {
                     singular_name: "singular_name",
                     status: "active",
                     unit_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -1205,7 +1376,7 @@ describe("CreditsClient", () => {
                     creditName: "credit_name",
                     currencyPrices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                         },
                     ],
                     expiryType: "duration",
@@ -1216,7 +1387,7 @@ describe("CreditsClient", () => {
                     name: "name",
                     pluralName: "plural_name",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -1229,7 +1400,7 @@ describe("CreditsClient", () => {
                     singularName: "singular_name",
                     status: "active",
                     unitPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -1353,7 +1524,7 @@ describe("CreditsClient", () => {
         const rawRequestBody = {
             bundle_name: "bundle_name",
             credit_id: "credit_id",
-            currency: "currency",
+            currency: "aed",
             price_per_unit: 1000000,
         };
         const rawResponseBody = {
@@ -1366,7 +1537,7 @@ describe("CreditsClient", () => {
                 credit_icon: "credit_icon",
                 credit_id: "credit_id",
                 credit_name: "credit_name",
-                currency_prices: [{ currency: "currency" }],
+                currency_prices: [{ currency: "aed" }],
                 expiry_type: "duration",
                 expiry_unit: "billing_periods",
                 expiry_unit_count: 1000000,
@@ -1375,7 +1546,7 @@ describe("CreditsClient", () => {
                 name: "name",
                 plural_name: "plural_name",
                 price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -1390,7 +1561,7 @@ describe("CreditsClient", () => {
                 singular_name: "singular_name",
                 status: "active",
                 unit_price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -1418,7 +1589,7 @@ describe("CreditsClient", () => {
         const response = await client.credits.createCreditBundle({
             bundleName: "bundle_name",
             creditId: "credit_id",
-            currency: "currency",
+            currency: "aed",
             pricePerUnit: 1000000,
         });
         expect(response).toEqual({
@@ -1433,7 +1604,7 @@ describe("CreditsClient", () => {
                 creditName: "credit_name",
                 currencyPrices: [
                     {
-                        currency: "currency",
+                        currency: "aed",
                     },
                 ],
                 expiryType: "duration",
@@ -1444,7 +1615,7 @@ describe("CreditsClient", () => {
                 name: "name",
                 pluralName: "plural_name",
                 price: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -1459,7 +1630,7 @@ describe("CreditsClient", () => {
                 singularName: "singular_name",
                 status: "active",
                 unitPrice: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -1484,7 +1655,7 @@ describe("CreditsClient", () => {
         const rawRequestBody = {
             bundle_name: "bundle_name",
             credit_id: "credit_id",
-            currency: "foo",
+            currency: "aed",
             price_per_unit: 1000000,
         };
         const rawResponseBody = { error: "error" };
@@ -1502,7 +1673,7 @@ describe("CreditsClient", () => {
             return await client.credits.createCreditBundle({
                 bundleName: "bundle_name",
                 creditId: "credit_id",
-                currency: "foo",
+                currency: "aed",
                 pricePerUnit: 1000000,
             });
         }).rejects.toThrow(Schematic.BadRequestError);
@@ -1514,7 +1685,7 @@ describe("CreditsClient", () => {
         const rawRequestBody = {
             bundle_name: "bundle_name",
             credit_id: "credit_id",
-            currency: "foo",
+            currency: "aed",
             price_per_unit: 1000000,
         };
         const rawResponseBody = { error: "error" };
@@ -1532,7 +1703,7 @@ describe("CreditsClient", () => {
             return await client.credits.createCreditBundle({
                 bundleName: "bundle_name",
                 creditId: "credit_id",
-                currency: "foo",
+                currency: "aed",
                 pricePerUnit: 1000000,
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
@@ -1544,7 +1715,7 @@ describe("CreditsClient", () => {
         const rawRequestBody = {
             bundle_name: "bundle_name",
             credit_id: "credit_id",
-            currency: "foo",
+            currency: "aed",
             price_per_unit: 1000000,
         };
         const rawResponseBody = { error: "error" };
@@ -1562,7 +1733,7 @@ describe("CreditsClient", () => {
             return await client.credits.createCreditBundle({
                 bundleName: "bundle_name",
                 creditId: "credit_id",
-                currency: "foo",
+                currency: "aed",
                 pricePerUnit: 1000000,
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
@@ -1574,7 +1745,7 @@ describe("CreditsClient", () => {
         const rawRequestBody = {
             bundle_name: "bundle_name",
             credit_id: "credit_id",
-            currency: "foo",
+            currency: "aed",
             price_per_unit: 1000000,
         };
         const rawResponseBody = { error: "error" };
@@ -1592,7 +1763,7 @@ describe("CreditsClient", () => {
             return await client.credits.createCreditBundle({
                 bundleName: "bundle_name",
                 creditId: "credit_id",
-                currency: "foo",
+                currency: "aed",
                 pricePerUnit: 1000000,
             });
         }).rejects.toThrow(Schematic.NotFoundError);
@@ -1604,7 +1775,7 @@ describe("CreditsClient", () => {
         const rawRequestBody = {
             bundle_name: "bundle_name",
             credit_id: "credit_id",
-            currency: "foo",
+            currency: "aed",
             price_per_unit: 1000000,
         };
         const rawResponseBody = { error: "error" };
@@ -1622,7 +1793,7 @@ describe("CreditsClient", () => {
             return await client.credits.createCreditBundle({
                 bundleName: "bundle_name",
                 creditId: "credit_id",
-                currency: "foo",
+                currency: "aed",
                 pricePerUnit: 1000000,
             });
         }).rejects.toThrow(Schematic.InternalServerError);
@@ -1642,7 +1813,7 @@ describe("CreditsClient", () => {
                 credit_icon: "credit_icon",
                 credit_id: "credit_id",
                 credit_name: "credit_name",
-                currency_prices: [{ currency: "currency" }],
+                currency_prices: [{ currency: "aed" }],
                 expiry_type: "duration",
                 expiry_unit: "billing_periods",
                 expiry_unit_count: 1000000,
@@ -1651,7 +1822,7 @@ describe("CreditsClient", () => {
                 name: "name",
                 plural_name: "plural_name",
                 price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -1666,7 +1837,7 @@ describe("CreditsClient", () => {
                 singular_name: "singular_name",
                 status: "active",
                 unit_price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -1703,7 +1874,7 @@ describe("CreditsClient", () => {
                 creditName: "credit_name",
                 currencyPrices: [
                     {
-                        currency: "currency",
+                        currency: "aed",
                     },
                 ],
                 expiryType: "duration",
@@ -1714,7 +1885,7 @@ describe("CreditsClient", () => {
                 name: "name",
                 pluralName: "plural_name",
                 price: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -1729,7 +1900,7 @@ describe("CreditsClient", () => {
                 singularName: "singular_name",
                 status: "active",
                 unitPrice: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -1838,7 +2009,7 @@ describe("CreditsClient", () => {
                 credit_icon: "credit_icon",
                 credit_id: "credit_id",
                 credit_name: "credit_name",
-                currency_prices: [{ currency: "currency" }],
+                currency_prices: [{ currency: "aed" }],
                 expiry_type: "duration",
                 expiry_unit: "billing_periods",
                 expiry_unit_count: 1000000,
@@ -1847,7 +2018,7 @@ describe("CreditsClient", () => {
                 name: "name",
                 plural_name: "plural_name",
                 price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -1862,7 +2033,7 @@ describe("CreditsClient", () => {
                 singular_name: "singular_name",
                 status: "active",
                 unit_price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -1903,7 +2074,7 @@ describe("CreditsClient", () => {
                 creditName: "credit_name",
                 currencyPrices: [
                     {
-                        currency: "currency",
+                        currency: "aed",
                     },
                 ],
                 expiryType: "duration",
@@ -1914,7 +2085,7 @@ describe("CreditsClient", () => {
                 name: "name",
                 pluralName: "plural_name",
                 price: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -1929,7 +2100,7 @@ describe("CreditsClient", () => {
                 singularName: "singular_name",
                 status: "active",
                 unitPrice: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -2470,7 +2641,7 @@ describe("CreditsClient", () => {
                 credit_icon: "credit_icon",
                 credit_id: "credit_id",
                 credit_name: "credit_name",
-                currency: "currency",
+                currency: "aed",
                 expires_at: "2024-01-15T09:30:00Z",
                 grant_reason: "adjustment",
                 id: "id",
@@ -2478,10 +2649,10 @@ describe("CreditsClient", () => {
                 plan_id: "plan_id",
                 plan_name: "plan_name",
                 postpaid_charge_amount: 1000000,
-                postpaid_charge_currency: "postpaid_charge_currency",
+                postpaid_charge_currency: "aed",
                 postpaid_charged_credits: 1.1,
                 price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -2539,7 +2710,7 @@ describe("CreditsClient", () => {
                 creditIcon: "credit_icon",
                 creditId: "credit_id",
                 creditName: "credit_name",
-                currency: "currency",
+                currency: "aed",
                 expiresAt: new Date("2024-01-15T09:30:00.000Z"),
                 grantReason: "adjustment",
                 id: "id",
@@ -2547,10 +2718,10 @@ describe("CreditsClient", () => {
                 planId: "plan_id",
                 planName: "plan_name",
                 postpaidChargeAmount: 1000000,
-                postpaidChargeCurrency: "postpaid_charge_currency",
+                postpaidChargeCurrency: "aed",
                 postpaidChargedCredits: 1.1,
                 price: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -2710,7 +2881,7 @@ describe("CreditsClient", () => {
                 credit_icon: "credit_icon",
                 credit_id: "credit_id",
                 credit_name: "credit_name",
-                currency: "currency",
+                currency: "aed",
                 expires_at: "2024-01-15T09:30:00Z",
                 grant_reason: "adjustment",
                 id: "id",
@@ -2718,10 +2889,10 @@ describe("CreditsClient", () => {
                 plan_id: "plan_id",
                 plan_name: "plan_name",
                 postpaid_charge_amount: 1000000,
-                postpaid_charge_currency: "postpaid_charge_currency",
+                postpaid_charge_currency: "aed",
                 postpaid_charged_credits: 1.1,
                 price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -2784,7 +2955,7 @@ describe("CreditsClient", () => {
                 creditIcon: "credit_icon",
                 creditId: "credit_id",
                 creditName: "credit_name",
-                currency: "currency",
+                currency: "aed",
                 expiresAt: new Date("2024-01-15T09:30:00.000Z"),
                 grantReason: "adjustment",
                 id: "id",
@@ -2792,10 +2963,10 @@ describe("CreditsClient", () => {
                 planId: "plan_id",
                 planName: "plan_name",
                 postpaidChargeAmount: 1000000,
-                postpaidChargeCurrency: "postpaid_charge_currency",
+                postpaidChargeCurrency: "aed",
                 postpaidChargedCredits: 1.1,
                 price: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -3144,7 +3315,7 @@ describe("CreditsClient", () => {
                     credit_icon: "credit_icon",
                     credit_id: "credit_id",
                     credit_name: "credit_name",
-                    currency: "currency",
+                    currency: "aed",
                     expires_at: "2024-01-15T09:30:00Z",
                     grant_reason: "adjustment",
                     id: "id",
@@ -3152,10 +3323,10 @@ describe("CreditsClient", () => {
                     plan_id: "plan_id",
                     plan_name: "plan_name",
                     postpaid_charge_amount: 1000000,
-                    postpaid_charge_currency: "postpaid_charge_currency",
+                    postpaid_charge_currency: "aed",
                     postpaid_charged_credits: 1.1,
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -3218,7 +3389,7 @@ describe("CreditsClient", () => {
                     creditIcon: "credit_icon",
                     creditId: "credit_id",
                     creditName: "credit_name",
-                    currency: "currency",
+                    currency: "aed",
                     expiresAt: new Date("2024-01-15T09:30:00.000Z"),
                     grantReason: "adjustment",
                     id: "id",
@@ -3226,10 +3397,10 @@ describe("CreditsClient", () => {
                     planId: "plan_id",
                     planName: "plan_name",
                     postpaidChargeAmount: 1000000,
-                    postpaidChargeCurrency: "postpaid_charge_currency",
+                    postpaidChargeCurrency: "aed",
                     postpaidChargedCredits: 1.1,
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -3524,7 +3695,7 @@ describe("CreditsClient", () => {
                     credit_icon: "credit_icon",
                     credit_id: "credit_id",
                     credit_name: "credit_name",
-                    currency: "currency",
+                    currency: "aed",
                     expires_at: "2024-01-15T09:30:00Z",
                     grant_reason: "adjustment",
                     id: "id",
@@ -3532,10 +3703,10 @@ describe("CreditsClient", () => {
                     plan_id: "plan_id",
                     plan_name: "plan_name",
                     postpaid_charge_amount: 1000000,
-                    postpaid_charge_currency: "postpaid_charge_currency",
+                    postpaid_charge_currency: "aed",
                     postpaid_charged_credits: 1.1,
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -3597,7 +3768,7 @@ describe("CreditsClient", () => {
                     creditIcon: "credit_icon",
                     creditId: "credit_id",
                     creditName: "credit_name",
-                    currency: "currency",
+                    currency: "aed",
                     expiresAt: new Date("2024-01-15T09:30:00.000Z"),
                     grantReason: "adjustment",
                     id: "id",
@@ -3605,10 +3776,10 @@ describe("CreditsClient", () => {
                     planId: "plan_id",
                     planName: "plan_name",
                     postpaidChargeAmount: 1000000,
-                    postpaidChargeCurrency: "postpaid_charge_currency",
+                    postpaidChargeCurrency: "aed",
                     postpaidChargedCredits: 1.1,
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -4314,7 +4485,7 @@ describe("CreditsClient", () => {
                         burn_strategy: "expiration_priority",
                         cost_editable: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         default_expiry_unit: "billing_periods",
                         default_rollover_policy: "expire",
                         description: "description",
@@ -4340,7 +4511,7 @@ describe("CreditsClient", () => {
                     postpaid_rate_per_unit: 1000000,
                     postpaid_rate_per_unit_decimal: "postpaid_rate_per_unit_decimal",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -4416,7 +4587,7 @@ describe("CreditsClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         defaultExpiryUnit: "billing_periods",
@@ -4447,7 +4618,7 @@ describe("CreditsClient", () => {
                     postpaidRatePerUnit: 1000000,
                     postpaidRatePerUnitDecimal: "postpaid_rate_per_unit_decimal",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -4612,7 +4783,7 @@ describe("CreditsClient", () => {
                     burn_strategy: "expiration_priority",
                     cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
-                    currency_prices: [{ currency: "currency" }],
+                    currency_prices: [{ currency: "aed" }],
                     default_expiry_unit: "billing_periods",
                     default_expiry_unit_count: 1000000,
                     default_rollover_policy: "expire",
@@ -4623,7 +4794,7 @@ describe("CreditsClient", () => {
                     name: "name",
                     plural_name: "plural_name",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -4665,7 +4836,7 @@ describe("CreditsClient", () => {
                 postpaid_rate_per_unit: 1000000,
                 postpaid_rate_per_unit_decimal: "postpaid_rate_per_unit_decimal",
                 price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -4730,7 +4901,7 @@ describe("CreditsClient", () => {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     currencyPrices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                         },
                     ],
                     defaultExpiryUnit: "billing_periods",
@@ -4743,7 +4914,7 @@ describe("CreditsClient", () => {
                     name: "name",
                     pluralName: "plural_name",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -4790,7 +4961,7 @@ describe("CreditsClient", () => {
                 postpaidRatePerUnit: 1000000,
                 postpaidRatePerUnitDecimal: "postpaid_rate_per_unit_decimal",
                 price: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -5008,7 +5179,7 @@ describe("CreditsClient", () => {
                     burn_strategy: "expiration_priority",
                     cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
-                    currency_prices: [{ currency: "currency" }],
+                    currency_prices: [{ currency: "aed" }],
                     default_expiry_unit: "billing_periods",
                     default_expiry_unit_count: 1000000,
                     default_rollover_policy: "expire",
@@ -5019,7 +5190,7 @@ describe("CreditsClient", () => {
                     name: "name",
                     plural_name: "plural_name",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -5061,7 +5232,7 @@ describe("CreditsClient", () => {
                 postpaid_rate_per_unit: 1000000,
                 postpaid_rate_per_unit_decimal: "postpaid_rate_per_unit_decimal",
                 price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -5119,7 +5290,7 @@ describe("CreditsClient", () => {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     currencyPrices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                         },
                     ],
                     defaultExpiryUnit: "billing_periods",
@@ -5132,7 +5303,7 @@ describe("CreditsClient", () => {
                     name: "name",
                     pluralName: "plural_name",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -5179,7 +5350,7 @@ describe("CreditsClient", () => {
                 postpaidRatePerUnit: 1000000,
                 postpaidRatePerUnitDecimal: "postpaid_rate_per_unit_decimal",
                 price: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -5313,7 +5484,7 @@ describe("CreditsClient", () => {
                     burn_strategy: "expiration_priority",
                     cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
-                    currency_prices: [{ currency: "currency" }],
+                    currency_prices: [{ currency: "aed" }],
                     default_expiry_unit: "billing_periods",
                     default_expiry_unit_count: 1000000,
                     default_rollover_policy: "expire",
@@ -5324,7 +5495,7 @@ describe("CreditsClient", () => {
                     name: "name",
                     plural_name: "plural_name",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -5366,7 +5537,7 @@ describe("CreditsClient", () => {
                 postpaid_rate_per_unit: 1000000,
                 postpaid_rate_per_unit_decimal: "postpaid_rate_per_unit_decimal",
                 price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -5428,7 +5599,7 @@ describe("CreditsClient", () => {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     currencyPrices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                         },
                     ],
                     defaultExpiryUnit: "billing_periods",
@@ -5441,7 +5612,7 @@ describe("CreditsClient", () => {
                     name: "name",
                     pluralName: "plural_name",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -5488,7 +5659,7 @@ describe("CreditsClient", () => {
                 postpaidRatePerUnit: 1000000,
                 postpaidRatePerUnitDecimal: "postpaid_rate_per_unit_decimal",
                 price: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -7333,14 +7504,16 @@ describe("CreditsClient", () => {
                     auto_topup_log_id: "auto_topup_log_id",
                     billing_credit_bundle_id: "billing_credit_bundle_id",
                     billing_credit_id: "billing_credit_id",
+                    burn_breakdown: [{ credits: 1.1, key: "key", quantity: 1.1, rate: 1.1 }],
                     company: { id: "id", name: "name" },
                     company_id: "company_id",
                     credit: { id: "id", name: "name" },
                     credit_name: "credit_name",
-                    currency: "currency",
+                    currency: "aed",
                     environment_id: "environment_id",
                     event_at: "2024-01-15T09:30:00Z",
                     event_id: "event_id",
+                    event_ids: ["event_ids"],
                     event_type: "adjustment",
                     expiry_type: "duration",
                     expiry_unit: "billing_periods",
@@ -7362,7 +7535,7 @@ describe("CreditsClient", () => {
                     to_grant_id: "to_grant_id",
                     transfer_reason: "overdraft_recovery",
                     usage_event_id: "usage_event_id",
-                    usage_reason: "lease_hold",
+                    usage_reason: "inference",
                     user_id: "user_id",
                     zeroed_out_reason: "customer_archived",
                 },
@@ -7404,6 +7577,14 @@ describe("CreditsClient", () => {
                     autoTopupLogId: "auto_topup_log_id",
                     billingCreditBundleId: "billing_credit_bundle_id",
                     billingCreditId: "billing_credit_id",
+                    burnBreakdown: [
+                        {
+                            credits: 1.1,
+                            key: "key",
+                            quantity: 1.1,
+                            rate: 1.1,
+                        },
+                    ],
                     company: {
                         id: "id",
                         name: "name",
@@ -7414,10 +7595,11 @@ describe("CreditsClient", () => {
                         name: "name",
                     },
                     creditName: "credit_name",
-                    currency: "currency",
+                    currency: "aed",
                     environmentId: "environment_id",
                     eventAt: new Date("2024-01-15T09:30:00.000Z"),
                     eventId: "event_id",
+                    eventIds: ["event_ids"],
                     eventType: "adjustment",
                     expiryType: "duration",
                     expiryUnit: "billing_periods",
@@ -7442,7 +7624,7 @@ describe("CreditsClient", () => {
                     toGrantId: "to_grant_id",
                     transferReason: "overdraft_recovery",
                     usageEventId: "usage_event_id",
-                    usageReason: "lease_hold",
+                    usageReason: "inference",
                     userId: "user_id",
                     zeroedOutReason: "customer_archived",
                 },

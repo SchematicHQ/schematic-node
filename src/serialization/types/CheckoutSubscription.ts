@@ -5,6 +5,7 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingProviderType } from "./BillingProviderType";
 import { BillingSubscriptionTrialEndSetting } from "./BillingSubscriptionTrialEndSetting";
+import { Currency } from "./Currency";
 
 export const CheckoutSubscription: core.serialization.ObjectSchema<
     serializers.CheckoutSubscription.Raw,
@@ -23,7 +24,7 @@ export const CheckoutSubscription: core.serialization.ObjectSchema<
         core.serialization.string().optional(),
     ),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
-    currency: core.serialization.string(),
+    currency: Currency,
     customerExternalId: core.serialization.property("customer_external_id", core.serialization.string()),
     defaultPaymentMethodId: core.serialization.property(
         "default_payment_method_id",
@@ -54,7 +55,7 @@ export declare namespace CheckoutSubscription {
         confirm_payment_intent_client_secret?: string | null;
         confirm_payment_intent_id?: string | null;
         created_at: string;
-        currency: string;
+        currency: Currency.Raw;
         customer_external_id: string;
         default_payment_method_id?: string | null;
         expired_at?: string | null;

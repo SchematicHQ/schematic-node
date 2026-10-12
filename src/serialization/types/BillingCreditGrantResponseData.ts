@@ -8,6 +8,7 @@ import { BillingCreditGrantZeroedOutReason } from "./BillingCreditGrantZeroedOut
 import { BillingPlanCreditGrantResetCadence } from "./BillingPlanCreditGrantResetCadence";
 import { BillingPriceResponseData } from "./BillingPriceResponseData";
 import { CreditTransferResponseData } from "./CreditTransferResponseData";
+import { Currency } from "./Currency";
 
 export const BillingCreditGrantResponseData: core.serialization.ObjectSchema<
     serializers.BillingCreditGrantResponseData.Raw,
@@ -21,7 +22,7 @@ export const BillingCreditGrantResponseData: core.serialization.ObjectSchema<
     creditIcon: core.serialization.property("credit_icon", core.serialization.string().optional()),
     creditId: core.serialization.property("credit_id", core.serialization.string()),
     creditName: core.serialization.property("credit_name", core.serialization.string()),
-    currency: core.serialization.string().optional(),
+    currency: Currency.optional(),
     expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
     grantReason: core.serialization.property("grant_reason", BillingCreditGrantReason),
     id: core.serialization.string(),
@@ -29,10 +30,7 @@ export const BillingCreditGrantResponseData: core.serialization.ObjectSchema<
     planId: core.serialization.property("plan_id", core.serialization.string().optional()),
     planName: core.serialization.property("plan_name", core.serialization.string().optional()),
     postpaidChargeAmount: core.serialization.property("postpaid_charge_amount", core.serialization.number().optional()),
-    postpaidChargeCurrency: core.serialization.property(
-        "postpaid_charge_currency",
-        core.serialization.string().optional(),
-    ),
+    postpaidChargeCurrency: core.serialization.property("postpaid_charge_currency", Currency.optional()),
     postpaidChargedCredits: core.serialization.property(
         "postpaid_charged_credits",
         core.serialization.number().optional(),
@@ -64,7 +62,7 @@ export declare namespace BillingCreditGrantResponseData {
         credit_icon?: string | null;
         credit_id: string;
         credit_name: string;
-        currency?: string | null;
+        currency?: Currency.Raw | null;
         expires_at?: string | null;
         grant_reason: BillingCreditGrantReason.Raw;
         id: string;
@@ -72,7 +70,7 @@ export declare namespace BillingCreditGrantResponseData {
         plan_id?: string | null;
         plan_name?: string | null;
         postpaid_charge_amount?: number | null;
-        postpaid_charge_currency?: string | null;
+        postpaid_charge_currency?: Currency.Raw | null;
         postpaid_charged_credits?: number | null;
         price?: BillingPriceResponseData.Raw | null;
         quantity: number;

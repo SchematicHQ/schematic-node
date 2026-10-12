@@ -932,7 +932,7 @@ describe("ComponentsClient", () => {
                                 burn_strategy: "expiration_priority",
                                 cost_editable: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency_prices: [{ currency: "currency" }],
+                                currency_prices: [{ currency: "aed" }],
                                 default_expiry_unit: "billing_periods",
                                 default_rollover_policy: "expire",
                                 description: "description",
@@ -942,7 +942,7 @@ describe("ComponentsClient", () => {
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
                         ],
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         current: true,
                         custom: true,
                         description: "description",
@@ -950,6 +950,7 @@ describe("ComponentsClient", () => {
                             {
                                 created_at: "2024-01-15T09:30:00Z",
                                 description: "description",
+                                event_source: "inference",
                                 feature_type: "boolean",
                                 flags: [
                                     {
@@ -1088,7 +1089,7 @@ describe("ComponentsClient", () => {
                                 burn_strategy: "expiration_priority",
                                 cost_editable: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency_prices: [{ currency: "currency" }],
+                                currency_prices: [{ currency: "aed" }],
                                 default_expiry_unit: "billing_periods",
                                 default_rollover_policy: "expire",
                                 description: "description",
@@ -1098,7 +1099,7 @@ describe("ComponentsClient", () => {
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
                         ],
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         current: true,
                         custom: true,
                         description: "description",
@@ -1106,6 +1107,7 @@ describe("ComponentsClient", () => {
                             {
                                 created_at: "2024-01-15T09:30:00Z",
                                 description: "description",
+                                event_source: "inference",
                                 feature_type: "boolean",
                                 flags: [
                                     {
@@ -1300,7 +1302,7 @@ describe("ComponentsClient", () => {
                     billing_subscription: {
                         cancel_at_period_end: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         discounts: [
                             {
@@ -1321,7 +1323,7 @@ describe("ComponentsClient", () => {
                             {
                                 billing_scheme: "per_unit",
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 environment_id: "environment_id",
                                 external_id: "external_id",
                                 id: "id",
@@ -1348,7 +1350,7 @@ describe("ComponentsClient", () => {
                         {
                             cancel_at_period_end: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             customer_external_id: "customer_external_id",
                             discounts: [
                                 {
@@ -1369,7 +1371,7 @@ describe("ComponentsClient", () => {
                                 {
                                     billing_scheme: "per_unit",
                                     created_at: "2024-01-15T09:30:00Z",
-                                    currency: "currency",
+                                    currency: "aed",
                                     environment_id: "environment_id",
                                     external_id: "external_id",
                                     id: "id",
@@ -1401,8 +1403,16 @@ describe("ComponentsClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             days_until_due: 1000000,
                             id: "id",
-                            plan_billing_source: "custom_plan",
+                            plan_billing_source: "amendment",
                             plan_id: "plan_id",
+                            problems: [
+                                {
+                                    blocking: true,
+                                    code: "add_on_conflicts_with_plan",
+                                    message: "message",
+                                    source: "provider",
+                                },
+                            ],
                             send_invoice: true,
                             status: "active",
                             updated_at: "2024-01-15T09:30:00Z",
@@ -1544,7 +1554,7 @@ describe("ComponentsClient", () => {
                         },
                     ],
                     scheduled_downgrade: {
-                        currency: "currency",
+                        currency: "aed",
                         effective_after: "2024-01-15T09:30:00Z",
                         from_plan_id: "from_plan_id",
                         from_plan_name: "from_plan_name",
@@ -1575,7 +1585,7 @@ describe("ComponentsClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         credit_id: "credit_id",
                         credit_name: "credit_name",
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         expiry_type: "duration",
                         expiry_unit: "billing_periods",
                         has_grants: true,
@@ -1640,7 +1650,7 @@ describe("ComponentsClient", () => {
                         price: 1.1,
                         prices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                                 external_price_id: "external_price_id",
                                 id: "id",
                                 interval: "day",
@@ -1671,7 +1681,7 @@ describe("ComponentsClient", () => {
                             burn_strategy: "expiration_priority",
                             cost_editable: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            currency_prices: [{ currency: "currency" }],
+                            currency_prices: [{ currency: "aed" }],
                             default_expiry_unit: "billing_periods",
                             default_rollover_policy: "expire",
                             description: "description",
@@ -1681,7 +1691,7 @@ describe("ComponentsClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
-                    currency_prices: [{ currency: "currency" }],
+                    currency_prices: [{ currency: "aed" }],
                     description: "description",
                     draft_version: {
                         created_at: "2024-01-15T09:30:00Z",
@@ -1698,7 +1708,7 @@ describe("ComponentsClient", () => {
                     entitlements: [
                         {
                             created_at: "2024-01-15T09:30:00Z",
-                            currency_prices: [{ currency: "currency" }],
+                            currency_prices: [{ currency: "aed" }],
                             environment_id: "environment_id",
                             feature_id: "feature_id",
                             id: "id",
@@ -1713,6 +1723,7 @@ describe("ComponentsClient", () => {
                         {
                             created_at: "2024-01-15T09:30:00Z",
                             description: "description",
+                            event_source: "inference",
                             feature_type: "boolean",
                             flags: [
                                 {
@@ -1809,7 +1820,7 @@ describe("ComponentsClient", () => {
                     is_default: true,
                     is_trialable: true,
                     monthly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -1820,7 +1831,7 @@ describe("ComponentsClient", () => {
                     },
                     name: "name",
                     one_time_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -1831,7 +1842,7 @@ describe("ComponentsClient", () => {
                     },
                     plan_type: "plan",
                     quarterly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -1857,7 +1868,7 @@ describe("ComponentsClient", () => {
                         },
                     ],
                     yearly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -1893,7 +1904,7 @@ describe("ComponentsClient", () => {
                         amount_remaining: 1000000,
                         collection_method: "collection_method",
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         ending_balance: 1000000,
                         environment_id: "environment_id",
@@ -1932,7 +1943,7 @@ describe("ComponentsClient", () => {
                         price: 1.1,
                         prices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                                 external_price_id: "external_price_id",
                                 id: "id",
                                 interval: "day",
@@ -1963,7 +1974,7 @@ describe("ComponentsClient", () => {
                             burn_strategy: "expiration_priority",
                             cost_editable: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            currency_prices: [{ currency: "currency" }],
+                            currency_prices: [{ currency: "aed" }],
                             default_expiry_unit: "billing_periods",
                             default_rollover_policy: "expire",
                             description: "description",
@@ -1973,7 +1984,7 @@ describe("ComponentsClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
-                    currency_prices: [{ currency: "currency" }],
+                    currency_prices: [{ currency: "aed" }],
                     description: "description",
                     draft_version: {
                         created_at: "2024-01-15T09:30:00Z",
@@ -1990,7 +2001,7 @@ describe("ComponentsClient", () => {
                     entitlements: [
                         {
                             created_at: "2024-01-15T09:30:00Z",
-                            currency_prices: [{ currency: "currency" }],
+                            currency_prices: [{ currency: "aed" }],
                             environment_id: "environment_id",
                             feature_id: "feature_id",
                             id: "id",
@@ -2005,6 +2016,7 @@ describe("ComponentsClient", () => {
                         {
                             created_at: "2024-01-15T09:30:00Z",
                             description: "description",
+                            event_source: "inference",
                             feature_type: "boolean",
                             flags: [
                                 {
@@ -2101,7 +2113,7 @@ describe("ComponentsClient", () => {
                     is_default: true,
                     is_trialable: true,
                     monthly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2112,7 +2124,7 @@ describe("ComponentsClient", () => {
                     },
                     name: "name",
                     one_time_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2123,7 +2135,7 @@ describe("ComponentsClient", () => {
                     },
                     plan_type: "plan",
                     quarterly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2149,7 +2161,7 @@ describe("ComponentsClient", () => {
                         },
                     ],
                     yearly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2163,7 +2175,7 @@ describe("ComponentsClient", () => {
                 prevent_self_service_downgrade_button_text: "prevent_self_service_downgrade_button_text",
                 prevent_self_service_downgrade_url: "prevent_self_service_downgrade_url",
                 scheduled_downgrade: {
-                    currency: "currency",
+                    currency: "aed",
                     effective_after: "2024-01-15T09:30:00Z",
                     from_plan_id: "from_plan_id",
                     from_plan_name: "from_plan_name",
@@ -2188,7 +2200,7 @@ describe("ComponentsClient", () => {
                 subscription: {
                     cancel_at: "2024-01-15T09:30:00Z",
                     cancel_at_period_end: true,
-                    currency: "currency",
+                    currency: "aed",
                     customer_external_id: "customer_external_id",
                     discounts: [
                         {
@@ -2210,7 +2222,7 @@ describe("ComponentsClient", () => {
                         amount_remaining: 1000000,
                         collection_method: "collection_method",
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         ending_balance: 1000000,
                         environment_id: "environment_id",
@@ -2234,7 +2246,7 @@ describe("ComponentsClient", () => {
                         {
                             billing_scheme: "per_unit",
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             environment_id: "environment_id",
                             external_id: "external_id",
                             id: "id",
@@ -2266,7 +2278,7 @@ describe("ComponentsClient", () => {
                     collection_method: "collection_method",
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
-                    currency: "currency",
+                    currency: "aed",
                     customer_external_id: "customer_external_id",
                     due_date: "2024-01-15T09:30:00Z",
                     ending_balance: 1000000,
@@ -2317,7 +2329,7 @@ describe("ComponentsClient", () => {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 currencyPrices: [
                                     {
-                                        currency: "currency",
+                                        currency: "aed",
                                     },
                                 ],
                                 defaultExpiryUnit: "billing_periods",
@@ -2331,7 +2343,7 @@ describe("ComponentsClient", () => {
                         ],
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         current: true,
@@ -2341,6 +2353,7 @@ describe("ComponentsClient", () => {
                             {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 description: "description",
+                                eventSource: "inference",
                                 featureType: "boolean",
                                 flags: [
                                     {
@@ -2496,7 +2509,7 @@ describe("ComponentsClient", () => {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 currencyPrices: [
                                     {
-                                        currency: "currency",
+                                        currency: "aed",
                                     },
                                 ],
                                 defaultExpiryUnit: "billing_periods",
@@ -2510,7 +2523,7 @@ describe("ComponentsClient", () => {
                         ],
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         current: true,
@@ -2520,6 +2533,7 @@ describe("ComponentsClient", () => {
                             {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 description: "description",
+                                eventSource: "inference",
                                 featureType: "boolean",
                                 flags: [
                                     {
@@ -2742,7 +2756,7 @@ describe("ComponentsClient", () => {
                     billingSubscription: {
                         cancelAtPeriodEnd: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         discounts: [
                             {
@@ -2763,7 +2777,7 @@ describe("ComponentsClient", () => {
                             {
                                 billingScheme: "per_unit",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 environmentId: "environment_id",
                                 externalId: "external_id",
                                 id: "id",
@@ -2790,7 +2804,7 @@ describe("ComponentsClient", () => {
                         {
                             cancelAtPeriodEnd: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             customerExternalId: "customer_external_id",
                             discounts: [
                                 {
@@ -2811,7 +2825,7 @@ describe("ComponentsClient", () => {
                                 {
                                     billingScheme: "per_unit",
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    currency: "currency",
+                                    currency: "aed",
                                     environmentId: "environment_id",
                                     externalId: "external_id",
                                     id: "id",
@@ -2843,8 +2857,16 @@ describe("ComponentsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             daysUntilDue: 1000000,
                             id: "id",
-                            planBillingSource: "custom_plan",
+                            planBillingSource: "amendment",
                             planId: "plan_id",
+                            problems: [
+                                {
+                                    blocking: true,
+                                    code: "add_on_conflicts_with_plan",
+                                    message: "message",
+                                    source: "provider",
+                                },
+                            ],
                             sendInvoice: true,
                             status: "active",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2997,7 +3019,7 @@ describe("ComponentsClient", () => {
                         },
                     ],
                     scheduledDowngrade: {
-                        currency: "currency",
+                        currency: "aed",
                         effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                         fromPlanId: "from_plan_id",
                         fromPlanName: "from_plan_name",
@@ -3034,7 +3056,7 @@ describe("ComponentsClient", () => {
                         creditName: "credit_name",
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         expiryType: "duration",
@@ -3101,7 +3123,7 @@ describe("ComponentsClient", () => {
                         price: 1.1,
                         prices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                                 externalPriceId: "external_price_id",
                                 id: "id",
                                 interval: "day",
@@ -3139,7 +3161,7 @@ describe("ComponentsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             currencyPrices: [
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                 },
                             ],
                             defaultExpiryUnit: "billing_periods",
@@ -3153,7 +3175,7 @@ describe("ComponentsClient", () => {
                     ],
                     currencyPrices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                         },
                     ],
                     description: "description",
@@ -3174,7 +3196,7 @@ describe("ComponentsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             currencyPrices: [
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                 },
                             ],
                             environmentId: "environment_id",
@@ -3197,6 +3219,7 @@ describe("ComponentsClient", () => {
                         {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             description: "description",
+                            eventSource: "inference",
                             featureType: "boolean",
                             flags: [
                                 {
@@ -3312,7 +3335,7 @@ describe("ComponentsClient", () => {
                     isDefault: true,
                     isTrialable: true,
                     monthlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -3323,7 +3346,7 @@ describe("ComponentsClient", () => {
                     },
                     name: "name",
                     oneTimePrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -3334,7 +3357,7 @@ describe("ComponentsClient", () => {
                     },
                     planType: "plan",
                     quarterlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -3360,7 +3383,7 @@ describe("ComponentsClient", () => {
                         },
                     ],
                     yearlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -3396,7 +3419,7 @@ describe("ComponentsClient", () => {
                         amountRemaining: 1000000,
                         collectionMethod: "collection_method",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         endingBalance: 1000000,
                         environmentId: "environment_id",
@@ -3435,7 +3458,7 @@ describe("ComponentsClient", () => {
                         price: 1.1,
                         prices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                                 externalPriceId: "external_price_id",
                                 id: "id",
                                 interval: "day",
@@ -3473,7 +3496,7 @@ describe("ComponentsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             currencyPrices: [
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                 },
                             ],
                             defaultExpiryUnit: "billing_periods",
@@ -3487,7 +3510,7 @@ describe("ComponentsClient", () => {
                     ],
                     currencyPrices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                         },
                     ],
                     description: "description",
@@ -3508,7 +3531,7 @@ describe("ComponentsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             currencyPrices: [
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                 },
                             ],
                             environmentId: "environment_id",
@@ -3531,6 +3554,7 @@ describe("ComponentsClient", () => {
                         {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             description: "description",
+                            eventSource: "inference",
                             featureType: "boolean",
                             flags: [
                                 {
@@ -3646,7 +3670,7 @@ describe("ComponentsClient", () => {
                     isDefault: true,
                     isTrialable: true,
                     monthlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -3657,7 +3681,7 @@ describe("ComponentsClient", () => {
                     },
                     name: "name",
                     oneTimePrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -3668,7 +3692,7 @@ describe("ComponentsClient", () => {
                     },
                     planType: "plan",
                     quarterlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -3694,7 +3718,7 @@ describe("ComponentsClient", () => {
                         },
                     ],
                     yearlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -3708,7 +3732,7 @@ describe("ComponentsClient", () => {
                 preventSelfServiceDowngradeButtonText: "prevent_self_service_downgrade_button_text",
                 preventSelfServiceDowngradeUrl: "prevent_self_service_downgrade_url",
                 scheduledDowngrade: {
-                    currency: "currency",
+                    currency: "aed",
                     effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                     fromPlanId: "from_plan_id",
                     fromPlanName: "from_plan_name",
@@ -3733,7 +3757,7 @@ describe("ComponentsClient", () => {
                 subscription: {
                     cancelAt: new Date("2024-01-15T09:30:00.000Z"),
                     cancelAtPeriodEnd: true,
-                    currency: "currency",
+                    currency: "aed",
                     customerExternalId: "customer_external_id",
                     discounts: [
                         {
@@ -3755,7 +3779,7 @@ describe("ComponentsClient", () => {
                         amountRemaining: 1000000,
                         collectionMethod: "collection_method",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         endingBalance: 1000000,
                         environmentId: "environment_id",
@@ -3779,7 +3803,7 @@ describe("ComponentsClient", () => {
                         {
                             billingScheme: "per_unit",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             environmentId: "environment_id",
                             externalId: "external_id",
                             id: "id",
@@ -3811,7 +3835,7 @@ describe("ComponentsClient", () => {
                     collectionMethod: "collection_method",
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    currency: "currency",
+                    currency: "aed",
                     customerExternalId: "customer_external_id",
                     dueDate: new Date("2024-01-15T09:30:00.000Z"),
                     endingBalance: 1000000,

@@ -11,6 +11,7 @@ import { BillingCreditGrantZeroedOutReason } from "./BillingCreditGrantZeroedOut
 import { BillingPlanCreditGrantResetCadence } from "./BillingPlanCreditGrantResetCadence";
 import { BillingProductPriceResponseData } from "./BillingProductPriceResponseData";
 import { CreditTransferView } from "./CreditTransferView";
+import { Currency } from "./Currency";
 
 export const CreditCompanyGrantView: core.serialization.ObjectSchema<
     serializers.CreditCompanyGrantView.Raw,
@@ -29,7 +30,7 @@ export const CreditCompanyGrantView: core.serialization.ObjectSchema<
     creditDescription: core.serialization.property("credit_description", core.serialization.string()),
     creditIcon: core.serialization.property("credit_icon", core.serialization.string().optional()),
     creditName: core.serialization.property("credit_name", core.serialization.string()),
-    currency: core.serialization.string().optional(),
+    currency: Currency.optional(),
     exhaustedAt: core.serialization.property("exhausted_at", core.serialization.date().optional()),
     expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
     expiryType: core.serialization.property("expiry_type", BillingCreditExpiryType.optional()),
@@ -42,10 +43,7 @@ export const CreditCompanyGrantView: core.serialization.ObjectSchema<
     planName: core.serialization.property("plan_name", core.serialization.string().optional()),
     pluralName: core.serialization.property("plural_name", core.serialization.string().optional()),
     postpaidChargeAmount: core.serialization.property("postpaid_charge_amount", core.serialization.number().optional()),
-    postpaidChargeCurrency: core.serialization.property(
-        "postpaid_charge_currency",
-        core.serialization.string().optional(),
-    ),
+    postpaidChargeCurrency: core.serialization.property("postpaid_charge_currency", Currency.optional()),
     postpaidChargedCredits: core.serialization.property(
         "postpaid_charged_credits",
         core.serialization.number().optional(),
@@ -83,7 +81,7 @@ export declare namespace CreditCompanyGrantView {
         credit_description: string;
         credit_icon?: string | null;
         credit_name: string;
-        currency?: string | null;
+        currency?: Currency.Raw | null;
         exhausted_at?: string | null;
         expires_at?: string | null;
         expiry_type?: BillingCreditExpiryType.Raw | null;
@@ -96,7 +94,7 @@ export declare namespace CreditCompanyGrantView {
         plan_name?: string | null;
         plural_name?: string | null;
         postpaid_charge_amount?: number | null;
-        postpaid_charge_currency?: string | null;
+        postpaid_charge_currency?: Currency.Raw | null;
         postpaid_charged_credits?: number | null;
         postpaid_period_end?: string | null;
         postpaid_rate?: number | null;

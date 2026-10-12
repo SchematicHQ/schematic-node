@@ -3,18 +3,21 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { PlanCreditOrder } from "./PlanCreditOrder";
 import { PlanEntitlementsOrder } from "./PlanEntitlementsOrder";
 
 export const PlanGroupPlanEntitlementsOrder: core.serialization.ObjectSchema<
     serializers.PlanGroupPlanEntitlementsOrder.Raw,
     Schematic.PlanGroupPlanEntitlementsOrder
 > = core.serialization.object({
+    credits: core.serialization.list(PlanCreditOrder),
     entitlements: core.serialization.list(PlanEntitlementsOrder).optional(),
     planId: core.serialization.property("plan_id", core.serialization.string()),
 });
 
 export declare namespace PlanGroupPlanEntitlementsOrder {
     export interface Raw {
+        credits: PlanCreditOrder.Raw[];
         entitlements?: PlanEntitlementsOrder.Raw[] | null;
         plan_id: string;
     }

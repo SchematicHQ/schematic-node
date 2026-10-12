@@ -8,6 +8,7 @@ import { BillingCreditBundleType } from "../../../../types/BillingCreditBundleTy
 import { BillingCreditExpiryType } from "../../../../types/BillingCreditExpiryType";
 import { BillingCreditExpiryUnit } from "../../../../types/BillingCreditExpiryUnit";
 import { CreditBundleCurrencyPriceRequestBody } from "../../../../types/CreditBundleCurrencyPriceRequestBody";
+import { Currency } from "../../../../types/Currency";
 
 export const CreateCreditBundleRequestBody: core.serialization.Schema<
     serializers.CreateCreditBundleRequestBody.Raw,
@@ -20,7 +21,7 @@ export const CreateCreditBundleRequestBody: core.serialization.Schema<
         core.serialization.list(core.serialization.string()).optional(),
     ),
     creditId: core.serialization.property("credit_id", core.serialization.string()),
-    currency: core.serialization.string(),
+    currency: Currency,
     currencyPrices: core.serialization.property(
         "currency_prices",
         core.serialization.list(CreditBundleCurrencyPriceRequestBody).optional(),
@@ -40,7 +41,7 @@ export declare namespace CreateCreditBundleRequestBody {
         bundle_type?: BillingCreditBundleType.Raw | null;
         compatible_plan_ids?: string[] | null;
         credit_id: string;
-        currency: string;
+        currency: Currency.Raw;
         currency_prices?: CreditBundleCurrencyPriceRequestBody.Raw[] | null;
         expiry_type?: BillingCreditExpiryType.Raw | null;
         expiry_unit?: BillingCreditExpiryUnit.Raw | null;

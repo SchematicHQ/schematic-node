@@ -3,20 +3,21 @@
 import type * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
+import { Currency } from "../../../../types/Currency";
 
 export const CheckoutDataRequestBody: core.serialization.Schema<
     serializers.CheckoutDataRequestBody.Raw,
     Schematic.CheckoutDataRequestBody
 > = core.serialization.object({
     companyId: core.serialization.property("company_id", core.serialization.string()),
-    currency: core.serialization.string().optional(),
+    currency: Currency.optional(),
     selectedPlanId: core.serialization.property("selected_plan_id", core.serialization.string().optional()),
 });
 
 export declare namespace CheckoutDataRequestBody {
     export interface Raw {
         company_id: string;
-        currency?: string | null;
+        currency?: Currency.Raw | null;
         selected_plan_id?: string | null;
     }
 }

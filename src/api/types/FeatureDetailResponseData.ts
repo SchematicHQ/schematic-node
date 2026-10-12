@@ -8,6 +8,8 @@ export interface FeatureDetailResponseData {
     billingProduct?: Schematic.BillingProductResponseData;
     createdAt: Date;
     description: string;
+    /** Which event stream meters this feature. Track features are metered by track events; inference features are metered by inference events whose event label matches event_subtype, and meter through credits only. */
+    eventSource: Schematic.FeatureEventSource;
     eventSubtype?: string;
     eventSummary?: Schematic.EventSummaryResponseData;
     featureType: Schematic.FeatureType;

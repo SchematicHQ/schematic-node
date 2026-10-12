@@ -6,4 +6,5 @@ export { CreateCouponRequestBody } from "./CreateCouponRequestBody";
 export { CreateInvoiceRequestBody } from "./CreateInvoiceRequestBody";
 export { CreateMeterRequestBody } from "./CreateMeterRequestBody";
 export { CreatePaymentMethodRequestBody } from "./CreatePaymentMethodRequestBody";
+export { UpdateBillingSettingsRequestBody } from "./UpdateBillingSettingsRequestBody";
 export { UpdateCompanyBillingProfileRequestBody } from "./UpdateCompanyBillingProfileRequestBody";

@@ -3,18 +3,19 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { Currency } from "./Currency";
 
 export const MrrResponseData: core.serialization.ObjectSchema<
     serializers.MrrResponseData.Raw,
     Schematic.MrrResponseData
 > = core.serialization.object({
     amount: core.serialization.number(),
-    currency: core.serialization.string(),
+    currency: Currency,
 });
 
 export declare namespace MrrResponseData {
     export interface Raw {
         amount: number;
-        currency: string;
+        currency: Currency.Raw;
     }
 }

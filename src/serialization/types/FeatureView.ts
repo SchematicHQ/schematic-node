@@ -7,6 +7,7 @@ import { BillingLinkedResourceResponseData } from "./BillingLinkedResourceRespon
 import { BillingProductRecordResponseData } from "./BillingProductRecordResponseData";
 import { EntityTraitDefinitionResponseData } from "./EntityTraitDefinitionResponseData";
 import { EventSummaryResponseData } from "./EventSummaryResponseData";
+import { FeatureEventSource } from "./FeatureEventSource";
 import { FeatureLifecyclePhase } from "./FeatureLifecyclePhase";
 import { FeatureType } from "./FeatureType";
 import { FlagView } from "./FlagView";
@@ -22,6 +23,7 @@ export const FeatureView: core.serialization.ObjectSchema<serializers.FeatureVie
         billingProduct: core.serialization.property("billing_product", BillingProductRecordResponseData.optional()),
         createdAt: core.serialization.property("created_at", core.serialization.date()),
         description: core.serialization.string(),
+        eventSource: core.serialization.property("event_source", FeatureEventSource),
         eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
         eventSummary: core.serialization.property("event_summary", EventSummaryResponseData.optional()),
         featureType: core.serialization.property("feature_type", FeatureType),
@@ -47,6 +49,7 @@ export declare namespace FeatureView {
         billing_product?: BillingProductRecordResponseData.Raw | null;
         created_at: string;
         description: string;
+        event_source: FeatureEventSource.Raw;
         event_subtype?: string | null;
         event_summary?: EventSummaryResponseData.Raw | null;
         feature_type: FeatureType.Raw;

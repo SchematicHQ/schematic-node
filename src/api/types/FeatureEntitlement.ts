@@ -33,6 +33,8 @@ export interface FeatureEntitlement {
     metricResetAt?: Date;
     /** For event-based feature entitlements that have a monthly period, whether that monthly reset is based on the calendar month or a billing cycle */
     monthReset?: Schematic.MetricPeriodMonthReset;
+    /** If the company has a credit-based entitlement for this feature, the credit cost per unit of each quantity an event carries, keyed by quantity key (per token for inference features). Absent when the entitlement prices requests only */
+    quantityRates?: Record<string, number>;
     /** For usage-based pricing, the soft limit for overage charges or the next tier boundary */
     softLimit?: number;
     /** If the company has a numeric entitlement for this feature, the current usage amount */

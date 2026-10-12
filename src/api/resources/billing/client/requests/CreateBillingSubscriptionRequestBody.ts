@@ -6,7 +6,7 @@ import type * as Schematic from "../../../../index";
  * @example
  *     {
  *         cancelAtPeriodEnd: true,
- *         currency: "currency",
+ *         currency: "aed",
  *         customerExternalId: "customer_external_id",
  *         discounts: [{
  *                 couponExternalId: "coupon_external_id",
@@ -16,7 +16,7 @@ import type * as Schematic from "../../../../index";
  *             }],
  *         expiredAt: new Date("2024-01-15T09:30:00.000Z"),
  *         productExternalIds: [{
- *                 currency: "currency",
+ *                 currency: "aed",
  *                 interval: "interval",
  *                 price: 1000000,
  *                 priceExternalId: "price_external_id",
@@ -33,7 +33,7 @@ export interface CreateBillingSubscriptionRequestBody {
     cancelAt?: number;
     cancelAtPeriodEnd: boolean;
     companyId?: string;
-    currency: string;
+    currency: Schematic.Currency;
     customerExternalId: string;
     defaultPaymentMethodExternalId?: string;
     defaultPaymentMethodId?: string;

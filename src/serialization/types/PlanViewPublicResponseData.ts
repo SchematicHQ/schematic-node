@@ -14,6 +14,7 @@ import { CustomPlanConfig } from "./CustomPlanConfig";
 import { FeatureInPlanResponseData } from "./FeatureInPlanResponseData";
 import { PlanCatalogMembershipResponseData } from "./PlanCatalogMembershipResponseData";
 import { PlanCreditGrantView } from "./PlanCreditGrantView";
+import { PlanCreditVisibility } from "./PlanCreditVisibility";
 import { PlanCurrencyPricesResponseData } from "./PlanCurrencyPricesResponseData";
 import { PlanEntitlementResponseData } from "./PlanEntitlementResponseData";
 import { PlanIcon } from "./PlanIcon";
@@ -47,6 +48,10 @@ export const PlanViewPublicResponseData: core.serialization.ObjectSchema<
     controlledBy: core.serialization.property("controlled_by", BillingProviderType),
     copiedFromPlanId: core.serialization.property("copied_from_plan_id", core.serialization.string().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
+    creditVisibility: core.serialization.property(
+        "credit_visibility",
+        core.serialization.list(PlanCreditVisibility).optional(),
+    ),
     credits: core.serialization.list(BillingCreditResponseData),
     currencyPrices: core.serialization.property(
         "currency_prices",
@@ -97,6 +102,7 @@ export declare namespace PlanViewPublicResponseData {
         controlled_by: BillingProviderType.Raw;
         copied_from_plan_id?: string | null;
         created_at: string;
+        credit_visibility?: PlanCreditVisibility.Raw[] | null;
         credits: BillingCreditResponseData.Raw[];
         currency_prices: PlanCurrencyPricesResponseData.Raw[];
         custom: boolean;

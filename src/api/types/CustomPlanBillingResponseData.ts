@@ -8,15 +8,21 @@ export interface CustomPlanBillingResponseData {
     billingCycleAnchor?: Date;
     /** The date the contract term starts, when the operator pinned one. A past date was backdated onto the subscription so the first period runs from the contract date rather than from finalization. */
     billingStartDate?: Date;
+    /** The checkout this billing record was created from, when it was created from one. */
+    checkoutId?: string;
     companyId: string;
     createdAt: Date;
     daysUntilDue: number;
     externalInvoiceId?: string;
     id: string;
+    /** The plan version migration this amendment invoice belongs to. Null for a first publish or a plan assigned through Manage Plan. */
+    migrationId?: string;
     paidAt?: Date;
-    /** The flow that created this billing record: a custom plan, or a standard plan assigned by invoice through Manage Plan. */
+    /** The flow that created this billing record: a custom plan's first publish, an amendment of a live custom plan, or a standard plan assigned by invoice through Manage Plan. */
     planBillingSource: Schematic.PlanBillingSource;
     planId: string;
+    /** What the linked checkout still reports wrong, in the order found. Empty when there is no linked checkout or it completed cleanly. */
+    problems: Schematic.CheckoutProblemResponseData[];
     /** Whether the shortened period the renewal date created was billed pro rata when the subscription started. False means that period is free and the first invoice is the one raised on the renewal date. */
     prorateFirstPeriod?: boolean;
     publishedAt?: Date;

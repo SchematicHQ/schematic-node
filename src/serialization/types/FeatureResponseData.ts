@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { FeatureEventSource } from "./FeatureEventSource";
 import { FeatureLifecyclePhase } from "./FeatureLifecyclePhase";
 import { FeatureType } from "./FeatureType";
 
@@ -12,6 +13,7 @@ export const FeatureResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     description: core.serialization.string(),
+    eventSource: core.serialization.property("event_source", FeatureEventSource),
     eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
     featureType: core.serialization.property("feature_type", FeatureType),
     icon: core.serialization.string(),
@@ -34,6 +36,7 @@ export declare namespace FeatureResponseData {
     export interface Raw {
         created_at: string;
         description: string;
+        event_source: FeatureEventSource.Raw;
         event_subtype?: string | null;
         feature_type: FeatureType.Raw;
         icon: string;

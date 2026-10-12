@@ -19,6 +19,7 @@ export interface PlanViewPublicResponseData {
     controlledBy: Schematic.BillingProviderType;
     copiedFromPlanId?: string;
     createdAt: Date;
+    creditVisibility?: Schematic.PlanCreditVisibility[];
     credits: Schematic.BillingCreditResponseData[];
     currencyPrices: Schematic.PlanCurrencyPricesResponseData[];
     custom: boolean;

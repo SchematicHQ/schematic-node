@@ -722,7 +722,7 @@ describe("CatalogsClient", () => {
                                 burn_strategy: "expiration_priority",
                                 cost_editable: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency_prices: [{ currency: "currency" }],
+                                currency_prices: [{ currency: "aed" }],
                                 default_expiry_unit: "billing_periods",
                                 default_rollover_policy: "expire",
                                 description: "description",
@@ -732,12 +732,13 @@ describe("CatalogsClient", () => {
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
                         ],
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         description: "description",
                         features: [
                             {
                                 created_at: "2024-01-15T09:30:00Z",
                                 description: "description",
+                                event_source: "inference",
                                 feature_type: "boolean",
                                 flags: [
                                     {
@@ -835,9 +836,21 @@ describe("CatalogsClient", () => {
                 custom_plan_cta_url: "custom_plan_cta_url",
                 custom_plan_price_text: "custom_plan_price_text",
                 custom_plans_visible: true,
-                ordered_add_ons: [{ entitlements: [{ feature_id: "feature_id", visible: true }], plan_id: "plan_id" }],
+                ordered_add_ons: [
+                    {
+                        credits: [{ credit_id: "credit_id", visible: true }],
+                        entitlements: [{ feature_id: "feature_id", visible: true }],
+                        plan_id: "plan_id",
+                    },
+                ],
                 ordered_bundles: [{ bundle_id: "bundle_id" }],
-                ordered_plans: [{ entitlements: [{ feature_id: "feature_id", visible: true }], plan_id: "plan_id" }],
+                ordered_plans: [
+                    {
+                        credits: [{ credit_id: "credit_id", visible: true }],
+                        entitlements: [{ feature_id: "feature_id", visible: true }],
+                        plan_id: "plan_id",
+                    },
+                ],
                 plans: [
                     {
                         available_periods: ["monthly"],
@@ -852,7 +865,7 @@ describe("CatalogsClient", () => {
                                 burn_strategy: "expiration_priority",
                                 cost_editable: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency_prices: [{ currency: "currency" }],
+                                currency_prices: [{ currency: "aed" }],
                                 default_expiry_unit: "billing_periods",
                                 default_rollover_policy: "expire",
                                 description: "description",
@@ -862,12 +875,13 @@ describe("CatalogsClient", () => {
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
                         ],
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         description: "description",
                         features: [
                             {
                                 created_at: "2024-01-15T09:30:00Z",
                                 description: "description",
+                                event_source: "inference",
                                 feature_type: "boolean",
                                 flags: [
                                     {
@@ -994,7 +1008,7 @@ describe("CatalogsClient", () => {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 currencyPrices: [
                                     {
-                                        currency: "currency",
+                                        currency: "aed",
                                     },
                                 ],
                                 defaultExpiryUnit: "billing_periods",
@@ -1008,7 +1022,7 @@ describe("CatalogsClient", () => {
                         ],
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         description: "description",
@@ -1016,6 +1030,7 @@ describe("CatalogsClient", () => {
                             {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 description: "description",
+                                eventSource: "inference",
                                 featureType: "boolean",
                                 flags: [
                                     {
@@ -1130,6 +1145,12 @@ describe("CatalogsClient", () => {
                 customPlansVisible: true,
                 orderedAddOns: [
                     {
+                        credits: [
+                            {
+                                creditId: "credit_id",
+                                visible: true,
+                            },
+                        ],
                         entitlements: [
                             {
                                 featureId: "feature_id",
@@ -1146,6 +1167,12 @@ describe("CatalogsClient", () => {
                 ],
                 orderedPlans: [
                     {
+                        credits: [
+                            {
+                                creditId: "credit_id",
+                                visible: true,
+                            },
+                        ],
                         entitlements: [
                             {
                                 featureId: "feature_id",
@@ -1171,7 +1198,7 @@ describe("CatalogsClient", () => {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 currencyPrices: [
                                     {
-                                        currency: "currency",
+                                        currency: "aed",
                                     },
                                 ],
                                 defaultExpiryUnit: "billing_periods",
@@ -1185,7 +1212,7 @@ describe("CatalogsClient", () => {
                         ],
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         description: "description",
@@ -1193,6 +1220,7 @@ describe("CatalogsClient", () => {
                             {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 description: "description",
+                                eventSource: "inference",
                                 featureType: "boolean",
                                 flags: [
                                     {

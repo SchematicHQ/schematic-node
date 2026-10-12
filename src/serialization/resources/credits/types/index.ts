@@ -22,6 +22,8 @@ export * from "./DeleteBillingPlanCreditGrantResponse";
 export * from "./DeleteCreditBundleResponse";
 export * from "./DeleteCreditSpendPolicyResponse";
 export * from "./ExtendCreditLeaseResponse";
+export * from "./GetCreditBalanceTimeSeriesParams";
+export * from "./GetCreditBalanceTimeSeriesResponse";
 export * from "./GetCreditBundleResponse";
 export * from "./GetCreditSpendPolicyResponse";
 export * from "./GetCreditSpendPolicyUsageParams";

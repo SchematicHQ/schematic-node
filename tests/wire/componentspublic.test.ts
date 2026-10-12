@@ -25,7 +25,7 @@ describe("ComponentspublicClient", () => {
                                 burn_strategy: "expiration_priority",
                                 cost_editable: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency_prices: [{ currency: "currency" }],
+                                currency_prices: [{ currency: "aed" }],
                                 default_expiry_unit: "billing_periods",
                                 default_rollover_policy: "expire",
                                 description: "description",
@@ -35,13 +35,14 @@ describe("ComponentspublicClient", () => {
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
                         ],
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         custom: true,
                         description: "description",
                         features: [
                             {
                                 created_at: "2024-01-15T09:30:00Z",
                                 description: "description",
+                                event_source: "inference",
                                 feature_type: "boolean",
                                 flags: [
                                     {
@@ -170,7 +171,7 @@ describe("ComponentspublicClient", () => {
                                 burn_strategy: "expiration_priority",
                                 cost_editable: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency_prices: [{ currency: "currency" }],
+                                currency_prices: [{ currency: "aed" }],
                                 default_expiry_unit: "billing_periods",
                                 default_rollover_policy: "expire",
                                 description: "description",
@@ -180,13 +181,14 @@ describe("ComponentspublicClient", () => {
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
                         ],
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         custom: true,
                         description: "description",
                         features: [
                             {
                                 created_at: "2024-01-15T09:30:00Z",
                                 description: "description",
+                                event_source: "inference",
                                 feature_type: "boolean",
                                 flags: [
                                     {
@@ -343,7 +345,7 @@ describe("ComponentspublicClient", () => {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 currencyPrices: [
                                     {
-                                        currency: "currency",
+                                        currency: "aed",
                                     },
                                 ],
                                 defaultExpiryUnit: "billing_periods",
@@ -357,7 +359,7 @@ describe("ComponentspublicClient", () => {
                         ],
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         custom: true,
@@ -366,6 +368,7 @@ describe("ComponentspublicClient", () => {
                             {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 description: "description",
+                                eventSource: "inference",
                                 featureType: "boolean",
                                 flags: [
                                     {
@@ -511,7 +514,7 @@ describe("ComponentspublicClient", () => {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 currencyPrices: [
                                     {
-                                        currency: "currency",
+                                        currency: "aed",
                                     },
                                 ],
                                 defaultExpiryUnit: "billing_periods",
@@ -525,7 +528,7 @@ describe("ComponentspublicClient", () => {
                         ],
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         custom: true,
@@ -534,6 +537,7 @@ describe("ComponentspublicClient", () => {
                             {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 description: "description",
+                                eventSource: "inference",
                                 featureType: "boolean",
                                 flags: [
                                     {

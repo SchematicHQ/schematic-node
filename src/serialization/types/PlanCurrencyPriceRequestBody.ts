@@ -3,12 +3,13 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { Currency } from "./Currency";
 
 export const PlanCurrencyPriceRequestBody: core.serialization.ObjectSchema<
     serializers.PlanCurrencyPriceRequestBody.Raw,
     Schematic.PlanCurrencyPriceRequestBody
 > = core.serialization.object({
-    currency: core.serialization.string(),
+    currency: Currency,
     monthlyPrice: core.serialization.property("monthly_price", core.serialization.number().optional()),
     oneTimePrice: core.serialization.property("one_time_price", core.serialization.number().optional()),
     quarterlyPrice: core.serialization.property("quarterly_price", core.serialization.number().optional()),
@@ -17,7 +18,7 @@ export const PlanCurrencyPriceRequestBody: core.serialization.ObjectSchema<
 
 export declare namespace PlanCurrencyPriceRequestBody {
     export interface Raw {
-        currency: string;
+        currency: Currency.Raw;
         monthly_price?: number | null;
         one_time_price?: number | null;
         quarterly_price?: number | null;

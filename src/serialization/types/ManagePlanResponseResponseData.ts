@@ -3,19 +3,24 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { CheckoutProblemResponseData } from "./CheckoutProblemResponseData";
 import { CompanyDetailResponseData } from "./CompanyDetailResponseData";
 
 export const ManagePlanResponseResponseData: core.serialization.ObjectSchema<
     serializers.ManagePlanResponseResponseData.Raw,
     Schematic.ManagePlanResponseResponseData
 > = core.serialization.object({
+    checkoutId: core.serialization.property("checkout_id", core.serialization.string().optional()),
     company: CompanyDetailResponseData.optional(),
+    problems: core.serialization.list(CheckoutProblemResponseData),
     success: core.serialization.boolean(),
 });
 
 export declare namespace ManagePlanResponseResponseData {
     export interface Raw {
+        checkout_id?: string | null;
         company?: CompanyDetailResponseData.Raw | null;
+        problems: CheckoutProblemResponseData.Raw[];
         success: boolean;
     }
 }

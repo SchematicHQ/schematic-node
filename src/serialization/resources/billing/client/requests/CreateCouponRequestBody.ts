@@ -3,13 +3,14 @@
 import type * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
+import { Currency } from "../../../../types/Currency";
 
 export const CreateCouponRequestBody: core.serialization.Schema<
     serializers.CreateCouponRequestBody.Raw,
     Schematic.CreateCouponRequestBody
 > = core.serialization.object({
     amountOff: core.serialization.property("amount_off", core.serialization.number()),
-    currency: core.serialization.string().optional(),
+    currency: Currency.optional(),
     duration: core.serialization.string(),
     durationInMonths: core.serialization.property("duration_in_months", core.serialization.number()),
     externalId: core.serialization.property("external_id", core.serialization.string()),
@@ -22,7 +23,7 @@ export const CreateCouponRequestBody: core.serialization.Schema<
 export declare namespace CreateCouponRequestBody {
     export interface Raw {
         amount_off: number;
-        currency?: string | null;
+        currency?: Currency.Raw | null;
         duration: string;
         duration_in_months: number;
         external_id: string;

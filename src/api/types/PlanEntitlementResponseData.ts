@@ -24,6 +24,8 @@ export interface PlanEntitlementResponseData {
     plan?: Schematic.PlanResponseData;
     planId: string;
     priceBehavior?: Schematic.EntitlementPriceBehavior;
+    /** Credits per unit of the quantity (per token for inference features), keyed by quantity key. Absent when the entitlement prices requests only. */
+    quantityRates?: Record<string, number>;
     ruleId: string;
     ruleIdUsageExceeded?: string;
     softLimit?: number;

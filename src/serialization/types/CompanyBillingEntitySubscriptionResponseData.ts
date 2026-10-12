@@ -7,6 +7,7 @@ import { BillingProductForSubscriptionResponseData } from "./BillingProductForSu
 import { BillingProviderType } from "./BillingProviderType";
 import { BillingSubscriptionDiscountView } from "./BillingSubscriptionDiscountView";
 import { CompanyResponseData } from "./CompanyResponseData";
+import { Currency } from "./Currency";
 import { InvoiceResponseData } from "./InvoiceResponseData";
 import { PaymentMethodResponseData } from "./PaymentMethodResponseData";
 
@@ -17,7 +18,7 @@ export const CompanyBillingEntitySubscriptionResponseData: core.serialization.Ob
     cancelAt: core.serialization.property("cancel_at", core.serialization.date().optional()),
     cancelAtPeriodEnd: core.serialization.property("cancel_at_period_end", core.serialization.boolean()),
     company: CompanyResponseData.optional(),
-    currency: core.serialization.string(),
+    currency: Currency,
     customerExternalId: core.serialization.property("customer_external_id", core.serialization.string()),
     discounts: core.serialization.list(BillingSubscriptionDiscountView),
     expiredAt: core.serialization.property("expired_at", core.serialization.date().optional()),
@@ -39,7 +40,7 @@ export declare namespace CompanyBillingEntitySubscriptionResponseData {
         cancel_at?: string | null;
         cancel_at_period_end: boolean;
         company?: CompanyResponseData.Raw | null;
-        currency: string;
+        currency: Currency.Raw;
         customer_external_id: string;
         discounts: BillingSubscriptionDiscountView.Raw[];
         expired_at?: string | null;

@@ -7,6 +7,8 @@ export interface PlanChangeResponseData {
     actorType: Schematic.ActorType;
     addOnsAdded: Schematic.PlanSnapshotView[];
     addOnsRemoved: Schematic.PlanSnapshotView[];
+    /** Set when the action is amendment. A custom plan amendment records one plan change per status: scheduled when it is finalized for a later date, then applied when the company moves to the new version, cancelled when the scheduled change is called off, or failed or skipped when its migration ends without moving the company (an error, or the company was no longer on the version the amendment started from). Only an applied amendment changed the company's plan version. */
+    amendmentStatus?: Schematic.PlanChangeAmendmentStatus;
     apiKey?: Schematic.ApiKeyResponseData;
     auditLog?: Schematic.AuditLogListResponseData;
     basePlan?: Schematic.PlanSnapshotView;
@@ -23,6 +25,8 @@ export interface PlanChangeResponseData {
     integration?: Schematic.IntegrationResponseData;
     /** True when this change moved the company to a different version of the same plan (e.g. a plan version migration) rather than to a different plan. */
     isVersionUpgrade: boolean;
+    /** The plan version migration that carries this change. Set on amendment plan changes, where it ties the scheduled, applied and cancelled records of one amendment together. */
+    migrationId?: string;
     previousBasePlan?: Schematic.PlanSnapshotView;
     /** The plan version of the previous base plan before this change. */
     previousBasePlanVersion?: Schematic.PlanVersionSnapshotView;

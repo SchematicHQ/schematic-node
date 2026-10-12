@@ -4,17 +4,20 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { CatalogConfigOrderedEntitlement } from "./CatalogConfigOrderedEntitlement";
+import { CatalogConfigPlanCredit } from "./CatalogConfigPlanCredit";
 
 export const CatalogConfigOrderedPlan: core.serialization.ObjectSchema<
     serializers.CatalogConfigOrderedPlan.Raw,
     Schematic.CatalogConfigOrderedPlan
 > = core.serialization.object({
+    credits: core.serialization.list(CatalogConfigPlanCredit).optional(),
     entitlements: core.serialization.list(CatalogConfigOrderedEntitlement).optional(),
     planId: core.serialization.property("plan_id", core.serialization.string()),
 });
 
 export declare namespace CatalogConfigOrderedPlan {
     export interface Raw {
+        credits?: CatalogConfigPlanCredit.Raw[] | null;
         entitlements?: CatalogConfigOrderedEntitlement.Raw[] | null;
         plan_id: string;
     }

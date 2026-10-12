@@ -3,7 +3,7 @@
 import type * as Schematic from "../index";
 
 export interface BillingPriceResponseData {
-    currency: string;
+    currency: Schematic.Currency;
     externalPriceId: string;
     id: string;
     interval: Schematic.BillingProductPriceInterval;

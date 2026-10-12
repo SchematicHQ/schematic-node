@@ -75,7 +75,7 @@ describe("PlansClient", () => {
                     cancel_at_period_end: true,
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
-                    currency: "currency",
+                    currency: "aed",
                     customer_external_id: "customer_external_id",
                     default_payment_method_id: "default_payment_method_id",
                     discounts: [
@@ -98,7 +98,7 @@ describe("PlansClient", () => {
                         amount_remaining: 1000000,
                         collection_method: "collection_method",
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         ending_balance: 1000000,
                         environment_id: "environment_id",
@@ -125,7 +125,7 @@ describe("PlansClient", () => {
                         {
                             billing_scheme: "per_unit",
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             environment_id: "environment_id",
                             external_id: "external_id",
                             id: "id",
@@ -154,7 +154,7 @@ describe("PlansClient", () => {
                     {
                         cancel_at_period_end: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         discounts: [
                             {
@@ -175,7 +175,7 @@ describe("PlansClient", () => {
                             {
                                 billing_scheme: "per_unit",
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 environment_id: "environment_id",
                                 external_id: "external_id",
                                 id: "id",
@@ -207,8 +207,16 @@ describe("PlansClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         days_until_due: 1000000,
                         id: "id",
-                        plan_billing_source: "custom_plan",
+                        plan_billing_source: "amendment",
                         plan_id: "plan_id",
+                        problems: [
+                            {
+                                blocking: true,
+                                code: "add_on_conflicts_with_plan",
+                                message: "message",
+                                source: "provider",
+                            },
+                        ],
                         send_invoice: true,
                         status: "active",
                         updated_at: "2024-01-15T09:30:00Z",
@@ -371,7 +379,7 @@ describe("PlansClient", () => {
                     },
                 ],
                 scheduled_downgrade: {
-                    currency: "currency",
+                    currency: "aed",
                     effective_after: "2024-01-15T09:30:00Z",
                     from_plan_id: "from_plan_id",
                     from_plan_name: "from_plan_name",
@@ -470,7 +478,7 @@ describe("PlansClient", () => {
                     cancelAtPeriodEnd: true,
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    currency: "currency",
+                    currency: "aed",
                     customerExternalId: "customer_external_id",
                     defaultPaymentMethodId: "default_payment_method_id",
                     discounts: [
@@ -493,7 +501,7 @@ describe("PlansClient", () => {
                         amountRemaining: 1000000,
                         collectionMethod: "collection_method",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         endingBalance: 1000000,
                         environmentId: "environment_id",
@@ -522,7 +530,7 @@ describe("PlansClient", () => {
                         {
                             billingScheme: "per_unit",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             environmentId: "environment_id",
                             externalId: "external_id",
                             id: "id",
@@ -551,7 +559,7 @@ describe("PlansClient", () => {
                     {
                         cancelAtPeriodEnd: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         discounts: [
                             {
@@ -572,7 +580,7 @@ describe("PlansClient", () => {
                             {
                                 billingScheme: "per_unit",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 environmentId: "environment_id",
                                 externalId: "external_id",
                                 id: "id",
@@ -604,8 +612,16 @@ describe("PlansClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         daysUntilDue: 1000000,
                         id: "id",
-                        planBillingSource: "custom_plan",
+                        planBillingSource: "amendment",
                         planId: "plan_id",
+                        problems: [
+                            {
+                                blocking: true,
+                                code: "add_on_conflicts_with_plan",
+                                message: "message",
+                                source: "provider",
+                            },
+                        ],
                         sendInvoice: true,
                         status: "active",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -779,7 +795,7 @@ describe("PlansClient", () => {
                     },
                 ],
                 scheduledDowngrade: {
-                    currency: "currency",
+                    currency: "aed",
                     effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                     fromPlanId: "from_plan_id",
                     fromPlanName: "from_plan_name",
@@ -923,14 +939,19 @@ describe("PlansClient", () => {
                     activation_strategy: "on_payment",
                     billing_cycle_anchor: "2024-01-15T09:30:00Z",
                     billing_start_date: "2024-01-15T09:30:00Z",
+                    checkout_id: "checkout_id",
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
                     days_until_due: 1000000,
                     external_invoice_id: "external_invoice_id",
                     id: "id",
+                    migration_id: "migration_id",
                     paid_at: "2024-01-15T09:30:00Z",
-                    plan_billing_source: "custom_plan",
+                    plan_billing_source: "amendment",
                     plan_id: "plan_id",
+                    problems: [
+                        { blocking: true, code: "add_on_conflicts_with_plan", message: "message", source: "provider" },
+                    ],
                     prorate_first_period: true,
                     published_at: "2024-01-15T09:30:00Z",
                     send_invoice: true,
@@ -943,7 +964,7 @@ describe("PlansClient", () => {
                 company_id: "company_id",
                 limit: 1000000,
                 offset: 1000000,
-                plan_billing_source: "custom_plan",
+                plan_billing_source: "amendment",
                 plan_id: "plan_id",
                 status: "active",
                 statuses: ["active"],
@@ -961,7 +982,7 @@ describe("PlansClient", () => {
         const response = await client.plans.listCustomPlanBillings({
             companyId: "company_id",
             planId: "plan_id",
-            planBillingSource: "custom_plan",
+            planBillingSource: "amendment",
             status: "active",
             statuses: ["active"],
             limit: 1000000,
@@ -973,14 +994,24 @@ describe("PlansClient", () => {
                     activationStrategy: "on_payment",
                     billingCycleAnchor: new Date("2024-01-15T09:30:00.000Z"),
                     billingStartDate: new Date("2024-01-15T09:30:00.000Z"),
+                    checkoutId: "checkout_id",
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     daysUntilDue: 1000000,
                     externalInvoiceId: "external_invoice_id",
                     id: "id",
+                    migrationId: "migration_id",
                     paidAt: new Date("2024-01-15T09:30:00.000Z"),
-                    planBillingSource: "custom_plan",
+                    planBillingSource: "amendment",
                     planId: "plan_id",
+                    problems: [
+                        {
+                            blocking: true,
+                            code: "add_on_conflicts_with_plan",
+                            message: "message",
+                            source: "provider",
+                        },
+                    ],
                     prorateFirstPeriod: true,
                     publishedAt: new Date("2024-01-15T09:30:00.000Z"),
                     sendInvoice: true,
@@ -993,7 +1024,7 @@ describe("PlansClient", () => {
                 companyId: "company_id",
                 limit: 1000000,
                 offset: 1000000,
-                planBillingSource: "custom_plan",
+                planBillingSource: "amendment",
                 planId: "plan_id",
                 status: "active",
                 statuses: ["active"],
@@ -1105,14 +1136,19 @@ describe("PlansClient", () => {
                 activation_strategy: "on_payment",
                 billing_cycle_anchor: "2024-01-15T09:30:00Z",
                 billing_start_date: "2024-01-15T09:30:00Z",
+                checkout_id: "checkout_id",
                 company_id: "company_id",
                 created_at: "2024-01-15T09:30:00Z",
                 days_until_due: 1000000,
                 external_invoice_id: "external_invoice_id",
                 id: "id",
+                migration_id: "migration_id",
                 paid_at: "2024-01-15T09:30:00Z",
-                plan_billing_source: "custom_plan",
+                plan_billing_source: "amendment",
                 plan_id: "plan_id",
+                problems: [
+                    { blocking: true, code: "add_on_conflicts_with_plan", message: "message", source: "provider" },
+                ],
                 prorate_first_period: true,
                 published_at: "2024-01-15T09:30:00Z",
                 send_invoice: true,
@@ -1140,14 +1176,24 @@ describe("PlansClient", () => {
                 activationStrategy: "on_payment",
                 billingCycleAnchor: new Date("2024-01-15T09:30:00.000Z"),
                 billingStartDate: new Date("2024-01-15T09:30:00.000Z"),
+                checkoutId: "checkout_id",
                 companyId: "company_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 daysUntilDue: 1000000,
                 externalInvoiceId: "external_invoice_id",
                 id: "id",
+                migrationId: "migration_id",
                 paidAt: new Date("2024-01-15T09:30:00.000Z"),
-                planBillingSource: "custom_plan",
+                planBillingSource: "amendment",
                 planId: "plan_id",
+                problems: [
+                    {
+                        blocking: true,
+                        code: "add_on_conflicts_with_plan",
+                        message: "message",
+                        source: "provider",
+                    },
+                ],
                 prorateFirstPeriod: true,
                 publishedAt: new Date("2024-01-15T09:30:00.000Z"),
                 sendInvoice: true,
@@ -1290,14 +1336,19 @@ describe("PlansClient", () => {
                 activation_strategy: "on_payment",
                 billing_cycle_anchor: "2024-01-15T09:30:00Z",
                 billing_start_date: "2024-01-15T09:30:00Z",
+                checkout_id: "checkout_id",
                 company_id: "company_id",
                 created_at: "2024-01-15T09:30:00Z",
                 days_until_due: 1000000,
                 external_invoice_id: "external_invoice_id",
                 id: "id",
+                migration_id: "migration_id",
                 paid_at: "2024-01-15T09:30:00Z",
-                plan_billing_source: "custom_plan",
+                plan_billing_source: "amendment",
                 plan_id: "plan_id",
+                problems: [
+                    { blocking: true, code: "add_on_conflicts_with_plan", message: "message", source: "provider" },
+                ],
                 prorate_first_period: true,
                 published_at: "2024-01-15T09:30:00Z",
                 send_invoice: true,
@@ -1325,14 +1376,24 @@ describe("PlansClient", () => {
                 activationStrategy: "on_payment",
                 billingCycleAnchor: new Date("2024-01-15T09:30:00.000Z"),
                 billingStartDate: new Date("2024-01-15T09:30:00.000Z"),
+                checkoutId: "checkout_id",
                 companyId: "company_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 daysUntilDue: 1000000,
                 externalInvoiceId: "external_invoice_id",
                 id: "id",
+                migrationId: "migration_id",
                 paidAt: new Date("2024-01-15T09:30:00.000Z"),
-                planBillingSource: "custom_plan",
+                planBillingSource: "amendment",
                 planId: "plan_id",
+                problems: [
+                    {
+                        blocking: true,
+                        code: "add_on_conflicts_with_plan",
+                        message: "message",
+                        source: "provider",
+                    },
+                ],
                 prorateFirstPeriod: true,
                 publishedAt: new Date("2024-01-15T09:30:00.000Z"),
                 sendInvoice: true,
@@ -1491,7 +1552,7 @@ describe("PlansClient", () => {
                     price_decimal: "price_decimal",
                     prices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                             external_price_id: "external_price_id",
                             id: "id",
                             interval: "day",
@@ -1522,7 +1583,7 @@ describe("PlansClient", () => {
                         burn_strategy: "expiration_priority",
                         cost_editable: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         default_expiry_unit: "billing_periods",
                         default_rollover_policy: "expire",
                         description: "description",
@@ -1532,7 +1593,7 @@ describe("PlansClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                 ],
-                currency_prices: [{ currency: "currency" }],
+                currency_prices: [{ currency: "aed" }],
                 description: "description",
                 draft_version: {
                     created_at: "2024-01-15T09:30:00Z",
@@ -1550,7 +1611,7 @@ describe("PlansClient", () => {
                 entitlements: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         environment_id: "environment_id",
                         feature_id: "feature_id",
                         id: "id",
@@ -1565,6 +1626,7 @@ describe("PlansClient", () => {
                     {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
+                        event_source: "inference",
                         feature_type: "boolean",
                         flags: [
                             {
@@ -1661,7 +1723,7 @@ describe("PlansClient", () => {
                 is_default: true,
                 is_trialable: true,
                 monthly_price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -1674,7 +1736,7 @@ describe("PlansClient", () => {
                 },
                 name: "name",
                 one_time_price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -1687,7 +1749,7 @@ describe("PlansClient", () => {
                 },
                 plan_type: "plan",
                 quarterly_price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -1715,7 +1777,7 @@ describe("PlansClient", () => {
                     },
                 ],
                 yearly_price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -1774,7 +1836,7 @@ describe("PlansClient", () => {
                     priceDecimal: "price_decimal",
                     prices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                             externalPriceId: "external_price_id",
                             id: "id",
                             interval: "day",
@@ -1812,7 +1874,7 @@ describe("PlansClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         defaultExpiryUnit: "billing_periods",
@@ -1826,7 +1888,7 @@ describe("PlansClient", () => {
                 ],
                 currencyPrices: [
                     {
-                        currency: "currency",
+                        currency: "aed",
                     },
                 ],
                 description: "description",
@@ -1848,7 +1910,7 @@ describe("PlansClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         environmentId: "environment_id",
@@ -1871,6 +1933,7 @@ describe("PlansClient", () => {
                     {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
+                        eventSource: "inference",
                         featureType: "boolean",
                         flags: [
                             {
@@ -1986,7 +2049,7 @@ describe("PlansClient", () => {
                 isDefault: true,
                 isTrialable: true,
                 monthlyPrice: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -1999,7 +2062,7 @@ describe("PlansClient", () => {
                 },
                 name: "name",
                 oneTimePrice: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -2012,7 +2075,7 @@ describe("PlansClient", () => {
                 },
                 planType: "plan",
                 quarterlyPrice: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -2040,7 +2103,7 @@ describe("PlansClient", () => {
                     },
                 ],
                 yearlyPrice: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -2207,7 +2270,7 @@ describe("PlansClient", () => {
                         price: 1.1,
                         prices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                                 external_price_id: "external_price_id",
                                 id: "id",
                                 interval: "day",
@@ -2238,7 +2301,7 @@ describe("PlansClient", () => {
                             burn_strategy: "expiration_priority",
                             cost_editable: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            currency_prices: [{ currency: "currency" }],
+                            currency_prices: [{ currency: "aed" }],
                             default_expiry_unit: "billing_periods",
                             default_rollover_policy: "expire",
                             description: "description",
@@ -2248,7 +2311,7 @@ describe("PlansClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
-                    currency_prices: [{ currency: "currency" }],
+                    currency_prices: [{ currency: "aed" }],
                     description: "description",
                     draft_version: {
                         created_at: "2024-01-15T09:30:00Z",
@@ -2265,7 +2328,7 @@ describe("PlansClient", () => {
                     entitlements: [
                         {
                             created_at: "2024-01-15T09:30:00Z",
-                            currency_prices: [{ currency: "currency" }],
+                            currency_prices: [{ currency: "aed" }],
                             environment_id: "environment_id",
                             feature_id: "feature_id",
                             id: "id",
@@ -2280,6 +2343,7 @@ describe("PlansClient", () => {
                         {
                             created_at: "2024-01-15T09:30:00Z",
                             description: "description",
+                            event_source: "inference",
                             feature_type: "boolean",
                             flags: [
                                 {
@@ -2376,7 +2440,7 @@ describe("PlansClient", () => {
                     is_default: true,
                     is_trialable: true,
                     monthly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2387,7 +2451,7 @@ describe("PlansClient", () => {
                     },
                     name: "name",
                     one_time_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2398,7 +2462,7 @@ describe("PlansClient", () => {
                     },
                     plan_type: "plan",
                     quarterly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2424,7 +2488,7 @@ describe("PlansClient", () => {
                         },
                     ],
                     yearly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2513,7 +2577,7 @@ describe("PlansClient", () => {
                         price: 1.1,
                         prices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                                 externalPriceId: "external_price_id",
                                 id: "id",
                                 interval: "day",
@@ -2551,7 +2615,7 @@ describe("PlansClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             currencyPrices: [
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                 },
                             ],
                             defaultExpiryUnit: "billing_periods",
@@ -2565,7 +2629,7 @@ describe("PlansClient", () => {
                     ],
                     currencyPrices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                         },
                     ],
                     description: "description",
@@ -2586,7 +2650,7 @@ describe("PlansClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             currencyPrices: [
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                 },
                             ],
                             environmentId: "environment_id",
@@ -2609,6 +2673,7 @@ describe("PlansClient", () => {
                         {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             description: "description",
+                            eventSource: "inference",
                             featureType: "boolean",
                             flags: [
                                 {
@@ -2724,7 +2789,7 @@ describe("PlansClient", () => {
                     isDefault: true,
                     isTrialable: true,
                     monthlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2735,7 +2800,7 @@ describe("PlansClient", () => {
                     },
                     name: "name",
                     oneTimePrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2746,7 +2811,7 @@ describe("PlansClient", () => {
                     },
                     planType: "plan",
                     quarterlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2772,7 +2837,7 @@ describe("PlansClient", () => {
                         },
                     ],
                     yearlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2908,7 +2973,7 @@ describe("PlansClient", () => {
                     price_decimal: "price_decimal",
                     prices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                             external_price_id: "external_price_id",
                             id: "id",
                             interval: "day",
@@ -2939,7 +3004,7 @@ describe("PlansClient", () => {
                         burn_strategy: "expiration_priority",
                         cost_editable: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         default_expiry_unit: "billing_periods",
                         default_rollover_policy: "expire",
                         description: "description",
@@ -2949,7 +3014,7 @@ describe("PlansClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                 ],
-                currency_prices: [{ currency: "currency" }],
+                currency_prices: [{ currency: "aed" }],
                 description: "description",
                 draft_version: {
                     created_at: "2024-01-15T09:30:00Z",
@@ -2967,7 +3032,7 @@ describe("PlansClient", () => {
                 entitlements: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         environment_id: "environment_id",
                         feature_id: "feature_id",
                         id: "id",
@@ -2982,6 +3047,7 @@ describe("PlansClient", () => {
                     {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
+                        event_source: "inference",
                         feature_type: "boolean",
                         flags: [
                             {
@@ -3078,7 +3144,7 @@ describe("PlansClient", () => {
                 is_default: true,
                 is_trialable: true,
                 monthly_price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -3091,7 +3157,7 @@ describe("PlansClient", () => {
                 },
                 name: "name",
                 one_time_price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -3104,7 +3170,7 @@ describe("PlansClient", () => {
                 },
                 plan_type: "plan",
                 quarterly_price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -3132,7 +3198,7 @@ describe("PlansClient", () => {
                     },
                 ],
                 yearly_price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -3191,7 +3257,7 @@ describe("PlansClient", () => {
                     priceDecimal: "price_decimal",
                     prices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                             externalPriceId: "external_price_id",
                             id: "id",
                             interval: "day",
@@ -3229,7 +3295,7 @@ describe("PlansClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         defaultExpiryUnit: "billing_periods",
@@ -3243,7 +3309,7 @@ describe("PlansClient", () => {
                 ],
                 currencyPrices: [
                     {
-                        currency: "currency",
+                        currency: "aed",
                     },
                 ],
                 description: "description",
@@ -3265,7 +3331,7 @@ describe("PlansClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         environmentId: "environment_id",
@@ -3288,6 +3354,7 @@ describe("PlansClient", () => {
                     {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
+                        eventSource: "inference",
                         featureType: "boolean",
                         flags: [
                             {
@@ -3403,7 +3470,7 @@ describe("PlansClient", () => {
                 isDefault: true,
                 isTrialable: true,
                 monthlyPrice: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -3416,7 +3483,7 @@ describe("PlansClient", () => {
                 },
                 name: "name",
                 oneTimePrice: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -3429,7 +3496,7 @@ describe("PlansClient", () => {
                 },
                 planType: "plan",
                 quarterlyPrice: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -3457,7 +3524,7 @@ describe("PlansClient", () => {
                     },
                 ],
                 yearlyPrice: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -3625,7 +3692,7 @@ describe("PlansClient", () => {
                     price_decimal: "price_decimal",
                     prices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                             external_price_id: "external_price_id",
                             id: "id",
                             interval: "day",
@@ -3656,7 +3723,7 @@ describe("PlansClient", () => {
                         burn_strategy: "expiration_priority",
                         cost_editable: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         default_expiry_unit: "billing_periods",
                         default_rollover_policy: "expire",
                         description: "description",
@@ -3666,7 +3733,7 @@ describe("PlansClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                 ],
-                currency_prices: [{ currency: "currency" }],
+                currency_prices: [{ currency: "aed" }],
                 description: "description",
                 draft_version: {
                     created_at: "2024-01-15T09:30:00Z",
@@ -3684,7 +3751,7 @@ describe("PlansClient", () => {
                 entitlements: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         environment_id: "environment_id",
                         feature_id: "feature_id",
                         id: "id",
@@ -3699,6 +3766,7 @@ describe("PlansClient", () => {
                     {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
+                        event_source: "inference",
                         feature_type: "boolean",
                         flags: [
                             {
@@ -3795,7 +3863,7 @@ describe("PlansClient", () => {
                 is_default: true,
                 is_trialable: true,
                 monthly_price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -3808,7 +3876,7 @@ describe("PlansClient", () => {
                 },
                 name: "name",
                 one_time_price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -3821,7 +3889,7 @@ describe("PlansClient", () => {
                 },
                 plan_type: "plan",
                 quarterly_price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -3849,7 +3917,7 @@ describe("PlansClient", () => {
                     },
                 ],
                 yearly_price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -3900,7 +3968,7 @@ describe("PlansClient", () => {
                     priceDecimal: "price_decimal",
                     prices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                             externalPriceId: "external_price_id",
                             id: "id",
                             interval: "day",
@@ -3938,7 +4006,7 @@ describe("PlansClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         defaultExpiryUnit: "billing_periods",
@@ -3952,7 +4020,7 @@ describe("PlansClient", () => {
                 ],
                 currencyPrices: [
                     {
-                        currency: "currency",
+                        currency: "aed",
                     },
                 ],
                 description: "description",
@@ -3974,7 +4042,7 @@ describe("PlansClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         environmentId: "environment_id",
@@ -3997,6 +4065,7 @@ describe("PlansClient", () => {
                     {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
+                        eventSource: "inference",
                         featureType: "boolean",
                         flags: [
                             {
@@ -4112,7 +4181,7 @@ describe("PlansClient", () => {
                 isDefault: true,
                 isTrialable: true,
                 monthlyPrice: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -4125,7 +4194,7 @@ describe("PlansClient", () => {
                 },
                 name: "name",
                 oneTimePrice: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -4138,7 +4207,7 @@ describe("PlansClient", () => {
                 },
                 planType: "plan",
                 quarterlyPrice: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -4166,7 +4235,7 @@ describe("PlansClient", () => {
                     },
                 ],
                 yearlyPrice: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -4271,7 +4340,7 @@ describe("PlansClient", () => {
                     price_decimal: "price_decimal",
                     prices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                             external_price_id: "external_price_id",
                             id: "id",
                             interval: "day",
@@ -4302,7 +4371,7 @@ describe("PlansClient", () => {
                         burn_strategy: "expiration_priority",
                         cost_editable: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         default_expiry_unit: "billing_periods",
                         default_rollover_policy: "expire",
                         description: "description",
@@ -4312,7 +4381,7 @@ describe("PlansClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                 ],
-                currency_prices: [{ currency: "currency" }],
+                currency_prices: [{ currency: "aed" }],
                 description: "description",
                 draft_version: {
                     created_at: "2024-01-15T09:30:00Z",
@@ -4330,7 +4399,7 @@ describe("PlansClient", () => {
                 entitlements: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         environment_id: "environment_id",
                         feature_id: "feature_id",
                         id: "id",
@@ -4345,6 +4414,7 @@ describe("PlansClient", () => {
                     {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
+                        event_source: "inference",
                         feature_type: "boolean",
                         flags: [
                             {
@@ -4441,7 +4511,7 @@ describe("PlansClient", () => {
                 is_default: true,
                 is_trialable: true,
                 monthly_price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -4454,7 +4524,7 @@ describe("PlansClient", () => {
                 },
                 name: "name",
                 one_time_price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -4467,7 +4537,7 @@ describe("PlansClient", () => {
                 },
                 plan_type: "plan",
                 quarterly_price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -4495,7 +4565,7 @@ describe("PlansClient", () => {
                     },
                 ],
                 yearly_price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -4553,7 +4623,7 @@ describe("PlansClient", () => {
                     priceDecimal: "price_decimal",
                     prices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                             externalPriceId: "external_price_id",
                             id: "id",
                             interval: "day",
@@ -4591,7 +4661,7 @@ describe("PlansClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         defaultExpiryUnit: "billing_periods",
@@ -4605,7 +4675,7 @@ describe("PlansClient", () => {
                 ],
                 currencyPrices: [
                     {
-                        currency: "currency",
+                        currency: "aed",
                     },
                 ],
                 description: "description",
@@ -4627,7 +4697,7 @@ describe("PlansClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         environmentId: "environment_id",
@@ -4650,6 +4720,7 @@ describe("PlansClient", () => {
                     {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
+                        eventSource: "inference",
                         featureType: "boolean",
                         flags: [
                             {
@@ -4765,7 +4836,7 @@ describe("PlansClient", () => {
                 isDefault: true,
                 isTrialable: true,
                 monthlyPrice: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -4778,7 +4849,7 @@ describe("PlansClient", () => {
                 },
                 name: "name",
                 oneTimePrice: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -4791,7 +4862,7 @@ describe("PlansClient", () => {
                 },
                 planType: "plan",
                 quarterlyPrice: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -4819,7 +4890,7 @@ describe("PlansClient", () => {
                     },
                 ],
                 yearlyPrice: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -5242,7 +5313,7 @@ describe("PlansClient", () => {
                     price_decimal: "price_decimal",
                     prices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                             external_price_id: "external_price_id",
                             id: "id",
                             interval: "day",
@@ -5273,7 +5344,7 @@ describe("PlansClient", () => {
                         burn_strategy: "expiration_priority",
                         cost_editable: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         default_expiry_unit: "billing_periods",
                         default_rollover_policy: "expire",
                         description: "description",
@@ -5283,7 +5354,7 @@ describe("PlansClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                 ],
-                currency_prices: [{ currency: "currency" }],
+                currency_prices: [{ currency: "aed" }],
                 description: "description",
                 draft_version: {
                     created_at: "2024-01-15T09:30:00Z",
@@ -5301,7 +5372,7 @@ describe("PlansClient", () => {
                 entitlements: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         environment_id: "environment_id",
                         feature_id: "feature_id",
                         id: "id",
@@ -5316,6 +5387,7 @@ describe("PlansClient", () => {
                     {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
+                        event_source: "inference",
                         feature_type: "boolean",
                         flags: [
                             {
@@ -5412,7 +5484,7 @@ describe("PlansClient", () => {
                 is_default: true,
                 is_trialable: true,
                 monthly_price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -5425,7 +5497,7 @@ describe("PlansClient", () => {
                 },
                 name: "name",
                 one_time_price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -5438,7 +5510,7 @@ describe("PlansClient", () => {
                 },
                 plan_type: "plan",
                 quarterly_price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -5466,7 +5538,7 @@ describe("PlansClient", () => {
                     },
                 ],
                 yearly_price: {
-                    currency: "currency",
+                    currency: "aed",
                     external_price_id: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -5527,7 +5599,7 @@ describe("PlansClient", () => {
                     priceDecimal: "price_decimal",
                     prices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                             externalPriceId: "external_price_id",
                             id: "id",
                             interval: "day",
@@ -5565,7 +5637,7 @@ describe("PlansClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         defaultExpiryUnit: "billing_periods",
@@ -5579,7 +5651,7 @@ describe("PlansClient", () => {
                 ],
                 currencyPrices: [
                     {
-                        currency: "currency",
+                        currency: "aed",
                     },
                 ],
                 description: "description",
@@ -5601,7 +5673,7 @@ describe("PlansClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         environmentId: "environment_id",
@@ -5624,6 +5696,7 @@ describe("PlansClient", () => {
                     {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
+                        eventSource: "inference",
                         featureType: "boolean",
                         flags: [
                             {
@@ -5739,7 +5812,7 @@ describe("PlansClient", () => {
                 isDefault: true,
                 isTrialable: true,
                 monthlyPrice: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -5752,7 +5825,7 @@ describe("PlansClient", () => {
                 },
                 name: "name",
                 oneTimePrice: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -5765,7 +5838,7 @@ describe("PlansClient", () => {
                 },
                 planType: "plan",
                 quarterlyPrice: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -5793,7 +5866,7 @@ describe("PlansClient", () => {
                     },
                 ],
                 yearlyPrice: {
-                    currency: "currency",
+                    currency: "aed",
                     externalPriceId: "external_price_id",
                     id: "id",
                     interval: "day",
@@ -6024,7 +6097,7 @@ describe("PlansClient", () => {
                     billing_subscription: {
                         cancel_at_period_end: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         discounts: [
                             {
@@ -6045,7 +6118,7 @@ describe("PlansClient", () => {
                             {
                                 billing_scheme: "per_unit",
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 environment_id: "environment_id",
                                 external_id: "external_id",
                                 id: "id",
@@ -6072,7 +6145,7 @@ describe("PlansClient", () => {
                         {
                             cancel_at_period_end: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             customer_external_id: "customer_external_id",
                             discounts: [
                                 {
@@ -6093,7 +6166,7 @@ describe("PlansClient", () => {
                                 {
                                     billing_scheme: "per_unit",
                                     created_at: "2024-01-15T09:30:00Z",
-                                    currency: "currency",
+                                    currency: "aed",
                                     environment_id: "environment_id",
                                     external_id: "external_id",
                                     id: "id",
@@ -6125,8 +6198,16 @@ describe("PlansClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             days_until_due: 1000000,
                             id: "id",
-                            plan_billing_source: "custom_plan",
+                            plan_billing_source: "amendment",
                             plan_id: "plan_id",
+                            problems: [
+                                {
+                                    blocking: true,
+                                    code: "add_on_conflicts_with_plan",
+                                    message: "message",
+                                    source: "provider",
+                                },
+                            ],
                             send_invoice: true,
                             status: "active",
                             updated_at: "2024-01-15T09:30:00Z",
@@ -6268,7 +6349,7 @@ describe("PlansClient", () => {
                         },
                     ],
                     scheduled_downgrade: {
-                        currency: "currency",
+                        currency: "aed",
                         effective_after: "2024-01-15T09:30:00Z",
                         from_plan_id: "from_plan_id",
                         from_plan_name: "from_plan_name",
@@ -6361,7 +6442,7 @@ describe("PlansClient", () => {
                     billingSubscription: {
                         cancelAtPeriodEnd: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         discounts: [
                             {
@@ -6382,7 +6463,7 @@ describe("PlansClient", () => {
                             {
                                 billingScheme: "per_unit",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 environmentId: "environment_id",
                                 externalId: "external_id",
                                 id: "id",
@@ -6409,7 +6490,7 @@ describe("PlansClient", () => {
                         {
                             cancelAtPeriodEnd: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             customerExternalId: "customer_external_id",
                             discounts: [
                                 {
@@ -6430,7 +6511,7 @@ describe("PlansClient", () => {
                                 {
                                     billingScheme: "per_unit",
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    currency: "currency",
+                                    currency: "aed",
                                     environmentId: "environment_id",
                                     externalId: "external_id",
                                     id: "id",
@@ -6462,8 +6543,16 @@ describe("PlansClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             daysUntilDue: 1000000,
                             id: "id",
-                            planBillingSource: "custom_plan",
+                            planBillingSource: "amendment",
                             planId: "plan_id",
+                            problems: [
+                                {
+                                    blocking: true,
+                                    code: "add_on_conflicts_with_plan",
+                                    message: "message",
+                                    source: "provider",
+                                },
+                            ],
                             sendInvoice: true,
                             status: "active",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -6616,7 +6705,7 @@ describe("PlansClient", () => {
                         },
                     ],
                     scheduledDowngrade: {
-                        currency: "currency",
+                        currency: "aed",
                         effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                         fromPlanId: "from_plan_id",
                         fromPlanName: "from_plan_name",
@@ -7261,6 +7350,305 @@ describe("PlansClient", () => {
 
         await expect(async () => {
             return await client.plans.deletePlanVersion("plan_version_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("getPlanVersionDiff (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                billing_product: {
+                    "new": {
+                        account_id: "account_id",
+                        created_at: "2024-01-15T09:30:00Z",
+                        environment_id: "environment_id",
+                        external_id: "external_id",
+                        is_active: true,
+                        name: "name",
+                        price: 1.1,
+                        prices: [
+                            {
+                                currency: "aed",
+                                external_price_id: "external_price_id",
+                                id: "id",
+                                interval: "day",
+                                interval_count: 1000000,
+                                price: 1000000,
+                                provider_type: "metronome",
+                                scheme: "per_unit",
+                            },
+                        ],
+                        product_id: "product_id",
+                        provider_type: "metronome",
+                        quantity: 1.1,
+                        subscription_count: 1000000,
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
+                    old: {
+                        account_id: "account_id",
+                        created_at: "2024-01-15T09:30:00Z",
+                        environment_id: "environment_id",
+                        external_id: "external_id",
+                        is_active: true,
+                        name: "name",
+                        price: 1.1,
+                        prices: [
+                            {
+                                currency: "aed",
+                                external_price_id: "external_price_id",
+                                id: "id",
+                                interval: "day",
+                                interval_count: 1000000,
+                                price: 1000000,
+                                provider_type: "metronome",
+                                scheme: "per_unit",
+                            },
+                        ],
+                        product_id: "product_id",
+                        provider_type: "metronome",
+                        quantity: 1.1,
+                        subscription_count: 1000000,
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
+                },
+                credit_grants: [{ change_type: "added", changed_fields: ["changed_fields"], credit_id: "credit_id" }],
+                entitlements: [{ change_type: "added", changed_fields: ["changed_fields"], feature_id: "feature_id" }],
+                from: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    description: "description",
+                    environment_id: "environment_id",
+                    icon: "amber",
+                    id: "id",
+                    name: "name",
+                    original_plan_id: "original_plan_id",
+                    plan_type: "plan",
+                    status: "published",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    version: 1000000,
+                },
+                has_billing_changes: true,
+                plan_fields: [{ field: "field", "new": "new", old: "old" }],
+                prices: [{ cadence: "monthly", currency: "aed" }],
+                to: {
+                    created_at: "2024-01-15T09:30:00Z",
+                    description: "description",
+                    environment_id: "environment_id",
+                    icon: "amber",
+                    id: "id",
+                    name: "name",
+                    original_plan_id: "original_plan_id",
+                    plan_type: "plan",
+                    status: "published",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    version: 1000000,
+                },
+            },
+            params: { against: "against" },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/plans/version/plan_version_id/diff")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.plans.getPlanVersionDiff("plan_version_id", {
+            against: "against",
+        });
+        expect(response).toEqual({
+            data: {
+                billingProduct: {
+                    "new": {
+                        accountId: "account_id",
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        environmentId: "environment_id",
+                        externalId: "external_id",
+                        isActive: true,
+                        name: "name",
+                        price: 1.1,
+                        prices: [
+                            {
+                                currency: "aed",
+                                externalPriceId: "external_price_id",
+                                id: "id",
+                                interval: "day",
+                                intervalCount: 1000000,
+                                price: 1000000,
+                                providerType: "metronome",
+                                scheme: "per_unit",
+                            },
+                        ],
+                        productId: "product_id",
+                        providerType: "metronome",
+                        quantity: 1.1,
+                        subscriptionCount: 1000000,
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                    old: {
+                        accountId: "account_id",
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        environmentId: "environment_id",
+                        externalId: "external_id",
+                        isActive: true,
+                        name: "name",
+                        price: 1.1,
+                        prices: [
+                            {
+                                currency: "aed",
+                                externalPriceId: "external_price_id",
+                                id: "id",
+                                interval: "day",
+                                intervalCount: 1000000,
+                                price: 1000000,
+                                providerType: "metronome",
+                                scheme: "per_unit",
+                            },
+                        ],
+                        productId: "product_id",
+                        providerType: "metronome",
+                        quantity: 1.1,
+                        subscriptionCount: 1000000,
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                },
+                creditGrants: [
+                    {
+                        changeType: "added",
+                        changedFields: ["changed_fields"],
+                        creditId: "credit_id",
+                    },
+                ],
+                entitlements: [
+                    {
+                        changeType: "added",
+                        changedFields: ["changed_fields"],
+                        featureId: "feature_id",
+                    },
+                ],
+                from: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    description: "description",
+                    environmentId: "environment_id",
+                    icon: "amber",
+                    id: "id",
+                    name: "name",
+                    originalPlanId: "original_plan_id",
+                    planType: "plan",
+                    status: "published",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    version: 1000000,
+                },
+                hasBillingChanges: true,
+                planFields: [
+                    {
+                        field: "field",
+                        "new": "new",
+                        old: "old",
+                    },
+                ],
+                prices: [
+                    {
+                        cadence: "monthly",
+                        currency: "aed",
+                    },
+                ],
+                to: {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    description: "description",
+                    environmentId: "environment_id",
+                    icon: "amber",
+                    id: "id",
+                    name: "name",
+                    originalPlanId: "original_plan_id",
+                    planType: "plan",
+                    status: "published",
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    version: 1000000,
+                },
+            },
+            params: {
+                against: "against",
+            },
+        });
+    });
+
+    test("getPlanVersionDiff (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/plans/version/plan_version_id/diff")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.getPlanVersionDiff("plan_version_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getPlanVersionDiff (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/plans/version/plan_version_id/diff")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.getPlanVersionDiff("plan_version_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getPlanVersionDiff (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/plans/version/plan_version_id/diff")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.getPlanVersionDiff("plan_version_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getPlanVersionDiff (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/plans/version/plan_version_id/diff")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.getPlanVersionDiff("plan_version_id");
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 

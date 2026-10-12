@@ -68,7 +68,7 @@ describe("CompaniesClient", () => {
                     billing_subscription: {
                         cancel_at_period_end: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         discounts: [
                             {
@@ -89,7 +89,7 @@ describe("CompaniesClient", () => {
                             {
                                 billing_scheme: "per_unit",
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 environment_id: "environment_id",
                                 external_id: "external_id",
                                 id: "id",
@@ -116,7 +116,7 @@ describe("CompaniesClient", () => {
                         {
                             cancel_at_period_end: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             customer_external_id: "customer_external_id",
                             discounts: [
                                 {
@@ -137,7 +137,7 @@ describe("CompaniesClient", () => {
                                 {
                                     billing_scheme: "per_unit",
                                     created_at: "2024-01-15T09:30:00Z",
-                                    currency: "currency",
+                                    currency: "aed",
                                     environment_id: "environment_id",
                                     external_id: "external_id",
                                     id: "id",
@@ -169,8 +169,16 @@ describe("CompaniesClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             days_until_due: 1000000,
                             id: "id",
-                            plan_billing_source: "custom_plan",
+                            plan_billing_source: "amendment",
                             plan_id: "plan_id",
+                            problems: [
+                                {
+                                    blocking: true,
+                                    code: "add_on_conflicts_with_plan",
+                                    message: "message",
+                                    source: "provider",
+                                },
+                            ],
                             send_invoice: true,
                             status: "active",
                             updated_at: "2024-01-15T09:30:00Z",
@@ -312,7 +320,7 @@ describe("CompaniesClient", () => {
                         },
                     ],
                     scheduled_downgrade: {
-                        currency: "currency",
+                        currency: "aed",
                         effective_after: "2024-01-15T09:30:00Z",
                         from_plan_id: "from_plan_id",
                         from_plan_name: "from_plan_name",
@@ -438,7 +446,7 @@ describe("CompaniesClient", () => {
                     billingSubscription: {
                         cancelAtPeriodEnd: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         discounts: [
                             {
@@ -459,7 +467,7 @@ describe("CompaniesClient", () => {
                             {
                                 billingScheme: "per_unit",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 environmentId: "environment_id",
                                 externalId: "external_id",
                                 id: "id",
@@ -486,7 +494,7 @@ describe("CompaniesClient", () => {
                         {
                             cancelAtPeriodEnd: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             customerExternalId: "customer_external_id",
                             discounts: [
                                 {
@@ -507,7 +515,7 @@ describe("CompaniesClient", () => {
                                 {
                                     billingScheme: "per_unit",
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    currency: "currency",
+                                    currency: "aed",
                                     environmentId: "environment_id",
                                     externalId: "external_id",
                                     id: "id",
@@ -539,8 +547,16 @@ describe("CompaniesClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             daysUntilDue: 1000000,
                             id: "id",
-                            planBillingSource: "custom_plan",
+                            planBillingSource: "amendment",
                             planId: "plan_id",
+                            problems: [
+                                {
+                                    blocking: true,
+                                    code: "add_on_conflicts_with_plan",
+                                    message: "message",
+                                    source: "provider",
+                                },
+                            ],
                             sendInvoice: true,
                             status: "active",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -693,7 +709,7 @@ describe("CompaniesClient", () => {
                         },
                     ],
                     scheduledDowngrade: {
-                        currency: "currency",
+                        currency: "aed",
                         effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                         fromPlanId: "from_plan_id",
                         fromPlanName: "from_plan_name",
@@ -871,7 +887,7 @@ describe("CompaniesClient", () => {
                     cancel_at_period_end: true,
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
-                    currency: "currency",
+                    currency: "aed",
                     customer_external_id: "customer_external_id",
                     default_payment_method_id: "default_payment_method_id",
                     discounts: [
@@ -894,7 +910,7 @@ describe("CompaniesClient", () => {
                         amount_remaining: 1000000,
                         collection_method: "collection_method",
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         ending_balance: 1000000,
                         environment_id: "environment_id",
@@ -921,7 +937,7 @@ describe("CompaniesClient", () => {
                         {
                             billing_scheme: "per_unit",
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             environment_id: "environment_id",
                             external_id: "external_id",
                             id: "id",
@@ -950,7 +966,7 @@ describe("CompaniesClient", () => {
                     {
                         cancel_at_period_end: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         discounts: [
                             {
@@ -971,7 +987,7 @@ describe("CompaniesClient", () => {
                             {
                                 billing_scheme: "per_unit",
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 environment_id: "environment_id",
                                 external_id: "external_id",
                                 id: "id",
@@ -1003,8 +1019,16 @@ describe("CompaniesClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         days_until_due: 1000000,
                         id: "id",
-                        plan_billing_source: "custom_plan",
+                        plan_billing_source: "amendment",
                         plan_id: "plan_id",
+                        problems: [
+                            {
+                                blocking: true,
+                                code: "add_on_conflicts_with_plan",
+                                message: "message",
+                                source: "provider",
+                            },
+                        ],
                         send_invoice: true,
                         status: "active",
                         updated_at: "2024-01-15T09:30:00Z",
@@ -1167,7 +1191,7 @@ describe("CompaniesClient", () => {
                     },
                 ],
                 scheduled_downgrade: {
-                    currency: "currency",
+                    currency: "aed",
                     effective_after: "2024-01-15T09:30:00Z",
                     from_plan_id: "from_plan_id",
                     from_plan_name: "from_plan_name",
@@ -1268,7 +1292,7 @@ describe("CompaniesClient", () => {
                     cancelAtPeriodEnd: true,
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    currency: "currency",
+                    currency: "aed",
                     customerExternalId: "customer_external_id",
                     defaultPaymentMethodId: "default_payment_method_id",
                     discounts: [
@@ -1291,7 +1315,7 @@ describe("CompaniesClient", () => {
                         amountRemaining: 1000000,
                         collectionMethod: "collection_method",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         endingBalance: 1000000,
                         environmentId: "environment_id",
@@ -1320,7 +1344,7 @@ describe("CompaniesClient", () => {
                         {
                             billingScheme: "per_unit",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             environmentId: "environment_id",
                             externalId: "external_id",
                             id: "id",
@@ -1349,7 +1373,7 @@ describe("CompaniesClient", () => {
                     {
                         cancelAtPeriodEnd: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         discounts: [
                             {
@@ -1370,7 +1394,7 @@ describe("CompaniesClient", () => {
                             {
                                 billingScheme: "per_unit",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 environmentId: "environment_id",
                                 externalId: "external_id",
                                 id: "id",
@@ -1402,8 +1426,16 @@ describe("CompaniesClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         daysUntilDue: 1000000,
                         id: "id",
-                        planBillingSource: "custom_plan",
+                        planBillingSource: "amendment",
                         planId: "plan_id",
+                        problems: [
+                            {
+                                blocking: true,
+                                code: "add_on_conflicts_with_plan",
+                                message: "message",
+                                source: "provider",
+                            },
+                        ],
                         sendInvoice: true,
                         status: "active",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1577,7 +1609,7 @@ describe("CompaniesClient", () => {
                     },
                 ],
                 scheduledDowngrade: {
-                    currency: "currency",
+                    currency: "aed",
                     effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                     fromPlanId: "from_plan_id",
                     fromPlanName: "from_plan_name",
@@ -1791,7 +1823,7 @@ describe("CompaniesClient", () => {
                     cancel_at_period_end: true,
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
-                    currency: "currency",
+                    currency: "aed",
                     customer_external_id: "customer_external_id",
                     default_payment_method_id: "default_payment_method_id",
                     discounts: [
@@ -1814,7 +1846,7 @@ describe("CompaniesClient", () => {
                         amount_remaining: 1000000,
                         collection_method: "collection_method",
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         ending_balance: 1000000,
                         environment_id: "environment_id",
@@ -1841,7 +1873,7 @@ describe("CompaniesClient", () => {
                         {
                             billing_scheme: "per_unit",
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             environment_id: "environment_id",
                             external_id: "external_id",
                             id: "id",
@@ -1870,7 +1902,7 @@ describe("CompaniesClient", () => {
                     {
                         cancel_at_period_end: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         discounts: [
                             {
@@ -1891,7 +1923,7 @@ describe("CompaniesClient", () => {
                             {
                                 billing_scheme: "per_unit",
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 environment_id: "environment_id",
                                 external_id: "external_id",
                                 id: "id",
@@ -1923,8 +1955,16 @@ describe("CompaniesClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         days_until_due: 1000000,
                         id: "id",
-                        plan_billing_source: "custom_plan",
+                        plan_billing_source: "amendment",
                         plan_id: "plan_id",
+                        problems: [
+                            {
+                                blocking: true,
+                                code: "add_on_conflicts_with_plan",
+                                message: "message",
+                                source: "provider",
+                            },
+                        ],
                         send_invoice: true,
                         status: "active",
                         updated_at: "2024-01-15T09:30:00Z",
@@ -2087,7 +2127,7 @@ describe("CompaniesClient", () => {
                     },
                 ],
                 scheduled_downgrade: {
-                    currency: "currency",
+                    currency: "aed",
                     effective_after: "2024-01-15T09:30:00Z",
                     from_plan_id: "from_plan_id",
                     from_plan_name: "from_plan_name",
@@ -2183,7 +2223,7 @@ describe("CompaniesClient", () => {
                     cancelAtPeriodEnd: true,
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    currency: "currency",
+                    currency: "aed",
                     customerExternalId: "customer_external_id",
                     defaultPaymentMethodId: "default_payment_method_id",
                     discounts: [
@@ -2206,7 +2246,7 @@ describe("CompaniesClient", () => {
                         amountRemaining: 1000000,
                         collectionMethod: "collection_method",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         endingBalance: 1000000,
                         environmentId: "environment_id",
@@ -2235,7 +2275,7 @@ describe("CompaniesClient", () => {
                         {
                             billingScheme: "per_unit",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             environmentId: "environment_id",
                             externalId: "external_id",
                             id: "id",
@@ -2264,7 +2304,7 @@ describe("CompaniesClient", () => {
                     {
                         cancelAtPeriodEnd: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         discounts: [
                             {
@@ -2285,7 +2325,7 @@ describe("CompaniesClient", () => {
                             {
                                 billingScheme: "per_unit",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 environmentId: "environment_id",
                                 externalId: "external_id",
                                 id: "id",
@@ -2317,8 +2357,16 @@ describe("CompaniesClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         daysUntilDue: 1000000,
                         id: "id",
-                        planBillingSource: "custom_plan",
+                        planBillingSource: "amendment",
                         planId: "plan_id",
+                        problems: [
+                            {
+                                blocking: true,
+                                code: "add_on_conflicts_with_plan",
+                                message: "message",
+                                source: "provider",
+                            },
+                        ],
                         sendInvoice: true,
                         status: "active",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2492,7 +2540,7 @@ describe("CompaniesClient", () => {
                     },
                 ],
                 scheduledDowngrade: {
-                    currency: "currency",
+                    currency: "aed",
                     effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                     fromPlanId: "from_plan_id",
                     fromPlanName: "from_plan_name",
@@ -2937,7 +2985,7 @@ describe("CompaniesClient", () => {
                     cancel_at_period_end: true,
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
-                    currency: "currency",
+                    currency: "aed",
                     customer_external_id: "customer_external_id",
                     default_payment_method_id: "default_payment_method_id",
                     discounts: [
@@ -2960,7 +3008,7 @@ describe("CompaniesClient", () => {
                         amount_remaining: 1000000,
                         collection_method: "collection_method",
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         ending_balance: 1000000,
                         environment_id: "environment_id",
@@ -2987,7 +3035,7 @@ describe("CompaniesClient", () => {
                         {
                             billing_scheme: "per_unit",
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             environment_id: "environment_id",
                             external_id: "external_id",
                             id: "id",
@@ -3016,7 +3064,7 @@ describe("CompaniesClient", () => {
                     {
                         cancel_at_period_end: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         discounts: [
                             {
@@ -3037,7 +3085,7 @@ describe("CompaniesClient", () => {
                             {
                                 billing_scheme: "per_unit",
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 environment_id: "environment_id",
                                 external_id: "external_id",
                                 id: "id",
@@ -3069,8 +3117,16 @@ describe("CompaniesClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         days_until_due: 1000000,
                         id: "id",
-                        plan_billing_source: "custom_plan",
+                        plan_billing_source: "amendment",
                         plan_id: "plan_id",
+                        problems: [
+                            {
+                                blocking: true,
+                                code: "add_on_conflicts_with_plan",
+                                message: "message",
+                                source: "provider",
+                            },
+                        ],
                         send_invoice: true,
                         status: "active",
                         updated_at: "2024-01-15T09:30:00Z",
@@ -3233,7 +3289,7 @@ describe("CompaniesClient", () => {
                     },
                 ],
                 scheduled_downgrade: {
-                    currency: "currency",
+                    currency: "aed",
                     effective_after: "2024-01-15T09:30:00Z",
                     from_plan_id: "from_plan_id",
                     from_plan_name: "from_plan_name",
@@ -3334,7 +3390,7 @@ describe("CompaniesClient", () => {
                     cancelAtPeriodEnd: true,
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    currency: "currency",
+                    currency: "aed",
                     customerExternalId: "customer_external_id",
                     defaultPaymentMethodId: "default_payment_method_id",
                     discounts: [
@@ -3357,7 +3413,7 @@ describe("CompaniesClient", () => {
                         amountRemaining: 1000000,
                         collectionMethod: "collection_method",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         endingBalance: 1000000,
                         environmentId: "environment_id",
@@ -3386,7 +3442,7 @@ describe("CompaniesClient", () => {
                         {
                             billingScheme: "per_unit",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             environmentId: "environment_id",
                             externalId: "external_id",
                             id: "id",
@@ -3415,7 +3471,7 @@ describe("CompaniesClient", () => {
                     {
                         cancelAtPeriodEnd: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         discounts: [
                             {
@@ -3436,7 +3492,7 @@ describe("CompaniesClient", () => {
                             {
                                 billingScheme: "per_unit",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 environmentId: "environment_id",
                                 externalId: "external_id",
                                 id: "id",
@@ -3468,8 +3524,16 @@ describe("CompaniesClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         daysUntilDue: 1000000,
                         id: "id",
-                        planBillingSource: "custom_plan",
+                        planBillingSource: "amendment",
                         planId: "plan_id",
+                        problems: [
+                            {
+                                blocking: true,
+                                code: "add_on_conflicts_with_plan",
+                                message: "message",
+                                source: "provider",
+                            },
+                        ],
                         sendInvoice: true,
                         status: "active",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -3643,7 +3707,7 @@ describe("CompaniesClient", () => {
                     },
                 ],
                 scheduledDowngrade: {
-                    currency: "currency",
+                    currency: "aed",
                     effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                     fromPlanId: "from_plan_id",
                     fromPlanName: "from_plan_name",
@@ -4000,7 +4064,7 @@ describe("CompaniesClient", () => {
                                     burn_strategy: "expiration_priority",
                                     cost_editable: true,
                                     created_at: "2024-01-15T09:30:00Z",
-                                    currency_prices: [{ currency: "currency" }, { currency: "currency" }],
+                                    currency_prices: [{ currency: "aed" }, { currency: "aed" }],
                                     default_expiry_unit: "billing_periods",
                                     default_expiry_unit_count: 1000000,
                                     default_rollover_policy: "expire",
@@ -4014,7 +4078,7 @@ describe("CompaniesClient", () => {
                                     price: {
                                         billing_scheme: "per_unit",
                                         created_at: "2024-01-15T09:30:00Z",
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         interval_count: 1000000,
@@ -4064,7 +4128,7 @@ describe("CompaniesClient", () => {
                                 price: {
                                     billing_scheme: "per_unit",
                                     created_at: "2024-01-15T09:30:00Z",
-                                    currency: "currency",
+                                    currency: "aed",
                                     id: "id",
                                     interval: "day",
                                     interval_count: 1000000,
@@ -4126,7 +4190,7 @@ describe("CompaniesClient", () => {
                                     burn_strategy: "expiration_priority",
                                     cost_editable: true,
                                     created_at: "2024-01-15T09:30:00Z",
-                                    currency_prices: [{ currency: "currency" }, { currency: "currency" }],
+                                    currency_prices: [{ currency: "aed" }, { currency: "aed" }],
                                     default_expiry_unit: "billing_periods",
                                     default_expiry_unit_count: 1000000,
                                     default_rollover_policy: "expire",
@@ -4140,7 +4204,7 @@ describe("CompaniesClient", () => {
                                     price: {
                                         billing_scheme: "per_unit",
                                         created_at: "2024-01-15T09:30:00Z",
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         interval_count: 1000000,
@@ -4190,7 +4254,7 @@ describe("CompaniesClient", () => {
                                 price: {
                                     billing_scheme: "per_unit",
                                     created_at: "2024-01-15T09:30:00Z",
-                                    currency: "currency",
+                                    currency: "aed",
                                     id: "id",
                                     interval: "day",
                                     interval_count: 1000000,
@@ -4266,7 +4330,7 @@ describe("CompaniesClient", () => {
                                     burn_strategy: "expiration_priority",
                                     cost_editable: true,
                                     created_at: "2024-01-15T09:30:00Z",
-                                    currency_prices: [{ currency: "currency" }, { currency: "currency" }],
+                                    currency_prices: [{ currency: "aed" }, { currency: "aed" }],
                                     default_expiry_unit: "billing_periods",
                                     default_expiry_unit_count: 1000000,
                                     default_rollover_policy: "expire",
@@ -4280,7 +4344,7 @@ describe("CompaniesClient", () => {
                                     price: {
                                         billing_scheme: "per_unit",
                                         created_at: "2024-01-15T09:30:00Z",
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         interval_count: 1000000,
@@ -4330,7 +4394,7 @@ describe("CompaniesClient", () => {
                                 price: {
                                     billing_scheme: "per_unit",
                                     created_at: "2024-01-15T09:30:00Z",
-                                    currency: "currency",
+                                    currency: "aed",
                                     id: "id",
                                     interval: "day",
                                     interval_count: 1000000,
@@ -4392,7 +4456,7 @@ describe("CompaniesClient", () => {
                                     burn_strategy: "expiration_priority",
                                     cost_editable: true,
                                     created_at: "2024-01-15T09:30:00Z",
-                                    currency_prices: [{ currency: "currency" }, { currency: "currency" }],
+                                    currency_prices: [{ currency: "aed" }, { currency: "aed" }],
                                     default_expiry_unit: "billing_periods",
                                     default_expiry_unit_count: 1000000,
                                     default_rollover_policy: "expire",
@@ -4406,7 +4470,7 @@ describe("CompaniesClient", () => {
                                     price: {
                                         billing_scheme: "per_unit",
                                         created_at: "2024-01-15T09:30:00Z",
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         interval_count: 1000000,
@@ -4456,7 +4520,7 @@ describe("CompaniesClient", () => {
                                 price: {
                                     billing_scheme: "per_unit",
                                     created_at: "2024-01-15T09:30:00Z",
-                                    currency: "currency",
+                                    currency: "aed",
                                     id: "id",
                                     interval: "day",
                                     interval_count: 1000000,
@@ -4552,7 +4616,7 @@ describe("CompaniesClient", () => {
                     cancel_at_period_end: true,
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
-                    currency: "currency",
+                    currency: "aed",
                     customer_external_id: "customer_external_id",
                     default_payment_method_id: "default_payment_method_id",
                     discounts: [
@@ -4560,7 +4624,7 @@ describe("CompaniesClient", () => {
                             amount_off: 1000000,
                             coupon_id: "coupon_id",
                             coupon_name: "coupon_name",
-                            currency: "currency",
+                            currency: "aed",
                             customer_facing_code: "customer_facing_code",
                             discount_external_id: "discount_external_id",
                             duration: "duration",
@@ -4576,7 +4640,7 @@ describe("CompaniesClient", () => {
                             amount_off: 1000000,
                             coupon_id: "coupon_id",
                             coupon_name: "coupon_name",
-                            currency: "currency",
+                            currency: "aed",
                             customer_facing_code: "customer_facing_code",
                             discount_external_id: "discount_external_id",
                             duration: "duration",
@@ -4599,7 +4663,7 @@ describe("CompaniesClient", () => {
                         collection_method: "collection_method",
                         company_id: "company_id",
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         due_date: "2024-01-15T09:30:00Z",
                         ending_balance: 1000000,
@@ -4644,7 +4708,7 @@ describe("CompaniesClient", () => {
                             billing_scheme: "per_unit",
                             billing_threshold: 1000000,
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             environment_id: "environment_id",
                             external_id: "external_id",
                             id: "id",
@@ -4682,7 +4746,7 @@ describe("CompaniesClient", () => {
                             billing_scheme: "per_unit",
                             billing_threshold: 1000000,
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             environment_id: "environment_id",
                             external_id: "external_id",
                             id: "id",
@@ -4731,7 +4795,7 @@ describe("CompaniesClient", () => {
                         cancel_at_period_end: true,
                         company_id: "company_id",
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         default_payment_method_id: "default_payment_method_id",
                         discounts: [
@@ -4739,7 +4803,7 @@ describe("CompaniesClient", () => {
                                 amount_off: 1000000,
                                 coupon_id: "coupon_id",
                                 coupon_name: "coupon_name",
-                                currency: "currency",
+                                currency: "aed",
                                 customer_facing_code: "customer_facing_code",
                                 discount_external_id: "discount_external_id",
                                 duration: "duration",
@@ -4755,7 +4819,7 @@ describe("CompaniesClient", () => {
                                 amount_off: 1000000,
                                 coupon_id: "coupon_id",
                                 coupon_name: "coupon_name",
-                                currency: "currency",
+                                currency: "aed",
                                 customer_facing_code: "customer_facing_code",
                                 discount_external_id: "discount_external_id",
                                 duration: "duration",
@@ -4778,7 +4842,7 @@ describe("CompaniesClient", () => {
                             collection_method: "collection_method",
                             company_id: "company_id",
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             customer_external_id: "customer_external_id",
                             due_date: "2024-01-15T09:30:00Z",
                             ending_balance: 1000000,
@@ -4823,7 +4887,7 @@ describe("CompaniesClient", () => {
                                 billing_scheme: "per_unit",
                                 billing_threshold: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 environment_id: "environment_id",
                                 external_id: "external_id",
                                 id: "id",
@@ -4861,7 +4925,7 @@ describe("CompaniesClient", () => {
                                 billing_scheme: "per_unit",
                                 billing_threshold: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 environment_id: "environment_id",
                                 external_id: "external_id",
                                 id: "id",
@@ -4909,7 +4973,7 @@ describe("CompaniesClient", () => {
                         cancel_at_period_end: true,
                         company_id: "company_id",
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         default_payment_method_id: "default_payment_method_id",
                         discounts: [
@@ -4917,7 +4981,7 @@ describe("CompaniesClient", () => {
                                 amount_off: 1000000,
                                 coupon_id: "coupon_id",
                                 coupon_name: "coupon_name",
-                                currency: "currency",
+                                currency: "aed",
                                 customer_facing_code: "customer_facing_code",
                                 discount_external_id: "discount_external_id",
                                 duration: "duration",
@@ -4933,7 +4997,7 @@ describe("CompaniesClient", () => {
                                 amount_off: 1000000,
                                 coupon_id: "coupon_id",
                                 coupon_name: "coupon_name",
-                                currency: "currency",
+                                currency: "aed",
                                 customer_facing_code: "customer_facing_code",
                                 discount_external_id: "discount_external_id",
                                 duration: "duration",
@@ -4956,7 +5020,7 @@ describe("CompaniesClient", () => {
                             collection_method: "collection_method",
                             company_id: "company_id",
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             customer_external_id: "customer_external_id",
                             due_date: "2024-01-15T09:30:00Z",
                             ending_balance: 1000000,
@@ -5001,7 +5065,7 @@ describe("CompaniesClient", () => {
                                 billing_scheme: "per_unit",
                                 billing_threshold: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 environment_id: "environment_id",
                                 external_id: "external_id",
                                 id: "id",
@@ -5039,7 +5103,7 @@ describe("CompaniesClient", () => {
                                 billing_scheme: "per_unit",
                                 billing_threshold: 1000000,
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 environment_id: "environment_id",
                                 external_id: "external_id",
                                 id: "id",
@@ -5088,14 +5152,46 @@ describe("CompaniesClient", () => {
                         activation_strategy: "on_payment",
                         billing_cycle_anchor: "2024-01-15T09:30:00Z",
                         billing_start_date: "2024-01-15T09:30:00Z",
+                        checkout_id: "checkout_id",
                         company_id: "company_id",
                         created_at: "2024-01-15T09:30:00Z",
                         days_until_due: 1000000,
                         external_invoice_id: "external_invoice_id",
                         id: "id",
+                        migration_id: "migration_id",
                         paid_at: "2024-01-15T09:30:00Z",
-                        plan_billing_source: "custom_plan",
+                        plan_billing_source: "amendment",
                         plan_id: "plan_id",
+                        problems: [
+                            {
+                                blocking: true,
+                                bundle_id: "bundle_id",
+                                code: "add_on_conflicts_with_plan",
+                                currency: "aed",
+                                detail: "detail",
+                                feature_id: "feature_id",
+                                field_id: "field_id",
+                                message: "message",
+                                payment_method_id: "payment_method_id",
+                                plan_id: "plan_id",
+                                price_id: "price_id",
+                                source: "provider",
+                            },
+                            {
+                                blocking: true,
+                                bundle_id: "bundle_id",
+                                code: "add_on_conflicts_with_plan",
+                                currency: "aed",
+                                detail: "detail",
+                                feature_id: "feature_id",
+                                field_id: "field_id",
+                                message: "message",
+                                payment_method_id: "payment_method_id",
+                                plan_id: "plan_id",
+                                price_id: "price_id",
+                                source: "provider",
+                            },
+                        ],
                         prorate_first_period: true,
                         published_at: "2024-01-15T09:30:00Z",
                         send_invoice: true,
@@ -5107,14 +5203,46 @@ describe("CompaniesClient", () => {
                         activation_strategy: "on_payment",
                         billing_cycle_anchor: "2024-01-15T09:30:00Z",
                         billing_start_date: "2024-01-15T09:30:00Z",
+                        checkout_id: "checkout_id",
                         company_id: "company_id",
                         created_at: "2024-01-15T09:30:00Z",
                         days_until_due: 1000000,
                         external_invoice_id: "external_invoice_id",
                         id: "id",
+                        migration_id: "migration_id",
                         paid_at: "2024-01-15T09:30:00Z",
-                        plan_billing_source: "custom_plan",
+                        plan_billing_source: "amendment",
                         plan_id: "plan_id",
+                        problems: [
+                            {
+                                blocking: true,
+                                bundle_id: "bundle_id",
+                                code: "add_on_conflicts_with_plan",
+                                currency: "aed",
+                                detail: "detail",
+                                feature_id: "feature_id",
+                                field_id: "field_id",
+                                message: "message",
+                                payment_method_id: "payment_method_id",
+                                plan_id: "plan_id",
+                                price_id: "price_id",
+                                source: "provider",
+                            },
+                            {
+                                blocking: true,
+                                bundle_id: "bundle_id",
+                                code: "add_on_conflicts_with_plan",
+                                currency: "aed",
+                                detail: "detail",
+                                feature_id: "feature_id",
+                                field_id: "field_id",
+                                message: "message",
+                                payment_method_id: "payment_method_id",
+                                plan_id: "plan_id",
+                                price_id: "price_id",
+                                source: "provider",
+                            },
+                        ],
                         prorate_first_period: true,
                         published_at: "2024-01-15T09:30:00Z",
                         send_invoice: true,
@@ -5160,6 +5288,7 @@ describe("CompaniesClient", () => {
                         metric_period: "all_time",
                         metric_reset_at: "2024-01-15T09:30:00Z",
                         month_reset: "billing_cycle",
+                        quantity_rates: { quantity_rates: 1.1 },
                         soft_limit: 1000000,
                         usage: 1000000,
                         value_type: "boolean",
@@ -5184,6 +5313,7 @@ describe("CompaniesClient", () => {
                         metric_period: "all_time",
                         metric_reset_at: "2024-01-15T09:30:00Z",
                         month_reset: "billing_cycle",
+                        quantity_rates: { quantity_rates: 1.1 },
                         soft_limit: 1000000,
                         usage: 1000000,
                         value_type: "boolean",
@@ -5392,7 +5522,7 @@ describe("CompaniesClient", () => {
                                 burn_strategy: "expiration_priority",
                                 cost_editable: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency_prices: [{ currency: "currency" }, { currency: "currency" }],
+                                currency_prices: [{ currency: "aed" }, { currency: "aed" }],
                                 default_expiry_unit: "billing_periods",
                                 default_expiry_unit_count: 1000000,
                                 default_rollover_policy: "expire",
@@ -5406,7 +5536,7 @@ describe("CompaniesClient", () => {
                                 price: {
                                     billing_scheme: "per_unit",
                                     created_at: "2024-01-15T09:30:00Z",
-                                    currency: "currency",
+                                    currency: "aed",
                                     id: "id",
                                     interval: "day",
                                     interval_count: 1000000,
@@ -5456,7 +5586,7 @@ describe("CompaniesClient", () => {
                             price: {
                                 billing_scheme: "per_unit",
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 id: "id",
                                 interval: "day",
                                 interval_count: 1000000,
@@ -5518,7 +5648,7 @@ describe("CompaniesClient", () => {
                                 burn_strategy: "expiration_priority",
                                 cost_editable: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency_prices: [{ currency: "currency" }, { currency: "currency" }],
+                                currency_prices: [{ currency: "aed" }, { currency: "aed" }],
                                 default_expiry_unit: "billing_periods",
                                 default_expiry_unit_count: 1000000,
                                 default_rollover_policy: "expire",
@@ -5532,7 +5662,7 @@ describe("CompaniesClient", () => {
                                 price: {
                                     billing_scheme: "per_unit",
                                     created_at: "2024-01-15T09:30:00Z",
-                                    currency: "currency",
+                                    currency: "aed",
                                     id: "id",
                                     interval: "day",
                                     interval_count: 1000000,
@@ -5582,7 +5712,7 @@ describe("CompaniesClient", () => {
                             price: {
                                 billing_scheme: "per_unit",
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 id: "id",
                                 interval: "day",
                                 interval_count: 1000000,
@@ -5646,6 +5776,7 @@ describe("CompaniesClient", () => {
                                         metric_period_month_reset: "billing_cycle",
                                         metric_value: 1000000,
                                         operator: "eq",
+                                        quantity_rates: { quantity_rates: 1.1 },
                                         resource_ids: ["resource_ids", "resource_ids"],
                                         trait_definition: { comparable_type: "bool", entity_type: "company", id: "id" },
                                         trait_value: "trait_value",
@@ -5667,6 +5798,7 @@ describe("CompaniesClient", () => {
                                         metric_period_month_reset: "billing_cycle",
                                         metric_value: 1000000,
                                         operator: "eq",
+                                        quantity_rates: { quantity_rates: 1.1 },
                                         resource_ids: ["resource_ids", "resource_ids"],
                                         trait_definition: { comparable_type: "bool", entity_type: "company", id: "id" },
                                         trait_value: "trait_value",
@@ -5692,6 +5824,7 @@ describe("CompaniesClient", () => {
                                         metric_period_month_reset: "billing_cycle",
                                         metric_value: 1000000,
                                         operator: "eq",
+                                        quantity_rates: { quantity_rates: 1.1 },
                                         resource_ids: ["resource_ids", "resource_ids"],
                                         trait_definition: { comparable_type: "bool", entity_type: "company", id: "id" },
                                         trait_value: "trait_value",
@@ -5713,6 +5846,7 @@ describe("CompaniesClient", () => {
                                         metric_period_month_reset: "billing_cycle",
                                         metric_value: 1000000,
                                         operator: "eq",
+                                        quantity_rates: { quantity_rates: 1.1 },
                                         resource_ids: ["resource_ids", "resource_ids"],
                                         trait_definition: { comparable_type: "bool", entity_type: "company", id: "id" },
                                         trait_value: "trait_value",
@@ -5738,6 +5872,7 @@ describe("CompaniesClient", () => {
                                 metric_period_month_reset: "billing_cycle",
                                 metric_value: 1000000,
                                 operator: "eq",
+                                quantity_rates: { quantity_rates: 1.1 },
                                 resource_ids: ["resource_ids", "resource_ids"],
                                 trait_definition: { comparable_type: "bool", entity_type: "company", id: "id" },
                                 trait_value: "trait_value",
@@ -5759,6 +5894,7 @@ describe("CompaniesClient", () => {
                                 metric_period_month_reset: "billing_cycle",
                                 metric_value: 1000000,
                                 operator: "eq",
+                                quantity_rates: { quantity_rates: 1.1 },
                                 resource_ids: ["resource_ids", "resource_ids"],
                                 trait_definition: { comparable_type: "bool", entity_type: "company", id: "id" },
                                 trait_value: "trait_value",
@@ -5794,6 +5930,7 @@ describe("CompaniesClient", () => {
                                         metric_period_month_reset: "billing_cycle",
                                         metric_value: 1000000,
                                         operator: "eq",
+                                        quantity_rates: { quantity_rates: 1.1 },
                                         resource_ids: ["resource_ids", "resource_ids"],
                                         trait_definition: { comparable_type: "bool", entity_type: "company", id: "id" },
                                         trait_value: "trait_value",
@@ -5815,6 +5952,7 @@ describe("CompaniesClient", () => {
                                         metric_period_month_reset: "billing_cycle",
                                         metric_value: 1000000,
                                         operator: "eq",
+                                        quantity_rates: { quantity_rates: 1.1 },
                                         resource_ids: ["resource_ids", "resource_ids"],
                                         trait_definition: { comparable_type: "bool", entity_type: "company", id: "id" },
                                         trait_value: "trait_value",
@@ -5840,6 +5978,7 @@ describe("CompaniesClient", () => {
                                         metric_period_month_reset: "billing_cycle",
                                         metric_value: 1000000,
                                         operator: "eq",
+                                        quantity_rates: { quantity_rates: 1.1 },
                                         resource_ids: ["resource_ids", "resource_ids"],
                                         trait_definition: { comparable_type: "bool", entity_type: "company", id: "id" },
                                         trait_value: "trait_value",
@@ -5861,6 +6000,7 @@ describe("CompaniesClient", () => {
                                         metric_period_month_reset: "billing_cycle",
                                         metric_value: 1000000,
                                         operator: "eq",
+                                        quantity_rates: { quantity_rates: 1.1 },
                                         resource_ids: ["resource_ids", "resource_ids"],
                                         trait_definition: { comparable_type: "bool", entity_type: "company", id: "id" },
                                         trait_value: "trait_value",
@@ -5886,6 +6026,7 @@ describe("CompaniesClient", () => {
                                 metric_period_month_reset: "billing_cycle",
                                 metric_value: 1000000,
                                 operator: "eq",
+                                quantity_rates: { quantity_rates: 1.1 },
                                 resource_ids: ["resource_ids", "resource_ids"],
                                 trait_definition: { comparable_type: "bool", entity_type: "company", id: "id" },
                                 trait_value: "trait_value",
@@ -5907,6 +6048,7 @@ describe("CompaniesClient", () => {
                                 metric_period_month_reset: "billing_cycle",
                                 metric_value: 1000000,
                                 operator: "eq",
+                                quantity_rates: { quantity_rates: 1.1 },
                                 resource_ids: ["resource_ids", "resource_ids"],
                                 trait_definition: { comparable_type: "bool", entity_type: "company", id: "id" },
                                 trait_value: "trait_value",
@@ -5922,7 +6064,7 @@ describe("CompaniesClient", () => {
                     },
                 ],
                 scheduled_downgrade: {
-                    currency: "currency",
+                    currency: "aed",
                     effective_after: "2024-01-15T09:30:00Z",
                     from_plan_id: "from_plan_id",
                     from_plan_name: "from_plan_name",
@@ -5992,10 +6134,10 @@ describe("CompaniesClient", () => {
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     currencyPrices: [
                                         {
-                                            currency: "currency",
+                                            currency: "aed",
                                         },
                                         {
-                                            currency: "currency",
+                                            currency: "aed",
                                         },
                                     ],
                                     defaultExpiryUnit: "billing_periods",
@@ -6011,7 +6153,7 @@ describe("CompaniesClient", () => {
                                     price: {
                                         billingScheme: "per_unit",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         intervalCount: 1000000,
@@ -6066,7 +6208,7 @@ describe("CompaniesClient", () => {
                                 price: {
                                     billingScheme: "per_unit",
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    currency: "currency",
+                                    currency: "aed",
                                     id: "id",
                                     interval: "day",
                                     intervalCount: 1000000,
@@ -6130,10 +6272,10 @@ describe("CompaniesClient", () => {
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     currencyPrices: [
                                         {
-                                            currency: "currency",
+                                            currency: "aed",
                                         },
                                         {
-                                            currency: "currency",
+                                            currency: "aed",
                                         },
                                     ],
                                     defaultExpiryUnit: "billing_periods",
@@ -6149,7 +6291,7 @@ describe("CompaniesClient", () => {
                                     price: {
                                         billingScheme: "per_unit",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         intervalCount: 1000000,
@@ -6204,7 +6346,7 @@ describe("CompaniesClient", () => {
                                 price: {
                                     billingScheme: "per_unit",
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    currency: "currency",
+                                    currency: "aed",
                                     id: "id",
                                     interval: "day",
                                     intervalCount: 1000000,
@@ -6282,10 +6424,10 @@ describe("CompaniesClient", () => {
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     currencyPrices: [
                                         {
-                                            currency: "currency",
+                                            currency: "aed",
                                         },
                                         {
-                                            currency: "currency",
+                                            currency: "aed",
                                         },
                                     ],
                                     defaultExpiryUnit: "billing_periods",
@@ -6301,7 +6443,7 @@ describe("CompaniesClient", () => {
                                     price: {
                                         billingScheme: "per_unit",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         intervalCount: 1000000,
@@ -6356,7 +6498,7 @@ describe("CompaniesClient", () => {
                                 price: {
                                     billingScheme: "per_unit",
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    currency: "currency",
+                                    currency: "aed",
                                     id: "id",
                                     interval: "day",
                                     intervalCount: 1000000,
@@ -6420,10 +6562,10 @@ describe("CompaniesClient", () => {
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                     currencyPrices: [
                                         {
-                                            currency: "currency",
+                                            currency: "aed",
                                         },
                                         {
-                                            currency: "currency",
+                                            currency: "aed",
                                         },
                                     ],
                                     defaultExpiryUnit: "billing_periods",
@@ -6439,7 +6581,7 @@ describe("CompaniesClient", () => {
                                     price: {
                                         billingScheme: "per_unit",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         intervalCount: 1000000,
@@ -6494,7 +6636,7 @@ describe("CompaniesClient", () => {
                                 price: {
                                     billingScheme: "per_unit",
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    currency: "currency",
+                                    currency: "aed",
                                     id: "id",
                                     interval: "day",
                                     intervalCount: 1000000,
@@ -6592,7 +6734,7 @@ describe("CompaniesClient", () => {
                     cancelAtPeriodEnd: true,
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    currency: "currency",
+                    currency: "aed",
                     customerExternalId: "customer_external_id",
                     defaultPaymentMethodId: "default_payment_method_id",
                     discounts: [
@@ -6600,7 +6742,7 @@ describe("CompaniesClient", () => {
                             amountOff: 1000000,
                             couponId: "coupon_id",
                             couponName: "coupon_name",
-                            currency: "currency",
+                            currency: "aed",
                             customerFacingCode: "customer_facing_code",
                             discountExternalId: "discount_external_id",
                             duration: "duration",
@@ -6616,7 +6758,7 @@ describe("CompaniesClient", () => {
                             amountOff: 1000000,
                             couponId: "coupon_id",
                             couponName: "coupon_name",
-                            currency: "currency",
+                            currency: "aed",
                             customerFacingCode: "customer_facing_code",
                             discountExternalId: "discount_external_id",
                             duration: "duration",
@@ -6639,7 +6781,7 @@ describe("CompaniesClient", () => {
                         collectionMethod: "collection_method",
                         companyId: "company_id",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         dueDate: new Date("2024-01-15T09:30:00.000Z"),
                         endingBalance: 1000000,
@@ -6688,7 +6830,7 @@ describe("CompaniesClient", () => {
                             billingScheme: "per_unit",
                             billingThreshold: 1000000,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             environmentId: "environment_id",
                             externalId: "external_id",
                             id: "id",
@@ -6726,7 +6868,7 @@ describe("CompaniesClient", () => {
                             billingScheme: "per_unit",
                             billingThreshold: 1000000,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             environmentId: "environment_id",
                             externalId: "external_id",
                             id: "id",
@@ -6775,7 +6917,7 @@ describe("CompaniesClient", () => {
                         cancelAtPeriodEnd: true,
                         companyId: "company_id",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         defaultPaymentMethodId: "default_payment_method_id",
                         discounts: [
@@ -6783,7 +6925,7 @@ describe("CompaniesClient", () => {
                                 amountOff: 1000000,
                                 couponId: "coupon_id",
                                 couponName: "coupon_name",
-                                currency: "currency",
+                                currency: "aed",
                                 customerFacingCode: "customer_facing_code",
                                 discountExternalId: "discount_external_id",
                                 duration: "duration",
@@ -6799,7 +6941,7 @@ describe("CompaniesClient", () => {
                                 amountOff: 1000000,
                                 couponId: "coupon_id",
                                 couponName: "coupon_name",
-                                currency: "currency",
+                                currency: "aed",
                                 customerFacingCode: "customer_facing_code",
                                 discountExternalId: "discount_external_id",
                                 duration: "duration",
@@ -6822,7 +6964,7 @@ describe("CompaniesClient", () => {
                             collectionMethod: "collection_method",
                             companyId: "company_id",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             customerExternalId: "customer_external_id",
                             dueDate: new Date("2024-01-15T09:30:00.000Z"),
                             endingBalance: 1000000,
@@ -6871,7 +7013,7 @@ describe("CompaniesClient", () => {
                                 billingScheme: "per_unit",
                                 billingThreshold: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 environmentId: "environment_id",
                                 externalId: "external_id",
                                 id: "id",
@@ -6909,7 +7051,7 @@ describe("CompaniesClient", () => {
                                 billingScheme: "per_unit",
                                 billingThreshold: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 environmentId: "environment_id",
                                 externalId: "external_id",
                                 id: "id",
@@ -6957,7 +7099,7 @@ describe("CompaniesClient", () => {
                         cancelAtPeriodEnd: true,
                         companyId: "company_id",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         defaultPaymentMethodId: "default_payment_method_id",
                         discounts: [
@@ -6965,7 +7107,7 @@ describe("CompaniesClient", () => {
                                 amountOff: 1000000,
                                 couponId: "coupon_id",
                                 couponName: "coupon_name",
-                                currency: "currency",
+                                currency: "aed",
                                 customerFacingCode: "customer_facing_code",
                                 discountExternalId: "discount_external_id",
                                 duration: "duration",
@@ -6981,7 +7123,7 @@ describe("CompaniesClient", () => {
                                 amountOff: 1000000,
                                 couponId: "coupon_id",
                                 couponName: "coupon_name",
-                                currency: "currency",
+                                currency: "aed",
                                 customerFacingCode: "customer_facing_code",
                                 discountExternalId: "discount_external_id",
                                 duration: "duration",
@@ -7004,7 +7146,7 @@ describe("CompaniesClient", () => {
                             collectionMethod: "collection_method",
                             companyId: "company_id",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             customerExternalId: "customer_external_id",
                             dueDate: new Date("2024-01-15T09:30:00.000Z"),
                             endingBalance: 1000000,
@@ -7053,7 +7195,7 @@ describe("CompaniesClient", () => {
                                 billingScheme: "per_unit",
                                 billingThreshold: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 environmentId: "environment_id",
                                 externalId: "external_id",
                                 id: "id",
@@ -7091,7 +7233,7 @@ describe("CompaniesClient", () => {
                                 billingScheme: "per_unit",
                                 billingThreshold: 1000000,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 environmentId: "environment_id",
                                 externalId: "external_id",
                                 id: "id",
@@ -7140,14 +7282,46 @@ describe("CompaniesClient", () => {
                         activationStrategy: "on_payment",
                         billingCycleAnchor: new Date("2024-01-15T09:30:00.000Z"),
                         billingStartDate: new Date("2024-01-15T09:30:00.000Z"),
+                        checkoutId: "checkout_id",
                         companyId: "company_id",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         daysUntilDue: 1000000,
                         externalInvoiceId: "external_invoice_id",
                         id: "id",
+                        migrationId: "migration_id",
                         paidAt: new Date("2024-01-15T09:30:00.000Z"),
-                        planBillingSource: "custom_plan",
+                        planBillingSource: "amendment",
                         planId: "plan_id",
+                        problems: [
+                            {
+                                blocking: true,
+                                bundleId: "bundle_id",
+                                code: "add_on_conflicts_with_plan",
+                                currency: "aed",
+                                detail: "detail",
+                                featureId: "feature_id",
+                                fieldId: "field_id",
+                                message: "message",
+                                paymentMethodId: "payment_method_id",
+                                planId: "plan_id",
+                                priceId: "price_id",
+                                source: "provider",
+                            },
+                            {
+                                blocking: true,
+                                bundleId: "bundle_id",
+                                code: "add_on_conflicts_with_plan",
+                                currency: "aed",
+                                detail: "detail",
+                                featureId: "feature_id",
+                                fieldId: "field_id",
+                                message: "message",
+                                paymentMethodId: "payment_method_id",
+                                planId: "plan_id",
+                                priceId: "price_id",
+                                source: "provider",
+                            },
+                        ],
                         prorateFirstPeriod: true,
                         publishedAt: new Date("2024-01-15T09:30:00.000Z"),
                         sendInvoice: true,
@@ -7159,14 +7333,46 @@ describe("CompaniesClient", () => {
                         activationStrategy: "on_payment",
                         billingCycleAnchor: new Date("2024-01-15T09:30:00.000Z"),
                         billingStartDate: new Date("2024-01-15T09:30:00.000Z"),
+                        checkoutId: "checkout_id",
                         companyId: "company_id",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         daysUntilDue: 1000000,
                         externalInvoiceId: "external_invoice_id",
                         id: "id",
+                        migrationId: "migration_id",
                         paidAt: new Date("2024-01-15T09:30:00.000Z"),
-                        planBillingSource: "custom_plan",
+                        planBillingSource: "amendment",
                         planId: "plan_id",
+                        problems: [
+                            {
+                                blocking: true,
+                                bundleId: "bundle_id",
+                                code: "add_on_conflicts_with_plan",
+                                currency: "aed",
+                                detail: "detail",
+                                featureId: "feature_id",
+                                fieldId: "field_id",
+                                message: "message",
+                                paymentMethodId: "payment_method_id",
+                                planId: "plan_id",
+                                priceId: "price_id",
+                                source: "provider",
+                            },
+                            {
+                                blocking: true,
+                                bundleId: "bundle_id",
+                                code: "add_on_conflicts_with_plan",
+                                currency: "aed",
+                                detail: "detail",
+                                featureId: "feature_id",
+                                fieldId: "field_id",
+                                message: "message",
+                                paymentMethodId: "payment_method_id",
+                                planId: "plan_id",
+                                priceId: "price_id",
+                                source: "provider",
+                            },
+                        ],
                         prorateFirstPeriod: true,
                         publishedAt: new Date("2024-01-15T09:30:00.000Z"),
                         sendInvoice: true,
@@ -7212,6 +7418,9 @@ describe("CompaniesClient", () => {
                         metricPeriod: "all_time",
                         metricResetAt: new Date("2024-01-15T09:30:00.000Z"),
                         monthReset: "billing_cycle",
+                        quantityRates: {
+                            quantity_rates: 1.1,
+                        },
                         softLimit: 1000000,
                         usage: 1000000,
                         valueType: "boolean",
@@ -7242,6 +7451,9 @@ describe("CompaniesClient", () => {
                         metricPeriod: "all_time",
                         metricResetAt: new Date("2024-01-15T09:30:00.000Z"),
                         monthReset: "billing_cycle",
+                        quantityRates: {
+                            quantity_rates: 1.1,
+                        },
                         softLimit: 1000000,
                         usage: 1000000,
                         valueType: "boolean",
@@ -7457,10 +7669,10 @@ describe("CompaniesClient", () => {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 currencyPrices: [
                                     {
-                                        currency: "currency",
+                                        currency: "aed",
                                     },
                                     {
-                                        currency: "currency",
+                                        currency: "aed",
                                     },
                                 ],
                                 defaultExpiryUnit: "billing_periods",
@@ -7476,7 +7688,7 @@ describe("CompaniesClient", () => {
                                 price: {
                                     billingScheme: "per_unit",
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    currency: "currency",
+                                    currency: "aed",
                                     id: "id",
                                     interval: "day",
                                     intervalCount: 1000000,
@@ -7531,7 +7743,7 @@ describe("CompaniesClient", () => {
                             price: {
                                 billingScheme: "per_unit",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 id: "id",
                                 interval: "day",
                                 intervalCount: 1000000,
@@ -7594,10 +7806,10 @@ describe("CompaniesClient", () => {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 currencyPrices: [
                                     {
-                                        currency: "currency",
+                                        currency: "aed",
                                     },
                                     {
-                                        currency: "currency",
+                                        currency: "aed",
                                     },
                                 ],
                                 defaultExpiryUnit: "billing_periods",
@@ -7613,7 +7825,7 @@ describe("CompaniesClient", () => {
                                 price: {
                                     billingScheme: "per_unit",
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    currency: "currency",
+                                    currency: "aed",
                                     id: "id",
                                     interval: "day",
                                     intervalCount: 1000000,
@@ -7668,7 +7880,7 @@ describe("CompaniesClient", () => {
                             price: {
                                 billingScheme: "per_unit",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 id: "id",
                                 interval: "day",
                                 intervalCount: 1000000,
@@ -7742,6 +7954,9 @@ describe("CompaniesClient", () => {
                                         metricPeriodMonthReset: "billing_cycle",
                                         metricValue: 1000000,
                                         operator: "eq",
+                                        quantityRates: {
+                                            quantity_rates: 1.1,
+                                        },
                                         resourceIds: ["resource_ids", "resource_ids"],
                                         traitDefinition: {
                                             comparableType: "bool",
@@ -7767,6 +7982,9 @@ describe("CompaniesClient", () => {
                                         metricPeriodMonthReset: "billing_cycle",
                                         metricValue: 1000000,
                                         operator: "eq",
+                                        quantityRates: {
+                                            quantity_rates: 1.1,
+                                        },
                                         resourceIds: ["resource_ids", "resource_ids"],
                                         traitDefinition: {
                                             comparableType: "bool",
@@ -7796,6 +8014,9 @@ describe("CompaniesClient", () => {
                                         metricPeriodMonthReset: "billing_cycle",
                                         metricValue: 1000000,
                                         operator: "eq",
+                                        quantityRates: {
+                                            quantity_rates: 1.1,
+                                        },
                                         resourceIds: ["resource_ids", "resource_ids"],
                                         traitDefinition: {
                                             comparableType: "bool",
@@ -7821,6 +8042,9 @@ describe("CompaniesClient", () => {
                                         metricPeriodMonthReset: "billing_cycle",
                                         metricValue: 1000000,
                                         operator: "eq",
+                                        quantityRates: {
+                                            quantity_rates: 1.1,
+                                        },
                                         resourceIds: ["resource_ids", "resource_ids"],
                                         traitDefinition: {
                                             comparableType: "bool",
@@ -7850,6 +8074,9 @@ describe("CompaniesClient", () => {
                                 metricPeriodMonthReset: "billing_cycle",
                                 metricValue: 1000000,
                                 operator: "eq",
+                                quantityRates: {
+                                    quantity_rates: 1.1,
+                                },
                                 resourceIds: ["resource_ids", "resource_ids"],
                                 traitDefinition: {
                                     comparableType: "bool",
@@ -7875,6 +8102,9 @@ describe("CompaniesClient", () => {
                                 metricPeriodMonthReset: "billing_cycle",
                                 metricValue: 1000000,
                                 operator: "eq",
+                                quantityRates: {
+                                    quantity_rates: 1.1,
+                                },
                                 resourceIds: ["resource_ids", "resource_ids"],
                                 traitDefinition: {
                                     comparableType: "bool",
@@ -7914,6 +8144,9 @@ describe("CompaniesClient", () => {
                                         metricPeriodMonthReset: "billing_cycle",
                                         metricValue: 1000000,
                                         operator: "eq",
+                                        quantityRates: {
+                                            quantity_rates: 1.1,
+                                        },
                                         resourceIds: ["resource_ids", "resource_ids"],
                                         traitDefinition: {
                                             comparableType: "bool",
@@ -7939,6 +8172,9 @@ describe("CompaniesClient", () => {
                                         metricPeriodMonthReset: "billing_cycle",
                                         metricValue: 1000000,
                                         operator: "eq",
+                                        quantityRates: {
+                                            quantity_rates: 1.1,
+                                        },
                                         resourceIds: ["resource_ids", "resource_ids"],
                                         traitDefinition: {
                                             comparableType: "bool",
@@ -7968,6 +8204,9 @@ describe("CompaniesClient", () => {
                                         metricPeriodMonthReset: "billing_cycle",
                                         metricValue: 1000000,
                                         operator: "eq",
+                                        quantityRates: {
+                                            quantity_rates: 1.1,
+                                        },
                                         resourceIds: ["resource_ids", "resource_ids"],
                                         traitDefinition: {
                                             comparableType: "bool",
@@ -7993,6 +8232,9 @@ describe("CompaniesClient", () => {
                                         metricPeriodMonthReset: "billing_cycle",
                                         metricValue: 1000000,
                                         operator: "eq",
+                                        quantityRates: {
+                                            quantity_rates: 1.1,
+                                        },
                                         resourceIds: ["resource_ids", "resource_ids"],
                                         traitDefinition: {
                                             comparableType: "bool",
@@ -8022,6 +8264,9 @@ describe("CompaniesClient", () => {
                                 metricPeriodMonthReset: "billing_cycle",
                                 metricValue: 1000000,
                                 operator: "eq",
+                                quantityRates: {
+                                    quantity_rates: 1.1,
+                                },
                                 resourceIds: ["resource_ids", "resource_ids"],
                                 traitDefinition: {
                                     comparableType: "bool",
@@ -8047,6 +8292,9 @@ describe("CompaniesClient", () => {
                                 metricPeriodMonthReset: "billing_cycle",
                                 metricValue: 1000000,
                                 operator: "eq",
+                                quantityRates: {
+                                    quantity_rates: 1.1,
+                                },
                                 resourceIds: ["resource_ids", "resource_ids"],
                                 traitDefinition: {
                                     comparableType: "bool",
@@ -8066,7 +8314,7 @@ describe("CompaniesClient", () => {
                     },
                 ],
                 scheduledDowngrade: {
-                    currency: "currency",
+                    currency: "aed",
                     effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                     fromPlanId: "from_plan_id",
                     fromPlanName: "from_plan_name",
@@ -8333,7 +8581,7 @@ describe("CompaniesClient", () => {
                         name: "name",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
-                    currency: "currency",
+                    currency: "aed",
                     customer_external_id: "customer_external_id",
                     discounts: [
                         {
@@ -8355,7 +8603,7 @@ describe("CompaniesClient", () => {
                         amount_remaining: 1000000,
                         collection_method: "collection_method",
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         ending_balance: 1000000,
                         environment_id: "environment_id",
@@ -8380,7 +8628,7 @@ describe("CompaniesClient", () => {
                         {
                             billing_scheme: "per_unit",
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             environment_id: "environment_id",
                             external_id: "external_id",
                             id: "id",
@@ -8431,7 +8679,7 @@ describe("CompaniesClient", () => {
                         name: "name",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
-                    currency: "currency",
+                    currency: "aed",
                     customerExternalId: "customer_external_id",
                     discounts: [
                         {
@@ -8453,7 +8701,7 @@ describe("CompaniesClient", () => {
                         amountRemaining: 1000000,
                         collectionMethod: "collection_method",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         endingBalance: 1000000,
                         environmentId: "environment_id",
@@ -8478,7 +8726,7 @@ describe("CompaniesClient", () => {
                         {
                             billingScheme: "per_unit",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             environmentId: "environment_id",
                             externalId: "external_id",
                             id: "id",
@@ -9077,7 +9325,7 @@ describe("CompaniesClient", () => {
                 {
                     cancel_at: "2024-01-15T09:30:00Z",
                     cancel_at_period_end: true,
-                    currency: "currency",
+                    currency: "aed",
                     customer_external_id: "customer_external_id",
                     discounts: [
                         {
@@ -9099,7 +9347,7 @@ describe("CompaniesClient", () => {
                         amount_remaining: 1000000,
                         collection_method: "collection_method",
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         ending_balance: 1000000,
                         environment_id: "environment_id",
@@ -9123,7 +9371,7 @@ describe("CompaniesClient", () => {
                         {
                             billing_scheme: "per_unit",
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             environment_id: "environment_id",
                             external_id: "external_id",
                             id: "id",
@@ -9170,7 +9418,7 @@ describe("CompaniesClient", () => {
                 {
                     cancelAt: new Date("2024-01-15T09:30:00.000Z"),
                     cancelAtPeriodEnd: true,
-                    currency: "currency",
+                    currency: "aed",
                     customerExternalId: "customer_external_id",
                     discounts: [
                         {
@@ -9192,7 +9440,7 @@ describe("CompaniesClient", () => {
                         amountRemaining: 1000000,
                         collectionMethod: "collection_method",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         endingBalance: 1000000,
                         environmentId: "environment_id",
@@ -9216,7 +9464,7 @@ describe("CompaniesClient", () => {
                         {
                             billingScheme: "per_unit",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             environmentId: "environment_id",
                             externalId: "external_id",
                             id: "id",
@@ -9415,7 +9663,7 @@ describe("CompaniesClient", () => {
                     cancel_at_period_end: true,
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
-                    currency: "currency",
+                    currency: "aed",
                     customer_external_id: "customer_external_id",
                     default_payment_method_id: "default_payment_method_id",
                     discounts: [
@@ -9438,7 +9686,7 @@ describe("CompaniesClient", () => {
                         amount_remaining: 1000000,
                         collection_method: "collection_method",
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         ending_balance: 1000000,
                         environment_id: "environment_id",
@@ -9465,7 +9713,7 @@ describe("CompaniesClient", () => {
                         {
                             billing_scheme: "per_unit",
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             environment_id: "environment_id",
                             external_id: "external_id",
                             id: "id",
@@ -9494,7 +9742,7 @@ describe("CompaniesClient", () => {
                     {
                         cancel_at_period_end: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         discounts: [
                             {
@@ -9515,7 +9763,7 @@ describe("CompaniesClient", () => {
                             {
                                 billing_scheme: "per_unit",
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 environment_id: "environment_id",
                                 external_id: "external_id",
                                 id: "id",
@@ -9547,8 +9795,16 @@ describe("CompaniesClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         days_until_due: 1000000,
                         id: "id",
-                        plan_billing_source: "custom_plan",
+                        plan_billing_source: "amendment",
                         plan_id: "plan_id",
+                        problems: [
+                            {
+                                blocking: true,
+                                code: "add_on_conflicts_with_plan",
+                                message: "message",
+                                source: "provider",
+                            },
+                        ],
                         send_invoice: true,
                         status: "active",
                         updated_at: "2024-01-15T09:30:00Z",
@@ -9711,7 +9967,7 @@ describe("CompaniesClient", () => {
                     },
                 ],
                 scheduled_downgrade: {
-                    currency: "currency",
+                    currency: "aed",
                     effective_after: "2024-01-15T09:30:00Z",
                     from_plan_id: "from_plan_id",
                     from_plan_name: "from_plan_name",
@@ -9813,7 +10069,7 @@ describe("CompaniesClient", () => {
                     cancelAtPeriodEnd: true,
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    currency: "currency",
+                    currency: "aed",
                     customerExternalId: "customer_external_id",
                     defaultPaymentMethodId: "default_payment_method_id",
                     discounts: [
@@ -9836,7 +10092,7 @@ describe("CompaniesClient", () => {
                         amountRemaining: 1000000,
                         collectionMethod: "collection_method",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         endingBalance: 1000000,
                         environmentId: "environment_id",
@@ -9865,7 +10121,7 @@ describe("CompaniesClient", () => {
                         {
                             billingScheme: "per_unit",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             environmentId: "environment_id",
                             externalId: "external_id",
                             id: "id",
@@ -9894,7 +10150,7 @@ describe("CompaniesClient", () => {
                     {
                         cancelAtPeriodEnd: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         discounts: [
                             {
@@ -9915,7 +10171,7 @@ describe("CompaniesClient", () => {
                             {
                                 billingScheme: "per_unit",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 environmentId: "environment_id",
                                 externalId: "external_id",
                                 id: "id",
@@ -9947,8 +10203,16 @@ describe("CompaniesClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         daysUntilDue: 1000000,
                         id: "id",
-                        planBillingSource: "custom_plan",
+                        planBillingSource: "amendment",
                         planId: "plan_id",
+                        problems: [
+                            {
+                                blocking: true,
+                                code: "add_on_conflicts_with_plan",
+                                message: "message",
+                                source: "provider",
+                            },
+                        ],
                         sendInvoice: true,
                         status: "active",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -10122,7 +10386,7 @@ describe("CompaniesClient", () => {
                     },
                 ],
                 scheduledDowngrade: {
-                    currency: "currency",
+                    currency: "aed",
                     effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                     fromPlanId: "from_plan_id",
                     fromPlanName: "from_plan_name",
@@ -12032,7 +12296,7 @@ describe("CompaniesClient", () => {
         const rawResponseBody = {
             data: [
                 {
-                    action: "checkout",
+                    action: "amendment",
                     actor_type: "api_key",
                     add_ons_added: [
                         { deleted: true, description: "description", icon: "icon", id: "id", name: "name" },
@@ -12040,6 +12304,7 @@ describe("CompaniesClient", () => {
                     add_ons_removed: [
                         { deleted: true, description: "description", icon: "icon", id: "id", name: "name" },
                     ],
+                    amendment_status: "applied",
                     api_key: {
                         created_at: "2024-01-15T09:30:00Z",
                         id: "id",
@@ -12077,6 +12342,7 @@ describe("CompaniesClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     is_version_upgrade: true,
+                    migration_id: "migration_id",
                     previous_base_plan: {
                         deleted: true,
                         description: "description",
@@ -12107,7 +12373,7 @@ describe("CompaniesClient", () => {
                 },
             ],
             params: {
-                action: "checkout",
+                action: "amendment",
                 base_plan_action: "fallback",
                 company_id: "company_id",
                 company_ids: ["company_ids"],
@@ -12119,7 +12385,7 @@ describe("CompaniesClient", () => {
         server.mockEndpoint().get("/plan-changes").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.companies.listPlanChanges({
-            action: "checkout",
+            action: "amendment",
             basePlanAction: "fallback",
             companyId: "company_id",
             companyIds: ["company_ids"],
@@ -12129,7 +12395,7 @@ describe("CompaniesClient", () => {
         expect(response).toEqual({
             data: [
                 {
-                    action: "checkout",
+                    action: "amendment",
                     actorType: "api_key",
                     addOnsAdded: [
                         {
@@ -12149,6 +12415,7 @@ describe("CompaniesClient", () => {
                             name: "name",
                         },
                     ],
+                    amendmentStatus: "applied",
                     apiKey: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         id: "id",
@@ -12196,6 +12463,7 @@ describe("CompaniesClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     isVersionUpgrade: true,
+                    migrationId: "migration_id",
                     previousBasePlan: {
                         deleted: true,
                         description: "description",
@@ -12230,7 +12498,7 @@ describe("CompaniesClient", () => {
                 },
             ],
             params: {
-                action: "checkout",
+                action: "amendment",
                 basePlanAction: "fallback",
                 companyId: "company_id",
                 companyIds: ["company_ids"],
@@ -12311,10 +12579,11 @@ describe("CompaniesClient", () => {
 
         const rawResponseBody = {
             data: {
-                action: "checkout",
+                action: "amendment",
                 actor_type: "api_key",
                 add_ons_added: [{ deleted: true, description: "description", icon: "icon", id: "id", name: "name" }],
                 add_ons_removed: [{ deleted: true, description: "description", icon: "icon", id: "id", name: "name" }],
+                amendment_status: "applied",
                 api_key: {
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
@@ -12393,6 +12662,7 @@ describe("CompaniesClient", () => {
                     updated_at: "2024-01-15T09:30:00Z",
                 },
                 is_version_upgrade: true,
+                migration_id: "migration_id",
                 previous_base_plan: { deleted: true, description: "description", icon: "icon", id: "id", name: "name" },
                 previous_base_plan_version: { id: "id", name: "name", version: 1000000 },
                 request_id: "request_id",
@@ -12429,7 +12699,7 @@ describe("CompaniesClient", () => {
         const response = await client.companies.getPlanChange("plan_change_id");
         expect(response).toEqual({
             data: {
-                action: "checkout",
+                action: "amendment",
                 actorType: "api_key",
                 addOnsAdded: [
                     {
@@ -12449,6 +12719,7 @@ describe("CompaniesClient", () => {
                         name: "name",
                     },
                 ],
+                amendmentStatus: "applied",
                 apiKey: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
@@ -12541,6 +12812,7 @@ describe("CompaniesClient", () => {
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
                 isVersionUpgrade: true,
+                migrationId: "migration_id",
                 previousBasePlan: {
                     deleted: true,
                     description: "description",

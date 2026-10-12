@@ -6,6 +6,7 @@ import type * as serializers from "../index";
 import { BillingLinkedResourceResponseData } from "./BillingLinkedResourceResponseData";
 import { EntityTraitDefinitionResponseData } from "./EntityTraitDefinitionResponseData";
 import { EventSummaryResponseData } from "./EventSummaryResponseData";
+import { FeatureEventSource } from "./FeatureEventSource";
 import { FeatureLifecyclePhase } from "./FeatureLifecyclePhase";
 import { FeatureType } from "./FeatureType";
 import { FlagInPlanResponseData } from "./FlagInPlanResponseData";
@@ -21,6 +22,7 @@ export const FeatureInPlanResponseData: core.serialization.ObjectSchema<
     ),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     description: core.serialization.string(),
+    eventSource: core.serialization.property("event_source", FeatureEventSource),
     eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
     eventSummary: core.serialization.property("event_summary", EventSummaryResponseData.optional()),
     featureType: core.serialization.property("feature_type", FeatureType),
@@ -48,6 +50,7 @@ export declare namespace FeatureInPlanResponseData {
         billing_linked_resource?: BillingLinkedResourceResponseData.Raw | null;
         created_at: string;
         description: string;
+        event_source: FeatureEventSource.Raw;
         event_subtype?: string | null;
         event_summary?: EventSummaryResponseData.Raw | null;
         feature_type: FeatureType.Raw;

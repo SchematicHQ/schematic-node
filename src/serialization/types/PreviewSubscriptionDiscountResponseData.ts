@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { Currency } from "./Currency";
 
 export const PreviewSubscriptionDiscountResponseData: core.serialization.ObjectSchema<
     serializers.PreviewSubscriptionDiscountResponseData.Raw,
@@ -10,7 +11,7 @@ export const PreviewSubscriptionDiscountResponseData: core.serialization.ObjectS
 > = core.serialization.object({
     amountOff: core.serialization.property("amount_off", core.serialization.number().optional()),
     couponName: core.serialization.property("coupon_name", core.serialization.string()),
-    currency: core.serialization.string().optional(),
+    currency: Currency.optional(),
     customerFacingCode: core.serialization.property("customer_facing_code", core.serialization.string().optional()),
     duration: core.serialization.string(),
     durationInMonths: core.serialization.property("duration_in_months", core.serialization.number().optional()),
@@ -25,7 +26,7 @@ export declare namespace PreviewSubscriptionDiscountResponseData {
     export interface Raw {
         amount_off?: number | null;
         coupon_name: string;
-        currency?: string | null;
+        currency?: Currency.Raw | null;
         customer_facing_code?: string | null;
         duration: string;
         duration_in_months?: number | null;

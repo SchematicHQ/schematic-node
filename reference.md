@@ -1561,7 +1561,7 @@ await client.billing.upsertInvoice({
     amountPaid: 1000000,
     amountRemaining: 1000000,
     collectionMethod: "collection_method",
-    currency: "currency",
+    currency: "aed",
     customerExternalId: "customer_external_id",
     subtotal: 1000000
 });
@@ -1926,7 +1926,7 @@ await client.billing.deletePaymentMethodByExternalId("billing_id");
 
 ```typescript
 await client.billing.listBillingPrices({
-    currency: "currency",
+    currency: "aed",
     forInitialPlan: true,
     forTrialExpiryPlan: true,
     ids: ["ids"],
@@ -1995,7 +1995,7 @@ await client.billing.listBillingPrices({
 ```typescript
 await client.billing.upsertBillingPrice({
     billingScheme: "per_unit",
-    currency: "currency",
+    currency: "aed",
     externalAccountId: "external_account_id",
     interval: "interval",
     isActive: true,
@@ -2105,7 +2105,7 @@ await client.billing.deleteBillingProduct("billing_id");
 
 ```typescript
 await client.billing.listBillingProductPrices({
-    currency: "currency",
+    currency: "aed",
     forInitialPlan: true,
     forTrialExpiryPlan: true,
     ids: ["ids"],
@@ -2500,6 +2500,96 @@ await client.billing.updateCompanyBillingProfile("billing_profile_id", {
 </dl>
 </details>
 
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">getBillingSettings</a>() -> Schematic.GetBillingSettingsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.billing.getBillingSettings();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">updateBillingSettings</a>({ ...params }) -> Schematic.UpdateBillingSettingsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.billing.updateBillingSettings();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.UpdateBillingSettingsRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">upsertBillingSubscription</a>({ ...params }) -> Schematic.UpsertBillingSubscriptionResponse</code></summary>
 <dl>
 <dd>
@@ -2515,7 +2605,7 @@ await client.billing.updateCompanyBillingProfile("billing_profile_id", {
 ```typescript
 await client.billing.upsertBillingSubscription({
     cancelAtPeriodEnd: true,
-    currency: "currency",
+    currency: "aed",
     customerExternalId: "customer_external_id",
     discounts: [{
             couponExternalId: "coupon_external_id",
@@ -2525,7 +2615,7 @@ await client.billing.upsertBillingSubscription({
         }],
     expiredAt: new Date("2024-01-15T09:30:00.000Z"),
     productExternalIds: [{
-            currency: "currency",
+            currency: "aed",
             interval: "interval",
             price: 1000000,
             priceExternalId: "price_external_id",
@@ -2640,7 +2730,7 @@ await client.credits.listBillingCredits({
 
 ```typescript
 await client.credits.createBillingCredit({
-    currency: "currency",
+    currency: "aed",
     description: "description",
     name: "name"
 });
@@ -2888,6 +2978,60 @@ await client.credits.listCompanyCreditBalances({
 </dl>
 </details>
 
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">getCreditBalanceTimeSeries</a>({ ...params }) -> Schematic.GetCreditBalanceTimeSeriesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.credits.getCreditBalanceTimeSeries({
+    billingCreditId: "billing_credit_id",
+    companyId: "company_id",
+    endTime: new Date("2024-01-15T09:30:00.000Z"),
+    startTime: new Date("2024-01-15T09:30:00.000Z")
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.GetCreditBalanceTimeSeriesRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">listCreditBundles</a>({ ...params }) -> Schematic.ListCreditBundlesResponse</code></summary>
 <dl>
 <dd>
@@ -2960,7 +3104,7 @@ await client.credits.listCreditBundles({
 await client.credits.createCreditBundle({
     bundleName: "bundle_name",
     creditId: "credit_id",
-    currency: "currency",
+    currency: "aed",
     pricePerUnit: 1000000
 });
 
@@ -7532,7 +7676,7 @@ await client.companies.countEntityTraits({
 
 ```typescript
 await client.companies.listPlanChanges({
-    action: "checkout",
+    action: "amendment",
     basePlanAction: "fallback",
     companyId: "company_id",
     companyIds: ["company_ids"],
@@ -9932,7 +10076,7 @@ await client.plans.updateCompanyPlans("company_id", {
 await client.plans.listCustomPlanBillings({
     companyId: "company_id",
     planId: "plan_id",
-    planBillingSource: "custom_plan",
+    planBillingSource: "amendment",
     status: "active",
     statuses: ["active"],
     limit: 1000000,
@@ -10816,6 +10960,65 @@ await client.plans.deletePlanVersion("plan_version_id", {
 <dd>
 
 **request:** `Schematic.DeletePlanVersionRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PlansClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">getPlanVersionDiff</a>(plan_version_id, { ...params }) -> Schematic.GetPlanVersionDiffResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.getPlanVersionDiff("plan_version_id", {
+    against: "against"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**plan_version_id:** `string` — plan_version_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.GetPlanVersionDiffRequest` 
     
 </dd>
 </dl>

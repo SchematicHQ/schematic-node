@@ -8,6 +8,7 @@ export const CreditUsageReason: core.serialization.Schema<
     serializers.CreditUsageReason.Raw,
     Schematic.CreditUsageReason
 > = core.serialization.enum_([
+    "inference",
     "lease_hold",
     "lease_release",
     "manual_adjustment",
@@ -19,6 +20,7 @@ export const CreditUsageReason: core.serialization.Schema<
 
 export declare namespace CreditUsageReason {
     export type Raw =
+        | "inference"
         | "lease_hold"
         | "lease_release"
         | "manual_adjustment"

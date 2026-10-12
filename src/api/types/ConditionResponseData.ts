@@ -18,6 +18,7 @@ export interface ConditionResponseData {
     metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;
     metricValue?: number;
     operator: Schematic.ComparableOperator;
+    quantityRates?: Record<string, number>;
     resourceUnspecifiedIds: string[];
     ruleId: string;
     traitEntityType?: Schematic.EntityType;

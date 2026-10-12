@@ -23,6 +23,7 @@ export interface ConditionView {
     operator: Schematic.ComparableOperator;
     planVersions: Schematic.GenericPreviewObject[];
     plans: Schematic.GenericPreviewObject[];
+    quantityRates?: Record<string, number>;
     resourceUnspecifiedIds: string[];
     ruleId: string;
     trait?: Schematic.EntityTraitDefinitionResponseData;

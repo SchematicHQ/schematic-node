@@ -9,7 +9,7 @@ export interface UpcomingInvoiceResponseData {
     collectionMethod: string;
     companyId?: string;
     createdAt: Date;
-    currency: string;
+    currency: Schematic.Currency;
     customerExternalId: string;
     dueDate?: Date;
     endingBalance: number;

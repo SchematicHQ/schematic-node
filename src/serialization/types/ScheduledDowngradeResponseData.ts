@@ -3,12 +3,13 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { Currency } from "./Currency";
 
 export const ScheduledDowngradeResponseData: core.serialization.ObjectSchema<
     serializers.ScheduledDowngradeResponseData.Raw,
     Schematic.ScheduledDowngradeResponseData
 > = core.serialization.object({
-    currency: core.serialization.string(),
+    currency: Currency,
     effectiveAfter: core.serialization.property("effective_after", core.serialization.date()),
     fromPlanId: core.serialization.property("from_plan_id", core.serialization.string()),
     fromPlanName: core.serialization.property("from_plan_name", core.serialization.string()),
@@ -23,7 +24,7 @@ export const ScheduledDowngradeResponseData: core.serialization.ObjectSchema<
 
 export declare namespace ScheduledDowngradeResponseData {
     export interface Raw {
-        currency: string;
+        currency: Currency.Raw;
         effective_after: string;
         from_plan_id: string;
         from_plan_name: string;

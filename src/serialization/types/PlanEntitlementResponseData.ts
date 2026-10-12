@@ -48,6 +48,10 @@ export const PlanEntitlementResponseData: core.serialization.ObjectSchema<
     plan: PlanResponseData.optional(),
     planId: core.serialization.property("plan_id", core.serialization.string()),
     priceBehavior: core.serialization.property("price_behavior", EntitlementPriceBehavior.optional()),
+    quantityRates: core.serialization.property(
+        "quantity_rates",
+        core.serialization.record(core.serialization.string(), core.serialization.number()).optional(),
+    ),
     ruleId: core.serialization.property("rule_id", core.serialization.string()),
     ruleIdUsageExceeded: core.serialization.property("rule_id_usage_exceeded", core.serialization.string().optional()),
     softLimit: core.serialization.property("soft_limit", core.serialization.number().optional()),
@@ -84,6 +88,7 @@ export declare namespace PlanEntitlementResponseData {
         plan?: PlanResponseData.Raw | null;
         plan_id: string;
         price_behavior?: EntitlementPriceBehavior.Raw | null;
+        quantity_rates?: Record<string, number> | null;
         rule_id: string;
         rule_id_usage_exceeded?: string | null;
         soft_limit?: number | null;

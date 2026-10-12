@@ -14,6 +14,7 @@ export interface PreviewSubscriptionChangeResponseData {
     paymentMethodRequired: boolean;
     percentOff: number;
     periodStart: Date;
+    problems: Schematic.CheckoutProblemResponseData[];
     promoCodeApplied: boolean;
     proration: number;
     scheduledChangeTime?: Date;

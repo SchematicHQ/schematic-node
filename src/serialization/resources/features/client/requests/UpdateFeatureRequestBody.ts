@@ -4,6 +4,7 @@ import type * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
 import { CreateOrUpdateFlagRequestBody } from "../../../../types/CreateOrUpdateFlagRequestBody";
+import { FeatureEventSource } from "../../../../types/FeatureEventSource";
 import { FeatureLifecyclePhase } from "../../../../types/FeatureLifecyclePhase";
 import { FeatureType } from "../../../../types/FeatureType";
 
@@ -12,6 +13,7 @@ export const UpdateFeatureRequestBody: core.serialization.Schema<
     Schematic.UpdateFeatureRequestBody
 > = core.serialization.object({
     description: core.serialization.string().optional(),
+    eventSource: core.serialization.property("event_source", FeatureEventSource.optional()),
     eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
     featureType: core.serialization.property("feature_type", FeatureType.optional()),
     flag: CreateOrUpdateFlagRequestBody.optional(),
@@ -30,6 +32,7 @@ export const UpdateFeatureRequestBody: core.serialization.Schema<
 export declare namespace UpdateFeatureRequestBody {
     export interface Raw {
         description?: string | null;
+        event_source?: FeatureEventSource.Raw | null;
         event_subtype?: string | null;
         feature_type?: FeatureType.Raw | null;
         flag?: CreateOrUpdateFlagRequestBody.Raw | null;

@@ -7,6 +7,7 @@ import { BillingProductPricing } from "../../../../types/BillingProductPricing";
 import { BillingProviderType } from "../../../../types/BillingProviderType";
 import { BillingSubscriptionDiscount } from "../../../../types/BillingSubscriptionDiscount";
 import { BillingSubscriptionTrialEndSetting } from "../../../../types/BillingSubscriptionTrialEndSetting";
+import { Currency } from "../../../../types/Currency";
 
 export const CreateBillingSubscriptionRequestBody: core.serialization.Schema<
     serializers.CreateBillingSubscriptionRequestBody.Raw,
@@ -16,7 +17,7 @@ export const CreateBillingSubscriptionRequestBody: core.serialization.Schema<
     cancelAt: core.serialization.property("cancel_at", core.serialization.number().optional()),
     cancelAtPeriodEnd: core.serialization.property("cancel_at_period_end", core.serialization.boolean()),
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
-    currency: core.serialization.string(),
+    currency: Currency,
     customerExternalId: core.serialization.property("customer_external_id", core.serialization.string()),
     defaultPaymentMethodExternalId: core.serialization.property(
         "default_payment_method_external_id",
@@ -51,7 +52,7 @@ export declare namespace CreateBillingSubscriptionRequestBody {
         cancel_at?: number | null;
         cancel_at_period_end: boolean;
         company_id?: string | null;
-        currency: string;
+        currency: Currency.Raw;
         customer_external_id: string;
         default_payment_method_external_id?: string | null;
         default_payment_method_id?: string | null;

@@ -4,13 +4,14 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingPriceUsageType } from "./BillingPriceUsageType";
+import { Currency } from "./Currency";
 
 export const BillingProductPricing: core.serialization.ObjectSchema<
     serializers.BillingProductPricing.Raw,
     Schematic.BillingProductPricing
 > = core.serialization.object({
     billingThreshold: core.serialization.property("billing_threshold", core.serialization.number().optional()),
-    currency: core.serialization.string(),
+    currency: Currency,
     interval: core.serialization.string(),
     meterId: core.serialization.property("meter_id", core.serialization.string().optional()),
     packageSize: core.serialization.property("package_size", core.serialization.number().optional()),
@@ -29,7 +30,7 @@ export const BillingProductPricing: core.serialization.ObjectSchema<
 export declare namespace BillingProductPricing {
     export interface Raw {
         billing_threshold?: number | null;
-        currency: string;
+        currency: Currency.Raw;
         interval: string;
         meter_id?: string | null;
         package_size?: number | null;

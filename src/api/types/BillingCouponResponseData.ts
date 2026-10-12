@@ -5,7 +5,7 @@ import type * as Schematic from "../index";
 export interface BillingCouponResponseData {
     accountId: string;
     amountOff?: number;
-    currency?: string;
+    currency?: Schematic.Currency;
     duration?: string;
     durationInMonths?: number;
     environmentId: string;
