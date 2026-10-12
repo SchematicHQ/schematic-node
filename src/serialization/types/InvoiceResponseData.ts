@@ -4,6 +4,7 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingProviderType } from "./BillingProviderType";
+import { Currency } from "./Currency";
 import { InvoiceStatus } from "./InvoiceStatus";
 
 export const InvoiceResponseData: core.serialization.ObjectSchema<
@@ -16,7 +17,7 @@ export const InvoiceResponseData: core.serialization.ObjectSchema<
     collectionMethod: core.serialization.property("collection_method", core.serialization.string()),
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
-    currency: core.serialization.string(),
+    currency: Currency,
     customerExternalId: core.serialization.property("customer_external_id", core.serialization.string()),
     dueDate: core.serialization.property("due_date", core.serialization.date().optional()),
     endingBalance: core.serialization.property("ending_balance", core.serialization.number()),
@@ -48,7 +49,7 @@ export declare namespace InvoiceResponseData {
         collection_method: string;
         company_id?: string | null;
         created_at: string;
-        currency: string;
+        currency: Currency.Raw;
         customer_external_id: string;
         due_date?: string | null;
         ending_balance: number;

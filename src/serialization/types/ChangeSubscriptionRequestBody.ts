@@ -4,6 +4,7 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { CheckoutFieldValue } from "./CheckoutFieldValue";
+import { Currency } from "./Currency";
 import { UpdateAddOnRequestBody } from "./UpdateAddOnRequestBody";
 import { UpdateAutoTopupOverrideRequestBody } from "./UpdateAutoTopupOverrideRequestBody";
 import { UpdateCreditBundleRequestBody } from "./UpdateCreditBundleRequestBody";
@@ -24,7 +25,7 @@ export const ChangeSubscriptionRequestBody: core.serialization.ObjectSchema<
         "credit_bundles",
         core.serialization.list(UpdateCreditBundleRequestBody),
     ),
-    currency: core.serialization.string().optional(),
+    currency: Currency.optional(),
     customFieldValues: core.serialization.property("custom_field_values", core.serialization.list(CheckoutFieldValue)),
     newPlanId: core.serialization.property("new_plan_id", core.serialization.string()),
     newPriceId: core.serialization.property("new_price_id", core.serialization.string()),
@@ -42,7 +43,7 @@ export declare namespace ChangeSubscriptionRequestBody {
         billing_entity_id?: string | null;
         coupon_external_id?: string | null;
         credit_bundles: UpdateCreditBundleRequestBody.Raw[];
-        currency?: string | null;
+        currency?: Currency.Raw | null;
         custom_field_values: CheckoutFieldValue.Raw[];
         new_plan_id: string;
         new_price_id: string;

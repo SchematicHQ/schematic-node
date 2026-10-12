@@ -5,7 +5,7 @@ import type * as Schematic from "../../../../index";
 /**
  * @example
  *     {
- *         action: "checkout",
+ *         action: "amendment",
  *         basePlanAction: "fallback",
  *         companyId: "company_id",
  *         companyIds: ["company_ids"],

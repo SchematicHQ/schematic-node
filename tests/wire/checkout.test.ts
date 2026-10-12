@@ -28,7 +28,7 @@ describe("CheckoutClient", () => {
                 confirm_payment_intent_client_secret: "confirm_payment_intent_client_secret",
                 confirm_payment_intent_id: "confirm_payment_intent_id",
                 created_at: "2024-01-15T09:30:00Z",
-                currency: "currency",
+                currency: "aed",
                 customer_external_id: "customer_external_id",
                 default_payment_method_id: "default_payment_method_id",
                 expired_at: "2024-01-15T09:30:00Z",
@@ -102,7 +102,7 @@ describe("CheckoutClient", () => {
                 confirmPaymentIntentClientSecret: "confirm_payment_intent_client_secret",
                 confirmPaymentIntentId: "confirm_payment_intent_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                currency: "currency",
+                currency: "aed",
                 customerExternalId: "customer_external_id",
                 defaultPaymentMethodId: "default_payment_method_id",
                 expiredAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -636,7 +636,7 @@ describe("CheckoutClient", () => {
                                 burn_strategy: "expiration_priority",
                                 cost_editable: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency_prices: [{ currency: "currency" }],
+                                currency_prices: [{ currency: "aed" }],
                                 default_expiry_unit: "billing_periods",
                                 default_rollover_policy: "expire",
                                 description: "description",
@@ -646,12 +646,13 @@ describe("CheckoutClient", () => {
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
                         ],
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         description: "description",
                         features: [
                             {
                                 created_at: "2024-01-15T09:30:00Z",
                                 description: "description",
+                                event_source: "inference",
                                 feature_type: "boolean",
                                 flags: [
                                     {
@@ -772,7 +773,7 @@ describe("CheckoutClient", () => {
                         price: 1.1,
                         prices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                                 external_price_id: "external_price_id",
                                 id: "id",
                                 interval: "day",
@@ -803,7 +804,7 @@ describe("CheckoutClient", () => {
                             burn_strategy: "expiration_priority",
                             cost_editable: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            currency_prices: [{ currency: "currency" }],
+                            currency_prices: [{ currency: "aed" }],
                             default_expiry_unit: "billing_periods",
                             default_rollover_policy: "expire",
                             description: "description",
@@ -813,7 +814,7 @@ describe("CheckoutClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
-                    currency_prices: [{ currency: "currency" }],
+                    currency_prices: [{ currency: "aed" }],
                     description: "description",
                     draft_version: {
                         created_at: "2024-01-15T09:30:00Z",
@@ -830,7 +831,7 @@ describe("CheckoutClient", () => {
                     entitlements: [
                         {
                             created_at: "2024-01-15T09:30:00Z",
-                            currency_prices: [{ currency: "currency" }],
+                            currency_prices: [{ currency: "aed" }],
                             environment_id: "environment_id",
                             feature_id: "feature_id",
                             id: "id",
@@ -845,6 +846,7 @@ describe("CheckoutClient", () => {
                         {
                             created_at: "2024-01-15T09:30:00Z",
                             description: "description",
+                            event_source: "inference",
                             feature_type: "boolean",
                             flags: [
                                 {
@@ -941,7 +943,7 @@ describe("CheckoutClient", () => {
                     is_default: true,
                     is_trialable: true,
                     monthly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -952,7 +954,7 @@ describe("CheckoutClient", () => {
                     },
                     name: "name",
                     one_time_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -963,7 +965,7 @@ describe("CheckoutClient", () => {
                     },
                     plan_type: "plan",
                     quarterly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -989,7 +991,7 @@ describe("CheckoutClient", () => {
                         },
                     ],
                     yearly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -1007,7 +1009,7 @@ describe("CheckoutClient", () => {
                         created_at: "2024-01-15T09:30:00Z",
                         credit_id: "credit_id",
                         credit_name: "credit_name",
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         expiry_type: "duration",
                         expiry_unit: "billing_periods",
                         has_grants: true,
@@ -1074,7 +1076,7 @@ describe("CheckoutClient", () => {
                     billing_subscription: {
                         cancel_at_period_end: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         discounts: [
                             {
@@ -1095,7 +1097,7 @@ describe("CheckoutClient", () => {
                             {
                                 billing_scheme: "per_unit",
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 environment_id: "environment_id",
                                 external_id: "external_id",
                                 id: "id",
@@ -1122,7 +1124,7 @@ describe("CheckoutClient", () => {
                         {
                             cancel_at_period_end: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             customer_external_id: "customer_external_id",
                             discounts: [
                                 {
@@ -1143,7 +1145,7 @@ describe("CheckoutClient", () => {
                                 {
                                     billing_scheme: "per_unit",
                                     created_at: "2024-01-15T09:30:00Z",
-                                    currency: "currency",
+                                    currency: "aed",
                                     environment_id: "environment_id",
                                     external_id: "external_id",
                                     id: "id",
@@ -1175,8 +1177,16 @@ describe("CheckoutClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             days_until_due: 1000000,
                             id: "id",
-                            plan_billing_source: "custom_plan",
+                            plan_billing_source: "amendment",
                             plan_id: "plan_id",
+                            problems: [
+                                {
+                                    blocking: true,
+                                    code: "add_on_conflicts_with_plan",
+                                    message: "message",
+                                    source: "provider",
+                                },
+                            ],
                             send_invoice: true,
                             status: "active",
                             updated_at: "2024-01-15T09:30:00Z",
@@ -1318,7 +1328,7 @@ describe("CheckoutClient", () => {
                         },
                     ],
                     scheduled_downgrade: {
-                        currency: "currency",
+                        currency: "aed",
                         effective_after: "2024-01-15T09:30:00Z",
                         from_plan_id: "from_plan_id",
                         from_plan_name: "from_plan_name",
@@ -1381,7 +1391,7 @@ describe("CheckoutClient", () => {
                         price: 1.1,
                         prices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                                 external_price_id: "external_price_id",
                                 id: "id",
                                 interval: "day",
@@ -1412,7 +1422,7 @@ describe("CheckoutClient", () => {
                             burn_strategy: "expiration_priority",
                             cost_editable: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            currency_prices: [{ currency: "currency" }],
+                            currency_prices: [{ currency: "aed" }],
                             default_expiry_unit: "billing_periods",
                             default_rollover_policy: "expire",
                             description: "description",
@@ -1422,7 +1432,7 @@ describe("CheckoutClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
-                    currency_prices: [{ currency: "currency" }],
+                    currency_prices: [{ currency: "aed" }],
                     description: "description",
                     draft_version: {
                         created_at: "2024-01-15T09:30:00Z",
@@ -1439,7 +1449,7 @@ describe("CheckoutClient", () => {
                     entitlements: [
                         {
                             created_at: "2024-01-15T09:30:00Z",
-                            currency_prices: [{ currency: "currency" }],
+                            currency_prices: [{ currency: "aed" }],
                             environment_id: "environment_id",
                             feature_id: "feature_id",
                             id: "id",
@@ -1454,6 +1464,7 @@ describe("CheckoutClient", () => {
                         {
                             created_at: "2024-01-15T09:30:00Z",
                             description: "description",
+                            event_source: "inference",
                             feature_type: "boolean",
                             flags: [
                                 {
@@ -1550,7 +1561,7 @@ describe("CheckoutClient", () => {
                     is_default: true,
                     is_trialable: true,
                     monthly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -1561,7 +1572,7 @@ describe("CheckoutClient", () => {
                     },
                     name: "name",
                     one_time_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -1572,7 +1583,7 @@ describe("CheckoutClient", () => {
                     },
                     plan_type: "plan",
                     quarterly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -1598,7 +1609,7 @@ describe("CheckoutClient", () => {
                         },
                     ],
                     yearly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -1613,7 +1624,7 @@ describe("CheckoutClient", () => {
                 subscription: {
                     cancel_at: "2024-01-15T09:30:00Z",
                     cancel_at_period_end: true,
-                    currency: "currency",
+                    currency: "aed",
                     customer_external_id: "customer_external_id",
                     discounts: [
                         {
@@ -1635,7 +1646,7 @@ describe("CheckoutClient", () => {
                         amount_remaining: 1000000,
                         collection_method: "collection_method",
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         ending_balance: 1000000,
                         environment_id: "environment_id",
@@ -1659,7 +1670,7 @@ describe("CheckoutClient", () => {
                         {
                             billing_scheme: "per_unit",
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             environment_id: "environment_id",
                             external_id: "external_id",
                             id: "id",
@@ -1715,7 +1726,7 @@ describe("CheckoutClient", () => {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 currencyPrices: [
                                     {
-                                        currency: "currency",
+                                        currency: "aed",
                                     },
                                 ],
                                 defaultExpiryUnit: "billing_periods",
@@ -1729,7 +1740,7 @@ describe("CheckoutClient", () => {
                         ],
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         description: "description",
@@ -1737,6 +1748,7 @@ describe("CheckoutClient", () => {
                             {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 description: "description",
+                                eventSource: "inference",
                                 featureType: "boolean",
                                 flags: [
                                     {
@@ -1872,7 +1884,7 @@ describe("CheckoutClient", () => {
                         price: 1.1,
                         prices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                                 externalPriceId: "external_price_id",
                                 id: "id",
                                 interval: "day",
@@ -1910,7 +1922,7 @@ describe("CheckoutClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             currencyPrices: [
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                 },
                             ],
                             defaultExpiryUnit: "billing_periods",
@@ -1924,7 +1936,7 @@ describe("CheckoutClient", () => {
                     ],
                     currencyPrices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                         },
                     ],
                     description: "description",
@@ -1945,7 +1957,7 @@ describe("CheckoutClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             currencyPrices: [
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                 },
                             ],
                             environmentId: "environment_id",
@@ -1968,6 +1980,7 @@ describe("CheckoutClient", () => {
                         {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             description: "description",
+                            eventSource: "inference",
                             featureType: "boolean",
                             flags: [
                                 {
@@ -2083,7 +2096,7 @@ describe("CheckoutClient", () => {
                     isDefault: true,
                     isTrialable: true,
                     monthlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2094,7 +2107,7 @@ describe("CheckoutClient", () => {
                     },
                     name: "name",
                     oneTimePrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2105,7 +2118,7 @@ describe("CheckoutClient", () => {
                     },
                     planType: "plan",
                     quarterlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2131,7 +2144,7 @@ describe("CheckoutClient", () => {
                         },
                     ],
                     yearlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2156,7 +2169,7 @@ describe("CheckoutClient", () => {
                         creditName: "credit_name",
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         expiryType: "duration",
@@ -2227,7 +2240,7 @@ describe("CheckoutClient", () => {
                     billingSubscription: {
                         cancelAtPeriodEnd: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         discounts: [
                             {
@@ -2248,7 +2261,7 @@ describe("CheckoutClient", () => {
                             {
                                 billingScheme: "per_unit",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 environmentId: "environment_id",
                                 externalId: "external_id",
                                 id: "id",
@@ -2275,7 +2288,7 @@ describe("CheckoutClient", () => {
                         {
                             cancelAtPeriodEnd: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             customerExternalId: "customer_external_id",
                             discounts: [
                                 {
@@ -2296,7 +2309,7 @@ describe("CheckoutClient", () => {
                                 {
                                     billingScheme: "per_unit",
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    currency: "currency",
+                                    currency: "aed",
                                     environmentId: "environment_id",
                                     externalId: "external_id",
                                     id: "id",
@@ -2328,8 +2341,16 @@ describe("CheckoutClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             daysUntilDue: 1000000,
                             id: "id",
-                            planBillingSource: "custom_plan",
+                            planBillingSource: "amendment",
                             planId: "plan_id",
+                            problems: [
+                                {
+                                    blocking: true,
+                                    code: "add_on_conflicts_with_plan",
+                                    message: "message",
+                                    source: "provider",
+                                },
+                            ],
                             sendInvoice: true,
                             status: "active",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2482,7 +2503,7 @@ describe("CheckoutClient", () => {
                         },
                     ],
                     scheduledDowngrade: {
-                        currency: "currency",
+                        currency: "aed",
                         effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                         fromPlanId: "from_plan_id",
                         fromPlanName: "from_plan_name",
@@ -2552,7 +2573,7 @@ describe("CheckoutClient", () => {
                         price: 1.1,
                         prices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                                 externalPriceId: "external_price_id",
                                 id: "id",
                                 interval: "day",
@@ -2590,7 +2611,7 @@ describe("CheckoutClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             currencyPrices: [
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                 },
                             ],
                             defaultExpiryUnit: "billing_periods",
@@ -2604,7 +2625,7 @@ describe("CheckoutClient", () => {
                     ],
                     currencyPrices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                         },
                     ],
                     description: "description",
@@ -2625,7 +2646,7 @@ describe("CheckoutClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             currencyPrices: [
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                 },
                             ],
                             environmentId: "environment_id",
@@ -2648,6 +2669,7 @@ describe("CheckoutClient", () => {
                         {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             description: "description",
+                            eventSource: "inference",
                             featureType: "boolean",
                             flags: [
                                 {
@@ -2763,7 +2785,7 @@ describe("CheckoutClient", () => {
                     isDefault: true,
                     isTrialable: true,
                     monthlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2774,7 +2796,7 @@ describe("CheckoutClient", () => {
                     },
                     name: "name",
                     oneTimePrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2785,7 +2807,7 @@ describe("CheckoutClient", () => {
                     },
                     planType: "plan",
                     quarterlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2811,7 +2833,7 @@ describe("CheckoutClient", () => {
                         },
                     ],
                     yearlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2831,7 +2853,7 @@ describe("CheckoutClient", () => {
                 subscription: {
                     cancelAt: new Date("2024-01-15T09:30:00.000Z"),
                     cancelAtPeriodEnd: true,
-                    currency: "currency",
+                    currency: "aed",
                     customerExternalId: "customer_external_id",
                     discounts: [
                         {
@@ -2853,7 +2875,7 @@ describe("CheckoutClient", () => {
                         amountRemaining: 1000000,
                         collectionMethod: "collection_method",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         endingBalance: 1000000,
                         environmentId: "environment_id",
@@ -2877,7 +2899,7 @@ describe("CheckoutClient", () => {
                         {
                             billingScheme: "per_unit",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             environmentId: "environment_id",
                             externalId: "external_id",
                             id: "id",
@@ -3038,7 +3060,7 @@ describe("CheckoutClient", () => {
                 due_now: 1000000,
                 finance: {
                     amount_off: 1000000,
-                    currency: "currency",
+                    currency: "aed",
                     discount_amount: 1000000,
                     discounts: [
                         {
@@ -3079,6 +3101,9 @@ describe("CheckoutClient", () => {
                 payment_method_required: true,
                 percent_off: 1.1,
                 period_start: "2024-01-15T09:30:00Z",
+                problems: [
+                    { blocking: true, code: "add_on_conflicts_with_plan", message: "message", source: "provider" },
+                ],
                 promo_code_applied: true,
                 proration: 1000000,
                 scheduled_change_time: "2024-01-15T09:30:00Z",
@@ -3144,7 +3169,7 @@ describe("CheckoutClient", () => {
                 dueNow: 1000000,
                 finance: {
                     amountOff: 1000000,
-                    currency: "currency",
+                    currency: "aed",
                     discountAmount: 1000000,
                     discounts: [
                         {
@@ -3185,6 +3210,14 @@ describe("CheckoutClient", () => {
                 paymentMethodRequired: true,
                 percentOff: 1.1,
                 periodStart: new Date("2024-01-15T09:30:00.000Z"),
+                problems: [
+                    {
+                        blocking: true,
+                        code: "add_on_conflicts_with_plan",
+                        message: "message",
+                        source: "provider",
+                    },
+                ],
                 promoCodeApplied: true,
                 proration: 1000000,
                 scheduledChangeTime: new Date("2024-01-15T09:30:00.000Z"),
@@ -4143,6 +4176,7 @@ describe("CheckoutClient", () => {
         };
         const rawResponseBody = {
             data: {
+                checkout_id: "checkout_id",
                 company: {
                     add_ons: [
                         {
@@ -4200,7 +4234,7 @@ describe("CheckoutClient", () => {
                     billing_subscription: {
                         cancel_at_period_end: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         discounts: [
                             {
@@ -4221,7 +4255,7 @@ describe("CheckoutClient", () => {
                             {
                                 billing_scheme: "per_unit",
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 environment_id: "environment_id",
                                 external_id: "external_id",
                                 id: "id",
@@ -4248,7 +4282,7 @@ describe("CheckoutClient", () => {
                         {
                             cancel_at_period_end: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             customer_external_id: "customer_external_id",
                             discounts: [
                                 {
@@ -4269,7 +4303,7 @@ describe("CheckoutClient", () => {
                                 {
                                     billing_scheme: "per_unit",
                                     created_at: "2024-01-15T09:30:00Z",
-                                    currency: "currency",
+                                    currency: "aed",
                                     environment_id: "environment_id",
                                     external_id: "external_id",
                                     id: "id",
@@ -4301,8 +4335,16 @@ describe("CheckoutClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             days_until_due: 1000000,
                             id: "id",
-                            plan_billing_source: "custom_plan",
+                            plan_billing_source: "amendment",
                             plan_id: "plan_id",
+                            problems: [
+                                {
+                                    blocking: true,
+                                    code: "add_on_conflicts_with_plan",
+                                    message: "message",
+                                    source: "provider",
+                                },
+                            ],
                             send_invoice: true,
                             status: "active",
                             updated_at: "2024-01-15T09:30:00Z",
@@ -4444,7 +4486,7 @@ describe("CheckoutClient", () => {
                         },
                     ],
                     scheduled_downgrade: {
-                        currency: "currency",
+                        currency: "aed",
                         effective_after: "2024-01-15T09:30:00Z",
                         from_plan_id: "from_plan_id",
                         from_plan_name: "from_plan_name",
@@ -4458,6 +4500,9 @@ describe("CheckoutClient", () => {
                     updated_at: "2024-01-15T09:30:00Z",
                     user_count: 1000000,
                 },
+                problems: [
+                    { blocking: true, code: "add_on_conflicts_with_plan", message: "message", source: "provider" },
+                ],
                 success: true,
             },
             params: { key: "value" },
@@ -4500,6 +4545,7 @@ describe("CheckoutClient", () => {
         });
         expect(response).toEqual({
             data: {
+                checkoutId: "checkout_id",
                 company: {
                     addOns: [
                         {
@@ -4559,7 +4605,7 @@ describe("CheckoutClient", () => {
                     billingSubscription: {
                         cancelAtPeriodEnd: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         discounts: [
                             {
@@ -4580,7 +4626,7 @@ describe("CheckoutClient", () => {
                             {
                                 billingScheme: "per_unit",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 environmentId: "environment_id",
                                 externalId: "external_id",
                                 id: "id",
@@ -4607,7 +4653,7 @@ describe("CheckoutClient", () => {
                         {
                             cancelAtPeriodEnd: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             customerExternalId: "customer_external_id",
                             discounts: [
                                 {
@@ -4628,7 +4674,7 @@ describe("CheckoutClient", () => {
                                 {
                                     billingScheme: "per_unit",
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    currency: "currency",
+                                    currency: "aed",
                                     environmentId: "environment_id",
                                     externalId: "external_id",
                                     id: "id",
@@ -4660,8 +4706,16 @@ describe("CheckoutClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             daysUntilDue: 1000000,
                             id: "id",
-                            planBillingSource: "custom_plan",
+                            planBillingSource: "amendment",
                             planId: "plan_id",
+                            problems: [
+                                {
+                                    blocking: true,
+                                    code: "add_on_conflicts_with_plan",
+                                    message: "message",
+                                    source: "provider",
+                                },
+                            ],
                             sendInvoice: true,
                             status: "active",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -4814,7 +4868,7 @@ describe("CheckoutClient", () => {
                         },
                     ],
                     scheduledDowngrade: {
-                        currency: "currency",
+                        currency: "aed",
                         effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                         fromPlanId: "from_plan_id",
                         fromPlanName: "from_plan_name",
@@ -4830,6 +4884,14 @@ describe("CheckoutClient", () => {
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     userCount: 1000000,
                 },
+                problems: [
+                    {
+                        blocking: true,
+                        code: "add_on_conflicts_with_plan",
+                        message: "message",
+                        source: "provider",
+                    },
+                ],
                 success: true,
             },
             params: {
@@ -5225,12 +5287,15 @@ describe("CheckoutClient", () => {
         };
         const rawResponseBody = {
             data: {
+                problems: [
+                    { blocking: true, code: "add_on_conflicts_with_plan", message: "message", source: "provider" },
+                ],
                 subscription_change_preview: {
                     amount_off: 1000000,
                     due_now: 1000000,
                     finance: {
                         amount_off: 1000000,
-                        currency: "currency",
+                        currency: "aed",
                         discount_amount: 1000000,
                         discounts: [
                             {
@@ -5267,6 +5332,9 @@ describe("CheckoutClient", () => {
                     payment_method_required: true,
                     percent_off: 1.1,
                     period_start: "2024-01-15T09:30:00Z",
+                    problems: [
+                        { blocking: true, code: "add_on_conflicts_with_plan", message: "message", source: "provider" },
+                    ],
                     promo_code_applied: true,
                     proration: 1000000,
                     scheduled_change_time: "2024-01-15T09:30:00Z",
@@ -5320,12 +5388,20 @@ describe("CheckoutClient", () => {
         });
         expect(response).toEqual({
             data: {
+                problems: [
+                    {
+                        blocking: true,
+                        code: "add_on_conflicts_with_plan",
+                        message: "message",
+                        source: "provider",
+                    },
+                ],
                 subscriptionChangePreview: {
                     amountOff: 1000000,
                     dueNow: 1000000,
                     finance: {
                         amountOff: 1000000,
-                        currency: "currency",
+                        currency: "aed",
                         discountAmount: 1000000,
                         discounts: [
                             {
@@ -5362,6 +5438,14 @@ describe("CheckoutClient", () => {
                     paymentMethodRequired: true,
                     percentOff: 1.1,
                     periodStart: new Date("2024-01-15T09:30:00.000Z"),
+                    problems: [
+                        {
+                            blocking: true,
+                            code: "add_on_conflicts_with_plan",
+                            message: "message",
+                            source: "provider",
+                        },
+                    ],
                     promoCodeApplied: true,
                     proration: 1000000,
                     scheduledChangeTime: new Date("2024-01-15T09:30:00.000Z"),
@@ -5762,6 +5846,7 @@ describe("CheckoutClient", () => {
         const rawRequestBody = { company_id: "company_id" };
         const rawResponseBody = {
             data: {
+                checkout_id: "checkout_id",
                 company: {
                     add_ons: [
                         {
@@ -5819,7 +5904,7 @@ describe("CheckoutClient", () => {
                     billing_subscription: {
                         cancel_at_period_end: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         discounts: [
                             {
@@ -5840,7 +5925,7 @@ describe("CheckoutClient", () => {
                             {
                                 billing_scheme: "per_unit",
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 environment_id: "environment_id",
                                 external_id: "external_id",
                                 id: "id",
@@ -5867,7 +5952,7 @@ describe("CheckoutClient", () => {
                         {
                             cancel_at_period_end: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             customer_external_id: "customer_external_id",
                             discounts: [
                                 {
@@ -5888,7 +5973,7 @@ describe("CheckoutClient", () => {
                                 {
                                     billing_scheme: "per_unit",
                                     created_at: "2024-01-15T09:30:00Z",
-                                    currency: "currency",
+                                    currency: "aed",
                                     environment_id: "environment_id",
                                     external_id: "external_id",
                                     id: "id",
@@ -5920,8 +6005,16 @@ describe("CheckoutClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             days_until_due: 1000000,
                             id: "id",
-                            plan_billing_source: "custom_plan",
+                            plan_billing_source: "amendment",
                             plan_id: "plan_id",
+                            problems: [
+                                {
+                                    blocking: true,
+                                    code: "add_on_conflicts_with_plan",
+                                    message: "message",
+                                    source: "provider",
+                                },
+                            ],
                             send_invoice: true,
                             status: "active",
                             updated_at: "2024-01-15T09:30:00Z",
@@ -6063,7 +6156,7 @@ describe("CheckoutClient", () => {
                         },
                     ],
                     scheduled_downgrade: {
-                        currency: "currency",
+                        currency: "aed",
                         effective_after: "2024-01-15T09:30:00Z",
                         from_plan_id: "from_plan_id",
                         from_plan_name: "from_plan_name",
@@ -6077,6 +6170,9 @@ describe("CheckoutClient", () => {
                     updated_at: "2024-01-15T09:30:00Z",
                     user_count: 1000000,
                 },
+                problems: [
+                    { blocking: true, code: "add_on_conflicts_with_plan", message: "message", source: "provider" },
+                ],
                 success: true,
             },
             params: { key: "value" },
@@ -6096,6 +6192,7 @@ describe("CheckoutClient", () => {
         });
         expect(response).toEqual({
             data: {
+                checkoutId: "checkout_id",
                 company: {
                     addOns: [
                         {
@@ -6155,7 +6252,7 @@ describe("CheckoutClient", () => {
                     billingSubscription: {
                         cancelAtPeriodEnd: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         discounts: [
                             {
@@ -6176,7 +6273,7 @@ describe("CheckoutClient", () => {
                             {
                                 billingScheme: "per_unit",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 environmentId: "environment_id",
                                 externalId: "external_id",
                                 id: "id",
@@ -6203,7 +6300,7 @@ describe("CheckoutClient", () => {
                         {
                             cancelAtPeriodEnd: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             customerExternalId: "customer_external_id",
                             discounts: [
                                 {
@@ -6224,7 +6321,7 @@ describe("CheckoutClient", () => {
                                 {
                                     billingScheme: "per_unit",
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    currency: "currency",
+                                    currency: "aed",
                                     environmentId: "environment_id",
                                     externalId: "external_id",
                                     id: "id",
@@ -6256,8 +6353,16 @@ describe("CheckoutClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             daysUntilDue: 1000000,
                             id: "id",
-                            planBillingSource: "custom_plan",
+                            planBillingSource: "amendment",
                             planId: "plan_id",
+                            problems: [
+                                {
+                                    blocking: true,
+                                    code: "add_on_conflicts_with_plan",
+                                    message: "message",
+                                    source: "provider",
+                                },
+                            ],
                             sendInvoice: true,
                             status: "active",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -6410,7 +6515,7 @@ describe("CheckoutClient", () => {
                         },
                     ],
                     scheduledDowngrade: {
-                        currency: "currency",
+                        currency: "aed",
                         effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                         fromPlanId: "from_plan_id",
                         fromPlanName: "from_plan_name",
@@ -6426,6 +6531,14 @@ describe("CheckoutClient", () => {
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     userCount: 1000000,
                 },
+                problems: [
+                    {
+                        blocking: true,
+                        code: "add_on_conflicts_with_plan",
+                        message: "message",
+                        source: "provider",
+                    },
+                ],
                 success: true,
             },
             params: {
@@ -6555,7 +6668,7 @@ describe("CheckoutClient", () => {
                 cancel_at_period_end: true,
                 company_id: "company_id",
                 created_at: "2024-01-15T09:30:00Z",
-                currency: "currency",
+                currency: "aed",
                 customer_external_id: "customer_external_id",
                 default_payment_method_id: "default_payment_method_id",
                 discounts: [
@@ -6579,7 +6692,7 @@ describe("CheckoutClient", () => {
                     collection_method: "collection_method",
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
-                    currency: "currency",
+                    currency: "aed",
                     customer_external_id: "customer_external_id",
                     due_date: "2024-01-15T09:30:00Z",
                     ending_balance: 1000000,
@@ -6623,7 +6736,7 @@ describe("CheckoutClient", () => {
                     {
                         billing_scheme: "per_unit",
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         environment_id: "environment_id",
                         external_id: "external_id",
                         id: "id",
@@ -6668,7 +6781,7 @@ describe("CheckoutClient", () => {
                 cancelAtPeriodEnd: true,
                 companyId: "company_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                currency: "currency",
+                currency: "aed",
                 customerExternalId: "customer_external_id",
                 defaultPaymentMethodId: "default_payment_method_id",
                 discounts: [
@@ -6692,7 +6805,7 @@ describe("CheckoutClient", () => {
                     collectionMethod: "collection_method",
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    currency: "currency",
+                    currency: "aed",
                     customerExternalId: "customer_external_id",
                     dueDate: new Date("2024-01-15T09:30:00.000Z"),
                     endingBalance: 1000000,
@@ -6738,7 +6851,7 @@ describe("CheckoutClient", () => {
                     {
                         billingScheme: "per_unit",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         environmentId: "environment_id",
                         externalId: "external_id",
                         id: "id",

@@ -4,6 +4,7 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingProviderType } from "./BillingProviderType";
+import { Currency } from "./Currency";
 
 export const BillingCouponResponseData: core.serialization.ObjectSchema<
     serializers.BillingCouponResponseData.Raw,
@@ -11,7 +12,7 @@ export const BillingCouponResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     accountId: core.serialization.property("account_id", core.serialization.string()),
     amountOff: core.serialization.property("amount_off", core.serialization.number().optional()),
-    currency: core.serialization.string().optional(),
+    currency: Currency.optional(),
     duration: core.serialization.string().optional(),
     durationInMonths: core.serialization.property("duration_in_months", core.serialization.number().optional()),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
@@ -32,7 +33,7 @@ export declare namespace BillingCouponResponseData {
     export interface Raw {
         account_id: string;
         amount_off?: number | null;
-        currency?: string | null;
+        currency?: Currency.Raw | null;
         duration?: string | null;
         duration_in_months?: number | null;
         environment_id: string;

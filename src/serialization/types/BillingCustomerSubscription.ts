@@ -3,12 +3,13 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { Currency } from "./Currency";
 
 export const BillingCustomerSubscription: core.serialization.ObjectSchema<
     serializers.BillingCustomerSubscription.Raw,
     Schematic.BillingCustomerSubscription
 > = core.serialization.object({
-    currency: core.serialization.string(),
+    currency: Currency,
     expiredAt: core.serialization.property("expired_at", core.serialization.date().optional()),
     interval: core.serialization.string(),
     meteredUsage: core.serialization.property("metered_usage", core.serialization.boolean()),
@@ -18,7 +19,7 @@ export const BillingCustomerSubscription: core.serialization.ObjectSchema<
 
 export declare namespace BillingCustomerSubscription {
     export interface Raw {
-        currency: string;
+        currency: Currency.Raw;
         expired_at?: string | null;
         interval: string;
         metered_usage: boolean;

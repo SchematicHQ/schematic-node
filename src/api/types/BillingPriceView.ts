@@ -5,7 +5,7 @@ import type * as Schematic from "../index";
 export interface BillingPriceView {
     billingScheme: Schematic.BillingPriceScheme;
     createdAt: Date;
-    currency: string;
+    currency: Schematic.Currency;
     id: string;
     interval: Schematic.BillingProductPriceInterval;
     intervalCount: number;

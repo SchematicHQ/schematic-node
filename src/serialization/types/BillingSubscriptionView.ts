@@ -7,6 +7,7 @@ import { BillingProductForSubscriptionResponseData } from "./BillingProductForSu
 import { BillingProviderType } from "./BillingProviderType";
 import { BillingSubscriptionDiscountView } from "./BillingSubscriptionDiscountView";
 import { BillingSubscriptionTrialEndSetting } from "./BillingSubscriptionTrialEndSetting";
+import { Currency } from "./Currency";
 import { InvoiceResponseData } from "./InvoiceResponseData";
 import { PaymentMethodResponseData } from "./PaymentMethodResponseData";
 
@@ -19,7 +20,7 @@ export const BillingSubscriptionView: core.serialization.ObjectSchema<
     cancelAtPeriodEnd: core.serialization.property("cancel_at_period_end", core.serialization.boolean()),
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
-    currency: core.serialization.string(),
+    currency: Currency,
     customerExternalId: core.serialization.property("customer_external_id", core.serialization.string()),
     defaultPaymentMethodId: core.serialization.property(
         "default_payment_method_id",
@@ -50,7 +51,7 @@ export declare namespace BillingSubscriptionView {
         cancel_at_period_end: boolean;
         company_id?: string | null;
         created_at: string;
-        currency: string;
+        currency: Currency.Raw;
         customer_external_id: string;
         default_payment_method_id?: string | null;
         discounts: BillingSubscriptionDiscountView.Raw[];

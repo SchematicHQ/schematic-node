@@ -7,6 +7,8 @@ export interface CreateEntitlementReqCommon {
     featureId: string;
     metricPeriod?: Schematic.MetricPeriod;
     metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;
+    /** Credits per unit of the quantity (per token for inference features), keyed by quantity key. Inference features may price input_tokens, output_tokens, cached_input_tokens, cache_creation_input_tokens and reasoning_tokens; reasoning_tokens is priced on top of output_tokens, so leave its rate at zero for providers that count reasoning inside output. Omit to leave the schedule as it is; send null to clear it. */
+    quantityRates?: Record<string, number>;
     valueBool?: boolean;
     valueCreditId?: string;
     valueNumeric?: number;

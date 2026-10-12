@@ -7,7 +7,7 @@ import type * as Schematic from "../../../../index";
  *     {
  *         bundleName: "bundle_name",
  *         creditId: "credit_id",
- *         currency: "currency",
+ *         currency: "aed",
  *         pricePerUnit: 1000000
  *     }
  */
@@ -17,7 +17,7 @@ export interface CreateCreditBundleRequestBody {
     /** Plans whose companies may purchase this bundle. Omitted or empty means the bundle is purchasable on every plan. */
     compatiblePlanIds?: string[];
     creditId: string;
-    currency: string;
+    currency: Schematic.Currency;
     currencyPrices?: Schematic.CreditBundleCurrencyPriceRequestBody[];
     expiryType?: Schematic.BillingCreditExpiryType;
     expiryUnit?: Schematic.BillingCreditExpiryUnit;

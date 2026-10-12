@@ -7,6 +7,7 @@ import { BillingArrearsAnchor } from "./BillingArrearsAnchor";
 import { BillingArrearsCadence } from "./BillingArrearsCadence";
 import { BillingTiersMode } from "./BillingTiersMode";
 import { CreatePriceTierRequestBody } from "./CreatePriceTierRequestBody";
+import { Currency } from "./Currency";
 import { CurrencyPriceRequestBody } from "./CurrencyPriceRequestBody";
 import { EntitlementPriceBehavior } from "./EntitlementPriceBehavior";
 
@@ -16,7 +17,7 @@ export const UsageBasedEntitlementRequestBody: core.serialization.ObjectSchema<
 > = core.serialization.object({
     billingProductId: core.serialization.property("billing_product_id", core.serialization.string().optional()),
     billingThreshold: core.serialization.property("billing_threshold", core.serialization.number().optional()),
-    currency: core.serialization.string().optional(),
+    currency: Currency.optional(),
     currencyPrices: core.serialization.property(
         "currency_prices",
         core.serialization.list(CurrencyPriceRequestBody).optional(),
@@ -80,7 +81,7 @@ export declare namespace UsageBasedEntitlementRequestBody {
     export interface Raw {
         billing_product_id?: string | null;
         billing_threshold?: number | null;
-        currency?: string | null;
+        currency?: Currency.Raw | null;
         currency_prices?: CurrencyPriceRequestBody.Raw[] | null;
         monthly_metered_price_id?: string | null;
         monthly_price_tiers?: CreatePriceTierRequestBody.Raw[] | null;

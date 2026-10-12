@@ -7,6 +7,7 @@ import { BillingArrearsAnchor } from "../../../../types/BillingArrearsAnchor";
 import { BillingArrearsCadence } from "../../../../types/BillingArrearsCadence";
 import { BillingTiersMode } from "../../../../types/BillingTiersMode";
 import { CreatePriceTierRequestBody } from "../../../../types/CreatePriceTierRequestBody";
+import { Currency } from "../../../../types/Currency";
 import { CurrencyPriceRequestBody } from "../../../../types/CurrencyPriceRequestBody";
 import { EntitlementPriceBehavior } from "../../../../types/EntitlementPriceBehavior";
 import { EntitlementValueType } from "../../../../types/EntitlementValueType";
@@ -24,7 +25,7 @@ export const UpdatePlanEntitlementRequestBody: core.serialization.Schema<
         "credit_consumption_rate",
         core.serialization.number().optional(),
     ),
-    currency: core.serialization.string().optional(),
+    currency: Currency.optional(),
     currencyPrices: core.serialization.property(
         "currency_prices",
         core.serialization.list(CurrencyPriceRequestBody).optional(),
@@ -54,6 +55,10 @@ export const UpdatePlanEntitlementRequestBody: core.serialization.Schema<
     priceTiers: core.serialization.property(
         "price_tiers",
         core.serialization.list(CreatePriceTierRequestBody).optional(),
+    ),
+    quantityRates: core.serialization.property(
+        "quantity_rates",
+        core.serialization.record(core.serialization.string(), core.serialization.number()).optional(),
     ),
     quarterlyMeteredPriceId: core.serialization.property(
         "quarterly_metered_price_id",
@@ -100,7 +105,7 @@ export declare namespace UpdatePlanEntitlementRequestBody {
         billing_product_id?: string | null;
         billing_threshold?: number | null;
         credit_consumption_rate?: number | null;
-        currency?: string | null;
+        currency?: Currency.Raw | null;
         currency_prices?: CurrencyPriceRequestBody.Raw[] | null;
         metric_period?: MetricPeriod.Raw | null;
         metric_period_month_reset?: MetricPeriodMonthReset.Raw | null;
@@ -113,6 +118,7 @@ export declare namespace UpdatePlanEntitlementRequestBody {
         overage_invoice_anchor?: BillingArrearsAnchor.Raw | null;
         price_behavior?: EntitlementPriceBehavior.Raw | null;
         price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
+        quantity_rates?: Record<string, number> | null;
         quarterly_metered_price_id?: string | null;
         quarterly_price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
         quarterly_unit_price?: number | null;

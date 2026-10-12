@@ -8,6 +8,7 @@ export interface FeatureView {
     billingProduct?: Schematic.BillingProductRecordResponseData;
     createdAt: Date;
     description: string;
+    eventSource: Schematic.FeatureEventSource;
     eventSubtype?: string;
     eventSummary?: Schematic.EventSummaryResponseData;
     featureType: Schematic.FeatureType;

@@ -36,6 +36,10 @@ export const ConditionView: core.serialization.ObjectSchema<serializers.Conditio
         operator: ComparableOperator,
         planVersions: core.serialization.property("plan_versions", core.serialization.list(GenericPreviewObject)),
         plans: core.serialization.list(GenericPreviewObject),
+        quantityRates: core.serialization.property(
+            "quantity_rates",
+            core.serialization.record(core.serialization.string(), core.serialization.number()).optional(),
+        ),
         resourceUnspecifiedIds: core.serialization.property(
             "resource_unspecified_ids",
             core.serialization.list(core.serialization.string()),
@@ -74,6 +78,7 @@ export declare namespace ConditionView {
         operator: ComparableOperator.Raw;
         plan_versions: GenericPreviewObject.Raw[];
         plans: GenericPreviewObject.Raw[];
+        quantity_rates?: Record<string, number> | null;
         resource_unspecified_ids: string[];
         rule_id: string;
         trait?: EntityTraitDefinitionResponseData.Raw | null;

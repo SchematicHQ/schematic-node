@@ -5,6 +5,7 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingCollectionMethod } from "./BillingCollectionMethod";
 import { CheckoutFieldValue } from "./CheckoutFieldValue";
+import { Currency } from "./Currency";
 import { PlanSelection } from "./PlanSelection";
 import { UpdateCreditBundleRequestBody } from "./UpdateCreditBundleRequestBody";
 import { UpdatePayInAdvanceRequestBody } from "./UpdatePayInAdvanceRequestBody";
@@ -29,9 +30,10 @@ export const ManagePlanRequest: core.serialization.ObjectSchema<
         "credit_bundles",
         core.serialization.list(UpdateCreditBundleRequestBody),
     ),
-    currency: core.serialization.string().optional(),
+    currency: Currency.optional(),
     customFieldValues: core.serialization.property("custom_field_values", core.serialization.list(CheckoutFieldValue)),
     daysUntilDue: core.serialization.property("days_until_due", core.serialization.number().optional()),
+    paidOutsideStripe: core.serialization.property("paid_outside_stripe", core.serialization.boolean().optional()),
     payInAdvanceEntitlements: core.serialization.property(
         "pay_in_advance_entitlements",
         core.serialization.list(UpdatePayInAdvanceRequestBody),
@@ -62,9 +64,10 @@ export declare namespace ManagePlanRequest {
         company_id: string;
         coupon_external_id?: string | null;
         credit_bundles: UpdateCreditBundleRequestBody.Raw[];
-        currency?: string | null;
+        currency?: Currency.Raw | null;
         custom_field_values: CheckoutFieldValue.Raw[];
         days_until_due?: number | null;
+        paid_outside_stripe?: boolean | null;
         pay_in_advance_entitlements: UpdatePayInAdvanceRequestBody.Raw[];
         payment_method_external_id?: string | null;
         promo_code?: string | null;

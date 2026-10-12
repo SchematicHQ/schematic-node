@@ -54,7 +54,7 @@ describe("PlanbundleClient", () => {
                 entitlements: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         environment_id: "environment_id",
                         feature_id: "feature_id",
                         id: "id",
@@ -164,7 +164,7 @@ describe("PlanbundleClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         environmentId: "environment_id",
@@ -464,7 +464,7 @@ describe("PlanbundleClient", () => {
                 entitlements: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         environment_id: "environment_id",
                         feature_id: "feature_id",
                         id: "id",
@@ -570,7 +570,7 @@ describe("PlanbundleClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         environmentId: "environment_id",
@@ -845,7 +845,7 @@ describe("PlanbundleClient", () => {
                 entitlements: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         environment_id: "environment_id",
                         feature_id: "feature_id",
                         id: "id",
@@ -950,7 +950,7 @@ describe("PlanbundleClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         environmentId: "environment_id",

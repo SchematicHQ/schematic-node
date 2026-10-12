@@ -4,7 +4,7 @@ import type * as Schematic from "../index";
 
 export interface BillingProductPricing {
     billingThreshold?: number;
-    currency: string;
+    currency: Schematic.Currency;
     interval: string;
     meterId?: string;
     packageSize?: number;

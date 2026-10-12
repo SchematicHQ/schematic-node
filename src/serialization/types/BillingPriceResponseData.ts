@@ -6,12 +6,13 @@ import type * as serializers from "../index";
 import { BillingPriceScheme } from "./BillingPriceScheme";
 import { BillingProductPriceInterval } from "./BillingProductPriceInterval";
 import { BillingProviderType } from "./BillingProviderType";
+import { Currency } from "./Currency";
 
 export const BillingPriceResponseData: core.serialization.ObjectSchema<
     serializers.BillingPriceResponseData.Raw,
     Schematic.BillingPriceResponseData
 > = core.serialization.object({
-    currency: core.serialization.string(),
+    currency: Currency,
     externalPriceId: core.serialization.property("external_price_id", core.serialization.string()),
     id: core.serialization.string(),
     interval: BillingProductPriceInterval,
@@ -25,7 +26,7 @@ export const BillingPriceResponseData: core.serialization.ObjectSchema<
 
 export declare namespace BillingPriceResponseData {
     export interface Raw {
-        currency: string;
+        currency: Currency.Raw;
         external_price_id: string;
         id: string;
         interval: BillingProductPriceInterval.Raw;

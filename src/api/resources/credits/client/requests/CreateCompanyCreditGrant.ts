@@ -16,7 +16,7 @@ export interface CreateCompanyCreditGrant {
     companyId: string;
     creditBundleId?: string;
     creditId: string;
-    currency?: string;
+    currency?: Schematic.Currency;
     expiresAt?: Date;
     expiryType?: Schematic.BillingCreditExpiryType;
     expiryUnit?: Schematic.BillingCreditExpiryUnit;

@@ -15,6 +15,8 @@ import type * as Schematic from "../../../../index";
 export interface CreateBillingLinkedFeatureRequestBody {
     billingProvider: Schematic.BillingProviderType;
     description: string;
+    /** Which event stream meters this feature; defaults to track, and cannot change after creation. Inference is only valid on event features: their event_subtype matches the event label on inference events, and they meter through credits only. */
+    eventSource?: Schematic.FeatureEventSource;
     eventSubtype?: string;
     externalResourceId: string;
     featureType: Schematic.FeatureType;

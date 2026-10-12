@@ -15,6 +15,7 @@ export interface Condition {
     metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;
     metricValue?: number;
     operator: Schematic.ComparableOperator;
+    quantityRates?: Record<string, number>;
     resourceIds: string[];
     traitDefinition?: Schematic.TraitDefinition;
     traitValue: string;

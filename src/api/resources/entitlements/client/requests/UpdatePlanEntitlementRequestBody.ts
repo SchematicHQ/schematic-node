@@ -12,7 +12,7 @@ export interface UpdatePlanEntitlementRequestBody {
     billingProductId?: string;
     billingThreshold?: number;
     creditConsumptionRate?: number;
-    currency?: string;
+    currency?: Schematic.Currency;
     currencyPrices?: Schematic.CurrencyPriceRequestBody[];
     metricPeriod?: Schematic.MetricPeriod;
     metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;
@@ -28,6 +28,8 @@ export interface UpdatePlanEntitlementRequestBody {
     priceBehavior?: Schematic.EntitlementPriceBehavior;
     /** Use MonthlyPriceTiers or YearlyPriceTiers instead */
     priceTiers?: Schematic.CreatePriceTierRequestBody[];
+    /** Credits per unit of the quantity (per token for inference features), keyed by quantity key. Inference features may price input_tokens, output_tokens, cached_input_tokens, cache_creation_input_tokens and reasoning_tokens; reasoning_tokens is priced on top of output_tokens, so leave its rate at zero for providers that count reasoning inside output. Omit to leave the schedule as it is; send null to clear it. */
+    quantityRates?: Record<string, number>;
     quarterlyMeteredPriceId?: string;
     quarterlyPriceTiers?: Schematic.CreatePriceTierRequestBody[];
     quarterlyUnitPrice?: number;

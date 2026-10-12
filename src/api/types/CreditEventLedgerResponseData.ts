@@ -7,14 +7,17 @@ export interface CreditEventLedgerResponseData {
     autoTopupLogId?: string;
     billingCreditBundleId?: string;
     billingCreditId?: string;
+    /** The part of the draw this row covers: one line per priced quantity, including the request line, summing to the row amount. Set on inference-driven draws only. */
+    burnBreakdown?: Schematic.CreditBurnBreakdownLine[];
     company?: Schematic.CompanyLedgerResponseData;
     companyId: string;
     credit?: Schematic.BillingCreditLedgerResponseData;
     creditName: string;
-    currency?: string;
+    currency?: Schematic.Currency;
     environmentId: string;
     eventAt: Date;
     eventId: string;
+    eventIds: string[];
     eventType: Schematic.CreditEventType;
     expiryType?: Schematic.BillingCreditExpiryType;
     expiryUnit?: Schematic.BillingCreditExpiryUnit;

@@ -10,7 +10,7 @@ export interface CheckoutSubscription {
     confirmPaymentIntentClientSecret?: string;
     confirmPaymentIntentId?: string;
     createdAt: Date;
-    currency: string;
+    currency: Schematic.Currency;
     customerExternalId: string;
     defaultPaymentMethodId?: string;
     expiredAt?: Date;

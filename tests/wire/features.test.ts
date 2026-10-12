@@ -32,6 +32,7 @@ describe("FeaturesClient", () => {
                     },
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
+                    event_source: "inference",
                     event_subtype: "event_subtype",
                     event_summary: {
                         company_count: 1000000,
@@ -182,6 +183,7 @@ describe("FeaturesClient", () => {
                     },
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
+                    eventSource: "inference",
                     eventSubtype: "event_subtype",
                     eventSummary: {
                         companyCount: 1000000,
@@ -405,6 +407,7 @@ describe("FeaturesClient", () => {
                 },
                 created_at: "2024-01-15T09:30:00Z",
                 description: "description",
+                event_source: "inference",
                 event_subtype: "event_subtype",
                 event_summary: {
                     company_count: 1000000,
@@ -550,6 +553,7 @@ describe("FeaturesClient", () => {
                 },
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 description: "description",
+                eventSource: "inference",
                 eventSubtype: "event_subtype",
                 eventSummary: {
                     companyCount: 1000000,
@@ -825,6 +829,7 @@ describe("FeaturesClient", () => {
                 },
                 created_at: "2024-01-15T09:30:00Z",
                 description: "description",
+                event_source: "inference",
                 event_subtype: "event_subtype",
                 event_summary: {
                     company_count: 1000000,
@@ -965,6 +970,7 @@ describe("FeaturesClient", () => {
                 },
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 description: "description",
+                eventSource: "inference",
                 eventSubtype: "event_subtype",
                 eventSummary: {
                     companyCount: 1000000,
@@ -1196,6 +1202,7 @@ describe("FeaturesClient", () => {
                 },
                 created_at: "2024-01-15T09:30:00Z",
                 description: "description",
+                event_source: "inference",
                 event_subtype: "event_subtype",
                 event_summary: {
                     company_count: 1000000,
@@ -1337,6 +1344,7 @@ describe("FeaturesClient", () => {
                 },
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 description: "description",
+                eventSource: "inference",
                 eventSubtype: "event_subtype",
                 eventSummary: {
                     companyCount: 1000000,
@@ -1718,6 +1726,7 @@ describe("FeaturesClient", () => {
                 },
                 created_at: "2024-01-15T09:30:00Z",
                 description: "description",
+                event_source: "inference",
                 event_subtype: "event_subtype",
                 event_summary: {
                     company_count: 1000000,
@@ -1865,6 +1874,7 @@ describe("FeaturesClient", () => {
                 },
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 description: "description",
+                eventSource: "inference",
                 eventSubtype: "event_subtype",
                 eventSummary: {
                     companyCount: 1000000,
@@ -2284,6 +2294,7 @@ describe("FeaturesClient", () => {
                     feature: {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
+                        event_source: "inference",
                         feature_type: "boolean",
                         icon: "icon",
                         id: "id",
@@ -2376,6 +2387,7 @@ describe("FeaturesClient", () => {
                     feature: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
+                        eventSource: "inference",
                         featureType: "boolean",
                         icon: "icon",
                         id: "id",
@@ -2552,6 +2564,7 @@ describe("FeaturesClient", () => {
                 feature: {
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
+                    event_source: "inference",
                     event_subtype: "event_subtype",
                     feature_type: "boolean",
                     icon: "icon",
@@ -2663,6 +2676,7 @@ describe("FeaturesClient", () => {
                 feature: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
+                    eventSource: "inference",
                     eventSubtype: "event_subtype",
                     featureType: "boolean",
                     icon: "icon",
@@ -2937,6 +2951,7 @@ describe("FeaturesClient", () => {
                 feature: {
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
+                    event_source: "inference",
                     event_subtype: "event_subtype",
                     feature_type: "boolean",
                     icon: "icon",
@@ -3035,6 +3050,7 @@ describe("FeaturesClient", () => {
                 feature: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
+                    eventSource: "inference",
                     eventSubtype: "event_subtype",
                     featureType: "boolean",
                     icon: "icon",
@@ -3207,6 +3223,7 @@ describe("FeaturesClient", () => {
                 feature: {
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
+                    event_source: "inference",
                     event_subtype: "event_subtype",
                     feature_type: "boolean",
                     icon: "icon",
@@ -3318,6 +3335,7 @@ describe("FeaturesClient", () => {
                 feature: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
+                    eventSource: "inference",
                     eventSubtype: "event_subtype",
                     featureType: "boolean",
                     icon: "icon",
@@ -4880,6 +4898,7 @@ describe("FeaturesClient", () => {
                     metric_period: "all_time",
                     metric_reset_at: "2024-01-15T09:30:00Z",
                     month_reset: "billing_cycle",
+                    quantity_rates: { key: 1.1 },
                     soft_limit: 1000000,
                     usage: 1000000,
                     value_type: "boolean",
@@ -4927,6 +4946,9 @@ describe("FeaturesClient", () => {
                     metricPeriod: "all_time",
                     metricResetAt: new Date("2024-01-15T09:30:00.000Z"),
                     monthReset: "billing_cycle",
+                    quantityRates: {
+                        key: 1.1,
+                    },
                     softLimit: 1000000,
                     usage: 1000000,
                     valueType: "boolean",
@@ -5076,6 +5098,7 @@ describe("FeaturesClient", () => {
                     metric_period: "all_time",
                     metric_reset_at: "2024-01-15T09:30:00Z",
                     month_reset: "billing_cycle",
+                    quantity_rates: { key: 1.1 },
                     soft_limit: 1000000,
                     usage: 1000000,
                     value_type: "boolean",
@@ -5133,6 +5156,9 @@ describe("FeaturesClient", () => {
                     metricPeriod: "all_time",
                     metricResetAt: new Date("2024-01-15T09:30:00.000Z"),
                     monthReset: "billing_cycle",
+                    quantityRates: {
+                        key: 1.1,
+                    },
                     softLimit: 1000000,
                     usage: 1000000,
                     valueType: "boolean",

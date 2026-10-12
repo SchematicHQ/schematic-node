@@ -8,13 +8,14 @@ import { BillingPriceUsageType } from "../../../../types/BillingPriceUsageType";
 import { BillingProviderType } from "../../../../types/BillingProviderType";
 import { BillingTiersMode } from "../../../../types/BillingTiersMode";
 import { CreateBillingPriceTierRequestBody } from "../../../../types/CreateBillingPriceTierRequestBody";
+import { Currency } from "../../../../types/Currency";
 
 export const CreateBillingPriceRequestBody: core.serialization.Schema<
     serializers.CreateBillingPriceRequestBody.Raw,
     Schematic.CreateBillingPriceRequestBody
 > = core.serialization.object({
     billingScheme: core.serialization.property("billing_scheme", BillingPriceScheme),
-    currency: core.serialization.string(),
+    currency: Currency,
     externalAccountId: core.serialization.property("external_account_id", core.serialization.string()),
     interval: core.serialization.string(),
     intervalCount: core.serialization.property("interval_count", core.serialization.number().optional()),
@@ -35,7 +36,7 @@ export const CreateBillingPriceRequestBody: core.serialization.Schema<
 export declare namespace CreateBillingPriceRequestBody {
     export interface Raw {
         billing_scheme: BillingPriceScheme.Raw;
-        currency: string;
+        currency: Currency.Raw;
         external_account_id: string;
         interval: string;
         interval_count?: number | null;

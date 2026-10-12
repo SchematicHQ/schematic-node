@@ -4,18 +4,19 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingPriceResponseData } from "./BillingPriceResponseData";
+import { Currency } from "./Currency";
 
 export const CreditCurrencyPriceResponseData: core.serialization.ObjectSchema<
     serializers.CreditCurrencyPriceResponseData.Raw,
     Schematic.CreditCurrencyPriceResponseData
 > = core.serialization.object({
-    currency: core.serialization.string(),
+    currency: Currency,
     price: BillingPriceResponseData.optional(),
 });
 
 export declare namespace CreditCurrencyPriceResponseData {
     export interface Raw {
-        currency: string;
+        currency: Currency.Raw;
         price?: BillingPriceResponseData.Raw | null;
     }
 }

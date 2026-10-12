@@ -10,7 +10,7 @@ export interface PendingMigrationResponseData {
     prorationBehavior?: Schematic.MigrationProrationBehavior;
     /** Deprecated; use effective_at, which carries the same value. */
     scheduledFor?: Date;
-    /** Whether the company moves at the end of its billing period (end_of_billing_period) or on a specific date (scheduled). The type is shared with plan version migrations, but only those two values appear here: an immediate migration never pends. */
+    /** Whether the company moves at the end of its billing period (end_of_billing_period) or on a specific date (scheduled). The type is shared with plan version migrations, but only those two values appear here: this view lists deferred migrations only, so an immediate migration is never shown, even while it is pending. */
     strategy: Schematic.PlanVersionMigrationStrategy;
     toPlanId: string;
     toPlanName: string;

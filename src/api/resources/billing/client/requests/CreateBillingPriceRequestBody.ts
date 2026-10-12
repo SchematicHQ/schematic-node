@@ -6,7 +6,7 @@ import type * as Schematic from "../../../../index";
  * @example
  *     {
  *         billingScheme: "per_unit",
- *         currency: "currency",
+ *         currency: "aed",
  *         externalAccountId: "external_account_id",
  *         interval: "interval",
  *         isActive: true,
@@ -21,7 +21,7 @@ import type * as Schematic from "../../../../index";
  */
 export interface CreateBillingPriceRequestBody {
     billingScheme: Schematic.BillingPriceScheme;
-    currency: string;
+    currency: Schematic.Currency;
     externalAccountId: string;
     interval: string;
     intervalCount?: number;

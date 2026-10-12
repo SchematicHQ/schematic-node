@@ -6,7 +6,7 @@ export interface CompanyBillingEntitySubscriptionResponseData {
     cancelAt?: Date;
     cancelAtPeriodEnd: boolean;
     company?: Schematic.CompanyResponseData;
-    currency: string;
+    currency: Schematic.Currency;
     customerExternalId: string;
     discounts: Schematic.BillingSubscriptionDiscountView[];
     expiredAt?: Date;

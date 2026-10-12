@@ -7,8 +7,8 @@ import type * as serializers from "../index";
 export const PlanBillingSource: core.serialization.Schema<
     serializers.PlanBillingSource.Raw,
     Schematic.PlanBillingSource
-> = core.serialization.enum_(["custom_plan", "manage_plan"]);
+> = core.serialization.enum_(["amendment", "custom_plan", "manage_plan"]);
 
 export declare namespace PlanBillingSource {
-    export type Raw = "custom_plan" | "manage_plan";
+    export type Raw = "amendment" | "custom_plan" | "manage_plan";
 }

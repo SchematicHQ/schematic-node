@@ -4,12 +4,13 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { CreatePriceTierRequestBody } from "./CreatePriceTierRequestBody";
+import { Currency } from "./Currency";
 
 export const CurrencyPriceRequestBody: core.serialization.ObjectSchema<
     serializers.CurrencyPriceRequestBody.Raw,
     Schematic.CurrencyPriceRequestBody
 > = core.serialization.object({
-    currency: core.serialization.string(),
+    currency: Currency,
     monthlyPriceTiers: core.serialization.property(
         "monthly_price_tiers",
         core.serialization.list(CreatePriceTierRequestBody).optional(),
@@ -41,7 +42,7 @@ export const CurrencyPriceRequestBody: core.serialization.ObjectSchema<
 
 export declare namespace CurrencyPriceRequestBody {
     export interface Raw {
-        currency: string;
+        currency: Currency.Raw;
         monthly_price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
         monthly_unit_price?: number | null;
         monthly_unit_price_decimal?: string | null;

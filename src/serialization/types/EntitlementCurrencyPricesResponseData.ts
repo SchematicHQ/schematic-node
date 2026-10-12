@@ -4,12 +4,13 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingPriceView } from "./BillingPriceView";
+import { Currency } from "./Currency";
 
 export const EntitlementCurrencyPricesResponseData: core.serialization.ObjectSchema<
     serializers.EntitlementCurrencyPricesResponseData.Raw,
     Schematic.EntitlementCurrencyPricesResponseData
 > = core.serialization.object({
-    currency: core.serialization.string(),
+    currency: Currency,
     monthlyPrice: core.serialization.property("monthly_price", BillingPriceView.optional()),
     quarterlyPrice: core.serialization.property("quarterly_price", BillingPriceView.optional()),
     yearlyPrice: core.serialization.property("yearly_price", BillingPriceView.optional()),
@@ -17,7 +18,7 @@ export const EntitlementCurrencyPricesResponseData: core.serialization.ObjectSch
 
 export declare namespace EntitlementCurrencyPricesResponseData {
     export interface Raw {
-        currency: string;
+        currency: Currency.Raw;
         monthly_price?: BillingPriceView.Raw | null;
         quarterly_price?: BillingPriceView.Raw | null;
         yearly_price?: BillingPriceView.Raw | null;

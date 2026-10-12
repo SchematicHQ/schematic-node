@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { Currency } from "./Currency";
 import { PlanPriceCadence } from "./PlanPriceCadence";
 
 export const EstimatedPlanTotal: core.serialization.ObjectSchema<
@@ -10,14 +11,14 @@ export const EstimatedPlanTotal: core.serialization.ObjectSchema<
     Schematic.EstimatedPlanTotal
 > = core.serialization.object({
     amount: core.serialization.number(),
-    currency: core.serialization.string(),
+    currency: Currency,
     period: PlanPriceCadence,
 });
 
 export declare namespace EstimatedPlanTotal {
     export interface Raw {
         amount: number;
-        currency: string;
+        currency: Currency.Raw;
         period: PlanPriceCadence.Raw;
     }
 }

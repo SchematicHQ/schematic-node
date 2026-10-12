@@ -28,6 +28,10 @@ export const ConditionResponseData: core.serialization.ObjectSchema<
     metricPeriodMonthReset: core.serialization.property("metric_period_month_reset", MetricPeriodMonthReset.optional()),
     metricValue: core.serialization.property("metric_value", core.serialization.number().optional()),
     operator: ComparableOperator,
+    quantityRates: core.serialization.property(
+        "quantity_rates",
+        core.serialization.record(core.serialization.string(), core.serialization.number()).optional(),
+    ),
     resourceUnspecifiedIds: core.serialization.property(
         "resource_unspecified_ids",
         core.serialization.list(core.serialization.string()),
@@ -59,6 +63,7 @@ export declare namespace ConditionResponseData {
         metric_period_month_reset?: MetricPeriodMonthReset.Raw | null;
         metric_value?: number | null;
         operator: ComparableOperator.Raw;
+        quantity_rates?: Record<string, number> | null;
         resource_unspecified_ids: string[];
         rule_id: string;
         trait_entity_type?: EntityType.Raw | null;

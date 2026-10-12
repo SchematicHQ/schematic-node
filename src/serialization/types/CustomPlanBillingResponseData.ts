@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { CheckoutProblemResponseData } from "./CheckoutProblemResponseData";
 import { CustomPlanActivationStrategy } from "./CustomPlanActivationStrategy";
 import { CustomPlanBillingStatus } from "./CustomPlanBillingStatus";
 import { PlanBillingSource } from "./PlanBillingSource";
@@ -14,14 +15,17 @@ export const CustomPlanBillingResponseData: core.serialization.ObjectSchema<
     activationStrategy: core.serialization.property("activation_strategy", CustomPlanActivationStrategy),
     billingCycleAnchor: core.serialization.property("billing_cycle_anchor", core.serialization.date().optional()),
     billingStartDate: core.serialization.property("billing_start_date", core.serialization.date().optional()),
+    checkoutId: core.serialization.property("checkout_id", core.serialization.string().optional()),
     companyId: core.serialization.property("company_id", core.serialization.string()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     daysUntilDue: core.serialization.property("days_until_due", core.serialization.number()),
     externalInvoiceId: core.serialization.property("external_invoice_id", core.serialization.string().optional()),
     id: core.serialization.string(),
+    migrationId: core.serialization.property("migration_id", core.serialization.string().optional()),
     paidAt: core.serialization.property("paid_at", core.serialization.date().optional()),
     planBillingSource: core.serialization.property("plan_billing_source", PlanBillingSource),
     planId: core.serialization.property("plan_id", core.serialization.string()),
+    problems: core.serialization.list(CheckoutProblemResponseData),
     prorateFirstPeriod: core.serialization.property("prorate_first_period", core.serialization.boolean().optional()),
     publishedAt: core.serialization.property("published_at", core.serialization.date().optional()),
     sendInvoice: core.serialization.property("send_invoice", core.serialization.boolean()),
@@ -35,14 +39,17 @@ export declare namespace CustomPlanBillingResponseData {
         activation_strategy: CustomPlanActivationStrategy.Raw;
         billing_cycle_anchor?: string | null;
         billing_start_date?: string | null;
+        checkout_id?: string | null;
         company_id: string;
         created_at: string;
         days_until_due: number;
         external_invoice_id?: string | null;
         id: string;
+        migration_id?: string | null;
         paid_at?: string | null;
         plan_billing_source: PlanBillingSource.Raw;
         plan_id: string;
+        problems: CheckoutProblemResponseData.Raw[];
         prorate_first_period?: boolean | null;
         published_at?: string | null;
         send_invoice: boolean;

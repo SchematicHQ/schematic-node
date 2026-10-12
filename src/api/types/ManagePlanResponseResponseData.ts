@@ -3,6 +3,8 @@
 import type * as Schematic from "../index";
 
 export interface ManagePlanResponseResponseData {
+    checkoutId?: string;
     company?: Schematic.CompanyDetailResponseData;
+    problems: Schematic.CheckoutProblemResponseData[];
     success: boolean;
 }

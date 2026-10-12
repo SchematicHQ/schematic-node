@@ -6,6 +6,7 @@ import type * as serializers from "../index";
 import { BillingProductForSubscriptionResponseData } from "./BillingProductForSubscriptionResponseData";
 import { BillingProviderType } from "./BillingProviderType";
 import { BillingSubscriptionDiscountView } from "./BillingSubscriptionDiscountView";
+import { Currency } from "./Currency";
 import { InvoiceResponseData } from "./InvoiceResponseData";
 import { PaymentMethodResponseData } from "./PaymentMethodResponseData";
 
@@ -15,7 +16,7 @@ export const CompanySubscriptionResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     cancelAt: core.serialization.property("cancel_at", core.serialization.date().optional()),
     cancelAtPeriodEnd: core.serialization.property("cancel_at_period_end", core.serialization.boolean()),
-    currency: core.serialization.string(),
+    currency: Currency,
     customerExternalId: core.serialization.property("customer_external_id", core.serialization.string()),
     discounts: core.serialization.list(BillingSubscriptionDiscountView),
     expiredAt: core.serialization.property("expired_at", core.serialization.date().optional()),
@@ -35,7 +36,7 @@ export declare namespace CompanySubscriptionResponseData {
     export interface Raw {
         cancel_at?: string | null;
         cancel_at_period_end: boolean;
-        currency: string;
+        currency: Currency.Raw;
         customer_external_id: string;
         discounts: BillingSubscriptionDiscountView.Raw[];
         expired_at?: string | null;

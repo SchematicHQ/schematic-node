@@ -15,6 +15,8 @@ export interface CompanyOverrideResponseData {
     metricPeriod?: Schematic.MetricPeriod;
     metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;
     notes: Schematic.CompanyOverrideNoteResponseData[];
+    /** Credits per unit of the quantity (per token for inference features), keyed by quantity key. Absent when the entitlement prices requests only. */
+    quantityRates?: Record<string, number>;
     ruleId?: string;
     ruleIdUsageExceeded?: string;
     updatedAt: Date;

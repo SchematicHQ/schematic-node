@@ -14,7 +14,7 @@ describe("BillingClient", () => {
                 {
                     account_id: "account_id",
                     amount_off: 1000000,
-                    currency: "currency",
+                    currency: "aed",
                     duration: "duration",
                     duration_in_months: 1000000,
                     environment_id: "environment_id",
@@ -47,7 +47,7 @@ describe("BillingClient", () => {
                 {
                     accountId: "account_id",
                     amountOff: 1000000,
-                    currency: "currency",
+                    currency: "aed",
                     duration: "duration",
                     durationInMonths: 1000000,
                     environmentId: "environment_id",
@@ -157,7 +157,7 @@ describe("BillingClient", () => {
             data: {
                 account_id: "account_id",
                 amount_off: 1000000,
-                currency: "currency",
+                currency: "aed",
                 duration: "duration",
                 duration_in_months: 1000000,
                 environment_id: "environment_id",
@@ -199,7 +199,7 @@ describe("BillingClient", () => {
             data: {
                 accountId: "account_id",
                 amountOff: 1000000,
-                currency: "currency",
+                currency: "aed",
                 duration: "duration",
                 durationInMonths: 1000000,
                 environmentId: "environment_id",
@@ -856,7 +856,7 @@ describe("BillingClient", () => {
                     provider_type: "metronome",
                     subscriptions: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                             interval: "interval",
                             metered_usage: true,
                             per_unit_price: 1000000,
@@ -898,7 +898,7 @@ describe("BillingClient", () => {
                     providerType: "metronome",
                     subscriptions: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                             interval: "interval",
                             meteredUsage: true,
                             perUnitPrice: 1000000,
@@ -1139,7 +1139,7 @@ describe("BillingClient", () => {
                     collection_method: "collection_method",
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
-                    currency: "currency",
+                    currency: "aed",
                     customer_external_id: "customer_external_id",
                     due_date: "2024-01-15T09:30:00Z",
                     ending_balance: 1000000,
@@ -1184,7 +1184,7 @@ describe("BillingClient", () => {
                     collectionMethod: "collection_method",
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    currency: "currency",
+                    currency: "aed",
                     customerExternalId: "customer_external_id",
                     dueDate: new Date("2024-01-15T09:30:00.000Z"),
                     endingBalance: 1000000,
@@ -1300,7 +1300,7 @@ describe("BillingClient", () => {
             amount_paid: 1000000,
             amount_remaining: 1000000,
             collection_method: "collection_method",
-            currency: "currency",
+            currency: "aed",
             customer_external_id: "customer_external_id",
             subtotal: 1000000,
         };
@@ -1312,7 +1312,7 @@ describe("BillingClient", () => {
                 collection_method: "collection_method",
                 company_id: "company_id",
                 created_at: "2024-01-15T09:30:00Z",
-                currency: "currency",
+                currency: "aed",
                 customer_external_id: "customer_external_id",
                 due_date: "2024-01-15T09:30:00Z",
                 ending_balance: 1000000,
@@ -1346,7 +1346,7 @@ describe("BillingClient", () => {
             amountPaid: 1000000,
             amountRemaining: 1000000,
             collectionMethod: "collection_method",
-            currency: "currency",
+            currency: "aed",
             customerExternalId: "customer_external_id",
             subtotal: 1000000,
         });
@@ -1358,7 +1358,7 @@ describe("BillingClient", () => {
                 collectionMethod: "collection_method",
                 companyId: "company_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                currency: "currency",
+                currency: "aed",
                 customerExternalId: "customer_external_id",
                 dueDate: new Date("2024-01-15T09:30:00.000Z"),
                 endingBalance: 1000000,
@@ -1389,7 +1389,7 @@ describe("BillingClient", () => {
             amount_paid: 1000000,
             amount_remaining: 1000000,
             collection_method: "collection_method",
-            currency: "currency",
+            currency: "aed",
             customer_external_id: "customer_external_id",
             subtotal: 1000000,
         };
@@ -1410,7 +1410,7 @@ describe("BillingClient", () => {
                 amountPaid: 1000000,
                 amountRemaining: 1000000,
                 collectionMethod: "collection_method",
-                currency: "currency",
+                currency: "aed",
                 customerExternalId: "customer_external_id",
                 subtotal: 1000000,
             });
@@ -1425,7 +1425,7 @@ describe("BillingClient", () => {
             amount_paid: 1000000,
             amount_remaining: 1000000,
             collection_method: "collection_method",
-            currency: "currency",
+            currency: "aed",
             customer_external_id: "customer_external_id",
             subtotal: 1000000,
         };
@@ -1446,7 +1446,7 @@ describe("BillingClient", () => {
                 amountPaid: 1000000,
                 amountRemaining: 1000000,
                 collectionMethod: "collection_method",
-                currency: "currency",
+                currency: "aed",
                 customerExternalId: "customer_external_id",
                 subtotal: 1000000,
             });
@@ -1461,7 +1461,7 @@ describe("BillingClient", () => {
             amount_paid: 1000000,
             amount_remaining: 1000000,
             collection_method: "collection_method",
-            currency: "currency",
+            currency: "aed",
             customer_external_id: "customer_external_id",
             subtotal: 1000000,
         };
@@ -1482,7 +1482,7 @@ describe("BillingClient", () => {
                 amountPaid: 1000000,
                 amountRemaining: 1000000,
                 collectionMethod: "collection_method",
-                currency: "currency",
+                currency: "aed",
                 customerExternalId: "customer_external_id",
                 subtotal: 1000000,
             });
@@ -1497,7 +1497,7 @@ describe("BillingClient", () => {
             amount_paid: 1000000,
             amount_remaining: 1000000,
             collection_method: "collection_method",
-            currency: "currency",
+            currency: "aed",
             customer_external_id: "customer_external_id",
             subtotal: 1000000,
         };
@@ -1518,7 +1518,7 @@ describe("BillingClient", () => {
                 amountPaid: 1000000,
                 amountRemaining: 1000000,
                 collectionMethod: "collection_method",
-                currency: "currency",
+                currency: "aed",
                 customerExternalId: "customer_external_id",
                 subtotal: 1000000,
             });
@@ -1533,7 +1533,7 @@ describe("BillingClient", () => {
             amount_paid: 1000000,
             amount_remaining: 1000000,
             collection_method: "collection_method",
-            currency: "currency",
+            currency: "aed",
             customer_external_id: "customer_external_id",
             subtotal: 1000000,
         };
@@ -1554,7 +1554,7 @@ describe("BillingClient", () => {
                 amountPaid: 1000000,
                 amountRemaining: 1000000,
                 collectionMethod: "collection_method",
-                currency: "currency",
+                currency: "aed",
                 customerExternalId: "customer_external_id",
                 subtotal: 1000000,
             });
@@ -2519,7 +2519,7 @@ describe("BillingClient", () => {
                 {
                     billing_scheme: "per_unit",
                     created_at: "2024-01-15T09:30:00Z",
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     interval_count: 1000000,
@@ -2544,7 +2544,7 @@ describe("BillingClient", () => {
                 },
             ],
             params: {
-                currency: "currency",
+                currency: "aed",
                 for_initial_plan: true,
                 for_trial_expiry_plan: true,
                 ids: ["ids"],
@@ -2568,7 +2568,7 @@ describe("BillingClient", () => {
         server.mockEndpoint().get("/billing/price").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.billing.listBillingPrices({
-            currency: "currency",
+            currency: "aed",
             forInitialPlan: true,
             forTrialExpiryPlan: true,
             ids: ["ids"],
@@ -2592,7 +2592,7 @@ describe("BillingClient", () => {
                 {
                     billingScheme: "per_unit",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     intervalCount: 1000000,
@@ -2617,7 +2617,7 @@ describe("BillingClient", () => {
                 },
             ],
             params: {
-                currency: "currency",
+                currency: "aed",
                 forInitialPlan: true,
                 forTrialExpiryPlan: true,
                 ids: ["ids"],
@@ -2709,7 +2709,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             billing_scheme: "per_unit",
-            currency: "currency",
+            currency: "aed",
             external_account_id: "external_account_id",
             interval: "interval",
             is_active: true,
@@ -2721,7 +2721,7 @@ describe("BillingClient", () => {
         };
         const rawResponseBody = {
             data: {
-                currency: "currency",
+                currency: "aed",
                 external_price_id: "external_price_id",
                 id: "id",
                 interval: "day",
@@ -2746,7 +2746,7 @@ describe("BillingClient", () => {
 
         const response = await client.billing.upsertBillingPrice({
             billingScheme: "per_unit",
-            currency: "currency",
+            currency: "aed",
             externalAccountId: "external_account_id",
             interval: "interval",
             isActive: true,
@@ -2762,7 +2762,7 @@ describe("BillingClient", () => {
         });
         expect(response).toEqual({
             data: {
-                currency: "currency",
+                currency: "aed",
                 externalPriceId: "external_price_id",
                 id: "id",
                 interval: "day",
@@ -2784,7 +2784,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             billing_scheme: "per_unit",
-            currency: "foo",
+            currency: "aed",
             external_account_id: "external_account_id",
             interval: "interval",
             is_active: true,
@@ -2808,7 +2808,7 @@ describe("BillingClient", () => {
         await expect(async () => {
             return await client.billing.upsertBillingPrice({
                 billingScheme: "per_unit",
-                currency: "foo",
+                currency: "aed",
                 externalAccountId: "external_account_id",
                 interval: "interval",
                 isActive: true,
@@ -2833,7 +2833,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             billing_scheme: "per_unit",
-            currency: "foo",
+            currency: "aed",
             external_account_id: "external_account_id",
             interval: "interval",
             is_active: true,
@@ -2857,7 +2857,7 @@ describe("BillingClient", () => {
         await expect(async () => {
             return await client.billing.upsertBillingPrice({
                 billingScheme: "per_unit",
-                currency: "foo",
+                currency: "aed",
                 externalAccountId: "external_account_id",
                 interval: "interval",
                 isActive: true,
@@ -2882,7 +2882,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             billing_scheme: "per_unit",
-            currency: "foo",
+            currency: "aed",
             external_account_id: "external_account_id",
             interval: "interval",
             is_active: true,
@@ -2906,7 +2906,7 @@ describe("BillingClient", () => {
         await expect(async () => {
             return await client.billing.upsertBillingPrice({
                 billingScheme: "per_unit",
-                currency: "foo",
+                currency: "aed",
                 externalAccountId: "external_account_id",
                 interval: "interval",
                 isActive: true,
@@ -2931,7 +2931,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             billing_scheme: "per_unit",
-            currency: "foo",
+            currency: "aed",
             external_account_id: "external_account_id",
             interval: "interval",
             is_active: true,
@@ -2955,7 +2955,7 @@ describe("BillingClient", () => {
         await expect(async () => {
             return await client.billing.upsertBillingPrice({
                 billingScheme: "per_unit",
-                currency: "foo",
+                currency: "aed",
                 externalAccountId: "external_account_id",
                 interval: "interval",
                 isActive: true,
@@ -2980,7 +2980,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             billing_scheme: "per_unit",
-            currency: "foo",
+            currency: "aed",
             external_account_id: "external_account_id",
             interval: "interval",
             is_active: true,
@@ -3004,7 +3004,7 @@ describe("BillingClient", () => {
         await expect(async () => {
             return await client.billing.upsertBillingPrice({
                 billingScheme: "per_unit",
-                currency: "foo",
+                currency: "aed",
                 externalAccountId: "external_account_id",
                 interval: "interval",
                 isActive: true,
@@ -3153,7 +3153,7 @@ describe("BillingClient", () => {
                 {
                     billing_scheme: "per_unit",
                     created_at: "2024-01-15T09:30:00Z",
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     interval_count: 1000000,
@@ -3178,7 +3178,7 @@ describe("BillingClient", () => {
                 },
             ],
             params: {
-                currency: "currency",
+                currency: "aed",
                 for_initial_plan: true,
                 for_trial_expiry_plan: true,
                 ids: ["ids"],
@@ -3208,7 +3208,7 @@ describe("BillingClient", () => {
             .build();
 
         const response = await client.billing.listBillingProductPrices({
-            currency: "currency",
+            currency: "aed",
             forInitialPlan: true,
             forTrialExpiryPlan: true,
             ids: ["ids"],
@@ -3232,7 +3232,7 @@ describe("BillingClient", () => {
                 {
                     billingScheme: "per_unit",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     intervalCount: 1000000,
@@ -3257,7 +3257,7 @@ describe("BillingClient", () => {
                 },
             ],
             params: {
-                currency: "currency",
+                currency: "aed",
                 forInitialPlan: true,
                 forTrialExpiryPlan: true,
                 ids: ["ids"],
@@ -3682,7 +3682,7 @@ describe("BillingClient", () => {
                     price_decimal: "price_decimal",
                     prices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                             external_price_id: "external_price_id",
                             id: "id",
                             interval: "day",
@@ -3746,7 +3746,7 @@ describe("BillingClient", () => {
                     priceDecimal: "price_decimal",
                     prices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                             externalPriceId: "external_price_id",
                             id: "id",
                             interval: "day",
@@ -4313,12 +4313,209 @@ describe("BillingClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("getBillingSettings (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { data: { default_provider_type: "metronome" }, params: { key: "value" } };
+
+        server.mockEndpoint().get("/billing/settings").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.billing.getBillingSettings();
+        expect(response).toEqual({
+            data: {
+                defaultProviderType: "metronome",
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("getBillingSettings (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/billing/settings").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.billing.getBillingSettings();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getBillingSettings (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/billing/settings").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.billing.getBillingSettings();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getBillingSettings (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/billing/settings").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.billing.getBillingSettings();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getBillingSettings (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/billing/settings").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.billing.getBillingSettings();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("updateBillingSettings (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { data: { default_provider_type: "metronome" }, params: { key: "value" } };
+
+        server
+            .mockEndpoint()
+            .post("/billing/settings")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.billing.updateBillingSettings();
+        expect(response).toEqual({
+            data: {
+                defaultProviderType: "metronome",
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("updateBillingSettings (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/billing/settings")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.updateBillingSettings();
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("updateBillingSettings (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/billing/settings")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.updateBillingSettings();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("updateBillingSettings (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/billing/settings")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.updateBillingSettings();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("updateBillingSettings (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/billing/settings")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.updateBillingSettings();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("updateBillingSettings (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/billing/settings")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.updateBillingSettings();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("upsertBillingSubscription (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             cancel_at_period_end: true,
-            currency: "currency",
+            currency: "aed",
             customer_external_id: "customer_external_id",
             discounts: [
                 {
@@ -4331,7 +4528,7 @@ describe("BillingClient", () => {
             expired_at: "2024-01-15T09:30:00Z",
             product_external_ids: [
                 {
-                    currency: "currency",
+                    currency: "aed",
                     interval: "interval",
                     price: 1000000,
                     price_external_id: "price_external_id",
@@ -4350,7 +4547,7 @@ describe("BillingClient", () => {
                 cancel_at_period_end: true,
                 company_id: "company_id",
                 created_at: "2024-01-15T09:30:00Z",
-                currency: "currency",
+                currency: "aed",
                 customer_external_id: "customer_external_id",
                 default_payment_method_id: "default_payment_method_id",
                 expired_at: "2024-01-15T09:30:00Z",
@@ -4380,7 +4577,7 @@ describe("BillingClient", () => {
 
         const response = await client.billing.upsertBillingSubscription({
             cancelAtPeriodEnd: true,
-            currency: "currency",
+            currency: "aed",
             customerExternalId: "customer_external_id",
             discounts: [
                 {
@@ -4393,7 +4590,7 @@ describe("BillingClient", () => {
             expiredAt: new Date("2024-01-15T09:30:00.000Z"),
             productExternalIds: [
                 {
-                    currency: "currency",
+                    currency: "aed",
                     interval: "interval",
                     price: 1000000,
                     priceExternalId: "price_external_id",
@@ -4412,7 +4609,7 @@ describe("BillingClient", () => {
                 cancelAtPeriodEnd: true,
                 companyId: "company_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                currency: "currency",
+                currency: "aed",
                 customerExternalId: "customer_external_id",
                 defaultPaymentMethodId: "default_payment_method_id",
                 expiredAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -4441,7 +4638,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             cancel_at_period_end: true,
-            currency: "foo",
+            currency: "aed",
             customer_external_id: "customer_external_id",
             discounts: [
                 {
@@ -4460,7 +4657,7 @@ describe("BillingClient", () => {
             expired_at: "2024-01-15T09:30:00Z",
             product_external_ids: [
                 {
-                    currency: "foo",
+                    currency: "aed",
                     interval: "interval",
                     price: 1000000,
                     price_external_id: "price_external_id",
@@ -4469,7 +4666,7 @@ describe("BillingClient", () => {
                     usage_type: "licensed",
                 },
                 {
-                    currency: "foo",
+                    currency: "aed",
                     interval: "interval",
                     price: 1000000,
                     price_external_id: "price_external_id",
@@ -4495,7 +4692,7 @@ describe("BillingClient", () => {
         await expect(async () => {
             return await client.billing.upsertBillingSubscription({
                 cancelAtPeriodEnd: true,
-                currency: "foo",
+                currency: "aed",
                 customerExternalId: "customer_external_id",
                 discounts: [
                     {
@@ -4514,7 +4711,7 @@ describe("BillingClient", () => {
                 expiredAt: new Date("2024-01-15T09:30:00.000Z"),
                 productExternalIds: [
                     {
-                        currency: "foo",
+                        currency: "aed",
                         interval: "interval",
                         price: 1000000,
                         priceExternalId: "price_external_id",
@@ -4523,7 +4720,7 @@ describe("BillingClient", () => {
                         usageType: "licensed",
                     },
                     {
-                        currency: "foo",
+                        currency: "aed",
                         interval: "interval",
                         price: 1000000,
                         priceExternalId: "price_external_id",
@@ -4543,7 +4740,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             cancel_at_period_end: true,
-            currency: "foo",
+            currency: "aed",
             customer_external_id: "customer_external_id",
             discounts: [
                 {
@@ -4562,7 +4759,7 @@ describe("BillingClient", () => {
             expired_at: "2024-01-15T09:30:00Z",
             product_external_ids: [
                 {
-                    currency: "foo",
+                    currency: "aed",
                     interval: "interval",
                     price: 1000000,
                     price_external_id: "price_external_id",
@@ -4571,7 +4768,7 @@ describe("BillingClient", () => {
                     usage_type: "licensed",
                 },
                 {
-                    currency: "foo",
+                    currency: "aed",
                     interval: "interval",
                     price: 1000000,
                     price_external_id: "price_external_id",
@@ -4597,7 +4794,7 @@ describe("BillingClient", () => {
         await expect(async () => {
             return await client.billing.upsertBillingSubscription({
                 cancelAtPeriodEnd: true,
-                currency: "foo",
+                currency: "aed",
                 customerExternalId: "customer_external_id",
                 discounts: [
                     {
@@ -4616,7 +4813,7 @@ describe("BillingClient", () => {
                 expiredAt: new Date("2024-01-15T09:30:00.000Z"),
                 productExternalIds: [
                     {
-                        currency: "foo",
+                        currency: "aed",
                         interval: "interval",
                         price: 1000000,
                         priceExternalId: "price_external_id",
@@ -4625,7 +4822,7 @@ describe("BillingClient", () => {
                         usageType: "licensed",
                     },
                     {
-                        currency: "foo",
+                        currency: "aed",
                         interval: "interval",
                         price: 1000000,
                         priceExternalId: "price_external_id",
@@ -4645,7 +4842,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             cancel_at_period_end: true,
-            currency: "foo",
+            currency: "aed",
             customer_external_id: "customer_external_id",
             discounts: [
                 {
@@ -4664,7 +4861,7 @@ describe("BillingClient", () => {
             expired_at: "2024-01-15T09:30:00Z",
             product_external_ids: [
                 {
-                    currency: "foo",
+                    currency: "aed",
                     interval: "interval",
                     price: 1000000,
                     price_external_id: "price_external_id",
@@ -4673,7 +4870,7 @@ describe("BillingClient", () => {
                     usage_type: "licensed",
                 },
                 {
-                    currency: "foo",
+                    currency: "aed",
                     interval: "interval",
                     price: 1000000,
                     price_external_id: "price_external_id",
@@ -4699,7 +4896,7 @@ describe("BillingClient", () => {
         await expect(async () => {
             return await client.billing.upsertBillingSubscription({
                 cancelAtPeriodEnd: true,
-                currency: "foo",
+                currency: "aed",
                 customerExternalId: "customer_external_id",
                 discounts: [
                     {
@@ -4718,7 +4915,7 @@ describe("BillingClient", () => {
                 expiredAt: new Date("2024-01-15T09:30:00.000Z"),
                 productExternalIds: [
                     {
-                        currency: "foo",
+                        currency: "aed",
                         interval: "interval",
                         price: 1000000,
                         priceExternalId: "price_external_id",
@@ -4727,7 +4924,7 @@ describe("BillingClient", () => {
                         usageType: "licensed",
                     },
                     {
-                        currency: "foo",
+                        currency: "aed",
                         interval: "interval",
                         price: 1000000,
                         priceExternalId: "price_external_id",
@@ -4747,7 +4944,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             cancel_at_period_end: true,
-            currency: "foo",
+            currency: "aed",
             customer_external_id: "customer_external_id",
             discounts: [
                 {
@@ -4766,7 +4963,7 @@ describe("BillingClient", () => {
             expired_at: "2024-01-15T09:30:00Z",
             product_external_ids: [
                 {
-                    currency: "foo",
+                    currency: "aed",
                     interval: "interval",
                     price: 1000000,
                     price_external_id: "price_external_id",
@@ -4775,7 +4972,7 @@ describe("BillingClient", () => {
                     usage_type: "licensed",
                 },
                 {
-                    currency: "foo",
+                    currency: "aed",
                     interval: "interval",
                     price: 1000000,
                     price_external_id: "price_external_id",
@@ -4801,7 +4998,7 @@ describe("BillingClient", () => {
         await expect(async () => {
             return await client.billing.upsertBillingSubscription({
                 cancelAtPeriodEnd: true,
-                currency: "foo",
+                currency: "aed",
                 customerExternalId: "customer_external_id",
                 discounts: [
                     {
@@ -4820,7 +5017,7 @@ describe("BillingClient", () => {
                 expiredAt: new Date("2024-01-15T09:30:00.000Z"),
                 productExternalIds: [
                     {
-                        currency: "foo",
+                        currency: "aed",
                         interval: "interval",
                         price: 1000000,
                         priceExternalId: "price_external_id",
@@ -4829,7 +5026,7 @@ describe("BillingClient", () => {
                         usageType: "licensed",
                     },
                     {
-                        currency: "foo",
+                        currency: "aed",
                         interval: "interval",
                         price: 1000000,
                         priceExternalId: "price_external_id",
@@ -4849,7 +5046,7 @@ describe("BillingClient", () => {
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             cancel_at_period_end: true,
-            currency: "foo",
+            currency: "aed",
             customer_external_id: "customer_external_id",
             discounts: [
                 {
@@ -4868,7 +5065,7 @@ describe("BillingClient", () => {
             expired_at: "2024-01-15T09:30:00Z",
             product_external_ids: [
                 {
-                    currency: "foo",
+                    currency: "aed",
                     interval: "interval",
                     price: 1000000,
                     price_external_id: "price_external_id",
@@ -4877,7 +5074,7 @@ describe("BillingClient", () => {
                     usage_type: "licensed",
                 },
                 {
-                    currency: "foo",
+                    currency: "aed",
                     interval: "interval",
                     price: 1000000,
                     price_external_id: "price_external_id",
@@ -4903,7 +5100,7 @@ describe("BillingClient", () => {
         await expect(async () => {
             return await client.billing.upsertBillingSubscription({
                 cancelAtPeriodEnd: true,
-                currency: "foo",
+                currency: "aed",
                 customerExternalId: "customer_external_id",
                 discounts: [
                     {
@@ -4922,7 +5119,7 @@ describe("BillingClient", () => {
                 expiredAt: new Date("2024-01-15T09:30:00.000Z"),
                 productExternalIds: [
                     {
-                        currency: "foo",
+                        currency: "aed",
                         interval: "interval",
                         price: 1000000,
                         priceExternalId: "price_external_id",
@@ -4931,7 +5128,7 @@ describe("BillingClient", () => {
                         usageType: "licensed",
                     },
                     {
-                        currency: "foo",
+                        currency: "aed",
                         interval: "interval",
                         price: 1000000,
                         priceExternalId: "price_external_id",

@@ -4183,7 +4183,7 @@ export class CompaniesClient {
      *
      * @example
      *     await client.companies.listPlanChanges({
-     *         action: "checkout",
+     *         action: "amendment",
      *         basePlanAction: "fallback",
      *         companyId: "company_id",
      *         companyIds: ["company_ids"],

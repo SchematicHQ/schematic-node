@@ -15,6 +15,7 @@ export interface RulesengineCondition {
     metricPeriodMonthReset?: Schematic.RulesengineMetricPeriodMonthReset;
     metricValue?: number;
     operator: Schematic.RulesengineComparableOperator;
+    quantityRates?: Record<string, number>;
     resourceIds: string[];
     traitDefinition?: Schematic.RulesengineTraitDefinition;
     traitValue: string;

@@ -5,14 +5,14 @@ import type * as Schematic from "../../../../index";
 /**
  * @example
  *     {
- *         currency: "currency",
+ *         currency: "aed",
  *         description: "description",
  *         name: "name"
  *     }
  */
 export interface CreateBillingCreditRequestBody {
     burnStrategy?: Schematic.BillingCreditBurnStrategy;
-    currency: string;
+    currency: Schematic.Currency;
     currencyPrices?: Schematic.CreditCurrencyPriceRequestBody[];
     defaultExpiryUnit?: Schematic.BillingCreditExpiryUnit;
     defaultExpiryUnitCount?: number;

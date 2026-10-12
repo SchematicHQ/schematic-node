@@ -5,6 +5,7 @@ import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
 import { BillingProviderType } from "../../../../types/BillingProviderType";
 import { CreateOrUpdateFlagRequestBody } from "../../../../types/CreateOrUpdateFlagRequestBody";
+import { FeatureEventSource } from "../../../../types/FeatureEventSource";
 import { FeatureLifecyclePhase } from "../../../../types/FeatureLifecyclePhase";
 import { FeatureType } from "../../../../types/FeatureType";
 
@@ -14,6 +15,7 @@ export const CreateBillingLinkedFeatureRequestBody: core.serialization.Schema<
 > = core.serialization.object({
     billingProvider: core.serialization.property("billing_provider", BillingProviderType),
     description: core.serialization.string(),
+    eventSource: core.serialization.property("event_source", FeatureEventSource.optional()),
     eventSubtype: core.serialization.property("event_subtype", core.serialization.string().optional()),
     externalResourceId: core.serialization.property("external_resource_id", core.serialization.string()),
     featureType: core.serialization.property("feature_type", FeatureType),
@@ -34,6 +36,7 @@ export declare namespace CreateBillingLinkedFeatureRequestBody {
     export interface Raw {
         billing_provider: BillingProviderType.Raw;
         description: string;
+        event_source?: FeatureEventSource.Raw | null;
         event_subtype?: string | null;
         external_resource_id: string;
         feature_type: FeatureType.Raw;

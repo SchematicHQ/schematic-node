@@ -3,7 +3,7 @@
 import type * as Schematic from "../index";
 
 export interface EntitlementCurrencyPricesResponseData {
-    currency: string;
+    currency: Schematic.Currency;
     monthlyPrice?: Schematic.BillingPriceView;
     quarterlyPrice?: Schematic.BillingPriceView;
     yearlyPrice?: Schematic.BillingPriceView;

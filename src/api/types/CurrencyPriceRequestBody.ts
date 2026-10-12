@@ -3,7 +3,7 @@
 import type * as Schematic from "../index";
 
 export interface CurrencyPriceRequestBody {
-    currency: string;
+    currency: Schematic.Currency;
     monthlyPriceTiers?: Schematic.CreatePriceTierRequestBody[];
     monthlyUnitPrice?: number;
     monthlyUnitPriceDecimal?: string;

@@ -9,10 +9,12 @@ import { BillingCreditGrantReason } from "./BillingCreditGrantReason";
 import { BillingCreditGrantZeroedOutReason } from "./BillingCreditGrantZeroedOutReason";
 import { BillingCreditLedgerResponseData } from "./BillingCreditLedgerResponseData";
 import { CompanyLedgerResponseData } from "./CompanyLedgerResponseData";
+import { CreditBurnBreakdownLine } from "./CreditBurnBreakdownLine";
 import { CreditEventType } from "./CreditEventType";
 import { CreditLedgerEntryKind } from "./CreditLedgerEntryKind";
 import { CreditTransferReason } from "./CreditTransferReason";
 import { CreditUsageReason } from "./CreditUsageReason";
+import { Currency } from "./Currency";
 import { FeatureLedgerResponseData } from "./FeatureLedgerResponseData";
 
 export const CreditEventLedgerResponseData: core.serialization.ObjectSchema<
@@ -26,14 +28,19 @@ export const CreditEventLedgerResponseData: core.serialization.ObjectSchema<
         core.serialization.string().optional(),
     ),
     billingCreditId: core.serialization.property("billing_credit_id", core.serialization.string().optional()),
+    burnBreakdown: core.serialization.property(
+        "burn_breakdown",
+        core.serialization.list(CreditBurnBreakdownLine).optional(),
+    ),
     company: CompanyLedgerResponseData.optional(),
     companyId: core.serialization.property("company_id", core.serialization.string()),
     credit: BillingCreditLedgerResponseData.optional(),
     creditName: core.serialization.property("credit_name", core.serialization.string()),
-    currency: core.serialization.string().optional(),
+    currency: Currency.optional(),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     eventAt: core.serialization.property("event_at", core.serialization.date()),
     eventId: core.serialization.property("event_id", core.serialization.string()),
+    eventIds: core.serialization.property("event_ids", core.serialization.list(core.serialization.string())),
     eventType: core.serialization.property("event_type", CreditEventType),
     expiryType: core.serialization.property("expiry_type", BillingCreditExpiryType.optional()),
     expiryUnit: core.serialization.property("expiry_unit", BillingCreditExpiryUnit.optional()),
@@ -72,14 +79,16 @@ export declare namespace CreditEventLedgerResponseData {
         auto_topup_log_id?: string | null;
         billing_credit_bundle_id?: string | null;
         billing_credit_id?: string | null;
+        burn_breakdown?: CreditBurnBreakdownLine.Raw[] | null;
         company?: CompanyLedgerResponseData.Raw | null;
         company_id: string;
         credit?: BillingCreditLedgerResponseData.Raw | null;
         credit_name: string;
-        currency?: string | null;
+        currency?: Currency.Raw | null;
         environment_id: string;
         event_at: string;
         event_id: string;
+        event_ids: string[];
         event_type: CreditEventType.Raw;
         expiry_type?: BillingCreditExpiryType.Raw | null;
         expiry_unit?: BillingCreditExpiryUnit.Raw | null;

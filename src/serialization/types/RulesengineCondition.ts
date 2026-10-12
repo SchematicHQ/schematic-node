@@ -31,6 +31,10 @@ export const RulesengineCondition: core.serialization.ObjectSchema<
     ),
     metricValue: core.serialization.property("metric_value", core.serialization.number().optional()),
     operator: RulesengineComparableOperator,
+    quantityRates: core.serialization.property(
+        "quantity_rates",
+        core.serialization.record(core.serialization.string(), core.serialization.number()).optional(),
+    ),
     resourceIds: core.serialization.property("resource_ids", core.serialization.list(core.serialization.string())),
     traitDefinition: core.serialization.property("trait_definition", RulesengineTraitDefinition.optional()),
     traitValue: core.serialization.property("trait_value", core.serialization.string()),
@@ -50,6 +54,7 @@ export declare namespace RulesengineCondition {
         metric_period_month_reset?: RulesengineMetricPeriodMonthReset.Raw | null;
         metric_value?: number | null;
         operator: RulesengineComparableOperator.Raw;
+        quantity_rates?: Record<string, number> | null;
         resource_ids: string[];
         trait_definition?: RulesengineTraitDefinition.Raw | null;
         trait_value: string;

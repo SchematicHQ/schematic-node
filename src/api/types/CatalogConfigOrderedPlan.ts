@@ -3,6 +3,7 @@
 import type * as Schematic from "../index";
 
 export interface CatalogConfigOrderedPlan {
+    credits?: Schematic.CatalogConfigPlanCredit[];
     entitlements?: Schematic.CatalogConfigOrderedEntitlement[];
     planId: string;
 }

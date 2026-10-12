@@ -5,6 +5,7 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingStrategy } from "./BillingStrategy";
 import { ChargeType } from "./ChargeType";
+import { Currency } from "./Currency";
 import { PlanCurrencyPriceRequestBody } from "./PlanCurrencyPriceRequestBody";
 
 export const UpsertBillingProductRequestBody: core.serialization.ObjectSchema<
@@ -14,7 +15,7 @@ export const UpsertBillingProductRequestBody: core.serialization.ObjectSchema<
     billingProductId: core.serialization.property("billing_product_id", core.serialization.string().optional()),
     billingStrategy: core.serialization.property("billing_strategy", BillingStrategy.optional()),
     chargeType: core.serialization.property("charge_type", ChargeType),
-    currency: core.serialization.string().optional(),
+    currency: Currency.optional(),
     currencyPrices: core.serialization.property(
         "currency_prices",
         core.serialization.list(PlanCurrencyPriceRequestBody).optional(),
@@ -36,7 +37,7 @@ export declare namespace UpsertBillingProductRequestBody {
         billing_product_id?: string | null;
         billing_strategy?: BillingStrategy.Raw | null;
         charge_type: ChargeType.Raw;
-        currency?: string | null;
+        currency?: Currency.Raw | null;
         currency_prices?: PlanCurrencyPriceRequestBody.Raw[] | null;
         is_trialable: boolean;
         monthly_price?: number | null;

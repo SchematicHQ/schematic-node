@@ -9,7 +9,7 @@ export interface ChangeSubscriptionRequestBody {
     couponExternalId?: string;
     creditBundles: Schematic.UpdateCreditBundleRequestBody[];
     /** ISO 4217 currency this cart is being built in. Prices are still selected by id; this records the intent, and a cart that prices in another currency is reported as a problem. */
-    currency?: string;
+    currency?: Schematic.Currency;
     customFieldValues: Schematic.CheckoutFieldValue[];
     newPlanId: string;
     newPriceId: string;

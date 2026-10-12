@@ -9,6 +9,7 @@ import { AuditLogListResponseData } from "./AuditLogListResponseData";
 import { CompanyResponseData } from "./CompanyResponseData";
 import { IntegrationResponseData } from "./IntegrationResponseData";
 import { PlanChangeAction } from "./PlanChangeAction";
+import { PlanChangeAmendmentStatus } from "./PlanChangeAmendmentStatus";
 import { PlanChangeBasePlanAction } from "./PlanChangeBasePlanAction";
 import { PlanChangeSubscriptionAction } from "./PlanChangeSubscriptionAction";
 import { PlanSnapshotView } from "./PlanSnapshotView";
@@ -24,6 +25,7 @@ export const PlanChangeResponseData: core.serialization.ObjectSchema<
     actorType: core.serialization.property("actor_type", ActorType),
     addOnsAdded: core.serialization.property("add_ons_added", core.serialization.list(PlanSnapshotView)),
     addOnsRemoved: core.serialization.property("add_ons_removed", core.serialization.list(PlanSnapshotView)),
+    amendmentStatus: core.serialization.property("amendment_status", PlanChangeAmendmentStatus.optional()),
     apiKey: core.serialization.property("api_key", ApiKeyResponseData.optional()),
     auditLog: core.serialization.property("audit_log", AuditLogListResponseData.optional()),
     basePlan: core.serialization.property("base_plan", PlanSnapshotView.optional()),
@@ -36,6 +38,7 @@ export const PlanChangeResponseData: core.serialization.ObjectSchema<
     id: core.serialization.string(),
     integration: IntegrationResponseData.optional(),
     isVersionUpgrade: core.serialization.property("is_version_upgrade", core.serialization.boolean()),
+    migrationId: core.serialization.property("migration_id", core.serialization.string().optional()),
     previousBasePlan: core.serialization.property("previous_base_plan", PlanSnapshotView.optional()),
     previousBasePlanVersion: core.serialization.property(
         "previous_base_plan_version",
@@ -61,6 +64,7 @@ export declare namespace PlanChangeResponseData {
         actor_type: ActorType.Raw;
         add_ons_added: PlanSnapshotView.Raw[];
         add_ons_removed: PlanSnapshotView.Raw[];
+        amendment_status?: PlanChangeAmendmentStatus.Raw | null;
         api_key?: ApiKeyResponseData.Raw | null;
         audit_log?: AuditLogListResponseData.Raw | null;
         base_plan?: PlanSnapshotView.Raw | null;
@@ -73,6 +77,7 @@ export declare namespace PlanChangeResponseData {
         id: string;
         integration?: IntegrationResponseData.Raw | null;
         is_version_upgrade: boolean;
+        migration_id?: string | null;
         previous_base_plan?: PlanSnapshotView.Raw | null;
         previous_base_plan_version?: PlanVersionSnapshotView.Raw | null;
         request_id?: string | null;

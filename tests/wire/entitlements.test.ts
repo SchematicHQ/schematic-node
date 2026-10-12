@@ -44,7 +44,7 @@ describe("EntitlementsClient", () => {
                             {
                                 cancel_at_period_end: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 customer_external_id: "customer_external_id",
                                 discounts: [
                                     {
@@ -65,7 +65,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         billing_scheme: "per_unit",
                                         created_at: "2024-01-15T09:30:00Z",
-                                        currency: "currency",
+                                        currency: "aed",
                                         environment_id: "environment_id",
                                         external_id: "external_id",
                                         id: "id",
@@ -97,8 +97,16 @@ describe("EntitlementsClient", () => {
                                 created_at: "2024-01-15T09:30:00Z",
                                 days_until_due: 1000000,
                                 id: "id",
-                                plan_billing_source: "custom_plan",
+                                plan_billing_source: "amendment",
                                 plan_id: "plan_id",
+                                problems: [
+                                    {
+                                        blocking: true,
+                                        code: "add_on_conflicts_with_plan",
+                                        message: "message",
+                                        source: "provider",
+                                    },
+                                ],
                                 send_invoice: true,
                                 status: "active",
                                 updated_at: "2024-01-15T09:30:00Z",
@@ -206,6 +214,7 @@ describe("EntitlementsClient", () => {
                     feature: {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
+                        event_source: "inference",
                         feature_type: "boolean",
                         icon: "icon",
                         id: "id",
@@ -226,6 +235,7 @@ describe("EntitlementsClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
+                    quantity_rates: { key: 1.1 },
                     rule_id: "rule_id",
                     rule_id_usage_exceeded: "rule_id_usage_exceeded",
                     updated_at: "2024-01-15T09:30:00Z",
@@ -234,7 +244,7 @@ describe("EntitlementsClient", () => {
                         burn_strategy: "expiration_priority",
                         cost_editable: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         default_expiry_unit: "billing_periods",
                         default_rollover_policy: "expire",
                         description: "description",
@@ -319,7 +329,7 @@ describe("EntitlementsClient", () => {
                             {
                                 cancelAtPeriodEnd: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 customerExternalId: "customer_external_id",
                                 discounts: [
                                     {
@@ -340,7 +350,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         billingScheme: "per_unit",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        currency: "currency",
+                                        currency: "aed",
                                         environmentId: "environment_id",
                                         externalId: "external_id",
                                         id: "id",
@@ -372,8 +382,16 @@ describe("EntitlementsClient", () => {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 daysUntilDue: 1000000,
                                 id: "id",
-                                planBillingSource: "custom_plan",
+                                planBillingSource: "amendment",
                                 planId: "plan_id",
+                                problems: [
+                                    {
+                                        blocking: true,
+                                        code: "add_on_conflicts_with_plan",
+                                        message: "message",
+                                        source: "provider",
+                                    },
+                                ],
                                 sendInvoice: true,
                                 status: "active",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -492,6 +510,7 @@ describe("EntitlementsClient", () => {
                     feature: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
+                        eventSource: "inference",
                         featureType: "boolean",
                         icon: "icon",
                         id: "id",
@@ -512,6 +531,9 @@ describe("EntitlementsClient", () => {
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
                     ],
+                    quantityRates: {
+                        key: 1.1,
+                    },
                     ruleId: "rule_id",
                     ruleIdUsageExceeded: "rule_id_usage_exceeded",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -522,7 +544,7 @@ describe("EntitlementsClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         defaultExpiryUnit: "billing_periods",
@@ -690,7 +712,7 @@ describe("EntitlementsClient", () => {
                     billing_subscription: {
                         cancel_at_period_end: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         discounts: [
                             {
@@ -711,7 +733,7 @@ describe("EntitlementsClient", () => {
                             {
                                 billing_scheme: "per_unit",
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 environment_id: "environment_id",
                                 external_id: "external_id",
                                 id: "id",
@@ -738,7 +760,7 @@ describe("EntitlementsClient", () => {
                         {
                             cancel_at_period_end: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             customer_external_id: "customer_external_id",
                             discounts: [
                                 {
@@ -759,7 +781,7 @@ describe("EntitlementsClient", () => {
                                 {
                                     billing_scheme: "per_unit",
                                     created_at: "2024-01-15T09:30:00Z",
-                                    currency: "currency",
+                                    currency: "aed",
                                     environment_id: "environment_id",
                                     external_id: "external_id",
                                     id: "id",
@@ -791,8 +813,16 @@ describe("EntitlementsClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             days_until_due: 1000000,
                             id: "id",
-                            plan_billing_source: "custom_plan",
+                            plan_billing_source: "amendment",
                             plan_id: "plan_id",
+                            problems: [
+                                {
+                                    blocking: true,
+                                    code: "add_on_conflicts_with_plan",
+                                    message: "message",
+                                    source: "provider",
+                                },
+                            ],
                             send_invoice: true,
                             status: "active",
                             updated_at: "2024-01-15T09:30:00Z",
@@ -934,7 +964,7 @@ describe("EntitlementsClient", () => {
                         },
                     ],
                     scheduled_downgrade: {
-                        currency: "currency",
+                        currency: "aed",
                         effective_after: "2024-01-15T09:30:00Z",
                         from_plan_id: "from_plan_id",
                         from_plan_name: "from_plan_name",
@@ -956,6 +986,7 @@ describe("EntitlementsClient", () => {
                 feature: {
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
+                    event_source: "inference",
                     event_subtype: "event_subtype",
                     feature_type: "boolean",
                     icon: "icon",
@@ -984,6 +1015,7 @@ describe("EntitlementsClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                 ],
+                quantity_rates: { key: 1.1 },
                 rule_id: "rule_id",
                 rule_id_usage_exceeded: "rule_id_usage_exceeded",
                 updated_at: "2024-01-15T09:30:00Z",
@@ -992,7 +1024,7 @@ describe("EntitlementsClient", () => {
                     burn_strategy: "expiration_priority",
                     cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
-                    currency_prices: [{ currency: "currency" }],
+                    currency_prices: [{ currency: "aed" }],
                     default_expiry_unit: "billing_periods",
                     default_expiry_unit_count: 1000000,
                     default_rollover_policy: "expire",
@@ -1003,7 +1035,7 @@ describe("EntitlementsClient", () => {
                     name: "name",
                     plural_name: "plural_name",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -1120,7 +1152,7 @@ describe("EntitlementsClient", () => {
                     billingSubscription: {
                         cancelAtPeriodEnd: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         discounts: [
                             {
@@ -1141,7 +1173,7 @@ describe("EntitlementsClient", () => {
                             {
                                 billingScheme: "per_unit",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 environmentId: "environment_id",
                                 externalId: "external_id",
                                 id: "id",
@@ -1168,7 +1200,7 @@ describe("EntitlementsClient", () => {
                         {
                             cancelAtPeriodEnd: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             customerExternalId: "customer_external_id",
                             discounts: [
                                 {
@@ -1189,7 +1221,7 @@ describe("EntitlementsClient", () => {
                                 {
                                     billingScheme: "per_unit",
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    currency: "currency",
+                                    currency: "aed",
                                     environmentId: "environment_id",
                                     externalId: "external_id",
                                     id: "id",
@@ -1221,8 +1253,16 @@ describe("EntitlementsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             daysUntilDue: 1000000,
                             id: "id",
-                            planBillingSource: "custom_plan",
+                            planBillingSource: "amendment",
                             planId: "plan_id",
+                            problems: [
+                                {
+                                    blocking: true,
+                                    code: "add_on_conflicts_with_plan",
+                                    message: "message",
+                                    source: "provider",
+                                },
+                            ],
                             sendInvoice: true,
                             status: "active",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1375,7 +1415,7 @@ describe("EntitlementsClient", () => {
                         },
                     ],
                     scheduledDowngrade: {
-                        currency: "currency",
+                        currency: "aed",
                         effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                         fromPlanId: "from_plan_id",
                         fromPlanName: "from_plan_name",
@@ -1399,6 +1439,7 @@ describe("EntitlementsClient", () => {
                 feature: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
+                    eventSource: "inference",
                     eventSubtype: "event_subtype",
                     featureType: "boolean",
                     icon: "icon",
@@ -1427,6 +1468,9 @@ describe("EntitlementsClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                 ],
+                quantityRates: {
+                    key: 1.1,
+                },
                 ruleId: "rule_id",
                 ruleIdUsageExceeded: "rule_id_usage_exceeded",
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1437,7 +1481,7 @@ describe("EntitlementsClient", () => {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     currencyPrices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                         },
                     ],
                     defaultExpiryUnit: "billing_periods",
@@ -1450,7 +1494,7 @@ describe("EntitlementsClient", () => {
                     name: "name",
                     pluralName: "plural_name",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -1678,7 +1722,7 @@ describe("EntitlementsClient", () => {
                     billing_subscription: {
                         cancel_at_period_end: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         discounts: [
                             {
@@ -1699,7 +1743,7 @@ describe("EntitlementsClient", () => {
                             {
                                 billing_scheme: "per_unit",
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 environment_id: "environment_id",
                                 external_id: "external_id",
                                 id: "id",
@@ -1726,7 +1770,7 @@ describe("EntitlementsClient", () => {
                         {
                             cancel_at_period_end: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             customer_external_id: "customer_external_id",
                             discounts: [
                                 {
@@ -1747,7 +1791,7 @@ describe("EntitlementsClient", () => {
                                 {
                                     billing_scheme: "per_unit",
                                     created_at: "2024-01-15T09:30:00Z",
-                                    currency: "currency",
+                                    currency: "aed",
                                     environment_id: "environment_id",
                                     external_id: "external_id",
                                     id: "id",
@@ -1779,8 +1823,16 @@ describe("EntitlementsClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             days_until_due: 1000000,
                             id: "id",
-                            plan_billing_source: "custom_plan",
+                            plan_billing_source: "amendment",
                             plan_id: "plan_id",
+                            problems: [
+                                {
+                                    blocking: true,
+                                    code: "add_on_conflicts_with_plan",
+                                    message: "message",
+                                    source: "provider",
+                                },
+                            ],
                             send_invoice: true,
                             status: "active",
                             updated_at: "2024-01-15T09:30:00Z",
@@ -1922,7 +1974,7 @@ describe("EntitlementsClient", () => {
                         },
                     ],
                     scheduled_downgrade: {
-                        currency: "currency",
+                        currency: "aed",
                         effective_after: "2024-01-15T09:30:00Z",
                         from_plan_id: "from_plan_id",
                         from_plan_name: "from_plan_name",
@@ -1944,6 +1996,7 @@ describe("EntitlementsClient", () => {
                 feature: {
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
+                    event_source: "inference",
                     event_subtype: "event_subtype",
                     feature_type: "boolean",
                     icon: "icon",
@@ -1972,6 +2025,7 @@ describe("EntitlementsClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                 ],
+                quantity_rates: { key: 1.1 },
                 rule_id: "rule_id",
                 rule_id_usage_exceeded: "rule_id_usage_exceeded",
                 updated_at: "2024-01-15T09:30:00Z",
@@ -1980,7 +2034,7 @@ describe("EntitlementsClient", () => {
                     burn_strategy: "expiration_priority",
                     cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
-                    currency_prices: [{ currency: "currency" }],
+                    currency_prices: [{ currency: "aed" }],
                     default_expiry_unit: "billing_periods",
                     default_expiry_unit_count: 1000000,
                     default_rollover_policy: "expire",
@@ -1991,7 +2045,7 @@ describe("EntitlementsClient", () => {
                     name: "name",
                     plural_name: "plural_name",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2103,7 +2157,7 @@ describe("EntitlementsClient", () => {
                     billingSubscription: {
                         cancelAtPeriodEnd: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         discounts: [
                             {
@@ -2124,7 +2178,7 @@ describe("EntitlementsClient", () => {
                             {
                                 billingScheme: "per_unit",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 environmentId: "environment_id",
                                 externalId: "external_id",
                                 id: "id",
@@ -2151,7 +2205,7 @@ describe("EntitlementsClient", () => {
                         {
                             cancelAtPeriodEnd: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             customerExternalId: "customer_external_id",
                             discounts: [
                                 {
@@ -2172,7 +2226,7 @@ describe("EntitlementsClient", () => {
                                 {
                                     billingScheme: "per_unit",
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    currency: "currency",
+                                    currency: "aed",
                                     environmentId: "environment_id",
                                     externalId: "external_id",
                                     id: "id",
@@ -2204,8 +2258,16 @@ describe("EntitlementsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             daysUntilDue: 1000000,
                             id: "id",
-                            planBillingSource: "custom_plan",
+                            planBillingSource: "amendment",
                             planId: "plan_id",
+                            problems: [
+                                {
+                                    blocking: true,
+                                    code: "add_on_conflicts_with_plan",
+                                    message: "message",
+                                    source: "provider",
+                                },
+                            ],
                             sendInvoice: true,
                             status: "active",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2358,7 +2420,7 @@ describe("EntitlementsClient", () => {
                         },
                     ],
                     scheduledDowngrade: {
-                        currency: "currency",
+                        currency: "aed",
                         effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                         fromPlanId: "from_plan_id",
                         fromPlanName: "from_plan_name",
@@ -2382,6 +2444,7 @@ describe("EntitlementsClient", () => {
                 feature: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
+                    eventSource: "inference",
                     eventSubtype: "event_subtype",
                     featureType: "boolean",
                     icon: "icon",
@@ -2410,6 +2473,9 @@ describe("EntitlementsClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                 ],
+                quantityRates: {
+                    key: 1.1,
+                },
                 ruleId: "rule_id",
                 ruleIdUsageExceeded: "rule_id_usage_exceeded",
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2420,7 +2486,7 @@ describe("EntitlementsClient", () => {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     currencyPrices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                         },
                     ],
                     defaultExpiryUnit: "billing_periods",
@@ -2433,7 +2499,7 @@ describe("EntitlementsClient", () => {
                     name: "name",
                     pluralName: "plural_name",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2617,7 +2683,7 @@ describe("EntitlementsClient", () => {
                     billing_subscription: {
                         cancel_at_period_end: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         customer_external_id: "customer_external_id",
                         discounts: [
                             {
@@ -2638,7 +2704,7 @@ describe("EntitlementsClient", () => {
                             {
                                 billing_scheme: "per_unit",
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 environment_id: "environment_id",
                                 external_id: "external_id",
                                 id: "id",
@@ -2665,7 +2731,7 @@ describe("EntitlementsClient", () => {
                         {
                             cancel_at_period_end: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             customer_external_id: "customer_external_id",
                             discounts: [
                                 {
@@ -2686,7 +2752,7 @@ describe("EntitlementsClient", () => {
                                 {
                                     billing_scheme: "per_unit",
                                     created_at: "2024-01-15T09:30:00Z",
-                                    currency: "currency",
+                                    currency: "aed",
                                     environment_id: "environment_id",
                                     external_id: "external_id",
                                     id: "id",
@@ -2718,8 +2784,16 @@ describe("EntitlementsClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             days_until_due: 1000000,
                             id: "id",
-                            plan_billing_source: "custom_plan",
+                            plan_billing_source: "amendment",
                             plan_id: "plan_id",
+                            problems: [
+                                {
+                                    blocking: true,
+                                    code: "add_on_conflicts_with_plan",
+                                    message: "message",
+                                    source: "provider",
+                                },
+                            ],
                             send_invoice: true,
                             status: "active",
                             updated_at: "2024-01-15T09:30:00Z",
@@ -2861,7 +2935,7 @@ describe("EntitlementsClient", () => {
                         },
                     ],
                     scheduled_downgrade: {
-                        currency: "currency",
+                        currency: "aed",
                         effective_after: "2024-01-15T09:30:00Z",
                         from_plan_id: "from_plan_id",
                         from_plan_name: "from_plan_name",
@@ -2883,6 +2957,7 @@ describe("EntitlementsClient", () => {
                 feature: {
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
+                    event_source: "inference",
                     event_subtype: "event_subtype",
                     feature_type: "boolean",
                     icon: "icon",
@@ -2911,6 +2986,7 @@ describe("EntitlementsClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                 ],
+                quantity_rates: { key: 1.1 },
                 rule_id: "rule_id",
                 rule_id_usage_exceeded: "rule_id_usage_exceeded",
                 updated_at: "2024-01-15T09:30:00Z",
@@ -2919,7 +2995,7 @@ describe("EntitlementsClient", () => {
                     burn_strategy: "expiration_priority",
                     cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
-                    currency_prices: [{ currency: "currency" }],
+                    currency_prices: [{ currency: "aed" }],
                     default_expiry_unit: "billing_periods",
                     default_expiry_unit_count: 1000000,
                     default_rollover_policy: "expire",
@@ -2930,7 +3006,7 @@ describe("EntitlementsClient", () => {
                     name: "name",
                     plural_name: "plural_name",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -3045,7 +3121,7 @@ describe("EntitlementsClient", () => {
                     billingSubscription: {
                         cancelAtPeriodEnd: true,
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         customerExternalId: "customer_external_id",
                         discounts: [
                             {
@@ -3066,7 +3142,7 @@ describe("EntitlementsClient", () => {
                             {
                                 billingScheme: "per_unit",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 environmentId: "environment_id",
                                 externalId: "external_id",
                                 id: "id",
@@ -3093,7 +3169,7 @@ describe("EntitlementsClient", () => {
                         {
                             cancelAtPeriodEnd: true,
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             customerExternalId: "customer_external_id",
                             discounts: [
                                 {
@@ -3114,7 +3190,7 @@ describe("EntitlementsClient", () => {
                                 {
                                     billingScheme: "per_unit",
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    currency: "currency",
+                                    currency: "aed",
                                     environmentId: "environment_id",
                                     externalId: "external_id",
                                     id: "id",
@@ -3146,8 +3222,16 @@ describe("EntitlementsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             daysUntilDue: 1000000,
                             id: "id",
-                            planBillingSource: "custom_plan",
+                            planBillingSource: "amendment",
                             planId: "plan_id",
+                            problems: [
+                                {
+                                    blocking: true,
+                                    code: "add_on_conflicts_with_plan",
+                                    message: "message",
+                                    source: "provider",
+                                },
+                            ],
                             sendInvoice: true,
                             status: "active",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -3300,7 +3384,7 @@ describe("EntitlementsClient", () => {
                         },
                     ],
                     scheduledDowngrade: {
-                        currency: "currency",
+                        currency: "aed",
                         effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                         fromPlanId: "from_plan_id",
                         fromPlanName: "from_plan_name",
@@ -3324,6 +3408,7 @@ describe("EntitlementsClient", () => {
                 feature: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
+                    eventSource: "inference",
                     eventSubtype: "event_subtype",
                     featureType: "boolean",
                     icon: "icon",
@@ -3352,6 +3437,9 @@ describe("EntitlementsClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                 ],
+                quantityRates: {
+                    key: 1.1,
+                },
                 ruleId: "rule_id",
                 ruleIdUsageExceeded: "rule_id_usage_exceeded",
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -3362,7 +3450,7 @@ describe("EntitlementsClient", () => {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     currencyPrices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                         },
                     ],
                     defaultExpiryUnit: "billing_periods",
@@ -3375,7 +3463,7 @@ describe("EntitlementsClient", () => {
                     name: "name",
                     pluralName: "plural_name",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -3843,7 +3931,7 @@ describe("EntitlementsClient", () => {
                             {
                                 cancel_at_period_end: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 customer_external_id: "customer_external_id",
                                 discounts: [
                                     {
@@ -3864,7 +3952,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         billing_scheme: "per_unit",
                                         created_at: "2024-01-15T09:30:00Z",
-                                        currency: "currency",
+                                        currency: "aed",
                                         environment_id: "environment_id",
                                         external_id: "external_id",
                                         id: "id",
@@ -3896,8 +3984,16 @@ describe("EntitlementsClient", () => {
                                 created_at: "2024-01-15T09:30:00Z",
                                 days_until_due: 1000000,
                                 id: "id",
-                                plan_billing_source: "custom_plan",
+                                plan_billing_source: "amendment",
                                 plan_id: "plan_id",
+                                problems: [
+                                    {
+                                        blocking: true,
+                                        code: "add_on_conflicts_with_plan",
+                                        message: "message",
+                                        source: "provider",
+                                    },
+                                ],
                                 send_invoice: true,
                                 status: "active",
                                 updated_at: "2024-01-15T09:30:00Z",
@@ -4032,6 +4128,7 @@ describe("EntitlementsClient", () => {
                     feature: {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
+                        event_source: "inference",
                         feature_type: "boolean",
                         flags: [
                             {
@@ -4107,7 +4204,7 @@ describe("EntitlementsClient", () => {
                     monthly_usage_based_price: {
                         billing_scheme: "per_unit",
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         id: "id",
                         interval: "day",
                         interval_count: 1000000,
@@ -4138,7 +4235,7 @@ describe("EntitlementsClient", () => {
                     },
                     plan_entitlement: {
                         created_at: "2024-01-15T09:30:00Z",
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         environment_id: "environment_id",
                         feature_id: "feature_id",
                         id: "id",
@@ -4152,7 +4249,7 @@ describe("EntitlementsClient", () => {
                     quarterly_usage_based_price: {
                         billing_scheme: "per_unit",
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         id: "id",
                         interval: "day",
                         interval_count: 1000000,
@@ -4174,7 +4271,7 @@ describe("EntitlementsClient", () => {
                     yearly_usage_based_price: {
                         billing_scheme: "per_unit",
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         id: "id",
                         interval: "day",
                         interval_count: 1000000,
@@ -4242,7 +4339,7 @@ describe("EntitlementsClient", () => {
                             {
                                 cancelAtPeriodEnd: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 customerExternalId: "customer_external_id",
                                 discounts: [
                                     {
@@ -4263,7 +4360,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         billingScheme: "per_unit",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        currency: "currency",
+                                        currency: "aed",
                                         environmentId: "environment_id",
                                         externalId: "external_id",
                                         id: "id",
@@ -4295,8 +4392,16 @@ describe("EntitlementsClient", () => {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 daysUntilDue: 1000000,
                                 id: "id",
-                                planBillingSource: "custom_plan",
+                                planBillingSource: "amendment",
                                 planId: "plan_id",
+                                problems: [
+                                    {
+                                        blocking: true,
+                                        code: "add_on_conflicts_with_plan",
+                                        message: "message",
+                                        source: "provider",
+                                    },
+                                ],
                                 sendInvoice: true,
                                 status: "active",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -4449,6 +4554,7 @@ describe("EntitlementsClient", () => {
                     feature: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
+                        eventSource: "inference",
                         featureType: "boolean",
                         flags: [
                             {
@@ -4539,7 +4645,7 @@ describe("EntitlementsClient", () => {
                     monthlyUsageBasedPrice: {
                         billingScheme: "per_unit",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         id: "id",
                         interval: "day",
                         intervalCount: 1000000,
@@ -4572,7 +4678,7 @@ describe("EntitlementsClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         environmentId: "environment_id",
@@ -4594,7 +4700,7 @@ describe("EntitlementsClient", () => {
                     quarterlyUsageBasedPrice: {
                         billingScheme: "per_unit",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         id: "id",
                         interval: "day",
                         intervalCount: 1000000,
@@ -4616,7 +4722,7 @@ describe("EntitlementsClient", () => {
                     yearlyUsageBasedPrice: {
                         billingScheme: "per_unit",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         id: "id",
                         interval: "day",
                         intervalCount: 1000000,
@@ -4905,6 +5011,7 @@ describe("EntitlementsClient", () => {
                     feature: {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
+                        event_source: "inference",
                         feature_type: "boolean",
                         flags: [
                             {
@@ -4980,7 +5087,7 @@ describe("EntitlementsClient", () => {
                     monthly_usage_based_price: {
                         billing_scheme: "per_unit",
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         id: "id",
                         interval: "day",
                         interval_count: 1000000,
@@ -5011,7 +5118,7 @@ describe("EntitlementsClient", () => {
                     },
                     plan_entitlement: {
                         created_at: "2024-01-15T09:30:00Z",
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         environment_id: "environment_id",
                         feature_id: "feature_id",
                         id: "id",
@@ -5025,7 +5132,7 @@ describe("EntitlementsClient", () => {
                     quarterly_usage_based_price: {
                         billing_scheme: "per_unit",
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         id: "id",
                         interval: "day",
                         interval_count: 1000000,
@@ -5047,7 +5154,7 @@ describe("EntitlementsClient", () => {
                     yearly_usage_based_price: {
                         billing_scheme: "per_unit",
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         id: "id",
                         interval: "day",
                         interval_count: 1000000,
@@ -5139,6 +5246,7 @@ describe("EntitlementsClient", () => {
                     feature: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
+                        eventSource: "inference",
                         featureType: "boolean",
                         flags: [
                             {
@@ -5229,7 +5337,7 @@ describe("EntitlementsClient", () => {
                     monthlyUsageBasedPrice: {
                         billingScheme: "per_unit",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         id: "id",
                         interval: "day",
                         intervalCount: 1000000,
@@ -5262,7 +5370,7 @@ describe("EntitlementsClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         environmentId: "environment_id",
@@ -5284,7 +5392,7 @@ describe("EntitlementsClient", () => {
                     quarterlyUsageBasedPrice: {
                         billingScheme: "per_unit",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         id: "id",
                         interval: "day",
                         intervalCount: 1000000,
@@ -5306,7 +5414,7 @@ describe("EntitlementsClient", () => {
                     yearlyUsageBasedPrice: {
                         billingScheme: "per_unit",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         id: "id",
                         interval: "day",
                         intervalCount: 1000000,
@@ -5939,7 +6047,7 @@ describe("EntitlementsClient", () => {
                             {
                                 cancel_at_period_end: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 customer_external_id: "customer_external_id",
                                 discounts: [
                                     {
@@ -5960,7 +6068,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         billing_scheme: "per_unit",
                                         created_at: "2024-01-15T09:30:00Z",
-                                        currency: "currency",
+                                        currency: "aed",
                                         environment_id: "environment_id",
                                         external_id: "external_id",
                                         id: "id",
@@ -5992,8 +6100,16 @@ describe("EntitlementsClient", () => {
                                 created_at: "2024-01-15T09:30:00Z",
                                 days_until_due: 1000000,
                                 id: "id",
-                                plan_billing_source: "custom_plan",
+                                plan_billing_source: "amendment",
                                 plan_id: "plan_id",
+                                problems: [
+                                    {
+                                        blocking: true,
+                                        code: "add_on_conflicts_with_plan",
+                                        message: "message",
+                                        source: "provider",
+                                    },
+                                ],
                                 send_invoice: true,
                                 status: "active",
                                 updated_at: "2024-01-15T09:30:00Z",
@@ -6098,6 +6214,7 @@ describe("EntitlementsClient", () => {
                     feature: {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
+                        event_source: "inference",
                         feature_type: "boolean",
                         flags: [
                             {
@@ -6237,7 +6354,7 @@ describe("EntitlementsClient", () => {
                             {
                                 cancelAtPeriodEnd: true,
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 customerExternalId: "customer_external_id",
                                 discounts: [
                                     {
@@ -6258,7 +6375,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         billingScheme: "per_unit",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        currency: "currency",
+                                        currency: "aed",
                                         environmentId: "environment_id",
                                         externalId: "external_id",
                                         id: "id",
@@ -6290,8 +6407,16 @@ describe("EntitlementsClient", () => {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 daysUntilDue: 1000000,
                                 id: "id",
-                                planBillingSource: "custom_plan",
+                                planBillingSource: "amendment",
                                 planId: "plan_id",
+                                problems: [
+                                    {
+                                        blocking: true,
+                                        code: "add_on_conflicts_with_plan",
+                                        message: "message",
+                                        source: "provider",
+                                    },
+                                ],
                                 sendInvoice: true,
                                 status: "active",
                                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -6407,6 +6532,7 @@ describe("EntitlementsClient", () => {
                     feature: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
+                        eventSource: "inference",
                         featureType: "boolean",
                         flags: [
                             {
@@ -6752,11 +6878,12 @@ describe("EntitlementsClient", () => {
                     billing_threshold: 1000000,
                     consumption_rate: 1.1,
                     created_at: "2024-01-15T09:30:00Z",
-                    currency_prices: [{ currency: "currency" }],
+                    currency_prices: [{ currency: "aed" }],
                     environment_id: "environment_id",
                     feature: {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
+                        event_source: "inference",
                         feature_type: "boolean",
                         icon: "icon",
                         id: "id",
@@ -6768,7 +6895,7 @@ describe("EntitlementsClient", () => {
                     metered_monthly_price: {
                         billing_scheme: "per_unit",
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         id: "id",
                         interval: "day",
                         interval_count: 1000000,
@@ -6788,7 +6915,7 @@ describe("EntitlementsClient", () => {
                     metered_quarterly_price: {
                         billing_scheme: "per_unit",
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         id: "id",
                         interval: "day",
                         interval_count: 1000000,
@@ -6808,7 +6935,7 @@ describe("EntitlementsClient", () => {
                     metered_yearly_price: {
                         billing_scheme: "per_unit",
                         created_at: "2024-01-15T09:30:00Z",
-                        currency: "currency",
+                        currency: "aed",
                         id: "id",
                         interval: "day",
                         interval_count: 1000000,
@@ -6840,6 +6967,7 @@ describe("EntitlementsClient", () => {
                     },
                     plan_id: "plan_id",
                     price_behavior: "credit_burndown",
+                    quantity_rates: { key: 1.1 },
                     rule_id: "rule_id",
                     rule_id_usage_exceeded: "rule_id_usage_exceeded",
                     soft_limit: 1000000,
@@ -6863,7 +6991,7 @@ describe("EntitlementsClient", () => {
                         burn_strategy: "expiration_priority",
                         cost_editable: true,
                         created_at: "2024-01-15T09:30:00Z",
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         default_expiry_unit: "billing_periods",
                         default_rollover_policy: "expire",
                         description: "description",
@@ -6930,13 +7058,14 @@ describe("EntitlementsClient", () => {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     currencyPrices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                         },
                     ],
                     environmentId: "environment_id",
                     feature: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
+                        eventSource: "inference",
                         featureType: "boolean",
                         icon: "icon",
                         id: "id",
@@ -6948,7 +7077,7 @@ describe("EntitlementsClient", () => {
                     meteredMonthlyPrice: {
                         billingScheme: "per_unit",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         id: "id",
                         interval: "day",
                         intervalCount: 1000000,
@@ -6968,7 +7097,7 @@ describe("EntitlementsClient", () => {
                     meteredQuarterlyPrice: {
                         billingScheme: "per_unit",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         id: "id",
                         interval: "day",
                         intervalCount: 1000000,
@@ -6988,7 +7117,7 @@ describe("EntitlementsClient", () => {
                     meteredYearlyPrice: {
                         billingScheme: "per_unit",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        currency: "currency",
+                        currency: "aed",
                         id: "id",
                         interval: "day",
                         intervalCount: 1000000,
@@ -7020,6 +7149,9 @@ describe("EntitlementsClient", () => {
                     },
                     planId: "plan_id",
                     priceBehavior: "credit_burndown",
+                    quantityRates: {
+                        key: 1.1,
+                    },
                     ruleId: "rule_id",
                     ruleIdUsageExceeded: "rule_id_usage_exceeded",
                     softLimit: 1000000,
@@ -7045,7 +7177,7 @@ describe("EntitlementsClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         defaultExpiryUnit: "billing_periods",
@@ -7172,11 +7304,12 @@ describe("EntitlementsClient", () => {
                 billing_threshold: 1000000,
                 consumption_rate: 1.1,
                 created_at: "2024-01-15T09:30:00Z",
-                currency_prices: [{ currency: "currency" }],
+                currency_prices: [{ currency: "aed" }],
                 environment_id: "environment_id",
                 feature: {
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
+                    event_source: "inference",
                     event_subtype: "event_subtype",
                     feature_type: "boolean",
                     icon: "icon",
@@ -7196,7 +7329,7 @@ describe("EntitlementsClient", () => {
                 metered_monthly_price: {
                     billing_scheme: "per_unit",
                     created_at: "2024-01-15T09:30:00Z",
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     interval_count: 1000000,
@@ -7222,7 +7355,7 @@ describe("EntitlementsClient", () => {
                 metered_quarterly_price: {
                     billing_scheme: "per_unit",
                     created_at: "2024-01-15T09:30:00Z",
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     interval_count: 1000000,
@@ -7248,7 +7381,7 @@ describe("EntitlementsClient", () => {
                 metered_yearly_price: {
                     billing_scheme: "per_unit",
                     created_at: "2024-01-15T09:30:00Z",
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     interval_count: 1000000,
@@ -7288,6 +7421,7 @@ describe("EntitlementsClient", () => {
                 },
                 plan_id: "plan_id",
                 price_behavior: "credit_burndown",
+                quantity_rates: { key: 1.1 },
                 rule_id: "rule_id",
                 rule_id_usage_exceeded: "rule_id_usage_exceeded",
                 soft_limit: 1000000,
@@ -7312,7 +7446,7 @@ describe("EntitlementsClient", () => {
                     burn_strategy: "expiration_priority",
                     cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
-                    currency_prices: [{ currency: "currency" }],
+                    currency_prices: [{ currency: "aed" }],
                     default_expiry_unit: "billing_periods",
                     default_expiry_unit_count: 1000000,
                     default_rollover_policy: "expire",
@@ -7323,7 +7457,7 @@ describe("EntitlementsClient", () => {
                     name: "name",
                     plural_name: "plural_name",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -7391,13 +7525,14 @@ describe("EntitlementsClient", () => {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 currencyPrices: [
                     {
-                        currency: "currency",
+                        currency: "aed",
                     },
                 ],
                 environmentId: "environment_id",
                 feature: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
+                    eventSource: "inference",
                     eventSubtype: "event_subtype",
                     featureType: "boolean",
                     icon: "icon",
@@ -7417,7 +7552,7 @@ describe("EntitlementsClient", () => {
                 meteredMonthlyPrice: {
                     billingScheme: "per_unit",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     intervalCount: 1000000,
@@ -7443,7 +7578,7 @@ describe("EntitlementsClient", () => {
                 meteredQuarterlyPrice: {
                     billingScheme: "per_unit",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     intervalCount: 1000000,
@@ -7469,7 +7604,7 @@ describe("EntitlementsClient", () => {
                 meteredYearlyPrice: {
                     billingScheme: "per_unit",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     intervalCount: 1000000,
@@ -7509,6 +7644,9 @@ describe("EntitlementsClient", () => {
                 },
                 planId: "plan_id",
                 priceBehavior: "credit_burndown",
+                quantityRates: {
+                    key: 1.1,
+                },
                 ruleId: "rule_id",
                 ruleIdUsageExceeded: "rule_id_usage_exceeded",
                 softLimit: 1000000,
@@ -7535,7 +7673,7 @@ describe("EntitlementsClient", () => {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     currencyPrices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                         },
                     ],
                     defaultExpiryUnit: "billing_periods",
@@ -7548,7 +7686,7 @@ describe("EntitlementsClient", () => {
                     name: "name",
                     pluralName: "plural_name",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -7733,11 +7871,12 @@ describe("EntitlementsClient", () => {
                 billing_threshold: 1000000,
                 consumption_rate: 1.1,
                 created_at: "2024-01-15T09:30:00Z",
-                currency_prices: [{ currency: "currency" }],
+                currency_prices: [{ currency: "aed" }],
                 environment_id: "environment_id",
                 feature: {
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
+                    event_source: "inference",
                     event_subtype: "event_subtype",
                     feature_type: "boolean",
                     icon: "icon",
@@ -7757,7 +7896,7 @@ describe("EntitlementsClient", () => {
                 metered_monthly_price: {
                     billing_scheme: "per_unit",
                     created_at: "2024-01-15T09:30:00Z",
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     interval_count: 1000000,
@@ -7783,7 +7922,7 @@ describe("EntitlementsClient", () => {
                 metered_quarterly_price: {
                     billing_scheme: "per_unit",
                     created_at: "2024-01-15T09:30:00Z",
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     interval_count: 1000000,
@@ -7809,7 +7948,7 @@ describe("EntitlementsClient", () => {
                 metered_yearly_price: {
                     billing_scheme: "per_unit",
                     created_at: "2024-01-15T09:30:00Z",
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     interval_count: 1000000,
@@ -7849,6 +7988,7 @@ describe("EntitlementsClient", () => {
                 },
                 plan_id: "plan_id",
                 price_behavior: "credit_burndown",
+                quantity_rates: { key: 1.1 },
                 rule_id: "rule_id",
                 rule_id_usage_exceeded: "rule_id_usage_exceeded",
                 soft_limit: 1000000,
@@ -7873,7 +8013,7 @@ describe("EntitlementsClient", () => {
                     burn_strategy: "expiration_priority",
                     cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
-                    currency_prices: [{ currency: "currency" }],
+                    currency_prices: [{ currency: "aed" }],
                     default_expiry_unit: "billing_periods",
                     default_expiry_unit_count: 1000000,
                     default_rollover_policy: "expire",
@@ -7884,7 +8024,7 @@ describe("EntitlementsClient", () => {
                     name: "name",
                     plural_name: "plural_name",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -7947,13 +8087,14 @@ describe("EntitlementsClient", () => {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 currencyPrices: [
                     {
-                        currency: "currency",
+                        currency: "aed",
                     },
                 ],
                 environmentId: "environment_id",
                 feature: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
+                    eventSource: "inference",
                     eventSubtype: "event_subtype",
                     featureType: "boolean",
                     icon: "icon",
@@ -7973,7 +8114,7 @@ describe("EntitlementsClient", () => {
                 meteredMonthlyPrice: {
                     billingScheme: "per_unit",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     intervalCount: 1000000,
@@ -7999,7 +8140,7 @@ describe("EntitlementsClient", () => {
                 meteredQuarterlyPrice: {
                     billingScheme: "per_unit",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     intervalCount: 1000000,
@@ -8025,7 +8166,7 @@ describe("EntitlementsClient", () => {
                 meteredYearlyPrice: {
                     billingScheme: "per_unit",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     intervalCount: 1000000,
@@ -8065,6 +8206,9 @@ describe("EntitlementsClient", () => {
                 },
                 planId: "plan_id",
                 priceBehavior: "credit_burndown",
+                quantityRates: {
+                    key: 1.1,
+                },
                 ruleId: "rule_id",
                 ruleIdUsageExceeded: "rule_id_usage_exceeded",
                 softLimit: 1000000,
@@ -8091,7 +8235,7 @@ describe("EntitlementsClient", () => {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     currencyPrices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                         },
                     ],
                     defaultExpiryUnit: "billing_periods",
@@ -8104,7 +8248,7 @@ describe("EntitlementsClient", () => {
                     name: "name",
                     pluralName: "plural_name",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -8245,11 +8389,12 @@ describe("EntitlementsClient", () => {
                 billing_threshold: 1000000,
                 consumption_rate: 1.1,
                 created_at: "2024-01-15T09:30:00Z",
-                currency_prices: [{ currency: "currency" }],
+                currency_prices: [{ currency: "aed" }],
                 environment_id: "environment_id",
                 feature: {
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
+                    event_source: "inference",
                     event_subtype: "event_subtype",
                     feature_type: "boolean",
                     icon: "icon",
@@ -8269,7 +8414,7 @@ describe("EntitlementsClient", () => {
                 metered_monthly_price: {
                     billing_scheme: "per_unit",
                     created_at: "2024-01-15T09:30:00Z",
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     interval_count: 1000000,
@@ -8295,7 +8440,7 @@ describe("EntitlementsClient", () => {
                 metered_quarterly_price: {
                     billing_scheme: "per_unit",
                     created_at: "2024-01-15T09:30:00Z",
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     interval_count: 1000000,
@@ -8321,7 +8466,7 @@ describe("EntitlementsClient", () => {
                 metered_yearly_price: {
                     billing_scheme: "per_unit",
                     created_at: "2024-01-15T09:30:00Z",
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     interval_count: 1000000,
@@ -8361,6 +8506,7 @@ describe("EntitlementsClient", () => {
                 },
                 plan_id: "plan_id",
                 price_behavior: "credit_burndown",
+                quantity_rates: { key: 1.1 },
                 rule_id: "rule_id",
                 rule_id_usage_exceeded: "rule_id_usage_exceeded",
                 soft_limit: 1000000,
@@ -8385,7 +8531,7 @@ describe("EntitlementsClient", () => {
                     burn_strategy: "expiration_priority",
                     cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
-                    currency_prices: [{ currency: "currency" }],
+                    currency_prices: [{ currency: "aed" }],
                     default_expiry_unit: "billing_periods",
                     default_expiry_unit_count: 1000000,
                     default_rollover_policy: "expire",
@@ -8396,7 +8542,7 @@ describe("EntitlementsClient", () => {
                     name: "name",
                     plural_name: "plural_name",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -8462,13 +8608,14 @@ describe("EntitlementsClient", () => {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 currencyPrices: [
                     {
-                        currency: "currency",
+                        currency: "aed",
                     },
                 ],
                 environmentId: "environment_id",
                 feature: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
+                    eventSource: "inference",
                     eventSubtype: "event_subtype",
                     featureType: "boolean",
                     icon: "icon",
@@ -8488,7 +8635,7 @@ describe("EntitlementsClient", () => {
                 meteredMonthlyPrice: {
                     billingScheme: "per_unit",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     intervalCount: 1000000,
@@ -8514,7 +8661,7 @@ describe("EntitlementsClient", () => {
                 meteredQuarterlyPrice: {
                     billingScheme: "per_unit",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     intervalCount: 1000000,
@@ -8540,7 +8687,7 @@ describe("EntitlementsClient", () => {
                 meteredYearlyPrice: {
                     billingScheme: "per_unit",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     intervalCount: 1000000,
@@ -8580,6 +8727,9 @@ describe("EntitlementsClient", () => {
                 },
                 planId: "plan_id",
                 priceBehavior: "credit_burndown",
+                quantityRates: {
+                    key: 1.1,
+                },
                 ruleId: "rule_id",
                 ruleIdUsageExceeded: "rule_id_usage_exceeded",
                 softLimit: 1000000,
@@ -8606,7 +8756,7 @@ describe("EntitlementsClient", () => {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     currencyPrices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                         },
                     ],
                     defaultExpiryUnit: "billing_periods",
@@ -8619,7 +8769,7 @@ describe("EntitlementsClient", () => {
                     name: "name",
                     pluralName: "plural_name",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -8920,11 +9070,12 @@ describe("EntitlementsClient", () => {
                 billing_threshold: 1000000,
                 consumption_rate: 1.1,
                 created_at: "2024-01-15T09:30:00Z",
-                currency_prices: [{ currency: "currency" }],
+                currency_prices: [{ currency: "aed" }],
                 environment_id: "environment_id",
                 feature: {
                     created_at: "2024-01-15T09:30:00Z",
                     description: "description",
+                    event_source: "inference",
                     event_subtype: "event_subtype",
                     feature_type: "boolean",
                     icon: "icon",
@@ -8944,7 +9095,7 @@ describe("EntitlementsClient", () => {
                 metered_monthly_price: {
                     billing_scheme: "per_unit",
                     created_at: "2024-01-15T09:30:00Z",
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     interval_count: 1000000,
@@ -8970,7 +9121,7 @@ describe("EntitlementsClient", () => {
                 metered_quarterly_price: {
                     billing_scheme: "per_unit",
                     created_at: "2024-01-15T09:30:00Z",
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     interval_count: 1000000,
@@ -8996,7 +9147,7 @@ describe("EntitlementsClient", () => {
                 metered_yearly_price: {
                     billing_scheme: "per_unit",
                     created_at: "2024-01-15T09:30:00Z",
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     interval_count: 1000000,
@@ -9036,6 +9187,7 @@ describe("EntitlementsClient", () => {
                 },
                 plan_id: "plan_id",
                 price_behavior: "credit_burndown",
+                quantity_rates: { key: 1.1 },
                 rule_id: "rule_id",
                 rule_id_usage_exceeded: "rule_id_usage_exceeded",
                 soft_limit: 1000000,
@@ -9060,7 +9212,7 @@ describe("EntitlementsClient", () => {
                     burn_strategy: "expiration_priority",
                     cost_editable: true,
                     created_at: "2024-01-15T09:30:00Z",
-                    currency_prices: [{ currency: "currency" }],
+                    currency_prices: [{ currency: "aed" }],
                     default_expiry_unit: "billing_periods",
                     default_expiry_unit_count: 1000000,
                     default_rollover_policy: "expire",
@@ -9071,7 +9223,7 @@ describe("EntitlementsClient", () => {
                     name: "name",
                     plural_name: "plural_name",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -9141,13 +9293,14 @@ describe("EntitlementsClient", () => {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 currencyPrices: [
                     {
-                        currency: "currency",
+                        currency: "aed",
                     },
                 ],
                 environmentId: "environment_id",
                 feature: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     description: "description",
+                    eventSource: "inference",
                     eventSubtype: "event_subtype",
                     featureType: "boolean",
                     icon: "icon",
@@ -9167,7 +9320,7 @@ describe("EntitlementsClient", () => {
                 meteredMonthlyPrice: {
                     billingScheme: "per_unit",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     intervalCount: 1000000,
@@ -9193,7 +9346,7 @@ describe("EntitlementsClient", () => {
                 meteredQuarterlyPrice: {
                     billingScheme: "per_unit",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     intervalCount: 1000000,
@@ -9219,7 +9372,7 @@ describe("EntitlementsClient", () => {
                 meteredYearlyPrice: {
                     billingScheme: "per_unit",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     intervalCount: 1000000,
@@ -9259,6 +9412,9 @@ describe("EntitlementsClient", () => {
                 },
                 planId: "plan_id",
                 priceBehavior: "credit_burndown",
+                quantityRates: {
+                    key: 1.1,
+                },
                 ruleId: "rule_id",
                 ruleIdUsageExceeded: "rule_id_usage_exceeded",
                 softLimit: 1000000,
@@ -9285,7 +9441,7 @@ describe("EntitlementsClient", () => {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     currencyPrices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                         },
                     ],
                     defaultExpiryUnit: "billing_periods",
@@ -9298,7 +9454,7 @@ describe("EntitlementsClient", () => {
                     name: "name",
                     pluralName: "plural_name",
                     price: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -9675,7 +9831,7 @@ describe("EntitlementsClient", () => {
                 data: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         environment_id: "environment_id",
                         feature_id: "feature_id",
                         id: "id",
@@ -9719,7 +9875,7 @@ describe("EntitlementsClient", () => {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         environmentId: "environment_id",
@@ -9912,7 +10068,7 @@ describe("EntitlementsClient", () => {
                                 billing_subscription: {
                                     cancel_at_period_end: true,
                                     created_at: "2024-01-15T09:30:00Z",
-                                    currency: "currency",
+                                    currency: "aed",
                                     customer_external_id: "customer_external_id",
                                     discounts: [],
                                     id: "id",
@@ -9929,7 +10085,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         cancel_at_period_end: true,
                                         created_at: "2024-01-15T09:30:00Z",
-                                        currency: "currency",
+                                        currency: "aed",
                                         customer_external_id: "customer_external_id",
                                         discounts: [],
                                         id: "id",
@@ -9945,7 +10101,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         cancel_at_period_end: true,
                                         created_at: "2024-01-15T09:30:00Z",
-                                        currency: "currency",
+                                        currency: "aed",
                                         customer_external_id: "customer_external_id",
                                         discounts: [],
                                         id: "id",
@@ -9967,8 +10123,9 @@ describe("EntitlementsClient", () => {
                                         created_at: "2024-01-15T09:30:00Z",
                                         days_until_due: 1000000,
                                         id: "id",
-                                        plan_billing_source: "custom_plan",
+                                        plan_billing_source: "amendment",
                                         plan_id: "plan_id",
+                                        problems: [],
                                         send_invoice: true,
                                         status: "active",
                                         updated_at: "2024-01-15T09:30:00Z",
@@ -9979,8 +10136,9 @@ describe("EntitlementsClient", () => {
                                         created_at: "2024-01-15T09:30:00Z",
                                         days_until_due: 1000000,
                                         id: "id",
-                                        plan_billing_source: "custom_plan",
+                                        plan_billing_source: "amendment",
                                         plan_id: "plan_id",
+                                        problems: [],
                                         send_invoice: true,
                                         status: "active",
                                         updated_at: "2024-01-15T09:30:00Z",
@@ -10132,7 +10290,7 @@ describe("EntitlementsClient", () => {
                                     },
                                 ],
                                 scheduled_downgrade: {
-                                    currency: "currency",
+                                    currency: "aed",
                                     effective_after: "2024-01-15T09:30:00Z",
                                     from_plan_id: "from_plan_id",
                                     from_plan_name: "from_plan_name",
@@ -10154,6 +10312,7 @@ describe("EntitlementsClient", () => {
                             feature: {
                                 created_at: "2024-01-15T09:30:00Z",
                                 description: "description",
+                                event_source: "inference",
                                 event_subtype: "event_subtype",
                                 feature_type: "boolean",
                                 icon: "icon",
@@ -10190,6 +10349,7 @@ describe("EntitlementsClient", () => {
                                     updated_at: "2024-01-15T09:30:00Z",
                                 },
                             ],
+                            quantity_rates: { quantity_rates: 1.1 },
                             rule_id: "rule_id",
                             rule_id_usage_exceeded: "rule_id_usage_exceeded",
                             updated_at: "2024-01-15T09:30:00Z",
@@ -10198,7 +10358,7 @@ describe("EntitlementsClient", () => {
                                 burn_strategy: "expiration_priority",
                                 cost_editable: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency_prices: [{ currency: "currency" }, { currency: "currency" }],
+                                currency_prices: [{ currency: "aed" }, { currency: "aed" }],
                                 default_expiry_unit: "billing_periods",
                                 default_expiry_unit_count: 1000000,
                                 default_rollover_policy: "expire",
@@ -10209,7 +10369,7 @@ describe("EntitlementsClient", () => {
                                 name: "name",
                                 plural_name: "plural_name",
                                 price: {
-                                    currency: "currency",
+                                    currency: "aed",
                                     external_price_id: "external_price_id",
                                     id: "id",
                                     interval: "day",
@@ -10289,6 +10449,7 @@ describe("EntitlementsClient", () => {
                             },
                             created_at: "2024-01-15T09:30:00Z",
                             description: "description",
+                            event_source: "inference",
                             event_subtype: "event_subtype",
                             event_summary: {
                                 company_count: 1000000,
@@ -10307,6 +10468,7 @@ describe("EntitlementsClient", () => {
                                     feature: {
                                         created_at: "2024-01-15T09:30:00Z",
                                         description: "description",
+                                        event_source: "inference",
                                         feature_type: "boolean",
                                         icon: "icon",
                                         id: "id",
@@ -10355,6 +10517,7 @@ describe("EntitlementsClient", () => {
                                     feature: {
                                         created_at: "2024-01-15T09:30:00Z",
                                         description: "description",
+                                        event_source: "inference",
                                         feature_type: "boolean",
                                         icon: "icon",
                                         id: "id",
@@ -10429,7 +10592,7 @@ describe("EntitlementsClient", () => {
                         monthly_usage_based_price: {
                             billing_scheme: "per_unit",
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             id: "id",
                             interval: "day",
                             interval_count: 1000000,
@@ -10491,11 +10654,11 @@ describe("EntitlementsClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             currency_prices: [
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                     monthly_price: {
                                         billing_scheme: "per_unit",
                                         created_at: "2024-01-15T09:30:00Z",
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         interval_count: 1000000,
@@ -10515,7 +10678,7 @@ describe("EntitlementsClient", () => {
                                     quarterly_price: {
                                         billing_scheme: "per_unit",
                                         created_at: "2024-01-15T09:30:00Z",
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         interval_count: 1000000,
@@ -10535,7 +10698,7 @@ describe("EntitlementsClient", () => {
                                     yearly_price: {
                                         billing_scheme: "per_unit",
                                         created_at: "2024-01-15T09:30:00Z",
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         interval_count: 1000000,
@@ -10554,11 +10717,11 @@ describe("EntitlementsClient", () => {
                                     },
                                 },
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                     monthly_price: {
                                         billing_scheme: "per_unit",
                                         created_at: "2024-01-15T09:30:00Z",
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         interval_count: 1000000,
@@ -10578,7 +10741,7 @@ describe("EntitlementsClient", () => {
                                     quarterly_price: {
                                         billing_scheme: "per_unit",
                                         created_at: "2024-01-15T09:30:00Z",
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         interval_count: 1000000,
@@ -10598,7 +10761,7 @@ describe("EntitlementsClient", () => {
                                     yearly_price: {
                                         billing_scheme: "per_unit",
                                         created_at: "2024-01-15T09:30:00Z",
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         interval_count: 1000000,
@@ -10621,6 +10784,7 @@ describe("EntitlementsClient", () => {
                             feature: {
                                 created_at: "2024-01-15T09:30:00Z",
                                 description: "description",
+                                event_source: "inference",
                                 event_subtype: "event_subtype",
                                 feature_type: "boolean",
                                 icon: "icon",
@@ -10640,7 +10804,7 @@ describe("EntitlementsClient", () => {
                             metered_monthly_price: {
                                 billing_scheme: "per_unit",
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 id: "id",
                                 interval: "day",
                                 interval_count: 1000000,
@@ -10666,7 +10830,7 @@ describe("EntitlementsClient", () => {
                             metered_quarterly_price: {
                                 billing_scheme: "per_unit",
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 id: "id",
                                 interval: "day",
                                 interval_count: 1000000,
@@ -10692,7 +10856,7 @@ describe("EntitlementsClient", () => {
                             metered_yearly_price: {
                                 billing_scheme: "per_unit",
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 id: "id",
                                 interval: "day",
                                 interval_count: 1000000,
@@ -10733,6 +10897,7 @@ describe("EntitlementsClient", () => {
                             },
                             plan_id: "plan_id",
                             price_behavior: "credit_burndown",
+                            quantity_rates: { quantity_rates: 1.1 },
                             rule_id: "rule_id",
                             rule_id_usage_exceeded: "rule_id_usage_exceeded",
                             soft_limit: 1000000,
@@ -10758,7 +10923,7 @@ describe("EntitlementsClient", () => {
                                 burn_strategy: "expiration_priority",
                                 cost_editable: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency_prices: [{ currency: "currency" }, { currency: "currency" }],
+                                currency_prices: [{ currency: "aed" }, { currency: "aed" }],
                                 default_expiry_unit: "billing_periods",
                                 default_expiry_unit_count: 1000000,
                                 default_rollover_policy: "expire",
@@ -10769,7 +10934,7 @@ describe("EntitlementsClient", () => {
                                 name: "name",
                                 plural_name: "plural_name",
                                 price: {
-                                    currency: "currency",
+                                    currency: "aed",
                                     external_price_id: "external_price_id",
                                     id: "id",
                                     interval: "day",
@@ -10815,7 +10980,7 @@ describe("EntitlementsClient", () => {
                         quarterly_usage_based_price: {
                             billing_scheme: "per_unit",
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             id: "id",
                             interval: "day",
                             interval_count: 1000000,
@@ -10856,7 +11021,7 @@ describe("EntitlementsClient", () => {
                         yearly_usage_based_price: {
                             billing_scheme: "per_unit",
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             id: "id",
                             interval: "day",
                             interval_count: 1000000,
@@ -10920,7 +11085,7 @@ describe("EntitlementsClient", () => {
                                 billing_subscription: {
                                     cancel_at_period_end: true,
                                     created_at: "2024-01-15T09:30:00Z",
-                                    currency: "currency",
+                                    currency: "aed",
                                     customer_external_id: "customer_external_id",
                                     discounts: [],
                                     id: "id",
@@ -10937,7 +11102,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         cancel_at_period_end: true,
                                         created_at: "2024-01-15T09:30:00Z",
-                                        currency: "currency",
+                                        currency: "aed",
                                         customer_external_id: "customer_external_id",
                                         discounts: [],
                                         id: "id",
@@ -10953,7 +11118,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         cancel_at_period_end: true,
                                         created_at: "2024-01-15T09:30:00Z",
-                                        currency: "currency",
+                                        currency: "aed",
                                         customer_external_id: "customer_external_id",
                                         discounts: [],
                                         id: "id",
@@ -10975,8 +11140,9 @@ describe("EntitlementsClient", () => {
                                         created_at: "2024-01-15T09:30:00Z",
                                         days_until_due: 1000000,
                                         id: "id",
-                                        plan_billing_source: "custom_plan",
+                                        plan_billing_source: "amendment",
                                         plan_id: "plan_id",
+                                        problems: [],
                                         send_invoice: true,
                                         status: "active",
                                         updated_at: "2024-01-15T09:30:00Z",
@@ -10987,8 +11153,9 @@ describe("EntitlementsClient", () => {
                                         created_at: "2024-01-15T09:30:00Z",
                                         days_until_due: 1000000,
                                         id: "id",
-                                        plan_billing_source: "custom_plan",
+                                        plan_billing_source: "amendment",
                                         plan_id: "plan_id",
+                                        problems: [],
                                         send_invoice: true,
                                         status: "active",
                                         updated_at: "2024-01-15T09:30:00Z",
@@ -11140,7 +11307,7 @@ describe("EntitlementsClient", () => {
                                     },
                                 ],
                                 scheduled_downgrade: {
-                                    currency: "currency",
+                                    currency: "aed",
                                     effective_after: "2024-01-15T09:30:00Z",
                                     from_plan_id: "from_plan_id",
                                     from_plan_name: "from_plan_name",
@@ -11162,6 +11329,7 @@ describe("EntitlementsClient", () => {
                             feature: {
                                 created_at: "2024-01-15T09:30:00Z",
                                 description: "description",
+                                event_source: "inference",
                                 event_subtype: "event_subtype",
                                 feature_type: "boolean",
                                 icon: "icon",
@@ -11198,6 +11366,7 @@ describe("EntitlementsClient", () => {
                                     updated_at: "2024-01-15T09:30:00Z",
                                 },
                             ],
+                            quantity_rates: { quantity_rates: 1.1 },
                             rule_id: "rule_id",
                             rule_id_usage_exceeded: "rule_id_usage_exceeded",
                             updated_at: "2024-01-15T09:30:00Z",
@@ -11206,7 +11375,7 @@ describe("EntitlementsClient", () => {
                                 burn_strategy: "expiration_priority",
                                 cost_editable: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency_prices: [{ currency: "currency" }, { currency: "currency" }],
+                                currency_prices: [{ currency: "aed" }, { currency: "aed" }],
                                 default_expiry_unit: "billing_periods",
                                 default_expiry_unit_count: 1000000,
                                 default_rollover_policy: "expire",
@@ -11217,7 +11386,7 @@ describe("EntitlementsClient", () => {
                                 name: "name",
                                 plural_name: "plural_name",
                                 price: {
-                                    currency: "currency",
+                                    currency: "aed",
                                     external_price_id: "external_price_id",
                                     id: "id",
                                     interval: "day",
@@ -11297,6 +11466,7 @@ describe("EntitlementsClient", () => {
                             },
                             created_at: "2024-01-15T09:30:00Z",
                             description: "description",
+                            event_source: "inference",
                             event_subtype: "event_subtype",
                             event_summary: {
                                 company_count: 1000000,
@@ -11315,6 +11485,7 @@ describe("EntitlementsClient", () => {
                                     feature: {
                                         created_at: "2024-01-15T09:30:00Z",
                                         description: "description",
+                                        event_source: "inference",
                                         feature_type: "boolean",
                                         icon: "icon",
                                         id: "id",
@@ -11363,6 +11534,7 @@ describe("EntitlementsClient", () => {
                                     feature: {
                                         created_at: "2024-01-15T09:30:00Z",
                                         description: "description",
+                                        event_source: "inference",
                                         feature_type: "boolean",
                                         icon: "icon",
                                         id: "id",
@@ -11437,7 +11609,7 @@ describe("EntitlementsClient", () => {
                         monthly_usage_based_price: {
                             billing_scheme: "per_unit",
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             id: "id",
                             interval: "day",
                             interval_count: 1000000,
@@ -11499,11 +11671,11 @@ describe("EntitlementsClient", () => {
                             created_at: "2024-01-15T09:30:00Z",
                             currency_prices: [
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                     monthly_price: {
                                         billing_scheme: "per_unit",
                                         created_at: "2024-01-15T09:30:00Z",
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         interval_count: 1000000,
@@ -11523,7 +11695,7 @@ describe("EntitlementsClient", () => {
                                     quarterly_price: {
                                         billing_scheme: "per_unit",
                                         created_at: "2024-01-15T09:30:00Z",
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         interval_count: 1000000,
@@ -11543,7 +11715,7 @@ describe("EntitlementsClient", () => {
                                     yearly_price: {
                                         billing_scheme: "per_unit",
                                         created_at: "2024-01-15T09:30:00Z",
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         interval_count: 1000000,
@@ -11562,11 +11734,11 @@ describe("EntitlementsClient", () => {
                                     },
                                 },
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                     monthly_price: {
                                         billing_scheme: "per_unit",
                                         created_at: "2024-01-15T09:30:00Z",
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         interval_count: 1000000,
@@ -11586,7 +11758,7 @@ describe("EntitlementsClient", () => {
                                     quarterly_price: {
                                         billing_scheme: "per_unit",
                                         created_at: "2024-01-15T09:30:00Z",
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         interval_count: 1000000,
@@ -11606,7 +11778,7 @@ describe("EntitlementsClient", () => {
                                     yearly_price: {
                                         billing_scheme: "per_unit",
                                         created_at: "2024-01-15T09:30:00Z",
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         interval_count: 1000000,
@@ -11629,6 +11801,7 @@ describe("EntitlementsClient", () => {
                             feature: {
                                 created_at: "2024-01-15T09:30:00Z",
                                 description: "description",
+                                event_source: "inference",
                                 event_subtype: "event_subtype",
                                 feature_type: "boolean",
                                 icon: "icon",
@@ -11648,7 +11821,7 @@ describe("EntitlementsClient", () => {
                             metered_monthly_price: {
                                 billing_scheme: "per_unit",
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 id: "id",
                                 interval: "day",
                                 interval_count: 1000000,
@@ -11674,7 +11847,7 @@ describe("EntitlementsClient", () => {
                             metered_quarterly_price: {
                                 billing_scheme: "per_unit",
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 id: "id",
                                 interval: "day",
                                 interval_count: 1000000,
@@ -11700,7 +11873,7 @@ describe("EntitlementsClient", () => {
                             metered_yearly_price: {
                                 billing_scheme: "per_unit",
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency: "currency",
+                                currency: "aed",
                                 id: "id",
                                 interval: "day",
                                 interval_count: 1000000,
@@ -11741,6 +11914,7 @@ describe("EntitlementsClient", () => {
                             },
                             plan_id: "plan_id",
                             price_behavior: "credit_burndown",
+                            quantity_rates: { quantity_rates: 1.1 },
                             rule_id: "rule_id",
                             rule_id_usage_exceeded: "rule_id_usage_exceeded",
                             soft_limit: 1000000,
@@ -11766,7 +11940,7 @@ describe("EntitlementsClient", () => {
                                 burn_strategy: "expiration_priority",
                                 cost_editable: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency_prices: [{ currency: "currency" }, { currency: "currency" }],
+                                currency_prices: [{ currency: "aed" }, { currency: "aed" }],
                                 default_expiry_unit: "billing_periods",
                                 default_expiry_unit_count: 1000000,
                                 default_rollover_policy: "expire",
@@ -11777,7 +11951,7 @@ describe("EntitlementsClient", () => {
                                 name: "name",
                                 plural_name: "plural_name",
                                 price: {
-                                    currency: "currency",
+                                    currency: "aed",
                                     external_price_id: "external_price_id",
                                     id: "id",
                                     interval: "day",
@@ -11823,7 +11997,7 @@ describe("EntitlementsClient", () => {
                         quarterly_usage_based_price: {
                             billing_scheme: "per_unit",
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             id: "id",
                             interval: "day",
                             interval_count: 1000000,
@@ -11864,7 +12038,7 @@ describe("EntitlementsClient", () => {
                         yearly_usage_based_price: {
                             billing_scheme: "per_unit",
                             created_at: "2024-01-15T09:30:00Z",
-                            currency: "currency",
+                            currency: "aed",
                             id: "id",
                             interval: "day",
                             interval_count: 1000000,
@@ -11953,7 +12127,7 @@ describe("EntitlementsClient", () => {
                                 billingSubscription: {
                                     cancelAtPeriodEnd: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    currency: "currency",
+                                    currency: "aed",
                                     customerExternalId: "customer_external_id",
                                     discounts: [],
                                     id: "id",
@@ -11970,7 +12144,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         cancelAtPeriodEnd: true,
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        currency: "currency",
+                                        currency: "aed",
                                         customerExternalId: "customer_external_id",
                                         discounts: [],
                                         id: "id",
@@ -11986,7 +12160,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         cancelAtPeriodEnd: true,
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        currency: "currency",
+                                        currency: "aed",
                                         customerExternalId: "customer_external_id",
                                         discounts: [],
                                         id: "id",
@@ -12008,8 +12182,9 @@ describe("EntitlementsClient", () => {
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         daysUntilDue: 1000000,
                                         id: "id",
-                                        planBillingSource: "custom_plan",
+                                        planBillingSource: "amendment",
                                         planId: "plan_id",
+                                        problems: [],
                                         sendInvoice: true,
                                         status: "active",
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -12020,8 +12195,9 @@ describe("EntitlementsClient", () => {
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         daysUntilDue: 1000000,
                                         id: "id",
-                                        planBillingSource: "custom_plan",
+                                        planBillingSource: "amendment",
                                         planId: "plan_id",
+                                        problems: [],
                                         sendInvoice: true,
                                         status: "active",
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -12191,7 +12367,7 @@ describe("EntitlementsClient", () => {
                                     },
                                 ],
                                 scheduledDowngrade: {
-                                    currency: "currency",
+                                    currency: "aed",
                                     effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                                     fromPlanId: "from_plan_id",
                                     fromPlanName: "from_plan_name",
@@ -12217,6 +12393,7 @@ describe("EntitlementsClient", () => {
                             feature: {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 description: "description",
+                                eventSource: "inference",
                                 eventSubtype: "event_subtype",
                                 featureType: "boolean",
                                 icon: "icon",
@@ -12253,6 +12430,9 @@ describe("EntitlementsClient", () => {
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 },
                             ],
+                            quantityRates: {
+                                quantity_rates: 1.1,
+                            },
                             ruleId: "rule_id",
                             ruleIdUsageExceeded: "rule_id_usage_exceeded",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -12263,10 +12443,10 @@ describe("EntitlementsClient", () => {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 currencyPrices: [
                                     {
-                                        currency: "currency",
+                                        currency: "aed",
                                     },
                                     {
-                                        currency: "currency",
+                                        currency: "aed",
                                     },
                                 ],
                                 defaultExpiryUnit: "billing_periods",
@@ -12279,7 +12459,7 @@ describe("EntitlementsClient", () => {
                                 name: "name",
                                 pluralName: "plural_name",
                                 price: {
-                                    currency: "currency",
+                                    currency: "aed",
                                     externalPriceId: "external_price_id",
                                     id: "id",
                                     interval: "day",
@@ -12361,6 +12541,7 @@ describe("EntitlementsClient", () => {
                             },
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             description: "description",
+                            eventSource: "inference",
                             eventSubtype: "event_subtype",
                             eventSummary: {
                                 companyCount: 1000000,
@@ -12379,6 +12560,7 @@ describe("EntitlementsClient", () => {
                                     feature: {
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         description: "description",
+                                        eventSource: "inference",
                                         featureType: "boolean",
                                         icon: "icon",
                                         id: "id",
@@ -12427,6 +12609,7 @@ describe("EntitlementsClient", () => {
                                     feature: {
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         description: "description",
+                                        eventSource: "inference",
                                         featureType: "boolean",
                                         icon: "icon",
                                         id: "id",
@@ -12511,7 +12694,7 @@ describe("EntitlementsClient", () => {
                         monthlyUsageBasedPrice: {
                             billingScheme: "per_unit",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             id: "id",
                             interval: "day",
                             intervalCount: 1000000,
@@ -12573,11 +12756,11 @@ describe("EntitlementsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             currencyPrices: [
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                     monthlyPrice: {
                                         billingScheme: "per_unit",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         intervalCount: 1000000,
@@ -12597,7 +12780,7 @@ describe("EntitlementsClient", () => {
                                     quarterlyPrice: {
                                         billingScheme: "per_unit",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         intervalCount: 1000000,
@@ -12617,7 +12800,7 @@ describe("EntitlementsClient", () => {
                                     yearlyPrice: {
                                         billingScheme: "per_unit",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         intervalCount: 1000000,
@@ -12636,11 +12819,11 @@ describe("EntitlementsClient", () => {
                                     },
                                 },
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                     monthlyPrice: {
                                         billingScheme: "per_unit",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         intervalCount: 1000000,
@@ -12660,7 +12843,7 @@ describe("EntitlementsClient", () => {
                                     quarterlyPrice: {
                                         billingScheme: "per_unit",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         intervalCount: 1000000,
@@ -12680,7 +12863,7 @@ describe("EntitlementsClient", () => {
                                     yearlyPrice: {
                                         billingScheme: "per_unit",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         intervalCount: 1000000,
@@ -12703,6 +12886,7 @@ describe("EntitlementsClient", () => {
                             feature: {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 description: "description",
+                                eventSource: "inference",
                                 eventSubtype: "event_subtype",
                                 featureType: "boolean",
                                 icon: "icon",
@@ -12722,7 +12906,7 @@ describe("EntitlementsClient", () => {
                             meteredMonthlyPrice: {
                                 billingScheme: "per_unit",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 id: "id",
                                 interval: "day",
                                 intervalCount: 1000000,
@@ -12748,7 +12932,7 @@ describe("EntitlementsClient", () => {
                             meteredQuarterlyPrice: {
                                 billingScheme: "per_unit",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 id: "id",
                                 interval: "day",
                                 intervalCount: 1000000,
@@ -12774,7 +12958,7 @@ describe("EntitlementsClient", () => {
                             meteredYearlyPrice: {
                                 billingScheme: "per_unit",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 id: "id",
                                 interval: "day",
                                 intervalCount: 1000000,
@@ -12815,6 +12999,9 @@ describe("EntitlementsClient", () => {
                             },
                             planId: "plan_id",
                             priceBehavior: "credit_burndown",
+                            quantityRates: {
+                                quantity_rates: 1.1,
+                            },
                             ruleId: "rule_id",
                             ruleIdUsageExceeded: "rule_id_usage_exceeded",
                             softLimit: 1000000,
@@ -12842,10 +13029,10 @@ describe("EntitlementsClient", () => {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 currencyPrices: [
                                     {
-                                        currency: "currency",
+                                        currency: "aed",
                                     },
                                     {
-                                        currency: "currency",
+                                        currency: "aed",
                                     },
                                 ],
                                 defaultExpiryUnit: "billing_periods",
@@ -12858,7 +13045,7 @@ describe("EntitlementsClient", () => {
                                 name: "name",
                                 pluralName: "plural_name",
                                 price: {
-                                    currency: "currency",
+                                    currency: "aed",
                                     externalPriceId: "external_price_id",
                                     id: "id",
                                     interval: "day",
@@ -12912,7 +13099,7 @@ describe("EntitlementsClient", () => {
                         quarterlyUsageBasedPrice: {
                             billingScheme: "per_unit",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             id: "id",
                             interval: "day",
                             intervalCount: 1000000,
@@ -12953,7 +13140,7 @@ describe("EntitlementsClient", () => {
                         yearlyUsageBasedPrice: {
                             billingScheme: "per_unit",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             id: "id",
                             interval: "day",
                             intervalCount: 1000000,
@@ -13027,7 +13214,7 @@ describe("EntitlementsClient", () => {
                                 billingSubscription: {
                                     cancelAtPeriodEnd: true,
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    currency: "currency",
+                                    currency: "aed",
                                     customerExternalId: "customer_external_id",
                                     discounts: [],
                                     id: "id",
@@ -13044,7 +13231,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         cancelAtPeriodEnd: true,
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        currency: "currency",
+                                        currency: "aed",
                                         customerExternalId: "customer_external_id",
                                         discounts: [],
                                         id: "id",
@@ -13060,7 +13247,7 @@ describe("EntitlementsClient", () => {
                                     {
                                         cancelAtPeriodEnd: true,
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        currency: "currency",
+                                        currency: "aed",
                                         customerExternalId: "customer_external_id",
                                         discounts: [],
                                         id: "id",
@@ -13082,8 +13269,9 @@ describe("EntitlementsClient", () => {
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         daysUntilDue: 1000000,
                                         id: "id",
-                                        planBillingSource: "custom_plan",
+                                        planBillingSource: "amendment",
                                         planId: "plan_id",
+                                        problems: [],
                                         sendInvoice: true,
                                         status: "active",
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -13094,8 +13282,9 @@ describe("EntitlementsClient", () => {
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         daysUntilDue: 1000000,
                                         id: "id",
-                                        planBillingSource: "custom_plan",
+                                        planBillingSource: "amendment",
                                         planId: "plan_id",
+                                        problems: [],
                                         sendInvoice: true,
                                         status: "active",
                                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -13265,7 +13454,7 @@ describe("EntitlementsClient", () => {
                                     },
                                 ],
                                 scheduledDowngrade: {
-                                    currency: "currency",
+                                    currency: "aed",
                                     effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
                                     fromPlanId: "from_plan_id",
                                     fromPlanName: "from_plan_name",
@@ -13291,6 +13480,7 @@ describe("EntitlementsClient", () => {
                             feature: {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 description: "description",
+                                eventSource: "inference",
                                 eventSubtype: "event_subtype",
                                 featureType: "boolean",
                                 icon: "icon",
@@ -13327,6 +13517,9 @@ describe("EntitlementsClient", () => {
                                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                                 },
                             ],
+                            quantityRates: {
+                                quantity_rates: 1.1,
+                            },
                             ruleId: "rule_id",
                             ruleIdUsageExceeded: "rule_id_usage_exceeded",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -13337,10 +13530,10 @@ describe("EntitlementsClient", () => {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 currencyPrices: [
                                     {
-                                        currency: "currency",
+                                        currency: "aed",
                                     },
                                     {
-                                        currency: "currency",
+                                        currency: "aed",
                                     },
                                 ],
                                 defaultExpiryUnit: "billing_periods",
@@ -13353,7 +13546,7 @@ describe("EntitlementsClient", () => {
                                 name: "name",
                                 pluralName: "plural_name",
                                 price: {
-                                    currency: "currency",
+                                    currency: "aed",
                                     externalPriceId: "external_price_id",
                                     id: "id",
                                     interval: "day",
@@ -13435,6 +13628,7 @@ describe("EntitlementsClient", () => {
                             },
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             description: "description",
+                            eventSource: "inference",
                             eventSubtype: "event_subtype",
                             eventSummary: {
                                 companyCount: 1000000,
@@ -13453,6 +13647,7 @@ describe("EntitlementsClient", () => {
                                     feature: {
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         description: "description",
+                                        eventSource: "inference",
                                         featureType: "boolean",
                                         icon: "icon",
                                         id: "id",
@@ -13501,6 +13696,7 @@ describe("EntitlementsClient", () => {
                                     feature: {
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                         description: "description",
+                                        eventSource: "inference",
                                         featureType: "boolean",
                                         icon: "icon",
                                         id: "id",
@@ -13585,7 +13781,7 @@ describe("EntitlementsClient", () => {
                         monthlyUsageBasedPrice: {
                             billingScheme: "per_unit",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             id: "id",
                             interval: "day",
                             intervalCount: 1000000,
@@ -13647,11 +13843,11 @@ describe("EntitlementsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             currencyPrices: [
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                     monthlyPrice: {
                                         billingScheme: "per_unit",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         intervalCount: 1000000,
@@ -13671,7 +13867,7 @@ describe("EntitlementsClient", () => {
                                     quarterlyPrice: {
                                         billingScheme: "per_unit",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         intervalCount: 1000000,
@@ -13691,7 +13887,7 @@ describe("EntitlementsClient", () => {
                                     yearlyPrice: {
                                         billingScheme: "per_unit",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         intervalCount: 1000000,
@@ -13710,11 +13906,11 @@ describe("EntitlementsClient", () => {
                                     },
                                 },
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                     monthlyPrice: {
                                         billingScheme: "per_unit",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         intervalCount: 1000000,
@@ -13734,7 +13930,7 @@ describe("EntitlementsClient", () => {
                                     quarterlyPrice: {
                                         billingScheme: "per_unit",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         intervalCount: 1000000,
@@ -13754,7 +13950,7 @@ describe("EntitlementsClient", () => {
                                     yearlyPrice: {
                                         billingScheme: "per_unit",
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        currency: "currency",
+                                        currency: "aed",
                                         id: "id",
                                         interval: "day",
                                         intervalCount: 1000000,
@@ -13777,6 +13973,7 @@ describe("EntitlementsClient", () => {
                             feature: {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 description: "description",
+                                eventSource: "inference",
                                 eventSubtype: "event_subtype",
                                 featureType: "boolean",
                                 icon: "icon",
@@ -13796,7 +13993,7 @@ describe("EntitlementsClient", () => {
                             meteredMonthlyPrice: {
                                 billingScheme: "per_unit",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 id: "id",
                                 interval: "day",
                                 intervalCount: 1000000,
@@ -13822,7 +14019,7 @@ describe("EntitlementsClient", () => {
                             meteredQuarterlyPrice: {
                                 billingScheme: "per_unit",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 id: "id",
                                 interval: "day",
                                 intervalCount: 1000000,
@@ -13848,7 +14045,7 @@ describe("EntitlementsClient", () => {
                             meteredYearlyPrice: {
                                 billingScheme: "per_unit",
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                currency: "currency",
+                                currency: "aed",
                                 id: "id",
                                 interval: "day",
                                 intervalCount: 1000000,
@@ -13889,6 +14086,9 @@ describe("EntitlementsClient", () => {
                             },
                             planId: "plan_id",
                             priceBehavior: "credit_burndown",
+                            quantityRates: {
+                                quantity_rates: 1.1,
+                            },
                             ruleId: "rule_id",
                             ruleIdUsageExceeded: "rule_id_usage_exceeded",
                             softLimit: 1000000,
@@ -13916,10 +14116,10 @@ describe("EntitlementsClient", () => {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 currencyPrices: [
                                     {
-                                        currency: "currency",
+                                        currency: "aed",
                                     },
                                     {
-                                        currency: "currency",
+                                        currency: "aed",
                                     },
                                 ],
                                 defaultExpiryUnit: "billing_periods",
@@ -13932,7 +14132,7 @@ describe("EntitlementsClient", () => {
                                 name: "name",
                                 pluralName: "plural_name",
                                 price: {
-                                    currency: "currency",
+                                    currency: "aed",
                                     externalPriceId: "external_price_id",
                                     id: "id",
                                     interval: "day",
@@ -13986,7 +14186,7 @@ describe("EntitlementsClient", () => {
                         quarterlyUsageBasedPrice: {
                             billingScheme: "per_unit",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             id: "id",
                             interval: "day",
                             intervalCount: 1000000,
@@ -14027,7 +14227,7 @@ describe("EntitlementsClient", () => {
                         yearlyUsageBasedPrice: {
                             billingScheme: "per_unit",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            currency: "currency",
+                            currency: "aed",
                             id: "id",
                             interval: "day",
                             intervalCount: 1000000,
@@ -14306,6 +14506,7 @@ describe("EntitlementsClient", () => {
                     {
                         created_at: "2024-01-15T09:30:00Z",
                         description: "description",
+                        event_source: "inference",
                         feature_type: "boolean",
                         icon: "icon",
                         id: "id",
@@ -14339,6 +14540,7 @@ describe("EntitlementsClient", () => {
                     {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         description: "description",
+                        eventSource: "inference",
                         featureType: "boolean",
                         icon: "icon",
                         id: "id",

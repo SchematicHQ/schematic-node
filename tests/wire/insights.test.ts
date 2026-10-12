@@ -369,7 +369,7 @@ describe("InsightsClient", () => {
         const rawResponseBody = {
             data: {
                 active_credits: 1.1,
-                mrr: [{ amount: 1000000, currency: "currency" }],
+                mrr: [{ amount: 1000000, currency: "aed" }],
                 paid_companies: 1000000,
                 total_companies: 1000000,
                 total_features: 1000000,
@@ -387,7 +387,7 @@ describe("InsightsClient", () => {
                 mrr: [
                     {
                         amount: 1000000,
-                        currency: "currency",
+                        currency: "aed",
                     },
                 ],
                 paidCompanies: 1000000,

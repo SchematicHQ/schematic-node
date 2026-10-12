@@ -3,12 +3,14 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { CheckoutProblemResponseData } from "./CheckoutProblemResponseData";
 import { PreviewSubscriptionChangeResponseData } from "./PreviewSubscriptionChangeResponseData";
 
 export const ManagePlanPreviewResponseResponseData: core.serialization.ObjectSchema<
     serializers.ManagePlanPreviewResponseResponseData.Raw,
     Schematic.ManagePlanPreviewResponseResponseData
 > = core.serialization.object({
+    problems: core.serialization.list(CheckoutProblemResponseData),
     subscriptionChangePreview: core.serialization.property(
         "subscription_change_preview",
         PreviewSubscriptionChangeResponseData.optional(),
@@ -17,6 +19,7 @@ export const ManagePlanPreviewResponseResponseData: core.serialization.ObjectSch
 
 export declare namespace ManagePlanPreviewResponseResponseData {
     export interface Raw {
+        problems: CheckoutProblemResponseData.Raw[];
         subscription_change_preview?: PreviewSubscriptionChangeResponseData.Raw | null;
     }
 }

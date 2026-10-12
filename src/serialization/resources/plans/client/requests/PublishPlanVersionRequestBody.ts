@@ -3,6 +3,7 @@
 import type * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
+import { BillingCollectionMethod } from "../../../../types/BillingCollectionMethod";
 import { CheckoutFieldValue } from "../../../../types/CheckoutFieldValue";
 import { CustomerBillingAddress } from "../../../../types/CustomerBillingAddress";
 import { CustomPlanActivationStrategy } from "../../../../types/CustomPlanActivationStrategy";
@@ -18,6 +19,7 @@ export const PublishPlanVersionRequestBody: core.serialization.Schema<
     address: CustomerBillingAddress.optional(),
     billingCycleAnchor: core.serialization.property("billing_cycle_anchor", core.serialization.date().optional()),
     billingStartDate: core.serialization.property("billing_start_date", core.serialization.date().optional()),
+    collectionMethod: core.serialization.property("collection_method", BillingCollectionMethod.optional()),
     couponExternalId: core.serialization.property("coupon_external_id", core.serialization.string().optional()),
     customFieldValues: core.serialization.property(
         "custom_field_values",
@@ -45,6 +47,7 @@ export declare namespace PublishPlanVersionRequestBody {
         address?: CustomerBillingAddress.Raw | null;
         billing_cycle_anchor?: string | null;
         billing_start_date?: string | null;
+        collection_method?: BillingCollectionMethod.Raw | null;
         coupon_external_id?: string | null;
         custom_field_values?: CheckoutFieldValue.Raw[] | null;
         customer_email?: string | null;

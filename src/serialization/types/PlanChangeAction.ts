@@ -6,6 +6,7 @@ import type * as serializers from "../index";
 
 export const PlanChangeAction: core.serialization.Schema<serializers.PlanChangeAction.Raw, Schematic.PlanChangeAction> =
     core.serialization.enum_([
+        "amendment",
         "checkout",
         "company_upsert",
         "fallback_plan",
@@ -21,6 +22,7 @@ export const PlanChangeAction: core.serialization.Schema<serializers.PlanChangeA
 
 export declare namespace PlanChangeAction {
     export type Raw =
+        | "amendment"
         | "checkout"
         | "company_upsert"
         | "fallback_plan"

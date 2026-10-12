@@ -5,7 +5,7 @@ import type * as Schematic from "../index";
 export interface UsageBasedEntitlementRequestBody {
     billingProductId?: string;
     billingThreshold?: number;
-    currency?: string;
+    currency?: Schematic.Currency;
     currencyPrices?: Schematic.CurrencyPriceRequestBody[];
     monthlyMeteredPriceId?: string;
     monthlyPriceTiers?: Schematic.CreatePriceTierRequestBody[];

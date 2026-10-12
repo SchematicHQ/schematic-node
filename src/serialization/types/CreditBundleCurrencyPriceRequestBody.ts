@@ -3,19 +3,20 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { Currency } from "./Currency";
 
 export const CreditBundleCurrencyPriceRequestBody: core.serialization.ObjectSchema<
     serializers.CreditBundleCurrencyPriceRequestBody.Raw,
     Schematic.CreditBundleCurrencyPriceRequestBody
 > = core.serialization.object({
-    currency: core.serialization.string(),
+    currency: Currency,
     pricePerUnit: core.serialization.property("price_per_unit", core.serialization.number().optional()),
     pricePerUnitDecimal: core.serialization.property("price_per_unit_decimal", core.serialization.string().optional()),
 });
 
 export declare namespace CreditBundleCurrencyPriceRequestBody {
     export interface Raw {
-        currency: string;
+        currency: Currency.Raw;
         price_per_unit?: number | null;
         price_per_unit_decimal?: string | null;
     }

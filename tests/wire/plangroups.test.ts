@@ -25,7 +25,7 @@ describe("PlangroupsClient", () => {
                                 burn_strategy: "expiration_priority",
                                 cost_editable: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency_prices: [{ currency: "currency" }],
+                                currency_prices: [{ currency: "aed" }],
                                 default_expiry_unit: "billing_periods",
                                 default_rollover_policy: "expire",
                                 description: "description",
@@ -35,12 +35,13 @@ describe("PlangroupsClient", () => {
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
                         ],
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         description: "description",
                         features: [
                             {
                                 created_at: "2024-01-15T09:30:00Z",
                                 description: "description",
+                                event_source: "inference",
                                 feature_type: "boolean",
                                 flags: [
                                     {
@@ -197,7 +198,7 @@ describe("PlangroupsClient", () => {
                         price: 1.1,
                         prices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                                 external_price_id: "external_price_id",
                                 id: "id",
                                 interval: "day",
@@ -229,7 +230,7 @@ describe("PlangroupsClient", () => {
                             burn_strategy: "expiration_priority",
                             cost_editable: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            currency_prices: [{ currency: "currency" }],
+                            currency_prices: [{ currency: "aed" }],
                             default_expiry_unit: "billing_periods",
                             default_rollover_policy: "expire",
                             description: "description",
@@ -239,7 +240,7 @@ describe("PlangroupsClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
-                    currency_prices: [{ currency: "currency" }],
+                    currency_prices: [{ currency: "aed" }],
                     custom_plan_config: {
                         cta_text: "cta_text",
                         cta_web_site: "cta_web_site",
@@ -261,7 +262,7 @@ describe("PlangroupsClient", () => {
                     entitlements: [
                         {
                             created_at: "2024-01-15T09:30:00Z",
-                            currency_prices: [{ currency: "currency" }],
+                            currency_prices: [{ currency: "aed" }],
                             environment_id: "environment_id",
                             feature_id: "feature_id",
                             id: "id",
@@ -276,6 +277,7 @@ describe("PlangroupsClient", () => {
                         {
                             created_at: "2024-01-15T09:30:00Z",
                             description: "description",
+                            event_source: "inference",
                             feature_type: "boolean",
                             flags: [
                                 {
@@ -373,7 +375,7 @@ describe("PlangroupsClient", () => {
                     is_default: true,
                     is_trialable: true,
                     monthly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -384,7 +386,7 @@ describe("PlangroupsClient", () => {
                     },
                     name: "name",
                     one_time_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -395,7 +397,7 @@ describe("PlangroupsClient", () => {
                     },
                     plan_type: "plan",
                     quarterly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -421,7 +423,7 @@ describe("PlangroupsClient", () => {
                         },
                     ],
                     yearly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -460,7 +462,7 @@ describe("PlangroupsClient", () => {
                         price: 1.1,
                         prices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                                 external_price_id: "external_price_id",
                                 id: "id",
                                 interval: "day",
@@ -492,7 +494,7 @@ describe("PlangroupsClient", () => {
                             burn_strategy: "expiration_priority",
                             cost_editable: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            currency_prices: [{ currency: "currency" }],
+                            currency_prices: [{ currency: "aed" }],
                             default_expiry_unit: "billing_periods",
                             default_rollover_policy: "expire",
                             description: "description",
@@ -502,7 +504,7 @@ describe("PlangroupsClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
-                    currency_prices: [{ currency: "currency" }],
+                    currency_prices: [{ currency: "aed" }],
                     custom_plan_config: {
                         cta_text: "cta_text",
                         cta_web_site: "cta_web_site",
@@ -524,7 +526,7 @@ describe("PlangroupsClient", () => {
                     entitlements: [
                         {
                             created_at: "2024-01-15T09:30:00Z",
-                            currency_prices: [{ currency: "currency" }],
+                            currency_prices: [{ currency: "aed" }],
                             environment_id: "environment_id",
                             feature_id: "feature_id",
                             id: "id",
@@ -539,6 +541,7 @@ describe("PlangroupsClient", () => {
                         {
                             created_at: "2024-01-15T09:30:00Z",
                             description: "description",
+                            event_source: "inference",
                             feature_type: "boolean",
                             flags: [
                                 {
@@ -636,7 +639,7 @@ describe("PlangroupsClient", () => {
                     is_default: true,
                     is_trialable: true,
                     monthly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -647,7 +650,7 @@ describe("PlangroupsClient", () => {
                     },
                     name: "name",
                     one_time_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -658,7 +661,7 @@ describe("PlangroupsClient", () => {
                     },
                     plan_type: "plan",
                     quarterly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -684,7 +687,7 @@ describe("PlangroupsClient", () => {
                         },
                     ],
                     yearly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -725,7 +728,7 @@ describe("PlangroupsClient", () => {
                         price: 1.1,
                         prices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                                 external_price_id: "external_price_id",
                                 id: "id",
                                 interval: "day",
@@ -757,7 +760,7 @@ describe("PlangroupsClient", () => {
                             burn_strategy: "expiration_priority",
                             cost_editable: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            currency_prices: [{ currency: "currency" }],
+                            currency_prices: [{ currency: "aed" }],
                             default_expiry_unit: "billing_periods",
                             default_rollover_policy: "expire",
                             description: "description",
@@ -767,7 +770,7 @@ describe("PlangroupsClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
-                    currency_prices: [{ currency: "currency" }],
+                    currency_prices: [{ currency: "aed" }],
                     custom_plan_config: {
                         cta_text: "cta_text",
                         cta_web_site: "cta_web_site",
@@ -789,7 +792,7 @@ describe("PlangroupsClient", () => {
                     entitlements: [
                         {
                             created_at: "2024-01-15T09:30:00Z",
-                            currency_prices: [{ currency: "currency" }],
+                            currency_prices: [{ currency: "aed" }],
                             environment_id: "environment_id",
                             feature_id: "feature_id",
                             id: "id",
@@ -804,6 +807,7 @@ describe("PlangroupsClient", () => {
                         {
                             created_at: "2024-01-15T09:30:00Z",
                             description: "description",
+                            event_source: "inference",
                             feature_type: "boolean",
                             flags: [
                                 {
@@ -901,7 +905,7 @@ describe("PlangroupsClient", () => {
                     is_default: true,
                     is_trialable: true,
                     monthly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -912,7 +916,7 @@ describe("PlangroupsClient", () => {
                     },
                     name: "name",
                     one_time_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -923,7 +927,7 @@ describe("PlangroupsClient", () => {
                     },
                     plan_type: "plan",
                     quarterly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -949,7 +953,7 @@ describe("PlangroupsClient", () => {
                         },
                     ],
                     yearly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -963,7 +967,7 @@ describe("PlangroupsClient", () => {
                 initial_plan_price: {
                     billing_scheme: "per_unit",
                     created_at: "2024-01-15T09:30:00Z",
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     interval_count: 1000000,
@@ -987,9 +991,9 @@ describe("PlangroupsClient", () => {
                     usage_type: "licensed",
                 },
                 initial_plan_price_id: "initial_plan_price_id",
-                ordered_add_on_list: [{ plan_id: "plan_id" }],
+                ordered_add_on_list: [{ credits: [{ credit_id: "credit_id", visible: true }], plan_id: "plan_id" }],
                 ordered_bundle_list: [{ bundleId: "bundleId" }],
-                ordered_plan_list: [{ plan_id: "plan_id" }],
+                ordered_plan_list: [{ credits: [{ credit_id: "credit_id", visible: true }], plan_id: "plan_id" }],
                 plans: [
                     {
                         available_periods: ["monthly"],
@@ -1004,7 +1008,7 @@ describe("PlangroupsClient", () => {
                                 burn_strategy: "expiration_priority",
                                 cost_editable: true,
                                 created_at: "2024-01-15T09:30:00Z",
-                                currency_prices: [{ currency: "currency" }],
+                                currency_prices: [{ currency: "aed" }],
                                 default_expiry_unit: "billing_periods",
                                 default_rollover_policy: "expire",
                                 description: "description",
@@ -1014,12 +1018,13 @@ describe("PlangroupsClient", () => {
                                 updated_at: "2024-01-15T09:30:00Z",
                             },
                         ],
-                        currency_prices: [{ currency: "currency" }],
+                        currency_prices: [{ currency: "aed" }],
                         description: "description",
                         features: [
                             {
                                 created_at: "2024-01-15T09:30:00Z",
                                 description: "description",
+                                event_source: "inference",
                                 feature_type: "boolean",
                                 flags: [
                                     {
@@ -1157,7 +1162,7 @@ describe("PlangroupsClient", () => {
                         price: 1.1,
                         prices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                                 external_price_id: "external_price_id",
                                 id: "id",
                                 interval: "day",
@@ -1189,7 +1194,7 @@ describe("PlangroupsClient", () => {
                             burn_strategy: "expiration_priority",
                             cost_editable: true,
                             created_at: "2024-01-15T09:30:00Z",
-                            currency_prices: [{ currency: "currency" }],
+                            currency_prices: [{ currency: "aed" }],
                             default_expiry_unit: "billing_periods",
                             default_rollover_policy: "expire",
                             description: "description",
@@ -1199,7 +1204,7 @@ describe("PlangroupsClient", () => {
                             updated_at: "2024-01-15T09:30:00Z",
                         },
                     ],
-                    currency_prices: [{ currency: "currency" }],
+                    currency_prices: [{ currency: "aed" }],
                     custom_plan_config: {
                         cta_text: "cta_text",
                         cta_web_site: "cta_web_site",
@@ -1221,7 +1226,7 @@ describe("PlangroupsClient", () => {
                     entitlements: [
                         {
                             created_at: "2024-01-15T09:30:00Z",
-                            currency_prices: [{ currency: "currency" }],
+                            currency_prices: [{ currency: "aed" }],
                             environment_id: "environment_id",
                             feature_id: "feature_id",
                             id: "id",
@@ -1236,6 +1241,7 @@ describe("PlangroupsClient", () => {
                         {
                             created_at: "2024-01-15T09:30:00Z",
                             description: "description",
+                            event_source: "inference",
                             feature_type: "boolean",
                             flags: [
                                 {
@@ -1333,7 +1339,7 @@ describe("PlangroupsClient", () => {
                     is_default: true,
                     is_trialable: true,
                     monthly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -1344,7 +1350,7 @@ describe("PlangroupsClient", () => {
                     },
                     name: "name",
                     one_time_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -1355,7 +1361,7 @@ describe("PlangroupsClient", () => {
                     },
                     plan_type: "plan",
                     quarterly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -1381,7 +1387,7 @@ describe("PlangroupsClient", () => {
                         },
                     ],
                     yearly_price: {
-                        currency: "currency",
+                        currency: "aed",
                         external_price_id: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -1395,7 +1401,7 @@ describe("PlangroupsClient", () => {
                 trial_expiry_plan_price: {
                     billing_scheme: "per_unit",
                     created_at: "2024-01-15T09:30:00Z",
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     interval_count: 1000000,
@@ -1447,7 +1453,7 @@ describe("PlangroupsClient", () => {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 currencyPrices: [
                                     {
-                                        currency: "currency",
+                                        currency: "aed",
                                     },
                                 ],
                                 defaultExpiryUnit: "billing_periods",
@@ -1461,7 +1467,7 @@ describe("PlangroupsClient", () => {
                         ],
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         description: "description",
@@ -1469,6 +1475,7 @@ describe("PlangroupsClient", () => {
                             {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 description: "description",
+                                eventSource: "inference",
                                 featureType: "boolean",
                                 flags: [
                                     {
@@ -1644,7 +1651,7 @@ describe("PlangroupsClient", () => {
                         price: 1.1,
                         prices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                                 externalPriceId: "external_price_id",
                                 id: "id",
                                 interval: "day",
@@ -1683,7 +1690,7 @@ describe("PlangroupsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             currencyPrices: [
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                 },
                             ],
                             defaultExpiryUnit: "billing_periods",
@@ -1697,7 +1704,7 @@ describe("PlangroupsClient", () => {
                     ],
                     currencyPrices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                         },
                     ],
                     customPlanConfig: {
@@ -1723,7 +1730,7 @@ describe("PlangroupsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             currencyPrices: [
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                 },
                             ],
                             environmentId: "environment_id",
@@ -1746,6 +1753,7 @@ describe("PlangroupsClient", () => {
                         {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             description: "description",
+                            eventSource: "inference",
                             featureType: "boolean",
                             flags: [
                                 {
@@ -1862,7 +1870,7 @@ describe("PlangroupsClient", () => {
                     isDefault: true,
                     isTrialable: true,
                     monthlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -1873,7 +1881,7 @@ describe("PlangroupsClient", () => {
                     },
                     name: "name",
                     oneTimePrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -1884,7 +1892,7 @@ describe("PlangroupsClient", () => {
                     },
                     planType: "plan",
                     quarterlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -1910,7 +1918,7 @@ describe("PlangroupsClient", () => {
                         },
                     ],
                     yearlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -1949,7 +1957,7 @@ describe("PlangroupsClient", () => {
                         price: 1.1,
                         prices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                                 externalPriceId: "external_price_id",
                                 id: "id",
                                 interval: "day",
@@ -1988,7 +1996,7 @@ describe("PlangroupsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             currencyPrices: [
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                 },
                             ],
                             defaultExpiryUnit: "billing_periods",
@@ -2002,7 +2010,7 @@ describe("PlangroupsClient", () => {
                     ],
                     currencyPrices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                         },
                     ],
                     customPlanConfig: {
@@ -2028,7 +2036,7 @@ describe("PlangroupsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             currencyPrices: [
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                 },
                             ],
                             environmentId: "environment_id",
@@ -2051,6 +2059,7 @@ describe("PlangroupsClient", () => {
                         {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             description: "description",
+                            eventSource: "inference",
                             featureType: "boolean",
                             flags: [
                                 {
@@ -2167,7 +2176,7 @@ describe("PlangroupsClient", () => {
                     isDefault: true,
                     isTrialable: true,
                     monthlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2178,7 +2187,7 @@ describe("PlangroupsClient", () => {
                     },
                     name: "name",
                     oneTimePrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2189,7 +2198,7 @@ describe("PlangroupsClient", () => {
                     },
                     planType: "plan",
                     quarterlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2215,7 +2224,7 @@ describe("PlangroupsClient", () => {
                         },
                     ],
                     yearlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2256,7 +2265,7 @@ describe("PlangroupsClient", () => {
                         price: 1.1,
                         prices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                                 externalPriceId: "external_price_id",
                                 id: "id",
                                 interval: "day",
@@ -2295,7 +2304,7 @@ describe("PlangroupsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             currencyPrices: [
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                 },
                             ],
                             defaultExpiryUnit: "billing_periods",
@@ -2309,7 +2318,7 @@ describe("PlangroupsClient", () => {
                     ],
                     currencyPrices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                         },
                     ],
                     customPlanConfig: {
@@ -2335,7 +2344,7 @@ describe("PlangroupsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             currencyPrices: [
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                 },
                             ],
                             environmentId: "environment_id",
@@ -2358,6 +2367,7 @@ describe("PlangroupsClient", () => {
                         {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             description: "description",
+                            eventSource: "inference",
                             featureType: "boolean",
                             flags: [
                                 {
@@ -2474,7 +2484,7 @@ describe("PlangroupsClient", () => {
                     isDefault: true,
                     isTrialable: true,
                     monthlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2485,7 +2495,7 @@ describe("PlangroupsClient", () => {
                     },
                     name: "name",
                     oneTimePrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2496,7 +2506,7 @@ describe("PlangroupsClient", () => {
                     },
                     planType: "plan",
                     quarterlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2522,7 +2532,7 @@ describe("PlangroupsClient", () => {
                         },
                     ],
                     yearlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2536,7 +2546,7 @@ describe("PlangroupsClient", () => {
                 initialPlanPrice: {
                     billingScheme: "per_unit",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     intervalCount: 1000000,
@@ -2562,6 +2572,12 @@ describe("PlangroupsClient", () => {
                 initialPlanPriceId: "initial_plan_price_id",
                 orderedAddOnList: [
                     {
+                        credits: [
+                            {
+                                creditId: "credit_id",
+                                visible: true,
+                            },
+                        ],
                         planId: "plan_id",
                     },
                 ],
@@ -2572,6 +2588,12 @@ describe("PlangroupsClient", () => {
                 ],
                 orderedPlanList: [
                     {
+                        credits: [
+                            {
+                                creditId: "credit_id",
+                                visible: true,
+                            },
+                        ],
                         planId: "plan_id",
                     },
                 ],
@@ -2591,7 +2613,7 @@ describe("PlangroupsClient", () => {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 currencyPrices: [
                                     {
-                                        currency: "currency",
+                                        currency: "aed",
                                     },
                                 ],
                                 defaultExpiryUnit: "billing_periods",
@@ -2605,7 +2627,7 @@ describe("PlangroupsClient", () => {
                         ],
                         currencyPrices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                             },
                         ],
                         description: "description",
@@ -2613,6 +2635,7 @@ describe("PlangroupsClient", () => {
                             {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                                 description: "description",
+                                eventSource: "inference",
                                 featureType: "boolean",
                                 flags: [
                                     {
@@ -2765,7 +2788,7 @@ describe("PlangroupsClient", () => {
                         price: 1.1,
                         prices: [
                             {
-                                currency: "currency",
+                                currency: "aed",
                                 externalPriceId: "external_price_id",
                                 id: "id",
                                 interval: "day",
@@ -2804,7 +2827,7 @@ describe("PlangroupsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             currencyPrices: [
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                 },
                             ],
                             defaultExpiryUnit: "billing_periods",
@@ -2818,7 +2841,7 @@ describe("PlangroupsClient", () => {
                     ],
                     currencyPrices: [
                         {
-                            currency: "currency",
+                            currency: "aed",
                         },
                     ],
                     customPlanConfig: {
@@ -2844,7 +2867,7 @@ describe("PlangroupsClient", () => {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             currencyPrices: [
                                 {
-                                    currency: "currency",
+                                    currency: "aed",
                                 },
                             ],
                             environmentId: "environment_id",
@@ -2867,6 +2890,7 @@ describe("PlangroupsClient", () => {
                         {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             description: "description",
+                            eventSource: "inference",
                             featureType: "boolean",
                             flags: [
                                 {
@@ -2983,7 +3007,7 @@ describe("PlangroupsClient", () => {
                     isDefault: true,
                     isTrialable: true,
                     monthlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -2994,7 +3018,7 @@ describe("PlangroupsClient", () => {
                     },
                     name: "name",
                     oneTimePrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -3005,7 +3029,7 @@ describe("PlangroupsClient", () => {
                     },
                     planType: "plan",
                     quarterlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -3031,7 +3055,7 @@ describe("PlangroupsClient", () => {
                         },
                     ],
                     yearlyPrice: {
-                        currency: "currency",
+                        currency: "aed",
                         externalPriceId: "external_price_id",
                         id: "id",
                         interval: "day",
@@ -3045,7 +3069,7 @@ describe("PlangroupsClient", () => {
                 trialExpiryPlanPrice: {
                     billingScheme: "per_unit",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    currency: "currency",
+                    currency: "aed",
                     id: "id",
                     interval: "day",
                     intervalCount: 1000000,

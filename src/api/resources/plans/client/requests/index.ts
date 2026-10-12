@@ -4,6 +4,7 @@ export type { CreateBillingLinkedPlanRequestBody } from "./CreateBillingLinkedPl
 export type { CreateCustomPlanRequestBody } from "./CreateCustomPlanRequestBody";
 export type { DeletePlanVersionRequest } from "./DeletePlanVersionRequest";
 export type { GetPlanRequest } from "./GetPlanRequest";
+export type { GetPlanVersionDiffRequest } from "./GetPlanVersionDiffRequest";
 export type { ListBillingProductMatchCompaniesRequest } from "./ListBillingProductMatchCompaniesRequest";
 export type { ListCustomPlanBillingsRequest } from "./ListCustomPlanBillingsRequest";
 export type { ListPlanIssuesRequest } from "./ListPlanIssuesRequest";

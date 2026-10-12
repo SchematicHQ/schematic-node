@@ -6,7 +6,7 @@ export interface BillingProductForSubscriptionResponseData {
     billingScheme: Schematic.BillingPriceScheme;
     billingThreshold?: number;
     createdAt: Date;
-    currency: string;
+    currency: Schematic.Currency;
     environmentId: string;
     externalId: string;
     id: string;

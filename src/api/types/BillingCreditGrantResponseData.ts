@@ -13,7 +13,7 @@ export interface BillingCreditGrantResponseData {
     creditIcon?: string;
     creditId: string;
     creditName: string;
-    currency?: string;
+    currency?: Schematic.Currency;
     expiresAt?: Date;
     grantReason: Schematic.BillingCreditGrantReason;
     id: string;
@@ -23,7 +23,7 @@ export interface BillingCreditGrantResponseData {
     planName?: string;
     /** What the postpaid charges costs, in the currency's minor unit. */
     postpaidChargeAmount?: number;
-    postpaidChargeCurrency?: string;
+    postpaidChargeCurrency?: Schematic.Currency;
     /** Credits consumed past a zero balance in the window still open. */
     postpaidChargedCredits?: number;
     price?: Schematic.BillingPriceResponseData;

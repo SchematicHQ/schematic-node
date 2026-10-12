@@ -3,5 +3,6 @@
 import type * as Schematic from "../index";
 
 export interface ManagePlanPreviewResponseResponseData {
+    problems: Schematic.CheckoutProblemResponseData[];
     subscriptionChangePreview?: Schematic.PreviewSubscriptionChangeResponseData;
 }

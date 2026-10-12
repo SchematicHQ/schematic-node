@@ -8,7 +8,7 @@ export interface BillingSubscriptionView {
     cancelAtPeriodEnd: boolean;
     companyId?: string;
     createdAt: Date;
-    currency: string;
+    currency: Schematic.Currency;
     customerExternalId: string;
     defaultPaymentMethodId?: string;
     discounts: Schematic.BillingSubscriptionDiscountView[];

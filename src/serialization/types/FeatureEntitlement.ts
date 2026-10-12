@@ -27,6 +27,10 @@ export const FeatureEntitlement: core.serialization.ObjectSchema<
     metricPeriod: core.serialization.property("metric_period", MetricPeriod.optional()),
     metricResetAt: core.serialization.property("metric_reset_at", core.serialization.date().optional()),
     monthReset: core.serialization.property("month_reset", MetricPeriodMonthReset.optional()),
+    quantityRates: core.serialization.property(
+        "quantity_rates",
+        core.serialization.record(core.serialization.string(), core.serialization.number()).optional(),
+    ),
     softLimit: core.serialization.property("soft_limit", core.serialization.number().optional()),
     usage: core.serialization.number().optional(),
     valueType: core.serialization.property("value_type", EntitlementValueType),
@@ -50,6 +54,7 @@ export declare namespace FeatureEntitlement {
         metric_period?: MetricPeriod.Raw | null;
         metric_reset_at?: string | null;
         month_reset?: MetricPeriodMonthReset.Raw | null;
+        quantity_rates?: Record<string, number> | null;
         soft_limit?: number | null;
         usage?: number | null;
         value_type: EntitlementValueType.Raw;

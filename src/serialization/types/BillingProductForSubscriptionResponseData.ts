@@ -7,6 +7,7 @@ import { BillingPriceScheme } from "./BillingPriceScheme";
 import { BillingPriceUsageType } from "./BillingPriceUsageType";
 import { BillingProductPriceTierResponseData } from "./BillingProductPriceTierResponseData";
 import { BillingProviderType } from "./BillingProviderType";
+import { Currency } from "./Currency";
 
 export const BillingProductForSubscriptionResponseData: core.serialization.ObjectSchema<
     serializers.BillingProductForSubscriptionResponseData.Raw,
@@ -15,7 +16,7 @@ export const BillingProductForSubscriptionResponseData: core.serialization.Objec
     billingScheme: core.serialization.property("billing_scheme", BillingPriceScheme),
     billingThreshold: core.serialization.property("billing_threshold", core.serialization.number().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
-    currency: core.serialization.string(),
+    currency: Currency,
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
     externalId: core.serialization.property("external_id", core.serialization.string()),
     id: core.serialization.string(),
@@ -45,7 +46,7 @@ export declare namespace BillingProductForSubscriptionResponseData {
         billing_scheme: BillingPriceScheme.Raw;
         billing_threshold?: number | null;
         created_at: string;
-        currency: string;
+        currency: Currency.Raw;
         environment_id: string;
         external_id: string;
         id: string;

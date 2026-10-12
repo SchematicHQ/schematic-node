@@ -7,6 +7,7 @@ import { BillingCreditExpiryType } from "../../../../types/BillingCreditExpiryTy
 import { BillingCreditExpiryUnit } from "../../../../types/BillingCreditExpiryUnit";
 import { BillingCreditGrantReason } from "../../../../types/BillingCreditGrantReason";
 import { BillingPlanCreditGrantResetStart } from "../../../../types/BillingPlanCreditGrantResetStart";
+import { Currency } from "../../../../types/Currency";
 
 export const CreateCompanyCreditGrant: core.serialization.Schema<
     serializers.CreateCompanyCreditGrant.Raw,
@@ -16,7 +17,7 @@ export const CreateCompanyCreditGrant: core.serialization.Schema<
     companyId: core.serialization.property("company_id", core.serialization.string()),
     creditBundleId: core.serialization.property("credit_bundle_id", core.serialization.string().optional()),
     creditId: core.serialization.property("credit_id", core.serialization.string()),
-    currency: core.serialization.string().optional(),
+    currency: Currency.optional(),
     expiresAt: core.serialization.property("expires_at", core.serialization.date().optional()),
     expiryType: core.serialization.property("expiry_type", BillingCreditExpiryType.optional()),
     expiryUnit: core.serialization.property("expiry_unit", BillingCreditExpiryUnit.optional()),
@@ -33,7 +34,7 @@ export declare namespace CreateCompanyCreditGrant {
         company_id: string;
         credit_bundle_id?: string | null;
         credit_id: string;
-        currency?: string | null;
+        currency?: Currency.Raw | null;
         expires_at?: string | null;
         expiry_type?: BillingCreditExpiryType.Raw | null;
         expiry_unit?: BillingCreditExpiryUnit.Raw | null;

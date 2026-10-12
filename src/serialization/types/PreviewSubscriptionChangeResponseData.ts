@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { CheckoutProblemResponseData } from "./CheckoutProblemResponseData";
 import { FeatureUsageResponseData } from "./FeatureUsageResponseData";
 import { PreviewSubscriptionFinanceResponseData } from "./PreviewSubscriptionFinanceResponseData";
 
@@ -21,6 +22,7 @@ export const PreviewSubscriptionChangeResponseData: core.serialization.ObjectSch
     paymentMethodRequired: core.serialization.property("payment_method_required", core.serialization.boolean()),
     percentOff: core.serialization.property("percent_off", core.serialization.number()),
     periodStart: core.serialization.property("period_start", core.serialization.date()),
+    problems: core.serialization.list(CheckoutProblemResponseData),
     promoCodeApplied: core.serialization.property("promo_code_applied", core.serialization.boolean()),
     proration: core.serialization.number(),
     scheduledChangeTime: core.serialization.property("scheduled_change_time", core.serialization.date().optional()),
@@ -41,6 +43,7 @@ export declare namespace PreviewSubscriptionChangeResponseData {
         payment_method_required: boolean;
         percent_off: number;
         period_start: string;
+        problems: CheckoutProblemResponseData.Raw[];
         promo_code_applied: boolean;
         proration: number;
         scheduled_change_time?: string | null;
