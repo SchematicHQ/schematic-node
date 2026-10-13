@@ -249,6 +249,29 @@ describe("SchematicClient wrapper - flag checking behavior", () => {
             await client.close();
         });
 
+        it("leaves eventQuantities off the request body and warns", async () => {
+            apiAllows(true);
+
+            const client = new SchematicClient({
+                apiKey: "test-api-key",
+                cacheProviders: { flagChecks: [] },
+                logger: mockLogger,
+            });
+
+            await client.checkFlag({ company: { id: "comp-1" } }, "test-flag", {
+                usage: 5,
+                eventQuantities: { eventSubtype: "chat", quantities: { input_tokens: 1000 } },
+            });
+
+            expect(mockCheckFlag.mock.calls[0][1]).toEqual({
+                company: { id: "comp-1" },
+                preflight: { usage: 5 },
+            });
+            expect(mockLogger.warn).toHaveBeenCalledWith(expect.stringContaining("eventQuantities"));
+
+            await client.close();
+        });
+
         it("rounds a fractional usage up on the wire", async () => {
             apiAllows(true);
 
@@ -500,6 +523,25 @@ describe("SchematicClient wrapper - flag checking behavior", () => {
                     usage: undefined,
                 }),
             );
+
+            await client.close();
+        });
+
+        it("hands the local engine the options' eventQuantities alongside the merged knobs", async () => {
+            streamAllows(true);
+            const client = newClient();
+            const eventQuantities = { eventSubtype: "chat", quantity: 2, quantities: { input_tokens: 1000 } };
+
+            await client.checkFlag(
+                { company: { id: "comp-1" }, preflight: { usage: 7 } },
+                "test-flag",
+                { eventQuantities },
+            );
+
+            expect(mockDataStream.checkFlag.mock.calls[0][2]).toEqual(
+                expect.objectContaining({ usage: 7, eventQuantities }),
+            );
+            expect(mockLogger.warn).not.toHaveBeenCalled();
 
             await client.close();
         });

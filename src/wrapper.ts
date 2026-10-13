@@ -141,6 +141,22 @@ export interface CheckFlagOptions {
      * and zero has no effect.
      */
     eventUsage?: { eventSubtype: string; quantity: number };
+    /**
+     * An event to price against credit-balance conditions whose event subtype
+     * matches, the way the API burns it: `quantity` times the condition's
+     * consumption rate, plus each named quantity times its rate in the
+     * condition's quantity rates. For an inference call, `quantity` is the
+     * request count and `quantities` the token counts as the event reports
+     * them (input tokens including the cached and cache-creation subsets).
+     * Keys without a rate cost nothing. An absent or zero `quantity` means
+     * one. Ranks below `creditCost` and above `eventUsage` and `usage`;
+     * negative values make the engine return an error.
+     *
+     * Only local (DataStream) evaluation applies this today: the REST flag
+     * check does not accept it yet, so a check that goes over the API drops
+     * it and logs a warning.
+     */
+    eventQuantities?: { eventSubtype: string; quantity?: number; quantities?: Record<string, number> };
 }
 
 /**
@@ -311,6 +327,9 @@ function engineOptions(
         creditCost: preflight?.creditCost,
         usage: preflight?.usage,
         eventUsage: preflight?.eventUsage,
+        // The REST preflight has no counterpart, so the evaluation context
+        // cannot carry one; the options' copy goes through as is.
+        eventQuantities: options?.eventQuantities,
     };
 }
 
@@ -738,6 +757,11 @@ export class SchematicClient extends BaseClient {
         const getDefaultValue = getDefault ?? (() => this.getFlagDefault(key));
 
         try {
+            if (options?.eventQuantities !== undefined) {
+                this.logger.warn(
+                    `Preflight eventQuantities for flag ${key} is only applied by local evaluation; the API check ignores it, so the check answers without it`,
+                );
+            }
             const preflight = mergedPreflight(evalCtx.preflight, options, key, this.logger);
             // The cache is keyed by flag, company and user, so it cannot tell a
             // hypothetical apart from the plain question. Reading it would answer

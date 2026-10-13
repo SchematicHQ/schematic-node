@@ -16,6 +16,8 @@ export interface WasmFeatureEntitlement {
     metricResetAt?: string;
     creditId?: string;
     consumptionRate?: number;
+    /** Credits per unit of each quantity an event carries, keyed by quantity key */
+    quantityRates?: Record<string, number>;
     creditTotal?: number;
     creditUsed?: number;
     creditRemaining?: number;
@@ -138,6 +140,15 @@ function serializeCheckFlagOptions(options: CheckFlagOptions): Record<string, un
             event_subtype: options.eventUsage.eventSubtype,
             quantity: engineQuantity(options.eventUsage.quantity),
         };
+    }
+    if (options.eventQuantities) {
+        // Unlike event_usage, the engine reads these quantities as floats, so
+        // they pass through unrounded. An absent quantity means one.
+        const { eventSubtype, quantity, quantities } = options.eventQuantities;
+        const event: Record<string, unknown> = { event_subtype: eventSubtype };
+        if (quantity !== undefined) event.quantity = quantity;
+        if (quantities && Object.keys(quantities).length > 0) event.quantities = { ...quantities };
+        envelope.event_quantities = event;
     }
     return envelope;
 }
