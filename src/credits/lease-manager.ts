@@ -116,6 +116,9 @@ export class CreditLeaseManager {
      * a request is registered share it (the first caller's `requestOptions`
      * win); callers racing ahead of registration may duplicate the wire call,
      * which the server's idempotent acquire absorbs.
+     * A joiner's wait is capped the same way an extend joiner's is: at
+     * `joinDeadlineMs` (the deadline the caller's check started on) when
+     * given, else at the caller's own timeout from now.
      * Never rejects: a store (Redis) failure is logged and reported as
      * `undefined`, the same as a wire failure, so callers route it through
      * their fail-open/fail-closed handling instead of an unhandled rejection.
@@ -124,6 +127,7 @@ export class CreditLeaseManager {
         companyId: string,
         creditTypeId: string,
         requestOptions?: CreditsClient.RequestOptions,
+        joinDeadlineMs?: number,
     ): Promise<LeaseEntry | undefined> {
         if (this.stopped) {
             // Past stop() the drain has run or is running, so a lease acquired
@@ -162,7 +166,18 @@ export class CreditLeaseManager {
 
         const key = leaseKey(companyId, creditTypeId);
         const inflight = this.inflightAcquire.get(key);
-        if (inflight) return inflight;
+        if (inflight) {
+            // The flight runs on the timeout of whoever started it (a prewarm
+            // uses the client default), so cap our wait at our own budget.
+            const joined = await this.joinWithin(inflight, joinDeadlineMs ?? this.joinDeadline(requestOptions));
+            if (joined === JOIN_TIMED_OUT) {
+                this.logger.debug(
+                    `Acquire in flight for ${companyId}/${creditTypeId} outlasted the caller's timeout; not waiting on it`,
+                );
+                return undefined;
+            }
+            return joined;
+        }
 
         const promise = this.acquire(companyId, creditTypeId, requestOptions).finally(() => {
             this.inflightAcquire.delete(key);
@@ -339,11 +354,21 @@ export class CreditLeaseManager {
                 // The flight asked for at least what we need: every
                 // watermark-driven joiner, and any check the tranche covers.
                 // One wire call serves all of them, which is the point of
-                // single-flight.
-                if (additionalAmount <= inflight.requestedAdditional) return joined;
-                // It asked for less. Go round again to re-read the slot it just
-                // moved, so what we ask for next is sized against the balance
-                // it left rather than the one we started from.
+                // single-flight. But the flight re-checks the slot against its
+                // starter's requirement, not ours, and may have skipped the
+                // wire call when a sibling's extend landed first; so a failed
+                // flight is taken as is, and a result that still leaves us
+                // short is not.
+                if (
+                    additionalAmount <= inflight.requestedAdditional &&
+                    (!joined || requiredCredits === undefined || joined.localRemainingCredits >= requiredCredits)
+                ) {
+                    return joined;
+                }
+                // It asked for less, or skipped the extend we needed. Go round
+                // again to re-read the slot it just moved, so what we ask for
+                // next is sized against the balance it left rather than the one
+                // we started from.
                 continue;
             }
             return this.startExtend(
@@ -576,7 +601,13 @@ export class CreditLeaseManager {
      * hold a closing client open; whatever is abandoned expires server-side.
      */
     async releaseAllLocalLeases(timeoutMs: number = SHUTDOWN_DRAIN_TIMEOUT_MS): Promise<void> {
-        const entries = this.leaseStore.list?.();
+        let entries: LeaseEntry[] | undefined;
+        try {
+            entries = this.leaseStore.list?.();
+        } catch (err) {
+            this.logger.warn(`Failed to list credit leases on close (they will expire server-side): ${err}`);
+            return;
+        }
         if (!entries || entries.length === 0) return;
         const releases = entries.map(async (entry) => {
             // Skip expired leases: the server already swept and refunded them.

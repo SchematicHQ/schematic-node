@@ -79,6 +79,19 @@ describe("ReservationStore", () => {
         expect(leases.get("co_1", "ct_1")?.localRemainingCredits).toBe(800);
     });
 
+    it("does not refund a reservation that names no lease", async () => {
+        await leases.tryReserve("co_1", "ct_1", 200);
+        // With no lease id the hold can't be pinned, so neither a consume nor a
+        // sweep may refund it into whatever lease holds the slot.
+        reservations.add(makeReservation({ leaseId: "" }));
+        reservations.add(makeReservation({ id: "res_2", leaseId: "", expiresAt: new Date(Date.now() - 1) }));
+
+        expect(await reservations.consume("res_1", 0)).toBe(0);
+        expect(await reservations.sweepExpired()).toBe(1);
+        expect(leases.get("co_1", "ct_1")?.localRemainingCredits).toBe(800);
+        expect(reservations.size()).toBe(0);
+    });
+
     it("consume clamps credits consumed to creditsReserved", async () => {
         await leases.tryReserve("co_1", "ct_1", 100);
         const reservation = makeReservation();
