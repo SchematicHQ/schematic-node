@@ -25,7 +25,7 @@ export interface CheckAndReserveFlagResponseData {
     flagId?: string;
     /** A human-readable explanation of the result */
     reason: string;
-    /** The hold taken on the company's credit balance for this operation, when the flag allowed it and the feature is credit-metered. Settle it by sending a track event carrying its ID as reservation_id; the unspent hold is refunded at expires_at otherwise */
+    /** The hold taken on the company's credit balance for this operation, when the flag allowed it and the feature is credit-metered. Settle it by sending a track or inference event carrying its ID as reservation_id; the unspent hold is refunded at expires_at otherwise */
     reservation?: Schematic.FlagCheckReservationResponseData;
     /** If a rule was found, its ID */
     ruleId?: string;

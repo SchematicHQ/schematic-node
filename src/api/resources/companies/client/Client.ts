@@ -420,7 +420,7 @@ export class CompaniesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `companies/${core.url.encodePathParam(company_id)}`,
+                `companies/${core.url.encodePathParam(company_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -550,7 +550,7 @@ export class CompaniesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `companies/${core.url.encodePathParam(company_id)}`,
+                `companies/${core.url.encodePathParam(company_id, errors.SchematicError)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -1893,7 +1893,7 @@ export class CompaniesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `company-memberships/${core.url.encodePathParam(company_membership_id)}`,
+                `company-memberships/${core.url.encodePathParam(company_membership_id, errors.SchematicError)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -2468,7 +2468,7 @@ export class CompaniesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `entity-key-definitions/${core.url.encodePathParam(entity_key_definition_id)}`,
+                `entity-key-definitions/${core.url.encodePathParam(entity_key_definition_id, errors.SchematicError)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -3208,7 +3208,7 @@ export class CompaniesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `entity-trait-definitions/${core.url.encodePathParam(entity_trait_definition_id)}`,
+                `entity-trait-definitions/${core.url.encodePathParam(entity_trait_definition_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -3339,7 +3339,7 @@ export class CompaniesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `entity-trait-definitions/${core.url.encodePathParam(entity_trait_definition_id)}`,
+                `entity-trait-definitions/${core.url.encodePathParam(entity_trait_definition_id, errors.SchematicError)}`,
             ),
             method: "PUT",
             headers: _headers,
@@ -3484,7 +3484,7 @@ export class CompaniesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `entity-trait-definitions/${core.url.encodePathParam(entity_trait_definition_id)}`,
+                `entity-trait-definitions/${core.url.encodePathParam(entity_trait_definition_id, errors.SchematicError)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -3620,7 +3620,7 @@ export class CompaniesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `entity-trait-definitions/${core.url.encodePathParam(entity_trait_definition_id)}/usage`,
+                `entity-trait-definitions/${core.url.encodePathParam(entity_trait_definition_id, errors.SchematicError)}/usage`,
             ),
             method: "GET",
             headers: _headers,
@@ -4363,7 +4363,7 @@ export class CompaniesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `plan-changes/${core.url.encodePathParam(plan_change_id)}`,
+                `plan-changes/${core.url.encodePathParam(plan_change_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -4636,7 +4636,7 @@ export class CompaniesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `plan-traits/${core.url.encodePathParam(plan_trait_id)}`,
+                `plan-traits/${core.url.encodePathParam(plan_trait_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -5478,7 +5478,7 @@ export class CompaniesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `users/${core.url.encodePathParam(user_id)}`,
+                `users/${core.url.encodePathParam(user_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -5597,7 +5597,7 @@ export class CompaniesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `users/${core.url.encodePathParam(user_id)}`,
+                `users/${core.url.encodePathParam(user_id, errors.SchematicError)}`,
             ),
             method: "DELETE",
             headers: _headers,

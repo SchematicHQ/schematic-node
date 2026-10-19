@@ -7,7 +7,9 @@ import type * as Schematic from "../../../../index";
  *     {
  *         companyId: "company_id",
  *         planId: "plan_id",
+ *         planVersionId: "plan_version_id",
  *         planBillingSource: "amendment",
+ *         planBillingSources: ["amendment"],
  *         status: "active",
  *         statuses: ["active"],
  *         limit: 1000000,
@@ -19,8 +21,12 @@ export interface ListCustomPlanBillingsRequest {
     companyId?: string;
     /** Filter by plan ID */
     planId?: string;
-    /** Filter by the flow that created the billing record: custom_plan for a first publish, amendment for a republish, manage_plan for a standard plan assigned by invoice. Defaults to custom_plan. */
+    /** Filter by the plan version the billing record was created for */
+    planVersionId?: string;
+    /** Filter by the flow that created the billing record: custom_plan for a first publish, amendment for a republish, manage_plan for a standard plan assigned by invoice. Defaults to custom_plan unless plan_billing_sources is set. */
     planBillingSource?: Schematic.PlanBillingSource;
+    /** Filter by multiple billing sources. Takes precedence over plan_billing_source. */
+    planBillingSources?: Schematic.PlanBillingSource | Schematic.PlanBillingSource[];
     /** Filter by billing status */
     status?: Schematic.CustomPlanBillingStatus;
     /** Filter by multiple billing statuses */

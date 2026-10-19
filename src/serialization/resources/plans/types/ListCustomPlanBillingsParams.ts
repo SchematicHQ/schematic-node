@@ -14,7 +14,12 @@ export const ListCustomPlanBillingsParams: core.serialization.ObjectSchema<
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
     planBillingSource: core.serialization.property("plan_billing_source", PlanBillingSource.optional()),
+    planBillingSources: core.serialization.property(
+        "plan_billing_sources",
+        core.serialization.list(PlanBillingSource).optional(),
+    ),
     planId: core.serialization.property("plan_id", core.serialization.string().optional()),
+    planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
     status: CustomPlanBillingStatus.optional(),
     statuses: core.serialization.list(CustomPlanBillingStatus).optional(),
 });
@@ -25,7 +30,9 @@ export declare namespace ListCustomPlanBillingsParams {
         limit?: number | null;
         offset?: number | null;
         plan_billing_source?: PlanBillingSource.Raw | null;
+        plan_billing_sources?: PlanBillingSource.Raw[] | null;
         plan_id?: string | null;
+        plan_version_id?: string | null;
         status?: CustomPlanBillingStatus.Raw | null;
         statuses?: CustomPlanBillingStatus.Raw[] | null;
     }

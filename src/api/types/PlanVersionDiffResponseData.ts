@@ -13,7 +13,7 @@ export interface PlanVersionDiffResponseData {
     from?: Schematic.PlanVersionResponseData;
     /** Whether moving a subscription from the compared version to this one changes its billing. */
     hasBillingChanges: boolean;
-    /** Plan-level fields that changed: name, description, icon, and charge_type. */
+    /** Plan-level fields that changed: name, description, icon, charge_type, billing_strategy, is_trialable, and trial_days. */
     planFields: Schematic.PlanVersionFieldChangeResponseData[];
     /** Base prices that changed, one entry per currency and cadence. */
     prices: Schematic.PlanVersionPriceChangeResponseData[];

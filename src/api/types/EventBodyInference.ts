@@ -15,6 +15,8 @@ export interface EventBodyInference {
     event?: string;
     /** Total number of input tokens for the inference request, including those served from and written to a prompt cache */
     inputTokens: number;
+    /** Credit lease ID this inference event's credit burn is redeeming against */
+    leaseId?: string;
     /** The inference operation; defaults to 'chat' */
     operation?: string;
     /** Number of output tokens for the inference request */
@@ -27,6 +29,8 @@ export interface EventBodyInference {
     requestModel?: string;
     /** Number of requests represented by this event; defaults to 1 */
     requests?: number;
+    /** Credit reservation ID this inference event's credit burn settles. lease_id takes precedence when both are set */
+    reservationId?: string;
     /** The model that served the inference response */
     responseModel: string;
     /** Key-value pairs to identify the user associated with the inference event */

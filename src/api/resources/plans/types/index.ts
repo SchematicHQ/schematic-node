@@ -20,6 +20,7 @@ export * from "./ListPlanIssuesResponse";
 export * from "./ListPlansParams";
 export * from "./ListPlansResponse";
 export * from "./MarkCustomPlanBillingPaidResponse";
+export * from "./PreviewPublishPlanVersionResponse";
 export * from "./PublishPlanVersionResponse";
 export * from "./RetryCustomPlanBillingResponse";
 export * from "./UpdateCompanyPlansResponse";

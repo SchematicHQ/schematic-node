@@ -66,7 +66,7 @@ export class PlansClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `company-plans/${core.url.encodePathParam(company_id)}`,
+                `company-plans/${core.url.encodePathParam(company_id, errors.SchematicError)}`,
             ),
             method: "PUT",
             headers: _headers,
@@ -181,7 +181,9 @@ export class PlansClient {
      *     await client.plans.listCustomPlanBillings({
      *         companyId: "company_id",
      *         planId: "plan_id",
+     *         planVersionId: "plan_version_id",
      *         planBillingSource: "amendment",
+     *         planBillingSources: ["amendment"],
      *         status: "active",
      *         statuses: ["active"],
      *         limit: 1000000,
@@ -199,14 +201,32 @@ export class PlansClient {
         request: Schematic.ListCustomPlanBillingsRequest = {},
         requestOptions?: PlansClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListCustomPlanBillingsResponse>> {
-        const { companyId, planId, planBillingSource, status, statuses, limit, offset } = request;
+        const {
+            companyId,
+            planId,
+            planVersionId,
+            planBillingSource,
+            planBillingSources,
+            status,
+            statuses,
+            limit,
+            offset,
+        } = request;
         const _queryParams: Record<string, unknown> = {
             company_id: companyId,
             plan_id: planId,
+            plan_version_id: planVersionId,
             plan_billing_source:
                 planBillingSource != null
                     ? serializers.PlanBillingSource.jsonOrThrow(planBillingSource, { unrecognizedObjectKeys: "strip" })
                     : undefined,
+            plan_billing_sources: Array.isArray(planBillingSources)
+                ? planBillingSources.map((item) =>
+                      serializers.PlanBillingSource.jsonOrThrow(item, { unrecognizedObjectKeys: "strip" }),
+                  )
+                : planBillingSources != null
+                  ? serializers.PlanBillingSource.jsonOrThrow(planBillingSources, { unrecognizedObjectKeys: "strip" })
+                  : undefined,
             status:
                 status != null
                     ? serializers.CustomPlanBillingStatus.jsonOrThrow(status, { unrecognizedObjectKeys: "strip" })
@@ -373,7 +393,7 @@ export class PlansClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `custom-plan-billings/${core.url.encodePathParam(custom_plan_billing_id)}/mark-paid`,
+                `custom-plan-billings/${core.url.encodePathParam(custom_plan_billing_id, errors.SchematicError)}/mark-paid`,
             ),
             method: "PUT",
             headers: _headers,
@@ -523,7 +543,7 @@ export class PlansClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `custom-plan-billings/${core.url.encodePathParam(custom_plan_billing_id)}/retry`,
+                `custom-plan-billings/${core.url.encodePathParam(custom_plan_billing_id, errors.SchematicError)}/retry`,
             ),
             method: "PUT",
             headers: _headers,
@@ -1152,7 +1172,7 @@ export class PlansClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `plans/${core.url.encodePathParam(plan_id)}`,
+                `plans/${core.url.encodePathParam(plan_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -1280,7 +1300,7 @@ export class PlansClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `plans/${core.url.encodePathParam(plan_id)}`,
+                `plans/${core.url.encodePathParam(plan_id, errors.SchematicError)}`,
             ),
             method: "PUT",
             headers: _headers,
@@ -1416,7 +1436,7 @@ export class PlansClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `plans/${core.url.encodePathParam(plan_id)}`,
+                `plans/${core.url.encodePathParam(plan_id, errors.SchematicError)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -1552,7 +1572,7 @@ export class PlansClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `plans/${core.url.encodePathParam(plan_id)}/billing_products`,
+                `plans/${core.url.encodePathParam(plan_id, errors.SchematicError)}/billing_products`,
             ),
             method: "PUT",
             headers: _headers,
@@ -2491,7 +2511,7 @@ export class PlansClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `plans/version/${core.url.encodePathParam(plan_version_id)}`,
+                `plans/version/${core.url.encodePathParam(plan_version_id, errors.SchematicError)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -2640,7 +2660,7 @@ export class PlansClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `plans/version/${core.url.encodePathParam(plan_version_id)}/diff`,
+                `plans/version/${core.url.encodePathParam(plan_version_id, errors.SchematicError)}/diff`,
             ),
             method: "GET",
             headers: _headers,
@@ -2776,7 +2796,7 @@ export class PlansClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `plans/version/${core.url.encodePathParam(plan_version_id)}/publish`,
+                `plans/version/${core.url.encodePathParam(plan_version_id, errors.SchematicError)}/publish`,
             ),
             method: "PUT",
             headers: _headers,
@@ -2877,6 +2897,155 @@ export class PlansClient {
             _response.rawResponse,
             "PUT",
             "/plans/version/{plan_version_id}/publish",
+        );
+    }
+
+    /**
+     * @param {string} plan_version_id - plan_version_id
+     * @param {Schematic.PublishPlanVersionRequestBody} request
+     * @param {PlansClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.BadRequestError}
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
+     * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
+     *
+     * @example
+     *     await client.plans.previewPublishPlanVersion("plan_version_id", {
+     *         excludedCompanyIds: ["excluded_company_ids"],
+     *         migrationStrategy: "end_of_billing_period"
+     *     })
+     */
+    public previewPublishPlanVersion(
+        plan_version_id: string,
+        request: Schematic.PublishPlanVersionRequestBody,
+        requestOptions?: PlansClient.RequestOptions,
+    ): core.HttpResponsePromise<Schematic.PreviewPublishPlanVersionResponse> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__previewPublishPlanVersion(plan_version_id, request, requestOptions),
+        );
+    }
+
+    private async __previewPublishPlanVersion(
+        plan_version_id: string,
+        request: Schematic.PublishPlanVersionRequestBody,
+        requestOptions?: PlansClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.PreviewPublishPlanVersionResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                `plans/version/${core.url.encodePathParam(plan_version_id, errors.SchematicError)}/publish-preview`,
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: mergeAdditionalBodyParameters(
+                serializers.PublishPlanVersionRequestBody.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+                requestOptions?.additionalBodyParameters,
+            ),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.PreviewPublishPlanVersionResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new Schematic.BadRequestError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/plans/version/{plan_version_id}/publish-preview",
         );
     }
 }

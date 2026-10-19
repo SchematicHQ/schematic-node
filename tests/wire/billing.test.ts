@@ -4019,16 +4019,22 @@ describe("BillingClient", () => {
                     account_id: "account_id",
                     billing_customer_id: "billing_customer_id",
                     collection_method: "charge_automatically",
+                    collector: "external",
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
+                    currency: "aed",
                     days_until_due: 1000000,
                     environment_id: "environment_id",
+                    gating_days: 1000000,
                     id: "id",
                     is_default: true,
                     name: "name",
+                    overdraft_limit: 1000000,
+                    payment_gating: "keep_serving",
                     payment_method_id: "payment_method_id",
                     proration_behavior: "create_prorations",
                     provider_type: "metronome",
+                    purchase_order: "purchase_order",
                     updated_at: "2024-01-15T09:30:00Z",
                 },
             ],
@@ -4056,16 +4062,22 @@ describe("BillingClient", () => {
                     accountId: "account_id",
                     billingCustomerId: "billing_customer_id",
                     collectionMethod: "charge_automatically",
+                    collector: "external",
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    currency: "aed",
                     daysUntilDue: 1000000,
                     environmentId: "environment_id",
+                    gatingDays: 1000000,
                     id: "id",
                     isDefault: true,
                     name: "name",
+                    overdraftLimit: 1000000,
+                    paymentGating: "keep_serving",
                     paymentMethodId: "payment_method_id",
                     prorationBehavior: "create_prorations",
                     providerType: "metronome",
+                    purchaseOrder: "purchase_order",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
             ],
@@ -4153,16 +4165,22 @@ describe("BillingClient", () => {
                 account_id: "account_id",
                 billing_customer_id: "billing_customer_id",
                 collection_method: "charge_automatically",
+                collector: "external",
                 company_id: "company_id",
                 created_at: "2024-01-15T09:30:00Z",
+                currency: "aed",
                 days_until_due: 1000000,
                 environment_id: "environment_id",
+                gating_days: 1000000,
                 id: "id",
                 is_default: true,
                 name: "name",
+                overdraft_limit: 1000000,
+                payment_gating: "keep_serving",
                 payment_method_id: "payment_method_id",
                 proration_behavior: "create_prorations",
                 provider_type: "metronome",
+                purchase_order: "purchase_order",
                 updated_at: "2024-01-15T09:30:00Z",
             },
             params: { key: "value" },
@@ -4185,16 +4203,22 @@ describe("BillingClient", () => {
                 accountId: "account_id",
                 billingCustomerId: "billing_customer_id",
                 collectionMethod: "charge_automatically",
+                collector: "external",
                 companyId: "company_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                currency: "aed",
                 daysUntilDue: 1000000,
                 environmentId: "environment_id",
+                gatingDays: 1000000,
                 id: "id",
                 isDefault: true,
                 name: "name",
+                overdraftLimit: 1000000,
+                paymentGating: "keep_serving",
                 paymentMethodId: "payment_method_id",
                 prorationBehavior: "create_prorations",
                 providerType: "metronome",
+                purchaseOrder: "purchase_order",
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
             },
             params: {
@@ -5140,6 +5164,1225 @@ describe("BillingClient", () => {
                 subscriptionExternalId: "subscription_external_id",
                 totalPrice: 1000000,
             });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("getCompanyNativeSubscription (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                cancel_at: "2024-01-15T09:30:00Z",
+                company_id: "company_id",
+                currency: "aed",
+                id: "id",
+                lines: [
+                    {
+                        anchor: "2024-01-15T09:30:00Z",
+                        anchor_day: 1000000,
+                        base: true,
+                        cadence_count: 1000000,
+                        cadence_unit: "day",
+                        currency: "aed",
+                        effective_from: "2024-01-15T09:30:00Z",
+                        id: "id",
+                        kind: "allowance",
+                        quantity: 1000000,
+                        source_id: "source_id",
+                        taxable: true,
+                        timing: "in_advance",
+                    },
+                ],
+                period_end: "2024-01-15T09:30:00Z",
+                period_start: "2024-01-15T09:30:00Z",
+                scheduled_changes: [{ action: "add", effective_at: "2024-01-15T09:30:00Z" }],
+                started_at: "2024-01-15T09:30:00Z",
+                statement: {
+                    currency: "aed",
+                    lines: [{ amount: 1000000, kind: "adjustment" }],
+                    period_end: "2024-01-15T09:30:00Z",
+                    period_start: "2024-01-15T09:30:00Z",
+                    subtotal: 1000000,
+                    total: 1000000,
+                },
+                status: "active",
+                terms: {
+                    collection_method: "charge_automatically",
+                    collector: "external",
+                    currency: "aed",
+                    days_until_due: 1000000,
+                    payment_gating: "keep_serving",
+                    purchase_order: "purchase_order",
+                },
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/companies/company_id/native-subscription")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.billing.getCompanyNativeSubscription("company_id");
+        expect(response).toEqual({
+            data: {
+                cancelAt: new Date("2024-01-15T09:30:00.000Z"),
+                companyId: "company_id",
+                currency: "aed",
+                id: "id",
+                lines: [
+                    {
+                        anchor: new Date("2024-01-15T09:30:00.000Z"),
+                        anchorDay: 1000000,
+                        base: true,
+                        cadenceCount: 1000000,
+                        cadenceUnit: "day",
+                        currency: "aed",
+                        effectiveFrom: new Date("2024-01-15T09:30:00.000Z"),
+                        id: "id",
+                        kind: "allowance",
+                        quantity: 1000000,
+                        sourceId: "source_id",
+                        taxable: true,
+                        timing: "in_advance",
+                    },
+                ],
+                periodEnd: new Date("2024-01-15T09:30:00.000Z"),
+                periodStart: new Date("2024-01-15T09:30:00.000Z"),
+                scheduledChanges: [
+                    {
+                        action: "add",
+                        effectiveAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                ],
+                startedAt: new Date("2024-01-15T09:30:00.000Z"),
+                statement: {
+                    currency: "aed",
+                    lines: [
+                        {
+                            amount: 1000000,
+                            kind: "adjustment",
+                        },
+                    ],
+                    periodEnd: new Date("2024-01-15T09:30:00.000Z"),
+                    periodStart: new Date("2024-01-15T09:30:00.000Z"),
+                    subtotal: 1000000,
+                    total: 1000000,
+                },
+                status: "active",
+                terms: {
+                    collectionMethod: "charge_automatically",
+                    collector: "external",
+                    currency: "aed",
+                    daysUntilDue: 1000000,
+                    paymentGating: "keep_serving",
+                    purchaseOrder: "purchase_order",
+                },
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("getCompanyNativeSubscription (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/companies/company_id/native-subscription")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.getCompanyNativeSubscription("company_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getCompanyNativeSubscription (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/companies/company_id/native-subscription")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.getCompanyNativeSubscription("company_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getCompanyNativeSubscription (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/companies/company_id/native-subscription")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.getCompanyNativeSubscription("company_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getCompanyNativeSubscription (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/companies/company_id/native-subscription")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.getCompanyNativeSubscription("company_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("listNativeInvoices (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    amount_paid: 1000000,
+                    amount_remaining: 1000000,
+                    collection_state: "exported",
+                    collector: "external",
+                    company_id: "company_id",
+                    contract_id: "contract_id",
+                    created_at: "2024-01-15T09:30:00Z",
+                    currency: "aed",
+                    document_state: "credited",
+                    due_at: "2024-01-15T09:30:00Z",
+                    finalized_at: "2024-01-15T09:30:00Z",
+                    id: "id",
+                    number: "number",
+                    period_end: "2024-01-15T09:30:00Z",
+                    period_start: "2024-01-15T09:30:00Z",
+                    status: "draft",
+                    subtotal: 1000000,
+                    total: 1000000,
+                },
+            ],
+            params: {
+                company_id: "company_id",
+                contract_id: "contract_id",
+                document_state: "credited",
+                limit: 1000000,
+                offset: 1000000,
+            },
+        };
+
+        server.mockEndpoint().get("/invoices").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.billing.listNativeInvoices({
+            companyId: "company_id",
+            contractId: "contract_id",
+            documentState: "credited",
+            limit: 1000000,
+            offset: 1000000,
+        });
+        expect(response).toEqual({
+            data: [
+                {
+                    amountPaid: 1000000,
+                    amountRemaining: 1000000,
+                    collectionState: "exported",
+                    collector: "external",
+                    companyId: "company_id",
+                    contractId: "contract_id",
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    currency: "aed",
+                    documentState: "credited",
+                    dueAt: new Date("2024-01-15T09:30:00.000Z"),
+                    finalizedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    id: "id",
+                    number: "number",
+                    periodEnd: new Date("2024-01-15T09:30:00.000Z"),
+                    periodStart: new Date("2024-01-15T09:30:00.000Z"),
+                    status: "draft",
+                    subtotal: 1000000,
+                    total: 1000000,
+                },
+            ],
+            params: {
+                companyId: "company_id",
+                contractId: "contract_id",
+                documentState: "credited",
+                limit: 1000000,
+                offset: 1000000,
+            },
+        });
+    });
+
+    test("listNativeInvoices (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/invoices").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.billing.listNativeInvoices();
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("listNativeInvoices (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/invoices").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.billing.listNativeInvoices();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("listNativeInvoices (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/invoices").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.billing.listNativeInvoices();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("listNativeInvoices (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/invoices").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.billing.listNativeInvoices();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("listNativeInvoices (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/invoices").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.billing.listNativeInvoices();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("getNativeInvoice (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                amount_paid: 1000000,
+                amount_remaining: 1000000,
+                collection_state: "exported",
+                collector: "external",
+                company_id: "company_id",
+                contract_id: "contract_id",
+                created_at: "2024-01-15T09:30:00Z",
+                currency: "aed",
+                document_state: "credited",
+                due_at: "2024-01-15T09:30:00Z",
+                finalized_at: "2024-01-15T09:30:00Z",
+                id: "id",
+                lines: [{ amount: 1000000, charge_ids: ["charge_ids"], id: "id", kind: "adjustment", taxable: true }],
+                number: "number",
+                period_end: "2024-01-15T09:30:00Z",
+                period_start: "2024-01-15T09:30:00Z",
+                settlements: [{ amount: 1000000, collector: "external", id: "id", settled_at: "2024-01-15T09:30:00Z" }],
+                status: "draft",
+                subtotal: 1000000,
+                terms: {
+                    collection_method: "charge_automatically",
+                    collector: "external",
+                    currency: "aed",
+                    days_until_due: 1000000,
+                    payment_gating: "keep_serving",
+                    purchase_order: "purchase_order",
+                },
+                total: 1000000,
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/invoices/invoice_id")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.billing.getNativeInvoice("invoice_id");
+        expect(response).toEqual({
+            data: {
+                amountPaid: 1000000,
+                amountRemaining: 1000000,
+                collectionState: "exported",
+                collector: "external",
+                companyId: "company_id",
+                contractId: "contract_id",
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                currency: "aed",
+                documentState: "credited",
+                dueAt: new Date("2024-01-15T09:30:00.000Z"),
+                finalizedAt: new Date("2024-01-15T09:30:00.000Z"),
+                id: "id",
+                lines: [
+                    {
+                        amount: 1000000,
+                        chargeIds: ["charge_ids"],
+                        id: "id",
+                        kind: "adjustment",
+                        taxable: true,
+                    },
+                ],
+                number: "number",
+                periodEnd: new Date("2024-01-15T09:30:00.000Z"),
+                periodStart: new Date("2024-01-15T09:30:00.000Z"),
+                settlements: [
+                    {
+                        amount: 1000000,
+                        collector: "external",
+                        id: "id",
+                        settledAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                ],
+                status: "draft",
+                subtotal: 1000000,
+                terms: {
+                    collectionMethod: "charge_automatically",
+                    collector: "external",
+                    currency: "aed",
+                    daysUntilDue: 1000000,
+                    paymentGating: "keep_serving",
+                    purchaseOrder: "purchase_order",
+                },
+                total: 1000000,
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("getNativeInvoice (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/invoices/invoice_id")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.getNativeInvoice("invoice_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getNativeInvoice (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/invoices/invoice_id")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.getNativeInvoice("invoice_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getNativeInvoice (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/invoices/invoice_id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.getNativeInvoice("invoice_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getNativeInvoice (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/invoices/invoice_id")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.getNativeInvoice("invoice_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("finalizeNativeInvoice (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                amount_paid: 1000000,
+                amount_remaining: 1000000,
+                collection_state: "exported",
+                collector: "external",
+                company_id: "company_id",
+                contract_id: "contract_id",
+                created_at: "2024-01-15T09:30:00Z",
+                currency: "aed",
+                document_state: "credited",
+                due_at: "2024-01-15T09:30:00Z",
+                finalized_at: "2024-01-15T09:30:00Z",
+                id: "id",
+                lines: [{ amount: 1000000, charge_ids: ["charge_ids"], id: "id", kind: "adjustment", taxable: true }],
+                number: "number",
+                period_end: "2024-01-15T09:30:00Z",
+                period_start: "2024-01-15T09:30:00Z",
+                settlements: [{ amount: 1000000, collector: "external", id: "id", settled_at: "2024-01-15T09:30:00Z" }],
+                status: "draft",
+                subtotal: 1000000,
+                terms: {
+                    collection_method: "charge_automatically",
+                    collector: "external",
+                    currency: "aed",
+                    days_until_due: 1000000,
+                    payment_gating: "keep_serving",
+                    purchase_order: "purchase_order",
+                },
+                total: 1000000,
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/invoices/invoice_id/finalize")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.billing.finalizeNativeInvoice("invoice_id");
+        expect(response).toEqual({
+            data: {
+                amountPaid: 1000000,
+                amountRemaining: 1000000,
+                collectionState: "exported",
+                collector: "external",
+                companyId: "company_id",
+                contractId: "contract_id",
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                currency: "aed",
+                documentState: "credited",
+                dueAt: new Date("2024-01-15T09:30:00.000Z"),
+                finalizedAt: new Date("2024-01-15T09:30:00.000Z"),
+                id: "id",
+                lines: [
+                    {
+                        amount: 1000000,
+                        chargeIds: ["charge_ids"],
+                        id: "id",
+                        kind: "adjustment",
+                        taxable: true,
+                    },
+                ],
+                number: "number",
+                periodEnd: new Date("2024-01-15T09:30:00.000Z"),
+                periodStart: new Date("2024-01-15T09:30:00.000Z"),
+                settlements: [
+                    {
+                        amount: 1000000,
+                        collector: "external",
+                        id: "id",
+                        settledAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                ],
+                status: "draft",
+                subtotal: 1000000,
+                terms: {
+                    collectionMethod: "charge_automatically",
+                    collector: "external",
+                    currency: "aed",
+                    daysUntilDue: 1000000,
+                    paymentGating: "keep_serving",
+                    purchaseOrder: "purchase_order",
+                },
+                total: 1000000,
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("finalizeNativeInvoice (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/invoices/invoice_id/finalize")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.finalizeNativeInvoice("invoice_id");
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("finalizeNativeInvoice (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/invoices/invoice_id/finalize")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.finalizeNativeInvoice("invoice_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("finalizeNativeInvoice (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/invoices/invoice_id/finalize")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.finalizeNativeInvoice("invoice_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("finalizeNativeInvoice (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/invoices/invoice_id/finalize")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.finalizeNativeInvoice("invoice_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("finalizeNativeInvoice (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/invoices/invoice_id/finalize")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.finalizeNativeInvoice("invoice_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("markNativeInvoicePaid (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { idempotency_key: "idempotency_key" };
+        const rawResponseBody = {
+            data: {
+                amount_paid: 1000000,
+                amount_remaining: 1000000,
+                collection_state: "exported",
+                collector: "external",
+                company_id: "company_id",
+                contract_id: "contract_id",
+                created_at: "2024-01-15T09:30:00Z",
+                currency: "aed",
+                document_state: "credited",
+                due_at: "2024-01-15T09:30:00Z",
+                finalized_at: "2024-01-15T09:30:00Z",
+                id: "id",
+                lines: [{ amount: 1000000, charge_ids: ["charge_ids"], id: "id", kind: "adjustment", taxable: true }],
+                number: "number",
+                period_end: "2024-01-15T09:30:00Z",
+                period_start: "2024-01-15T09:30:00Z",
+                settlements: [{ amount: 1000000, collector: "external", id: "id", settled_at: "2024-01-15T09:30:00Z" }],
+                status: "draft",
+                subtotal: 1000000,
+                terms: {
+                    collection_method: "charge_automatically",
+                    collector: "external",
+                    currency: "aed",
+                    days_until_due: 1000000,
+                    payment_gating: "keep_serving",
+                    purchase_order: "purchase_order",
+                },
+                total: 1000000,
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/invoices/invoice_id/mark-paid")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.billing.markNativeInvoicePaid("invoice_id", {
+            idempotencyKey: "idempotency_key",
+        });
+        expect(response).toEqual({
+            data: {
+                amountPaid: 1000000,
+                amountRemaining: 1000000,
+                collectionState: "exported",
+                collector: "external",
+                companyId: "company_id",
+                contractId: "contract_id",
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                currency: "aed",
+                documentState: "credited",
+                dueAt: new Date("2024-01-15T09:30:00.000Z"),
+                finalizedAt: new Date("2024-01-15T09:30:00.000Z"),
+                id: "id",
+                lines: [
+                    {
+                        amount: 1000000,
+                        chargeIds: ["charge_ids"],
+                        id: "id",
+                        kind: "adjustment",
+                        taxable: true,
+                    },
+                ],
+                number: "number",
+                periodEnd: new Date("2024-01-15T09:30:00.000Z"),
+                periodStart: new Date("2024-01-15T09:30:00.000Z"),
+                settlements: [
+                    {
+                        amount: 1000000,
+                        collector: "external",
+                        id: "id",
+                        settledAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                ],
+                status: "draft",
+                subtotal: 1000000,
+                terms: {
+                    collectionMethod: "charge_automatically",
+                    collector: "external",
+                    currency: "aed",
+                    daysUntilDue: 1000000,
+                    paymentGating: "keep_serving",
+                    purchaseOrder: "purchase_order",
+                },
+                total: 1000000,
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("markNativeInvoicePaid (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { idempotency_key: "idempotency_key" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/invoices/invoice_id/mark-paid")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.markNativeInvoicePaid("invoice_id", {
+                idempotencyKey: "idempotency_key",
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("markNativeInvoicePaid (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { idempotency_key: "idempotency_key" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/invoices/invoice_id/mark-paid")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.markNativeInvoicePaid("invoice_id", {
+                idempotencyKey: "idempotency_key",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("markNativeInvoicePaid (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { idempotency_key: "idempotency_key" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/invoices/invoice_id/mark-paid")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.markNativeInvoicePaid("invoice_id", {
+                idempotencyKey: "idempotency_key",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("markNativeInvoicePaid (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { idempotency_key: "idempotency_key" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/invoices/invoice_id/mark-paid")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.markNativeInvoicePaid("invoice_id", {
+                idempotencyKey: "idempotency_key",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("markNativeInvoicePaid (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { idempotency_key: "idempotency_key" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/invoices/invoice_id/mark-paid")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.markNativeInvoicePaid("invoice_id", {
+                idempotencyKey: "idempotency_key",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("voidNativeInvoice (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                amount_paid: 1000000,
+                amount_remaining: 1000000,
+                collection_state: "exported",
+                collector: "external",
+                company_id: "company_id",
+                contract_id: "contract_id",
+                created_at: "2024-01-15T09:30:00Z",
+                currency: "aed",
+                document_state: "credited",
+                due_at: "2024-01-15T09:30:00Z",
+                finalized_at: "2024-01-15T09:30:00Z",
+                id: "id",
+                lines: [{ amount: 1000000, charge_ids: ["charge_ids"], id: "id", kind: "adjustment", taxable: true }],
+                number: "number",
+                period_end: "2024-01-15T09:30:00Z",
+                period_start: "2024-01-15T09:30:00Z",
+                settlements: [{ amount: 1000000, collector: "external", id: "id", settled_at: "2024-01-15T09:30:00Z" }],
+                status: "draft",
+                subtotal: 1000000,
+                terms: {
+                    collection_method: "charge_automatically",
+                    collector: "external",
+                    currency: "aed",
+                    days_until_due: 1000000,
+                    payment_gating: "keep_serving",
+                    purchase_order: "purchase_order",
+                },
+                total: 1000000,
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/invoices/invoice_id/void")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.billing.voidNativeInvoice("invoice_id");
+        expect(response).toEqual({
+            data: {
+                amountPaid: 1000000,
+                amountRemaining: 1000000,
+                collectionState: "exported",
+                collector: "external",
+                companyId: "company_id",
+                contractId: "contract_id",
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                currency: "aed",
+                documentState: "credited",
+                dueAt: new Date("2024-01-15T09:30:00.000Z"),
+                finalizedAt: new Date("2024-01-15T09:30:00.000Z"),
+                id: "id",
+                lines: [
+                    {
+                        amount: 1000000,
+                        chargeIds: ["charge_ids"],
+                        id: "id",
+                        kind: "adjustment",
+                        taxable: true,
+                    },
+                ],
+                number: "number",
+                periodEnd: new Date("2024-01-15T09:30:00.000Z"),
+                periodStart: new Date("2024-01-15T09:30:00.000Z"),
+                settlements: [
+                    {
+                        amount: 1000000,
+                        collector: "external",
+                        id: "id",
+                        settledAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                ],
+                status: "draft",
+                subtotal: 1000000,
+                terms: {
+                    collectionMethod: "charge_automatically",
+                    collector: "external",
+                    currency: "aed",
+                    daysUntilDue: 1000000,
+                    paymentGating: "keep_serving",
+                    purchaseOrder: "purchase_order",
+                },
+                total: 1000000,
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("voidNativeInvoice (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/invoices/invoice_id/void")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.voidNativeInvoice("invoice_id");
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("voidNativeInvoice (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/invoices/invoice_id/void")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.voidNativeInvoice("invoice_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("voidNativeInvoice (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/invoices/invoice_id/void")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.voidNativeInvoice("invoice_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("voidNativeInvoice (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/invoices/invoice_id/void")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.voidNativeInvoice("invoice_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("voidNativeInvoice (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/invoices/invoice_id/void")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.voidNativeInvoice("invoice_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("countNativeInvoices (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: { count: 1000000 },
+            params: {
+                company_id: "company_id",
+                contract_id: "contract_id",
+                document_state: "credited",
+                limit: 1000000,
+                offset: 1000000,
+            },
+        };
+
+        server.mockEndpoint().get("/invoices/count").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.billing.countNativeInvoices({
+            companyId: "company_id",
+            contractId: "contract_id",
+            documentState: "credited",
+            limit: 1000000,
+            offset: 1000000,
+        });
+        expect(response).toEqual({
+            data: {
+                count: 1000000,
+            },
+            params: {
+                companyId: "company_id",
+                contractId: "contract_id",
+                documentState: "credited",
+                limit: 1000000,
+                offset: 1000000,
+            },
+        });
+    });
+
+    test("countNativeInvoices (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/invoices/count").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.billing.countNativeInvoices();
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("countNativeInvoices (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/invoices/count").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.billing.countNativeInvoices();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("countNativeInvoices (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/invoices/count").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.billing.countNativeInvoices();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("countNativeInvoices (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/invoices/count").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.billing.countNativeInvoices();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("countNativeInvoices (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/invoices/count").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.billing.countNativeInvoices();
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 });

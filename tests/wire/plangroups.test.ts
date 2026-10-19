@@ -46,7 +46,6 @@ describe("PlangroupsClient", () => {
                                 flags: [
                                     {
                                         created_at: "2024-01-15T09:30:00Z",
-                                        default_value: true,
                                         description: "description",
                                         flag_type: "boolean",
                                         id: "id",
@@ -282,7 +281,6 @@ describe("PlangroupsClient", () => {
                             flags: [
                                 {
                                     created_at: "2024-01-15T09:30:00Z",
-                                    default_value: true,
                                     description: "description",
                                     flag_type: "boolean",
                                     id: "id",
@@ -546,7 +544,6 @@ describe("PlangroupsClient", () => {
                             flags: [
                                 {
                                     created_at: "2024-01-15T09:30:00Z",
-                                    default_value: true,
                                     description: "description",
                                     flag_type: "boolean",
                                     id: "id",
@@ -812,7 +809,6 @@ describe("PlangroupsClient", () => {
                             flags: [
                                 {
                                     created_at: "2024-01-15T09:30:00Z",
-                                    default_value: true,
                                     description: "description",
                                     flag_type: "boolean",
                                     id: "id",
@@ -1029,7 +1025,6 @@ describe("PlangroupsClient", () => {
                                 flags: [
                                     {
                                         created_at: "2024-01-15T09:30:00Z",
-                                        default_value: true,
                                         description: "description",
                                         flag_type: "boolean",
                                         id: "id",
@@ -1246,7 +1241,6 @@ describe("PlangroupsClient", () => {
                             flags: [
                                 {
                                     created_at: "2024-01-15T09:30:00Z",
-                                    default_value: true,
                                     description: "description",
                                     flag_type: "boolean",
                                     id: "id",
@@ -1480,7 +1474,6 @@ describe("PlangroupsClient", () => {
                                 flags: [
                                     {
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        defaultValue: true,
                                         description: "description",
                                         flagType: "boolean",
                                         id: "id",
@@ -1758,7 +1751,6 @@ describe("PlangroupsClient", () => {
                             flags: [
                                 {
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    defaultValue: true,
                                     description: "description",
                                     flagType: "boolean",
                                     id: "id",
@@ -2064,7 +2056,6 @@ describe("PlangroupsClient", () => {
                             flags: [
                                 {
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    defaultValue: true,
                                     description: "description",
                                     flagType: "boolean",
                                     id: "id",
@@ -2372,7 +2363,6 @@ describe("PlangroupsClient", () => {
                             flags: [
                                 {
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    defaultValue: true,
                                     description: "description",
                                     flagType: "boolean",
                                     id: "id",
@@ -2640,7 +2630,6 @@ describe("PlangroupsClient", () => {
                                 flags: [
                                     {
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        defaultValue: true,
                                         description: "description",
                                         flagType: "boolean",
                                         id: "id",
@@ -2895,7 +2884,6 @@ describe("PlangroupsClient", () => {
                             flags: [
                                 {
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    defaultValue: true,
                                     description: "description",
                                     flagType: "boolean",
                                     id: "id",

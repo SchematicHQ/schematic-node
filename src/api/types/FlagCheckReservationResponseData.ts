@@ -7,9 +7,9 @@ export interface FlagCheckReservationResponseData {
     creditTypeId: string;
     /** Credits held from the company's balance */
     creditsReserved: number;
-    /** The event subtype the settling track event should carry */
+    /** The event subtype the settling track event should carry, or the event name of a settling inference event */
     eventSubtype?: string;
-    /** When the unspent hold is refunded if no track event settles it */
+    /** When the unspent hold is refunded if no track or inference event settles it */
     expiresAt: Date;
     id: string;
     /** Units of usage the hold covers, as requested */

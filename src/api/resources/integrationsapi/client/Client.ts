@@ -60,7 +60,7 @@ export class IntegrationsapiClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `integration/start/${core.url.encodePathParam(integration_id)}`,
+                `integration/start/${core.url.encodePathParam(integration_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -341,7 +341,7 @@ export class IntegrationsapiClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `integrations/${core.url.encodePathParam(type)}/webhook-url`,
+                `integrations/${core.url.encodePathParam(type, errors.SchematicError)}/webhook-url`,
             ),
             method: "GET",
             headers: _headers,
@@ -1798,7 +1798,7 @@ export class IntegrationsapiClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `integrations/uninstall/${core.url.encodePathParam(integration_id)}`,
+                `integrations/uninstall/${core.url.encodePathParam(integration_id, errors.SchematicError)}`,
             ),
             method: "DELETE",
             headers: _headers,

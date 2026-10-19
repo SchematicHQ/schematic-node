@@ -352,7 +352,7 @@ export class DataexportsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `data-exports/${core.url.encodePathParam(data_export_id)}`,
+                `data-exports/${core.url.encodePathParam(data_export_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -469,7 +469,7 @@ export class DataexportsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `data-exports/${core.url.encodePathParam(data_export_id)}/artifact`,
+                `data-exports/${core.url.encodePathParam(data_export_id, errors.SchematicError)}/artifact`,
             ),
             method: "GET",
             headers: _headers,

@@ -3,8 +3,10 @@
 import type * as Schematic from "../index";
 
 export interface PreflightRequestBody {
-    /** Cost in credits of the action, keyed by credit ID, for callers that have already computed it. Takes precedence over usage and event_usage on credit balance conditions for the same credit. A cost of zero means the action is free, not that the input is absent */
+    /** Cost in credits of the action, keyed by credit ID, for callers that have already computed it. Takes precedence over event_quantities, event_usage and usage on credit balance conditions for the same credit. A cost of zero means the action is free, not that the input is absent */
     creditCost?: Record<string, number>;
+    /** An event of a specific subtype, priced the way it would burn credits: quantity at the entitlement's consumption rate, plus each of quantities at its rate in the entitlement's quantity rates. Use it to preflight an inference call by its request and token counts. Applies only to credit balance conditions whose event subtype matches, where it takes precedence over event_usage and usage; credit_cost for the same credit still wins */
+    eventQuantities?: Schematic.PreflightEventQuantitiesRequestBody;
     /** Usage of a specific event subtype. Preferred over usage when the subtype is known, since it only affects conditions measuring that subtype */
     eventUsage?: Schematic.PreflightEventUsageRequestBody;
     /** Quantity of usage to simulate against any numeric condition encountered while evaluating the flag. Zero has no effect */

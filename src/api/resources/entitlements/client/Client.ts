@@ -357,7 +357,7 @@ export class EntitlementsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `company-overrides/${core.url.encodePathParam(company_override_id)}`,
+                `company-overrides/${core.url.encodePathParam(company_override_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -488,7 +488,7 @@ export class EntitlementsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `company-overrides/${core.url.encodePathParam(company_override_id)}`,
+                `company-overrides/${core.url.encodePathParam(company_override_id, errors.SchematicError)}`,
             ),
             method: "PUT",
             headers: _headers,
@@ -629,7 +629,7 @@ export class EntitlementsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `company-overrides/${core.url.encodePathParam(company_override_id)}`,
+                `company-overrides/${core.url.encodePathParam(company_override_id, errors.SchematicError)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -2445,7 +2445,7 @@ export class EntitlementsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `plan-entitlements/${core.url.encodePathParam(plan_entitlement_id)}`,
+                `plan-entitlements/${core.url.encodePathParam(plan_entitlement_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -2576,7 +2576,7 @@ export class EntitlementsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `plan-entitlements/${core.url.encodePathParam(plan_entitlement_id)}`,
+                `plan-entitlements/${core.url.encodePathParam(plan_entitlement_id, errors.SchematicError)}`,
             ),
             method: "PUT",
             headers: _headers,
@@ -2717,7 +2717,7 @@ export class EntitlementsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `plan-entitlements/${core.url.encodePathParam(plan_entitlement_id)}`,
+                `plan-entitlements/${core.url.encodePathParam(plan_entitlement_id, errors.SchematicError)}`,
             ),
             method: "DELETE",
             headers: _headers,

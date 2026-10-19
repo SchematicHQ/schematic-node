@@ -344,7 +344,7 @@ export class CatalogsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `catalogs/${core.url.encodePathParam(catalog_id)}`,
+                `catalogs/${core.url.encodePathParam(catalog_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -466,7 +466,7 @@ export class CatalogsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `catalogs/${core.url.encodePathParam(catalog_id)}`,
+                `catalogs/${core.url.encodePathParam(catalog_id, errors.SchematicError)}`,
             ),
             method: "PUT",
             headers: _headers,
@@ -602,7 +602,7 @@ export class CatalogsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `catalogs/${core.url.encodePathParam(catalog_id)}`,
+                `catalogs/${core.url.encodePathParam(catalog_id, errors.SchematicError)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -731,7 +731,7 @@ export class CatalogsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `catalogs/${core.url.encodePathParam(catalog_id)}/configuration`,
+                `catalogs/${core.url.encodePathParam(catalog_id, errors.SchematicError)}/configuration`,
             ),
             method: "GET",
             headers: _headers,
@@ -858,7 +858,7 @@ export class CatalogsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `catalogs/${core.url.encodePathParam(catalog_id)}/configuration`,
+                `catalogs/${core.url.encodePathParam(catalog_id, errors.SchematicError)}/configuration`,
             ),
             method: "PUT",
             headers: _headers,
@@ -1000,7 +1000,7 @@ export class CatalogsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `catalogs/${core.url.encodePathParam(catalog_id)}/credit-bundles`,
+                `catalogs/${core.url.encodePathParam(catalog_id, errors.SchematicError)}/credit-bundles`,
             ),
             method: "GET",
             headers: _headers,
@@ -1129,7 +1129,7 @@ export class CatalogsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `catalogs/${core.url.encodePathParam(catalog_id)}/credit-bundles/${core.url.encodePathParam(credit_bundle_id)}`,
+                `catalogs/${core.url.encodePathParam(catalog_id, errors.SchematicError)}/credit-bundles/${core.url.encodePathParam(credit_bundle_id, errors.SchematicError)}`,
             ),
             method: "POST",
             headers: _headers,
@@ -1260,7 +1260,7 @@ export class CatalogsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `catalogs/${core.url.encodePathParam(catalog_id)}/credit-bundles/${core.url.encodePathParam(credit_bundle_id)}`,
+                `catalogs/${core.url.encodePathParam(catalog_id, errors.SchematicError)}/credit-bundles/${core.url.encodePathParam(credit_bundle_id, errors.SchematicError)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -1385,7 +1385,7 @@ export class CatalogsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `catalogs/${core.url.encodePathParam(catalog_id)}/features`,
+                `catalogs/${core.url.encodePathParam(catalog_id, errors.SchematicError)}/features`,
             ),
             method: "GET",
             headers: _headers,
@@ -1508,7 +1508,7 @@ export class CatalogsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `catalogs/${core.url.encodePathParam(catalog_id)}/plans`,
+                `catalogs/${core.url.encodePathParam(catalog_id, errors.SchematicError)}/plans`,
             ),
             method: "GET",
             headers: _headers,
@@ -1630,7 +1630,7 @@ export class CatalogsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `catalogs/${core.url.encodePathParam(catalog_id)}/plans/${core.url.encodePathParam(plan_id)}`,
+                `catalogs/${core.url.encodePathParam(catalog_id, errors.SchematicError)}/plans/${core.url.encodePathParam(plan_id, errors.SchematicError)}`,
             ),
             method: "POST",
             headers: _headers,
@@ -1759,7 +1759,7 @@ export class CatalogsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `catalogs/${core.url.encodePathParam(catalog_id)}/plans/${core.url.encodePathParam(plan_id)}`,
+                `catalogs/${core.url.encodePathParam(catalog_id, errors.SchematicError)}/plans/${core.url.encodePathParam(plan_id, errors.SchematicError)}`,
             ),
             method: "DELETE",
             headers: _headers,

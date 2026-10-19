@@ -9,7 +9,7 @@ export const CreateOrUpdateFlagRequestBody: core.serialization.ObjectSchema<
     serializers.CreateOrUpdateFlagRequestBody.Raw,
     Schematic.CreateOrUpdateFlagRequestBody
 > = core.serialization.object({
-    defaultValue: core.serialization.property("default_value", core.serialization.boolean()),
+    defaultValue: core.serialization.property("default_value", core.serialization.boolean().optional()),
     description: core.serialization.string(),
     featureId: core.serialization.property("feature_id", core.serialization.string().optional()),
     flagType: core.serialization.property("flag_type", FlagType),
@@ -24,7 +24,7 @@ export const CreateOrUpdateFlagRequestBody: core.serialization.ObjectSchema<
 
 export declare namespace CreateOrUpdateFlagRequestBody {
     export interface Raw {
-        default_value: boolean;
+        default_value?: boolean | null;
         description: string;
         feature_id?: string | null;
         flag_type: FlagType.Raw;

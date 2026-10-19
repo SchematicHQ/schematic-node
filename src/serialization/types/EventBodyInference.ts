@@ -18,12 +18,14 @@ export const EventBodyInference: core.serialization.ObjectSchema<
     currency: core.serialization.string().optional(),
     event: core.serialization.string().optional(),
     inputTokens: core.serialization.property("input_tokens", core.serialization.number()),
+    leaseId: core.serialization.property("lease_id", core.serialization.string().optional()),
     operation: core.serialization.string().optional(),
     outputTokens: core.serialization.property("output_tokens", core.serialization.number()),
     provider: core.serialization.string(),
     reasoningTokens: core.serialization.property("reasoning_tokens", core.serialization.number().optional()),
     requestModel: core.serialization.property("request_model", core.serialization.string().optional()),
     requests: core.serialization.number().optional(),
+    reservationId: core.serialization.property("reservation_id", core.serialization.string().optional()),
     responseModel: core.serialization.property("response_model", core.serialization.string()),
     user: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
 });
@@ -37,12 +39,14 @@ export declare namespace EventBodyInference {
         currency?: string | null;
         event?: string | null;
         input_tokens: number;
+        lease_id?: string | null;
         operation?: string | null;
         output_tokens: number;
         provider: string;
         reasoning_tokens?: number | null;
         request_model?: string | null;
         requests?: number | null;
+        reservation_id?: string | null;
         response_model: string;
         user?: Record<string, string> | null;
     }

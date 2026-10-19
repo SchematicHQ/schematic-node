@@ -5,6 +5,9 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingCollectionMethod } from "./BillingCollectionMethod";
 import { BillingProviderType } from "./BillingProviderType";
+import { Collector } from "./Collector";
+import { Currency } from "./Currency";
+import { PaymentGating } from "./PaymentGating";
 import { ProrationBehavior } from "./ProrationBehavior";
 
 export const CompanyBillingProfileResponseData: core.serialization.ObjectSchema<
@@ -14,16 +17,22 @@ export const CompanyBillingProfileResponseData: core.serialization.ObjectSchema<
     accountId: core.serialization.property("account_id", core.serialization.string()),
     billingCustomerId: core.serialization.property("billing_customer_id", core.serialization.string().optional()),
     collectionMethod: core.serialization.property("collection_method", BillingCollectionMethod),
+    collector: Collector.optional(),
     companyId: core.serialization.property("company_id", core.serialization.string()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
+    currency: Currency.optional(),
     daysUntilDue: core.serialization.property("days_until_due", core.serialization.number().optional()),
     environmentId: core.serialization.property("environment_id", core.serialization.string()),
+    gatingDays: core.serialization.property("gating_days", core.serialization.number()),
     id: core.serialization.string(),
     isDefault: core.serialization.property("is_default", core.serialization.boolean()),
     name: core.serialization.string().optional(),
+    overdraftLimit: core.serialization.property("overdraft_limit", core.serialization.number().optional()),
+    paymentGating: core.serialization.property("payment_gating", PaymentGating),
     paymentMethodId: core.serialization.property("payment_method_id", core.serialization.string().optional()),
     prorationBehavior: core.serialization.property("proration_behavior", ProrationBehavior.optional()),
     providerType: core.serialization.property("provider_type", BillingProviderType),
+    purchaseOrder: core.serialization.property("purchase_order", core.serialization.string().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
 });
 
@@ -32,16 +41,22 @@ export declare namespace CompanyBillingProfileResponseData {
         account_id: string;
         billing_customer_id?: string | null;
         collection_method: BillingCollectionMethod.Raw;
+        collector?: Collector.Raw | null;
         company_id: string;
         created_at: string;
+        currency?: Currency.Raw | null;
         days_until_due?: number | null;
         environment_id: string;
+        gating_days: number;
         id: string;
         is_default: boolean;
         name?: string | null;
+        overdraft_limit?: number | null;
+        payment_gating: PaymentGating.Raw;
         payment_method_id?: string | null;
         proration_behavior?: ProrationBehavior.Raw | null;
         provider_type: BillingProviderType.Raw;
+        purchase_order?: string | null;
         updated_at: string;
     }
 }

@@ -211,7 +211,7 @@ export class AccountsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `account-members/${core.url.encodePathParam(account_member_id)}`,
+                `account-members/${core.url.encodePathParam(account_member_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -769,7 +769,7 @@ export class AccountsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `api-keys/${core.url.encodePathParam(api_key_id)}`,
+                `api-keys/${core.url.encodePathParam(api_key_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -891,7 +891,7 @@ export class AccountsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `api-keys/${core.url.encodePathParam(api_key_id)}`,
+                `api-keys/${core.url.encodePathParam(api_key_id, errors.SchematicError)}`,
             ),
             method: "PUT",
             headers: _headers,
@@ -1027,7 +1027,7 @@ export class AccountsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `api-keys/${core.url.encodePathParam(api_key_id)}`,
+                `api-keys/${core.url.encodePathParam(api_key_id, errors.SchematicError)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -1457,7 +1457,7 @@ export class AccountsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `audit-log/${core.url.encodePathParam(audit_log_id)}`,
+                `audit-log/${core.url.encodePathParam(audit_log_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -2013,7 +2013,7 @@ export class AccountsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `environments/${core.url.encodePathParam(environment_id)}`,
+                `environments/${core.url.encodePathParam(environment_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -2140,7 +2140,7 @@ export class AccountsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `environments/${core.url.encodePathParam(environment_id)}`,
+                `environments/${core.url.encodePathParam(environment_id, errors.SchematicError)}`,
             ),
             method: "PUT",
             headers: _headers,
@@ -2281,7 +2281,7 @@ export class AccountsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `environments/${core.url.encodePathParam(environment_id)}`,
+                `environments/${core.url.encodePathParam(environment_id, errors.SchematicError)}`,
             ),
             method: "DELETE",
             headers: _headers,

@@ -221,7 +221,7 @@ export class PlanmigrationsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `plan-version-company-migrations/${core.url.encodePathParam(plan_version_company_migration_id)}/retry`,
+                `plan-version-company-migrations/${core.url.encodePathParam(plan_version_company_migration_id, errors.SchematicError)}/retry`,
             ),
             method: "POST",
             headers: _headers,
@@ -807,7 +807,7 @@ export class PlanmigrationsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `plan-version-migrations/${core.url.encodePathParam(plan_version_migration_id)}`,
+                `plan-version-migrations/${core.url.encodePathParam(plan_version_migration_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -931,7 +931,7 @@ export class PlanmigrationsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `plan-version-migrations/${core.url.encodePathParam(plan_version_migration_id)}/cancel`,
+                `plan-version-migrations/${core.url.encodePathParam(plan_version_migration_id, errors.SchematicError)}/cancel`,
             ),
             method: "POST",
             headers: _headers,
@@ -1071,7 +1071,7 @@ export class PlanmigrationsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `plan-version-migrations/${core.url.encodePathParam(plan_version_migration_id)}/complete-now`,
+                `plan-version-migrations/${core.url.encodePathParam(plan_version_migration_id, errors.SchematicError)}/complete-now`,
             ),
             method: "POST",
             headers: _headers,
@@ -1219,7 +1219,7 @@ export class PlanmigrationsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `plan-version-migrations/${core.url.encodePathParam(plan_version_migration_id)}/retry`,
+                `plan-version-migrations/${core.url.encodePathParam(plan_version_migration_id, errors.SchematicError)}/retry`,
             ),
             method: "POST",
             headers: _headers,

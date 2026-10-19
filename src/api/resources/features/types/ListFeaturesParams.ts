@@ -21,7 +21,7 @@ export interface ListFeaturesParams {
     planVersionId?: string;
     /** Search by feature name or ID */
     q?: string;
-    /** Filter out features that already have a company override for the specified company ID */
+    /** Filter out features that have an unexpired company override for the specified company ID */
     withoutCompanyOverrideFor?: string;
     /** Filter out features that already have a plan entitlement for the specified plan ID */
     withoutPlanEntitlementFor?: string;

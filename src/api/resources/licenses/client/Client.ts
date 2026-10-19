@@ -207,7 +207,7 @@ export class LicensesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `licenses/${core.url.encodePathParam(license_id)}`,
+                `licenses/${core.url.encodePathParam(license_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,

@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { PreflightEventQuantitiesRequestBody } from "./PreflightEventQuantitiesRequestBody";
 import { PreflightEventUsageRequestBody } from "./PreflightEventUsageRequestBody";
 
 export const PreflightRequestBody: core.serialization.ObjectSchema<
@@ -13,6 +14,7 @@ export const PreflightRequestBody: core.serialization.ObjectSchema<
         "credit_cost",
         core.serialization.record(core.serialization.string(), core.serialization.number()).optional(),
     ),
+    eventQuantities: core.serialization.property("event_quantities", PreflightEventQuantitiesRequestBody.optional()),
     eventUsage: core.serialization.property("event_usage", PreflightEventUsageRequestBody.optional()),
     usage: core.serialization.number().optional(),
 });
@@ -20,6 +22,7 @@ export const PreflightRequestBody: core.serialization.ObjectSchema<
 export declare namespace PreflightRequestBody {
     export interface Raw {
         credit_cost?: Record<string, number> | null;
+        event_quantities?: PreflightEventQuantitiesRequestBody.Raw | null;
         event_usage?: PreflightEventUsageRequestBody.Raw | null;
         usage?: number | null;
     }

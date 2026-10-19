@@ -4,6 +4,7 @@ import type * as Schematic from "../index";
 
 export interface CreditSpendPolicyResponseData {
     billingCreditId: string;
+    /** The company the policy applies in */
     companyId?: string;
     /** Credits spent in the current window. Set only by the usage route, and only for a window cap. */
     consumed?: number;
@@ -17,6 +18,7 @@ export interface CreditSpendPolicyResponseData {
     resetsAt?: Date;
     scopeType: Schematic.CreditSpendPolicyScope;
     updatedAt: Date;
+    /** For a user policy, the user whose spend in the company it limits */
     userId?: string;
     windowAmount?: number;
     windowCount: number;
