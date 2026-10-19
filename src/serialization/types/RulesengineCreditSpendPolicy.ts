@@ -10,6 +10,7 @@ export const RulesengineCreditSpendPolicy: core.serialization.ObjectSchema<
     serializers.RulesengineCreditSpendPolicy.Raw,
     Schematic.RulesengineCreditSpendPolicy
 > = core.serialization.object({
+    companyId: core.serialization.property("company_id", core.serialization.string().optional()),
     consumed: core.serialization.number().optional(),
     creditId: core.serialization.property("credit_id", core.serialization.string()),
     id: core.serialization.string(),
@@ -23,6 +24,7 @@ export const RulesengineCreditSpendPolicy: core.serialization.ObjectSchema<
 
 export declare namespace RulesengineCreditSpendPolicy {
     export interface Raw {
+        company_id?: string | null;
         consumed?: number | null;
         credit_id: string;
         id: string;

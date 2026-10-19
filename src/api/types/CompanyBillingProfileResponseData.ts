@@ -6,15 +6,21 @@ export interface CompanyBillingProfileResponseData {
     accountId: string;
     billingCustomerId?: string;
     collectionMethod: Schematic.BillingCollectionMethod;
+    collector?: Schematic.Collector;
     companyId: string;
     createdAt: Date;
+    currency?: Schematic.Currency;
     daysUntilDue?: number;
     environmentId: string;
+    gatingDays: number;
     id: string;
     isDefault: boolean;
     name?: string;
+    overdraftLimit?: number;
+    paymentGating: Schematic.PaymentGating;
     paymentMethodId?: string;
     prorationBehavior?: Schematic.ProrationBehavior;
     providerType: Schematic.BillingProviderType;
+    purchaseOrder?: string;
     updatedAt: Date;
 }

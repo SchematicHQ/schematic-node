@@ -343,7 +343,7 @@ export class ComponentsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `components/${core.url.encodePathParam(component_id)}`,
+                `components/${core.url.encodePathParam(component_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -465,7 +465,7 @@ export class ComponentsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `components/${core.url.encodePathParam(component_id)}`,
+                `components/${core.url.encodePathParam(component_id, errors.SchematicError)}`,
             ),
             method: "PUT",
             headers: _headers,
@@ -601,7 +601,7 @@ export class ComponentsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `components/${core.url.encodePathParam(component_id)}`,
+                `components/${core.url.encodePathParam(component_id, errors.SchematicError)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -734,7 +734,7 @@ export class ComponentsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `components/${core.url.encodePathParam(component_id)}/catalog`,
+                `components/${core.url.encodePathParam(component_id, errors.SchematicError)}/catalog`,
             ),
             method: "PUT",
             headers: _headers,

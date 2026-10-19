@@ -9,6 +9,5 @@ export type { ListBillingProductMatchCompaniesRequest } from "./ListBillingProdu
 export type { ListCustomPlanBillingsRequest } from "./ListCustomPlanBillingsRequest";
 export type { ListPlanIssuesRequest } from "./ListPlanIssuesRequest";
 export type { ListPlansRequest } from "./ListPlansRequest";
-export type { PublishPlanVersionRequestBody } from "./PublishPlanVersionRequestBody";
 export type { RetryCustomPlanBillingRequestBody } from "./RetryCustomPlanBillingRequestBody";
 export type { UpdateCompanyPlansRequestBody } from "./UpdateCompanyPlansRequestBody";

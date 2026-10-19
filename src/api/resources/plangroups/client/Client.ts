@@ -384,7 +384,7 @@ export class PlangroupsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `plan-groups/${core.url.encodePathParam(plan_group_id)}`,
+                `plan-groups/${core.url.encodePathParam(plan_group_id, errors.SchematicError)}`,
             ),
             method: "PUT",
             headers: _headers,

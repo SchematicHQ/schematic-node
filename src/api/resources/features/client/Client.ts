@@ -378,7 +378,7 @@ export class FeaturesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `features/${core.url.encodePathParam(feature_id)}`,
+                `features/${core.url.encodePathParam(feature_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -500,7 +500,7 @@ export class FeaturesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `features/${core.url.encodePathParam(feature_id)}`,
+                `features/${core.url.encodePathParam(feature_id, errors.SchematicError)}`,
             ),
             method: "PUT",
             headers: _headers,
@@ -636,7 +636,7 @@ export class FeaturesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `features/${core.url.encodePathParam(feature_id)}`,
+                `features/${core.url.encodePathParam(feature_id, errors.SchematicError)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -1213,7 +1213,6 @@ export class FeaturesClient {
      *
      * @example
      *     await client.features.createFlag({
-     *         defaultValue: true,
      *         description: "description",
      *         flagType: "boolean",
      *         key: "key",
@@ -1377,7 +1376,7 @@ export class FeaturesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `flags/${core.url.encodePathParam(flag_id)}`,
+                `flags/${core.url.encodePathParam(flag_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -1474,7 +1473,6 @@ export class FeaturesClient {
      *
      * @example
      *     await client.features.updateFlag("flag_id", {
-     *         defaultValue: true,
      *         description: "description",
      *         flagType: "boolean",
      *         key: "key",
@@ -1505,7 +1503,7 @@ export class FeaturesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `flags/${core.url.encodePathParam(flag_id)}`,
+                `flags/${core.url.encodePathParam(flag_id, errors.SchematicError)}`,
             ),
             method: "PUT",
             headers: _headers,
@@ -1641,7 +1639,7 @@ export class FeaturesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `flags/${core.url.encodePathParam(flag_id)}`,
+                `flags/${core.url.encodePathParam(flag_id, errors.SchematicError)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -1792,7 +1790,7 @@ export class FeaturesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `flags/${core.url.encodePathParam(flag_id)}/rules`,
+                `flags/${core.url.encodePathParam(flag_id, errors.SchematicError)}/rules`,
             ),
             method: "PUT",
             headers: _headers,
@@ -1931,7 +1929,7 @@ export class FeaturesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `flags/${core.url.encodePathParam(key)}/check`,
+                `flags/${core.url.encodePathParam(key, errors.SchematicError)}/check`,
             ),
             method: "POST",
             headers: _headers,
@@ -2070,7 +2068,7 @@ export class FeaturesClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `flags/${core.url.encodePathParam(key)}/check-and-reserve`,
+                `flags/${core.url.encodePathParam(key, errors.SchematicError)}/check-and-reserve`,
             ),
             method: "POST",
             headers: _headers,

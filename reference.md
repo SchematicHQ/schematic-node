@@ -2661,6 +2661,469 @@ await client.billing.upsertBillingSubscription({
 </dl>
 </details>
 
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">getCompanyNativeSubscription</a>(company_id) -> Schematic.GetCompanyNativeSubscriptionResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.billing.getCompanyNativeSubscription("company_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**company_id:** `string` — company_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">listNativeInvoices</a>({ ...params }) -> Schematic.ListNativeInvoicesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.billing.listNativeInvoices({
+    companyId: "company_id",
+    contractId: "contract_id",
+    documentState: "credited",
+    limit: 1000000,
+    offset: 1000000
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListNativeInvoicesRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">getNativeInvoice</a>(invoice_id) -> Schematic.GetNativeInvoiceResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.billing.getNativeInvoice("invoice_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invoice_id:** `string` — invoice_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">exportNativeInvoice</a>(invoice_id) -> stream.Readable</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.billing.exportNativeInvoice("invoice_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invoice_id:** `string` — invoice_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">finalizeNativeInvoice</a>(invoice_id) -> Schematic.FinalizeNativeInvoiceResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.billing.finalizeNativeInvoice("invoice_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invoice_id:** `string` — invoice_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">markNativeInvoicePaid</a>(invoice_id, { ...params }) -> Schematic.MarkNativeInvoicePaidResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.billing.markNativeInvoicePaid("invoice_id", {
+    idempotencyKey: "idempotency_key"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invoice_id:** `string` — invoice_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.MarkInvoicePaidRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">downloadNativeInvoicePdf</a>(invoice_id) -> stream.Readable</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.billing.downloadNativeInvoicePdf("invoice_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invoice_id:** `string` — invoice_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">voidNativeInvoice</a>(invoice_id) -> Schematic.VoidNativeInvoiceResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.billing.voidNativeInvoice("invoice_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invoice_id:** `string` — invoice_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">countNativeInvoices</a>({ ...params }) -> Schematic.CountNativeInvoicesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.billing.countNativeInvoices({
+    companyId: "company_id",
+    contractId: "contract_id",
+    documentState: "credited",
+    limit: 1000000,
+    offset: 1000000
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.CountNativeInvoicesRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BillingClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## credits
 <details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">listBillingCredits</a>({ ...params }) -> Schematic.ListBillingCreditsResponse</code></summary>
 <dl>
@@ -10076,7 +10539,9 @@ await client.plans.updateCompanyPlans("company_id", {
 await client.plans.listCustomPlanBillings({
     companyId: "company_id",
     planId: "plan_id",
+    planVersionId: "plan_version_id",
     planBillingSource: "amendment",
+    planBillingSources: ["amendment"],
     status: "active",
     statuses: ["active"],
     limit: 1000000,
@@ -11052,6 +11517,66 @@ await client.plans.getPlanVersionDiff("plan_version_id", {
 
 ```typescript
 await client.plans.publishPlanVersion("plan_version_id", {
+    excludedCompanyIds: ["excluded_company_ids"],
+    migrationStrategy: "end_of_billing_period"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**plan_version_id:** `string` — plan_version_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.PublishPlanVersionRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PlansClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.plans.<a href="/src/api/resources/plans/client/Client.ts">previewPublishPlanVersion</a>(plan_version_id, { ...params }) -> Schematic.PreviewPublishPlanVersionResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.plans.previewPublishPlanVersion("plan_version_id", {
     excludedCompanyIds: ["excluded_company_ids"],
     migrationStrategy: "end_of_billing_period"
 });
@@ -12802,7 +13327,6 @@ await client.features.listFlags({
 
 ```typescript
 await client.features.createFlag({
-    defaultValue: true,
     description: "description",
     flagType: "boolean",
     key: "key",
@@ -12906,7 +13430,6 @@ await client.features.getFlag("flag_id");
 
 ```typescript
 await client.features.updateFlag("flag_id", {
-    defaultValue: true,
     description: "description",
     flagType: "boolean",
     key: "key",

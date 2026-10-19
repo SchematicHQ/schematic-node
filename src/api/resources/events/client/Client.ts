@@ -642,7 +642,7 @@ export class EventsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `events/${core.url.encodePathParam(event_id)}`,
+                `events/${core.url.encodePathParam(event_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,

@@ -955,7 +955,6 @@ describe("ComponentsClient", () => {
                                 flags: [
                                     {
                                         created_at: "2024-01-15T09:30:00Z",
-                                        default_value: true,
                                         description: "description",
                                         flag_type: "boolean",
                                         id: "id",
@@ -1112,7 +1111,6 @@ describe("ComponentsClient", () => {
                                 flags: [
                                     {
                                         created_at: "2024-01-15T09:30:00Z",
-                                        default_value: true,
                                         description: "description",
                                         flag_type: "boolean",
                                         id: "id",
@@ -1281,8 +1279,10 @@ describe("ComponentsClient", () => {
                         company_id: "company_id",
                         created_at: "2024-01-15T09:30:00Z",
                         environment_id: "environment_id",
+                        gating_days: 1000000,
                         id: "id",
                         is_default: true,
+                        payment_gating: "keep_serving",
                         provider_type: "metronome",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
@@ -1293,8 +1293,10 @@ describe("ComponentsClient", () => {
                             company_id: "company_id",
                             created_at: "2024-01-15T09:30:00Z",
                             environment_id: "environment_id",
+                            gating_days: 1000000,
                             id: "id",
                             is_default: true,
+                            payment_gating: "keep_serving",
                             provider_type: "metronome",
                             updated_at: "2024-01-15T09:30:00Z",
                         },
@@ -1728,7 +1730,6 @@ describe("ComponentsClient", () => {
                             flags: [
                                 {
                                     created_at: "2024-01-15T09:30:00Z",
-                                    default_value: true,
                                     description: "description",
                                     flag_type: "boolean",
                                     id: "id",
@@ -2021,7 +2022,6 @@ describe("ComponentsClient", () => {
                             flags: [
                                 {
                                     created_at: "2024-01-15T09:30:00Z",
-                                    default_value: true,
                                     description: "description",
                                     flag_type: "boolean",
                                     id: "id",
@@ -2358,7 +2358,6 @@ describe("ComponentsClient", () => {
                                 flags: [
                                     {
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        defaultValue: true,
                                         description: "description",
                                         flagType: "boolean",
                                         id: "id",
@@ -2538,7 +2537,6 @@ describe("ComponentsClient", () => {
                                 flags: [
                                     {
                                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                        defaultValue: true,
                                         description: "description",
                                         flagType: "boolean",
                                         id: "id",
@@ -2735,8 +2733,10 @@ describe("ComponentsClient", () => {
                         companyId: "company_id",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         environmentId: "environment_id",
+                        gatingDays: 1000000,
                         id: "id",
                         isDefault: true,
+                        paymentGating: "keep_serving",
                         providerType: "metronome",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
@@ -2747,8 +2747,10 @@ describe("ComponentsClient", () => {
                             companyId: "company_id",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             environmentId: "environment_id",
+                            gatingDays: 1000000,
                             id: "id",
                             isDefault: true,
+                            paymentGating: "keep_serving",
                             providerType: "metronome",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
@@ -3224,7 +3226,6 @@ describe("ComponentsClient", () => {
                             flags: [
                                 {
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    defaultValue: true,
                                     description: "description",
                                     flagType: "boolean",
                                     id: "id",
@@ -3559,7 +3560,6 @@ describe("ComponentsClient", () => {
                             flags: [
                                 {
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    defaultValue: true,
                                     description: "description",
                                     flagType: "boolean",
                                     id: "id",

@@ -3,7 +3,8 @@
 import type * as Schematic from "../index";
 
 export interface CreateFlagRequestBody {
-    defaultValue: boolean;
+    /** Deprecated. On create, the value a check returns in every environment until that environment has a default rule. Ignored on update: flags are account-wide and rules are per environment, so set an environment's default through its default rule via the flag rules endpoint */
+    defaultValue?: boolean;
     description: string;
     featureId?: string;
     flagType: Schematic.FlagType;

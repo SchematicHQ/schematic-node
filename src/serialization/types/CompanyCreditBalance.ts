@@ -8,6 +8,8 @@ export const CompanyCreditBalance: core.serialization.ObjectSchema<
     serializers.CompanyCreditBalance.Raw,
     Schematic.CompanyCreditBalance
 > = core.serialization.object({
+    overdraftLimit: core.serialization.property("overdraft_limit", core.serialization.number().optional()),
+    postpaid: core.serialization.boolean(),
     remaining: core.serialization.number(),
     reserved: core.serialization.number(),
     settled: core.serialization.number(),
@@ -15,6 +17,8 @@ export const CompanyCreditBalance: core.serialization.ObjectSchema<
 
 export declare namespace CompanyCreditBalance {
     export interface Raw {
+        overdraft_limit?: number | null;
+        postpaid: boolean;
         remaining: number;
         reserved: number;
         settled: number;

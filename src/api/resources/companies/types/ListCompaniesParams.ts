@@ -42,7 +42,7 @@ export interface ListCompaniesParams {
     withEntitlementFor?: string;
     /** Filter companies that have a subscription */
     withSubscription?: boolean;
-    /** Filter out companies that already have a company override for the specified feature ID */
+    /** Filter out companies that have an unexpired company override for the specified feature ID */
     withoutFeatureOverrideFor?: string;
     /** Filter out companies that have a plan */
     withoutPlan?: boolean;

@@ -3,6 +3,8 @@
 import type * as Schematic from "../index";
 
 export interface RulesengineCreditSpendPolicy {
+    /** For a user policy, the company it applies in */
+    companyId?: string;
     /** How much of the limit is already spent in the current period */
     consumed?: number;
     /** The credit the policy limits */

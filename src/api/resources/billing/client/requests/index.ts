@@ -1,5 +1,6 @@
 export type { CountBillingProductsRequest } from "./CountBillingProductsRequest";
 export type { CountCustomersRequest } from "./CountCustomersRequest";
+export type { CountNativeInvoicesRequest } from "./CountNativeInvoicesRequest";
 export type { CreateBillingCustomerRequestBody } from "./CreateBillingCustomerRequestBody";
 export type { CreateBillingPriceRequestBody } from "./CreateBillingPriceRequestBody";
 export type { CreateBillingProductRequestBody } from "./CreateBillingProductRequestBody";
@@ -16,6 +17,8 @@ export type { ListCouponsRequest } from "./ListCouponsRequest";
 export type { ListCustomersWithSubscriptionsRequest } from "./ListCustomersWithSubscriptionsRequest";
 export type { ListInvoicesRequest } from "./ListInvoicesRequest";
 export type { ListMetersRequest } from "./ListMetersRequest";
+export type { ListNativeInvoicesRequest } from "./ListNativeInvoicesRequest";
 export type { ListPaymentMethodsRequest } from "./ListPaymentMethodsRequest";
+export type { MarkInvoicePaidRequestBody } from "./MarkInvoicePaidRequestBody";
 export type { UpdateBillingSettingsRequestBody } from "./UpdateBillingSettingsRequestBody";
 export type { UpdateCompanyBillingProfileRequestBody } from "./UpdateCompanyBillingProfileRequestBody";

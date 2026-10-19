@@ -13,7 +13,7 @@ export const FlagDetailResponseData: core.serialization.ObjectSchema<
     Schematic.FlagDetailResponseData
 > = core.serialization.object({
     createdAt: core.serialization.property("created_at", core.serialization.date()),
-    defaultValue: core.serialization.property("default_value", core.serialization.boolean()),
+    defaultValue: core.serialization.property("default_value", core.serialization.boolean().optional()),
     description: core.serialization.string(),
     feature: FeatureResponseData.optional(),
     featureId: core.serialization.property("feature_id", core.serialization.string().optional()),
@@ -34,7 +34,7 @@ export const FlagDetailResponseData: core.serialization.ObjectSchema<
 export declare namespace FlagDetailResponseData {
     export interface Raw {
         created_at: string;
-        default_value: boolean;
+        default_value?: boolean | null;
         description: string;
         feature?: FeatureResponseData.Raw | null;
         feature_id?: string | null;

@@ -4,7 +4,8 @@ import type * as Schematic from "../index";
 
 export interface FlagInPlanResponseData {
     createdAt: Date;
-    defaultValue: boolean;
+    /** Deprecated. The value a check returns in the requesting environment when no other rule matches: its default rule, or the flag's seed value while it has none. Read the default rule instead */
+    defaultValue?: boolean;
     description: string;
     feature?: Schematic.FeatureResponseData;
     featureId?: string;

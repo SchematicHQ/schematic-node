@@ -350,7 +350,7 @@ export class ScheduledcheckoutClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `scheduled-checkout/${core.url.encodePathParam(scheduled_checkout_id)}`,
+                `scheduled-checkout/${core.url.encodePathParam(scheduled_checkout_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -479,7 +479,7 @@ export class ScheduledcheckoutClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `scheduled-checkout/${core.url.encodePathParam(scheduled_checkout_id)}`,
+                `scheduled-checkout/${core.url.encodePathParam(scheduled_checkout_id, errors.SchematicError)}`,
             ),
             method: "PUT",
             headers: _headers,

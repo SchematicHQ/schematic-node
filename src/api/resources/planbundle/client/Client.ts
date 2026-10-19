@@ -363,7 +363,7 @@ export class PlanbundleClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `plan-bundles/${core.url.encodePathParam(plan_id)}`,
+                `plan-bundles/${core.url.encodePathParam(plan_id, errors.SchematicError)}`,
             ),
             method: "PUT",
             headers: _headers,

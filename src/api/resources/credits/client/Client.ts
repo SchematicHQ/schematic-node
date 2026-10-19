@@ -346,7 +346,7 @@ export class CreditsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `billing/credits/${core.url.encodePathParam(credit_id)}`,
+                `billing/credits/${core.url.encodePathParam(credit_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -471,7 +471,7 @@ export class CreditsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `billing/credits/${core.url.encodePathParam(credit_id)}`,
+                `billing/credits/${core.url.encodePathParam(credit_id, errors.SchematicError)}`,
             ),
             method: "PUT",
             headers: _headers,
@@ -607,7 +607,7 @@ export class CreditsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `billing/credits/${core.url.encodePathParam(credit_id)}`,
+                `billing/credits/${core.url.encodePathParam(credit_id, errors.SchematicError)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -1317,7 +1317,7 @@ export class CreditsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `billing/credits/bundles/${core.url.encodePathParam(bundle_id)}`,
+                `billing/credits/bundles/${core.url.encodePathParam(bundle_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -1449,7 +1449,7 @@ export class CreditsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `billing/credits/bundles/${core.url.encodePathParam(bundle_id)}`,
+                `billing/credits/bundles/${core.url.encodePathParam(bundle_id, errors.SchematicError)}`,
             ),
             method: "PUT",
             headers: _headers,
@@ -1592,7 +1592,7 @@ export class CreditsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `billing/credits/bundles/${core.url.encodePathParam(bundle_id)}`,
+                `billing/credits/bundles/${core.url.encodePathParam(bundle_id, errors.SchematicError)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -2037,7 +2037,7 @@ export class CreditsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `billing/credits/grants/${core.url.encodePathParam(grant_id)}/zero-out`,
+                `billing/credits/grants/${core.url.encodePathParam(grant_id, errors.SchematicError)}/zero-out`,
             ),
             method: "PUT",
             headers: _headers,
@@ -3092,7 +3092,7 @@ export class CreditsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `billing/credits/lease/${core.url.encodePathParam(lease_id)}/extend`,
+                `billing/credits/lease/${core.url.encodePathParam(lease_id, errors.SchematicError)}/extend`,
             ),
             method: "PUT",
             headers: _headers,
@@ -3244,7 +3244,7 @@ export class CreditsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `billing/credits/lease/${core.url.encodePathParam(lease_id)}/release`,
+                `billing/credits/lease/${core.url.encodePathParam(lease_id, errors.SchematicError)}/release`,
             ),
             method: "PUT",
             headers: _headers,
@@ -3678,7 +3678,7 @@ export class CreditsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `billing/credits/plan-grants/${core.url.encodePathParam(plan_grant_id)}`,
+                `billing/credits/plan-grants/${core.url.encodePathParam(plan_grant_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -3810,7 +3810,7 @@ export class CreditsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `billing/credits/plan-grants/${core.url.encodePathParam(plan_grant_id)}`,
+                `billing/credits/plan-grants/${core.url.encodePathParam(plan_grant_id, errors.SchematicError)}`,
             ),
             method: "PUT",
             headers: _headers,
@@ -3964,7 +3964,7 @@ export class CreditsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `billing/credits/plan-grants/${core.url.encodePathParam(plan_grant_id)}`,
+                `billing/credits/plan-grants/${core.url.encodePathParam(plan_grant_id, errors.SchematicError)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -4419,7 +4419,7 @@ export class CreditsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `billing/credits/reservations/${core.url.encodePathParam(reservation_id)}/release`,
+                `billing/credits/reservations/${core.url.encodePathParam(reservation_id, errors.SchematicError)}/release`,
             ),
             method: "PUT",
             headers: _headers,
@@ -4858,7 +4858,7 @@ export class CreditsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `billing/credits/spend-policies/${core.url.encodePathParam(spend_policy_id)}`,
+                `billing/credits/spend-policies/${core.url.encodePathParam(spend_policy_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -4987,7 +4987,7 @@ export class CreditsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `billing/credits/spend-policies/${core.url.encodePathParam(spend_policy_id)}`,
+                `billing/credits/spend-policies/${core.url.encodePathParam(spend_policy_id, errors.SchematicError)}`,
             ),
             method: "PUT",
             headers: _headers,
@@ -5130,7 +5130,7 @@ export class CreditsClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `billing/credits/spend-policies/${core.url.encodePathParam(spend_policy_id)}`,
+                `billing/credits/spend-policies/${core.url.encodePathParam(spend_policy_id, errors.SchematicError)}`,
             ),
             method: "DELETE",
             headers: _headers,

@@ -44,16 +44,22 @@ describe("PlansClient", () => {
                     account_id: "account_id",
                     billing_customer_id: "billing_customer_id",
                     collection_method: "charge_automatically",
+                    collector: "external",
                     company_id: "company_id",
                     created_at: "2024-01-15T09:30:00Z",
+                    currency: "aed",
                     days_until_due: 1000000,
                     environment_id: "environment_id",
+                    gating_days: 1000000,
                     id: "id",
                     is_default: true,
                     name: "name",
+                    overdraft_limit: 1000000,
+                    payment_gating: "keep_serving",
                     payment_method_id: "payment_method_id",
                     proration_behavior: "create_prorations",
                     provider_type: "metronome",
+                    purchase_order: "purchase_order",
                     updated_at: "2024-01-15T09:30:00Z",
                 },
                 billing_profiles: [
@@ -63,8 +69,10 @@ describe("PlansClient", () => {
                         company_id: "company_id",
                         created_at: "2024-01-15T09:30:00Z",
                         environment_id: "environment_id",
+                        gating_days: 1000000,
                         id: "id",
                         is_default: true,
+                        payment_gating: "keep_serving",
                         provider_type: "metronome",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
@@ -447,16 +455,22 @@ describe("PlansClient", () => {
                     accountId: "account_id",
                     billingCustomerId: "billing_customer_id",
                     collectionMethod: "charge_automatically",
+                    collector: "external",
                     companyId: "company_id",
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    currency: "aed",
                     daysUntilDue: 1000000,
                     environmentId: "environment_id",
+                    gatingDays: 1000000,
                     id: "id",
                     isDefault: true,
                     name: "name",
+                    overdraftLimit: 1000000,
+                    paymentGating: "keep_serving",
                     paymentMethodId: "payment_method_id",
                     prorationBehavior: "create_prorations",
                     providerType: "metronome",
+                    purchaseOrder: "purchase_order",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
                 billingProfiles: [
@@ -466,8 +480,10 @@ describe("PlansClient", () => {
                         companyId: "company_id",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         environmentId: "environment_id",
+                        gatingDays: 1000000,
                         id: "id",
                         isDefault: true,
+                        paymentGating: "keep_serving",
                         providerType: "metronome",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
@@ -965,7 +981,9 @@ describe("PlansClient", () => {
                 limit: 1000000,
                 offset: 1000000,
                 plan_billing_source: "amendment",
+                plan_billing_sources: ["amendment"],
                 plan_id: "plan_id",
+                plan_version_id: "plan_version_id",
                 status: "active",
                 statuses: ["active"],
             },
@@ -982,7 +1000,9 @@ describe("PlansClient", () => {
         const response = await client.plans.listCustomPlanBillings({
             companyId: "company_id",
             planId: "plan_id",
+            planVersionId: "plan_version_id",
             planBillingSource: "amendment",
+            planBillingSources: ["amendment"],
             status: "active",
             statuses: ["active"],
             limit: 1000000,
@@ -1025,7 +1045,9 @@ describe("PlansClient", () => {
                 limit: 1000000,
                 offset: 1000000,
                 planBillingSource: "amendment",
+                planBillingSources: ["amendment"],
                 planId: "plan_id",
+                planVersionId: "plan_version_id",
                 status: "active",
                 statuses: ["active"],
             },
@@ -1631,7 +1653,6 @@ describe("PlansClient", () => {
                         flags: [
                             {
                                 created_at: "2024-01-15T09:30:00Z",
-                                default_value: true,
                                 description: "description",
                                 flag_type: "boolean",
                                 id: "id",
@@ -1938,7 +1959,6 @@ describe("PlansClient", () => {
                         flags: [
                             {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                defaultValue: true,
                                 description: "description",
                                 flagType: "boolean",
                                 id: "id",
@@ -2348,7 +2368,6 @@ describe("PlansClient", () => {
                             flags: [
                                 {
                                     created_at: "2024-01-15T09:30:00Z",
-                                    default_value: true,
                                     description: "description",
                                     flag_type: "boolean",
                                     id: "id",
@@ -2678,7 +2697,6 @@ describe("PlansClient", () => {
                             flags: [
                                 {
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                    defaultValue: true,
                                     description: "description",
                                     flagType: "boolean",
                                     id: "id",
@@ -3052,7 +3070,6 @@ describe("PlansClient", () => {
                         flags: [
                             {
                                 created_at: "2024-01-15T09:30:00Z",
-                                default_value: true,
                                 description: "description",
                                 flag_type: "boolean",
                                 id: "id",
@@ -3359,7 +3376,6 @@ describe("PlansClient", () => {
                         flags: [
                             {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                defaultValue: true,
                                 description: "description",
                                 flagType: "boolean",
                                 id: "id",
@@ -3771,7 +3787,6 @@ describe("PlansClient", () => {
                         flags: [
                             {
                                 created_at: "2024-01-15T09:30:00Z",
-                                default_value: true,
                                 description: "description",
                                 flag_type: "boolean",
                                 id: "id",
@@ -4070,7 +4085,6 @@ describe("PlansClient", () => {
                         flags: [
                             {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                defaultValue: true,
                                 description: "description",
                                 flagType: "boolean",
                                 id: "id",
@@ -4419,7 +4433,6 @@ describe("PlansClient", () => {
                         flags: [
                             {
                                 created_at: "2024-01-15T09:30:00Z",
-                                default_value: true,
                                 description: "description",
                                 flag_type: "boolean",
                                 id: "id",
@@ -4725,7 +4738,6 @@ describe("PlansClient", () => {
                         flags: [
                             {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                defaultValue: true,
                                 description: "description",
                                 flagType: "boolean",
                                 id: "id",
@@ -5392,7 +5404,6 @@ describe("PlansClient", () => {
                         flags: [
                             {
                                 created_at: "2024-01-15T09:30:00Z",
-                                default_value: true,
                                 description: "description",
                                 flag_type: "boolean",
                                 id: "id",
@@ -5701,7 +5712,6 @@ describe("PlansClient", () => {
                         flags: [
                             {
                                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                                defaultValue: true,
                                 description: "description",
                                 flagType: "boolean",
                                 id: "id",
@@ -6076,8 +6086,10 @@ describe("PlansClient", () => {
                         company_id: "company_id",
                         created_at: "2024-01-15T09:30:00Z",
                         environment_id: "environment_id",
+                        gating_days: 1000000,
                         id: "id",
                         is_default: true,
+                        payment_gating: "keep_serving",
                         provider_type: "metronome",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
@@ -6088,8 +6100,10 @@ describe("PlansClient", () => {
                             company_id: "company_id",
                             created_at: "2024-01-15T09:30:00Z",
                             environment_id: "environment_id",
+                            gating_days: 1000000,
                             id: "id",
                             is_default: true,
+                            payment_gating: "keep_serving",
                             provider_type: "metronome",
                             updated_at: "2024-01-15T09:30:00Z",
                         },
@@ -6421,8 +6435,10 @@ describe("PlansClient", () => {
                         companyId: "company_id",
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         environmentId: "environment_id",
+                        gatingDays: 1000000,
                         id: "id",
                         isDefault: true,
+                        paymentGating: "keep_serving",
                         providerType: "metronome",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
@@ -6433,8 +6449,10 @@ describe("PlansClient", () => {
                             companyId: "company_id",
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
                             environmentId: "environment_id",
+                            gatingDays: 1000000,
                             id: "id",
                             isDefault: true,
+                            paymentGating: "keep_serving",
                             providerType: "metronome",
                             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                         },
@@ -7833,6 +7851,251 @@ describe("PlansClient", () => {
 
         await expect(async () => {
             return await client.plans.publishPlanVersion("plan_version_id", {
+                excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
+                migrationStrategy: "end_of_billing_period",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("previewPublishPlanVersion (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            excluded_company_ids: ["excluded_company_ids"],
+            migration_strategy: "end_of_billing_period",
+        };
+        const rawResponseBody = {
+            data: {
+                billing_email: "billing_email",
+                currency: "aed",
+                current_period_end: "2024-01-15T09:30:00Z",
+                current_period_start: "2024-01-15T09:30:00Z",
+                default_collection_method: "charge_automatically",
+                default_days_until_due: 1000000,
+                default_send_invoice: true,
+                effective_at: "2024-01-15T09:30:00Z",
+                has_billing_changes: true,
+                immediate_invoice_amount: 1000000,
+                lands_on: "immediate_invoice",
+                new_recurring_amount: 1000000,
+                next_invoice_amount: 1000000,
+                next_invoice_at: "2024-01-15T09:30:00Z",
+                note: "note",
+                pay_in_advance: [
+                    { committed_quantity: 1000000, effective_quantity: 1000000, feature_id: "feature_id" },
+                ],
+                payment_method: {
+                    card_brand: "card_brand",
+                    card_last4: "card_last4",
+                    has_default: true,
+                    payment_method_type: "payment_method_type",
+                },
+                proration_charge: 1000000,
+                proration_credit: 1000000,
+                proration_lines: [
+                    {
+                        amount: 1000000,
+                        description: "description",
+                        period_end: "2024-01-15T09:30:00Z",
+                        period_start: "2024-01-15T09:30:00Z",
+                        quantity: 1000000,
+                    },
+                ],
+                proration_total: 1000000,
+                will_update_subscription: true,
+                would_fail: true,
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/plans/version/plan_version_id/publish-preview")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.plans.previewPublishPlanVersion("plan_version_id", {
+            excludedCompanyIds: ["excluded_company_ids"],
+            migrationStrategy: "end_of_billing_period",
+        });
+        expect(response).toEqual({
+            data: {
+                billingEmail: "billing_email",
+                currency: "aed",
+                currentPeriodEnd: new Date("2024-01-15T09:30:00.000Z"),
+                currentPeriodStart: new Date("2024-01-15T09:30:00.000Z"),
+                defaultCollectionMethod: "charge_automatically",
+                defaultDaysUntilDue: 1000000,
+                defaultSendInvoice: true,
+                effectiveAt: new Date("2024-01-15T09:30:00.000Z"),
+                hasBillingChanges: true,
+                immediateInvoiceAmount: 1000000,
+                landsOn: "immediate_invoice",
+                newRecurringAmount: 1000000,
+                nextInvoiceAmount: 1000000,
+                nextInvoiceAt: new Date("2024-01-15T09:30:00.000Z"),
+                note: "note",
+                payInAdvance: [
+                    {
+                        committedQuantity: 1000000,
+                        effectiveQuantity: 1000000,
+                        featureId: "feature_id",
+                    },
+                ],
+                paymentMethod: {
+                    cardBrand: "card_brand",
+                    cardLast4: "card_last4",
+                    hasDefault: true,
+                    paymentMethodType: "payment_method_type",
+                },
+                prorationCharge: 1000000,
+                prorationCredit: 1000000,
+                prorationLines: [
+                    {
+                        amount: 1000000,
+                        description: "description",
+                        periodEnd: new Date("2024-01-15T09:30:00.000Z"),
+                        periodStart: new Date("2024-01-15T09:30:00.000Z"),
+                        quantity: 1000000,
+                    },
+                ],
+                prorationTotal: 1000000,
+                willUpdateSubscription: true,
+                wouldFail: true,
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("previewPublishPlanVersion (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
+            migration_strategy: "end_of_billing_period",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plans/version/plan_version_id/publish-preview")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.previewPublishPlanVersion("plan_version_id", {
+                excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
+                migrationStrategy: "end_of_billing_period",
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("previewPublishPlanVersion (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
+            migration_strategy: "end_of_billing_period",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plans/version/plan_version_id/publish-preview")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.previewPublishPlanVersion("plan_version_id", {
+                excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
+                migrationStrategy: "end_of_billing_period",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("previewPublishPlanVersion (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
+            migration_strategy: "end_of_billing_period",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plans/version/plan_version_id/publish-preview")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.previewPublishPlanVersion("plan_version_id", {
+                excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
+                migrationStrategy: "end_of_billing_period",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("previewPublishPlanVersion (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
+            migration_strategy: "end_of_billing_period",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plans/version/plan_version_id/publish-preview")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.previewPublishPlanVersion("plan_version_id", {
+                excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
+                migrationStrategy: "end_of_billing_period",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("previewPublishPlanVersion (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            excluded_company_ids: ["excluded_company_ids", "excluded_company_ids"],
+            migration_strategy: "end_of_billing_period",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/plans/version/plan_version_id/publish-preview")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.plans.previewPublishPlanVersion("plan_version_id", {
                 excludedCompanyIds: ["excluded_company_ids", "excluded_company_ids"],
                 migrationStrategy: "end_of_billing_period",
             });

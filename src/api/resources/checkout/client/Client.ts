@@ -522,7 +522,7 @@ export class CheckoutClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `companies/${core.url.encodePathParam(company_id)}/billing-details`,
+                `companies/${core.url.encodePathParam(company_id, errors.SchematicError)}/billing-details`,
             ),
             method: "GET",
             headers: _headers,
@@ -656,7 +656,7 @@ export class CheckoutClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `companies/${core.url.encodePathParam(company_id)}/billing-details`,
+                `companies/${core.url.encodePathParam(company_id, errors.SchematicError)}/billing-details`,
             ),
             method: "PUT",
             headers: _headers,
@@ -1253,7 +1253,7 @@ export class CheckoutClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `subscription/${core.url.encodePathParam(subscription_id)}/edit-trial-end`,
+                `subscription/${core.url.encodePathParam(subscription_id, errors.SchematicError)}/edit-trial-end`,
             ),
             method: "PUT",
             headers: _headers,

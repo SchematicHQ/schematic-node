@@ -208,7 +208,7 @@ export class WebhooksClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `webhook-events/${core.url.encodePathParam(webhook_event_id)}`,
+                `webhook-events/${core.url.encodePathParam(webhook_event_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -763,7 +763,7 @@ export class WebhooksClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `webhooks/${core.url.encodePathParam(webhook_id)}`,
+                `webhooks/${core.url.encodePathParam(webhook_id, errors.SchematicError)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -885,7 +885,7 @@ export class WebhooksClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `webhooks/${core.url.encodePathParam(webhook_id)}`,
+                `webhooks/${core.url.encodePathParam(webhook_id, errors.SchematicError)}`,
             ),
             method: "PUT",
             headers: _headers,
@@ -1021,7 +1021,7 @@ export class WebhooksClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `webhooks/${core.url.encodePathParam(webhook_id)}`,
+                `webhooks/${core.url.encodePathParam(webhook_id, errors.SchematicError)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -1156,7 +1156,7 @@ export class WebhooksClient {
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.SchematicEnvironment.Default,
-                `webhooks/${core.url.encodePathParam(webhook_id)}/test`,
+                `webhooks/${core.url.encodePathParam(webhook_id, errors.SchematicError)}/test`,
             ),
             method: "POST",
             headers: _headers,

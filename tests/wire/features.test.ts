@@ -45,7 +45,6 @@ describe("FeaturesClient", () => {
                     flags: [
                         {
                             created_at: "2024-01-15T09:30:00Z",
-                            default_value: true,
                             description: "description",
                             flag_type: "boolean",
                             id: "id",
@@ -196,7 +195,6 @@ describe("FeaturesClient", () => {
                     flags: [
                         {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                            defaultValue: true,
                             description: "description",
                             flagType: "boolean",
                             id: "id",
@@ -421,7 +419,6 @@ describe("FeaturesClient", () => {
                 flags: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
-                        default_value: true,
                         description: "description",
                         flag_type: "boolean",
                         id: "id",
@@ -567,7 +564,6 @@ describe("FeaturesClient", () => {
                 flags: [
                     {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        defaultValue: true,
                         description: "description",
                         flagType: "boolean",
                         id: "id",
@@ -843,7 +839,6 @@ describe("FeaturesClient", () => {
                 flags: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
-                        default_value: true,
                         description: "description",
                         flag_type: "boolean",
                         id: "id",
@@ -984,7 +979,6 @@ describe("FeaturesClient", () => {
                 flags: [
                     {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        defaultValue: true,
                         description: "description",
                         flagType: "boolean",
                         id: "id",
@@ -1216,7 +1210,6 @@ describe("FeaturesClient", () => {
                 flags: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
-                        default_value: true,
                         description: "description",
                         flag_type: "boolean",
                         id: "id",
@@ -1358,7 +1351,6 @@ describe("FeaturesClient", () => {
                 flags: [
                     {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        defaultValue: true,
                         description: "description",
                         flagType: "boolean",
                         id: "id",
@@ -1740,7 +1732,6 @@ describe("FeaturesClient", () => {
                 flags: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
-                        default_value: true,
                         description: "description",
                         flag_type: "boolean",
                         id: "id",
@@ -1888,7 +1879,6 @@ describe("FeaturesClient", () => {
                 flags: [
                     {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                        defaultValue: true,
                         description: "description",
                         flagType: "boolean",
                         id: "id",
@@ -2289,7 +2279,6 @@ describe("FeaturesClient", () => {
             data: [
                 {
                     created_at: "2024-01-15T09:30:00Z",
-                    default_value: true,
                     description: "description",
                     feature: {
                         created_at: "2024-01-15T09:30:00Z",
@@ -2382,7 +2371,6 @@ describe("FeaturesClient", () => {
             data: [
                 {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    defaultValue: true,
                     description: "description",
                     feature: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2549,17 +2537,10 @@ describe("FeaturesClient", () => {
     test("createFlag (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            default_value: true,
-            description: "description",
-            flag_type: "boolean",
-            key: "key",
-            name: "name",
-        };
+        const rawRequestBody = { description: "description", flag_type: "boolean", key: "key", name: "name" };
         const rawResponseBody = {
             data: {
                 created_at: "2024-01-15T09:30:00Z",
-                default_value: true,
                 description: "description",
                 feature: {
                     created_at: "2024-01-15T09:30:00Z",
@@ -2662,7 +2643,6 @@ describe("FeaturesClient", () => {
             .build();
 
         const response = await client.features.createFlag({
-            defaultValue: true,
             description: "description",
             flagType: "boolean",
             key: "key",
@@ -2671,7 +2651,6 @@ describe("FeaturesClient", () => {
         expect(response).toEqual({
             data: {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                defaultValue: true,
                 description: "description",
                 feature: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2782,13 +2761,7 @@ describe("FeaturesClient", () => {
     test("createFlag (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            default_value: true,
-            description: "description",
-            flag_type: "boolean",
-            key: "key",
-            name: "name",
-        };
+        const rawRequestBody = { description: "description", flag_type: "boolean", key: "key", name: "name" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -2802,7 +2775,6 @@ describe("FeaturesClient", () => {
 
         await expect(async () => {
             return await client.features.createFlag({
-                defaultValue: true,
                 description: "description",
                 flagType: "boolean",
                 key: "key",
@@ -2814,13 +2786,7 @@ describe("FeaturesClient", () => {
     test("createFlag (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            default_value: true,
-            description: "description",
-            flag_type: "boolean",
-            key: "key",
-            name: "name",
-        };
+        const rawRequestBody = { description: "description", flag_type: "boolean", key: "key", name: "name" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -2834,7 +2800,6 @@ describe("FeaturesClient", () => {
 
         await expect(async () => {
             return await client.features.createFlag({
-                defaultValue: true,
                 description: "description",
                 flagType: "boolean",
                 key: "key",
@@ -2846,13 +2811,7 @@ describe("FeaturesClient", () => {
     test("createFlag (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            default_value: true,
-            description: "description",
-            flag_type: "boolean",
-            key: "key",
-            name: "name",
-        };
+        const rawRequestBody = { description: "description", flag_type: "boolean", key: "key", name: "name" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -2866,7 +2825,6 @@ describe("FeaturesClient", () => {
 
         await expect(async () => {
             return await client.features.createFlag({
-                defaultValue: true,
                 description: "description",
                 flagType: "boolean",
                 key: "key",
@@ -2878,13 +2836,7 @@ describe("FeaturesClient", () => {
     test("createFlag (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            default_value: true,
-            description: "description",
-            flag_type: "boolean",
-            key: "key",
-            name: "name",
-        };
+        const rawRequestBody = { description: "description", flag_type: "boolean", key: "key", name: "name" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -2898,7 +2850,6 @@ describe("FeaturesClient", () => {
 
         await expect(async () => {
             return await client.features.createFlag({
-                defaultValue: true,
                 description: "description",
                 flagType: "boolean",
                 key: "key",
@@ -2910,13 +2861,7 @@ describe("FeaturesClient", () => {
     test("createFlag (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            default_value: true,
-            description: "description",
-            flag_type: "boolean",
-            key: "key",
-            name: "name",
-        };
+        const rawRequestBody = { description: "description", flag_type: "boolean", key: "key", name: "name" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -2930,7 +2875,6 @@ describe("FeaturesClient", () => {
 
         await expect(async () => {
             return await client.features.createFlag({
-                defaultValue: true,
                 description: "description",
                 flagType: "boolean",
                 key: "key",
@@ -2946,7 +2890,6 @@ describe("FeaturesClient", () => {
         const rawResponseBody = {
             data: {
                 created_at: "2024-01-15T09:30:00Z",
-                default_value: true,
                 description: "description",
                 feature: {
                     created_at: "2024-01-15T09:30:00Z",
@@ -3045,7 +2988,6 @@ describe("FeaturesClient", () => {
         expect(response).toEqual({
             data: {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                defaultValue: true,
                 description: "description",
                 feature: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -3208,17 +3150,10 @@ describe("FeaturesClient", () => {
     test("updateFlag (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            default_value: true,
-            description: "description",
-            flag_type: "boolean",
-            key: "key",
-            name: "name",
-        };
+        const rawRequestBody = { description: "description", flag_type: "boolean", key: "key", name: "name" };
         const rawResponseBody = {
             data: {
                 created_at: "2024-01-15T09:30:00Z",
-                default_value: true,
                 description: "description",
                 feature: {
                     created_at: "2024-01-15T09:30:00Z",
@@ -3321,7 +3256,6 @@ describe("FeaturesClient", () => {
             .build();
 
         const response = await client.features.updateFlag("flag_id", {
-            defaultValue: true,
             description: "description",
             flagType: "boolean",
             key: "key",
@@ -3330,7 +3264,6 @@ describe("FeaturesClient", () => {
         expect(response).toEqual({
             data: {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                defaultValue: true,
                 description: "description",
                 feature: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -3441,13 +3374,7 @@ describe("FeaturesClient", () => {
     test("updateFlag (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            default_value: true,
-            description: "description",
-            flag_type: "boolean",
-            key: "key",
-            name: "name",
-        };
+        const rawRequestBody = { description: "description", flag_type: "boolean", key: "key", name: "name" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -3461,7 +3388,6 @@ describe("FeaturesClient", () => {
 
         await expect(async () => {
             return await client.features.updateFlag("flag_id", {
-                defaultValue: true,
                 description: "description",
                 flagType: "boolean",
                 key: "key",
@@ -3473,13 +3399,7 @@ describe("FeaturesClient", () => {
     test("updateFlag (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            default_value: true,
-            description: "description",
-            flag_type: "boolean",
-            key: "key",
-            name: "name",
-        };
+        const rawRequestBody = { description: "description", flag_type: "boolean", key: "key", name: "name" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -3493,7 +3413,6 @@ describe("FeaturesClient", () => {
 
         await expect(async () => {
             return await client.features.updateFlag("flag_id", {
-                defaultValue: true,
                 description: "description",
                 flagType: "boolean",
                 key: "key",
@@ -3505,13 +3424,7 @@ describe("FeaturesClient", () => {
     test("updateFlag (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            default_value: true,
-            description: "description",
-            flag_type: "boolean",
-            key: "key",
-            name: "name",
-        };
+        const rawRequestBody = { description: "description", flag_type: "boolean", key: "key", name: "name" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -3525,7 +3438,6 @@ describe("FeaturesClient", () => {
 
         await expect(async () => {
             return await client.features.updateFlag("flag_id", {
-                defaultValue: true,
                 description: "description",
                 flagType: "boolean",
                 key: "key",
@@ -3537,13 +3449,7 @@ describe("FeaturesClient", () => {
     test("updateFlag (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            default_value: true,
-            description: "description",
-            flag_type: "boolean",
-            key: "key",
-            name: "name",
-        };
+        const rawRequestBody = { description: "description", flag_type: "boolean", key: "key", name: "name" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -3557,7 +3463,6 @@ describe("FeaturesClient", () => {
 
         await expect(async () => {
             return await client.features.updateFlag("flag_id", {
-                defaultValue: true,
                 description: "description",
                 flagType: "boolean",
                 key: "key",
@@ -3569,13 +3474,7 @@ describe("FeaturesClient", () => {
     test("updateFlag (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            default_value: true,
-            description: "description",
-            flag_type: "boolean",
-            key: "key",
-            name: "name",
-        };
+        const rawRequestBody = { description: "description", flag_type: "boolean", key: "key", name: "name" };
         const rawResponseBody = { error: "error" };
 
         server
@@ -3589,7 +3488,6 @@ describe("FeaturesClient", () => {
 
         await expect(async () => {
             return await client.features.updateFlag("flag_id", {
-                defaultValue: true,
                 description: "description",
                 flagType: "boolean",
                 key: "key",
@@ -3706,7 +3604,6 @@ describe("FeaturesClient", () => {
             data: {
                 flag: {
                     created_at: "2024-01-15T09:30:00Z",
-                    default_value: true,
                     description: "description",
                     feature_id: "feature_id",
                     flag_type: "boolean",
@@ -3809,7 +3706,6 @@ describe("FeaturesClient", () => {
             data: {
                 flag: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    defaultValue: true,
                     description: "description",
                     featureId: "feature_id",
                     flagType: "boolean",
@@ -5301,7 +5197,7 @@ describe("FeaturesClient", () => {
         const rawRequestBody = {};
         const rawResponseBody = {
             data: {
-                credit_balances: { key: { remaining: 1.1, reserved: 1.1, settled: 1.1 } },
+                credit_balances: { key: { postpaid: true, remaining: 1.1, reserved: 1.1, settled: 1.1 } },
                 credit_spend_policies: [
                     { credit_id: "credit_id", id: "id", kind: "kind", limit: 1.1, scope: "company" },
                 ],
@@ -5325,6 +5221,7 @@ describe("FeaturesClient", () => {
             data: {
                 creditBalances: {
                     key: {
+                        postpaid: true,
                         remaining: 1.1,
                         reserved: 1.1,
                         settled: 1.1,
