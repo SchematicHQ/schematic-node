@@ -273,8 +273,12 @@ export class DataStreamClient extends LazyEmitter {
   }
 
   /**
-   * IsConnected returns whether the client is connected to the datastream
-   * In replicator mode, returns true if the external replicator is ready
+   * IsConnected returns whether the WebSocket connection is active.
+   *
+   * In replicator mode there is no WebSocket, and this reports the replicator's
+   * readiness instead, the same value isCacheReady() returns there. That
+   * behavior is kept for backward compatibility; to ask whether flag checks can
+   * be served from the cache, use isCacheReady().
    */
   public isConnected(): boolean {
     if (this.replicatorMode) {
@@ -624,6 +628,25 @@ export class DataStreamClient extends LazyEmitter {
    */
   public isReplicatorReady(): boolean {
     return this.replicatorReady;
+  }
+
+  /**
+   * IsCacheReady returns whether flag checks may be evaluated from the cache.
+   *
+   * In replicator mode this is the replicator's readiness from its last health
+   * poll: true once the replicator reports its cache complete for the current
+   * cache version, and false before that or when a poll fails. Until it is
+   * true, flag checks skip the cache and use the API.
+   *
+   * Outside replicator mode the SDK fills its own cache over the WebSocket and
+   * fetches what it lacks on demand, so there is nothing to wait for and this
+   * returns true.
+   */
+  public isCacheReady(): boolean {
+    if (this.replicatorMode) {
+      return this.isReplicatorReady();
+    }
+    return true;
   }
 
   /**
@@ -1308,13 +1331,17 @@ export class DataStreamClient extends LazyEmitter {
 
       clearTimeout(timeoutId);
 
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      // Read the body whatever the status: while the replicator is still
+      // loading its cache, /ready answers 503 with ready: false and the
+      // cache_version it is loading. A body that doesn't parse fails the poll.
+      let healthData: { ready?: boolean; cache_version?: string; cacheVersion?: string };
+      try {
+        healthData = await response.json() as { ready?: boolean; cache_version?: string; cacheVersion?: string };
+      } catch (error) {
+        throw new Error(`HTTP ${response.status}: unparseable health response (${error})`);
       }
-
-      const healthData = await response.json() as { ready?: boolean; cache_version?: string; cacheVersion?: string };
       const wasReady = this.replicatorReady;
-      this.replicatorReady = healthData.ready ?? false;
+      this.replicatorReady = healthData.ready === true;
 
       // Extract cache version from response if available
       const newCacheVersion = healthData.cache_version || healthData.cacheVersion;
