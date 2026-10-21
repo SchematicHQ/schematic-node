@@ -2,8 +2,8 @@
 
 import type * as Schematic from "../../../index";
 
-export interface MarkNativeInvoicePaidResponse {
-    data: Schematic.BillingInvoiceDetailResponseData;
+export interface GetCreditEventLedgerEntryResponse {
+    data: Schematic.CreditEventLedgerResponseData;
     /** Input parameters */
     params: Record<string, unknown>;
 }

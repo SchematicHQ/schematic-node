@@ -3,6 +3,8 @@
 export const CreditSpendWindowUnit = {
     Hour: "hour",
     Day: "day",
+    Week: "week",
+    Month: "month",
     BillingPeriod: "billing_period",
 } as const;
 export type CreditSpendWindowUnit = (typeof CreditSpendWindowUnit)[keyof typeof CreditSpendWindowUnit];

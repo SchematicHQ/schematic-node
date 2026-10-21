@@ -5,7 +5,8 @@ import type * as Schematic from "../index";
 export interface BillingInvoiceSettlementResponseData {
     amount: number;
     collector: Schematic.Collector;
-    id: string;
+    /** Null on a payment Stripe recorded. */
+    id?: string;
     reference?: string;
     settledAt: Date;
 }

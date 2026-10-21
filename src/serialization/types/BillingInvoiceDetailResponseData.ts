@@ -6,6 +6,7 @@ import type * as serializers from "../index";
 import { BillingInvoiceLineResponseData } from "./BillingInvoiceLineResponseData";
 import { BillingInvoiceSettlementResponseData } from "./BillingInvoiceSettlementResponseData";
 import { BillingInvoiceTermsResponseData } from "./BillingInvoiceTermsResponseData";
+import { BillingProviderType } from "./BillingProviderType";
 import { Collector } from "./Collector";
 import { Currency } from "./Currency";
 import { InvoiceCollectionState } from "./InvoiceCollectionState";
@@ -21,22 +22,33 @@ export const BillingInvoiceDetailResponseData: core.serialization.ObjectSchema<
     collectionState: core.serialization.property("collection_state", InvoiceCollectionState.optional()),
     collector: Collector.optional(),
     companyId: core.serialization.property("company_id", core.serialization.string()),
-    contractId: core.serialization.property("contract_id", core.serialization.string()),
+    contractId: core.serialization.property("contract_id", core.serialization.string().optional()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     currency: Currency,
-    documentState: core.serialization.property("document_state", InvoiceDocumentState),
+    discount: core.serialization.number(),
+    documentState: core.serialization.property("document_state", InvoiceDocumentState.optional()),
     dueAt: core.serialization.property("due_at", core.serialization.date().optional()),
+    externalId: core.serialization.property("external_id", core.serialization.string().optional()),
     finalizedAt: core.serialization.property("finalized_at", core.serialization.date().optional()),
     id: core.serialization.string(),
     lines: core.serialization.list(BillingInvoiceLineResponseData),
     number: core.serialization.string().optional(),
-    periodEnd: core.serialization.property("period_end", core.serialization.date()),
-    periodStart: core.serialization.property("period_start", core.serialization.date()),
+    pdfUrl: core.serialization.property("pdf_url", core.serialization.string().optional()),
+    periodEnd: core.serialization.property("period_end", core.serialization.date().optional()),
+    periodStart: core.serialization.property("period_start", core.serialization.date().optional()),
+    providerType: core.serialization.property("provider_type", BillingProviderType),
     settlements: core.serialization.list(BillingInvoiceSettlementResponseData),
     status: InvoiceStatus,
+    subscriptionExternalId: core.serialization.property(
+        "subscription_external_id",
+        core.serialization.string().optional(),
+    ),
+    subscriptionId: core.serialization.property("subscription_id", core.serialization.string().optional()),
     subtotal: core.serialization.number(),
+    tax: core.serialization.number(),
     terms: BillingInvoiceTermsResponseData.optional(),
     total: core.serialization.number(),
+    url: core.serialization.string().optional(),
 });
 
 export declare namespace BillingInvoiceDetailResponseData {
@@ -46,21 +58,29 @@ export declare namespace BillingInvoiceDetailResponseData {
         collection_state?: InvoiceCollectionState.Raw | null;
         collector?: Collector.Raw | null;
         company_id: string;
-        contract_id: string;
+        contract_id?: string | null;
         created_at: string;
         currency: Currency.Raw;
-        document_state: InvoiceDocumentState.Raw;
+        discount: number;
+        document_state?: InvoiceDocumentState.Raw | null;
         due_at?: string | null;
+        external_id?: string | null;
         finalized_at?: string | null;
         id: string;
         lines: BillingInvoiceLineResponseData.Raw[];
         number?: string | null;
-        period_end: string;
-        period_start: string;
+        pdf_url?: string | null;
+        period_end?: string | null;
+        period_start?: string | null;
+        provider_type: BillingProviderType.Raw;
         settlements: BillingInvoiceSettlementResponseData.Raw[];
         status: InvoiceStatus.Raw;
+        subscription_external_id?: string | null;
+        subscription_id?: string | null;
         subtotal: number;
+        tax: number;
         terms?: BillingInvoiceTermsResponseData.Raw | null;
         total: number;
+        url?: string | null;
     }
 }

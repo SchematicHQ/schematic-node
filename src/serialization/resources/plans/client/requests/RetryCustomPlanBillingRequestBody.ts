@@ -14,6 +14,7 @@ export const RetryCustomPlanBillingRequestBody: core.serialization.Schema<
     billingStartDate: core.serialization.property("billing_start_date", core.serialization.date().optional()),
     customerEmail: core.serialization.property("customer_email", core.serialization.string()),
     daysUntilDue: core.serialization.property("days_until_due", core.serialization.number().optional()),
+    endDate: core.serialization.property("end_date", core.serialization.date().optional()),
     prorateFirstPeriod: core.serialization.property("prorate_first_period", core.serialization.boolean().optional()),
     sendInvoice: core.serialization.property("send_invoice", core.serialization.boolean().optional()),
 });
@@ -25,6 +26,7 @@ export declare namespace RetryCustomPlanBillingRequestBody {
         billing_start_date?: string | null;
         customer_email: string;
         days_until_due?: number | null;
+        end_date?: string | null;
         prorate_first_period?: boolean | null;
         send_invoice?: boolean | null;
     }

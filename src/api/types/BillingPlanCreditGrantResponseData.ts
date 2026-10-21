@@ -72,4 +72,6 @@ export interface BillingPlanCreditGrantResponseData {
     /** Price per credit as a decimal in the plan currency's smallest unit. Set only when billing_mode is billed and the rate is below one cent. */
     unitPriceDecimal?: string;
     updatedAt: Date;
+    /** Usage-warning thresholds, in credits remaining in the company's balance, highest first. Schematic sends a credit.usage_warning_reached webhook when the balance drops to each one. Empty when none are set. */
+    warningTiers: Schematic.BillingPlanCreditGrantWarningTierResponseData[];
 }

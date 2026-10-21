@@ -6,6 +6,7 @@ import type * as serializers from "../../../../index";
 import { CreateCustomPlanBundlePlanRequestBody } from "../../../../types/CreateCustomPlanBundlePlanRequestBody";
 import { PlanBundleCreditGrantRequestBody } from "../../../../types/PlanBundleCreditGrantRequestBody";
 import { PlanBundleEntitlementRequestBody } from "../../../../types/PlanBundleEntitlementRequestBody";
+import { RenewalPolicy } from "../../../../types/RenewalPolicy";
 import { UpsertBillingProductRequestBody } from "../../../../types/UpsertBillingProductRequestBody";
 
 export const CreateCustomPlanBundleRequestBody: core.serialization.Schema<
@@ -19,6 +20,7 @@ export const CreateCustomPlanBundleRequestBody: core.serialization.Schema<
     ),
     entitlements: core.serialization.list(PlanBundleEntitlementRequestBody),
     plan: CreateCustomPlanBundlePlanRequestBody,
+    renewalPolicy: core.serialization.property("renewal_policy", RenewalPolicy.optional()),
 });
 
 export declare namespace CreateCustomPlanBundleRequestBody {
@@ -27,5 +29,6 @@ export declare namespace CreateCustomPlanBundleRequestBody {
         credit_grants?: PlanBundleCreditGrantRequestBody.Raw[] | null;
         entitlements: PlanBundleEntitlementRequestBody.Raw[];
         plan: CreateCustomPlanBundlePlanRequestBody.Raw;
+        renewal_policy?: RenewalPolicy.Raw | null;
     }
 }

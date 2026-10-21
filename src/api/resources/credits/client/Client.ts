@@ -5556,6 +5556,7 @@ export class CreditsClient {
      *         endTime: "end_time",
      *         eventType: "adjustment",
      *         featureId: "feature_id",
+     *         sourceEventId: "source_event_id",
      *         startTime: "start_time",
      *         limit: 1000000,
      *         offset: 1000000
@@ -5572,7 +5573,8 @@ export class CreditsClient {
         request: Schematic.ListCreditEventLedgerRequest,
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListCreditEventLedgerResponse>> {
-        const { billingCreditId, companyId, endTime, eventType, featureId, startTime, limit, offset } = request;
+        const { billingCreditId, companyId, endTime, eventType, featureId, sourceEventId, startTime, limit, offset } =
+            request;
         const _queryParams: Record<string, unknown> = {
             billing_credit_id: billingCreditId,
             company_id: companyId,
@@ -5582,6 +5584,7 @@ export class CreditsClient {
                     ? serializers.CreditEventType.jsonOrThrow(eventType, { unrecognizedObjectKeys: "strip" })
                     : undefined,
             feature_id: featureId,
+            source_event_id: sourceEventId,
             start_time: startTime,
             limit,
             offset,
@@ -5695,6 +5698,129 @@ export class CreditsClient {
     }
 
     /**
+     * @param {string} ledger_entry_id - ledger_entry_id
+     * @param {CreditsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
+     * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
+     *
+     * @example
+     *     await client.credits.getCreditEventLedgerEntry("ledger_entry_id")
+     */
+    public getCreditEventLedgerEntry(
+        ledger_entry_id: string,
+        requestOptions?: CreditsClient.RequestOptions,
+    ): core.HttpResponsePromise<Schematic.GetCreditEventLedgerEntryResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getCreditEventLedgerEntry(ledger_entry_id, requestOptions));
+    }
+
+    private async __getCreditEventLedgerEntry(
+        ledger_entry_id: string,
+        requestOptions?: CreditsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.GetCreditEventLedgerEntryResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                `v2/billing/credits/ledger/${core.url.encodePathParam(ledger_entry_id, errors.SchematicError)}`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.GetCreditEventLedgerEntryResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/v2/billing/credits/ledger/{ledger_entry_id}",
+        );
+    }
+
+    /**
      * @param {Schematic.CountCreditEventLedgerRequest} request
      * @param {CreditsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -5713,6 +5839,7 @@ export class CreditsClient {
      *         endTime: "end_time",
      *         eventType: "adjustment",
      *         featureId: "feature_id",
+     *         sourceEventId: "source_event_id",
      *         startTime: "start_time",
      *         limit: 1000000,
      *         offset: 1000000
@@ -5729,7 +5856,8 @@ export class CreditsClient {
         request: Schematic.CountCreditEventLedgerRequest,
         requestOptions?: CreditsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountCreditEventLedgerResponse>> {
-        const { billingCreditId, companyId, endTime, eventType, featureId, startTime, limit, offset } = request;
+        const { billingCreditId, companyId, endTime, eventType, featureId, sourceEventId, startTime, limit, offset } =
+            request;
         const _queryParams: Record<string, unknown> = {
             billing_credit_id: billingCreditId,
             company_id: companyId,
@@ -5739,6 +5867,7 @@ export class CreditsClient {
                     ? serializers.CreditEventType.jsonOrThrow(eventType, { unrecognizedObjectKeys: "strip" })
                     : undefined,
             feature_id: featureId,
+            source_event_id: sourceEventId,
             start_time: startTime,
             limit,
             offset,

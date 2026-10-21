@@ -2,7 +2,7 @@
 
 import type * as Schematic from "../../../index";
 
-export interface GetNativeInvoiceResponse {
+export interface MarkBillingInvoicePaidResponse {
     data: Schematic.BillingInvoiceDetailResponseData;
     /** Input parameters */
     params: Record<string, unknown>;

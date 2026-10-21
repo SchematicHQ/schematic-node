@@ -11,6 +11,7 @@ export interface PlanVersionResponseData {
     name: string;
     originalPlanId?: string;
     planType: Schematic.PlanType;
+    renewalPolicy: Schematic.RenewalPolicy;
     status: Schematic.PlanVersionStatus;
     updatedAt: Date;
     version: number;

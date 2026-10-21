@@ -3,25 +3,35 @@
 import type * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { BillingProviderType } from "../../../types/BillingProviderType";
 import { InvoiceDocumentState } from "../../../types/InvoiceDocumentState";
+import { InvoiceStatus } from "../../../types/InvoiceStatus";
 
-export const ListNativeInvoicesParams: core.serialization.ObjectSchema<
-    serializers.ListNativeInvoicesParams.Raw,
-    Schematic.ListNativeInvoicesParams
+export const CountBillingInvoicesParams: core.serialization.ObjectSchema<
+    serializers.CountBillingInvoicesParams.Raw,
+    Schematic.CountBillingInvoicesParams
 > = core.serialization.object({
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
     contractId: core.serialization.property("contract_id", core.serialization.string().optional()),
     documentState: core.serialization.property("document_state", InvoiceDocumentState.optional()),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
+    pastDue: core.serialization.property("past_due", core.serialization.boolean().optional()),
+    providerType: core.serialization.property("provider_type", BillingProviderType.optional()),
+    q: core.serialization.string().optional(),
+    status: InvoiceStatus.optional(),
 });
 
-export declare namespace ListNativeInvoicesParams {
+export declare namespace CountBillingInvoicesParams {
     export interface Raw {
         company_id?: string | null;
         contract_id?: string | null;
         document_state?: InvoiceDocumentState.Raw | null;
         limit?: number | null;
         offset?: number | null;
+        past_due?: boolean | null;
+        provider_type?: BillingProviderType.Raw | null;
+        q?: string | null;
+        status?: InvoiceStatus.Raw | null;
     }
 }

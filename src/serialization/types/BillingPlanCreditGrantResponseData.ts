@@ -14,6 +14,7 @@ import { BillingPlanCreditGrantPriceTierResponseData } from "./BillingPlanCredit
 import { BillingPlanCreditGrantResetCadence } from "./BillingPlanCreditGrantResetCadence";
 import { BillingPlanCreditGrantResetStart } from "./BillingPlanCreditGrantResetStart";
 import { BillingPlanCreditGrantResetType } from "./BillingPlanCreditGrantResetType";
+import { BillingPlanCreditGrantWarningTierResponseData } from "./BillingPlanCreditGrantWarningTierResponseData";
 import { BillingPriceResponseData } from "./BillingPriceResponseData";
 import { BillingTiersMode } from "./BillingTiersMode";
 import { PlanCreditGrantScaling } from "./PlanCreditGrantScaling";
@@ -84,6 +85,10 @@ export const BillingPlanCreditGrantResponseData: core.serialization.ObjectSchema
     unitPrice: core.serialization.property("unit_price", core.serialization.number().optional()),
     unitPriceDecimal: core.serialization.property("unit_price_decimal", core.serialization.string().optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+    warningTiers: core.serialization.property(
+        "warning_tiers",
+        core.serialization.list(BillingPlanCreditGrantWarningTierResponseData),
+    ),
 });
 
 export declare namespace BillingPlanCreditGrantResponseData {
@@ -134,5 +139,6 @@ export declare namespace BillingPlanCreditGrantResponseData {
         unit_price?: number | null;
         unit_price_decimal?: string | null;
         updated_at: string;
+        warning_tiers: BillingPlanCreditGrantWarningTierResponseData.Raw[];
     }
 }

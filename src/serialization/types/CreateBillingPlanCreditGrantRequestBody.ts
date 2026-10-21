@@ -16,6 +16,7 @@ import { BillingTiersMode } from "./BillingTiersMode";
 import { CreditAutoTopupAmountType } from "./CreditAutoTopupAmountType";
 import { CreditGrantPriceTierRequestBody } from "./CreditGrantPriceTierRequestBody";
 import { PlanCreditGrantScaling } from "./PlanCreditGrantScaling";
+import { PlanCreditGrantWarningTierRequestBody } from "./PlanCreditGrantWarningTierRequestBody";
 
 export const CreateBillingPlanCreditGrantRequestBody: core.serialization.ObjectSchema<
     serializers.CreateBillingPlanCreditGrantRequestBody.Raw,
@@ -79,6 +80,10 @@ export const CreateBillingPlanCreditGrantRequestBody: core.serialization.ObjectS
     tierMode: core.serialization.property("tier_mode", BillingTiersMode.optional()),
     unitPrice: core.serialization.property("unit_price", core.serialization.number().optional()),
     unitPriceDecimal: core.serialization.property("unit_price_decimal", core.serialization.string().optional()),
+    warningTiers: core.serialization.property(
+        "warning_tiers",
+        core.serialization.list(PlanCreditGrantWarningTierRequestBody).optional(),
+    ),
 });
 
 export declare namespace CreateBillingPlanCreditGrantRequestBody {
@@ -120,5 +125,6 @@ export declare namespace CreateBillingPlanCreditGrantRequestBody {
         tier_mode?: BillingTiersMode.Raw | null;
         unit_price?: number | null;
         unit_price_decimal?: string | null;
+        warning_tiers?: PlanCreditGrantWarningTierRequestBody.Raw[] | null;
     }
 }

@@ -22,6 +22,7 @@ export const PublishPreviewResponseData: core.serialization.ObjectSchema<
     defaultDaysUntilDue: core.serialization.property("default_days_until_due", core.serialization.number()),
     defaultSendInvoice: core.serialization.property("default_send_invoice", core.serialization.boolean()),
     effectiveAt: core.serialization.property("effective_at", core.serialization.date().optional()),
+    endsAt: core.serialization.property("ends_at", core.serialization.date().optional()),
     hasBillingChanges: core.serialization.property("has_billing_changes", core.serialization.boolean()),
     immediateInvoiceAmount: core.serialization.property(
         "immediate_invoice_amount",
@@ -58,6 +59,7 @@ export declare namespace PublishPreviewResponseData {
         default_days_until_due: number;
         default_send_invoice: boolean;
         effective_at?: string | null;
+        ends_at?: string | null;
         has_billing_changes: boolean;
         immediate_invoice_amount?: number | null;
         lands_on: AmendmentProrationLandsOn.Raw;

@@ -7,8 +7,8 @@ import type * as serializers from "../index";
 export const CreditSpendWindowUnit: core.serialization.Schema<
     serializers.CreditSpendWindowUnit.Raw,
     Schematic.CreditSpendWindowUnit
-> = core.serialization.enum_(["hour", "day", "billing_period"]);
+> = core.serialization.enum_(["hour", "day", "week", "month", "billing_period"]);
 
 export declare namespace CreditSpendWindowUnit {
-    export type Raw = "hour" | "day" | "billing_period";
+    export type Raw = "hour" | "day" | "week" | "month" | "billing_period";
 }

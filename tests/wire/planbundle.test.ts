@@ -49,6 +49,7 @@ describe("PlanbundleClient", () => {
                         rollover_percentage: 1000000,
                         scaling: "fixed",
                         updated_at: "2024-01-15T09:30:00Z",
+                        warning_tiers: [{ id: "id", key: "key", value: 1000000 }],
                     },
                 ],
                 entitlements: [
@@ -85,6 +86,7 @@ describe("PlanbundleClient", () => {
                     name: "name",
                     original_plan_id: "original_plan_id",
                     plan_type: "plan",
+                    renewal_policy: "auto_renew",
                     status: "published",
                     updated_at: "2024-01-15T09:30:00Z",
                     version: 1000000,
@@ -157,6 +159,13 @@ describe("PlanbundleClient", () => {
                         rolloverPercentage: 1000000,
                         scaling: "fixed",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        warningTiers: [
+                            {
+                                id: "id",
+                                key: "key",
+                                value: 1000000,
+                            },
+                        ],
                     },
                 ],
                 entitlements: [
@@ -203,6 +212,7 @@ describe("PlanbundleClient", () => {
                     name: "name",
                     originalPlanId: "original_plan_id",
                     planType: "plan",
+                    renewalPolicy: "auto_renew",
                     status: "published",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     version: 1000000,
@@ -459,6 +469,7 @@ describe("PlanbundleClient", () => {
                         rollover_percentage: 1000000,
                         scaling: "fixed",
                         updated_at: "2024-01-15T09:30:00Z",
+                        warning_tiers: [{ id: "id", key: "key", value: 1000000 }],
                     },
                 ],
                 entitlements: [
@@ -495,6 +506,7 @@ describe("PlanbundleClient", () => {
                     name: "name",
                     original_plan_id: "original_plan_id",
                     plan_type: "plan",
+                    renewal_policy: "auto_renew",
                     status: "published",
                     updated_at: "2024-01-15T09:30:00Z",
                     version: 1000000,
@@ -563,6 +575,13 @@ describe("PlanbundleClient", () => {
                         rolloverPercentage: 1000000,
                         scaling: "fixed",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        warningTiers: [
+                            {
+                                id: "id",
+                                key: "key",
+                                value: 1000000,
+                            },
+                        ],
                     },
                 ],
                 entitlements: [
@@ -609,6 +628,7 @@ describe("PlanbundleClient", () => {
                     name: "name",
                     originalPlanId: "original_plan_id",
                     planType: "plan",
+                    renewalPolicy: "auto_renew",
                     status: "published",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     version: 1000000,
@@ -840,6 +860,7 @@ describe("PlanbundleClient", () => {
                         rollover_percentage: 1000000,
                         scaling: "fixed",
                         updated_at: "2024-01-15T09:30:00Z",
+                        warning_tiers: [{ id: "id", key: "key", value: 1000000 }],
                     },
                 ],
                 entitlements: [
@@ -876,6 +897,7 @@ describe("PlanbundleClient", () => {
                     name: "name",
                     original_plan_id: "original_plan_id",
                     plan_type: "plan",
+                    renewal_policy: "auto_renew",
                     status: "published",
                     updated_at: "2024-01-15T09:30:00Z",
                     version: 1000000,
@@ -943,6 +965,13 @@ describe("PlanbundleClient", () => {
                         rolloverPercentage: 1000000,
                         scaling: "fixed",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        warningTiers: [
+                            {
+                                id: "id",
+                                key: "key",
+                                value: 1000000,
+                            },
+                        ],
                     },
                 ],
                 entitlements: [
@@ -989,6 +1018,7 @@ describe("PlanbundleClient", () => {
                     name: "name",
                     originalPlanId: "original_plan_id",
                     planType: "plan",
+                    renewalPolicy: "auto_renew",
                     status: "published",
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     version: 1000000,

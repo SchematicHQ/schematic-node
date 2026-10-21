@@ -5,6 +5,7 @@ import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
 import { PlanBundleCreditGrantRequestBody } from "../../../../types/PlanBundleCreditGrantRequestBody";
 import { PlanBundleEntitlementRequestBody } from "../../../../types/PlanBundleEntitlementRequestBody";
+import { RenewalPolicy } from "../../../../types/RenewalPolicy";
 import { UpdatePlanRequestBody } from "../../../../types/UpdatePlanRequestBody";
 import { UpsertBillingProductRequestBody } from "../../../../types/UpsertBillingProductRequestBody";
 
@@ -20,6 +21,7 @@ export const UpdatePlanBundleRequestBody: core.serialization.Schema<
     entitlements: core.serialization.list(PlanBundleEntitlementRequestBody),
     plan: UpdatePlanRequestBody,
     planVersionId: core.serialization.property("plan_version_id", core.serialization.string().optional()),
+    renewalPolicy: core.serialization.property("renewal_policy", RenewalPolicy.optional()),
 });
 
 export declare namespace UpdatePlanBundleRequestBody {
@@ -29,5 +31,6 @@ export declare namespace UpdatePlanBundleRequestBody {
         entitlements: PlanBundleEntitlementRequestBody.Raw[];
         plan: UpdatePlanRequestBody.Raw;
         plan_version_id?: string | null;
+        renewal_policy?: RenewalPolicy.Raw | null;
     }
 }

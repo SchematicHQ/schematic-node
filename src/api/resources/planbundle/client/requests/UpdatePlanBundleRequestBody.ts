@@ -19,4 +19,5 @@ export interface UpdatePlanBundleRequestBody {
     entitlements: Schematic.PlanBundleEntitlementRequestBody[];
     plan: Schematic.UpdatePlanRequestBody;
     planVersionId?: string;
+    renewalPolicy?: Schematic.RenewalPolicy;
 }

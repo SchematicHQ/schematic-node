@@ -10,12 +10,12 @@ import { EventBodyTrack } from "./EventBodyTrack";
 
 export const EventBody: core.serialization.Schema<serializers.EventBody.Raw, Schematic.EventBody> =
     core.serialization.undiscriminatedUnion([
-        EventBodyTrack,
-        EventBodyFlagCheck,
-        EventBodyIdentify,
         EventBodyInference,
+        EventBodyFlagCheck,
+        EventBodyTrack,
+        EventBodyIdentify,
     ]);
 
 export declare namespace EventBody {
-    export type Raw = EventBodyTrack.Raw | EventBodyFlagCheck.Raw | EventBodyIdentify.Raw | EventBodyInference.Raw;
+    export type Raw = EventBodyInference.Raw | EventBodyFlagCheck.Raw | EventBodyTrack.Raw | EventBodyIdentify.Raw;
 }

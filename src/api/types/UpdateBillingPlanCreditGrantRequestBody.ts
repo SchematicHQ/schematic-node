@@ -53,4 +53,6 @@ export interface UpdateBillingPlanCreditGrantRequestBody {
     unitPrice?: number;
     /** Price per credit as a decimal in the plan currency's smallest unit, for prices below one cent. */
     unitPriceDecimal?: string;
+    /** Usage-warning thresholds, in credits remaining in the company's balance (grant, rollover, top-ups and bundles together). Each value must be below the grant amount, and values must be unique. Schematic sends a credit.usage_warning_reached webhook once when the balance drops to each threshold, and again after the balance rises back above it. Omit to leave the thresholds as they are; send an empty list to remove them. At most 5. */
+    warningTiers?: Schematic.PlanCreditGrantWarningTierRequestBody[];
 }

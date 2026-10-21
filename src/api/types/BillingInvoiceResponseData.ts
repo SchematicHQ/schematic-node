@@ -5,21 +5,32 @@ import type * as Schematic from "../index";
 export interface BillingInvoiceResponseData {
     amountPaid: number;
     amountRemaining: number;
-    /** The collector's report on payment. Null on a draft. */
+    /** The collector's report on payment. Null on a draft and on a Stripe invoice. */
     collectionState?: Schematic.InvoiceCollectionState;
     collector?: Schematic.Collector;
     companyId: string;
-    contractId: string;
+    /** Null on a Stripe invoice. */
+    contractId?: string;
     createdAt: Date;
     currency: Schematic.Currency;
-    documentState: Schematic.InvoiceDocumentState;
+    /** Null on a Stripe invoice. */
+    documentState?: Schematic.InvoiceDocumentState;
     dueAt?: Date;
+    /** The billing provider's invoice ID. Null on an invoice Schematic issued. */
+    externalId?: string;
     finalizedAt?: Date;
     id: string;
     number?: string;
-    periodEnd: Date;
-    periodStart: Date;
+    /** Null on a Stripe invoice. */
+    periodEnd?: Date;
+    /** Null on a Stripe invoice. */
+    periodStart?: Date;
+    providerType: Schematic.BillingProviderType;
     status: Schematic.InvoiceStatus;
+    /** The billing provider's subscription ID. Null on an invoice Schematic issued. */
+    subscriptionExternalId?: string;
     subtotal: number;
     total: number;
+    /** The billing provider's hosted invoice page. Null on an invoice Schematic issued. */
+    url?: string;
 }

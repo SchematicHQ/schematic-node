@@ -11,7 +11,7 @@ export const BillingInvoiceSettlementResponseData: core.serialization.ObjectSche
 > = core.serialization.object({
     amount: core.serialization.number(),
     collector: Collector,
-    id: core.serialization.string(),
+    id: core.serialization.string().optional(),
     reference: core.serialization.string().optional(),
     settledAt: core.serialization.property("settled_at", core.serialization.date()),
 });
@@ -20,7 +20,7 @@ export declare namespace BillingInvoiceSettlementResponseData {
     export interface Raw {
         amount: number;
         collector: Collector.Raw;
-        id: string;
+        id?: string | null;
         reference?: string | null;
         settled_at: string;
     }

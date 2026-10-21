@@ -2710,7 +2710,7 @@ await client.billing.getCompanyNativeSubscription("company_id");
 </dl>
 </details>
 
-<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">listNativeInvoices</a>({ ...params }) -> Schematic.ListNativeInvoicesResponse</code></summary>
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">listBillingInvoices</a>({ ...params }) -> Schematic.ListBillingInvoicesResponse</code></summary>
 <dl>
 <dd>
 
@@ -2723,10 +2723,14 @@ await client.billing.getCompanyNativeSubscription("company_id");
 <dd>
 
 ```typescript
-await client.billing.listNativeInvoices({
+await client.billing.listBillingInvoices({
     companyId: "company_id",
     contractId: "contract_id",
     documentState: "credited",
+    pastDue: true,
+    providerType: "metronome",
+    q: "q",
+    status: "draft",
     limit: 1000000,
     offset: 1000000
 });
@@ -2745,7 +2749,7 @@ await client.billing.listNativeInvoices({
 <dl>
 <dd>
 
-**request:** `Schematic.ListNativeInvoicesRequest` 
+**request:** `Schematic.ListBillingInvoicesRequest` 
     
 </dd>
 </dl>
@@ -2765,7 +2769,7 @@ await client.billing.listNativeInvoices({
 </dl>
 </details>
 
-<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">getNativeInvoice</a>(invoice_id) -> Schematic.GetNativeInvoiceResponse</code></summary>
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">getBillingInvoice</a>(invoice_id) -> Schematic.GetBillingInvoiceResponse</code></summary>
 <dl>
 <dd>
 
@@ -2778,7 +2782,7 @@ await client.billing.listNativeInvoices({
 <dd>
 
 ```typescript
-await client.billing.getNativeInvoice("invoice_id");
+await client.billing.getBillingInvoice("invoice_id");
 
 ```
 </dd>
@@ -2912,7 +2916,7 @@ await client.billing.finalizeNativeInvoice("invoice_id");
 </dl>
 </details>
 
-<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">markNativeInvoicePaid</a>(invoice_id, { ...params }) -> Schematic.MarkNativeInvoicePaidResponse</code></summary>
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">markBillingInvoicePaid</a>(invoice_id, { ...params }) -> Schematic.MarkBillingInvoicePaidResponse</code></summary>
 <dl>
 <dd>
 
@@ -2925,7 +2929,7 @@ await client.billing.finalizeNativeInvoice("invoice_id");
 <dd>
 
 ```typescript
-await client.billing.markNativeInvoicePaid("invoice_id", {
+await client.billing.markBillingInvoicePaid("invoice_id", {
     idempotencyKey: "idempotency_key"
 });
 
@@ -3069,7 +3073,7 @@ await client.billing.voidNativeInvoice("invoice_id");
 </dl>
 </details>
 
-<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">countNativeInvoices</a>({ ...params }) -> Schematic.CountNativeInvoicesResponse</code></summary>
+<details><summary><code>client.billing.<a href="/src/api/resources/billing/client/Client.ts">countBillingInvoices</a>({ ...params }) -> Schematic.CountBillingInvoicesResponse</code></summary>
 <dl>
 <dd>
 
@@ -3082,10 +3086,14 @@ await client.billing.voidNativeInvoice("invoice_id");
 <dd>
 
 ```typescript
-await client.billing.countNativeInvoices({
+await client.billing.countBillingInvoices({
     companyId: "company_id",
     contractId: "contract_id",
     documentState: "credited",
+    pastDue: true,
+    providerType: "metronome",
+    q: "q",
+    status: "draft",
     limit: 1000000,
     offset: 1000000
 });
@@ -3104,7 +3112,7 @@ await client.billing.countNativeInvoices({
 <dl>
 <dd>
 
-**request:** `Schematic.CountNativeInvoicesRequest` 
+**request:** `Schematic.CountBillingInvoicesRequest` 
     
 </dd>
 </dl>
@@ -5196,6 +5204,7 @@ await client.credits.listCreditEventLedger({
     endTime: "end_time",
     eventType: "adjustment",
     featureId: "feature_id",
+    sourceEventId: "source_event_id",
     startTime: "start_time",
     limit: 1000000,
     offset: 1000000
@@ -5235,6 +5244,55 @@ await client.credits.listCreditEventLedger({
 </dl>
 </details>
 
+<details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">getCreditEventLedgerEntry</a>(ledger_entry_id) -> Schematic.GetCreditEventLedgerEntryResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.credits.getCreditEventLedgerEntry("ledger_entry_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**ledger_entry_id:** `string` — ledger_entry_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CreditsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.credits.<a href="/src/api/resources/credits/client/Client.ts">countCreditEventLedger</a>({ ...params }) -> Schematic.CountCreditEventLedgerResponse</code></summary>
 <dl>
 <dd>
@@ -5254,6 +5312,7 @@ await client.credits.countCreditEventLedger({
     endTime: "end_time",
     eventType: "adjustment",
     featureId: "feature_id",
+    sourceEventId: "source_event_id",
     startTime: "start_time",
     limit: 1000000,
     offset: 1000000

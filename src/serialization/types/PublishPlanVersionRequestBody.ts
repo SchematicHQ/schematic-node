@@ -27,6 +27,7 @@ export const PublishPlanVersionRequestBody: core.serialization.ObjectSchema<
     ),
     customerEmail: core.serialization.property("customer_email", core.serialization.string().optional()),
     daysUntilDue: core.serialization.property("days_until_due", core.serialization.number().optional()),
+    endDate: core.serialization.property("end_date", core.serialization.date().optional()),
     excludedCompanyIds: core.serialization.property(
         "excluded_company_ids",
         core.serialization.list(core.serialization.string()),
@@ -52,6 +53,7 @@ export declare namespace PublishPlanVersionRequestBody {
         custom_field_values?: CheckoutFieldValue.Raw[] | null;
         customer_email?: string | null;
         days_until_due?: number | null;
+        end_date?: string | null;
         excluded_company_ids: string[];
         migration_strategy: PlanVersionMigrationStrategy.Raw;
         phone?: string | null;

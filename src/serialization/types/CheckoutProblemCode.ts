@@ -21,6 +21,7 @@ export const CheckoutProblemCode: core.serialization.Schema<
     "billing_start_date_needs_renewal_date",
     "billing_start_date_not_before_renewal_date",
     "billing_start_date_too_far_in_past",
+    "checkout_superseded",
     "credit_bundle_incompatible",
     "credit_bundle_unavailable",
     "credit_bundles_activate_on_payment",
@@ -28,6 +29,9 @@ export const CheckoutProblemCode: core.serialization.Schema<
     "custom_field_required",
     "discount_ineligible",
     "downgrade_not_permitted",
+    "end_date_must_be_future",
+    "end_date_needs_new_subscription",
+    "end_date_not_after_renewal_date",
     "free_first_period_activates_on_payment",
     "invoice_email_required",
     "invoiced_subscription_conflicts_with_trial",
@@ -69,6 +73,7 @@ export declare namespace CheckoutProblemCode {
         | "billing_start_date_needs_renewal_date"
         | "billing_start_date_not_before_renewal_date"
         | "billing_start_date_too_far_in_past"
+        | "checkout_superseded"
         | "credit_bundle_incompatible"
         | "credit_bundle_unavailable"
         | "credit_bundles_activate_on_payment"
@@ -76,6 +81,9 @@ export declare namespace CheckoutProblemCode {
         | "custom_field_required"
         | "discount_ineligible"
         | "downgrade_not_permitted"
+        | "end_date_must_be_future"
+        | "end_date_needs_new_subscription"
+        | "end_date_not_after_renewal_date"
         | "free_first_period_activates_on_payment"
         | "invoice_email_required"
         | "invoiced_subscription_conflicts_with_trial"
