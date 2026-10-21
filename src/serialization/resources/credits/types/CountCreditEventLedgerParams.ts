@@ -16,6 +16,7 @@ export const CountCreditEventLedgerParams: core.serialization.ObjectSchema<
     featureId: core.serialization.property("feature_id", core.serialization.string().optional()),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
+    sourceEventId: core.serialization.property("source_event_id", core.serialization.string().optional()),
     startTime: core.serialization.property("start_time", core.serialization.string().optional()),
 });
 
@@ -28,6 +29,7 @@ export declare namespace CountCreditEventLedgerParams {
         feature_id?: string | null;
         limit?: number | null;
         offset?: number | null;
+        source_event_id?: string | null;
         start_time?: string | null;
     }
 }

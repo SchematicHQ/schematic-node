@@ -5,8 +5,8 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 
 export const EntitlementType: core.serialization.Schema<serializers.EntitlementType.Raw, Schematic.EntitlementType> =
-    core.serialization.enum_(["company_override", "plan_entitlement", "unknown"]);
+    core.serialization.enum_(["company_override", "plan_credit_grant", "plan_entitlement", "unknown"]);
 
 export declare namespace EntitlementType {
-    export type Raw = "company_override" | "plan_entitlement" | "unknown";
+    export type Raw = "company_override" | "plan_credit_grant" | "plan_entitlement" | "unknown";
 }

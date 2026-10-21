@@ -10,6 +10,7 @@ import type * as Schematic from "../../../../index";
  *         endTime: "end_time",
  *         eventType: "adjustment",
  *         featureId: "feature_id",
+ *         sourceEventId: "source_event_id",
  *         startTime: "start_time",
  *         limit: 1000000,
  *         offset: 1000000
@@ -21,6 +22,8 @@ export interface CountCreditEventLedgerRequest {
     endTime?: string;
     eventType?: Schematic.CreditEventType;
     featureId?: string;
+    /** Return only entries drawn by this track or inference event. Pass the event ID that POST /events returned for it. */
+    sourceEventId?: string;
     startTime?: string;
     /** Page limit (default 100) */
     limit?: number;

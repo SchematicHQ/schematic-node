@@ -19,6 +19,7 @@ export const CustomPlanBillingResponseData: core.serialization.ObjectSchema<
     companyId: core.serialization.property("company_id", core.serialization.string()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     daysUntilDue: core.serialization.property("days_until_due", core.serialization.number()),
+    endDate: core.serialization.property("end_date", core.serialization.date().optional()),
     externalInvoiceId: core.serialization.property("external_invoice_id", core.serialization.string().optional()),
     id: core.serialization.string(),
     migrationId: core.serialization.property("migration_id", core.serialization.string().optional()),
@@ -43,6 +44,7 @@ export declare namespace CustomPlanBillingResponseData {
         company_id: string;
         created_at: string;
         days_until_due: number;
+        end_date?: string | null;
         external_invoice_id?: string | null;
         id: string;
         migration_id?: string | null;

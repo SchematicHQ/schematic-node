@@ -19,6 +19,6 @@ export interface CreateCreditSpendPolicyRequestBody {
     userId?: string;
     /** The number of credits the company or user may spend in one window. Set either this or max_per_draw. */
     windowAmount?: number;
-    /** The window that window_amount applies to: one UTC hour or one UTC day. Required with window_amount. */
+    /** The window that window_amount applies to: one UTC hour, one UTC day, one week from Monday 00:00 UTC, one calendar month from the 1st 00:00 UTC, or the company's current billing period. billing_period applies to company policies only, and a company without an active subscription falls back to the calendar month. Required with window_amount. */
     windowUnit?: Schematic.CreditSpendWindowUnit;
 }

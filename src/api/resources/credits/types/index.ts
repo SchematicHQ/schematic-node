@@ -25,6 +25,7 @@ export * from "./ExtendCreditLeaseResponse";
 export * from "./GetCreditBalanceTimeSeriesParams";
 export * from "./GetCreditBalanceTimeSeriesResponse";
 export * from "./GetCreditBundleResponse";
+export * from "./GetCreditEventLedgerEntryResponse";
 export * from "./GetCreditSpendPolicyResponse";
 export * from "./GetCreditSpendPolicyUsageParams";
 export * from "./GetCreditSpendPolicyUsageResponse";

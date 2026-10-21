@@ -6,6 +6,7 @@ import type * as serializers from "../index";
 import { PlanIcon } from "./PlanIcon";
 import { PlanType } from "./PlanType";
 import { PlanVersionStatus } from "./PlanVersionStatus";
+import { RenewalPolicy } from "./RenewalPolicy";
 
 export const PlanVersionResponseData: core.serialization.ObjectSchema<
     serializers.PlanVersionResponseData.Raw,
@@ -19,6 +20,7 @@ export const PlanVersionResponseData: core.serialization.ObjectSchema<
     name: core.serialization.string(),
     originalPlanId: core.serialization.property("original_plan_id", core.serialization.string().optional()),
     planType: core.serialization.property("plan_type", PlanType),
+    renewalPolicy: core.serialization.property("renewal_policy", RenewalPolicy),
     status: PlanVersionStatus,
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     version: core.serialization.number(),
@@ -34,6 +36,7 @@ export declare namespace PlanVersionResponseData {
         name: string;
         original_plan_id?: string | null;
         plan_type: PlanType.Raw;
+        renewal_policy: RenewalPolicy.Raw;
         status: PlanVersionStatus.Raw;
         updated_at: string;
         version: number;

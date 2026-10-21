@@ -2,8 +2,8 @@
 
 import type * as Schematic from "../../../index";
 
-export interface CountNativeInvoicesResponse {
-    data: Schematic.CountResponse;
+export interface GetBillingInvoiceResponse {
+    data: Schematic.BillingInvoiceDetailResponseData;
     /** Input parameters */
-    params: Schematic.CountNativeInvoicesParams;
+    params: Record<string, unknown>;
 }

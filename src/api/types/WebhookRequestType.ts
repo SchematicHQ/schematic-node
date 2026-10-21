@@ -14,6 +14,7 @@ export const WebhookRequestType = {
     CreditLimitReached: "credit.limit.reached",
     CreditLimitWarning: "credit.limit.warning",
     CreditPurchaseSuccess: "credit.purchase.success",
+    CreditUsageWarningReached: "credit.usage_warning_reached",
     EntitlementLimitReached: "entitlement.limit.reached",
     EntitlementLimitWarning: "entitlement.limit.warning",
     EntitlementSoftLimitReached: "entitlement.soft_limit.reached",

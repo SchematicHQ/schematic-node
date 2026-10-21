@@ -4,19 +4,19 @@ import type * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { BillingInvoiceResponseData } from "../../../types/BillingInvoiceResponseData";
-import { ListNativeInvoicesParams } from "./ListNativeInvoicesParams";
+import { ListBillingInvoicesParams } from "./ListBillingInvoicesParams";
 
-export const ListNativeInvoicesResponse: core.serialization.ObjectSchema<
-    serializers.ListNativeInvoicesResponse.Raw,
-    Schematic.ListNativeInvoicesResponse
+export const ListBillingInvoicesResponse: core.serialization.ObjectSchema<
+    serializers.ListBillingInvoicesResponse.Raw,
+    Schematic.ListBillingInvoicesResponse
 > = core.serialization.object({
     data: core.serialization.list(BillingInvoiceResponseData),
-    params: ListNativeInvoicesParams,
+    params: ListBillingInvoicesParams,
 });
 
-export declare namespace ListNativeInvoicesResponse {
+export declare namespace ListBillingInvoicesResponse {
     export interface Raw {
         data: BillingInvoiceResponseData.Raw[];
-        params: ListNativeInvoicesParams.Raw;
+        params: ListBillingInvoicesParams.Raw;
     }
 }

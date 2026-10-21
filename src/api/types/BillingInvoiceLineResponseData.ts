@@ -7,7 +7,12 @@ export interface BillingInvoiceLineResponseData {
     amount: number;
     /** The charges this line sums. */
     chargeIds: string[];
-    id: string;
+    /** What the line bills for: the product, plan, add-on or credit. Null when the line has no subscription line behind it. */
+    description?: string;
+    /** The billing provider's line ID. Null on an invoice Schematic issued. */
+    externalId?: string;
+    /** Null on a Stripe invoice line. */
+    id?: string;
     kind: Schematic.InvoiceLineKind;
     periodEnd?: Date;
     periodStart?: Date;

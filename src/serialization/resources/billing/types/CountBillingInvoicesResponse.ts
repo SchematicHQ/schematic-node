@@ -4,19 +4,19 @@ import type * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { CountResponse } from "../../../types/CountResponse";
-import { CountNativeInvoicesParams } from "./CountNativeInvoicesParams";
+import { CountBillingInvoicesParams } from "./CountBillingInvoicesParams";
 
-export const CountNativeInvoicesResponse: core.serialization.ObjectSchema<
-    serializers.CountNativeInvoicesResponse.Raw,
-    Schematic.CountNativeInvoicesResponse
+export const CountBillingInvoicesResponse: core.serialization.ObjectSchema<
+    serializers.CountBillingInvoicesResponse.Raw,
+    Schematic.CountBillingInvoicesResponse
 > = core.serialization.object({
     data: CountResponse,
-    params: CountNativeInvoicesParams,
+    params: CountBillingInvoicesParams,
 });
 
-export declare namespace CountNativeInvoicesResponse {
+export declare namespace CountBillingInvoicesResponse {
     export interface Raw {
         data: CountResponse.Raw;
-        params: CountNativeInvoicesParams.Raw;
+        params: CountBillingInvoicesParams.Raw;
     }
 }

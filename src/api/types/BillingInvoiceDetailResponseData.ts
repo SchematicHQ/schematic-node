@@ -5,25 +5,44 @@ import type * as Schematic from "../index";
 export interface BillingInvoiceDetailResponseData {
     amountPaid: number;
     amountRemaining: number;
-    /** The collector's report on payment. Null on a draft. */
+    /** The collector's report on payment. Null on a draft and on a Stripe invoice. */
     collectionState?: Schematic.InvoiceCollectionState;
     collector?: Schematic.Collector;
     companyId: string;
-    contractId: string;
+    /** Null on a Stripe invoice. */
+    contractId?: string;
     createdAt: Date;
     currency: Schematic.Currency;
-    documentState: Schematic.InvoiceDocumentState;
+    /** What discounts took off the subtotal, in minor units of the invoice's currency. Zero on an invoice Schematic issued. */
+    discount: number;
+    /** Null on a Stripe invoice. */
+    documentState?: Schematic.InvoiceDocumentState;
     dueAt?: Date;
+    /** The billing provider's invoice ID. Null on an invoice Schematic issued. */
+    externalId?: string;
     finalizedAt?: Date;
     id: string;
     lines: Schematic.BillingInvoiceLineResponseData[];
     number?: string;
-    periodEnd: Date;
-    periodStart: Date;
+    /** The billing provider's PDF of the invoice. Null on an invoice Schematic issued, which downloads its PDF from this API. */
+    pdfUrl?: string;
+    /** Null on a Stripe invoice. */
+    periodEnd?: Date;
+    /** Null on a Stripe invoice. */
+    periodStart?: Date;
+    providerType: Schematic.BillingProviderType;
     settlements: Schematic.BillingInvoiceSettlementResponseData[];
     status: Schematic.InvoiceStatus;
+    /** The billing provider's subscription ID. Null on an invoice Schematic issued. */
+    subscriptionExternalId?: string;
+    /** The Schematic subscription the invoice's lines bill for. Null on a Stripe invoice, which links its subscription through subscription_external_id. */
+    subscriptionId?: string;
     subtotal: number;
-    /** The contract's terms, copied when the invoice was finalized. Null on a draft. */
+    /** In minor units of the invoice's currency. */
+    tax: number;
+    /** The contract's terms, copied when the invoice was finalized. Null on a draft and on a Stripe invoice. */
     terms?: Schematic.BillingInvoiceTermsResponseData;
     total: number;
+    /** The billing provider's hosted invoice page. Null on an invoice Schematic issued. */
+    url?: string;
 }

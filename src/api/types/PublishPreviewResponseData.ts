@@ -15,6 +15,8 @@ export interface PublishPreviewResponseData {
     defaultSendInvoice: boolean;
     /** When the company moves to the new version. Null when no date can be named yet: the company's only subscription is in dunning or scheduled to cancel. */
     effectiveAt?: Date;
+    /** When the subscription ends instead of renewing once the amendment is finalized: the end date moved back to a renewal, or the end it already has. Null when it renews. */
+    endsAt?: Date;
     hasBillingChanges: boolean;
     /** What the amendment's own invoice bills, in cents, when lands_on is immediate_invoice, after discounts and tax. Includes pending invoice items Stripe adds to the same invoice. Negative for a downgrade: Stripe raises a credit invoice with nothing due, and the credit goes to the customer's balance against later invoices. */
     immediateInvoiceAmount?: number;

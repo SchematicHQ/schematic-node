@@ -16,6 +16,8 @@ export interface RetryCustomPlanBillingRequestBody {
     billingStartDate?: Date;
     customerEmail: string;
     daysUntilDue?: number;
+    /** When a plan that doesn't renew ends. Moved back to the last renewal on or before it. When omitted, the end date set at finalize is reissued. Only honored when the retry creates a subscription. */
+    endDate?: Date;
     /** When true, the partial period between the subscription starting and its renewal date is billed pro rata straight away. When false that period is free and no invoice is raised until the renewal date. Only applies alongside billing_cycle_anchor. Defaults to true. */
     prorateFirstPeriod?: boolean;
     /** Whether Stripe emails the invoice when it is finalized. Defaults to true. */

@@ -3,7 +3,7 @@
 import type * as Schematic from "../index";
 
 export type EventBody =
-    | Schematic.EventBodyTrack
+    | Schematic.EventBodyInference
     | Schematic.EventBodyFlagCheck
-    | Schematic.EventBodyIdentify
-    | Schematic.EventBodyInference;
+    | Schematic.EventBodyTrack
+    | Schematic.EventBodyIdentify;

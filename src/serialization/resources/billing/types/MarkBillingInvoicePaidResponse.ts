@@ -5,15 +5,15 @@ import * as core from "../../../../core";
 import type * as serializers from "../../../index";
 import { BillingInvoiceDetailResponseData } from "../../../types/BillingInvoiceDetailResponseData";
 
-export const MarkNativeInvoicePaidResponse: core.serialization.ObjectSchema<
-    serializers.MarkNativeInvoicePaidResponse.Raw,
-    Schematic.MarkNativeInvoicePaidResponse
+export const MarkBillingInvoicePaidResponse: core.serialization.ObjectSchema<
+    serializers.MarkBillingInvoicePaidResponse.Raw,
+    Schematic.MarkBillingInvoicePaidResponse
 > = core.serialization.object({
     data: BillingInvoiceDetailResponseData,
     params: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
-export declare namespace MarkNativeInvoicePaidResponse {
+export declare namespace MarkBillingInvoicePaidResponse {
     export interface Raw {
         data: BillingInvoiceDetailResponseData.Raw;
         params: Record<string, unknown>;

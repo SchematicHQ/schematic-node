@@ -4340,7 +4340,7 @@ export class BillingClient {
     }
 
     /**
-     * @param {Schematic.ListNativeInvoicesRequest} request
+     * @param {Schematic.ListBillingInvoicesRequest} request
      * @param {BillingClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Schematic.BadRequestError}
@@ -4352,32 +4352,46 @@ export class BillingClient {
      * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
-     *     await client.billing.listNativeInvoices({
+     *     await client.billing.listBillingInvoices({
      *         companyId: "company_id",
      *         contractId: "contract_id",
      *         documentState: "credited",
+     *         pastDue: true,
+     *         providerType: "metronome",
+     *         q: "q",
+     *         status: "draft",
      *         limit: 1000000,
      *         offset: 1000000
      *     })
      */
-    public listNativeInvoices(
-        request: Schematic.ListNativeInvoicesRequest = {},
+    public listBillingInvoices(
+        request: Schematic.ListBillingInvoicesRequest = {},
         requestOptions?: BillingClient.RequestOptions,
-    ): core.HttpResponsePromise<Schematic.ListNativeInvoicesResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__listNativeInvoices(request, requestOptions));
+    ): core.HttpResponsePromise<Schematic.ListBillingInvoicesResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__listBillingInvoices(request, requestOptions));
     }
 
-    private async __listNativeInvoices(
-        request: Schematic.ListNativeInvoicesRequest = {},
+    private async __listBillingInvoices(
+        request: Schematic.ListBillingInvoicesRequest = {},
         requestOptions?: BillingClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Schematic.ListNativeInvoicesResponse>> {
-        const { companyId, contractId, documentState, limit, offset } = request;
+    ): Promise<core.WithRawResponse<Schematic.ListBillingInvoicesResponse>> {
+        const { companyId, contractId, documentState, pastDue, providerType, q, status, limit, offset } = request;
         const _queryParams: Record<string, unknown> = {
             company_id: companyId,
             contract_id: contractId,
             document_state:
                 documentState != null
                     ? serializers.InvoiceDocumentState.jsonOrThrow(documentState, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            past_due: pastDue,
+            provider_type:
+                providerType != null
+                    ? serializers.BillingProviderType.jsonOrThrow(providerType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            q,
+            status:
+                status != null
+                    ? serializers.InvoiceStatus.jsonOrThrow(status, { unrecognizedObjectKeys: "strip" })
                     : undefined,
             limit,
             offset,
@@ -4410,7 +4424,7 @@ export class BillingClient {
         });
         if (_response.ok) {
             return {
-                data: serializers.ListNativeInvoicesResponse.parseOrThrow(_response.body, {
+                data: serializers.ListBillingInvoicesResponse.parseOrThrow(_response.body, {
                     unrecognizedObjectKeys: "passthrough",
                     allowUnrecognizedUnionMembers: true,
                     allowUnrecognizedEnumValues: true,
@@ -4502,19 +4516,19 @@ export class BillingClient {
      * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
-     *     await client.billing.getNativeInvoice("invoice_id")
+     *     await client.billing.getBillingInvoice("invoice_id")
      */
-    public getNativeInvoice(
+    public getBillingInvoice(
         invoice_id: string,
         requestOptions?: BillingClient.RequestOptions,
-    ): core.HttpResponsePromise<Schematic.GetNativeInvoiceResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__getNativeInvoice(invoice_id, requestOptions));
+    ): core.HttpResponsePromise<Schematic.GetBillingInvoiceResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getBillingInvoice(invoice_id, requestOptions));
     }
 
-    private async __getNativeInvoice(
+    private async __getBillingInvoice(
         invoice_id: string,
         requestOptions?: BillingClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Schematic.GetNativeInvoiceResponse>> {
+    ): Promise<core.WithRawResponse<Schematic.GetBillingInvoiceResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -4539,7 +4553,7 @@ export class BillingClient {
         });
         if (_response.ok) {
             return {
-                data: serializers.GetNativeInvoiceResponse.parseOrThrow(_response.body, {
+                data: serializers.GetBillingInvoiceResponse.parseOrThrow(_response.body, {
                     unrecognizedObjectKeys: "passthrough",
                     allowUnrecognizedUnionMembers: true,
                     allowUnrecognizedEnumValues: true,
@@ -4861,23 +4875,23 @@ export class BillingClient {
      * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
-     *     await client.billing.markNativeInvoicePaid("invoice_id", {
+     *     await client.billing.markBillingInvoicePaid("invoice_id", {
      *         idempotencyKey: "idempotency_key"
      *     })
      */
-    public markNativeInvoicePaid(
+    public markBillingInvoicePaid(
         invoice_id: string,
         request: Schematic.MarkInvoicePaidRequestBody,
         requestOptions?: BillingClient.RequestOptions,
-    ): core.HttpResponsePromise<Schematic.MarkNativeInvoicePaidResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__markNativeInvoicePaid(invoice_id, request, requestOptions));
+    ): core.HttpResponsePromise<Schematic.MarkBillingInvoicePaidResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__markBillingInvoicePaid(invoice_id, request, requestOptions));
     }
 
-    private async __markNativeInvoicePaid(
+    private async __markBillingInvoicePaid(
         invoice_id: string,
         request: Schematic.MarkInvoicePaidRequestBody,
         requestOptions?: BillingClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Schematic.MarkNativeInvoicePaidResponse>> {
+    ): Promise<core.WithRawResponse<Schematic.MarkBillingInvoicePaidResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -4908,7 +4922,7 @@ export class BillingClient {
         });
         if (_response.ok) {
             return {
-                data: serializers.MarkNativeInvoicePaidResponse.parseOrThrow(_response.body, {
+                data: serializers.MarkBillingInvoicePaidResponse.parseOrThrow(_response.body, {
                     unrecognizedObjectKeys: "passthrough",
                     allowUnrecognizedUnionMembers: true,
                     allowUnrecognizedEnumValues: true,
@@ -5228,7 +5242,7 @@ export class BillingClient {
     }
 
     /**
-     * @param {Schematic.CountNativeInvoicesRequest} request
+     * @param {Schematic.CountBillingInvoicesRequest} request
      * @param {BillingClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Schematic.BadRequestError}
@@ -5240,32 +5254,46 @@ export class BillingClient {
      * @throws {@link errors.SchematicTimeoutError}
      *
      * @example
-     *     await client.billing.countNativeInvoices({
+     *     await client.billing.countBillingInvoices({
      *         companyId: "company_id",
      *         contractId: "contract_id",
      *         documentState: "credited",
+     *         pastDue: true,
+     *         providerType: "metronome",
+     *         q: "q",
+     *         status: "draft",
      *         limit: 1000000,
      *         offset: 1000000
      *     })
      */
-    public countNativeInvoices(
-        request: Schematic.CountNativeInvoicesRequest = {},
+    public countBillingInvoices(
+        request: Schematic.CountBillingInvoicesRequest = {},
         requestOptions?: BillingClient.RequestOptions,
-    ): core.HttpResponsePromise<Schematic.CountNativeInvoicesResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__countNativeInvoices(request, requestOptions));
+    ): core.HttpResponsePromise<Schematic.CountBillingInvoicesResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__countBillingInvoices(request, requestOptions));
     }
 
-    private async __countNativeInvoices(
-        request: Schematic.CountNativeInvoicesRequest = {},
+    private async __countBillingInvoices(
+        request: Schematic.CountBillingInvoicesRequest = {},
         requestOptions?: BillingClient.RequestOptions,
-    ): Promise<core.WithRawResponse<Schematic.CountNativeInvoicesResponse>> {
-        const { companyId, contractId, documentState, limit, offset } = request;
+    ): Promise<core.WithRawResponse<Schematic.CountBillingInvoicesResponse>> {
+        const { companyId, contractId, documentState, pastDue, providerType, q, status, limit, offset } = request;
         const _queryParams: Record<string, unknown> = {
             company_id: companyId,
             contract_id: contractId,
             document_state:
                 documentState != null
                     ? serializers.InvoiceDocumentState.jsonOrThrow(documentState, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            past_due: pastDue,
+            provider_type:
+                providerType != null
+                    ? serializers.BillingProviderType.jsonOrThrow(providerType, { unrecognizedObjectKeys: "strip" })
+                    : undefined,
+            q,
+            status:
+                status != null
+                    ? serializers.InvoiceStatus.jsonOrThrow(status, { unrecognizedObjectKeys: "strip" })
                     : undefined,
             limit,
             offset,
@@ -5298,7 +5326,7 @@ export class BillingClient {
         });
         if (_response.ok) {
             return {
-                data: serializers.CountNativeInvoicesResponse.parseOrThrow(_response.body, {
+                data: serializers.CountBillingInvoicesResponse.parseOrThrow(_response.body, {
                     unrecognizedObjectKeys: "passthrough",
                     allowUnrecognizedUnionMembers: true,
                     allowUnrecognizedEnumValues: true,

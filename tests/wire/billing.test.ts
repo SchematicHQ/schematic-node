@@ -5365,7 +5365,7 @@ describe("BillingClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
-    test("listNativeInvoices (1)", async () => {
+    test("listBillingInvoices (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -5382,14 +5382,18 @@ describe("BillingClient", () => {
                     currency: "aed",
                     document_state: "credited",
                     due_at: "2024-01-15T09:30:00Z",
+                    external_id: "external_id",
                     finalized_at: "2024-01-15T09:30:00Z",
                     id: "id",
                     number: "number",
                     period_end: "2024-01-15T09:30:00Z",
                     period_start: "2024-01-15T09:30:00Z",
+                    provider_type: "metronome",
                     status: "draft",
+                    subscription_external_id: "subscription_external_id",
                     subtotal: 1000000,
                     total: 1000000,
+                    url: "url",
                 },
             ],
             params: {
@@ -5398,15 +5402,23 @@ describe("BillingClient", () => {
                 document_state: "credited",
                 limit: 1000000,
                 offset: 1000000,
+                past_due: true,
+                provider_type: "metronome",
+                q: "q",
+                status: "draft",
             },
         };
 
         server.mockEndpoint().get("/invoices").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.billing.listNativeInvoices({
+        const response = await client.billing.listBillingInvoices({
             companyId: "company_id",
             contractId: "contract_id",
             documentState: "credited",
+            pastDue: true,
+            providerType: "metronome",
+            q: "q",
+            status: "draft",
             limit: 1000000,
             offset: 1000000,
         });
@@ -5423,14 +5435,18 @@ describe("BillingClient", () => {
                     currency: "aed",
                     documentState: "credited",
                     dueAt: new Date("2024-01-15T09:30:00.000Z"),
+                    externalId: "external_id",
                     finalizedAt: new Date("2024-01-15T09:30:00.000Z"),
                     id: "id",
                     number: "number",
                     periodEnd: new Date("2024-01-15T09:30:00.000Z"),
                     periodStart: new Date("2024-01-15T09:30:00.000Z"),
+                    providerType: "metronome",
                     status: "draft",
+                    subscriptionExternalId: "subscription_external_id",
                     subtotal: 1000000,
                     total: 1000000,
+                    url: "url",
                 },
             ],
             params: {
@@ -5439,11 +5455,15 @@ describe("BillingClient", () => {
                 documentState: "credited",
                 limit: 1000000,
                 offset: 1000000,
+                pastDue: true,
+                providerType: "metronome",
+                q: "q",
+                status: "draft",
             },
         });
     });
 
-    test("listNativeInvoices (2)", async () => {
+    test("listBillingInvoices (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -5452,11 +5472,11 @@ describe("BillingClient", () => {
         server.mockEndpoint().get("/invoices").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.billing.listNativeInvoices();
+            return await client.billing.listBillingInvoices();
         }).rejects.toThrow(Schematic.BadRequestError);
     });
 
-    test("listNativeInvoices (3)", async () => {
+    test("listBillingInvoices (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -5465,11 +5485,11 @@ describe("BillingClient", () => {
         server.mockEndpoint().get("/invoices").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.billing.listNativeInvoices();
+            return await client.billing.listBillingInvoices();
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
 
-    test("listNativeInvoices (4)", async () => {
+    test("listBillingInvoices (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -5478,11 +5498,11 @@ describe("BillingClient", () => {
         server.mockEndpoint().get("/invoices").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.billing.listNativeInvoices();
+            return await client.billing.listBillingInvoices();
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
 
-    test("listNativeInvoices (5)", async () => {
+    test("listBillingInvoices (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -5491,11 +5511,11 @@ describe("BillingClient", () => {
         server.mockEndpoint().get("/invoices").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.billing.listNativeInvoices();
+            return await client.billing.listBillingInvoices();
         }).rejects.toThrow(Schematic.NotFoundError);
     });
 
-    test("listNativeInvoices (6)", async () => {
+    test("listBillingInvoices (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -5504,11 +5524,11 @@ describe("BillingClient", () => {
         server.mockEndpoint().get("/invoices").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.billing.listNativeInvoices();
+            return await client.billing.listBillingInvoices();
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
-    test("getNativeInvoice (1)", async () => {
+    test("getBillingInvoice (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -5522,17 +5542,24 @@ describe("BillingClient", () => {
                 contract_id: "contract_id",
                 created_at: "2024-01-15T09:30:00Z",
                 currency: "aed",
+                discount: 1000000,
                 document_state: "credited",
                 due_at: "2024-01-15T09:30:00Z",
+                external_id: "external_id",
                 finalized_at: "2024-01-15T09:30:00Z",
                 id: "id",
-                lines: [{ amount: 1000000, charge_ids: ["charge_ids"], id: "id", kind: "adjustment", taxable: true }],
+                lines: [{ amount: 1000000, charge_ids: ["charge_ids"], kind: "adjustment", taxable: true }],
                 number: "number",
+                pdf_url: "pdf_url",
                 period_end: "2024-01-15T09:30:00Z",
                 period_start: "2024-01-15T09:30:00Z",
-                settlements: [{ amount: 1000000, collector: "external", id: "id", settled_at: "2024-01-15T09:30:00Z" }],
+                provider_type: "metronome",
+                settlements: [{ amount: 1000000, collector: "external", settled_at: "2024-01-15T09:30:00Z" }],
                 status: "draft",
+                subscription_external_id: "subscription_external_id",
+                subscription_id: "subscription_id",
                 subtotal: 1000000,
+                tax: 1000000,
                 terms: {
                     collection_method: "charge_automatically",
                     collector: "external",
@@ -5542,6 +5569,7 @@ describe("BillingClient", () => {
                     purchase_order: "purchase_order",
                 },
                 total: 1000000,
+                url: "url",
             },
             params: { key: "value" },
         };
@@ -5554,7 +5582,7 @@ describe("BillingClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.billing.getNativeInvoice("invoice_id");
+        const response = await client.billing.getBillingInvoice("invoice_id");
         expect(response).toEqual({
             data: {
                 amountPaid: 1000000,
@@ -5565,32 +5593,37 @@ describe("BillingClient", () => {
                 contractId: "contract_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 currency: "aed",
+                discount: 1000000,
                 documentState: "credited",
                 dueAt: new Date("2024-01-15T09:30:00.000Z"),
+                externalId: "external_id",
                 finalizedAt: new Date("2024-01-15T09:30:00.000Z"),
                 id: "id",
                 lines: [
                     {
                         amount: 1000000,
                         chargeIds: ["charge_ids"],
-                        id: "id",
                         kind: "adjustment",
                         taxable: true,
                     },
                 ],
                 number: "number",
+                pdfUrl: "pdf_url",
                 periodEnd: new Date("2024-01-15T09:30:00.000Z"),
                 periodStart: new Date("2024-01-15T09:30:00.000Z"),
+                providerType: "metronome",
                 settlements: [
                     {
                         amount: 1000000,
                         collector: "external",
-                        id: "id",
                         settledAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                 ],
                 status: "draft",
+                subscriptionExternalId: "subscription_external_id",
+                subscriptionId: "subscription_id",
                 subtotal: 1000000,
+                tax: 1000000,
                 terms: {
                     collectionMethod: "charge_automatically",
                     collector: "external",
@@ -5600,6 +5633,7 @@ describe("BillingClient", () => {
                     purchaseOrder: "purchase_order",
                 },
                 total: 1000000,
+                url: "url",
             },
             params: {
                 key: "value",
@@ -5607,7 +5641,7 @@ describe("BillingClient", () => {
         });
     });
 
-    test("getNativeInvoice (2)", async () => {
+    test("getBillingInvoice (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -5622,11 +5656,11 @@ describe("BillingClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.billing.getNativeInvoice("invoice_id");
+            return await client.billing.getBillingInvoice("invoice_id");
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
 
-    test("getNativeInvoice (3)", async () => {
+    test("getBillingInvoice (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -5641,11 +5675,11 @@ describe("BillingClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.billing.getNativeInvoice("invoice_id");
+            return await client.billing.getBillingInvoice("invoice_id");
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
 
-    test("getNativeInvoice (4)", async () => {
+    test("getBillingInvoice (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -5660,11 +5694,11 @@ describe("BillingClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.billing.getNativeInvoice("invoice_id");
+            return await client.billing.getBillingInvoice("invoice_id");
         }).rejects.toThrow(Schematic.NotFoundError);
     });
 
-    test("getNativeInvoice (5)", async () => {
+    test("getBillingInvoice (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -5679,7 +5713,7 @@ describe("BillingClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.billing.getNativeInvoice("invoice_id");
+            return await client.billing.getBillingInvoice("invoice_id");
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
@@ -5697,17 +5731,24 @@ describe("BillingClient", () => {
                 contract_id: "contract_id",
                 created_at: "2024-01-15T09:30:00Z",
                 currency: "aed",
+                discount: 1000000,
                 document_state: "credited",
                 due_at: "2024-01-15T09:30:00Z",
+                external_id: "external_id",
                 finalized_at: "2024-01-15T09:30:00Z",
                 id: "id",
-                lines: [{ amount: 1000000, charge_ids: ["charge_ids"], id: "id", kind: "adjustment", taxable: true }],
+                lines: [{ amount: 1000000, charge_ids: ["charge_ids"], kind: "adjustment", taxable: true }],
                 number: "number",
+                pdf_url: "pdf_url",
                 period_end: "2024-01-15T09:30:00Z",
                 period_start: "2024-01-15T09:30:00Z",
-                settlements: [{ amount: 1000000, collector: "external", id: "id", settled_at: "2024-01-15T09:30:00Z" }],
+                provider_type: "metronome",
+                settlements: [{ amount: 1000000, collector: "external", settled_at: "2024-01-15T09:30:00Z" }],
                 status: "draft",
+                subscription_external_id: "subscription_external_id",
+                subscription_id: "subscription_id",
                 subtotal: 1000000,
+                tax: 1000000,
                 terms: {
                     collection_method: "charge_automatically",
                     collector: "external",
@@ -5717,6 +5758,7 @@ describe("BillingClient", () => {
                     purchase_order: "purchase_order",
                 },
                 total: 1000000,
+                url: "url",
             },
             params: { key: "value" },
         };
@@ -5740,32 +5782,37 @@ describe("BillingClient", () => {
                 contractId: "contract_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 currency: "aed",
+                discount: 1000000,
                 documentState: "credited",
                 dueAt: new Date("2024-01-15T09:30:00.000Z"),
+                externalId: "external_id",
                 finalizedAt: new Date("2024-01-15T09:30:00.000Z"),
                 id: "id",
                 lines: [
                     {
                         amount: 1000000,
                         chargeIds: ["charge_ids"],
-                        id: "id",
                         kind: "adjustment",
                         taxable: true,
                     },
                 ],
                 number: "number",
+                pdfUrl: "pdf_url",
                 periodEnd: new Date("2024-01-15T09:30:00.000Z"),
                 periodStart: new Date("2024-01-15T09:30:00.000Z"),
+                providerType: "metronome",
                 settlements: [
                     {
                         amount: 1000000,
                         collector: "external",
-                        id: "id",
                         settledAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                 ],
                 status: "draft",
+                subscriptionExternalId: "subscription_external_id",
+                subscriptionId: "subscription_id",
                 subtotal: 1000000,
+                tax: 1000000,
                 terms: {
                     collectionMethod: "charge_automatically",
                     collector: "external",
@@ -5775,6 +5822,7 @@ describe("BillingClient", () => {
                     purchaseOrder: "purchase_order",
                 },
                 total: 1000000,
+                url: "url",
             },
             params: {
                 key: "value",
@@ -5877,7 +5925,7 @@ describe("BillingClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
-    test("markNativeInvoicePaid (1)", async () => {
+    test("markBillingInvoicePaid (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { idempotency_key: "idempotency_key" };
@@ -5891,17 +5939,24 @@ describe("BillingClient", () => {
                 contract_id: "contract_id",
                 created_at: "2024-01-15T09:30:00Z",
                 currency: "aed",
+                discount: 1000000,
                 document_state: "credited",
                 due_at: "2024-01-15T09:30:00Z",
+                external_id: "external_id",
                 finalized_at: "2024-01-15T09:30:00Z",
                 id: "id",
-                lines: [{ amount: 1000000, charge_ids: ["charge_ids"], id: "id", kind: "adjustment", taxable: true }],
+                lines: [{ amount: 1000000, charge_ids: ["charge_ids"], kind: "adjustment", taxable: true }],
                 number: "number",
+                pdf_url: "pdf_url",
                 period_end: "2024-01-15T09:30:00Z",
                 period_start: "2024-01-15T09:30:00Z",
-                settlements: [{ amount: 1000000, collector: "external", id: "id", settled_at: "2024-01-15T09:30:00Z" }],
+                provider_type: "metronome",
+                settlements: [{ amount: 1000000, collector: "external", settled_at: "2024-01-15T09:30:00Z" }],
                 status: "draft",
+                subscription_external_id: "subscription_external_id",
+                subscription_id: "subscription_id",
                 subtotal: 1000000,
+                tax: 1000000,
                 terms: {
                     collection_method: "charge_automatically",
                     collector: "external",
@@ -5911,6 +5966,7 @@ describe("BillingClient", () => {
                     purchase_order: "purchase_order",
                 },
                 total: 1000000,
+                url: "url",
             },
             params: { key: "value" },
         };
@@ -5924,7 +5980,7 @@ describe("BillingClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.billing.markNativeInvoicePaid("invoice_id", {
+        const response = await client.billing.markBillingInvoicePaid("invoice_id", {
             idempotencyKey: "idempotency_key",
         });
         expect(response).toEqual({
@@ -5937,32 +5993,37 @@ describe("BillingClient", () => {
                 contractId: "contract_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 currency: "aed",
+                discount: 1000000,
                 documentState: "credited",
                 dueAt: new Date("2024-01-15T09:30:00.000Z"),
+                externalId: "external_id",
                 finalizedAt: new Date("2024-01-15T09:30:00.000Z"),
                 id: "id",
                 lines: [
                     {
                         amount: 1000000,
                         chargeIds: ["charge_ids"],
-                        id: "id",
                         kind: "adjustment",
                         taxable: true,
                     },
                 ],
                 number: "number",
+                pdfUrl: "pdf_url",
                 periodEnd: new Date("2024-01-15T09:30:00.000Z"),
                 periodStart: new Date("2024-01-15T09:30:00.000Z"),
+                providerType: "metronome",
                 settlements: [
                     {
                         amount: 1000000,
                         collector: "external",
-                        id: "id",
                         settledAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                 ],
                 status: "draft",
+                subscriptionExternalId: "subscription_external_id",
+                subscriptionId: "subscription_id",
                 subtotal: 1000000,
+                tax: 1000000,
                 terms: {
                     collectionMethod: "charge_automatically",
                     collector: "external",
@@ -5972,6 +6033,7 @@ describe("BillingClient", () => {
                     purchaseOrder: "purchase_order",
                 },
                 total: 1000000,
+                url: "url",
             },
             params: {
                 key: "value",
@@ -5979,7 +6041,7 @@ describe("BillingClient", () => {
         });
     });
 
-    test("markNativeInvoicePaid (2)", async () => {
+    test("markBillingInvoicePaid (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { idempotency_key: "idempotency_key" };
@@ -5995,13 +6057,13 @@ describe("BillingClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.billing.markNativeInvoicePaid("invoice_id", {
+            return await client.billing.markBillingInvoicePaid("invoice_id", {
                 idempotencyKey: "idempotency_key",
             });
         }).rejects.toThrow(Schematic.BadRequestError);
     });
 
-    test("markNativeInvoicePaid (3)", async () => {
+    test("markBillingInvoicePaid (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { idempotency_key: "idempotency_key" };
@@ -6017,13 +6079,13 @@ describe("BillingClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.billing.markNativeInvoicePaid("invoice_id", {
+            return await client.billing.markBillingInvoicePaid("invoice_id", {
                 idempotencyKey: "idempotency_key",
             });
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
 
-    test("markNativeInvoicePaid (4)", async () => {
+    test("markBillingInvoicePaid (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { idempotency_key: "idempotency_key" };
@@ -6039,13 +6101,13 @@ describe("BillingClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.billing.markNativeInvoicePaid("invoice_id", {
+            return await client.billing.markBillingInvoicePaid("invoice_id", {
                 idempotencyKey: "idempotency_key",
             });
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
 
-    test("markNativeInvoicePaid (5)", async () => {
+    test("markBillingInvoicePaid (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { idempotency_key: "idempotency_key" };
@@ -6061,13 +6123,13 @@ describe("BillingClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.billing.markNativeInvoicePaid("invoice_id", {
+            return await client.billing.markBillingInvoicePaid("invoice_id", {
                 idempotencyKey: "idempotency_key",
             });
         }).rejects.toThrow(Schematic.NotFoundError);
     });
 
-    test("markNativeInvoicePaid (6)", async () => {
+    test("markBillingInvoicePaid (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { idempotency_key: "idempotency_key" };
@@ -6083,7 +6145,7 @@ describe("BillingClient", () => {
             .build();
 
         await expect(async () => {
-            return await client.billing.markNativeInvoicePaid("invoice_id", {
+            return await client.billing.markBillingInvoicePaid("invoice_id", {
                 idempotencyKey: "idempotency_key",
             });
         }).rejects.toThrow(Schematic.InternalServerError);
@@ -6103,17 +6165,24 @@ describe("BillingClient", () => {
                 contract_id: "contract_id",
                 created_at: "2024-01-15T09:30:00Z",
                 currency: "aed",
+                discount: 1000000,
                 document_state: "credited",
                 due_at: "2024-01-15T09:30:00Z",
+                external_id: "external_id",
                 finalized_at: "2024-01-15T09:30:00Z",
                 id: "id",
-                lines: [{ amount: 1000000, charge_ids: ["charge_ids"], id: "id", kind: "adjustment", taxable: true }],
+                lines: [{ amount: 1000000, charge_ids: ["charge_ids"], kind: "adjustment", taxable: true }],
                 number: "number",
+                pdf_url: "pdf_url",
                 period_end: "2024-01-15T09:30:00Z",
                 period_start: "2024-01-15T09:30:00Z",
-                settlements: [{ amount: 1000000, collector: "external", id: "id", settled_at: "2024-01-15T09:30:00Z" }],
+                provider_type: "metronome",
+                settlements: [{ amount: 1000000, collector: "external", settled_at: "2024-01-15T09:30:00Z" }],
                 status: "draft",
+                subscription_external_id: "subscription_external_id",
+                subscription_id: "subscription_id",
                 subtotal: 1000000,
+                tax: 1000000,
                 terms: {
                     collection_method: "charge_automatically",
                     collector: "external",
@@ -6123,6 +6192,7 @@ describe("BillingClient", () => {
                     purchase_order: "purchase_order",
                 },
                 total: 1000000,
+                url: "url",
             },
             params: { key: "value" },
         };
@@ -6146,32 +6216,37 @@ describe("BillingClient", () => {
                 contractId: "contract_id",
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 currency: "aed",
+                discount: 1000000,
                 documentState: "credited",
                 dueAt: new Date("2024-01-15T09:30:00.000Z"),
+                externalId: "external_id",
                 finalizedAt: new Date("2024-01-15T09:30:00.000Z"),
                 id: "id",
                 lines: [
                     {
                         amount: 1000000,
                         chargeIds: ["charge_ids"],
-                        id: "id",
                         kind: "adjustment",
                         taxable: true,
                     },
                 ],
                 number: "number",
+                pdfUrl: "pdf_url",
                 periodEnd: new Date("2024-01-15T09:30:00.000Z"),
                 periodStart: new Date("2024-01-15T09:30:00.000Z"),
+                providerType: "metronome",
                 settlements: [
                     {
                         amount: 1000000,
                         collector: "external",
-                        id: "id",
                         settledAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                 ],
                 status: "draft",
+                subscriptionExternalId: "subscription_external_id",
+                subscriptionId: "subscription_id",
                 subtotal: 1000000,
+                tax: 1000000,
                 terms: {
                     collectionMethod: "charge_automatically",
                     collector: "external",
@@ -6181,6 +6256,7 @@ describe("BillingClient", () => {
                     purchaseOrder: "purchase_order",
                 },
                 total: 1000000,
+                url: "url",
             },
             params: {
                 key: "value",
@@ -6283,7 +6359,7 @@ describe("BillingClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
-    test("countNativeInvoices (1)", async () => {
+    test("countBillingInvoices (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -6295,15 +6371,23 @@ describe("BillingClient", () => {
                 document_state: "credited",
                 limit: 1000000,
                 offset: 1000000,
+                past_due: true,
+                provider_type: "metronome",
+                q: "q",
+                status: "draft",
             },
         };
 
         server.mockEndpoint().get("/invoices/count").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.billing.countNativeInvoices({
+        const response = await client.billing.countBillingInvoices({
             companyId: "company_id",
             contractId: "contract_id",
             documentState: "credited",
+            pastDue: true,
+            providerType: "metronome",
+            q: "q",
+            status: "draft",
             limit: 1000000,
             offset: 1000000,
         });
@@ -6317,11 +6401,15 @@ describe("BillingClient", () => {
                 documentState: "credited",
                 limit: 1000000,
                 offset: 1000000,
+                pastDue: true,
+                providerType: "metronome",
+                q: "q",
+                status: "draft",
             },
         });
     });
 
-    test("countNativeInvoices (2)", async () => {
+    test("countBillingInvoices (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -6330,11 +6418,11 @@ describe("BillingClient", () => {
         server.mockEndpoint().get("/invoices/count").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.billing.countNativeInvoices();
+            return await client.billing.countBillingInvoices();
         }).rejects.toThrow(Schematic.BadRequestError);
     });
 
-    test("countNativeInvoices (3)", async () => {
+    test("countBillingInvoices (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -6343,11 +6431,11 @@ describe("BillingClient", () => {
         server.mockEndpoint().get("/invoices/count").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.billing.countNativeInvoices();
+            return await client.billing.countBillingInvoices();
         }).rejects.toThrow(Schematic.UnauthorizedError);
     });
 
-    test("countNativeInvoices (4)", async () => {
+    test("countBillingInvoices (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -6356,11 +6444,11 @@ describe("BillingClient", () => {
         server.mockEndpoint().get("/invoices/count").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.billing.countNativeInvoices();
+            return await client.billing.countBillingInvoices();
         }).rejects.toThrow(Schematic.ForbiddenError);
     });
 
-    test("countNativeInvoices (5)", async () => {
+    test("countBillingInvoices (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -6369,11 +6457,11 @@ describe("BillingClient", () => {
         server.mockEndpoint().get("/invoices/count").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.billing.countNativeInvoices();
+            return await client.billing.countBillingInvoices();
         }).rejects.toThrow(Schematic.NotFoundError);
     });
 
-    test("countNativeInvoices (6)", async () => {
+    test("countBillingInvoices (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -6382,7 +6470,7 @@ describe("BillingClient", () => {
         server.mockEndpoint().get("/invoices/count").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
-            return await client.billing.countNativeInvoices();
+            return await client.billing.countBillingInvoices();
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 });

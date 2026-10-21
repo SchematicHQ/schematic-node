@@ -11,7 +11,9 @@ export const BillingInvoiceLineResponseData: core.serialization.ObjectSchema<
 > = core.serialization.object({
     amount: core.serialization.number(),
     chargeIds: core.serialization.property("charge_ids", core.serialization.list(core.serialization.string())),
-    id: core.serialization.string(),
+    description: core.serialization.string().optional(),
+    externalId: core.serialization.property("external_id", core.serialization.string().optional()),
+    id: core.serialization.string().optional(),
     kind: InvoiceLineKind,
     periodEnd: core.serialization.property("period_end", core.serialization.date().optional()),
     periodStart: core.serialization.property("period_start", core.serialization.date().optional()),
@@ -25,7 +27,9 @@ export declare namespace BillingInvoiceLineResponseData {
     export interface Raw {
         amount: number;
         charge_ids: string[];
-        id: string;
+        description?: string | null;
+        external_id?: string | null;
+        id?: string | null;
         kind: InvoiceLineKind.Raw;
         period_end?: string | null;
         period_start?: string | null;

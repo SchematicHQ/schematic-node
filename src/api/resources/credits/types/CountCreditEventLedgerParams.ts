@@ -15,5 +15,7 @@ export interface CountCreditEventLedgerParams {
     limit?: number;
     /** Page offset (default 0) */
     offset?: number;
+    /** Return only entries drawn by this track or inference event. Pass the event ID that POST /events returned for it. */
+    sourceEventId?: string;
     startTime?: string;
 }
