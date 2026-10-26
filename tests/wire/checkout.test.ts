@@ -3093,6 +3093,8 @@ describe("CheckoutClient", () => {
                 finance: {
                     amount_off: 1000000,
                     currency: "aed",
+                    customer_balance_applied: 1000000,
+                    customer_balance_remaining: 1000000,
                     discount_amount: 1000000,
                     discounts: [
                         {
@@ -3110,6 +3112,14 @@ describe("CheckoutClient", () => {
                     promo_code_applied: true,
                     proration: 1000000,
                     proration_billed_at: "2024-01-15T09:30:00Z",
+                    proration_detail: {
+                        charge: 1000000,
+                        credit: 1000000,
+                        currency: "aed",
+                        lines: [{ amount: 1000000, kind: "charge" }],
+                        timing: "at_renewal",
+                        total: 1000000,
+                    },
                     tax_amount: 1000000,
                     tax_display_name: "tax_display_name",
                     tax_require_billing_details: true,
@@ -3202,6 +3212,8 @@ describe("CheckoutClient", () => {
                 finance: {
                     amountOff: 1000000,
                     currency: "aed",
+                    customerBalanceApplied: 1000000,
+                    customerBalanceRemaining: 1000000,
                     discountAmount: 1000000,
                     discounts: [
                         {
@@ -3219,6 +3231,19 @@ describe("CheckoutClient", () => {
                     promoCodeApplied: true,
                     proration: 1000000,
                     prorationBilledAt: new Date("2024-01-15T09:30:00.000Z"),
+                    prorationDetail: {
+                        charge: 1000000,
+                        credit: 1000000,
+                        currency: "aed",
+                        lines: [
+                            {
+                                amount: 1000000,
+                                kind: "charge",
+                            },
+                        ],
+                        timing: "at_renewal",
+                        total: 1000000,
+                    },
                     taxAmount: 1000000,
                     taxDisplayName: "tax_display_name",
                     taxRequireBillingDetails: true,
@@ -5336,6 +5361,8 @@ describe("CheckoutClient", () => {
                     finance: {
                         amount_off: 1000000,
                         currency: "aed",
+                        customer_balance_applied: 1000000,
+                        customer_balance_remaining: 1000000,
                         discount_amount: 1000000,
                         discounts: [
                             {
@@ -5442,6 +5469,8 @@ describe("CheckoutClient", () => {
                     finance: {
                         amountOff: 1000000,
                         currency: "aed",
+                        customerBalanceApplied: 1000000,
+                        customerBalanceRemaining: 1000000,
                         discountAmount: 1000000,
                         discounts: [
                             {

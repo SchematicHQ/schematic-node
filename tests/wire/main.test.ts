@@ -4,6 +4,66 @@ import { SchematicClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
 describe("SchematicClient", () => {
+    test("postApiKeys", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        server.mockEndpoint().post("/api-keys").respondWith().statusCode(200).build();
+
+        const response = await client.postApiKeys();
+        expect(response).toEqual(undefined);
+    });
+
+    test("putApiKeysApiKeyId", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        server.mockEndpoint().put("/api-keys/api_key_id").respondWith().statusCode(200).build();
+
+        const response = await client.putApiKeysApiKeyId("api_key_id");
+        expect(response).toEqual(undefined);
+    });
+
+    test("deleteApiKeysApiKeyId", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        server.mockEndpoint().delete("/api-keys/api_key_id").respondWith().statusCode(200).build();
+
+        const response = await client.deleteApiKeysApiKeyId("api_key_id");
+        expect(response).toEqual(undefined);
+    });
+
+    test("postEnvironments", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        server.mockEndpoint().post("/environments").respondWith().statusCode(200).build();
+
+        const response = await client.postEnvironments();
+        expect(response).toEqual(undefined);
+    });
+
+    test("putEnvironmentsEnvironmentId", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        server.mockEndpoint().put("/environments/environment_id").respondWith().statusCode(200).build();
+
+        const response = await client.putEnvironmentsEnvironmentId("environment_id");
+        expect(response).toEqual(undefined);
+    });
+
+    test("deleteEnvironmentsEnvironmentId", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        server.mockEndpoint().delete("/environments/environment_id").respondWith().statusCode(200).build();
+
+        const response = await client.deleteEnvironmentsEnvironmentId("environment_id");
+        expect(response).toEqual(undefined);
+    });
+
     test("getCreditLedger", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });

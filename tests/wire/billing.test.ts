@@ -5208,6 +5208,7 @@ describe("BillingClient", () => {
                 },
                 status: "active",
                 terms: {
+                    billing_details: { tax_ids: [{ type: "ae_trn", value: "value" }] },
                     collection_method: "charge_automatically",
                     collector: "external",
                     currency: "aed",
@@ -5275,6 +5276,14 @@ describe("BillingClient", () => {
                 },
                 status: "active",
                 terms: {
+                    billingDetails: {
+                        taxIds: [
+                            {
+                                type: "ae_trn",
+                                value: "value",
+                            },
+                        ],
+                    },
                     collectionMethod: "charge_automatically",
                     collector: "external",
                     currency: "aed",
@@ -5561,6 +5570,7 @@ describe("BillingClient", () => {
                 subtotal: 1000000,
                 tax: 1000000,
                 terms: {
+                    billing_details: { tax_ids: [{ type: "ae_trn", value: "value" }] },
                     collection_method: "charge_automatically",
                     collector: "external",
                     currency: "aed",
@@ -5625,6 +5635,14 @@ describe("BillingClient", () => {
                 subtotal: 1000000,
                 tax: 1000000,
                 terms: {
+                    billingDetails: {
+                        taxIds: [
+                            {
+                                type: "ae_trn",
+                                value: "value",
+                            },
+                        ],
+                    },
                     collectionMethod: "charge_automatically",
                     collector: "external",
                     currency: "aed",
@@ -5750,6 +5768,7 @@ describe("BillingClient", () => {
                 subtotal: 1000000,
                 tax: 1000000,
                 terms: {
+                    billing_details: { tax_ids: [{ type: "ae_trn", value: "value" }] },
                     collection_method: "charge_automatically",
                     collector: "external",
                     currency: "aed",
@@ -5814,6 +5833,14 @@ describe("BillingClient", () => {
                 subtotal: 1000000,
                 tax: 1000000,
                 terms: {
+                    billingDetails: {
+                        taxIds: [
+                            {
+                                type: "ae_trn",
+                                value: "value",
+                            },
+                        ],
+                    },
                     collectionMethod: "charge_automatically",
                     collector: "external",
                     currency: "aed",
@@ -5958,6 +5985,7 @@ describe("BillingClient", () => {
                 subtotal: 1000000,
                 tax: 1000000,
                 terms: {
+                    billing_details: { tax_ids: [{ type: "ae_trn", value: "value" }] },
                     collection_method: "charge_automatically",
                     collector: "external",
                     currency: "aed",
@@ -6025,6 +6053,14 @@ describe("BillingClient", () => {
                 subtotal: 1000000,
                 tax: 1000000,
                 terms: {
+                    billingDetails: {
+                        taxIds: [
+                            {
+                                type: "ae_trn",
+                                value: "value",
+                            },
+                        ],
+                    },
                     collectionMethod: "charge_automatically",
                     collector: "external",
                     currency: "aed",
@@ -6184,6 +6220,7 @@ describe("BillingClient", () => {
                 subtotal: 1000000,
                 tax: 1000000,
                 terms: {
+                    billing_details: { tax_ids: [{ type: "ae_trn", value: "value" }] },
                     collection_method: "charge_automatically",
                     collector: "external",
                     currency: "aed",
@@ -6248,6 +6285,14 @@ describe("BillingClient", () => {
                 subtotal: 1000000,
                 tax: 1000000,
                 terms: {
+                    billingDetails: {
+                        taxIds: [
+                            {
+                                type: "ae_trn",
+                                value: "value",
+                            },
+                        ],
+                    },
                     collectionMethod: "charge_automatically",
                     collector: "external",
                     currency: "aed",
