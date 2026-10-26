@@ -5,6 +5,7 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 import { Currency } from "./Currency";
 import { PreviewSubscriptionDiscountResponseData } from "./PreviewSubscriptionDiscountResponseData";
+import { PreviewSubscriptionProrationResponseData } from "./PreviewSubscriptionProrationResponseData";
 import { PreviewSubscriptionUpcomingInvoiceLineItems } from "./PreviewSubscriptionUpcomingInvoiceLineItems";
 
 export const PreviewSubscriptionFinanceResponseData: core.serialization.ObjectSchema<
@@ -13,6 +14,8 @@ export const PreviewSubscriptionFinanceResponseData: core.serialization.ObjectSc
 > = core.serialization.object({
     amountOff: core.serialization.property("amount_off", core.serialization.number()),
     currency: Currency,
+    customerBalanceApplied: core.serialization.property("customer_balance_applied", core.serialization.number()),
+    customerBalanceRemaining: core.serialization.property("customer_balance_remaining", core.serialization.number()),
     discountAmount: core.serialization.property("discount_amount", core.serialization.number()),
     discounts: core.serialization.list(PreviewSubscriptionDiscountResponseData),
     dueNow: core.serialization.property("due_now", core.serialization.number()),
@@ -23,6 +26,10 @@ export const PreviewSubscriptionFinanceResponseData: core.serialization.ObjectSc
     promoCodeApplied: core.serialization.property("promo_code_applied", core.serialization.boolean()),
     proration: core.serialization.number(),
     prorationBilledAt: core.serialization.property("proration_billed_at", core.serialization.date().optional()),
+    prorationDetail: core.serialization.property(
+        "proration_detail",
+        PreviewSubscriptionProrationResponseData.optional(),
+    ),
     taxAmount: core.serialization.property("tax_amount", core.serialization.number().optional()),
     taxDisplayName: core.serialization.property("tax_display_name", core.serialization.string().optional()),
     taxRequireBillingDetails: core.serialization.property("tax_require_billing_details", core.serialization.boolean()),
@@ -38,6 +45,8 @@ export declare namespace PreviewSubscriptionFinanceResponseData {
     export interface Raw {
         amount_off: number;
         currency: Currency.Raw;
+        customer_balance_applied: number;
+        customer_balance_remaining: number;
         discount_amount: number;
         discounts: PreviewSubscriptionDiscountResponseData.Raw[];
         due_now: number;
@@ -48,6 +57,7 @@ export declare namespace PreviewSubscriptionFinanceResponseData {
         promo_code_applied: boolean;
         proration: number;
         proration_billed_at?: string | null;
+        proration_detail?: PreviewSubscriptionProrationResponseData.Raw | null;
         tax_amount?: number | null;
         tax_display_name?: string | null;
         tax_require_billing_details: boolean;

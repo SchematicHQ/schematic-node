@@ -6,6 +6,10 @@ export interface PreviewSubscriptionFinanceResponseData {
     amountOff: number;
     /** ISO 4217 currency every amount in this block is denominated in. */
     currency: Schematic.Currency;
+    /** What the company's stored credit covers of this invoice, in minor units. */
+    customerBalanceApplied: number;
+    /** Credit left on the company's balance after this invoice, in minor units: what it did not consume, plus what a total below zero adds, which the provider applies to later invoices. */
+    customerBalanceRemaining: number;
     discountAmount: number;
     discounts: Schematic.PreviewSubscriptionDiscountResponseData[];
     dueNow: number;
@@ -16,6 +20,8 @@ export interface PreviewSubscriptionFinanceResponseData {
     promoCodeApplied: boolean;
     proration: number;
     prorationBilledAt?: Date;
+    /** The proration itemized in the cart's terms, by plan and price. Null when the change prorates nothing. upcoming_invoice_line_items stays as the billing provider reported it. */
+    prorationDetail?: Schematic.PreviewSubscriptionProrationResponseData;
     taxAmount?: number;
     taxDisplayName?: string;
     taxRequireBillingDetails: boolean;

@@ -3,6 +3,8 @@
 import type * as Schematic from "../index";
 
 export interface BillingInvoiceTermsResponseData {
+    /** Who invoices are addressed to. On an invoice, these are the details copied when it was finalized. Null when the contract holds none. */
+    billingDetails?: Schematic.BillingInvoiceBillingDetailsResponseData;
     collectionMethod: Schematic.BillingCollectionMethod;
     collector: Schematic.Collector;
     currency?: Schematic.Currency;

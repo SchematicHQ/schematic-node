@@ -1711,6 +1711,7 @@ describe("PlanmigrationsClient", () => {
                         company_id: "company_id",
                         has_billing_changes: true,
                         has_custom_pricing: true,
+                        notes: [{ blocking: true, message: "message" }],
                         will_update_subscription: true,
                         would_fail: true,
                     },
@@ -1741,6 +1742,12 @@ describe("PlanmigrationsClient", () => {
                         companyId: "company_id",
                         hasBillingChanges: true,
                         hasCustomPricing: true,
+                        notes: [
+                            {
+                                blocking: true,
+                                message: "message",
+                            },
+                        ],
                         willUpdateSubscription: true,
                         wouldFail: true,
                     },

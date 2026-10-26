@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { PlanVersionMigrationPreviewNoteResponseData } from "./PlanVersionMigrationPreviewNoteResponseData";
 
 export const PlanVersionMigrationPreviewCompanyResponseData: core.serialization.ObjectSchema<
     serializers.PlanVersionMigrationPreviewCompanyResponseData.Raw,
@@ -12,6 +13,7 @@ export const PlanVersionMigrationPreviewCompanyResponseData: core.serialization.
     hasBillingChanges: core.serialization.property("has_billing_changes", core.serialization.boolean()),
     hasCustomPricing: core.serialization.property("has_custom_pricing", core.serialization.boolean()),
     note: core.serialization.string().optional(),
+    notes: core.serialization.list(PlanVersionMigrationPreviewNoteResponseData),
     planVersionIdFrom: core.serialization.property("plan_version_id_from", core.serialization.string().optional()),
     willUpdateSubscription: core.serialization.property("will_update_subscription", core.serialization.boolean()),
     wouldFail: core.serialization.property("would_fail", core.serialization.boolean()),
@@ -23,6 +25,7 @@ export declare namespace PlanVersionMigrationPreviewCompanyResponseData {
         has_billing_changes: boolean;
         has_custom_pricing: boolean;
         note?: string | null;
+        notes: PlanVersionMigrationPreviewNoteResponseData.Raw[];
         plan_version_id_from?: string | null;
         will_update_subscription: boolean;
         would_fail: boolean;

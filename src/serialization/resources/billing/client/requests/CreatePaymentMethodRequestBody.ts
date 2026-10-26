@@ -3,6 +3,7 @@
 import type * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
+import { PaymentMethodBillingDetailsRequestBody } from "../../../../types/PaymentMethodBillingDetailsRequestBody";
 
 export const CreatePaymentMethodRequestBody: core.serialization.Schema<
     serializers.CreatePaymentMethodRequestBody.Raw,
@@ -17,6 +18,10 @@ export const CreatePaymentMethodRequestBody: core.serialization.Schema<
     cardExpMonth: core.serialization.property("card_exp_month", core.serialization.number().optional()),
     cardExpYear: core.serialization.property("card_exp_year", core.serialization.number().optional()),
     cardLast4: core.serialization.property("card_last4", core.serialization.string().optional()),
+    customerBillingDetails: core.serialization.property(
+        "customer_billing_details",
+        PaymentMethodBillingDetailsRequestBody.optional(),
+    ),
     customerExternalId: core.serialization.property("customer_external_id", core.serialization.string()),
     externalId: core.serialization.property("external_id", core.serialization.string()),
     paymentMethodType: core.serialization.property("payment_method_type", core.serialization.string()),
@@ -33,6 +38,7 @@ export declare namespace CreatePaymentMethodRequestBody {
         card_exp_month?: number | null;
         card_exp_year?: number | null;
         card_last4?: string | null;
+        customer_billing_details?: PaymentMethodBillingDetailsRequestBody.Raw | null;
         customer_external_id: string;
         external_id: string;
         payment_method_type: string;

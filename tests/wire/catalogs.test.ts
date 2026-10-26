@@ -2310,4 +2310,596 @@ describe("CatalogsClient", () => {
             return await client.catalogs.removePlan("catalog_id", "plan_id");
         }).rejects.toThrow(Schematic.InternalServerError);
     });
+
+    test("getPublicCatalog (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                add_ons: [
+                    {
+                        available_periods: ["monthly"],
+                        billing_strategy: "schematic_managed",
+                        charge_type: "free",
+                        currency_prices: [{ currency: "aed" }],
+                        description: "description",
+                        entitlements: [
+                            {
+                                currency_prices: [{ currency: "aed" }],
+                                feature_description: "feature_description",
+                                feature_icon: "feature_icon",
+                                feature_id: "feature_id",
+                                feature_name: "feature_name",
+                                feature_type: "boolean",
+                                id: "id",
+                                value_type: "boolean",
+                            },
+                        ],
+                        icon: "icon",
+                        id: "id",
+                        included_credit_grants: [
+                            {
+                                company_credit_amount: 1000000,
+                                credit_amount: 1000000,
+                                credit_id: "credit_id",
+                                credit_name: "credit_name",
+                                id: "id",
+                                scaling: "fixed",
+                            },
+                        ],
+                        is_trialable: true,
+                        name: "name",
+                    },
+                ],
+                capabilities: { badge_visibility: true, checkout: true },
+                credit_bundles: [
+                    {
+                        bundle_type: "fixed",
+                        credit_id: "credit_id",
+                        credit_name: "credit_name",
+                        currency_prices: [{ currency: "aed" }],
+                        expiry_type: "duration",
+                        expiry_unit: "billing_periods",
+                        id: "id",
+                        name: "name",
+                    },
+                ],
+                custom_plan_cta: { cta_text: "cta_text", cta_url: "cta_url", price_text: "price_text" },
+                default_currency: "aed",
+                description: "description",
+                id: "id",
+                name: "name",
+                plans: [
+                    {
+                        available_periods: ["monthly"],
+                        billing_strategy: "schematic_managed",
+                        charge_type: "free",
+                        currency_prices: [{ currency: "aed" }],
+                        description: "description",
+                        entitlements: [
+                            {
+                                currency_prices: [{ currency: "aed" }],
+                                feature_description: "feature_description",
+                                feature_icon: "feature_icon",
+                                feature_id: "feature_id",
+                                feature_name: "feature_name",
+                                feature_type: "boolean",
+                                id: "id",
+                                value_type: "boolean",
+                            },
+                        ],
+                        icon: "icon",
+                        id: "id",
+                        included_credit_grants: [
+                            {
+                                company_credit_amount: 1000000,
+                                credit_amount: 1000000,
+                                credit_id: "credit_id",
+                                credit_name: "credit_name",
+                                id: "id",
+                                scaling: "fixed",
+                            },
+                        ],
+                        is_trialable: true,
+                        name: "name",
+                    },
+                ],
+                pricing_model: "pricing_model",
+                pricing_url: "pricing_url",
+            },
+            params: { key: "value" },
+        };
+
+        server.mockEndpoint().get("/public/catalog").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const response = await client.catalogs.getPublicCatalog();
+        expect(response).toEqual({
+            data: {
+                addOns: [
+                    {
+                        availablePeriods: ["monthly"],
+                        billingStrategy: "schematic_managed",
+                        chargeType: "free",
+                        currencyPrices: [
+                            {
+                                currency: "aed",
+                            },
+                        ],
+                        description: "description",
+                        entitlements: [
+                            {
+                                currencyPrices: [
+                                    {
+                                        currency: "aed",
+                                    },
+                                ],
+                                featureDescription: "feature_description",
+                                featureIcon: "feature_icon",
+                                featureId: "feature_id",
+                                featureName: "feature_name",
+                                featureType: "boolean",
+                                id: "id",
+                                valueType: "boolean",
+                            },
+                        ],
+                        icon: "icon",
+                        id: "id",
+                        includedCreditGrants: [
+                            {
+                                companyCreditAmount: 1000000,
+                                creditAmount: 1000000,
+                                creditId: "credit_id",
+                                creditName: "credit_name",
+                                id: "id",
+                                scaling: "fixed",
+                            },
+                        ],
+                        isTrialable: true,
+                        name: "name",
+                    },
+                ],
+                capabilities: {
+                    badgeVisibility: true,
+                    checkout: true,
+                },
+                creditBundles: [
+                    {
+                        bundleType: "fixed",
+                        creditId: "credit_id",
+                        creditName: "credit_name",
+                        currencyPrices: [
+                            {
+                                currency: "aed",
+                            },
+                        ],
+                        expiryType: "duration",
+                        expiryUnit: "billing_periods",
+                        id: "id",
+                        name: "name",
+                    },
+                ],
+                customPlanCta: {
+                    ctaText: "cta_text",
+                    ctaUrl: "cta_url",
+                    priceText: "price_text",
+                },
+                defaultCurrency: "aed",
+                description: "description",
+                id: "id",
+                name: "name",
+                plans: [
+                    {
+                        availablePeriods: ["monthly"],
+                        billingStrategy: "schematic_managed",
+                        chargeType: "free",
+                        currencyPrices: [
+                            {
+                                currency: "aed",
+                            },
+                        ],
+                        description: "description",
+                        entitlements: [
+                            {
+                                currencyPrices: [
+                                    {
+                                        currency: "aed",
+                                    },
+                                ],
+                                featureDescription: "feature_description",
+                                featureIcon: "feature_icon",
+                                featureId: "feature_id",
+                                featureName: "feature_name",
+                                featureType: "boolean",
+                                id: "id",
+                                valueType: "boolean",
+                            },
+                        ],
+                        icon: "icon",
+                        id: "id",
+                        includedCreditGrants: [
+                            {
+                                companyCreditAmount: 1000000,
+                                creditAmount: 1000000,
+                                creditId: "credit_id",
+                                creditName: "credit_name",
+                                id: "id",
+                                scaling: "fixed",
+                            },
+                        ],
+                        isTrialable: true,
+                        name: "name",
+                    },
+                ],
+                pricingModel: "pricing_model",
+                pricingUrl: "pricing_url",
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("getPublicCatalog (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/public/catalog").respondWith().statusCode(401).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.catalogs.getPublicCatalog();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getPublicCatalog (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/public/catalog").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.catalogs.getPublicCatalog();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getPublicCatalog (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/public/catalog").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.catalogs.getPublicCatalog();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getPublicCatalog (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server.mockEndpoint().get("/public/catalog").respondWith().statusCode(500).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.catalogs.getPublicCatalog();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("getPublicCatalogByID (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                add_ons: [
+                    {
+                        available_periods: ["monthly"],
+                        billing_strategy: "schematic_managed",
+                        charge_type: "free",
+                        currency_prices: [{ currency: "aed" }],
+                        description: "description",
+                        entitlements: [
+                            {
+                                currency_prices: [{ currency: "aed" }],
+                                feature_description: "feature_description",
+                                feature_icon: "feature_icon",
+                                feature_id: "feature_id",
+                                feature_name: "feature_name",
+                                feature_type: "boolean",
+                                id: "id",
+                                value_type: "boolean",
+                            },
+                        ],
+                        icon: "icon",
+                        id: "id",
+                        included_credit_grants: [
+                            {
+                                company_credit_amount: 1000000,
+                                credit_amount: 1000000,
+                                credit_id: "credit_id",
+                                credit_name: "credit_name",
+                                id: "id",
+                                scaling: "fixed",
+                            },
+                        ],
+                        is_trialable: true,
+                        name: "name",
+                    },
+                ],
+                capabilities: { badge_visibility: true, checkout: true },
+                credit_bundles: [
+                    {
+                        bundle_type: "fixed",
+                        credit_id: "credit_id",
+                        credit_name: "credit_name",
+                        currency_prices: [{ currency: "aed" }],
+                        expiry_type: "duration",
+                        expiry_unit: "billing_periods",
+                        id: "id",
+                        name: "name",
+                    },
+                ],
+                custom_plan_cta: { cta_text: "cta_text", cta_url: "cta_url", price_text: "price_text" },
+                default_currency: "aed",
+                description: "description",
+                id: "id",
+                name: "name",
+                plans: [
+                    {
+                        available_periods: ["monthly"],
+                        billing_strategy: "schematic_managed",
+                        charge_type: "free",
+                        currency_prices: [{ currency: "aed" }],
+                        description: "description",
+                        entitlements: [
+                            {
+                                currency_prices: [{ currency: "aed" }],
+                                feature_description: "feature_description",
+                                feature_icon: "feature_icon",
+                                feature_id: "feature_id",
+                                feature_name: "feature_name",
+                                feature_type: "boolean",
+                                id: "id",
+                                value_type: "boolean",
+                            },
+                        ],
+                        icon: "icon",
+                        id: "id",
+                        included_credit_grants: [
+                            {
+                                company_credit_amount: 1000000,
+                                credit_amount: 1000000,
+                                credit_id: "credit_id",
+                                credit_name: "credit_name",
+                                id: "id",
+                                scaling: "fixed",
+                            },
+                        ],
+                        is_trialable: true,
+                        name: "name",
+                    },
+                ],
+                pricing_model: "pricing_model",
+                pricing_url: "pricing_url",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/public/catalogs/catalog_id")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.catalogs.getPublicCatalogById("catalog_id");
+        expect(response).toEqual({
+            data: {
+                addOns: [
+                    {
+                        availablePeriods: ["monthly"],
+                        billingStrategy: "schematic_managed",
+                        chargeType: "free",
+                        currencyPrices: [
+                            {
+                                currency: "aed",
+                            },
+                        ],
+                        description: "description",
+                        entitlements: [
+                            {
+                                currencyPrices: [
+                                    {
+                                        currency: "aed",
+                                    },
+                                ],
+                                featureDescription: "feature_description",
+                                featureIcon: "feature_icon",
+                                featureId: "feature_id",
+                                featureName: "feature_name",
+                                featureType: "boolean",
+                                id: "id",
+                                valueType: "boolean",
+                            },
+                        ],
+                        icon: "icon",
+                        id: "id",
+                        includedCreditGrants: [
+                            {
+                                companyCreditAmount: 1000000,
+                                creditAmount: 1000000,
+                                creditId: "credit_id",
+                                creditName: "credit_name",
+                                id: "id",
+                                scaling: "fixed",
+                            },
+                        ],
+                        isTrialable: true,
+                        name: "name",
+                    },
+                ],
+                capabilities: {
+                    badgeVisibility: true,
+                    checkout: true,
+                },
+                creditBundles: [
+                    {
+                        bundleType: "fixed",
+                        creditId: "credit_id",
+                        creditName: "credit_name",
+                        currencyPrices: [
+                            {
+                                currency: "aed",
+                            },
+                        ],
+                        expiryType: "duration",
+                        expiryUnit: "billing_periods",
+                        id: "id",
+                        name: "name",
+                    },
+                ],
+                customPlanCta: {
+                    ctaText: "cta_text",
+                    ctaUrl: "cta_url",
+                    priceText: "price_text",
+                },
+                defaultCurrency: "aed",
+                description: "description",
+                id: "id",
+                name: "name",
+                plans: [
+                    {
+                        availablePeriods: ["monthly"],
+                        billingStrategy: "schematic_managed",
+                        chargeType: "free",
+                        currencyPrices: [
+                            {
+                                currency: "aed",
+                            },
+                        ],
+                        description: "description",
+                        entitlements: [
+                            {
+                                currencyPrices: [
+                                    {
+                                        currency: "aed",
+                                    },
+                                ],
+                                featureDescription: "feature_description",
+                                featureIcon: "feature_icon",
+                                featureId: "feature_id",
+                                featureName: "feature_name",
+                                featureType: "boolean",
+                                id: "id",
+                                valueType: "boolean",
+                            },
+                        ],
+                        icon: "icon",
+                        id: "id",
+                        includedCreditGrants: [
+                            {
+                                companyCreditAmount: 1000000,
+                                creditAmount: 1000000,
+                                creditId: "credit_id",
+                                creditName: "credit_name",
+                                id: "id",
+                                scaling: "fixed",
+                            },
+                        ],
+                        isTrialable: true,
+                        name: "name",
+                    },
+                ],
+                pricingModel: "pricing_model",
+                pricingUrl: "pricing_url",
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("getPublicCatalogByID (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/public/catalogs/catalog_id")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.catalogs.getPublicCatalogById("catalog_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getPublicCatalogByID (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/public/catalogs/catalog_id")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.catalogs.getPublicCatalogById("catalog_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getPublicCatalogByID (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/public/catalogs/catalog_id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.catalogs.getPublicCatalogById("catalog_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getPublicCatalogByID (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/public/catalogs/catalog_id")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.catalogs.getPublicCatalogById("catalog_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
 });

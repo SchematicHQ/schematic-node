@@ -4,6 +4,7 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingCollectionMethod } from "./BillingCollectionMethod";
+import { BillingInvoiceBillingDetailsResponseData } from "./BillingInvoiceBillingDetailsResponseData";
 import { Collector } from "./Collector";
 import { Currency } from "./Currency";
 import { PaymentGating } from "./PaymentGating";
@@ -12,6 +13,7 @@ export const BillingInvoiceTermsResponseData: core.serialization.ObjectSchema<
     serializers.BillingInvoiceTermsResponseData.Raw,
     Schematic.BillingInvoiceTermsResponseData
 > = core.serialization.object({
+    billingDetails: core.serialization.property("billing_details", BillingInvoiceBillingDetailsResponseData.optional()),
     collectionMethod: core.serialization.property("collection_method", BillingCollectionMethod),
     collector: Collector,
     currency: Currency.optional(),
@@ -22,6 +24,7 @@ export const BillingInvoiceTermsResponseData: core.serialization.ObjectSchema<
 
 export declare namespace BillingInvoiceTermsResponseData {
     export interface Raw {
+        billing_details?: BillingInvoiceBillingDetailsResponseData.Raw | null;
         collection_method: BillingCollectionMethod.Raw;
         collector: Collector.Raw;
         currency?: Currency.Raw | null;

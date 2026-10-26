@@ -5,6 +5,8 @@ export * from "./GetConfigurationResponse";
 export * from "./GetCreditBundlesInCatalogResponse";
 export * from "./GetDerivedFeaturesResponse";
 export * from "./GetPlansInCatalogResponse";
+export * from "./GetPublicCatalogByIdResponse";
+export * from "./GetPublicCatalogResponse";
 export * from "./ListCatalogsParams";
 export * from "./ListCatalogsResponse";
 export * from "./UpdateCatalogResponse";
