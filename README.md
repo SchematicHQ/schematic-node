@@ -649,6 +649,37 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 }
 ```
 
+## Context Signatures
+
+A browser SDK uses a publishable key, which anyone can read from your page, so on its own it can't prove which company or user it's acting for. When an environment requires context signatures, the API only accepts a publishable-key request whose company and user your backend has signed with the environment's secret API key. The browser SDK asks your backend for the signature through its `getContextSignature` option and sends it in the `X-Schematic-Context-Sig` header.
+
+### Signing a context
+
+Sign the logged-in user's own company and user, read from your session. Don't sign whatever company or user the browser asks for, or anyone could get a signature for another company.
+
+```ts
+import express from "express";
+import { signContext } from "@schematichq/schematic-typescript-node";
+
+const app = express();
+
+app.post("/api/schematic/sign", (req, res) => {
+    const session = getSession(req); // however your app identifies the logged-in user
+    if (!session) {
+        return res.status(401).json({ error: "Unauthorized" });
+    }
+
+    const signature = signContext(process.env.SCHEMATIC_SECRET_KEY!, {
+        company: { id: session.companyId },
+        user: { id: session.userId },
+    });
+
+    res.json({ signature });
+});
+```
+
+The company and user keys must match the context you give the browser SDK exactly, or the API rejects the signature. A signature is valid for 10 minutes by default; set a different lifetime, up to an hour, with the `lifetimeSeconds` option. The browser SDK reuses a signature until shortly before it expires, then asks for a new one. `signContext` throws a `ContextSignatureError` when the secret is missing, the lifetime is out of range, or a key's value isn't a string.
+
 ## Caching
 
 ### Local Caching

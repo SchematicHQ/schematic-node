@@ -1,0 +1,284 @@
+{
+  "category": "context_signing",
+  "description": "Vectors for signing a Schematic context, generated from the API's verifier (api/lib/contextsig) and checked by its tests. A signing helper must produce `canonical` from `context`, then `signature` from `canonical`, `secret`, `iat` and `exp`, byte for byte. A context is an object with optional `company` and `user`, each a flat map of string keys to string values; omit either when it's absent rather than sending null. A helper must refuse to sign when `exp - iat` exceeds `max_lifetime_seconds`. The wire format is described in docs/docs/ADRs/context-signatures.md. When an implementation diverges, add a vector here rather than special-casing one implementation.",
+  "max_lifetime_seconds": 3600,
+  "vectors": [
+    {
+      "name": "empty_context",
+      "description": "A context with neither company nor user signs as an empty object.",
+      "context": {},
+      "secret": "test-secret-1",
+      "iat": 1700000000,
+      "exp": 1700000600,
+      "canonical": "{}",
+      "signature": "1700000000.1700000600.dHOxXm5b92k2zvYhI0SQ-Fiob9S40pxnuuO0af5m-bc"
+    },
+    {
+      "name": "company_only",
+      "description": "Only the company is set; user is omitted entirely, not sent as null.",
+      "context": {
+        "company": {
+          "id": "comp_1"
+        }
+      },
+      "secret": "test-secret-1",
+      "iat": 1700000000,
+      "exp": 1700000600,
+      "canonical": "{\"company\":{\"id\":\"comp_1\"}}",
+      "signature": "1700000000.1700000600.4Kp-nByFvw81ya-bGvfIfxCZ01CFJsLuvpv7PExMn-g"
+    },
+    {
+      "name": "user_only",
+      "description": "Only the user is set.",
+      "context": {
+        "user": {
+          "id": "user_1"
+        }
+      },
+      "secret": "test-secret-1",
+      "iat": 1700000000,
+      "exp": 1700000600,
+      "canonical": "{\"user\":{\"id\":\"user_1\"}}",
+      "signature": "1700000000.1700000600.TtaAnqrSGcoZWyyNEpirmq9GpAgmSmlfVNqtXzSKmCI"
+    },
+    {
+      "name": "user_inserted_before_company",
+      "description": "Top-level keys sort, so insertion order doesn't matter.",
+      "context": {
+        "user": {
+          "id": "user_1"
+        },
+        "company": {
+          "id": "comp_1"
+        }
+      },
+      "secret": "test-secret-1",
+      "iat": 1700000000,
+      "exp": 1700000600,
+      "canonical": "{\"company\":{\"id\":\"comp_1\"},\"user\":{\"id\":\"user_1\"}}",
+      "signature": "1700000000.1700000600.yeQ3kB3C0WzlSDXlN2KRI0b02erLakr-zT2ran9eSJo"
+    },
+    {
+      "name": "multiple_keys_unsorted",
+      "description": "Keys inside company and user sort too.",
+      "context": {
+        "company": {
+          "plan_id": "plan_1",
+          "id": "comp_1"
+        },
+        "user": {
+          "role": "admin",
+          "email": "a@example.com"
+        }
+      },
+      "secret": "test-secret-1",
+      "iat": 1700000000,
+      "exp": 1700000600,
+      "canonical": "{\"company\":{\"id\":\"comp_1\",\"plan_id\":\"plan_1\"},\"user\":{\"email\":\"a@example.com\",\"role\":\"admin\"}}",
+      "signature": "1700000000.1700000600.9agSoQf9J1KVQ5aC-mAKWSstw0ukgHNKFbpdi_0Vm1k"
+    },
+    {
+      "name": "empty_company",
+      "description": "An empty keys map is kept as {}.",
+      "context": {
+        "company": {},
+        "user": {
+          "id": "user_1"
+        }
+      },
+      "secret": "test-secret-1",
+      "iat": 1700000000,
+      "exp": 1700000600,
+      "canonical": "{\"company\":{},\"user\":{\"id\":\"user_1\"}}",
+      "signature": "1700000000.1700000600.lrpWxfGjqyZrlEIqHqEqW0weySvK14Qtlf6RwssLZQ0"
+    },
+    {
+      "name": "keys_sort_by_byte_uppercase_first",
+      "description": "Keys sort by UTF-8 bytes, not case-insensitively: 'B' (0x42) < '_' (0x5F) < 'a' (0x61).",
+      "context": {
+        "company": {
+          "a": "1",
+          "_": "2",
+          "B": "3"
+        }
+      },
+      "secret": "test-secret-1",
+      "iat": 1700000000,
+      "exp": 1700000600,
+      "canonical": "{\"company\":{\"B\":\"3\",\"_\":\"2\",\"a\":\"1\"}}",
+      "signature": "1700000000.1700000600.0tso_81DIOtAlItlg2BLCQMTOYeEeTX_GijMjJ63LtU"
+    },
+    {
+      "name": "keys_sort_shorter_prefix_first",
+      "description": "A key that is a prefix of another sorts first; '2' (0x32) sorts before '_' (0x5F).",
+      "context": {
+        "company": {
+          "id_2": "c",
+          "id2": "b",
+          "id": "a"
+        }
+      },
+      "secret": "test-secret-1",
+      "iat": 1700000000,
+      "exp": 1700000600,
+      "canonical": "{\"company\":{\"id\":\"a\",\"id2\":\"b\",\"id_2\":\"c\"}}",
+      "signature": "1700000000.1700000600.PRBTr8382ZV5XvWaEaFAHXBzN1ekP2a-Oai-sOFEvxY"
+    },
+    {
+      "name": "keys_sort_by_code_point_not_utf16",
+      "description": "Keys sort by code point (equivalently UTF-8 bytes). UTF-16 order, the default string sort in JavaScript, Java and C#, puts the emoji (surrogate 0xD83D) before U+FF5E; code-point order puts U+FF5E (0xFF5E) before the emoji (0x1F600).",
+      "context": {
+        "company": {
+          "😀": "emoji",
+          "～": "fullwidth tilde"
+        }
+      },
+      "secret": "test-secret-1",
+      "iat": 1700000000,
+      "exp": 1700000600,
+      "canonical": "{\"company\":{\"～\":\"fullwidth tilde\",\"😀\":\"emoji\"}}",
+      "signature": "1700000000.1700000600.OHfc8vQolXTC35whD2P4r77OwgI1LrsszSYczJXOfzk"
+    },
+    {
+      "name": "empty_key_and_value",
+      "description": "Empty strings are valid keys and values; the empty key sorts first.",
+      "context": {
+        "company": {
+          "id": "",
+          "": "x"
+        }
+      },
+      "secret": "test-secret-1",
+      "iat": 1700000000,
+      "exp": 1700000600,
+      "canonical": "{\"company\":{\"\":\"x\",\"id\":\"\"}}",
+      "signature": "1700000000.1700000600.I_EAwzsawe_Jrq01CTstVhYk9mrQx18-z3oG-WagVNE"
+    },
+    {
+      "name": "digit_string_stays_string",
+      "description": "A value made of digits is still a string and keeps its quotes.",
+      "context": {
+        "company": {
+          "id": "12345"
+        }
+      },
+      "secret": "test-secret-1",
+      "iat": 1700000000,
+      "exp": 1700000600,
+      "canonical": "{\"company\":{\"id\":\"12345\"}}",
+      "signature": "1700000000.1700000600.oQyoPgb4BrXfS4XgpEUNg-go-Un6aG1d3MhUGopWbeQ"
+    },
+    {
+      "name": "html_characters_unescaped",
+      "description": "'<', '>' and '&' appear literally, not as \\u003c, \\u003e, \\u0026.",
+      "context": {
+        "company": {
+          "name": "<b>Tom & Jerry</b>"
+        }
+      },
+      "secret": "test-secret-1",
+      "iat": 1700000000,
+      "exp": 1700000600,
+      "canonical": "{\"company\":{\"name\":\"<b>Tom & Jerry</b>\"}}",
+      "signature": "1700000000.1700000600.kFKnwy-dtdRT3HPD5X2r_Ft-ToXEU40kZNNIRHPGhOE"
+    },
+    {
+      "name": "solidus_unescaped",
+      "description": "'/' appears literally, not as '\\/'.",
+      "context": {
+        "company": {
+          "url": "https://example.com/a/b"
+        }
+      },
+      "secret": "test-secret-1",
+      "iat": 1700000000,
+      "exp": 1700000600,
+      "canonical": "{\"company\":{\"url\":\"https://example.com/a/b\"}}",
+      "signature": "1700000000.1700000600.aIu-pdUIc2GrWRUYjB2Ly36SQGz_QhUlRFYRosDHJMY"
+    },
+    {
+      "name": "quote_and_backslash_escaped",
+      "description": "'\"' and '\\' are escaped with a backslash.",
+      "context": {
+        "company": {
+          "name": "say \"hi\" \\ bye"
+        }
+      },
+      "secret": "test-secret-1",
+      "iat": 1700000000,
+      "exp": 1700000600,
+      "canonical": "{\"company\":{\"name\":\"say \\\"hi\\\" \\\\ bye\"}}",
+      "signature": "1700000000.1700000600.iCLZi3k6QgO7-WDoYBpuGeqiSrtzcBKpmYNQ1m-D3Lw"
+    },
+    {
+      "name": "control_characters_escaped",
+      "description": "Control characters below U+0020 are escaped: \\b, \\f, \\n, \\r and \\t by name, the rest as lowercase \\u00XX. DEL (U+007F) is not escaped.",
+      "context": {
+        "company": {
+          "note": "a\nb\rc\td\be\ff\u0000g\u001fh\u007fi"
+        }
+      },
+      "secret": "test-secret-1",
+      "iat": 1700000000,
+      "exp": 1700000600,
+      "canonical": "{\"company\":{\"note\":\"a\\nb\\rc\\td\\be\\ff\\u0000g\\u001fh\u007fi\"}}",
+      "signature": "1700000000.1700000600.1RSPKFMOqM2H7Od15cDeBnerUNgl7RCsodWudl8KKjg"
+    },
+    {
+      "name": "line_separators_escaped",
+      "description": "U+2028 and U+2029 are escaped as \\u2028 and \\u2029. JSON.stringify, Python's json.dumps and most other encoders leave them raw.",
+      "context": {
+        "company": {
+          "note": "a\u2028b\u2029c"
+        }
+      },
+      "secret": "test-secret-1",
+      "iat": 1700000000,
+      "exp": 1700000600,
+      "canonical": "{\"company\":{\"note\":\"a\\u2028b\\u2029c\"}}",
+      "signature": "1700000000.1700000600.tbU1MgYS9wXPnGr9amA62M1FvaMxt7-OXS_4axnP2fA"
+    },
+    {
+      "name": "non_ascii_raw",
+      "description": "Other non-ASCII characters appear as raw UTF-8, never as \\u escapes; that includes characters outside the BMP, which are not written as surrogate pairs.",
+      "context": {
+        "company": {
+          "name": "Café 日本 😀"
+        }
+      },
+      "secret": "test-secret-1",
+      "iat": 1700000000,
+      "exp": 1700000600,
+      "canonical": "{\"company\":{\"name\":\"Café 日本 😀\"}}",
+      "signature": "1700000000.1700000600.H6liuTTYNtLZaPqBhyUUw5tMp8d4ot2yHjfpZnTqcpk"
+    },
+    {
+      "name": "other_secret",
+      "description": "The same context signed with a different secret gives a different signature.",
+      "context": {
+        "company": {
+          "id": "comp_1"
+        }
+      },
+      "secret": "test-secret-2",
+      "iat": 1700000000,
+      "exp": 1700000600,
+      "canonical": "{\"company\":{\"id\":\"comp_1\"}}",
+      "signature": "1700000000.1700000600.4eEK8qmJmv3l1kYXii_XXe2Cy4NuARgAG6XkThUBqQg"
+    },
+    {
+      "name": "max_lifetime",
+      "description": "exp may be at most max_lifetime_seconds after iat; this signature is valid for exactly that long.",
+      "context": {
+        "company": {
+          "id": "comp_1"
+        }
+      },
+      "secret": "test-secret-1",
+      "iat": 1700000000,
+      "exp": 1700003600,
+      "canonical": "{\"company\":{\"id\":\"comp_1\"}}",
+      "signature": "1700000000.1700003600.wZrgH4Y3MJWGbFIdN26tz9HRg4wbWmM89ao5kgbazUw"
+    }
+  ]
+}

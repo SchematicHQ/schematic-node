@@ -22,6 +22,15 @@ export type {
   TrackWithReservationOptions,
 } from "./credits";
 export {
+  signContext,
+  ContextSignatureError,
+  CONTEXT_SIGNATURE_HEADER,
+  DEFAULT_CONTEXT_SIGNATURE_LIFETIME_SECONDS,
+  MAX_CONTEXT_SIGNATURE_LIFETIME_SECONDS,
+  type SignableContext,
+  type SignContextOptions,
+} from "./context-signature";
+export {
   verifyWebhookSignature,
   verifySignature,
   computeSignature,
