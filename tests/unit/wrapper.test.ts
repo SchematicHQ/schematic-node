@@ -1114,7 +1114,7 @@ describe("SchematicClient wrapper - server-mode credit reservations", () => {
         const client = new SchematicClient({
             apiKey: "test-key",
             logger: mockLogger,
-            creditLeases: { mode: "server", defaultReservationTTL: 4 * 60 * 60 * 1000 },
+            creditLeases: { mode: "server", defaultReservationTTL: 25 * 60 * 60 * 1000 },
         });
 
         const maxTTL = MAX_RESERVATION_TTL_MS - RESERVATION_TTL_SKEW_ALLOWANCE_MS;
@@ -1134,7 +1134,7 @@ describe("SchematicClient wrapper - server-mode credit reservations", () => {
     });
 
     it("leaves the TTL alone in client mode, where the API never sees it", async () => {
-        const ttl = 2 * 60 * 60 * 1000;
+        const ttl = 25 * 60 * 60 * 1000;
         const client = new SchematicClient({
             apiKey: "test-key",
             logger: mockLogger,

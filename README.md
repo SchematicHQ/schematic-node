@@ -853,7 +853,7 @@ Server mode needs only a TTL:
 const client = new SchematicClient({
     apiKey: process.env.SCHEMATIC_API_KEY,
     creditLeases: {
-        defaultReservationTTL: 60 * 1000, // how long the server holds the credits if no track settles them (ms, max 1 hour)
+        defaultReservationTTL: 60 * 1000, // how long the server holds the credits if no track settles them (ms, max 24 hours)
     },
 });
 ```
