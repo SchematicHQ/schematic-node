@@ -38,6 +38,7 @@ const mockDataStream = {
     start: jest.fn().mockResolvedValue(undefined),
     close: jest.fn(),
     isConnected: jest.fn().mockReturnValue(true),
+    isCacheReady: jest.fn().mockReturnValue(true),
     checkFlag: jest.fn(),
     updateCompanyMetrics: jest.fn().mockResolvedValue(undefined),
     getFlag: jest.fn(),
