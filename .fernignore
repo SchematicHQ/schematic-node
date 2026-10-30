@@ -17,6 +17,7 @@ conformance/
 scripts/
 testapp/
 src/cache/
+src/context-signature.ts
 src/core/fetcher/custom.ts
 src/credits/
 src/datastream/
@@ -35,6 +36,8 @@ tests/conformance/
 tests/integration/
 tests/races/
 tests/unit/cache/local.test.ts
+tests/unit/context-signature.test.ts
+tests/unit/context-signing.json
 tests/unit/credits/
 tests/unit/datastream/datastream-client.test.ts
 tests/unit/datastream/redis-key-layout.test.ts
