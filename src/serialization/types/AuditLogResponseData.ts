@@ -5,6 +5,7 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 import { ActorType } from "./ActorType";
 import { ApiKeyResponseData } from "./ApiKeyResponseData";
+import { AuditLogCompanyResponseData } from "./AuditLogCompanyResponseData";
 import { EnvironmentResponseData } from "./EnvironmentResponseData";
 
 export const AuditLogResponseData: core.serialization.ObjectSchema<
@@ -15,6 +16,8 @@ export const AuditLogResponseData: core.serialization.ObjectSchema<
     actorType: core.serialization.property("actor_type", ActorType),
     apiKey: core.serialization.property("api_key", ApiKeyResponseData.optional()),
     apiKeyId: core.serialization.property("api_key_id", core.serialization.string().optional()),
+    company: AuditLogCompanyResponseData.optional(),
+    companyId: core.serialization.property("company_id", core.serialization.string().optional()),
     endedAt: core.serialization.property("ended_at", core.serialization.date().optional()),
     environment: EnvironmentResponseData.optional(),
     environmentId: core.serialization.property("environment_id", core.serialization.string().optional()),
@@ -40,6 +43,8 @@ export declare namespace AuditLogResponseData {
         actor_type: ActorType.Raw;
         api_key?: ApiKeyResponseData.Raw | null;
         api_key_id?: string | null;
+        company?: AuditLogCompanyResponseData.Raw | null;
+        company_id?: string | null;
         ended_at?: string | null;
         environment?: EnvironmentResponseData.Raw | null;
         environment_id?: string | null;

@@ -6,6 +6,7 @@ import type * as serializers from "../index";
 import { ApiKeyResponseData } from "./ApiKeyResponseData";
 import { EventStatus } from "./EventStatus";
 import { EventType } from "./EventType";
+import { InferenceCostSource } from "./InferenceCostSource";
 import { PreviewObject } from "./PreviewObject";
 
 export const EventDetailResponseData: core.serialization.ObjectSchema<
@@ -19,6 +20,9 @@ export const EventDetailResponseData: core.serialization.ObjectSchema<
     capturedAt: core.serialization.property("captured_at", core.serialization.date()),
     company: PreviewObject.optional(),
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
+    cost: core.serialization.string().optional(),
+    costSource: core.serialization.property("cost_source", InferenceCostSource.optional()),
+    currency: core.serialization.string().optional(),
     enrichedAt: core.serialization.property("enriched_at", core.serialization.date().optional()),
     environmentId: core.serialization.property("environment_id", core.serialization.string().optional()),
     errorMessage: core.serialization.property("error_message", core.serialization.string().optional()),
@@ -49,6 +53,9 @@ export declare namespace EventDetailResponseData {
         captured_at: string;
         company?: PreviewObject.Raw | null;
         company_id?: string | null;
+        cost?: string | null;
+        cost_source?: InferenceCostSource.Raw | null;
+        currency?: string | null;
         enriched_at?: string | null;
         environment_id?: string | null;
         error_message?: string | null;

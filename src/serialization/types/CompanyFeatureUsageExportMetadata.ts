@@ -10,6 +10,7 @@ export const CompanyFeatureUsageExportMetadata: core.serialization.ObjectSchema<
     serializers.CompanyFeatureUsageExportMetadata.Raw,
     Schematic.CompanyFeatureUsageExportMetadata
 > = core.serialization.object({
+    cancelAtPeriodEnd: core.serialization.property("cancel_at_period_end", core.serialization.boolean().optional()),
     companyIds: core.serialization.property(
         "company_ids",
         core.serialization.list(core.serialization.string()).optional(),
@@ -79,6 +80,7 @@ export const CompanyFeatureUsageExportMetadata: core.serialization.ObjectSchema<
 
 export declare namespace CompanyFeatureUsageExportMetadata {
     export interface Raw {
+        cancel_at_period_end?: boolean | null;
         company_ids?: string[] | null;
         credit_type_ids?: string[] | null;
         entity_key_definition_ids?: string[] | null;

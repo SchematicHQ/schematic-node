@@ -21,6 +21,7 @@ export const CatalogCreditGrantResponseData: core.serialization.ObjectSchema<
     licenseId: core.serialization.property("license_id", core.serialization.string().optional()),
     resetCadence: core.serialization.property("reset_cadence", BillingPlanCreditGrantResetCadence.optional()),
     scaling: PlanCreditGrantScaling,
+    visible: core.serialization.boolean(),
 });
 
 export declare namespace CatalogCreditGrantResponseData {
@@ -36,5 +37,6 @@ export declare namespace CatalogCreditGrantResponseData {
         license_id?: string | null;
         reset_cadence?: BillingPlanCreditGrantResetCadence.Raw | null;
         scaling: PlanCreditGrantScaling.Raw;
+        visible: boolean;
     }
 }

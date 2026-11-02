@@ -806,6 +806,8 @@ describe("AccountsClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     api_key_id: "api_key_id",
+                    company: { id: "id", name: "name" },
+                    company_id: "company_id",
                     ended_at: "2024-01-15T09:30:00Z",
                     environment: {
                         created_at: "2024-01-15T09:30:00Z",
@@ -818,7 +820,6 @@ describe("AccountsClient", () => {
                     environment_id: "environment_id",
                     id: "id",
                     method: "method",
-                    resource_id: 1000000,
                     resource_id_string: "resource_id_string",
                     resource_name: "resource_name",
                     resource_type: "resource_type",
@@ -831,6 +832,7 @@ describe("AccountsClient", () => {
             ],
             params: {
                 actor_type: "api_key",
+                company_id: "company_id",
                 end_time: "2024-01-15T09:30:00Z",
                 environment_id: "environment_id",
                 limit: 1000000,
@@ -844,6 +846,7 @@ describe("AccountsClient", () => {
 
         const response = await client.accounts.listAuditLogs({
             actorType: "api_key",
+            companyId: "company_id",
             endTime: new Date("2024-01-15T09:30:00.000Z"),
             environmentId: "environment_id",
             q: "q",
@@ -864,6 +867,11 @@ describe("AccountsClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     apiKeyId: "api_key_id",
+                    company: {
+                        id: "id",
+                        name: "name",
+                    },
+                    companyId: "company_id",
                     endedAt: new Date("2024-01-15T09:30:00.000Z"),
                     environment: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -876,7 +884,6 @@ describe("AccountsClient", () => {
                     environmentId: "environment_id",
                     id: "id",
                     method: "method",
-                    resourceId: 1000000,
                     resourceIdString: "resource_id_string",
                     resourceName: "resource_name",
                     resourceType: "resource_type",
@@ -889,6 +896,7 @@ describe("AccountsClient", () => {
             ],
             params: {
                 actorType: "api_key",
+                companyId: "company_id",
                 endTime: new Date("2024-01-15T09:30:00.000Z"),
                 environmentId: "environment_id",
                 limit: 1000000,
@@ -994,6 +1002,8 @@ describe("AccountsClient", () => {
                     updated_at: "2024-01-15T09:30:00Z",
                 },
                 api_key_id: "api_key_id",
+                company: { id: "id", name: "name" },
+                company_id: "company_id",
                 ended_at: "2024-01-15T09:30:00Z",
                 environment: {
                     created_at: "2024-01-15T09:30:00Z",
@@ -1007,7 +1017,6 @@ describe("AccountsClient", () => {
                 id: "id",
                 method: "method",
                 req_body: "req_body",
-                resource_id: 1000000,
                 resource_id_string: "resource_id_string",
                 resource_name: "resource_name",
                 resource_type: "resource_type",
@@ -1061,6 +1070,11 @@ describe("AccountsClient", () => {
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
                 apiKeyId: "api_key_id",
+                company: {
+                    id: "id",
+                    name: "name",
+                },
+                companyId: "company_id",
                 endedAt: new Date("2024-01-15T09:30:00.000Z"),
                 environment: {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1074,7 +1088,6 @@ describe("AccountsClient", () => {
                 id: "id",
                 method: "method",
                 reqBody: "req_body",
-                resourceId: 1000000,
                 resourceIdString: "resource_id_string",
                 resourceName: "resource_name",
                 resourceType: "resource_type",
@@ -1176,6 +1189,7 @@ describe("AccountsClient", () => {
             data: { count: 1000000 },
             params: {
                 actor_type: "api_key",
+                company_id: "company_id",
                 end_time: "2024-01-15T09:30:00Z",
                 environment_id: "environment_id",
                 limit: 1000000,
@@ -1189,6 +1203,7 @@ describe("AccountsClient", () => {
 
         const response = await client.accounts.countAuditLogs({
             actorType: "api_key",
+            companyId: "company_id",
             endTime: new Date("2024-01-15T09:30:00.000Z"),
             environmentId: "environment_id",
             q: "q",
@@ -1202,6 +1217,7 @@ describe("AccountsClient", () => {
             },
             params: {
                 actorType: "api_key",
+                companyId: "company_id",
                 endTime: new Date("2024-01-15T09:30:00.000Z"),
                 environmentId: "environment_id",
                 limit: 1000000,

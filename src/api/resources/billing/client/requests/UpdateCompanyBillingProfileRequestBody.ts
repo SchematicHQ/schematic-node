@@ -10,9 +10,13 @@ import type * as Schematic from "../../../../index";
  */
 export interface UpdateCompanyBillingProfileRequestBody {
     collectionMethod: Schematic.BillingCollectionMethod;
+    currency?: Schematic.Currency;
     daysUntilDue?: number;
+    gatingDays?: number;
     isDefault?: boolean;
     name?: string;
+    overdraftLimit?: number;
+    paymentGating?: Schematic.PaymentGating;
     paymentMethodId?: string;
     prorationBehavior?: Schematic.ProrationBehavior;
 }

@@ -5,9 +5,13 @@ import type * as Schematic from "../index";
 export interface BillingStatementLineResponseData {
     /** In minor units of the statement's currency. */
     amount: number;
+    /** What the line bills for, and for part of a period, which part. Null when the line has no subscription line behind it. */
+    description?: string;
     kind: Schematic.InvoiceLineKind;
     periodEnd?: Date;
     periodStart?: Date;
+    /** The share of a full billing period the line bills, as a decimal from 0 to 1. Null when the line bills a whole period. */
+    prorationFraction?: string;
     quantity?: number;
     subscriptionLineId?: string;
     unitAmount?: number;

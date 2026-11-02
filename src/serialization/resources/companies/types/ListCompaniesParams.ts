@@ -11,6 +11,7 @@ export const ListCompaniesParams: core.serialization.ObjectSchema<
     serializers.ListCompaniesParams.Raw,
     Schematic.ListCompaniesParams
 > = core.serialization.object({
+    cancelAtPeriodEnd: core.serialization.property("cancel_at_period_end", core.serialization.boolean().optional()),
     creditTypeIds: core.serialization.property(
         "credit_type_ids",
         core.serialization.list(core.serialization.string()).optional(),
@@ -60,6 +61,7 @@ export const ListCompaniesParams: core.serialization.ObjectSchema<
 
 export declare namespace ListCompaniesParams {
     export interface Raw {
+        cancel_at_period_end?: boolean | null;
         credit_type_ids?: string[] | null;
         has_scheduled_downgrade?: boolean | null;
         ids?: string[] | null;

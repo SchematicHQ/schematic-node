@@ -6,6 +6,7 @@ import type * as Schematic from "../../../../index";
  * @example
  *     {
  *         actorType: "api_key",
+ *         companyId: "company_id",
  *         endTime: new Date("2024-01-15T09:30:00.000Z"),
  *         environmentId: "environment_id",
  *         q: "q",
@@ -16,6 +17,7 @@ import type * as Schematic from "../../../../index";
  */
 export interface CountAuditLogsRequest {
     actorType?: Schematic.ActorType;
+    companyId?: string;
     endTime?: Date;
     environmentId?: string;
     q?: string;

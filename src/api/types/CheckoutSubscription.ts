@@ -3,6 +3,7 @@
 import type * as Schematic from "../index";
 
 export interface CheckoutSubscription {
+    accessRevokedAt?: Date;
     applicationId?: string;
     cancelAt?: number;
     cancelAtPeriodEnd: boolean;

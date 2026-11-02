@@ -5,6 +5,7 @@ import type * as Schematic from "../../../../index";
 /**
  * @example
  *     {
+ *         cancelAtPeriodEnd: true,
  *         creditTypeIds: ["credit_type_ids"],
  *         hasScheduledDowngrade: true,
  *         ids: ["ids"],
@@ -29,9 +30,11 @@ import type * as Schematic from "../../../../index";
  *     }
  */
 export interface CountCompaniesRequest {
+    /** If true, filter companies with an active subscription that is set to cancel at the end of the current period; if false, filter companies without one */
+    cancelAtPeriodEnd?: boolean;
     /** Filter companies by one or more credit type IDs (each ID starts with bcrd_) */
     creditTypeIds?: string | string[];
-    /** Filter companies that have a pending scheduled downgrade */
+    /** If true, filter companies that have a pending scheduled downgrade; if false, filter companies that do not */
     hasScheduledDowngrade?: boolean;
     /** Filter companies by multiple company IDs (starts with comp_) */
     ids?: string | string[];

@@ -7,12 +7,15 @@ export interface AuditLogResponseData {
     actorType: Schematic.ActorType;
     apiKey?: Schematic.ApiKeyResponseData;
     apiKeyId?: string;
+    company?: Schematic.AuditLogCompanyResponseData;
+    companyId?: string;
     endedAt?: Date;
     environment?: Schematic.EnvironmentResponseData;
     environmentId?: string;
     id: string;
     method: string;
     reqBody?: string;
+    /** Always null. Use resource_id_string. */
     resourceId?: number;
     resourceIdString?: string;
     resourceName?: string;

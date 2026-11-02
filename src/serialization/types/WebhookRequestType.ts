@@ -35,6 +35,10 @@ export const WebhookRequestType: core.serialization.Schema<
     "flag.deleted",
     "flag_rules.updated",
     "flag.updated",
+    "invoice.finalized",
+    "invoice.paid",
+    "invoice.past_due",
+    "invoice.voided",
     "plan.created",
     "plan.deleted",
     "plan.entitlement.created",
@@ -43,6 +47,7 @@ export const WebhookRequestType: core.serialization.Schema<
     "plan.updated",
     "plan_version.deleted",
     "rule.deleted",
+    "subscription.period.started",
     "test.send",
     "user.created",
     "user.deleted",
@@ -81,6 +86,10 @@ export declare namespace WebhookRequestType {
         | "flag.deleted"
         | "flag_rules.updated"
         | "flag.updated"
+        | "invoice.finalized"
+        | "invoice.paid"
+        | "invoice.past_due"
+        | "invoice.voided"
         | "plan.created"
         | "plan.deleted"
         | "plan.entitlement.created"
@@ -89,6 +98,7 @@ export declare namespace WebhookRequestType {
         | "plan.updated"
         | "plan_version.deleted"
         | "rule.deleted"
+        | "subscription.period.started"
         | "test.send"
         | "user.created"
         | "user.deleted"

@@ -8,6 +8,7 @@ import { CheckoutFieldValue } from "./CheckoutFieldValue";
 import { CustomerBillingAddress } from "./CustomerBillingAddress";
 import { CustomPlanActivationStrategy } from "./CustomPlanActivationStrategy";
 import { MigrationProrationBehavior } from "./MigrationProrationBehavior";
+import { PaymentGating } from "./PaymentGating";
 import { PlanVersionMigrationStrategy } from "./PlanVersionMigrationStrategy";
 import { TaxIdInput } from "./TaxIdInput";
 
@@ -32,7 +33,9 @@ export const PublishPlanVersionRequestBody: core.serialization.ObjectSchema<
         "excluded_company_ids",
         core.serialization.list(core.serialization.string()),
     ),
+    gatingDays: core.serialization.property("gating_days", core.serialization.number().optional()),
     migrationStrategy: core.serialization.property("migration_strategy", PlanVersionMigrationStrategy),
+    paymentGating: core.serialization.property("payment_gating", PaymentGating.optional()),
     phone: core.serialization.string().optional(),
     prorateFirstPeriod: core.serialization.property("prorate_first_period", core.serialization.boolean().optional()),
     prorationBehavior: core.serialization.property("proration_behavior", MigrationProrationBehavior.optional()),
@@ -55,7 +58,9 @@ export declare namespace PublishPlanVersionRequestBody {
         days_until_due?: number | null;
         end_date?: string | null;
         excluded_company_ids: string[];
+        gating_days?: number | null;
         migration_strategy: PlanVersionMigrationStrategy.Raw;
+        payment_gating?: PaymentGating.Raw | null;
         phone?: string | null;
         prorate_first_period?: boolean | null;
         proration_behavior?: MigrationProrationBehavior.Raw | null;

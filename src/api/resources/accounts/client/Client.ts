@@ -874,6 +874,7 @@ export class AccountsClient {
      * @example
      *     await client.accounts.listAuditLogs({
      *         actorType: "api_key",
+     *         companyId: "company_id",
      *         endTime: new Date("2024-01-15T09:30:00.000Z"),
      *         environmentId: "environment_id",
      *         q: "q",
@@ -893,12 +894,13 @@ export class AccountsClient {
         request: Schematic.ListAuditLogsRequest = {},
         requestOptions?: AccountsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListAuditLogsResponse>> {
-        const { actorType, endTime, environmentId, q, startTime, limit, offset } = request;
+        const { actorType, companyId, endTime, environmentId, q, startTime, limit, offset } = request;
         const _queryParams: Record<string, unknown> = {
             actor_type:
                 actorType != null
                     ? serializers.ActorType.jsonOrThrow(actorType, { unrecognizedObjectKeys: "strip" })
                     : undefined,
+            company_id: companyId,
             end_time: endTime != null ? endTime?.toISOString() : undefined,
             environment_id: environmentId,
             q,
@@ -1147,6 +1149,7 @@ export class AccountsClient {
      * @example
      *     await client.accounts.countAuditLogs({
      *         actorType: "api_key",
+     *         companyId: "company_id",
      *         endTime: new Date("2024-01-15T09:30:00.000Z"),
      *         environmentId: "environment_id",
      *         q: "q",
@@ -1166,12 +1169,13 @@ export class AccountsClient {
         request: Schematic.CountAuditLogsRequest = {},
         requestOptions?: AccountsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountAuditLogsResponse>> {
-        const { actorType, endTime, environmentId, q, startTime, limit, offset } = request;
+        const { actorType, companyId, endTime, environmentId, q, startTime, limit, offset } = request;
         const _queryParams: Record<string, unknown> = {
             actor_type:
                 actorType != null
                     ? serializers.ActorType.jsonOrThrow(actorType, { unrecognizedObjectKeys: "strip" })
                     : undefined,
+            company_id: companyId,
             end_time: endTime != null ? endTime?.toISOString() : undefined,
             environment_id: environmentId,
             q,

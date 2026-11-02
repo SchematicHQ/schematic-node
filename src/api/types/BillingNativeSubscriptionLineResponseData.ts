@@ -17,6 +17,8 @@ export interface BillingNativeSubscriptionLineResponseData {
     currentPeriodStart?: Date;
     effectiveFrom: Date;
     effectiveTo?: Date;
+    /** The feature the line bills for when its price belongs to a plan entitlement, such as seats. Null on a plan's own price, an add-on's and a credit's. */
+    featureName?: string;
     id: string;
     kind: Schematic.LineKind;
     quantity: number;

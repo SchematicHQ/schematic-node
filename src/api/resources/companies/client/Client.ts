@@ -39,6 +39,7 @@ export class CompaniesClient {
      *
      * @example
      *     await client.companies.listCompanies({
+     *         cancelAtPeriodEnd: true,
      *         creditTypeIds: ["credit_type_ids"],
      *         hasScheduledDowngrade: true,
      *         ids: ["ids"],
@@ -74,6 +75,7 @@ export class CompaniesClient {
         requestOptions?: CompaniesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListCompaniesResponse>> {
         const {
+            cancelAtPeriodEnd,
             creditTypeIds,
             hasScheduledDowngrade,
             ids,
@@ -97,6 +99,7 @@ export class CompaniesClient {
             offset,
         } = request;
         const _queryParams: Record<string, unknown> = {
+            cancel_at_period_end: cancelAtPeriodEnd,
             credit_type_ids: creditTypeIds,
             has_scheduled_downgrade: hasScheduledDowngrade,
             ids,
@@ -648,6 +651,146 @@ export class CompaniesClient {
     }
 
     /**
+     * @param {string} company_id - company_id
+     * @param {Schematic.GetCompanyInferenceCostRequest} request
+     * @param {CompaniesClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link Schematic.UnauthorizedError}
+     * @throws {@link Schematic.ForbiddenError}
+     * @throws {@link Schematic.NotFoundError}
+     * @throws {@link Schematic.InternalServerError}
+     * @throws {@link errors.SchematicError}
+     * @throws {@link errors.SchematicTimeoutError}
+     *
+     * @example
+     *     await client.companies.getCompanyInferenceCost("company_id", {
+     *         endTime: new Date("2024-01-15T09:30:00.000Z"),
+     *         startTime: new Date("2024-01-15T09:30:00.000Z")
+     *     })
+     */
+    public getCompanyInferenceCost(
+        company_id: string,
+        request: Schematic.GetCompanyInferenceCostRequest = {},
+        requestOptions?: CompaniesClient.RequestOptions,
+    ): core.HttpResponsePromise<Schematic.GetCompanyInferenceCostResponse> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__getCompanyInferenceCost(company_id, request, requestOptions),
+        );
+    }
+
+    private async __getCompanyInferenceCost(
+        company_id: string,
+        request: Schematic.GetCompanyInferenceCostRequest = {},
+        requestOptions?: CompaniesClient.RequestOptions,
+    ): Promise<core.WithRawResponse<Schematic.GetCompanyInferenceCostResponse>> {
+        const { endTime, startTime } = request;
+        const _queryParams: Record<string, unknown> = {
+            end_time: endTime != null ? endTime?.toISOString() : undefined,
+            start_time: startTime != null ? startTime?.toISOString() : undefined,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.SchematicEnvironment.Default,
+                `companies/${core.url.encodePathParam(company_id, errors.SchematicError)}/inference-cost`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.GetCompanyInferenceCostResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new Schematic.UnauthorizedError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new Schematic.ForbiddenError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new Schematic.NotFoundError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new Schematic.InternalServerError(
+                        serializers.ApiError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.SchematicError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/companies/{company_id}/inference-cost",
+        );
+    }
+
+    /**
      * @param {Schematic.CountCompaniesRequest} request
      * @param {CompaniesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -661,6 +804,7 @@ export class CompaniesClient {
      *
      * @example
      *     await client.companies.countCompanies({
+     *         cancelAtPeriodEnd: true,
      *         creditTypeIds: ["credit_type_ids"],
      *         hasScheduledDowngrade: true,
      *         ids: ["ids"],
@@ -696,6 +840,7 @@ export class CompaniesClient {
         requestOptions?: CompaniesClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountCompaniesResponse>> {
         const {
+            cancelAtPeriodEnd,
             creditTypeIds,
             hasScheduledDowngrade,
             ids,
@@ -719,6 +864,7 @@ export class CompaniesClient {
             offset,
         } = request;
         const _queryParams: Record<string, unknown> = {
+            cancel_at_period_end: cancelAtPeriodEnd,
             credit_type_ids: creditTypeIds,
             has_scheduled_downgrade: hasScheduledDowngrade,
             ids,
@@ -4183,7 +4329,7 @@ export class CompaniesClient {
      *
      * @example
      *     await client.companies.listPlanChanges({
-     *         action: "amendment",
+     *         action: "access_reinstated",
      *         basePlanAction: "fallback",
      *         companyId: "company_id",
      *         companyIds: ["company_ids"],

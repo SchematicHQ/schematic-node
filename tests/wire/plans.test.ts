@@ -78,6 +78,7 @@ describe("PlansClient", () => {
                     },
                 ],
                 billing_subscription: {
+                    access_revoked_at: "2024-01-15T09:30:00Z",
                     application_id: "application_id",
                     cancel_at: 1000000,
                     cancel_at_period_end: true,
@@ -489,6 +490,7 @@ describe("PlansClient", () => {
                     },
                 ],
                 billingSubscription: {
+                    accessRevokedAt: new Date("2024-01-15T09:30:00.000Z"),
                     applicationId: "application_id",
                     cancelAt: 1000000,
                     cancelAtPeriodEnd: true,

@@ -17,6 +17,7 @@ export const BillingInvoiceDetailResponseData: core.serialization.ObjectSchema<
     serializers.BillingInvoiceDetailResponseData.Raw,
     Schematic.BillingInvoiceDetailResponseData
 > = core.serialization.object({
+    amountDue: core.serialization.property("amount_due", core.serialization.number()),
     amountPaid: core.serialization.property("amount_paid", core.serialization.number()),
     amountRemaining: core.serialization.property("amount_remaining", core.serialization.number()),
     collectionState: core.serialization.property("collection_state", InvoiceCollectionState.optional()),
@@ -28,6 +29,7 @@ export const BillingInvoiceDetailResponseData: core.serialization.ObjectSchema<
     discount: core.serialization.number(),
     documentState: core.serialization.property("document_state", InvoiceDocumentState.optional()),
     dueAt: core.serialization.property("due_at", core.serialization.date().optional()),
+    endingBalance: core.serialization.property("ending_balance", core.serialization.number()),
     externalId: core.serialization.property("external_id", core.serialization.string().optional()),
     finalizedAt: core.serialization.property("finalized_at", core.serialization.date().optional()),
     id: core.serialization.string(),
@@ -38,6 +40,7 @@ export const BillingInvoiceDetailResponseData: core.serialization.ObjectSchema<
     periodStart: core.serialization.property("period_start", core.serialization.date().optional()),
     providerType: core.serialization.property("provider_type", BillingProviderType),
     settlements: core.serialization.list(BillingInvoiceSettlementResponseData),
+    startingBalance: core.serialization.property("starting_balance", core.serialization.number()),
     status: InvoiceStatus,
     subscriptionExternalId: core.serialization.property(
         "subscription_external_id",
@@ -53,6 +56,7 @@ export const BillingInvoiceDetailResponseData: core.serialization.ObjectSchema<
 
 export declare namespace BillingInvoiceDetailResponseData {
     export interface Raw {
+        amount_due: number;
         amount_paid: number;
         amount_remaining: number;
         collection_state?: InvoiceCollectionState.Raw | null;
@@ -64,6 +68,7 @@ export declare namespace BillingInvoiceDetailResponseData {
         discount: number;
         document_state?: InvoiceDocumentState.Raw | null;
         due_at?: string | null;
+        ending_balance: number;
         external_id?: string | null;
         finalized_at?: string | null;
         id: string;
@@ -74,6 +79,7 @@ export declare namespace BillingInvoiceDetailResponseData {
         period_start?: string | null;
         provider_type: BillingProviderType.Raw;
         settlements: BillingInvoiceSettlementResponseData.Raw[];
+        starting_balance: number;
         status: InvoiceStatus.Raw;
         subscription_external_id?: string | null;
         subscription_id?: string | null;

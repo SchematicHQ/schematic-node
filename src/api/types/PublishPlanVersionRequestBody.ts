@@ -21,7 +21,11 @@ export interface PublishPlanVersionRequestBody {
     /** When a custom plan that doesn't renew ends: the company moves to the default plan then, and no renewal invoice is raised. Required when the version's renewal_policy is expire_to_default, and refused otherwise. Moved back to the last renewal on or before it, which must leave at least one whole billing period. Only honored on a first publish that starts a subscription. */
     endDate?: Date;
     excludedCompanyIds: string[];
+    /** With payment_gating revoke_after, how many days past due an invoice may go before the company loses the plan. 0 revokes at once. Only applies when Schematic bills the company. Applies to the company's contract and never creates a plan version. Omitted keeps the contract's setting. */
+    gatingDays?: number;
     migrationStrategy: Schematic.PlanVersionMigrationStrategy;
+    /** What happens to the company's access when an invoice passes its due date: keep_serving keeps the plan and marks the subscription past due; revoke_after takes the plan away after gating_days. Only applies when Schematic bills the company, to every invoice on its contract, and never creates a plan version. Omitted keeps the contract's setting, which is keep_serving unless changed. */
+    paymentGating?: Schematic.PaymentGating;
     phone?: string;
     /** When true, the partial period between the subscription starting and its renewal date is billed pro rata straight away. When false that period is free and no invoice is raised until the renewal date. Only applies alongside billing_cycle_anchor. Defaults to true. */
     prorateFirstPeriod?: boolean;

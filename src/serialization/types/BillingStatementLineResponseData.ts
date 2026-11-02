@@ -10,9 +10,11 @@ export const BillingStatementLineResponseData: core.serialization.ObjectSchema<
     Schematic.BillingStatementLineResponseData
 > = core.serialization.object({
     amount: core.serialization.number(),
+    description: core.serialization.string().optional(),
     kind: InvoiceLineKind,
     periodEnd: core.serialization.property("period_end", core.serialization.date().optional()),
     periodStart: core.serialization.property("period_start", core.serialization.date().optional()),
+    prorationFraction: core.serialization.property("proration_fraction", core.serialization.string().optional()),
     quantity: core.serialization.number().optional(),
     subscriptionLineId: core.serialization.property("subscription_line_id", core.serialization.string().optional()),
     unitAmount: core.serialization.property("unit_amount", core.serialization.number().optional()),
@@ -21,9 +23,11 @@ export const BillingStatementLineResponseData: core.serialization.ObjectSchema<
 export declare namespace BillingStatementLineResponseData {
     export interface Raw {
         amount: number;
+        description?: string | null;
         kind: InvoiceLineKind.Raw;
         period_end?: string | null;
         period_start?: string | null;
+        proration_fraction?: string | null;
         quantity?: number | null;
         subscription_line_id?: string | null;
         unit_amount?: number | null;

@@ -650,6 +650,7 @@ await client.accounts.countApiKeys({
 ```typescript
 await client.accounts.listAuditLogs({
     actorType: "api_key",
+    companyId: "company_id",
     endTime: new Date("2024-01-15T09:30:00.000Z"),
     environmentId: "environment_id",
     q: "q",
@@ -756,6 +757,7 @@ await client.accounts.getAuditLog("audit_log_id");
 ```typescript
 await client.accounts.countAuditLogs({
     actorType: "api_key",
+    companyId: "company_id",
     endTime: new Date("2024-01-15T09:30:00.000Z"),
     environmentId: "environment_id",
     q: "q",
@@ -6711,6 +6713,7 @@ await client.checkout.updateCustomerSubscriptionTrialEnd("subscription_id");
 
 ```typescript
 await client.companies.listCompanies({
+    cancelAtPeriodEnd: true,
     creditTypeIds: ["credit_type_ids"],
     hasScheduledDowngrade: true,
     ids: ["ids"],
@@ -6930,6 +6933,66 @@ await client.companies.deleteCompany("company_id", {
 </dl>
 </details>
 
+<details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">getCompanyInferenceCost</a>(company_id, { ...params }) -> Schematic.GetCompanyInferenceCostResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.companies.getCompanyInferenceCost("company_id", {
+    endTime: new Date("2024-01-15T09:30:00.000Z"),
+    startTime: new Date("2024-01-15T09:30:00.000Z")
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**company_id:** `string` — company_id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Schematic.GetCompanyInferenceCostRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CompaniesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.companies.<a href="/src/api/resources/companies/client/Client.ts">countCompanies</a>({ ...params }) -> Schematic.CountCompaniesResponse</code></summary>
 <dl>
 <dd>
@@ -6944,6 +7007,7 @@ await client.companies.deleteCompany("company_id", {
 
 ```typescript
 await client.companies.countCompanies({
+    cancelAtPeriodEnd: true,
     creditTypeIds: ["credit_type_ids"],
     hasScheduledDowngrade: true,
     ids: ["ids"],
@@ -8251,7 +8315,7 @@ await client.companies.countEntityTraits({
 
 ```typescript
 await client.companies.listPlanChanges({
-    action: "amendment",
+    action: "access_reinstated",
     basePlanAction: "fallback",
     companyId: "company_id",
     companyIds: ["company_ids"],

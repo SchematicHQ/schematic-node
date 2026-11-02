@@ -10,6 +10,7 @@ export type { DeleteCompanyRequest } from "./DeleteCompanyRequest";
 export type { GetActiveCompanySubscriptionRequest } from "./GetActiveCompanySubscriptionRequest";
 export type { GetBillingEntityChildSubscriptionsRequest } from "./GetBillingEntityChildSubscriptionsRequest";
 export type { GetCompanyBillingEntityRequest } from "./GetCompanyBillingEntityRequest";
+export type { GetCompanyInferenceCostRequest } from "./GetCompanyInferenceCostRequest";
 export type { GetEntityTraitValuesRequest } from "./GetEntityTraitValuesRequest";
 export type { GetOrCreateCompanyMembershipRequestBody } from "./GetOrCreateCompanyMembershipRequestBody";
 export type { ListCompaniesRequest } from "./ListCompaniesRequest";

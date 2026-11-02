@@ -3,6 +3,8 @@
 import type * as Schematic from "../index";
 
 export interface BillingInvoiceDetailResponseData {
+    /** What the company is asked to pay: the total less any balance applied to it, never below zero. Zero on a draft. */
+    amountDue: number;
     amountPaid: number;
     amountRemaining: number;
     /** The collector's report on payment. Null on a draft and on a Stripe invoice. */
@@ -18,6 +20,8 @@ export interface BillingInvoiceDetailResponseData {
     /** Null on a Stripe invoice. */
     documentState?: Schematic.InvoiceDocumentState;
     dueAt?: Date;
+    /** The company's balance after this invoice, in minor units. Below zero is credit the next invoice takes off what is due. */
+    endingBalance: number;
     /** The billing provider's invoice ID. Null on an invoice Schematic issued. */
     externalId?: string;
     finalizedAt?: Date;
@@ -32,6 +36,8 @@ export interface BillingInvoiceDetailResponseData {
     periodStart?: Date;
     providerType: Schematic.BillingProviderType;
     settlements: Schematic.BillingInvoiceSettlementResponseData[];
+    /** The company's balance before this invoice, in minor units. Below zero is credit applied to this invoice. */
+    startingBalance: number;
     status: Schematic.InvoiceStatus;
     /** The billing provider's subscription ID. Null on an invoice Schematic issued. */
     subscriptionExternalId?: string;
