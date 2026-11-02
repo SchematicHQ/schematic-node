@@ -340,6 +340,7 @@ describe("CompaniesClient", () => {
                 },
             ],
             params: {
+                cancel_at_period_end: true,
                 credit_type_ids: ["credit_type_ids"],
                 has_scheduled_downgrade: true,
                 ids: ["ids"],
@@ -367,6 +368,7 @@ describe("CompaniesClient", () => {
         server.mockEndpoint().get("/companies").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.companies.listCompanies({
+            cancelAtPeriodEnd: true,
             creditTypeIds: ["credit_type_ids"],
             hasScheduledDowngrade: true,
             ids: ["ids"],
@@ -735,6 +737,7 @@ describe("CompaniesClient", () => {
                 },
             ],
             params: {
+                cancelAtPeriodEnd: true,
                 creditTypeIds: ["credit_type_ids"],
                 hasScheduledDowngrade: true,
                 ids: ["ids"],
@@ -898,6 +901,7 @@ describe("CompaniesClient", () => {
                     },
                 ],
                 billing_subscription: {
+                    access_revoked_at: "2024-01-15T09:30:00Z",
                     application_id: "application_id",
                     cancel_at: 1000000,
                     cancel_at_period_end: true,
@@ -1311,6 +1315,7 @@ describe("CompaniesClient", () => {
                     },
                 ],
                 billingSubscription: {
+                    accessRevokedAt: new Date("2024-01-15T09:30:00.000Z"),
                     applicationId: "application_id",
                     cancelAt: 1000000,
                     cancelAtPeriodEnd: true,
@@ -1850,6 +1855,7 @@ describe("CompaniesClient", () => {
                     },
                 ],
                 billing_subscription: {
+                    access_revoked_at: "2024-01-15T09:30:00Z",
                     application_id: "application_id",
                     cancel_at: 1000000,
                     cancel_at_period_end: true,
@@ -2258,6 +2264,7 @@ describe("CompaniesClient", () => {
                     },
                 ],
                 billingSubscription: {
+                    accessRevokedAt: new Date("2024-01-15T09:30:00.000Z"),
                     applicationId: "application_id",
                     cancelAt: 1000000,
                     cancelAtPeriodEnd: true,
@@ -2804,6 +2811,156 @@ describe("CompaniesClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("getCompanyInferenceCost (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                by_model: [
+                    {
+                        costs: [{ cost: "cost", currency: "currency", event_count: 1000000 }],
+                        event_count: 1000000,
+                        provider: "provider",
+                        response_model: "response_model",
+                        unpriced_event_count: 1000000,
+                    },
+                ],
+                company_id: "company_id",
+                costs: [{ cost: "cost", currency: "currency", event_count: 1000000 }],
+                end_time: "2024-01-15T09:30:00Z",
+                event_count: 1000000,
+                start_time: "2024-01-15T09:30:00Z",
+                unpriced_event_count: 1000000,
+            },
+            params: { end_time: "2024-01-15T09:30:00Z", start_time: "2024-01-15T09:30:00Z" },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/companies/company_id/inference-cost")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.companies.getCompanyInferenceCost("company_id", {
+            endTime: new Date("2024-01-15T09:30:00.000Z"),
+            startTime: new Date("2024-01-15T09:30:00.000Z"),
+        });
+        expect(response).toEqual({
+            data: {
+                byModel: [
+                    {
+                        costs: [
+                            {
+                                cost: "cost",
+                                currency: "currency",
+                                eventCount: 1000000,
+                            },
+                        ],
+                        eventCount: 1000000,
+                        provider: "provider",
+                        responseModel: "response_model",
+                        unpricedEventCount: 1000000,
+                    },
+                ],
+                companyId: "company_id",
+                costs: [
+                    {
+                        cost: "cost",
+                        currency: "currency",
+                        eventCount: 1000000,
+                    },
+                ],
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                eventCount: 1000000,
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+                unpricedEventCount: 1000000,
+            },
+            params: {
+                endTime: new Date("2024-01-15T09:30:00.000Z"),
+                startTime: new Date("2024-01-15T09:30:00.000Z"),
+            },
+        });
+    });
+
+    test("getCompanyInferenceCost (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/companies/company_id/inference-cost")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.getCompanyInferenceCost("company_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getCompanyInferenceCost (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/companies/company_id/inference-cost")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.getCompanyInferenceCost("company_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getCompanyInferenceCost (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/companies/company_id/inference-cost")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.getCompanyInferenceCost("company_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getCompanyInferenceCost (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/companies/company_id/inference-cost")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.getCompanyInferenceCost("company_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("countCompanies (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -2811,6 +2968,7 @@ describe("CompaniesClient", () => {
         const rawResponseBody = {
             data: { count: 1000000 },
             params: {
+                cancel_at_period_end: true,
                 credit_type_ids: ["credit_type_ids"],
                 has_scheduled_downgrade: true,
                 ids: ["ids"],
@@ -2838,6 +2996,7 @@ describe("CompaniesClient", () => {
         server.mockEndpoint().get("/companies/count").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.companies.countCompanies({
+            cancelAtPeriodEnd: true,
             creditTypeIds: ["credit_type_ids"],
             hasScheduledDowngrade: true,
             ids: ["ids"],
@@ -2865,6 +3024,7 @@ describe("CompaniesClient", () => {
                 count: 1000000,
             },
             params: {
+                cancelAtPeriodEnd: true,
                 creditTypeIds: ["credit_type_ids"],
                 hasScheduledDowngrade: true,
                 ids: ["ids"],
@@ -3028,6 +3188,7 @@ describe("CompaniesClient", () => {
                     },
                 ],
                 billing_subscription: {
+                    access_revoked_at: "2024-01-15T09:30:00Z",
                     application_id: "application_id",
                     cancel_at: 1000000,
                     cancel_at_period_end: true,
@@ -3441,6 +3602,7 @@ describe("CompaniesClient", () => {
                     },
                 ],
                 billingSubscription: {
+                    accessRevokedAt: new Date("2024-01-15T09:30:00.000Z"),
                     applicationId: "application_id",
                     cancelAt: 1000000,
                     cancelAtPeriodEnd: true,
@@ -4685,6 +4847,7 @@ describe("CompaniesClient", () => {
                     },
                 ],
                 billing_subscription: {
+                    access_revoked_at: "2024-01-15T09:30:00Z",
                     application_id: "application_id",
                     cancel_at: 1000000,
                     cancel_at_period_end: true,
@@ -4864,6 +5027,7 @@ describe("CompaniesClient", () => {
                 },
                 billing_subscriptions: [
                     {
+                        access_revoked_at: "2024-01-15T09:30:00Z",
                         application_id: "application_id",
                         cancel_at: 1000000,
                         cancel_at_period_end: true,
@@ -5042,6 +5206,7 @@ describe("CompaniesClient", () => {
                         trial_end_setting: "cancel",
                     },
                     {
+                        access_revoked_at: "2024-01-15T09:30:00Z",
                         application_id: "application_id",
                         cancel_at: 1000000,
                         cancel_at_period_end: true,
@@ -6823,6 +6988,7 @@ describe("CompaniesClient", () => {
                     },
                 ],
                 billingSubscription: {
+                    accessRevokedAt: new Date("2024-01-15T09:30:00.000Z"),
                     applicationId: "application_id",
                     cancelAt: 1000000,
                     cancelAtPeriodEnd: true,
@@ -7006,6 +7172,7 @@ describe("CompaniesClient", () => {
                 },
                 billingSubscriptions: [
                     {
+                        accessRevokedAt: new Date("2024-01-15T09:30:00.000Z"),
                         applicationId: "application_id",
                         cancelAt: 1000000,
                         cancelAtPeriodEnd: true,
@@ -7188,6 +7355,7 @@ describe("CompaniesClient", () => {
                         trialEndSetting: "cancel",
                     },
                     {
+                        accessRevokedAt: new Date("2024-01-15T09:30:00.000Z"),
                         applicationId: "application_id",
                         cancelAt: 1000000,
                         cancelAtPeriodEnd: true,
@@ -9762,6 +9930,7 @@ describe("CompaniesClient", () => {
                     },
                 ],
                 billing_subscription: {
+                    access_revoked_at: "2024-01-15T09:30:00Z",
                     application_id: "application_id",
                     cancel_at: 1000000,
                     cancel_at_period_end: true,
@@ -10176,6 +10345,7 @@ describe("CompaniesClient", () => {
                     },
                 ],
                 billingSubscription: {
+                    accessRevokedAt: new Date("2024-01-15T09:30:00.000Z"),
                     applicationId: "application_id",
                     cancelAt: 1000000,
                     cancelAtPeriodEnd: true,
@@ -12408,7 +12578,7 @@ describe("CompaniesClient", () => {
         const rawResponseBody = {
             data: [
                 {
-                    action: "amendment",
+                    action: "access_reinstated",
                     actor_type: "api_key",
                     add_ons_added: [
                         { deleted: true, description: "description", icon: "icon", id: "id", name: "name" },
@@ -12485,7 +12655,7 @@ describe("CompaniesClient", () => {
                 },
             ],
             params: {
-                action: "amendment",
+                action: "access_reinstated",
                 base_plan_action: "fallback",
                 company_id: "company_id",
                 company_ids: ["company_ids"],
@@ -12497,7 +12667,7 @@ describe("CompaniesClient", () => {
         server.mockEndpoint().get("/plan-changes").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.companies.listPlanChanges({
-            action: "amendment",
+            action: "access_reinstated",
             basePlanAction: "fallback",
             companyId: "company_id",
             companyIds: ["company_ids"],
@@ -12507,7 +12677,7 @@ describe("CompaniesClient", () => {
         expect(response).toEqual({
             data: [
                 {
-                    action: "amendment",
+                    action: "access_reinstated",
                     actorType: "api_key",
                     addOnsAdded: [
                         {
@@ -12610,7 +12780,7 @@ describe("CompaniesClient", () => {
                 },
             ],
             params: {
-                action: "amendment",
+                action: "access_reinstated",
                 basePlanAction: "fallback",
                 companyId: "company_id",
                 companyIds: ["company_ids"],
@@ -12691,7 +12861,7 @@ describe("CompaniesClient", () => {
 
         const rawResponseBody = {
             data: {
-                action: "amendment",
+                action: "access_reinstated",
                 actor_type: "api_key",
                 add_ons_added: [{ deleted: true, description: "description", icon: "icon", id: "id", name: "name" }],
                 add_ons_removed: [{ deleted: true, description: "description", icon: "icon", id: "id", name: "name" }],
@@ -12728,6 +12898,8 @@ describe("CompaniesClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     api_key_id: "api_key_id",
+                    company: { id: "id", name: "name" },
+                    company_id: "company_id",
                     ended_at: "2024-01-15T09:30:00Z",
                     environment: {
                         created_at: "2024-01-15T09:30:00Z",
@@ -12740,7 +12912,6 @@ describe("CompaniesClient", () => {
                     environment_id: "environment_id",
                     id: "id",
                     method: "method",
-                    resource_id: 1000000,
                     resource_id_string: "resource_id_string",
                     resource_name: "resource_name",
                     resource_type: "resource_type",
@@ -12811,7 +12982,7 @@ describe("CompaniesClient", () => {
         const response = await client.companies.getPlanChange("plan_change_id");
         expect(response).toEqual({
             data: {
-                action: "amendment",
+                action: "access_reinstated",
                 actorType: "api_key",
                 addOnsAdded: [
                     {
@@ -12868,6 +13039,11 @@ describe("CompaniesClient", () => {
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                     apiKeyId: "api_key_id",
+                    company: {
+                        id: "id",
+                        name: "name",
+                    },
+                    companyId: "company_id",
                     endedAt: new Date("2024-01-15T09:30:00.000Z"),
                     environment: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -12880,7 +13056,6 @@ describe("CompaniesClient", () => {
                     environmentId: "environment_id",
                     id: "id",
                     method: "method",
-                    resourceId: 1000000,
                     resourceIdString: "resource_id_string",
                     resourceName: "resource_name",
                     resourceType: "resource_type",

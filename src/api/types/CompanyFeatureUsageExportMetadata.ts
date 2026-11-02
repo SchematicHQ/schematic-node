@@ -3,6 +3,8 @@
 import type * as Schematic from "../index";
 
 export interface CompanyFeatureUsageExportMetadata {
+    /** If true, restrict the export to companies with an active subscription that is set to cancel at the end of the current period; if false, restrict it to companies without one */
+    cancelAtPeriodEnd?: boolean;
     /** Restrict the export to these Schematic company IDs (starting with 'comp_') */
     companyIds?: string[];
     /** Restrict the export to companies with these billing credit type IDs */

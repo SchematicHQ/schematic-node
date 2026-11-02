@@ -8,7 +8,7 @@ import type * as Schematic from "../../../../index";
  */
 export interface CheckAndReserveFlagRequestBody {
     company?: Record<string, string>;
-    /** When the hold lapses if no track or inference event settles it; defaults to one minute from now and may be at most one hour out. The unspent hold is refunded on expiry */
+    /** When the hold lapses if no track or inference event settles it; defaults to one minute from now and may be at most 24 hours out. The unspent hold is refunded on expiry */
     expiresAt?: Date;
     /** A caller-chosen key for safe retries: a second request with the same key returns the original reservation instead of taking another hold */
     idempotencyKey?: string;

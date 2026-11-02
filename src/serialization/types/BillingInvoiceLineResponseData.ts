@@ -17,6 +17,7 @@ export const BillingInvoiceLineResponseData: core.serialization.ObjectSchema<
     kind: InvoiceLineKind,
     periodEnd: core.serialization.property("period_end", core.serialization.date().optional()),
     periodStart: core.serialization.property("period_start", core.serialization.date().optional()),
+    prorationFraction: core.serialization.property("proration_fraction", core.serialization.string().optional()),
     quantity: core.serialization.number().optional(),
     subscriptionLineId: core.serialization.property("subscription_line_id", core.serialization.string().optional()),
     taxable: core.serialization.boolean(),
@@ -33,6 +34,7 @@ export declare namespace BillingInvoiceLineResponseData {
         kind: InvoiceLineKind.Raw;
         period_end?: string | null;
         period_start?: string | null;
+        proration_fraction?: string | null;
         quantity?: number | null;
         subscription_line_id?: string | null;
         taxable: boolean;

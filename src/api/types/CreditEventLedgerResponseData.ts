@@ -35,7 +35,10 @@ export interface CreditEventLedgerResponseData {
     planId?: string;
     quantityConsumed?: number;
     quantityRemainingAtZeroOut?: number;
+    /** Always 0. Use source_id_string. */
     sourceId: number;
+    sourceIdString?: string;
+    sourceType?: Schematic.CreditLedgerSourceType;
     toGrantId?: string;
     transferReason?: Schematic.CreditTransferReason;
     usageEventId?: string;

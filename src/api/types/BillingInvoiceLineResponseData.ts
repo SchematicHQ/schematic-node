@@ -7,7 +7,7 @@ export interface BillingInvoiceLineResponseData {
     amount: number;
     /** The charges this line sums. */
     chargeIds: string[];
-    /** What the line bills for: the product, plan, add-on or credit. Null when the line has no subscription line behind it. */
+    /** What the line bills for: the product, plan, add-on or credit, and for part of a period, which part. Null when the line has no subscription line behind it. */
     description?: string;
     /** The billing provider's line ID. Null on an invoice Schematic issued. */
     externalId?: string;
@@ -16,6 +16,8 @@ export interface BillingInvoiceLineResponseData {
     kind: Schematic.InvoiceLineKind;
     periodEnd?: Date;
     periodStart?: Date;
+    /** The share of a full billing period the line bills, as a decimal from 0 to 1. Null when the line bills a whole period. */
+    prorationFraction?: string;
     quantity?: number;
     subscriptionLineId?: string;
     taxable: boolean;

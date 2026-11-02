@@ -14,6 +14,7 @@ export const BillingNativeSubscriptionResponseData: core.serialization.ObjectSch
     serializers.BillingNativeSubscriptionResponseData.Raw,
     Schematic.BillingNativeSubscriptionResponseData
 > = core.serialization.object({
+    balance: core.serialization.number(),
     cancelAt: core.serialization.property("cancel_at", core.serialization.date().optional()),
     companyId: core.serialization.property("company_id", core.serialization.string()),
     currency: Currency,
@@ -33,6 +34,7 @@ export const BillingNativeSubscriptionResponseData: core.serialization.ObjectSch
 
 export declare namespace BillingNativeSubscriptionResponseData {
     export interface Raw {
+        balance: number;
         cancel_at?: string | null;
         company_id: string;
         currency: Currency.Raw;

@@ -12,6 +12,7 @@ import { CompanyLedgerResponseData } from "./CompanyLedgerResponseData";
 import { CreditBurnBreakdownLine } from "./CreditBurnBreakdownLine";
 import { CreditEventType } from "./CreditEventType";
 import { CreditLedgerEntryKind } from "./CreditLedgerEntryKind";
+import { CreditLedgerSourceType } from "./CreditLedgerSourceType";
 import { CreditTransferReason } from "./CreditTransferReason";
 import { CreditUsageReason } from "./CreditUsageReason";
 import { Currency } from "./Currency";
@@ -65,6 +66,8 @@ export const CreditEventLedgerResponseData: core.serialization.ObjectSchema<
         core.serialization.number().optional(),
     ),
     sourceId: core.serialization.property("source_id", core.serialization.number()),
+    sourceIdString: core.serialization.property("source_id_string", core.serialization.string().optional()),
+    sourceType: core.serialization.property("source_type", CreditLedgerSourceType.optional()),
     toGrantId: core.serialization.property("to_grant_id", core.serialization.string().optional()),
     transferReason: core.serialization.property("transfer_reason", CreditTransferReason.optional()),
     usageEventId: core.serialization.property("usage_event_id", core.serialization.string().optional()),
@@ -107,6 +110,8 @@ export declare namespace CreditEventLedgerResponseData {
         quantity_consumed?: number | null;
         quantity_remaining_at_zero_out?: number | null;
         source_id: number;
+        source_id_string?: string | null;
+        source_type?: CreditLedgerSourceType.Raw | null;
         to_grant_id?: string | null;
         transfer_reason?: CreditTransferReason.Raw | null;
         usage_event_id?: string | null;

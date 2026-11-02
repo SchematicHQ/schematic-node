@@ -6,9 +6,11 @@ import type * as Schematic from "../../../index";
  * Input parameters
  */
 export interface ListCompaniesParams {
+    /** If true, filter companies with an active subscription that is set to cancel at the end of the current period; if false, filter companies without one */
+    cancelAtPeriodEnd?: boolean;
     /** Filter companies by one or more credit type IDs (each ID starts with bcrd_) */
     creditTypeIds?: string[];
-    /** Filter companies that have a pending scheduled downgrade */
+    /** If true, filter companies that have a pending scheduled downgrade; if false, filter companies that do not */
     hasScheduledDowngrade?: boolean;
     /** Filter companies by multiple company IDs (starts with comp_) */
     ids?: string[];

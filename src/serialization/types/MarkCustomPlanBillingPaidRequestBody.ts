@@ -10,5 +10,7 @@ export const MarkCustomPlanBillingPaidRequestBody: core.serialization.Schema<
 > = core.serialization.record(core.serialization.string(), core.serialization.unknown());
 
 export declare namespace MarkCustomPlanBillingPaidRequestBody {
-    export type Raw = Record<string, unknown>;
+    export type Raw = {
+        [key: string]: unknown;
+    };
 }

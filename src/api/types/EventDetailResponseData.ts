@@ -10,6 +10,12 @@ export interface EventDetailResponseData {
     capturedAt: Date;
     company?: Schematic.PreviewObject;
     companyId?: string;
+    /** What the inference call cost, as a decimal amount in currency (dollars, not cents, for usd). Absent when the call has no price, for other event types, and when listing events. */
+    cost?: string;
+    /** Where the inference call's cost came from: provided when the request reported it, list_price when Schematic priced it from the model's list price, unpriced when neither applied. Absent for other event types and when listing events. */
+    costSource?: Schematic.InferenceCostSource;
+    /** Lowercase ISO currency code for cost. Absent for other event types and when listing events. */
+    currency?: string;
     enrichedAt?: Date;
     environmentId?: string;
     errorMessage?: string;

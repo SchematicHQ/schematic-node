@@ -16,4 +16,6 @@ export interface CatalogCreditGrantResponseData {
     licenseId?: string;
     resetCadence?: Schematic.BillingPlanCreditGrantResetCadence;
     scaling: Schematic.PlanCreditGrantScaling;
+    /** Whether the catalog shows this credit on the plan. Display-only: a hidden grant is still granted and priced at checkout. */
+    visible: boolean;
 }

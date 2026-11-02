@@ -24,6 +24,7 @@ export const BillingNativeSubscriptionLineResponseData: core.serialization.Objec
     currentPeriodStart: core.serialization.property("current_period_start", core.serialization.date().optional()),
     effectiveFrom: core.serialization.property("effective_from", core.serialization.date()),
     effectiveTo: core.serialization.property("effective_to", core.serialization.date().optional()),
+    featureName: core.serialization.property("feature_name", core.serialization.string().optional()),
     id: core.serialization.string(),
     kind: LineKind,
     quantity: core.serialization.number(),
@@ -48,6 +49,7 @@ export declare namespace BillingNativeSubscriptionLineResponseData {
         current_period_start?: string | null;
         effective_from: string;
         effective_to?: string | null;
+        feature_name?: string | null;
         id: string;
         kind: LineKind.Raw;
         quantity: number;

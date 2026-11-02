@@ -4,6 +4,8 @@ import type * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
 import { BillingCollectionMethod } from "../../../../types/BillingCollectionMethod";
+import { Currency } from "../../../../types/Currency";
+import { PaymentGating } from "../../../../types/PaymentGating";
 import { ProrationBehavior } from "../../../../types/ProrationBehavior";
 
 export const UpdateCompanyBillingProfileRequestBody: core.serialization.Schema<
@@ -11,9 +13,13 @@ export const UpdateCompanyBillingProfileRequestBody: core.serialization.Schema<
     Schematic.UpdateCompanyBillingProfileRequestBody
 > = core.serialization.object({
     collectionMethod: core.serialization.property("collection_method", BillingCollectionMethod),
+    currency: Currency.optional(),
     daysUntilDue: core.serialization.property("days_until_due", core.serialization.number().optional()),
+    gatingDays: core.serialization.property("gating_days", core.serialization.number().optional()),
     isDefault: core.serialization.property("is_default", core.serialization.boolean().optional()),
     name: core.serialization.string().optional(),
+    overdraftLimit: core.serialization.property("overdraft_limit", core.serialization.number().optional()),
+    paymentGating: core.serialization.property("payment_gating", PaymentGating.optional()),
     paymentMethodId: core.serialization.property("payment_method_id", core.serialization.string().optional()),
     prorationBehavior: core.serialization.property("proration_behavior", ProrationBehavior.optional()),
 });
@@ -21,9 +27,13 @@ export const UpdateCompanyBillingProfileRequestBody: core.serialization.Schema<
 export declare namespace UpdateCompanyBillingProfileRequestBody {
     export interface Raw {
         collection_method: BillingCollectionMethod.Raw;
+        currency?: Currency.Raw | null;
         days_until_due?: number | null;
+        gating_days?: number | null;
         is_default?: boolean | null;
         name?: string | null;
+        overdraft_limit?: number | null;
+        payment_gating?: PaymentGating.Raw | null;
         payment_method_id?: string | null;
         proration_behavior?: ProrationBehavior.Raw | null;
     }

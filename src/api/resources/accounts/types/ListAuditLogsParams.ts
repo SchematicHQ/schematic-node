@@ -7,6 +7,7 @@ import type * as Schematic from "../../../index";
  */
 export interface ListAuditLogsParams {
     actorType?: Schematic.ActorType;
+    companyId?: string;
     endTime?: Date;
     environmentId?: string;
     /** Page limit (default 100) */

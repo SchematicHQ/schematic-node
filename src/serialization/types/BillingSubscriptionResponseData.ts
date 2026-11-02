@@ -11,6 +11,7 @@ export const BillingSubscriptionResponseData: core.serialization.ObjectSchema<
     serializers.BillingSubscriptionResponseData.Raw,
     Schematic.BillingSubscriptionResponseData
 > = core.serialization.object({
+    accessRevokedAt: core.serialization.property("access_revoked_at", core.serialization.date().optional()),
     applicationId: core.serialization.property("application_id", core.serialization.string().optional()),
     cancelAt: core.serialization.property("cancel_at", core.serialization.number().optional()),
     cancelAtPeriodEnd: core.serialization.property("cancel_at_period_end", core.serialization.boolean()),
@@ -38,6 +39,7 @@ export const BillingSubscriptionResponseData: core.serialization.ObjectSchema<
 
 export declare namespace BillingSubscriptionResponseData {
     export interface Raw {
+        access_revoked_at?: string | null;
         application_id?: string | null;
         cancel_at?: number | null;
         cancel_at_period_end: boolean;

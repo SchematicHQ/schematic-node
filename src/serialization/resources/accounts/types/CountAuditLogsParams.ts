@@ -10,6 +10,7 @@ export const CountAuditLogsParams: core.serialization.ObjectSchema<
     Schematic.CountAuditLogsParams
 > = core.serialization.object({
     actorType: core.serialization.property("actor_type", ActorType.optional()),
+    companyId: core.serialization.property("company_id", core.serialization.string().optional()),
     endTime: core.serialization.property("end_time", core.serialization.date().optional()),
     environmentId: core.serialization.property("environment_id", core.serialization.string().optional()),
     limit: core.serialization.number().optional(),
@@ -21,6 +22,7 @@ export const CountAuditLogsParams: core.serialization.ObjectSchema<
 export declare namespace CountAuditLogsParams {
     export interface Raw {
         actor_type?: ActorType.Raw | null;
+        company_id?: string | null;
         end_time?: string | null;
         environment_id?: string | null;
         limit?: number | null;

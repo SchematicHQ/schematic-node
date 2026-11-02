@@ -28,6 +28,8 @@ export * from "./GetBillingEntityChildSubscriptionsParams";
 export * from "./GetBillingEntityChildSubscriptionsResponse";
 export * from "./GetCompanyBillingEntityParams";
 export * from "./GetCompanyBillingEntityResponse";
+export * from "./GetCompanyInferenceCostParams";
+export * from "./GetCompanyInferenceCostResponse";
 export * from "./GetCompanyResponse";
 export * from "./GetEntityTraitDefinitionResponse";
 export * from "./GetEntityTraitDefinitionUsageResponse";

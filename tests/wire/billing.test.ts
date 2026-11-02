@@ -4566,6 +4566,7 @@ describe("BillingClient", () => {
         };
         const rawResponseBody = {
             data: {
+                access_revoked_at: "2024-01-15T09:30:00Z",
                 application_id: "application_id",
                 cancel_at: 1000000,
                 cancel_at_period_end: true,
@@ -4628,6 +4629,7 @@ describe("BillingClient", () => {
         });
         expect(response).toEqual({
             data: {
+                accessRevokedAt: new Date("2024-01-15T09:30:00.000Z"),
                 applicationId: "application_id",
                 cancelAt: 1000000,
                 cancelAtPeriodEnd: true,
@@ -5173,6 +5175,7 @@ describe("BillingClient", () => {
 
         const rawResponseBody = {
             data: {
+                balance: 1000000,
                 cancel_at: "2024-01-15T09:30:00Z",
                 company_id: "company_id",
                 currency: "aed",
@@ -5231,6 +5234,7 @@ describe("BillingClient", () => {
         const response = await client.billing.getCompanyNativeSubscription("company_id");
         expect(response).toEqual({
             data: {
+                balance: 1000000,
                 cancelAt: new Date("2024-01-15T09:30:00.000Z"),
                 companyId: "company_id",
                 currency: "aed",
@@ -5381,6 +5385,7 @@ describe("BillingClient", () => {
         const rawResponseBody = {
             data: [
                 {
+                    amount_due: 1000000,
                     amount_paid: 1000000,
                     amount_remaining: 1000000,
                     collection_state: "exported",
@@ -5391,6 +5396,7 @@ describe("BillingClient", () => {
                     currency: "aed",
                     document_state: "credited",
                     due_at: "2024-01-15T09:30:00Z",
+                    ending_balance: 1000000,
                     external_id: "external_id",
                     finalized_at: "2024-01-15T09:30:00Z",
                     id: "id",
@@ -5398,6 +5404,7 @@ describe("BillingClient", () => {
                     period_end: "2024-01-15T09:30:00Z",
                     period_start: "2024-01-15T09:30:00Z",
                     provider_type: "metronome",
+                    starting_balance: 1000000,
                     status: "draft",
                     subscription_external_id: "subscription_external_id",
                     subtotal: 1000000,
@@ -5434,6 +5441,7 @@ describe("BillingClient", () => {
         expect(response).toEqual({
             data: [
                 {
+                    amountDue: 1000000,
                     amountPaid: 1000000,
                     amountRemaining: 1000000,
                     collectionState: "exported",
@@ -5444,6 +5452,7 @@ describe("BillingClient", () => {
                     currency: "aed",
                     documentState: "credited",
                     dueAt: new Date("2024-01-15T09:30:00.000Z"),
+                    endingBalance: 1000000,
                     externalId: "external_id",
                     finalizedAt: new Date("2024-01-15T09:30:00.000Z"),
                     id: "id",
@@ -5451,6 +5460,7 @@ describe("BillingClient", () => {
                     periodEnd: new Date("2024-01-15T09:30:00.000Z"),
                     periodStart: new Date("2024-01-15T09:30:00.000Z"),
                     providerType: "metronome",
+                    startingBalance: 1000000,
                     status: "draft",
                     subscriptionExternalId: "subscription_external_id",
                     subtotal: 1000000,
@@ -5543,6 +5553,7 @@ describe("BillingClient", () => {
 
         const rawResponseBody = {
             data: {
+                amount_due: 1000000,
                 amount_paid: 1000000,
                 amount_remaining: 1000000,
                 collection_state: "exported",
@@ -5554,6 +5565,7 @@ describe("BillingClient", () => {
                 discount: 1000000,
                 document_state: "credited",
                 due_at: "2024-01-15T09:30:00Z",
+                ending_balance: 1000000,
                 external_id: "external_id",
                 finalized_at: "2024-01-15T09:30:00Z",
                 id: "id",
@@ -5564,6 +5576,7 @@ describe("BillingClient", () => {
                 period_start: "2024-01-15T09:30:00Z",
                 provider_type: "metronome",
                 settlements: [{ amount: 1000000, collector: "external", settled_at: "2024-01-15T09:30:00Z" }],
+                starting_balance: 1000000,
                 status: "draft",
                 subscription_external_id: "subscription_external_id",
                 subscription_id: "subscription_id",
@@ -5595,6 +5608,7 @@ describe("BillingClient", () => {
         const response = await client.billing.getBillingInvoice("invoice_id");
         expect(response).toEqual({
             data: {
+                amountDue: 1000000,
                 amountPaid: 1000000,
                 amountRemaining: 1000000,
                 collectionState: "exported",
@@ -5606,6 +5620,7 @@ describe("BillingClient", () => {
                 discount: 1000000,
                 documentState: "credited",
                 dueAt: new Date("2024-01-15T09:30:00.000Z"),
+                endingBalance: 1000000,
                 externalId: "external_id",
                 finalizedAt: new Date("2024-01-15T09:30:00.000Z"),
                 id: "id",
@@ -5629,6 +5644,7 @@ describe("BillingClient", () => {
                         settledAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                 ],
+                startingBalance: 1000000,
                 status: "draft",
                 subscriptionExternalId: "subscription_external_id",
                 subscriptionId: "subscription_id",
@@ -5741,6 +5757,7 @@ describe("BillingClient", () => {
 
         const rawResponseBody = {
             data: {
+                amount_due: 1000000,
                 amount_paid: 1000000,
                 amount_remaining: 1000000,
                 collection_state: "exported",
@@ -5752,6 +5769,7 @@ describe("BillingClient", () => {
                 discount: 1000000,
                 document_state: "credited",
                 due_at: "2024-01-15T09:30:00Z",
+                ending_balance: 1000000,
                 external_id: "external_id",
                 finalized_at: "2024-01-15T09:30:00Z",
                 id: "id",
@@ -5762,6 +5780,7 @@ describe("BillingClient", () => {
                 period_start: "2024-01-15T09:30:00Z",
                 provider_type: "metronome",
                 settlements: [{ amount: 1000000, collector: "external", settled_at: "2024-01-15T09:30:00Z" }],
+                starting_balance: 1000000,
                 status: "draft",
                 subscription_external_id: "subscription_external_id",
                 subscription_id: "subscription_id",
@@ -5793,6 +5812,7 @@ describe("BillingClient", () => {
         const response = await client.billing.finalizeNativeInvoice("invoice_id");
         expect(response).toEqual({
             data: {
+                amountDue: 1000000,
                 amountPaid: 1000000,
                 amountRemaining: 1000000,
                 collectionState: "exported",
@@ -5804,6 +5824,7 @@ describe("BillingClient", () => {
                 discount: 1000000,
                 documentState: "credited",
                 dueAt: new Date("2024-01-15T09:30:00.000Z"),
+                endingBalance: 1000000,
                 externalId: "external_id",
                 finalizedAt: new Date("2024-01-15T09:30:00.000Z"),
                 id: "id",
@@ -5827,6 +5848,7 @@ describe("BillingClient", () => {
                         settledAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                 ],
+                startingBalance: 1000000,
                 status: "draft",
                 subscriptionExternalId: "subscription_external_id",
                 subscriptionId: "subscription_id",
@@ -5958,6 +5980,7 @@ describe("BillingClient", () => {
         const rawRequestBody = { idempotency_key: "idempotency_key" };
         const rawResponseBody = {
             data: {
+                amount_due: 1000000,
                 amount_paid: 1000000,
                 amount_remaining: 1000000,
                 collection_state: "exported",
@@ -5969,6 +5992,7 @@ describe("BillingClient", () => {
                 discount: 1000000,
                 document_state: "credited",
                 due_at: "2024-01-15T09:30:00Z",
+                ending_balance: 1000000,
                 external_id: "external_id",
                 finalized_at: "2024-01-15T09:30:00Z",
                 id: "id",
@@ -5979,6 +6003,7 @@ describe("BillingClient", () => {
                 period_start: "2024-01-15T09:30:00Z",
                 provider_type: "metronome",
                 settlements: [{ amount: 1000000, collector: "external", settled_at: "2024-01-15T09:30:00Z" }],
+                starting_balance: 1000000,
                 status: "draft",
                 subscription_external_id: "subscription_external_id",
                 subscription_id: "subscription_id",
@@ -6013,6 +6038,7 @@ describe("BillingClient", () => {
         });
         expect(response).toEqual({
             data: {
+                amountDue: 1000000,
                 amountPaid: 1000000,
                 amountRemaining: 1000000,
                 collectionState: "exported",
@@ -6024,6 +6050,7 @@ describe("BillingClient", () => {
                 discount: 1000000,
                 documentState: "credited",
                 dueAt: new Date("2024-01-15T09:30:00.000Z"),
+                endingBalance: 1000000,
                 externalId: "external_id",
                 finalizedAt: new Date("2024-01-15T09:30:00.000Z"),
                 id: "id",
@@ -6047,6 +6074,7 @@ describe("BillingClient", () => {
                         settledAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                 ],
+                startingBalance: 1000000,
                 status: "draft",
                 subscriptionExternalId: "subscription_external_id",
                 subscriptionId: "subscription_id",
@@ -6193,6 +6221,7 @@ describe("BillingClient", () => {
 
         const rawResponseBody = {
             data: {
+                amount_due: 1000000,
                 amount_paid: 1000000,
                 amount_remaining: 1000000,
                 collection_state: "exported",
@@ -6204,6 +6233,7 @@ describe("BillingClient", () => {
                 discount: 1000000,
                 document_state: "credited",
                 due_at: "2024-01-15T09:30:00Z",
+                ending_balance: 1000000,
                 external_id: "external_id",
                 finalized_at: "2024-01-15T09:30:00Z",
                 id: "id",
@@ -6214,6 +6244,7 @@ describe("BillingClient", () => {
                 period_start: "2024-01-15T09:30:00Z",
                 provider_type: "metronome",
                 settlements: [{ amount: 1000000, collector: "external", settled_at: "2024-01-15T09:30:00Z" }],
+                starting_balance: 1000000,
                 status: "draft",
                 subscription_external_id: "subscription_external_id",
                 subscription_id: "subscription_id",
@@ -6245,6 +6276,7 @@ describe("BillingClient", () => {
         const response = await client.billing.voidNativeInvoice("invoice_id");
         expect(response).toEqual({
             data: {
+                amountDue: 1000000,
                 amountPaid: 1000000,
                 amountRemaining: 1000000,
                 collectionState: "exported",
@@ -6256,6 +6288,7 @@ describe("BillingClient", () => {
                 discount: 1000000,
                 documentState: "credited",
                 dueAt: new Date("2024-01-15T09:30:00.000Z"),
+                endingBalance: 1000000,
                 externalId: "external_id",
                 finalizedAt: new Date("2024-01-15T09:30:00.000Z"),
                 id: "id",
@@ -6279,6 +6312,7 @@ describe("BillingClient", () => {
                         settledAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
                 ],
+                startingBalance: 1000000,
                 status: "draft",
                 subscriptionExternalId: "subscription_external_id",
                 subscriptionId: "subscription_id",
