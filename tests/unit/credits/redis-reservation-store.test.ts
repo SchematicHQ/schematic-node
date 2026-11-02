@@ -157,6 +157,30 @@ describe("RedisReservationStore", () => {
         reservations.stop();
     });
 
+    it("does not refund a reservation that names no lease", async () => {
+        const client = makeFakeRedis();
+        const leaseStore = new RedisLeaseStore({ client });
+        const reservations = new RedisReservationStore({ client, leaseStore, sweepIntervalMs: 60_000 });
+        await leaseStore.replace({
+            leaseId: "lse_1",
+            companyId: "co_1",
+            creditTypeId: "ct_1",
+            grantedAmount: 1000,
+            expiresAt: new Date(Date.now() + 60_000),
+        });
+        await leaseStore.tryReserve("co_1", "ct_1", 200);
+        // An empty lease id turns the refund script's pin off, so these holds
+        // would land on whatever lease holds the slot; they must be skipped.
+        await reservations.add(makeReservation({ leaseId: "" }));
+        await reservations.add(makeReservation({ id: "res_2", leaseId: "", expiresAt: new Date(Date.now() - 1) }));
+
+        expect(await reservations.consume("res_1", 0)).toBe(0);
+        expect(await reservations.sweepExpired()).toBe(1);
+        expect((await leaseStore.get("co_1", "ct_1"))?.localRemainingCredits).toBe(800);
+        expect(await reservations.reservedCredits("co_1", "ct_1")).toBe(0);
+        reservations.stop();
+    });
+
     it("reservedCredits sums open reservations and drops consumed ones", async () => {
         const client = makeFakeRedis();
         const leaseStore = new RedisLeaseStore({ client });
