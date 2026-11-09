@@ -118,6 +118,9 @@ describe("PlansClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     metadata: { key: "value" },
+                    pause_behavior: "keep_as_draft",
+                    pause_resumes_at: 1000000,
+                    paused_at: "2024-01-15T09:30:00Z",
                     payment_method: {
                         created_at: "2024-01-15T09:30:00Z",
                         customer_external_id: "customer_external_id",
@@ -532,6 +535,9 @@ describe("PlansClient", () => {
                     metadata: {
                         key: "value",
                     },
+                    pauseBehavior: "keep_as_draft",
+                    pauseResumesAt: 1000000,
+                    pausedAt: new Date("2024-01-15T09:30:00.000Z"),
                     paymentMethod: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         customerExternalId: "customer_external_id",
@@ -956,6 +962,7 @@ describe("PlansClient", () => {
                 {
                     activation_strategy: "on_payment",
                     billing_cycle_anchor: "2024-01-15T09:30:00Z",
+                    billing_entity_id: "billing_entity_id",
                     billing_start_date: "2024-01-15T09:30:00Z",
                     checkout_id: "checkout_id",
                     company_id: "company_id",
@@ -1016,6 +1023,7 @@ describe("PlansClient", () => {
                 {
                     activationStrategy: "on_payment",
                     billingCycleAnchor: new Date("2024-01-15T09:30:00.000Z"),
+                    billingEntityId: "billing_entity_id",
                     billingStartDate: new Date("2024-01-15T09:30:00.000Z"),
                     checkoutId: "checkout_id",
                     companyId: "company_id",
@@ -1161,6 +1169,7 @@ describe("PlansClient", () => {
             data: {
                 activation_strategy: "on_payment",
                 billing_cycle_anchor: "2024-01-15T09:30:00Z",
+                billing_entity_id: "billing_entity_id",
                 billing_start_date: "2024-01-15T09:30:00Z",
                 checkout_id: "checkout_id",
                 company_id: "company_id",
@@ -1202,6 +1211,7 @@ describe("PlansClient", () => {
             data: {
                 activationStrategy: "on_payment",
                 billingCycleAnchor: new Date("2024-01-15T09:30:00.000Z"),
+                billingEntityId: "billing_entity_id",
                 billingStartDate: new Date("2024-01-15T09:30:00.000Z"),
                 checkoutId: "checkout_id",
                 companyId: "company_id",
@@ -1363,6 +1373,7 @@ describe("PlansClient", () => {
             data: {
                 activation_strategy: "on_payment",
                 billing_cycle_anchor: "2024-01-15T09:30:00Z",
+                billing_entity_id: "billing_entity_id",
                 billing_start_date: "2024-01-15T09:30:00Z",
                 checkout_id: "checkout_id",
                 company_id: "company_id",
@@ -1404,6 +1415,7 @@ describe("PlansClient", () => {
             data: {
                 activationStrategy: "on_payment",
                 billingCycleAnchor: new Date("2024-01-15T09:30:00.000Z"),
+                billingEntityId: "billing_entity_id",
                 billingStartDate: new Date("2024-01-15T09:30:00.000Z"),
                 checkoutId: "checkout_id",
                 companyId: "company_id",
@@ -7965,6 +7977,8 @@ describe("PlansClient", () => {
         const rawResponseBody = {
             data: {
                 billing_email: "billing_email",
+                billing_entity_id: "billing_entity_id",
+                billing_entity_name: "billing_entity_name",
                 currency: "aed",
                 current_period_end: "2024-01-15T09:30:00Z",
                 current_period_start: "2024-01-15T09:30:00Z",
@@ -8023,6 +8037,8 @@ describe("PlansClient", () => {
         expect(response).toEqual({
             data: {
                 billingEmail: "billing_email",
+                billingEntityId: "billing_entity_id",
+                billingEntityName: "billing_entity_name",
                 currency: "aed",
                 currentPeriodEnd: new Date("2024-01-15T09:30:00.000Z"),
                 currentPeriodStart: new Date("2024-01-15T09:30:00.000Z"),

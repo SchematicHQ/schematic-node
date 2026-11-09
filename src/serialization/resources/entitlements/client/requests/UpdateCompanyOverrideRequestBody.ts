@@ -3,6 +3,7 @@
 import type * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
+import { CreditModelRate } from "../../../../types/CreditModelRate";
 import { EntitlementValueType } from "../../../../types/EntitlementValueType";
 import { MetricPeriod } from "../../../../types/MetricPeriod";
 import { MetricPeriodMonthReset } from "../../../../types/MetricPeriodMonthReset";
@@ -18,6 +19,7 @@ export const UpdateCompanyOverrideRequestBody: core.serialization.Schema<
     expirationDate: core.serialization.property("expiration_date", core.serialization.date().optional()),
     metricPeriod: core.serialization.property("metric_period", MetricPeriod.optional()),
     metricPeriodMonthReset: core.serialization.property("metric_period_month_reset", MetricPeriodMonthReset.optional()),
+    modelRates: core.serialization.property("model_rates", core.serialization.list(CreditModelRate).optional()),
     note: core.serialization.string().optional(),
     quantityRates: core.serialization.property(
         "quantity_rates",
@@ -36,6 +38,7 @@ export declare namespace UpdateCompanyOverrideRequestBody {
         expiration_date?: string | null;
         metric_period?: MetricPeriod.Raw | null;
         metric_period_month_reset?: MetricPeriodMonthReset.Raw | null;
+        model_rates?: CreditModelRate.Raw[] | null;
         note?: string | null;
         quantity_rates?: Record<string, number> | null;
         value_bool?: boolean | null;

@@ -9,6 +9,7 @@ import type * as Schematic from "../../../../index";
 export interface UpdateCatalogConfigurationRequestBody {
     customPlanCtaText?: string;
     customPlanCtaUrl?: string;
+    customPlanId?: string;
     customPlanPriceText?: string;
     customPlansVisible?: boolean;
     orderedAddOns?: Schematic.CatalogConfigOrderedPlan[];

@@ -14,6 +14,8 @@ export interface CompanyOverrideResponseData {
     id: string;
     metricPeriod?: Schematic.MetricPeriod;
     metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;
+    /** Per-model rate overrides for inference features, keyed by provider and model. Each entry replaces consumption_rate and quantity_rates for events from that model. Absent when every model burns at the entitlement's own rates. */
+    modelRates?: Schematic.CreditModelRate[];
     notes: Schematic.CompanyOverrideNoteResponseData[];
     /** Credits per unit of the quantity (per token for inference features), keyed by quantity key. Absent when the entitlement prices requests only. */
     quantityRates?: Record<string, number>;

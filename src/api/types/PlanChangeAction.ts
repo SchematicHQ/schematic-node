@@ -10,6 +10,7 @@ export const PlanChangeAction = {
     InvoicePastDue: "invoice_past_due",
     ManagePlan: "manage_plan",
     Migration: "migration",
+    PastDueDefaultPlan: "past_due_default_plan",
     PlanBillingProductChanged: "plan_billing_product_changed",
     PlanDeleted: "plan_deleted",
     PlanTraitChange: "plan_trait_change",

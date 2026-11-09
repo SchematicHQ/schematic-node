@@ -6,6 +6,8 @@ export interface UpdateEntitlementReqCommon {
     creditConsumptionRate?: number;
     metricPeriod?: Schematic.MetricPeriod;
     metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;
+    /** Per-model rate overrides for inference features, keyed by provider and model. Each entry is a complete rate card: its consumption_rate and quantity_rates replace the entitlement's credit_consumption_rate and quantity_rates for events from that provider and model. An event matches an entry by exact model name first, then by its model name without a trailing snapshot date (claude-sonnet-4-5-20250929 matches claude-sonnet-4-5). Models with no entry burn at the entitlement's own rates. Omit to leave the overrides as they are; send null to clear them. */
+    modelRates?: Schematic.CreditModelRate[];
     /** Credits per unit of the quantity (per token for inference features), keyed by quantity key. Inference features may price input_tokens, output_tokens, cached_input_tokens, cache_creation_input_tokens and reasoning_tokens; reasoning_tokens is priced on top of output_tokens, so leave its rate at zero for providers that count reasoning inside output. Omit to leave the schedule as it is; send null to clear it. */
     quantityRates?: Record<string, number>;
     valueBool?: boolean;

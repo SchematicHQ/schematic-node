@@ -941,6 +941,9 @@ describe("CompaniesClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     metadata: { key: "value" },
+                    pause_behavior: "keep_as_draft",
+                    pause_resumes_at: 1000000,
+                    paused_at: "2024-01-15T09:30:00Z",
                     payment_method: {
                         created_at: "2024-01-15T09:30:00Z",
                         customer_external_id: "customer_external_id",
@@ -1357,6 +1360,9 @@ describe("CompaniesClient", () => {
                     metadata: {
                         key: "value",
                     },
+                    pauseBehavior: "keep_as_draft",
+                    pauseResumesAt: 1000000,
+                    pausedAt: new Date("2024-01-15T09:30:00.000Z"),
                     paymentMethod: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         customerExternalId: "customer_external_id",
@@ -1895,6 +1901,9 @@ describe("CompaniesClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     metadata: { key: "value" },
+                    pause_behavior: "keep_as_draft",
+                    pause_resumes_at: 1000000,
+                    paused_at: "2024-01-15T09:30:00Z",
                     payment_method: {
                         created_at: "2024-01-15T09:30:00Z",
                         customer_external_id: "customer_external_id",
@@ -2306,6 +2315,9 @@ describe("CompaniesClient", () => {
                     metadata: {
                         key: "value",
                     },
+                    pauseBehavior: "keep_as_draft",
+                    pauseResumesAt: 1000000,
+                    pausedAt: new Date("2024-01-15T09:30:00.000Z"),
                     paymentMethod: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         customerExternalId: "customer_external_id",
@@ -3228,6 +3240,9 @@ describe("CompaniesClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     metadata: { key: "value" },
+                    pause_behavior: "keep_as_draft",
+                    pause_resumes_at: 1000000,
+                    paused_at: "2024-01-15T09:30:00Z",
                     payment_method: {
                         created_at: "2024-01-15T09:30:00Z",
                         customer_external_id: "customer_external_id",
@@ -3644,6 +3659,9 @@ describe("CompaniesClient", () => {
                     metadata: {
                         key: "value",
                     },
+                    pauseBehavior: "keep_as_draft",
+                    pauseResumesAt: 1000000,
+                    pausedAt: new Date("2024-01-15T09:30:00.000Z"),
                     paymentMethod: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         customerExternalId: "customer_external_id",
@@ -4918,6 +4936,9 @@ describe("CompaniesClient", () => {
                         url: "url",
                     },
                     metadata: { metadata: { key: "value" } },
+                    pause_behavior: "keep_as_draft",
+                    pause_resumes_at: 1000000,
+                    paused_at: "2024-01-15T09:30:00Z",
                     payment_method: {
                         account_last4: "account_last4",
                         account_name: "account_name",
@@ -5098,6 +5119,9 @@ describe("CompaniesClient", () => {
                             url: "url",
                         },
                         metadata: { metadata: { key: "value" } },
+                        pause_behavior: "keep_as_draft",
+                        pause_resumes_at: 1000000,
+                        paused_at: "2024-01-15T09:30:00Z",
                         payment_method: {
                             account_last4: "account_last4",
                             account_name: "account_name",
@@ -5277,6 +5301,9 @@ describe("CompaniesClient", () => {
                             url: "url",
                         },
                         metadata: { metadata: { key: "value" } },
+                        pause_behavior: "keep_as_draft",
+                        pause_resumes_at: 1000000,
+                        paused_at: "2024-01-15T09:30:00Z",
                         payment_method: {
                             account_last4: "account_last4",
                             account_name: "account_name",
@@ -5390,6 +5417,7 @@ describe("CompaniesClient", () => {
                     {
                         activation_strategy: "on_payment",
                         billing_cycle_anchor: "2024-01-15T09:30:00Z",
+                        billing_entity_id: "billing_entity_id",
                         billing_start_date: "2024-01-15T09:30:00Z",
                         checkout_id: "checkout_id",
                         company_id: "company_id",
@@ -5442,6 +5470,7 @@ describe("CompaniesClient", () => {
                     {
                         activation_strategy: "on_payment",
                         billing_cycle_anchor: "2024-01-15T09:30:00Z",
+                        billing_entity_id: "billing_entity_id",
                         billing_start_date: "2024-01-15T09:30:00Z",
                         checkout_id: "checkout_id",
                         company_id: "company_id",
@@ -7063,6 +7092,9 @@ describe("CompaniesClient", () => {
                             key: "value",
                         },
                     },
+                    pauseBehavior: "keep_as_draft",
+                    pauseResumesAt: 1000000,
+                    pausedAt: new Date("2024-01-15T09:30:00.000Z"),
                     paymentMethod: {
                         accountLast4: "account_last4",
                         accountName: "account_name",
@@ -7247,6 +7279,9 @@ describe("CompaniesClient", () => {
                                 key: "value",
                             },
                         },
+                        pauseBehavior: "keep_as_draft",
+                        pauseResumesAt: 1000000,
+                        pausedAt: new Date("2024-01-15T09:30:00.000Z"),
                         paymentMethod: {
                             accountLast4: "account_last4",
                             accountName: "account_name",
@@ -7430,6 +7465,9 @@ describe("CompaniesClient", () => {
                                 key: "value",
                             },
                         },
+                        pauseBehavior: "keep_as_draft",
+                        pauseResumesAt: 1000000,
+                        pausedAt: new Date("2024-01-15T09:30:00.000Z"),
                         paymentMethod: {
                             accountLast4: "account_last4",
                             accountName: "account_name",
@@ -7543,6 +7581,7 @@ describe("CompaniesClient", () => {
                     {
                         activationStrategy: "on_payment",
                         billingCycleAnchor: new Date("2024-01-15T09:30:00.000Z"),
+                        billingEntityId: "billing_entity_id",
                         billingStartDate: new Date("2024-01-15T09:30:00.000Z"),
                         checkoutId: "checkout_id",
                         companyId: "company_id",
@@ -7595,6 +7634,7 @@ describe("CompaniesClient", () => {
                     {
                         activationStrategy: "on_payment",
                         billingCycleAnchor: new Date("2024-01-15T09:30:00.000Z"),
+                        billingEntityId: "billing_entity_id",
                         billingStartDate: new Date("2024-01-15T09:30:00.000Z"),
                         checkoutId: "checkout_id",
                         companyId: "company_id",
@@ -8829,6 +8869,243 @@ describe("CompaniesClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("getBillingEntitySettings (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: { billing_date: "2024-01-15T09:30:00Z", children_may_change_plan: true, company_id: "company_id" },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/company-billing-entity-settings/company_id")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.companies.getBillingEntitySettings("company_id");
+        expect(response).toEqual({
+            data: {
+                billingDate: new Date("2024-01-15T09:30:00.000Z"),
+                childrenMayChangePlan: true,
+                companyId: "company_id",
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("getBillingEntitySettings (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/company-billing-entity-settings/company_id")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.getBillingEntitySettings("company_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getBillingEntitySettings (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/company-billing-entity-settings/company_id")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.getBillingEntitySettings("company_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getBillingEntitySettings (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/company-billing-entity-settings/company_id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.getBillingEntitySettings("company_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getBillingEntitySettings (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/company-billing-entity-settings/company_id")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.getBillingEntitySettings("company_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("updateBillingEntitySettings (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = {
+            data: { billing_date: "2024-01-15T09:30:00Z", children_may_change_plan: true, company_id: "company_id" },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .put("/company-billing-entity-settings/company_id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.companies.updateBillingEntitySettings("company_id");
+        expect(response).toEqual({
+            data: {
+                billingDate: new Date("2024-01-15T09:30:00.000Z"),
+                childrenMayChangePlan: true,
+                companyId: "company_id",
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("updateBillingEntitySettings (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/company-billing-entity-settings/company_id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.updateBillingEntitySettings("company_id");
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("updateBillingEntitySettings (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/company-billing-entity-settings/company_id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.updateBillingEntitySettings("company_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("updateBillingEntitySettings (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/company-billing-entity-settings/company_id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.updateBillingEntitySettings("company_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("updateBillingEntitySettings (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/company-billing-entity-settings/company_id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.updateBillingEntitySettings("company_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("updateBillingEntitySettings (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/company-billing-entity-settings/company_id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.companies.updateBillingEntitySettings("company_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("getBillingEntityChildSubscriptions (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -8877,6 +9154,9 @@ describe("CompaniesClient", () => {
                         subtotal: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
+                    pause_behavior: "keep_as_draft",
+                    pause_resumes_at: "2024-01-15T09:30:00Z",
+                    paused_at: "2024-01-15T09:30:00Z",
                     payment_method: {
                         created_at: "2024-01-15T09:30:00Z",
                         customer_external_id: "customer_external_id",
@@ -8887,6 +9167,8 @@ describe("CompaniesClient", () => {
                         provider_type: "metronome",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
+                    period_end: "2024-01-15T09:30:00Z",
+                    period_start: "2024-01-15T09:30:00Z",
                     plan_name: "plan_name",
                     products: [
                         {
@@ -8975,6 +9257,9 @@ describe("CompaniesClient", () => {
                         subtotal: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
+                    pauseBehavior: "keep_as_draft",
+                    pauseResumesAt: new Date("2024-01-15T09:30:00.000Z"),
+                    pausedAt: new Date("2024-01-15T09:30:00.000Z"),
                     paymentMethod: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         customerExternalId: "customer_external_id",
@@ -8985,6 +9270,8 @@ describe("CompaniesClient", () => {
                         providerType: "metronome",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
+                    periodEnd: new Date("2024-01-15T09:30:00.000Z"),
+                    periodStart: new Date("2024-01-15T09:30:00.000Z"),
                     planName: "plan_name",
                     products: [
                         {
@@ -9621,6 +9908,9 @@ describe("CompaniesClient", () => {
                         subtotal: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
+                    pause_behavior: "keep_as_draft",
+                    pause_resumes_at: "2024-01-15T09:30:00Z",
+                    paused_at: "2024-01-15T09:30:00Z",
                     payment_method: {
                         created_at: "2024-01-15T09:30:00Z",
                         customer_external_id: "customer_external_id",
@@ -9631,6 +9921,8 @@ describe("CompaniesClient", () => {
                         provider_type: "metronome",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
+                    period_end: "2024-01-15T09:30:00Z",
+                    period_start: "2024-01-15T09:30:00Z",
                     products: [
                         {
                             billing_scheme: "per_unit",
@@ -9714,6 +10006,9 @@ describe("CompaniesClient", () => {
                         subtotal: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
+                    pauseBehavior: "keep_as_draft",
+                    pauseResumesAt: new Date("2024-01-15T09:30:00.000Z"),
+                    pausedAt: new Date("2024-01-15T09:30:00.000Z"),
                     paymentMethod: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         customerExternalId: "customer_external_id",
@@ -9724,6 +10019,8 @@ describe("CompaniesClient", () => {
                         providerType: "metronome",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
+                    periodEnd: new Date("2024-01-15T09:30:00.000Z"),
+                    periodStart: new Date("2024-01-15T09:30:00.000Z"),
                     products: [
                         {
                             billingScheme: "per_unit",
@@ -9970,6 +10267,9 @@ describe("CompaniesClient", () => {
                         updated_at: "2024-01-15T09:30:00Z",
                     },
                     metadata: { key: "value" },
+                    pause_behavior: "keep_as_draft",
+                    pause_resumes_at: 1000000,
+                    paused_at: "2024-01-15T09:30:00Z",
                     payment_method: {
                         created_at: "2024-01-15T09:30:00Z",
                         customer_external_id: "customer_external_id",
@@ -10387,6 +10687,9 @@ describe("CompaniesClient", () => {
                     metadata: {
                         key: "value",
                     },
+                    pauseBehavior: "keep_as_draft",
+                    pauseResumesAt: 1000000,
+                    pausedAt: new Date("2024-01-15T09:30:00.000Z"),
                     paymentMethod: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         customerExternalId: "customer_external_id",
@@ -14128,6 +14431,8 @@ describe("CompaniesClient", () => {
                 offset: 1000000,
                 plan_id: "plan_id",
                 q: "q",
+                sort_order_column: "sort_order_column",
+                sort_order_direction: "asc",
             },
         };
 
@@ -14138,6 +14443,8 @@ describe("CompaniesClient", () => {
             ids: ["ids"],
             planId: "plan_id",
             q: "q",
+            sortOrderColumn: "sort_order_column",
+            sortOrderDirection: "asc",
             limit: 1000000,
             offset: 1000000,
         });
@@ -14194,6 +14501,8 @@ describe("CompaniesClient", () => {
                 offset: 1000000,
                 planId: "plan_id",
                 q: "q",
+                sortOrderColumn: "sort_order_column",
+                sortOrderDirection: "asc",
             },
         });
     });

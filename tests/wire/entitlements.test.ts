@@ -225,6 +225,7 @@ describe("EntitlementsClient", () => {
                     id: "id",
                     metric_period: "all_time",
                     metric_period_month_reset: "billing_cycle",
+                    model_rates: [{ consumption_rate: 1.1, model: "model", provider: "provider" }],
                     notes: [
                         {
                             created_at: "2024-01-15T09:30:00Z",
@@ -521,6 +522,13 @@ describe("EntitlementsClient", () => {
                     id: "id",
                     metricPeriod: "all_time",
                     metricPeriodMonthReset: "billing_cycle",
+                    modelRates: [
+                        {
+                            consumptionRate: 1.1,
+                            model: "model",
+                            provider: "provider",
+                        },
+                    ],
                     notes: [
                         {
                             createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -1009,6 +1017,7 @@ describe("EntitlementsClient", () => {
                 id: "id",
                 metric_period: "all_time",
                 metric_period_month_reset: "billing_cycle",
+                model_rates: [{ consumption_rate: 1.1, model: "model", provider: "provider" }],
                 notes: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
@@ -1466,6 +1475,13 @@ describe("EntitlementsClient", () => {
                 id: "id",
                 metricPeriod: "all_time",
                 metricPeriodMonthReset: "billing_cycle",
+                modelRates: [
+                    {
+                        consumptionRate: 1.1,
+                        model: "model",
+                        provider: "provider",
+                    },
+                ],
                 notes: [
                     {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2027,6 +2043,7 @@ describe("EntitlementsClient", () => {
                 id: "id",
                 metric_period: "all_time",
                 metric_period_month_reset: "billing_cycle",
+                model_rates: [{ consumption_rate: 1.1, model: "model", provider: "provider" }],
                 notes: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
@@ -2479,6 +2496,13 @@ describe("EntitlementsClient", () => {
                 id: "id",
                 metricPeriod: "all_time",
                 metricPeriodMonthReset: "billing_cycle",
+                modelRates: [
+                    {
+                        consumptionRate: 1.1,
+                        model: "model",
+                        provider: "provider",
+                    },
+                ],
                 notes: [
                     {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -2996,6 +3020,7 @@ describe("EntitlementsClient", () => {
                 id: "id",
                 metric_period: "all_time",
                 metric_period_month_reset: "billing_cycle",
+                model_rates: [{ consumption_rate: 1.1, model: "model", provider: "provider" }],
                 notes: [
                     {
                         created_at: "2024-01-15T09:30:00Z",
@@ -3451,6 +3476,13 @@ describe("EntitlementsClient", () => {
                 id: "id",
                 metricPeriod: "all_time",
                 metricPeriodMonthReset: "billing_cycle",
+                modelRates: [
+                    {
+                        consumptionRate: 1.1,
+                        model: "model",
+                        provider: "provider",
+                    },
+                ],
                 notes: [
                     {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -6972,6 +7004,7 @@ describe("EntitlementsClient", () => {
                     },
                     metric_period: "all_time",
                     metric_period_month_reset: "billing_cycle",
+                    model_rates: [{ consumption_rate: 1.1, model: "model", provider: "provider" }],
                     overage_billing_cadence: "end_of_billing_period",
                     overage_invoice_anchor: "billing_period_start",
                     plan: {
@@ -7154,6 +7187,13 @@ describe("EntitlementsClient", () => {
                     },
                     metricPeriod: "all_time",
                     metricPeriodMonthReset: "billing_cycle",
+                    modelRates: [
+                        {
+                            consumptionRate: 1.1,
+                            model: "model",
+                            provider: "provider",
+                        },
+                    ],
                     overageBillingCadence: "end_of_billing_period",
                     overageInvoiceAnchor: "billing_period_start",
                     plan: {
@@ -7424,6 +7464,7 @@ describe("EntitlementsClient", () => {
                 },
                 metric_period: "all_time",
                 metric_period_month_reset: "billing_cycle",
+                model_rates: [{ consumption_rate: 1.1, model: "model", provider: "provider" }],
                 overage_billing_cadence: "end_of_billing_period",
                 overage_invoice_anchor: "billing_period_start",
                 plan: {
@@ -7647,6 +7688,13 @@ describe("EntitlementsClient", () => {
                 },
                 metricPeriod: "all_time",
                 metricPeriodMonthReset: "billing_cycle",
+                modelRates: [
+                    {
+                        consumptionRate: 1.1,
+                        model: "model",
+                        provider: "provider",
+                    },
+                ],
                 overageBillingCadence: "end_of_billing_period",
                 overageInvoiceAnchor: "billing_period_start",
                 plan: {
@@ -7991,6 +8039,7 @@ describe("EntitlementsClient", () => {
                 },
                 metric_period: "all_time",
                 metric_period_month_reset: "billing_cycle",
+                model_rates: [{ consumption_rate: 1.1, model: "model", provider: "provider" }],
                 overage_billing_cadence: "end_of_billing_period",
                 overage_invoice_anchor: "billing_period_start",
                 plan: {
@@ -8209,6 +8258,13 @@ describe("EntitlementsClient", () => {
                 },
                 metricPeriod: "all_time",
                 metricPeriodMonthReset: "billing_cycle",
+                modelRates: [
+                    {
+                        consumptionRate: 1.1,
+                        model: "model",
+                        provider: "provider",
+                    },
+                ],
                 overageBillingCadence: "end_of_billing_period",
                 overageInvoiceAnchor: "billing_period_start",
                 plan: {
@@ -8509,6 +8565,7 @@ describe("EntitlementsClient", () => {
                 },
                 metric_period: "all_time",
                 metric_period_month_reset: "billing_cycle",
+                model_rates: [{ consumption_rate: 1.1, model: "model", provider: "provider" }],
                 overage_billing_cadence: "end_of_billing_period",
                 overage_invoice_anchor: "billing_period_start",
                 plan: {
@@ -8730,6 +8787,13 @@ describe("EntitlementsClient", () => {
                 },
                 metricPeriod: "all_time",
                 metricPeriodMonthReset: "billing_cycle",
+                modelRates: [
+                    {
+                        consumptionRate: 1.1,
+                        model: "model",
+                        provider: "provider",
+                    },
+                ],
                 overageBillingCadence: "end_of_billing_period",
                 overageInvoiceAnchor: "billing_period_start",
                 plan: {
@@ -9190,6 +9254,7 @@ describe("EntitlementsClient", () => {
                 },
                 metric_period: "all_time",
                 metric_period_month_reset: "billing_cycle",
+                model_rates: [{ consumption_rate: 1.1, model: "model", provider: "provider" }],
                 overage_billing_cadence: "end_of_billing_period",
                 overage_invoice_anchor: "billing_period_start",
                 plan: {
@@ -9415,6 +9480,13 @@ describe("EntitlementsClient", () => {
                 },
                 metricPeriod: "all_time",
                 metricPeriodMonthReset: "billing_cycle",
+                modelRates: [
+                    {
+                        consumptionRate: 1.1,
+                        model: "model",
+                        provider: "provider",
+                    },
+                ],
                 overageBillingCadence: "end_of_billing_period",
                 overageInvoiceAnchor: "billing_period_start",
                 plan: {
@@ -10351,6 +10423,10 @@ describe("EntitlementsClient", () => {
                             id: "id",
                             metric_period: "all_time",
                             metric_period_month_reset: "billing_cycle",
+                            model_rates: [
+                                { consumption_rate: 1.1, model: "model", provider: "provider", quantity_rates: {} },
+                                { consumption_rate: 1.1, model: "model", provider: "provider", quantity_rates: {} },
+                            ],
                             notes: [
                                 {
                                     created_at: "2024-01-15T09:30:00Z",
@@ -10901,6 +10977,10 @@ describe("EntitlementsClient", () => {
                             },
                             metric_period: "all_time",
                             metric_period_month_reset: "billing_cycle",
+                            model_rates: [
+                                { consumption_rate: 1.1, model: "model", provider: "provider", quantity_rates: {} },
+                                { consumption_rate: 1.1, model: "model", provider: "provider", quantity_rates: {} },
+                            ],
                             overage_billing_cadence: "end_of_billing_period",
                             overage_invoice_anchor: "billing_period_start",
                             plan: {
@@ -11370,6 +11450,10 @@ describe("EntitlementsClient", () => {
                             id: "id",
                             metric_period: "all_time",
                             metric_period_month_reset: "billing_cycle",
+                            model_rates: [
+                                { consumption_rate: 1.1, model: "model", provider: "provider", quantity_rates: {} },
+                                { consumption_rate: 1.1, model: "model", provider: "provider", quantity_rates: {} },
+                            ],
                             notes: [
                                 {
                                     created_at: "2024-01-15T09:30:00Z",
@@ -11920,6 +12004,10 @@ describe("EntitlementsClient", () => {
                             },
                             metric_period: "all_time",
                             metric_period_month_reset: "billing_cycle",
+                            model_rates: [
+                                { consumption_rate: 1.1, model: "model", provider: "provider", quantity_rates: {} },
+                                { consumption_rate: 1.1, model: "model", provider: "provider", quantity_rates: {} },
+                            ],
                             overage_billing_cadence: "end_of_billing_period",
                             overage_invoice_anchor: "billing_period_start",
                             plan: {
@@ -12436,6 +12524,20 @@ describe("EntitlementsClient", () => {
                             id: "id",
                             metricPeriod: "all_time",
                             metricPeriodMonthReset: "billing_cycle",
+                            modelRates: [
+                                {
+                                    consumptionRate: 1.1,
+                                    model: "model",
+                                    provider: "provider",
+                                    quantityRates: {},
+                                },
+                                {
+                                    consumptionRate: 1.1,
+                                    model: "model",
+                                    provider: "provider",
+                                    quantityRates: {},
+                                },
+                            ],
                             notes: [
                                 {
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -13007,6 +13109,20 @@ describe("EntitlementsClient", () => {
                             },
                             metricPeriod: "all_time",
                             metricPeriodMonthReset: "billing_cycle",
+                            modelRates: [
+                                {
+                                    consumptionRate: 1.1,
+                                    model: "model",
+                                    provider: "provider",
+                                    quantityRates: {},
+                                },
+                                {
+                                    consumptionRate: 1.1,
+                                    model: "model",
+                                    provider: "provider",
+                                    quantityRates: {},
+                                },
+                            ],
                             overageBillingCadence: "end_of_billing_period",
                             overageInvoiceAnchor: "billing_period_start",
                             plan: {
@@ -13525,6 +13641,20 @@ describe("EntitlementsClient", () => {
                             id: "id",
                             metricPeriod: "all_time",
                             metricPeriodMonthReset: "billing_cycle",
+                            modelRates: [
+                                {
+                                    consumptionRate: 1.1,
+                                    model: "model",
+                                    provider: "provider",
+                                    quantityRates: {},
+                                },
+                                {
+                                    consumptionRate: 1.1,
+                                    model: "model",
+                                    provider: "provider",
+                                    quantityRates: {},
+                                },
+                            ],
                             notes: [
                                 {
                                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
@@ -14096,6 +14226,20 @@ describe("EntitlementsClient", () => {
                             },
                             metricPeriod: "all_time",
                             metricPeriodMonthReset: "billing_cycle",
+                            modelRates: [
+                                {
+                                    consumptionRate: 1.1,
+                                    model: "model",
+                                    provider: "provider",
+                                    quantityRates: {},
+                                },
+                                {
+                                    consumptionRate: 1.1,
+                                    model: "model",
+                                    provider: "provider",
+                                    quantityRates: {},
+                                },
+                            ],
                             overageBillingCadence: "end_of_billing_period",
                             overageInvoiceAnchor: "billing_period_start",
                             plan: {

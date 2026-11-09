@@ -5,6 +5,7 @@ export interface CatalogResponseData {
     createdAt: Date;
     customPlanCtaText?: string;
     customPlanCtaUrl?: string;
+    customPlanId?: string;
     customPlanPriceText?: string;
     customPlansVisible: boolean;
     description?: string;

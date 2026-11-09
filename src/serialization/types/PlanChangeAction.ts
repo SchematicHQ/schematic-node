@@ -15,6 +15,7 @@ export const PlanChangeAction: core.serialization.Schema<serializers.PlanChangeA
         "invoice_past_due",
         "manage_plan",
         "migration",
+        "past_due_default_plan",
         "plan_billing_product_changed",
         "plan_deleted",
         "plan_trait_change",
@@ -34,6 +35,7 @@ export declare namespace PlanChangeAction {
         | "invoice_past_due"
         | "manage_plan"
         | "migration"
+        | "past_due_default_plan"
         | "plan_billing_product_changed"
         | "plan_deleted"
         | "plan_trait_change"

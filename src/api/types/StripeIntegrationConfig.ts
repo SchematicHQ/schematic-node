@@ -19,6 +19,8 @@ export interface StripeIntegrationConfig {
     liveMode: boolean;
     /** Onboarding URL returned during the v2 (Connect) install flow before activation */
     onboardUrl?: string;
+    /** Whether Stripe is connected only to collect payments on the invoices Schematic issues. Customers and their cards sync; subscriptions, invoices, products, prices and coupons do not, and plans are not created in Stripe. */
+    paymentsOnly?: boolean;
     /** App location that started the connect flow; the OAuth callback redirects back there on success */
     returnTo?: string;
 }

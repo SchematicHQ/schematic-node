@@ -20,6 +20,9 @@ export interface CheckoutSubscription {
     invoiceId?: string;
     invoiceUrl?: string;
     metadata?: Record<string, unknown>;
+    pauseBehavior?: Schematic.BillingSubscriptionPauseBehavior;
+    pauseResumesAt?: number;
+    pausedAt?: Date;
     periodEnd: number;
     periodStart: number;
     providerType: Schematic.BillingProviderType;

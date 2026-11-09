@@ -6,8 +6,12 @@ export interface PublishPlanVersionRequestBody {
     /** When the company gets the plan. On a custom-plan first publish, charging the default payment method always activates on payment. On a custom-plan republish, on_payment is only accepted when the amendment is invoiced today (migration_strategy immediate, proration_behavior always_invoice, collection_method send_invoice): the company stays on its current version until that invoice is paid. */
     activationStrategy?: Schematic.CustomPlanActivationStrategy;
     address?: Schematic.CustomerBillingAddress;
+    /** When true, the subscription renews on the same date as the subscriptions billing_entity_id pays for, and the partial first period is billed pro rata unless prorate_first_period is false. Requires billing_entity_id, and can't be combined with billing_cycle_anchor. Only honored on a first publish that starts a subscription. */
+    alignWithBillingEntity?: boolean;
     /** The date the subscription's billing period renews on. Only honored on a first publish that starts a subscription. */
     billingCycleAnchor?: Date;
+    /** The company that pays for the subscription a custom plan's first publish starts. Must already have a Stripe customer. Only honored on a first publish that starts a subscription, and not when Schematic bills the company. */
+    billingEntityId?: string;
     /** The date the contract term starts. A past date backdates the subscription so the first invoice covers the term from this date to the renewal date. Requires billing_cycle_anchor. Only honored on a first publish that starts a subscription. */
     billingStartDate?: Date;
     /** How a custom plan's invoice is collected. send_invoice issues it for the company to pay; charge_automatically charges the default payment method straight away. On a first publish, omitted charges the default payment method when the company has one and the first period is billed, and sends the invoice otherwise. On a republish, omitted means send_invoice, and it is only accepted with migration_strategy immediate and proration_behavior always_invoice. */

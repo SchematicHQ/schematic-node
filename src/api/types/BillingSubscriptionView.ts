@@ -18,6 +18,9 @@ export interface BillingSubscriptionView {
     interval: string;
     latestInvoice?: Schematic.InvoiceResponseData;
     metadata?: Record<string, unknown>;
+    pauseBehavior?: Schematic.BillingSubscriptionPauseBehavior;
+    pauseResumesAt?: number;
+    pausedAt?: Date;
     paymentMethod?: Schematic.PaymentMethodResponseData;
     periodEnd: number;
     periodStart: number;

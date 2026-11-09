@@ -3,5 +3,8 @@
 import type * as Schematic from "../index";
 
 export interface BillingSettingsResponseData {
+    defaultCollector: Schematic.Collector;
     defaultProviderType?: Schematic.BillingProviderType;
+    /** Where a payer's reply to an invoice email goes. Null until set, and Schematic sends no invoice email while it is null. */
+    invoiceReplyToEmail?: string;
 }

@@ -12,6 +12,7 @@ export const CatalogResponseData: core.serialization.ObjectSchema<
     createdAt: core.serialization.property("created_at", core.serialization.date()),
     customPlanCtaText: core.serialization.property("custom_plan_cta_text", core.serialization.string().optional()),
     customPlanCtaUrl: core.serialization.property("custom_plan_cta_url", core.serialization.string().optional()),
+    customPlanId: core.serialization.property("custom_plan_id", core.serialization.string().optional()),
     customPlanPriceText: core.serialization.property("custom_plan_price_text", core.serialization.string().optional()),
     customPlansVisible: core.serialization.property("custom_plans_visible", core.serialization.boolean()),
     description: core.serialization.string().optional(),
@@ -29,6 +30,7 @@ export declare namespace CatalogResponseData {
         created_at: string;
         custom_plan_cta_text?: string | null;
         custom_plan_cta_url?: string | null;
+        custom_plan_id?: string | null;
         custom_plan_price_text?: string | null;
         custom_plans_visible: boolean;
         description?: string | null;

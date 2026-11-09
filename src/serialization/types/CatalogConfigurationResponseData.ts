@@ -14,6 +14,7 @@ export const CatalogConfigurationResponseData: core.serialization.ObjectSchema<
     addOns: core.serialization.property("add_ons", core.serialization.list(PlanGroupPlanDetailResponseData)),
     customPlanCtaText: core.serialization.property("custom_plan_cta_text", core.serialization.string().optional()),
     customPlanCtaUrl: core.serialization.property("custom_plan_cta_url", core.serialization.string().optional()),
+    customPlanId: core.serialization.property("custom_plan_id", core.serialization.string().optional()),
     customPlanPriceText: core.serialization.property("custom_plan_price_text", core.serialization.string().optional()),
     customPlansVisible: core.serialization.property("custom_plans_visible", core.serialization.boolean()),
     orderedAddOns: core.serialization.property(
@@ -38,6 +39,7 @@ export declare namespace CatalogConfigurationResponseData {
         add_ons: PlanGroupPlanDetailResponseData.Raw[];
         custom_plan_cta_text?: string | null;
         custom_plan_cta_url?: string | null;
+        custom_plan_id?: string | null;
         custom_plan_price_text?: string | null;
         custom_plans_visible: boolean;
         ordered_add_ons: CatalogConfigOrderedPlanResponseData.Raw[];

@@ -17,6 +17,8 @@ export interface PlanEntitlementResponseData {
     meteredYearlyPrice?: Schematic.BillingPriceView;
     metricPeriod?: Schematic.MetricPeriod;
     metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;
+    /** Per-model rate overrides for inference features, keyed by provider and model. Each entry replaces consumption_rate and quantity_rates for events from that model. Absent when every model burns at the entitlement's own rates. */
+    modelRates?: Schematic.CreditModelRate[];
     /** How often overage charges are assessed and invoiced. Null or end_of_billing_period means the billing provider aggregates usage over the subscription's own period and bills it at period end. Monthly and quarterly mean Schematic assesses the overage each month or quarter and bills it on its own invoice. Only applies to overage price behavior. */
     overageBillingCadence?: Schematic.BillingArrearsCadence;
     /** Which boundary closes a monthly or quarterly overage window: the subscription's own recurrence (billing_period_start) or the calendar month (month_end), which for a quarterly window means calendar quarters. Only meaningful when overage_billing_cadence is monthly or quarterly. */

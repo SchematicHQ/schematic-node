@@ -6,6 +6,7 @@ import type * as serializers from "../index";
 import { BillingStrategy } from "./BillingStrategy";
 import { CatalogCreditGrantResponseData } from "./CatalogCreditGrantResponseData";
 import { CatalogCurrencyPricesResponseData } from "./CatalogCurrencyPricesResponseData";
+import { CatalogCustomPlanCtaResponseData } from "./CatalogCustomPlanCtaResponseData";
 import { CatalogPlanEntitlementResponseData } from "./CatalogPlanEntitlementResponseData";
 import { CatalogPriceResponseData } from "./CatalogPriceResponseData";
 import { ChargeType } from "./ChargeType";
@@ -26,6 +27,8 @@ export const CatalogPlanResponseData: core.serialization.ObjectSchema<
         "currency_prices",
         core.serialization.list(CatalogCurrencyPricesResponseData),
     ),
+    custom: core.serialization.boolean(),
+    customPlanCta: core.serialization.property("custom_plan_cta", CatalogCustomPlanCtaResponseData.optional()),
     description: core.serialization.string(),
     entitlements: core.serialization.list(CatalogPlanEntitlementResponseData),
     icon: core.serialization.string(),
@@ -50,6 +53,8 @@ export declare namespace CatalogPlanResponseData {
         charge_type: ChargeType.Raw;
         compatible_plan_ids?: string[] | null;
         currency_prices: CatalogCurrencyPricesResponseData.Raw[];
+        custom: boolean;
+        custom_plan_cta?: CatalogCustomPlanCtaResponseData.Raw | null;
         description: string;
         entitlements: CatalogPlanEntitlementResponseData.Raw[];
         icon: string;

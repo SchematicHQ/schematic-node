@@ -28,6 +28,8 @@ export interface BillingInvoiceDetailResponseData {
     id: string;
     lines: Schematic.BillingInvoiceLineResponseData[];
     number?: string;
+    /** The card a charge takes the amount left to pay from: the card on the invoice's contract. Null unless Stripe Payments collects the invoice and the contract has a card. */
+    paymentMethodId?: string;
     /** The billing provider's PDF of the invoice. Null on an invoice Schematic issued, which downloads its PDF from this API. */
     pdfUrl?: string;
     /** Null on a Stripe invoice. */
@@ -49,6 +51,6 @@ export interface BillingInvoiceDetailResponseData {
     /** The contract's terms, copied when the invoice was finalized. Null on a draft and on a Stripe invoice. */
     terms?: Schematic.BillingInvoiceTermsResponseData;
     total: number;
-    /** The billing provider's hosted invoice page. Null on an invoice Schematic issued. */
+    /** The hosted invoice page, which opens with no login. On an invoice Schematic issued, null while it is a draft or after its link is revoked. */
     url?: string;
 }

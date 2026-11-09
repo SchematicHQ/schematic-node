@@ -12,6 +12,7 @@ export const BillingInvoiceBillingDetailsResponseData: core.serialization.Object
 > = core.serialization.object({
     address: BillingInvoiceAddressResponseData.optional(),
     email: core.serialization.string().optional(),
+    legalName: core.serialization.property("legal_name", core.serialization.string().optional()),
     phone: core.serialization.string().optional(),
     taxIds: core.serialization.property("tax_ids", core.serialization.list(BillingInvoiceTaxIdResponseData)),
 });
@@ -20,6 +21,7 @@ export declare namespace BillingInvoiceBillingDetailsResponseData {
     export interface Raw {
         address?: BillingInvoiceAddressResponseData.Raw | null;
         email?: string | null;
+        legal_name?: string | null;
         phone?: string | null;
         tax_ids: BillingInvoiceTaxIdResponseData.Raw[];
     }

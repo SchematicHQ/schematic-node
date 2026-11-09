@@ -41,6 +41,9 @@ export interface CreateBillingSubscriptionRequestBody {
     expiredAt: Date;
     interval?: string;
     metadata?: Record<string, unknown>;
+    /** How the provider treats invoices while payment collection is paused. Omit it to keep the current pause, send null to clear it, or send a behavior to set one. */
+    pauseBehavior?: Schematic.BillingSubscriptionPauseBehavior;
+    pauseResumesAt?: number;
     periodEnd?: number;
     periodStart?: number;
     productExternalIds: Schematic.BillingProductPricing[];

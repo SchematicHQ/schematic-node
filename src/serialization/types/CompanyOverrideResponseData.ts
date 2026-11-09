@@ -6,6 +6,7 @@ import type * as serializers from "../index";
 import { BillingCreditResponseData } from "./BillingCreditResponseData";
 import { CompanyDetailResponseData } from "./CompanyDetailResponseData";
 import { CompanyOverrideNoteResponseData } from "./CompanyOverrideNoteResponseData";
+import { CreditModelRate } from "./CreditModelRate";
 import { EntitlementValueType } from "./EntitlementValueType";
 import { EntityTraitDefinitionResponseData } from "./EntityTraitDefinitionResponseData";
 import { FeatureResponseData } from "./FeatureResponseData";
@@ -27,6 +28,7 @@ export const CompanyOverrideResponseData: core.serialization.ObjectSchema<
     id: core.serialization.string(),
     metricPeriod: core.serialization.property("metric_period", MetricPeriod.optional()),
     metricPeriodMonthReset: core.serialization.property("metric_period_month_reset", MetricPeriodMonthReset.optional()),
+    modelRates: core.serialization.property("model_rates", core.serialization.list(CreditModelRate).optional()),
     notes: core.serialization.list(CompanyOverrideNoteResponseData),
     quantityRates: core.serialization.property(
         "quantity_rates",
@@ -57,6 +59,7 @@ export declare namespace CompanyOverrideResponseData {
         id: string;
         metric_period?: MetricPeriod.Raw | null;
         metric_period_month_reset?: MetricPeriodMonthReset.Raw | null;
+        model_rates?: CreditModelRate.Raw[] | null;
         notes: CompanyOverrideNoteResponseData.Raw[];
         quantity_rates?: Record<string, number> | null;
         rule_id?: string | null;
