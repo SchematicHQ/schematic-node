@@ -38,6 +38,9 @@ describe("CheckoutClient", () => {
                 invoice_id: "invoice_id",
                 invoice_url: "invoice_url",
                 metadata: { key: "value" },
+                pause_behavior: "keep_as_draft",
+                pause_resumes_at: 1000000,
+                paused_at: "2024-01-15T09:30:00Z",
                 period_end: 1000000,
                 period_start: 1000000,
                 provider_type: "metronome",
@@ -115,6 +118,9 @@ describe("CheckoutClient", () => {
                 metadata: {
                     key: "value",
                 },
+                pauseBehavior: "keep_as_draft",
+                pauseResumesAt: 1000000,
+                pausedAt: new Date("2024-01-15T09:30:00.000Z"),
                 periodEnd: 1000000,
                 periodStart: 1000000,
                 providerType: "metronome",
@@ -1668,6 +1674,9 @@ describe("CheckoutClient", () => {
                         subtotal: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
+                    pause_behavior: "keep_as_draft",
+                    pause_resumes_at: "2024-01-15T09:30:00Z",
+                    paused_at: "2024-01-15T09:30:00Z",
                     payment_method: {
                         created_at: "2024-01-15T09:30:00Z",
                         customer_external_id: "customer_external_id",
@@ -1678,6 +1687,8 @@ describe("CheckoutClient", () => {
                         provider_type: "metronome",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
+                    period_end: "2024-01-15T09:30:00Z",
+                    period_start: "2024-01-15T09:30:00Z",
                     products: [
                         {
                             billing_scheme: "per_unit",
@@ -2919,6 +2930,9 @@ describe("CheckoutClient", () => {
                         subtotal: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
+                    pauseBehavior: "keep_as_draft",
+                    pauseResumesAt: new Date("2024-01-15T09:30:00.000Z"),
+                    pausedAt: new Date("2024-01-15T09:30:00.000Z"),
                     paymentMethod: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         customerExternalId: "customer_external_id",
@@ -2929,6 +2943,8 @@ describe("CheckoutClient", () => {
                         providerType: "metronome",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
+                    periodEnd: new Date("2024-01-15T09:30:00.000Z"),
+                    periodStart: new Date("2024-01-15T09:30:00.000Z"),
                     products: [
                         {
                             billingScheme: "per_unit",
@@ -6736,6 +6752,1662 @@ describe("CheckoutClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("pauseSubscription (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { company_id: "company_id", months: 1000000 };
+        const rawResponseBody = {
+            data: {
+                checkout_id: "checkout_id",
+                company: {
+                    add_ons: [
+                        {
+                            id: "id",
+                            included_credit_grants: [
+                                {
+                                    billing_credit_auto_topup_enabled: true,
+                                    billing_credit_auto_topup_self_service: true,
+                                    billing_credit_can_buy_bundles: true,
+                                    billing_credit_postpaid_enabled: true,
+                                    billing_mode: "granted",
+                                    company_credit_amount: 1000000,
+                                    created_at: "2024-01-15T09:30:00Z",
+                                    credit_amount: 1000000,
+                                    credit_description: "credit_description",
+                                    credit_id: "credit_id",
+                                    credit_name: "credit_name",
+                                    id: "id",
+                                    plan_id: "plan_id",
+                                    reset_type: "no_reset",
+                                    rollover_percentage: 1000000,
+                                    scaling: "fixed",
+                                    updated_at: "2024-01-15T09:30:00Z",
+                                },
+                            ],
+                            name: "name",
+                        },
+                    ],
+                    billing_credit_balances: { key: 1.1 },
+                    billing_email: "billing_email",
+                    billing_profile: {
+                        account_id: "account_id",
+                        collection_method: "charge_automatically",
+                        company_id: "company_id",
+                        created_at: "2024-01-15T09:30:00Z",
+                        environment_id: "environment_id",
+                        gating_days: 1000000,
+                        id: "id",
+                        is_default: true,
+                        payment_gating: "keep_serving",
+                        provider_type: "metronome",
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
+                    billing_profiles: [
+                        {
+                            account_id: "account_id",
+                            collection_method: "charge_automatically",
+                            company_id: "company_id",
+                            created_at: "2024-01-15T09:30:00Z",
+                            environment_id: "environment_id",
+                            gating_days: 1000000,
+                            id: "id",
+                            is_default: true,
+                            payment_gating: "keep_serving",
+                            provider_type: "metronome",
+                            updated_at: "2024-01-15T09:30:00Z",
+                        },
+                    ],
+                    billing_subscription: {
+                        cancel_at_period_end: true,
+                        created_at: "2024-01-15T09:30:00Z",
+                        currency: "aed",
+                        customer_external_id: "customer_external_id",
+                        discounts: [
+                            {
+                                coupon_id: "coupon_id",
+                                coupon_name: "coupon_name",
+                                discount_external_id: "discount_external_id",
+                                duration: "duration",
+                                is_active: true,
+                                started_at: "2024-01-15T09:30:00Z",
+                                subscription_external_id: "subscription_external_id",
+                            },
+                        ],
+                        id: "id",
+                        interval: "interval",
+                        period_end: 1000000,
+                        period_start: 1000000,
+                        products: [
+                            {
+                                billing_scheme: "per_unit",
+                                created_at: "2024-01-15T09:30:00Z",
+                                currency: "aed",
+                                environment_id: "environment_id",
+                                external_id: "external_id",
+                                id: "id",
+                                interval: "interval",
+                                name: "name",
+                                package_size: 1000000,
+                                price: 1000000,
+                                price_external_id: "price_external_id",
+                                price_id: "price_id",
+                                price_tier: [{}],
+                                provider_type: "metronome",
+                                quantity: 1.1,
+                                subscription_id: "subscription_id",
+                                updated_at: "2024-01-15T09:30:00Z",
+                                usage_type: "licensed",
+                            },
+                        ],
+                        provider_type: "metronome",
+                        status: "status",
+                        subscription_external_id: "subscription_external_id",
+                        total_price: 1000000,
+                    },
+                    billing_subscriptions: [
+                        {
+                            cancel_at_period_end: true,
+                            created_at: "2024-01-15T09:30:00Z",
+                            currency: "aed",
+                            customer_external_id: "customer_external_id",
+                            discounts: [
+                                {
+                                    coupon_id: "coupon_id",
+                                    coupon_name: "coupon_name",
+                                    discount_external_id: "discount_external_id",
+                                    duration: "duration",
+                                    is_active: true,
+                                    started_at: "2024-01-15T09:30:00Z",
+                                    subscription_external_id: "subscription_external_id",
+                                },
+                            ],
+                            id: "id",
+                            interval: "interval",
+                            period_end: 1000000,
+                            period_start: 1000000,
+                            products: [
+                                {
+                                    billing_scheme: "per_unit",
+                                    created_at: "2024-01-15T09:30:00Z",
+                                    currency: "aed",
+                                    environment_id: "environment_id",
+                                    external_id: "external_id",
+                                    id: "id",
+                                    interval: "interval",
+                                    name: "name",
+                                    package_size: 1000000,
+                                    price: 1000000,
+                                    price_external_id: "price_external_id",
+                                    price_id: "price_id",
+                                    price_tier: [{}],
+                                    provider_type: "metronome",
+                                    quantity: 1.1,
+                                    subscription_id: "subscription_id",
+                                    updated_at: "2024-01-15T09:30:00Z",
+                                    usage_type: "licensed",
+                                },
+                            ],
+                            provider_type: "metronome",
+                            status: "status",
+                            subscription_external_id: "subscription_external_id",
+                            total_price: 1000000,
+                        },
+                    ],
+                    created_at: "2024-01-15T09:30:00Z",
+                    custom_plan_billings: [
+                        {
+                            activation_strategy: "on_payment",
+                            company_id: "company_id",
+                            created_at: "2024-01-15T09:30:00Z",
+                            days_until_due: 1000000,
+                            id: "id",
+                            plan_billing_source: "amendment",
+                            plan_id: "plan_id",
+                            problems: [
+                                {
+                                    blocking: true,
+                                    code: "add_on_conflicts_with_plan",
+                                    message: "message",
+                                    source: "provider",
+                                },
+                            ],
+                            send_invoice: true,
+                            status: "active",
+                            updated_at: "2024-01-15T09:30:00Z",
+                        },
+                    ],
+                    default_payment_method: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        customer_external_id: "customer_external_id",
+                        environment_id: "environment_id",
+                        external_id: "external_id",
+                        id: "id",
+                        payment_method_type: "payment_method_type",
+                        provider_type: "metronome",
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
+                    entitlements: [{ feature_id: "feature_id", feature_key: "feature_key", value_type: "boolean" }],
+                    entity_traits: [
+                        {
+                            created_at: "2024-01-15T09:30:00Z",
+                            definition_id: "definition_id",
+                            environment_id: "environment_id",
+                            id: "id",
+                            updated_at: "2024-01-15T09:30:00Z",
+                            value: "value",
+                        },
+                    ],
+                    environment_id: "environment_id",
+                    id: "id",
+                    keys: [
+                        {
+                            created_at: "2024-01-15T09:30:00Z",
+                            definition_id: "definition_id",
+                            entity_id: "entity_id",
+                            entity_type: "company",
+                            environment_id: "environment_id",
+                            id: "id",
+                            key: "key",
+                            updated_at: "2024-01-15T09:30:00Z",
+                            value: "value",
+                        },
+                    ],
+                    last_seen_at: "2024-01-15T09:30:00Z",
+                    logo_url: "logo_url",
+                    metrics: [
+                        {
+                            account_id: "account_id",
+                            captured_at_max: "2024-01-15T09:30:00Z",
+                            captured_at_min: "2024-01-15T09:30:00Z",
+                            company_id: "company_id",
+                            created_at: "2024-01-15T09:30:00Z",
+                            environment_id: "environment_id",
+                            event_subtype: "event_subtype",
+                            month_reset: "billing_cycle",
+                            period: "all_time",
+                            value: 1000000,
+                        },
+                    ],
+                    name: "name",
+                    payment_methods: [
+                        {
+                            created_at: "2024-01-15T09:30:00Z",
+                            customer_external_id: "customer_external_id",
+                            environment_id: "environment_id",
+                            external_id: "external_id",
+                            id: "id",
+                            payment_method_type: "payment_method_type",
+                            provider_type: "metronome",
+                            updated_at: "2024-01-15T09:30:00Z",
+                        },
+                    ],
+                    pending_migration: {
+                        migration_id: "migration_id",
+                        strategy: "end_of_billing_period",
+                        to_plan_id: "to_plan_id",
+                        to_plan_name: "to_plan_name",
+                        to_plan_version_id: "to_plan_version_id",
+                    },
+                    plan: {
+                        id: "id",
+                        included_credit_grants: [
+                            {
+                                billing_credit_auto_topup_enabled: true,
+                                billing_credit_auto_topup_self_service: true,
+                                billing_credit_can_buy_bundles: true,
+                                billing_credit_postpaid_enabled: true,
+                                billing_mode: "granted",
+                                company_credit_amount: 1000000,
+                                created_at: "2024-01-15T09:30:00Z",
+                                credit_amount: 1000000,
+                                credit_description: "credit_description",
+                                credit_id: "credit_id",
+                                credit_name: "credit_name",
+                                id: "id",
+                                plan_id: "plan_id",
+                                reset_type: "no_reset",
+                                rollover_percentage: 1000000,
+                                scaling: "fixed",
+                                updated_at: "2024-01-15T09:30:00Z",
+                            },
+                        ],
+                        name: "name",
+                    },
+                    plans: [{ id: "id", name: "name" }],
+                    rules: [
+                        {
+                            account_id: "account_id",
+                            condition_groups: [
+                                {
+                                    conditions: [
+                                        {
+                                            account_id: "account_id",
+                                            condition_type: "base_plan",
+                                            environment_id: "environment_id",
+                                            id: "id",
+                                            operator: "eq",
+                                            resource_ids: ["resource_ids"],
+                                            trait_value: "trait_value",
+                                        },
+                                    ],
+                                },
+                            ],
+                            conditions: [
+                                {
+                                    account_id: "account_id",
+                                    condition_type: "base_plan",
+                                    environment_id: "environment_id",
+                                    id: "id",
+                                    operator: "eq",
+                                    resource_ids: ["resource_ids"],
+                                    trait_value: "trait_value",
+                                },
+                            ],
+                            environment_id: "environment_id",
+                            id: "id",
+                            name: "name",
+                            priority: 1000000,
+                            rule_type: "company_override",
+                            value: true,
+                        },
+                    ],
+                    scheduled_downgrade: {
+                        currency: "aed",
+                        effective_after: "2024-01-15T09:30:00Z",
+                        from_plan_id: "from_plan_id",
+                        from_plan_name: "from_plan_name",
+                        from_subscription_price: 1000000,
+                        id: "id",
+                        interval: "interval",
+                        to_plan_id: "to_plan_id",
+                        to_plan_name: "to_plan_name",
+                    },
+                    traits: { key: "value" },
+                    updated_at: "2024-01-15T09:30:00Z",
+                    user_count: 1000000,
+                },
+                problems: [
+                    { blocking: true, code: "add_on_conflicts_with_plan", message: "message", source: "provider" },
+                ],
+                success: true,
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/manage-plan/subscription/pause")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.checkout.pauseSubscription({
+            companyId: "company_id",
+            months: 1000000,
+        });
+        expect(response).toEqual({
+            data: {
+                checkoutId: "checkout_id",
+                company: {
+                    addOns: [
+                        {
+                            id: "id",
+                            includedCreditGrants: [
+                                {
+                                    billingCreditAutoTopupEnabled: true,
+                                    billingCreditAutoTopupSelfService: true,
+                                    billingCreditCanBuyBundles: true,
+                                    billingCreditPostpaidEnabled: true,
+                                    billingMode: "granted",
+                                    companyCreditAmount: 1000000,
+                                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                    creditAmount: 1000000,
+                                    creditDescription: "credit_description",
+                                    creditId: "credit_id",
+                                    creditName: "credit_name",
+                                    id: "id",
+                                    planId: "plan_id",
+                                    resetType: "no_reset",
+                                    rolloverPercentage: 1000000,
+                                    scaling: "fixed",
+                                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                },
+                            ],
+                            name: "name",
+                        },
+                    ],
+                    billingCreditBalances: {
+                        key: 1.1,
+                    },
+                    billingEmail: "billing_email",
+                    billingProfile: {
+                        accountId: "account_id",
+                        collectionMethod: "charge_automatically",
+                        companyId: "company_id",
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        environmentId: "environment_id",
+                        gatingDays: 1000000,
+                        id: "id",
+                        isDefault: true,
+                        paymentGating: "keep_serving",
+                        providerType: "metronome",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                    billingProfiles: [
+                        {
+                            accountId: "account_id",
+                            collectionMethod: "charge_automatically",
+                            companyId: "company_id",
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            environmentId: "environment_id",
+                            gatingDays: 1000000,
+                            id: "id",
+                            isDefault: true,
+                            paymentGating: "keep_serving",
+                            providerType: "metronome",
+                            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        },
+                    ],
+                    billingSubscription: {
+                        cancelAtPeriodEnd: true,
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        currency: "aed",
+                        customerExternalId: "customer_external_id",
+                        discounts: [
+                            {
+                                couponId: "coupon_id",
+                                couponName: "coupon_name",
+                                discountExternalId: "discount_external_id",
+                                duration: "duration",
+                                isActive: true,
+                                startedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                subscriptionExternalId: "subscription_external_id",
+                            },
+                        ],
+                        id: "id",
+                        interval: "interval",
+                        periodEnd: 1000000,
+                        periodStart: 1000000,
+                        products: [
+                            {
+                                billingScheme: "per_unit",
+                                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                currency: "aed",
+                                environmentId: "environment_id",
+                                externalId: "external_id",
+                                id: "id",
+                                interval: "interval",
+                                name: "name",
+                                packageSize: 1000000,
+                                price: 1000000,
+                                priceExternalId: "price_external_id",
+                                priceId: "price_id",
+                                priceTier: [{}],
+                                providerType: "metronome",
+                                quantity: 1.1,
+                                subscriptionId: "subscription_id",
+                                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                usageType: "licensed",
+                            },
+                        ],
+                        providerType: "metronome",
+                        status: "status",
+                        subscriptionExternalId: "subscription_external_id",
+                        totalPrice: 1000000,
+                    },
+                    billingSubscriptions: [
+                        {
+                            cancelAtPeriodEnd: true,
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            currency: "aed",
+                            customerExternalId: "customer_external_id",
+                            discounts: [
+                                {
+                                    couponId: "coupon_id",
+                                    couponName: "coupon_name",
+                                    discountExternalId: "discount_external_id",
+                                    duration: "duration",
+                                    isActive: true,
+                                    startedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                    subscriptionExternalId: "subscription_external_id",
+                                },
+                            ],
+                            id: "id",
+                            interval: "interval",
+                            periodEnd: 1000000,
+                            periodStart: 1000000,
+                            products: [
+                                {
+                                    billingScheme: "per_unit",
+                                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                    currency: "aed",
+                                    environmentId: "environment_id",
+                                    externalId: "external_id",
+                                    id: "id",
+                                    interval: "interval",
+                                    name: "name",
+                                    packageSize: 1000000,
+                                    price: 1000000,
+                                    priceExternalId: "price_external_id",
+                                    priceId: "price_id",
+                                    priceTier: [{}],
+                                    providerType: "metronome",
+                                    quantity: 1.1,
+                                    subscriptionId: "subscription_id",
+                                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                    usageType: "licensed",
+                                },
+                            ],
+                            providerType: "metronome",
+                            status: "status",
+                            subscriptionExternalId: "subscription_external_id",
+                            totalPrice: 1000000,
+                        },
+                    ],
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    customPlanBillings: [
+                        {
+                            activationStrategy: "on_payment",
+                            companyId: "company_id",
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            daysUntilDue: 1000000,
+                            id: "id",
+                            planBillingSource: "amendment",
+                            planId: "plan_id",
+                            problems: [
+                                {
+                                    blocking: true,
+                                    code: "add_on_conflicts_with_plan",
+                                    message: "message",
+                                    source: "provider",
+                                },
+                            ],
+                            sendInvoice: true,
+                            status: "active",
+                            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        },
+                    ],
+                    defaultPaymentMethod: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        customerExternalId: "customer_external_id",
+                        environmentId: "environment_id",
+                        externalId: "external_id",
+                        id: "id",
+                        paymentMethodType: "payment_method_type",
+                        providerType: "metronome",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                    entitlements: [
+                        {
+                            featureId: "feature_id",
+                            featureKey: "feature_key",
+                            valueType: "boolean",
+                        },
+                    ],
+                    entityTraits: [
+                        {
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            definitionId: "definition_id",
+                            environmentId: "environment_id",
+                            id: "id",
+                            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                            value: "value",
+                        },
+                    ],
+                    environmentId: "environment_id",
+                    id: "id",
+                    keys: [
+                        {
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            definitionId: "definition_id",
+                            entityId: "entity_id",
+                            entityType: "company",
+                            environmentId: "environment_id",
+                            id: "id",
+                            key: "key",
+                            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                            value: "value",
+                        },
+                    ],
+                    lastSeenAt: new Date("2024-01-15T09:30:00.000Z"),
+                    logoUrl: "logo_url",
+                    metrics: [
+                        {
+                            accountId: "account_id",
+                            capturedAtMax: new Date("2024-01-15T09:30:00.000Z"),
+                            capturedAtMin: new Date("2024-01-15T09:30:00.000Z"),
+                            companyId: "company_id",
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            environmentId: "environment_id",
+                            eventSubtype: "event_subtype",
+                            monthReset: "billing_cycle",
+                            period: "all_time",
+                            value: 1000000,
+                        },
+                    ],
+                    name: "name",
+                    paymentMethods: [
+                        {
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            customerExternalId: "customer_external_id",
+                            environmentId: "environment_id",
+                            externalId: "external_id",
+                            id: "id",
+                            paymentMethodType: "payment_method_type",
+                            providerType: "metronome",
+                            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        },
+                    ],
+                    pendingMigration: {
+                        migrationId: "migration_id",
+                        strategy: "end_of_billing_period",
+                        toPlanId: "to_plan_id",
+                        toPlanName: "to_plan_name",
+                        toPlanVersionId: "to_plan_version_id",
+                    },
+                    plan: {
+                        id: "id",
+                        includedCreditGrants: [
+                            {
+                                billingCreditAutoTopupEnabled: true,
+                                billingCreditAutoTopupSelfService: true,
+                                billingCreditCanBuyBundles: true,
+                                billingCreditPostpaidEnabled: true,
+                                billingMode: "granted",
+                                companyCreditAmount: 1000000,
+                                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                creditAmount: 1000000,
+                                creditDescription: "credit_description",
+                                creditId: "credit_id",
+                                creditName: "credit_name",
+                                id: "id",
+                                planId: "plan_id",
+                                resetType: "no_reset",
+                                rolloverPercentage: 1000000,
+                                scaling: "fixed",
+                                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                            },
+                        ],
+                        name: "name",
+                    },
+                    plans: [
+                        {
+                            id: "id",
+                            name: "name",
+                        },
+                    ],
+                    rules: [
+                        {
+                            accountId: "account_id",
+                            conditionGroups: [
+                                {
+                                    conditions: [
+                                        {
+                                            accountId: "account_id",
+                                            conditionType: "base_plan",
+                                            environmentId: "environment_id",
+                                            id: "id",
+                                            operator: "eq",
+                                            resourceIds: ["resource_ids"],
+                                            traitValue: "trait_value",
+                                        },
+                                    ],
+                                },
+                            ],
+                            conditions: [
+                                {
+                                    accountId: "account_id",
+                                    conditionType: "base_plan",
+                                    environmentId: "environment_id",
+                                    id: "id",
+                                    operator: "eq",
+                                    resourceIds: ["resource_ids"],
+                                    traitValue: "trait_value",
+                                },
+                            ],
+                            environmentId: "environment_id",
+                            id: "id",
+                            name: "name",
+                            priority: 1000000,
+                            ruleType: "company_override",
+                            value: true,
+                        },
+                    ],
+                    scheduledDowngrade: {
+                        currency: "aed",
+                        effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
+                        fromPlanId: "from_plan_id",
+                        fromPlanName: "from_plan_name",
+                        fromSubscriptionPrice: 1000000,
+                        id: "id",
+                        interval: "interval",
+                        toPlanId: "to_plan_id",
+                        toPlanName: "to_plan_name",
+                    },
+                    traits: {
+                        key: "value",
+                    },
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    userCount: 1000000,
+                },
+                problems: [
+                    {
+                        blocking: true,
+                        code: "add_on_conflicts_with_plan",
+                        message: "message",
+                        source: "provider",
+                    },
+                ],
+                success: true,
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("pauseSubscription (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { company_id: "company_id", months: 1000000 };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/manage-plan/subscription/pause")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.checkout.pauseSubscription({
+                companyId: "company_id",
+                months: 1000000,
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("pauseSubscription (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { company_id: "company_id", months: 1000000 };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/manage-plan/subscription/pause")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.checkout.pauseSubscription({
+                companyId: "company_id",
+                months: 1000000,
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("pauseSubscription (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { company_id: "company_id", months: 1000000 };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/manage-plan/subscription/pause")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.checkout.pauseSubscription({
+                companyId: "company_id",
+                months: 1000000,
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("pauseSubscription (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { company_id: "company_id", months: 1000000 };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/manage-plan/subscription/pause")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.checkout.pauseSubscription({
+                companyId: "company_id",
+                months: 1000000,
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("pauseSubscription (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { company_id: "company_id", months: 1000000 };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/manage-plan/subscription/pause")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.checkout.pauseSubscription({
+                companyId: "company_id",
+                months: 1000000,
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("resumeSubscription (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { company_id: "company_id" };
+        const rawResponseBody = {
+            data: {
+                checkout_id: "checkout_id",
+                company: {
+                    add_ons: [
+                        {
+                            id: "id",
+                            included_credit_grants: [
+                                {
+                                    billing_credit_auto_topup_enabled: true,
+                                    billing_credit_auto_topup_self_service: true,
+                                    billing_credit_can_buy_bundles: true,
+                                    billing_credit_postpaid_enabled: true,
+                                    billing_mode: "granted",
+                                    company_credit_amount: 1000000,
+                                    created_at: "2024-01-15T09:30:00Z",
+                                    credit_amount: 1000000,
+                                    credit_description: "credit_description",
+                                    credit_id: "credit_id",
+                                    credit_name: "credit_name",
+                                    id: "id",
+                                    plan_id: "plan_id",
+                                    reset_type: "no_reset",
+                                    rollover_percentage: 1000000,
+                                    scaling: "fixed",
+                                    updated_at: "2024-01-15T09:30:00Z",
+                                },
+                            ],
+                            name: "name",
+                        },
+                    ],
+                    billing_credit_balances: { key: 1.1 },
+                    billing_email: "billing_email",
+                    billing_profile: {
+                        account_id: "account_id",
+                        collection_method: "charge_automatically",
+                        company_id: "company_id",
+                        created_at: "2024-01-15T09:30:00Z",
+                        environment_id: "environment_id",
+                        gating_days: 1000000,
+                        id: "id",
+                        is_default: true,
+                        payment_gating: "keep_serving",
+                        provider_type: "metronome",
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
+                    billing_profiles: [
+                        {
+                            account_id: "account_id",
+                            collection_method: "charge_automatically",
+                            company_id: "company_id",
+                            created_at: "2024-01-15T09:30:00Z",
+                            environment_id: "environment_id",
+                            gating_days: 1000000,
+                            id: "id",
+                            is_default: true,
+                            payment_gating: "keep_serving",
+                            provider_type: "metronome",
+                            updated_at: "2024-01-15T09:30:00Z",
+                        },
+                    ],
+                    billing_subscription: {
+                        cancel_at_period_end: true,
+                        created_at: "2024-01-15T09:30:00Z",
+                        currency: "aed",
+                        customer_external_id: "customer_external_id",
+                        discounts: [
+                            {
+                                coupon_id: "coupon_id",
+                                coupon_name: "coupon_name",
+                                discount_external_id: "discount_external_id",
+                                duration: "duration",
+                                is_active: true,
+                                started_at: "2024-01-15T09:30:00Z",
+                                subscription_external_id: "subscription_external_id",
+                            },
+                        ],
+                        id: "id",
+                        interval: "interval",
+                        period_end: 1000000,
+                        period_start: 1000000,
+                        products: [
+                            {
+                                billing_scheme: "per_unit",
+                                created_at: "2024-01-15T09:30:00Z",
+                                currency: "aed",
+                                environment_id: "environment_id",
+                                external_id: "external_id",
+                                id: "id",
+                                interval: "interval",
+                                name: "name",
+                                package_size: 1000000,
+                                price: 1000000,
+                                price_external_id: "price_external_id",
+                                price_id: "price_id",
+                                price_tier: [{}],
+                                provider_type: "metronome",
+                                quantity: 1.1,
+                                subscription_id: "subscription_id",
+                                updated_at: "2024-01-15T09:30:00Z",
+                                usage_type: "licensed",
+                            },
+                        ],
+                        provider_type: "metronome",
+                        status: "status",
+                        subscription_external_id: "subscription_external_id",
+                        total_price: 1000000,
+                    },
+                    billing_subscriptions: [
+                        {
+                            cancel_at_period_end: true,
+                            created_at: "2024-01-15T09:30:00Z",
+                            currency: "aed",
+                            customer_external_id: "customer_external_id",
+                            discounts: [
+                                {
+                                    coupon_id: "coupon_id",
+                                    coupon_name: "coupon_name",
+                                    discount_external_id: "discount_external_id",
+                                    duration: "duration",
+                                    is_active: true,
+                                    started_at: "2024-01-15T09:30:00Z",
+                                    subscription_external_id: "subscription_external_id",
+                                },
+                            ],
+                            id: "id",
+                            interval: "interval",
+                            period_end: 1000000,
+                            period_start: 1000000,
+                            products: [
+                                {
+                                    billing_scheme: "per_unit",
+                                    created_at: "2024-01-15T09:30:00Z",
+                                    currency: "aed",
+                                    environment_id: "environment_id",
+                                    external_id: "external_id",
+                                    id: "id",
+                                    interval: "interval",
+                                    name: "name",
+                                    package_size: 1000000,
+                                    price: 1000000,
+                                    price_external_id: "price_external_id",
+                                    price_id: "price_id",
+                                    price_tier: [{}],
+                                    provider_type: "metronome",
+                                    quantity: 1.1,
+                                    subscription_id: "subscription_id",
+                                    updated_at: "2024-01-15T09:30:00Z",
+                                    usage_type: "licensed",
+                                },
+                            ],
+                            provider_type: "metronome",
+                            status: "status",
+                            subscription_external_id: "subscription_external_id",
+                            total_price: 1000000,
+                        },
+                    ],
+                    created_at: "2024-01-15T09:30:00Z",
+                    custom_plan_billings: [
+                        {
+                            activation_strategy: "on_payment",
+                            company_id: "company_id",
+                            created_at: "2024-01-15T09:30:00Z",
+                            days_until_due: 1000000,
+                            id: "id",
+                            plan_billing_source: "amendment",
+                            plan_id: "plan_id",
+                            problems: [
+                                {
+                                    blocking: true,
+                                    code: "add_on_conflicts_with_plan",
+                                    message: "message",
+                                    source: "provider",
+                                },
+                            ],
+                            send_invoice: true,
+                            status: "active",
+                            updated_at: "2024-01-15T09:30:00Z",
+                        },
+                    ],
+                    default_payment_method: {
+                        created_at: "2024-01-15T09:30:00Z",
+                        customer_external_id: "customer_external_id",
+                        environment_id: "environment_id",
+                        external_id: "external_id",
+                        id: "id",
+                        payment_method_type: "payment_method_type",
+                        provider_type: "metronome",
+                        updated_at: "2024-01-15T09:30:00Z",
+                    },
+                    entitlements: [{ feature_id: "feature_id", feature_key: "feature_key", value_type: "boolean" }],
+                    entity_traits: [
+                        {
+                            created_at: "2024-01-15T09:30:00Z",
+                            definition_id: "definition_id",
+                            environment_id: "environment_id",
+                            id: "id",
+                            updated_at: "2024-01-15T09:30:00Z",
+                            value: "value",
+                        },
+                    ],
+                    environment_id: "environment_id",
+                    id: "id",
+                    keys: [
+                        {
+                            created_at: "2024-01-15T09:30:00Z",
+                            definition_id: "definition_id",
+                            entity_id: "entity_id",
+                            entity_type: "company",
+                            environment_id: "environment_id",
+                            id: "id",
+                            key: "key",
+                            updated_at: "2024-01-15T09:30:00Z",
+                            value: "value",
+                        },
+                    ],
+                    last_seen_at: "2024-01-15T09:30:00Z",
+                    logo_url: "logo_url",
+                    metrics: [
+                        {
+                            account_id: "account_id",
+                            captured_at_max: "2024-01-15T09:30:00Z",
+                            captured_at_min: "2024-01-15T09:30:00Z",
+                            company_id: "company_id",
+                            created_at: "2024-01-15T09:30:00Z",
+                            environment_id: "environment_id",
+                            event_subtype: "event_subtype",
+                            month_reset: "billing_cycle",
+                            period: "all_time",
+                            value: 1000000,
+                        },
+                    ],
+                    name: "name",
+                    payment_methods: [
+                        {
+                            created_at: "2024-01-15T09:30:00Z",
+                            customer_external_id: "customer_external_id",
+                            environment_id: "environment_id",
+                            external_id: "external_id",
+                            id: "id",
+                            payment_method_type: "payment_method_type",
+                            provider_type: "metronome",
+                            updated_at: "2024-01-15T09:30:00Z",
+                        },
+                    ],
+                    pending_migration: {
+                        migration_id: "migration_id",
+                        strategy: "end_of_billing_period",
+                        to_plan_id: "to_plan_id",
+                        to_plan_name: "to_plan_name",
+                        to_plan_version_id: "to_plan_version_id",
+                    },
+                    plan: {
+                        id: "id",
+                        included_credit_grants: [
+                            {
+                                billing_credit_auto_topup_enabled: true,
+                                billing_credit_auto_topup_self_service: true,
+                                billing_credit_can_buy_bundles: true,
+                                billing_credit_postpaid_enabled: true,
+                                billing_mode: "granted",
+                                company_credit_amount: 1000000,
+                                created_at: "2024-01-15T09:30:00Z",
+                                credit_amount: 1000000,
+                                credit_description: "credit_description",
+                                credit_id: "credit_id",
+                                credit_name: "credit_name",
+                                id: "id",
+                                plan_id: "plan_id",
+                                reset_type: "no_reset",
+                                rollover_percentage: 1000000,
+                                scaling: "fixed",
+                                updated_at: "2024-01-15T09:30:00Z",
+                            },
+                        ],
+                        name: "name",
+                    },
+                    plans: [{ id: "id", name: "name" }],
+                    rules: [
+                        {
+                            account_id: "account_id",
+                            condition_groups: [
+                                {
+                                    conditions: [
+                                        {
+                                            account_id: "account_id",
+                                            condition_type: "base_plan",
+                                            environment_id: "environment_id",
+                                            id: "id",
+                                            operator: "eq",
+                                            resource_ids: ["resource_ids"],
+                                            trait_value: "trait_value",
+                                        },
+                                    ],
+                                },
+                            ],
+                            conditions: [
+                                {
+                                    account_id: "account_id",
+                                    condition_type: "base_plan",
+                                    environment_id: "environment_id",
+                                    id: "id",
+                                    operator: "eq",
+                                    resource_ids: ["resource_ids"],
+                                    trait_value: "trait_value",
+                                },
+                            ],
+                            environment_id: "environment_id",
+                            id: "id",
+                            name: "name",
+                            priority: 1000000,
+                            rule_type: "company_override",
+                            value: true,
+                        },
+                    ],
+                    scheduled_downgrade: {
+                        currency: "aed",
+                        effective_after: "2024-01-15T09:30:00Z",
+                        from_plan_id: "from_plan_id",
+                        from_plan_name: "from_plan_name",
+                        from_subscription_price: 1000000,
+                        id: "id",
+                        interval: "interval",
+                        to_plan_id: "to_plan_id",
+                        to_plan_name: "to_plan_name",
+                    },
+                    traits: { key: "value" },
+                    updated_at: "2024-01-15T09:30:00Z",
+                    user_count: 1000000,
+                },
+                problems: [
+                    { blocking: true, code: "add_on_conflicts_with_plan", message: "message", source: "provider" },
+                ],
+                success: true,
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/manage-plan/subscription/resume")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.checkout.resumeSubscription({
+            companyId: "company_id",
+        });
+        expect(response).toEqual({
+            data: {
+                checkoutId: "checkout_id",
+                company: {
+                    addOns: [
+                        {
+                            id: "id",
+                            includedCreditGrants: [
+                                {
+                                    billingCreditAutoTopupEnabled: true,
+                                    billingCreditAutoTopupSelfService: true,
+                                    billingCreditCanBuyBundles: true,
+                                    billingCreditPostpaidEnabled: true,
+                                    billingMode: "granted",
+                                    companyCreditAmount: 1000000,
+                                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                    creditAmount: 1000000,
+                                    creditDescription: "credit_description",
+                                    creditId: "credit_id",
+                                    creditName: "credit_name",
+                                    id: "id",
+                                    planId: "plan_id",
+                                    resetType: "no_reset",
+                                    rolloverPercentage: 1000000,
+                                    scaling: "fixed",
+                                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                },
+                            ],
+                            name: "name",
+                        },
+                    ],
+                    billingCreditBalances: {
+                        key: 1.1,
+                    },
+                    billingEmail: "billing_email",
+                    billingProfile: {
+                        accountId: "account_id",
+                        collectionMethod: "charge_automatically",
+                        companyId: "company_id",
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        environmentId: "environment_id",
+                        gatingDays: 1000000,
+                        id: "id",
+                        isDefault: true,
+                        paymentGating: "keep_serving",
+                        providerType: "metronome",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                    billingProfiles: [
+                        {
+                            accountId: "account_id",
+                            collectionMethod: "charge_automatically",
+                            companyId: "company_id",
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            environmentId: "environment_id",
+                            gatingDays: 1000000,
+                            id: "id",
+                            isDefault: true,
+                            paymentGating: "keep_serving",
+                            providerType: "metronome",
+                            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        },
+                    ],
+                    billingSubscription: {
+                        cancelAtPeriodEnd: true,
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        currency: "aed",
+                        customerExternalId: "customer_external_id",
+                        discounts: [
+                            {
+                                couponId: "coupon_id",
+                                couponName: "coupon_name",
+                                discountExternalId: "discount_external_id",
+                                duration: "duration",
+                                isActive: true,
+                                startedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                subscriptionExternalId: "subscription_external_id",
+                            },
+                        ],
+                        id: "id",
+                        interval: "interval",
+                        periodEnd: 1000000,
+                        periodStart: 1000000,
+                        products: [
+                            {
+                                billingScheme: "per_unit",
+                                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                currency: "aed",
+                                environmentId: "environment_id",
+                                externalId: "external_id",
+                                id: "id",
+                                interval: "interval",
+                                name: "name",
+                                packageSize: 1000000,
+                                price: 1000000,
+                                priceExternalId: "price_external_id",
+                                priceId: "price_id",
+                                priceTier: [{}],
+                                providerType: "metronome",
+                                quantity: 1.1,
+                                subscriptionId: "subscription_id",
+                                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                usageType: "licensed",
+                            },
+                        ],
+                        providerType: "metronome",
+                        status: "status",
+                        subscriptionExternalId: "subscription_external_id",
+                        totalPrice: 1000000,
+                    },
+                    billingSubscriptions: [
+                        {
+                            cancelAtPeriodEnd: true,
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            currency: "aed",
+                            customerExternalId: "customer_external_id",
+                            discounts: [
+                                {
+                                    couponId: "coupon_id",
+                                    couponName: "coupon_name",
+                                    discountExternalId: "discount_external_id",
+                                    duration: "duration",
+                                    isActive: true,
+                                    startedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                    subscriptionExternalId: "subscription_external_id",
+                                },
+                            ],
+                            id: "id",
+                            interval: "interval",
+                            periodEnd: 1000000,
+                            periodStart: 1000000,
+                            products: [
+                                {
+                                    billingScheme: "per_unit",
+                                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                    currency: "aed",
+                                    environmentId: "environment_id",
+                                    externalId: "external_id",
+                                    id: "id",
+                                    interval: "interval",
+                                    name: "name",
+                                    packageSize: 1000000,
+                                    price: 1000000,
+                                    priceExternalId: "price_external_id",
+                                    priceId: "price_id",
+                                    priceTier: [{}],
+                                    providerType: "metronome",
+                                    quantity: 1.1,
+                                    subscriptionId: "subscription_id",
+                                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                                    usageType: "licensed",
+                                },
+                            ],
+                            providerType: "metronome",
+                            status: "status",
+                            subscriptionExternalId: "subscription_external_id",
+                            totalPrice: 1000000,
+                        },
+                    ],
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    customPlanBillings: [
+                        {
+                            activationStrategy: "on_payment",
+                            companyId: "company_id",
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            daysUntilDue: 1000000,
+                            id: "id",
+                            planBillingSource: "amendment",
+                            planId: "plan_id",
+                            problems: [
+                                {
+                                    blocking: true,
+                                    code: "add_on_conflicts_with_plan",
+                                    message: "message",
+                                    source: "provider",
+                                },
+                            ],
+                            sendInvoice: true,
+                            status: "active",
+                            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        },
+                    ],
+                    defaultPaymentMethod: {
+                        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                        customerExternalId: "customer_external_id",
+                        environmentId: "environment_id",
+                        externalId: "external_id",
+                        id: "id",
+                        paymentMethodType: "payment_method_type",
+                        providerType: "metronome",
+                        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    },
+                    entitlements: [
+                        {
+                            featureId: "feature_id",
+                            featureKey: "feature_key",
+                            valueType: "boolean",
+                        },
+                    ],
+                    entityTraits: [
+                        {
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            definitionId: "definition_id",
+                            environmentId: "environment_id",
+                            id: "id",
+                            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                            value: "value",
+                        },
+                    ],
+                    environmentId: "environment_id",
+                    id: "id",
+                    keys: [
+                        {
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            definitionId: "definition_id",
+                            entityId: "entity_id",
+                            entityType: "company",
+                            environmentId: "environment_id",
+                            id: "id",
+                            key: "key",
+                            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                            value: "value",
+                        },
+                    ],
+                    lastSeenAt: new Date("2024-01-15T09:30:00.000Z"),
+                    logoUrl: "logo_url",
+                    metrics: [
+                        {
+                            accountId: "account_id",
+                            capturedAtMax: new Date("2024-01-15T09:30:00.000Z"),
+                            capturedAtMin: new Date("2024-01-15T09:30:00.000Z"),
+                            companyId: "company_id",
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            environmentId: "environment_id",
+                            eventSubtype: "event_subtype",
+                            monthReset: "billing_cycle",
+                            period: "all_time",
+                            value: 1000000,
+                        },
+                    ],
+                    name: "name",
+                    paymentMethods: [
+                        {
+                            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                            customerExternalId: "customer_external_id",
+                            environmentId: "environment_id",
+                            externalId: "external_id",
+                            id: "id",
+                            paymentMethodType: "payment_method_type",
+                            providerType: "metronome",
+                            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                        },
+                    ],
+                    pendingMigration: {
+                        migrationId: "migration_id",
+                        strategy: "end_of_billing_period",
+                        toPlanId: "to_plan_id",
+                        toPlanName: "to_plan_name",
+                        toPlanVersionId: "to_plan_version_id",
+                    },
+                    plan: {
+                        id: "id",
+                        includedCreditGrants: [
+                            {
+                                billingCreditAutoTopupEnabled: true,
+                                billingCreditAutoTopupSelfService: true,
+                                billingCreditCanBuyBundles: true,
+                                billingCreditPostpaidEnabled: true,
+                                billingMode: "granted",
+                                companyCreditAmount: 1000000,
+                                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                                creditAmount: 1000000,
+                                creditDescription: "credit_description",
+                                creditId: "credit_id",
+                                creditName: "credit_name",
+                                id: "id",
+                                planId: "plan_id",
+                                resetType: "no_reset",
+                                rolloverPercentage: 1000000,
+                                scaling: "fixed",
+                                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                            },
+                        ],
+                        name: "name",
+                    },
+                    plans: [
+                        {
+                            id: "id",
+                            name: "name",
+                        },
+                    ],
+                    rules: [
+                        {
+                            accountId: "account_id",
+                            conditionGroups: [
+                                {
+                                    conditions: [
+                                        {
+                                            accountId: "account_id",
+                                            conditionType: "base_plan",
+                                            environmentId: "environment_id",
+                                            id: "id",
+                                            operator: "eq",
+                                            resourceIds: ["resource_ids"],
+                                            traitValue: "trait_value",
+                                        },
+                                    ],
+                                },
+                            ],
+                            conditions: [
+                                {
+                                    accountId: "account_id",
+                                    conditionType: "base_plan",
+                                    environmentId: "environment_id",
+                                    id: "id",
+                                    operator: "eq",
+                                    resourceIds: ["resource_ids"],
+                                    traitValue: "trait_value",
+                                },
+                            ],
+                            environmentId: "environment_id",
+                            id: "id",
+                            name: "name",
+                            priority: 1000000,
+                            ruleType: "company_override",
+                            value: true,
+                        },
+                    ],
+                    scheduledDowngrade: {
+                        currency: "aed",
+                        effectiveAfter: new Date("2024-01-15T09:30:00.000Z"),
+                        fromPlanId: "from_plan_id",
+                        fromPlanName: "from_plan_name",
+                        fromSubscriptionPrice: 1000000,
+                        id: "id",
+                        interval: "interval",
+                        toPlanId: "to_plan_id",
+                        toPlanName: "to_plan_name",
+                    },
+                    traits: {
+                        key: "value",
+                    },
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    userCount: 1000000,
+                },
+                problems: [
+                    {
+                        blocking: true,
+                        code: "add_on_conflicts_with_plan",
+                        message: "message",
+                        source: "provider",
+                    },
+                ],
+                success: true,
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("resumeSubscription (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { company_id: "company_id" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/manage-plan/subscription/resume")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.checkout.resumeSubscription({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("resumeSubscription (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { company_id: "company_id" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/manage-plan/subscription/resume")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.checkout.resumeSubscription({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("resumeSubscription (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { company_id: "company_id" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/manage-plan/subscription/resume")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.checkout.resumeSubscription({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("resumeSubscription (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { company_id: "company_id" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/manage-plan/subscription/resume")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.checkout.resumeSubscription({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("resumeSubscription (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { company_id: "company_id" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/manage-plan/subscription/resume")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.checkout.resumeSubscription({
+                companyId: "company_id",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("updateCustomerSubscriptionTrialEnd (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -6790,6 +8462,9 @@ describe("CheckoutClient", () => {
                     url: "url",
                 },
                 metadata: { key: "value" },
+                pause_behavior: "keep_as_draft",
+                pause_resumes_at: 1000000,
+                paused_at: "2024-01-15T09:30:00Z",
                 payment_method: {
                     account_last4: "account_last4",
                     account_name: "account_name",
@@ -6906,6 +8581,9 @@ describe("CheckoutClient", () => {
                 metadata: {
                     key: "value",
                 },
+                pauseBehavior: "keep_as_draft",
+                pauseResumesAt: 1000000,
+                pausedAt: new Date("2024-01-15T09:30:00.000Z"),
                 paymentMethod: {
                     accountLast4: "account_last4",
                     accountName: "account_name",

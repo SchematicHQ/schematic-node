@@ -4,6 +4,10 @@ import type * as Schematic from "../index";
 
 export interface PublishPreviewResponseData {
     billingEmail?: string;
+    /** The company that pays for the subscription, when it isn't the plan's company. The amendment invoice is raised on its customer, so payment_method and billing_email are its. */
+    billingEntityId?: string;
+    /** The name of the company in billing_entity_id. */
+    billingEntityName?: string;
     currency?: Schematic.Currency;
     currentPeriodEnd?: Date;
     currentPeriodStart?: Date;

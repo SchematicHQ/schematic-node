@@ -6,6 +6,7 @@ import type * as serializers from "../../../../index";
 import { BillingProductPricing } from "../../../../types/BillingProductPricing";
 import { BillingProviderType } from "../../../../types/BillingProviderType";
 import { BillingSubscriptionDiscount } from "../../../../types/BillingSubscriptionDiscount";
+import { BillingSubscriptionPauseBehavior } from "../../../../types/BillingSubscriptionPauseBehavior";
 import { BillingSubscriptionTrialEndSetting } from "../../../../types/BillingSubscriptionTrialEndSetting";
 import { Currency } from "../../../../types/Currency";
 
@@ -31,6 +32,8 @@ export const CreateBillingSubscriptionRequestBody: core.serialization.Schema<
     expiredAt: core.serialization.property("expired_at", core.serialization.date()),
     interval: core.serialization.string().optional(),
     metadata: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
+    pauseBehavior: core.serialization.property("pause_behavior", BillingSubscriptionPauseBehavior.optional()),
+    pauseResumesAt: core.serialization.property("pause_resumes_at", core.serialization.number().optional()),
     periodEnd: core.serialization.property("period_end", core.serialization.number().optional()),
     periodStart: core.serialization.property("period_start", core.serialization.number().optional()),
     productExternalIds: core.serialization.property(
@@ -60,6 +63,8 @@ export declare namespace CreateBillingSubscriptionRequestBody {
         expired_at: string;
         interval?: string | null;
         metadata?: Record<string, unknown> | null;
+        pause_behavior?: BillingSubscriptionPauseBehavior.Raw | null;
+        pause_resumes_at?: number | null;
         period_end?: number | null;
         period_start?: number | null;
         product_external_ids: BillingProductPricing.Raw[];

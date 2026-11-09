@@ -11,6 +11,8 @@ export interface CreateEntitlementInBundleRequestBody {
     featureId: string;
     metricPeriod?: Schematic.MetricPeriod;
     metricPeriodMonthReset?: Schematic.MetricPeriodMonthReset;
+    /** Per-model rate overrides for inference features, keyed by provider and model. Each entry is a complete rate card: its consumption_rate and quantity_rates replace the entitlement's credit_consumption_rate and quantity_rates for events from that provider and model. An event matches an entry by exact model name first, then by its model name without a trailing snapshot date (claude-sonnet-4-5-20250929 matches claude-sonnet-4-5). Models with no entry burn at the entitlement's own rates. Omit to leave the overrides as they are; send null to clear them. */
+    modelRates?: Schematic.CreditModelRate[];
     monthlyMeteredPriceId?: string;
     monthlyPriceTiers?: Schematic.CreatePriceTierRequestBody[];
     monthlyUnitPrice?: number;

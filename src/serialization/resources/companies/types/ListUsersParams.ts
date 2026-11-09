@@ -3,6 +3,7 @@
 import type * as Schematic from "../../../../api/index";
 import * as core from "../../../../core";
 import type * as serializers from "../../../index";
+import { SortDirection } from "../../../types/SortDirection";
 
 export const ListUsersParams: core.serialization.ObjectSchema<
     serializers.ListUsersParams.Raw,
@@ -14,6 +15,8 @@ export const ListUsersParams: core.serialization.ObjectSchema<
     offset: core.serialization.number().optional(),
     planId: core.serialization.property("plan_id", core.serialization.string().optional()),
     q: core.serialization.string().optional(),
+    sortOrderColumn: core.serialization.property("sort_order_column", core.serialization.string().optional()),
+    sortOrderDirection: core.serialization.property("sort_order_direction", SortDirection.optional()),
 });
 
 export declare namespace ListUsersParams {
@@ -24,5 +27,7 @@ export declare namespace ListUsersParams {
         offset?: number | null;
         plan_id?: string | null;
         q?: string | null;
+        sort_order_column?: string | null;
+        sort_order_direction?: SortDirection.Raw | null;
     }
 }

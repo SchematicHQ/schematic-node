@@ -10,6 +10,8 @@ export const CreditBurnBreakdownLine: core.serialization.ObjectSchema<
 > = core.serialization.object({
     credits: core.serialization.number(),
     key: core.serialization.string(),
+    model: core.serialization.string().optional(),
+    provider: core.serialization.string().optional(),
     quantity: core.serialization.number(),
     rate: core.serialization.number(),
 });
@@ -18,6 +20,8 @@ export declare namespace CreditBurnBreakdownLine {
     export interface Raw {
         credits: number;
         key: string;
+        model?: string | null;
+        provider?: string | null;
         quantity: number;
         rate: number;
     }

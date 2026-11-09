@@ -7,6 +7,7 @@ import { BillingArrearsAnchor } from "../../../../types/BillingArrearsAnchor";
 import { BillingArrearsCadence } from "../../../../types/BillingArrearsCadence";
 import { BillingTiersMode } from "../../../../types/BillingTiersMode";
 import { CreatePriceTierRequestBody } from "../../../../types/CreatePriceTierRequestBody";
+import { CreditModelRate } from "../../../../types/CreditModelRate";
 import { Currency } from "../../../../types/Currency";
 import { CurrencyPriceRequestBody } from "../../../../types/CurrencyPriceRequestBody";
 import { EntitlementPriceBehavior } from "../../../../types/EntitlementPriceBehavior";
@@ -33,6 +34,7 @@ export const CreatePlanEntitlementRequestBody: core.serialization.Schema<
     featureId: core.serialization.property("feature_id", core.serialization.string()),
     metricPeriod: core.serialization.property("metric_period", MetricPeriod.optional()),
     metricPeriodMonthReset: core.serialization.property("metric_period_month_reset", MetricPeriodMonthReset.optional()),
+    modelRates: core.serialization.property("model_rates", core.serialization.list(CreditModelRate).optional()),
     monthlyMeteredPriceId: core.serialization.property(
         "monthly_metered_price_id",
         core.serialization.string().optional(),
@@ -113,6 +115,7 @@ export declare namespace CreatePlanEntitlementRequestBody {
         feature_id: string;
         metric_period?: MetricPeriod.Raw | null;
         metric_period_month_reset?: MetricPeriodMonthReset.Raw | null;
+        model_rates?: CreditModelRate.Raw[] | null;
         monthly_metered_price_id?: string | null;
         monthly_price_tiers?: CreatePriceTierRequestBody.Raw[] | null;
         monthly_unit_price?: number | null;

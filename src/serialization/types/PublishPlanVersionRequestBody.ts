@@ -18,7 +18,12 @@ export const PublishPlanVersionRequestBody: core.serialization.ObjectSchema<
 > = core.serialization.object({
     activationStrategy: core.serialization.property("activation_strategy", CustomPlanActivationStrategy.optional()),
     address: CustomerBillingAddress.optional(),
+    alignWithBillingEntity: core.serialization.property(
+        "align_with_billing_entity",
+        core.serialization.boolean().optional(),
+    ),
     billingCycleAnchor: core.serialization.property("billing_cycle_anchor", core.serialization.date().optional()),
+    billingEntityId: core.serialization.property("billing_entity_id", core.serialization.string().optional()),
     billingStartDate: core.serialization.property("billing_start_date", core.serialization.date().optional()),
     collectionMethod: core.serialization.property("collection_method", BillingCollectionMethod.optional()),
     couponExternalId: core.serialization.property("coupon_external_id", core.serialization.string().optional()),
@@ -49,7 +54,9 @@ export declare namespace PublishPlanVersionRequestBody {
     export interface Raw {
         activation_strategy?: CustomPlanActivationStrategy.Raw | null;
         address?: CustomerBillingAddress.Raw | null;
+        align_with_billing_entity?: boolean | null;
         billing_cycle_anchor?: string | null;
+        billing_entity_id?: string | null;
         billing_start_date?: string | null;
         collection_method?: BillingCollectionMethod.Raw | null;
         coupon_external_id?: string | null;

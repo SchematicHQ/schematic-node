@@ -16,6 +16,7 @@ describe("CatalogsClient", () => {
                     created_at: "2024-01-15T09:30:00Z",
                     custom_plan_cta_text: "custom_plan_cta_text",
                     custom_plan_cta_url: "custom_plan_cta_url",
+                    custom_plan_id: "custom_plan_id",
                     custom_plan_price_text: "custom_plan_price_text",
                     custom_plans_visible: true,
                     description: "description",
@@ -45,6 +46,7 @@ describe("CatalogsClient", () => {
                     createdAt: new Date("2024-01-15T09:30:00.000Z"),
                     customPlanCtaText: "custom_plan_cta_text",
                     customPlanCtaUrl: "custom_plan_cta_url",
+                    customPlanId: "custom_plan_id",
                     customPlanPriceText: "custom_plan_price_text",
                     customPlansVisible: true,
                     description: "description",
@@ -140,6 +142,7 @@ describe("CatalogsClient", () => {
                 created_at: "2024-01-15T09:30:00Z",
                 custom_plan_cta_text: "custom_plan_cta_text",
                 custom_plan_cta_url: "custom_plan_cta_url",
+                custom_plan_id: "custom_plan_id",
                 custom_plan_price_text: "custom_plan_price_text",
                 custom_plans_visible: true,
                 description: "description",
@@ -171,6 +174,7 @@ describe("CatalogsClient", () => {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 customPlanCtaText: "custom_plan_cta_text",
                 customPlanCtaUrl: "custom_plan_cta_url",
+                customPlanId: "custom_plan_id",
                 customPlanPriceText: "custom_plan_price_text",
                 customPlansVisible: true,
                 description: "description",
@@ -307,6 +311,7 @@ describe("CatalogsClient", () => {
                 created_at: "2024-01-15T09:30:00Z",
                 custom_plan_cta_text: "custom_plan_cta_text",
                 custom_plan_cta_url: "custom_plan_cta_url",
+                custom_plan_id: "custom_plan_id",
                 custom_plan_price_text: "custom_plan_price_text",
                 custom_plans_visible: true,
                 description: "description",
@@ -335,6 +340,7 @@ describe("CatalogsClient", () => {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 customPlanCtaText: "custom_plan_cta_text",
                 customPlanCtaUrl: "custom_plan_cta_url",
+                customPlanId: "custom_plan_id",
                 customPlanPriceText: "custom_plan_price_text",
                 customPlansVisible: true,
                 description: "description",
@@ -437,6 +443,7 @@ describe("CatalogsClient", () => {
                 created_at: "2024-01-15T09:30:00Z",
                 custom_plan_cta_text: "custom_plan_cta_text",
                 custom_plan_cta_url: "custom_plan_cta_url",
+                custom_plan_id: "custom_plan_id",
                 custom_plan_price_text: "custom_plan_price_text",
                 custom_plans_visible: true,
                 description: "description",
@@ -466,6 +473,7 @@ describe("CatalogsClient", () => {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 customPlanCtaText: "custom_plan_cta_text",
                 customPlanCtaUrl: "custom_plan_cta_url",
+                customPlanId: "custom_plan_id",
                 customPlanPriceText: "custom_plan_price_text",
                 customPlansVisible: true,
                 description: "description",
@@ -834,6 +842,7 @@ describe("CatalogsClient", () => {
                 ],
                 custom_plan_cta_text: "custom_plan_cta_text",
                 custom_plan_cta_url: "custom_plan_cta_url",
+                custom_plan_id: "custom_plan_id",
                 custom_plan_price_text: "custom_plan_price_text",
                 custom_plans_visible: true,
                 ordered_add_ons: [
@@ -1141,6 +1150,7 @@ describe("CatalogsClient", () => {
                 ],
                 customPlanCtaText: "custom_plan_cta_text",
                 customPlanCtaUrl: "custom_plan_cta_url",
+                customPlanId: "custom_plan_id",
                 customPlanPriceText: "custom_plan_price_text",
                 customPlansVisible: true,
                 orderedAddOns: [
@@ -1424,6 +1434,7 @@ describe("CatalogsClient", () => {
                 created_at: "2024-01-15T09:30:00Z",
                 custom_plan_cta_text: "custom_plan_cta_text",
                 custom_plan_cta_url: "custom_plan_cta_url",
+                custom_plan_id: "custom_plan_id",
                 custom_plan_price_text: "custom_plan_price_text",
                 custom_plans_visible: true,
                 description: "description",
@@ -1453,6 +1464,7 @@ describe("CatalogsClient", () => {
                 createdAt: new Date("2024-01-15T09:30:00.000Z"),
                 customPlanCtaText: "custom_plan_cta_text",
                 customPlanCtaUrl: "custom_plan_cta_url",
+                customPlanId: "custom_plan_id",
                 customPlanPriceText: "custom_plan_price_text",
                 customPlansVisible: true,
                 description: "description",
@@ -2323,6 +2335,7 @@ describe("CatalogsClient", () => {
                         billing_strategy: "schematic_managed",
                         charge_type: "free",
                         currency_prices: [{ currency: "aed" }],
+                        custom: true,
                         description: "description",
                         entitlements: [
                             {
@@ -2377,6 +2390,7 @@ describe("CatalogsClient", () => {
                         billing_strategy: "schematic_managed",
                         charge_type: "free",
                         currency_prices: [{ currency: "aed" }],
+                        custom: true,
                         description: "description",
                         entitlements: [
                             {
@@ -2428,6 +2442,7 @@ describe("CatalogsClient", () => {
                                 currency: "aed",
                             },
                         ],
+                        custom: true,
                         description: "description",
                         entitlements: [
                             {
@@ -2501,6 +2516,7 @@ describe("CatalogsClient", () => {
                                 currency: "aed",
                             },
                         ],
+                        custom: true,
                         description: "description",
                         entitlements: [
                             {
@@ -2608,6 +2624,7 @@ describe("CatalogsClient", () => {
                         billing_strategy: "schematic_managed",
                         charge_type: "free",
                         currency_prices: [{ currency: "aed" }],
+                        custom: true,
                         description: "description",
                         entitlements: [
                             {
@@ -2662,6 +2679,7 @@ describe("CatalogsClient", () => {
                         billing_strategy: "schematic_managed",
                         charge_type: "free",
                         currency_prices: [{ currency: "aed" }],
+                        custom: true,
                         description: "description",
                         entitlements: [
                             {
@@ -2719,6 +2737,7 @@ describe("CatalogsClient", () => {
                                 currency: "aed",
                             },
                         ],
+                        custom: true,
                         description: "description",
                         entitlements: [
                             {
@@ -2792,6 +2811,7 @@ describe("CatalogsClient", () => {
                                 currency: "aed",
                             },
                         ],
+                        custom: true,
                         description: "description",
                         entitlements: [
                             {

@@ -16,6 +16,10 @@ export const ManagePlanRequest: core.serialization.ObjectSchema<
 > = core.serialization.object({
     activateOnPayment: core.serialization.property("activate_on_payment", core.serialization.boolean().optional()),
     addOnSelections: core.serialization.property("add_on_selections", core.serialization.list(PlanSelection)),
+    alignWithBillingEntity: core.serialization.property(
+        "align_with_billing_entity",
+        core.serialization.boolean().optional(),
+    ),
     basePlanId: core.serialization.property("base_plan_id", core.serialization.string().optional()),
     basePlanPriceId: core.serialization.property("base_plan_price_id", core.serialization.string().optional()),
     basePlanVersionId: core.serialization.property("base_plan_version_id", core.serialization.string().optional()),
@@ -53,6 +57,7 @@ export declare namespace ManagePlanRequest {
     export interface Raw {
         activate_on_payment?: boolean | null;
         add_on_selections: PlanSelection.Raw[];
+        align_with_billing_entity?: boolean | null;
         base_plan_id?: string | null;
         base_plan_price_id?: string | null;
         base_plan_version_id?: string | null;

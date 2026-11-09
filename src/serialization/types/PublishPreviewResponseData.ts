@@ -15,6 +15,8 @@ export const PublishPreviewResponseData: core.serialization.ObjectSchema<
     Schematic.PublishPreviewResponseData
 > = core.serialization.object({
     billingEmail: core.serialization.property("billing_email", core.serialization.string().optional()),
+    billingEntityId: core.serialization.property("billing_entity_id", core.serialization.string().optional()),
+    billingEntityName: core.serialization.property("billing_entity_name", core.serialization.string().optional()),
     currency: Currency.optional(),
     currentPeriodEnd: core.serialization.property("current_period_end", core.serialization.date().optional()),
     currentPeriodStart: core.serialization.property("current_period_start", core.serialization.date().optional()),
@@ -52,6 +54,8 @@ export const PublishPreviewResponseData: core.serialization.ObjectSchema<
 export declare namespace PublishPreviewResponseData {
     export interface Raw {
         billing_email?: string | null;
+        billing_entity_id?: string | null;
+        billing_entity_name?: string | null;
         currency?: Currency.Raw | null;
         current_period_end?: string | null;
         current_period_start?: string | null;

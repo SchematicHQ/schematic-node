@@ -4,6 +4,8 @@ import type * as Schematic from "../../../../../api/index";
 import * as core from "../../../../../core";
 import type * as serializers from "../../../../index";
 import { BillingCollectionMethod } from "../../../../types/BillingCollectionMethod";
+import { Collector } from "../../../../types/Collector";
+import { ContractBillingDetailsRequestBody } from "../../../../types/ContractBillingDetailsRequestBody";
 import { Currency } from "../../../../types/Currency";
 import { PaymentGating } from "../../../../types/PaymentGating";
 import { ProrationBehavior } from "../../../../types/ProrationBehavior";
@@ -12,7 +14,9 @@ export const UpdateCompanyBillingProfileRequestBody: core.serialization.Schema<
     serializers.UpdateCompanyBillingProfileRequestBody.Raw,
     Schematic.UpdateCompanyBillingProfileRequestBody
 > = core.serialization.object({
+    billingDetails: core.serialization.property("billing_details", ContractBillingDetailsRequestBody.optional()),
     collectionMethod: core.serialization.property("collection_method", BillingCollectionMethod),
+    collector: Collector.optional(),
     currency: Currency.optional(),
     daysUntilDue: core.serialization.property("days_until_due", core.serialization.number().optional()),
     gatingDays: core.serialization.property("gating_days", core.serialization.number().optional()),
@@ -22,11 +26,14 @@ export const UpdateCompanyBillingProfileRequestBody: core.serialization.Schema<
     paymentGating: core.serialization.property("payment_gating", PaymentGating.optional()),
     paymentMethodId: core.serialization.property("payment_method_id", core.serialization.string().optional()),
     prorationBehavior: core.serialization.property("proration_behavior", ProrationBehavior.optional()),
+    purchaseOrder: core.serialization.property("purchase_order", core.serialization.string().optional()),
 });
 
 export declare namespace UpdateCompanyBillingProfileRequestBody {
     export interface Raw {
+        billing_details?: ContractBillingDetailsRequestBody.Raw | null;
         collection_method: BillingCollectionMethod.Raw;
+        collector?: Collector.Raw | null;
         currency?: Currency.Raw | null;
         days_until_due?: number | null;
         gating_days?: number | null;
@@ -36,5 +43,6 @@ export declare namespace UpdateCompanyBillingProfileRequestBody {
         payment_gating?: PaymentGating.Raw | null;
         payment_method_id?: string | null;
         proration_behavior?: ProrationBehavior.Raw | null;
+        purchase_order?: string | null;
     }
 }

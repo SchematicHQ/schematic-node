@@ -3,6 +3,7 @@
 import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
+import { CreditModelRate } from "./CreditModelRate";
 import { EntitlementValueType } from "./EntitlementValueType";
 import { MetricPeriod } from "./MetricPeriod";
 import { MetricPeriodMonthReset } from "./MetricPeriodMonthReset";
@@ -18,6 +19,7 @@ export const CreateEntitlementReqCommon: core.serialization.ObjectSchema<
     featureId: core.serialization.property("feature_id", core.serialization.string()),
     metricPeriod: core.serialization.property("metric_period", MetricPeriod.optional()),
     metricPeriodMonthReset: core.serialization.property("metric_period_month_reset", MetricPeriodMonthReset.optional()),
+    modelRates: core.serialization.property("model_rates", core.serialization.list(CreditModelRate).optional()),
     quantityRates: core.serialization.property(
         "quantity_rates",
         core.serialization.record(core.serialization.string(), core.serialization.number()).optional(),
@@ -35,6 +37,7 @@ export declare namespace CreateEntitlementReqCommon {
         feature_id: string;
         metric_period?: MetricPeriod.Raw | null;
         metric_period_month_reset?: MetricPeriodMonthReset.Raw | null;
+        model_rates?: CreditModelRate.Raw[] | null;
         quantity_rates?: Record<string, number> | null;
         value_bool?: boolean | null;
         value_credit_id?: string | null;

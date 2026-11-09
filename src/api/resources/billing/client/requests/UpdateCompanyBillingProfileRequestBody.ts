@@ -9,7 +9,9 @@ import type * as Schematic from "../../../../index";
  *     }
  */
 export interface UpdateCompanyBillingProfileRequestBody {
+    billingDetails?: Schematic.ContractBillingDetailsRequestBody;
     collectionMethod: Schematic.BillingCollectionMethod;
+    collector?: Schematic.Collector;
     currency?: Schematic.Currency;
     daysUntilDue?: number;
     gatingDays?: number;
@@ -19,4 +21,5 @@ export interface UpdateCompanyBillingProfileRequestBody {
     paymentGating?: Schematic.PaymentGating;
     paymentMethodId?: string;
     prorationBehavior?: Schematic.ProrationBehavior;
+    purchaseOrder?: string;
 }

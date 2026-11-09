@@ -7,5 +7,8 @@ import type * as Schematic from "../../../../index";
  *     {}
  */
 export interface UpdateBillingSettingsRequestBody {
+    defaultCollector?: Schematic.Collector;
     defaultProviderType?: Schematic.BillingProviderType;
+    /** Where a payer's reply to an invoice email goes. Schematic sends no invoice email until it is set. Send null to clear it. */
+    invoiceReplyToEmail?: string;
 }

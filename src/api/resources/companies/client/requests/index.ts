@@ -22,5 +22,6 @@ export type { ListPlanTraitsRequest } from "./ListPlanTraitsRequest";
 export type { ListUsersRequest } from "./ListUsersRequest";
 export type { LookupCompanyRequest } from "./LookupCompanyRequest";
 export type { LookupUserRequest } from "./LookupUserRequest";
+export type { UpdateBillingEntitySettingsRequestBody } from "./UpdateBillingEntitySettingsRequestBody";
 export type { UpdateEntityTraitDefinitionRequestBody } from "./UpdateEntityTraitDefinitionRequestBody";
 export type { UpdatePlanTraitBulkRequestBody } from "./UpdatePlanTraitBulkRequestBody";

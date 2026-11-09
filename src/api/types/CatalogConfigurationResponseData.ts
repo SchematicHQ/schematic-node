@@ -6,6 +6,7 @@ export interface CatalogConfigurationResponseData {
     addOns: Schematic.PlanGroupPlanDetailResponseData[];
     customPlanCtaText?: string;
     customPlanCtaUrl?: string;
+    customPlanId?: string;
     customPlanPriceText?: string;
     customPlansVisible: boolean;
     orderedAddOns: Schematic.CatalogConfigOrderedPlanResponseData[];

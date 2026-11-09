@@ -37,6 +37,6 @@ export interface BillingInvoiceResponseData {
     subscriptionExternalId?: string;
     subtotal: number;
     total: number;
-    /** The billing provider's hosted invoice page. Null on an invoice Schematic issued. */
+    /** The hosted invoice page, which opens with no login. On an invoice Schematic issued, null while it is a draft or after its link is revoked. */
     url?: string;
 }

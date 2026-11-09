@@ -6,6 +6,7 @@ import type * as serializers from "../index";
 import { BillingProductForSubscriptionResponseData } from "./BillingProductForSubscriptionResponseData";
 import { BillingProviderType } from "./BillingProviderType";
 import { BillingSubscriptionDiscountView } from "./BillingSubscriptionDiscountView";
+import { BillingSubscriptionPauseBehavior } from "./BillingSubscriptionPauseBehavior";
 import { Currency } from "./Currency";
 import { InvoiceResponseData } from "./InvoiceResponseData";
 import { PaymentMethodResponseData } from "./PaymentMethodResponseData";
@@ -23,7 +24,12 @@ export const CompanySubscriptionResponseData: core.serialization.ObjectSchema<
     interval: core.serialization.string(),
     isInitial: core.serialization.property("is_initial", core.serialization.boolean()),
     latestInvoice: core.serialization.property("latest_invoice", InvoiceResponseData.optional()),
+    pauseBehavior: core.serialization.property("pause_behavior", BillingSubscriptionPauseBehavior.optional()),
+    pauseResumesAt: core.serialization.property("pause_resumes_at", core.serialization.date().optional()),
+    pausedAt: core.serialization.property("paused_at", core.serialization.date().optional()),
     paymentMethod: core.serialization.property("payment_method", PaymentMethodResponseData.optional()),
+    periodEnd: core.serialization.property("period_end", core.serialization.date().optional()),
+    periodStart: core.serialization.property("period_start", core.serialization.date().optional()),
     products: core.serialization.list(BillingProductForSubscriptionResponseData),
     providerType: core.serialization.property("provider_type", BillingProviderType),
     status: core.serialization.string(),
@@ -43,7 +49,12 @@ export declare namespace CompanySubscriptionResponseData {
         interval: string;
         is_initial: boolean;
         latest_invoice?: InvoiceResponseData.Raw | null;
+        pause_behavior?: BillingSubscriptionPauseBehavior.Raw | null;
+        pause_resumes_at?: string | null;
+        paused_at?: string | null;
         payment_method?: PaymentMethodResponseData.Raw | null;
+        period_end?: string | null;
+        period_start?: string | null;
         products: BillingProductForSubscriptionResponseData.Raw[];
         provider_type: BillingProviderType.Raw;
         status: string;

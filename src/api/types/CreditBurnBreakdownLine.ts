@@ -3,6 +3,8 @@
 export interface CreditBurnBreakdownLine {
     credits: number;
     key: string;
+    model?: string;
+    provider?: string;
     quantity: number;
     rate: number;
 }

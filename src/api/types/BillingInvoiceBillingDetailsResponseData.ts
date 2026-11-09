@@ -5,6 +5,8 @@ import type * as Schematic from "../index";
 export interface BillingInvoiceBillingDetailsResponseData {
     address?: Schematic.BillingInvoiceAddressResponseData;
     email?: string;
+    /** Who invoices are addressed to. Null to address them to the company by name. */
+    legalName?: string;
     phone?: string;
     taxIds: Schematic.BillingInvoiceTaxIdResponseData[];
 }

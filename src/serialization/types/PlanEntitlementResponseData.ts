@@ -9,6 +9,7 @@ import { BillingCreditResponseData } from "./BillingCreditResponseData";
 import { BillingLinkedResourceResponseData } from "./BillingLinkedResourceResponseData";
 import { BillingPriceView } from "./BillingPriceView";
 import { BillingProductResponseData } from "./BillingProductResponseData";
+import { CreditModelRate } from "./CreditModelRate";
 import { EntitlementCurrencyPricesResponseData } from "./EntitlementCurrencyPricesResponseData";
 import { EntitlementPriceBehavior } from "./EntitlementPriceBehavior";
 import { EntitlementValueType } from "./EntitlementValueType";
@@ -43,6 +44,7 @@ export const PlanEntitlementResponseData: core.serialization.ObjectSchema<
     meteredYearlyPrice: core.serialization.property("metered_yearly_price", BillingPriceView.optional()),
     metricPeriod: core.serialization.property("metric_period", MetricPeriod.optional()),
     metricPeriodMonthReset: core.serialization.property("metric_period_month_reset", MetricPeriodMonthReset.optional()),
+    modelRates: core.serialization.property("model_rates", core.serialization.list(CreditModelRate).optional()),
     overageBillingCadence: core.serialization.property("overage_billing_cadence", BillingArrearsCadence.optional()),
     overageInvoiceAnchor: core.serialization.property("overage_invoice_anchor", BillingArrearsAnchor.optional()),
     plan: PlanResponseData.optional(),
@@ -83,6 +85,7 @@ export declare namespace PlanEntitlementResponseData {
         metered_yearly_price?: BillingPriceView.Raw | null;
         metric_period?: MetricPeriod.Raw | null;
         metric_period_month_reset?: MetricPeriodMonthReset.Raw | null;
+        model_rates?: CreditModelRate.Raw[] | null;
         overage_billing_cadence?: BillingArrearsCadence.Raw | null;
         overage_invoice_anchor?: BillingArrearsAnchor.Raw | null;
         plan?: PlanResponseData.Raw | null;

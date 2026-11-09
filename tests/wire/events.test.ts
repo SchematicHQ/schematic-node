@@ -837,6 +837,681 @@ describe("EventsClient", () => {
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 
+    test("listAccountInferenceCostRates (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    created_at: "2024-01-15T09:30:00Z",
+                    currency: "currency",
+                    environment_id: "environment_id",
+                    id: "id",
+                    provider: "provider",
+                    rates: { key: 1.1 },
+                    repriced_at: "2024-01-15T09:30:00Z",
+                    response_model: "response_model",
+                    starting_at: "2024-01-15T09:30:00Z",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+            ],
+            params: { limit: 1000000, offset: 1000000, provider: "provider", response_model: "response_model" },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/inference-rate-sheet")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.events.listAccountInferenceCostRates({
+            provider: "provider",
+            responseModel: "response_model",
+            limit: 1000000,
+            offset: 1000000,
+        });
+        expect(response).toEqual({
+            data: [
+                {
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    currency: "currency",
+                    environmentId: "environment_id",
+                    id: "id",
+                    provider: "provider",
+                    rates: {
+                        key: 1.1,
+                    },
+                    repricedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    responseModel: "response_model",
+                    startingAt: new Date("2024-01-15T09:30:00.000Z"),
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                },
+            ],
+            params: {
+                limit: 1000000,
+                offset: 1000000,
+                provider: "provider",
+                responseModel: "response_model",
+            },
+        });
+    });
+
+    test("listAccountInferenceCostRates (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/inference-rate-sheet")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.events.listAccountInferenceCostRates();
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("listAccountInferenceCostRates (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/inference-rate-sheet")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.events.listAccountInferenceCostRates();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("listAccountInferenceCostRates (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/inference-rate-sheet")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.events.listAccountInferenceCostRates();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("listAccountInferenceCostRates (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/inference-rate-sheet")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.events.listAccountInferenceCostRates();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("listAccountInferenceCostRates (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/inference-rate-sheet")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.events.listAccountInferenceCostRates();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("createAccountInferenceCostRate (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            provider: "provider",
+            rates: { key: 1.1 },
+            response_model: "response_model",
+            starting_at: "2024-01-15T09:30:00Z",
+        };
+        const rawResponseBody = {
+            data: {
+                created_at: "2024-01-15T09:30:00Z",
+                currency: "currency",
+                environment_id: "environment_id",
+                id: "id",
+                provider: "provider",
+                rates: { key: 1.1 },
+                repriced_at: "2024-01-15T09:30:00Z",
+                response_model: "response_model",
+                starting_at: "2024-01-15T09:30:00Z",
+                updated_at: "2024-01-15T09:30:00Z",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/inference-rate-sheet")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.events.createAccountInferenceCostRate({
+            provider: "provider",
+            rates: {
+                key: 1.1,
+            },
+            responseModel: "response_model",
+            startingAt: new Date("2024-01-15T09:30:00.000Z"),
+        });
+        expect(response).toEqual({
+            data: {
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                currency: "currency",
+                environmentId: "environment_id",
+                id: "id",
+                provider: "provider",
+                rates: {
+                    key: 1.1,
+                },
+                repricedAt: new Date("2024-01-15T09:30:00.000Z"),
+                responseModel: "response_model",
+                startingAt: new Date("2024-01-15T09:30:00.000Z"),
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("createAccountInferenceCostRate (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            provider: "provider",
+            rates: { rates: 1.1 },
+            response_model: "response_model",
+            starting_at: "2024-01-15T09:30:00Z",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/inference-rate-sheet")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.events.createAccountInferenceCostRate({
+                provider: "provider",
+                rates: {
+                    rates: 1.1,
+                },
+                responseModel: "response_model",
+                startingAt: new Date("2024-01-15T09:30:00.000Z"),
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("createAccountInferenceCostRate (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            provider: "provider",
+            rates: { rates: 1.1 },
+            response_model: "response_model",
+            starting_at: "2024-01-15T09:30:00Z",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/inference-rate-sheet")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.events.createAccountInferenceCostRate({
+                provider: "provider",
+                rates: {
+                    rates: 1.1,
+                },
+                responseModel: "response_model",
+                startingAt: new Date("2024-01-15T09:30:00.000Z"),
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("createAccountInferenceCostRate (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            provider: "provider",
+            rates: { rates: 1.1 },
+            response_model: "response_model",
+            starting_at: "2024-01-15T09:30:00Z",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/inference-rate-sheet")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.events.createAccountInferenceCostRate({
+                provider: "provider",
+                rates: {
+                    rates: 1.1,
+                },
+                responseModel: "response_model",
+                startingAt: new Date("2024-01-15T09:30:00.000Z"),
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("createAccountInferenceCostRate (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            provider: "provider",
+            rates: { rates: 1.1 },
+            response_model: "response_model",
+            starting_at: "2024-01-15T09:30:00Z",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/inference-rate-sheet")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.events.createAccountInferenceCostRate({
+                provider: "provider",
+                rates: {
+                    rates: 1.1,
+                },
+                responseModel: "response_model",
+                startingAt: new Date("2024-01-15T09:30:00.000Z"),
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("createAccountInferenceCostRate (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            provider: "provider",
+            rates: { rates: 1.1 },
+            response_model: "response_model",
+            starting_at: "2024-01-15T09:30:00Z",
+        };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/inference-rate-sheet")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.events.createAccountInferenceCostRate({
+                provider: "provider",
+                rates: {
+                    rates: 1.1,
+                },
+                responseModel: "response_model",
+                startingAt: new Date("2024-01-15T09:30:00.000Z"),
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("updateAccountInferenceCostRate (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { rates: { key: 1.1 } };
+        const rawResponseBody = {
+            data: {
+                created_at: "2024-01-15T09:30:00Z",
+                currency: "currency",
+                environment_id: "environment_id",
+                id: "id",
+                provider: "provider",
+                rates: { key: 1.1 },
+                repriced_at: "2024-01-15T09:30:00Z",
+                response_model: "response_model",
+                starting_at: "2024-01-15T09:30:00Z",
+                updated_at: "2024-01-15T09:30:00Z",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .put("/inference-rate-sheet/inference_rate_sheet_id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.events.updateAccountInferenceCostRate("inference_rate_sheet_id", {
+            rates: {
+                key: 1.1,
+            },
+        });
+        expect(response).toEqual({
+            data: {
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                currency: "currency",
+                environmentId: "environment_id",
+                id: "id",
+                provider: "provider",
+                rates: {
+                    key: 1.1,
+                },
+                repricedAt: new Date("2024-01-15T09:30:00.000Z"),
+                responseModel: "response_model",
+                startingAt: new Date("2024-01-15T09:30:00.000Z"),
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("updateAccountInferenceCostRate (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { rates: { rates: 1.1 } };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/inference-rate-sheet/inference_rate_sheet_id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.events.updateAccountInferenceCostRate("inference_rate_sheet_id", {
+                rates: {
+                    rates: 1.1,
+                },
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("updateAccountInferenceCostRate (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { rates: { rates: 1.1 } };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/inference-rate-sheet/inference_rate_sheet_id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.events.updateAccountInferenceCostRate("inference_rate_sheet_id", {
+                rates: {
+                    rates: 1.1,
+                },
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("updateAccountInferenceCostRate (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { rates: { rates: 1.1 } };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/inference-rate-sheet/inference_rate_sheet_id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.events.updateAccountInferenceCostRate("inference_rate_sheet_id", {
+                rates: {
+                    rates: 1.1,
+                },
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("updateAccountInferenceCostRate (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { rates: { rates: 1.1 } };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/inference-rate-sheet/inference_rate_sheet_id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.events.updateAccountInferenceCostRate("inference_rate_sheet_id", {
+                rates: {
+                    rates: 1.1,
+                },
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("updateAccountInferenceCostRate (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { rates: { rates: 1.1 } };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/inference-rate-sheet/inference_rate_sheet_id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.events.updateAccountInferenceCostRate("inference_rate_sheet_id", {
+                rates: {
+                    rates: 1.1,
+                },
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("deleteAccountInferenceCostRate (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { data: { deleted: true }, params: { key: "value" } };
+
+        server
+            .mockEndpoint()
+            .delete("/inference-rate-sheet/inference_rate_sheet_id")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.events.deleteAccountInferenceCostRate("inference_rate_sheet_id");
+        expect(response).toEqual({
+            data: {
+                deleted: true,
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("deleteAccountInferenceCostRate (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .delete("/inference-rate-sheet/inference_rate_sheet_id")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.events.deleteAccountInferenceCostRate("inference_rate_sheet_id");
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("deleteAccountInferenceCostRate (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .delete("/inference-rate-sheet/inference_rate_sheet_id")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.events.deleteAccountInferenceCostRate("inference_rate_sheet_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("deleteAccountInferenceCostRate (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .delete("/inference-rate-sheet/inference_rate_sheet_id")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.events.deleteAccountInferenceCostRate("inference_rate_sheet_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("deleteAccountInferenceCostRate (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .delete("/inference-rate-sheet/inference_rate_sheet_id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.events.deleteAccountInferenceCostRate("inference_rate_sheet_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("deleteAccountInferenceCostRate (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .delete("/inference-rate-sheet/inference_rate_sheet_id")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.events.deleteAccountInferenceCostRate("inference_rate_sheet_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
     test("getOTLPEnvironmentSettings (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });

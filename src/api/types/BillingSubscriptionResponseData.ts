@@ -16,6 +16,9 @@ export interface BillingSubscriptionResponseData {
     id: string;
     interval: string;
     metadata?: Record<string, unknown>;
+    pauseBehavior?: Schematic.BillingSubscriptionPauseBehavior;
+    pauseResumesAt?: number;
+    pausedAt?: Date;
     periodEnd: number;
     periodStart: number;
     providerType: Schematic.BillingProviderType;

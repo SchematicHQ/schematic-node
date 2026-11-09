@@ -9,6 +9,10 @@ export interface CatalogPlanResponseData {
     /** For add-ons, the plans this add-on may be purchased with. Null means compatible with every plan. */
     compatiblePlanIds?: string[];
     currencyPrices: Schematic.CatalogCurrencyPricesResponseData[];
+    /** True for the catalog's custom plan, the one sold by quote: show custom_plan_cta in place of its price and action. */
+    custom: boolean;
+    /** The custom plan's price text and call to action; set only where custom is true. */
+    customPlanCta?: Schematic.CatalogCustomPlanCtaResponseData;
     description: string;
     entitlements: Schematic.CatalogPlanEntitlementResponseData[];
     icon: string;

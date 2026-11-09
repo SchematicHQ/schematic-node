@@ -4,6 +4,7 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingProviderType } from "./BillingProviderType";
+import { BillingSubscriptionPauseBehavior } from "./BillingSubscriptionPauseBehavior";
 import { BillingSubscriptionTrialEndSetting } from "./BillingSubscriptionTrialEndSetting";
 import { Currency } from "./Currency";
 
@@ -37,6 +38,9 @@ export const CheckoutSubscription: core.serialization.ObjectSchema<
     invoiceId: core.serialization.property("invoice_id", core.serialization.string().optional()),
     invoiceUrl: core.serialization.property("invoice_url", core.serialization.string().optional()),
     metadata: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
+    pauseBehavior: core.serialization.property("pause_behavior", BillingSubscriptionPauseBehavior.optional()),
+    pauseResumesAt: core.serialization.property("pause_resumes_at", core.serialization.number().optional()),
+    pausedAt: core.serialization.property("paused_at", core.serialization.date().optional()),
     periodEnd: core.serialization.property("period_end", core.serialization.number()),
     periodStart: core.serialization.property("period_start", core.serialization.number()),
     providerType: core.serialization.property("provider_type", BillingProviderType),
@@ -66,6 +70,9 @@ export declare namespace CheckoutSubscription {
         invoice_id?: string | null;
         invoice_url?: string | null;
         metadata?: Record<string, unknown> | null;
+        pause_behavior?: BillingSubscriptionPauseBehavior.Raw | null;
+        pause_resumes_at?: number | null;
+        paused_at?: string | null;
         period_end: number;
         period_start: number;
         provider_type: BillingProviderType.Raw;

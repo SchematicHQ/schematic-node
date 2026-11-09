@@ -22,3 +22,4 @@ export type { ListPaymentMethodsRequest } from "./ListPaymentMethodsRequest";
 export type { MarkInvoicePaidRequestBody } from "./MarkInvoicePaidRequestBody";
 export type { UpdateBillingSettingsRequestBody } from "./UpdateBillingSettingsRequestBody";
 export type { UpdateCompanyBillingProfileRequestBody } from "./UpdateCompanyBillingProfileRequestBody";
+export type { UploadContractDocumentRequest } from "./UploadContractDocumentRequest";

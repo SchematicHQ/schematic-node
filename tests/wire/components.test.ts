@@ -2242,6 +2242,9 @@ describe("ComponentsClient", () => {
                         subtotal: 1000000,
                         updated_at: "2024-01-15T09:30:00Z",
                     },
+                    pause_behavior: "keep_as_draft",
+                    pause_resumes_at: "2024-01-15T09:30:00Z",
+                    paused_at: "2024-01-15T09:30:00Z",
                     payment_method: {
                         created_at: "2024-01-15T09:30:00Z",
                         customer_external_id: "customer_external_id",
@@ -2252,6 +2255,8 @@ describe("ComponentsClient", () => {
                         provider_type: "metronome",
                         updated_at: "2024-01-15T09:30:00Z",
                     },
+                    period_end: "2024-01-15T09:30:00Z",
+                    period_start: "2024-01-15T09:30:00Z",
                     products: [
                         {
                             billing_scheme: "per_unit",
@@ -3821,6 +3826,9 @@ describe("ComponentsClient", () => {
                         subtotal: 1000000,
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
+                    pauseBehavior: "keep_as_draft",
+                    pauseResumesAt: new Date("2024-01-15T09:30:00.000Z"),
+                    pausedAt: new Date("2024-01-15T09:30:00.000Z"),
                     paymentMethod: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),
                         customerExternalId: "customer_external_id",
@@ -3831,6 +3839,8 @@ describe("ComponentsClient", () => {
                         providerType: "metronome",
                         updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     },
+                    periodEnd: new Date("2024-01-15T09:30:00.000Z"),
+                    periodStart: new Date("2024-01-15T09:30:00.000Z"),
                     products: [
                         {
                             billingScheme: "per_unit",

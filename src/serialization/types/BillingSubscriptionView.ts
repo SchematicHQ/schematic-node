@@ -6,6 +6,7 @@ import type * as serializers from "../index";
 import { BillingProductForSubscriptionResponseData } from "./BillingProductForSubscriptionResponseData";
 import { BillingProviderType } from "./BillingProviderType";
 import { BillingSubscriptionDiscountView } from "./BillingSubscriptionDiscountView";
+import { BillingSubscriptionPauseBehavior } from "./BillingSubscriptionPauseBehavior";
 import { BillingSubscriptionTrialEndSetting } from "./BillingSubscriptionTrialEndSetting";
 import { Currency } from "./Currency";
 import { InvoiceResponseData } from "./InvoiceResponseData";
@@ -33,6 +34,9 @@ export const BillingSubscriptionView: core.serialization.ObjectSchema<
     interval: core.serialization.string(),
     latestInvoice: core.serialization.property("latest_invoice", InvoiceResponseData.optional()),
     metadata: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
+    pauseBehavior: core.serialization.property("pause_behavior", BillingSubscriptionPauseBehavior.optional()),
+    pauseResumesAt: core.serialization.property("pause_resumes_at", core.serialization.number().optional()),
+    pausedAt: core.serialization.property("paused_at", core.serialization.date().optional()),
     paymentMethod: core.serialization.property("payment_method", PaymentMethodResponseData.optional()),
     periodEnd: core.serialization.property("period_end", core.serialization.number()),
     periodStart: core.serialization.property("period_start", core.serialization.number()),
@@ -62,6 +66,9 @@ export declare namespace BillingSubscriptionView {
         interval: string;
         latest_invoice?: InvoiceResponseData.Raw | null;
         metadata?: Record<string, unknown> | null;
+        pause_behavior?: BillingSubscriptionPauseBehavior.Raw | null;
+        pause_resumes_at?: number | null;
+        paused_at?: string | null;
         payment_method?: PaymentMethodResponseData.Raw | null;
         period_end: number;
         period_start: number;

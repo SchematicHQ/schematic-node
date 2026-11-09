@@ -35,6 +35,7 @@ export const BillingInvoiceDetailResponseData: core.serialization.ObjectSchema<
     id: core.serialization.string(),
     lines: core.serialization.list(BillingInvoiceLineResponseData),
     number: core.serialization.string().optional(),
+    paymentMethodId: core.serialization.property("payment_method_id", core.serialization.string().optional()),
     pdfUrl: core.serialization.property("pdf_url", core.serialization.string().optional()),
     periodEnd: core.serialization.property("period_end", core.serialization.date().optional()),
     periodStart: core.serialization.property("period_start", core.serialization.date().optional()),
@@ -74,6 +75,7 @@ export declare namespace BillingInvoiceDetailResponseData {
         id: string;
         lines: BillingInvoiceLineResponseData.Raw[];
         number?: string | null;
+        payment_method_id?: string | null;
         pdf_url?: string | null;
         period_end?: string | null;
         period_start?: string | null;

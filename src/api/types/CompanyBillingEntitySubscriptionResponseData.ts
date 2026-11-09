@@ -13,7 +13,12 @@ export interface CompanyBillingEntitySubscriptionResponseData {
     interval: string;
     isInitial: boolean;
     latestInvoice?: Schematic.InvoiceResponseData;
+    pauseBehavior?: Schematic.BillingSubscriptionPauseBehavior;
+    pauseResumesAt?: Date;
+    pausedAt?: Date;
     paymentMethod?: Schematic.PaymentMethodResponseData;
+    periodEnd?: Date;
+    periodStart?: Date;
     planName: string;
     products: Schematic.BillingProductForSubscriptionResponseData[];
     providerType: Schematic.BillingProviderType;

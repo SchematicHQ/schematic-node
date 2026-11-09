@@ -6,6 +6,8 @@ export interface ManagePlanRequest {
     /** If true, the company gets the plan only once the first invoice is paid. Only applies to an invoiced subscription. Defaults to false. */
     activateOnPayment?: boolean;
     addOnSelections: Schematic.PlanSelection[];
+    /** When true, the new subscription renews on the same date as the subscriptions billing_entity_id pays for, and the partial first period is billed pro rata. Requires billing_entity_id, and can't be combined with billing_cycle_anchor. Only honored when starting a new subscription. */
+    alignWithBillingEntity?: boolean;
     basePlanId?: string;
     basePlanPriceId?: string;
     basePlanVersionId?: string;

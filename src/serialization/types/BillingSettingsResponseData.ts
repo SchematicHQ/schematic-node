@@ -4,16 +4,21 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingProviderType } from "./BillingProviderType";
+import { Collector } from "./Collector";
 
 export const BillingSettingsResponseData: core.serialization.ObjectSchema<
     serializers.BillingSettingsResponseData.Raw,
     Schematic.BillingSettingsResponseData
 > = core.serialization.object({
+    defaultCollector: core.serialization.property("default_collector", Collector),
     defaultProviderType: core.serialization.property("default_provider_type", BillingProviderType.optional()),
+    invoiceReplyToEmail: core.serialization.property("invoice_reply_to_email", core.serialization.string().optional()),
 });
 
 export declare namespace BillingSettingsResponseData {
     export interface Raw {
+        default_collector: Collector.Raw;
         default_provider_type?: BillingProviderType.Raw | null;
+        invoice_reply_to_email?: string | null;
     }
 }
