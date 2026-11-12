@@ -631,6 +631,17 @@ export class SchematicClient extends BaseClient {
     }
 
     /**
+     * Whether a flag check should be evaluated from the DataStream cache. Single
+     * checks (`checkFlagWithEntitlement`, and `checkFlag` through it) and bulk
+     * checks (`checkFlags` with keys) both ask this, so they cannot drift apart.
+     * In replicator mode the cache is read only once the replicator reports it
+     * ready; until then flag checks take the API path.
+     */
+    private useDataStreamCache(): boolean {
+        return this.useDataStream() && this.datastreamClient!.isCacheReady();
+    }
+
+    /**
      * Whether the configured mode wants the local lease plumbing (stores,
      * manager, sweeper). Read during construction, after the DataStream client
      * has been wired, so `auto` can resolve against it.
@@ -700,7 +711,7 @@ export class SchematicClient extends BaseClient {
             };
         }
 
-        if (this.useDataStream()) {
+        if (this.useDataStreamCache()) {
             try {
                 // The local engine reads its preflight from the options, so a
                 // preflight the caller set on the evaluation context has to be
@@ -861,7 +872,9 @@ export class SchematicClient extends BaseClient {
         try {
             // DataStream path: evaluate all requested keys locally when available.
             // No flag_check events are enqueued for the bulk checkFlags codepath.
-            if (this.useDataStream() && this.datastreamClient!.isConnected() && keys && keys.length > 0) {
+            // isConnected() is the WebSocket-mode requirement bulk checks have
+            // always had; in replicator mode it equals isCacheReady().
+            if (this.useDataStreamCache() && this.datastreamClient!.isConnected() && keys && keys.length > 0) {
                 const dsResults = await this.checkFlagsViaDataStream(evalCtx, keys);
                 if (dsResults) {
                     return dsResults;
@@ -1486,9 +1499,11 @@ export class SchematicClient extends BaseClient {
             await this.enqueueEvent("track", body, options);
 
             // Update company metrics in DataStream if available. This does not
-            // gate on isConnected(): flag checks keep evaluating from the cached
-            // company while the replicator reports not ready or the WebSocket is
-            // down, so the cached usage has to keep moving with them. The bump
+            // gate on isConnected() or isCacheReady(): single flag checks keep
+            // evaluating from the cached company while the WebSocket is down, and
+            // in replicator mode the checks served once the replicator reports
+            // ready must see usage tracked before then, so the cached usage has
+            // to keep moving either way. The bump
             // only touches a company already in the cache, and the next company
             // the server sends replaces the metric value rather than adding to
             // it, so it cannot double count.
