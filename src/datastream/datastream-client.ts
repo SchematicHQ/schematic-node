@@ -633,10 +633,11 @@ export class DataStreamClient extends LazyEmitter {
   /**
    * IsCacheReady returns whether flag checks may be evaluated from the cache.
    *
-   * In replicator mode this is the replicator's readiness from its last health
-   * poll: true once the replicator reports its cache complete for the current
-   * cache version, and false before that or when a poll fails. Until it is
-   * true, flag checks skip the cache and use the API.
+   * In replicator mode this is the readiness from the replicator's last
+   * answer to a health poll: true once it reports its cache complete for the
+   * current cache version, false before its first answer or when it answers
+   * ready: false. A poll that fails without an answer changes nothing. Until
+   * it is true, flag checks skip the cache and use the API.
    *
    * Outside replicator mode the SDK fills its own cache over the WebSocket and
    * fetches what it lacks on demand, so there is nothing to wait for and this
@@ -1333,15 +1334,19 @@ export class DataStreamClient extends LazyEmitter {
 
       // Read the body whatever the status: while the replicator is still
       // loading its cache, /ready answers 503 with ready: false and the
-      // cache_version it is loading. A body that doesn't parse fails the poll.
-      let healthData: { ready?: boolean; cache_version?: string; cacheVersion?: string };
+      // cache_version it is loading. Only a body that parses to an object with
+      // a boolean `ready` counts as an answer.
+      let healthData: { ready?: unknown; cache_version?: string; cacheVersion?: string } | null;
       try {
-        healthData = await response.json() as { ready?: boolean; cache_version?: string; cacheVersion?: string };
+        healthData = await response.json() as typeof healthData;
       } catch (error) {
         throw new Error(`HTTP ${response.status}: unparseable health response (${error})`);
       }
+      if (healthData === null || typeof healthData !== 'object' || typeof healthData.ready !== 'boolean') {
+        throw new Error(`HTTP ${response.status}: health response has no boolean ready field`);
+      }
       const wasReady = this.replicatorReady;
-      this.replicatorReady = healthData.ready === true;
+      this.replicatorReady = healthData.ready;
 
       // Extract cache version from response if available
       const newCacheVersion = healthData.cache_version || healthData.cacheVersion;
@@ -1360,11 +1365,11 @@ export class DataStreamClient extends LazyEmitter {
         this.emit('replicator-health-changed', false);
       }
     } catch (error) {
-      if (this.replicatorReady) {
-        this.replicatorReady = false;
-        this.logger.info('External replicator is no longer ready');
-        this.emit('replicator-health-changed', false);
-      }
+      // A failed poll (network error, timeout, or no parseable answer) says
+      // nothing about whether the replicator's cache is complete, so it keeps
+      // the readiness and cache_version from the last answer. Flipping to not
+      // ready here would send every check to the API on one replicator blip.
+      // A replicator that is actually reloading answers ready: false.
       this.logger.debug(`Replicator health check failed: ${error}`);
     }
   }

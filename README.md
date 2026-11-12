@@ -799,7 +799,7 @@ Replicator mode requires a shared cache (Redis or custom cache providers) so the
 
 ### Cache readiness
 
-The SDK serves flag checks from the replicator's cache only once the replicator reports ready. It polls the replicator's health URL, reads `ready` and `cache_version` from the JSON body (including the body of a 503, which the replicator returns while it is still loading), and treats a failed poll as not ready. Until the replicator reports ready, `checkFlag`, `checkFlagWithEntitlement` and `checkFlags` all skip the cache and ask the Schematic API, falling back to the flag default if the API call fails. Once it is ready, they evaluate from the cache, and a flag the cache can't evaluate still falls back to the API.
+The SDK serves flag checks from the replicator's cache only once the replicator reports ready. It polls the replicator's health URL, reads `ready` and `cache_version` from the JSON body (including the body of a 503, which the replicator returns while it is still loading). Readiness changes only when the replicator answers: before its first answer the cache is not ready, and a poll that fails without an answer (a network error, a timeout, or a body that doesn't parse) keeps the readiness and `cache_version` from the last answer. A replicator that is reloading its cache answers `ready: false`, which still sends checks to the API. Until the replicator reports ready, `checkFlag`, `checkFlagWithEntitlement` and `checkFlags` all skip the cache and ask the Schematic API, falling back to the flag default if the API call fails. Once it is ready, they evaluate from the cache, and a flag the cache can't evaluate still falls back to the API.
 
 ### Setup
 

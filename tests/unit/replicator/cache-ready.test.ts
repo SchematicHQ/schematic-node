@@ -259,6 +259,16 @@ describe("replicator mode flag checks gate on cache readiness", () => {
             expect(api.bulk).toHaveBeenCalledTimes(1);
         });
 
+        it("flag checks keep evaluating from the cache through a failed poll", async () => {
+            await pollHealth("unreachable");
+            const api = mockApi({ [FLAG_A]: false });
+
+            expect(await client.checkFlag(evalCtx, FLAG_A)).toBe(true);
+            expect((await client.checkFlags(evalCtx, [FLAG_A]))[0].value).toBe(true);
+            expect(api.single).not.toHaveBeenCalled();
+            expect(api.bulk).not.toHaveBeenCalled();
+        });
+
         it("goes back to the API when the replicator stops reporting ready", async () => {
             await pollHealth({ status: 503, body: healthBody(false, CACHE_VERSION) });
             const api = mockApi({ [FLAG_A]: false });
@@ -277,7 +287,7 @@ describe("replicator mode flag checks gate on cache readiness", () => {
             expect(datastream.getReplicatorCacheVersion()).toBe("v1");
         });
 
-        it("reads a 503 body: sets not ready and records its cache_version", async () => {
+        it("after a ready answer, an explicit ready: false (a 503 body) sets not ready and records its cache_version", async () => {
             await pollHealth({ status: 503, body: healthBody(false, "vX") });
 
             expect(datastream.isCacheReady()).toBe(false);
@@ -301,19 +311,41 @@ describe("replicator mode flag checks gate on cache readiness", () => {
             expect(datastream.getReplicatorCacheVersion()).toBe("v1");
         });
 
-        it("an unreachable health URL sets not ready and keeps the previous cache_version", async () => {
-            await pollHealth("unreachable");
+        // A failed poll is no answer from the replicator, so it keeps the
+        // readiness and cache_version from the last answer.
+        it.each<[string, HealthResponse]>([
+            ["an unreachable health URL", "unreachable"],
+            ["a 503 with an unparseable body", { status: 503, body: "Service Unavailable" }],
+            ["a 200 with an unparseable body", { status: 200, body: "<html>" }],
+            ["a body without a boolean ready", { status: 200, body: JSON.stringify({ cache_version: "vX" }) }],
+        ])("after a ready answer, %s keeps it ready", async (_name, failure) => {
+            await pollHealth(failure);
 
-            expect(datastream.isCacheReady()).toBe(false);
-            expect(datastream.isConnected()).toBe(false);
+            expect(datastream.isCacheReady()).toBe(true);
+            expect(datastream.isConnected()).toBe(true);
             expect(datastream.getReplicatorCacheVersion()).toBe("v1");
         });
 
-        it("an unparseable body sets not ready and keeps the previous cache_version", async () => {
-            await pollHealth({ status: 503, body: "Service Unavailable" });
+        it("after a not-ready answer, a failed poll keeps it not ready", async () => {
+            await pollHealth({ status: 503, body: healthBody(false, "vX") });
+            await pollHealth("unreachable");
+            await pollHealth({ status: 502, body: "Bad Gateway" });
 
             expect(datastream.isCacheReady()).toBe(false);
-            expect(datastream.getReplicatorCacheVersion()).toBe("v1");
+            expect(datastream.getReplicatorCacheVersion()).toBe("vX");
+        });
+    });
+
+    describe("before the replicator has answered", () => {
+        it("a failed poll leaves the cache not ready, and checks use the API", async () => {
+            await startClient("unreachable");
+            await pollHealth({ status: 503, body: "Service Unavailable" });
+            const api = mockApi({ [FLAG_A]: false });
+
+            expect(datastream.isCacheReady()).toBe(false);
+            expect(datastream.getReplicatorCacheVersion()).toBeUndefined();
+            expect(await client.checkFlag(evalCtx, FLAG_A)).toBe(false);
+            expect(api.single).toHaveBeenCalledTimes(1);
         });
     });
 
