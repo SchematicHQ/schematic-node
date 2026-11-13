@@ -1364,3 +1364,60 @@ describe("checkFlag preflight forwarding", () => {
         await client.close();
     });
 });
+
+describe("client.check (lease path) while the DataStream cache is not ready", () => {
+    afterEach(() => {
+        mockDataStream.isCacheReady.mockReturnValue(true);
+    });
+
+    it("runs a plain API check with no lease or reservation, and gates on a lease once the cache is ready", async () => {
+        configureSuccessfulAcquire();
+        configureDataStream();
+        configureEngine();
+        mockCheckFlag.mockResolvedValue({ data: { value: true, flag: "inference", reason: "api" } });
+        const client = makeClient();
+        const check = () =>
+            client.check({ company: { id: "co_1" } }, "inference", { usage: 50, eventSubtype: "inference_tokens" });
+
+        mockDataStream.isCacheReady.mockReturnValue(false);
+        const notReady = await check();
+
+        expect(notReady).toMatchObject({ allowed: true, reason: "api" });
+        expect(notReady.reservation).toBeUndefined();
+        expect(mockCheckFlag).toHaveBeenCalledTimes(1);
+        expect(mockAcquireCreditLease).not.toHaveBeenCalled();
+        expect(mockDataStream.getFlag).not.toHaveBeenCalled();
+        expect(mockDataStream.getCompany).not.toHaveBeenCalled();
+
+        mockDataStream.isCacheReady.mockReturnValue(true);
+        const ready = await check();
+
+        expect(ready.allowed).toBe(true);
+        expect(ready.reservation?.creditsReserved).toBe(500);
+        expect(mockAcquireCreditLease).toHaveBeenCalledTimes(1);
+        expect(mockCheckFlag).toHaveBeenCalledTimes(1);
+        await client.close();
+    });
+
+    it("leaves trackWithReservation with nothing to settle: it logs and records no event", async () => {
+        configureDataStream();
+        mockCheckFlag.mockResolvedValue({ data: { value: true, flag: "inference", reason: "api" } });
+        const client = makeClient();
+        mockDataStream.isCacheReady.mockReturnValue(false);
+
+        const result = await client.check({ company: { id: "co_1" } }, "inference", {
+            usage: 50,
+            eventSubtype: "inference_tokens",
+        });
+        mockEventBufferPush.mockClear();
+        await client.trackWithReservation(result.reservation, 50);
+
+        expect(result.reservation).toBeUndefined();
+        expect(mockEventBufferPush).not.toHaveBeenCalled();
+        const logger = (client as unknown as { logger: { error: jest.Mock } }).logger;
+        expect(logger.error).toHaveBeenCalledWith(
+            expect.stringContaining("trackWithReservation called without a reservation"),
+        );
+        await client.close();
+    });
+});
