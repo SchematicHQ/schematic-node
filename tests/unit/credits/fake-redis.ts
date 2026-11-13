@@ -4,6 +4,8 @@ import type { RedisClient, RedisMulti } from "../../../src/cache/redis";
 export type FakeRedis = RedisClient & {
     /** One entry per EXEC, naming the commands that transaction queued. */
     transactions: string[][];
+    /** Absolute expiry of a key in epoch ms, or undefined when it has none. */
+    expiresAt(key: string): number | undefined;
 };
 
 /**
@@ -217,6 +219,10 @@ export function makeFakeRedis(): FakeRedis {
 
     return {
         transactions,
+        expiresAt(key) {
+            checkExpiry(key);
+            return expirations.get(key);
+        },
         // MULTI/EXEC: queue the commands, apply them on exec, and record what
         // the transaction carried so a test can tell one round trip from two.
         multi() {
@@ -252,8 +258,11 @@ export function makeFakeRedis(): FakeRedis {
             checkExpiry(key);
             return strings.get(key) ?? null;
         },
-        async set(key, value) {
+        // Like Redis, a plain SET clears the key's expiry; KEEPTTL keeps it.
+        async set(key, value, options) {
+            checkExpiry(key);
             strings.set(key, String(value));
+            if (!options?.KEEPTTL) expirations.delete(key);
         },
         async setEx(key, seconds, value) {
             strings.set(key, String(value));

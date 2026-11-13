@@ -6,6 +6,11 @@ export interface CacheProvider<T> {
   get(key: string): Promise<T | null>;
   /** Set a value in cache */
   set(key: string, value: T, ttl?: number): Promise<void>;
+  /**
+   * Set a value in cache and keep the key's current expiry. A key with no
+   * expiry keeps none. Optional: providers without it fall back to `set`.
+   */
+  setKeepTTL?(key: string, value: T): Promise<void>;
   /** Delete a value from cache */
   delete(key: string): Promise<void>;
   /** Delete all keys not in the keysToKeep array (optional, for bulk operations) */

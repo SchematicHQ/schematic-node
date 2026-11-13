@@ -9,7 +9,7 @@ import { CacheProvider, CacheOptions } from "./types";
  */
 export interface RedisClient {
     get(key: string): Promise<string | null>;
-    set(key: string, value: string): Promise<unknown>;
+    set(key: string, value: string, options?: { KEEPTTL: true }): Promise<unknown>;
     setEx(key: string, seconds: number, value: string): Promise<unknown>;
     del(key: string | string[]): Promise<unknown>;
     scanIterator(options: { MATCH: string; COUNT: number }): AsyncIterable<string>;
@@ -104,6 +104,11 @@ export class RedisCacheProvider<T> implements CacheProvider<T> {
         } else {
             await this.client.set(fullKey, serializedValue);
         }
+    }
+
+    // SET ... KEEPTTL needs Redis 6.0 or later.
+    async setKeepTTL(key: string, value: T): Promise<void> {
+        await this.client.set(this.getFullKey(key), JSON.stringify(value), { KEEPTTL: true });
     }
 
     async delete(key: string): Promise<void> {

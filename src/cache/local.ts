@@ -83,6 +83,12 @@ class LocalCache<T> implements CacheProvider<T> {
         this.cache.set(key, newItem);
     }
 
+    async setKeepTTL(key: string, value: T): Promise<void> {
+        const existing = this.cache.get(key);
+        const remaining = existing ? existing.expiration - Date.now() : 0;
+        await this.set(key, value, remaining > 0 ? remaining : undefined);
+    }
+
     async delete(key: string): Promise<void> {
         const item = this.cache.get(key);
         if (item) {

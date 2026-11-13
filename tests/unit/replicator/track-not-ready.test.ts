@@ -157,6 +157,20 @@ describe("track in replicator mode when the replicator is not ready", () => {
         expect(logger.error).not.toHaveBeenCalled();
     });
 
+    it("keeps the expiry the replicator gave each key", async () => {
+        // The replicator writes keys with no expiry by default; one configured
+        // with a TTL sets one. A bump must leave both as they were.
+        const lookupKey = `schematic:company:${CACHE_VERSION}:name:acme`;
+        await redisClient.setEx(lookupKey, 3600, JSON.stringify("company-1"));
+        const lookupExpiry = redisClient.expiresAt(lookupKey);
+
+        await client.track({ event: "api_call", company: { name: "Acme" }, quantity: 2 });
+
+        expect(await cachedMetricValue()).toBe(5);
+        expect(redisClient.expiresAt(COMPANY_KEY)).toBeUndefined();
+        expect(redisClient.expiresAt(lookupKey)).toBe(lookupExpiry);
+    });
+
     it("counts usage a metric-gated flag check sees once the replicator is ready", async () => {
         jest.spyOn(client.features, "checkFlag").mockRejectedValue(new Error("Schematic is unreachable"));
         const check = () => client.checkFlag({ company: { name: "Acme" } }, "metric-flag");

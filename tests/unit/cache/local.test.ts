@@ -160,4 +160,23 @@ describe("LocalCache", () => {
             }
         }
     });
+
+    it("setKeepTTL keeps the existing entry's expiry", async () => {
+        await cache.set("key1", { data: "value1" }, 1000);
+        jest.advanceTimersByTime(600);
+        await cache.setKeepTTL("key1", { data: "value2" });
+
+        expect(await cache.get("key1")).toEqual({ data: "value2" });
+        jest.advanceTimersByTime(401);
+        expect(await cache.get("key1")).toBeNull();
+    });
+
+    it("setKeepTTL uses the default TTL for a new entry", async () => {
+        await cache.setKeepTTL("key1", { data: "value1" });
+
+        jest.advanceTimersByTime(4999);
+        expect(await cache.get("key1")).toEqual({ data: "value1" });
+        jest.advanceTimersByTime(2);
+        expect(await cache.get("key1")).toBeNull();
+    });
 });
