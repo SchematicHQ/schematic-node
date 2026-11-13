@@ -595,8 +595,9 @@ export class DataStreamClient extends LazyEmitter {
       }
     }
 
-    // Update cache with the modified company
-    await this.cacheCompanyForKeys(updatedCompany);
+    // The replicator owns these keys and their expiry (none by default), so
+    // keep it rather than putting the SDK's TTL on them.
+    await this.cacheCompanyForKeys(updatedCompany, { keepTTL: this.replicatorMode });
   }
 
   /**
@@ -1087,7 +1088,10 @@ export class DataStreamClient extends LazyEmitter {
   /**
    * cacheCompanyForKeys caches a company for all of its keys
    */
-  private async cacheCompanyForKeys(company: Schematic.RulesengineCompany): Promise<void> {
+  private async cacheCompanyForKeys(
+    company: Schematic.RulesengineCompany,
+    { keepTTL = false }: { keepTTL?: boolean } = {},
+  ): Promise<void> {
     if (!company.keys || Object.keys(company.keys).length === 0) {
       throw new Error('No keys provided for company lookup');
     }
@@ -1109,17 +1113,25 @@ export class DataStreamClient extends LazyEmitter {
     }
 
     // Cache ID → full resource (single entry)
-    await this.companyCacheProvider.set(resourceKey, company, this.cacheTTL);
+    await this.cacheSet(this.companyCacheProvider, resourceKey, company, keepTTL);
 
     // Cache each key → ID
     for (const [key, value] of Object.entries(company.keys)) {
       const cacheKey = this.resourceKeyToCacheKey(CACHE_KEY_PREFIX_COMPANY, key, value);
       try {
-        await this.companyKeyCacheProvider.set(cacheKey, company.id, this.cacheTTL);
+        await this.cacheSet(this.companyKeyCacheProvider, cacheKey, company.id, keepTTL);
       } catch (error) {
         this.logger.warn(`Failed to cache company key mapping '${cacheKey}': ${error}`);
       }
     }
+  }
+
+  private async cacheSet<T>(provider: CacheProvider<T>, key: string, value: T, keepTTL: boolean): Promise<void> {
+    if (keepTTL && provider.setKeepTTL) {
+      await provider.setKeepTTL(key, value);
+      return;
+    }
+    await provider.set(key, value, this.cacheTTL);
   }
 
   /**
