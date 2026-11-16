@@ -15,6 +15,10 @@ export const WebScheduledDowngradeWebhookOutput: core.serialization.ObjectSchema
     fromPlan: core.serialization.property("from_plan", PlanSnapshotView.optional()),
     id: core.serialization.string(),
     scheduledInterval: core.serialization.property("scheduled_interval", core.serialization.string().optional()),
+    scheduledIntervalCount: core.serialization.property(
+        "scheduled_interval_count",
+        core.serialization.number().optional(),
+    ),
     scheduledPrice: core.serialization.property("scheduled_price", core.serialization.number().optional()),
     toPlan: core.serialization.property("to_plan", PlanSnapshotView.optional()),
 });
@@ -26,6 +30,7 @@ export declare namespace WebScheduledDowngradeWebhookOutput {
         from_plan?: PlanSnapshotView.Raw | null;
         id: string;
         scheduled_interval?: string | null;
+        scheduled_interval_count?: number | null;
         scheduled_price?: number | null;
         to_plan?: PlanSnapshotView.Raw | null;
     }

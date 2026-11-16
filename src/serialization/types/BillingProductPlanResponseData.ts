@@ -21,6 +21,7 @@ export const BillingProductPlanResponseData: core.serialization.ObjectSchema<
     monthlyPriceId: core.serialization.property("monthly_price_id", core.serialization.string().optional()),
     oneTimePriceId: core.serialization.property("one_time_price_id", core.serialization.string().optional()),
     planId: core.serialization.property("plan_id", core.serialization.string()),
+    quarterlyPriceId: core.serialization.property("quarterly_price_id", core.serialization.string().optional()),
     trialDays: core.serialization.property("trial_days", core.serialization.number().optional()),
     yearlyPriceId: core.serialization.property("yearly_price_id", core.serialization.string().optional()),
 });
@@ -37,6 +38,7 @@ export declare namespace BillingProductPlanResponseData {
         monthly_price_id?: string | null;
         one_time_price_id?: string | null;
         plan_id: string;
+        quarterly_price_id?: string | null;
         trial_days?: number | null;
         yearly_price_id?: string | null;
     }

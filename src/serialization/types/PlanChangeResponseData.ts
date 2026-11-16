@@ -31,6 +31,7 @@ export const PlanChangeResponseData: core.serialization.ObjectSchema<
     basePlan: core.serialization.property("base_plan", PlanSnapshotView.optional()),
     basePlanAction: core.serialization.property("base_plan_action", PlanChangeBasePlanAction.optional()),
     basePlanVersion: core.serialization.property("base_plan_version", PlanVersionSnapshotView.optional()),
+    billingInterval: core.serialization.property("billing_interval", core.serialization.string().optional()),
     company: CompanyResponseData.optional(),
     companyId: core.serialization.property("company_id", core.serialization.string()),
     createdAt: core.serialization.property("created_at", core.serialization.date()),
@@ -43,6 +44,10 @@ export const PlanChangeResponseData: core.serialization.ObjectSchema<
     previousBasePlanVersion: core.serialization.property(
         "previous_base_plan_version",
         PlanVersionSnapshotView.optional(),
+    ),
+    previousBillingInterval: core.serialization.property(
+        "previous_billing_interval",
+        core.serialization.string().optional(),
     ),
     requestId: core.serialization.property("request_id", core.serialization.string().optional()),
     subscriptionChangeAction: core.serialization.property(
@@ -70,6 +75,7 @@ export declare namespace PlanChangeResponseData {
         base_plan?: PlanSnapshotView.Raw | null;
         base_plan_action?: PlanChangeBasePlanAction.Raw | null;
         base_plan_version?: PlanVersionSnapshotView.Raw | null;
+        billing_interval?: string | null;
         company?: CompanyResponseData.Raw | null;
         company_id: string;
         created_at: string;
@@ -80,6 +86,7 @@ export declare namespace PlanChangeResponseData {
         migration_id?: string | null;
         previous_base_plan?: PlanSnapshotView.Raw | null;
         previous_base_plan_version?: PlanVersionSnapshotView.Raw | null;
+        previous_billing_interval?: string | null;
         request_id?: string | null;
         subscription_change_action?: PlanChangeSubscriptionAction.Raw | null;
         traits_updated: SubscriptionTraitUpdate.Raw[];

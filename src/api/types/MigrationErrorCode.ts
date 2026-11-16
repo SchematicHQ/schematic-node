@@ -2,6 +2,7 @@
 
 export const MigrationErrorCode = {
     AmbiguousSubscriptionItem: "ambiguous_subscription_item",
+    MixedBillingIntervals: "mixed_billing_intervals",
     MultipleSubscriptions: "multiple_subscriptions",
     NoPriceForInterval: "no_price_for_interval",
     NotOnOriginVersion: "not_on_origin_version",

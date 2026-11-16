@@ -6,6 +6,7 @@ import type * as serializers from "../index";
 import { AmendmentProrationLandsOn } from "./AmendmentProrationLandsOn";
 import { BillingCollectionMethod } from "./BillingCollectionMethod";
 import { Currency } from "./Currency";
+import { PublishPreviewIntervalChangeResponseData } from "./PublishPreviewIntervalChangeResponseData";
 import { PublishPreviewPayInAdvanceResponseData } from "./PublishPreviewPayInAdvanceResponseData";
 import { PublishPreviewPaymentMethodResponseData } from "./PublishPreviewPaymentMethodResponseData";
 import { PublishPreviewProrationLineResponseData } from "./PublishPreviewProrationLineResponseData";
@@ -30,6 +31,7 @@ export const PublishPreviewResponseData: core.serialization.ObjectSchema<
         "immediate_invoice_amount",
         core.serialization.number().optional(),
     ),
+    intervalChange: core.serialization.property("interval_change", PublishPreviewIntervalChangeResponseData.optional()),
     landsOn: core.serialization.property("lands_on", AmendmentProrationLandsOn),
     newRecurringAmount: core.serialization.property("new_recurring_amount", core.serialization.number().optional()),
     nextInvoiceAmount: core.serialization.property("next_invoice_amount", core.serialization.number().optional()),
@@ -66,6 +68,7 @@ export declare namespace PublishPreviewResponseData {
         ends_at?: string | null;
         has_billing_changes: boolean;
         immediate_invoice_amount?: number | null;
+        interval_change?: PublishPreviewIntervalChangeResponseData.Raw | null;
         lands_on: AmendmentProrationLandsOn.Raw;
         new_recurring_amount?: number | null;
         next_invoice_amount?: number | null;

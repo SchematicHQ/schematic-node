@@ -20,6 +20,8 @@ export type { ListInvoicesRequest } from "./ListInvoicesRequest";
 export type { ListMetersRequest } from "./ListMetersRequest";
 export type { ListPaymentMethodsRequest } from "./ListPaymentMethodsRequest";
 export type { MarkInvoicePaidRequestBody } from "./MarkInvoicePaidRequestBody";
+export type { StartCompanyTrialRequestBody } from "./StartCompanyTrialRequestBody";
 export type { UpdateBillingSettingsRequestBody } from "./UpdateBillingSettingsRequestBody";
 export type { UpdateCompanyBillingProfileRequestBody } from "./UpdateCompanyBillingProfileRequestBody";
+export type { UpdateCompanyTrialRequestBody } from "./UpdateCompanyTrialRequestBody";
 export type { UploadContractDocumentRequest } from "./UploadContractDocumentRequest";

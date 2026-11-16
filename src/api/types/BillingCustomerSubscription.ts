@@ -6,6 +6,7 @@ export interface BillingCustomerSubscription {
     currency: Schematic.Currency;
     expiredAt?: Date;
     interval: string;
+    intervalCount: number;
     meteredUsage: boolean;
     perUnitPrice: number;
     totalPrice: number;

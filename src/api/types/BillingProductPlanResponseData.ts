@@ -13,6 +13,7 @@ export interface BillingProductPlanResponseData {
     monthlyPriceId?: string;
     oneTimePriceId?: string;
     planId: string;
+    quarterlyPriceId?: string;
     trialDays?: number;
     yearlyPriceId?: string;
 }

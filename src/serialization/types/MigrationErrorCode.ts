@@ -9,6 +9,7 @@ export const MigrationErrorCode: core.serialization.Schema<
     Schematic.MigrationErrorCode
 > = core.serialization.enum_([
     "ambiguous_subscription_item",
+    "mixed_billing_intervals",
     "multiple_subscriptions",
     "no_price_for_interval",
     "not_on_origin_version",
@@ -25,6 +26,7 @@ export const MigrationErrorCode: core.serialization.Schema<
 export declare namespace MigrationErrorCode {
     export type Raw =
         | "ambiguous_subscription_item"
+        | "mixed_billing_intervals"
         | "multiple_subscriptions"
         | "no_price_for_interval"
         | "not_on_origin_version"

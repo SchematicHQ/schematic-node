@@ -12,6 +12,7 @@ export const BillingCustomerSubscription: core.serialization.ObjectSchema<
     currency: Currency,
     expiredAt: core.serialization.property("expired_at", core.serialization.date().optional()),
     interval: core.serialization.string(),
+    intervalCount: core.serialization.property("interval_count", core.serialization.number()),
     meteredUsage: core.serialization.property("metered_usage", core.serialization.boolean()),
     perUnitPrice: core.serialization.property("per_unit_price", core.serialization.number()),
     totalPrice: core.serialization.property("total_price", core.serialization.number()),
@@ -22,6 +23,7 @@ export declare namespace BillingCustomerSubscription {
         currency: Currency.Raw;
         expired_at?: string | null;
         interval: string;
+        interval_count: number;
         metered_usage: boolean;
         per_unit_price: number;
         total_price: number;

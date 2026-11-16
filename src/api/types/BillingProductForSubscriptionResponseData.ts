@@ -24,6 +24,7 @@ export interface BillingProductForSubscriptionResponseData {
     quantity: number;
     subscriptionId: string;
     subscriptionItemExternalId?: string;
+    tiersMode?: Schematic.BillingTiersMode;
     updatedAt: Date;
     usageType: Schematic.BillingPriceUsageType;
 }

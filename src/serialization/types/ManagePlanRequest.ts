@@ -6,6 +6,7 @@ import type * as serializers from "../index";
 import { BillingCollectionMethod } from "./BillingCollectionMethod";
 import { CheckoutFieldValue } from "./CheckoutFieldValue";
 import { Currency } from "./Currency";
+import { PlanPriceCadence } from "./PlanPriceCadence";
 import { PlanSelection } from "./PlanSelection";
 import { UpdateCreditBundleRequestBody } from "./UpdateCreditBundleRequestBody";
 import { UpdatePayInAdvanceRequestBody } from "./UpdatePayInAdvanceRequestBody";
@@ -26,6 +27,7 @@ export const ManagePlanRequest: core.serialization.ObjectSchema<
     billingCycleAnchor: core.serialization.property("billing_cycle_anchor", core.serialization.date().optional()),
     billingEmail: core.serialization.property("billing_email", core.serialization.string().optional()),
     billingEntityId: core.serialization.property("billing_entity_id", core.serialization.string().optional()),
+    billingPeriod: core.serialization.property("billing_period", PlanPriceCadence.optional()),
     cancelImmediately: core.serialization.property("cancel_immediately", core.serialization.boolean().optional()),
     collectionMethod: core.serialization.property("collection_method", BillingCollectionMethod.optional()),
     companyId: core.serialization.property("company_id", core.serialization.string()),
@@ -64,6 +66,7 @@ export declare namespace ManagePlanRequest {
         billing_cycle_anchor?: string | null;
         billing_email?: string | null;
         billing_entity_id?: string | null;
+        billing_period?: PlanPriceCadence.Raw | null;
         cancel_immediately?: boolean | null;
         collection_method?: BillingCollectionMethod.Raw | null;
         company_id: string;

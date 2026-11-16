@@ -42,4 +42,8 @@ export interface PublishPlanVersionRequestBody {
     /** Whether Stripe emails the invoice when it is finalized. Defaults to true. */
     sendInvoice?: boolean;
     taxId?: Schematic.TaxIdInput;
+    /** Starts the custom plan with a trial that ends at this time. Nothing is invoiced until the trial ends, and the billing period renews from then. Only for a company Schematic bills itself, on a first publish that starts a subscription. */
+    trialEnd?: Date;
+    /** What happens when the trial reaches its end date: subscribe starts billing, cancel moves the company off the plan. Defaults to subscribe. Requires trial_end. */
+    trialEndBehavior?: Schematic.BillingSubscriptionTrialEndSetting;
 }

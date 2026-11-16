@@ -17,6 +17,8 @@ export interface ManagePlanRequest {
     billingEmail?: string;
     /** The company that pays for this subscription. Must already have a Stripe customer. Only honored when starting a new subscription. */
     billingEntityId?: string;
+    /** How often the plan renews. Only used when Schematic bills the company: the plan's published price for this billing period and the currency is charged, and base_plan_price_id must be left empty. A new billing period starts where the current one ends. Defaults to the subscription's current billing period. */
+    billingPeriod?: Schematic.PlanPriceCadence;
     /** If false, subscription cancels at period end. Only applies when removing all plans. Defaults to true. */
     cancelImmediately?: boolean;
     /** How the subscription is paid: charged to a payment method on file, or invoiced with payment terms. Invoicing is only available when starting a new subscription. Defaults to charge_automatically. */
@@ -24,7 +26,7 @@ export interface ManagePlanRequest {
     companyId: string;
     couponExternalId?: string;
     creditBundles: Schematic.UpdateCreditBundleRequestBody[];
-    /** ISO 4217 currency this change is being built in. Prices are still selected by id; this records the intent. */
+    /** ISO 4217 currency this change is being built in. Prices are still selected by id; this records the intent. When Schematic bills the company, the plan is charged in this currency from the next billing period, and the company's contract moves to it; defaults to the subscription's current currency. */
     currency?: Schematic.Currency;
     customFieldValues: Schematic.CheckoutFieldValue[];
     /** Payment terms in days for an invoiced subscription. Defaults to 30. */

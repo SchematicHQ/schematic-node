@@ -4,6 +4,7 @@ import type * as Schematic from "../../api/index";
 import * as core from "../../core";
 import type * as serializers from "../index";
 import { BillingCollectionMethod } from "./BillingCollectionMethod";
+import { BillingSubscriptionTrialEndSetting } from "./BillingSubscriptionTrialEndSetting";
 import { CheckoutFieldValue } from "./CheckoutFieldValue";
 import { CustomerBillingAddress } from "./CustomerBillingAddress";
 import { CustomPlanActivationStrategy } from "./CustomPlanActivationStrategy";
@@ -48,6 +49,8 @@ export const PublishPlanVersionRequestBody: core.serialization.ObjectSchema<
     scheduledAt: core.serialization.property("scheduled_at", core.serialization.date().optional()),
     sendInvoice: core.serialization.property("send_invoice", core.serialization.boolean().optional()),
     taxId: core.serialization.property("tax_id", TaxIdInput.optional()),
+    trialEnd: core.serialization.property("trial_end", core.serialization.date().optional()),
+    trialEndBehavior: core.serialization.property("trial_end_behavior", BillingSubscriptionTrialEndSetting.optional()),
 });
 
 export declare namespace PublishPlanVersionRequestBody {
@@ -75,5 +78,7 @@ export declare namespace PublishPlanVersionRequestBody {
         scheduled_at?: string | null;
         send_invoice?: boolean | null;
         tax_id?: TaxIdInput.Raw | null;
+        trial_end?: string | null;
+        trial_end_behavior?: BillingSubscriptionTrialEndSetting.Raw | null;
     }
 }

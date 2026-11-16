@@ -16,7 +16,12 @@ export const ScheduledDowngradeResponseData: core.serialization.ObjectSchema<
     fromSubscriptionPrice: core.serialization.property("from_subscription_price", core.serialization.number()),
     id: core.serialization.string(),
     interval: core.serialization.string(),
+    intervalCount: core.serialization.property("interval_count", core.serialization.number()),
     scheduledInterval: core.serialization.property("scheduled_interval", core.serialization.string().optional()),
+    scheduledIntervalCount: core.serialization.property(
+        "scheduled_interval_count",
+        core.serialization.number().optional(),
+    ),
     scheduledPrice: core.serialization.property("scheduled_price", core.serialization.number().optional()),
     toPlanId: core.serialization.property("to_plan_id", core.serialization.string()),
     toPlanName: core.serialization.property("to_plan_name", core.serialization.string()),
@@ -31,7 +36,9 @@ export declare namespace ScheduledDowngradeResponseData {
         from_subscription_price: number;
         id: string;
         interval: string;
+        interval_count: number;
         scheduled_interval?: string | null;
+        scheduled_interval_count?: number | null;
         scheduled_price?: number | null;
         to_plan_id: string;
         to_plan_name: string;
