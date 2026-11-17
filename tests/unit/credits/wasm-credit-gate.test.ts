@@ -123,6 +123,7 @@ function fakeDatastream(
     co: api.RulesengineCompany,
 ): DataStreamClient {
     return {
+        isCacheReady: () => true,
         getFlag: async () => flag,
         getCachedCompany: async () => co,
         getCachedUser: async () => null,

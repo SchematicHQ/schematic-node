@@ -112,6 +112,15 @@ export async function checkWithLease(
         return fallback();
     }
 
+    // The flow reads the flag, company and user from the DataStream cache. In
+    // replicator mode that cache is read only once the replicator reports it
+    // ready, so until then the check runs as the plain check the flow falls
+    // back to on a cache miss, and holds nothing.
+    if (!datastream.isCacheReady()) {
+        logger.debug(`Lease check: cache not ready, using plain check for flag ${key}`);
+        return fallback();
+    }
+
     let flag: api.RulesengineFlag | null = null;
     try {
         flag = await datastream.getFlag(key);

@@ -387,6 +387,7 @@ function makeCheckDeps(leaseStore: ILeaseStore, reservations: IReservationStore)
         }),
     };
     const datastream = {
+        isCacheReady: () => true,
         getFlag: jest.fn().mockResolvedValue({ id: "flag_1", key: "inference" }),
         getCompany: jest.fn().mockResolvedValue({ id: "co_1", creditBalances: { ct_1: 5000 } }),
         getUser: jest.fn(),
@@ -503,6 +504,7 @@ describe.each(backends)("checkWithLease crash window — %s stores", (_name, mak
             }),
         };
         const datastream = {
+            isCacheReady: () => true,
             getFlag: jest.fn().mockResolvedValue({ id: "flag_1", key: "inference" }),
             getCompany: jest.fn().mockResolvedValue({ id: "co_1", creditBalances: { ct_1: 5000 } }),
             getUser: jest.fn(),

@@ -404,6 +404,7 @@ async function runCheck(
         },
     };
     const datastream = {
+        isCacheReady: () => true,
         getFlag: async () => ({ id: "flag_1", key: flagKey }),
         getCompany: async () => ({ id: company.id, creditBalances: company.credit_balances ?? {} }),
         getUser: async () => null,

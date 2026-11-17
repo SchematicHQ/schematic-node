@@ -801,6 +801,8 @@ Replicator mode requires a shared cache (Redis or custom cache providers) so the
 
 The SDK serves flag checks from the replicator's cache only once the replicator reports ready. It polls the replicator's health URL, reads `ready` and `cache_version` from the JSON body (including the body of a 503, which the replicator returns while it is still loading). Readiness changes only when the replicator answers: before its first answer the cache is not ready, and a poll that fails without an answer (a network error, a timeout, or a body that doesn't parse) keeps the readiness and `cache_version` from the last answer. A replicator that is reloading its cache answers `ready: false`, which still sends checks to the API. Until the replicator reports ready, `checkFlag`, `checkFlagWithEntitlement` and `checkFlags` all skip the cache and ask the Schematic API, falling back to the flag default if the API call fails. Once it is ready, they evaluate from the cache, and a flag the cache can't evaluate still falls back to the API.
 
+The same gate applies to `check` with `usage` in client credit-lease mode: while the cache is not ready, it runs as a plain check through the API and holds no credits, as it does when the flag or company is missing from the cache. Its result has no `reservation`, so report that usage with `track()`. Prewarming leases is not a flag check and still resolves companies without waiting for readiness.
+
 ### Setup
 
 ```ts
@@ -925,7 +927,7 @@ if (result.reservation) {
 }
 ```
 
-A check can allow without taking a hold (the feature is not credit-metered, `usage` is 0, or the check failed open), and that usage still has to be tracked.
+A check can allow without taking a hold (the feature is not credit-metered, `usage` is 0, the replicator's cache is not ready, or the check failed open), and that usage still has to be tracked.
 
 An unsettled reservation expires after `defaultReservationTTL` and its credits return to the lease. A late settle still bills the usage (the track event carries a deterministic idempotency key, so it never double-bills) but does not re-debit the local lease, so set `defaultReservationTTL` above the longest expected gap between `check()` and `trackWithReservation()`.
 
